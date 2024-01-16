@@ -6,9 +6,12 @@ using namespace slay;
 
 sint32 main(sint32 argc, char* *argv)
 {
-    string str = {"Hello, World!"};
+    engine Engine("Demo", 800, 600);
 
-    printf("%s\n", str());
+    while (Engine.Update())
+    {
+        
+    }
 
     return 0;
 }
