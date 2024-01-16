@@ -38,9 +38,9 @@ namespace slay
             } Mouse;
 
         private:
-            uint16 TargetFrameTime;
             uint64 PrevTick;
-            uint64 DeltaTime_;
+            uint16 TargetFrameTime;
+            uint64 FrameTime;
 
             uint8 UpdateTiming();
 

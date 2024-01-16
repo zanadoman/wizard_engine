@@ -28,7 +28,7 @@ namespace slay
 
     uint32 engine::DeltaTime()
     {
-        return this->DeltaTime_;
+        return this->FrameTime;
     }
 
     uint8 engine::UpdateTiming()
@@ -40,8 +40,8 @@ namespace slay
         {
             SDL_Delay(delay);
         }
-        this->DeltaTime_ = SDL_GetTicks64() - this->PrevTick;
-        this->PrevTick = SDL_GetTicks();
+        this->FrameTime = SDL_GetTicks64() - this->PrevTick;
+        this->PrevTick = SDL_GetTicks64();
 
         return 0;
     }
