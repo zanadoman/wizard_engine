@@ -6,8 +6,7 @@ namespace slay
     {
         SDL_Event event;
 
-        this->CapFPS();
-        //this->UpdateDeltaTime();
+        this->UpdateTiming();
 
         while (SDL_PollEvent(&event))
         {
@@ -32,7 +31,7 @@ namespace slay
         return this->DeltaTime_;
     }
 
-    uint8 engine::CapFPS()
+    uint8 engine::UpdateTiming()
     {
         sint64 delay;
 

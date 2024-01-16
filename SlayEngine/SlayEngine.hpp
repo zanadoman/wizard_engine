@@ -42,8 +42,7 @@ namespace slay
             uint64 PrevTick;
             uint64 DeltaTime_;
 
-            uint8 CapFPS();
-            uint8 UpdateDeltaTime();
+            uint8 UpdateTiming();
 
             class window
             {
