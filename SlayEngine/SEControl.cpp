@@ -42,7 +42,7 @@ namespace slay
     {
         sint64 delay;
 
-        delay = round((this->PrevTick + 1000.0 / this->MaxFPS) - SDL_GetTicks());
+        delay = this->MinFrameTime - this->DeltaTime;
         if (0 < delay)
         {
             SDL_Delay(delay);
