@@ -2,7 +2,7 @@
 
 #undef main
 
-using namespace neo;
+using namespace slay;
 
 sint32 main(sint32 argc, char* *argv)
 {
