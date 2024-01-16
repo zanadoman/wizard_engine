@@ -15,6 +15,8 @@ namespace slay
         public:
             engine(const char* Title, uint16 Width, uint16 Height);
 
+            bool Update();
+
         private:
             class window
             {

@@ -24,6 +24,8 @@ namespace slay
             printf("engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
             exit(1);
         }
+
+        this->Window.Init(Title, Width, Height);
     }
 
     uint8 engine::window::Init(const char* Title, uint16 Width, uint16 Height)
