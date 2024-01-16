@@ -16,8 +16,33 @@ namespace slay
             engine(const char* Title, uint16 Width, uint16 Height);
 
             bool Update();
+            uint8 GetDeltaTime();
+
+            class mouse
+            {
+                public:
+                    uint8 Update();
+
+                private:
+                    sint32 X;
+                    sint32 Y;
+                    sint32 MovementX;
+                    sint32 MovementY;
+
+                    bool LMB;
+                    bool MMB;
+                    bool RMB;
+                    sint8 Wheel;
+
+            } Mouse;
 
         private:
+            uint32 PrevTick;
+            uint32 DeltaTime;
+
+            uint8 UpdateDeltaTime();
+            uint8 CapFPS();
+
             class window
             {
                 public:

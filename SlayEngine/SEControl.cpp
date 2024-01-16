@@ -16,4 +16,22 @@ namespace slay
 
         return true;
     }
+
+    uint8 engine::UpdateDeltaTime()
+    {
+        this->DeltaTime = SDL_GetTicks() - this->PrevTick;
+        this->PrevTick = SDL_GetTicks();
+
+        if (40 < this->DeltaTime)
+        {
+            this->DeltaTime = 40;
+        }
+
+        return 0;
+    }
+
+    inline uint8 engine::GetDeltaTime()
+    {
+        return this->DeltaTime;
+    }
 }
