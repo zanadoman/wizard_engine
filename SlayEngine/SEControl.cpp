@@ -38,23 +38,17 @@ namespace slay
         }
         this->PrevTick = SDL_GetTicks();
 
-        return 0;
-    }
-
-    uint32 engine::DeltaTime()
-    {
-        return this->DeltaTime_;
-    }
-
-    uint8 engine::UpdateDeltaTime()
-    {
-        this->DeltaTime_ = SDL_GetTicks() - this->PrevTick;
-
+        this->DeltaTime_ = this->TargetFrameTime - delay;
         if (40 < this->DeltaTime_)
         {
             this->DeltaTime_ = 40;
         }
 
         return 0;
+    }
+
+    uint32 engine::DeltaTime()
+    {
+        return this->DeltaTime_;
     }
 }
