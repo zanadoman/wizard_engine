@@ -6,6 +6,9 @@ namespace slay
     {
         SDL_Event event;
 
+        this->CapFPS();
+        this->UpdateDeltaTime();
+
         while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT)

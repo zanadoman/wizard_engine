@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS)
+    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS) : TargetFrameTime(1000 / FPS), PrevTick(0), DeltaTime(0)
     {
         if (Title == NULL)
         {
@@ -26,7 +26,6 @@ namespace slay
         }
 
         this->Window.Init(Title, Width, Height);
-        this->TargetFrameTime = 1000 / FPS;
     }
 
     uint8 engine::window::Init(const char* Title, uint16 Width, uint16 Height)

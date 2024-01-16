@@ -14,9 +14,8 @@ namespace slay
     {
         public:
             engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS);
-
+            
             bool Update();
-
             uint8 SetFPS(uint16 FPS);
 
             class mouse
@@ -42,8 +41,8 @@ namespace slay
             uint8 PrevTick;
             uint8 DeltaTime;
 
-            uint8 UpdateDeltaTime();
             uint8 CapFPS();
+            uint8 UpdateDeltaTime();
 
             class window
             {
