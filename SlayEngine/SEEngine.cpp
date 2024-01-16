@@ -60,7 +60,6 @@ namespace slay
     uint8 engine::SetFPS(uint16 FPS)
     {
         this->FPS = FPS;
-
         this->Control.FrameTime = 1000 / FPS;
 
         return 0;
