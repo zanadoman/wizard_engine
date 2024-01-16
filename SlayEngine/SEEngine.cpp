@@ -57,12 +57,12 @@ namespace slay
         return 0;
     }
 
-    inline void engine::SetFPS(uint16 FPS)
+    void engine::SetFPS(uint16 FPS)
     {
         this->FPS = FPS;
     }
 
-    inline uint16 engine::GetFPS()
+    uint16 engine::GetFPS()
     {
         return this->FPS;
     }
