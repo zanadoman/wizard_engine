@@ -6,6 +6,9 @@ namespace slay
     {
         SDL_Event event;
 
+        this->CapFPS();
+        this->UpdateDeltaTime();
+
         while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT)
@@ -33,5 +36,18 @@ namespace slay
     inline uint8 engine::GetDeltaTime()
     {
         return this->DeltaTime;
+    }
+
+    uint8 engine::CapFPS()
+    {
+        sint64 delay;
+
+        delay = round((this->PrevTick + 1000.0 / this->MaxFPS) - SDL_GetTicks());
+        if (0 < delay)
+        {
+            SDL_Delay(delay);
+        }
+
+        return 0;
     }
 }

@@ -39,6 +39,7 @@ namespace slay
         private:
             uint32 PrevTick;
             uint32 DeltaTime;
+            uint16 MaxFPS;
 
             uint8 UpdateDeltaTime();
             uint8 CapFPS();
