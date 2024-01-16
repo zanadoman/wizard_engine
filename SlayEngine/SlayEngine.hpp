@@ -13,10 +13,13 @@ namespace slay
     class engine
     {
         public:
-            engine(const char* Title, uint16 Width, uint16 Height);
+            engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS);
 
             bool Update();
-            uint8 GetDeltaTime();
+            uint8 DeltaTime();
+
+            void SetFPS(uint16 FPS);
+            uint16 GetFPS();
 
             class mouse
             {
@@ -37,12 +40,7 @@ namespace slay
             } Mouse;
 
         private:
-            uint32 PrevTick;
-            uint32 DeltaTime;
-            uint32 MinFrameTime;
-
-            uint8 UpdateDeltaTime();
-            uint8 CapFPS();
+            uint16 FPS;
 
             class window
             {
@@ -57,5 +55,15 @@ namespace slay
 
             } Window;
 
+            class control
+            {
+                public:
+                    uint32 PrevTick;
+                    uint32 DeltaTime;
+                    uint16 FrameTime;
+
+                    uint8 UpdateDeltaTime();
+                    uint8 CapFPS();
+            } Control;
     };
 }

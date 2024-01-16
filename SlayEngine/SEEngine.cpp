@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::engine(const char* Title, uint16 Width, uint16 Height)
+    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS)
     {
         if (Title == NULL)
         {
@@ -55,5 +55,15 @@ namespace slay
         }
 
         return 0;
+    }
+
+    inline void engine::SetFPS(uint16 FPS)
+    {
+        this->FPS = FPS;
+    }
+
+    inline uint16 engine::GetFPS()
+    {
+        return this->FPS;
     }
 }
