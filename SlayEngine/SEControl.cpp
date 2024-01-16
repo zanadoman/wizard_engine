@@ -7,7 +7,7 @@ namespace slay
         SDL_Event event;
 
         this->CapFPS();
-        this->UpdateDeltaTime();
+        //this->UpdateDeltaTime();
 
         while (SDL_PollEvent(&event))
         {
@@ -29,25 +29,30 @@ namespace slay
 
     uint8 engine::CapFPS()
     {
-        sint64 delay;
+        sint64 delay = 0;
 
-        delay = this->TargetFrameTime - this->DeltaTime;
+        delay = this->PrevTick + this->TargetFrameTime - SDL_GetTicks64();
         if (0 < delay)
         {
             SDL_Delay(delay);
         }
+        this->PrevTick = SDL_GetTicks();
 
         return 0;
     }
 
+    uint32 engine::DeltaTime()
+    {
+        return this->DeltaTime_;
+    }
+
     uint8 engine::UpdateDeltaTime()
     {
-        this->DeltaTime = SDL_GetTicks() - this->PrevTick;
-        this->PrevTick = SDL_GetTicks();
+        this->DeltaTime_ = SDL_GetTicks() - this->PrevTick;
 
-        if (40 < this->DeltaTime)
+        if (40 < this->DeltaTime_)
         {
-            this->DeltaTime = 40;
+            this->DeltaTime_ = 40;
         }
 
         return 0;

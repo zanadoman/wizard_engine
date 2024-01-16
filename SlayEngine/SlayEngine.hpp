@@ -17,6 +17,7 @@ namespace slay
             
             bool Update();
             uint8 SetFPS(uint16 FPS);
+            uint32 DeltaTime();
 
             class mouse
             {
@@ -37,9 +38,9 @@ namespace slay
             } Mouse;
 
         private:
-            uint8 TargetFrameTime;
-            uint8 PrevTick;
-            uint8 DeltaTime;
+            uint16 TargetFrameTime;
+            uint64 PrevTick;
+            uint64 DeltaTime_;
 
             uint8 CapFPS();
             uint8 UpdateDeltaTime();
