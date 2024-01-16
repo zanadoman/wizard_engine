@@ -34,20 +34,15 @@ namespace slay
 
     uint8 engine::CapFPS()
     {
-        sint64 delay = 0;
+        sint64 delay;
 
         delay = this->PrevTick + this->TargetFrameTime - SDL_GetTicks64();
         if (0 < delay)
         {
             SDL_Delay(delay);
         }
+        this->DeltaTime_ = SDL_GetTicks64() - this->PrevTick;
         this->PrevTick = SDL_GetTicks();
-
-        this->DeltaTime_ = this->TargetFrameTime - delay;
-        if (40 < this->DeltaTime_)
-        {
-            this->DeltaTime_ = 40;
-        }
 
         return 0;
     }
