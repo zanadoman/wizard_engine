@@ -16,9 +16,8 @@ namespace slay
             engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS);
 
             bool Update();
-            uint8 DeltaTime();
 
-            void SetFPS(uint16 FPS);
+            uint8 SetFPS(uint16 FPS);
             uint16 GetFPS();
 
             class mouse
