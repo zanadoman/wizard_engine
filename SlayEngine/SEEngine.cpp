@@ -26,6 +26,8 @@ namespace slay
         }
 
         this->Window.Init(Title, Width, Height);
+
+        this->SetFPS(FPS);
     }
 
     uint8 engine::window::Init(const char* Title, uint16 Width, uint16 Height)
