@@ -16,7 +16,18 @@ namespace slay
             engine(const char* Title, uint16 Width, uint16 Height);
 
         private:
-            SDL_Window* window;
-            SDL_Renderer* renderer;
+            class window
+            {
+                public:
+                    SDL_Window* window;
+                    SDL_Renderer* renderer;
+
+                    uint16 width;
+                    uint16 height;
+
+                    uint8 Init(const char* Title, uint16 Width, uint16 Height);
+
+            } Window;
+
     };
 }
