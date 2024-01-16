@@ -21,11 +21,11 @@ namespace slay
             class window
             {
                 public:
-                    SDL_Window* window;
-                    SDL_Renderer* renderer;
+                    SDL_Window* Window;
+                    SDL_Renderer* Renderer;
 
-                    uint16 width;
-                    uint16 height;
+                    uint16 Width;
+                    uint16 Height;
 
                     uint8 Init(const char* Title, uint16 Width, uint16 Height);
 
