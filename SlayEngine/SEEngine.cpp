@@ -43,7 +43,6 @@ namespace slay
             printf("engine.window.Init(): SDL_CreateRenderer() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
             exit(1);
         }
-
         if (SDL_RenderSetLogicalSize(this->renderer, Width, Height) != 0)
         {
             printf("engine.window.Init(): SDL_RenderSetLogicalSize() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
