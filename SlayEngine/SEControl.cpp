@@ -27,6 +27,11 @@ namespace slay
         return 0;
     }
 
+    uint32 engine::DeltaTime()
+    {
+        return this->DeltaTime_;
+    }
+
     uint8 engine::CapFPS()
     {
         sint64 delay = 0;
@@ -45,10 +50,5 @@ namespace slay
         }
 
         return 0;
-    }
-
-    uint32 engine::DeltaTime()
-    {
-        return this->DeltaTime_;
     }
 }
