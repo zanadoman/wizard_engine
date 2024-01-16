@@ -26,8 +26,7 @@ namespace slay
         }
 
         this->Window.Init(Title, Width, Height);
-
-        this->SetFPS(FPS);
+        this->TargetFrameTime = 1000 / FPS;
     }
 
     uint8 engine::window::Init(const char* Title, uint16 Width, uint16 Height)
@@ -57,18 +56,5 @@ namespace slay
         }
 
         return 0;
-    }
-
-    uint8 engine::SetFPS(uint16 FPS)
-    {
-        this->FPS = FPS;
-        this->Control.FrameTime = 1000 / FPS;
-
-        return 0;
-    }
-
-    uint16 engine::GetFPS()
-    {
-        return this->FPS;
     }
 }

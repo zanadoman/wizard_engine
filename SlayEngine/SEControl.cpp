@@ -17,7 +17,27 @@ namespace slay
         return true;
     }
 
-    uint8 engine::control::UpdateDeltaTime()
+    uint8 engine::SetFPS(uint16 FPS)
+    {
+        this->TargetFrameTime = 1000 / FPS;
+
+        return 0;
+    }
+
+    uint8 engine::CapFPS()
+    {
+        sint64 delay;
+
+        delay = this->TargetFrameTime - this->DeltaTime;
+        if (0 < delay)
+        {
+            SDL_Delay(delay);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::UpdateDeltaTime()
     {
         this->DeltaTime = SDL_GetTicks() - this->PrevTick;
         this->PrevTick = SDL_GetTicks();
@@ -25,19 +45,6 @@ namespace slay
         if (40 < this->DeltaTime)
         {
             this->DeltaTime = 40;
-        }
-
-        return 0;
-    }
-
-    uint8 engine::control::CapFPS()
-    {
-        sint64 delay;
-
-        delay = this->FrameTime - this->DeltaTime;
-        if (0 < delay)
-        {
-            SDL_Delay(delay);
         }
 
         return 0;

@@ -18,7 +18,6 @@ namespace slay
             bool Update();
 
             uint8 SetFPS(uint16 FPS);
-            uint16 GetFPS();
 
             class mouse
             {
@@ -39,7 +38,12 @@ namespace slay
             } Mouse;
 
         private:
-            uint16 FPS;
+            uint8 TargetFrameTime;
+            uint8 PrevTick;
+            uint8 DeltaTime;
+
+            uint8 UpdateDeltaTime();
+            uint8 CapFPS();
 
             class window
             {
@@ -53,16 +57,5 @@ namespace slay
                     uint8 Init(const char* Title, uint16 Width, uint16 Height);
 
             } Window;
-
-            class control
-            {
-                public:
-                    uint32 PrevTick;
-                    uint32 DeltaTime;
-                    uint16 FrameTime;
-
-                    uint8 UpdateDeltaTime();
-                    uint8 CapFPS();
-            } Control;
     };
 }
