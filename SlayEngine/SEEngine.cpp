@@ -1,9 +1,3 @@
-#include "Includes/SDL.h"
-#include "Includes/SDL_blendmode.h"
-#include "Includes/SDL_mixer.h"
-#include "Includes/SDL_render.h"
-#include "Includes/SDL_ttf.h"
-#include "Includes/SDL_video.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -30,8 +24,6 @@ namespace slay
             printf("engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
             exit(1);
         }
-
-        
     }
 
     uint8 engine::window::Init(const char* Title, uint16 Width, uint16 Height)
