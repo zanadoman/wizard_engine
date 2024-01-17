@@ -1,3 +1,4 @@
+#include "Includes/SDL_audio.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -28,6 +29,13 @@ namespace slay
         this->Window.Init(Title, Width, Height);
     }
 
+    engine::engine::~engine()
+    {
+        SDL_CloseAudio();
+        TTF_Quit();
+        SDL_Quit();
+    }
+
     uint8 engine::window::Init(const char* Title, uint16 Width, uint16 Height)
     {
         this->Width = Width;
@@ -55,5 +63,11 @@ namespace slay
         }
 
         return 0;
+    }
+
+    engine::window::~window()
+    {
+        SDL_DestroyRenderer(this->Renderer);
+        SDL_DestroyWindow(this->Window);
     }
 }

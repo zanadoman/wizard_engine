@@ -14,6 +14,7 @@ namespace slay
     {
         public:
             engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS);
+            ~engine();
             
             bool Update();
             uint8 SetFPS(uint16 FPS);
@@ -54,6 +55,7 @@ namespace slay
                     uint16 Height;
 
                     uint8 Init(const char* Title, uint16 Width, uint16 Height);
+                    ~window();
 
             } Window;
     };
