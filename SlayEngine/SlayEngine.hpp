@@ -58,7 +58,7 @@ namespace slay
                     uint64 PrevTick;
                     uint16 TargetFrameTime;
                     uint64 FrameTime;
-                    uint64 IdleTime;
+                    sint64 IdleTime;
                     uint64 DeltaTime;
 
                     timing(engine& Engine);
