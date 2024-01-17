@@ -16,11 +16,21 @@ namespace slay
         return this->Y;
     }
 
+    sint32 engine::mouse::GetMotionX()
+    {
+        return this->MotionX;
+    }
+
+    sint32 engine::mouse::GetMotionY()
+    {
+        return this->MotionY;
+    }
+
     uint8 engine::mouse::Update()
     {
-        SDL_GetRelativeMouseState(&this->MovementX, &this->MovementY);
-        this->MovementX *= this->Sensitivity;
-        this->MovementY *= this->Sensitivity;
+        SDL_GetRelativeMouseState(&this->MotionX, &this->MotionY);
+        this->MotionX *= this->Sensitivity;
+        this->MotionY *= this->Sensitivity;
 
         for (uint64 i = 0; i < Engine.EventQueue.Length(); i++)
         {

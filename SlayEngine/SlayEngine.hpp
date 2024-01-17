@@ -26,11 +26,12 @@ namespace slay
             class mouse
             {
                 public:
-                    mouse(engine& Engine);
-
                     double Sensitivity;
+
                     sint32 GetX();
                     sint32 GetY();
+                    sint32 GetMotionX();
+                    sint32 GetMotionY();
 
                 private:
                     friend class engine;
@@ -38,9 +39,10 @@ namespace slay
 
                     sint32 X;
                     sint32 Y;
-                    sint32 MovementX;
-                    sint32 MovementY;
+                    sint32 MotionX;
+                    sint32 MotionY;
 
+                    mouse(engine& Engine);
                     uint8 Update();
 
             } Mouse;
