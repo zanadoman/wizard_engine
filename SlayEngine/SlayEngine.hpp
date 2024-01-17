@@ -90,6 +90,12 @@ namespace slay
             class window
             {
                 public:
+                    uint16 GetHeight();
+                    uint16 GetWidth();
+
+                private:
+                    friend class engine;
+
                     SDL_Window* Window;
                     SDL_Renderer* Renderer;
 

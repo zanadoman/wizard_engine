@@ -10,6 +10,16 @@ namespace slay
         SDL_DestroyWindow(this->Window);
     }
 
+    uint16 engine::window::GetHeight()
+    {
+        return this->Height;
+    }
+
+    uint16 engine::window::GetWidth()
+    {
+        return this->Width;
+    }
+
     uint8 engine::window::New(const char* Title, uint16 Width, uint16 Height)
     {
         SDL_DestroyRenderer(this->Renderer);
