@@ -28,6 +28,7 @@ namespace slay
 
                 private:
                     friend class engine;
+                    engine& Engine;
 
                     SDL_Window* Window;
                     SDL_Renderer* Renderer;
@@ -35,7 +36,7 @@ namespace slay
                     uint16 Width;
                     uint16 Height;
 
-                    window();
+                    window(engine& Engine);
                     ~window();
                     uint8 New(const char* Title, uint16 Width, uint16 Height);
 
@@ -53,6 +54,7 @@ namespace slay
 
                 private:
                     friend class engine;
+                    engine& Engine;
 
                     uint64 PrevTick;
                     uint16 TargetFrameTime;
@@ -60,7 +62,7 @@ namespace slay
                     uint64 FrameTime;
                     uint64 DeltaTime;
 
-                    timing(uint16 FPS);
+                    timing(engine& Engine, uint16 FPS);
                     uint8 Update();
 
             } Timing;

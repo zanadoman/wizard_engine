@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS) : Mouse(*this), Timing(FPS), Keys(*this)
+    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS) : Window(*this), Timing(*this, FPS), Keys(*this), Mouse(*this)
     {
         if (Title == NULL)
         {

@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::window::window() : Window(NULL), Renderer(NULL), Width(0), Height(0) {}
+    engine::window::window(engine& Engine) : Engine(Engine), Window(NULL), Renderer(NULL), Width(0), Height(0) {}
 
     engine::window::~window()
     {

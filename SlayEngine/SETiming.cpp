@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::timing::timing(uint16 FPS) : PrevTick(0), TargetFrameTime(1000 / FPS), FrameDelay(0), FrameTime(0), DeltaTime(0) {}
+    engine::timing::timing(engine& Engine, uint16 FPS) : Engine(Engine), PrevTick(0), TargetFrameTime(1000 / FPS), FrameDelay(0), FrameTime(0), DeltaTime(0) {}
 
     uint64 engine::timing::GetPrevTick()
     {
