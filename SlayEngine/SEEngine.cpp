@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS) : Window(*this), Timing(*this, FPS), Keys(*this), Mouse(*this)
+    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS) : Window(*this), Timing(*this), Keys(*this), Mouse(*this)
     {
         if (Title == NULL)
         {
@@ -26,7 +26,7 @@ namespace slay
         }
 
         this->Window.New(Title, Width, Height);
-
+        this->Timing.TargetFrameTime = 1000 / FPS;
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
     }
 

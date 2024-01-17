@@ -1,5 +1,3 @@
-#include "Includes/SDL_events.h"
-#include "Includes/SDL_mouse.h"
 #include "SlayEngine.hpp"
 
 namespace slay

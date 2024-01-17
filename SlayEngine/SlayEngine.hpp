@@ -61,7 +61,7 @@ namespace slay
                     uint64 FrameTime;
                     uint64 DeltaTime;
 
-                    timing(engine& Engine, uint16 FPS);
+                    timing(engine& Engine);
                     uint8 Update();
 
             } Timing;
