@@ -63,6 +63,8 @@ namespace slay
 
             class window
             {
+                friend class engine;
+
                 SDL_Window* Window;
                 SDL_Renderer* Renderer;
 
