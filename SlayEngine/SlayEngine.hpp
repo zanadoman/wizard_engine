@@ -75,7 +75,7 @@ namespace slay
                 public:
 
                 private:
-                    friend class Engine;
+                    friend class engine;
                     engine& Engine;
 
                     camera(engine& Engine);
@@ -96,7 +96,7 @@ namespace slay
 
                     keys(engine& Engine);
                     uint8 Update();
-                    
+
             } Keys;
 
             class mouse
