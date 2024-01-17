@@ -48,7 +48,7 @@ namespace slay
 
         if (40 < (this->DeltaTime = this->FrameTime))
         {
-            DeltaTime = 40;
+            this->DeltaTime = 40;
         }
 
         return 0;
