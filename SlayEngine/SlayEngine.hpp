@@ -73,7 +73,6 @@ namespace slay
             class camera
             {
                 public:
-                    
 
                 private:
                     friend class engine;
