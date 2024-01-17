@@ -41,6 +41,17 @@ namespace slay
 
             } Window;
 
+            class render
+            {
+                public:
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    render(engine& Engine);
+
+            } Render;
+
             class timing
             {
                 public:
