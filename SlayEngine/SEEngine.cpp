@@ -36,14 +36,7 @@ namespace slay
         SDL_Quit();
     }
 
-    engine::window::window(uint16 Width, uint16 Height)
-    {
-        this->Window = NULL;
-        this->Renderer = NULL;
-
-        this->Width = Width;
-        this->Height = Height;
-    }
+    engine::window::window(uint16 Width, uint16 Height) : Window(NULL), Renderer(NULL), Width(Width), Height(Height) {}
 
     uint8 engine::window::New(const char* Title, uint16 Width, uint16 Height)
     {
@@ -52,22 +45,22 @@ namespace slay
 
         if ((this->Window = SDL_CreateWindow(Title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Width, Height, SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_RESIZABLE | SDL_WINDOW_INPUT_GRABBED)) == NULL)
         {
-            printf("engine.window.Init(): SDL_CreateWindow() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
+            printf("engine.window.New(): SDL_CreateWindow() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
             exit(1);
         }
         if ((this->Renderer = SDL_CreateRenderer(this->Window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
         {
-            printf("engine.window.Init(): SDL_CreateRenderer() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
+            printf("engine.window.New(): SDL_CreateRenderer() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
             exit(1);
         }
         if (SDL_RenderSetLogicalSize(this->Renderer, Width, Height) != 0)
         {
-            printf("engine.window.Init(): SDL_RenderSetLogicalSize() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
+            printf("engine.window.New(): SDL_RenderSetLogicalSize() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
             exit(1);
         }
         if (SDL_SetRenderDrawBlendMode(this->Renderer, SDL_BLENDMODE_BLEND) != 0)
         {
-            printf("engine.window.Init(): SDL_SetRenderDrawBlendMode() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
+            printf("engine.window.New(): SDL_SetRenderDrawBlendMode() failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
             exit(1);
         }
 
