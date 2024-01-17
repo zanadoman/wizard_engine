@@ -28,7 +28,13 @@ namespace slay
         }
 
         this->Window.New(Title, Width, Height);
-        this->KeyStates = SDL_GetKeyboardState(NULL);
+        
+        this->SDL_KeyStates = SDL_GetKeyboardState((sint32*)&this->SDL_KeyStatesLength);
+        if ((this->KeyStates = (uint8*)malloc(sizeof(uint8) * this->SDL_KeyStatesLength)) == NULL)
+        {
+            printf("engine.engine(): Memory allocation failed\nParams: Title: %s, Width: %d, Height: %d\n", Title, Width, Height);
+            exit(1);
+        }
     }
 
     engine::engine::~engine()

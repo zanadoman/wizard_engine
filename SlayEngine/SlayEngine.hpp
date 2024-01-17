@@ -167,9 +167,12 @@ namespace slay
             uint16 TargetFrameTime;
             uint64 FrameTime;
 
-            const uint8* KeyStates;
+            const uint8* SDL_KeyStates;
+            uint16 SDL_KeyStatesLength;
+            uint8* KeyStates;
 
             uint8 UpdateTiming();
+            uint8 UpdateInput();
 
             class window
             {
