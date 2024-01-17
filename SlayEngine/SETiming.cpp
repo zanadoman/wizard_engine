@@ -9,7 +9,7 @@ namespace slay
         return this->GetPrevTick();
     }
 
-    uint64 engine::timing::GetFrameDelay()
+    sint64 engine::timing::GetFrameDelay()
     {
         return this->FrameDelay;
     }
@@ -28,12 +28,10 @@ namespace slay
 
     uint8 engine::timing::UpdateTiming()
     {
-        sint64 delay;
-
-        delay = this->PrevTick + this->TargetFrameTime - SDL_GetTicks64();
-        if (0 < delay)
+        this->FrameDelay = this->PrevTick + this->TargetFrameTime - SDL_GetTicks64();
+        if (0 < this->FrameDelay)
         {
-            SDL_Delay(delay);
+            SDL_Delay(this->FrameDelay);
         }
         this->FrameTime = SDL_GetTicks64() - this->PrevTick;
         this->PrevTick = SDL_GetTicks64();
