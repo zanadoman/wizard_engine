@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::keys::keys(engine& Engine) : Engine(Engine) {}
+    engine::keys::keys(engine& Engine) : Engine(Engine), SDL_KeyStates(NULL) {}
 
     bool engine::keys::GetState(key Key)
     {
