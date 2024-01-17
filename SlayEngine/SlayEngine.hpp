@@ -34,9 +34,8 @@ namespace slay
                     sint32 X();
                     sint32 Y();
 
-                    uint8 Update();
-
                 private:
+                    friend class engine;
                     engine& Engine;
 
                     double Sensitivity;
@@ -45,6 +44,8 @@ namespace slay
                     sint32 Y_;
                     sint32 MovementX_;
                     sint32 MovementY_;
+
+                    uint8 Update();
 
             } Mouse;
 
