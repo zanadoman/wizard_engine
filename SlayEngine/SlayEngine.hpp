@@ -189,5 +189,6 @@ namespace slay
                     uint8 New(const char* Title, uint16 Width, uint16 Height);
 
             } Window;
+            
     };
 }
