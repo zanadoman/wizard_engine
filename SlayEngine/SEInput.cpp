@@ -59,7 +59,7 @@ namespace slay
         return 0;
     }
 
-    bool engine::KeyState(keys Key)
+    bool engine::GetKey(keys Key)
     {
         return this->KeyStates[Key];
     }

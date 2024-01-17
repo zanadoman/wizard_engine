@@ -20,9 +20,10 @@ namespace slay
             ~engine();
             
             bool Update();
+
             uint8 SetFPS(uint16 FPS);
-            uint32 DeltaTime();
-            bool KeyState(keys Key);
+            uint32 GetDeltaTime();
+            bool GetKey(keys Key);
 
             class mouse
             {
@@ -49,10 +50,10 @@ namespace slay
 
         private:
             array<SDL_Event> EventQueue;
-            
+
             uint64 PrevTick;
             uint16 TargetFrameTime;
-            uint64 FrameTime;
+            uint64 DeltaTime;
             uint8 UpdateTiming();
 
             const uint8* SDL_KeyStates;

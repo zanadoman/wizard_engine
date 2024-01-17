@@ -43,9 +43,9 @@ namespace slay
         return 0;
     }
 
-    uint32 engine::DeltaTime()
+    uint32 engine::GetDeltaTime()
     {
-        return this->FrameTime;
+        return this->DeltaTime;
     }
 
     uint8 engine::UpdateTiming()
@@ -57,8 +57,13 @@ namespace slay
         {
             SDL_Delay(delay);
         }
-        this->FrameTime = SDL_GetTicks64() - this->PrevTick;
+        this->DeltaTime = SDL_GetTicks64() - this->PrevTick;
         this->PrevTick = SDL_GetTicks64();
+
+        if (40 < DeltaTime)
+        {
+            DeltaTime = 40;
+        }
 
         return 0;
     }
