@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Includes/SDL.h"
+#include "Includes/SDL_events.h"
 #include "Includes/SDL_image.h"
 #include "Includes/SDL_ttf.h"
 #include "Includes/SDL_mixer.h"
@@ -167,6 +168,8 @@ namespace slay
             uint64 PrevTick;
             uint16 TargetFrameTime;
             uint64 FrameTime;
+
+            array<SDL_Event> EventQueue;
 
             const uint8* SDL_KeyStates;
             uint8 KeyStates[KEY_COUNT];
