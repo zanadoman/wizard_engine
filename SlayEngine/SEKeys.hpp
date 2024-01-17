@@ -119,8 +119,8 @@ namespace slay
         KEY_LMB = 291,
         KEY_MMB = 292,
         KEY_RMB = 293,
-        KEY_WHEELDOWN = 295,
-        KEY_WHEELUP = 294,
+        KEY_WHEELDOWN = 294,
+        KEY_WHEELUP = 295,
 
         KEY_COUNT
 
