@@ -28,6 +28,8 @@ namespace slay
             this->EventQueue.Remove(i, this->EventQueue.Length() - i);
         }
 
+        printf("%lld\n", this->EventQueue.Length());
+
         this->UpdateTiming();
 
         return true;
