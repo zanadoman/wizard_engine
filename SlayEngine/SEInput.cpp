@@ -13,13 +13,25 @@ namespace slay
         {
             this->KeyStates[KEY_LMB] = true;
         }
+        else
+        {
+            this->KeyStates[KEY_LMB] = false;
+        }
         if (MouseState & 2)
         {
             this->KeyStates[KEY_MMB] = true;
         }
+        else
+        {
+            this->KeyStates[KEY_MMB] = false;
+        }
         if (MouseState & 4)
         {
             this->KeyStates[KEY_RMB] = true;
+        }
+        else
+        {
+            this->KeyStates[KEY_RMB] = false;
         }
 
         return 0;
