@@ -1,3 +1,5 @@
+#include "Includes/SDL_events.h"
+#include "SEKeys.hpp"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -32,6 +34,28 @@ namespace slay
         else
         {
             this->KeyStates[KEY_RMB] = false;
+        }
+
+        for (uint64 i = 0; i < this->EventQueue.Length(); i++)
+        {
+            if (this->EventQueue[i].type == SDL_MOUSEWHEEL)
+            {
+                if (this->EventQueue[i].wheel.y < 0)
+                {
+                    this->KeyStates[KEY_WHEELDOWN] = true;
+                    this->KeyStates[KEY_WHEELUP] = false;
+                }
+                else if (0 < this->EventQueue[i].wheel.y)
+                {
+                    this->KeyStates[KEY_WHEELDOWN] = false;
+                    this->KeyStates[KEY_WHEELUP] = true;
+                }
+                else
+                {
+                    this->KeyStates[KEY_WHEELDOWN] = false;
+                    this->KeyStates[KEY_WHEELUP] = false;
+                }
+            }
         }
 
         return 0;

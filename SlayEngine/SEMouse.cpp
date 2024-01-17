@@ -1,4 +1,5 @@
 #include "Includes/SDL_events.h"
+#include "Includes/SDL_mouse.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -24,6 +25,8 @@ namespace slay
 
     uint8 engine::mouse::Update()
     {
+        SDL_GetRelativeMouseState(&this->MovementX_, &this->MovementY_);
+
         for (uint64 i = 0; i < Engine.EventQueue.Length(); i++)
         {
             if (Engine.EventQueue[i].type == SDL_MOUSEMOTION)
