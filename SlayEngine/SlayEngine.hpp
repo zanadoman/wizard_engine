@@ -20,29 +20,26 @@ namespace slay
             ~engine();
             bool Update();
 
-            class mouse
+            class window
             {
                 public:
-                    double Sensitivity;
-
-                    sint32 GetX();
-                    sint32 GetY();
-                    sint32 GetMotionX();
-                    sint32 GetMotionY();
+                    uint16 GetHeight();
+                    uint16 GetWidth();
 
                 private:
                     friend class engine;
-                    engine& Engine;
 
-                    sint32 X;
-                    sint32 Y;
-                    sint32 MotionX;
-                    sint32 MotionY;
+                    SDL_Window* Window;
+                    SDL_Renderer* Renderer;
 
-                    mouse(engine& Engine);
-                    uint8 Update();
+                    uint16 Width;
+                    uint16 Height;
 
-            } Mouse;
+                    window();
+                    ~window();
+                    uint8 New(const char* Title, uint16 Width, uint16 Height);
+
+            } Window;
 
             class timing
             {
@@ -84,29 +81,32 @@ namespace slay
                     uint8 Update();
             } Keys;
 
-        private:
-            array<SDL_Event> EventQueue;
-
-            class window
+            class mouse
             {
                 public:
-                    uint16 GetHeight();
-                    uint16 GetWidth();
+                    double Sensitivity;
+
+                    sint32 GetX();
+                    sint32 GetY();
+                    sint32 GetMotionX();
+                    sint32 GetMotionY();
 
                 private:
                     friend class engine;
+                    engine& Engine;
 
-                    SDL_Window* Window;
-                    SDL_Renderer* Renderer;
+                    sint32 X;
+                    sint32 Y;
+                    sint32 MotionX;
+                    sint32 MotionY;
 
-                    uint16 Width;
-                    uint16 Height;
+                    mouse(engine& Engine);
+                    uint8 Update();
 
-                    window();
-                    ~window();
-                    uint8 New(const char* Title, uint16 Width, uint16 Height);
+            } Mouse;
 
-            } Window;
+        private:
+            array<SDL_Event> EventQueue;
 
     };
 }
