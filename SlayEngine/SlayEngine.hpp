@@ -93,6 +93,11 @@ namespace slay
                     double GetMotionX();
                     double GetMotionY();
 
+                    bool IsAbsolute();
+                    bool IsRelative();
+                    uint8 SetAbsolute();
+                    uint8 SetRelative();
+
                 private:
                     friend class engine;
                     engine& Engine;
@@ -101,6 +106,7 @@ namespace slay
                     sint32 Y;
                     double MotionX;
                     double MotionY;
+                    bool Mode;
 
                     mouse(engine& Engine);
                     uint8 Update();

@@ -1,3 +1,5 @@
+#include "Includes/SDL_mouse.h"
+#include "Includes/SDL_stdinc.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -22,6 +24,32 @@ namespace slay
     double engine::mouse::GetMotionY()
     {
         return this->MotionY;
+    }
+
+    bool engine::mouse::IsAbsolute()
+    {
+        return !this->Mode;
+    }
+
+    bool engine::mouse::IsRelative()
+    {
+        return this->Mode;
+    }
+
+    uint8 engine::mouse::SetAbsolute()
+    {
+        SDL_SetRelativeMouseMode(SDL_FALSE);
+        this->Mode = false;
+
+        return 0;
+    }
+
+    uint8 engine::mouse::SetRelative()
+    {
+        SDL_SetRelativeMouseMode(SDL_TRUE);
+        this->Mode = true;
+
+        return 0;
     }
 
     uint8 engine::mouse::Update()
