@@ -13,10 +13,16 @@ using namespace neo;
 
 namespace slay
 {
+    class object
+    {
+        public:
+        private:
+    };
+
     class engine
     {
         public:
-            engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime);
+            engine(const char* Title, uint16 Width, uint16 Height, uint16 Depth, uint8 TargetFrameTime);
             ~engine();
             bool Update();
 
@@ -34,10 +40,11 @@ namespace slay
                     SDL_Renderer* Renderer;
                     uint16 Width;
                     uint16 Height;
+                    uint16 Depth;
 
                     window(engine& Engine);
                     ~window();
-                    uint8 New(const char* Title, uint16 Width, uint16 Height);
+                    uint8 New(const char* Title, uint16 Width, uint16 Height, uint16 Depth);
 
             } Window;
 
