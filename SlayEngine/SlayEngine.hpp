@@ -70,6 +70,18 @@ namespace slay
 
             } Timing;
 
+            class camera
+            {
+                public:
+
+                private:
+                    friend class Engine;
+                    engine& Engine;
+
+                    camera(engine& Engine);
+
+            } Camera;
+
             class keys
             {
                 public:
@@ -84,6 +96,7 @@ namespace slay
 
                     keys(engine& Engine);
                     uint8 Update();
+                    
             } Keys;
 
             class mouse
