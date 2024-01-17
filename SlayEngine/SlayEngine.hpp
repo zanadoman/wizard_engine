@@ -89,9 +89,7 @@ namespace slay
 
             class window
             {
-                private:
-                    friend class engine;
-
+                public:
                     SDL_Window* Window;
                     SDL_Renderer* Renderer;
 
