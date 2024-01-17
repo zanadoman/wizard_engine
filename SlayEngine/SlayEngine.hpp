@@ -45,10 +45,10 @@ namespace slay
             {
                 public:
                     uint64 GetPrevTick();
-                    sint64 GetFrameDelay();
                     uint64 GetFrameTime();
-                    uint16 GetFPS();
+                    sint64 GetIdleTime();
                     uint64 GetDeltaTime();
+                    uint16 GetFPS();
                     uint8 SetFPS(uint16 FPS);
 
                 private:
@@ -57,8 +57,8 @@ namespace slay
 
                     uint64 PrevTick;
                     uint16 TargetFrameTime;
-                    sint64 FrameDelay;
                     uint64 FrameTime;
+                    uint64 IdleTime;
                     uint64 DeltaTime;
 
                     timing(engine& Engine);
