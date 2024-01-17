@@ -29,18 +29,6 @@ namespace slay
         return this->DeltaTime;
     }
 
-    uint16 engine::timing::GetFPS()
-    {
-        return 1000 / this->TargetFrameTime;
-    }
-
-    uint8 engine::timing::SetFPS(uint16 FPS)
-    {
-        this->TargetFrameTime = 1000 / FPS;
-
-        return 0;
-    }
-
     uint8 engine::timing::Update()
     {
         this->WorkingTime = SDL_GetTicks64() - this->PrevTick;

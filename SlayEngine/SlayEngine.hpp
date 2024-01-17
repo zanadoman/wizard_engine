@@ -16,7 +16,7 @@ namespace slay
     class engine
     {
         public:
-            engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS);
+            engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime);
             ~engine();
             bool Update();
 
@@ -44,20 +44,18 @@ namespace slay
             class timing
             {
                 public:
+                    uint8 TargetFrameTime;
+
                     uint64 GetPrevTick();
                     uint64 GetWorkingTime();
                     sint64 GetIdleTime();
                     uint64 GetFrameTime();
                     uint64 GetDeltaTime();
 
-                    uint16 GetFPS();
-                    uint8 SetFPS(uint16 FPS);
-
                 private:
                     friend class engine;
                     engine& Engine;
 
-                    uint16 TargetFrameTime;
                     uint64 PrevTick;
                     uint64 WorkingTime;
                     sint64 IdleTime;
