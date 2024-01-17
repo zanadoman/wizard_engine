@@ -18,7 +18,6 @@ namespace slay
         public:
             engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS);
             ~engine();
-            
             bool Update();
 
             class mouse
