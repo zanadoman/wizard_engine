@@ -40,11 +40,6 @@ namespace slay
         return 0;
     }
 
-    uint16 engine::GetFPS()
-    {
-        return 1000 / this->TargetFrameTime;
-    }
-
     uint32 engine::DeltaTime()
     {
         return this->FrameTime;

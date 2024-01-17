@@ -140,11 +140,9 @@ namespace slay
         public:
             engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS);
             ~engine();
-
-            uint8 SetFPS(uint16 FPS);
-            uint16 GetFPS();
             
             bool Update();
+            uint8 SetFPS(uint16 FPS);
             uint32 DeltaTime();
             bool KeyState(keys Key);
 
@@ -152,6 +150,9 @@ namespace slay
             {
                 public:
                     mouse();
+
+                    uint8 SetSensitivity(double Sensitivity);
+
                     uint8 Update();
 
                 private:
