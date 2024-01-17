@@ -26,6 +26,7 @@ namespace slay
                 public:
                     uint16 GetHeight();
                     uint16 GetWidth();
+                    uint16 GetDepth();
 
                 private:
                     friend class engine;

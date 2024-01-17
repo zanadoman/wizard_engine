@@ -20,6 +20,11 @@ namespace slay
         return this->Width;
     }
 
+    uint16 engine::window::GetDepth()
+    {
+        return this->Depth;
+    }
+
     uint8 engine::window::New(const char* Title, uint16 Width, uint16 Height, uint16 Depth)
     {
         SDL_DestroyRenderer(this->Renderer);
