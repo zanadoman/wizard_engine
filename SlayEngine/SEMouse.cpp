@@ -10,4 +10,9 @@ namespace slay
 
         return 0;
     }
+
+    uint8 engine::mouse::Update()
+    {
+        return 0;
+    }
 }
