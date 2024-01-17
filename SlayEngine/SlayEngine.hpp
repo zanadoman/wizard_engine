@@ -21,6 +21,7 @@ namespace slay
             
             bool Update();
             bool GetKey(keys Key);
+            uint64 GetDeltaTime();
 
             class mouse
             {
@@ -46,8 +47,6 @@ namespace slay
 
             } Mouse;
 
-            
-            uint64 GetDeltaTime();
             class timing
             {
                 public:

@@ -2,11 +2,6 @@
 
 namespace slay
 {
-    uint64 engine::GetDeltaTime()
-    {
-        return this->Timing.DeltaTime;
-    }
-
     engine::timing::timing(uint16 FPS) : PrevTick(0), TargetFrameTime(1000 / FPS), FrameDelay(0), FrameTime(0), DeltaTime(0) {}
 
     uint64 engine::timing::GetPrevTick()
