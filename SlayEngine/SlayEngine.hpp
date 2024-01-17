@@ -30,6 +30,8 @@ namespace slay
                     mouse(engine& Engine);
 
                     uint8 SetSensitivity(double Sensitivity);
+                    sint32 X();
+                    sint32 Y();
 
                     uint8 Update();
 
@@ -38,10 +40,10 @@ namespace slay
 
                     double Sensitivity;
 
-                    sint32 X;
-                    sint32 Y;
-                    sint32 MovementX;
-                    sint32 MovementY;
+                    sint32 X_;
+                    sint32 Y_;
+                    sint32 MovementX_;
+                    sint32 MovementY_;
 
             } Mouse;
 

@@ -12,30 +12,40 @@ namespace slay
         return 0;
     }
 
+    sint32 engine::mouse::X()
+    {
+        return this->X_;
+    }
+
+    sint32 engine::mouse::Y()
+    {
+        return this->Y_;
+    }
+
     uint8 engine::mouse::Update()
     {
         for (uint64 i = 0; i < Engine.EventQueue.Length(); i++)
         {
             if (Engine.EventQueue[i].type == SDL_MOUSEMOTION)
             {
-                this->X = Engine.EventQueue[i].motion.x;
-                if (this->X < 0)
+                this->X_ = Engine.EventQueue[i].motion.x;
+                if (this->X_ < 0)
                 {
-                    this->X = 0;
+                    this->X_ = 0;
                 }
-                else if (Engine.Window.Width < this->X)
+                else if (Engine.Window.Width <= this->X_)
                 {
-                    this->X = Engine.Window.Width;
+                    this->X_ = Engine.Window.Width - 1;
                 }
 
-                this->Y = Engine.EventQueue[i].motion.y;
-                if (this->Y < 0)
+                this->Y_ = Engine.EventQueue[i].motion.y;
+                if (this->Y_ < 0)
                 {
-                    this->Y = 0;
+                    this->Y_ = 0;
                 }
-                else if (Engine.Window.Height < this->Y)
+                else if (Engine.Window.Height <= this->Y_)
                 {
-                    this->Y = Engine.Window.Height;
+                    this->Y_= Engine.Window.Height - 1;
                 }
             }
         }

@@ -6,13 +6,11 @@ using namespace slay;
 
 sint32 main(sint32 argc, char* *argv)
 {
-    engine Engine("Demo", 1920, 1080, 60);
+    engine Engine("Demo", 800, 600, 60);
 
     while (Engine.Update())
     {
-        printf("LMB: %d\n", Engine.KeyState(slay::KEY_LMB));
-        printf("MMB: %d\n", Engine.KeyState(slay::KEY_MMB));
-        printf("RMB: %d\n", Engine.KeyState(slay::KEY_RMB));
+        printf("%d %d\n", Engine.Mouse.X(), Engine.Mouse.Y());
     }
 
     return 0;
