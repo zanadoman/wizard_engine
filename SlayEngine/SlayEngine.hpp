@@ -22,7 +22,8 @@ namespace slay
             bool Update();
 
             uint8 SetFPS(uint16 FPS);
-            uint32 GetDeltaTime();
+            uint64 GetFrameTime();
+            uint64 GetDeltaTime();
             bool GetKey(keys Key);
 
             class mouse
@@ -52,6 +53,7 @@ namespace slay
 
             uint64 PrevTick;
             uint16 TargetFrameTime;
+            uint64 FrameTime;
             uint64 DeltaTime;
             uint8 UpdateTiming();
 
