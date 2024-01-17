@@ -54,8 +54,10 @@ namespace slay
                     uint16 Width;
                     uint16 Height;
 
-                    uint8 Init(const char* Title, uint16 Width, uint16 Height);
+                    window(uint16 Width, uint16 Height);
                     ~window();
+
+                    uint8 New(const char* Title, uint16 Width, uint16 Height);
 
             } Window;
     };
