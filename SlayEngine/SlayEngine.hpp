@@ -48,14 +48,28 @@ namespace slay
 
             } Mouse;
 
+            class timing
+            {
+                public:
+                    uint64 GetPrevTick();
+                    uint64 GetFrameTime();
+
+                private:
+                    friend class engine;
+
+                    uint64 PrevTick;
+                    uint16 TargetFrameTime;
+                    uint64 FrameDelay;
+                    uint64 FrameTime;
+                    uint64 DeltaTime;
+
+                    timing(uint16 FPS);
+                    uint8 UpdateTiming();
+
+            } Timing;
+
         private:
             array<SDL_Event> EventQueue;
-
-            uint64 PrevTick;
-            uint16 TargetFrameTime;
-            uint64 FrameTime;
-            uint64 DeltaTime;
-            uint8 UpdateTiming();
 
             const uint8* SDL_KeyStates;
             uint8 KeyStates[KEY_COUNT];
