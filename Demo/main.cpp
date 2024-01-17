@@ -10,7 +10,8 @@ sint32 main(sint32 argc, char* *argv)
 
     while (Engine.Update())
     {
-
+        printf("Working time: %lldms\n", Engine.Timing.GetFrameTime() - Engine.Timing.GetFrameDelay());
+        printf("Frametime: %lldms\n", Engine.Timing.GetFrameTime());
     }
 
     return 0;
