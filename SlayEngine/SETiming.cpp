@@ -11,7 +11,7 @@ namespace slay
 
     uint64 engine::timing::GetPrevTick()
     {
-        return this->GetPrevTick();
+        return this->PrevTick;
     }
 
     sint64 engine::timing::GetFrameDelay()
