@@ -20,8 +20,8 @@ namespace slay
             ~engine();
             
             bool Update();
-            bool GetKey(keys Key);
             uint64 GetDeltaTime();
+            bool GetKey(keys Key);
 
             class mouse
             {
