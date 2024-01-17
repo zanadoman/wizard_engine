@@ -2,6 +2,11 @@
 
 namespace slay
 {
+    bool engine::GetKey(keys Key)
+    {
+        return this->KeyStates[Key];
+    }
+
     uint8 engine::UpdateInput()
     {
         uint32 MouseState;
@@ -57,10 +62,5 @@ namespace slay
         }
 
         return 0;
-    }
-
-    bool engine::GetKey(keys Key)
-    {
-        return this->KeyStates[Key];
     }
 }
