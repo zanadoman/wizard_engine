@@ -165,11 +165,11 @@ namespace slay
             } Mouse;
 
         private:
+            array<SDL_Event> EventQueue;
+
             uint64 PrevTick;
             uint16 TargetFrameTime;
             uint64 FrameTime;
-
-            array<SDL_Event> EventQueue;
 
             const uint8* SDL_KeyStates;
             uint8 KeyStates[KEY_COUNT];
