@@ -28,6 +28,9 @@ namespace slay
             this->EventQueue.Remove(i, this->EventQueue.Length() - i);
         }
 
+        this->UpdateInput();
+        this->Mouse.Update();
+
         this->UpdateTiming();
 
         return true;
