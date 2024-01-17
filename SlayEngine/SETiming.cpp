@@ -43,7 +43,7 @@ namespace slay
 
     uint8 engine::timing::Update()
     {
-        this->WorkingTime = SDL_GetTicks64() - PrevTick;
+        this->WorkingTime = SDL_GetTicks64() - this->PrevTick;
         this->IdleTime = this->PrevTick + this->TargetFrameTime - SDL_GetTicks64();
         if (0 < this->IdleTime)
         {
