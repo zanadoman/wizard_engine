@@ -103,7 +103,7 @@ namespace slay
             this->EventQueue.Remove(i, this->EventQueue.Length() - i);
         }
 
-        this->UpdateInput();
+        this->UpdateKeys();
         this->Mouse.Update();
 
         return true;
