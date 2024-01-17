@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS) : Mouse(*this), Timing(FPS)
+    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS) : Mouse(*this), Timing(FPS), Keys(*this)
     {
         if (Title == NULL)
         {
@@ -27,7 +27,7 @@ namespace slay
 
         this->Window.New(Title, Width, Height);
 
-        this->SDL_KeyStates = SDL_GetKeyboardState(NULL);
+        this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
     }
 
     engine::engine::~engine()
@@ -63,21 +63,11 @@ namespace slay
             this->EventQueue.Remove(i, this->EventQueue.Length() - i);
         }
 
-        this->UpdateKeys();
+        this->Keys.Update();
         this->Mouse.Update();
 
         this->Timing.Update();
 
         return true;
-    }
-
-    uint64 engine::GetDeltaTime()
-    {
-        return this->Timing.DeltaTime;
-    }
-
-    bool engine::GetKey(keys Key)
-    {
-        return this->KeyStates[Key];
     }
 }

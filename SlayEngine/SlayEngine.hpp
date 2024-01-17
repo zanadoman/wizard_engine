@@ -20,7 +20,6 @@ namespace slay
             ~engine();
             
             bool Update();
-            uint64 GetDeltaTime();
             bool GetKey(keys Key);
 
             class mouse
@@ -54,6 +53,7 @@ namespace slay
                     sint64 GetFrameDelay();
                     uint64 GetFrameTime();
                     uint16 GetFPS();
+                    uint64 GetDeltaTime();
                     uint8 SetFPS(uint16 FPS);
 
                 private:
@@ -73,9 +73,18 @@ namespace slay
         private:
             array<SDL_Event> EventQueue;
 
-            const uint8* SDL_KeyStates;
-            uint8 KeyStates[KEY_COUNT];
-            uint8 UpdateKeys();
+            class keys
+            {
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    const uint8* SDL_KeyStates;
+                    uint8 KeyStates[KEY_COUNT];
+
+                    keys(engine& Engine);
+                    uint8 Update();
+            } Keys;
 
             class window
             {
@@ -90,7 +99,6 @@ namespace slay
 
                     window();
                     ~window();
-
                     uint8 New(const char* Title, uint16 Width, uint16 Height);
 
             } Window;
