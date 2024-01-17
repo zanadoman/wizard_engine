@@ -32,7 +32,6 @@ namespace slay
 
                     SDL_Window* Window;
                     SDL_Renderer* Renderer;
-
                     uint16 Width;
                     uint16 Height;
 
