@@ -14,53 +14,6 @@ using namespace neo;
 
 namespace slay
 {
-    class actor
-    {
-        public:
-            double X;
-            double Y;
-            double Z;
-            uint16 Width;
-            uint16 Height;
-            uint16 Depth;
-
-            class appearance
-            {
-                public:
-                    uint16 OffsetX;
-                    uint16 OffsetY;
-                    uint16 OffsetZ;
-                    uint16 Width;
-                    uint16 Height;
-                    uint16 Depth;
-
-                    SDL_Texture* Texture;
-                    uint8 ColorR;
-                    uint8 ColorG;
-                    uint8 ColorB;
-                    uint8 ColorA;
-
-                    double Rotation;
-                    bool HorizontalFlip;
-                    bool VerticalFlip;
-                    uint8 Priority;
-
-                private:
-                    friend class engine;
-
-                    double CameraX;
-                    double CameraY;
-                    double CameraZ;
-                    uint16 CameraWidth;
-                    uint16 CameraHeight;
-                    uint16 CameraDepth;
-
-            } Appearance;
-
-        private:
-
-    };
-
     class engine
     {
         public:
@@ -178,7 +131,6 @@ namespace slay
 
         private:
             array<SDL_Event> EventQueue;
-            array<actor> Actors;
 
     };
 }
