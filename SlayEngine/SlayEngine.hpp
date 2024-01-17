@@ -27,13 +27,15 @@ namespace slay
             class mouse
             {
                 public:
-                    mouse();
+                    mouse(engine& Engine);
 
                     uint8 SetSensitivity(double Sensitivity);
 
                     uint8 Update();
 
                 private:
+                    engine& Engine;
+
                     double Sensitivity;
 
                     sint32 X;
