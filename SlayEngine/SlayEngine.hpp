@@ -63,18 +63,19 @@ namespace slay
 
             class window
             {
-                friend class engine;
+                private:
+                    friend class engine;
 
-                SDL_Window* Window;
-                SDL_Renderer* Renderer;
+                    SDL_Window* Window;
+                    SDL_Renderer* Renderer;
 
-                uint16 Width;
-                uint16 Height;
+                    uint16 Width;
+                    uint16 Height;
 
-                window();
-                ~window();
+                    window();
+                    ~window();
 
-                uint8 New(const char* Title, uint16 Width, uint16 Height);
+                    uint8 New(const char* Title, uint16 Width, uint16 Height);
 
             } Window;
 
