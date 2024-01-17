@@ -21,9 +21,6 @@ namespace slay
             
             bool Update();
 
-            uint8 SetFPS(uint16 FPS);
-            uint64 GetFrameTime();
-            uint64 GetDeltaTime();
             bool GetKey(keys Key);
 
             class mouse
@@ -48,11 +45,16 @@ namespace slay
 
             } Mouse;
 
+            
+            uint64 GetDeltaTime();
             class timing
             {
                 public:
                     uint64 GetPrevTick();
+                    uint64 GetFrameDelay();
                     uint64 GetFrameTime();
+
+                    uint8 SetFPS(uint16 FPS);
 
                 private:
                     friend class engine;

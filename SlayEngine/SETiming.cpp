@@ -4,6 +4,28 @@ namespace slay
 {
     engine::timing::timing(uint16 FPS) : PrevTick(0), TargetFrameTime(1000 / FPS), FrameDelay(0), FrameTime(0), DeltaTime(0) {}
 
+    uint64 engine::timing::GetPrevTick()
+    {
+        return this->GetPrevTick();
+    }
+
+    uint64 engine::timing::GetFrameDelay()
+    {
+        return this->FrameDelay;
+    }
+
+    uint64 engine::timing::GetFrameTime()
+    {
+        return this->FrameTime;
+    }
+
+    uint8 engine::timing::SetFPS(uint16 FPS)
+    {
+        this->TargetFrameTime = 1000 / FPS;
+
+        return 0;
+    }
+
     uint8 engine::timing::UpdateTiming()
     {
         sint64 delay;
