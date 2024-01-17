@@ -42,6 +42,8 @@ namespace slay
         SDL_Event event;
         uint64 i;
 
+        this->Render.Update();
+
         for (i = 0; SDL_PollEvent(&event); i++)
         {
             if (event.type == SDL_QUIT)

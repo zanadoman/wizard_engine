@@ -98,6 +98,9 @@ namespace slay
                     engine& Engine;
 
                     render(engine& Engine);
+                    uint8 Update();
+                    uint8 OpenFrame();
+                    uint8 CloseFrame();
 
             } Render;
 
