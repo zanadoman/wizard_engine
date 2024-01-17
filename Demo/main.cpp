@@ -10,7 +10,7 @@ sint32 main(sint32 argc, char* *argv)
 
     while (Engine.Update())
     {
-        printf("%d\n", Engine.DeltaTime());
+        
     }
 
     return 0;
