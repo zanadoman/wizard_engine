@@ -14,7 +14,7 @@ using namespace neo;
 
 namespace slay
 {
-    class object
+    class actor
     {
         public:
             double X;
@@ -178,6 +178,7 @@ namespace slay
 
         private:
             array<SDL_Event> EventQueue;
+            array<actor> Actors;
 
     };
 }
