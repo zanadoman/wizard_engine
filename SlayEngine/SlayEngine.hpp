@@ -157,11 +157,6 @@ namespace slay
                     sint32 MovementX;
                     sint32 MovementY;
 
-                    bool LMB;
-                    bool MMB;
-                    bool RMB;
-                    sint8 Wheel;
-
             } Mouse;
 
         private:
