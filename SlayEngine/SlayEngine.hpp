@@ -143,6 +143,7 @@ namespace slay
             bool Update();
             uint8 SetFPS(uint16 FPS);
             uint32 DeltaTime();
+            bool KeyState(keys Key);
 
             class mouse
             {
@@ -168,8 +169,7 @@ namespace slay
             uint64 FrameTime;
 
             const uint8* SDL_KeyStates;
-            uint16 SDL_KeyStatesLength;
-            uint8* KeyStates;
+            uint8 KeyStates[KEY_COUNT];
 
             uint8 UpdateTiming();
             uint8 UpdateInput();
