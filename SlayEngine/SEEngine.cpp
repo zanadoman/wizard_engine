@@ -1,4 +1,5 @@
 #include "Includes/SDL_audio.h"
+#include "Includes/SDL_keyboard.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -27,6 +28,8 @@ namespace slay
         }
 
         this->Window.New(Title, Width, Height);
+
+        this->KeyStates = SDL_GetKeyboardState(NULL);
     }
 
     engine::engine::~engine()
