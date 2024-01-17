@@ -66,6 +66,8 @@ namespace slay
         this->UpdateKeys();
         this->Mouse.Update();
 
+        this->Timing.Update();
+
         return true;
     }
 

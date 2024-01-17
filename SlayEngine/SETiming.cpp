@@ -31,7 +31,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::timing::UpdateTiming()
+    uint8 engine::timing::Update()
     {
         this->FrameDelay = this->PrevTick + this->TargetFrameTime - SDL_GetTicks64();
         if (0 < this->FrameDelay)
