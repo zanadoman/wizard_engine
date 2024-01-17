@@ -76,7 +76,7 @@ namespace slay
 
             const uint8* SDL_KeyStates;
             uint8 KeyStates[KEY_COUNT];
-            uint8 UpdateInput();
+            uint8 UpdateKeys();
 
             class window
             {

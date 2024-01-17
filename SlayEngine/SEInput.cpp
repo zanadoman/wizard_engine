@@ -7,7 +7,7 @@ namespace slay
         return this->KeyStates[Key];
     }
 
-    uint8 engine::UpdateInput()
+    uint8 engine::UpdateKeys()
     {
         uint32 MouseState;
 
