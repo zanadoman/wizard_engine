@@ -7,8 +7,6 @@ namespace slay
         SDL_Event event;
         uint16 i;
 
-        this->UpdateTiming();
-
         for (i = 0; SDL_PollEvent(&event); i++)
         {
             if (event.type == SDL_QUIT)
@@ -25,13 +23,12 @@ namespace slay
                 this->EventQueue[i] = {event};
             }
         }
-
         if (i < this->EventQueue.Length())
         {
             this->EventQueue.Remove(i, this->EventQueue.Length() - i);
         }
 
-        printf("%d %lld\n", i, this->EventQueue.Length());
+        this->UpdateTiming();
 
         return true;
     }
