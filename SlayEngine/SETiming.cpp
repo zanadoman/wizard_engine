@@ -2,21 +2,26 @@
 
 namespace slay
 {
-    engine::timing::timing(engine& Engine) : Engine(Engine), PrevTick(0), TargetFrameTime(0), FrameTime(0), IdleTime(0), DeltaTime(0) {}
+    engine::timing::timing(engine& Engine) : Engine(Engine), TargetFrameTime(0), PrevTick(0), WorkingTime(0), IdleTime(0), FrameTime(0), DeltaTime(0) {}
 
     uint64 engine::timing::GetPrevTick()
     {
         return this->PrevTick;
     }
 
-    uint64 engine::timing::GetFrameTime()
+    uint64 engine::timing::GetWorkingTime()
     {
-        return this->FrameTime;
+        return this->WorkingTime;
     }
 
     sint64 engine::timing::GetIdleTime()
     {
         return this->IdleTime;
+    }
+
+    uint64 engine::timing::GetFrameTime()
+    {
+        return this->FrameTime;
     }
 
     uint64 engine::timing::GetDeltaTime()
@@ -38,6 +43,7 @@ namespace slay
 
     uint8 engine::timing::Update()
     {
+        this->WorkingTime = SDL_GetTicks64() - PrevTick;
         this->IdleTime = this->PrevTick + this->TargetFrameTime - SDL_GetTicks64();
         if (0 < this->IdleTime)
         {
