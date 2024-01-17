@@ -20,7 +20,6 @@ namespace slay
             ~engine();
             
             bool Update();
-
             bool GetKey(keys Key);
 
             class mouse
