@@ -49,15 +49,14 @@ namespace slay
 
         private:
             array<SDL_Event> EventQueue;
-
+            
             uint64 PrevTick;
             uint16 TargetFrameTime;
             uint64 FrameTime;
+            uint8 UpdateTiming();
 
             const uint8* SDL_KeyStates;
             uint8 KeyStates[KEY_COUNT];
-
-            uint8 UpdateTiming();
             uint8 UpdateInput();
 
             class window
