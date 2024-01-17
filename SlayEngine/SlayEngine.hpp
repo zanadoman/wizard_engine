@@ -90,8 +90,8 @@ namespace slay
 
                     sint32 GetX();
                     sint32 GetY();
-                    sint32 GetMotionX();
-                    sint32 GetMotionY();
+                    double GetMotionX();
+                    double GetMotionY();
 
                 private:
                     friend class engine;
@@ -99,8 +99,8 @@ namespace slay
 
                     sint32 X;
                     sint32 Y;
-                    sint32 MotionX;
-                    sint32 MotionY;
+                    double MotionX;
+                    double MotionY;
 
                     mouse(engine& Engine);
                     uint8 Update();
