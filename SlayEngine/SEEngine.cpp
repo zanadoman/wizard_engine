@@ -3,7 +3,7 @@
 
 namespace slay
 {
-    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS) : PrevTick(0), TargetFrameTime(1000 / FPS), FrameTime(0), Window(Width, Height)
+    engine::engine(const char* Title, uint16 Width, uint16 Height, uint16 FPS) : PrevTick(0), TargetFrameTime(1000 / FPS), FrameTime(0)
     {
         if (Title == NULL)
         {
@@ -36,12 +36,15 @@ namespace slay
         SDL_Quit();
     }
 
-    engine::window::window(uint16 Width, uint16 Height) : Window(NULL), Renderer(NULL), Width(Width), Height(Height) {}
+    engine::window::window() : Window(NULL), Renderer(NULL), Width(0), Height(0) {}
 
     uint8 engine::window::New(const char* Title, uint16 Width, uint16 Height)
     {
         SDL_DestroyRenderer(this->Renderer);
         SDL_DestroyWindow(this->Window);
+
+        this->Width = Width;
+        this->Height = Height;
 
         if ((this->Window = SDL_CreateWindow(Title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Width, Height, SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_RESIZABLE | SDL_WINDOW_INPUT_GRABBED)) == NULL)
         {
