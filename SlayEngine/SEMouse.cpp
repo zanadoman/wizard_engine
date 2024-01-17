@@ -19,6 +19,8 @@ namespace slay
     uint8 engine::mouse::Update()
     {
         SDL_GetRelativeMouseState(&this->MovementX, &this->MovementY);
+        this->MovementX *= this->Sensitivity;
+        this->MovementY *= this->Sensitivity;
 
         for (uint64 i = 0; i < Engine.EventQueue.Length(); i++)
         {
