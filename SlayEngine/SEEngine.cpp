@@ -28,7 +28,6 @@ namespace slay
         }
 
         this->Window.New(Title, Width, Height);
-
         this->KeyStates = SDL_GetKeyboardState(NULL);
     }
 

@@ -170,7 +170,6 @@ namespace slay
             const uint8* KeyStates;
 
             uint8 UpdateTiming();
-            uint8 UpdateKeyStates();
 
             class window
             {
