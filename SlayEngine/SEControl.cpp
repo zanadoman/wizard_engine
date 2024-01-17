@@ -5,7 +5,7 @@ namespace slay
     bool engine::Update()
     {
         SDL_Event event;
-        uint16 i;
+        uint64 i;
 
         for (i = 0; SDL_PollEvent(&event); i++)
         {
