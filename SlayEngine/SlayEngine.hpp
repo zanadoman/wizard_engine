@@ -20,7 +20,6 @@ namespace slay
             ~engine();
             
             bool Update();
-            bool GetKey(keys Key);
 
             class mouse
             {
@@ -70,11 +69,11 @@ namespace slay
 
             } Timing;
 
-        private:
-            array<SDL_Event> EventQueue;
-
             class keys
             {
+                public:
+                    bool GetState(key Key);
+
                 private:
                     friend class engine;
                     engine& Engine;
@@ -85,6 +84,9 @@ namespace slay
                     keys(engine& Engine);
                     uint8 Update();
             } Keys;
+
+        private:
+            array<SDL_Event> EventQueue;
 
             class window
             {

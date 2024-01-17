@@ -124,5 +124,5 @@ namespace slay
 
         KEY_COUNT
 
-    } keys;
+    } key;
 }

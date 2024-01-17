@@ -4,6 +4,11 @@ namespace slay
 {
     engine::keys::keys(engine& Engine) : Engine(Engine) {}
 
+    bool engine::keys::GetState(key Key)
+    {
+        return this->KeyStates[Key];
+    }
+
     uint8 engine::keys::Update()
     {
         uint32 MouseState;
