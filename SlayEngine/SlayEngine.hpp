@@ -53,7 +53,7 @@ namespace slay
                     uint64 GetPrevTick();
                     sint64 GetFrameDelay();
                     uint64 GetFrameTime();
-                    
+                    uint16 GetFPS();
                     uint8 SetFPS(uint16 FPS);
 
                 private:

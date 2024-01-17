@@ -24,6 +24,11 @@ namespace slay
         return this->FrameTime;
     }
 
+    uint16 engine::timing::GetFPS()
+    {
+        return 1000 / this->TargetFrameTime;
+    }
+
     uint8 engine::timing::SetFPS(uint16 FPS)
     {
         this->TargetFrameTime = 1000 / FPS;
