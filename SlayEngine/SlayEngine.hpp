@@ -30,20 +30,18 @@ namespace slay
                 public:
                     mouse(engine& Engine);
 
-                    uint8 SetSensitivity(double Sensitivity);
-                    sint32 X();
-                    sint32 Y();
+                    double Sensitivity;
+                    sint32 GetX();
+                    sint32 GetY();
 
                 private:
                     friend class engine;
                     engine& Engine;
 
-                    double Sensitivity;
-
-                    sint32 X_;
-                    sint32 Y_;
-                    sint32 MovementX_;
-                    sint32 MovementY_;
+                    sint32 X;
+                    sint32 Y;
+                    sint32 MovementX;
+                    sint32 MovementY;
 
                     uint8 Update();
 

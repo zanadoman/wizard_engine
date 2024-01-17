@@ -6,49 +6,42 @@ namespace slay
 {
     engine::mouse::mouse(engine& Engine) : Engine(Engine), Sensitivity(1) {}
 
-    uint8 engine::mouse::SetSensitivity(double Sensitivity)
+    sint32 engine::mouse::GetX()
     {
-        this->Sensitivity = Sensitivity;
-
-        return 0;
+        return this->X;
     }
 
-    sint32 engine::mouse::X()
+    sint32 engine::mouse::GetY()
     {
-        return this->X_;
-    }
-
-    sint32 engine::mouse::Y()
-    {
-        return this->Y_;
+        return this->Y;
     }
 
     uint8 engine::mouse::Update()
     {
-        SDL_GetRelativeMouseState(&this->MovementX_, &this->MovementY_);
+        SDL_GetRelativeMouseState(&this->MovementX, &this->MovementY);
 
         for (uint64 i = 0; i < Engine.EventQueue.Length(); i++)
         {
             if (Engine.EventQueue[i].type == SDL_MOUSEMOTION)
             {
-                this->X_ = Engine.EventQueue[i].motion.x;
-                if (this->X_ < 0)
+                this->X = Engine.EventQueue[i].motion.x;
+                if (this->X < 0)
                 {
-                    this->X_ = 0;
+                    this->X = 0;
                 }
-                else if (Engine.Window.Width <= this->X_)
+                else if (Engine.Window.Width <= this->X)
                 {
-                    this->X_ = Engine.Window.Width - 1;
+                    this->X = Engine.Window.Width - 1;
                 }
 
-                this->Y_ = Engine.EventQueue[i].motion.y;
-                if (this->Y_ < 0)
+                this->Y = Engine.EventQueue[i].motion.y;
+                if (this->Y < 0)
                 {
-                    this->Y_ = 0;
+                    this->Y = 0;
                 }
-                else if (Engine.Window.Height <= this->Y_)
+                else if (Engine.Window.Height <= this->Y)
                 {
-                    this->Y_= Engine.Window.Height - 1;
+                    this->Y = Engine.Window.Height - 1;
                 }
             }
         }
