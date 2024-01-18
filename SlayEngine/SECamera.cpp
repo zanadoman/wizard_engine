@@ -3,7 +3,7 @@
 
 namespace slay
 {
-    engine::camera::camera(engine& Engine) : Engine(Engine), ObjectX(NULL), ObjectY(NULL), ObjectWidth(NULL), ObjectHeight(NULL), OffsetX(0), OffsetY(0), CameraX(0), CameraY(0), Zoom(1) {}
+    engine::camera::camera(engine& Engine) : Engine(Engine), BindX(NULL), BindY(NULL), BindWidth(NULL), BindHeight(NULL), OffsetX(0), OffsetY(0), CameraX(0), CameraY(0), Zoom(1) {}
 
     double engine::camera::GetZoom()
     {
@@ -23,15 +23,26 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::camera::Bind(uint64 Actor)
+    {
+        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
+        {
+            printf("engine.camera.Bind(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            exit(1);
+        }
+
+        return 0;
+    }
+
     uint8 engine::camera::Update()
     {
-        if (this->ObjectX != NULL)
+        if (this->BindX != NULL)
         {
-            this->CameraX = *this->ObjectX;
+            this->CameraX = *this->BindX;
 
-            if (this->ObjectWidth != NULL)
+            if (this->BindWidth != NULL)
             {
-                this->CameraX += *this->ObjectWidth >> 1;
+                this->CameraX += *this->BindWidth >> 1;
             }
         }
         else
@@ -39,13 +50,13 @@ namespace slay
             this->CameraX = 0;
         }
 
-        if (this->ObjectY != NULL)
+        if (this->BindY != NULL)
         {
-            this->CameraY = *this->ObjectY;
+            this->CameraY = *this->BindY;
 
-            if (this->ObjectHeight != NULL)
+            if (this->BindHeight != NULL)
             {
-                this->CameraY += *this->ObjectHeight >> 1;
+                this->CameraY += *this->BindHeight >> 1;
             }
         }
         else
