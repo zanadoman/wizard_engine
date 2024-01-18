@@ -10,7 +10,7 @@ sint32 main(sint32 argc, char* *argv)
 
     while (Engine.Update())
     {
-        printf("X: %lf, Y: %lf\n", Engine.Mouse.GetX(1), Engine.Mouse.GetY(1));
+        
     }
 
     return 0;
