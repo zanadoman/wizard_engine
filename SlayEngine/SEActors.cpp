@@ -3,6 +3,8 @@
 
 namespace slay
 {
+    //Actors
+
     engine::actors::actors(engine& Engine) : Engine(Engine) {}
 
     engine::actors::~actors()
@@ -16,7 +18,16 @@ namespace slay
         }
     }
 
-    engine::actors::actor::actor(engine& Engine) : Engine(Engine) {}
+    engine::actors::actor& engine::actors::operator [] (uint64 ID)
+    {
+        if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
+        {
+            printf("engine.actors[]: ID does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        return *this->Actors[ID];
+    }
 
     uint64 engine::actors::New()
     {
@@ -45,6 +56,58 @@ namespace slay
                 this->Actors[IDs.begin()[i]] = NULL;
             }
         }
+
+        return 0;
+    }
+
+    //Actor
+
+    engine::actors::actor::actor(engine& Engine) : Engine(Engine), X(0), Y(0), Width(0), Height(0) {}
+
+    double engine::actors::actor::GetX()
+    {
+        return this->X;
+    }
+
+    double engine::actors::actor::GetY()
+    {
+        return this->Y;
+    }
+
+    uint8 engine::actors::actor::SetX(double X)
+    {
+        this->X = X;
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::SetY(double Y)
+    {
+        this->Y = Y;
+
+        return 0;
+    }
+
+    uint16 engine::actors::actor::GetWidth()
+    {
+        return this->Width;
+    }
+
+    uint16 engine::actors::actor::GetHeight()
+    {
+        return this->Height;
+    }
+
+    uint8 engine::actors::actor::SetHeight(uint16 Height)
+    {
+        this->Height = Height;
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::SetWidth(uint16 Width)
+    {
+        this->Width = Width;
 
         return 0;
     }

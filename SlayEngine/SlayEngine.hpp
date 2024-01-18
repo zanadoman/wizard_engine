@@ -231,10 +231,24 @@ namespace slay
                 class actor
                 {
                     public:
+                        double GetX();
+                        double GetY();
+                        uint8 SetX(double X);
+                        uint8 SetY(double Y);
+
+                        uint16 GetHeight();
+                        uint16 GetWidth();
+                        uint8 SetHeight(uint16 Height);
+                        uint8 SetWidth(uint16 Width);
 
                     private:
                         friend class engine;
                         engine& Engine;
+
+                        double X;
+                        double Y;
+                        uint16 Width;
+                        uint16 Height;
 
                         actor(engine& Engine);
 
