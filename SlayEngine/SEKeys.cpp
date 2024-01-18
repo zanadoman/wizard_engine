@@ -11,7 +11,7 @@ namespace slay
 
     uint8 engine::keys::Update()
     {
-        uint32 MouseState;
+        uint8 MouseState;
 
         memCopyTo(this->SDL_KeyStates, this->KeyStates, sizeof(uint8) * KEY_COUNT);
 
