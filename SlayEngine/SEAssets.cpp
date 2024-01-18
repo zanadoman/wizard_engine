@@ -40,7 +40,6 @@ namespace slay
             }
 
             SDL_DestroyTexture(this->Textures[IDs.begin()[i]]);
-            this->Textures[IDs.begin()[i]] = NULL;
             if (IDs.begin()[i] == this->Textures.Length() - 1)
             {
                 this->Textures.Remove(IDs.begin()[i], 1);
