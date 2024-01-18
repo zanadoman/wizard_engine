@@ -23,17 +23,29 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::camera::Bind(uint64 Actor)
+    uint8 engine::camera::BindActorX(uint64 Actor)
     {
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("engine.camera.Bind(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            printf("engine.camera.BindActorX(): Actor does not exists\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
         this->BindX = &this->Engine.Actors.Actors[Actor]->X;
-        this->BindY = &this->Engine.Actors.Actors[Actor]->Y;
         this->BindWidth = &this->Engine.Actors.Actors[Actor]->Width;
+
+        return 0;
+    }
+
+    uint8 engine::camera::BindActorY(uint64 Actor)
+    {
+        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
+        {
+            printf("engine.camera.BindActorY(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            exit(1);
+        }
+
+        this->BindY = &this->Engine.Actors.Actors[Actor]->Y;
         this->BindHeight = &this->Engine.Actors.Actors[Actor]->Height;
 
         return 0;

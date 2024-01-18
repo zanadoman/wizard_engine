@@ -122,7 +122,8 @@ namespace slay
                     double GetZoom();
                     uint8 SetZoom(double Zoom);
 
-                    uint8 Bind(uint64 Actor);
+                    uint8 BindActorX(uint64 Actor);
+                    uint8 BindActorY(uint64 Actor);
 
                 private:
                     friend class engine;
