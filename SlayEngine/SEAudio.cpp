@@ -2,22 +2,22 @@
 
 namespace slay
 {
-    engine::audio::audio(engine& Engine) : Engine(Engine), Volume(1.0) {}
+    engine::audio::audio(engine& Engine) : Engine(Engine), GlobalVolume(1.0) {}
 
-    double engine::audio::GetVolume()
+    double engine::audio::GetGlobalVolume()
     {
-        return this->Volume;
+        return this->GlobalVolume;
     }
 
-    uint8 engine::audio::SetVolume(double Volume)
+    uint8 engine::audio::SetGlobalVolume(double GlobalVolume)
     {
-        if (Volume < 0 || 1 < Volume)
+        if (GlobalVolume < 0 || 1 < GlobalVolume)
         {
-            printf("engine.audio.SetVolume(): Invalid Volume\nParams: Volume: %lf\n", Volume);
+            printf("engine.audio.SetVolume(): Invalid Volume\nParams: Volume: %lf\n", GlobalVolume);
             return 1;
         }
 
-        this->Volume = Volume;
+        this->GlobalVolume = GlobalVolume;
 
         return 0;
     }
@@ -29,13 +29,13 @@ namespace slay
             printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
             return 1;
         }
-        if (this->Volume < 0 || 1 < this->Volume)
+        if (Volume < 0 || 1 < Volume)
         {
             printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
             return 1;
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->Volume * Volume * 255);
+        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 255);
         if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[SoundID], 0) == -1)
         {
             printf("engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
@@ -52,13 +52,13 @@ namespace slay
             printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
             return 1;
         }
-        if (this->Volume < 0 || 1 < this->Volume)
+        if (Volume < 0 || 1 < Volume)
         {
             printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
             return 1;
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->Volume * Volume * 255);
+        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 255);
         if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[SoundID], Loops) == -1)
         {
             printf("engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
@@ -75,13 +75,13 @@ namespace slay
             printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             return 1;
         }
-        if (this->Volume < 0 || 1 < this->Volume)
+        if (Volume < 0 || 1 < Volume)
         {
             printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             return 1;
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->Volume * Volume * 255);
+        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 255);
         if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[SoundID], 0) == -1)
         {
             printf("engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
@@ -103,13 +103,13 @@ namespace slay
             printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             return 1;
         }
-        if (this->Volume < 0 || 1 < this->Volume)
+        if (Volume < 0 || 1 < Volume)
         {
             printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             return 1;
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->Volume * Volume * 255);
+        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 255);
         if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[SoundID], Loops) == -1)
         {
             printf("engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);

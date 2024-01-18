@@ -61,8 +61,8 @@ namespace slay
             class audio
             {
                 public:
-                    double GetVolume();
-                    uint8 SetVolume(double Volume);
+                    double GetGlobalVolume();
+                    uint8 SetGlobalVolume(double GlobalVolume);
 
                     uint8 Play(uint64 SoundID, uint32 Channel, double Volume);
                     uint8 Play(uint64 SoundID, uint32 Channel, double Volume, uint16 Loops);
@@ -74,7 +74,7 @@ namespace slay
                     friend class engine;
                     engine& Engine;
 
-                    double Volume;
+                    double GlobalVolume;
 
                     audio(engine& Engine);
 
