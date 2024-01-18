@@ -146,7 +146,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Stop(std::initializer_list<sint16> Channels)
+    uint8 engine::audio::Stop(std::initializer_list<uint32> Channels)
     {
         for (uint64 i = 0; i < Channels.size(); i++)
         {
