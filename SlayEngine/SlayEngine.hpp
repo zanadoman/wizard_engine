@@ -9,6 +9,7 @@
 #include "Includes/SDL_mixer.h"
 
 #include "SEKeys.hpp"
+#include <initializer_list>
 
 #define EPSILON 0.0001
 #define PI 3.141592653589793
@@ -229,6 +230,7 @@ namespace slay
             {
                 public:
                     uint64 New();
+                    uint8 Delete(std::initializer_list<uint64> IDs);
 
                 private:
                     friend class engine;
@@ -245,9 +247,10 @@ namespace slay
                             actor(engine& Engine);
 
                     };
-                    array<actor> Actors;
+                    array<actor*> Actors;
 
                     actors(engine& Engine);
+                    ~actors();
 
             } Actors;
 
