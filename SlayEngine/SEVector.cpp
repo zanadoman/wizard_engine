@@ -19,4 +19,15 @@ namespace slay
 
         return angle;
     }
+
+    uint8 engine::vector::Move(double* X, double* Y, double Distance, double Angle)
+    {
+        double cache;
+
+        cache = Angle * PI / 180;
+        *X += Distance * cos(cache);
+        *Y += Distance * sin(cache);
+
+        return 0;
+    }
 }
