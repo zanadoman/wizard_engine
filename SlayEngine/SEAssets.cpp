@@ -1,6 +1,7 @@
 #include "Includes/SDL_image.h"
 #include "Includes/SDL_render.h"
 #include "Includes/SDL_surface.h"
+#include "Includes/SDL_ttf.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -41,7 +42,46 @@ namespace slay
         }
 
         SDL_DestroyTexture(this->Textures[ID]);
-        this->Textures.Remove(ID, 1);
+        this->Textures[ID] = NULL;
+        if (ID == this->Textures.Length() - 1)
+        {
+            this->Textures.Remove(ID, 1);
+        }
+
+        return 0;
+    }
+
+    uint64 engine::assets::LoadFont(const char* Path, uint8 Size)
+    {
+        if (Path == NULL)
+        {
+            printf("engine.assets.LoadFont(): Path must not be NULL\nParams: Path: %p\n", Path);
+            exit(1);
+        }
+
+        if ((*(this->Fonts += {TTF_OpenFont(Path, Size)}))[this->Fonts.Length() - 1] == NULL)
+        {
+            printf("engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
+            exit(1);
+        }
+
+        return this->Fonts.Length() - 1;
+    }
+
+    uint8 engine::assets::UnloadFont(uint64 ID)
+    {
+        if (this->Fonts.Length() <= ID)
+        {
+            printf("engine.assets.UnloadFont(): ID does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        TTF_CloseFont(this->Fonts[ID]);
+        this->Fonts[ID] = NULL;
+        if (ID == this->Fonts.Length() - 1)
+        {
+            this->Fonts.Remove(ID, 1);
+        }
 
         return 0;
     }
