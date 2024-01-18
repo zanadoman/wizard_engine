@@ -23,6 +23,22 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::camera::Bind(uint64 Actor)
+    {
+        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
+        {
+            printf("engine.camera.Bind(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            exit(1);
+        }
+
+        this->XBinded = true;
+        this->YBinded = true;
+        this->BindedXActor = Actor;
+        this->BindedYActor = Actor;
+
+        return 0;
+    }
+
     uint8 engine::camera::BindX(uint64 Actor)
     {
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
@@ -47,6 +63,16 @@ namespace slay
 
         this->YBinded = true;
         this->BindedYActor = Actor;
+
+        return 0;
+    }
+
+    uint8 engine::camera::Unbind()
+    {
+        this->XBinded = false;
+        this->YBinded = false;
+        this->BindedXActor = 0;
+        this->BindedYActor = 0;
 
         return 0;
     }

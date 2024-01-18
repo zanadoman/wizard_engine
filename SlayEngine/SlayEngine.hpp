@@ -118,8 +118,10 @@ namespace slay
                     double GetZoom();
                     uint8 SetZoom(double Zoom);
 
+                    uint8 Bind(uint64 Actor);
                     uint8 BindX(uint64 Actor);
                     uint8 BindY(uint64 Actor);
+                    uint8 Unbind();
                     uint8 UnbindX();
                     uint8 UnbindY();
 
