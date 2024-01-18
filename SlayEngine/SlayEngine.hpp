@@ -10,6 +10,9 @@
 
 #include "SEKeys.hpp"
 
+#define EPSILON 0.0001
+#define PI 3.141592653589793
+
 using namespace neo;
 
 namespace slay
@@ -211,6 +214,7 @@ namespace slay
             {
                 public:
                     double Length(double X1, double Y1, double X2, double Y2);
+                    double Angle(double X1, double Y1, double X2, double Y2);
 
             } Vector;
 
