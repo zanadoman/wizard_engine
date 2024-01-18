@@ -31,7 +31,7 @@ namespace slay
         }
         if (Volume < 0 || 1 < Volume)
         {
-            printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
+            printf("engine.audio.Play(): Volume must be in the range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
             return 1;
         }
 
@@ -54,7 +54,7 @@ namespace slay
         }
         if (Volume < 0 || 1 < Volume)
         {
-            printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
+            printf("engine.audio.Play(): Volume must be in the range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
             return 1;
         }
 
@@ -77,17 +77,17 @@ namespace slay
         }
         if (Volume < 0 || 1 < Volume)
         {
-            printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            printf("engine.audio.Play(): Volume must be in the range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             return 1;
         }
         if (Left < 0 || 1 < Left)
         {
-            printf("engine.audio.Play(): Invalid Left\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            printf("engine.audio.Play(): Left must be in the range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             return 1;
         }
         if (Right < 0 || 1 < Right)
         {
-            printf("engine.audio.Play(): Invalid Right\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            printf("engine.audio.Play(): Right must be in the range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             return 1;
         }
 
@@ -115,17 +115,17 @@ namespace slay
         }
         if (Volume < 0 || 1 < Volume)
         {
-            printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            printf("engine.audio.Play(): Volume must be in the range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             return 1;
         }
         if (Left < 0 || 1 < Left)
         {
-            printf("engine.audio.Play(): Invalid Left\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            printf("engine.audio.Play(): Left must be in the range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             return 1;
         }
         if (Right < 0 || 1 < Right)
         {
-            printf("engine.audio.Play(): Invalid Right\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            printf("engine.audio.Play(): Right must be in the range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             return 1;
         }
 
