@@ -131,6 +131,7 @@ namespace slay
             {
                 public:
                     uint64 LoadTexture(const char* Path);
+                    uint8 UnloadTexture(uint64 ID);
 
                 private:
                     friend class engine;

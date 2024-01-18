@@ -31,4 +31,18 @@ namespace slay
 
         return this->Textures.Length() - 1;
     }
+
+    uint8 engine::assets::UnloadTexture(uint64 ID)
+    {
+        if (this->Textures.Length() <= ID)
+        {
+            printf("engine.assets.UnloadTexture(): ID does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        SDL_DestroyTexture(this->Textures[ID]);
+        this->Textures.Remove(ID, 1);
+
+        return 0;
+    }
 }
