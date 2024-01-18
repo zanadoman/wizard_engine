@@ -4,7 +4,7 @@
 
 namespace slay
 {
-    engine::mouse::mouse(engine& Engine) : Engine(Engine), Sensitivity(1), X(0), Y(0), MotionX(0), MotionY(0) {}
+    engine::mouse::mouse(engine& Engine) : Engine(Engine), Sensitivity(1), X(0), Y(0), MotionX(0), MotionY(0), Mode(false) {}
 
     sint32 engine::mouse::GetX()
     {
