@@ -217,6 +217,12 @@ namespace slay
                     double Angle(double X1, double Y1, double X2, double Y2);
                     uint8 Move(double* X, double* Y, double Distance, double Angle);
 
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    vector(engine& Engine);
+
             } Vector;
 
         private:
