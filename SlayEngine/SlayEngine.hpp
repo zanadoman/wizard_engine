@@ -129,8 +129,7 @@ namespace slay
                     camera(engine& Engine);
                     uint8 Update();
 
-                    uint8 Apply(double* X, double* Y, double Layer);
-                    uint8 Apply(double* X, double* Y, uint16* Width, uint16* Height, double Layer);
+                    uint8 Apply(uint16* X, uint16* Y, uint16* Width, uint16* Height, double Layer);
 
             } Camera;
 

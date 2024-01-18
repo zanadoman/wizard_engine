@@ -55,44 +55,15 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::camera::Apply(double* X, double* Y, double Layer)
+    uint8 engine::camera::Apply(uint16* X, uint16* Y, uint16* Width, uint16* Height, double Layer)
     {
         double cache;
 
         cache = this->Zoom * Layer;
-        if (X != NULL)
-        {
-            *X = (*X - (this->CameraX + this->OffsetX / cache)) * cache;
-        }
-        if (Y != NULL)
-        {
-            *Y = (*Y - (this->CameraY + this->OffsetY / cache)) * cache;
-        }
-
-        return 0;
-    }
-
-    uint8 engine::camera::Apply(double* X, double* Y, uint16* Width, uint16* Height, double Layer)
-    {
-        double cache;
-
-        cache = this->Zoom * Layer;
-        if (X != NULL)
-        {
-            *X = (*X - (this->CameraX + this->OffsetX / cache)) * cache;
-        }
-        if (Y != NULL)
-        {
-            *Y = (*Y - (this->CameraY + this->OffsetY / cache)) * cache;
-        }
-        if (Width != NULL)
-        {
-            *Width *= cache;
-        }
-        if (Height != NULL)
-        {
-            *Height *= cache;
-        }
+        *X = round((*X - (this->CameraX + this->OffsetX / cache)) * cache);
+        *Y = round((*Y - (this->CameraY + this->OffsetY / cache)) * cache);
+        *Width = round(*Width * cache);
+        *Height = round(*Height * cache);
 
         return 0;
     }
