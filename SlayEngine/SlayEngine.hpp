@@ -149,6 +149,7 @@ namespace slay
                     array<Mix_Chunk*> Sounds;
 
                     assets(engine& Engine);
+                    ~assets();
 
             } Assets;
 

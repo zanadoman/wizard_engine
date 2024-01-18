@@ -4,6 +4,31 @@ namespace slay
 {
     engine::assets::assets(engine& Engine) : Engine(Engine) {}
 
+    engine::assets::~assets()
+    {
+        for (uint64 i = 0; i < this->Textures.Length(); i++)
+        {
+            if (this->Textures[i] != NULL)
+            {
+                SDL_DestroyTexture(this->Textures[i]);
+            }
+        }
+        for (uint64 i = 0; i < this->Fonts.Length(); i++)
+        {
+            if (this->Fonts[i] != NULL)
+            {
+                TTF_CloseFont(this->Fonts[i]);
+            }
+        }
+        for (uint64 i = 0; i < this->Sounds.Length(); i++)
+        {
+            if (this->Sounds[i] != NULL)
+            {
+                Mix_FreeChunk(this->Sounds[i]);
+            }
+        }
+    }
+
     uint64 engine::assets::LoadTexture(const char* Path)
     {
         SDL_Surface* tmp;
