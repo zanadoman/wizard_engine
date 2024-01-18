@@ -118,9 +118,6 @@ namespace slay
                     double GetZoom();
                     uint8 SetZoom(double Zoom);
 
-                    uint8 Apply(double* X, double* Y, double Layer);
-                    uint8 Apply(double* X, double* Y, uint16* Width, uint16* Height, double Layer);
-
                 private:
                     friend class engine;
                     engine& Engine;
@@ -131,6 +128,9 @@ namespace slay
 
                     camera(engine& Engine);
                     uint8 Update();
+
+                    uint8 Apply(double* X, double* Y, double Layer);
+                    uint8 Apply(double* X, double* Y, uint16* Width, uint16* Height, double Layer);
 
             } Camera;
 
@@ -158,6 +158,8 @@ namespace slay
 
                     sint32 GetX();
                     sint32 GetY();
+                    double GetX(double Layer);
+                    double GetY(double Layer);
                     double GetMotionX();
                     double GetMotionY();
 
