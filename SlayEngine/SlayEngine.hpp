@@ -65,11 +65,9 @@ namespace slay
                     uint8 SetVolume(double Volume);
 
                     uint8 Play(uint64 SoundID, sint16 Channel, double Volume);
-                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, bool Loop);
-                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, uint32 Loops);
+                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, uint16 Loops);
                     uint8 Play(uint64 SoundID, sint16 Channel, double Volume, double LeftVolume, double RightVolume);
-                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, double LeftVolume, double RightVolume, bool Loop);
-                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, double LeftVolume, double RightVolume, uint32 Loops);
+                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, double LeftVolume, double RightVolume, uint16 Loops);
 
                 private:
                     friend class engine;
