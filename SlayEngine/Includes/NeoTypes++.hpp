@@ -162,6 +162,7 @@ namespace neo
     //____________________________________________NeoMemory.hpp____________________________________________//
 
     bool memCompare(const void* Source1, const void* Source2, uint64 Size);
+    uint8 memSwap(void* Source1, void* Source2, uint64 Size);
     void* memCopy(const void* Source, uint64 Size);
     uint8 memCopyTo(const void* Source, void* Destination, uint64 Size);
     void* memLoad(const char* FilePath, uint64 Size);
