@@ -132,13 +132,13 @@ namespace slay
             {
                 public:
                     uint64 LoadTexture(const char* Path);
-                    uint8 UnloadTexture(std::initializer_list<uint64> IDs);
+                    uint8 UnloadTextures(std::initializer_list<uint64> IDs);
 
                     uint64 LoadFont(const char* Path, uint8 Size);
-                    uint8 UnloadFont(std::initializer_list<uint64> IDs);
+                    uint8 UnloadFonts(std::initializer_list<uint64> IDs);
 
                     uint64 LoadSound(const char* Path);
-                    uint8 UnloadSound(std::initializer_list<uint64> IDs);
+                    uint8 UnloadSounds(std::initializer_list<uint64> IDs);
 
                 private:
                     friend class engine;

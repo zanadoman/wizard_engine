@@ -54,7 +54,7 @@ namespace slay
         return this->Textures.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadTexture(std::initializer_list<uint64> IDs)
+    uint8 engine::assets::UnloadTextures(std::initializer_list<uint64> IDs)
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
@@ -95,7 +95,7 @@ namespace slay
         return this->Fonts.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadFont(std::initializer_list<uint64> IDs)
+    uint8 engine::assets::UnloadFonts(std::initializer_list<uint64> IDs)
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
@@ -136,7 +136,7 @@ namespace slay
         return this->Sounds.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadSound(std::initializer_list<uint64> IDs)
+    uint8 engine::assets::UnloadSounds(std::initializer_list<uint64> IDs)
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
