@@ -1,5 +1,6 @@
 #include "Includes/SDL_mixer.h"
 #include "SlayEngine.hpp"
+#include <initializer_list>
 
 namespace slay
 {
@@ -140,6 +141,16 @@ namespace slay
         {
             printf("engine.audio.Play(): Mix_SetPanning() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             return 1;
+        }
+
+        return 0;
+    }
+
+    uint8 engine::audio::Stop(std::initializer_list<sint16> Channels)
+    {
+        for (uint64 i = 0; i < Channels.size(); i++)
+        {
+            Mix_HaltChannel(Channels.begin()[i]);
         }
 
         return 0;
