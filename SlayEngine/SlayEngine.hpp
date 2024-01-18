@@ -9,7 +9,6 @@
 #include "Includes/SDL_mixer.h"
 
 #include "SEKeys.hpp"
-#include <initializer_list>
 
 using namespace neo;
 
