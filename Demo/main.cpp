@@ -10,7 +10,7 @@ sint32 main(sint32 argc, char* *argv)
 
     while (Engine.Update())
     {
-
+        Engine.Audio.Stop({69, 80, 1});
     }
 
     return 0;
