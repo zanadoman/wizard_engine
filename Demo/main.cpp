@@ -8,10 +8,10 @@ sint32 main(sint32 argc, char* *argv)
 {
     engine Engine("Demo", 1920, 1080, 1000 / 165);
 
-    do
+    while (Engine.Update())
     {
         
-    } while(Engine.Update());
+    }
 
     return 0;
 }
