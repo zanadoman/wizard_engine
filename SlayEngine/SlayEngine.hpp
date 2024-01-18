@@ -226,27 +226,30 @@ namespace slay
 
             } Vector;
 
+            class actor
+            {
+                public:
+
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    actor(engine& Engine);
+
+            };
+
             class actors
             {
                 public:
                     uint64 New();
                     uint8 Delete(std::initializer_list<uint64> IDs);
 
+                    actor& operator [] (uint64 ID);
+
                 private:
                     friend class engine;
                     engine& Engine;
 
-                    class actor
-                    {
-                        public:
-
-                        private:
-                            friend class engine;
-                            engine& Engine;
-
-                            actor(engine& Engine);
-
-                    };
                     array<actor*> Actors;
 
                     actors(engine& Engine);

@@ -16,7 +16,7 @@ namespace slay
         }
     }
 
-    engine::actors::actor::actor(engine& Engine) : Engine(Engine) {}
+    engine::actor::actor(engine& Engine) : Engine(Engine) {}
 
     uint64 engine::actors::New()
     {
