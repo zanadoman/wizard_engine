@@ -43,6 +43,21 @@ namespace slay
 
             } Window;
 
+            class render
+            {
+                public:
+
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    render(engine& Engine);
+                    uint8 Update();
+                    uint8 OpenFrame();
+                    uint8 CloseFrame();
+
+            } Render;
+
             class timing
             {
                 public:
@@ -156,16 +171,5 @@ namespace slay
         private:
             array<SDL_Event> EventQueue;
 
-            class render
-            {
-                friend class engine;
-                engine& Engine;
-
-                render(engine& Engine);
-                uint8 Update();
-                uint8 OpenFrame();
-                uint8 CloseFrame();
-
-            } Render;
     };
 }
