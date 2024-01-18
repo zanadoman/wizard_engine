@@ -10,34 +10,6 @@ namespace slay
     {
         this->OpenFrame();
 
-        double x, y;
-        uint16 width, height;
-        SDL_Rect obj;
-
-        x = 200; y = 200; width = 100; height = 100;
-        this->Engine.Camera.Apply(&x, &y, &width, &height, 0.8);
-        obj.x = x; obj.y = y; obj.w = width; obj.h = height;
-        SDL_SetRenderDrawColor(Engine.Window.Renderer, 0, 0, 255, 255);
-        SDL_RenderFillRect(Engine.Window.Renderer, &obj);
-
-        x = 200; y = 200; width = 100; height = 100;
-        this->Engine.Camera.Apply(&x, &y, &width, &height, 1.1);
-        obj.x = x; obj.y = y; obj.w = width; obj.h = height;
-        SDL_SetRenderDrawColor(Engine.Window.Renderer, 0, 255, 0, 255);
-        SDL_RenderFillRect(Engine.Window.Renderer, &obj);
-
-        x = 200; y = 200; width = 100; height = 100;
-        this->Engine.Camera.Apply(&x, &y, &width, &height, 1.5);
-        obj.x = x; obj.y = y; obj.w = width; obj.h = height;
-        SDL_SetRenderDrawColor(Engine.Window.Renderer, 255, 0, 0, 255);
-        SDL_RenderFillRect(Engine.Window.Renderer, &obj);
-
-        x = Engine.Mouse.GetX(0.8); y = Engine.Mouse.GetY(0.8);
-        obj.x = x; obj.y = y; obj.w = 5; obj.h = 5;
-        SDL_SetRenderDrawColor(Engine.Window.Renderer, 255, 255, 255, 255);
-        SDL_RenderFillRect(Engine.Window.Renderer, &obj);
-
-
         this->CloseFrame();
 
         return 0;
