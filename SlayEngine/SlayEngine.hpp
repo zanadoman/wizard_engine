@@ -127,6 +127,18 @@ namespace slay
 
             } Mouse;
 
+            class assets
+            {
+                public:
+
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    assets(engine& Engine);
+
+            } Assets;
+
         private:
             array<SDL_Event> EventQueue;
 
