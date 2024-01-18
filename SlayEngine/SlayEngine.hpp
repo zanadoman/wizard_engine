@@ -130,10 +130,13 @@ namespace slay
             class assets
             {
                 public:
+                    uint64 LoadTexture(const char* Path);
 
                 private:
                     friend class engine;
                     engine& Engine;
+
+                    array<SDL_Texture*> Textures;
 
                     assets(engine& Engine);
 
