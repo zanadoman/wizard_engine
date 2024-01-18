@@ -207,6 +207,13 @@ namespace slay
 
             } Assets;
 
+            class vector
+            {
+                public:
+                    double Length(double X1, double Y1, double X2, double Y2);
+
+            } Vector;
+
         private:
             array<SDL_Event> EventQueue;
 
