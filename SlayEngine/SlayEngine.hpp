@@ -260,6 +260,7 @@ namespace slay
                         friend class engine;
                         engine& Engine;
 
+                        uint64 Type;
                         void* Class;
 
                         double X;
@@ -267,13 +268,13 @@ namespace slay
                         uint16 Width;
                         uint16 Height;
 
-                        actor(engine& Engine, void* Class);
+                        actor(engine& Engine, uint64 Type, void* Class);
                         ~actor();
 
                 };
 
                 public:
-                    uint64 New(void* Class);
+                    uint64 New(uint64 Type, void* Class);
                     uint8 Delete(std::initializer_list<uint64> IDs);
 
                     actor& operator [] (uint64 ID);
