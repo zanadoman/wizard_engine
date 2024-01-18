@@ -9,15 +9,15 @@ namespace slay
 
     double engine::vector::Angle(double X1, double Y1, double X2, double Y2)
     {
-        double angle;
+        double result;
 
-        angle = acos((X2 - X1) / this->Length(X1, Y1, X2, Y2)) * 180 / PI;
+        result = acos((X2 - X1) / this->Length(X1, Y1, X2, Y2)) * 180 / PI;
         if (Y2 < Y1)
         {
-            angle = 360 - angle;
+            result = 360 - result;
         }
 
-        return angle;
+        return result;
     }
 
     uint8 engine::vector::Move(double* X, double* Y, double Distance, double Angle)
