@@ -24,16 +24,11 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, sint16 Channel, double Volume)
+    uint8 engine::audio::Play(uint64 SoundID, uint32 Channel, double Volume)
     {
         if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
         {
             printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
-            return 1;
-        }
-        if (Channel < -1)
-        {
-            printf("engine.audio.Play(): Invalid Channel\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
             return 1;
         }
         if (this->Volume < 0 || 1 < this->Volume)
@@ -52,16 +47,11 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, sint16 Channel, double Volume, uint16 Loops)
+    uint8 engine::audio::Play(uint64 SoundID, uint32 Channel, double Volume, uint16 Loops)
     {
         if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
         {
             printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
-            return 1;
-        }
-        if (Channel < -1)
-        {
-            printf("engine.audio.Play(): Invalid Channel\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
             return 1;
         }
         if (this->Volume < 0 || 1 < this->Volume)
@@ -80,16 +70,11 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, sint16 Channel, double Volume, double Left, double Right)
+    uint8 engine::audio::Play(uint64 SoundID, uint32 Channel, double Volume, double Left, double Right)
     {
         if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
         {
             printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
-            return 1;
-        }
-        if (Channel < -1)
-        {
-            printf("engine.audio.Play(): Invalid Channel\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             return 1;
         }
         if (this->Volume < 0 || 1 < this->Volume)
@@ -113,16 +98,11 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, sint16 Channel, double Volume, double Left, double Right, uint16 Loops)
+    uint8 engine::audio::Play(uint64 SoundID, uint32 Channel, double Volume, double Left, double Right, uint16 Loops)
     {
         if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
         {
             printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
-            return 1;
-        }
-        if (Channel < -1)
-        {
-            printf("engine.audio.Play(): Invalid Channel\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             return 1;
         }
         if (this->Volume < 0 || 1 < this->Volume)
