@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::audio::audio(engine& Engine) : Engine(Engine), GlobalVolume(1.0) {}
+    engine::audio::audio(engine& Engine) : Engine(Engine), GlobalVolume(1) {}
 
     double engine::audio::GetGlobalVolume()
     {
