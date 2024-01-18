@@ -44,8 +44,12 @@ namespace slay
         SDL_Event event;
         uint64 i;
 
+        //Rendering old frame
+
         this->Camera.Update();
         this->Render.Update();
+
+        //Gathering information from old frame
 
         for (i = 0; SDL_PollEvent(&event); i++)
         {
@@ -70,6 +74,8 @@ namespace slay
 
         this->Keys.Update();
         this->Mouse.Update();
+
+        //Starting the new frame
 
         this->Timing.Update();
 
