@@ -8,13 +8,16 @@ sint32 main(sint32 argc, char* *argv)
 {
     engine Engine("Demo", 1920, 1080, 1000 / 165);
 
-    int a = 10;
-    int b = 20;
+    double x, y;
 
     while (Engine.Update())
     {
-        a = b >> 1;
-        printf("%d\n", a);
+        x = Engine.Mouse.GetX();
+        y = Engine.Mouse.GetY();
+
+        Engine.Camera.Apply(&x, &y, 1.0);
+
+        printf("X: %lf, Y: %lf\n", x, y);
     }
 
     return 0;
