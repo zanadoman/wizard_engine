@@ -62,11 +62,11 @@ namespace slay
         cache = this->Zoom * Layer;
         if (X != NULL)
         {
-            *X = (*X - (this->CameraX + (this->OffsetX / cache))) * cache;
+            *X = (*X - (this->CameraX + this->OffsetX / cache)) * cache;
         }
         if (Y != NULL)
         {
-            *Y = (*Y - (this->CameraY + (this->OffsetY / cache))) * cache;
+            *Y = (*Y - (this->CameraY + this->OffsetY / cache)) * cache;
         }
 
         return 0;
@@ -79,11 +79,11 @@ namespace slay
         cache = this->Zoom * Layer;
         if (X != NULL)
         {
-            *X = (*X - (this->CameraX + (this->OffsetX / cache))) * cache;
+            *X = (*X - (this->CameraX + this->OffsetX / cache)) * cache;
         }
         if (Y != NULL)
         {
-            *Y = (*Y - (this->CameraY + (this->OffsetY / cache))) * cache;
+            *Y = (*Y - (this->CameraY + this->OffsetY / cache)) * cache;
         }
         if (Width != NULL)
         {

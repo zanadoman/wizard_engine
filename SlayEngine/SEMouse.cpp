@@ -14,34 +14,32 @@ namespace slay
         return this->Y;
     }
 
-    double engine::mouse::GetY(double Layer)
+    double engine::mouse::GetX(double Layer)
     {
-        double result;
+        double cache;
 
         if (Layer <= 0)
         {
             printf("engine.mouse.GetY(): Layer must not be less than or equal to 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
-
-        this->Engine.Camera.Apply(&result, NULL, Layer);
         
-        return result;
+        cache = this->Engine.Camera.Zoom * Layer;
+        return this->X / cache + this->Engine.Camera.CameraX + this->Engine.Camera.OffsetX / cache;
     }
 
-    double engine::mouse::GetX(double Layer)
+    double engine::mouse::GetY(double Layer)
     {
-        double result;
+        double cache;
 
         if (Layer <= 0)
         {
             printf("engine.mouse.GetX(): Layer must not be less than or equal to 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
-
-        this->Engine.Camera.Apply(NULL, &result, Layer);
         
-        return result;
+        cache = this->Engine.Camera.Zoom * Layer;
+        return this->Y / cache + this->Engine.Camera.CameraY + this->Engine.Camera.OffsetY / cache;
     }
 
     double engine::mouse::GetMotionX()

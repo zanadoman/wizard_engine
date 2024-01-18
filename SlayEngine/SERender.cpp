@@ -32,6 +32,11 @@ namespace slay
         SDL_SetRenderDrawColor(Engine.Window.Renderer, 255, 0, 0, 255);
         SDL_RenderFillRect(Engine.Window.Renderer, &obj);
 
+        x = Engine.Mouse.GetX(0.8); y = Engine.Mouse.GetY(0.8);
+        obj.x = x; obj.y = y; obj.w = 5; obj.h = 5;
+        SDL_SetRenderDrawColor(Engine.Window.Renderer, 255, 255, 255, 255);
+        SDL_RenderFillRect(Engine.Window.Renderer, &obj);
+
 
         this->CloseFrame();
 
