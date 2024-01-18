@@ -35,7 +35,7 @@ namespace slay
             return 1;
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 255);
+        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 128);
         if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[SoundID], 0) == -1)
         {
             printf("engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
@@ -58,7 +58,7 @@ namespace slay
             return 1;
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 255);
+        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 128);
         if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[SoundID], Loops) == -1)
         {
             printf("engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
@@ -81,7 +81,7 @@ namespace slay
             return 1;
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 255);
+        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 128);
         if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[SoundID], 0) == -1)
         {
             printf("engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
@@ -109,7 +109,7 @@ namespace slay
             return 1;
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 255);
+        Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 128);
         if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[SoundID], Loops) == -1)
         {
             printf("engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
