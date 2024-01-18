@@ -76,21 +76,6 @@ namespace slay
                     engine& Engine;
 
                     double Volume;
-                    class sound
-                    {
-                        friend class audio;
-
-                        uint64 SoundID;
-                        sint64 Channel;
-                        double MainVolume;
-                        double LeftVolume;
-                        double RightVolume;
-                        sint64 Loops;
-
-                        sound();
-
-                    };
-                    array<sound> Sounds;
 
                     audio(engine& Engine);
 

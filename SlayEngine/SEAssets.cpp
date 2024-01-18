@@ -44,7 +44,7 @@ namespace slay
             printf("engine.assets.LoadTexture(): IMG_Load() failed\nParams: Path: %s\n", Path);
             exit(1);
         }
-        if ((*(this->Textures += {SDL_CreateTextureFromSurface(Engine.Window.Renderer, tmp)}))[this->Textures.Length() - 1] == NULL)
+        if ((*(this->Textures += {SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, tmp)}))[this->Textures.Length() - 1] == NULL)
         {
             printf("engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
             exit(1);
