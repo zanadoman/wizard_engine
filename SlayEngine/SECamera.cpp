@@ -68,6 +68,11 @@ namespace slay
         cache = this->Zoom * Layer;
         if (X != NULL)
         {
+            *X -= (this->CameraX + (this->OffsetX / cache)) * cache;
+        }
+        if (Y != NULL)
+        {
+            *Y -= (this->CameraY + (this->OffsetY / cache)) * cache;
         }
 
         return 0;
