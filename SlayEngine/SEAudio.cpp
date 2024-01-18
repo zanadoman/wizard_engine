@@ -13,7 +13,7 @@ namespace slay
     {
         if (GlobalVolume < 0 || 1 < GlobalVolume)
         {
-            printf("engine.audio.SetVolume(): Invalid Volume\nParams: Volume: %lf\n", GlobalVolume);
+            printf("engine.audio.SetGlobalVolume(): Invalid GlobalVolume\nParams: Volume: %lf\n", GlobalVolume);
             return 1;
         }
 
