@@ -244,6 +244,8 @@ namespace slay
                 class actor
                 {
                     public:
+                        template <typename type> type& GetClass();
+
                         double GetX();
                         double GetY();
                         uint8 SetX(double X);
@@ -258,18 +260,20 @@ namespace slay
                         friend class engine;
                         engine& Engine;
 
+                        void* Class;
+
                         double X;
                         double Y;
                         uint16 Width;
                         uint16 Height;
 
-                        actor(engine& Engine);
+                        actor(engine& Engine, void* Class);
                         ~actor();
 
                 };
 
                 public:
-                    uint64 New();
+                    uint64 New(void* Class);
                     uint8 Delete(std::initializer_list<uint64> IDs);
 
                     actor& operator [] (uint64 ID);
