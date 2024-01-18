@@ -85,4 +85,9 @@ namespace slay
 
         return 0;
     }
+
+    uint64 engine::assets::LoadSound(const char* Path)
+    {
+        
+    }
 }

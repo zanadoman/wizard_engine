@@ -136,12 +136,16 @@ namespace slay
                     uint64 LoadFont(const char* Path, uint8 Size);
                     uint8 UnloadFont(uint64 ID);
 
+                    uint64 LoadSound(const char* Path);
+                    uint8 UnloadSound(uint64 ID);
+
                 private:
                     friend class engine;
                     engine& Engine;
 
                     array<SDL_Texture*> Textures;
                     array<TTF_Font*> Fonts;
+                    array<Mix_Chunk*> Sounds;
 
                     assets(engine& Engine);
 
