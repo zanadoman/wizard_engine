@@ -48,6 +48,10 @@ namespace slay
         {
             this->Textures.Remove(ID, 1);
         }
+        else
+        {
+            this->Textures[ID] = NULL;
+        }
 
         return 0;
     }
@@ -78,10 +82,13 @@ namespace slay
         }
 
         TTF_CloseFont(this->Fonts[ID]);
-        this->Fonts[ID] = NULL;
         if (ID == this->Fonts.Length() - 1)
         {
             this->Fonts.Remove(ID, 1);
+        }
+        else
+        {
+            this->Fonts[ID] = NULL;
         }
 
         return 0;
@@ -113,10 +120,13 @@ namespace slay
         }
 
         Mix_FreeChunk(this->Sounds[ID]);
-        this->Sounds[ID] = NULL;
         if (ID == this->Sounds.Length() - 1)
         {
             this->Sounds.Remove(ID, 1);
+        }
+        else
+        {
+            this->Sounds[ID] = NULL;
         }
 
         return 0;
