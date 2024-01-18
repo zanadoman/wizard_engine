@@ -12,6 +12,10 @@ namespace slay
         double angle;
 
         angle = acos((X2 - X1) / this->Length(X1, Y1, X2, Y2)) * 180 / PI;
+        if (Y2 < Y1)
+        {
+            angle = 360 - angle;
+        }
 
         return angle;
     }
