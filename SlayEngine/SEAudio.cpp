@@ -80,6 +80,16 @@ namespace slay
             printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             return 1;
         }
+        if (Left < 0 || 1 < Left)
+        {
+            printf("engine.audio.Play(): Invalid Left\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            return 1;
+        }
+        if (Right < 0 || 1 < Right)
+        {
+            printf("engine.audio.Play(): Invalid Right\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            return 1;
+        }
 
         Mix_VolumeChunk(this->Engine.Assets.Sounds[SoundID], this->GlobalVolume * Volume * 128);
         if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[SoundID], 0) == -1)
@@ -106,6 +116,16 @@ namespace slay
         if (Volume < 0 || 1 < Volume)
         {
             printf("engine.audio.Play(): Invalid Volume\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            return 1;
+        }
+        if (Left < 0 || 1 < Left)
+        {
+            printf("engine.audio.Play(): Invalid Left\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            return 1;
+        }
+        if (Right < 0 || 1 < Right)
+        {
+            printf("engine.audio.Play(): Invalid Right\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             return 1;
         }
 
