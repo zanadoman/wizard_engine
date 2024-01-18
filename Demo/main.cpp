@@ -6,7 +6,7 @@ using namespace slay;
 
 sint32 main(sint32 argc, char* *argv)
 {
-    engine Engine("Demo", 1920, 1080, 256, 1000 / 165);
+    engine Engine("Demo", 1920, 1080, 1000 / 165);
 
     while (Engine.Update())
     {

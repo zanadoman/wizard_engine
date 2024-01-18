@@ -17,7 +17,7 @@ namespace slay
     class engine
     {
         public:
-            engine(const char* Title, uint16 Width, uint16 Height, uint16 Depth, uint8 TargetFrameTime);
+            engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime);
             ~engine();
             bool Update();
 
@@ -26,7 +26,6 @@ namespace slay
                 public:
                     uint16 GetHeight();
                     uint16 GetWidth();
-                    uint16 GetDepth();
 
                 private:
                     friend class engine;
@@ -36,11 +35,10 @@ namespace slay
                     SDL_Renderer* Renderer;
                     uint16 Width;
                     uint16 Height;
-                    uint16 Depth;
 
                     window(engine& Engine);
                     ~window();
-                    uint8 New(const char* Title, uint16 Width, uint16 Height, uint16 Depth);
+                    uint8 New(const char* Title, uint16 Width, uint16 Height);
 
             } Window;
 

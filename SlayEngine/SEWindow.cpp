@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::window::window(engine& Engine) : Engine(Engine), Window(NULL), Renderer(NULL), Width(0), Height(0), Depth(0) {}
+    engine::window::window(engine& Engine) : Engine(Engine), Window(NULL), Renderer(NULL), Width(0), Height(0) {}
 
     engine::window::~window()
     {
@@ -20,19 +20,13 @@ namespace slay
         return this->Width;
     }
 
-    uint16 engine::window::GetDepth()
-    {
-        return this->Depth;
-    }
-
-    uint8 engine::window::New(const char* Title, uint16 Width, uint16 Height, uint16 Depth)
+    uint8 engine::window::New(const char* Title, uint16 Width, uint16 Height)
     {
         SDL_DestroyRenderer(this->Renderer);
         SDL_DestroyWindow(this->Window);
 
         this->Width = Width;
         this->Height = Height;
-        this->Depth = Depth;
 
         if ((this->Window = SDL_CreateWindow(Title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Width, Height, SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_RESIZABLE | SDL_WINDOW_INPUT_GRABBED)) == NULL)
         {
