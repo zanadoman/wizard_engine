@@ -1,5 +1,3 @@
-#include "Includes/SDL_rect.h"
-#include "Includes/SDL_render.h"
 #include "SlayEngine.hpp"
 
 namespace slay
