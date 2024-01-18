@@ -22,7 +22,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, uint32 Channel, double Volume)
+    uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume)
     {
         if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
         {
@@ -45,7 +45,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, uint32 Channel, double Volume, uint16 Loops)
+    uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, uint16 Loops)
     {
         if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
         {
@@ -68,7 +68,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, uint32 Channel, double Volume, double Left, double Right)
+    uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right)
     {
         if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
         {
@@ -96,7 +96,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, uint32 Channel, double Volume, double Left, double Right, uint16 Loops)
+    uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops)
     {
         if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
         {
@@ -124,7 +124,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::audio::Stop(std::initializer_list<uint32> Channels)
+    uint8 engine::audio::Stop(std::initializer_list<uint16> Channels)
     {
         for (uint64 i = 0; i < Channels.size(); i++)
         {

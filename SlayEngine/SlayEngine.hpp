@@ -64,11 +64,11 @@ namespace slay
                     double GetGlobalVolume();
                     uint8 SetGlobalVolume(double GlobalVolume);
 
-                    uint8 Play(uint64 SoundID, uint32 Channel, double Volume);
-                    uint8 Play(uint64 SoundID, uint32 Channel, double Volume, uint16 Loops);
-                    uint8 Play(uint64 SoundID, uint32 Channel, double Volume, double Left, double Right);
-                    uint8 Play(uint64 SoundID, uint32 Channel, double Volume, double Left, double Right, uint16 Loops);
-                    uint8 Stop(std::initializer_list<uint32> Channels);
+                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume);
+                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, uint16 Loops);
+                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right);
+                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops);
+                    uint8 Stop(std::initializer_list<uint16> Channels);
 
                 private:
                     friend class engine;
