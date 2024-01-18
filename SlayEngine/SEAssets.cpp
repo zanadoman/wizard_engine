@@ -1,4 +1,5 @@
 #include "Includes/SDL_image.h"
+#include "Includes/SDL_mixer.h"
 #include "Includes/SDL_render.h"
 #include "Includes/SDL_surface.h"
 #include "Includes/SDL_ttf.h"
@@ -88,6 +89,36 @@ namespace slay
 
     uint64 engine::assets::LoadSound(const char* Path)
     {
-        
+        if (Path == NULL)
+        {
+            printf("engine.assets.LoadSound(): Path must not be NULL\nParams: Path: %p\n", Path);
+            exit(1);
+        }
+
+        if ((*(this->Sounds += {Mix_LoadWAV(Path)}))[this->Sounds.Length() - 1] == NULL)
+        {
+            printf("engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
+            exit(1);
+        }
+
+        return this->Sounds.Length() - 1;
+    }
+
+    uint8 engine::assets::UnloadSound(uint64 ID)
+    {
+        if (this->Sounds.Length() <= ID)
+        {
+            printf("engine.assets.UnloadSound(): ID does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        Mix_FreeChunk(this->Sounds[ID]);
+        this->Sounds[ID] = NULL;
+        if (ID == this->Sounds.Length() - 1)
+        {
+            this->Sounds.Remove(ID, 1);
+        }
+
+        return 0;
     }
 }
