@@ -58,7 +58,7 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
-            if (this->Textures.Length() <= IDs.begin()[i])
+            if (this->Textures.Length() <= IDs.begin()[i] || this->Textures[IDs.begin()[i]] == NULL)
             {
                 printf("engine.assets.UnloadTexture(): IDs[%lld] does not exists\nParams: ID(length): %ld\n", i, IDs.size());
                 exit(1);
@@ -99,7 +99,7 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
-            if (this->Fonts.Length() <= IDs.begin()[i])
+            if (this->Fonts.Length() <= IDs.begin()[i] || this->Fonts[IDs.begin()[i]] == NULL)
             {
                 printf("engine.assets.UnloadFont(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
                 exit(1);
@@ -140,7 +140,7 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
-            if (this->Sounds.Length() <= IDs.begin()[i])
+            if (this->Sounds.Length() <= IDs.begin()[i] || this->Sounds[IDs.begin()[i]] == NULL)
             {
                 printf("engine.assets.UnloadSound(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
                 exit(1);
