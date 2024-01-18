@@ -58,6 +58,44 @@ namespace slay
 
             } Render;
 
+            class audio
+            {
+                public:
+                    double GetVolume();
+                    uint8 SetVolume(double Volume);
+
+                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume);
+                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, bool Loop);
+                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, uint32 Loops);
+                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, double LeftVolume, double RightVolume);
+                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, double LeftVolume, double RightVolume, bool Loop);
+                    uint8 Play(uint64 SoundID, sint16 Channel, double Volume, double LeftVolume, double RightVolume, uint32 Loops);
+
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    double Volume;
+                    class sound
+                    {
+                        friend class audio;
+
+                        uint64 SoundID;
+                        sint64 Channel;
+                        double MainVolume;
+                        double LeftVolume;
+                        double RightVolume;
+                        sint64 Loops;
+
+                        sound();
+
+                    };
+                    array<sound> Sounds;
+
+                    audio(engine& Engine);
+
+            } Audio;
+
             class timing
             {
                 public:
