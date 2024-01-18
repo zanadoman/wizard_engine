@@ -34,7 +34,7 @@ namespace slay
         return this->Textures.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadTexture(uint64 ID)
+    uint8 engine::assets::UnloadTexture(std::initializer_list<uint64> IDs)
     {
         if (this->Textures.Length() <= ID)
         {
@@ -73,7 +73,7 @@ namespace slay
         return this->Fonts.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadFont(uint64 ID)
+    uint8 engine::assets::UnloadFont(std::initializer_list<uint64> IDs)
     {
         if (this->Fonts.Length() <= ID)
         {
@@ -111,22 +111,25 @@ namespace slay
         return this->Sounds.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadSound(uint64 ID)
+    uint8 engine::assets::UnloadSound(std::initializer_list<uint64> IDs)
     {
-        if (this->Sounds.Length() <= ID)
+        for (uint64 i = 0; i < IDs.size(); i++)
         {
-            printf("engine.assets.UnloadSound(): ID does not exists\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
+            if (this->Sounds.Length() <= IDs.begin()[i])
+            {
+                printf("engine.assets.UnloadSound(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", IDs.begin()[i], IDs.size());
+                exit(1);
+            }
 
-        Mix_FreeChunk(this->Sounds[ID]);
-        if (ID == this->Sounds.Length() - 1)
-        {
-            this->Sounds.Remove(ID, 1);
-        }
-        else
-        {
-            this->Sounds[ID] = NULL;
+            Mix_FreeChunk(this->Sounds[IDs.begin()[i]]);
+            if (IDs.begin()[i] == this->Sounds.Length() - 1)
+            {
+                this->Sounds.Remove(IDs.begin()[i], 1);
+            }
+            else
+            {
+                this->Sounds[IDs.begin()[i]] = NULL;
+            }
         }
 
         return 0;

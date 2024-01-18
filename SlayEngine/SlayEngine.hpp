@@ -9,6 +9,7 @@
 #include "Includes/SDL_mixer.h"
 
 #include "SEKeys.hpp"
+#include <initializer_list>
 
 using namespace neo;
 
@@ -131,13 +132,13 @@ namespace slay
             {
                 public:
                     uint64 LoadTexture(const char* Path);
-                    uint8 UnloadTexture(uint64 ID);
+                    uint8 UnloadTexture(std::initializer_list<uint64> IDs);
 
                     uint64 LoadFont(const char* Path, uint8 Size);
-                    uint8 UnloadFont(uint64 ID);
+                    uint8 UnloadFont(std::initializer_list<uint64> IDs);
 
                     uint64 LoadSound(const char* Path);
-                    uint8 UnloadSound(uint64 ID);
+                    uint8 UnloadSound(std::initializer_list<uint64> IDs);
 
                 private:
                     friend class engine;
