@@ -61,18 +61,18 @@ namespace slay
 
         if (Layer <= 0)
         {
-            printf("engine.camera.Apply(): Layer must not be less than or equal to 0\nParams: Layer: %lf\n", Layer);
+            printf("engine.camera.Apply(): Layer must not be less than or equal to 0\nParams: X: %p, Y: %p, Layer: %lf\n", X, Y, Layer);
             exit(1);
         }
 
         cache = this->Zoom * Layer;
         if (X != NULL)
         {
-            *X -= (this->CameraX + (this->OffsetX / cache)) * cache;
+            *X = (*X - (this->CameraX + (this->OffsetX / cache))) * cache;
         }
         if (Y != NULL)
         {
-            *Y -= (this->CameraY + (this->OffsetY / cache)) * cache;
+            *Y = (*Y - (this->CameraY + (this->OffsetY / cache))) * cache;
         }
 
         return 0;
@@ -80,7 +80,31 @@ namespace slay
 
     uint8 engine::camera::Apply(double* X, double* Y, uint16* Width, uint16* Height, double Layer)
     {
+        double cache;
 
+        if (Layer <= 0)
+        {
+            printf("engine.camera.Apply(): Layer must not be less than or equal to 0\nParams: X: %p, Y: %p, Width: %p, Height: %p, Layer: %lf\n", X, Y, Width, Height, Layer);
+            exit(1);
+        }
+
+        cache = this->Zoom * Layer;
+        if (X != NULL)
+        {
+            *X = (*X - (this->CameraX + (this->OffsetX / cache))) * cache;
+        }
+        if (Y != NULL)
+        {
+            *Y = (*Y - (this->CameraY + (this->OffsetY / cache))) * cache;
+        }
+        if (Width != NULL)
+        {
+            *Width *= cache;
+        }
+        if (Height != NULL)
+        {
+            *Height *= cache;
+        }
 
         return 0;
     }
