@@ -112,24 +112,25 @@ namespace slay
             class camera
             {
                 public:
-                    double* BindX;
-                    double* BindY;
-                    uint16* BindWidth;
-                    uint16* BindHeight;
                     double OffsetX;
                     double OffsetY;
 
                     double GetZoom();
                     uint8 SetZoom(double Zoom);
 
-                    uint8 BindActorX(uint64 Actor);
-                    uint8 BindActorY(uint64 Actor);
-                    uint8 UnbindActorX();
-                    uint8 UnbindActorY();
+                    uint8 BindX(uint64 Actor);
+                    uint8 BindY(uint64 Actor);
+                    uint8 UnbindX();
+                    uint8 UnbindY();
 
                 private:
                     friend class engine;
                     engine& Engine;
+
+                    bool XBinded;
+                    bool YBinded;
+                    uint64 BindedXActor;
+                    uint64 BindedYActor;
 
                     double CameraX;
                     double CameraY;

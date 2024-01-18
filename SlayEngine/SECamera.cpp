@@ -3,7 +3,7 @@
 
 namespace slay
 {
-    engine::camera::camera(engine& Engine) : Engine(Engine), BindX(NULL), BindY(NULL), BindWidth(NULL), BindHeight(NULL), OffsetX(0), OffsetY(0), CameraX(0), CameraY(0), Zoom(1) {}
+    engine::camera::camera(engine& Engine) : Engine(Engine), XBinded(false), YBinded(false), BindedXActor(0), BindedYActor(0), OffsetX(0), OffsetY(0), CameraX(0), CameraY(0), Zoom(1) {}
 
     double engine::camera::GetZoom()
     {
@@ -23,78 +23,59 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::camera::BindActorX(uint64 Actor)
+    uint8 engine::camera::BindX(uint64 Actor)
     {
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("engine.camera.BindActorX(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            printf("engine.camera.BindX(): Actor does not exists\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
-        this->BindX = &this->Engine.Actors.Actors[Actor]->X;
-        this->BindWidth = &this->Engine.Actors.Actors[Actor]->Width;
+        this->XBinded = true;
+        this->BindedXActor = Actor;
 
         return 0;
     }
 
-    uint8 engine::camera::BindActorY(uint64 Actor)
+    uint8 engine::camera::BindY(uint64 Actor)
     {
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("engine.camera.BindActorY(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            printf("engine.camera.BindY(): Actor does not exists\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
-        this->BindY = &this->Engine.Actors.Actors[Actor]->Y;
-        this->BindHeight = &this->Engine.Actors.Actors[Actor]->Height;
+        this->YBinded = true;
+        this->BindedYActor = Actor;
 
         return 0;
     }
 
-    uint8 engine::camera::UnbindActorX()
+    uint8 engine::camera::UnbindX()
     {
-        this->BindX = NULL;
-        this->BindWidth = NULL;
+        this->XBinded = false;
+        this->BindedXActor = 0;
 
         return 0;
     }
 
-    uint8 engine::camera::UnbindActorY()
+    uint8 engine::camera::UnbindY()
     {
-        this->BindY = NULL;
-        this->BindHeight = NULL;
+        this->YBinded = false;
+        this->BindedYActor = 0;
 
         return 0;
     }
 
     uint8 engine::camera::Update()
     {
-        if (this->BindX != NULL)
+        if (XBinded)
         {
-            this->CameraX = *this->BindX;
-
-            if (this->BindWidth != NULL)
-            {
-                this->CameraX += *this->BindWidth >> 1;
-            }
+            this->CameraX = this->Engine.Actors.Actors[this->BindedXActor]->X + (this->Engine.Actors.Actors[this->BindedXActor]->Width >> 1);
         }
-        else
+        if (YBinded)
         {
-            this->CameraX = 0;
-        }
-
-        if (this->BindY != NULL)
-        {
-            this->CameraY = *this->BindY;
-
-            if (this->BindHeight != NULL)
-            {
-                this->CameraY += *this->BindHeight >> 1;
-            }
-        }
-        else
-        {
-            this->CameraY = 0;
+            this->CameraY = this->Engine.Actors.Actors[this->BindedYActor]->Y + (this->Engine.Actors.Actors[this->BindedYActor]->Height >> 1);
         }
 
         return 0;
