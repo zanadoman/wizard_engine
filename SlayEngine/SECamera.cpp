@@ -24,22 +24,32 @@ namespace slay
 
     uint8 engine::camera::Update()
     {
-        if (this->ObjectWidth != NULL)
+        if (this->ObjectX != NULL)
         {
-            this->ObjectCenterX = *this->ObjectX + (*this->ObjectWidth >> 1);
+            this->CameraX = *this->ObjectX;
+
+            if (this->ObjectWidth != NULL)
+            {
+                this->CameraX += *this->ObjectWidth >> 1;
+            }
         }
         else
         {
-            this->ObjectCenterX = this->Engine.Window.Width >> 1;
+            this->CameraX = 0;
         }
 
-        if (this->ObjectHeight != NULL)
+        if (this->ObjectY != NULL)
         {
-            this->ObjectCenterY = *this->ObjectY + (*this->ObjectHeight >> 1);
+            this->CameraY = *this->ObjectY;
+
+            if (this->ObjectHeight != NULL)
+            {
+                this->CameraY += *this->ObjectHeight >> 1;
+            }
         }
         else
         {
-            this->ObjectCenterY = this->Engine.Window.Height >> 1;
+            this->CameraY = 0;
         }
 
         return 0;

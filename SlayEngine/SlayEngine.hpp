@@ -125,8 +125,8 @@ namespace slay
                     friend class engine;
                     engine& Engine;
 
-                    uint16 ObjectCenterX;
-                    uint16 ObjectCenterY;
+                    double CameraX;
+                    double CameraY;
                     double Zoom;
 
                     camera(engine& Engine);
