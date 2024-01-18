@@ -27,6 +27,8 @@ namespace slay
 
         this->Window.New(Title, Width, Height);
         this->Timing.TargetFrameTime = TargetFrameTime;
+        this->Camera.OffsetX = this->Window.Width >> 1;
+        this->Camera.OffsetY = this->Window.Height >> 1;
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
     }
 
@@ -42,6 +44,7 @@ namespace slay
         SDL_Event event;
         uint64 i;
 
+        this->Camera.Update();
         this->Render.Update();
 
         for (i = 0; SDL_PollEvent(&event); i++)
