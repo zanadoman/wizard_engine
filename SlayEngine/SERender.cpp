@@ -15,13 +15,19 @@ namespace slay
         SDL_Rect obj;
 
         x = 200; y = 200; width = 100; height = 100;
-        this->Engine.Camera.Apply(&x, &y, &width, &height, 0.1);
+        this->Engine.Camera.Apply(&x, &y, &width, &height, 0.8);
+        obj.x = x; obj.y = y; obj.w = width; obj.h = height;
+        SDL_SetRenderDrawColor(Engine.Window.Renderer, 0, 0, 255, 255);
+        SDL_RenderFillRect(Engine.Window.Renderer, &obj);
+
+        x = 200; y = 200; width = 100; height = 100;
+        this->Engine.Camera.Apply(&x, &y, &width, &height, 1.1);
         obj.x = x; obj.y = y; obj.w = width; obj.h = height;
         SDL_SetRenderDrawColor(Engine.Window.Renderer, 0, 255, 0, 255);
         SDL_RenderFillRect(Engine.Window.Renderer, &obj);
 
         x = 200; y = 200; width = 100; height = 100;
-        this->Engine.Camera.Apply(&x, &y, &width, &height, 2);
+        this->Engine.Camera.Apply(&x, &y, &width, &height, 1.5);
         obj.x = x; obj.y = y; obj.w = width; obj.h = height;
         SDL_SetRenderDrawColor(Engine.Window.Renderer, 255, 0, 0, 255);
         SDL_RenderFillRect(Engine.Window.Renderer, &obj);

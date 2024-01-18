@@ -27,8 +27,8 @@ namespace slay
 
         this->Window.New(Title, Width, Height);
         this->Timing.TargetFrameTime = TargetFrameTime;
-        this->Camera.OffsetX = this->Window.Width >> 1;
-        this->Camera.OffsetY = this->Window.Height >> 1;
+        this->Camera.OffsetX = (this->Window.Width >> 1) * -1;
+        this->Camera.OffsetY = (this->Window.Height >> 1) * -1;
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
     }
 

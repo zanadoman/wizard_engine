@@ -59,12 +59,6 @@ namespace slay
     {
         double cache;
 
-        if (Layer <= 0)
-        {
-            printf("engine.camera.Apply(): Layer must not be less than or equal to 0\nParams: X: %p, Y: %p, Layer: %lf\n", X, Y, Layer);
-            exit(1);
-        }
-
         cache = this->Zoom * Layer;
         if (X != NULL)
         {
@@ -81,12 +75,6 @@ namespace slay
     uint8 engine::camera::Apply(double* X, double* Y, uint16* Width, uint16* Height, double Layer)
     {
         double cache;
-
-        if (Layer <= 0)
-        {
-            printf("engine.camera.Apply(): Layer must not be less than or equal to 0\nParams: X: %p, Y: %p, Width: %p, Height: %p, Layer: %lf\n", X, Y, Width, Height, Layer);
-            exit(1);
-        }
 
         cache = this->Zoom * Layer;
         if (X != NULL)
