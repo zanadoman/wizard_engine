@@ -93,6 +93,26 @@ namespace slay
         return 0;
     }
 
+    bool engine::camera::IsXBinded()
+    {
+        return this->XBinded;
+    }
+
+    bool engine::camera::IsYBinded()
+    {
+        return this->YBinded;
+    }
+
+    uint64 engine::camera::GetBindedXActor()
+    {
+        return this->BindedXActor;
+    }
+
+    uint64 engine::camera::GetBindedYActor()
+    {
+        return this->BindedYActor;
+    }
+
     uint8 engine::camera::Update()
     {
         if (XBinded)

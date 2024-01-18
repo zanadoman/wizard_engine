@@ -125,6 +125,11 @@ namespace slay
                     uint8 UnbindX();
                     uint8 UnbindY();
 
+                    bool IsXBinded();
+                    bool IsYBinded();
+                    uint64 GetBindedXActor();
+                    uint64 GetBindedYActor();
+
                 private:
                     friend class engine;
                     engine& Engine;
@@ -259,6 +264,7 @@ namespace slay
                         uint16 Height;
 
                         actor(engine& Engine);
+                        ~actor();
 
                 };
 

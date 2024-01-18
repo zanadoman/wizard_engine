@@ -64,6 +64,20 @@ namespace slay
 
     engine::actors::actor::actor(engine& Engine) : Engine(Engine), X(0), Y(0), Width(0), Height(0) {}
 
+    engine::actors::actor::~actor()
+    {
+        if (this->Engine.Camera.XBinded && this->Engine.Actors.Actors[this->Engine.Camera.BindedXActor] == this)
+        {
+            this->Engine.Camera.XBinded = false;
+            this->Engine.Camera.BindedXActor = 0;
+        }
+        if (this->Engine.Camera.YBinded && this->Engine.Actors.Actors[this->Engine.Camera.BindedYActor] == this)
+        {
+            this->Engine.Camera.YBinded = false;
+            this->Engine.Camera.BindedYActor = 0;
+        }
+    }
+
     double engine::actors::actor::GetX()
     {
         return this->X;
