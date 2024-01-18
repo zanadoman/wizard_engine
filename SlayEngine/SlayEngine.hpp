@@ -84,21 +84,21 @@ namespace slay
                 public:
                     uint8 TargetFrameTime;
 
-                    uint64 GetPrevTick();
-                    uint64 GetWorkingTime();
-                    sint64 GetIdleTime();
-                    uint64 GetFrameTime();
-                    uint64 GetDeltaTime();
+                    uint32 GetPrevTick();
+                    uint32 GetWorkingTime();
+                    sint16 GetIdleTime();
+                    uint32 GetFrameTime();
+                    uint32 GetDeltaTime();
 
                 private:
                     friend class engine;
                     engine& Engine;
 
-                    uint64 PrevTick;
-                    uint64 WorkingTime;
-                    sint64 IdleTime;
-                    uint64 FrameTime;
-                    uint64 DeltaTime;
+                    uint32 PrevTick;
+                    uint32 WorkingTime;
+                    sint16 IdleTime;
+                    uint32 FrameTime;
+                    uint32 DeltaTime;
 
                     timing(engine& Engine);
                     uint8 Update();
