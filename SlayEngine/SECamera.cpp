@@ -24,7 +24,23 @@ namespace slay
 
     uint8 engine::camera::Update()
     {
+        if (this->ObjectWidth != NULL)
+        {
+            this->ObjectCenterX = *this->ObjectX + (*this->ObjectWidth >> 1);
+        }
+        else
+        {
+            this->ObjectCenterX = this->Engine.Window.Width >> 1;
+        }
 
+        if (this->ObjectHeight != NULL)
+        {
+            this->ObjectCenterY = *this->ObjectY + (*this->ObjectHeight >> 1);
+        }
+        else
+        {
+            this->ObjectCenterY = this->Engine.Window.Height >> 1;
+        }
 
         return 0;
     }
@@ -33,9 +49,16 @@ namespace slay
     {
         double cache;
 
+        if (Layer <= 0)
+        {
+            printf("engine.camera.Apply(): Layer must not be less than or equal to 0\nParams: Layer: %lf\n", Layer);
+            exit(1);
+        }
 
-
-        cache = this->Zoom * (Layer - 1);
+        cache = this->Zoom * Layer;
+        if (X != NULL)
+        {
+        }
 
         return 0;
     }
