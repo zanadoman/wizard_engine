@@ -225,6 +225,32 @@ namespace slay
 
             } Vector;
 
+            class actors
+            {
+                public:
+                    uint64 New();
+
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    class actor
+                    {
+                        public:
+
+                        private:
+                            friend class engine;
+                            engine& Engine;
+
+                            actor(engine& Engine);
+
+                    };
+                    array<actor> Actors;
+
+                    actors(engine& Engine);
+
+            } Actors;
+
         private:
             array<SDL_Event> EventQueue;
 
