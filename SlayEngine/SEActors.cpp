@@ -78,11 +78,6 @@ namespace slay
         }
     }
 
-    template <typename type> type& engine::actors::actor::GetClass()
-    {
-        return (type*)this->Class;
-    }
-
     double engine::actors::actor::GetX()
     {
         return this->X;

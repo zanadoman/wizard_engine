@@ -294,4 +294,9 @@ namespace slay
             array<SDL_Event> EventQueue;
 
     };
+
+    template <typename type> type& engine::actors::actor::GetClass()
+    {
+        return *(type*)this->Class;
+    }
 }
