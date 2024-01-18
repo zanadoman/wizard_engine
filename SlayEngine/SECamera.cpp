@@ -51,6 +51,22 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::camera::UnbindActorX()
+    {
+        this->BindX = NULL;
+        this->BindWidth = NULL;
+
+        return 0;
+    }
+
+    uint8 engine::camera::UnbindActorY()
+    {
+        this->BindY = NULL;
+        this->BindHeight = NULL;
+
+        return 0;
+    }
+
     uint8 engine::camera::Update()
     {
         if (this->BindX != NULL)

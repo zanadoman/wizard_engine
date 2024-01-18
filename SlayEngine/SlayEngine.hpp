@@ -124,6 +124,8 @@ namespace slay
 
                     uint8 BindActorX(uint64 Actor);
                     uint8 BindActorY(uint64 Actor);
+                    uint8 UnbindActorX();
+                    uint8 UnbindActorY();
 
                 private:
                     friend class engine;
