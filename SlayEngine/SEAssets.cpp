@@ -36,21 +36,24 @@ namespace slay
 
     uint8 engine::assets::UnloadTexture(std::initializer_list<uint64> IDs)
     {
-        if (this->Textures.Length() <= ID)
+        for (uint64 i = 0; i < IDs.size(); i++)
         {
-            printf("engine.assets.UnloadTexture(): ID does not exists\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
+            if (this->Textures.Length() <= IDs.begin()[i])
+            {
+                printf("engine.assets.UnloadTexture(): IDs[%lld] does not exists\nParams: ID(length): %ld\n", i, IDs.size());
+                exit(1);
+            }
 
-        SDL_DestroyTexture(this->Textures[ID]);
-        this->Textures[ID] = NULL;
-        if (ID == this->Textures.Length() - 1)
-        {
-            this->Textures.Remove(ID, 1);
-        }
-        else
-        {
-            this->Textures[ID] = NULL;
+            SDL_DestroyTexture(this->Textures[IDs.begin()[i]]);
+            this->Textures[IDs.begin()[i]] = NULL;
+            if (IDs.begin()[i] == this->Textures.Length() - 1)
+            {
+                this->Textures.Remove(IDs.begin()[i], 1);
+            }
+            else
+            {
+                this->Textures[IDs.begin()[i]] = NULL;
+            }
         }
 
         return 0;
@@ -75,20 +78,23 @@ namespace slay
 
     uint8 engine::assets::UnloadFont(std::initializer_list<uint64> IDs)
     {
-        if (this->Fonts.Length() <= ID)
+        for (uint64 i = 0; i < IDs.size(); i++)
         {
-            printf("engine.assets.UnloadFont(): ID does not exists\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
+            if (this->Fonts.Length() <= IDs.begin()[i])
+            {
+                printf("engine.assets.UnloadFont(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
+                exit(1);
+            }
 
-        TTF_CloseFont(this->Fonts[ID]);
-        if (ID == this->Fonts.Length() - 1)
-        {
-            this->Fonts.Remove(ID, 1);
-        }
-        else
-        {
-            this->Fonts[ID] = NULL;
+            TTF_CloseFont(this->Fonts[IDs.begin()[i]]);
+            if (IDs.begin()[i] == this->Fonts.Length() - 1)
+            {
+                this->Fonts.Remove(IDs.begin()[i], 1);
+            }
+            else
+            {
+                this->Fonts[IDs.begin()[i]] = NULL;
+            }
         }
 
         return 0;
@@ -117,7 +123,7 @@ namespace slay
         {
             if (this->Sounds.Length() <= IDs.begin()[i])
             {
-                printf("engine.assets.UnloadSound(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", IDs.begin()[i], IDs.size());
+                printf("engine.assets.UnloadSound(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
                 exit(1);
             }
 
