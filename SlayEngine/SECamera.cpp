@@ -31,6 +31,11 @@ namespace slay
             exit(1);
         }
 
+        this->BindX = &this->Engine.Actors.Actors[Actor]->X;
+        this->BindY = &this->Engine.Actors.Actors[Actor]->Y;
+        this->BindWidth = &this->Engine.Actors.Actors[Actor]->Width;
+        this->BindHeight = &this->Engine.Actors.Actors[Actor]->Height;
+
         return 0;
     }
 
