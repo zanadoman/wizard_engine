@@ -1,8 +1,3 @@
-#include "Includes/SDL_image.h"
-#include "Includes/SDL_mixer.h"
-#include "Includes/SDL_render.h"
-#include "Includes/SDL_surface.h"
-#include "Includes/SDL_ttf.h"
 #include "SlayEngine.hpp"
 
 namespace slay
