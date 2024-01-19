@@ -152,7 +152,6 @@ namespace slay
                     double GetY(double Layer);
                     double GetMotionX();
                     double GetMotionY();
-
                     bool IsAbsolute();
                     bool IsRelative();
                     uint8 SetAbsolute();
