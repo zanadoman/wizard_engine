@@ -31,7 +31,25 @@ namespace slay
 
     uint64 engine::actors::New(uint64 Type)
     {
-        this->Actors += {new actor(this->Engine, Type)};
+        for (uint64 i = 1; i < this->Actors.Length(); i++)
+        {
+            if (this->Actors[i] == NULL)
+            {
+                if ((this->Actors[i] = new actor(this->Engine, Type)) == NULL)
+                {
+                    printf("engine.actors.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
+                    exit(1);
+                }
+
+                return i;
+            }
+        }
+
+        if ((*(this->Actors += {new actor(this->Engine, Type)}))[this->Actors.Length() - 1] == NULL)
+        {
+            printf("engine.actors.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
+            exit(1);
+        }
 
         return this->Actors.Length() - 1;
     }
