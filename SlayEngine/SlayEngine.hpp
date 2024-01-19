@@ -218,6 +218,9 @@ namespace slay
 
             class vector
             {
+                friend class engine;
+                engine& Engine;
+
                 public:
                     double Length(double X1, double Y1, double X2, double Y2);
                     double Angle(double X1, double Y1, double X2, double Y2);
@@ -227,9 +230,6 @@ namespace slay
                     uint8 Terminal(double InitialX, double InitialY, double Length, double Angle, uint64 Actor);
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     vector(engine& Engine);
 
             } Vector;
