@@ -38,11 +38,11 @@ namespace slay
 
     sint32 engine::render::ScreenY(double Y)
     {
-        return (round(Y) - this->ScreenYCache) * -1;
+        return (round(Y) - this->HeightCache) * -1;
     }
 
     sint32 engine::render::ScreenY(sint32 Y)
     {
-        return (Y - this->ScreenYCache) * -1;
+        return (Y - this->HeightCache) * -1;
     }
 }

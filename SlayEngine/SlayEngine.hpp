@@ -56,7 +56,7 @@ namespace slay
                     friend class engine;
                     engine& Engine;
 
-                    uint16 ScreenYCache;
+                    uint16 HeightCache;
 
                     render(engine& Engine);
                     uint8 Update();
