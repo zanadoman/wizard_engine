@@ -32,6 +32,8 @@ namespace slay
         this->Camera.OffsetY = (this->Window.Height >> 1) * -1;
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
+
+        this->Update();
     }
 
     engine::engine::~engine()
