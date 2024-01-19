@@ -319,7 +319,7 @@ namespace slay
                                     bool Visible;
                                     string Text;
                                     uint64 GetFont();
-                                    uint8 SetFont(uint64 ID);
+                                    uint64 SetFont(uint64 ID);
 
                                 private:
                                     uint64 FontID;
