@@ -236,6 +236,9 @@ namespace slay
 
             class assets
             {
+                friend class engine;
+                engine& Engine;
+
                 public:
                     uint64 LoadTexture(const char* Path);
                     uint8 UnloadTextures(std::initializer_list<uint64> IDs);
@@ -247,9 +250,6 @@ namespace slay
                     uint8 UnloadSounds(std::initializer_list<uint64> IDs);
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     array<SDL_Texture*> Textures;
                     array<TTF_Font*> Fonts;
                     array<Mix_Chunk*> Sounds;
@@ -261,6 +261,9 @@ namespace slay
 
             class timing
             {
+                friend class engine;
+                engine& Engine;
+
                 public:
                     uint8 TargetFrameTime;
 
@@ -271,9 +274,6 @@ namespace slay
                     uint32 GetDeltaTime();
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     uint32 PrevTick;
                     uint32 WorkingTime;
                     sint16 IdleTime;
