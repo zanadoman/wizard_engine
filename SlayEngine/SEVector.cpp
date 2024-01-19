@@ -33,13 +33,13 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::vector::MoveByFrom(double InitialX, double InitialY, double Distance, double Angle, double* X, double* Y)
+    uint8 engine::vector::Terminal(double InitialX, double InitialY, double Distance, double Angle, double* TerminalX, double* TerminalY)
     {
         double cache;
 
         cache = Angle * PI / 180;
-        *X = InitialX + Distance * cos(cache);
-        *Y = InitialY + Distance * sin(cache);
+        *TerminalX = InitialX + Distance * cos(cache);
+        *TerminalY = InitialY + Distance * sin(cache);
 
         return 0;
     }

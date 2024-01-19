@@ -226,7 +226,7 @@ namespace slay
                     double Length(double X1, double Y1, double X2, double Y2);
                     double Angle(double X1, double Y1, double X2, double Y2);
                     uint8 MoveBy(double Distance, double Angle, double* X, double* Y);
-                    uint8 MoveByFrom(double InitialX, double InitialY, double Distance, double Angle, double* X, double* Y);
+                    uint8 Terminal(double InitialX, double InitialY, double Distance, double Angle, double* TerminalX, double* TerminalY);
 
                 private:
                     friend class engine;
