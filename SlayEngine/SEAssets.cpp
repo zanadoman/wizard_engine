@@ -74,14 +74,14 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
-            if (IDs.begin()[i] == 0)
-            {
-                continue;
-            }
-            if (this->Textures.Length() <= IDs.begin()[i] || this->Textures[IDs.begin()[i]] == NULL)
+            if (this->Textures.Length() <= IDs.begin()[i])
             {
                 printf("engine.assets.UnloadTexture(): IDs[%lld] does not exists\nParams: ID(length): %ld\n", i, IDs.size());
                 exit(1);
+            }
+            if (IDs.begin()[i] == 0 || this->Textures[IDs.begin()[i]] == NULL)
+            {
+                continue;
             }
 
             SDL_DestroyTexture(this->Textures[IDs.begin()[i]]);
@@ -133,14 +133,14 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
-            if (IDs.begin()[i] == 0)
-            {
-                continue;
-            }
-            if (this->Fonts.Length() <= IDs.begin()[i] || this->Fonts[IDs.begin()[i]] == NULL)
+            if (this->Fonts.Length() <= IDs.begin()[i])
             {
                 printf("engine.assets.UnloadFont(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
                 exit(1);
+            }
+            if (IDs.begin()[i] == 0 || this->Fonts[IDs.begin()[i]] == NULL)
+            {
+                continue;
             }
 
             TTF_CloseFont(this->Fonts[IDs.begin()[i]]);
@@ -192,14 +192,14 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
-            if (IDs.begin()[i] == 0)
-            {
-                continue;
-            }
-            if (this->Sounds.Length() <= IDs.begin()[i] || this->Sounds[IDs.begin()[i]] == NULL)
+            if (this->Sounds.Length() <= IDs.begin()[i])
             {
                 printf("engine.assets.UnloadSound(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
                 exit(1);
+            }
+            if (IDs.begin()[i] == 0 || this->Sounds[IDs.begin()[i]] == NULL)
+            {
+                continue;
             }
 
             Mix_FreeChunk(this->Sounds[IDs.begin()[i]]);

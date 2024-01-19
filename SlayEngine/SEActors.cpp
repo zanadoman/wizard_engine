@@ -236,14 +236,14 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
-            if (IDs.begin()[i] == 0)
-            {
-                continue;
-            }
-            if (this->Colors.Length() <= IDs.begin()[i] || this->Colors[i] == NULL)
+            if (this->Colors.Length() <= IDs.begin()[i])
             {
                 printf("engine.actors.actor.RemoveColors(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
                 exit(1);
+            }
+            if (IDs.begin()[i] == 0 || this->Colors[IDs.begin()[i]] == NULL)
+            {
+                continue;
             }
             
             delete this->Colors[IDs.begin()[i]];
@@ -254,6 +254,34 @@ namespace slay
             else
             {
                 this->Colors[IDs.begin()[i]] = NULL;
+            }
+        }
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::RemoveTextures(std::initializer_list<uint64> IDs)
+    {
+        for (uint64 i = 0; i < IDs.size(); i++)
+        {
+            if (this->Textures.Length() <= IDs.begin()[i])
+            {
+                printf("engine.actors.actor.RemoveTextures(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
+                exit(1);
+            }
+            if (IDs.begin()[i] == 0 || this->Textures[IDs.begin()[i]] == NULL)
+            {
+                continue;
+            }
+
+            delete this->Textures[IDs.begin()[i]];
+            if (IDs.begin()[i] == this->Textures.Length() - 1)
+            {
+                this->Textures.Remove(IDs.begin()[i], 1);
+            }
+            else
+            {
+                this->Textures[IDs.begin()[i]] = NULL;
             }
         }
 
