@@ -1,3 +1,4 @@
+#include "Includes/SDL_rect.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -123,16 +124,18 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::camera::Apply(SDL_Rect* Object, double Layer)
+    SDL_Rect engine::camera::Transform(double X, double Y, uint16 Width, uint16 Height, double Layer)
     {
+        SDL_Rect result;
+
         double cache;
 
         cache = this->Zoom * Layer;
-        Object->x = round((Object->x - (this->CameraX + this->OffsetX / cache)) * cache);
-        Object->y = round((Object->y - (this->CameraY + this->OffsetY / cache)) * cache);
-        Object->w = round(Object->w * cache);
-        Object->h = round(Object->h * cache);
+        result.x = round((X - (this->CameraX + this->OffsetX / cache)) * cache);
+        result.y = round((Y - (this->CameraY + this->OffsetY / cache)) * cache);
+        result.w = round(Width * cache);
+        result.h = round(Height * cache);
 
-        return 0;
+        return result;
     }
 }

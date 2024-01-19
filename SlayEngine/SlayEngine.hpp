@@ -70,12 +70,15 @@ namespace slay
 
             class camera
             {
+                friend class engine;
+                engine& Engine;
+
                 public:
                     double OffsetX;
                     double OffsetY;
+
                     double GetZoom();
                     uint8 SetZoom(double Zoom);
-
                     uint64 GetXActor();
                     uint64 GetYActor();
                     uint8 Bind(uint64 Actor);
@@ -86,20 +89,15 @@ namespace slay
                     uint8 UnbindY();
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     uint64 XActor;
                     uint64 YActor;
-
                     double CameraX;
                     double CameraY;
                     double Zoom;
 
                     camera(engine& Engine);
                     uint8 Update();
-
-                    uint8 Apply(SDL_Rect* Object, double Layer);
+                    SDL_Rect Transform(double X, double Y, uint16 Width, uint16 Height, double Layer);
 
             } Camera;
 
