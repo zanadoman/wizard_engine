@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::assets::assets(engine& Engine) : Engine(Engine) {}
+    engine::assets::assets(engine& Engine) : Engine(Engine), Textures(1), Fonts(1), Sounds(1) {}
 
     engine::assets::~assets()
     {
