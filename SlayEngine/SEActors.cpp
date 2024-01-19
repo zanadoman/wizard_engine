@@ -151,15 +151,37 @@ namespace slay
         return 0;
     }
 
+    engine::actors::actor::color::color(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor) {}
+
+    engine::actors::actor::texture::texture(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor) {}
+
+    uint64 engine::actors::actor::texture::GetTextureID()
+    {
+        return this->TextureID;
+    }
+
+    uint8 engine::actors::actor::texture::SetTextureID(uint64 ID)
+    {
+        if (this->Engine.Assets.Textures.Length() <= ID || this->Engine.Assets.Textures[ID] == NULL)
+        {
+            printf("engine.actors.actor.texture.SetTextureID(): ID does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        this->TextureID = ID;
+
+        return 0;  
+    }
+
     uint64 engine::actors::actor::NewColor()
     {
         for (uint64 i = 1; i < this->Colors.Length(); i++)
         {
             if (this->Colors[i] == NULL)
             {
-                if ((this->Colors[i] = new color(this->Engine)) == NULL)
+                if ((this->Colors[i] = new color(this->Engine, *this)) == NULL)
                 {
-                    printf("engine.actors.actor.NewColor() Memory allocation failed\n");
+                    printf("engine.actors.actor.NewColor(): Memory allocation failed\n");
                     exit(1);
                 }
 
@@ -167,9 +189,9 @@ namespace slay
             }
         }
 
-        if ((*(this->Colors += {new color(this->Engine)}))[this->Colors.Length() - 1] == NULL)
+        if ((*(this->Colors += {new color(this->Engine, *this)}))[this->Colors.Length() - 1] == NULL)
         {
-            printf("engine.actors.actor.NewColor() Memory allocation failed\n");
+            printf("engine.actors.actor.NewColor(): Memory allocation failed\n");
             exit(1);
         }
 
@@ -182,9 +204,9 @@ namespace slay
         {
             if (this->Textures[i] == NULL)
             {
-                if ((this->Textures[i] = new texture(this->Engine)) == NULL)
+                if ((this->Textures[i] = new texture(this->Engine, *this)) == NULL)
                 {
-                    printf("engine.actors.actor.NewTexture() Memory allocation failed\n");
+                    printf("engine.actors.actor.NewTexture(): Memory allocation failed\n");
                     exit(1);
                 }
 
@@ -192,9 +214,9 @@ namespace slay
             }
         }
 
-        if ((*(this->Textures += {new texture(this->Engine)}))[this->Textures.Length() - 1] == NULL)
+        if ((*(this->Textures += {new texture(this->Engine, *this)}))[this->Textures.Length() - 1] == NULL)
         {
-            printf("engine.actors.actor.NewTexture() Memory allocation failed\n");
+            printf("engine.actors.actor.NewTexture(): Memory allocation failed\n");
             exit(1);
         }
 

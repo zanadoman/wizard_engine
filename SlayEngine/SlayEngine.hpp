@@ -183,6 +183,7 @@ namespace slay
                     {
                         friend class engine;
                         engine& Engine;
+                        actor& Actor;
 
                         public:
                             sint32 OffsetX;
@@ -199,13 +200,14 @@ namespace slay
                             bool Visible;
 
                         private:
-                            color(engine& Engine);
+                            color(engine& Engine, actor& Actor);
                     };
 
                     class texture
                     {
                         friend class engine;
                         engine& Engine;
+                        actor& Actor;
 
                         public:
                             sint32 OffsetX;
@@ -228,7 +230,7 @@ namespace slay
                         private:
                             uint64 TextureID;
 
-                            texture(engine& Engine);
+                            texture(engine& Engine,actor& Actor);
                     };
 
                     public:
