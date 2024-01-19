@@ -150,6 +150,56 @@ namespace slay
         return 0;
     }
 
+    uint64 engine::actors::actor::NewColor()
+    {
+        for (uint64 i = 1; i < this->Colors.Length(); i++)
+        {
+            if (this->Colors[i] == NULL)
+            {
+                if ((this->Colors[i] = new color(this->Engine)) == NULL)
+                {
+                    printf("engine.actors.actor.NewColor() Memory allocation failed\n");
+                    exit(1);
+                }
+
+                return i;
+            }
+        }
+
+        if ((*(this->Colors += {new color(this->Engine)}))[this->Colors.Length() - 1] == NULL)
+        {
+            printf("engine.actors.actor.NewColor() Memory allocation failed\n");
+            exit(1);
+        }
+
+        return this->Colors.Length() - 1;
+    }
+
+    uint64 engine::actors::actor::NewTexture()
+    {
+        for (uint64 i = 1; i < this->Textures.Length(); i++)
+        {
+            if (this->Textures[i] == NULL)
+            {
+                if ((this->Textures[i] = new texture(this->Engine)) == NULL)
+                {
+                    printf("engine.actors.actor.NewTexture() Memory allocation failed\n");
+                    exit(1);
+                }
+
+                return i;
+            }
+        }
+
+        if ((*(this->Textures += {new texture(this->Engine)}))[this->Textures.Length() - 1] == NULL)
+        {
+            printf("engine.actors.actor.NewTexture() Memory allocation failed\n");
+            exit(1);
+        }
+
+        return this->Textures.Length() - 1;
+    }
+
     uint8 engine::actors::actor::ResolveCollision()
     {
         return 0;

@@ -179,6 +179,29 @@ namespace slay
                     friend class engine;
                     engine& Engine;
 
+                    class color
+                    {
+                        friend class engine;
+                        engine& Engine;
+
+                        public:
+                            sint32 OffsetX;
+                            sint32 OffsetY;
+                            double Layer;
+                            uint16 Width;
+                            uint16 Height;
+                            bool FlipHorizontal;
+                            bool FlipVertical;
+                            uint8 ColorR;
+                            uint8 ColorG;
+                            uint8 ColorB;
+                            uint8 ColorA;
+                            bool Visible;
+
+                        private:
+                            color(engine& Engine);
+                    };
+
                     class texture
                     {
                         friend class engine;
@@ -218,6 +241,12 @@ namespace slay
                         uint16 GetWidth();
                         uint8 SetHeight(uint16 Height);
                         uint8 SetWidth(uint16 Width);
+                        uint64 NewColor();
+                        uint64 NewTexture();
+                        color& GetColor(uint64 ID);
+                        texture& GetTexture(uint64 ID);
+                        uint8 DeleteColors(std::initializer_list<uint64> IDs);
+                        uint8 DeleteTextures(std::initializer_list<uint64> IDs);
 
                     private:
                         uint64 Type;
@@ -225,6 +254,8 @@ namespace slay
                         double Y;
                         uint16 Width;
                         uint16 Height;
+                        array<color*> Colors;
+                        array<texture*> Textures;
 
                         actor(engine& Engine, uint64 Type);
                         ~actor();
