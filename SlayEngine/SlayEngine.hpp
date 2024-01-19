@@ -239,6 +239,7 @@ namespace slay
                             private:
                                 array<color*> Colors;
                                 colors(engine& Engine, actor& Actor);
+                                ~colors();
 
                         } Colors;
 
@@ -286,6 +287,7 @@ namespace slay
                             private:
                                 array<texture*> Textures;
                                 textures(engine& Engine, actor& Actor);
+                                ~textures();
 
                         } Textures;
 
@@ -334,6 +336,7 @@ namespace slay
                             private:
                                 array<text*> Texts;
                                 texts(engine& Engine, actor& Actor);
+                                ~texts();
 
                         } Texts;
 
