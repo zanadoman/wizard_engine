@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::actors::actors(engine& Engine) : Engine(Engine), Actors(1) {}
+    engine::actors::actors(engine& Engine) : Engine(Engine), Actors({(actor*)NULL}) {}
 
     engine::actors::~actors()
     {
