@@ -25,6 +25,7 @@ namespace slay
             exit(1);
         }
 
+        srand(time(NULL));
         this->Window.New(Title, Width, Height);
         this->Render.ScreenYCache = Height - 1;
         this->Timing.TargetFrameTime = TargetFrameTime;
@@ -81,5 +82,10 @@ namespace slay
         this->Timing.Update();
 
         return true;
+    }
+
+    sint32 engine::Random(sint32 Min, sint32 Max)
+    {
+        return rand() % (Max - Min) + Min;
     }
 }

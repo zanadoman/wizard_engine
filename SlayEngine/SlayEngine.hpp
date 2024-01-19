@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Includes/NeoTypes++.hpp"
+#include <ctime>
 
 #include "Includes/SDL.h"
 #include "Includes/SDL_image.h"
@@ -9,7 +10,6 @@
 #include "Includes/SDL_mixer.h"
 
 #include "SEKeys.hpp"
-#include <initializer_list>
 
 #define EPSILON 0.0001
 #define PI 3.141592653589793
@@ -23,7 +23,9 @@ namespace slay
         public:
             engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime);
             ~engine();
+
             bool Update();
+            sint32 Random(sint32 Min, sint32 Max);
 
             class window
             {
