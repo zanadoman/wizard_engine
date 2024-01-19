@@ -203,37 +203,56 @@ namespace slay
                             color(engine& Engine, actor& Actor);
                     };
 
-                    class texture
-                    {
-                        friend class engine;
-                        engine& Engine;
-                        actor& Actor;
-
-                        public:
-                            sint32 OffsetX;
-                            sint32 OffsetY;
-                            double Layer;
-                            uint16 Width;
-                            uint16 Height;
-                            double Angle;
-                            bool FlipHorizontal;
-                            bool FlipVertical;
-                            uint8 ColorR;
-                            uint8 ColorG;
-                            uint8 ColorB;
-                            uint8 ColorA;
-                            bool Visible;
-
-                            uint64 GetTextureID();
-                            uint8 SetTextureID(uint64 ID);
-
-                        private:
-                            uint64 TextureID;
-
-                            texture(engine& Engine,actor& Actor);
-                    };
-
                     public:
+                        class textures
+                        {
+                            friend class engine;
+                            engine& Engine;
+                            actor& Actor;
+
+                            class texture
+                            {
+                                friend class engine;
+                                engine& Engine;
+                                actor& Actor;
+
+                                public:
+                                    sint32 OffsetX;
+                                    sint32 OffsetY;
+                                    double Layer;
+                                    uint16 Width;
+                                    uint16 Height;
+                                    double Angle;
+                                    bool FlipHorizontal;
+                                    bool FlipVertical;
+                                    uint8 ColorR;
+                                    uint8 ColorG;
+                                    uint8 ColorB;
+                                    uint8 ColorA;
+                                    bool Visible;
+
+                                    uint64 GetTextureID();
+                                    uint8 SetTextureID(uint64 ID);
+
+                                private:
+                                    uint64 TextureID;
+
+                                    texture(engine& Engine,actor& Actor);
+                            };
+
+                            public:
+                                uint64 NewTexture();
+                                uint8 RemoveTextures(std::initializer_list<uint64> IDs);
+                                texture& operator [] (uint64 ID);
+
+                            private:
+                                array<texture*> Textures;
+
+                                textures(engine& Engine, actor& Actor);
+                                ~textures();
+
+                        } Textures;
+
                         uint64 GetType();
                         double GetX();
                         double GetY();
@@ -244,11 +263,8 @@ namespace slay
                         uint8 SetHeight(uint16 Height);
                         uint8 SetWidth(uint16 Width);
                         uint64 NewColor();
-                        uint64 NewTexture();
                         color& GetColor(uint64 ID);
-                        texture& GetTexture(uint64 ID);
                         uint8 RemoveColors(std::initializer_list<uint64> IDs);
-                        uint8 RemoveTextures(std::initializer_list<uint64> IDs);
 
                     private:
                         uint64 Type;
@@ -257,7 +273,6 @@ namespace slay
                         uint16 Width;
                         uint16 Height;
                         array<color*> Colors;
-                        array<texture*> Textures;
 
                         actor(engine& Engine, uint64 Type);
                         ~actor();
