@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::camera::camera(engine& Engine) : Engine(Engine), XActor(0), YActor(0), OffsetX(0), OffsetY(0), CameraX(0), CameraY(0), Zoom(1) {}
+    engine::camera::camera(engine& Engine) : Engine(Engine), OffsetX(0), OffsetY(0), XActor(0), YActor(0), CameraX(0), CameraY(0), Zoom(1) {}
 
     double engine::camera::GetZoom()
     {
