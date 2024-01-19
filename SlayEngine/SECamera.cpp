@@ -24,6 +24,11 @@ namespace slay
 
     uint8 engine::camera::Bind(uint64 Actor)
     {
+        if (Actor == 0)
+        {
+            printf("engine.camera.Bind(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
+            exit(1);
+        }
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
             printf("engine.camera.Bind(): Actor does not exists\nParams: Actor: %lld\n", Actor);
