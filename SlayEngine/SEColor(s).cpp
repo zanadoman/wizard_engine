@@ -8,10 +8,7 @@ namespace slay
     {
         for (uint64 i = 0; i < this->Colors.Length(); i++)
         {
-            if (this->Colors[i] != NULL)
-            {
-                delete this->Colors[i];
-            }
+            delete this->Colors[i];
         }
     }
 
@@ -23,7 +20,7 @@ namespace slay
             {
                 if ((this->Colors[i] = new color(this->Engine, this->Actor)) == NULL)
                 {
-                    printf("slay::engine.actors[].actor.colors.New(): Memory allocation failed\n");
+                    printf("slay::engine.actors[].colors.New(): Memory allocation failed\n");
                     exit(1);
                 }
 

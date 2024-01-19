@@ -8,10 +8,7 @@ namespace slay
     {
         for (uint64 i = 0; i < this->Actors.Length(); i++)
         {
-            if (this->Actors[i] != NULL)
-            {
-                delete this->Actors[i];
-            }
+            delete this->Actors[i];
         }
     }
 
