@@ -86,28 +86,28 @@ namespace slay
         this->MotionX = x * this->Sensitivity;
         this->MotionY = y * this->Sensitivity;
 
-        for (uint64 i = 0; i < Engine.EventQueue.Length(); i++)
+        for (uint64 i = 0; i < this->Engine.EventQueue.Length(); i++)
         {
-            if (Engine.EventQueue[i].type == SDL_MOUSEMOTION)
+            if (this->Engine.EventQueue[i].type == SDL_MOUSEMOTION)
             {
-                this->X = Engine.EventQueue[i].motion.x;
+                this->X = this->Engine.EventQueue[i].motion.x;
                 if (this->X < 0)
                 {
                     this->X = 0;
                 }
-                else if (Engine.Window.Width <= this->X)
+                else if (this->Engine.Window.Width <= this->X)
                 {
-                    this->X = Engine.Window.Width - 1;
+                    this->X = this->Engine.Window.Width - 1;
                 }
 
-                this->Y = Engine.EventQueue[i].motion.y;
+                this->Y = (this->Engine.EventQueue[i].motion.y - (this->Engine.Window.Height - 1)) * -1;
                 if (this->Y < 0)
                 {
                     this->Y = 0;
                 }
-                else if (Engine.Window.Height <= this->Y)
+                else if (this->Engine.Window.Height <= this->Y)
                 {
-                    this->Y = Engine.Window.Height - 1;
+                    this->Y = this->Engine.Window.Height - 1;
                 }
             }
         }
