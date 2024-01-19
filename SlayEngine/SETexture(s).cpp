@@ -36,4 +36,83 @@ namespace slay
 
         return this->Textures.Length() - 1;
     }
+
+    uint8 engine::actors::actor::textures::Delete(uint64 ID)
+    {
+        if (ID == 0)
+        {
+            printf("slay::engine.actors[].textures.Delete(): Illegal deletion of NULL Texture\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
+        {
+            printf("slay::engine.actors[].textures.Delete(): Texture does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        delete this->Textures[ID];
+        if (ID == this->Textures.Length())
+        {
+            this->Textures.Remove(ID, 1);
+        }
+        else
+        {
+            this->Textures[ID] = NULL;
+        }
+
+        return 0;
+    }
+
+    engine::actors::actor::textures::texture& engine::actors::actor::textures::operator [] (uint64 ID)
+    {
+        if (ID == 0)
+        {
+            printf("slay::engine.actors[].textures[]: Illegal access to NULL Texture\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
+        {
+            printf("slay::engine.actors[].textures[]: Texture does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        return *this->Textures[ID];
+    }
+
+    engine::actors::actor::textures::texture::texture(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
+    {
+        this->OffsetX = 0;
+        this->OffsetY = 0;
+        this->Width = 0;
+        this->Height = 0;
+        this->Angle = 0;
+        this->FlipHorizontal = false;
+        this->FlipVertical = false;
+        this->ColorR = 255;
+        this->ColorG = 255;
+        this->ColorB = 255;
+        this->ColorA = 255;
+        this->Visible = true;
+        this->TextureID = 0;
+    }
+
+    uint64 engine::actors::actor::textures::texture::GetTextureID()
+    {
+        return this->TextureID;
+    }
+
+    uint64 engine::actors::actor::textures::texture::SetTextureID(uint64 ID)
+    {
+        if (ID == 0)
+        {
+            return this->TextureID = ID;
+        }
+        if (this->Engine.Assets.Textures.Length() <= ID || this->Engine.Assets.Textures[ID] == NULL)
+        {
+            printf("slay::engine.actors[].textures[].SetTextureID(): Texture does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        return this->TextureID = ID;
+    }
 }

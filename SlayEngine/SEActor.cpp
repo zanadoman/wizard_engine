@@ -56,7 +56,7 @@ namespace slay
     {
         if (Layer < 0)
         {
-            printf("slay::engine.actors[].actor.SetLayer(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
+            printf("slay::engine.actors[].SetLayer(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
 

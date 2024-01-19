@@ -271,7 +271,7 @@ namespace slay
                                     uint8 ColorA;
                                     bool Visible;
                                     uint64 GetTextureID();
-                                    uint8 SetTextureID(uint64 ID);
+                                    uint64 SetTextureID(uint64 ID);
 
                                 private:
                                     uint64 TextureID;
@@ -308,7 +308,6 @@ namespace slay
                                 public:
                                     sint32 OffsetX;
                                     sint32 OffsetY;
-                                    uint16 Width;
                                     uint16 Height;
                                     double Angle;
                                     bool FlipHorizontal;

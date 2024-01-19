@@ -30,7 +30,7 @@ namespace slay
 
         if ((*(this->Colors += {new color(this->Engine, this->Actor)}))[this->Colors.Length() - 1] == NULL)
         {
-            printf("slay::engine.actors[].actor.colors.New(): Memory allocation failed\n");
+            printf("slay::engine.actors[].colors.New(): Memory allocation failed\n");
             exit(1);
         }
 
@@ -41,12 +41,12 @@ namespace slay
     {
         if (ID == 0)
         {
-            printf("slay::engine.actors[].actor.colors.Delete(): Illegal deletion of NULL Color\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].colors.Delete(): Illegal deletion of NULL Color\nParams: ID: %lld\n", ID);
             exit(1);
         }
         if (this->Colors.Length() <= ID || this->Colors[ID] == NULL)
         {
-            printf("slay::engine.actors[].actor.colors.Delete(): Color does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].colors.Delete(): Color does not exists\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
