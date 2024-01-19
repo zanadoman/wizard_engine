@@ -179,6 +179,35 @@ namespace slay
                     friend class engine;
                     engine& Engine;
 
+                    class texture
+                    {
+                        friend class engine;
+                        engine& Engine;
+
+                        public:
+                            sint32 OffsetX;
+                            sint32 OffsetY;
+                            double Layer;
+                            uint16 Width;
+                            uint16 Height;
+                            double Angle;
+                            bool FlipHorizontal;
+                            bool FlipVertical;
+                            uint8 ColorR;
+                            uint8 ColorG;
+                            uint8 ColorB;
+                            uint8 ColorA;
+                            bool Visible;
+
+                            uint64 GetTextureID();
+                            uint8 SetTextureID(uint64 ID);
+
+                        private:
+                            uint64 TextureID;
+
+                            texture(engine& Engine);
+                    };
+
                     public:
                         uint64 GetType();
                         double GetX();
