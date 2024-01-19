@@ -22,6 +22,16 @@ namespace slay
         return 0;
     }
 
+    uint64 engine::camera::GetXActor()
+    {
+        return this->XActor;
+    }
+
+    uint64 engine::camera::GetYActor()
+    {
+        return this->YActor;
+    }
+
     uint8 engine::camera::Bind(uint64 Actor)
     {
         if (Actor == 0)
@@ -97,16 +107,6 @@ namespace slay
         this->YActor = 0;
 
         return 0;
-    }
-
-    uint64 engine::camera::GetXActor()
-    {
-        return this->XActor;
-    }
-
-    uint64 engine::camera::GetYActor()
-    {
-        return this->YActor;
     }
 
     uint8 engine::camera::Update()
