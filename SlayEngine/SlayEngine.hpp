@@ -341,18 +341,19 @@ namespace slay
 
                         uint16 Width;
                         uint16 Height;
-
                         uint64 GetType();
                         double GetX();
-                        double GetY();
                         uint8 SetX(double X);
+                        double GetY();
                         uint8 SetY(double Y);
+                        double GetLayer();
+                        uint8 SetLayer(double Layer);
 
                     private:
                         uint64 Type;
                         double X;
                         double Y;
-
+                        double Layer;
                         actor(engine& Engine, uint64 Type);
                         ~actor();
 
@@ -362,12 +363,11 @@ namespace slay
 
                 public:
                     uint64 New(uint64 Type);
-                    uint8 Delete(std::initializer_list<uint64> IDs);
+                    uint8 Delete(uint64 ID);
                     actor& operator [] (uint64 ID);
 
                 private:
                     array<actor*> Actors;
-
                     actors(engine& Engine);
                     ~actors();
 
