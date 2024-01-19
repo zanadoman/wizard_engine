@@ -97,15 +97,6 @@ namespace slay
 
     uint8 engine::camera::Update()
     {
-        if (this->Engine.Actors.Actors.Length() <= this->XActor || this->Engine.Actors.Actors[this->XActor] == NULL)
-        {
-            this->XActor = 0;
-        }
-        if (this->Engine.Actors.Actors.Length() <= this->YActor || this->Engine.Actors.Actors[this->YActor] == NULL)
-        {
-            this->YActor = 0;
-        }
-
         if (this->XActor != 0)
         {
             this->CameraX = this->Engine.Actors.Actors[this->XActor]->X + (this->Engine.Actors.Actors[this->XActor]->Width >> 1);

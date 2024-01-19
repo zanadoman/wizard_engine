@@ -87,7 +87,17 @@ namespace slay
 
     engine::actors::actor::actor(engine& Engine, uint64 Type) : Engine(Engine), Type(Type), X(0), Y(0), Width(0), Height(0) {}
 
-    engine::actors::actor::~actor() {}
+    engine::actors::actor::~actor()
+    {
+        if (this->Engine.Actors.Actors[this->Engine.Camera.XActor] == this)
+        {
+            this->Engine.Camera.XActor = 0;
+        }
+        if (this->Engine.Actors.Actors[this->Engine.Camera.YActor] == this)
+        {
+            this->Engine.Camera.YActor = 0;
+        }
+    }
 
     uint64 engine::actors::actor::GetType()
     {
