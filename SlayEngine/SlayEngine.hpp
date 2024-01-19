@@ -123,13 +123,13 @@ namespace slay
 
             class keys
             {
+                friend class engine;
+                engine& Engine;
+
                 public:
                     bool GetState(key Key);
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     const uint8* SDL_KeyStates;
                     uint8 KeyStates[KEY_COUNT];
 
