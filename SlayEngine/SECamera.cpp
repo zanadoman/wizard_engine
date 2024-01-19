@@ -38,6 +38,11 @@ namespace slay
 
     uint8 engine::camera::BindX(uint64 Actor)
     {
+        if (Actor == 0)
+        {
+            printf("engine.camera.BindX(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
+            exit(1);
+        }
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
             printf("engine.camera.BindX(): Actor does not exists\nParams: Actor: %lld\n", Actor);
@@ -51,6 +56,11 @@ namespace slay
 
     uint8 engine::camera::BindY(uint64 Actor)
     {
+        if (Actor == 0)
+        {
+            printf("engine.camera.BindY(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
+            exit(1);
+        }
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
             printf("engine.camera.BindY(): Actor does not exists\nParams: Actor: %lld\n", Actor);
