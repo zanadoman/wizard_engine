@@ -237,7 +237,7 @@ namespace slay
                                 color& operator [] (uint64 ID);
 
                             private:
-                                array<color> Colors;
+                                array<color*> Colors;
                                 colors(engine& Engine, actor& Actor);
 
                         } Colors;
@@ -284,7 +284,7 @@ namespace slay
                                 texture& operator [] (uint64 ID);
 
                             private:
-                                array<texture> Textures;
+                                array<texture*> Textures;
                                 textures(engine& Engine, actor& Actor);
 
                         } Textures;
@@ -332,7 +332,7 @@ namespace slay
                                 text& operator [] (uint64 ID);
 
                             private:
-                                array<text> Texts;
+                                array<text*> Texts;
                                 texts(engine& Engine, actor& Actor);
 
                         } Texts;
