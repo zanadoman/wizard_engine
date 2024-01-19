@@ -1,5 +1,4 @@
 #include "SlayEngine.hpp"
-#include <initializer_list>
 
 namespace slay
 {
