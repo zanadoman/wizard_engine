@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::actors::actor::textures::textures(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor), Textures(1) {}
+    engine::actors::actor::textures::textures(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor), Textures({(texture*)NULL}) {}
 
     engine::actors::actor::textures::~textures()
     {

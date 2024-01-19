@@ -47,8 +47,6 @@ namespace slay
         this->Engine.Actors.Actors[Actor]->X += Length * cos(cache);
         this->Engine.Actors.Actors[Actor]->Y += Length * sin(cache);
 
-        this->Engine.Actors.Actors[Actor]->ResolveCollision();
-
         return 0;
     }
 
@@ -76,8 +74,6 @@ namespace slay
         cache = Angle * PI / 180;
         this->Engine.Actors.Actors[Actor]->X = InitialX + Length * cos(cache);
         this->Engine.Actors.Actors[Actor]->Y = InitialY + Length * sin(cache);
-
-        this->Engine.Actors.Actors[Actor]->ResolveCollision();
 
         return 0;
     }

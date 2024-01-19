@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::actors::actor::colors::colors(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor), Colors(1) {}
+    engine::actors::actor::colors::colors(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor), Colors({(color*)NULL}) {}
 
     engine::actors::actor::colors::~colors()
     {

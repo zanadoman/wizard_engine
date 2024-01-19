@@ -229,6 +229,7 @@ namespace slay
 
                                 private:
                                     color(engine& Engine, actor& Actor);
+                                    
                             };
 
                             public:

@@ -20,6 +20,8 @@ sint32 main(sint32 argc, char* *argv)
     Engine.Actors[Player].Colors[PlayerColor].ColorG = 255;
     Engine.Actors[Player].Colors[PlayerColor].ColorB = 196;
 
+    Engine.Actors.Delete(Player);
+
     while (Engine.Update())
     {
         
