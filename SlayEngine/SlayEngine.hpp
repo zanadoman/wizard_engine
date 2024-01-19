@@ -228,6 +228,7 @@ namespace slay
                     uint8 Apply(double Distance, double Angle, double* X, double* Y);
                     uint8 Apply(double Distance, double Angle, uint64 Actor);
                     uint8 Terminal(double InitialX, double InitialY, double Distance, double Angle, double* TerminalX, double* TerminalY);
+                    uint8 Terminal(double InitialX, double InitialY, double Distance, double Angle, uint64 Actor);
 
                 private:
                     friend class engine;

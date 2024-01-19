@@ -37,9 +37,15 @@ namespace slay
     {
         double cache;
 
+        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
+        {
+            printf("engine.vector.Apply(): Actor does not exists\nParams: Distance: %lf, Angle: %lf, Actor: %lld\n", Distance, Angle, Actor);
+            exit(1);
+        }
+
         cache = Angle * PI / 180;
-        this->Engine.Actors[Actor].SetX(this->Engine.Actors.Actors[Actor]->GetX() + Distance * cos(cache));
-        this->Engine.Actors[Actor].SetY(this->Engine.Actors.Actors[Actor]->GetY() + Distance * sin(cache));
+        this->Engine.Actors.Actors[Actor]->X += Distance * cos(cache);
+        this->Engine.Actors.Actors[Actor]->Y += Distance * sin(cache);
 
         return 0;
     }
@@ -51,6 +57,23 @@ namespace slay
         cache = Angle * PI / 180;
         *TerminalX = InitialX + Distance * cos(cache);
         *TerminalY = InitialY + Distance * sin(cache);
+
+        return 0;
+    }
+
+    uint8 engine::vector::Terminal(double InitialX, double InitialY, double Distance, double Angle, uint64 Actor)
+    {
+        double cache;
+
+        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
+        {
+            printf("engine.vector.Terminal(): Actor does not exists\nParams: InitialX: %lf, InitialY: %lf, Distance: %lf, Angle: %lf, Actor: %lld\n", InitialX, InitialY, Distance, Angle, Actor);
+            exit(1);
+        }
+
+        cache = Angle * PI / 180;
+        this->Engine.Actors.Actors[Actor]->X = InitialX + Distance * cos(cache);
+        this->Engine.Actors.Actors[Actor]->Y = InitialY + Distance * sin(cache);
 
         return 0;
     }
