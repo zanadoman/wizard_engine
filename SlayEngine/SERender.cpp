@@ -12,7 +12,7 @@ namespace slay
         obj.x = 400; obj.y = 400; obj.w = 100; obj.h = 100;
         this->Engine.Camera.Apply(&obj, 0.2);
         obj.y = this->ScreenY(obj.y);
-        SDL_SetRenderDrawColor(Engine.Window.Renderer, 255, 255, 255, 255);
+        SDL_SetRenderDrawColor(this->Engine.Window.Renderer, 255, 255, 255, 255);
         SDL_RenderDrawRect(this->Engine.Window.Renderer, &obj);
 
         this->CloseFrame();
