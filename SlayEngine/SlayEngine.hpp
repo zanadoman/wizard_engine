@@ -249,7 +249,6 @@ namespace slay
                                 array<texture*> Textures;
 
                                 textures(engine& Engine, actor& Actor);
-                                ~textures();
 
                         } Textures;
 

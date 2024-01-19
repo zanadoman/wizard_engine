@@ -187,7 +187,7 @@ namespace neo
         {
             if ((this->elements = (type*)malloc(sizeof(type) * this->length)) == NULL)
             {
-                printf("array(): Memory allocation failed\nParams: Length: %lld\n", Length);
+                printf("neo::array(): Memory allocation failed\nParams: Length: %lld\n", Length);
                 exit(1);
             }
 
@@ -208,7 +208,7 @@ namespace neo
         {
             if ((this->elements = (type*)malloc(sizeof(type) * this->length)) == NULL)
             {
-                printf("array(): Memory allocation failed\nParams: Elements(size, length): %ld, %ld\n", sizeof(type), Elements.size());
+                printf("neo::array(): Memory allocation failed\nParams: Elements(size, length): %ld, %ld\n", sizeof(type), Elements.size());
                 exit(1);
             }
 
@@ -230,12 +230,12 @@ namespace neo
             {
                 if (Arrays.begin()[i] == NULL)
                 {
-                    printf("array(): Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
+                    printf("neo::array(): Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
                     exit(1);
                 }
                 if (Arrays.begin()[i] == this)
                 {
-                    printf("array(): Arrays[%lld] must not be Self\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
+                    printf("neo::array(): Arrays[%lld] must not be Self\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
                     exit(1);
                 }
 
@@ -244,7 +244,7 @@ namespace neo
 
             if ((this->elements = (type*)malloc(sizeof(type) * this->length)) == NULL)
             {
-                printf("array(): Memory allocation failed\nParams: Arrays(type, length): %ld, %ld\n", sizeof(type), Arrays.size());
+                printf("neo::array(): Memory allocation failed\nParams: Arrays(type, length): %ld, %ld\n", sizeof(type), Arrays.size());
                 exit(1);
             }
 
@@ -275,7 +275,7 @@ namespace neo
     {
         if (this->length <= Index)
         {
-            printf("array[]: Index out of range\nParams: Index: %lld\n", Index);
+            printf("neo::array[]: Index out of range\nParams: Index: %lld\n", Index);
             exit(1);
         }
 
@@ -299,7 +299,7 @@ namespace neo
         {
             if (this->length != Elements.size() && (this->elements = (type*)realloc(this->elements, sizeof(type) * (this->length = Elements.size()))) == NULL)
             {
-                printf("array=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n", sizeof(type), Elements.size());
+                printf("neo::array=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n", sizeof(type), Elements.size());
                 exit(1);
             }
 
@@ -332,12 +332,12 @@ namespace neo
             {
                 if (Arrays.begin()[i] == NULL)
                 {
-                    printf("array=: Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
+                    printf("neo::array=: Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
                     exit(1);
                 }
                 if (Arrays.begin()[i] == this)
                 {
-                    printf("array=: Arrays[%lld] must not be Self\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
+                    printf("neo::array=: Arrays[%lld] must not be Self\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
                     exit(1);
                 }
 
@@ -346,7 +346,7 @@ namespace neo
 
             if (this->length != lengthPrev && (this->elements = (type*)realloc(this->elements, sizeof(type) * this->length)) == NULL)
             {
-                printf("array=: Memory allocation failed\nParams: Arrays(type, length): %ld %ld\n", sizeof(type), Arrays.size());
+                printf("neo::array=: Memory allocation failed\nParams: Arrays(type, length): %ld %ld\n", sizeof(type), Arrays.size());
                 exit(1);
             }
 
@@ -366,7 +366,7 @@ namespace neo
         {
             if ((this->elements = (type*)realloc(this->elements, sizeof(type) * (this->length += Elements.size()))) == NULL)
             {
-                printf("array-=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n", sizeof(type), Elements.size());
+                printf("neo::array-=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n", sizeof(type), Elements.size());
                 exit(1);
             }
 
@@ -392,12 +392,12 @@ namespace neo
             {
                 if (Arrays.begin()[i] == NULL)
                 {
-                    printf("array-=: Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
+                    printf("neo::array-=: Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
                     exit(1);
                 }
                 if (Arrays.begin()[i] == this)
                 {
-                    printf("array-=: Arrays[%lld] must not be Self\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
+                    printf("neo::array-=: Arrays[%lld] must not be Self\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
                     exit(1);
                 }
 
@@ -406,7 +406,7 @@ namespace neo
 
             if ((this->elements = (type*)realloc(this->elements, sizeof(type) * this->length)) == NULL)
             {
-                printf("array-=: Memory allocation failed\nParams: Arrays(type, length): %ld %ld\n", sizeof(type), Arrays.size());
+                printf("neo::array-=: Memory allocation failed\nParams: Arrays(type, length): %ld %ld\n", sizeof(type), Arrays.size());
                 exit(1);
             }
 
@@ -431,7 +431,7 @@ namespace neo
         {
             if ((this->elements = (type*)realloc(this->elements, sizeof(type) * (this->length += Elements.size()))) == NULL)
             {
-                printf("array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n", sizeof(type), Elements.size());
+                printf("neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n", sizeof(type), Elements.size());
                 exit(1);
             }
 
@@ -452,12 +452,12 @@ namespace neo
             {
                 if (Arrays.begin()[i] == NULL)
                 {
-                    printf("array+=: Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
+                    printf("neo::array+=: Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
                     exit(1);
                 }
                 if (Arrays.begin()[i] == this)
                 {
-                    printf("array+=: Arrays[%lld] must not be Self\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
+                    printf("neo::array+=: Arrays[%lld] must not be Self\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
                     exit(1);
                 }
 
@@ -466,7 +466,7 @@ namespace neo
 
             if ((this->elements = (type*)realloc(this->elements, sizeof(type) * this->length)) == NULL)
             {
-                printf("array+=: Memory allocation failed\nParams: Arrays(type, length): %ld, %ld\n", sizeof(type), Arrays.size());
+                printf("neo::array+=: Memory allocation failed\nParams: Arrays(type, length): %ld, %ld\n", sizeof(type), Arrays.size());
                 exit(1);
             }
 
@@ -504,7 +504,7 @@ namespace neo
     {
         if (this->length < Index)
         {
-            printf("array.Insert(): Index out of range\nParams: Index: %lld, Length: %lld\n", Index, Length);
+            printf("neo::array.Insert(): Index out of range\nParams: Index: %lld, Length: %lld\n", Index, Length);
             exit(1);
         }
 
@@ -512,7 +512,7 @@ namespace neo
         {
             if ((this->elements = (type*)realloc(this->elements, sizeof(type) * (this->length += Length))) == NULL)
             {
-                printf("array.Insert(): Memory allocation failed\nParams: Index: %lld, Length: %lld\n", Index, Length);
+                printf("neo::array.Insert(): Memory allocation failed\nParams: Index: %lld, Length: %lld\n", Index, Length);
                 exit(1);
             }
 
@@ -534,7 +534,7 @@ namespace neo
     {
         if (this->length < Index)
         {
-            printf("array.Insert(): Index out of range\nParams: Index: %lld, Elements(type, length): %ld, %ld\n", Index, sizeof(type), Elements.size());
+            printf("neo::array.Insert(): Index out of range\nParams: Index: %lld, Elements(type, length): %ld, %ld\n", Index, sizeof(type), Elements.size());
             exit(1);
         }
 
@@ -542,7 +542,7 @@ namespace neo
         {
             if ((this->elements = (type*)realloc(this->elements, sizeof(type) * (this->length += Elements.size()))) == NULL)
             {
-                printf("array.Insert(): Memory allocation failed\nParams: Index: %lld, Elements(type, length): %ld, %ld\n", Index, sizeof(type), Elements.size());
+                printf("neo::array.Insert(): Memory allocation failed\nParams: Index: %lld, Elements(type, length): %ld, %ld\n", Index, sizeof(type), Elements.size());
                 exit(1);
             }
 
@@ -563,7 +563,7 @@ namespace neo
 
         if (this->length < Index)
         {
-            printf("array.Insert(): Index out of range\nParams: Index: %lld, Arrays(type, length): %ld, %ld\n", Index, sizeof(type), Arrays.size());
+            printf("neo::array.Insert(): Index out of range\nParams: Index: %lld, Arrays(type, length): %ld, %ld\n", Index, sizeof(type), Arrays.size());
             exit(1);
         }
 
@@ -574,12 +574,12 @@ namespace neo
             {
                 if (Arrays.begin()[i] == NULL)
                 {
-                    printf("array.Insert(): Array must not be NULL\nParams: Index: %lld, Arrays(type, length): %ld, %ld\n", Index, sizeof(type), Arrays.size());
+                    printf("neo::array.Insert(): Array must not be NULL\nParams: Index: %lld, Arrays(type, length): %ld, %ld\n", Index, sizeof(type), Arrays.size());
                     exit(1);
                 }
                 if (Arrays.begin()[i] == this)
                 {
-                    printf("array.Insert(): Array must not be Self\nParams: Index: %lld, Arrays(type, length): %ld, %ld\n", Index, sizeof(type), Arrays.size());
+                    printf("neo::array.Insert(): Array must not be Self\nParams: Index: %lld, Arrays(type, length): %ld, %ld\n", Index, sizeof(type), Arrays.size());
                     exit(1);
                 }
 
@@ -588,7 +588,7 @@ namespace neo
 
             if ((this->elements = (type*)realloc(this->elements, sizeof(type) * this->length)) == NULL)
             {
-                printf("array.Insert(): Memory allocation failed\nParams: Index: %lld, Arrays(type, length): %ld, %ld\n", Index, sizeof(type), Arrays.size());
+                printf("neo::array.Insert(): Memory allocation failed\nParams: Index: %lld, Arrays(type, length): %ld, %ld\n", Index, sizeof(type), Arrays.size());
                 exit(1);
             }
 
@@ -611,12 +611,12 @@ namespace neo
     {
         if (this->length <= Index)
         {
-            printf("array.Remove(): Index out of range\nParams: Index: %lld, Length: %lld\n", Index, Length);
+            printf("neo::array.Remove(): Index out of range\nParams: Index: %lld, Length: %lld\n", Index, Length);
             exit(1);
         }
         if (this->length < Index + Length)
         {
-            printf("array.Remove(): Length out of range\nParams: Index: %lld, Length: %lld\n", Index, Length);
+            printf("neo::array.Remove(): Length out of range\nParams: Index: %lld, Length: %lld\n", Index, Length);
             exit(1);
         }
 
@@ -641,7 +641,7 @@ namespace neo
 
                 if ((this->elements = (type*)realloc(this->elements, sizeof(type) * this->length)) == NULL)
                 {
-                    printf("array.Remove(): Memory allocation failed\nParams: Index: %lld, Length: %lld\n", Index, Length);
+                    printf("neo::array.Remove(): Memory allocation failed\nParams: Index: %lld, Length: %lld\n", Index, Length);
                     exit(1);
                 }
             }
@@ -677,7 +677,7 @@ namespace neo
         {
             if (Arrays.begin()[i] == NULL)
             {
-                printf("array.Contains(): Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
+                printf("neo::array.Contains(): Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n", i, sizeof(type), Arrays.size());
                 exit(1);
             }
             if (Arrays.begin()[i] == this)
@@ -728,14 +728,14 @@ namespace neo
 
         if (Path == NULL)
         {
-            printf("array.WriteFile(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("neo::array.WriteFile(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
         for (uint64 i = 0; i < this->length; i++)
         {
             if (this->elements[i] == NULL)
             {
-                printf("array.WriteFile(): Array[%lld] must not be NULL\nParams: Path: %s\n", i, Path);
+                printf("neo::array.WriteFile(): Array[%lld] must not be NULL\nParams: Path: %s\n", i, Path);
                 exit(1);
             }
         }
@@ -758,14 +758,14 @@ namespace neo
 
         if (Path == NULL)
         {
-            printf("array.WriteFile(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("neo::array.WriteFile(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
         for (uint64 i = 0; i < this->length; i++)
         {
             if (this->elements[i]() == NULL)
             {
-                printf("array.WriteFile(): Array[%lld]() must not be NULL\nParams: Path: %s\n", i, Path);
+                printf("neo::array.WriteFile(): Array[%lld]() must not be NULL\nParams: Path: %s\n", i, Path);
                 exit(1);
             }
         }
@@ -788,19 +788,19 @@ namespace neo
 
         if (Path == NULL)
         {
-            printf("array.WriteFile(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("neo::array.WriteFile(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
         for (uint64 i = 0; i < this->length; i++)
         {
             if (this->elements[i] == NULL)
             {
-                printf("array.WriteFile(): Array[%lld] must not be NULL\nParams: Path: %s\n", i, Path);
+                printf("neo::array.WriteFile(): Array[%lld] must not be NULL\nParams: Path: %s\n", i, Path);
                 exit(1);
             }
             if ((*this->elements[i])() == NULL)
             {
-                printf("array.WriteFile(): (*Array[%lld])() must not be NULL\nParams: Path: %s\n", i, Path);
+                printf("neo::array.WriteFile(): (*Array[%lld])() must not be NULL\nParams: Path: %s\n", i, Path);
                 exit(1);
             }
         }
@@ -824,7 +824,7 @@ namespace neo
 
         if (Path == NULL)
         {
-            printf("array.ReadFile(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("neo::array.ReadFile(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
 
@@ -870,7 +870,7 @@ namespace neo
 
         if (Path == NULL)
         {
-            printf("array.ReadFile(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("neo::array.ReadFile(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
 
