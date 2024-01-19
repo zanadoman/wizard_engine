@@ -1,4 +1,5 @@
 #include "SlayEngine.hpp"
+#include <initializer_list>
 
 namespace slay
 {
@@ -229,6 +230,34 @@ namespace slay
         }
 
         return *this->Textures[ID];
+    }
+
+    uint8 engine::actors::actor::RemoveColors(std::initializer_list<uint64> IDs)
+    {
+        for (uint64 i = 0; i < IDs.size(); i++)
+        {
+            if (IDs.begin()[i] == 0)
+            {
+                continue;
+            }
+            if (this->Colors.Length() <= IDs.begin()[i] || this->Colors[i] == NULL)
+            {
+                printf("engine.actors.actor.RemoveColors(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
+                exit(1);
+            }
+            
+            delete this->Colors[IDs.begin()[i]];
+            if (IDs.begin()[i] == this->Colors.Length() - 1)
+            {
+                this->Colors.Remove(IDs.begin()[i], 1);
+            }
+            else
+            {
+                this->Colors[IDs.begin()[i]] = NULL;
+            }
+        }
+
+        return 0;
     }
 
     uint8 engine::actors::actor::ResolveCollision()

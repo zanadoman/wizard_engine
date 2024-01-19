@@ -245,8 +245,8 @@ namespace slay
                         uint64 NewTexture();
                         color& GetColor(uint64 ID);
                         texture& GetTexture(uint64 ID);
-                        uint8 DeleteColors(std::initializer_list<uint64> IDs);
-                        uint8 DeleteTextures(std::initializer_list<uint64> IDs);
+                        uint8 RemoveColors(std::initializer_list<uint64> IDs);
+                        uint8 RemoveTextures(std::initializer_list<uint64> IDs);
 
                     private:
                         uint64 Type;
