@@ -76,8 +76,7 @@ namespace slay
         {
             if (IDs.begin()[i] == 0)
             {
-                printf("engine.assets.UnloadTextures(): Illegal to unload NULL Texture\nParams: ID(length): %ld\n", IDs.size());
-                exit(1);
+                continue;
             }
             if (this->Textures.Length() <= IDs.begin()[i] || this->Textures[IDs.begin()[i]] == NULL)
             {
@@ -136,8 +135,7 @@ namespace slay
         {
             if (IDs.begin()[i] == 0)
             {
-                printf("engine.assets.UnloadFonts(): Illegal to unload NULL Font\nParams: IDs(length): %ld\n", IDs.size());
-                exit(1);
+                continue;
             }
             if (this->Fonts.Length() <= IDs.begin()[i] || this->Fonts[IDs.begin()[i]] == NULL)
             {

@@ -48,8 +48,7 @@ namespace slay
         {
             if (IDs.begin()[i] == 0)
             {
-                printf("engine.actors.Delete(): Illegal to delete NULL Actor\nParams: IDs(length): %ld\n", IDs.size());
-                exit(1);
+                continue;
             }
             if (this->Actors.Length() <= IDs.begin()[i] || this->Actors[IDs.begin()[i]] == NULL)
             {
