@@ -41,16 +41,16 @@ namespace slay
             this->KeyStates[KEY_RMB] = false;
         }
 
-        for (uint64 i = 0; i < Engine.EventQueue.Length(); i++)
+        for (uint64 i = 0; i < this->Engine.EventQueue.Length(); i++)
         {
-            if (Engine.EventQueue[i].type == SDL_MOUSEWHEEL)
+            if (this->Engine.EventQueue[i].type == SDL_MOUSEWHEEL)
             {
-                if (Engine.EventQueue[i].wheel.y < 0)
+                if (this->Engine.EventQueue[i].wheel.y < 0)
                 {
                     this->KeyStates[KEY_WHEELDOWN] = true;
                     this->KeyStates[KEY_WHEELUP] = false;
                 }
-                else if (0 < Engine.EventQueue[i].wheel.y)
+                else if (0 < this->Engine.EventQueue[i].wheel.y)
                 {
                     this->KeyStates[KEY_WHEELDOWN] = false;
                     this->KeyStates[KEY_WHEELUP] = true;

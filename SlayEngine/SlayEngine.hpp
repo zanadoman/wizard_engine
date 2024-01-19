@@ -140,6 +140,9 @@ namespace slay
 
             class mouse
             {
+                friend class engine;
+                engine& Engine;
+
                 public:
                     double Sensitivity;
 
@@ -156,9 +159,6 @@ namespace slay
                     uint8 SetRelative();
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     sint32 X;
                     sint32 Y;
                     double MotionX;
