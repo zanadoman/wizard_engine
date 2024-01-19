@@ -51,7 +51,7 @@ namespace slay
         }
 
         delete this->Textures[ID];
-        if (ID == this->Textures.Length())
+        if (ID == this->Textures.Length() - 1)
         {
             this->Textures.Remove(ID, 1);
         }
