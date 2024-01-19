@@ -68,54 +68,6 @@ namespace slay
 
             } Render;
 
-            class audio
-            {
-                public:
-                    double GetGlobalVolume();
-                    uint8 SetGlobalVolume(double GlobalVolume);
-
-                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume);
-                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, uint16 Loops);
-                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right);
-                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops);
-                    uint8 Stop(std::initializer_list<uint16> Channels);
-
-                private:
-                    friend class engine;
-                    engine& Engine;
-
-                    double GlobalVolume;
-
-                    audio(engine& Engine);
-
-            } Audio;
-
-            class timing
-            {
-                public:
-                    uint8 TargetFrameTime;
-
-                    uint32 GetPrevTick();
-                    uint32 GetWorkingTime();
-                    sint16 GetIdleTime();
-                    uint32 GetFrameTime();
-                    uint32 GetDeltaTime();
-
-                private:
-                    friend class engine;
-                    engine& Engine;
-
-                    uint32 PrevTick;
-                    uint32 WorkingTime;
-                    sint16 IdleTime;
-                    uint32 FrameTime;
-                    uint32 DeltaTime;
-
-                    timing(engine& Engine);
-                    uint8 Update();
-
-            } Timing;
-
             class camera
             {
                 public:
@@ -152,6 +104,28 @@ namespace slay
                     uint8 Apply(SDL_Rect* Object, double Layer);
 
             } Camera;
+
+            class audio
+            {
+                public:
+                    double GetGlobalVolume();
+                    uint8 SetGlobalVolume(double GlobalVolume);
+
+                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume);
+                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, uint16 Loops);
+                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right);
+                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops);
+                    uint8 Stop(std::initializer_list<uint16> Channels);
+
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    double GlobalVolume;
+
+                    audio(engine& Engine);
+
+            } Audio;
 
             class keys
             {
@@ -201,49 +175,6 @@ namespace slay
                     uint8 Update();
 
             } Mouse;
-
-            class assets
-            {
-                public:
-                    uint64 LoadTexture(const char* Path);
-                    uint8 UnloadTextures(std::initializer_list<uint64> IDs);
-
-                    uint64 LoadFont(const char* Path, uint8 Size);
-                    uint8 UnloadFonts(std::initializer_list<uint64> IDs);
-
-                    uint64 LoadSound(const char* Path);
-                    uint8 UnloadSounds(std::initializer_list<uint64> IDs);
-
-                private:
-                    friend class engine;
-                    engine& Engine;
-
-                    array<SDL_Texture*> Textures;
-                    array<TTF_Font*> Fonts;
-                    array<Mix_Chunk*> Sounds;
-
-                    assets(engine& Engine);
-                    ~assets();
-
-            } Assets;
-
-            class vector
-            {
-                public:
-                    double Length(double X1, double Y1, double X2, double Y2);
-                    double Angle(double X1, double Y1, double X2, double Y2);
-                    uint8 Apply(double Length, double Angle, double* X, double* Y);
-                    uint8 Apply(double Length, double Angle, uint64 Actor);
-                    uint8 Terminal(double InitialX, double InitialY, double Length, double Angle, double* TerminalX, double* TerminalY);
-                    uint8 Terminal(double InitialX, double InitialY, double Length, double Angle, uint64 Actor);
-
-                private:
-                    friend class engine;
-                    engine& Engine;
-
-                    vector(engine& Engine);
-
-            } Vector;
 
             class actors
             {
@@ -296,6 +227,75 @@ namespace slay
                     ~actors();
 
             } Actors;
+
+            class vector
+            {
+                public:
+                    double Length(double X1, double Y1, double X2, double Y2);
+                    double Angle(double X1, double Y1, double X2, double Y2);
+                    uint8 Apply(double Length, double Angle, double* X, double* Y);
+                    uint8 Apply(double Length, double Angle, uint64 Actor);
+                    uint8 Terminal(double InitialX, double InitialY, double Length, double Angle, double* TerminalX, double* TerminalY);
+                    uint8 Terminal(double InitialX, double InitialY, double Length, double Angle, uint64 Actor);
+
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    vector(engine& Engine);
+
+            } Vector;
+
+            class assets
+            {
+                public:
+                    uint64 LoadTexture(const char* Path);
+                    uint8 UnloadTextures(std::initializer_list<uint64> IDs);
+
+                    uint64 LoadFont(const char* Path, uint8 Size);
+                    uint8 UnloadFonts(std::initializer_list<uint64> IDs);
+
+                    uint64 LoadSound(const char* Path);
+                    uint8 UnloadSounds(std::initializer_list<uint64> IDs);
+
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    array<SDL_Texture*> Textures;
+                    array<TTF_Font*> Fonts;
+                    array<Mix_Chunk*> Sounds;
+
+                    assets(engine& Engine);
+                    ~assets();
+
+            } Assets;
+
+            class timing
+            {
+                public:
+                    uint8 TargetFrameTime;
+
+                    uint32 GetPrevTick();
+                    uint32 GetWorkingTime();
+                    sint16 GetIdleTime();
+                    uint32 GetFrameTime();
+                    uint32 GetDeltaTime();
+
+                private:
+                    friend class engine;
+                    engine& Engine;
+
+                    uint32 PrevTick;
+                    uint32 WorkingTime;
+                    sint16 IdleTime;
+                    uint32 FrameTime;
+                    uint32 DeltaTime;
+
+                    timing(engine& Engine);
+                    uint8 Update();
+
+            } Timing;
 
         private:
             array<SDL_Event> EventQueue;

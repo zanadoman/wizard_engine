@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime) : Window(*this), Render(*this), Audio(*this), Timing(*this), Camera(*this), Keys(*this), Mouse(*this), Assets(*this), Vector(*this), Actors(*this)
+    engine::engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime) : Window(*this), Render(*this), Camera(*this), Audio(*this), Keys(*this), Mouse(*this), Actors(*this), Vector(*this), Assets(*this), Timing(*this)
     {
         if (Title == NULL)
         {
@@ -28,10 +28,10 @@ namespace slay
         srand(time(NULL));
         this->Window.New(Title, Width, Height);
         this->Render.ScreenYCache = Height - 1;
-        this->Timing.TargetFrameTime = TargetFrameTime;
         this->Camera.OffsetX = (this->Window.Width >> 1) * -1;
         this->Camera.OffsetY = (this->Window.Height >> 1) * -1;
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
+        this->Timing.TargetFrameTime = TargetFrameTime;
     }
 
     engine::engine::~engine()
@@ -46,12 +46,8 @@ namespace slay
         SDL_Event event;
         uint64 i;
 
-        //Rendering old frame
-
         this->Camera.Update();
         this->Render.Update();
-
-        //Gathering information from old frame
 
         for (i = 0; SDL_PollEvent(&event); i++)
         {
@@ -76,8 +72,6 @@ namespace slay
 
         this->Keys.Update();
         this->Mouse.Update();
-
-        //Starting the new frame
 
         this->Timing.Update();
 
