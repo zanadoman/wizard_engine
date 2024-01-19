@@ -10,7 +10,9 @@ namespace slay
         this->OpenFrame();
 
         SDL_Rect obj;
-        obj.x = 0; obj.y = this->ScreenY(1079); obj.w = 1000; obj.h = 1000;
+        obj.x = 400; obj.y = 400; obj.w = 100; obj.h = 100;
+        this->Engine.Camera.Apply(&obj, 0.2);
+        obj.y = this->ScreenY(obj.y);
         SDL_SetRenderDrawColor(Engine.Window.Renderer, 255, 255, 255, 255);
         SDL_RenderDrawRect(this->Engine.Window.Renderer, &obj);
 
@@ -45,5 +47,10 @@ namespace slay
     sint32 engine::render::ScreenY(double Y)
     {
         return (round(Y) - this->ScreenYCache) * -1;
+    }
+
+    sint32 engine::render::ScreenY(sint32 Y)
+    {
+        return (Y - this->ScreenYCache) * -1;
     }
 }
