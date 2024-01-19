@@ -29,14 +29,14 @@ namespace slay
 
             class window
             {
+                friend class engine;
+                engine& Engine;
+
                 public:
                     uint16 GetHeight();
                     uint16 GetWidth();
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     SDL_Window* Window;
                     SDL_Renderer* Renderer;
                     uint16 Width;
