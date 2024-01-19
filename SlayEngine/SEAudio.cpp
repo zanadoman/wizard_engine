@@ -24,14 +24,18 @@ namespace slay
 
     uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume)
     {
-        if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
-        {
-            printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
-            return 1;
-        }
         if (Volume < 0 || 1 < Volume)
         {
             printf("engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
+            return 1;
+        }
+        if (SoundID == 0)
+        {
+            return 0;
+        }
+        if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
+        {
+            printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
             return 1;
         }
 
@@ -47,14 +51,18 @@ namespace slay
 
     uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, uint16 Loops)
     {
-        if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
-        {
-            printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
-            return 1;
-        }
         if (Volume < 0 || 1 < Volume)
         {
             printf("engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
+            return 1;
+        }
+        if (SoundID == 0)
+        {
+            return 0;
+        }
+        if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
+        {
+            printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
             return 1;
         }
 
@@ -70,11 +78,6 @@ namespace slay
 
     uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right)
     {
-        if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
-        {
-            printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
-            return 1;
-        }
         if (Volume < 0 || 1 < Volume)
         {
             printf("engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
@@ -88,6 +91,15 @@ namespace slay
         if (Right < 0 || 1 < Right)
         {
             printf("engine.audio.Play(): Right must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            return 1;
+        }
+        if (SoundID == 0)
+        {
+            return 0;
+        }
+        if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
+        {
+            printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             return 1;
         }
 
@@ -108,11 +120,6 @@ namespace slay
 
     uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops)
     {
-        if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
-        {
-            printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
-            return 1;
-        }
         if (Volume < 0 || 1 < Volume)
         {
             printf("engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
@@ -126,6 +133,15 @@ namespace slay
         if (Right < 0 || 1 < Right)
         {
             printf("engine.audio.Play(): Right must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            return 1;
+        }
+        if (SoundID == 0)
+        {
+            return 0;
+        }
+        if (this->Engine.Assets.Sounds.Length() <= SoundID || this->Engine.Assets.Sounds[SoundID] == NULL)
+        {
+            printf("engine.audio.Play(): SoundID does not exists\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             return 1;
         }
 
