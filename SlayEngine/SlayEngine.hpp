@@ -249,6 +249,8 @@ namespace slay
                         double GetY();
                         uint8 SetX(double X);
                         uint8 SetY(double Y);
+                        uint8 MoveBy(double X, double Y);
+                        uint8 MoveTo(double X, double Y);
 
                         uint16 GetHeight();
                         uint16 GetWidth();

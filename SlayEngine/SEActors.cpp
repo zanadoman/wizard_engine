@@ -128,6 +128,22 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::actors::actor::MoveBy(double X, double Y)
+    {
+        this->X += X;
+        this->Y += Y;
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::MoveTo(double X, double Y)
+    {
+        this->X = X;
+        this->Y = Y;
+
+        return 0;
+    }
+
     uint16 engine::actors::actor::GetWidth()
     {
         return this->Width;
