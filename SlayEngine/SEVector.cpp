@@ -22,7 +22,7 @@ namespace slay
         return result;
     }
 
-    uint8 engine::vector::MoveBy(double Distance, double Angle, double* X, double* Y)
+    uint8 engine::vector::Apply(double Distance, double Angle, double* X, double* Y)
     {
         double cache;
 
