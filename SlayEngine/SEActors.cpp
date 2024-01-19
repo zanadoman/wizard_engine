@@ -81,7 +81,7 @@ namespace slay
         return *this->Actors[ID];
     }
 
-    engine::actors::actor::actor(engine& Engine, uint64 Type) : Engine(Engine), Type(Type), X(0), Y(0), Width(0), Height(0) {}
+    engine::actors::actor::actor(engine& Engine, uint64 Type) : Engine(Engine), Type(Type), X(0), Y(0), Width(0), Height(0), Colors(1), Textures(1) {}
 
     engine::actors::actor::~actor()
     {
@@ -198,6 +198,37 @@ namespace slay
         }
 
         return this->Textures.Length() - 1;
+    }
+
+    engine::actors::actor::color& engine::actors::actor::GetColor(uint64 ID)
+    {
+        if (ID == 0)
+        {
+            printf("engine.actors.actor.GetColor(): Illegal access to NULL Color\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Colors.Length() <= ID || this->Colors[ID] == NULL)
+        {
+            printf("engine.actors.actor.GetColor(): ID does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        return *this->Colors[ID];
+    }
+
+    engine::actors::actor::texture& engine::actors::actor::GetTexture(uint64 ID)
+    {
+        if (ID == 0)
+        {
+            printf("engine.actors.actor.GetTexture(): ILlegal access to NULL Texture\nParams: ID: %lld\n", ID);
+        }
+        if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
+        {
+            printf("engine.actors.actor.GetTexture(): ID does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        return *this->Textures[ID];
     }
 
     uint8 engine::actors::actor::ResolveCollision()
