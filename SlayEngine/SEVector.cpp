@@ -22,60 +22,60 @@ namespace slay
         return result;
     }
 
-    uint8 engine::vector::Apply(double Distance, double Angle, double* X, double* Y)
+    uint8 engine::vector::Apply(double Length, double Angle, double* X, double* Y)
     {
         double cache;
 
         cache = Angle * PI / 180;
-        *X += Distance * cos(cache);
-        *Y += Distance * sin(cache);
+        *X += Length * cos(cache);
+        *Y += Length * sin(cache);
 
         return 0;
     }
 
-    uint8 engine::vector::Apply(double Distance, double Angle, uint64 Actor)
+    uint8 engine::vector::Apply(double Length, double Angle, uint64 Actor)
     {
         double cache;
 
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("engine.vector.Apply(): Actor does not exists\nParams: Distance: %lf, Angle: %lf, Actor: %lld\n", Distance, Angle, Actor);
+            printf("engine.vector.Apply(): Actor does not exists\nParams: Length: %lf, Angle: %lf, Actor: %lld\n", Length, Angle, Actor);
             exit(1);
         }
 
         cache = Angle * PI / 180;
-        this->Engine.Actors.Actors[Actor]->X += Distance * cos(cache);
-        this->Engine.Actors.Actors[Actor]->Y += Distance * sin(cache);
+        this->Engine.Actors.Actors[Actor]->X += Length * cos(cache);
+        this->Engine.Actors.Actors[Actor]->Y += Length * sin(cache);
 
         this->Engine.Actors.Actors[Actor]->ResolveCollision();
 
         return 0;
     }
 
-    uint8 engine::vector::Terminal(double InitialX, double InitialY, double Distance, double Angle, double* TerminalX, double* TerminalY)
+    uint8 engine::vector::Terminal(double InitialX, double InitialY, double Length, double Angle, double* TerminalX, double* TerminalY)
     {
         double cache;
 
         cache = Angle * PI / 180;
-        *TerminalX = InitialX + Distance * cos(cache);
-        *TerminalY = InitialY + Distance * sin(cache);
+        *TerminalX = InitialX + Length * cos(cache);
+        *TerminalY = InitialY + Length * sin(cache);
 
         return 0;
     }
 
-    uint8 engine::vector::Terminal(double InitialX, double InitialY, double Distance, double Angle, uint64 Actor)
+    uint8 engine::vector::Terminal(double InitialX, double InitialY, double Length, double Angle, uint64 Actor)
     {
         double cache;
 
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("engine.vector.Terminal(): Actor does not exists\nParams: InitialX: %lf, InitialY: %lf, Distance: %lf, Angle: %lf, Actor: %lld\n", InitialX, InitialY, Distance, Angle, Actor);
+            printf("engine.vector.Terminal(): Actor does not exists\nParams: InitialX: %lf, InitialY: %lf, Length: %lf, Angle: %lf, Actor: %lld\n", InitialX, InitialY, Length, Angle, Actor);
             exit(1);
         }
 
         cache = Angle * PI / 180;
-        this->Engine.Actors.Actors[Actor]->X = InitialX + Distance * cos(cache);
-        this->Engine.Actors.Actors[Actor]->Y = InitialY + Distance * sin(cache);
+        this->Engine.Actors.Actors[Actor]->X = InitialX + Length * cos(cache);
+        this->Engine.Actors.Actors[Actor]->Y = InitialY + Length * sin(cache);
 
         this->Engine.Actors.Actors[Actor]->ResolveCollision();
 
