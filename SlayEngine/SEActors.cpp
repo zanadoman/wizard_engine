@@ -3,8 +3,6 @@
 
 namespace slay
 {
-    //Actors
-
     engine::actors::actors(engine& Engine) : Engine(Engine), Actors(1) {}
 
     engine::actors::~actors()
