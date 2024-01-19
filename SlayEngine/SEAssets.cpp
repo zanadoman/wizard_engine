@@ -148,13 +148,13 @@ namespace slay
 
     uint8 engine::assets::UnloadSounds(std::initializer_list<uint64> IDs)
     {
-        if (IDs.size() == 0)
-        {
-            printf("engine.assets.UnloadSounds(): IDs must not be empty\nParams: IDs(length): %ld\n", IDs.size());
-            exit(1);
-        }
         for (uint64 i = 0; i < IDs.size(); i++)
         {
+            if (IDs.begin()[i] == 0)
+            {
+                printf("engine.assets.UnloadSounds(): Illegal to unload NULL Sound\nParams: IDs(length): %ld\n", IDs.size());
+                exit(1);
+            }
             if (this->Sounds.Length() <= IDs.begin()[i] || this->Sounds[IDs.begin()[i]] == NULL)
             {
                 printf("engine.assets.UnloadSound(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
