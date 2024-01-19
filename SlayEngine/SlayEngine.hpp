@@ -61,7 +61,7 @@ namespace slay
                     uint8 OpenFrame();
                     uint8 CloseFrame();
 
-                    uint16 ScreenY(double Y);
+                    sint32 ScreenY(double Y);
 
             } Render;
 

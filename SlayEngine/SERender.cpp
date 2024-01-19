@@ -41,4 +41,9 @@ namespace slay
 
         return 0;
     }
+
+    sint32 engine::render::ScreenY(double Y)
+    {
+        return (round(Y) - this->ScreenYCache) * -1;
+    }
 }
