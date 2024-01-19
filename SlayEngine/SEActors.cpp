@@ -78,6 +78,11 @@ namespace slay
         }
     }
 
+    uint64 engine::actors::actor::GetType()
+    {
+        return this->Type;
+    }
+
     double engine::actors::actor::GetX()
     {
         return this->X;

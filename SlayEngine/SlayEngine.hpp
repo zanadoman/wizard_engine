@@ -244,6 +244,8 @@ namespace slay
                 class actor
                 {
                     public:
+                        uint64 GetType();
+
                         double GetX();
                         double GetY();
                         uint8 SetX(double X);
