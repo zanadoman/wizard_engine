@@ -217,7 +217,6 @@ namespace slay
                                 public:
                                     sint32 OffsetX;
                                     sint32 OffsetY;
-                                    double Layer;
                                     uint16 Width;
                                     uint16 Height;
                                     bool FlipHorizontal;
@@ -233,8 +232,13 @@ namespace slay
                             };
 
                             public:
+                                uint64 New();
+                                uint8 Delete(uint64);
+                                color& operator [] (uint64 ID);
 
                             private:
+                                array<color> Colors;
+                                colors(engine& Engine, actor& Actor);
 
                         } Colors;
 
@@ -255,7 +259,6 @@ namespace slay
                                 public:
                                     sint32 OffsetX;
                                     sint32 OffsetY;
-                                    double Layer;
                                     uint16 Width;
                                     uint16 Height;
                                     double Angle;
@@ -266,51 +269,92 @@ namespace slay
                                     uint8 ColorB;
                                     uint8 ColorA;
                                     bool Visible;
-
                                     uint64 GetTextureID();
                                     uint8 SetTextureID(uint64 ID);
 
                                 private:
                                     uint64 TextureID;
+                                    texture(engine& Engine, actor& Actor);
 
-                                    texture(engine& Engine,actor& Actor);
                             };
 
                             public:
-                                uint64 NewTexture();
-                                uint8 RemoveTextures(std::initializer_list<uint64> IDs);
+                                uint64 New();
+                                uint8 Delete(uint64 ID);
                                 texture& operator [] (uint64 ID);
 
                             private:
-                                array<texture*> Textures;
-
+                                array<texture> Textures;
                                 textures(engine& Engine, actor& Actor);
 
                         } Textures;
 
+                        //__________Texts______________________________________________________________________________
+
+                        class texts
+                        {
+                            friend class engine;
+                            engine& Engine;
+                            actor& Actor;
+
+                            class text
+                            {
+                                friend class engine;
+                                engine& Engine;
+                                actor& Actor;
+
+                                public:
+                                    sint32 OffsetX;
+                                    sint32 OffsetY;
+                                    uint16 Width;
+                                    uint16 Height;
+                                    double Angle;
+                                    bool FlipHorizontal;
+                                    bool FlipVertical;
+                                    uint8 ColorR;
+                                    uint8 ColorG;
+                                    uint8 ColorB;
+                                    uint8 ColorA;
+                                    bool Visible;
+                                    string Text;
+                                    uint64 GetFont();
+                                    uint8 SetFont(uint64 ID);
+
+                                private:
+                                    uint64 FontID;
+                                    text(engine& Engine, actor& Actor);
+
+                            };
+
+                            public:
+                                uint64 New();
+                                uint8 Delete(uint64 ID);
+                                text& operator [] (uint64 ID);
+
+                            private:
+                                array<text> Texts;
+                                texts(engine& Engine, actor& Actor);
+
+                        } Texts;
+
                         //__________Actor______________________________________________________________________________
+
+                        uint16 Width;
+                        uint16 Height;
 
                         uint64 GetType();
                         double GetX();
                         double GetY();
                         uint8 SetX(double X);
                         uint8 SetY(double Y);
-                        uint16 GetHeight();
-                        uint16 GetWidth();
-                        uint8 SetHeight(uint16 Height);
-                        uint8 SetWidth(uint16 Width);
-                        uint64 NewColor();
 
                     private:
                         uint64 Type;
                         double X;
                         double Y;
-                        uint16 Width;
-                        uint16 Height;
 
                         actor(engine& Engine, uint64 Type);
                         ~actor();
-                        uint8 ResolveCollision();
 
                 };
 
