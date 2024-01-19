@@ -137,6 +137,20 @@ namespace slay
             exit(1);
         }
 
+        for (uint64 i = 1; i < this->Sounds.Length(); i++)
+        {
+            if (this->Sounds[i] == NULL)
+            {
+                if (this->Sounds[i] == NULL && (this->Sounds[i] = Mix_LoadWAV(Path)) == NULL)
+                {
+                    printf("engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
+                    exit(1);
+                }
+
+                return i;
+            }
+        }
+
         if ((*(this->Sounds += {Mix_LoadWAV(Path)}))[this->Sounds.Length() - 1] == NULL)
         {
             printf("engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
