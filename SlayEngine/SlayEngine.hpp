@@ -50,19 +50,18 @@ namespace slay
 
             class render
             {
+                friend class engine;
+                engine& Engine;
+
                 public:
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     uint16 HeightCache;
 
                     render(engine& Engine);
                     uint8 Update();
                     uint8 OpenFrame();
                     uint8 CloseFrame();
-
                     sint32 ScreenY(double Y);
                     sint32 ScreenY(sint32 Y);
 
