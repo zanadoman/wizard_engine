@@ -73,19 +73,17 @@ namespace slay
                 public:
                     double OffsetX;
                     double OffsetY;
-
                     double GetZoom();
                     uint8 SetZoom(double Zoom);
 
+                    uint64 GetXActor();
+                    uint64 GetYActor();
                     uint8 Bind(uint64 Actor);
                     uint8 BindX(uint64 Actor);
                     uint8 BindY(uint64 Actor);
                     uint8 Unbind();
                     uint8 UnbindX();
                     uint8 UnbindY();
-
-                    uint64 GetXActor();
-                    uint64 GetYActor();
 
                 private:
                     friend class engine;
