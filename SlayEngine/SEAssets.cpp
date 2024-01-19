@@ -58,6 +58,11 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
+            if (IDs.begin()[i] == 0)
+            {
+                printf("engine.assets.UnloadTextures(): Illegal to unload NULL Texture\nParams: ID(length): %ld\n", IDs.size());
+                exit(1);
+            }
             if (this->Textures.Length() <= IDs.begin()[i] || this->Textures[IDs.begin()[i]] == NULL)
             {
                 printf("engine.assets.UnloadTexture(): IDs[%lld] does not exists\nParams: ID(length): %ld\n", i, IDs.size());
@@ -99,6 +104,11 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
+            if (IDs.begin()[i] == 0)
+            {
+                printf("engine.assets.UnloadFonts(): Illegal to unload NULL Font\nParams: IDs(length): %ld\n", IDs.size());
+                exit(1);
+            }
             if (this->Fonts.Length() <= IDs.begin()[i] || this->Fonts[IDs.begin()[i]] == NULL)
             {
                 printf("engine.assets.UnloadFont(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
@@ -138,6 +148,11 @@ namespace slay
 
     uint8 engine::assets::UnloadSounds(std::initializer_list<uint64> IDs)
     {
+        if (IDs.size() == 0)
+        {
+            printf("engine.assets.UnloadSounds(): IDs must not be empty\nParams: IDs(length): %ld\n", IDs.size());
+            exit(1);
+        }
         for (uint64 i = 0; i < IDs.size(); i++)
         {
             if (this->Sounds.Length() <= IDs.begin()[i] || this->Sounds[IDs.begin()[i]] == NULL)
