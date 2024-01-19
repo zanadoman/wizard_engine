@@ -39,4 +39,46 @@ namespace slay
 
         return this->Colors.Length() - 1;
     }
+
+    uint8 engine::actors::actor::colors::Delete(uint64 ID)
+    {
+        if (ID == 0)
+        {
+            printf("slay::engine.actors[].actor.colors.Delete(): Illegal deletion of NULL Color\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Colors.Length() <= ID || this->Colors[ID] == NULL)
+        {
+            printf("slay::engine.actors[].actor.colors.Delete(): Color does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        delete this->Colors[ID];
+        if (ID == this->Colors.Length() - 1)
+        {
+            this->Colors.Remove(ID, 1);
+        }
+        else 
+        {
+            this->Colors[ID] = NULL;
+        }
+
+        return 0;
+    }
+
+    engine::actors::actor::colors::color& engine::actors::actor::colors::operator [] (uint64 ID)
+    {
+        if (ID == 0)
+        {
+            printf("slay::engine.actors[].colors[]: Illegal access to NULL Color\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Colors.Length() <= ID || this->Colors[ID] == NULL)
+        {
+            printf("slay::engine.actors[].colors[]: Color does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        return *this->Colors[ID];
+    }
 }

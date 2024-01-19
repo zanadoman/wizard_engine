@@ -44,7 +44,7 @@ namespace slay
     {
         if (ID == 0)
         {
-            printf("slay::engine.actors.Delete(): Illegal to delete NULL Actor\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors.Delete(): Illegal deletion of NULL Actor\nParams: ID: %lld\n", ID);
             exit(1);
         }
         if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
