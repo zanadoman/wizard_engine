@@ -84,7 +84,7 @@ namespace slay
 
         SDL_GetRelativeMouseState(&x, &y);
         this->MotionX = x * this->Sensitivity;
-        this->MotionY = y * this->Sensitivity;
+        this->MotionY = y * this->Sensitivity * -1;
 
         for (uint64 i = 0; i < this->Engine.EventQueue.Length(); i++)
         {
