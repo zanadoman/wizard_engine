@@ -22,13 +22,24 @@ namespace slay
         return result;
     }
 
-    uint8 engine::vector::Move(double* X, double* Y, double Distance, double Angle)
+    uint8 engine::vector::MoveBy(double Distance, double Angle, double* X, double* Y)
     {
         double cache;
 
         cache = Angle * PI / 180;
         *X += Distance * cos(cache);
         *Y += Distance * sin(cache);
+
+        return 0;
+    }
+
+    uint8 engine::vector::MoveByFrom(double InitialX, double InitialY, double Distance, double Angle, double* X, double* Y)
+    {
+        double cache;
+
+        cache = Angle * PI / 180;
+        *X = InitialX + Distance * cos(cache);
+        *Y = InitialY + Distance * sin(cache);
 
         return 0;
     }
