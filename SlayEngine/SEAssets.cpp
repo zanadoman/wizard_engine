@@ -44,6 +44,22 @@ namespace slay
             printf("engine.assets.LoadTexture(): IMG_Load() failed\nParams: Path: %s\n", Path);
             exit(1);
         }
+
+        for (uint64 i = 1; i < this->Textures.Length(); i++)
+        {
+            if (this->Textures[i] == NULL)
+            {
+                if ((this->Textures[i] = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, tmp)) == NULL)
+                {
+                    printf("engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
+                    exit(1);
+                }
+                SDL_FreeSurface(tmp);
+
+                return i;
+            }
+        }
+
         if ((*(this->Textures += {SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, tmp)}))[this->Textures.Length() - 1] == NULL)
         {
             printf("engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
@@ -89,6 +105,20 @@ namespace slay
         {
             printf("engine.assets.LoadFont(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
+        }
+
+        for (uint64 i = 1; i < this->Fonts.Length(); i++)
+        {
+            if (this->Fonts[i] == NULL)
+            {
+                if ((this->Fonts[i] = TTF_OpenFont(Path, Size)) == NULL)
+                {
+                    printf("engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
+                    exit(1);
+                }
+
+                return i;
+            }
         }
 
         if ((*(this->Fonts += {TTF_OpenFont(Path, Size)}))[this->Fonts.Length() - 1] == NULL)
@@ -141,7 +171,7 @@ namespace slay
         {
             if (this->Sounds[i] == NULL)
             {
-                if (this->Sounds[i] == NULL && (this->Sounds[i] = Mix_LoadWAV(Path)) == NULL)
+                if ((this->Sounds[i] = Mix_LoadWAV(Path)) == NULL)
                 {
                     printf("engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
                     exit(1);
