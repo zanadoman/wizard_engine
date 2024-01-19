@@ -47,14 +47,14 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
-            if (IDs.begin()[i] == 0)
-            {
-                continue;
-            }
-            if (this->Actors.Length() <= IDs.begin()[i] || this->Actors[IDs.begin()[i]] == NULL)
+            if (this->Actors.Length() <= IDs.begin()[i])
             {
                 printf("engine.actors.Delete(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
                 exit(1);
+            }
+            if (IDs.begin()[i] == 0 || this->Actors[IDs.begin()[i]] == NULL)
+            {
+                continue;
             }
 
             delete this->Actors[IDs.begin()[i]];
