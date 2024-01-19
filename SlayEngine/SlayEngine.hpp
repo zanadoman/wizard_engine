@@ -102,10 +102,12 @@ namespace slay
 
             class audio
             {
+                friend class engine;
+                engine& Engine;
+
                 public:
                     double GetGlobalVolume();
                     uint8 SetGlobalVolume(double GlobalVolume);
-
                     uint8 Play(uint64 SoundID, uint16 Channel, double Volume);
                     uint8 Play(uint64 SoundID, uint16 Channel, double Volume, uint16 Loops);
                     uint8 Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right);
@@ -113,9 +115,6 @@ namespace slay
                     uint8 Stop(std::initializer_list<uint16> Channels);
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     double GlobalVolume;
 
                     audio(engine& Engine);
