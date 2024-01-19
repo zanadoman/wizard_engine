@@ -219,8 +219,6 @@ namespace slay
                                     sint32 OffsetY;
                                     uint16 Width;
                                     uint16 Height;
-                                    bool FlipHorizontal;
-                                    bool FlipVertical;
                                     uint8 ColorR;
                                     uint8 ColorG;
                                     uint8 ColorB;
@@ -229,7 +227,7 @@ namespace slay
 
                                 private:
                                     color(engine& Engine, actor& Actor);
-                                    
+
                             };
 
                             public:

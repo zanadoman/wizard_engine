@@ -85,8 +85,6 @@ namespace slay
         this->OffsetY = 0;
         this->Width = 0;
         this->Height = 0;
-        this->FlipHorizontal = false;
-        this->FlipVertical = false;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
