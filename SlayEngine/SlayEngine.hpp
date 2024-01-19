@@ -21,11 +21,16 @@ namespace slay
     class engine
     {
         public:
+
+            //__________Engine_________________________________________________________________________________________
+
             engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime);
             ~engine();
 
             bool Update();
             sint32 Random(sint32 Min, sint32 Max);
+
+            //__________Window_________________________________________________________________________________________
 
             class window
             {
@@ -48,6 +53,8 @@ namespace slay
 
             } Window;
 
+            //__________Render_________________________________________________________________________________________
+
             class render
             {
                 friend class engine;
@@ -66,6 +73,8 @@ namespace slay
                     sint32 ScreenY(sint32 Y);
 
             } Render;
+
+            //__________Camera_________________________________________________________________________________________
 
             class camera
             {
@@ -100,6 +109,8 @@ namespace slay
 
             } Camera;
 
+            //__________Audio__________________________________________________________________________________________
+
             class audio
             {
                 friend class engine;
@@ -121,6 +132,8 @@ namespace slay
 
             } Audio;
 
+            //__________Keys___________________________________________________________________________________________
+
             class keys
             {
                 friend class engine;
@@ -137,6 +150,8 @@ namespace slay
                     uint8 Update();
 
             } Keys;
+
+            //__________Mouse__________________________________________________________________________________________
 
             class mouse
             {
@@ -169,41 +184,62 @@ namespace slay
 
             } Mouse;
 
+            //__________Actors_________________________________________________________________________________________
+
             class actors
             {
                 friend class engine;
                 engine& Engine;
+
+                //__________Actor______________________________________________________________________________________
 
                 class actor
                 {
                     friend class engine;
                     engine& Engine;
 
-                    class color
-                    {
-                        friend class engine;
-                        engine& Engine;
-                        actor& Actor;
-
-                        public:
-                            sint32 OffsetX;
-                            sint32 OffsetY;
-                            double Layer;
-                            uint16 Width;
-                            uint16 Height;
-                            bool FlipHorizontal;
-                            bool FlipVertical;
-                            uint8 ColorR;
-                            uint8 ColorG;
-                            uint8 ColorB;
-                            uint8 ColorA;
-                            bool Visible;
-
-                        private:
-                            color(engine& Engine, actor& Actor);
-                    };
-
                     public:
+
+                        //__________Colors_____________________________________________________________________________
+
+                        class colors
+                        {
+                            friend class engine;
+                            engine& Engine;
+                            actor& Actor;
+
+                            class color
+                            {
+                                friend class engine;
+                                engine& Engine;
+                                actor& Actor;
+
+                                public:
+                                    sint32 OffsetX;
+                                    sint32 OffsetY;
+                                    double Layer;
+                                    uint16 Width;
+                                    uint16 Height;
+                                    bool FlipHorizontal;
+                                    bool FlipVertical;
+                                    uint8 ColorR;
+                                    uint8 ColorG;
+                                    uint8 ColorB;
+                                    uint8 ColorA;
+                                    bool Visible;
+
+                                private:
+                                    color(engine& Engine, actor& Actor);
+                            };
+
+                            public:
+
+                            private:
+
+                        } Colors;
+
+                        //__________Textures___________________________________________________________________________
+
                         class textures
                         {
                             friend class engine;
@@ -252,6 +288,8 @@ namespace slay
 
                         } Textures;
 
+                        //__________Actor______________________________________________________________________________
+
                         uint64 GetType();
                         double GetX();
                         double GetY();
@@ -262,8 +300,6 @@ namespace slay
                         uint8 SetHeight(uint16 Height);
                         uint8 SetWidth(uint16 Width);
                         uint64 NewColor();
-                        color& GetColor(uint64 ID);
-                        uint8 RemoveColors(std::initializer_list<uint64> IDs);
 
                     private:
                         uint64 Type;
@@ -271,13 +307,14 @@ namespace slay
                         double Y;
                         uint16 Width;
                         uint16 Height;
-                        array<color*> Colors;
 
                         actor(engine& Engine, uint64 Type);
                         ~actor();
                         uint8 ResolveCollision();
 
                 };
+
+                //__________Actors_____________________________________________________________________________________
 
                 public:
                     uint64 New(uint64 Type);
@@ -291,6 +328,8 @@ namespace slay
                     ~actors();
 
             } Actors;
+
+            //__________Vector_________________________________________________________________________________________
 
             class vector
             {
@@ -309,6 +348,8 @@ namespace slay
                     vector(engine& Engine);
 
             } Vector;
+
+            //__________Assets_________________________________________________________________________________________
 
             class assets
             {
@@ -334,6 +375,8 @@ namespace slay
                     ~assets();
 
             } Assets;
+
+            //__________Timing_________________________________________________________________________________________
 
             class timing
             {
