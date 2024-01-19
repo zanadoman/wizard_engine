@@ -4,7 +4,7 @@ namespace slay
 {
     //Actors
 
-    engine::actors::actors(engine& Engine) : Engine(Engine) {}
+    engine::actors::actors(engine& Engine) : Engine(Engine), Actors(1) {}
 
     engine::actors::~actors()
     {
@@ -15,17 +15,6 @@ namespace slay
                 delete this->Actors[i];
             }
         }
-    }
-
-    engine::actors::actor& engine::actors::operator [] (uint64 ID)
-    {
-        if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
-        {
-            printf("engine.actors[]: ID does not exists\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
-
-        return *this->Actors[ID];
     }
 
     uint64 engine::actors::New(uint64 Type)
@@ -82,7 +71,16 @@ namespace slay
         return 0;
     }
 
-    //Actor
+    engine::actors::actor& engine::actors::operator [] (uint64 ID)
+    {
+        if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
+        {
+            printf("engine.actors[]: ID does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        return *this->Actors[ID];
+    }
 
     engine::actors::actor::actor(engine& Engine, uint64 Type) : Engine(Engine), Type(Type), X(0), Y(0), Width(0), Height(0) {}
 

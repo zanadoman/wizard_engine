@@ -177,7 +177,7 @@ namespace slay
                 class actor
                 {
                     friend class engine;
-                        engine& Engine;
+                    engine& Engine;
 
                     public:
                         uint64 GetType();
