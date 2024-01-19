@@ -151,9 +151,38 @@ namespace slay
         return 0;
     }
 
-    engine::actors::actor::color::color(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor) {}
+    engine::actors::actor::color::color(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
+    {
+        this->OffsetX = 0;
+        this->OffsetX = 0;
+        this->Layer = 1;
+        this->Width = 0;
+        this->Height = 0;
+        this->FlipHorizontal = false;
+        this->FlipVertical = false;
+        this->ColorR = 255;
+        this->ColorG = 255;
+        this->ColorB = 255;
+        this->ColorA = 255;
+        this->Visible = true;
+    }
 
-    engine::actors::actor::texture::texture(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor) {}
+    engine::actors::actor::texture::texture(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
+    {
+        this->OffsetX = 0;
+        this->OffsetX = 0;
+        this->Layer = 1;
+        this->Width = 0;
+        this->Height = 0;
+        this->Angle = 0;
+        this->FlipHorizontal = false;
+        this->FlipVertical = false;
+        this->ColorR = 255;
+        this->ColorG = 255;
+        this->ColorB = 255;
+        this->ColorA = 255;
+        this->Visible = true;
+    }
 
     uint64 engine::actors::actor::texture::GetTextureID()
     {
