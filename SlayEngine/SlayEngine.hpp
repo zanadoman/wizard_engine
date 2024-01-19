@@ -171,27 +171,27 @@ namespace slay
 
             class actors
             {
+                friend class engine;
+                engine& Engine;
+
                 class actor
                 {
+                    friend class engine;
+                        engine& Engine;
+
                     public:
                         uint64 GetType();
-
                         double GetX();
                         double GetY();
                         uint8 SetX(double X);
                         uint8 SetY(double Y);
-
                         uint16 GetHeight();
                         uint16 GetWidth();
                         uint8 SetHeight(uint16 Height);
                         uint8 SetWidth(uint16 Width);
 
                     private:
-                        friend class engine;
-                        engine& Engine;
-
                         uint64 Type;
-
                         double X;
                         double Y;
                         uint16 Width;
@@ -199,7 +199,6 @@ namespace slay
 
                         actor(engine& Engine, uint64 Type);
                         ~actor();
-
                         uint8 ResolveCollision();
 
                 };
@@ -207,13 +206,9 @@ namespace slay
                 public:
                     uint64 New(uint64 Type);
                     uint8 Delete(std::initializer_list<uint64> IDs);
-
                     actor& operator [] (uint64 ID);
 
                 private:
-                    friend class engine;
-                    engine& Engine;
-
                     array<actor*> Actors;
 
                     actors(engine& Engine);
