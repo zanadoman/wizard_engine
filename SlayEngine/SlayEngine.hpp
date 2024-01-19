@@ -343,11 +343,11 @@ namespace slay
                         uint16 Height;
                         uint64 GetType();
                         double GetX();
-                        uint8 SetX(double X);
+                        double SetX(double X);
                         double GetY();
-                        uint8 SetY(double Y);
+                        double SetY(double Y);
                         double GetLayer();
-                        uint8 SetLayer(double Layer);
+                        double SetLayer(double Layer);
 
                     private:
                         uint64 Type;

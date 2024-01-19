@@ -32,11 +32,9 @@ namespace slay
         return this->X;
     }
 
-    uint8 engine::actors::actor::SetX(double X)
+    double engine::actors::actor::SetX(double X)
     {
-        this->X = X;
-
-        return 0;
+        return this->X = X;
     }
 
     double engine::actors::actor::GetY()
@@ -44,11 +42,9 @@ namespace slay
         return this->Y;
     }
 
-    uint8 engine::actors::actor::SetY(double Y)
+    double engine::actors::actor::SetY(double Y)
     {
-        this->Y = Y;
-
-        return 0;
+        return this->Y = Y;
     }
 
     double engine::actors::actor::GetLayer()
@@ -56,7 +52,7 @@ namespace slay
         return this->Layer;
     }
 
-    uint8 engine::actors::actor::SetLayer(double Layer)
+    double engine::actors::actor::SetLayer(double Layer)
     {
         if (Layer < 0)
         {
@@ -64,8 +60,6 @@ namespace slay
             exit(1);
         }
 
-        this->Layer = Layer;
-
-        return 0;
+        return this->Layer = Layer;
     }
 }
