@@ -1,3 +1,4 @@
+#include "Includes/SDL_render.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -8,6 +9,11 @@ namespace slay
     {
         this->OpenFrame();
 
+        SDL_Rect obj;
+        obj.x = 0; obj.y = (1079 - (this->Engine.Window.Height - 1)) * -1; obj.w = 1; obj.h = 1;
+        SDL_SetRenderDrawColor(Engine.Window.Renderer, 255, 255, 255, 255);
+        SDL_RenderDrawRect(this->Engine.Window.Renderer, &obj);
+
         this->CloseFrame();
 
         return 0;
@@ -15,12 +21,12 @@ namespace slay
 
     uint8 engine::render::OpenFrame()
     {
-        if (SDL_SetRenderDrawColor(Engine.Window.Renderer, 0, 0, 0, 255) != 0)
+        if (SDL_SetRenderDrawColor(this->Engine.Window.Renderer, 0, 0, 0, 255) != 0)
         {
             printf("engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed\n");
             return 1;
         }
-        if (SDL_RenderClear(Engine.Window.Renderer) != 0)
+        if (SDL_RenderClear(this->Engine.Window.Renderer) != 0)
         {
             printf("engine.render.OpenFrame(): SDL_RenderClear() failed\n");
             return 1;
@@ -31,7 +37,7 @@ namespace slay
 
     uint8 engine::render::CloseFrame()
     {
-        SDL_RenderPresent(Engine.Window.Renderer);
+        SDL_RenderPresent(this->Engine.Window.Renderer);
 
         return 0;
     }

@@ -54,10 +54,14 @@ namespace slay
                     friend class engine;
                     engine& Engine;
 
+                    uint16 ScreenYCache;
+
                     render(engine& Engine);
                     uint8 Update();
                     uint8 OpenFrame();
                     uint8 CloseFrame();
+
+                    uint16 ScreenY(double Y);
 
             } Render;
 
