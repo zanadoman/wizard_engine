@@ -49,7 +49,7 @@ namespace slay
         }
         if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
         {
-            printf("slay::engine.actors.Delete(): ID does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors.Delete(): Actor does not exists\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -68,6 +68,17 @@ namespace slay
 
     engine::actors::actor& engine::actors::operator [] (uint64 ID)
     {
+        if (ID == 0)
+        {
+            printf("slay::engine.actors[]: Illegal access to NULL Actor");
+            exit(1);
+        }
+        if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
+        {
+            printf("slay::engine.actors[]: Actor does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
         return *this->Actors[ID];
     }
 }
