@@ -10,7 +10,7 @@ namespace slay
         this->OpenFrame();
 
         SDL_Rect obj;
-        obj.x = 0; obj.y = (1079 - (this->Engine.Window.Height - 1)) * -1; obj.w = 1; obj.h = 1;
+        obj.x = 0; obj.y = this->ScreenY(1079); obj.w = 1; obj.h = 1;
         SDL_SetRenderDrawColor(Engine.Window.Renderer, 255, 255, 255, 255);
         SDL_RenderDrawRect(this->Engine.Window.Renderer, &obj);
 
