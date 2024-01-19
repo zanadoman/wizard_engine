@@ -3,7 +3,7 @@
 
 namespace slay
 {
-    engine::camera::camera(engine& Engine) : Engine(Engine), XBinded(false), YBinded(false), BindedXActor(0), BindedYActor(0), OffsetX(0), OffsetY(0), CameraX(0), CameraY(0), Zoom(1) {}
+    engine::camera::camera(engine& Engine) : Engine(Engine), XActor(0), YActor(0), OffsetX(0), OffsetY(0), CameraX(0), CameraY(0), Zoom(1) {}
 
     double engine::camera::GetZoom()
     {
@@ -31,10 +31,8 @@ namespace slay
             exit(1);
         }
 
-        this->XBinded = true;
-        this->YBinded = true;
-        this->BindedXActor = Actor;
-        this->BindedYActor = Actor;
+        this->XActor = Actor;
+        this->YActor = Actor;
 
         return 0;
     }
@@ -47,8 +45,7 @@ namespace slay
             exit(1);
         }
 
-        this->XBinded = true;
-        this->BindedXActor = Actor;
+        this->XActor = Actor;
 
         return 0;
     }
@@ -61,67 +58,61 @@ namespace slay
             exit(1);
         }
 
-        this->YBinded = true;
-        this->BindedYActor = Actor;
+        this->YActor = Actor;
 
         return 0;
     }
 
     uint8 engine::camera::Unbind()
     {
-        this->XBinded = false;
-        this->YBinded = false;
-        this->BindedXActor = 0;
-        this->BindedYActor = 0;
+        this->XActor = 0;
+        this->YActor = 0;
 
         return 0;
     }
 
     uint8 engine::camera::UnbindX()
     {
-        this->XBinded = false;
-        this->BindedXActor = 0;
+        this->XActor = 0;
 
         return 0;
     }
 
     uint8 engine::camera::UnbindY()
     {
-        this->YBinded = false;
-        this->BindedYActor = 0;
+        this->YActor = 0;
 
         return 0;
     }
 
-    bool engine::camera::IsXBinded()
+    uint64 engine::camera::GetXActor()
     {
-        return this->XBinded;
+        return this->XActor;
     }
 
-    bool engine::camera::IsYBinded()
+    uint64 engine::camera::GetYActor()
     {
-        return this->YBinded;
-    }
-
-    uint64 engine::camera::GetBindedXActor()
-    {
-        return this->BindedXActor;
-    }
-
-    uint64 engine::camera::GetBindedYActor()
-    {
-        return this->BindedYActor;
+        return this->YActor;
     }
 
     uint8 engine::camera::Update()
     {
-        if (XBinded)
+        if (this->Engine.Actors.Actors.Length() <= this->XActor || this->Engine.Actors.Actors[this->XActor] == NULL)
         {
-            this->CameraX = this->Engine.Actors.Actors[this->BindedXActor]->X + (this->Engine.Actors.Actors[this->BindedXActor]->Width >> 1);
+            this->XActor = 0;
         }
-        if (YBinded)
+        if (this->Engine.Actors.Actors.Length() <= this->YActor || this->Engine.Actors.Actors[this->YActor] == NULL)
         {
-            this->CameraY = this->Engine.Actors.Actors[this->BindedYActor]->Y + (this->Engine.Actors.Actors[this->BindedYActor]->Height >> 1);
+            this->YActor = 0;
+        }
+
+        if (this->XActor != 0)
+        {
+            this->CameraX = this->Engine.Actors.Actors[this->XActor]->X + (this->Engine.Actors.Actors[this->XActor]->Width >> 1);
+        }
+        if (this->YActor != 0)
+        {
+            this->CameraY = this->Engine.Actors.Actors[this->YActor]->Y + (this->Engine.Actors.Actors[this->YActor]->Height >> 1);
         }
 
         return 0;

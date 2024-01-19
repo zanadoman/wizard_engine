@@ -125,19 +125,15 @@ namespace slay
                     uint8 UnbindX();
                     uint8 UnbindY();
 
-                    bool IsXBinded();
-                    bool IsYBinded();
-                    uint64 GetBindedXActor();
-                    uint64 GetBindedYActor();
+                    uint64 GetXActor();
+                    uint64 GetYActor();
 
                 private:
                     friend class engine;
                     engine& Engine;
 
-                    bool XBinded;
-                    bool YBinded;
-                    uint64 BindedXActor;
-                    uint64 BindedYActor;
+                    uint64 XActor;
+                    uint64 YActor;
 
                     double CameraX;
                     double CameraY;
