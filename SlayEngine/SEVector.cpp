@@ -33,6 +33,17 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::vector::Apply(double Distance, double Angle, uint64 Actor)
+    {
+        double cache;
+
+        cache = Angle * PI / 180;
+        this->Engine.Actors[Actor].SetX(this->Engine.Actors.Actors[Actor]->GetX() + Distance * cos(cache));
+        this->Engine.Actors[Actor].SetY(this->Engine.Actors.Actors[Actor]->GetY() + Distance * sin(cache));
+
+        return 0;
+    }
+
     uint8 engine::vector::Terminal(double InitialX, double InitialY, double Distance, double Angle, double* TerminalX, double* TerminalY)
     {
         double cache;
