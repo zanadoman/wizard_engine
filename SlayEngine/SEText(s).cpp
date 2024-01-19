@@ -1,0 +1,65 @@
+#include "SlayEngine.hpp"
+
+namespace slay
+{
+    engine::actors::actor::texts::texts(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor), Texts(1) {}
+
+    engine::actors::actor::texts::~texts()
+    {
+        for (uint64 i = 0; i < this->Texts.Length(); i++)
+        {
+            delete this->Texts[i];
+        }
+    }
+
+    uint64 engine::actors::actor::texts::New()
+    {
+        for (uint64 i = 1; i < this->Texts.Length(); i++)
+        {
+            if (this->Texts[i] == NULL)
+            {
+                if ((this->Texts[i] = new text(this->Engine, this->Actor)) == NULL)
+                {
+                    printf("slay::engine.actors[].texts.New(): Memory allocation failed\n");
+                    exit(1);
+                }
+
+                return i;
+            }
+        }
+
+        if ((*(this->Texts += {new text(this->Engine, this->Actor)}))[this->Texts.Length() - 1] == NULL)
+        {
+            printf("slay::engine.actors[].texts.New(): Memory allocation failed\n");
+            exit(1);
+        }
+
+        return this->Texts.Length() - 1;
+    }
+
+    uint8 engine::actors::actor::texts::Delete(uint64 ID)
+    {
+        if (ID == 0)
+        {
+            printf("slay::engine.actors[].texts.Delete(): Illegal deletion of NULL Text\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Texts.Length() <= ID || this->Texts[ID] == NULL)
+        {
+            printf("slay::engine.actors[].texts.Delete(): Text does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        delete this->Texts[ID];
+        if (ID == this->Texts.Length() - 1)
+        {
+            this->Texts.Remove(ID, 1);
+        }
+        else
+        {
+            this->Texts[ID] = NULL;
+        }
+
+        return 0;
+    }
+}
