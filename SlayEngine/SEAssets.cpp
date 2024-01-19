@@ -194,8 +194,7 @@ namespace slay
         {
             if (IDs.begin()[i] == 0)
             {
-                printf("engine.assets.UnloadSounds(): Illegal to unload NULL Sound\nParams: IDs(length): %ld\n", IDs.size());
-                exit(1);
+                continue;
             }
             if (this->Sounds.Length() <= IDs.begin()[i] || this->Sounds[IDs.begin()[i]] == NULL)
             {
