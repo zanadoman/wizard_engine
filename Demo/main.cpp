@@ -19,7 +19,7 @@ sint32 main(sint32 argc, char* *argv)
 
     while (Engine.Update())
     {
-        printf("x: %lf, y: %lf\n", Engine.Mouse.GetMotionX(), Engine.Mouse.GetMotionY());
+        printf("x: %lf, y: %lf\n", Engine.Mouse.GetX(1), Engine.Mouse.GetY(1));
     }
 
     return 0;
