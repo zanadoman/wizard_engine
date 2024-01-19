@@ -29,9 +29,9 @@ namespace slay
         return *this->Actors[ID];
     }
 
-    uint64 engine::actors::New(uint64 Type, void* Class)
+    uint64 engine::actors::New(uint64 Type)
     {
-        this->Actors += {new actor(this->Engine, Type, Class)};
+        this->Actors += {new actor(this->Engine, Type)};
 
         return this->Actors.Length() - 1;
     }
@@ -62,7 +62,7 @@ namespace slay
 
     //Actor
 
-    engine::actors::actor::actor(engine& Engine, uint64 Type, void* Class) : Engine(Engine), Type(Type), Class(Class), X(0), Y(0), Width(0), Height(0) {}
+    engine::actors::actor::actor(engine& Engine, uint64 Type) : Engine(Engine), Type(Type), X(0), Y(0), Width(0), Height(0) {}
 
     engine::actors::actor::~actor()
     {
