@@ -58,6 +58,11 @@ namespace slay
     {
         for (uint64 i = 0; i < IDs.size(); i++)
         {
+            if (IDs.begin()[i] == 0)
+            {
+                printf("engine.actors.Delete(): Illegal to delete NULL Actor\nParams: IDs(length): %ld\n", IDs.size());
+                exit(1);
+            }
             if (this->Actors.Length() <= IDs.begin()[i] || this->Actors[IDs.begin()[i]] == NULL)
             {
                 printf("engine.actors.Delete(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
