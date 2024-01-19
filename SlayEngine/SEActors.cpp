@@ -1,5 +1,4 @@
 #include "SlayEngine.hpp"
-#include <initializer_list>
 
 namespace slay
 {
@@ -24,7 +23,7 @@ namespace slay
             {
                 if ((this->Actors[i] = new actor(this->Engine, Type)) == NULL)
                 {
-                    printf("engine.actors.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
+                    printf("slay::engine.actors.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
                     exit(1);
                 }
 
@@ -34,36 +33,34 @@ namespace slay
 
         if ((*(this->Actors += {new actor(this->Engine, Type)}))[this->Actors.Length() - 1] == NULL)
         {
-            printf("engine.actors.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
+            printf("slay::engine.actors.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
             exit(1);
         }
 
         return this->Actors.Length() - 1;
     }
 
-    uint8 engine::actors::Delete(std::initializer_list<uint64> IDs)
+    uint8 engine::actors::Delete(uint64 ID)
     {
-        for (uint64 i = 0; i < IDs.size(); i++)
+        if (ID == 0)
         {
-            if (this->Actors.Length() <= IDs.begin()[i])
-            {
-                printf("engine.actors.Delete(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
-                exit(1);
-            }
-            if (IDs.begin()[i] == 0 || this->Actors[IDs.begin()[i]] == NULL)
-            {
-                continue;
-            }
+            printf("slay::engine.actors.Delete(): Illegal to delete NULL Actor\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
+        {
+            printf("slay::engine.actors.Delete(): ID does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
 
-            delete this->Actors[IDs.begin()[i]];
-            if (IDs.begin()[i] == this->Actors.Length() - 1)
-            {
-                this->Actors.Remove(IDs.begin()[i], 1);
-            }
-            else
-            {
-                this->Actors[IDs.begin()[i]] = NULL;
-            }
+        delete this->Actors[ID];
+        if (ID == this->Actors.Length() - 1)
+        {
+            this->Actors.Remove(ID, 1);
+        }
+        else
+        {
+            this->Actors[ID] = NULL;
         }
 
         return 0;
@@ -71,12 +68,6 @@ namespace slay
 
     engine::actors::actor& engine::actors::operator [] (uint64 ID)
     {
-        if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
-        {
-            printf("engine.actors[]: ID does not exists\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
-
         return *this->Actors[ID];
     }
 }
