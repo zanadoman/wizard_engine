@@ -269,6 +269,8 @@ namespace slay
                         actor(engine& Engine, uint64 Type);
                         ~actor();
 
+                        uint8 ResolveCollision();
+
                 };
 
                 public:

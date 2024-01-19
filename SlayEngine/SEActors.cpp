@@ -117,6 +117,7 @@ namespace slay
     uint8 engine::actors::actor::SetX(double X)
     {
         this->X = X;
+        this->ResolveCollision();
 
         return 0;
     }
@@ -124,6 +125,7 @@ namespace slay
     uint8 engine::actors::actor::SetY(double Y)
     {
         this->Y = Y;
+        this->ResolveCollision();
 
         return 0;
     }
@@ -149,6 +151,11 @@ namespace slay
     {
         this->Width = Width;
 
+        return 0;
+    }
+
+    uint8 engine::actors::actor::ResolveCollision()
+    {
         return 0;
     }
 }
