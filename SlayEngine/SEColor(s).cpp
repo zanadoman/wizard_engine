@@ -89,6 +89,7 @@ namespace slay
         this->ColorG = 255;
         this->ColorB = 255;
         this->ColorA = 255;
+        this->Priority = 32767;
         this->Visible = true;
     }
 }

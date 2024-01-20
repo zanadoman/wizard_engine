@@ -223,6 +223,7 @@ namespace slay
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
+                                    uint16 Priority;
                                     bool Visible;
 
                                 private:
@@ -268,6 +269,7 @@ namespace slay
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
+                                    uint16 Priority;
                                     bool Visible;
                                     uint64 GetTextureID();
                                     uint64 SetTextureID(uint64 ID);
@@ -315,6 +317,7 @@ namespace slay
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
+                                    uint16 Priority;
                                     bool Visible;
                                     string Text;
                                     uint64 GetFont();
