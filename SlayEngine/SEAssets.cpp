@@ -192,7 +192,7 @@ namespace slay
 
         Mix_FreeChunk(this->Sounds[ID]);
         this->Sounds[ID] = NULL;
-        
+
         if (ID == this->Sounds.Length() - 1)
         {
             for (i = this->Sounds.Length() - 1; 0 < i; i--)
