@@ -2,7 +2,15 @@
 
 namespace slay
 {
-    engine::timing::timing(engine& Engine) : Engine(Engine), TargetFrameTime(0), PrevTick(0), WorkingTime(0), IdleTime(0), FrameTime(0), DeltaTime(0) {}
+    engine::timing::timing(engine& Engine) : Engine(Engine)
+    {
+        this->TargetFrameTime = 0;
+        this->PrevTick = 0;
+        this->WorkingTime = 0;
+        this->IdleTime = 0;
+        this->FrameTime = 0;
+        this->DeltaTime = 0;
+    }
 
     uint32 engine::timing::GetPrevTick()
     {
