@@ -1,5 +1,7 @@
 #include "demo.hpp"
 
+//Render queueben new ellenőrzése, color,texture,textben layer get set
+
 #undef main
 
 using namespace slay;

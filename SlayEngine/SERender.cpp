@@ -135,7 +135,6 @@ namespace slay
         }
 
         this->SortByLayer(0, this->RenderQueue.Length() - 1);
-        
         for (i = 1, j = 0; i < RenderQueue.Length(); i++)
         {
             if (this->RenderQueue[i]->Layer != this->RenderQueue[j]->Layer)
