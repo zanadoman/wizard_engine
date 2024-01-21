@@ -80,13 +80,15 @@ namespace slay
                 public:
 
                 private:
-                    array<token> RenderQueue;
+                    array<token*> RenderQueue;
                     uint16 HeightCache;
                     render(engine& Engine);
+                    ~render();
                     uint8 Update();
+                    uint8 ProcessRenderQueue();
+                    uint8 SortRenderQueue();
                     uint8 OpenFrame();
                     uint8 CloseFrame();
-                    uint8 ProcessRenderQueue();
                     sint32 ScreenY(double Y);
                     sint32 ScreenY(sint32 Y);
 

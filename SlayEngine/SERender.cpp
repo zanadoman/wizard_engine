@@ -4,6 +4,14 @@ namespace slay
 {
     engine::render::render(engine& Engine) : Engine(Engine) {}
 
+    engine::render::~render()
+    {
+        for (uint64 i = 0; i < this->RenderQueue.Length(); i++)
+        {
+            delete this->RenderQueue[i];
+        }
+    }
+
     engine::render::token::token(void* Data, token_t Type, double Layer, uint8 Priority)
     {
         this->Data = Data;
@@ -14,6 +22,8 @@ namespace slay
 
     uint8 engine::render::Update()
     {
+        this->ProcessRenderQueue();
+
         this->OpenFrame();
 
         this->CloseFrame();
@@ -65,11 +75,11 @@ namespace slay
 
                 if (this->RenderQueue.Length() == buffer)
                 {
-                    this->RenderQueue += {token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority)};
+                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority)};
                 }
                 else
                 {
-                    this->RenderQueue[buffer] = token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority);
+                    this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority);
                 }
 
                 buffer++;
@@ -84,11 +94,11 @@ namespace slay
 
                 if (this->RenderQueue.Length() == buffer)
                 {
-                    this->RenderQueue += {token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
+                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
                 }
                 else
                 {
-                    this->RenderQueue[buffer] = {token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
+                    this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
                 }
 
                 buffer++;
@@ -103,11 +113,11 @@ namespace slay
 
                 if (this->RenderQueue.Length() == buffer)
                 {
-                    this->RenderQueue += {token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
+                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
                 }
                 else
                 {
-                    this->RenderQueue[buffer] = {token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
+                    this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
                 }
 
                 buffer++;
@@ -117,6 +127,13 @@ namespace slay
         {
             this->RenderQueue.Remove(buffer, this->RenderQueue.Length() - buffer);
         }
+
+        return 0;
+    }
+
+    uint8 engine::render::SortRenderQueue()
+    {
+
 
         return 0;
     }
