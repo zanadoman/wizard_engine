@@ -429,7 +429,6 @@ namespace slay
 
                 public:
                     uint8 TargetFrameTime;
-
                     uint32 GetPrevTick();
                     uint32 GetWorkingTime();
                     sint16 GetIdleTime();
@@ -442,10 +441,8 @@ namespace slay
                     sint16 IdleTime;
                     uint32 FrameTime;
                     uint32 DeltaTime;
-
                     timing(engine& Engine);
                     uint8 Update();
-
             } Timing;
 
         private:
