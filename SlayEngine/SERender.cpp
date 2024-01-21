@@ -4,9 +4,19 @@ namespace slay
 {
     engine::render::render(engine& Engine) : Engine(Engine) {}
 
+    engine::render::token::token(void* Data, token_t Type, double Layer, uint8 Priority)
+    {
+        this->Data = Data;
+        this->Type = Type;
+        this->Layer = Layer;
+        this->Priority = Priority;
+    }
+
     uint8 engine::render::Update()
     {
         this->OpenFrame();
+
+        
 
         this->CloseFrame();
 

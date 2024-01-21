@@ -60,11 +60,28 @@ namespace slay
                 friend class engine;
                 engine& Engine;
 
+                enum token_t
+                {
+                    COLOR,
+                    TEXTURE,
+                    TEXT
+                };
+
+                class token
+                {
+                    friend class render;
+                    void* Data;
+                    token_t Type;
+                    double Layer;
+                    uint8 Priority;
+                    token(void* Data, token_t Type, double Layer, uint8 Priority);
+                };
+
                 public:
 
                 private:
+                    array<token> RenderQueue;
                     uint16 HeightCache;
-
                     render(engine& Engine);
                     uint8 Update();
                     uint8 OpenFrame();
@@ -218,7 +235,7 @@ namespace slay
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
-                                    uint16 Priority;
+                                    uint8 Priority;
                                     bool Visible;
 
                                 private:
@@ -264,7 +281,7 @@ namespace slay
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
-                                    uint16 Priority;
+                                    uint8 Priority;
                                     bool Visible;
                                     uint64 GetTextureID();
                                     uint64 SetTextureID(uint64 ID);
@@ -312,7 +329,7 @@ namespace slay
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
-                                    uint16 Priority;
+                                    uint8 Priority;
                                     bool Visible;
                                     string Text;
                                     uint64 GetFont();

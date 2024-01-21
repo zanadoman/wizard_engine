@@ -100,7 +100,7 @@ namespace slay
         this->ColorG = 255;
         this->ColorB = 255;
         this->ColorA = 255;
-        this->Priority = 32767;
+        this->Priority = 128;
         this->Visible = true;
         this->FontID = 0;
     }
