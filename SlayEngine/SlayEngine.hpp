@@ -161,8 +161,6 @@ namespace slay
                 public:
                     double Sensitivity;
 
-                    sint32 GetX();
-                    sint32 GetY();
                     double GetX(double Layer);
                     double GetY(double Layer);
                     double GetMotionX();

@@ -2,26 +2,29 @@
 
 namespace slay
 {
-    engine::mouse::mouse(engine& Engine) : Engine(Engine), Sensitivity(1), X(0), Y(0), MotionX(0), MotionY(0), Mode(false) {}
-
-    sint32 engine::mouse::GetX()
+    engine::mouse::mouse(engine& Engine) : Engine(Engine)
     {
-        return this->X;
-    }
-
-    sint32 engine::mouse::GetY()
-    {
-        return this->Y;
+        this->Sensitivity = 0;
+        this->X = 0;
+        this->Y = 0;
+        this->MotionX = 0;
+        this->MotionY = 0;
+        this->Mode = false;
     }
 
     double engine::mouse::GetX(double Layer)
     {
         double cache;
 
-        if (Layer <= 0)
+        if (Layer < 0)
         {
             printf("engine.mouse.GetY(): Layer must not be less than or equal to 0\nParams: Layer: %lf\n", Layer);
             exit(1);
+        }
+
+        if (Layer == 0)
+        {
+            return this->X;
         }
         
         cache = this->Engine.Camera.Zoom * Layer;
@@ -32,10 +35,15 @@ namespace slay
     {
         double cache;
 
-        if (Layer <= 0)
+        if (Layer < 0)
         {
             printf("engine.mouse.GetX(): Layer must not be less than or equal to 0\nParams: Layer: %lf\n", Layer);
             exit(1);
+        }
+
+        if (Layer == 0)
+        {
+            return this->Y;
         }
         
         cache = this->Engine.Camera.Zoom * Layer;
