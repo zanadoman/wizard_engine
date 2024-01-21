@@ -86,6 +86,7 @@ namespace slay
                     uint8 Update();
                     uint8 OpenFrame();
                     uint8 CloseFrame();
+                    uint8 ProcessRenderQueue();
                     sint32 ScreenY(double Y);
                     sint32 ScreenY(sint32 Y);
 
@@ -229,6 +230,7 @@ namespace slay
                                 public:
                                     sint32 OffsetX;
                                     sint32 OffsetY;
+                                    double Layer;
                                     uint16 Width;
                                     uint16 Height;
                                     uint8 ColorR;
@@ -272,6 +274,7 @@ namespace slay
                                 public:
                                     sint32 OffsetX;
                                     sint32 OffsetY;
+                                    double Layer;
                                     uint16 Width;
                                     uint16 Height;
                                     double Angle;
@@ -321,6 +324,7 @@ namespace slay
                                 public:
                                     sint32 OffsetX;
                                     sint32 OffsetY;
+                                    double Layer;
                                     uint16 Height;
                                     double Angle;
                                     bool FlipHorizontal;

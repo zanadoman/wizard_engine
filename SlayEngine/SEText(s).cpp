@@ -92,6 +92,7 @@ namespace slay
     {
         this->OffsetX = 0;
         this->OffsetY = 0;
+        this->Layer = 0;
         this->Height = 0;
         this->Angle = 0;
         this->FlipHorizontal = false;
