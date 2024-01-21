@@ -4,7 +4,7 @@ namespace slay
 {
     engine::mouse::mouse(engine& Engine) : Engine(Engine)
     {
-        this->Sensitivity = 0;
+        this->Sensitivity = 1;
         this->X = 0;
         this->Y = 0;
         this->MotionX = 0;
@@ -18,7 +18,7 @@ namespace slay
 
         if (Layer < 0)
         {
-            printf("engine.mouse.GetY(): Layer must not be less than or equal to 0\nParams: Layer: %lf\n", Layer);
+            printf("engine.mouse.GetY(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
 
@@ -37,7 +37,7 @@ namespace slay
 
         if (Layer < 0)
         {
-            printf("engine.mouse.GetX(): Layer must not be less than or equal to 0\nParams: Layer: %lf\n", Layer);
+            printf("engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
 

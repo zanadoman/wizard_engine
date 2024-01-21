@@ -160,7 +160,6 @@ namespace slay
 
                 public:
                     double Sensitivity;
-
                     double GetX(double Layer);
                     double GetY(double Layer);
                     double GetMotionX();
@@ -176,10 +175,8 @@ namespace slay
                     double MotionX;
                     double MotionY;
                     bool Mode;
-
                     mouse(engine& Engine);
                     uint8 Update();
-
             } Mouse;
 
             //__________Actors_________________________________________________________________________________________
