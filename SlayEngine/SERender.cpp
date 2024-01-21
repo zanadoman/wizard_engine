@@ -148,17 +148,24 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::SortByLayer(sint64 Low, sint64 High)
+    uint8 engine::render::SortByLayer(sint64 First, sint64 Last)
     {
-        sint64 i;
+        sint64 stack[Last - First + 1];
+        sint64 i, top;
         token* tmp;
 
-        if (Low < High)
+        stack[(top = 0)] = First;
+        stack[++top] = Last;
+
+        while (0 <= top)
         {
-            i = Low - 1;
-            for (sint64 j = Low; j <= High; j++)
+            Last = stack[top--];
+            First = stack[top--];
+
+            i = First - 1;
+            for (sint64 j = First; j <= Last; j++)
             {
-                if (this->RenderQueue[j]->Layer < this->RenderQueue[High]->Layer)
+                if (this->RenderQueue[j]->Layer < this->RenderQueue[Last]->Layer)
                 {
                     i++;
                     tmp = this->RenderQueue[i];
@@ -167,11 +174,20 @@ namespace slay
                 }
             }
             tmp = this->RenderQueue[i + 1];
-            this->RenderQueue[i + 1] = this->RenderQueue[High];
-            this->RenderQueue[High] = tmp;
+            this->RenderQueue[i + 1] = this->RenderQueue[Last];
+            this->RenderQueue[Last] = tmp;
 
-            this->SortByLayer(Low, i);
-            this->SortByLayer(i + 2, High);
+            if (First < i)
+            {
+                stack[++top] = First;
+                stack[++top] = i;
+            }
+
+            if (i + 2 < Last)
+            {
+                stack[++top] = i + 2;
+                stack[++top] = Last;
+            }
         }
 
         return 0;
