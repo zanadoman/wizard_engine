@@ -177,6 +177,8 @@ namespace slay
 
     uint8 engine::assets::UnloadSound(uint64 ID)
     {
+        uint64 i;
+
         if (ID == 0)
         {
             printf("engine.assets.UnloadSounds(): Illegal deletion of NULL Sound\nParams: ID: %lld\n", ID);
@@ -189,16 +191,20 @@ namespace slay
         }
 
         Mix_FreeChunk(this->Sounds[ID]);
+        this->Sounds[ID] = NULL;
+        
         if (ID == this->Sounds.Length() - 1)
         {
-            while (this->Sounds[this->Sounds.Length() - 1] == NULL && 1 < this->Sounds.Length())
+            for (i = this->Sounds.Length() - 1; 0 < i; i--)
             {
-                this->Sounds.Remove(this->Sounds.Length() - 1, 1);
+                if (this->Sounds[i] != NULL)
+                {
+                    break;
+                }
             }
-        }
-        else
-        {
-            this->Sounds[ID] = NULL;
+
+            i++;
+            this->Sounds.Remove(i, this->Sounds.Length() - i);
         }
 
         return 0;
