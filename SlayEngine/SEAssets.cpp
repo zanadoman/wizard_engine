@@ -1,31 +1,23 @@
+#include "Includes/SDL_render.h"
 #include "SlayEngine.hpp"
 
 namespace slay
 {
-    engine::assets::assets(engine& Engine) : Engine(Engine), Textures(1), Fonts(1), Sounds(1) {}
+    engine::assets::assets(engine& Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Fonts({(TTF_Font*)NULL}), Sounds({(Mix_Chunk*)NULL}) {}
 
     engine::assets::~assets()
     {
         for (uint64 i = 0; i < this->Textures.Length(); i++)
         {
-            if (this->Textures[i] != NULL)
-            {
-                SDL_DestroyTexture(this->Textures[i]);
-            }
+            SDL_DestroyTexture(this->Textures[i]);
         }
         for (uint64 i = 0; i < this->Fonts.Length(); i++)
         {
-            if (this->Fonts[i] != NULL)
-            {
-                TTF_CloseFont(this->Fonts[i]);
-            }
+            TTF_CloseFont(this->Fonts[i]);
         }
         for (uint64 i = 0; i < this->Sounds.Length(); i++)
         {
-            if (this->Sounds[i] != NULL)
-            {
-                Mix_FreeChunk(this->Sounds[i]);
-            }
+            Mix_FreeChunk(this->Sounds[i]);
         }
     }
 
@@ -70,29 +62,27 @@ namespace slay
         return this->Textures.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadTextures(std::initializer_list<uint64> IDs)
+    uint8 engine::assets::UnloadTexture(uint64 ID)
     {
-        for (uint64 i = 0; i < IDs.size(); i++)
+        if (ID == 0)
         {
-            if (this->Textures.Length() <= IDs.begin()[i])
-            {
-                printf("engine.assets.UnloadTexture(): IDs[%lld] does not exists\nParams: ID(length): %ld\n", i, IDs.size());
-                exit(1);
-            }
-            if (IDs.begin()[i] == 0 || this->Textures[IDs.begin()[i]] == NULL)
-            {
-                continue;
-            }
+            printf("engine.assets.UnloadTextures(): Illegal deletion of NULL Texture\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
+        {
+            printf("engine.assets.UnloadTextures(): Texture does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
 
-            SDL_DestroyTexture(this->Textures[IDs.begin()[i]]);
-            if (IDs.begin()[i] == this->Textures.Length() - 1)
-            {
-                this->Textures.Remove(IDs.begin()[i], 1);
-            }
-            else
-            {
-                this->Textures[IDs.begin()[i]] = NULL;
-            }
+        SDL_DestroyTexture(this->Textures[ID]);
+        if (ID == this->Textures.Length() - 1)
+        {
+            this->Textures.Remove(ID, 1);
+        }
+        else
+        {
+            this->Textures[ID] = NULL;
         }
 
         return 0;
@@ -129,29 +119,27 @@ namespace slay
         return this->Fonts.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadFonts(std::initializer_list<uint64> IDs)
+    uint8 engine::assets::UnloadFont(uint64 ID)
     {
-        for (uint64 i = 0; i < IDs.size(); i++)
+        if (ID == 0)
         {
-            if (this->Fonts.Length() <= IDs.begin()[i])
-            {
-                printf("engine.assets.UnloadFont(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
-                exit(1);
-            }
-            if (IDs.begin()[i] == 0 || this->Fonts[IDs.begin()[i]] == NULL)
-            {
-                continue;
-            }
+            printf("engine.assets.UnloadFonts(): Illegal deletion of NULL Font\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Fonts.Length() <= ID || this->Fonts[ID] == NULL)
+        {
+            printf("engine.assets.UnloadFonts(): Font does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
 
-            TTF_CloseFont(this->Fonts[IDs.begin()[i]]);
-            if (IDs.begin()[i] == this->Fonts.Length() - 1)
-            {
-                this->Fonts.Remove(IDs.begin()[i], 1);
-            }
-            else
-            {
-                this->Fonts[IDs.begin()[i]] = NULL;
-            }
+        TTF_CloseFont(this->Fonts[ID]);
+        if (ID == this->Fonts.Length() - 1)
+        {
+            this->Fonts.Remove(ID, 1);
+        }
+        else
+        {
+            this->Fonts[ID] = NULL;
         }
 
         return 0;
@@ -188,29 +176,27 @@ namespace slay
         return this->Sounds.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadSounds(std::initializer_list<uint64> IDs)
+    uint8 engine::assets::UnloadSound(uint64 ID)
     {
-        for (uint64 i = 0; i < IDs.size(); i++)
+        if (ID == 0)
         {
-            if (this->Sounds.Length() <= IDs.begin()[i])
-            {
-                printf("engine.assets.UnloadSound(): IDs[%lld] does not exists\nParams: IDs(length): %ld\n", i, IDs.size());
-                exit(1);
-            }
-            if (IDs.begin()[i] == 0 || this->Sounds[IDs.begin()[i]] == NULL)
-            {
-                continue;
-            }
+            printf("engine.assets.UnloadSounds(): Illegal deletion of NULL Sound\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Sounds.Length() <= ID || this->Sounds[ID] == NULL)
+        {
+            printf("engine.assets.UnloadSounds(): Sound does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
 
-            Mix_FreeChunk(this->Sounds[IDs.begin()[i]]);
-            if (IDs.begin()[i] == this->Sounds.Length() - 1)
-            {
-                this->Sounds.Remove(IDs.begin()[i], 1);
-            }
-            else
-            {
-                this->Sounds[IDs.begin()[i]] = NULL;
-            }
+        Mix_FreeChunk(this->Sounds[ID]);
+        if (ID == this->Sounds.Length() - 1)
+        {
+            this->Sounds.Remove(ID, 1);
+        }
+        else
+        {
+            this->Sounds[ID] = NULL;
         }
 
         return 0;

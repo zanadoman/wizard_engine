@@ -406,19 +406,16 @@ namespace slay
 
                 public:
                     uint64 LoadTexture(const char* Path);
-                    uint8 UnloadTextures(std::initializer_list<uint64> IDs);
-
+                    uint8 UnloadTexture(uint64 ID);
                     uint64 LoadFont(const char* Path, uint8 Size);
-                    uint8 UnloadFonts(std::initializer_list<uint64> IDs);
-
+                    uint8 UnloadFont(uint64 ID);
                     uint64 LoadSound(const char* Path);
-                    uint8 UnloadSounds(std::initializer_list<uint64> IDs);
+                    uint8 UnloadSound(uint64 ID);
 
                 private:
                     array<SDL_Texture*> Textures;
                     array<TTF_Font*> Fonts;
                     array<Mix_Chunk*> Sounds;
-
                     assets(engine& Engine);
                     ~assets();
 
