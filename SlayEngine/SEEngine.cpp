@@ -33,7 +33,7 @@ namespace slay
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
 
-        this->Update();
+        //this->Update();
     }
 
     engine::engine::~engine()

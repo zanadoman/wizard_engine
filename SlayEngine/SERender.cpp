@@ -30,7 +30,7 @@ namespace slay
 
         for (uint64 i = 0; i < this->RenderQueue.Length(); i++)
         {
-            printf("Layer: %lf, Priority: %d", this->RenderQueue[i]->Layer, this->RenderQueue[i]->Priority);
+            printf("Layer: %lf, Priority: %d\n", this->RenderQueue[i]->Layer, this->RenderQueue[i]->Priority);
         }
 
         this->CloseFrame();
@@ -68,7 +68,7 @@ namespace slay
         buffer = 0;
         for (uint64 actor = 0; actor < this->Engine.Actors.Actors.Length(); actor++)
         {
-            if (this->Engine.Actors.Actors[actor] != NULL)
+            if (this->Engine.Actors.Actors[actor] == NULL)
             {
                 continue;
             }
@@ -141,20 +141,17 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::SortByLayer(uint64 Low, uint64 High)
+    uint8 engine::render::SortByLayer(sint64 Low, sint64 High)
     {
-        uint64 i;
-        uint8 pivot;
+        sint64 i;
         token* tmp;
 
         if (Low < High)
         {
-            pivot = this->RenderQueue[High]->Layer;
             i = Low - 1;
-
-            for (uint64 j = Low; j < High; j++)
+            for (sint64 j = Low; j <= High; j++)
             {
-                if (this->RenderQueue[j]->Layer < pivot)
+                if (this->RenderQueue[j]->Layer < this->RenderQueue[High]->Layer)
                 {
                     i++;
                     tmp = this->RenderQueue[i];
@@ -162,34 +159,28 @@ namespace slay
                     this->RenderQueue[j] = tmp;
                 }
             }
-
             tmp = this->RenderQueue[i + 1];
             this->RenderQueue[i + 1] = this->RenderQueue[High];
             this->RenderQueue[High] = tmp;
 
-            pivot = i + 1;
-
-            this->SortByLayer(Low, pivot - 1);
-            this->SortByLayer(pivot + 1, High);
+            this->SortByLayer(Low, i);
+            this->SortByLayer(i + 2, High);
         }
 
         return 0;
     }
 
-    uint8 engine::render::SortByPriority(uint64 Low, uint64 High)
+    uint8 engine::render::SortByPriority(sint64 Low, sint64 High)
     {
-        uint64 i;
-        uint8 pivot;
+        sint64 i;
         token* tmp;
 
         if (Low < High)
         {
-            pivot = this->RenderQueue[High]->Priority;
             i = Low - 1;
-
-            for (uint64 j = Low; j < High; j++)
+            for (sint64 j = Low; j <= High; j++)
             {
-                if (this->RenderQueue[j]->Priority < pivot)
+                if (this->RenderQueue[j]->Priority > this->RenderQueue[High]->Priority)
                 {
                     i++;
                     if (this->RenderQueue[i]->Layer == this->RenderQueue[j]->Layer)
@@ -200,7 +191,6 @@ namespace slay
                     }
                 }
             }
-
             if (this->RenderQueue[i + 1]->Layer == this->RenderQueue[High]->Layer)
             {
                 tmp = this->RenderQueue[i + 1];
@@ -208,10 +198,8 @@ namespace slay
                 this->RenderQueue[High] = tmp;
             }
 
-            pivot = i + 1;
-
-            this->SortByPriority(Low, pivot - 1);
-            this->SortByPriority(pivot + 1, High);
+            this->SortByPriority(Low, i);
+            this->SortByPriority(i + 2, High);
         }
 
         return 0;
