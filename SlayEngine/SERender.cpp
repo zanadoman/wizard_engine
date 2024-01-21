@@ -63,9 +63,8 @@ namespace slay
 
     uint8 engine::render::ProcessRenderQueue()
     {
-        uint64 buffer;
+        uint64 i, j, buffer = 0;
 
-        buffer = 0;
         for (uint64 actor = 0; actor < this->Engine.Actors.Actors.Length(); actor++)
         {
             if (this->Engine.Actors.Actors[actor] == NULL)
@@ -136,7 +135,16 @@ namespace slay
         }
 
         this->SortByLayer(0, this->RenderQueue.Length() - 1);
-        this->SortByPriority(0, this->RenderQueue.Length() - 1);
+        
+        for (i = 1, j = 0; i < RenderQueue.Length(); i++)
+        {
+            if (this->RenderQueue[i]->Layer != this->RenderQueue[j]->Layer)
+            {
+                this->SortByPriority(j, i - 1);
+                j = i;
+            }
+        }
+        this->SortByPriority(j, i - 1);
 
         return 0;
     }
