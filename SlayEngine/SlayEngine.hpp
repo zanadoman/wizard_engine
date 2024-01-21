@@ -86,7 +86,8 @@ namespace slay
                     ~render();
                     uint8 Update();
                     uint8 ProcessRenderQueue();
-                    uint8 SortRenderQueue(uint64 Low, uint64 High);
+                    uint8 SortByLayer(uint64 Low, uint64 High);
+                    uint8 SortByPriority(uint64 Low, uint64 High);
                     uint8 OpenFrame();
                     uint8 CloseFrame();
                     sint32 ScreenY(double Y);
