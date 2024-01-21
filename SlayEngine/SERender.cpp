@@ -193,36 +193,46 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::SortByPriority(sint64 Low, sint64 High)
+    uint8 engine::render::SortByPriority(sint64 First, sint64 Last)
     {
-        sint64 i;
+        sint64 stack[Last - First + 1];
+        sint64 i, top;
         token* tmp;
 
-        if (Low < High)
+        stack[(top = 0)] = First;
+        stack[++top] = Last;
+
+        while (0 <= top)
         {
-            i = Low - 1;
-            for (sint64 j = Low; j <= High; j++)
+            Last = stack[top--];
+            First = stack[top--];
+
+            i = First - 1;
+            for (sint64 j = First; j <= Last; j++)
             {
-                if (this->RenderQueue[j]->Priority < this->RenderQueue[High]->Priority)
+                if (this->RenderQueue[j]->Priority < this->RenderQueue[Last]->Priority)
                 {
                     i++;
-                    if (this->RenderQueue[i]->Layer == this->RenderQueue[j]->Layer)
-                    {
-                        tmp = this->RenderQueue[i];
-                        this->RenderQueue[i] = this->RenderQueue[j];
-                        this->RenderQueue[j] = tmp;
-                    }
+                    tmp = this->RenderQueue[i];
+                    this->RenderQueue[i] = this->RenderQueue[j];
+                    this->RenderQueue[j] = tmp;
                 }
             }
-            if (this->RenderQueue[i + 1]->Layer == this->RenderQueue[High]->Layer)
+            tmp = this->RenderQueue[i + 1];
+            this->RenderQueue[i + 1] = this->RenderQueue[Last];
+            this->RenderQueue[Last] = tmp;
+
+            if (First < i)
             {
-                tmp = this->RenderQueue[i + 1];
-                this->RenderQueue[i + 1] = this->RenderQueue[High];
-                this->RenderQueue[High] = tmp;
+                stack[++top] = First;
+                stack[++top] = i;
             }
 
-            this->SortByPriority(Low, i);
-            this->SortByPriority(i + 2, High);
+            if (i + 2 < Last)
+            {
+                stack[++top] = i + 2;
+                stack[++top] = Last;
+            }
         }
 
         return 0;
