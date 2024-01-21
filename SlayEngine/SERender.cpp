@@ -30,7 +30,7 @@ namespace slay
 
         for (uint64 i = 0; i < this->RenderQueue.Length(); i++)
         {
-
+            printf("Layer: %lf, Priority: %d", this->RenderQueue[i]->Layer, this->RenderQueue[i]->Priority);
         }
 
         this->CloseFrame();
