@@ -23,6 +23,7 @@ namespace slay
     uint8 engine::render::Update()
     {
         this->ProcessRenderQueue();
+        this->SortRenderQueue(0, this->RenderQueue.Length() - 1);
 
         this->OpenFrame();
 
@@ -131,9 +132,35 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::SortRenderQueue()
+    uint8 engine::render::SortRenderQueue(uint64 Low, uint64 High)
     {
+        uint64 i;
+        uint8 pivot;
+        token* temp;
 
+        if (Low < High)
+        {
+            pivot = this->RenderQueue[High]->Priority;
+            i = Low - 1;
+
+            for (uint64 j = Low; j < High; j++)
+            {
+                if (this->RenderQueue[j]->Priority < pivot)
+                {
+                    i++;
+                    temp = this->RenderQueue[i];
+                    this->RenderQueue[i] = this->RenderQueue[j];
+                    this->RenderQueue[j] = temp;
+                }
+            }
+
+            temp = this->RenderQueue[i + 1];
+            this->RenderQueue[i + 1] = this->RenderQueue[High];
+            this->RenderQueue[High] = temp;
+
+            this->SortRenderQueue(Low, pivot - 1);
+            this->SortRenderQueue(pivot + 1, High);
+        }
 
         return 0;
     }
