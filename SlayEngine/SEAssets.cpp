@@ -63,6 +63,8 @@ namespace slay
 
     uint8 engine::assets::UnloadTexture(uint64 ID)
     {
+        uint64 i;
+
         if (ID == 0)
         {
             printf("engine.assets.UnloadTextures(): Illegal deletion of NULL Texture\nParams: ID: %lld\n", ID);
@@ -75,13 +77,20 @@ namespace slay
         }
 
         SDL_DestroyTexture(this->Textures[ID]);
+        this->Textures[ID] = NULL;
+
         if (ID == this->Textures.Length() - 1)
         {
-            this->Textures.Remove(ID, 1);
-        }
-        else
-        {
-            this->Textures[ID] = NULL;
+            for (i = this->Textures.Length() - 1; 0 < i; i--)
+            {
+                if (this->Textures[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
         return 0;
@@ -120,6 +129,8 @@ namespace slay
 
     uint8 engine::assets::UnloadFont(uint64 ID)
     {
+        uint64 i;
+
         if (ID == 0)
         {
             printf("engine.assets.UnloadFonts(): Illegal deletion of NULL Font\nParams: ID: %lld\n", ID);
@@ -132,13 +143,20 @@ namespace slay
         }
 
         TTF_CloseFont(this->Fonts[ID]);
+        this->Fonts[ID] = NULL;
+
         if (ID == this->Fonts.Length() - 1)
         {
-            this->Fonts.Remove(ID, 1);
-        }
-        else
-        {
-            this->Fonts[ID] = NULL;
+            for (i = this->Fonts.Length() - 1; 0 < i; i--)
+            {
+                if (this->Fonts[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Fonts.Remove(i, this->Fonts.Length() - i);
         }
 
         return 0;
