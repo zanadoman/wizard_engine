@@ -39,6 +39,8 @@ namespace slay
 
     uint8 engine::actors::actor::texts::Delete(uint64 ID)
     {
+        uint64 i;
+
         if (ID == 0)
         {
             printf("slay::engine.actors[].texts.Delete(): Illegal deletion of NULL Text\nParams: ID: %lld\n", ID);
@@ -51,13 +53,20 @@ namespace slay
         }
 
         delete this->Texts[ID];
+        this->Texts[ID] = NULL;
+
         if (ID == this->Texts.Length() - 1)
         {
-            this->Texts.Remove(ID, 1);
-        }
-        else
-        {
-            this->Texts[ID] = NULL;
+            for (i = this->Texts.Length() - 1; 0 < i; i--)
+            {
+                if (this->Texts[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Texts.Remove(i, this->Texts.Length() - i);
         }
 
         return 0;

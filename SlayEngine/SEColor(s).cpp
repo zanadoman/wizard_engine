@@ -39,6 +39,8 @@ namespace slay
 
     uint8 engine::actors::actor::colors::Delete(uint64 ID)
     {
+        uint64 i;
+
         if (ID == 0)
         {
             printf("slay::engine.actors[].colors.Delete(): Illegal deletion of NULL Color\nParams: ID: %lld\n", ID);
@@ -51,13 +53,20 @@ namespace slay
         }
 
         delete this->Colors[ID];
+        this->Colors[ID] = NULL;
+        
         if (ID == this->Colors.Length() - 1)
         {
-            this->Colors.Remove(ID, 1);
-        }
-        else 
-        {
-            this->Colors[ID] = NULL;
+            for (i = this->Colors.Length() - 1; 0 < i; i--)
+            {
+                if (this->Colors[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Colors.Remove(i, this->Colors.Length() - i);
         }
 
         return 0;

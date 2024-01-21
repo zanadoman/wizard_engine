@@ -39,6 +39,8 @@ namespace slay
 
     uint8 engine::actors::actor::textures::Delete(uint64 ID)
     {
+        uint64 i;
+
         if (ID == 0)
         {
             printf("slay::engine.actors[].textures.Delete(): Illegal deletion of NULL Texture\nParams: ID: %lld\n", ID);
@@ -51,13 +53,20 @@ namespace slay
         }
 
         delete this->Textures[ID];
+        this->Textures[ID] = NULL;
+
         if (ID == this->Textures.Length() - 1)
         {
-            this->Textures.Remove(ID, 1);
-        }
-        else
-        {
-            this->Textures[ID] = NULL;
+            for (i = this->Textures.Length() - 1; 0 < i; i--)
+            {
+                if (this->Textures[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
         return 0;
