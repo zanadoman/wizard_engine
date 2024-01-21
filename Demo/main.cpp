@@ -1,6 +1,7 @@
 #include "demo.hpp"
 
 //Render queueben new ellenőrzése, color,texture,textben layer get set
+//texture/font unloadingnal automata unbind, layer render border, alpha 0 akkor se render
 
 #undef main
 
