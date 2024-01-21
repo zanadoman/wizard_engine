@@ -25,7 +25,6 @@ namespace slay
         uint64 min;
 
         this->ProcessRenderQueue();
-        this->SortByLayer(0, this->RenderQueue.Length() - 1);
 
         this->OpenFrame();
 
@@ -135,6 +134,9 @@ namespace slay
         {
             this->RenderQueue.Remove(buffer, this->RenderQueue.Length() - buffer);
         }
+
+        this->SortByLayer(0, this->RenderQueue.Length() - 1);
+        this->SortByPriority(0, this->RenderQueue.Length() - 1);
 
         return 0;
     }
