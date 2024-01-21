@@ -2,7 +2,12 @@
 
 namespace slay
 {
-    engine::assets::assets(engine& Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Fonts({(TTF_Font*)NULL}), Sounds({(Mix_Chunk*)NULL}) {}
+    engine::assets::assets(engine& Engine) : Engine(Engine)
+    {
+        this->Textures = array<SDL_Texture*>({(SDL_Texture*)NULL});
+        this->Fonts = array<TTF_Font*>({(TTF_Font*)NULL});
+        this->Sounds = array<Mix_Chunk*>({(Mix_Chunk*)NULL});
+    }
 
     engine::assets::~assets()
     {
