@@ -187,7 +187,7 @@ namespace slay
             i = Low - 1;
             for (sint64 j = Low; j <= High; j++)
             {
-                if (this->RenderQueue[j]->Priority > this->RenderQueue[High]->Priority)
+                if (this->RenderQueue[j]->Priority < this->RenderQueue[High]->Priority)
                 {
                     i++;
                     if (this->RenderQueue[i]->Layer == this->RenderQueue[j]->Layer)
