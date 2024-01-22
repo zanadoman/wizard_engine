@@ -89,12 +89,17 @@ namespace slay
                     render(engine& Engine);
                     ~render();
                     uint8 Update();
-                    uint8 UpdateRenderQueue();
+
+                    uint8 SelectionStage();
                     bool AreaVisibility(SDL_Rect Area);
-                    uint8 SortByLayer(sint64 First, sint64 Last);
-                    uint8 SortByPriority(sint64 First, sint64 Last);
+
+                    uint8 OrderingStage();
+                    uint8 OrderByLayer(sint64 First, sint64 Last);
+                    uint8 OrderByPriority(sint64 First, sint64 Last);
+
                     uint8 OpenFrame();
                     uint8 CloseFrame();
+
                     sint32 ScreenY(double Y);
                     sint32 ScreenY(sint32 Y);
             } Render;

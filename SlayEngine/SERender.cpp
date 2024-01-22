@@ -28,7 +28,8 @@ namespace slay
     {
         uint64 min;
 
-        this->UpdateRenderQueue();
+        this->SelectionStage();
+        this->OrderingStage();
 
         this->OpenFrame();
 
@@ -65,7 +66,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::UpdateRenderQueue()
+    uint8 engine::render::SelectionStage()
     {
         uint64 i, j;
         SDL_Rect area;
@@ -94,7 +95,7 @@ namespace slay
                     {
                         if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)}))[i] == NULL)
                         {
-                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                             exit(1);
                         }
                     }
@@ -102,7 +103,7 @@ namespace slay
                     {
                         if ((this->RenderQueue[i] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)) == NULL)
                         {
-                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                             exit(1);
                         }
                     }
@@ -126,7 +127,7 @@ namespace slay
                     {
                         if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority, area)}))[i] == NULL)
                         {
-                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                             exit(1);
                         }
                     }
@@ -134,7 +135,7 @@ namespace slay
                     {
                         if ((this->RenderQueue[i] = {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority, area)}) == NULL)
                         {
-                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                             exit(1);
                         }
                     }
@@ -157,7 +158,7 @@ namespace slay
                 color.a = this->Engine.Actors.Actors[actor]->Texts.Texts[text]->ColorA;
                 if ((this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Surface = TTF_RenderText_Blended(this->Engine.Assets.Fonts[this->Engine.Actors.Actors[actor]->Texts.Texts[text]->FontID], this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Text(), color)) == NULL)
                 {
-                    printf("slay::engine.render.UpdateRenderQueue(): TTF_RenderText_Blended failed\n");
+                    printf("slay::engine.render.SelectionStage(): TTF_RenderText_Blended failed\n");
                     exit(1);
                 }
 
@@ -169,7 +170,7 @@ namespace slay
                     {
                         if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority, area)}))[i] == NULL)
                         {
-                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                             exit(1);
                         }
                     }
@@ -177,7 +178,7 @@ namespace slay
                     {
                         if ((this->RenderQueue[i] = {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority, area)}) == NULL)
                         {
-                            printf("slay::engine.render.UpdateQueue(): Memory allocation failed\n");
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                             exit(1);
                         }
                     }
@@ -191,17 +192,6 @@ namespace slay
             this->RenderQueue.Remove(i, this->RenderQueue.Length() - i);
         }
 
-        this->SortByLayer(0, this->RenderQueue.Length() - 1);
-        for (i = 1, j = 0; i < RenderQueue.Length(); i++)
-        {
-            if (this->RenderQueue[i]->Layer != this->RenderQueue[j]->Layer)
-            {
-                this->SortByPriority(j, i - 1);
-                j = i;
-            }
-        }
-        this->SortByPriority(j, i - 1);
-
         return 0;
     }
 
@@ -210,7 +200,25 @@ namespace slay
         return (0 <= Area.x + (Area.w >> 1) || Area.x - (Area.w >> 1) <= this->RenderHeight || 0 <= Area.y + (Area.h >> 1) || Area.y - (Area.h >> 1) <= this->RenderHeight);
     }
 
-    uint8 engine::render::SortByLayer(sint64 First, sint64 Last)
+    uint8 engine::render::OrderingStage()
+    {
+        uint64 i, j;
+
+        this->OrderByLayer(0, this->RenderQueue.Length() - 1);
+        for (i = 1, j = 0; i < RenderQueue.Length(); i++)
+        {
+            if (this->RenderQueue[i]->Layer != this->RenderQueue[j]->Layer)
+            {
+                this->OrderByPriority(j, i - 1);
+                j = i;
+            }
+        }
+        this->OrderByPriority(j, i - 1);
+
+        return 0;
+    }
+
+    uint8 engine::render::OrderByLayer(sint64 First, sint64 Last)
     {
         sint64 stack[Last - First + 1];
         sint64 i, top;
@@ -255,7 +263,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::SortByPriority(sint64 First, sint64 Last)
+    uint8 engine::render::OrderByPriority(sint64 First, sint64 Last)
     {
         sint64 stack[Last - First + 1];
         sint64 i, top;
