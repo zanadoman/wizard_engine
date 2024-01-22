@@ -149,12 +149,12 @@ namespace slay
 
         if (ID == 0)
         {
-            printf("slay::engine.assets.UnloadSounds(): Illegal deletion of NULL WAV\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadWAV(): Illegal deletion of NULL WAV\nParams: ID: %lld\n", ID);
             exit(1);
         }
         if (this->Sounds.Length() <= ID || this->Sounds[ID] == NULL)
         {
-            printf("slay::engine.assets.UnloadSounds(): WAV does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadWAV(): WAV does not exists\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -241,9 +241,14 @@ namespace slay
             this->Fonts.Remove(i, this->Fonts.Length() - i);
         }
 
-        for (uint64 i = 0; i < this->Engine.Actors.Actors.Length(); i++)
+        for (uint64 i = 1; i < this->Engine.Actors.Actors.Length(); i++)
         {
-            for (uint64 j = 0; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
+            if (this->Engine.Actors.Actors[i] == NULL)
+            {
+                continue;
+            }
+
+            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
             {
                 if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == ID)
                 {
