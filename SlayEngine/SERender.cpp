@@ -47,7 +47,7 @@ namespace slay
     uint8 engine::render::SelectionStage()
     {
         uint64 buffer;
-        double layer;
+        double layer, tmp;
         SDL_Rect area;
         SDL_Color color;
         SDL_Surface* surface;
@@ -96,6 +96,7 @@ namespace slay
                 else
                 {
                     layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
+                    tmp = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
                     if (layer <= 0)
                     {
                         layer = EPSILON;
