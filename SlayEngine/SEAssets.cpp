@@ -98,6 +98,17 @@ namespace slay
             this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
+        for (uint64 i = 0; i < this->Engine.Actors.Actors.Length(); i++)
+        {
+            for (uint64 j = 0; j < this->Engine.Actors.Actors[i]->Textures.Textures.Length(); j++)
+            {
+                if (this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID == ID)
+                {
+                    this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID = 0;
+                }
+            }
+        }
+
         return 0;
     }
 
