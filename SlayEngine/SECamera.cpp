@@ -132,7 +132,7 @@ namespace slay
             result.w = Width;
             result.h = Height;
             result.x = (sint32)round(X) - (result.w >> 1);
-            result.y = (sint32)round(Y - this->Engine.Render.RenderHeight) * -1 - (result.h >> 1);
+            result.y = -((sint32)round(Y) - this->Engine.Render.RenderHeight) - (result.h >> 1);
         }
         else
         {
@@ -140,7 +140,7 @@ namespace slay
             result.w = round(Width * cache);
             result.h = round(Height * cache);
             result.x = (sint32)round((X - (this->CameraX + this->OffsetX / cache)) * cache) - (result.w >> 1);
-            result.y = ((sint32)round((Y - (this->CameraY + this->OffsetY / cache)) * cache) - this->Engine.Render.RenderHeight) * -1 - (result.h >> 1);
+            result.y = -((sint32)round((Y - (this->CameraY + this->OffsetY / cache)) * cache) - this->Engine.Render.RenderHeight) - (result.h >> 1);
         }
 
         return result;
