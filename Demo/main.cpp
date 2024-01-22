@@ -9,26 +9,24 @@ sint32 main(sint32 argc, char* *argv)
     engine Engine(NULL, 1920, 1080, 1000 / 165);
 
     uint64 Player = Engine.Actors.New(0);
-    uint64 PlayerTexture = Engine.Actors[Player].Textures.New();
-    uint64 Texture = Engine.Assets.LoadPNG("test.png");
+    uint64 PlayerText = Engine.Actors[Player].Texts.New();
+    uint64 Font = Engine.Assets.LoadTTF("crazy-pixel.ttf");
 
     Engine.Actors[Player].SetLayer(1);
-    Engine.Actors[Player].SetDepth(0.025);
-    Engine.Actors[Player].Textures[PlayerTexture].Width = 100;
-    Engine.Actors[Player].Textures[PlayerTexture].Height = 100;
-    Engine.Actors[Player].Textures[PlayerTexture].SetTextureID(Texture);
+    Engine.Actors[Player].SetDepth(0);
+    Engine.Actors[Player].Texts[PlayerText].Text = {"Hello, World!"};
+    Engine.Actors[Player].Texts[PlayerText].Height = 100;
+    Engine.Actors[Player].Texts[PlayerText].SetFont(Font);
 
     while (Engine.Update())
     {
         if (Engine.Keys.GetState(KEY_LEFT))
         {
             Engine.Actors[Player].SetX(Engine.Actors[Player].GetX() - 0.5 * Engine.Timing.GetDeltaTime());
-            Engine.Actors[Player].Textures[PlayerTexture].FlipHorizontal = true;
         }
         else if (Engine.Keys.GetState(KEY_RIGHT))
         {
             Engine.Actors[Player].SetX(Engine.Actors[Player].GetX() + 0.5 * Engine.Timing.GetDeltaTime());
-            Engine.Actors[Player].Textures[PlayerTexture].FlipHorizontal = false;
         }
         if (Engine.Keys.GetState(KEY_UP))
         {

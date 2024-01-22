@@ -195,7 +195,7 @@ namespace slay
         {
             if (this->Fonts[i] == NULL)
             {
-                if ((this->Fonts[i] = TTF_OpenFont(Path, 2147483647)) == NULL)
+                if ((this->Fonts[i] = TTF_OpenFont(Path, 16)) == NULL)
                 {
                     printf("slay::engine.assets.LoadTTF(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
                     exit(1);
@@ -205,7 +205,7 @@ namespace slay
             }
         }
 
-        if ((*(this->Fonts += {TTF_OpenFont(Path, 2147483647)}))[this->Fonts.Length() - 1] == NULL)
+        if ((*(this->Fonts += {TTF_OpenFont(Path, 16)}))[this->Fonts.Length() - 1] == NULL)
         {
             printf("slay::engine.assets.LoadTTF(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
             exit(1);
