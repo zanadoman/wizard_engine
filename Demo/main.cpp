@@ -13,7 +13,7 @@ sint32 main(sint32 argc, char* *argv)
     uint64 Font = Engine.Assets.LoadTTF("crazy-pixel.ttf", 48);
 
     Engine.Actors[Player].SetLayer(1);
-    Engine.Actors[Player].SetDepth(0.025);
+    Engine.Actors[Player].SetDepth(0.02);
     Engine.Actors[Player].Texts[PlayerText].Text = {"Hello, World"};
     Engine.Actors[Player].Texts[PlayerText].Height = 100;
     Engine.Actors[Player].Texts[PlayerText].SetFont(Font);
