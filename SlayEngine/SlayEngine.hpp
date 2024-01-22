@@ -48,7 +48,7 @@ namespace slay
                     uint16 Width;
                     uint16 Height;
                     window(engine& Engine);
-                    ~window();
+                    uint8 destructor();
                     uint8 New(const char* Title, uint16 Width, uint16 Height);
             } Window;
 
@@ -387,7 +387,7 @@ namespace slay
                 private:
                     array<actor*> Actors;
                     actors(engine& Engine);
-                    ~actors();
+                    uint8 destructor();
             } Actors;
 
             //__________Vector_________________________________________________________________________________________
@@ -429,7 +429,7 @@ namespace slay
                     array<Mix_Chunk*> Sounds;
                     array<TTF_Font*> Fonts;
                     assets(engine& Engine);
-                    ~assets();
+                    uint8 destructor();
             } Assets;
 
             //__________Timing_________________________________________________________________________________________

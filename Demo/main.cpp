@@ -8,7 +8,7 @@ sint32 main(sint32 argc, char* *argv)
 {
     engine Engine(NULL, 1920, 1080, 1000 / 165);
     
-    uint64 Font = Engine.Assets.LoadTTF("crazy-pixel.ttf", 48);
+    uint64 Font = Engine.Assets.LoadTTF("crazy-pixel.ttf", 16);
 
     while (Engine.Update())
     {

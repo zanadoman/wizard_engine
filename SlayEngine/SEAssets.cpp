@@ -4,7 +4,7 @@ namespace slay
 {
     engine::assets::assets(engine& Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Sounds({(Mix_Chunk*)NULL}), Fonts({(TTF_Font*)NULL}) {}
 
-    engine::assets::~assets()
+    uint8 engine::assets::destructor()
     {
         for (uint64 i = 1; i < this->Textures.Length(); i++)
         {
@@ -18,6 +18,8 @@ namespace slay
         {
             TTF_CloseFont(this->Fonts[i]);
         }
+
+        return 0;
     }
 
     uint64 engine::assets::LoadPNG(const char* Path)

@@ -38,10 +38,14 @@ namespace slay
         this->Update();
     }
 
-    engine::engine::~engine()
+    engine::~engine()
     {
-        SDL_CloseAudio();
+        this->Actors.destructor();
+        this->Assets.destructor();
+        this->Window.destructor();
+
         TTF_Quit();
+        SDL_CloseAudio();
         SDL_Quit();
     }
 

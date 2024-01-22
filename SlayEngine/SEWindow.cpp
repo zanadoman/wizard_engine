@@ -10,10 +10,12 @@ namespace slay
         this->Height = 0;
     }
 
-    engine::window::~window()
+    uint8 engine::window::destructor()
     {
         SDL_DestroyRenderer(this->Renderer);
         SDL_DestroyWindow(this->Window);
+
+        return 0;
     }
 
     uint16 engine::window::GetHeight()
