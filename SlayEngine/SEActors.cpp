@@ -6,7 +6,7 @@ namespace slay
 
     engine::actors::~actors()
     {
-        for (uint64 i = 0; i < this->Actors.Length(); i++)
+        for (uint64 i = 1; i < this->Actors.Length(); i++)
         {
             delete this->Actors[i];
         }
