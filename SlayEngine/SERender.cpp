@@ -38,7 +38,7 @@ namespace slay
 
             for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Colors.Colors.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Colors.Colors[j] == NULL || this->Engine.Actors.Actors[i]->Colors.Colors[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Colors.Colors[j]->Visible == false)
+                if (this->Engine.Actors.Actors[i]->Colors.Colors[j] == NULL || this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width == 0 || this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height == 0 || this->Engine.Actors.Actors[i]->Colors.Colors[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Colors.Colors[j]->Visible == false)
                 {
                     continue;
                 }
@@ -70,7 +70,7 @@ namespace slay
 
             for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Textures.Textures.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Textures.Textures[j] == NULL || this->Engine.Actors.Actors[i]->Textures.Textures[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Textures.Textures[j]->Visible == false || this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID == 0)
+                if (this->Engine.Actors.Actors[i]->Textures.Textures[j] == NULL || this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width == 0 || this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height == 0 || this->Engine.Actors.Actors[i]->Textures.Textures[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Textures.Textures[j]->Visible == false || this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID == 0)
                 {
                     continue;
                 }
@@ -102,7 +102,7 @@ namespace slay
 
             for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Visible == false || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text.Length() < 2 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == 0)
+                if (this->Engine.Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text.Length() < 2 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height == 0 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Visible == false || this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == 0)
                 {
                     continue;
                 }

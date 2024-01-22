@@ -269,6 +269,7 @@ namespace slay
                                 actor& Actor;
 
                                 public:
+                                    string Text;
                                     sint32 OffsetX;
                                     sint32 OffsetY;
                                     uint16 Height;
@@ -281,7 +282,6 @@ namespace slay
                                     uint8 ColorA;
                                     uint8 Priority;
                                     bool Visible;
-                                    string Text;
                                     uint64 GetFont();
                                     uint64 SetFont(uint64 ID);
 
