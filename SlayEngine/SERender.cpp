@@ -82,17 +82,7 @@ namespace slay
                     continue;
                 }
 
-                if (this->Engine.Actors.Actors[actor]->Layer == 0)
-                {
-                    area.x = this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetX;
-                    area.y = this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetY;
-                    area.w = this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Width;
-                    area.h = this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Height;
-                }
-                else
-                {
-                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetY, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Width, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Height, this->Engine.Actors.Actors[actor]->Layer);
-                }
+                area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetY, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Width, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Height, this->Engine.Actors.Actors[actor]->Layer);
 
                 if (area.x + (area.w >> 1) < 0 || this->RenderWidth < area.x - (area.w >> 1) || area.y + (area.h >> 1) < 0 || this->RenderHeight < area.y - (area.h >> 1))
                 {

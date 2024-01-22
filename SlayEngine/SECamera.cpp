@@ -129,11 +129,21 @@ namespace slay
 
         double cache;
 
-        cache = this->Zoom * Layer;
-        result.x = round((X - (this->CameraX + this->OffsetX / cache)) * cache);
-        result.y = round((Y - (this->CameraY + this->OffsetY / cache)) * cache);
-        result.w = round(Width * cache);
-        result.h = round(Height * cache);
+        if (Layer == 0)
+        {
+            result.x = round(X);
+            result.y = round(Y);
+            result.w = Width;
+            result.h = Height;
+        }
+        else
+        {
+            cache = this->Zoom * Layer;
+            result.x = round((X - (this->CameraX + this->OffsetX / cache)) * cache);
+            result.y = round((Y - (this->CameraY + this->OffsetY / cache)) * cache);
+            result.w = round(Width * cache);
+            result.h = round(Height * cache);
+        }
 
         return result;
     }
