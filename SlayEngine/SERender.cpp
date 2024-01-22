@@ -2,7 +2,10 @@
 
 namespace slay
 {
-    engine::render::render(engine& Engine) : Engine(Engine) {}
+    engine::render::render(engine& Engine) : Engine(Engine)
+    {
+        this->SamplingStep = 0.01;
+    }
 
     engine::render::token::token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area)
     {
@@ -11,6 +14,22 @@ namespace slay
         this->Layer = Layer;
         this->Priority = Priority;
         this->Area = Area;
+    }
+
+    double engine::render::GetSamplingStep()
+    {
+        return this->SamplingStep;
+    }
+
+    double engine::render::SetSamplingStep(double SamplingStep)
+    {
+        if (SamplingStep <= 0)
+        {
+            printf("slay::engine.render.SetSamplingStep(): SamplingStep must not be less than or equal to 0\nParams: SamplingStep: %lf\n", SamplingStep);
+            exit(1);
+        }
+
+        return this->SamplingStep = SamplingStep;
     }
 
     uint8 engine::render::Update()
