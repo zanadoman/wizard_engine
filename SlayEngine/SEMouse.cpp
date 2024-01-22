@@ -70,20 +70,18 @@ namespace slay
         return this->Mode;
     }
 
-    uint8 engine::mouse::SetAbsolute()
+    bool engine::mouse::SetAbsolute()
     {
         SDL_SetRelativeMouseMode(SDL_FALSE);
-        this->Mode = false;
 
-        return 0;
+        return this->Mode = false;
     }
 
-    uint8 engine::mouse::SetRelative()
+    bool engine::mouse::SetRelative()
     {
         SDL_SetRelativeMouseMode(SDL_TRUE);
-        this->Mode = true;
 
-        return 0;
+        return this->Mode = true;
     }
 
     uint8 engine::mouse::Update()

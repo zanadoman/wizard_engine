@@ -182,8 +182,8 @@ namespace slay
                     double GetMotionY();
                     bool IsAbsolute();
                     bool IsRelative();
-                    uint8 SetAbsolute();
-                    uint8 SetRelative();
+                    bool SetAbsolute();
+                    bool SetRelative();
 
                 private:
                     sint32 X;
