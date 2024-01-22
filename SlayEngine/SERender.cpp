@@ -26,19 +26,9 @@ namespace slay
 
     uint8 engine::render::Update()
     {
-        uint64 min;
-
         this->SelectionStage();
         this->OrderingStage();
-
-        this->OpenFrame();
-
-        for (uint64 i = 0; i < this->RenderQueue.Length(); i++)
-        {
-            printf("Layer: %lf, Priority: %d\n", this->RenderQueue[i]->Layer, this->RenderQueue[i]->Priority);
-        }
-
-        this->CloseFrame();
+        this->RenderingStage();
 
         return 0;
     }
@@ -300,6 +290,11 @@ namespace slay
             }
         }
 
+        return 0;
+    }
+
+    uint8 engine::render::RenderingStage()
+    {
         return 0;
     }
 
