@@ -93,14 +93,9 @@ namespace slay
                     uint8 OrderByLayer(sint64 First, sint64 Last);
                     uint8 OrderByPriority(sint64 First, sint64 Last);
                     uint8 RenderingStage();
-                    uint8 OpenFrame();
                     uint8 RenderColor(token* Token);
                     uint8 RenderTexture(token* Token);
                     uint8 RenderText(token* Token);
-                    uint8 CloseFrame();
-
-                    sint32 ScreenY(double Y);
-                    sint32 ScreenY(sint32 Y);
             } Render;
 
             //__________Camera_________________________________________________________________________________________

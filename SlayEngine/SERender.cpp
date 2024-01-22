@@ -426,14 +426,4 @@ namespace slay
 
         return 0;
     }
-
-    sint32 engine::render::ScreenY(double Y)
-    {
-        return (round(Y) - this->RenderHeight) * -1;
-    }
-
-    sint32 engine::render::ScreenY(sint32 Y)
-    {
-        return (Y - this->RenderHeight) * -1;
-    }
 }

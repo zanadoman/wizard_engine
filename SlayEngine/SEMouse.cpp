@@ -108,7 +108,7 @@ namespace slay
                     this->X = this->Engine.Window.Width - 1;
                 }
 
-                this->Y = this->Engine.Render.ScreenY(this->Engine.EventQueue[i].motion.y);
+                this->Y = (this->Engine.EventQueue[i].motion.y - this->Engine.Render.RenderHeight) * -1;
                 if (this->Y < 0)
                 {
                     this->Y = 0;
