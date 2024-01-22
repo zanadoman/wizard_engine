@@ -12,9 +12,7 @@ namespace slay
         }
         for (uint64 i = 0; i < this->Fonts.Length(); i++)
         {
-            printf("font: %p\n", this->Fonts[i]);
             TTF_CloseFont(this->Fonts[i]);
-            printf("unloaded\n");
         }
         for (uint64 i = 0; i < this->Sounds.Length(); i++)
         {
