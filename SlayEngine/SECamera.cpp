@@ -9,17 +9,15 @@ namespace slay
         return this->Zoom;
     }
 
-    uint8 engine::camera::SetZoom(double Zoom)
+    double engine::camera::SetZoom(double Zoom)
     {
         if (Zoom <= 0)
         {
-            printf("engine.camera.SetZoom(): Zoom must not be less than or equal to 0\nParams: Zoom: %lf\n", Zoom);
+            printf("slay::engine.camera.SetZoom(): Zoom must not be less than or equal to 0\nParams: Zoom: %lf\n", Zoom);
             exit(1);
         }
 
-        this->Zoom = Zoom;
-
-        return 0;
+        return this->Zoom = Zoom;
     }
 
     uint64 engine::camera::GetXActor()
@@ -36,12 +34,12 @@ namespace slay
     {
         if (Actor == 0)
         {
-            printf("engine.camera.Bind(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.Bind(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("engine.camera.Bind(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.Bind(): Actor does not exists\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
@@ -55,12 +53,12 @@ namespace slay
     {
         if (Actor == 0)
         {
-            printf("engine.camera.BindX(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.BindX(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("engine.camera.BindX(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.BindX(): Actor does not exists\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
@@ -73,12 +71,12 @@ namespace slay
     {
         if (Actor == 0)
         {
-            printf("engine.camera.BindY(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.BindY(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("engine.camera.BindY(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.BindY(): Actor does not exists\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
@@ -113,11 +111,11 @@ namespace slay
     {
         if (this->XActor != 0)
         {
-            this->CameraX = this->Engine.Actors.Actors[this->XActor]->X + (this->Engine.Actors.Actors[this->XActor]->Width >> 1);
+            this->CameraX = this->Engine.Actors.Actors[this->XActor]->X;
         }
         if (this->YActor != 0)
         {
-            this->CameraY = this->Engine.Actors.Actors[this->YActor]->Y + (this->Engine.Actors.Actors[this->YActor]->Height >> 1);
+            this->CameraY = this->Engine.Actors.Actors[this->YActor]->Y;
         }
 
         return 0;
@@ -133,16 +131,16 @@ namespace slay
         {
             result.w = Width;
             result.h = Height;
-            result.x = round(X) - (result.w >> 1);
-            result.y = round(Y - this->Engine.Render.RenderHeight) * -1 - (result.h >> 1);
+            result.x = (uint16)round(X) - (result.w >> 1);
+            result.y = (uint16)round(Y - this->Engine.Render.RenderHeight) * -1 - (result.h >> 1);
         }
         else
         {
             cache = this->Zoom * Layer;
             result.w = round(Width * cache);
             result.h = round(Height * cache);
-            result.x = round((X - (this->CameraX + this->OffsetX / cache)) * cache) - (result.w >> 1);
-            result.y = round((Y - (this->CameraY + this->OffsetY / cache)) * cache - this->Engine.Render.RenderHeight) * -1 - (result.h >> 1);
+            result.x = (uint16)round((X - (this->CameraX + this->OffsetX / cache)) * cache) - (result.w >> 1);
+            result.y = ((uint16)round((Y - (this->CameraY + this->OffsetY / cache)) * cache) - this->Engine.Render.RenderHeight) * -1 - (result.h >> 1);
         }
 
         return result;
