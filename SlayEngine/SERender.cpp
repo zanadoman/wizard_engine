@@ -4,7 +4,7 @@ namespace slay
 {
     engine::render::render(engine& Engine) : Engine(Engine)
     {
-        this->SamplingStep = 0.002;
+        this->SamplingStep = 0.001;
     }
 
     engine::render::token::token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area)
