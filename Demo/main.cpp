@@ -15,7 +15,7 @@ sint32 main(sint32 argc, char* *argv)
 
     while (Engine.Update())
     {
-        exit(0);
+        
     }
 
     return 0;

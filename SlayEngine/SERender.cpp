@@ -209,6 +209,11 @@ namespace slay
         sint64 i, top;
         token* tmp;
 
+        if (Last <= First)
+        {
+            return 0;
+        }
+
         stack[(top = 0)] = First;
         stack[++top] = Last;
 
@@ -254,6 +259,11 @@ namespace slay
         sint64 i, top;
         token* tmp;
 
+        if (Last <= First)
+        {
+            return 0;
+        }
+
         stack[(top = 0)] = First;
         stack[++top] = Last;
 
@@ -295,6 +305,9 @@ namespace slay
 
     uint8 engine::render::RenderingStage()
     {
+        this->OpenFrame();
+        this->CloseFrame();
+
         return 0;
     }
 
