@@ -361,12 +361,15 @@ namespace slay
                         double SetY(double Y);
                         double GetLayer();
                         double SetLayer(double Layer);
+                        double GetDepth();
+                        double SetDepth(double Depth);
 
                     private:
                         uint64 Type;
                         double X;
                         double Y;
                         double Layer;
+                        double Depth;
                         actor(engine& Engine, uint64 Type);
                         ~actor();
                 };

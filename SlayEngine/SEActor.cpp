@@ -7,7 +7,8 @@ namespace slay
         this->Type = Type;
         this->X = 0;
         this->Y = 0;
-        this->Layer = 1;
+        this->Layer = 0;
+        this->Depth = 0;
     }
 
     engine::actors::actor::~actor()
@@ -61,5 +62,21 @@ namespace slay
         }
 
         return this->Layer = Layer;
+    }
+
+    double engine::actors::actor::GetDepth()
+    {
+        return this->Depth;
+    }
+
+    double engine::actors::actor::SetDepth(double Depth)
+    {
+        if (Depth < 0)
+        {
+            printf("slay::engine::actors[].SetDepth(): Depth must not be less than 0\nParams: Depth: %lf\n", Depth);
+            exit(1);
+        }
+
+        return this->Depth = Depth;
     }
 }
