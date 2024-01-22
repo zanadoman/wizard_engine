@@ -175,6 +175,17 @@ namespace slay
             this->Fonts.Remove(i, this->Fonts.Length() - i);
         }
 
+        for (uint64 i = 0; i < this->Engine.Actors.Actors.Length(); i++)
+        {
+            for (uint64 j = 0; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
+            {
+                if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == ID)
+                {
+                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
+                }
+            }
+        }
+
         return 0;
     }
 
