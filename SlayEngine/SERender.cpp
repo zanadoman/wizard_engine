@@ -1,3 +1,6 @@
+#include "Includes/SDL_render.h"
+#include "Includes/SDL_surface.h"
+#include "Includes/SDL_ttf.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -46,6 +49,7 @@ namespace slay
         uint64 buffer;
         SDL_Rect area;
         SDL_Color color;
+        SDL_Surface* surface;
 
         buffer = 0;
         for (uint64 i = 1; i < this->Engine.Actors.Actors.Length(); i++)
@@ -190,20 +194,30 @@ namespace slay
                     continue;
                 }
 
-                SDL_FreeSurface(this->Engine.Actors.Actors[i]->Texts.Texts[j]->Surface);
-                color.r = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorR;
-                color.g = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorG;
-                color.b = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorB;
-                color.a = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA;
-                if ((this->Engine.Actors.Actors[i]->Texts.Texts[j]->Surface = TTF_RenderText_Blended(this->Engine.Assets.Fonts[this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID], this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text(), color)) == NULL)
+                if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text != &this->Engine.Actors.Actors[i]->Texts.Texts[j]->PrevText)
                 {
-                    printf("slay::engine.render.SelectionStage(): TTF_RenderText_Blended failed\n");
-                    exit(1);
+                    SDL_DestroyTexture(this->Engine.Actors.Actors[i]->Texts.Texts[i]->Texture);
+                    color.r = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorR;
+                    color.g = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorG;
+                    color.b = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorB;
+                    color.a = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA;
+                    if ((surface = TTF_RenderText_Blended(this->Engine.Assets.Fonts[this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID], this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text(), color)) == NULL)
+                    {
+                        printf("slay::engine.render.SelectionStage(): TTF_RenderText_Blended failed\n");
+                        exit(1);
+                    }
+                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width = surface->w * this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height / surface->h;
+                    if ((this->Engine.Actors.Actors[i]->Texts.Texts[j]->Texture = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, surface)) == NULL)
+                    {
+                        printf("slay::engine.render.SelectionStage(): SDL_CreateTextureFromSurface failed\n");
+                    }
+                    SDL_FreeSurface(surface);
+                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->PrevText = this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text;
                 }
-
+                
                 if (this->Engine.Actors.Actors[i]->Depth <= this->SamplingStep)
                 {
-                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Surface->w * this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height / this->Engine.Actors.Actors[i]->Texts.Texts[j]->Surface->h, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, this->Engine.Actors.Actors[i]->Layer);
+                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, this->Engine.Actors.Actors[i]->Layer);
 
                     if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                     {
@@ -231,7 +245,7 @@ namespace slay
                 {
                     for (double k = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2; k < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; k += this->SamplingStep)
                     {
-                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Surface->w * this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height / this->Engine.Actors.Actors[i]->Texts.Texts[j]->Surface->h, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, k);
+                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, k);
 
                         if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                         {
@@ -504,14 +518,7 @@ namespace slay
 
     uint8 engine::render::RenderText(token* Token)
     {
-        SDL_Texture* texture;
         uint8 flip;
-
-        if ((texture = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, ((engine::actors::actor::texts::text*)Token->Data)->Surface)) == NULL)
-        {
-            printf("slay::engine.render.RenderText(): SDL_CreateTextureFromSurface failed\n");
-            exit(1);
-        }
 
         flip = SDL_FLIP_NONE;
         if (((engine::actors::actor::texts::text*)Token->Data)->FlipHorizontal)
@@ -523,13 +530,12 @@ namespace slay
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, texture, NULL, &Token->Area, ((engine::actors::actor::texts::text*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, ((engine::actors::actor::texts::text*)Token->Data)->Texture, NULL, &Token->Area, ((engine::actors::actor::texts::text*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderText(): SDL_RenderCopyEx failed\n");
             exit(1);
         }
 
-        SDL_DestroyTexture(texture);
         delete Token;
 
         return 0;

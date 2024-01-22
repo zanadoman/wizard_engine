@@ -333,8 +333,10 @@ namespace slay
                                     uint64 SetFont(uint64 ID);
 
                                 private:
+                                    uint16 Width;
+                                    string PrevText;
+                                    SDL_Texture* Texture;
                                     uint64 FontID;
-                                    SDL_Surface* Surface;
                                     text(engine& Engine, actor& Actor);
                                     ~text();
                             };

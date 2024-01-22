@@ -1,3 +1,4 @@
+#include "Includes/SDL_render.h"
 #include "Includes/SDL_surface.h"
 #include "SlayEngine.hpp"
 
@@ -103,13 +104,14 @@ namespace slay
         this->ColorA = 255;
         this->Priority = 128;
         this->Visible = true;
+        this->Width = 0;
+        this->Texture = NULL;
         this->FontID = 0;
-        this->Surface = NULL;
     }
 
     engine::actors::actor::texts::text::~text()
     {
-        SDL_FreeSurface(this->Surface);
+        SDL_DestroyTexture(this->Texture);
     }
 
     uint64 engine::actors::actor::texts::text::GetFont()
