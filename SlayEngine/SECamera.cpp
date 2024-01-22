@@ -131,18 +131,18 @@ namespace slay
 
         if (Layer == 0)
         {
-            result.x = round(X);
-            result.y = round(Y);
             result.w = Width;
             result.h = Height;
+            result.x = round(X) - (result.w >> 1);
+            result.y = round(Y - this->Engine.Render.RenderHeight) * -1 - (result.h >> 1);
         }
         else
         {
             cache = this->Zoom * Layer;
-            result.x = round((X - (this->CameraX + this->OffsetX / cache)) * cache);
-            result.y = round((Y - (this->CameraY + this->OffsetY / cache)) * cache);
             result.w = round(Width * cache);
             result.h = round(Height * cache);
+            result.x = round((X - (this->CameraX + this->OffsetX / cache)) * cache) - (result.w >> 1);
+            result.y = round((Y - (this->CameraY + this->OffsetY / cache)) * cache - this->Engine.Render.RenderHeight) * -1 - (result.h >> 1);
         }
 
         return result;
