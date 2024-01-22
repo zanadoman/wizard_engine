@@ -12,7 +12,7 @@ sint32 main(sint32 argc, char* *argv)
     uint64 PlayerTexture = Engine.Actors[Player].Textures.New();
     uint64 Texture = Engine.Assets.LoadPNG("test.png");
 
-    Engine.Actors[Player].SetLayer(0);
+    Engine.Actors[Player].SetLayer(1);
     Engine.Actors[Player].Textures[PlayerTexture].Width = 100;
     Engine.Actors[Player].Textures[PlayerTexture].Height = 100;
     Engine.Actors[Player].Textures[PlayerTexture].SetTextureID(Texture);
@@ -37,8 +37,6 @@ sint32 main(sint32 argc, char* *argv)
         {
             Engine.Actors[Player].SetY(Engine.Actors[Player].GetY() - 0.5 * Engine.Timing.GetDeltaTime());
         }
-
-        printf("%lf ; %lf\n", Engine.Actors[Player].GetX(), Engine.Actors[Player].GetY());
     }
 
     return 0;
