@@ -65,16 +65,16 @@ namespace slay
     {
         uint64 i, j, buffer = 0;
 
-        for (uint64 actor = 0; actor < this->Engine.Actors.Actors.Length(); actor++)
+        for (uint64 actor = 1; actor < this->Engine.Actors.Actors.Length(); actor++)
         {
             if (this->Engine.Actors.Actors[actor] == NULL)
             {
                 continue;
             }
 
-            for (uint64 color = 0; color < this->Engine.Actors.Actors[actor]->Colors.Colors.Length(); color++)
+            for (uint64 color = 1; color < this->Engine.Actors.Actors[actor]->Colors.Colors.Length(); color++)
             {
-                if (this->Engine.Actors.Actors[actor]->Colors.Colors[color] == NULL || this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Visible == false)
+                if (this->Engine.Actors.Actors[actor]->Colors.Colors[color] == NULL || this->Engine.Actors.Actors[actor]->Colors.Colors[color]->ColorA == 0 || this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Visible == false)
                 {
                     continue;
                 }
@@ -91,9 +91,9 @@ namespace slay
                 buffer++;
             }
 
-            for (uint64 texture = 0; texture < this->Engine.Actors.Actors[actor]->Textures.Textures.Length(); texture++)
+            for (uint64 texture = 1; texture < this->Engine.Actors.Actors[actor]->Textures.Textures.Length(); texture++)
             {
-                if (this->Engine.Actors.Actors[actor]->Textures.Textures[texture] == NULL || this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Visible == false || this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->TextureID == 0)
+                if (this->Engine.Actors.Actors[actor]->Textures.Textures[texture] == NULL || this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->ColorA == 0 || this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Visible == false || this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->TextureID == 0)
                 {
                     continue;
                 }
@@ -110,9 +110,9 @@ namespace slay
                 buffer++;
             }
 
-            for (uint64 text = 0; text < this->Engine.Actors.Actors[actor]->Texts.Texts.Length(); text++)
+            for (uint64 text = 1; text < this->Engine.Actors.Actors[actor]->Texts.Texts.Length(); text++)
             {
-                if (this->Engine.Actors.Actors[actor]->Texts.Texts[text] == NULL || this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Visible == false || this->Engine.Actors.Actors[actor]->Texts.Texts[text]->FontID == 0)
+                if (this->Engine.Actors.Actors[actor]->Texts.Texts[text] == NULL || this->Engine.Actors.Actors[actor]->Texts.Texts[text]->ColorA == 0 || this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Visible == false || this->Engine.Actors.Actors[actor]->Texts.Texts[text]->FontID == 0)
                 {
                     continue;
                 }
