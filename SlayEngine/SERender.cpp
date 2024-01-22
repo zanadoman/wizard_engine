@@ -405,10 +405,10 @@ namespace slay
             printf("slay::engine.render.RenderTexture(): SDL_RenderCopyEx failed\n");
         }
 
-        printf("fut\n");
-
         return 0;
     }
+
+    uint8 engine::render
 
     uint8 engine::render::RenderText(token* Token)
     {
