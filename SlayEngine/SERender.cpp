@@ -1,6 +1,3 @@
-#include "Includes/SDL_render.h"
-#include "Includes/SDL_surface.h"
-#include "Includes/SDL_ttf.h"
 #include "SlayEngine.hpp"
 
 namespace slay
