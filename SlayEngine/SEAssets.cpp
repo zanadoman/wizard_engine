@@ -2,37 +2,37 @@
 
 namespace slay
 {
-    engine::assets::assets(engine& Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Fonts({(TTF_Font*)NULL}), Sounds({(Mix_Chunk*)NULL}) {}
+    engine::assets::assets(engine& Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Sounds({(Mix_Chunk*)NULL}), Fonts({(TTF_Font*)NULL}) {}
 
     engine::assets::~assets()
     {
-        for (uint64 i = 0; i < this->Textures.Length(); i++)
+        for (uint64 i = 1; i < this->Textures.Length(); i++)
         {
             SDL_DestroyTexture(this->Textures[i]);
         }
-        for (uint64 i = 0; i < this->Fonts.Length(); i++)
-        {
-            TTF_CloseFont(this->Fonts[i]);
-        }
-        for (uint64 i = 0; i < this->Sounds.Length(); i++)
+        for (uint64 i = 1; i < this->Sounds.Length(); i++)
         {
             Mix_FreeChunk(this->Sounds[i]);
         }
+        for (uint64 i = 1; i < this->Fonts.Length(); i++)
+        {
+            TTF_CloseFont(this->Fonts[i]);
+        }
     }
 
-    uint64 engine::assets::LoadTexture(const char* Path)
+    uint64 engine::assets::LoadPNG(const char* Path)
     {
         SDL_Surface* tmp;
 
         if (Path == NULL)
         {
-            printf("engine.assets.LoadTexture(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("slay::engine.assets.LoadPNG(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
 
         if ((tmp = IMG_Load(Path)) == NULL)
         {
-            printf("engine.assets.LoadTexture(): IMG_Load() failed\nParams: Path: %s\n", Path);
+            printf("slay::engine.assets.LoadPNG(): IMG_Load() failed\nParams: Path: %s\n", Path);
             exit(1);
         }
 
@@ -42,7 +42,7 @@ namespace slay
             {
                 if ((this->Textures[i] = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, tmp)) == NULL)
                 {
-                    printf("engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
+                    printf("slay::engine.assets.LoadPNG(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
                     exit(1);
                 }
                 SDL_FreeSurface(tmp);
@@ -53,7 +53,7 @@ namespace slay
 
         if ((*(this->Textures += {SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, tmp)}))[this->Textures.Length() - 1] == NULL)
         {
-            printf("engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
+            printf("slay::engine.assets.LoadPNG(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
             exit(1);
         }
         SDL_FreeSurface(tmp);
@@ -61,18 +61,18 @@ namespace slay
         return this->Textures.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadTexture(uint64 ID)
+    uint8 engine::assets::UnloadPNG(uint64 ID)
     {
         uint64 i;
 
         if (ID == 0)
         {
-            printf("engine.assets.UnloadTextures(): Illegal deletion of NULL Texture\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadPNG(): Illegal deletion of NULL PNG\nParams: ID: %lld\n", ID);
             exit(1);
         }
         if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
         {
-            printf("engine.assets.UnloadTextures(): Texture does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadPNG(): PNG does not exists\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -93,9 +93,14 @@ namespace slay
             this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
-        for (uint64 i = 0; i < this->Engine.Actors.Actors.Length(); i++)
+        for (uint64 i = 1; i < this->Engine.Actors.Actors.Length(); i++)
         {
-            for (uint64 j = 0; j < this->Engine.Actors.Actors[i]->Textures.Textures.Length(); j++)
+            if (this->Engine.Actors.Actors[i] == NULL)
+            {
+                continue;
+            }
+
+            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Textures.Textures.Length(); j++)
             {
                 if (this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID == ID)
                 {
@@ -107,11 +112,77 @@ namespace slay
         return 0;
     }
 
-    uint64 engine::assets::LoadFont(const char* Path)
+    uint64 engine::assets::LoadWAV(const char* Path)
     {
         if (Path == NULL)
         {
-            printf("engine.assets.LoadFont(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("slay::engine.assets.LoadWAV(): Path must not be NULL\nParams: Path: %p\n", Path);
+            exit(1);
+        }
+
+        for (uint64 i = 1; i < this->Sounds.Length(); i++)
+        {
+            if (this->Sounds[i] == NULL)
+            {
+                if ((this->Sounds[i] = Mix_LoadWAV(Path)) == NULL)
+                {
+                    printf("slay::engine.assets.LoadWAV(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
+                    exit(1);
+                }
+
+                return i;
+            }
+        }
+
+        if ((*(this->Sounds += {Mix_LoadWAV(Path)}))[this->Sounds.Length() - 1] == NULL)
+        {
+            printf("slay::engine.assets.LoadWAV(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
+            exit(1);
+        }
+
+        return this->Sounds.Length() - 1;
+    }
+
+    uint8 engine::assets::UnloadWAV(uint64 ID)
+    {
+        uint64 i;
+
+        if (ID == 0)
+        {
+            printf("slay::engine.assets.UnloadSounds(): Illegal deletion of NULL WAV\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Sounds.Length() <= ID || this->Sounds[ID] == NULL)
+        {
+            printf("slay::engine.assets.UnloadSounds(): WAV does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        Mix_FreeChunk(this->Sounds[ID]);
+        this->Sounds[ID] = NULL;
+
+        if (ID == this->Sounds.Length() - 1)
+        {
+            for (i = this->Sounds.Length() - 1; 0 < i; i--)
+            {
+                if (this->Sounds[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Sounds.Remove(i, this->Sounds.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint64 engine::assets::LoadTTF(const char* Path)
+    {
+        if (Path == NULL)
+        {
+            printf("slay::engine.assets.LoadTTF(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
 
@@ -121,7 +192,7 @@ namespace slay
             {
                 if ((this->Fonts[i] = TTF_OpenFont(Path, 2147483647)) == NULL)
                 {
-                    printf("engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
+                    printf("slay::engine.assets.LoadTTF(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
                     exit(1);
                 }
 
@@ -131,25 +202,25 @@ namespace slay
 
         if ((*(this->Fonts += {TTF_OpenFont(Path, 2147483647)}))[this->Fonts.Length() - 1] == NULL)
         {
-            printf("engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
+            printf("slay::engine.assets.LoadTTF(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
             exit(1);
         }
 
         return this->Fonts.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadFont(uint64 ID)
+    uint8 engine::assets::UnloadTTF(uint64 ID)
     {
         uint64 i;
 
         if (ID == 0)
         {
-            printf("engine.assets.UnloadFonts(): Illegal deletion of NULL Font\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadTTF(): Illegal deletion of NULL TTF\nParams: ID: %lld\n", ID);
             exit(1);
         }
         if (this->Fonts.Length() <= ID || this->Fonts[ID] == NULL)
         {
-            printf("engine.assets.UnloadFonts(): Font does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadTTF(): TTF does not exists\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -179,72 +250,6 @@ namespace slay
                     this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
                 }
             }
-        }
-
-        return 0;
-    }
-
-    uint64 engine::assets::LoadSound(const char* Path)
-    {
-        if (Path == NULL)
-        {
-            printf("engine.assets.LoadSound(): Path must not be NULL\nParams: Path: %p\n", Path);
-            exit(1);
-        }
-
-        for (uint64 i = 1; i < this->Sounds.Length(); i++)
-        {
-            if (this->Sounds[i] == NULL)
-            {
-                if ((this->Sounds[i] = Mix_LoadWAV(Path)) == NULL)
-                {
-                    printf("engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
-                    exit(1);
-                }
-
-                return i;
-            }
-        }
-
-        if ((*(this->Sounds += {Mix_LoadWAV(Path)}))[this->Sounds.Length() - 1] == NULL)
-        {
-            printf("engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
-            exit(1);
-        }
-
-        return this->Sounds.Length() - 1;
-    }
-
-    uint8 engine::assets::UnloadSound(uint64 ID)
-    {
-        uint64 i;
-
-        if (ID == 0)
-        {
-            printf("engine.assets.UnloadSounds(): Illegal deletion of NULL Sound\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
-        if (this->Sounds.Length() <= ID || this->Sounds[ID] == NULL)
-        {
-            printf("engine.assets.UnloadSounds(): Sound does not exists\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
-
-        Mix_FreeChunk(this->Sounds[ID]);
-        this->Sounds[ID] = NULL;
-
-        if (ID == this->Sounds.Length() - 1)
-        {
-            for (i = this->Sounds.Length() - 1; 0 < i; i--)
-            {
-                if (this->Sounds[i] != NULL)
-                {
-                    break;
-                }
-            }
-
-            i++;
-            this->Sounds.Remove(i, this->Sounds.Length() - i);
         }
 
         return 0;

@@ -418,17 +418,17 @@ namespace slay
                 engine& Engine;
 
                 public:
-                    uint64 LoadTexture(const char* Path);
-                    uint8 UnloadTexture(uint64 ID);
-                    uint64 LoadFont(const char* Path);
-                    uint8 UnloadFont(uint64 ID);
-                    uint64 LoadSound(const char* Path);
-                    uint8 UnloadSound(uint64 ID);
+                    uint64 LoadPNG(const char* Path);
+                    uint8 UnloadPNG(uint64 ID);
+                    uint64 LoadWAV(const char* Path);
+                    uint8 UnloadWAV(uint64 ID);
+                    uint64 LoadTTF(const char* Path);
+                    uint8 UnloadTTF(uint64 ID);
 
                 private:
                     array<SDL_Texture*> Textures;
-                    array<TTF_Font*> Fonts;
                     array<Mix_Chunk*> Sounds;
+                    array<TTF_Font*> Fonts;
                     assets(engine& Engine);
                     ~assets();
             } Assets;
