@@ -44,7 +44,7 @@ namespace slay
     uint8 engine::render::SelectionStage()
     {
         uint64 buffer;
-        double layer, tmp;
+        double layer, cache;
         SDL_Rect area;
         SDL_Color color;
         SDL_Surface* surface;
@@ -93,13 +93,13 @@ namespace slay
                 else
                 {
                     layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
-                    tmp = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
+                    cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
                     if (layer <= 0)
                     {
                         layer = EPSILON;
                     }
 
-                    for (; layer < tmp; layer += this->SamplingStep)
+                    for (; layer < cache; layer += this->SamplingStep)
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
 
@@ -164,13 +164,13 @@ namespace slay
                 else
                 {
                     layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
-                    tmp = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
+                    cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
                     if (layer <= 0)
                     {
                         layer = EPSILON;
                     }
 
-                    for (; layer < tmp; layer += this->SamplingStep)
+                    for (; layer < cache; layer += this->SamplingStep)
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetY, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, layer);
 
@@ -256,13 +256,13 @@ namespace slay
                 else
                 {
                     layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
-                    tmp = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
+                    cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
                     if (layer <= 0)
                     {
                         layer = EPSILON;
                     }
 
-                    for (; layer < tmp; layer += this->SamplingStep)
+                    for (; layer < cache; layer += this->SamplingStep)
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
 
@@ -525,7 +525,7 @@ namespace slay
             printf("slay::engine.render.RenderTexture(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, this->Engine.Assets.Textures[((engine::actors::actor::textures::texture*)Token->Data)->TextureID], NULL, &Token->Area, ((engine::actors::actor::textures::texture*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, this->Engine.Assets.Textures[((engine::actors::actor::textures::texture*)Token->Data)->TextureID], NULL, &Token->Area, -((engine::actors::actor::textures::texture*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderTexture(): SDL_RenderCopyEx failed\n");
         }
@@ -549,7 +549,7 @@ namespace slay
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, ((engine::actors::actor::texts::text*)Token->Data)->Texture, NULL, &Token->Area, ((engine::actors::actor::texts::text*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, ((engine::actors::actor::texts::text*)Token->Data)->Texture, NULL, &Token->Area, -((engine::actors::actor::texts::text*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderText(): SDL_RenderCopyEx failed\n");
             exit(1);
