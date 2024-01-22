@@ -63,11 +63,12 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::ProcessRenderQueue()
+    uint8 engine::render::UpdateRenderQueue()
     {
-        uint64 i, j, buffer = 0;
+        uint64 i, j;
         SDL_Rect area;
 
+        i = 0;
         for (uint64 actor = 1; actor < this->Engine.Actors.Actors.Length(); actor++)
         {
             if (this->Engine.Actors.Actors[actor] == NULL)
@@ -84,29 +85,27 @@ namespace slay
 
                 area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetY, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Width, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Height, this->Engine.Actors.Actors[actor]->Layer);
 
-                if (area.x + (area.w >> 1) < 0 || this->RenderWidth < area.x - (area.w >> 1) || area.y + (area.h >> 1) < 0 || this->RenderHeight < area.y - (area.h >> 1))
+                if (this->AreaVisibility(area))
                 {
-                    continue;
-                }
-
-                if (this->RenderQueue.Length() == buffer)
-                {
-                    if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)}))[buffer] == NULL)
+                    if (i == this->RenderQueue.Length())
                     {
-                        printf("engine.render.ProcessRenderQueue(): Memory allocation failed\n");
-                        exit(1);
+                        if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)}))[buffer] == NULL)
+                        {
+                            printf("engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            exit(1);
+                        }
                     }
-                }
-                else
-                {
-                    if ((this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)) == NULL)
+                    else
                     {
-                        printf("engine.render.ProcessRenderQueue(): Memory allocation failed\n");
-                        exit(1);
+                        if ((this->RenderQueue[i] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)) == NULL)
+                        {
+                            printf("engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            exit(1);
+                        }
                     }
-                }
 
-                buffer++;
+                    i++;
+                }
             }
 
             for (uint64 texture = 1; texture < this->Engine.Actors.Actors[actor]->Textures.Textures.Length(); texture++)
@@ -147,9 +146,9 @@ namespace slay
                 buffer++;
             }
         }
-        if (buffer < this->RenderQueue.Length())
+        if (i < this->RenderQueue.Length())
         {
-            this->RenderQueue.Remove(buffer, this->RenderQueue.Length() - buffer);
+            this->RenderQueue.Remove(i, this->RenderQueue.Length() - i);
         }
 
         this->SortByLayer(0, this->RenderQueue.Length() - 1);
@@ -164,6 +163,11 @@ namespace slay
         this->SortByPriority(j, i - 1);
 
         return 0;
+    }
+
+    bool engine::render::AreaVisibility(SDL_Rect Area)
+    {
+        return (0 <= Area.x + (Area.w >> 1) || Area.x - (Area.w >> 1) <= this->RenderHeight || 0 <= Area.y + (Area.h >> 1) || Area.y - (Area.h >> 1) <= this->RenderHeight);
     }
 
     uint8 engine::render::SortByLayer(sint64 First, sint64 Last)

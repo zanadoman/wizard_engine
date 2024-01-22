@@ -59,7 +59,7 @@ namespace slay
                 return false;
             }
 
-            if (this->EventQueue.Length() == i)
+            if (i == this->EventQueue.Length())
             {
                 this->EventQueue += {event};
             }
