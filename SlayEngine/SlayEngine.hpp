@@ -418,7 +418,7 @@ namespace slay
                     uint8 UnloadPNG(uint64 ID);
                     uint64 LoadWAV(const char* Path);
                     uint8 UnloadWAV(uint64 ID);
-                    uint64 LoadTTF(const char* Path);
+                    uint64 LoadTTF(const char* Path, uint8 Size);
                     uint8 UnloadTTF(uint64 ID);
 
                 private:

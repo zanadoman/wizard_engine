@@ -10,7 +10,7 @@ sint32 main(sint32 argc, char* *argv)
 
     uint64 Player = Engine.Actors.New(0);
     uint64 PlayerText = Engine.Actors[Player].Texts.New();
-    uint64 Font = Engine.Assets.LoadTTF("crazy-pixel.ttf");
+    uint64 Font = Engine.Assets.LoadTTF("crazy-pixel.ttf", 48);
 
     Engine.Actors[Player].SetLayer(1);
     Engine.Actors[Player].SetDepth(0.025);
