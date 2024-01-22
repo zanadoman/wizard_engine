@@ -279,7 +279,7 @@ namespace slay
 
     uint8 engine::render::RenderingStage()
     {
-        uint64 onstage;
+        uint64 layered;
 
         if (SDL_SetRenderDrawColor(this->Engine.Window.Renderer, 0, 0, 0, 255) != 0)
         {
@@ -292,16 +292,17 @@ namespace slay
             return 1;
         }
 
+        layered = 0;
         for (uint64 i = 0; i < this->RenderQueue.Length(); i++)
         {
             if (0 < this->RenderQueue[i]->Layer)
             {
-                onstage = i;
+                layered = i;
                 break;
             }
         }
 
-        for (uint64 i = onstage; i < this->RenderQueue.Length(); i++)
+        for (uint64 i = layered; i < this->RenderQueue.Length(); i++)
         {
             switch (this->RenderQueue[i]->Type)
             {
@@ -319,7 +320,7 @@ namespace slay
             }
         }
 
-        for (uint64 i = 0; i < onstage; i++)
+        for (uint64 i = 0; i < layered; i++)
         {
             switch (this->RenderQueue[i]->Type)
             {
