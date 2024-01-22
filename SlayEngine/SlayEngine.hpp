@@ -50,7 +50,6 @@ namespace slay
                     window(engine& Engine);
                     ~window();
                     uint8 New(const char* Title, uint16 Width, uint16 Height);
-
             } Window;
 
             //__________Render_________________________________________________________________________________________
@@ -139,12 +138,12 @@ namespace slay
 
                 public:
                     double GetGlobalVolume();
-                    uint8 SetGlobalVolume(double GlobalVolume);
-                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume);
-                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, uint16 Loops);
-                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right);
-                    uint8 Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops);
-                    uint8 Stop(std::initializer_list<uint16> Channels);
+                    double SetGlobalVolume(double GlobalVolume);
+                    uint8 Play(uint64 ID, uint16 Channel, double Volume);
+                    uint8 Play(uint64 ID, uint16 Channel, double Volume, uint16 Loops);
+                    uint8 Play(uint64 ID, uint16 Channel, double Volume, double Left, double Right);
+                    uint8 Play(uint64 ID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops);
+                    uint8 Stop(uint16 Channel);
 
                 private:
                     double GlobalVolume;
