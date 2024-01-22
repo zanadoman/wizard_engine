@@ -20,12 +20,11 @@ using namespace neo;
 
 namespace slay
 {
+    //__________Engine_________________________________________________________________________________________________
+
     class engine
-    {
+    {   
         public:
-
-            //__________Engine_________________________________________________________________________________________
-
             engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime);
             ~engine();
 
@@ -48,7 +47,6 @@ namespace slay
                     SDL_Renderer* Renderer;
                     uint16 Width;
                     uint16 Height;
-
                     window(engine& Engine);
                     ~window();
                     uint8 New(const char* Title, uint16 Width, uint16 Height);
@@ -112,7 +110,6 @@ namespace slay
                 public:
                     double OffsetX;
                     double OffsetY;
-
                     double GetZoom();
                     uint8 SetZoom(double Zoom);
                     uint64 GetXActor();
@@ -130,11 +127,9 @@ namespace slay
                     double CameraX;
                     double CameraY;
                     double Zoom;
-
                     camera(engine& Engine);
                     uint8 Update();
                     SDL_Rect Transform(double X, double Y, uint16 Width, uint16 Height, double Layer);
-
             } Camera;
 
             //__________Audio__________________________________________________________________________________________
@@ -155,9 +150,7 @@ namespace slay
 
                 private:
                     double GlobalVolume;
-
                     audio(engine& Engine);
-
             } Audio;
 
             //__________Keys___________________________________________________________________________________________
@@ -173,10 +166,8 @@ namespace slay
                 private:
                     const uint8* SDL_KeyStates;
                     uint8 KeyStates[KEY_COUNT];
-
                     keys(engine& Engine);
                     uint8 Update();
-
             } Keys;
 
             //__________Mouse__________________________________________________________________________________________
@@ -418,7 +409,6 @@ namespace slay
 
                 private:
                     vector(engine& Engine);
-
             } Vector;
 
             //__________Assets_________________________________________________________________________________________
@@ -468,6 +458,8 @@ namespace slay
                     timing(engine& Engine);
                     uint8 Update();
             } Timing;
+
+        //__________Engine_____________________________________________________________________________________________
 
         private:
             array<SDL_Event> EventQueue;
