@@ -430,6 +430,7 @@ namespace slay
                 class token
                 {
                     friend class render;
+                    
                     void* Data;
                     token_t Type;
                     double Layer;
