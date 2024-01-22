@@ -4,14 +4,6 @@ namespace slay
 {
     engine::render::render(engine& Engine) : Engine(Engine) {}
 
-    engine::render::~render()
-    {
-        for (uint64 i = 0; i < this->RenderQueue.Length(); i++)
-        {
-            delete this->RenderQueue[i];
-        }
-    }
-
     engine::render::token::token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area)
     {
         this->Data = Data;

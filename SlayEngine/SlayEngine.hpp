@@ -52,51 +52,6 @@ namespace slay
                     uint8 New(const char* Title, uint16 Width, uint16 Height);
             } Window;
 
-            //__________Render_________________________________________________________________________________________
-
-            class render
-            {
-                friend class engine;
-                engine& Engine;
-
-                enum token_t
-                {
-                    COLOR,
-                    TEXTURE,
-                    TEXT
-                };
-
-                class token
-                {
-                    friend class render;
-                    void* Data;
-                    token_t Type;
-                    double Layer;
-                    uint8 Priority;
-                    SDL_Rect Area;
-                    token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area);
-                };
-
-                public:
-
-                private:
-                    array<token*> RenderQueue;
-                    uint16 RenderWidth;
-                    uint16 RenderHeight;
-                    render(engine& Engine);
-                    ~render();
-                    uint8 Update();
-
-                    uint8 SelectionStage();
-                    uint8 OrderingStage();
-                    uint8 OrderByLayer(sint64 First, sint64 Last);
-                    uint8 OrderByPriority(sint64 First, sint64 Last);
-                    uint8 RenderingStage();
-                    uint8 RenderColor(token* Token);
-                    uint8 RenderTexture(token* Token);
-                    uint8 RenderText(token* Token);
-            } Render;
-
             //__________Camera_________________________________________________________________________________________
 
             class camera
@@ -458,5 +413,44 @@ namespace slay
         private:
             array<SDL_Event> EventQueue;
 
+            //__________Render_________________________________________________________________________________________
+
+            class render
+            {
+                friend class engine;
+                engine& Engine;
+
+                enum token_t
+                {
+                    COLOR,
+                    TEXTURE,
+                    TEXT
+                };
+
+                class token
+                {
+                    friend class render;
+                    void* Data;
+                    token_t Type;
+                    double Layer;
+                    uint8 Priority;
+                    SDL_Rect Area;
+                    token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area);
+                };
+
+                array<token*> RenderQueue;
+                uint16 RenderWidth;
+                uint16 RenderHeight;
+                render(engine& Engine);
+                uint8 Update();
+                uint8 SelectionStage();
+                uint8 OrderingStage();
+                uint8 OrderByLayer(sint64 First, sint64 Last);
+                uint8 OrderByPriority(sint64 First, sint64 Last);
+                uint8 RenderingStage();
+                uint8 RenderColor(token* Token);
+                uint8 RenderTexture(token* Token);
+                uint8 RenderText(token* Token);
+            } Render;
     };
 }
