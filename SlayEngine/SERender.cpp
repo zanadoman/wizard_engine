@@ -146,7 +146,7 @@ namespace slay
 
             for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Visible == false || this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == 0)
+                if (this->Engine.Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Visible == false || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text.Length() < 2 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == 0)
                 {
                     continue;
                 }
