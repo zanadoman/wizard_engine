@@ -383,7 +383,7 @@ namespace slay
         flip = SDL_FLIP_NONE;
         if (((engine::actors::actor::textures::texture*)Token->Data)->FlipHorizontal)
         {
-            flip |= SDL_FLIP_HORIZONTAL;
+            flip = SDL_FLIP_HORIZONTAL;
         }
         if (((engine::actors::actor::textures::texture*)Token->Data)->FlipVertical)
         {
@@ -408,10 +408,35 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render
-
     uint8 engine::render::RenderText(token* Token)
     {
+        SDL_Texture* texture;
+        uint8 flip;
+
+        if ((texture = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, ((engine::actors::actor::texts::text*)Token->Data)->Surface)) == NULL)
+        {
+            printf("slay::engine.render.RenderText(): SDL_CreateTextureFromSurface failed\n");
+            exit(1);
+        }
+
+        flip = SDL_FLIP_NONE;
+        if (((engine::actors::actor::texts::text*)Token->Data)->FlipHorizontal)
+        {
+            flip = SDL_FLIP_HORIZONTAL;
+        }
+        if (((engine::actors::actor::texts::text*)Token->Data)->FlipVertical)
+        {
+            flip |= SDL_FLIP_VERTICAL;
+        }
+
+        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, texture, NULL, &Token->Area, ((engine::actors::actor::texts::text*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        {
+            printf("slay::engine.render.RenderText(): SDL_RenderCopyEx failed\n");
+            exit(1);
+        }
+
+        SDL_DestroyTexture(texture);
+
         return 0;
     }
 
