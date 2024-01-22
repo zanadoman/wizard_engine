@@ -7,6 +7,7 @@
 #include "Includes/SDL_image.h"
 #include "Includes/SDL_rect.h"
 #include "Includes/SDL_render.h"
+#include "Includes/SDL_surface.h"
 #include "Includes/SDL_ttf.h"
 #include "Includes/SDL_mixer.h"
 
@@ -344,6 +345,7 @@ namespace slay
 
                                 private:
                                     uint64 FontID;
+                                    SDL_Surface* Surface;
                                     text(engine& Engine, actor& Actor);
 
                             };

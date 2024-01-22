@@ -1,4 +1,6 @@
 #include "Includes/SDL_rect.h"
+#include "Includes/SDL_surface.h"
+#include "Includes/SDL_ttf.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -67,6 +69,7 @@ namespace slay
     {
         uint64 i, j;
         SDL_Rect area;
+        SDL_Color color;
 
         i = 0;
         for (uint64 actor = 1; actor < this->Engine.Actors.Actors.Length(); actor++)
@@ -89,7 +92,7 @@ namespace slay
                 {
                     if (i == this->RenderQueue.Length())
                     {
-                        if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)}))[buffer] == NULL)
+                        if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)}))[i] == NULL)
                         {
                             printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
                             exit(1);
@@ -136,7 +139,7 @@ namespace slay
                         }
                     }
 
-                    i++
+                    i++;
                 }
             }
 
@@ -147,7 +150,18 @@ namespace slay
                     continue;
                 }
 
-                area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Texts.Texts[text]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Texts.Texts[text]->OffsetY, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Width, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Height, this->Engine.Actors.Actors[actor]->Layer);
+                SDL_FreeSurface(this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Surface);
+                color.r = this->Engine.Actors.Actors[actor]->Texts.Texts[text]->ColorR;
+                color.g = this->Engine.Actors.Actors[actor]->Texts.Texts[text]->ColorG;
+                color.b = this->Engine.Actors.Actors[actor]->Texts.Texts[text]->ColorB;
+                color.a = this->Engine.Actors.Actors[actor]->Texts.Texts[text]->ColorA;
+                if ((this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Surface = TTF_RenderText_Blended(this->Engine.Assets.Fonts[this->Engine.Actors.Actors[actor]->Texts.Texts[text]->FontID], this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Text(), color)) == NULL)
+                {
+                    printf("slay::engine.render.UpdateRenderQueue(): TTF_RenderText_Blended failed\n");
+                    exit(1);
+                }
+
+                area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Texts.Texts[text]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Texts.Texts[text]->OffsetY, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Surface->w * this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Height / this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Surface->h, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Height, this->Engine.Actors.Actors[actor]->Layer);
 
                 if (this->AreaVisibility(area))
                 {
