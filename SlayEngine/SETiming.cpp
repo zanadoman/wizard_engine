@@ -6,6 +6,8 @@ namespace slay
     {
         this->TargetFrameTime = 0;
         this->PrevTick = 0;
+        this->GameTime = 0;
+        this->RenderTime = 0;
         this->WorkingTime = 0;
         this->IdleTime = 0;
         this->FrameTime = 0;
@@ -15,6 +17,16 @@ namespace slay
     uint32 engine::timing::GetPrevTick()
     {
         return this->PrevTick;
+    }
+
+    uint32 engine::timing::GetGameTime()
+    {
+        return this->GameTime;
+    }
+
+    uint32 engine::timing::GetRenderTime()
+    {
+        return this->RenderTime;
     }
 
     uint32 engine::timing::GetWorkingTime()

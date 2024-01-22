@@ -1,3 +1,4 @@
+#include "Includes/SDL_timer.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -49,8 +50,10 @@ namespace slay
         SDL_Event event;
         uint64 i;
 
+        this->Timing.GameTime = SDL_GetTicks() - this->Timing.PrevTick;
         this->Camera.Update();
         this->Render.Update();
+        this->Timing.RenderTime = SDL_GetTicks() - this->Timing.PrevTick - this->Timing.GameTime;
 
         for (i = 0; SDL_PollEvent(&event); i++)
         {

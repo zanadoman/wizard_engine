@@ -442,6 +442,8 @@ namespace slay
                 public:
                     uint8 TargetFrameTime;
                     uint32 GetPrevTick();
+                    uint32 GetGameTime();
+                    uint32 GetRenderTime();
                     uint32 GetWorkingTime();
                     sint16 GetIdleTime();
                     uint32 GetFrameTime();
@@ -449,6 +451,8 @@ namespace slay
 
                 private:
                     uint32 PrevTick;
+                    uint32 GameTime;
+                    uint32 RenderTime;
                     uint32 WorkingTime;
                     sint16 IdleTime;
                     uint32 FrameTime;
