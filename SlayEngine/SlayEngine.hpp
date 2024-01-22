@@ -5,6 +5,7 @@
 
 #include "Includes/SDL.h"
 #include "Includes/SDL_image.h"
+#include "Includes/SDL_rect.h"
 #include "Includes/SDL_render.h"
 #include "Includes/SDL_ttf.h"
 #include "Includes/SDL_mixer.h"
@@ -74,14 +75,16 @@ namespace slay
                     token_t Type;
                     double Layer;
                     uint8 Priority;
-                    token(void* Data, token_t Type, double Layer, uint8 Priority);
+                    SDL_Rect Area;
+                    token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area);
                 };
 
                 public:
 
                 private:
                     array<token*> RenderQueue;
-                    uint16 HeightCache;
+                    uint16 RenderWidth;
+                    uint16 RenderHeight;
                     render(engine& Engine);
                     ~render();
                     uint8 Update();

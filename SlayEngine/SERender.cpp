@@ -1,3 +1,4 @@
+#include "Includes/SDL_rect.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -12,12 +13,13 @@ namespace slay
         }
     }
 
-    engine::render::token::token(void* Data, token_t Type, double Layer, uint8 Priority)
+    engine::render::token::token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area)
     {
         this->Data = Data;
         this->Type = Type;
         this->Layer = Layer;
         this->Priority = Priority;
+        this->Area = Area;
     }
 
     uint8 engine::render::Update()
@@ -64,6 +66,7 @@ namespace slay
     uint8 engine::render::ProcessRenderQueue()
     {
         uint64 i, j, buffer = 0;
+        SDL_Rect area;
 
         for (uint64 actor = 1; actor < this->Engine.Actors.Actors.Length(); actor++)
         {
@@ -79,13 +82,30 @@ namespace slay
                     continue;
                 }
 
-                if (this->RenderQueue.Length() == buffer)
+                if (this->Engine.Actors.Actors[actor]->Layer == 0)
                 {
-                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority)};
+                    area.x = this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetX;
+                    area.y = this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetY;
+                    area.w = this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Width;
+                    area.h = this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Height;
                 }
                 else
                 {
-                    this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority);
+                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetY, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Width, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Height, this->Engine.Actors.Actors[actor]->Layer);
+                }
+
+                if (area.x + (area.w >> 1) < 0 || this->RenderWidth < area.x - (area.w >> 1) || area.y + (area.h >> 1) < 0 || this->RenderHeight < area.y - (area.h >> 1))
+                {
+                    continue;
+                }
+
+                if (this->RenderQueue.Length() == buffer)
+                {
+                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)};
+                }
+                else
+                {
+                    this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area);
                 }
 
                 buffer++;
@@ -240,11 +260,11 @@ namespace slay
 
     sint32 engine::render::ScreenY(double Y)
     {
-        return (round(Y) - this->HeightCache) * -1;
+        return (round(Y) - this->RenderHeight) * -1;
     }
 
     sint32 engine::render::ScreenY(sint32 Y)
     {
-        return (Y - this->HeightCache) * -1;
+        return (Y - this->RenderHeight) * -1;
     }
 }
