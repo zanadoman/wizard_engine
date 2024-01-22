@@ -239,7 +239,6 @@ namespace slay
 
                                 private:
                                     color(engine& Engine, actor& Actor);
-
                             };
 
                             public:
@@ -251,7 +250,6 @@ namespace slay
                                 array<color*> Colors;
                                 colors(engine& Engine, actor& Actor);
                                 ~colors();
-
                         } Colors;
 
                         //__________Textures___________________________________________________________________________
@@ -288,7 +286,6 @@ namespace slay
                                 private:
                                     uint64 TextureID;
                                     texture(engine& Engine, actor& Actor);
-
                             };
 
                             public:
@@ -300,7 +297,6 @@ namespace slay
                                 array<texture*> Textures;
                                 textures(engine& Engine, actor& Actor);
                                 ~textures();
-
                         } Textures;
 
                         //__________Texts______________________________________________________________________________
@@ -339,7 +335,6 @@ namespace slay
                                     SDL_Surface* Surface;
                                     text(engine& Engine, actor& Actor);
                                     ~text();
-
                             };
 
                             public:
@@ -351,7 +346,6 @@ namespace slay
                                 array<text*> Texts;
                                 texts(engine& Engine, actor& Actor);
                                 ~texts();
-
                         } Texts;
 
                     //__________Actor______________________________________________________________________________
@@ -373,7 +367,6 @@ namespace slay
                         double Layer;
                         actor(engine& Engine, uint64 Type);
                         ~actor();
-
                 };
 
                 //__________Actors_____________________________________________________________________________________
@@ -387,7 +380,6 @@ namespace slay
                     array<actor*> Actors;
                     actors(engine& Engine);
                     ~actors();
-
             } Actors;
 
             //__________Vector_________________________________________________________________________________________
