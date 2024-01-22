@@ -104,8 +104,8 @@ namespace slay
         this->ColorA = 255;
         this->Priority = 128;
         this->Visible = true;
-        this->Width = 0;
         this->TextChanged = true;
+        this->Width = 0;
         this->Texture = NULL;
         this->FontID = 0;
     }

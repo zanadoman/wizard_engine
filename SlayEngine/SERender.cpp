@@ -47,6 +47,7 @@ namespace slay
     uint8 engine::render::SelectionStage()
     {
         uint64 buffer;
+        double layer;
         SDL_Rect area;
         SDL_Color color;
         SDL_Surface* surface;
@@ -94,15 +95,21 @@ namespace slay
                 }
                 else
                 {
-                    for (double k = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2; k < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; k += this->SamplingStep)
+                    layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
+                    if (layer <= 0)
                     {
-                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, k);
+                        layer = EPSILON;
+                    }
+
+                    for (; layer < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; layer += this->SamplingStep)
+                    {
+                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
 
                         if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                         {
                             if (buffer == this->RenderQueue.Length())
                             {
-                                if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, k, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area)}))[buffer] == NULL)
+                                if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area)}))[buffer] == NULL)
                                 {
                                     printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                                     exit(1);
@@ -110,7 +117,7 @@ namespace slay
                             }
                             else
                             {
-                                if ((this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, k, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area)) == NULL)
+                                if ((this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area)) == NULL)
                                 {
                                     printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                                     exit(1);
@@ -158,15 +165,21 @@ namespace slay
                 }
                 else
                 {
-                    for (double k = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2; k < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; k += this->SamplingStep)
+                    layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
+                    if (layer <= 0)
                     {
-                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetY, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, k);
+                        layer = EPSILON;
+                    }
+
+                    for (; layer < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; layer += this->SamplingStep)
+                    {
+                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetY, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, layer);
 
                         if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                         {
                             if (buffer == this->RenderQueue.Length())
                             {
-                                if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[i]->Textures.Textures[j], TEXTURE, k, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Priority, area)}))[buffer] == NULL)
+                                if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[i]->Textures.Textures[j], TEXTURE, layer, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Priority, area)}))[buffer] == NULL)
                                 {
                                     printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                                     exit(1);
@@ -174,7 +187,7 @@ namespace slay
                             }
                             else
                             {
-                                if ((this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[i]->Textures.Textures[j], TEXTURE, k, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Priority, area)}) == NULL)
+                                if ((this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[i]->Textures.Textures[j], TEXTURE, layer, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Priority, area)}) == NULL)
                                 {
                                     printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                                     exit(1);
@@ -243,15 +256,21 @@ namespace slay
                 }
                 else
                 {
-                    for (double k = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2; k < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; k += this->SamplingStep)
+                    layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
+                    if (layer <= 0)
                     {
-                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, k);
+                        layer = EPSILON;
+                    }
+
+                    for (; layer < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; layer += this->SamplingStep)
+                    {
+                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
 
                         if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                         {
                             if (buffer == this->RenderQueue.Length())
                             {
-                                if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, k, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area)}))[buffer] == NULL)
+                                if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area)}))[buffer] == NULL)
                                 {
                                     printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                                     exit(1);
@@ -259,7 +278,7 @@ namespace slay
                             }
                             else
                             {
-                                if ((this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, k, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area)}) == NULL)
+                                if ((this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area)}) == NULL)
                                 {
                                     printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
                                     exit(1);
