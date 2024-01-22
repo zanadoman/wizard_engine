@@ -1,8 +1,5 @@
 #include "demo.hpp"
 
-//Render queueben new ellenőrzése
-//layer render border, alpha 0 akkor se render
-
 #undef main
 
 using namespace slay;
