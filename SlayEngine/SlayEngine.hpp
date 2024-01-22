@@ -91,8 +91,6 @@ namespace slay
                     uint8 Update();
 
                     uint8 SelectionStage();
-                    bool AreaVisibility(SDL_Rect Area);
-
                     uint8 OrderingStage();
                     uint8 OrderByLayer(sint64 First, sint64 Last);
                     uint8 OrderByPriority(sint64 First, sint64 Last);

@@ -89,7 +89,7 @@ namespace slay
 
                 area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Colors.Colors[color]->OffsetY, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Width, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Height, this->Engine.Actors.Actors[actor]->Layer);
 
-                if (this->AreaVisibility(area))
+                if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                 {
                     if (i == this->RenderQueue.Length())
                     {
@@ -121,7 +121,7 @@ namespace slay
 
                 area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->OffsetY, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Width, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Height, this->Engine.Actors.Actors[actor]->Layer);
 
-                if (this->AreaVisibility(area))
+                if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                 {
                     if (i == this->RenderQueue.Length())
                     {
@@ -164,7 +164,7 @@ namespace slay
 
                 area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Texts.Texts[text]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Texts.Texts[text]->OffsetY, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Surface->w * this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Height / this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Surface->h, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Height, this->Engine.Actors.Actors[actor]->Layer);
 
-                if (this->AreaVisibility(area))
+                if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                 {
                     if (i == this->RenderQueue.Length())
                     {
@@ -193,11 +193,6 @@ namespace slay
         }
 
         return 0;
-    }
-
-    bool engine::render::AreaVisibility(SDL_Rect Area)
-    {
-        return (0 <= Area.x + (Area.w >> 1) || Area.x - (Area.w >> 1) <= this->RenderHeight || 0 <= Area.y + (Area.h >> 1) || Area.y - (Area.h >> 1) <= this->RenderHeight);
     }
 
     uint8 engine::render::OrderingStage()
