@@ -101,11 +101,19 @@ namespace slay
 
                 if (this->RenderQueue.Length() == buffer)
                 {
-                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)};
+                    if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)}))[buffer] == NULL)
+                    {
+                        printf("engine.render.ProcessRenderQueue(): Memory allocation failed\n");
+                        exit(1);
+                    }
                 }
                 else
                 {
-                    this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area);
+                    if ((this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)) == NULL)
+                    {
+                        printf("engine.render.ProcessRenderQueue(): Memory allocation failed\n");
+                        exit(1);
+                    }
                 }
 
                 buffer++;
