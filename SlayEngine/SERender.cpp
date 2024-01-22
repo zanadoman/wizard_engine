@@ -26,7 +26,7 @@ namespace slay
     {
         uint64 min;
 
-        this->ProcessRenderQueue();
+        this->UpdateRenderQueue();
 
         this->OpenFrame();
 
@@ -44,12 +44,12 @@ namespace slay
     {
         if (SDL_SetRenderDrawColor(this->Engine.Window.Renderer, 0, 0, 0, 255) != 0)
         {
-            printf("engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed\n");
+            printf("slay::engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed\n");
             return 1;
         }
         if (SDL_RenderClear(this->Engine.Window.Renderer) != 0)
         {
-            printf("engine.render.OpenFrame(): SDL_RenderClear() failed\n");
+            printf("slay::engine.render.OpenFrame(): SDL_RenderClear() failed\n");
             return 1;
         }
 
@@ -91,7 +91,7 @@ namespace slay
                     {
                         if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)}))[buffer] == NULL)
                         {
-                            printf("engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
                             exit(1);
                         }
                     }
@@ -99,7 +99,7 @@ namespace slay
                     {
                         if ((this->RenderQueue[i] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority, area)) == NULL)
                         {
-                            printf("engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
                             exit(1);
                         }
                     }
@@ -115,16 +115,29 @@ namespace slay
                     continue;
                 }
 
-                if (this->RenderQueue.Length() == buffer)
-                {
-                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
-                }
-                else
-                {
-                    this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
-                }
+                area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->OffsetY, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Width, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Height, this->Engine.Actors.Actors[actor]->Layer);
 
-                buffer++;
+                if (this->AreaVisibility(area))
+                {
+                    if (i == this->RenderQueue.Length())
+                    {
+                        if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority, area)}))[i] == NULL)
+                        {
+                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            exit(1);
+                        }
+                    }
+                    else
+                    {
+                        if ((this->RenderQueue[i] = {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority, area)}) == NULL)
+                        {
+                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            exit(1);
+                        }
+                    }
+
+                    i++
+                }
             }
 
             for (uint64 text = 1; text < this->Engine.Actors.Actors[actor]->Texts.Texts.Length(); text++)
@@ -134,16 +147,29 @@ namespace slay
                     continue;
                 }
 
-                if (this->RenderQueue.Length() == buffer)
-                {
-                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
-                }
-                else
-                {
-                    this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
-                }
+                area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[actor]->X + this->Engine.Actors.Actors[actor]->Texts.Texts[text]->OffsetX, this->Engine.Actors.Actors[actor]->Y + this->Engine.Actors.Actors[actor]->Texts.Texts[text]->OffsetY, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Width, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Height, this->Engine.Actors.Actors[actor]->Layer);
 
-                buffer++;
+                if (this->AreaVisibility(area))
+                {
+                    if (i == this->RenderQueue.Length())
+                    {
+                        if ((*(this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority, area)}))[i] == NULL)
+                        {
+                            printf("slay::engine.render.UpdateRenderQueue(): Memory allocation failed\n");
+                            exit(1);
+                        }
+                    }
+                    else
+                    {
+                        if ((this->RenderQueue[i] = {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority, area)}) == NULL)
+                        {
+                            printf("slay::engine.render.UpdateQueue(): Memory allocation failed\n");
+                            exit(1);
+                        }
+                    }
+
+                    i++;
+                }
             }
         }
         if (i < this->RenderQueue.Length())
