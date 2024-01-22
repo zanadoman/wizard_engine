@@ -1,3 +1,4 @@
+#include "Includes/SDL_surface.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -104,6 +105,11 @@ namespace slay
         this->Visible = true;
         this->FontID = 0;
         this->Surface = 0;
+    }
+
+    engine::actors::actor::texts::text::~text()
+    {
+        SDL_FreeSurface(this->Surface);
     }
 
     uint64 engine::actors::actor::texts::text::GetFont()

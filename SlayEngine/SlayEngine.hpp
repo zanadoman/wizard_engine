@@ -344,6 +344,7 @@ namespace slay
                                     uint64 FontID;
                                     SDL_Surface* Surface;
                                     text(engine& Engine, actor& Actor);
+                                    ~text();
 
                             };
 

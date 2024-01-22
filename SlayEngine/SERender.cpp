@@ -1,7 +1,3 @@
-#include "Includes/SDL_rect.h"
-#include "Includes/SDL_render.h"
-#include "Includes/SDL_surface.h"
-#include "Includes/SDL_ttf.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -30,29 +26,6 @@ namespace slay
         this->SelectionStage();
         this->OrderingStage();
         this->RenderingStage();
-
-        return 0;
-    }
-
-    uint8 engine::render::OpenFrame()
-    {
-        if (SDL_SetRenderDrawColor(this->Engine.Window.Renderer, 0, 0, 0, 255) != 0)
-        {
-            printf("slay::engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed\n");
-            return 1;
-        }
-        if (SDL_RenderClear(this->Engine.Window.Renderer) != 0)
-        {
-            printf("slay::engine.render.OpenFrame(): SDL_RenderClear() failed\n");
-            return 1;
-        }
-
-        return 0;
-    }
-
-    uint8 engine::render::CloseFrame()
-    {
-        SDL_RenderPresent(this->Engine.Window.Renderer);
 
         return 0;
     }
@@ -308,7 +281,16 @@ namespace slay
     {
         uint64 onstage;
 
-        this->OpenFrame();
+        if (SDL_SetRenderDrawColor(this->Engine.Window.Renderer, 0, 0, 0, 255) != 0)
+        {
+            printf("slay::engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed\n");
+            return 1;
+        }
+        if (SDL_RenderClear(this->Engine.Window.Renderer) != 0)
+        {
+            printf("slay::engine.render.OpenFrame(): SDL_RenderClear() failed\n");
+            return 1;
+        }
 
         for (uint64 i = 0; i < this->RenderQueue.Length(); i++)
         {
@@ -355,7 +337,7 @@ namespace slay
             }
         }
 
-        this->CloseFrame();
+        SDL_RenderPresent(this->Engine.Window.Renderer);
 
         return 0;
     }
@@ -372,6 +354,8 @@ namespace slay
             printf("slay::engine.render.RenderColor(): SDL_RenderFillRect failed\n");
             exit(1);
         }
+
+        delete Token;
 
         return 0;
     }
@@ -405,6 +389,8 @@ namespace slay
             printf("slay::engine.render.RenderTexture(): SDL_RenderCopyEx failed\n");
         }
 
+        delete Token;
+
         return 0;
     }
 
@@ -436,6 +422,7 @@ namespace slay
         }
 
         SDL_DestroyTexture(texture);
+        delete Token;
 
         return 0;
     }
