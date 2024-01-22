@@ -6,7 +6,7 @@ namespace slay
 
     engine::actors::actor::colors::~colors()
     {
-        for (uint64 i = 0; i < this->Colors.Length(); i++)
+        for (uint64 i = 1; i < this->Colors.Length(); i++)
         {
             delete this->Colors[i];
         }

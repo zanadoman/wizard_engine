@@ -7,7 +7,7 @@ namespace slay
 
     engine::actors::actor::texts::~texts()
     {
-        for (uint64 i = 0; i < this->Texts.Length(); i++)
+        for (uint64 i = 1; i < this->Texts.Length(); i++)
         {
             delete this->Texts[i];
         }

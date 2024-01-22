@@ -6,7 +6,7 @@ namespace slay
 
     engine::actors::actor::textures::~textures()
     {
-        for (uint64 i = 0; i < this->Textures.Length(); i++)
+        for (uint64 i = 1; i < this->Textures.Length(); i++)
         {
             delete this->Textures[i];
         }
