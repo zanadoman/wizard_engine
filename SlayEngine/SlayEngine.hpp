@@ -420,7 +420,7 @@ namespace slay
                 public:
                     uint64 LoadTexture(const char* Path);
                     uint8 UnloadTexture(uint64 ID);
-                    uint64 LoadFont(const char* Path, uint8 Size);
+                    uint64 LoadFont(const char* Path);
                     uint8 UnloadFont(uint64 ID);
                     uint64 LoadSound(const char* Path);
                     uint8 UnloadSound(uint64 ID);

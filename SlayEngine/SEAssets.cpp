@@ -107,7 +107,7 @@ namespace slay
         return 0;
     }
 
-    uint64 engine::assets::LoadFont(const char* Path, uint8 Size)
+    uint64 engine::assets::LoadFont(const char* Path)
     {
         if (Path == NULL)
         {
@@ -119,7 +119,7 @@ namespace slay
         {
             if (this->Fonts[i] == NULL)
             {
-                if ((this->Fonts[i] = TTF_OpenFont(Path, Size)) == NULL)
+                if ((this->Fonts[i] = TTF_OpenFont(Path, 2147483647)) == NULL)
                 {
                     printf("engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
                     exit(1);
@@ -129,7 +129,7 @@ namespace slay
             }
         }
 
-        if ((*(this->Fonts += {TTF_OpenFont(Path, Size)}))[this->Fonts.Length() - 1] == NULL)
+        if ((*(this->Fonts += {TTF_OpenFont(Path, 2147483647)}))[this->Fonts.Length() - 1] == NULL)
         {
             printf("engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
             exit(1);
