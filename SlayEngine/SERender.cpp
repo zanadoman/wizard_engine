@@ -357,6 +357,8 @@ namespace slay
     {
         uint8 flip;
 
+        printf("rendering %d, %d\n", Token->Area.x, Token->Area.y);
+
         flip = SDL_FLIP_NONE;
         if (((engine::actors::actor::textures::texture*)Token->Data)->FlipHorizontal)
         {
