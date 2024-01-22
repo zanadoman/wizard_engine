@@ -232,7 +232,6 @@ namespace slay
                                 public:
                                     sint32 OffsetX;
                                     sint32 OffsetY;
-                                    double Layer;
                                     uint16 Width;
                                     uint16 Height;
                                     uint8 ColorR;
@@ -276,7 +275,6 @@ namespace slay
                                 public:
                                     sint32 OffsetX;
                                     sint32 OffsetY;
-                                    double Layer;
                                     uint16 Width;
                                     uint16 Height;
                                     double Angle;
@@ -326,7 +324,6 @@ namespace slay
                                 public:
                                     sint32 OffsetX;
                                     sint32 OffsetY;
-                                    double Layer;
                                     uint16 Height;
                                     double Angle;
                                     bool FlipHorizontal;

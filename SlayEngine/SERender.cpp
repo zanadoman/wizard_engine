@@ -81,11 +81,11 @@ namespace slay
 
                 if (this->RenderQueue.Length() == buffer)
                 {
-                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority)};
+                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority)};
                 }
                 else
                 {
-                    this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority);
+                    this->RenderQueue[buffer] = new token(this->Engine.Actors.Actors[actor], COLOR, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Colors.Colors[color]->Priority);
                 }
 
                 buffer++;
@@ -100,11 +100,11 @@ namespace slay
 
                 if (this->RenderQueue.Length() == buffer)
                 {
-                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
+                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
                 }
                 else
                 {
-                    this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
+                    this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[actor], TEXTURE, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Textures.Textures[texture]->Priority)};
                 }
 
                 buffer++;
@@ -119,11 +119,11 @@ namespace slay
 
                 if (this->RenderQueue.Length() == buffer)
                 {
-                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
+                    this->RenderQueue += {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
                 }
                 else
                 {
-                    this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
+                    this->RenderQueue[buffer] = {new token(this->Engine.Actors.Actors[actor], TEXT, this->Engine.Actors.Actors[actor]->Layer, this->Engine.Actors.Actors[actor]->Texts.Texts[text]->Priority)};
                 }
 
                 buffer++;
