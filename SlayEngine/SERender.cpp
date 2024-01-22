@@ -102,7 +102,7 @@ namespace slay
                         layer = EPSILON;
                     }
 
-                    for (; layer < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; layer += this->SamplingStep)
+                    for (; layer < tmp; layer += this->SamplingStep)
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
 
@@ -167,12 +167,13 @@ namespace slay
                 else
                 {
                     layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
+                    tmp = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
                     if (layer <= 0)
                     {
                         layer = EPSILON;
                     }
 
-                    for (; layer < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; layer += this->SamplingStep)
+                    for (; layer < tmp; layer += this->SamplingStep)
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetY, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, layer);
 
@@ -258,12 +259,13 @@ namespace slay
                 else
                 {
                     layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
+                    tmp = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
                     if (layer <= 0)
                     {
                         layer = EPSILON;
                     }
 
-                    for (; layer < this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2; layer += this->SamplingStep)
+                    for (; layer < tmp; layer += this->SamplingStep)
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
 
