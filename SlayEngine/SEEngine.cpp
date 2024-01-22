@@ -11,17 +11,17 @@ namespace slay
 
         if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
         {
-            printf("engine.engine(): SDL_Init() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, Width, Height, TargetFrameTime);
+            printf("slay::engine.engine(): SDL_Init() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, Width, Height, TargetFrameTime);
             exit(1);
         }
         if (TTF_Init() != 0)
         {
-            printf("engine.engine(): TTF_Init() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, Width, Height, TargetFrameTime);
+            printf("slay::engine.engine(): TTF_Init() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, Width, Height, TargetFrameTime);
             exit(1);
         }
         if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) != 0)
         {
-            printf("engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, Width, Height, TargetFrameTime);
+            printf("slay::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, Width, Height, TargetFrameTime);
             exit(1);
         }
 
@@ -34,7 +34,7 @@ namespace slay
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
 
-        //this->Update();
+        this->Update();
     }
 
     engine::engine::~engine()
