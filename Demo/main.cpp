@@ -15,6 +15,7 @@ sint32 main(sint32 argc, char* *argv)
     Texture = Engine.Assets.LoadPNG("test.png");
 
     Engine.Actors[Player].SetLayer(1);
+    Engine.Actors[Player].SetDepth(0.02);
     Engine.Actors[Player].Textures[PlayerTexture].SetTextureID(Texture);
     Engine.Actors[Player].Textures[PlayerTexture].Width = 100;
     Engine.Actors[Player].Textures[PlayerTexture].Height = 100;
