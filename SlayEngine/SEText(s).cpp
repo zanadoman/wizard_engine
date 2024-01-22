@@ -104,7 +104,7 @@ namespace slay
         this->Priority = 128;
         this->Visible = true;
         this->FontID = 0;
-        this->Surface = 0;
+        this->Surface = NULL;
     }
 
     engine::actors::actor::texts::text::~text()
