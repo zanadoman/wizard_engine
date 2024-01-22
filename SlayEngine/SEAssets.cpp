@@ -102,6 +102,11 @@ namespace slay
 
             for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Textures.Textures.Length(); j++)
             {
+                if (this->Engine.Actors.Actors[i]->Textures.Textures[j] == NULL)
+                {
+                    continue;
+                }
+
                 if (this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID == ID)
                 {
                     this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID = 0;
@@ -250,6 +255,11 @@ namespace slay
 
             for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
             {
+                if (this->Engine.Actors.Actors[i]->Texts.Texts[j] == NULL)
+                {
+                    continue;
+                }
+
                 if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == ID)
                 {
                     this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
