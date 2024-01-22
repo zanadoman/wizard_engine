@@ -105,6 +105,7 @@ namespace slay
         this->Priority = 128;
         this->Visible = true;
         this->Width = 0;
+        this->TextChanged = true;
         this->Texture = NULL;
         this->FontID = 0;
     }
@@ -112,6 +113,13 @@ namespace slay
     engine::actors::actor::texts::text::~text()
     {
         SDL_DestroyTexture(this->Texture);
+    }
+
+    string& engine::actors::actor::texts::text::String()
+    {
+        this->TextChanged = true;
+
+        return this->Text;
     }
 
     uint64 engine::actors::actor::texts::text::GetFont()

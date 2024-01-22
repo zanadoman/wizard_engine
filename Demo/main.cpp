@@ -14,7 +14,7 @@ sint32 main(sint32 argc, char* *argv)
 
     Engine.Actors[Player].SetLayer(1);
     Engine.Actors[Player].SetDepth(0.02);
-    Engine.Actors[Player].Texts[PlayerText].Text = {"Hello, World"};
+    Engine.Actors[Player].Texts[PlayerText].String() = {"Hello, World"};
     Engine.Actors[Player].Texts[PlayerText].Height = 100;
     Engine.Actors[Player].Texts[PlayerText].SetFont(Font);
 

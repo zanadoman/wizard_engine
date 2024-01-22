@@ -194,7 +194,7 @@ namespace slay
                     continue;
                 }
 
-                if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text != &this->Engine.Actors.Actors[i]->Texts.Texts[j]->PrevText)
+                if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->TextChanged)
                 {
                     SDL_DestroyTexture(this->Engine.Actors.Actors[i]->Texts.Texts[i]->Texture);
                     color.r = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorR;
@@ -212,7 +212,7 @@ namespace slay
                         printf("slay::engine.render.SelectionStage(): SDL_CreateTextureFromSurface failed\n");
                     }
                     SDL_FreeSurface(surface);
-                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->PrevText = this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text;
+                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->TextChanged = false;
                 }
                 
                 if (this->Engine.Actors.Actors[i]->Depth <= this->SamplingStep)

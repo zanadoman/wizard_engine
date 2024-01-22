@@ -316,7 +316,6 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    string Text;
                                     sint32 OffsetX;
                                     sint32 OffsetY;
                                     uint16 Height;
@@ -329,12 +328,14 @@ namespace slay
                                     uint8 ColorA;
                                     uint8 Priority;
                                     bool Visible;
+                                    string& String();
                                     uint64 GetFont();
                                     uint64 SetFont(uint64 ID);
 
                                 private:
+                                    string Text;
+                                    bool TextChanged;
                                     uint16 Width;
-                                    string PrevText;
                                     SDL_Texture* Texture;
                                     uint64 FontID;
                                     text(engine& Engine, actor& Actor);
