@@ -271,15 +271,15 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::OrderByLayer(uint64 First, uint64 Last)
+    uint8 engine::render::OrderByLayer(uint64 Index, uint64 Length)
     {
         uint64 size, left, mid, right, cache;
 
-        cache = Last - 1;
+        cache = Length - 1;
 
-        for (size = 1; size < Last; size *= 2)
+        for (size = 1; size < Length; size *= 2)
         {
-            for (left = First; left < cache; left += size * 2)
+            for (left = Index; left < cache; left += size * 2)
             {
                 if (cache < (mid = left + size - 1))
                 {
@@ -343,15 +343,15 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::OrderByPriority(uint64 First, uint64 Last)
+    uint8 engine::render::OrderByPriority(uint64 Index, uint64 Length)
     {
         uint64 size, left, mid, right, cache;
 
-        cache = Last - 1;
+        cache = Length - 1;
 
-        for (size = 1; size < Last; size *= 2)
+        for (size = 1; size < Length; size *= 2)
         {
-            for (left = First; left < cache; left += size * 2)
+            for (left = Index; left < cache; left += size * 2)
             {
                 if (cache < (mid = left + size - 1))
                 {
