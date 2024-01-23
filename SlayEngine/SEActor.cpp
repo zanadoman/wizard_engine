@@ -60,7 +60,9 @@ namespace slay
 
     double engine::actors::actor::SetAngle(double Angle)
     {
-        double x, y;
+        double x, y, cache;
+
+        cache = Angle - this->Angle;
 
         for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
         {
@@ -93,7 +95,7 @@ namespace slay
 
             if (this->Textures.Textures[i]->AngleLocked)
             {
-                this->Textures.Textures[i]->Angle += (Angle - this->Angle);
+                this->Textures.Textures[i]->Angle += cache;
             }
         }
 
@@ -113,7 +115,7 @@ namespace slay
 
             if (this->Texts.Texts[i]->AngleLocked)
             {
-                this->Texts.Texts[i]->Angle += (Angle - this->Angle);
+                this->Texts.Texts[i]->Angle += cache;
             }
         }
 
