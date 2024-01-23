@@ -257,115 +257,159 @@ namespace slay
     {
         uint64 i, j;
 
-        this->OrderByLayer(0, this->RenderQueue.Length() - 1);
+        this->OrderByLayer(0, this->RenderQueue.Length());
         for (i = 1, j = 0; i < RenderQueue.Length(); i++)
         {
             if (this->RenderQueue[i].Layer != this->RenderQueue[j].Layer)
             {
-                this->OrderByPriority(j, i - 1);
+                this->OrderByPriority(j, i);
                 j = i;
             }
         }
-        this->OrderByPriority(j, i - 1);
+        this->OrderByPriority(j, i);
 
         return 0;
     }
 
-    uint8 engine::render::OrderByLayer(sint64 First, sint64 Last)
+    uint8 engine::render::OrderByLayer(uint64 First, uint64 Last)
     {
-        sint64 stack[Last - First + 1];
-        sint64 i, top;
-        token tmp;
+        uint64 size, left, mid, right, cache;
 
-        if (Last <= First)
+        cache = Last - 1;
+
+        for (size = 1; size < Last; size *= 2)
         {
-            return 0;
-        }
-
-        stack[(top = 0)] = First;
-        stack[++top] = Last;
-
-        while (0 <= top)
-        {
-            Last = stack[top--];
-            First = stack[top--];
-
-            i = First - 1;
-            for (sint64 j = First; j <= Last; j++)
+            for (left = First; left < cache; left += size * 2)
             {
-                if (this->RenderQueue[j].Layer < this->RenderQueue[Last].Layer)
+                if (cache < (mid = left + size - 1))
                 {
-                    i++;
-                    tmp = this->RenderQueue[i];
-                    this->RenderQueue[i] = this->RenderQueue[j];
-                    this->RenderQueue[j] = tmp;
+                    mid = cache;
                 }
-            }
-            tmp = this->RenderQueue[i + 1];
-            this->RenderQueue[i + 1] = this->RenderQueue[Last];
-            this->RenderQueue[Last] = tmp;
+                if (cache < (right = left + size * 2 - 1))
+                {
+                    right = cache;
+                }
 
-            if (First < i)
-            {
-                stack[++top] = First;
-                stack[++top] = i;
-            }
-
-            if (i + 2 < Last)
-            {
-                stack[++top] = i + 2;
-                stack[++top] = Last;
+                this->OrderByLayerMerge(left, mid, right);
             }
         }
 
         return 0;
     }
 
-    uint8 engine::render::OrderByPriority(sint64 First, sint64 Last)
+    uint8 engine::render::OrderByLayerMerge(uint64 Left, uint64 Mid, uint64 Right)
     {
-        sint64 stack[Last - First + 1];
-        sint64 i, top;
-        token tmp;
+        uint64 i, j, k;
+        uint64 n1, n2;
+        token left[(n1 = Mid - Left + 1)];
+        token right[(n2 = Right - Mid)];
 
-        if (Last <= First)
+        for (i = 0; i < n1; i++)
         {
-            return 0;
+            left[i] = this->RenderQueue[Left + i];
+        }
+        for (j = 0; j < n2; j++)
+        {
+            right[j] = this->RenderQueue[Mid + j + 1];
         }
 
-        stack[(top = 0)] = First;
-        stack[++top] = Last;
-
-        while (0 <= top)
+        for (i = 0, j = 0, k = Left; i < n1 && j < n2; k++)
         {
-            Last = stack[top--];
-            First = stack[top--];
-
-            i = First - 1;
-            for (sint64 j = First; j <= Last; j++)
+            if (left[i].Layer <= right[j].Layer)
             {
-                if (this->RenderQueue[j].Priority < this->RenderQueue[Last].Priority)
+                this->RenderQueue[k] = left[i];
+                i++;
+            }
+            else
+            {
+                this->RenderQueue[k] = right[j];
+                j++;
+            }
+        }
+
+        while (i < n1)
+        {
+            this->RenderQueue[k] = left[i];
+            i++;
+            k++;
+        }
+        while (j < n2)
+        {
+            this->RenderQueue[k] = right[j];
+            j++;
+            k++;
+        }
+
+        return 0;
+    }
+
+    uint8 engine::render::OrderByPriority(uint64 First, uint64 Last)
+    {
+        uint64 size, left, mid, right, cache;
+
+        cache = Last - 1;
+
+        for (size = 1; size < Last; size *= 2)
+        {
+            for (left = First; left < cache; left += size * 2)
+            {
+                if (cache < (mid = left + size - 1))
                 {
-                    i++;
-                    tmp = this->RenderQueue[i];
-                    this->RenderQueue[i] = this->RenderQueue[j];
-                    this->RenderQueue[j] = tmp;
+                    mid = cache;
                 }
-            }
-            tmp = this->RenderQueue[i + 1];
-            this->RenderQueue[i + 1] = this->RenderQueue[Last];
-            this->RenderQueue[Last] = tmp;
+                if (cache < (right = left + size * 2 - 1))
+                {
+                    right = cache;
+                }
 
-            if (First < i)
-            {
-                stack[++top] = First;
-                stack[++top] = i;
+                this->OrderByPriorityMerge(left, mid, right);
             }
+        }
 
-            if (i + 2 < Last)
+        return 0;
+    }
+
+    uint8 engine::render::OrderByPriorityMerge(uint64 Left, uint64 Mid, uint64 Right)
+    {
+        uint64 i, j, k;
+        uint64 n1, n2;
+        token left[(n1 = Mid - Left + 1)];
+        token right[(n2 = Right - Mid)];
+
+        for (i = 0; i < n1; i++)
+        {
+            left[i] = this->RenderQueue[Left + i];
+        }
+        for (j = 0; j < n2; j++)
+        {
+            right[j] = this->RenderQueue[Mid + j + 1];
+        }
+
+        for (i = 0, j = 0, k = Left; i < n1 && j < n2; k++)
+        {
+            if (left[i].Priority <= right[j].Priority)
             {
-                stack[++top] = i + 2;
-                stack[++top] = Last;
+                this->RenderQueue[k] = left[i];
+                i++;
             }
+            else
+            {
+                this->RenderQueue[k] = right[j];
+                j++;
+            }
+        }
+
+        while (i < n1)
+        {
+            this->RenderQueue[k] = left[i];
+            i++;
+            k++;
+        }
+        while (j < n2)
+        {
+            this->RenderQueue[k] = right[j];
+            j++;
+            k++;
         }
 
         return 0;
