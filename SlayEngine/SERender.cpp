@@ -188,13 +188,13 @@ namespace slay
                         printf("slay::engine.render.SelectionStage(): TTF_RenderText_Blended failed\n");
                         exit(1);
                     }
-                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width = surface->w * this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height / surface->h;
                     if ((this->Engine.Actors.Actors[i]->Texts.Texts[j]->Texture = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, surface)) == NULL)
                     {
                         printf("slay::engine.render.SelectionStage(): SDL_CreateTextureFromSurface failed\n");
                     }
-                    SDL_FreeSurface(surface);
+                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width = surface->w * this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height / surface->h;
                     this->Engine.Actors.Actors[i]->Texts.Texts[j]->TextChanged = false;
+                    SDL_FreeSurface(surface);
                 }
                 
                 if (this->Engine.Actors.Actors[i]->Depth <= this->SamplingStep)
