@@ -4,7 +4,7 @@ namespace slay
 {
     engine::render::render(engine& Engine) : Engine(Engine)
     {
-        this->SamplingStep = 0.001;
+        this->SamplingStep = 0.002;
     }
 
     engine::render::token::token() {}
