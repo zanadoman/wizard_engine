@@ -273,7 +273,7 @@ namespace slay
 
     uint8 engine::render::OrderByLayer(uint64 Index, uint64 Length)
     {
-        uint64 size, left, mid, right, cache;
+        uint64 size, left, middle, right, cache;
 
         cache = Length - 1;
 
@@ -281,28 +281,28 @@ namespace slay
         {
             for (left = Index; left < cache; left += size * 2)
             {
-                if (cache < (mid = left + size - 1))
+                if (cache < (middle = left + size - 1))
                 {
-                    mid = cache;
+                    middle = cache;
                 }
                 if (cache < (right = left + size * 2 - 1))
                 {
                     right = cache;
                 }
 
-                this->OrderByLayerMerge(left, mid, right);
+                this->OrderByLayerMerge(left, middle, right);
             }
         }
 
         return 0;
     }
 
-    uint8 engine::render::OrderByLayerMerge(uint64 Left, uint64 Mid, uint64 Right)
+    uint8 engine::render::OrderByLayerMerge(uint64 Left, uint64 Middle, uint64 Right)
     {
         uint64 i, j, k;
         uint64 n1, n2;
-        token left[(n1 = Mid - Left + 1)];
-        token right[(n2 = Right - Mid)];
+        token left[(n1 = Middle - Left + 1)];
+        token right[(n2 = Right - Middle)];
 
         for (i = 0; i < n1; i++)
         {
@@ -310,7 +310,7 @@ namespace slay
         }
         for (j = 0; j < n2; j++)
         {
-            right[j] = this->RenderQueue[Mid + j + 1];
+            right[j] = this->RenderQueue[Middle + j + 1];
         }
 
         for (i = 0, j = 0, k = Left; i < n1 && j < n2; k++)
@@ -345,7 +345,7 @@ namespace slay
 
     uint8 engine::render::OrderByPriority(uint64 Index, uint64 Length)
     {
-        uint64 size, left, mid, right, cache;
+        uint64 size, left, middle, right, cache;
 
         cache = Length - 1;
 
@@ -353,28 +353,28 @@ namespace slay
         {
             for (left = Index; left < cache; left += size * 2)
             {
-                if (cache < (mid = left + size - 1))
+                if (cache < (middle = left + size - 1))
                 {
-                    mid = cache;
+                    middle = cache;
                 }
                 if (cache < (right = left + size * 2 - 1))
                 {
                     right = cache;
                 }
 
-                this->OrderByPriorityMerge(left, mid, right);
+                this->OrderByPriorityMerge(left, middle, right);
             }
         }
 
         return 0;
     }
 
-    uint8 engine::render::OrderByPriorityMerge(uint64 Left, uint64 Mid, uint64 Right)
+    uint8 engine::render::OrderByPriorityMerge(uint64 Left, uint64 Middle, uint64 Right)
     {
         uint64 i, j, k;
         uint64 n1, n2;
-        token left[(n1 = Mid - Left + 1)];
-        token right[(n2 = Right - Mid)];
+        token left[(n1 = Middle - Left + 1)];
+        token right[(n2 = Right - Middle)];
 
         for (i = 0; i < n1; i++)
         {
@@ -382,7 +382,7 @@ namespace slay
         }
         for (j = 0; j < n2; j++)
         {
-            right[j] = this->RenderQueue[Mid + j + 1];
+            right[j] = this->RenderQueue[Middle + j + 1];
         }
 
         for (i = 0, j = 0, k = Left; i < n1 && j < n2; k++)
