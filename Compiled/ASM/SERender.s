@@ -3202,15 +3202,6 @@ _ZN4slay6engine6render17OrderByLayerMergeEyyy:
 	movq	%rax, -96(%rbp)
 	jmp	.L111
 .L116:
-	movq	-72(%rbp), %rcx
-	movq	-112(%rbp), %rdx
-	movq	%rdx, %rax
-	addq	%rax, %rax
-	addq	%rdx, %rax
-	salq	$4, %rax
-	addq	%rcx, %rax
-	addq	$16, %rax
-	movsd	(%rax), %xmm1
 	movq	-48(%rbp), %rcx
 	movq	-104(%rbp), %rdx
 	movq	%rdx, %rax
@@ -3219,37 +3210,18 @@ _ZN4slay6engine6render17OrderByLayerMergeEyyy:
 	salq	$4, %rax
 	addq	%rcx, %rax
 	addq	$16, %rax
-	movsd	(%rax), %xmm0
-	comisd	%xmm1, %xmm0
-	jb	.L124
+	movsd	(%rax), %xmm1
+	movq	-72(%rbp), %rcx
 	movq	-112(%rbp), %rdx
 	movq	%rdx, %rax
 	addq	%rax, %rax
 	addq	%rdx, %rax
 	salq	$4, %rax
-	movq	-72(%rbp), %rdx
-	leaq	(%rax,%rdx), %rbx
-	movq	-120(%rbp), %rax
-	leaq	8(%rax), %rdx
-	movq	-96(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIN4slay6engine6render5tokenEEixEy
-	movq	(%rbx), %rsi
-	movq	8(%rbx), %rdi
-	movq	%rsi, (%rax)
-	movq	%rdi, 8(%rax)
-	movq	16(%rbx), %rsi
-	movq	24(%rbx), %rdi
-	movq	%rsi, 16(%rax)
-	movq	%rdi, 24(%rax)
-	movq	28(%rbx), %rcx
-	movq	36(%rbx), %rbx
-	movq	%rcx, 28(%rax)
-	movq	%rbx, 36(%rax)
-	addq	$1, -112(%rbp)
-	jmp	.L114
-.L124:
+	addq	%rcx, %rax
+	addq	$16, %rax
+	movsd	(%rax), %xmm0
+	comisd	%xmm1, %xmm0
+	jbe	.L124
 	movq	-104(%rbp), %rdx
 	movq	%rdx, %rax
 	addq	%rax, %rax
@@ -3276,6 +3248,34 @@ _ZN4slay6engine6render17OrderByLayerMergeEyyy:
 	movq	%rcx, 28(%rax)
 	movq	%rbx, 36(%rax)
 	addq	$1, -104(%rbp)
+	jmp	.L114
+.L124:
+	movq	-112(%rbp), %rdx
+	movq	%rdx, %rax
+	addq	%rax, %rax
+	addq	%rdx, %rax
+	salq	$4, %rax
+	movq	-72(%rbp), %rdx
+	leaq	(%rax,%rdx), %rbx
+	movq	-120(%rbp), %rax
+	leaq	8(%rax), %rdx
+	movq	-96(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIN4slay6engine6render5tokenEEixEy
+	movq	(%rbx), %rsi
+	movq	8(%rbx), %rdi
+	movq	%rsi, (%rax)
+	movq	%rdi, 8(%rax)
+	movq	16(%rbx), %rsi
+	movq	24(%rbx), %rdi
+	movq	%rsi, 16(%rax)
+	movq	%rdi, 24(%rax)
+	movq	28(%rbx), %rcx
+	movq	36(%rbx), %rbx
+	movq	%rcx, 28(%rax)
+	movq	%rbx, 36(%rax)
+	addq	$1, -112(%rbp)
 .L114:
 	addq	$1, -96(%rbp)
 .L111:
@@ -3676,8 +3676,8 @@ _ZN4slay6engine6render20OrderByPriorityMergeEyyy:
 	movq	%rax, -96(%rbp)
 	jmp	.L142
 .L146:
-	movq	-72(%rbp), %rcx
-	movq	-112(%rbp), %rdx
+	movq	-48(%rbp), %rcx
+	movq	-104(%rbp), %rdx
 	movq	%rdx, %rax
 	addq	%rax, %rax
 	addq	%rdx, %rax
@@ -3685,8 +3685,8 @@ _ZN4slay6engine6render20OrderByPriorityMergeEyyy:
 	addq	%rcx, %rax
 	addq	$24, %rax
 	movzbl	(%rax), %ecx
-	movq	-48(%rbp), %rsi
-	movq	-104(%rbp), %rdx
+	movq	-72(%rbp), %rsi
+	movq	-112(%rbp), %rdx
 	movq	%rdx, %rax
 	addq	%rax, %rax
 	addq	%rdx, %rax
@@ -3694,36 +3694,8 @@ _ZN4slay6engine6render20OrderByPriorityMergeEyyy:
 	addq	%rsi, %rax
 	addq	$24, %rax
 	movzbl	(%rax), %eax
-	cmpb	%cl, %al
-	jb	.L143
-	movq	-112(%rbp), %rdx
-	movq	%rdx, %rax
-	addq	%rax, %rax
-	addq	%rdx, %rax
-	salq	$4, %rax
-	movq	-72(%rbp), %rdx
-	leaq	(%rax,%rdx), %rbx
-	movq	-120(%rbp), %rax
-	leaq	8(%rax), %rdx
-	movq	-96(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIN4slay6engine6render5tokenEEixEy
-	movq	(%rbx), %rsi
-	movq	8(%rbx), %rdi
-	movq	%rsi, (%rax)
-	movq	%rdi, 8(%rax)
-	movq	16(%rbx), %rsi
-	movq	24(%rbx), %rdi
-	movq	%rsi, 16(%rax)
-	movq	%rdi, 24(%rax)
-	movq	28(%rbx), %rcx
-	movq	36(%rbx), %rbx
-	movq	%rcx, 28(%rax)
-	movq	%rbx, 36(%rax)
-	addq	$1, -112(%rbp)
-	jmp	.L144
-.L143:
+	cmpb	%al, %cl
+	jnb	.L143
 	movq	-104(%rbp), %rdx
 	movq	%rdx, %rax
 	addq	%rax, %rax
@@ -3750,6 +3722,34 @@ _ZN4slay6engine6render20OrderByPriorityMergeEyyy:
 	movq	%rcx, 28(%rax)
 	movq	%rbx, 36(%rax)
 	addq	$1, -104(%rbp)
+	jmp	.L144
+.L143:
+	movq	-112(%rbp), %rdx
+	movq	%rdx, %rax
+	addq	%rax, %rax
+	addq	%rdx, %rax
+	salq	$4, %rax
+	movq	-72(%rbp), %rdx
+	leaq	(%rax,%rdx), %rbx
+	movq	-120(%rbp), %rax
+	leaq	8(%rax), %rdx
+	movq	-96(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIN4slay6engine6render5tokenEEixEy
+	movq	(%rbx), %rsi
+	movq	8(%rbx), %rdi
+	movq	%rsi, (%rax)
+	movq	%rdi, 8(%rax)
+	movq	16(%rbx), %rsi
+	movq	24(%rbx), %rdi
+	movq	%rsi, 16(%rax)
+	movq	%rdi, 24(%rax)
+	movq	28(%rbx), %rcx
+	movq	36(%rbx), %rbx
+	movq	%rcx, 28(%rax)
+	movq	%rbx, 36(%rax)
+	addq	$1, -112(%rbp)
 .L144:
 	addq	$1, -96(%rbp)
 .L142:

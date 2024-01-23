@@ -315,15 +315,15 @@ namespace slay
 
         for (i = 0, j = 0, k = Left; i < n1 && j < n2; k++)
         {
-            if (left[i].Layer <= right[j].Layer)
-            {
-                this->RenderQueue[k] = left[i];
-                i++;
-            }
-            else
+            if (right[j].Layer < left[i].Layer)
             {
                 this->RenderQueue[k] = right[j];
                 j++;
+            }
+            else
+            {
+                this->RenderQueue[k] = left[i];
+                i++;
             }
         }
 
@@ -387,15 +387,15 @@ namespace slay
 
         for (i = 0, j = 0, k = Left; i < n1 && j < n2; k++)
         {
-            if (left[i].Priority <= right[j].Priority)
-            {
-                this->RenderQueue[k] = left[i];
-                i++;
-            }
-            else
+            if (right[j].Priority < left[i].Priority)
             {
                 this->RenderQueue[k] = right[j];
                 j++;
+            }
+            else
+            {
+                this->RenderQueue[k] = left[i];
+                i++;
             }
         }
 
