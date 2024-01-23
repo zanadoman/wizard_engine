@@ -30,18 +30,14 @@ fi
 if [[ ! -z $1 && $1 == "-a" ]] || [[ ! -z $1 && $1 == "--all" ]]
 then
     g++ -S $(find . -name '*.cpp') -m64 -std=gnu++23
-    g++ -c $(find . -name '*.cpp') -m64 -std=gnu++23
     if [ $? == 0 ]
     then
-        rm Compiled/ASM/*.s
-        rm Compiled/*.o
-        mv *.s Compiled/ASM
-        mv *.o Compiled
+        rm Compiled/*.s
+        mv *.s Compiled
         echo -e "${GREEN}Re-compilation successful!${ENDCOLOR}"
     else
         echo -e "${RED}Re-compilation failed!${ENDCOLOR}"
         rm *.s
-        rm *.o
         exit 1
     fi
 else
@@ -49,16 +45,13 @@ else
     if [ $? == 0 ]
     then
         g++ -S $(git diff --name-only | grep "\.cpp") -m64 -std=gnu++23
-        g++ -c $(git diff --name-only | grep "\.cpp") -m64 -std=gnu++23
         if [ $? == 0 ]
         then
-            mv *.s Compiled/ASM
-            mv *.o Compiled
+            mv *.s Compiled
             echo -e "${GREEN}Pre-compilation successful!${ENDCOLOR}"
         else
             echo -e "${RED}Pre-compilation failed!${ENDCOLOR}"
             mv *.s
-            rm *.o
             exit 1
         fi
     else
@@ -66,7 +59,7 @@ else
     fi
 fi
 
-g++ -o Builds/Linux/bin.out Compiled/*.o -Wl,-rpath=. -LSlayEngine/Libraries/Linux -lfreetype -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lNeoTypes++ -lm
+g++ -o Builds/Linux/bin.out Compiled/*.s -Wl,-rpath=. -LSlayEngine/Libraries/Linux -lfreetype -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lNeoTypes++ -lm
 if [ $? == 0 ]
 then
     echo -e "${GREEN}Compilation successful!${ENDCOLOR}"
