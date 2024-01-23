@@ -1,4 +1,2 @@
 *.s
-!Compiled/ASM/*.s
-*.o
-!Compiled/*.o
+!Compiled/*.s
