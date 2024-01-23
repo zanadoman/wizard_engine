@@ -75,6 +75,7 @@ namespace slay
                     double Layer;
                     uint8 Priority;
                     SDL_Rect Area;
+                    token();
                     token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area);
                 };
 
@@ -83,7 +84,7 @@ namespace slay
                     double SetSamplingStep(double SamplingStep);
 
                 private:
-                    array<token*> RenderQueue;
+                    array<token> RenderQueue;
                     uint16 RenderWidth;
                     uint16 RenderHeight;
                     double SamplingStep;
@@ -94,9 +95,9 @@ namespace slay
                     uint8 OrderByLayer(sint64 First, sint64 Last);
                     uint8 OrderByPriority(sint64 First, sint64 Last);
                     uint8 RenderingStage();
-                    uint8 RenderColor(token* Token);
-                    uint8 RenderTexture(token* Token);
-                    uint8 RenderText(token* Token);
+                    uint8 RenderColor(token Token);
+                    uint8 RenderTexture(token Token);
+                    uint8 RenderText(token Token);
             } Render;
 
             //__________Camera_________________________________________________________________________________________
