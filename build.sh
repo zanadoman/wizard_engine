@@ -51,7 +51,7 @@ else
             echo -e "${GREEN}Pre-compilation successful!${ENDCOLOR}"
         else
             echo -e "${RED}Pre-compilation failed!${ENDCOLOR}"
-            mv *.s
+            rm *.s
             exit 1
         fi
     else
