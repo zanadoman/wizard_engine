@@ -92,8 +92,8 @@ namespace slay
 
     engine::actors::actor::texts::text::text(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
     {
-        this->OffsetX = 0;
-        this->OffsetY = 0;
+        this->OffsetLocked = false;
+        this->AngleLocked = false;
         this->Height = 0;
         this->Angle = 0;
         this->FlipHorizontal = false;
@@ -108,6 +108,44 @@ namespace slay
         this->Width = 0;
         this->Texture = NULL;
         this->FontID = 0;
+        this->OffsetX = 0;
+        this->OffsetY = 0;
+        this->OffsetLength = 0;
+        this->OffsetAngle = 0;
+    }
+
+    sint32 engine::actors::actor::texts::text::GetOffsetX()
+    {
+        return this->OffsetX;
+    }
+
+    sint32 engine::actors::actor::texts::text::SetOffsetX(sint32 OffsetX)
+    {
+        sint32 x, y;
+
+        x = this->Actor.X + OffsetX;
+        y = this->Actor.Y + this->OffsetY;
+        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
+        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+
+        return this->OffsetX = OffsetX;
+    }
+
+    sint32 engine::actors::actor::texts::text::GetOffsetY()
+    {
+        return this->OffsetY;
+    }
+
+    sint32 engine::actors::actor::texts::text::SetOffsetY(sint32 OffsetY)
+    {
+        sint32 x, y;
+
+        x = this->Actor.X + this->OffsetX;
+        y = this->Actor.Y + OffsetY;
+        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
+        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+
+        return this->OffsetY = OffsetY;
     }
 
     engine::actors::actor::texts::text::~text()

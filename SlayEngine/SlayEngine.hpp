@@ -229,8 +229,7 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    sint32 OffsetX;
-                                    sint32 OffsetY;
+                                    bool OffsetLocked;
                                     uint16 Width;
                                     uint16 Height;
                                     uint8 ColorR;
@@ -239,8 +238,16 @@ namespace slay
                                     uint8 ColorA;
                                     uint8 Priority;
                                     bool Visible;
+                                    sint32 GetOffsetX();
+                                    sint32 SetOffsetX(sint32 OffsetX);
+                                    sint32 GetOffsetY();
+                                    sint32 SetOffsetY(sint32 OffsetY);
 
                                 private:
+                                    sint32 OffsetX;
+                                    sint32 OffsetY;
+                                    double OffsetLength;
+                                    double OffsetAngle;
                                     color(engine& Engine, actor& Actor);
                             };
 
@@ -270,8 +277,8 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    sint32 OffsetX;
-                                    sint32 OffsetY;
+                                    bool OffsetLocked;
+                                    bool AngleLocked;
                                     uint16 Width;
                                     uint16 Height;
                                     double Angle;
@@ -283,10 +290,18 @@ namespace slay
                                     uint8 ColorA;
                                     uint8 Priority;
                                     bool Visible;
+                                    sint32 GetOffsetX();
+                                    sint32 SetOffsetX(sint32 OffsetX);
+                                    sint32 GetOffsetY();
+                                    sint32 SetOffsetY(sint32 OffsetY);
                                     uint64 GetTextureID();
                                     uint64 SetTextureID(uint64 ID);
 
                                 private:
+                                    sint32 OffsetX;
+                                    sint32 OffsetY;
+                                    double OffsetLength;
+                                    double OffsetAngle;
                                     uint64 TextureID;
                                     texture(engine& Engine, actor& Actor);
                             };
@@ -317,8 +332,8 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    sint32 OffsetX;
-                                    sint32 OffsetY;
+                                    bool OffsetLocked;
+                                    bool AngleLocked;
                                     uint16 Height;
                                     double Angle;
                                     bool FlipHorizontal;
@@ -329,11 +344,19 @@ namespace slay
                                     uint8 ColorA;
                                     uint8 Priority;
                                     bool Visible;
+                                    sint32 GetOffsetX();
+                                    sint32 SetOffsetX(sint32 OffsetX);
+                                    sint32 GetOffsetY();
+                                    sint32 SetOffsetY(sint32 OffsetY);
                                     string& String();
                                     uint64 GetFont();
                                     uint64 SetFont(uint64 ID);
 
                                 private:
+                                    sint32 OffsetX;
+                                    sint32 OffsetY;
+                                    double OffsetLength;
+                                    double OffsetAngle;
                                     string Text;
                                     bool TextChanged;
                                     uint16 Width;
@@ -363,6 +386,8 @@ namespace slay
                         double SetX(double X);
                         double GetY();
                         double SetY(double Y);
+                        double GetAngle();
+                        double SetAngle(double Angle);
                         double GetLayer();
                         double SetLayer(double Layer);
                         double GetDepth();
@@ -372,6 +397,7 @@ namespace slay
                         uint64 Type;
                         double X;
                         double Y;
+                        double Angle;
                         double Layer;
                         double Depth;
                         actor(engine& Engine, uint64 Type);

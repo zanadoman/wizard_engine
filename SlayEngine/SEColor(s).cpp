@@ -90,8 +90,7 @@ namespace slay
 
     engine::actors::actor::colors::color::color(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
     {
-        this->OffsetX = 0;
-        this->OffsetY = 0;
+        this->OffsetLocked = false;
         this->Width = 0;
         this->Height = 0;
         this->ColorR = 255;
@@ -100,5 +99,43 @@ namespace slay
         this->ColorA = 255;
         this->Priority = 128;
         this->Visible = true;
+        this->OffsetX = 0;
+        this->OffsetY = 0;
+        this->OffsetLength = 0;
+        this->OffsetAngle = 0;
+    }
+
+    sint32 engine::actors::actor::colors::color::GetOffsetX()
+    {
+        return this->OffsetX;
+    }
+
+    sint32 engine::actors::actor::colors::color::SetOffsetX(sint32 OffsetX)
+    {
+        sint32 x, y;
+
+        x = this->Actor.X + OffsetX;
+        y = this->Actor.Y + this->OffsetY;
+        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
+        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+
+        return this->OffsetX = OffsetX;
+    }
+
+    sint32 engine::actors::actor::colors::color::GetOffsetY()
+    {
+        return this->OffsetY;
+    }
+
+    sint32 engine::actors::actor::colors::color::SetOffsetY(sint32 OffsetY)
+    {
+        sint32 x, y;
+
+        x = this->Actor.X + this->OffsetX;
+        y = this->Actor.Y + OffsetY;
+        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
+        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+
+        return this->OffsetY = OffsetY;
     }
 }
