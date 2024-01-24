@@ -27,6 +27,11 @@ _ZN4slay6engine4keysC2ERS0_:
 	.size	_ZN4slay6engine4keysC2ERS0_, .-_ZN4slay6engine4keysC2ERS0_
 	.globl	_ZN4slay6engine4keysC1ERS0_
 	.set	_ZN4slay6engine4keysC1ERS0_,_ZN4slay6engine4keysC2ERS0_
+	.section	.rodata
+	.align 8
+.LC0:
+	.string	"slay::engine.keys[]: Key does not exists\nParams: Key: %d\n"
+	.text
 	.align 2
 	.globl	_ZN4slay6engine4keysixENS_3keyE
 	.type	_ZN4slay6engine4keysixENS_3keyE, @function
@@ -38,15 +43,28 @@ _ZN4slay6engine4keysixENS_3keyE:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
+	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
 	movl	%esi, -12(%rbp)
+	movl	-12(%rbp), %eax
+	cmpl	$295, %eax
+	jle	.L3
+	movl	-12(%rbp), %eax
+	movl	%eax, %esi
+	leaq	.LC0(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L3:
 	movl	-12(%rbp), %eax
 	movq	-8(%rbp), %rdx
 	cltq
 	movzbl	16(%rdx,%rax), %eax
 	testb	%al, %al
 	setne	%al
-	popq	%rbp
+	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
@@ -80,39 +98,39 @@ _ZN4slay6engine4keys6UpdateEv:
 	movzbl	-9(%rbp), %eax
 	andl	$1, %eax
 	testl	%eax, %eax
-	je	.L5
+	je	.L6
 	movq	-24(%rbp), %rax
 	movb	$1, 307(%rax)
-	jmp	.L6
-.L5:
+	jmp	.L7
+.L6:
 	movq	-24(%rbp), %rax
 	movb	$0, 307(%rax)
-.L6:
+.L7:
 	movzbl	-9(%rbp), %eax
 	andl	$2, %eax
 	testl	%eax, %eax
-	je	.L7
+	je	.L8
 	movq	-24(%rbp), %rax
 	movb	$1, 308(%rax)
-	jmp	.L8
-.L7:
+	jmp	.L9
+.L8:
 	movq	-24(%rbp), %rax
 	movb	$0, 308(%rax)
-.L8:
+.L9:
 	movzbl	-9(%rbp), %eax
 	andl	$4, %eax
 	testl	%eax, %eax
-	je	.L9
+	je	.L10
 	movq	-24(%rbp), %rax
 	movb	$1, 309(%rax)
-	jmp	.L10
-.L9:
+	jmp	.L11
+.L10:
 	movq	-24(%rbp), %rax
 	movb	$0, 309(%rax)
-.L10:
+.L11:
 	movq	$0, -8(%rbp)
-	jmp	.L11
-.L15:
+	jmp	.L12
+.L16:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	640(%rax), %rdx
@@ -124,7 +142,7 @@ _ZN4slay6engine4keys6UpdateEv:
 	cmpl	$1027, %eax
 	sete	%al
 	testb	%al, %al
-	je	.L12
+	je	.L13
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	640(%rax), %rdx
@@ -135,13 +153,13 @@ _ZN4slay6engine4keys6UpdateEv:
 	movl	20(%rax), %eax
 	shrl	$31, %eax
 	testb	%al, %al
-	je	.L13
+	je	.L14
 	movq	-24(%rbp), %rax
 	movb	$1, 310(%rax)
 	movq	-24(%rbp), %rax
 	movb	$0, 311(%rax)
-	jmp	.L12
-.L13:
+	jmp	.L13
+.L14:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	640(%rax), %rdx
@@ -153,20 +171,20 @@ _ZN4slay6engine4keys6UpdateEv:
 	testl	%eax, %eax
 	setg	%al
 	testb	%al, %al
-	je	.L14
+	je	.L15
 	movq	-24(%rbp), %rax
 	movb	$0, 310(%rax)
 	movq	-24(%rbp), %rax
 	movb	$1, 311(%rax)
-	jmp	.L12
-.L14:
+	jmp	.L13
+.L15:
 	movq	-24(%rbp), %rax
 	movb	$0, 310(%rax)
 	movq	-24(%rbp), %rax
 	movb	$0, 311(%rax)
-.L12:
+.L13:
 	addq	$1, -8(%rbp)
-.L11:
+.L12:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	addq	$640, %rax
@@ -175,7 +193,7 @@ _ZN4slay6engine4keys6UpdateEv:
 	cmpq	%rax, -8(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L15
+	jne	.L16
 	movl	$0, %eax
 	leave
 	.cfi_def_cfa 7, 8
@@ -206,7 +224,7 @@ _ZN3neo5arrayI9SDL_EventE6LengthEv:
 	.size	_ZN3neo5arrayI9SDL_EventE6LengthEv, .-_ZN3neo5arrayI9SDL_EventE6LengthEv
 	.section	.rodata
 	.align 8
-.LC0:
+.LC1:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.section	.text._ZN3neo5arrayI9SDL_EventEixEy,"axG",@progbits,_ZN3neo5arrayI9SDL_EventEixEy,comdat
 	.align 2
@@ -226,16 +244,16 @@ _ZN3neo5arrayI9SDL_EventEixEy:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L20
+	jb	.L21
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
-	leaq	.LC0(%rip), %rax
+	leaq	.LC1(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L20:
+.L21:
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rcx
 	movq	-16(%rbp), %rdx
