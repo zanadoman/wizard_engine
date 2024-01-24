@@ -76,27 +76,27 @@ _ZN4slay6engine6vector5AngleEdddd:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	subq	$64, %rsp
-	movq	%rdi, -24(%rbp)
-	movsd	%xmm0, -32(%rbp)
-	movsd	%xmm1, -40(%rbp)
-	movsd	%xmm2, -48(%rbp)
-	movsd	%xmm3, -56(%rbp)
-	movsd	-48(%rbp), %xmm0
-	subsd	-32(%rbp), %xmm0
-	movsd	%xmm0, -64(%rbp)
-	movsd	-56(%rbp), %xmm2
-	movsd	-48(%rbp), %xmm1
-	movsd	-40(%rbp), %xmm0
-	movq	-32(%rbp), %rdx
-	movq	-24(%rbp), %rax
+	subq	$48, %rsp
+	movq	%rdi, -8(%rbp)
+	movsd	%xmm0, -16(%rbp)
+	movsd	%xmm1, -24(%rbp)
+	movsd	%xmm2, -32(%rbp)
+	movsd	%xmm3, -40(%rbp)
+	movsd	-32(%rbp), %xmm0
+	subsd	-16(%rbp), %xmm0
+	movsd	%xmm0, -48(%rbp)
+	movsd	-40(%rbp), %xmm2
+	movsd	-32(%rbp), %xmm1
+	movsd	-24(%rbp), %xmm0
+	movq	-16(%rbp), %rdx
+	movq	-8(%rbp), %rax
 	movapd	%xmm2, %xmm3
 	movapd	%xmm1, %xmm2
 	movapd	%xmm0, %xmm1
 	movq	%rdx, %xmm0
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6vector6LengthEdddd
-	movsd	-64(%rbp), %xmm4
+	movsd	-48(%rbp), %xmm4
 	divsd	%xmm0, %xmm4
 	movq	%xmm4, %rax
 	movq	%rax, %xmm0
@@ -105,15 +105,6 @@ _ZN4slay6engine6vector5AngleEdddd:
 	mulsd	%xmm1, %xmm0
 	movsd	.LC1(%rip), %xmm1
 	divsd	%xmm1, %xmm0
-	movsd	%xmm0, -8(%rbp)
-	movsd	-40(%rbp), %xmm0
-	comisd	-56(%rbp), %xmm0
-	jbe	.L5
-	movsd	.LC2(%rip), %xmm0
-	subsd	-8(%rbp), %xmm0
-	movsd	%xmm0, -8(%rbp)
-.L5:
-	movsd	-8(%rbp), %xmm0
 	movq	%xmm0, %rax
 	movq	%rax, %xmm0
 	leave
@@ -203,9 +194,5 @@ _ZN4slay6engine6vector9TerminalYEddd:
 .LC1:
 	.long	1413754136
 	.long	1074340347
-	.align 8
-.LC2:
-	.long	0
-	.long	1081507840
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

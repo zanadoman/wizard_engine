@@ -5,10 +5,6 @@
 
 #include "Includes/SDL.h"
 #include "Includes/SDL_image.h"
-#include "Includes/SDL_mouse.h"
-#include "Includes/SDL_rect.h"
-#include "Includes/SDL_render.h"
-#include "Includes/SDL_surface.h"
 #include "Includes/SDL_ttf.h"
 #include "Includes/SDL_mixer.h"
 
@@ -16,6 +12,8 @@
 
 #define EPSILON 0.0001
 #define PI 3.141592653589793
+#define ToDEG 57.2957795130823229
+#define ToRAD 0.174532925199433
 
 using namespace neo;
 
