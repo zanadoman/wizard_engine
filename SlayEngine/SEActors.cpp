@@ -72,6 +72,21 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::actors::Purge()
+    {
+        for (uint64 i = 1; i < this->Actors.Length(); i++)
+        {
+            delete this->Actors[i];
+            this->Actors[i] = NULL;
+        }
+        if (1 < this->Actors.Length())
+        {
+            this->Actors.Remove(1, this->Actors.Length() - 1);
+        }
+
+        return 0;
+    }
+
     engine::actors::actor& engine::actors::operator [] (uint64 ID)
     {
         if (ID == 0)

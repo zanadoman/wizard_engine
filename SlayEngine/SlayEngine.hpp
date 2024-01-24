@@ -412,6 +412,7 @@ namespace slay
                 public:
                     uint64 New(uint64 Type);
                     uint8 Delete(uint64 ID);
+                    uint8 Purge();
                     actor& operator [] (uint64 ID);
 
                 private:

@@ -1,6 +1,4 @@
-#include "Includes/NeoTypes++.hpp"
 #include "SlayEngine.hpp"
-#include <math.h>
 
 namespace slay
 {
