@@ -277,7 +277,7 @@ namespace slay
         uint64 i, j;
 
         this->OrderByLayer(0, this->RenderQueue.Length());
-        for (i = 1, j = 0; i < RenderQueue.Length(); i++)
+        for (i = 1, j = 0; i < this->RenderQueue.Length(); i++)
         {
             if (this->RenderQueue[i].Layer != this->RenderQueue[j].Layer)
             {
