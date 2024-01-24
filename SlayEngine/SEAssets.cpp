@@ -77,7 +77,7 @@ namespace slay
             this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
-        for (uint64 i = 1; i < this->Engine.Actors.Actors.Length(); i++)
+        for (i = 1; i < this->Engine.Actors.Actors.Length(); i++)
         {
             if (this->Engine.Actors.Actors[i] == NULL)
             {
@@ -276,7 +276,7 @@ namespace slay
             this->Fonts.Remove(i, this->Fonts.Length() - i);
         }
 
-        for (uint64 i = 1; i < this->Engine.Actors.Actors.Length(); i++)
+        for (i = 1; i < this->Engine.Actors.Actors.Length(); i++)
         {
             if (this->Engine.Actors.Actors[i] == NULL)
             {
