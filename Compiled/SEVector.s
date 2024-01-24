@@ -36,23 +36,29 @@ _ZN4slay6engine6vector6LengthEdddd:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	subq	$48, %rsp
-	movq	%rdi, -8(%rbp)
+	subq	$64, %rsp
+	movq	%rdi, -24(%rbp)
+	movsd	%xmm0, -32(%rbp)
+	movsd	%xmm1, -40(%rbp)
+	movsd	%xmm2, -48(%rbp)
+	movsd	%xmm3, -56(%rbp)
+	movsd	-48(%rbp), %xmm0
+	subsd	-32(%rbp), %xmm0
 	movsd	%xmm0, -16(%rbp)
-	movsd	%xmm1, -24(%rbp)
-	movsd	%xmm2, -32(%rbp)
-	movsd	%xmm3, -40(%rbp)
-	movsd	-32(%rbp), %xmm0
+	movsd	-56(%rbp), %xmm0
+	subsd	-40(%rbp), %xmm0
+	movsd	%xmm0, -8(%rbp)
+	movsd	-48(%rbp), %xmm0
 	movapd	%xmm0, %xmm1
-	subsd	-16(%rbp), %xmm1
-	movsd	-32(%rbp), %xmm0
-	subsd	-16(%rbp), %xmm0
+	subsd	-32(%rbp), %xmm1
+	movsd	-48(%rbp), %xmm0
+	subsd	-32(%rbp), %xmm0
 	mulsd	%xmm0, %xmm1
-	movsd	-40(%rbp), %xmm0
+	movsd	-56(%rbp), %xmm0
 	movapd	%xmm0, %xmm2
-	subsd	-24(%rbp), %xmm2
-	movsd	-40(%rbp), %xmm0
-	subsd	-24(%rbp), %xmm0
+	subsd	-40(%rbp), %xmm2
+	movsd	-56(%rbp), %xmm0
+	subsd	-40(%rbp), %xmm0
 	mulsd	%xmm2, %xmm0
 	addsd	%xmm0, %xmm1
 	movq	%xmm1, %rax
