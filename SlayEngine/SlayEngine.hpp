@@ -259,6 +259,7 @@ namespace slay
                             public:
                                 uint64 New();
                                 uint8 Delete(uint64);
+                                uint8 Purge(std::initializer_list<uint64> Keep);
                                 color& operator [] (uint64 ID);
 
                             private:
@@ -314,6 +315,7 @@ namespace slay
                             public:
                                 uint64 New();
                                 uint8 Delete(uint64 ID);
+                                uint8 Purge(std::initializer_list<uint64> Keep);
                                 texture& operator [] (uint64 ID);
 
                             private:
@@ -373,6 +375,7 @@ namespace slay
                             public:
                                 uint64 New();
                                 uint8 Delete(uint64 ID);
+                                uint8 Purge(std::initializer_list<uint64> Keep);
                                 text& operator [] (uint64 ID);
 
                             private:
@@ -447,15 +450,15 @@ namespace slay
                 engine& Engine;
 
                 public:
-                    uint64 LoadPNG(const char* Path);
-                    uint8 UnloadPNG(uint64 ID);
-                    uint8 PurgePNGs(std::initializer_list<uint64> Keep);
-                    uint64 LoadWAV(const char* Path);
-                    uint8 UnloadWAV(uint64 ID);
-                    uint8 PurgeWAVs(std::initializer_list<uint64> Keep);
-                    uint64 LoadTTF(const char* Path, uint8 Size);
-                    uint8 UnloadTTF(uint64 ID);
-                    uint8 PurgeTTFs(std::initializer_list<uint64> Keep);
+                    uint64 LoadTexture(const char* Path);
+                    uint8 UnloadTexture(uint64 ID);
+                    uint8 PurgeTextures(std::initializer_list<uint64> Keep);
+                    uint64 LoadSound(const char* Path);
+                    uint8 UnloadSound(uint64 ID);
+                    uint8 PurgeSounds(std::initializer_list<uint64> Keep);
+                    uint64 LoadFont(const char* Path, uint8 Size);
+                    uint8 UnloadFont(uint64 ID);
+                    uint8 PurgeFonts(std::initializer_list<uint64> Keep);
                     uint64 LoadCursor(const char* Path, uint16 HotSpotX, uint16 HotSpotY);
                     uint8 UnloadCursor(uint64 ID);
                     uint8 PurgeCursors(std::initializer_list<uint64> Keep);

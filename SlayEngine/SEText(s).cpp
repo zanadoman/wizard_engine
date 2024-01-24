@@ -73,6 +73,57 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::actors::actor::texts::Purge(std::initializer_list<uint64> Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep.size(); i++)
+        {
+            if (Keep.begin()[i] == 0)
+            {
+                continue;
+            }
+            if (this->Texts.Length() <= Keep.begin()[i] || this->Texts[Keep.begin()[i]] == NULL)
+            {
+                printf("slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Texts.Length(); i++)
+        {
+            for (j = 0; j < Keep.size(); j++)
+            {
+                if (i == Keep.begin()[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep.size())
+            {
+                delete this->Texts[i];
+                this->Texts[i] = NULL;
+            }
+        }
+
+        if (this->Texts[this->Texts.Length() - 1] == NULL && 1 < this->Texts.Length())
+        {
+            for (i = this->Texts.Length() - 1; 0 < i; i--)
+            {
+                if (this->Texts[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Texts.Remove(i, this->Texts.Length() - i);
+        }
+
+        return 0;
+    }
+
     engine::actors::actor::texts::text& engine::actors::actor::texts::operator [] (uint64 ID)
     {
         if (ID == 0)

@@ -77,7 +77,7 @@ main:
 	leaq	.LC0(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine6assets7LoadPNGEPKc@PLT
+	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
 	movq	%rax, -768(%rbp)
 	leaq	-720(%rbp), %rax
 	addq	$552, %rax
@@ -85,7 +85,7 @@ main:
 	leaq	.LC1(%rip), %rcx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine6assets7LoadTTFEPKch@PLT
+	call	_ZN4slay6engine6assets8LoadFontEPKch@PLT
 	movq	%rax, -760(%rbp)
 	movq	-792(%rbp), %rax
 	leaq	-720(%rbp), %rdx
@@ -274,7 +274,7 @@ main:
 	leaq	.LC5(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine6assets7LoadPNGEPKc@PLT
+	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
 	movq	%rax, -736(%rbp)
 	movq	-752(%rbp), %rax
 	leaq	-720(%rbp), %rdx

@@ -13,8 +13,8 @@ sint32 main(sint32 argc, char* *argv)
     Player = Engine.Actors.New(0);
     PlayerTexture = Engine.Actors[Player].Textures.New();
     PlayerText = Engine.Actors[Player].Texts.New();
-    Texture1 = Engine.Assets.LoadPNG("test.png");
-    Font = Engine.Assets.LoadTTF("crazy-pixel.ttf", 48);
+    Texture1 = Engine.Assets.LoadTexture("test.png");
+    Font = Engine.Assets.LoadFont("crazy-pixel.ttf", 48);
 
     Engine.Actors[Player].SetLayer(1);
     Engine.Actors[Player].SetDepth(0.025);
@@ -31,7 +31,7 @@ sint32 main(sint32 argc, char* *argv)
 
     Background = Engine.Actors.New(0);
     BackgroundTexture = Engine.Actors[Background].Textures.New();
-    Texture2 = Engine.Assets.LoadPNG("back.png");
+    Texture2 = Engine.Assets.LoadTexture("back.png");
 
     Engine.Actors[Background].SetLayer(1);
     Engine.Actors[Background].Textures[BackgroundTexture].SetTextureID(Texture2);

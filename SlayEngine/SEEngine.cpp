@@ -39,9 +39,9 @@ namespace slay
 
     engine::~engine()
     {
-        this->Assets.PurgePNGs({});
-        this->Assets.PurgeTTFs({});
-        this->Assets.PurgeWAVs({});
+        this->Assets.PurgeTextures({});
+        this->Assets.PurgeFonts({});
+        this->Assets.PurgeSounds({});
         this->Assets.PurgeCursors({});
 
         this->Window.Close();

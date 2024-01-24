@@ -72,6 +72,57 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::actors::actor::textures::Purge(std::initializer_list<uint64> Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep.size(); i++)
+        {
+            if (Keep.begin()[i] == 0)
+            {
+                continue;
+            }
+            if (this->Textures.Length() <= Keep.begin()[i] || this->Textures[Keep.begin()[i]] == NULL)
+            {
+                printf("slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Textures.Length(); i++)
+        {
+            for (j = 0; j < Keep.size(); j++)
+            {
+                if (i == Keep.begin()[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep.size())
+            {
+                delete this->Textures[i];
+                this->Textures[i] = NULL;
+            }
+        }
+
+        if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
+        {
+            for (i = this->Textures.Length() - 1; 0 < i; i--)
+            {
+                if (this->Textures[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Textures.Remove(i, this->Textures.Length() - i);
+        }
+
+        return 0;
+    }
+
     engine::actors::actor::textures::texture& engine::actors::actor::textures::operator [] (uint64 ID)
     {
         if (ID == 0)

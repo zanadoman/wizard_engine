@@ -72,6 +72,57 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::actors::actor::colors::Purge(std::initializer_list<uint64> Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep.size(); i++)
+        {
+            if (Keep.begin()[i] == 0)
+            {
+                continue;
+            }
+            if (this->Colors.Length() <= Keep.begin()[i] || this->Colors[Keep.begin()[i]] == NULL)
+            {
+                printf("slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Colors.Length(); i++)
+        {
+            for (j = 0; j < Keep.size(); j++)
+            {
+                if (i == Keep.begin()[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep.size())
+            {
+                delete this->Colors[i];
+                this->Colors[i] = NULL;
+            }
+        }
+
+        if (this->Colors[this->Colors.Length() - 1] == NULL && 1 < this->Colors.Length())
+        {
+            for (i = this->Colors.Length() - 1; 0 < i; i--)
+            {
+                if (this->Colors[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Colors.Remove(i, this->Colors.Length() - i);
+        }
+
+        return 0;
+    }
+
     engine::actors::actor::colors::color& engine::actors::actor::colors::operator [] (uint64 ID)
     {
         if (ID == 0)

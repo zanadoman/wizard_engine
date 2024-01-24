@@ -4,19 +4,19 @@ namespace slay
 {
     engine::assets::assets(engine& Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Sounds({(Mix_Chunk*)NULL}), Fonts({(TTF_Font*)NULL}), Cursors({(SDL_Cursor*)NULL}) {}
 
-    uint64 engine::assets::LoadPNG(const char* Path)
+    uint64 engine::assets::LoadTexture(const char* Path)
     {
         SDL_Surface* tmp;
 
         if (Path == NULL)
         {
-            printf("slay::engine.assets.LoadPNG(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("slay::engine.assets.LoadTexture(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
 
         if ((tmp = IMG_Load(Path)) == NULL)
         {
-            printf("slay::engine.assets.LoadPNG(): IMG_Load() failed\nParams: Path: %s\n", Path);
+            printf("slay::engine.assets.LoadTexture(): IMG_Load() failed\nParams: Path: %s\n", Path);
             exit(1);
         }
 
@@ -26,7 +26,7 @@ namespace slay
             {
                 if ((this->Textures[i] = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, tmp)) == NULL)
                 {
-                    printf("slay::engine.assets.LoadPNG(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
+                    printf("slay::engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
                     exit(1);
                 }
                 SDL_FreeSurface(tmp);
@@ -37,7 +37,7 @@ namespace slay
 
         if ((*(this->Textures += {SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, tmp)}))[this->Textures.Length() - 1] == NULL)
         {
-            printf("slay::engine.assets.LoadPNG(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
+            printf("slay::engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
             exit(1);
         }
         SDL_FreeSurface(tmp);
@@ -45,18 +45,18 @@ namespace slay
         return this->Textures.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadPNG(uint64 ID)
+    uint8 engine::assets::UnloadTexture(uint64 ID)
     {
         uint64 i;
 
         if (ID == 0)
         {
-            printf("slay::engine.assets.UnloadPNG(): Illegal deletion of NULL PNG\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadTexture(): Illegal deletion of NULL Texture\nParams: ID: %lld\n", ID);
             exit(1);
         }
         if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
         {
-            printf("slay::engine.assets.UnloadPNG(): PNG does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadTexture(): Texture does not exists\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -101,7 +101,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::assets::PurgePNGs(std::initializer_list<uint64> Keep)
+    uint8 engine::assets::PurgeTextures(std::initializer_list<uint64> Keep)
     {
         uint64 i, j;
 
@@ -113,7 +113,7 @@ namespace slay
             }
             if (this->Textures.Length() <= Keep.begin()[i] || this->Textures[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgePNGs(): PNG does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.assets.PurgeTextures(): Texture does not exists\nParams: Keep(length) %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -173,11 +173,11 @@ namespace slay
         return 0;
     }
 
-    uint64 engine::assets::LoadWAV(const char* Path)
+    uint64 engine::assets::LoadSound(const char* Path)
     {
         if (Path == NULL)
         {
-            printf("slay::engine.assets.LoadWAV(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("slay::engine.assets.LoadSound(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
 
@@ -187,7 +187,7 @@ namespace slay
             {
                 if ((this->Sounds[i] = Mix_LoadWAV(Path)) == NULL)
                 {
-                    printf("slay::engine.assets.LoadWAV(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
+                    printf("slay::engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
                     exit(1);
                 }
 
@@ -197,25 +197,25 @@ namespace slay
 
         if ((*(this->Sounds += {Mix_LoadWAV(Path)}))[this->Sounds.Length() - 1] == NULL)
         {
-            printf("slay::engine.assets.LoadWAV(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
+            printf("slay::engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
             exit(1);
         }
 
         return this->Sounds.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadWAV(uint64 ID)
+    uint8 engine::assets::UnloadSound(uint64 ID)
     {
         uint64 i;
 
         if (ID == 0)
         {
-            printf("slay::engine.assets.UnloadWAV(): Illegal deletion of NULL WAV\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadSound(): Illegal deletion of NULL Sound\nParams: ID: %lld\n", ID);
             exit(1);
         }
         if (this->Sounds.Length() <= ID || this->Sounds[ID] == NULL)
         {
-            printf("slay::engine.assets.UnloadWAV(): WAV does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadSound(): Sound does not exists\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -239,7 +239,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::assets::PurgeWAVs(std::initializer_list<uint64> Keep)
+    uint8 engine::assets::PurgeSounds(std::initializer_list<uint64> Keep)
     {
         uint64 i, j;
 
@@ -251,7 +251,7 @@ namespace slay
             }
             if (this->Sounds.Length() <= Keep.begin()[i] || this->Sounds[Keep.begin()[i]] == NULL)
             {
-                printf("slay::assets.PurgeWAVs(): WAV does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::assets.PurgeSounds(): Sound does not exists\nParams: Keep(length) %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -290,11 +290,11 @@ namespace slay
         return 0;
     }
 
-    uint64 engine::assets::LoadTTF(const char* Path, uint8 Size)
+    uint64 engine::assets::LoadFont(const char* Path, uint8 Size)
     {
         if (Path == NULL)
         {
-            printf("slay::engine.assets.LoadTTF(): Path must not be NULL\nParams: Path: %p\n", Path);
+            printf("slay::engine.assets.LoadFont(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
 
@@ -304,7 +304,7 @@ namespace slay
             {
                 if ((this->Fonts[i] = TTF_OpenFont(Path, Size)) == NULL)
                 {
-                    printf("slay::engine.assets.LoadTTF(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
+                    printf("slay::engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
                     exit(1);
                 }
 
@@ -314,25 +314,25 @@ namespace slay
 
         if ((*(this->Fonts += {TTF_OpenFont(Path, Size)}))[this->Fonts.Length() - 1] == NULL)
         {
-            printf("slay::engine.assets.LoadTTF(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
+            printf("slay::engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
             exit(1);
         }
 
         return this->Fonts.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadTTF(uint64 ID)
+    uint8 engine::assets::UnloadFont(uint64 ID)
     {
         uint64 i;
 
         if (ID == 0)
         {
-            printf("slay::engine.assets.UnloadTTF(): Illegal deletion of NULL TTF\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadFont(): Illegal deletion of NULL Font\nParams: ID: %lld\n", ID);
             exit(1);
         }
         if (this->Fonts.Length() <= ID || this->Fonts[ID] == NULL)
         {
-            printf("slay::engine.assets.UnloadTTF(): TTF does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadFont(): Font does not exists\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -377,7 +377,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::assets::PurgeTTFs(std::initializer_list<uint64> Keep)
+    uint8 engine::assets::PurgeFonts(std::initializer_list<uint64> Keep)
     {
         uint64 i, j;
 
@@ -389,7 +389,7 @@ namespace slay
             }
             if (this->Fonts.Length() <= Keep.begin()[i] || this->Fonts[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeTTFs(): TTF does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.assets.PurgeFonts(): Font does not exists\nParams: Keep(length) %ld\n", Keep.size());
                 exit(1);
             }
         }

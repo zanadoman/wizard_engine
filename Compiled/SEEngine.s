@@ -404,7 +404,7 @@ _ZN4slay6engineD2Ev:
 	movq	%rdx, %rsi
 	movq	%rax, %rdx
 	movq	%rcx, %rdi
-	call	_ZN4slay6engine6assets9PurgePNGsESt16initializer_listIyE@PLT
+	call	_ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE@PLT
 	movq	-56(%rbp), %rax
 	addq	$552, %rax
 	movq	$0, -80(%rbp)
@@ -416,7 +416,7 @@ _ZN4slay6engineD2Ev:
 	movq	%rdi, %rdx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine6assets9PurgeTTFsESt16initializer_listIyE@PLT
+	call	_ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE@PLT
 	movq	-56(%rbp), %rax
 	addq	$552, %rax
 	movl	$0, %r14d
@@ -428,7 +428,7 @@ _ZN4slay6engineD2Ev:
 	movq	%rdi, %rdx
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine6assets9PurgeWAVsESt16initializer_listIyE@PLT
+	call	_ZN4slay6engine6assets11PurgeSoundsESt16initializer_listIyE@PLT
 	movq	-56(%rbp), %rax
 	addq	$552, %rax
 	movl	$0, %r12d
