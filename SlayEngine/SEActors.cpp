@@ -72,16 +72,39 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::actors::Purge()
+    uint8 engine::actors::Purge(std::initializer_list<uint64> Keep)
     {
-        for (uint64 i = 1; i < this->Actors.Length(); i++)
+        uint64 i, j;
+
+        for (i = 1; i < this->Actors.Length(); i++)
         {
-            delete this->Actors[i];
-            this->Actors[i] = NULL;
+            for (j = 0; j < Keep.size(); j++)
+            {
+                if (i == Keep.begin()[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep.size())
+            {
+                delete this->Actors[i];
+                this->Actors[i] = NULL;
+            }
         }
-        if (1 < this->Actors.Length())
+
+        if (this->Actors[this->Actors.Length() - 1] == NULL)
         {
-            this->Actors.Remove(1, this->Actors.Length() - 1);
+            for (i = this->Actors.Length() - 1; 0 < i; i--)
+            {
+                if (this->Actors[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Actors.Remove(i, this->Actors.Length() - i);
         }
 
         return 0;

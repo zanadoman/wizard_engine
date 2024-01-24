@@ -2,6 +2,7 @@
 
 #include "Includes/NeoTypes++.hpp"
 #include <ctime>
+#include <initializer_list>
 
 #include "Includes/SDL.h"
 #include "Includes/SDL_image.h"
@@ -412,7 +413,7 @@ namespace slay
                 public:
                     uint64 New(uint64 Type);
                     uint8 Delete(uint64 ID);
-                    uint8 Purge();
+                    uint8 Purge(std::initializer_list<uint64> Keep);
                     actor& operator [] (uint64 ID);
 
                 private:
