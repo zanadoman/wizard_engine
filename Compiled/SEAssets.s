@@ -1316,7 +1316,7 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
 	movq	(%rax), %rax
-	movq	96(%rax), %rax
+	movq	88(%rax), %rax
 	cmpq	%rax, -64(%rbp)
 	sete	%al
 	testb	%al, %al
@@ -1335,7 +1335,7 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
 	movq	(%rax), %rax
-	movq	$0, 96(%rax)
+	movq	$0, 88(%rax)
 	jmp	.L97
 .L103:
 	nop

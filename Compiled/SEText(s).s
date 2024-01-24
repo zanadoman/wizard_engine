@@ -602,7 +602,7 @@ _ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_:
 	movq	-24(%rbp), %rdx
 	movq	%rdx, 8(%rax)
 	movq	-8(%rbp), %rax
-	addq	$64, %rax
+	addq	$40, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo6stringC1Ev@PLT
 	movq	-8(%rbp), %rax
@@ -631,23 +631,21 @@ _ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_:
 	movq	-8(%rbp), %rax
 	movb	$1, 39(%rax)
 	movq	-8(%rbp), %rax
-	movb	$1, 80(%rax)
+	movl	$0, 56(%rax)
 	movq	-8(%rbp), %rax
-	movw	$0, 82(%rax)
+	movl	$0, 60(%rax)
+	movq	-8(%rbp), %rax
+	pxor	%xmm0, %xmm0
+	movsd	%xmm0, 64(%rax)
+	movq	-8(%rbp), %rax
+	pxor	%xmm0, %xmm0
+	movsd	%xmm0, 72(%rax)
+	movq	-8(%rbp), %rax
+	movw	$0, 80(%rax)
 	movq	-8(%rbp), %rax
 	movq	$0, 88(%rax)
 	movq	-8(%rbp), %rax
 	movq	$0, 96(%rax)
-	movq	-8(%rbp), %rax
-	movl	$0, 40(%rax)
-	movq	-8(%rbp), %rax
-	movl	$0, 44(%rax)
-	movq	-8(%rbp), %rax
-	pxor	%xmm0, %xmm0
-	movsd	%xmm0, 48(%rax)
-	movq	-8(%rbp), %rax
-	pxor	%xmm0, %xmm0
-	movsd	%xmm0, 56(%rax)
 	nop
 	leave
 	.cfi_def_cfa 7, 8
@@ -670,7 +668,7 @@ _ZN4slay6engine6actors5actor5texts4text10GetOffsetXEv:
 	.cfi_def_cfa_register 6
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
-	movl	40(%rax), %eax
+	movl	56(%rax), %eax
 	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
@@ -703,7 +701,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
 	movq	8(%rax), %rax
 	movsd	128(%rax), %xmm1
 	movq	-24(%rbp), %rax
-	movl	44(%rax), %eax
+	movl	60(%rax), %eax
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%eax, %xmm0
 	addsd	%xmm1, %xmm0
@@ -730,7 +728,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
 	call	_ZN4slay6engine6vector6LengthEdddd@PLT
 	movq	%xmm0, %rax
 	movq	-24(%rbp), %rdx
-	movq	%rax, 48(%rdx)
+	movq	%rax, 64(%rdx)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	536(%rax), %rdx
@@ -752,12 +750,12 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
 	movq	%xmm0, %rax
 	movq	-24(%rbp), %rdx
-	movq	%rax, 56(%rdx)
+	movq	%rax, 72(%rdx)
 	movq	-24(%rbp), %rax
 	movl	-28(%rbp), %edx
-	movl	%edx, 40(%rax)
+	movl	%edx, 56(%rax)
 	movq	-24(%rbp), %rax
-	movl	40(%rax), %eax
+	movl	56(%rax), %eax
 	leave
 	.cfi_def_cfa 7, 8
 	ret
@@ -777,7 +775,7 @@ _ZN4slay6engine6actors5actor5texts4text10GetOffsetYEv:
 	.cfi_def_cfa_register 6
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
-	movl	44(%rax), %eax
+	movl	60(%rax), %eax
 	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
@@ -802,7 +800,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi:
 	movq	8(%rax), %rax
 	movsd	120(%rax), %xmm1
 	movq	-24(%rbp), %rax
-	movl	40(%rax), %eax
+	movl	56(%rax), %eax
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%eax, %xmm0
 	addsd	%xmm1, %xmm0
@@ -837,7 +835,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi:
 	call	_ZN4slay6engine6vector6LengthEdddd@PLT
 	movq	%xmm0, %rax
 	movq	-24(%rbp), %rdx
-	movq	%rax, 48(%rdx)
+	movq	%rax, 64(%rdx)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	536(%rax), %rdx
@@ -859,12 +857,12 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi:
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
 	movq	%xmm0, %rax
 	movq	-24(%rbp), %rdx
-	movq	%rax, 56(%rdx)
+	movq	%rax, 72(%rdx)
 	movq	-24(%rbp), %rax
 	movl	-28(%rbp), %edx
-	movl	%edx, 44(%rax)
+	movl	%edx, 60(%rax)
 	movq	-24(%rbp), %rax
-	movl	44(%rax), %eax
+	movl	60(%rax), %eax
 	leave
 	.cfi_def_cfa 7, 8
 	ret
@@ -887,11 +885,11 @@ _ZN4slay6engine6actors5actor5texts4textD2Ev:
 	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
-	movq	88(%rax), %rax
+	movq	96(%rax), %rax
 	movq	%rax, %rdi
 	call	SDL_DestroyTexture@PLT
 	movq	-8(%rbp), %rax
-	addq	$64, %rax
+	addq	$40, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo6stringD1Ev@PLT
 	nop
@@ -923,12 +921,17 @@ _ZN4slay6engine6actors5actor5texts4text6StringEv:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
+	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
-	movb	$1, 80(%rax)
+	movq	96(%rax), %rax
+	movq	%rax, %rdi
+	call	SDL_DestroyTexture@PLT
 	movq	-8(%rbp), %rax
-	addq	$64, %rax
-	popq	%rbp
+	movq	$0, 96(%rax)
+	movq	-8(%rbp), %rax
+	addq	$40, %rax
+	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
@@ -947,7 +950,7 @@ _ZN4slay6engine6actors5actor5texts4text7GetFontEv:
 	.cfi_def_cfa_register 6
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
-	movq	96(%rax), %rax
+	movq	88(%rax), %rax
 	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
@@ -977,9 +980,9 @@ _ZN4slay6engine6actors5actor5texts4text7SetFontEy:
 	jne	.L60
 	movq	-8(%rbp), %rax
 	movq	-16(%rbp), %rdx
-	movq	%rdx, 96(%rax)
+	movq	%rdx, 88(%rax)
 	movq	-8(%rbp), %rax
-	movq	96(%rax), %rax
+	movq	88(%rax), %rax
 	jmp	.L61
 .L60:
 	movq	-8(%rbp), %rax
@@ -1018,9 +1021,9 @@ _ZN4slay6engine6actors5actor5texts4text7SetFontEy:
 .L65:
 	movq	-8(%rbp), %rax
 	movq	-16(%rbp), %rdx
-	movq	%rdx, 96(%rax)
+	movq	%rdx, 88(%rax)
 	movq	-8(%rbp), %rax
-	movq	96(%rax), %rax
+	movq	88(%rax), %rax
 .L61:
 	leave
 	.cfi_def_cfa 7, 8

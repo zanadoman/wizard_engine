@@ -633,7 +633,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
 	movq	(%rax), %rax
-	movsd	56(%rax), %xmm0
+	movsd	72(%rax), %xmm0
 	addsd	-96(%rbp), %xmm0
 	movsd	%xmm0, -104(%rbp)
 	movq	-88(%rbp), %rax
@@ -643,7 +643,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
 	movq	(%rax), %rax
-	movsd	48(%rax), %xmm1
+	movsd	64(%rax), %xmm1
 	movq	-88(%rbp), %rax
 	movsd	128(%rax), %xmm0
 	movq	-88(%rbp), %rax
@@ -672,7 +672,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
 	movq	(%rax), %rax
-	movl	%ebx, 40(%rax)
+	movl	%ebx, 56(%rax)
 	movsd	-64(%rbp), %xmm0
 	movq	-88(%rbp), %rax
 	movsd	128(%rax), %xmm1
@@ -688,7 +688,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
 	movq	(%rax), %rax
-	movl	%ebx, 44(%rax)
+	movl	%ebx, 60(%rax)
 .L35:
 	movq	-88(%rbp), %rax
 	leaq	88(%rax), %rdx

@@ -188,13 +188,13 @@ namespace slay
                     continue;
                 }
 
-                if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->TextChanged)
+                if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->Texture == NULL)
                 {
-                    SDL_DestroyTexture(this->Engine.Actors.Actors[i]->Texts.Texts[i]->Texture);
                     color.r = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorR;
                     color.g = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorG;
                     color.b = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorB;
                     color.a = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA;
+
                     if ((surface = TTF_RenderText_Blended(this->Engine.Assets.Fonts[this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID], this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text(), color)) == NULL)
                     {
                         printf("slay::engine.render.SelectionStage(): TTF_RenderText_Blended failed\n");
@@ -203,9 +203,10 @@ namespace slay
                     if ((this->Engine.Actors.Actors[i]->Texts.Texts[j]->Texture = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, surface)) == NULL)
                     {
                         printf("slay::engine.render.SelectionStage(): SDL_CreateTextureFromSurface failed\n");
+                        exit(1);
                     }
+
                     this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width = surface->w * this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height / surface->h;
-                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->TextChanged = false;
                     SDL_FreeSurface(surface);
                 }
                 
@@ -439,12 +440,12 @@ namespace slay
         if (SDL_SetRenderDrawColor(this->Engine.Window.Renderer, 0, 0, 0, 255) != 0)
         {
             printf("slay::engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed\n");
-            return 1;
+            exit(1);
         }
         if (SDL_RenderClear(this->Engine.Window.Renderer) != 0)
         {
             printf("slay::engine.render.OpenFrame(): SDL_RenderClear() failed\n");
-            return 1;
+            exit(1);
         }
 
         layered = 0;
@@ -541,6 +542,7 @@ namespace slay
         if (SDL_RenderCopyEx(this->Engine.Window.Renderer, this->Engine.Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], NULL, &Token.Area, -((engine::actors::actor::textures::texture*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderTexture(): SDL_RenderCopyEx failed\n");
+            exit(1);
         }
 
         return 0;

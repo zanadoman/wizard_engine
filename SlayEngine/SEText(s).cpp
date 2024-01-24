@@ -1,5 +1,4 @@
 #include "Includes/SDL_render.h"
-#include "Includes/SDL_surface.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -104,14 +103,13 @@ namespace slay
         this->ColorA = 255;
         this->Priority = 128;
         this->Visible = true;
-        this->TextChanged = true;
-        this->Width = 0;
-        this->Texture = NULL;
-        this->FontID = 0;
         this->OffsetX = 0;
         this->OffsetY = 0;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
+        this->Width = 0;
+        this->FontID = 0;
+        this->Texture = NULL;
     }
 
     sint32 engine::actors::actor::texts::text::GetOffsetX()
@@ -153,11 +151,12 @@ namespace slay
         SDL_DestroyTexture(this->Texture);
     }
 
-    string& engine::actors::actor::texts::text::String()
+    string* engine::actors::actor::texts::text::String()
     {
-        this->TextChanged = true;
+        SDL_DestroyTexture(this->Texture);
+        this->Texture = NULL;
 
-        return this->Text;
+        return &this->Text;
     }
 
     uint64 engine::actors::actor::texts::text::GetFont()

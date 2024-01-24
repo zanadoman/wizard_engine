@@ -22,7 +22,7 @@ sint32 main(sint32 argc, char* *argv)
     Engine.Actors[Player].Textures[PlayerTexture].Width = 100;
     Engine.Actors[Player].Textures[PlayerTexture].Height = 100;
     Engine.Actors[Player].Textures[PlayerTexture].AngleLocked = true;
-    Engine.Actors[Player].Texts[PlayerText].String() = {"Player"};
+    *Engine.Actors[Player].Texts[PlayerText].String() = {"Player"};
     Engine.Actors[Player].Texts[PlayerText].SetFont(Font);
     Engine.Actors[Player].Texts[PlayerText].Height = 50;
     Engine.Actors[Player].Texts[PlayerText].SetOffsetY(50);

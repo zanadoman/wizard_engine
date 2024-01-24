@@ -350,20 +350,19 @@ namespace slay
                                     sint32 SetOffsetX(sint32 OffsetX);
                                     sint32 GetOffsetY();
                                     sint32 SetOffsetY(sint32 OffsetY);
-                                    string& String();
+                                    string* String();
                                     uint64 GetFont();
                                     uint64 SetFont(uint64 ID);
 
                                 private:
+                                    string Text;
                                     sint32 OffsetX;
                                     sint32 OffsetY;
                                     double OffsetLength;
                                     double OffsetAngle;
-                                    string Text;
-                                    bool TextChanged;
                                     uint16 Width;
-                                    SDL_Texture* Texture;
                                     uint64 FontID;
+                                    SDL_Texture* Texture;
                                     text(engine& Engine, actor& Actor);
                                     ~text();
                             };
