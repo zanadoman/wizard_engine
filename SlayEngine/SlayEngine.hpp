@@ -48,8 +48,8 @@ namespace slay
                     uint16 Width;
                     uint16 Height;
                     window(engine& Engine);
-                    uint8 destructor();
-                    uint8 New(const char* Title, uint16 Width, uint16 Height);
+                    uint8 Open(const char* Title, uint16 Width, uint16 Height);
+                    uint8 Close();
             } Window;
 
             //__________Render_________________________________________________________________________________________
@@ -447,17 +447,19 @@ namespace slay
                 public:
                     uint64 LoadPNG(const char* Path);
                     uint8 UnloadPNG(uint64 ID);
+                    uint8 PurgePNGs();
                     uint64 LoadWAV(const char* Path);
                     uint8 UnloadWAV(uint64 ID);
+                    uint8 PurgeWAVs();
                     uint64 LoadTTF(const char* Path, uint8 Size);
                     uint8 UnloadTTF(uint64 ID);
+                    uint8 PurgeTTFs();
 
                 private:
                     array<SDL_Texture*> Textures;
                     array<Mix_Chunk*> Sounds;
                     array<TTF_Font*> Fonts;
                     assets(engine& Engine);
-                    uint8 destructor();
             } Assets;
 
             //__________Timing_________________________________________________________________________________________

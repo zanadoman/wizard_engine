@@ -4,24 +4,6 @@ namespace slay
 {
     engine::assets::assets(engine& Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Sounds({(Mix_Chunk*)NULL}), Fonts({(TTF_Font*)NULL}) {}
 
-    uint8 engine::assets::destructor()
-    {
-        for (uint64 i = 1; i < this->Textures.Length(); i++)
-        {
-            SDL_DestroyTexture(this->Textures[i]);
-        }
-        for (uint64 i = 1; i < this->Sounds.Length(); i++)
-        {
-            Mix_FreeChunk(this->Sounds[i]);
-        }
-        for (uint64 i = 1; i < this->Fonts.Length(); i++)
-        {
-            TTF_CloseFont(this->Fonts[i]);
-        }
-
-        return 0;
-    }
-
     uint64 engine::assets::LoadPNG(const char* Path)
     {
         SDL_Surface* tmp;
@@ -119,6 +101,20 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::assets::PurgePNGs()
+    {
+        for (uint64 i = 1; i < this->Textures.Length(); i++)
+        {
+            SDL_DestroyTexture(this->Textures[i]);
+        }
+        if (0 < this->Textures.Length() - 1)
+        {
+            this->Textures.Remove(1, this->Textures.Length() - 1);
+        }
+
+        return 0;
+    }
+
     uint64 engine::assets::LoadWAV(const char* Path)
     {
         if (Path == NULL)
@@ -180,6 +176,20 @@ namespace slay
 
             i++;
             this->Sounds.Remove(i, this->Sounds.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::assets::PurgeWAVs()
+    {
+        for (uint64 i = 1; i < this->Sounds.Length(); i++)
+        {
+            Mix_FreeChunk(this->Sounds[i]);
+        }
+        if (0 < this->Sounds.Length() - 1)
+        {
+            this->Sounds.Remove(1, this->Sounds.Length() - 1);
         }
 
         return 0;
@@ -267,6 +277,20 @@ namespace slay
                     this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
                 }
             }
+        }
+
+        return 0;
+    }
+
+    uint8 engine::assets::PurgeTTFs()
+    {
+        for (uint64 i = 1; i < this->Fonts.Length(); i++)
+        {
+            TTF_CloseFont(this->Fonts[i]);
+        }
+        if (0 < this->Fonts.Length() - 1)
+        {
+            this->Fonts.Remove(1, this->Fonts.Length() - 1);
         }
 
         return 0;

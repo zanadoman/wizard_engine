@@ -10,14 +10,6 @@ namespace slay
         this->Height = 0;
     }
 
-    uint8 engine::window::destructor()
-    {
-        SDL_DestroyRenderer(this->Renderer);
-        SDL_DestroyWindow(this->Window);
-
-        return 0;
-    }
-
     uint16 engine::window::GetHeight()
     {
         return this->Height;
@@ -28,7 +20,7 @@ namespace slay
         return this->Width;
     }
 
-    uint8 engine::window::New(const char* Title, uint16 Width, uint16 Height)
+    uint8 engine::window::Open(const char* Title, uint16 Width, uint16 Height)
     {
         if ((this->Window = SDL_CreateWindow(Title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Width, Height, SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_RESIZABLE | SDL_WINDOW_INPUT_GRABBED)) == NULL)
         {
@@ -53,6 +45,14 @@ namespace slay
 
         this->Width = Width;
         this->Height = Height;
+
+        return 0;
+    }
+
+    uint8 engine::window::Close()
+    {
+        SDL_DestroyRenderer(this->Renderer);
+        SDL_DestroyWindow(this->Window);
 
         return 0;
     }

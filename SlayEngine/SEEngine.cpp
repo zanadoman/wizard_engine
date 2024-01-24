@@ -27,7 +27,7 @@ namespace slay
         }
 
         srand(time(NULL));
-        this->Window.New(Title, Width, Height);
+        this->Window.Open(Title, Width, Height);
         this->Render.RenderWidth = Width - 1;
         this->Render.RenderHeight = Height - 1;
         this->Camera.OffsetX = -(this->Window.Width >> 1);
@@ -40,8 +40,11 @@ namespace slay
 
     engine::~engine()
     {
-        this->Assets.destructor();
-        this->Window.destructor();
+        this->Assets.PurgePNGs();
+        this->Assets.PurgeTTFs();
+        this->Assets.PurgeWAVs();
+
+        this->Window.Close();
 
         TTF_Quit();
         SDL_CloseAudio();
