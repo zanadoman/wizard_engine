@@ -92,9 +92,9 @@ namespace slay
                     uint8 Update();
                     uint8 SelectionStage();
                     uint8 OrderingStage();
-                    uint8 OrderByLayer(uint64 Index, uint64 Length);
+                    uint8 OrderByLayer(uint64 From, uint64 Until);
                     uint8 OrderByLayerMerge(uint64 Left, uint64 Mid, uint64 Right);
-                    uint8 OrderByPriority(uint64 Index, uint64 Length);
+                    uint8 OrderByPriority(uint64 From, uint64 Until);
                     uint8 OrderByPriorityMerge(uint64 Left, uint64 Mid, uint64 Right);
                     uint8 RenderingStage();
                     uint8 RenderColor(token Token);

@@ -97,6 +97,11 @@ namespace slay
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
 
+                        if (buffer && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
+                        {
+                            continue;
+                        }
+
                         if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                         {
                             if (buffer == this->RenderQueue.Length())
@@ -151,6 +156,11 @@ namespace slay
                     for (; layer < cache; layer += this->SamplingStep)
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetY, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, layer);
+
+                        if (buffer && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
+                        {
+                            continue;
+                        }
 
                         if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                         {
@@ -228,6 +238,11 @@ namespace slay
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
 
+                        if (buffer && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
+                        {
+                            continue;
+                        }
+
                         if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                         {
                             if (buffer == this->RenderQueue.Length())
@@ -271,15 +286,15 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::OrderByLayer(uint64 Index, uint64 Length)
+    uint8 engine::render::OrderByLayer(uint64 From, uint64 Until)
     {
         uint64 size, left, middle, right, cache;
 
-        cache = Length - 1;
+        cache = Until - 1;
 
-        for (size = 1; size < Length; size *= 2)
+        for (size = 1; size < Until; size *= 2)
         {
-            for (left = Index; left < cache; left += size * 2)
+            for (left = From; left < cache; left += size * 2)
             {
                 if (cache < (middle = left + size - 1))
                 {
@@ -299,8 +314,7 @@ namespace slay
 
     uint8 engine::render::OrderByLayerMerge(uint64 Left, uint64 Middle, uint64 Right)
     {
-        uint64 i, j, k;
-        uint64 n1, n2;
+        uint64 i, j, k, n1, n2;
         token left[(n1 = Middle - Left + 1)];
         token right[(n2 = Right - Middle)];
 
@@ -343,15 +357,15 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::OrderByPriority(uint64 Index, uint64 Length)
+    uint8 engine::render::OrderByPriority(uint64 From, uint64 Until)
     {
         uint64 size, left, middle, right, cache;
 
-        cache = Length - 1;
+        cache = Until - 1;
 
-        for (size = 1; size < Length; size *= 2)
+        for (size = 1; size < Until; size *= 2)
         {
-            for (left = Index; left < cache; left += size * 2)
+            for (left = From; left < cache; left += size * 2)
             {
                 if (cache < (middle = left + size - 1))
                 {
