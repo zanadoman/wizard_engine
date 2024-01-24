@@ -92,8 +92,6 @@ namespace slay
 
     uint64 engine::mouse::SetCursor(uint64 ID)
     {
-        SDL_Surface* surface;
-
         if (ID == 0)
         {
             printf("slay::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: ID: %lld\n", ID);
