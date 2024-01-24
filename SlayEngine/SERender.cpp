@@ -97,8 +97,9 @@ namespace slay
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
 
-                        if (buffer && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
+                        if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
                         {
+                            this->RenderQueue[buffer - 1].Layer = layer;
                             continue;
                         }
 
@@ -157,8 +158,9 @@ namespace slay
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetY, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, layer);
 
-                        if (buffer && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
+                        if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Textures.Textures[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
                         {
+                            this->RenderQueue[buffer - 1].Layer = layer;
                             continue;
                         }
 
@@ -238,8 +240,9 @@ namespace slay
                     {
                         area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
 
-                        if (buffer && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
+                        if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
                         {
+                            this->RenderQueue[buffer - 1].Layer = layer;
                             continue;
                         }
 
