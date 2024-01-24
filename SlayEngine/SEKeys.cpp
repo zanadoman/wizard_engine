@@ -9,6 +9,12 @@ namespace slay
 
     bool engine::keys::operator [] (key Key)
     {
+        if (KEY_COUNT <= Key)
+        {
+            printf("slay::engine.keys[]: Key does not exists\nParams: Key: %d\n", Key);
+            exit(1);
+        }
+
         return this->KeyStates[Key];
     }
 
