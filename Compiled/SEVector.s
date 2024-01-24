@@ -186,7 +186,7 @@ _ZN4slay6engine6vector9TerminalYEddd:
 	.long	1078765020
 	.align 8
 .LC1:
-	.long	1256670345
-	.long	1069963032
+	.long	-1571644103
+	.long	1066524486
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits
