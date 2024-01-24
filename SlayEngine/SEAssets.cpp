@@ -1,3 +1,4 @@
+#include "Includes/SDL_mixer.h"
 #include "Includes/SDL_mouse.h"
 #include "Includes/SDL_render.h"
 #include "SlayEngine.hpp"
@@ -230,13 +231,37 @@ namespace slay
 
     uint8 engine::assets::PurgeWAVs(std::initializer_list<uint64> Keep)
     {
-        for (uint64 i = 1; i < this->Sounds.Length(); i++)
+        uint64 i, j;
+
+        for (i = 1; i < this->Sounds.Length(); i++)
         {
-            Mix_FreeChunk(this->Sounds[i]);
+            for (j = 0; j < Keep.size(); j++)
+            {
+                if (i == Keep.begin()[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep.size())
+            {
+                Mix_FreeChunk(this->Sounds[i]);
+                this->Sounds[i] = NULL;
+            }
         }
-        if (1 < this->Sounds.Length())
+
+        if (this->Sounds[this->Sounds.Length() - 1] == NULL)
         {
-            this->Sounds.Remove(1, this->Sounds.Length() - 1);
+            for (i = this->Sounds.Length() - 1; 0 < i; i--)
+            {
+                if (this->Sounds[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Sounds.Remove(i, this->Sounds.Length() - i);
         }
 
         return 0;
