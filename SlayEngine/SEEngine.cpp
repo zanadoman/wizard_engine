@@ -1,4 +1,3 @@
-#include "Includes/SDL_timer.h"
 #include "SlayEngine.hpp"
 
 namespace slay
