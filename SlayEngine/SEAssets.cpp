@@ -108,6 +108,19 @@ namespace slay
     {
         uint64 i, j;
 
+        for (i = 0; i < Keep.size(); i++)
+        {
+            if (Keep.begin()[i] == 0)
+            {
+                continue;
+            }
+            if (this->Textures.Length() <= Keep.begin()[i] || this->Textures[Keep.begin()[i]] == NULL)
+            {
+                printf("slay::engine.assets.PurgePNGs(): PNG does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                exit(1);
+            }
+        }
+
         for (i = 1; i < this->Textures.Length(); i++)
         {
             for (j = 0; j < Keep.size(); j++)
@@ -233,6 +246,19 @@ namespace slay
     {
         uint64 i, j;
 
+        for (i = 0; i < Keep.size(); i++)
+        {
+            if (Keep.begin()[i] == 0)
+            {
+                continue;
+            }
+            if (this->Sounds.Length() <= Keep.begin()[i] || this->Sounds[Keep.begin()[i]] == NULL)
+            {
+                printf("slay::assets.PurgeWAVs(): WAV does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                exit(1);
+            }
+        }
+
         for (i = 1; i < this->Sounds.Length(); i++)
         {
             for (j = 0; j < Keep.size(); j++)
@@ -357,6 +383,19 @@ namespace slay
     uint8 engine::assets::PurgeTTFs(std::initializer_list<uint64> Keep)
     {
         uint64 i, j;
+
+        for (i = 0; i < Keep.size(); i++)
+        {
+            if (Keep.begin()[i] == 0)
+            {
+                continue;
+            }
+            if (this->Fonts.Length() <= Keep.begin()[i] || this->Fonts[Keep.begin()[i]] == NULL)
+            {
+                printf("slay::engine.assets.PurgeTTFs(): TTF does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                exit(1);
+            }
+        }
 
         for (i = 1; i < this->Fonts.Length(); i++)
         {
@@ -507,9 +546,22 @@ namespace slay
 
     uint8 engine::assets::PurgeCursors(std::initializer_list<uint64> Keep)
     {
-        this->Engine.Mouse.Cursor = 0;
-
         uint64 i, j;
+
+        for (i = 0; i < Keep.size(); i++)
+        {
+            if (Keep.begin()[i] == 0)
+            {
+                continue;
+            }
+            if (this->Cursors.Length() <= Keep.begin()[i] || this->Cursors[Keep.begin()[i]] == NULL)
+            {
+                printf("slay::engine.assets.PurgeCursors(): Cursor does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                exit(1);
+            }
+        }
+
+        this->Engine.Mouse.Cursor = 0;
 
         for (i = 1; i < this->Cursors.Length(); i++)
         {
