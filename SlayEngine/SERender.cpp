@@ -46,7 +46,7 @@ namespace slay
     uint8 engine::render::SelectionStage()
     {
         uint64 buffer;
-        double layer, cache;
+        double x, y, layer, depth;
         SDL_Rect area;
         SDL_Color color;
         SDL_Surface* surface;
@@ -66,18 +66,21 @@ namespace slay
                     continue;
                 }
 
+                x = this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX;
+                y = this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY;
+
                 if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
                 {
                     layer = EPSILON;
                 }
-                if ((cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                if ((depth = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
                 {
-                    cache += EPSILON;
+                    depth += EPSILON;
                 }
 
-                for (; layer < cache; layer += this->SamplingStep)
+                for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
+                    area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
 
                     if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
                     {
@@ -108,18 +111,21 @@ namespace slay
                     continue;
                 }
 
+                x = this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetX;
+                y = this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetY;
+
                 if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
                 {
                     layer = EPSILON;
                 }
-                if ((cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                if ((depth = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
                 {
-                    cache += EPSILON;
+                    depth += EPSILON;
                 }
 
-                for (; layer < cache; layer += this->SamplingStep)
+                for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetY, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, layer);
+                    area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, layer);
 
                     if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Textures.Textures[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
                     {
@@ -171,19 +177,22 @@ namespace slay
                     this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width = surface->w * this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height / surface->h;
                     SDL_FreeSurface(surface);
                 }
+
+                x = this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX;
+                y = this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY;
                 
                 if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
                 {
                     layer = EPSILON;
                 }
-                if ((cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                if ((depth = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
                 {
-                    cache += EPSILON;
+                    depth += EPSILON;
                 }
 
-                for (; layer < cache; layer += this->SamplingStep)
+                for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
+                    area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
 
                     if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
                     {
