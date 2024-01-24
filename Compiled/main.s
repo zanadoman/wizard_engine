@@ -340,7 +340,7 @@ main:
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movb	$0, 38(%rax)
 	jmp	.L2
-.L15:
+.L19:
 	leaq	-720(%rbp), %rax
 	addq	$152, %rax
 	movl	$80, %esi
@@ -436,9 +436,9 @@ main:
 .L8:
 	movsd	.LC6(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
-	movq	%rbx, %xmm2
-	subsd	%xmm0, %xmm2
-	movq	%xmm2, %rax
+	movq	%rbx, %xmm3
+	subsd	%xmm0, %xmm3
+	movq	%xmm3, %rax
 	movq	%rax, %xmm0
 	movq	%r12, %rdi
 	call	_ZN4slay6engine6actors5actor8SetAngleEd@PLT
@@ -450,6 +450,13 @@ main:
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	je	.L9
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rbx
 	movq	-792(%rbp), %rax
 	leaq	-720(%rbp), %rdx
 	addq	$520, %rdx
@@ -482,24 +489,34 @@ main:
 .L11:
 	movsd	.LC8(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
-	movq	%xmm0, %rax
-	movq	-792(%rbp), %rdx
-	leaq	-720(%rbp), %rcx
-	addq	$544, %rcx
-	movq	%rdx, %rsi
-	movsd	-824(%rbp), %xmm1
-	movq	%rax, %xmm0
-	movq	%rcx, %rdi
-	call	_ZN4slay6engine6vector5ApplyEddy@PLT
-	jmp	.L12
-.L9:
-	leaq	-720(%rbp), %rax
-	addq	$152, %rax
-	movl	$81, %esi
+	movsd	%xmm0, -832(%rbp)
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
-	call	_ZN4slay6engine4keysixENS_3keyE@PLT
-	testb	%al, %al
-	je	.L12
+	call	_ZN4slay6engine6actors5actor4GetXEv@PLT
+	movq	%xmm0, %rax
+	leaq	-720(%rbp), %rdx
+	addq	$544, %rdx
+	movsd	-824(%rbp), %xmm2
+	movsd	-832(%rbp), %xmm1
+	movq	%rax, %xmm0
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
+	movq	%xmm0, %rax
+	movq	%rax, %xmm0
+	movq	%rbx, %rdi
+	call	_ZN4slay6engine6actors5actor4SetXEd@PLT
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rbx
 	movq	-792(%rbp), %rax
 	leaq	-720(%rbp), %rdx
 	addq	$520, %rdx
@@ -517,11 +534,11 @@ main:
 	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
 	testq	%rax, %rax
-	js	.L13
+	js	.L12
 	pxor	%xmm0, %xmm0
 	cvtsi2sdq	%rax, %xmm0
-	jmp	.L14
-.L13:
+	jmp	.L13
+.L12:
 	movq	%rax, %rdx
 	shrq	%rdx
 	andl	$1, %eax
@@ -529,19 +546,160 @@ main:
 	pxor	%xmm0, %xmm0
 	cvtsi2sdq	%rdx, %xmm0
 	addsd	%xmm0, %xmm0
-.L14:
+.L13:
+	movsd	.LC8(%rip), %xmm1
+	mulsd	%xmm1, %xmm0
+	movsd	%xmm0, -832(%rbp)
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor4GetYEv@PLT
+	movq	%xmm0, %rax
+	leaq	-720(%rbp), %rdx
+	addq	$544, %rdx
+	movsd	-824(%rbp), %xmm2
+	movsd	-832(%rbp), %xmm1
+	movq	%rax, %xmm0
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
+	movq	%xmm0, %rax
+	movq	%rax, %xmm0
+	movq	%rbx, %rdi
+	call	_ZN4slay6engine6actors5actor4SetYEd@PLT
+	jmp	.L14
+.L9:
+	leaq	-720(%rbp), %rax
+	addq	$152, %rax
+	movl	$81, %esi
+	movq	%rax, %rdi
+	call	_ZN4slay6engine4keysixENS_3keyE@PLT
+	testb	%al, %al
+	je	.L14
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rbx
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
+	movsd	.LC7(%rip), %xmm1
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, -824(%rbp)
+	leaq	-720(%rbp), %rax
+	addq	$624, %rax
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
+	movl	%eax, %eax
+	testq	%rax, %rax
+	js	.L15
+	pxor	%xmm0, %xmm0
+	cvtsi2sdq	%rax, %xmm0
+	jmp	.L16
+.L15:
+	movq	%rax, %rdx
+	shrq	%rdx
+	andl	$1, %eax
+	orq	%rax, %rdx
+	pxor	%xmm0, %xmm0
+	cvtsi2sdq	%rdx, %xmm0
+	addsd	%xmm0, %xmm0
+.L16:
 	movsd	.LC9(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
+	movsd	%xmm0, -832(%rbp)
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor4GetXEv@PLT
 	movq	%xmm0, %rax
-	movq	-792(%rbp), %rdx
-	leaq	-720(%rbp), %rcx
-	addq	$544, %rcx
-	movq	%rdx, %rsi
-	movsd	-824(%rbp), %xmm1
+	leaq	-720(%rbp), %rdx
+	addq	$544, %rdx
+	movsd	-824(%rbp), %xmm2
+	movsd	-832(%rbp), %xmm1
 	movq	%rax, %xmm0
-	movq	%rcx, %rdi
-	call	_ZN4slay6engine6vector5ApplyEddy@PLT
-.L12:
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
+	movq	%xmm0, %rax
+	movq	%rax, %xmm0
+	movq	%rbx, %rdi
+	call	_ZN4slay6engine6actors5actor4SetXEd@PLT
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rbx
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
+	movsd	.LC7(%rip), %xmm1
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, -824(%rbp)
+	leaq	-720(%rbp), %rax
+	addq	$624, %rax
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
+	movl	%eax, %eax
+	testq	%rax, %rax
+	js	.L17
+	pxor	%xmm0, %xmm0
+	cvtsi2sdq	%rax, %xmm0
+	jmp	.L18
+.L17:
+	movq	%rax, %rdx
+	shrq	%rdx
+	andl	$1, %eax
+	orq	%rax, %rdx
+	pxor	%xmm0, %xmm0
+	cvtsi2sdq	%rdx, %xmm0
+	addsd	%xmm0, %xmm0
+.L18:
+	movsd	.LC9(%rip), %xmm1
+	mulsd	%xmm1, %xmm0
+	movsd	%xmm0, -832(%rbp)
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor4GetYEv@PLT
+	movq	%xmm0, %rax
+	leaq	-720(%rbp), %rdx
+	addq	$544, %rdx
+	movsd	-824(%rbp), %xmm2
+	movsd	-832(%rbp), %xmm1
+	movq	%rax, %xmm0
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
+	movq	%xmm0, %rax
+	movq	%rax, %xmm0
+	movq	%rbx, %rdi
+	call	_ZN4slay6engine6actors5actor4SetYEd@PLT
+.L14:
 	leaq	-720(%rbp), %rax
 	addq	$624, %rax
 	movq	%rax, %rdi
@@ -575,7 +733,7 @@ main:
 	call	_ZN4slay6engine6UpdateEv@PLT
 .LEHE1:
 	testb	%al, %al
-	jne	.L15
+	jne	.L19
 	movl	$0, %ebx
 	leaq	-720(%rbp), %rax
 	movq	%rax, %rdi
@@ -583,9 +741,9 @@ main:
 	movl	%ebx, %eax
 	movq	-40(%rbp), %rdx
 	subq	%fs:40, %rdx
-	je	.L19
-	jmp	.L21
-.L20:
+	je	.L23
+	jmp	.L25
+.L24:
 	movq	%rax, %rbx
 	leaq	-720(%rbp), %rax
 	movq	%rax, %rdi
@@ -593,16 +751,16 @@ main:
 	movq	%rbx, %rax
 	movq	-40(%rbp), %rdx
 	subq	%fs:40, %rdx
-	je	.L18
+	je	.L22
 	call	__stack_chk_fail@PLT
-.L18:
+.L22:
 	movq	%rax, %rdi
 .LEHB2:
 	call	_Unwind_Resume@PLT
 .LEHE2:
-.L21:
+.L25:
 	call	__stack_chk_fail@PLT
-.L19:
+.L23:
 	addq	$808, %rsp
 	popq	%rbx
 	popq	%r12
@@ -626,7 +784,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB2196
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L20-.LFB2196
+	.uleb128 .L24-.LFB2196
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB2196
 	.uleb128 .LEHE2-.LEHB2

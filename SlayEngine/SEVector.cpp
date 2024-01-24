@@ -22,59 +22,13 @@ namespace slay
         return result;
     }
 
-    uint8 engine::vector::Apply(double Length, double Angle, double* X, double* Y)
+    double engine::vector::TerminalX(double InitialX, double Length, double Angle)
     {
-        double cache;
-
-        cache = Angle * PI / 180;
-        *X += Length * cos(cache);
-        *Y += Length * sin(cache);
-
-        return 0;
+        return InitialX + Length * cos(Angle * PI / 180);
     }
 
-    uint8 engine::vector::Apply(double Length, double Angle, uint64 Actor)
+    double engine::vector::TerminalY(double InitialY, double Length, double Angle)
     {
-        double cache;
-
-        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
-        {
-            printf("engine.vector.Apply(): Actor does not exists\nParams: Length: %lf, Angle: %lf, Actor: %lld\n", Length, Angle, Actor);
-            exit(1);
-        }
-
-        cache = Angle * PI / 180;
-        this->Engine.Actors.Actors[Actor]->X += Length * cos(cache);
-        this->Engine.Actors.Actors[Actor]->Y += Length * sin(cache);
-
-        return 0;
-    }
-
-    uint8 engine::vector::Terminal(double InitialX, double InitialY, double Length, double Angle, double* TerminalX, double* TerminalY)
-    {
-        double cache;
-
-        cache = Angle * PI / 180;
-        *TerminalX = InitialX + Length * cos(cache);
-        *TerminalY = InitialY + Length * sin(cache);
-
-        return 0;
-    }
-
-    uint8 engine::vector::Terminal(double InitialX, double InitialY, double Length, double Angle, uint64 Actor)
-    {
-        double cache;
-
-        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
-        {
-            printf("engine.vector.Terminal(): Actor does not exists\nParams: InitialX: %lf, InitialY: %lf, Length: %lf, Angle: %lf, Actor: %lld\n", InitialX, InitialY, Length, Angle, Actor);
-            exit(1);
-        }
-
-        cache = Angle * PI / 180;
-        this->Engine.Actors.Actors[Actor]->X = InitialX + Length * cos(cache);
-        this->Engine.Actors.Actors[Actor]->Y = InitialY + Length * sin(cache);
-
-        return 0;
+        return InitialY + Length * sin(Angle * PI / 180);
     }
 }

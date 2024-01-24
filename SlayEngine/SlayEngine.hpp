@@ -432,10 +432,8 @@ namespace slay
                 public:
                     double Length(double X1, double Y1, double X2, double Y2);
                     double Angle(double X1, double Y1, double X2, double Y2);
-                    uint8 Apply(double Length, double Angle, double* X, double* Y);
-                    uint8 Apply(double Length, double Angle, uint64 Actor);
-                    uint8 Terminal(double InitialX, double InitialY, double Length, double Angle, double* TerminalX, double* TerminalY);
-                    uint8 Terminal(double InitialX, double InitialY, double Length, double Angle, uint64 Actor);
+                    double TerminalX(double InitialX, double Length, double Angle);
+                    double TerminalY(double InitialY, double Length, double Angle);
 
                 private:
                     vector(engine& Engine);

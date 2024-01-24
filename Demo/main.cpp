@@ -53,11 +53,13 @@ sint32 main(sint32 argc, char* *argv)
         }
         if (Engine.Keys[KEY_UP])
         {
-            Engine.Vector.Apply(0.5 * Engine.Timing.GetDeltaTime(), Engine.Actors[Player].GetAngle() + 90, Player);
+            Engine.Actors[Player].SetX(Engine.Vector.TerminalX(Engine.Actors[Player].GetX(), 0.5 * Engine.Timing.GetDeltaTime(), Engine.Actors[Player].GetAngle() + 90));
+            Engine.Actors[Player].SetY(Engine.Vector.TerminalY(Engine.Actors[Player].GetY(), 0.5 * Engine.Timing.GetDeltaTime(), Engine.Actors[Player].GetAngle() + 90));
         }
         else if (Engine.Keys[KEY_DOWN])
         {
-            Engine.Vector.Apply(-0.5 * Engine.Timing.GetDeltaTime(), Engine.Actors[Player].GetAngle() + 90, Player);
+            Engine.Actors[Player].SetX(Engine.Vector.TerminalX(Engine.Actors[Player].GetX(), -0.5 * Engine.Timing.GetDeltaTime(), Engine.Actors[Player].GetAngle() + 90));
+            Engine.Actors[Player].SetY(Engine.Vector.TerminalY(Engine.Actors[Player].GetY(), -0.5 * Engine.Timing.GetDeltaTime(), Engine.Actors[Player].GetAngle() + 90));
         }
 
         printf("%d %d %d %d\n", Engine.Timing.GetGameTime(), Engine.Timing.GetRenderTime(), Engine.Timing.GetWorkingTime(), Engine.Timing.GetFrameTime());
