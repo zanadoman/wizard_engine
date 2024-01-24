@@ -16,16 +16,16 @@ namespace slay
 
     double engine::vector::Angle(double X1, double Y1, double X2, double Y2)
     {
-        return acos((X2 - X1) / this->Length(X1, Y1, X2, Y2)) * 180 / PI;
+        return acos((X2 - X1) / this->Length(X1, Y1, X2, Y2)) * ToDEG;
     }
 
     double engine::vector::TerminalX(double InitialX, double Length, double Angle)
     {
-        return InitialX + Length * cos(Angle * PI / 180);
+        return InitialX + Length * cos(Angle * ToRAD);
     }
 
     double engine::vector::TerminalY(double InitialY, double Length, double Angle)
     {
-        return InitialY + Length * sin(Angle * PI / 180);
+        return InitialY + Length * sin(Angle * ToRAD);
     }
 }

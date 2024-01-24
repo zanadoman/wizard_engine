@@ -103,8 +103,6 @@ _ZN4slay6engine6vector5AngleEdddd:
 	call	acos@PLT
 	movsd	.LC0(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
-	movsd	.LC1(%rip), %xmm1
-	divsd	%xmm1, %xmm0
 	movq	%xmm0, %rax
 	movq	%rax, %xmm0
 	leave
@@ -131,10 +129,8 @@ _ZN4slay6engine6vector9TerminalXEddd:
 	movsd	%xmm2, -32(%rbp)
 	movsd	-32(%rbp), %xmm1
 	movsd	.LC1(%rip), %xmm0
-	mulsd	%xmm1, %xmm0
-	movsd	.LC0(%rip), %xmm1
-	divsd	%xmm1, %xmm0
-	movq	%xmm0, %rax
+	mulsd	%xmm0, %xmm1
+	movq	%xmm1, %rax
 	movq	%rax, %xmm0
 	call	cos@PLT
 	movq	%xmm0, %rax
@@ -167,10 +163,8 @@ _ZN4slay6engine6vector9TerminalYEddd:
 	movsd	%xmm2, -32(%rbp)
 	movsd	-32(%rbp), %xmm1
 	movsd	.LC1(%rip), %xmm0
-	mulsd	%xmm1, %xmm0
-	movsd	.LC0(%rip), %xmm1
-	divsd	%xmm1, %xmm0
-	movq	%xmm0, %rax
+	mulsd	%xmm0, %xmm1
+	movq	%xmm1, %rax
 	movq	%rax, %xmm0
 	call	sin@PLT
 	movq	%xmm0, %rax
@@ -188,11 +182,11 @@ _ZN4slay6engine6vector9TerminalYEddd:
 	.section	.rodata
 	.align 8
 .LC0:
-	.long	0
-	.long	1080459264
+	.long	442745336
+	.long	1078765020
 	.align 8
 .LC1:
-	.long	1413754136
-	.long	1074340347
+	.long	1256670345
+	.long	1069963032
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits
