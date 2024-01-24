@@ -1,4 +1,5 @@
 #include "Includes/SDL_mouse.h"
+#include "Includes/SDL_render.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -104,31 +105,58 @@ namespace slay
 
     uint8 engine::assets::PurgePNGs(std::initializer_list<uint64> Keep)
     {
-        for (uint64 i = 1; i < this->Engine.Actors.Actors.Length(); i++)
+        uint64 i, j;
+
+        for (i = 1; i < this->Textures.Length(); i++)
         {
-            if (this->Engine.Actors.Actors[i] == NULL)
+            for (j = 0; j < Keep.size(); j++)
             {
-                continue;
+                if (i == Keep.begin()[j])
+                {
+                    break;
+                }
             }
 
-            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Textures.Textures.Length(); j++)
+            if (j == Keep.size())
             {
-                if (this->Engine.Actors.Actors[i]->Textures.Textures[j] == NULL)
+                for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
                 {
-                    continue;
+                    if (this->Engine.Actors.Actors[k] == NULL)
+                    {
+                        continue;
+                    }
+
+                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Textures.Textures.Length(); l++)
+                    {
+                        if (this->Engine.Actors.Actors[k]->Textures.Textures[l] == NULL)
+                        {
+                            continue;
+                        }
+
+                        if (this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID == i)
+                        {
+                            this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID = 0;
+                        }
+                    }
                 }
 
-                this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID = 0;
+                SDL_DestroyTexture(this->Textures[i]);
+                this->Textures[i] = NULL;
             }
         }
 
-        for (uint64 i = 1; i < this->Textures.Length(); i++)
+        if (this->Textures[this->Textures.Length() - 1] == NULL)
         {
-            SDL_DestroyTexture(this->Textures[i]);
-        }
-        if (1 < this->Textures.Length())
-        {
-            this->Textures.Remove(1, this->Textures.Length() - 1);
+            for (i = this->Textures.Length() - 1; 0 < i; i--)
+            {
+                if (this->Textures[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
         return 0;
@@ -331,9 +359,9 @@ namespace slay
                             continue;
                         }
 
-                        if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == i)
+                        if (this->Engine.Actors.Actors[k]->Texts.Texts[l]->FontID == i)
                         {
-                            this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
+                            this->Engine.Actors.Actors[k]->Texts.Texts[l]->FontID = 0;
                         }
                     }
                 }
