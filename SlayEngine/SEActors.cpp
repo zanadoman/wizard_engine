@@ -76,6 +76,19 @@ namespace slay
     {
         uint64 i, j;
 
+        for (i = 0; i < Keep.size(); i++)
+        {
+            if (Keep.begin()[i] == 0)
+            {
+                continue;
+            }
+            if (this->Actors.Length() <= Keep.begin()[i] || this->Actors[Keep.begin()[i]] == NULL)
+            {
+                printf("slay::engine.actors.Purge(): Actor does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                exit(1);
+            }
+        }
+
         for (i = 1; i < this->Actors.Length(); i++)
         {
             for (j = 0; j < Keep.size(); j++)
