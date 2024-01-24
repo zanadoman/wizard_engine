@@ -73,7 +73,8 @@ namespace slay
 
             if (this->Colors.Colors[i]->OffsetLocked)
             {
-                this->Colors.Colors[i]->OffsetX = round(this->Engine.Vector.TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, (cache = this->Colors.Colors[i]->OffsetAngle + Angle)) - this->X);
+                cache = this->Colors.Colors[i]->OffsetAngle + Angle;
+                this->Colors.Colors[i]->OffsetX = round(this->Engine.Vector.TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, cache) - this->X);
                 this->Colors.Colors[i]->OffsetY = round(this->Engine.Vector.TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, cache) - this->Y);
             }
         }
@@ -87,7 +88,8 @@ namespace slay
 
             if (this->Textures.Textures[i]->OffsetLocked)
             {
-                this->Textures.Textures[i]->OffsetX = round(this->Engine.Vector.TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, (cache = this->Textures.Textures[i]->OffsetAngle + Angle)) - this->X);
+                cache = this->Textures.Textures[i]->OffsetAngle + Angle;
+                this->Textures.Textures[i]->OffsetX = round(this->Engine.Vector.TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, cache) - this->X);
                 this->Textures.Textures[i]->OffsetY = round(this->Engine.Vector.TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, cache) - this->Y);
             }
 
@@ -106,7 +108,8 @@ namespace slay
 
             if (this->Texts.Texts[i]->OffsetLocked)
             {
-                this->Texts.Texts[i]->OffsetX = round(this->Engine.Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, (cache = this->Texts.Texts[i]->OffsetAngle + Angle)) - this->X);
+                cache = this->Texts.Texts[i]->OffsetAngle + Angle;
+                this->Texts.Texts[i]->OffsetX = round(this->Engine.Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, cache) - this->X);
                 this->Texts.Texts[i]->OffsetY = round(this->Engine.Vector.TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, cache) - this->Y);
             }
 
