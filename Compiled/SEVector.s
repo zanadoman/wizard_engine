@@ -48,18 +48,11 @@ _ZN4slay6engine6vector6LengthEdddd:
 	movsd	-56(%rbp), %xmm0
 	subsd	-40(%rbp), %xmm0
 	movsd	%xmm0, -8(%rbp)
-	movsd	-48(%rbp), %xmm0
+	movsd	-16(%rbp), %xmm0
 	movapd	%xmm0, %xmm1
-	subsd	-32(%rbp), %xmm1
-	movsd	-48(%rbp), %xmm0
-	subsd	-32(%rbp), %xmm0
 	mulsd	%xmm0, %xmm1
-	movsd	-56(%rbp), %xmm0
-	movapd	%xmm0, %xmm2
-	subsd	-40(%rbp), %xmm2
-	movsd	-56(%rbp), %xmm0
-	subsd	-40(%rbp), %xmm0
-	mulsd	%xmm2, %xmm0
+	movsd	-8(%rbp), %xmm0
+	mulsd	%xmm0, %xmm0
 	addsd	%xmm0, %xmm1
 	movq	%xmm1, %rax
 	movq	%rax, %xmm0
