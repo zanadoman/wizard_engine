@@ -28,9 +28,9 @@ _ZN4slay6engine4keysC2ERS0_:
 	.globl	_ZN4slay6engine4keysC1ERS0_
 	.set	_ZN4slay6engine4keysC1ERS0_,_ZN4slay6engine4keysC2ERS0_
 	.align 2
-	.globl	_ZN4slay6engine4keys8GetStateENS_3keyE
-	.type	_ZN4slay6engine4keys8GetStateENS_3keyE, @function
-_ZN4slay6engine4keys8GetStateENS_3keyE:
+	.globl	_ZN4slay6engine4keysixENS_3keyE
+	.type	_ZN4slay6engine4keysixENS_3keyE, @function
+_ZN4slay6engine4keysixENS_3keyE:
 .LFB2199:
 	.cfi_startproc
 	pushq	%rbp
@@ -51,7 +51,7 @@ _ZN4slay6engine4keys8GetStateENS_3keyE:
 	ret
 	.cfi_endproc
 .LFE2199:
-	.size	_ZN4slay6engine4keys8GetStateENS_3keyE, .-_ZN4slay6engine4keys8GetStateENS_3keyE
+	.size	_ZN4slay6engine4keysixENS_3keyE, .-_ZN4slay6engine4keysixENS_3keyE
 	.align 2
 	.globl	_ZN4slay6engine4keys6UpdateEv
 	.type	_ZN4slay6engine4keys6UpdateEv, @function

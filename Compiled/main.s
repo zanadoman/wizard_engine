@@ -345,7 +345,7 @@ main:
 	addq	$152, %rax
 	movl	$80, %esi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine4keys8GetStateENS_3keyE@PLT
+	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	je	.L3
 	movq	-776(%rbp), %rax
@@ -396,7 +396,7 @@ main:
 	addq	$152, %rax
 	movl	$79, %esi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine4keys8GetStateENS_3keyE@PLT
+	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	je	.L6
 	movq	-776(%rbp), %rax
@@ -447,7 +447,7 @@ main:
 	addq	$152, %rax
 	movl	$82, %esi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine4keys8GetStateENS_3keyE@PLT
+	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	je	.L9
 	movq	-776(%rbp), %rax
@@ -497,7 +497,7 @@ main:
 	addq	$152, %rax
 	movl	$81, %esi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine4keys8GetStateENS_3keyE@PLT
+	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	je	.L12
 	movq	-776(%rbp), %rax

@@ -55,9 +55,9 @@ _ZN4slay6engine6render5tokenC2Ev:
 	.globl	_ZN4slay6engine6render5tokenC1Ev
 	.set	_ZN4slay6engine6render5tokenC1Ev,_ZN4slay6engine6render5tokenC2Ev
 	.align 2
-	.globl	_ZN4slay6engine6render5tokenC2EPvNS1_7token_tEdh8SDL_Rect
-	.type	_ZN4slay6engine6render5tokenC2EPvNS1_7token_tEdh8SDL_Rect, @function
-_ZN4slay6engine6render5tokenC2EPvNS1_7token_tEdh8SDL_Rect:
+	.globl	_ZN4slay6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect
+	.type	_ZN4slay6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect, @function
+_ZN4slay6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect:
 .LFB2203:
 	.cfi_startproc
 	pushq	%rbp
@@ -96,9 +96,9 @@ _ZN4slay6engine6render5tokenC2EPvNS1_7token_tEdh8SDL_Rect:
 	ret
 	.cfi_endproc
 .LFE2203:
-	.size	_ZN4slay6engine6render5tokenC2EPvNS1_7token_tEdh8SDL_Rect, .-_ZN4slay6engine6render5tokenC2EPvNS1_7token_tEdh8SDL_Rect
-	.globl	_ZN4slay6engine6render5tokenC1EPvNS1_7token_tEdh8SDL_Rect
-	.set	_ZN4slay6engine6render5tokenC1EPvNS1_7token_tEdh8SDL_Rect,_ZN4slay6engine6render5tokenC2EPvNS1_7token_tEdh8SDL_Rect
+	.size	_ZN4slay6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect, .-_ZN4slay6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect
+	.globl	_ZN4slay6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect
+	.set	_ZN4slay6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect,_ZN4slay6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect
 	.align 2
 	.globl	_ZN4slay6engine6render15GetSamplingStepEv
 	.type	_ZN4slay6engine6render15GetSamplingStepEv, @function
@@ -685,7 +685,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	%ebx, %ecx
 	movq	%r10, %xmm0
 	movl	$0, %edx
-	call	_ZN4slay6engine6render5tokenC1EPvNS1_7token_tEdh8SDL_Rect
+	call	_ZN4slay6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect
 	leaq	-112(%rbp), %rax
 	movq	%rax, -304(%rbp)
 	movq	$1, -296(%rbp)
@@ -740,7 +740,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	%ebx, %ecx
 	movq	%r10, %xmm0
 	movl	$0, %edx
-	call	_ZN4slay6engine6render5tokenC1EPvNS1_7token_tEdh8SDL_Rect
+	call	_ZN4slay6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect
 	movq	-280(%rbp), %rax
 	leaq	8(%rax), %rdx
 	movq	-256(%rbp), %rax
@@ -1250,7 +1250,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	%ebx, %ecx
 	movq	%r10, %xmm0
 	movl	$1, %edx
-	call	_ZN4slay6engine6render5tokenC1EPvNS1_7token_tEdh8SDL_Rect
+	call	_ZN4slay6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect
 	leaq	-112(%rbp), %rax
 	movq	%rax, %r14
 	movl	$1, %r15d
@@ -1305,7 +1305,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	%ebx, %ecx
 	movq	%r10, %xmm0
 	movl	$1, %edx
-	call	_ZN4slay6engine6render5tokenC1EPvNS1_7token_tEdh8SDL_Rect
+	call	_ZN4slay6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect
 	movq	-280(%rbp), %rax
 	leaq	8(%rax), %rdx
 	movq	-256(%rbp), %rax
@@ -2032,7 +2032,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	%ebx, %ecx
 	movq	%r10, %xmm0
 	movl	$2, %edx
-	call	_ZN4slay6engine6render5tokenC1EPvNS1_7token_tEdh8SDL_Rect
+	call	_ZN4slay6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect
 	leaq	-112(%rbp), %rax
 	movq	%rax, %r12
 	movl	$1, %r13d
@@ -2087,7 +2087,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	%ebx, %ecx
 	movq	%r10, %xmm0
 	movl	$2, %edx
-	call	_ZN4slay6engine6render5tokenC1EPvNS1_7token_tEdh8SDL_Rect
+	call	_ZN4slay6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect
 	movq	-280(%rbp), %rax
 	leaq	8(%rax), %rdx
 	movq	-256(%rbp), %rax

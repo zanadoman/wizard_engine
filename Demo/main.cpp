@@ -43,19 +43,19 @@ sint32 main(sint32 argc, char* *argv)
 
     while (Engine.Update())
     {
-        if (Engine.Keys.GetState(KEY_LEFT))
+        if (Engine.Keys[KEY_LEFT])
         {
             Engine.Actors[Player].SetAngle(Engine.Actors[Player].GetAngle() + 0.2 * Engine.Timing.GetDeltaTime());
         }
-        else if (Engine.Keys.GetState(KEY_RIGHT))
+        else if (Engine.Keys[KEY_RIGHT])
         {
             Engine.Actors[Player].SetAngle(Engine.Actors[Player].GetAngle() - 0.2 * Engine.Timing.GetDeltaTime());
         }
-        if (Engine.Keys.GetState(KEY_UP))
+        if (Engine.Keys[KEY_UP])
         {
             Engine.Vector.Apply(0.5 * Engine.Timing.GetDeltaTime(), Engine.Actors[Player].GetAngle() + 90, Player);
         }
-        else if (Engine.Keys.GetState(KEY_DOWN))
+        else if (Engine.Keys[KEY_DOWN])
         {
             Engine.Vector.Apply(-0.5 * Engine.Timing.GetDeltaTime(), Engine.Actors[Player].GetAngle() + 90, Player);
         }

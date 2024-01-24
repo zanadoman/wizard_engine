@@ -9,7 +9,7 @@ namespace slay
 
     engine::render::token::token() {}
 
-    engine::render::token::token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area)
+    engine::render::token::token(void* Data, type Type, double Layer, uint8 Priority, SDL_Rect Area)
     {
         this->Data = Data;
         this->Type = Type;

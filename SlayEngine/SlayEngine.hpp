@@ -59,7 +59,7 @@ namespace slay
                 friend class engine;
                 engine& Engine;
 
-                enum token_t
+                enum type
                 {
                     COLOR,
                     TEXTURE,
@@ -71,12 +71,12 @@ namespace slay
                     friend class render;
 
                     void* Data;
-                    token_t Type;
+                    type Type;
                     double Layer;
                     uint8 Priority;
                     SDL_Rect Area;
                     token();
-                    token(void* Data, token_t Type, double Layer, uint8 Priority, SDL_Rect Area);
+                    token(void* Data, type Type, double Layer, uint8 Priority, SDL_Rect Area);
                 };
 
                 public:
@@ -163,7 +163,7 @@ namespace slay
                 engine& Engine;
 
                 public:
-                    bool GetState(key Key);
+                    bool operator [] (key Key);
 
                 private:
                     const uint8* SDL_KeyStates;

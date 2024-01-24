@@ -7,7 +7,7 @@ namespace slay
         this->SDL_KeyStates = NULL;
     }
 
-    bool engine::keys::GetState(key Key)
+    bool engine::keys::operator [] (key Key)
     {
         return this->KeyStates[Key];
     }
