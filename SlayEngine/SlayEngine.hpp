@@ -415,7 +415,7 @@ namespace slay
                 private:
                     array<actor*> Actors;
                     actors(engine& Engine);
-                    uint8 destructor();
+                    ~actors();
             } Actors;
 
             //__________Vector_________________________________________________________________________________________

@@ -40,7 +40,6 @@ namespace slay
 
     engine::~engine()
     {
-        this->Actors.destructor();
         this->Assets.destructor();
         this->Window.destructor();
 

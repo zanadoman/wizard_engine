@@ -4,14 +4,12 @@ namespace slay
 {
     engine::actors::actors(engine& Engine) : Engine(Engine), Actors({(actor*)NULL}) {}
 
-    uint8 engine::actors::destructor()
+    engine::actors::~actors()
     {
         for (uint64 i = 1; i < this->Actors.Length(); i++)
         {
             delete this->Actors[i];
         }
-
-        return 0;
     }
 
     uint64 engine::actors::New(uint64 Type)
