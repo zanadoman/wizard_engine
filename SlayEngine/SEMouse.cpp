@@ -1,3 +1,6 @@
+#include "Includes/SDL_image.h"
+#include "Includes/SDL_mouse.h"
+#include "Includes/SDL_surface.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -10,6 +13,7 @@ namespace slay
         this->MotionX = 0;
         this->MotionY = 0;
         this->Mode = false;
+        this->Cursor = 0;
     }
 
     double engine::mouse::GetX(double Layer)
@@ -82,6 +86,31 @@ namespace slay
         SDL_SetRelativeMouseMode(SDL_TRUE);
 
         return this->Mode = true;
+    }
+
+    uint64 engine::mouse::GetCursor()
+    {
+        return this->Cursor;
+    }
+
+    uint64 engine::mouse::SetCursor(uint64 ID)
+    {
+        SDL_Surface* surface;
+
+        if (ID == 0)
+        {
+            printf("slay::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+        if (this->Engine.Assets.Cursors.Length() <= ID || this->Engine.Assets.Cursors[ID] == NULL)
+        {
+            printf("slay::engine.mouse.SetCursor(): Cursor does not exists\nParams: ID: %lld\n", ID);
+            exit(1);
+        }
+
+        SDL_SetCursor(this->Engine.Assets.Cursors[ID]);
+
+        return this->Cursor = ID;
     }
 
     uint8 engine::mouse::Update()

@@ -709,7 +709,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
 	movl	%eax, -4(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	544(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -731,7 +731,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
 	movq	%rax, 64(%rdx)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	544(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -816,7 +816,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi:
 	movl	%eax, -4(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	544(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -838,7 +838,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi:
 	movq	%rax, 64(%rdx)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	544(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -987,14 +987,14 @@ _ZN4slay6engine6actors5actor5texts4text7SetFontEy:
 .L60:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$584, %rax
+	addq	$592, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
 	cmpq	%rax, -16(%rbp)
 	jnb	.L62
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	592(%rax), %rdx
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi

@@ -5,6 +5,7 @@
 
 #include "Includes/SDL.h"
 #include "Includes/SDL_image.h"
+#include "Includes/SDL_mouse.h"
 #include "Includes/SDL_rect.h"
 #include "Includes/SDL_render.h"
 #include "Includes/SDL_surface.h"
@@ -189,6 +190,8 @@ namespace slay
                     bool IsRelative();
                     bool SetAbsolute();
                     bool SetRelative();
+                    uint64 GetCursor();
+                    uint64 SetCursor(uint64 ID);
 
                 private:
                     sint32 X;
@@ -196,6 +199,7 @@ namespace slay
                     double MotionX;
                     double MotionY;
                     bool Mode;
+                    uint64 Cursor;
                     mouse(engine& Engine);
                     uint8 Update();
             } Mouse;
@@ -454,11 +458,15 @@ namespace slay
                     uint64 LoadTTF(const char* Path, uint8 Size);
                     uint8 UnloadTTF(uint64 ID);
                     uint8 PurgeTTFs();
+                    uint64 LoadCursor(const char* Path, uint16 HotSpotX, uint16 HotSpotY);
+                    uint8 UnloadCursor(uint64 ID);
+                    uint8 PurgeCursors();
 
                 private:
                     array<SDL_Texture*> Textures;
                     array<Mix_Chunk*> Sounds;
                     array<TTF_Font*> Fonts;
+                    array<SDL_Cursor*> Cursors;
                     assets(engine& Engine);
             } Assets;
 

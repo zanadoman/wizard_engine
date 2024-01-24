@@ -682,7 +682,7 @@ _ZN4slay6engine6actors5actor6colors5color10SetOffsetXEi:
 	movl	%eax, -4(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	544(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -704,7 +704,7 @@ _ZN4slay6engine6actors5actor6colors5color10SetOffsetXEi:
 	movq	%rax, 40(%rdx)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	544(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -789,7 +789,7 @@ _ZN4slay6engine6actors5actor6colors5color10SetOffsetYEi:
 	movl	%eax, -4(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	544(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -811,7 +811,7 @@ _ZN4slay6engine6actors5actor6colors5color10SetOffsetYEi:
 	movq	%rax, 40(%rdx)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	544(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1

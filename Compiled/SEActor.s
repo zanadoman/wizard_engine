@@ -144,7 +144,7 @@ _ZN4slay6engine6actors5actorD2Ev:
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	movq	96(%rax), %rax
@@ -162,7 +162,7 @@ _ZN4slay6engine6actors5actorD2Ev:
 .L8:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	movq	104(%rax), %rax
@@ -396,7 +396,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	je	.L25
 	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rbx
+	leaq	544(%rax), %rbx
 	movq	-88(%rbp), %rax
 	leaq	24(%rax), %rdx
 	movq	-56(%rbp), %rax
@@ -500,7 +500,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	je	.L30
 	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rbx
+	leaq	544(%rax), %rbx
 	movq	-88(%rbp), %rax
 	leaq	56(%rax), %rdx
 	movq	-48(%rbp), %rax
@@ -625,7 +625,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	je	.L35
 	movq	-88(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rbx
+	leaq	544(%rax), %rbx
 	movq	-88(%rbp), %rax
 	leaq	88(%rax), %rdx
 	movq	-40(%rbp), %rax

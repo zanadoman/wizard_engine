@@ -234,7 +234,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L75:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -249,7 +249,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L35:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -265,7 +265,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L19
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -282,7 +282,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L19
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -299,7 +299,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L19
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -316,7 +316,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L19
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -342,7 +342,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	jne	.L80
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -352,7 +352,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm6, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -371,7 +371,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm0, -192(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -381,7 +381,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm7, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -400,7 +400,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm0, -184(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -410,7 +410,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm3, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -433,7 +433,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L24:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -443,7 +443,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm3, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -475,7 +475,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rax, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -491,7 +491,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movzwl	%ax, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -529,7 +529,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	(%rax), %rbx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -648,7 +648,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L32
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -664,7 +664,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movzbl	%al, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -703,7 +703,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L32:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -719,7 +719,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movzbl	%al, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -779,7 +779,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L18:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -797,7 +797,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L53:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -813,7 +813,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L37
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -830,7 +830,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L37
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -847,7 +847,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L37
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -864,7 +864,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L37
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -882,7 +882,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L37
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -907,7 +907,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	jne	.L81
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -917,7 +917,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm5, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -936,7 +936,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm0, -192(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -946,7 +946,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm6, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -965,7 +965,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm0, -184(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -975,7 +975,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm4, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -998,7 +998,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L42:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1008,7 +1008,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm7, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1040,7 +1040,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rax, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1056,7 +1056,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movzwl	%ax, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1094,7 +1094,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	(%rax), %rbx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1213,7 +1213,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L50
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1229,7 +1229,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movzbl	%al, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1268,7 +1268,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L50:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1284,7 +1284,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movzbl	%al, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1344,7 +1344,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L36:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1362,7 +1362,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L74:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1378,7 +1378,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L55
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1397,7 +1397,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	jbe	.L55
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1414,7 +1414,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L55
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1431,7 +1431,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L55
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1449,7 +1449,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L55
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1474,7 +1474,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	jne	.L82
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1493,7 +1493,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L60
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1509,7 +1509,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movb	%al, -260(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1525,7 +1525,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movb	%al, -259(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1541,7 +1541,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movb	%al, -258(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1557,7 +1557,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movb	%al, -257(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1575,10 +1575,10 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rax, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rbx
+	leaq	592(%rax), %rbx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1620,7 +1620,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rax, %rbx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1648,7 +1648,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	16(%rax), %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1670,7 +1670,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	%eax, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1689,7 +1689,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L60:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1699,7 +1699,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm4, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1718,7 +1718,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm0, -192(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1728,7 +1728,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm5, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1747,7 +1747,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm0, -184(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1757,7 +1757,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm5, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1780,7 +1780,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L63:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1790,7 +1790,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	%xmm6, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1822,7 +1822,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rax, -288(%rbp)
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1838,7 +1838,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movzwl	%ax, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1876,7 +1876,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	(%rax), %rbx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1995,7 +1995,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	je	.L71
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2011,7 +2011,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movzbl	%al, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2050,7 +2050,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L71:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2066,7 +2066,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movzbl	%al, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2126,7 +2126,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L54:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-232(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2147,7 +2147,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 .L15:
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$520, %rax
+	addq	$528, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -232(%rbp)
@@ -3662,7 +3662,7 @@ _ZN4slay6engine6render13RenderTextureENS1_5tokenE:
 	movzbl	%al, %ebx
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	552(%rax), %rdx
+	leaq	560(%rax), %rdx
 	movq	16(%rbp), %rax
 	movq	64(%rax), %rax
 	movq	%rax, %rsi
@@ -3689,7 +3689,7 @@ _ZN4slay6engine6render13RenderTextureENS1_5tokenE:
 	movzbl	%al, %ebx
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	552(%rax), %rdx
+	leaq	560(%rax), %rdx
 	movq	16(%rbp), %rax
 	movq	64(%rax), %rax
 	movq	%rax, %rsi
@@ -3717,7 +3717,7 @@ _ZN4slay6engine6render13RenderTextureENS1_5tokenE:
 	movq	%xmm0, %rbx
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	552(%rax), %rdx
+	leaq	560(%rax), %rdx
 	movq	16(%rbp), %rax
 	movq	64(%rax), %rax
 	movq	%rax, %rsi

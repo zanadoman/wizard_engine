@@ -133,7 +133,7 @@ _ZN4slay6engine4keys6UpdateEv:
 .L16:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	640(%rax), %rdx
+	leaq	664(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -145,7 +145,7 @@ _ZN4slay6engine4keys6UpdateEv:
 	je	.L13
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	640(%rax), %rdx
+	leaq	664(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -162,7 +162,7 @@ _ZN4slay6engine4keys6UpdateEv:
 .L14:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	640(%rax), %rdx
+	leaq	664(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -187,7 +187,7 @@ _ZN4slay6engine4keys6UpdateEv:
 .L12:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$640, %rax
+	addq	$664, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayI9SDL_EventE6LengthEv
 	cmpq	%rax, -8(%rbp)

@@ -42,6 +42,7 @@ namespace slay
         this->Assets.PurgePNGs();
         this->Assets.PurgeTTFs();
         this->Assets.PurgeWAVs();
+        this->Assets.PurgeCursors();
 
         this->Window.Close();
 

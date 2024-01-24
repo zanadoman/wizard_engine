@@ -202,14 +202,14 @@ _ZN4slay6engine6vector5ApplyEddy:
 	movq	%rsi, -64(%rbp)
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$520, %rax
+	addq	$528, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -64(%rbp)
 	jnb	.L12
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-64(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -246,7 +246,7 @@ _ZN4slay6engine6vector5ApplyEddy:
 	movsd	%xmm0, -24(%rbp)
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-64(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -264,7 +264,7 @@ _ZN4slay6engine6vector5ApplyEddy:
 	movsd	%xmm0, 120(%rbx)
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-64(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -363,14 +363,14 @@ _ZN4slay6engine6vector8TerminalEddddy:
 	movq	%rsi, -64(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$520, %rax
+	addq	$528, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -64(%rbp)
 	jnb	.L20
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-64(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -419,7 +419,7 @@ _ZN4slay6engine6vector8TerminalEddddy:
 	movsd	%xmm0, -72(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-64(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -437,7 +437,7 @@ _ZN4slay6engine6vector8TerminalEddddy:
 	movsd	%xmm0, -72(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-64(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi

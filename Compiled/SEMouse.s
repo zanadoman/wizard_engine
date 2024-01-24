@@ -31,6 +31,8 @@ _ZN4slay6engine5mouseC2ERS0_:
 	movsd	%xmm0, 32(%rax)
 	movq	-8(%rbp), %rax
 	movb	$0, 40(%rax)
+	movq	-8(%rbp), %rax
+	movq	$0, 48(%rax)
 	nop
 	popq	%rbp
 	.cfi_def_cfa 7, 8
@@ -322,10 +324,118 @@ _ZN4slay6engine5mouse11SetRelativeEv:
 .LFE2206:
 	.size	_ZN4slay6engine5mouse11SetRelativeEv, .-_ZN4slay6engine5mouse11SetRelativeEv
 	.align 2
+	.globl	_ZN4slay6engine5mouse9GetCursorEv
+	.type	_ZN4slay6engine5mouse9GetCursorEv, @function
+_ZN4slay6engine5mouse9GetCursorEv:
+.LFB2207:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	48(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2207:
+	.size	_ZN4slay6engine5mouse9GetCursorEv, .-_ZN4slay6engine5mouse9GetCursorEv
+	.section	.rodata
+	.align 8
+.LC4:
+	.string	"slay::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: ID: %lld\n"
+	.align 8
+.LC5:
+	.string	"slay::engine.mouse.SetCursor(): Cursor does not exists\nParams: ID: %lld\n"
+	.text
+	.align 2
+	.globl	_ZN4slay6engine5mouse9SetCursorEy
+	.type	_ZN4slay6engine5mouse9SetCursorEy, @function
+_ZN4slay6engine5mouse9SetCursorEy:
+.LFB2208:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	cmpq	$0, -16(%rbp)
+	jne	.L35
+	movq	-16(%rbp), %rax
+	movq	%rax, %rsi
+	leaq	.LC4(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L35:
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	addq	$608, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	cmpq	%rax, -16(%rbp)
+	jnb	.L36
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	608(%rax), %rdx
+	movq	-16(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	jne	.L37
+.L36:
+	movl	$1, %eax
+	jmp	.L38
+.L37:
+	movl	$0, %eax
+.L38:
+	testb	%al, %al
+	je	.L39
+	movq	-16(%rbp), %rax
+	movq	%rax, %rsi
+	leaq	.LC5(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L39:
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	608(%rax), %rdx
+	movq	-16(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorEixEy
+	movq	(%rax), %rax
+	movq	%rax, %rdi
+	call	SDL_SetCursor@PLT
+	movq	-8(%rbp), %rax
+	movq	-16(%rbp), %rdx
+	movq	%rdx, 48(%rax)
+	movq	-8(%rbp), %rax
+	movq	48(%rax), %rax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2208:
+	.size	_ZN4slay6engine5mouse9SetCursorEy, .-_ZN4slay6engine5mouse9SetCursorEy
+	.align 2
 	.globl	_ZN4slay6engine5mouse6UpdateEv
 	.type	_ZN4slay6engine5mouse6UpdateEv, @function
 _ZN4slay6engine5mouse6UpdateEv:
-.LFB2207:
+.LFB2209:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -358,16 +468,16 @@ _ZN4slay6engine5mouse6UpdateEv:
 	movq	-56(%rbp), %rax
 	movsd	8(%rax), %xmm0
 	mulsd	%xmm1, %xmm0
-	movq	.LC4(%rip), %xmm1
+	movq	.LC6(%rip), %xmm1
 	xorpd	%xmm1, %xmm0
 	movq	-56(%rbp), %rax
 	movsd	%xmm0, 32(%rax)
 	movq	$0, -32(%rbp)
-	jmp	.L33
-.L38:
+	jmp	.L42
+.L47:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	640(%rax), %rdx
+	leaq	664(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -376,10 +486,10 @@ _ZN4slay6engine5mouse6UpdateEv:
 	cmpl	$1024, %eax
 	sete	%al
 	testb	%al, %al
-	je	.L34
+	je	.L43
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	640(%rax), %rdx
+	leaq	664(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -390,11 +500,11 @@ _ZN4slay6engine5mouse6UpdateEv:
 	movq	-56(%rbp), %rax
 	movl	16(%rax), %eax
 	testl	%eax, %eax
-	jns	.L35
+	jns	.L44
 	movq	-56(%rbp), %rax
 	movl	$0, 16(%rax)
-	jmp	.L36
-.L35:
+	jmp	.L45
+.L44:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	movzwl	24(%rax), %eax
@@ -402,7 +512,7 @@ _ZN4slay6engine5mouse6UpdateEv:
 	movq	-56(%rbp), %rax
 	movl	16(%rax), %eax
 	cmpl	%eax, %edx
-	jg	.L36
+	jg	.L45
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	movzwl	24(%rax), %eax
@@ -410,14 +520,14 @@ _ZN4slay6engine5mouse6UpdateEv:
 	leal	-1(%rax), %edx
 	movq	-56(%rbp), %rax
 	movl	%edx, 16(%rax)
-.L36:
+.L45:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	movzwl	58(%rax), %eax
 	movzwl	%ax, %ebx
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	640(%rax), %rdx
+	leaq	664(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -430,11 +540,11 @@ _ZN4slay6engine5mouse6UpdateEv:
 	movq	-56(%rbp), %rax
 	movl	20(%rax), %eax
 	testl	%eax, %eax
-	jns	.L37
+	jns	.L46
 	movq	-56(%rbp), %rax
 	movl	$0, 20(%rax)
-	jmp	.L34
-.L37:
+	jmp	.L43
+.L46:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	movzwl	26(%rax), %eax
@@ -442,7 +552,7 @@ _ZN4slay6engine5mouse6UpdateEv:
 	movq	-56(%rbp), %rax
 	movl	20(%rax), %eax
 	cmpl	%eax, %edx
-	jg	.L34
+	jg	.L43
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	movzwl	26(%rax), %eax
@@ -450,37 +560,37 @@ _ZN4slay6engine5mouse6UpdateEv:
 	leal	-1(%rax), %edx
 	movq	-56(%rbp), %rax
 	movl	%edx, 20(%rax)
-.L34:
+.L43:
 	addq	$1, -32(%rbp)
-.L33:
+.L42:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$640, %rax
+	addq	$664, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayI9SDL_EventE6LengthEv
 	cmpq	%rax, -32(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L38
+	jne	.L47
 	movl	$0, %eax
 	movq	-24(%rbp), %rdx
 	subq	%fs:40, %rdx
-	je	.L40
+	je	.L49
 	call	__stack_chk_fail@PLT
-.L40:
+.L49:
 	movq	-8(%rbp), %rbx
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2207:
+.LFE2209:
 	.size	_ZN4slay6engine5mouse6UpdateEv, .-_ZN4slay6engine5mouse6UpdateEv
-	.section	.text._ZN3neo5arrayI9SDL_EventE6LengthEv,"axG",@progbits,_ZN3neo5arrayI9SDL_EventE6LengthEv,comdat
+	.section	.text._ZN3neo5arrayIP10SDL_CursorE6LengthEv,"axG",@progbits,_ZN3neo5arrayIP10SDL_CursorE6LengthEv,comdat
 	.align 2
-	.weak	_ZN3neo5arrayI9SDL_EventE6LengthEv
-	.type	_ZN3neo5arrayI9SDL_EventE6LengthEv, @function
-_ZN3neo5arrayI9SDL_EventE6LengthEv:
-.LFB2272:
+	.weak	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	.type	_ZN3neo5arrayIP10SDL_CursorE6LengthEv, @function
+_ZN3neo5arrayIP10SDL_CursorE6LengthEv:
+.LFB2274:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -494,18 +604,18 @@ _ZN3neo5arrayI9SDL_EventE6LengthEv:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2272:
-	.size	_ZN3neo5arrayI9SDL_EventE6LengthEv, .-_ZN3neo5arrayI9SDL_EventE6LengthEv
+.LFE2274:
+	.size	_ZN3neo5arrayIP10SDL_CursorE6LengthEv, .-_ZN3neo5arrayIP10SDL_CursorE6LengthEv
 	.section	.rodata
 	.align 8
-.LC5:
+.LC7:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
-	.section	.text._ZN3neo5arrayI9SDL_EventEixEy,"axG",@progbits,_ZN3neo5arrayI9SDL_EventEixEy,comdat
+	.section	.text._ZN3neo5arrayIP10SDL_CursorEixEy,"axG",@progbits,_ZN3neo5arrayIP10SDL_CursorEixEy,comdat
 	.align 2
-	.weak	_ZN3neo5arrayI9SDL_EventEixEy
-	.type	_ZN3neo5arrayI9SDL_EventEixEy, @function
-_ZN3neo5arrayI9SDL_EventEixEy:
-.LFB2273:
+	.weak	_ZN3neo5arrayIP10SDL_CursorEixEy
+	.type	_ZN3neo5arrayIP10SDL_CursorEixEy, @function
+_ZN3neo5arrayIP10SDL_CursorEixEy:
+.LFB2275:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -518,16 +628,76 @@ _ZN3neo5arrayI9SDL_EventEixEy:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L44
+	jb	.L53
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
-	leaq	.LC5(%rip), %rax
+	leaq	.LC7(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L44:
+.L53:
+	movq	-8(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	-16(%rbp), %rdx
+	salq	$3, %rdx
+	addq	%rdx, %rax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2275:
+	.size	_ZN3neo5arrayIP10SDL_CursorEixEy, .-_ZN3neo5arrayIP10SDL_CursorEixEy
+	.section	.text._ZN3neo5arrayI9SDL_EventE6LengthEv,"axG",@progbits,_ZN3neo5arrayI9SDL_EventE6LengthEv,comdat
+	.align 2
+	.weak	_ZN3neo5arrayI9SDL_EventE6LengthEv
+	.type	_ZN3neo5arrayI9SDL_EventE6LengthEv, @function
+_ZN3neo5arrayI9SDL_EventE6LengthEv:
+.LFB2276:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2276:
+	.size	_ZN3neo5arrayI9SDL_EventE6LengthEv, .-_ZN3neo5arrayI9SDL_EventE6LengthEv
+	.section	.text._ZN3neo5arrayI9SDL_EventEixEy,"axG",@progbits,_ZN3neo5arrayI9SDL_EventEixEy,comdat
+	.align 2
+	.weak	_ZN3neo5arrayI9SDL_EventEixEy
+	.type	_ZN3neo5arrayI9SDL_EventEixEy, @function
+_ZN3neo5arrayI9SDL_EventEixEy:
+.LFB2277:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	cmpq	%rax, -16(%rbp)
+	jb	.L58
+	movq	-16(%rbp), %rax
+	movq	%rax, %rsi
+	leaq	.LC7(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L58:
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rcx
 	movq	-16(%rbp), %rdx
@@ -540,7 +710,7 @@ _ZN3neo5arrayI9SDL_EventEixEy:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2273:
+.LFE2277:
 	.size	_ZN3neo5arrayI9SDL_EventEixEy, .-_ZN3neo5arrayI9SDL_EventEixEy
 	.section	.rodata
 	.align 8
@@ -548,7 +718,7 @@ _ZN3neo5arrayI9SDL_EventEixEy:
 	.long	0
 	.long	1072693248
 	.align 16
-.LC4:
+.LC6:
 	.long	0
 	.long	-2147483648
 	.long	0
