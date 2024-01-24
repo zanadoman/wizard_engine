@@ -17,7 +17,7 @@ sint32 main(sint32 argc, char* *argv)
     Font = Engine.Assets.LoadTTF("crazy-pixel.ttf", 48);
 
     Engine.Actors[Player].SetLayer(1);
-    Engine.Actors[Player].SetDepth(0.02);
+    Engine.Actors[Player].SetDepth(0.025);
     Engine.Actors[Player].Textures[PlayerTexture].SetTextureID(Texture1);
     Engine.Actors[Player].Textures[PlayerTexture].Width = 100;
     Engine.Actors[Player].Textures[PlayerTexture].Height = 100;
@@ -35,11 +35,11 @@ sint32 main(sint32 argc, char* *argv)
 
     Engine.Actors[Background].SetLayer(1);
     Engine.Actors[Background].Textures[BackgroundTexture].SetTextureID(Texture2);
-    Engine.Actors[Background].Textures[BackgroundTexture].Width = 1920;
-    Engine.Actors[Background].Textures[BackgroundTexture].Height = 1080;
+    Engine.Actors[Background].Textures[BackgroundTexture].Width = 1280;
+    Engine.Actors[Background].Textures[BackgroundTexture].Height = 720;
     Engine.Actors[Background].Textures[BackgroundTexture].Priority = 0;
 
-    Engine.Camera.Bind(Player);
+    //Engine.Camera.Bind(Player);
 
     while (Engine.Update())
     {

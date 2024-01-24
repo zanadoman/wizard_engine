@@ -314,7 +314,7 @@ main:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
-	movw	$1920, 18(%rax)
+	movw	$1280, 18(%rax)
 	movq	-736(%rbp), %rax
 	leaq	-704(%rbp), %rdx
 	addq	$512, %rdx
@@ -326,7 +326,7 @@ main:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
-	movw	$1080, 20(%rax)
+	movw	$720, 20(%rax)
 	movq	-736(%rbp), %rax
 	leaq	-704(%rbp), %rdx
 	addq	$512, %rdx
@@ -339,12 +339,6 @@ main:
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movb	$0, 38(%rax)
-	movq	-776(%rbp), %rax
-	leaq	-704(%rbp), %rdx
-	addq	$72, %rdx
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN4slay6engine6camera4BindEy@PLT
 	jmp	.L2
 .L15:
 	leaq	-704(%rbp), %rax
@@ -648,8 +642,8 @@ main:
 	.long	1072693248
 	.align 8
 .LC3:
-	.long	1202590843
-	.long	1066695393
+	.long	-1717986918
+	.long	1067030937
 	.align 8
 .LC6:
 	.long	-1717986918
