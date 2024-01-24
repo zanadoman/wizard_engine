@@ -66,56 +66,37 @@ namespace slay
                     continue;
                 }
 
-                if (this->Engine.Actors.Actors[i]->Depth <= this->SamplingStep)
+                if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
                 {
-                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, this->Engine.Actors.Actors[i]->Layer);
+                    layer = EPSILON;
+                }
+                if ((cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                {
+                    cache += EPSILON;
+                }
+
+                for (; layer < cache; layer += this->SamplingStep)
+                {
+                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
+
+                    if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
+                    {
+                        this->RenderQueue[buffer - 1].Layer = layer;
+                        continue;
+                    }
 
                     if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                     {
                         if (buffer == this->RenderQueue.Length())
                         {
-                            this->RenderQueue += {token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, this->Engine.Actors.Actors[i]->Layer, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area)};
+                            this->RenderQueue += {token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area)};
                         }
                         else
                         {
-                            this->RenderQueue[buffer] = token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, this->Engine.Actors.Actors[i]->Layer, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area);
+                            this->RenderQueue[buffer] = token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area);
                         }
 
                         buffer++;
-                    }
-                }
-                else
-                {
-                    layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
-                    cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
-                    if (layer <= 0)
-                    {
-                        layer = EPSILON;
-                    }
-
-                    for (; layer < cache; layer += this->SamplingStep)
-                    {
-                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
-
-                        if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
-                        {
-                            this->RenderQueue[buffer - 1].Layer = layer;
-                            continue;
-                        }
-
-                        if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
-                        {
-                            if (buffer == this->RenderQueue.Length())
-                            {
-                                this->RenderQueue += {token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area)};
-                            }
-                            else
-                            {
-                                this->RenderQueue[buffer] = token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area);
-                            }
-
-                            buffer++;
-                        }
                     }
                 }
             }
@@ -191,56 +172,37 @@ namespace slay
                     SDL_FreeSurface(surface);
                 }
                 
-                if (this->Engine.Actors.Actors[i]->Depth <= this->SamplingStep)
+                if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
                 {
-                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, this->Engine.Actors.Actors[i]->Layer);
+                    layer = EPSILON;
+                }
+                if ((cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                {
+                    cache += EPSILON;
+                }
+
+                for (; layer < cache; layer += this->SamplingStep)
+                {
+                    area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
+
+                    if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
+                    {
+                        this->RenderQueue[buffer - 1].Layer = layer;
+                        continue;
+                    }
 
                     if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                     {
                         if (buffer == this->RenderQueue.Length())
                         {
-                            this->RenderQueue += {token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, this->Engine.Actors.Actors[i]->Layer, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area)};
+                            this->RenderQueue += {token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area)};
                         }
                         else
                         {
-                            this->RenderQueue[buffer] = token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, this->Engine.Actors.Actors[i]->Layer, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area);
+                            this->RenderQueue[buffer] = token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area);
                         }
 
                         buffer++;
-                    }
-                }
-                else
-                {
-                    layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2;
-                    cache = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2;
-                    if (layer <= 0)
-                    {
-                        layer = EPSILON;
-                    }
-
-                    for (; layer < cache; layer += this->SamplingStep)
-                    {
-                        area = this->Engine.Camera.Transform(this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX, this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
-
-                        if (buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
-                        {
-                            this->RenderQueue[buffer - 1].Layer = layer;
-                            continue;
-                        }
-
-                        if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
-                        {
-                            if (buffer == this->RenderQueue.Length())
-                            {
-                                this->RenderQueue += {token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area)};
-                            }
-                            else
-                            {
-                                this->RenderQueue[buffer] = token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area);
-                            }
-
-                            buffer++;
-                        }
                     }
                 }
             }
