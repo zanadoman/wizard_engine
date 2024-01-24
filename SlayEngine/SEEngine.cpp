@@ -39,10 +39,10 @@ namespace slay
 
     engine::~engine()
     {
-        this->Assets.PurgePNGs();
-        this->Assets.PurgeTTFs();
-        this->Assets.PurgeWAVs();
-        this->Assets.PurgeCursors();
+        this->Assets.PurgePNGs({});
+        this->Assets.PurgeTTFs({});
+        this->Assets.PurgeWAVs({});
+        this->Assets.PurgeCursors({});
 
         this->Window.Close();
 

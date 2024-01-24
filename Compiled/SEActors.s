@@ -560,7 +560,7 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	cmpq	%rax, -32(%rbp)
 	sete	%al
 	testb	%al, %al
-	jne	.L55
+	jne	.L57
 	addq	$1, -24(%rbp)
 .L42:
 	leaq	-64(%rbp), %rax
@@ -571,7 +571,7 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	testb	%al, %al
 	jne	.L45
 	jmp	.L44
-.L55:
+.L57:
 	nop
 .L44:
 	leaq	-64(%rbp), %rax
@@ -626,17 +626,28 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
 	testq	%rax, %rax
-	sete	%al
+	jne	.L49
+	movq	-40(%rbp), %rax
+	addq	$8, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
+	cmpq	$1, %rax
+	jbe	.L49
+	movl	$1, %eax
+	jmp	.L50
+.L49:
+	movl	$0, %eax
+.L50:
 	testb	%al, %al
-	je	.L49
+	je	.L51
 	movq	-40(%rbp), %rax
 	addq	$8, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	subq	$1, %rax
 	movq	%rax, -32(%rbp)
-	jmp	.L50
-.L53:
+	jmp	.L52
+.L55:
 	movq	-40(%rbp), %rax
 	leaq	8(%rax), %rdx
 	movq	-32(%rbp), %rax
@@ -647,15 +658,15 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	jne	.L56
+	jne	.L58
 	subq	$1, -32(%rbp)
-.L50:
-	cmpq	$0, -32(%rbp)
-	jne	.L53
-	jmp	.L52
-.L56:
-	nop
 .L52:
+	cmpq	$0, -32(%rbp)
+	jne	.L55
+	jmp	.L54
+.L58:
+	nop
+.L54:
 	addq	$1, -32(%rbp)
 	movq	-40(%rbp), %rax
 	leaq	8(%rax), %rbx
@@ -669,7 +680,7 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	movq	%rax, %rsi
 	movq	%rbx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy
-.L49:
+.L51:
 	movl	$0, %eax
 	movq	-8(%rbp), %rbx
 	leave
@@ -701,20 +712,20 @@ _ZN4slay6engine6actorsixEy:
 	movq	%rdi, -8(%rbp)
 	movq	%rsi, -16(%rbp)
 	cmpq	$0, -16(%rbp)
-	jne	.L58
+	jne	.L60
 	leaq	.LC3(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L58:
+.L60:
 	movq	-8(%rbp), %rax
 	addq	$8, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -16(%rbp)
-	jnb	.L59
+	jnb	.L61
 	movq	-8(%rbp), %rax
 	leaq	8(%rax), %rdx
 	movq	-16(%rbp), %rax
@@ -723,15 +734,15 @@ _ZN4slay6engine6actorsixEy:
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
 	testq	%rax, %rax
-	jne	.L60
-.L59:
-	movl	$1, %eax
-	jmp	.L61
-.L60:
-	movl	$0, %eax
+	jne	.L62
 .L61:
+	movl	$1, %eax
+	jmp	.L63
+.L62:
+	movl	$0, %eax
+.L63:
 	testb	%al, %al
-	je	.L62
+	je	.L64
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC4(%rip), %rax
@@ -740,7 +751,7 @@ _ZN4slay6engine6actorsixEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L62:
+.L64:
 	movq	-8(%rbp), %rax
 	leaq	8(%rax), %rdx
 	movq	-16(%rbp), %rax
@@ -813,11 +824,11 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEC2ESt16initializer_listIS5_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L67
+	je	.L69
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L70
-.L67:
+	jmp	.L72
+.L69:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	salq	$3, %rax
@@ -831,7 +842,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEC2ESt16initializer_listIS5_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L69
+	je	.L71
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIPN4slay6engine6actors5actorEE4sizeEv
@@ -843,7 +854,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEC2ESt16initializer_listIS5_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L69:
+.L71:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %r12
@@ -856,7 +867,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEC2ESt16initializer_listIS5_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L70:
+.L72:
 	nop
 	addq	$32, %rsp
 	popq	%rbx
@@ -884,14 +895,14 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEED2Ev:
 	subq	$32, %rsp
 	movq	%rdi, -24(%rbp)
 	movq	$0, -8(%rbp)
-	jmp	.L72
-.L73:
+	jmp	.L74
+.L75:
 	addq	$1, -8(%rbp)
-.L72:
+.L74:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -8(%rbp)
-	jb	.L73
+	jb	.L75
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
@@ -948,7 +959,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L77
+	jb	.L79
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC6(%rip), %rax
@@ -957,7 +968,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L77:
+.L79:
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-16(%rbp), %rdx
@@ -1005,7 +1016,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEpLESt16initializer_listIS5_E:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	je	.L80
+	je	.L82
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIPN4slay6engine6actors5actorEE4sizeEv
@@ -1029,7 +1040,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEpLESt16initializer_listIS5_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L81
+	je	.L83
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIPN4slay6engine6actors5actorEE4sizeEv
@@ -1041,7 +1052,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEpLESt16initializer_listIS5_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L81:
+.L83:
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIPN4slay6engine6actors5actorEE4sizeEv
@@ -1064,7 +1075,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEpLESt16initializer_listIS5_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L80:
+.L82:
 	movq	-40(%rbp), %rax
 	addq	$40, %rsp
 	popq	%rbx
@@ -1105,7 +1116,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -32(%rbp)
-	jb	.L84
+	jb	.L86
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -1115,14 +1126,14 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L84:
+.L86:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rdx
 	movq	-32(%rbp), %rcx
 	movq	-40(%rbp), %rax
 	addq	%rcx, %rax
 	cmpq	%rax, %rdx
-	jnb	.L85
+	jnb	.L87
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -1132,20 +1143,20 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L85:
+.L87:
 	cmpq	$0, -40(%rbp)
-	je	.L86
+	je	.L88
 	movq	-32(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	jmp	.L87
-.L88:
+	jmp	.L89
+.L90:
 	addq	$1, -16(%rbp)
-.L87:
+.L89:
 	movq	-32(%rbp), %rdx
 	movq	-40(%rbp), %rax
 	addq	%rdx, %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L88
+	jb	.L90
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	subq	-40(%rbp), %rax
@@ -1157,19 +1168,19 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L89
+	je	.L91
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
 	call	free@PLT
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L86
-.L89:
+	jmp	.L88
+.L91:
 	movq	-32(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	jmp	.L90
-.L91:
+	jmp	.L92
+.L93:
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-8(%rbp), %rcx
@@ -1185,11 +1196,11 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy:
 	movq	(%rcx), %rax
 	movq	%rax, (%rdx)
 	addq	$1, -8(%rbp)
-.L90:
+.L92:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -8(%rbp)
-	jb	.L91
+	jb	.L93
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %rdx
@@ -1205,7 +1216,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L86
+	je	.L88
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -1215,7 +1226,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L86:
+.L88:
 	movq	-24(%rbp), %rax
 	leave
 	.cfi_def_cfa 7, 8

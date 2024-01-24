@@ -379,48 +379,98 @@ _ZN4slay6engineD2Ev:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
+	pushq	%r15
+	pushq	%r14
+	pushq	%r13
+	pushq	%r12
+	pushq	%rbx
+	subq	$40, %rsp
+	.cfi_offset 15, -24
+	.cfi_offset 14, -32
+	.cfi_offset 13, -40
+	.cfi_offset 12, -48
+	.cfi_offset 3, -56
+	movq	%rdi, -56(%rbp)
+	movq	-56(%rbp), %rcx
+	addq	$552, %rcx
+	movl	$0, %eax
+	movl	$0, %edx
+	movq	%rax, %r8
+	movq	%rdx, %r9
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	movq	%r8, %rdx
+	movq	%rdi, %rax
+	movq	%rdx, %rsi
+	movq	%rax, %rdx
+	movq	%rcx, %rdi
+	call	_ZN4slay6engine6assets9PurgePNGsESt16initializer_listIyE@PLT
+	movq	-56(%rbp), %rax
 	addq	$552, %rax
+	movq	$0, -80(%rbp)
+	movq	$0, -72(%rbp)
+	movq	-80(%rbp), %rsi
+	movq	-72(%rbp), %rdi
+	movq	%rsi, %rcx
+	movq	%rdi, %rbx
+	movq	%rdi, %rdx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine6assets9PurgePNGsEv@PLT
-	movq	-8(%rbp), %rax
+	call	_ZN4slay6engine6assets9PurgeTTFsESt16initializer_listIyE@PLT
+	movq	-56(%rbp), %rax
 	addq	$552, %rax
+	movl	$0, %r14d
+	movl	$0, %r15d
+	movq	%r14, %rcx
+	movq	%r15, %rbx
+	movq	%r14, %rsi
+	movq	%r15, %rdi
+	movq	%rdi, %rdx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine6assets9PurgeTTFsEv@PLT
-	movq	-8(%rbp), %rax
+	call	_ZN4slay6engine6assets9PurgeWAVsESt16initializer_listIyE@PLT
+	movq	-56(%rbp), %rax
 	addq	$552, %rax
+	movl	$0, %r12d
+	movl	$0, %r13d
+	movq	%r12, %rcx
+	movq	%r13, %rbx
+	movq	%r12, %rsi
+	movq	%r13, %rdi
+	movq	%rdi, %rdx
+	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	call	_ZN4slay6engine6assets9PurgeWAVsEv@PLT
-	movq	-8(%rbp), %rax
-	addq	$552, %rax
-	movq	%rax, %rdi
-	call	_ZN4slay6engine6assets12PurgeCursorsEv@PLT
-	movq	-8(%rbp), %rax
+	call	_ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE@PLT
+	movq	-56(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6window5CloseEv@PLT
 	call	TTF_Quit@PLT
 	call	SDL_CloseAudio@PLT
 	call	SDL_Quit@PLT
-	movq	-8(%rbp), %rax
+	movq	-56(%rbp), %rax
 	addq	$664, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayI9SDL_EventED1Ev
-	movq	-8(%rbp), %rax
+	movq	-56(%rbp), %rax
 	addq	$552, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6assetsD1Ev
-	movq	-8(%rbp), %rax
+	movq	-56(%rbp), %rax
 	addq	$520, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actorsD1Ev@PLT
-	movq	-8(%rbp), %rax
+	movq	-56(%rbp), %rax
 	addq	$32, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6renderD1Ev
 	nop
-	leave
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r13
+	popq	%r14
+	popq	%r15
+	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc

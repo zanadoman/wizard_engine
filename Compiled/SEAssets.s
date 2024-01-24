@@ -460,17 +460,28 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
 	subq	$1, %rax
 	cmpq	%rax, -48(%rbp)
-	sete	%al
+	jne	.L27
+	movq	-40(%rbp), %rax
+	addq	$8, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
+	cmpq	$1, %rax
+	jbe	.L27
+	movl	$1, %eax
+	jmp	.L28
+.L27:
+	movl	$0, %eax
+.L28:
 	testb	%al, %al
-	je	.L27
+	je	.L29
 	movq	-40(%rbp), %rax
 	addq	$8, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
 	subq	$1, %rax
 	movq	%rax, -32(%rbp)
-	jmp	.L28
-.L31:
+	jmp	.L30
+.L33:
 	movq	-40(%rbp), %rax
 	leaq	8(%rax), %rdx
 	movq	-32(%rbp), %rax
@@ -481,15 +492,15 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	jne	.L41
+	jne	.L43
 	subq	$1, -32(%rbp)
-.L28:
-	cmpq	$0, -32(%rbp)
-	jne	.L31
-	jmp	.L30
-.L41:
-	nop
 .L30:
+	cmpq	$0, -32(%rbp)
+	jne	.L33
+	jmp	.L32
+.L43:
+	nop
+.L32:
 	addq	$1, -32(%rbp)
 	movq	-40(%rbp), %rax
 	leaq	8(%rax), %rbx
@@ -503,10 +514,10 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	movq	%rax, %rsi
 	movq	%rbx, %rdi
 	call	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy
-.L27:
+.L29:
 	movq	$1, -32(%rbp)
-	jmp	.L32
-.L39:
+	jmp	.L34
+.L41:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -518,10 +529,10 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	jne	.L42
+	jne	.L44
 	movq	$1, -24(%rbp)
-	jmp	.L35
-.L38:
+	jmp	.L37
+.L40:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -539,7 +550,7 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	jne	.L43
+	jne	.L45
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -558,7 +569,7 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	cmpq	%rax, -48(%rbp)
 	sete	%al
 	testb	%al, %al
-	je	.L37
+	je	.L39
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -574,12 +585,12 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy
 	movq	(%rax), %rax
 	movq	$0, 64(%rax)
-	jmp	.L37
-.L43:
+	jmp	.L39
+.L45:
 	nop
-.L37:
+.L39:
 	addq	$1, -24(%rbp)
-.L35:
+.L37:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -594,13 +605,13 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	cmpq	%rax, -24(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L38
-	jmp	.L34
-.L42:
+	jne	.L40
+	jmp	.L36
+.L44:
 	nop
-.L34:
+.L36:
 	addq	$1, -32(%rbp)
-.L32:
+.L34:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	addq	$528, %rax
@@ -609,7 +620,7 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	cmpq	%rax, -32(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L39
+	jne	.L41
 	movl	$0, %eax
 	movq	-8(%rbp), %rbx
 	leave
@@ -618,10 +629,32 @@ _ZN4slay6engine6assets9UnloadPNGEy:
 	.cfi_endproc
 .LFE2200:
 	.size	_ZN4slay6engine6assets9UnloadPNGEy, .-_ZN4slay6engine6assets9UnloadPNGEy
+	.section	.text._ZNKSt16initializer_listIyE4sizeEv,"axG",@progbits,_ZNKSt16initializer_listIyE4sizeEv,comdat
 	.align 2
-	.globl	_ZN4slay6engine6assets9PurgePNGsEv
-	.type	_ZN4slay6engine6assets9PurgePNGsEv, @function
-_ZN4slay6engine6assets9PurgePNGsEv:
+	.weak	_ZNKSt16initializer_listIyE4sizeEv
+	.type	_ZNKSt16initializer_listIyE4sizeEv, @function
+_ZNKSt16initializer_listIyE4sizeEv:
+.LFB2202:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	8(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2202:
+	.size	_ZNKSt16initializer_listIyE4sizeEv, .-_ZNKSt16initializer_listIyE4sizeEv
+	.text
+	.align 2
+	.globl	_ZN4slay6engine6assets9PurgePNGsESt16initializer_listIyE
+	.type	_ZN4slay6engine6assets9PurgePNGsESt16initializer_listIyE, @function
+_ZN4slay6engine6assets9PurgePNGsESt16initializer_listIyE:
 .LFB2201:
 	.cfi_startproc
 	pushq	%rbp
@@ -630,16 +663,59 @@ _ZN4slay6engine6assets9PurgePNGsEv:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$56, %rsp
+	subq	$72, %rsp
 	.cfi_offset 3, -24
 	movq	%rdi, -56(%rbp)
-	movq	$1, -40(%rbp)
-	jmp	.L45
+	movq	%rdx, %rcx
+	movq	%rsi, %rax
+	movq	%rdi, %rdx
+	movq	%rcx, %rdx
+	movq	%rax, -80(%rbp)
+	movq	%rdx, -72(%rbp)
+	movq	$1, -48(%rbp)
+	jmp	.L49
+.L63:
+	movq	$0, -40(%rbp)
+	jmp	.L50
+.L53:
+	leaq	-80(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE5beginEv
+	movq	-40(%rbp), %rdx
+	salq	$3, %rdx
+	addq	%rdx, %rax
+	movq	(%rax), %rax
+	cmpq	%rax, -48(%rbp)
+	sete	%al
+	testb	%al, %al
+	jne	.L72
+	addq	$1, -40(%rbp)
+.L50:
+	leaq	-80(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	cmpq	%rax, -40(%rbp)
+	setb	%al
+	testb	%al, %al
+	jne	.L53
+	jmp	.L52
+.L72:
+	nop
 .L52:
+	leaq	-80(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	cmpq	%rax, -40(%rbp)
+	sete	%al
+	testb	%al, %al
+	je	.L54
+	movq	$1, -32(%rbp)
+	jmp	.L55
+.L62:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
-	movq	-40(%rbp), %rax
+	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
@@ -647,20 +723,20 @@ _ZN4slay6engine6assets9PurgePNGsEv:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	jne	.L57
-	movq	$1, -32(%rbp)
-	jmp	.L48
-.L51:
+	jne	.L73
+	movq	$1, -24(%rbp)
+	jmp	.L58
+.L61:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
-	movq	-40(%rbp), %rax
+	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
 	leaq	56(%rax), %rdx
-	movq	-32(%rbp), %rax
+	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy
@@ -668,32 +744,51 @@ _ZN4slay6engine6assets9PurgePNGsEv:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	jne	.L58
+	jne	.L74
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
-	movq	-40(%rbp), %rax
+	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
 	leaq	56(%rax), %rdx
+	movq	-24(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy
+	movq	(%rax), %rax
+	movq	64(%rax), %rax
+	cmpq	%rax, -48(%rbp)
+	sete	%al
+	testb	%al, %al
+	je	.L60
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
+	movq	(%rax), %rax
+	leaq	56(%rax), %rdx
+	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy
 	movq	(%rax), %rax
 	movq	$0, 64(%rax)
-	jmp	.L50
-.L58:
+	jmp	.L60
+.L74:
 	nop
-.L50:
-	addq	$1, -32(%rbp)
-.L48:
+.L60:
+	addq	$1, -24(%rbp)
+.L58:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
-	movq	-40(%rbp), %rax
+	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
@@ -701,55 +796,52 @@ _ZN4slay6engine6assets9PurgePNGsEv:
 	addq	$56, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv
-	cmpq	%rax, -32(%rbp)
+	cmpq	%rax, -24(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L51
-	jmp	.L47
-.L57:
+	jne	.L61
+	jmp	.L57
+.L73:
 	nop
-.L47:
-	addq	$1, -40(%rbp)
-.L45:
+.L57:
+	addq	$1, -32(%rbp)
+.L55:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	addq	$528, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
-	cmpq	%rax, -40(%rbp)
+	cmpq	%rax, -32(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L52
-	movq	$1, -24(%rbp)
-	jmp	.L53
-.L54:
+	jne	.L62
 	movq	-56(%rbp), %rax
 	leaq	8(%rax), %rdx
-	movq	-24(%rbp), %rax
+	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIP11SDL_TextureEixEy
 	movq	(%rax), %rax
 	movq	%rax, %rdi
 	call	SDL_DestroyTexture@PLT
-	addq	$1, -24(%rbp)
-.L53:
+	movq	-56(%rbp), %rax
+	leaq	8(%rax), %rdx
+	movq	-48(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP11SDL_TextureEixEy
+	movq	$0, (%rax)
+.L54:
+	addq	$1, -48(%rbp)
+.L49:
 	movq	-56(%rbp), %rax
 	addq	$8, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
-	cmpq	%rax, -24(%rbp)
+	cmpq	%rax, -48(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L54
-	movq	-56(%rbp), %rax
-	addq	$8, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
-	cmpq	$1, %rax
-	seta	%al
-	testb	%al, %al
-	je	.L55
+	jne	.L63
 	movq	-56(%rbp), %rax
 	leaq	8(%rax), %rbx
 	movq	-56(%rbp), %rax
@@ -757,11 +849,66 @@ _ZN4slay6engine6assets9PurgePNGsEv:
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
 	subq	$1, %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	call	_ZN3neo5arrayIP11SDL_TextureEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	jne	.L64
+	movq	-56(%rbp), %rax
+	addq	$8, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
+	cmpq	$1, %rax
+	jbe	.L64
+	movl	$1, %eax
+	jmp	.L65
+.L64:
+	movl	$0, %eax
+.L65:
+	testb	%al, %al
+	je	.L66
+	movq	-56(%rbp), %rax
+	addq	$8, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
+	subq	$1, %rax
+	movq	%rax, -48(%rbp)
+	jmp	.L67
+.L70:
+	movq	-56(%rbp), %rax
+	leaq	8(%rax), %rdx
+	movq	-48(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP11SDL_TextureEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	setne	%al
+	testb	%al, %al
+	jne	.L75
+	subq	$1, -48(%rbp)
+.L67:
+	cmpq	$0, -48(%rbp)
+	jne	.L70
+	jmp	.L69
+.L75:
+	nop
+.L69:
+	addq	$1, -48(%rbp)
+	movq	-56(%rbp), %rax
+	leaq	8(%rax), %rbx
+	movq	-56(%rbp), %rax
+	addq	$8, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
+	subq	-48(%rbp), %rax
 	movq	%rax, %rdx
-	movl	$1, %esi
+	movq	-48(%rbp), %rax
+	movq	%rax, %rsi
 	movq	%rbx, %rdi
 	call	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy
-.L55:
+.L66:
 	movl	$0, %eax
 	movq	-8(%rbp), %rbx
 	leave
@@ -769,7 +916,7 @@ _ZN4slay6engine6assets9PurgePNGsEv:
 	ret
 	.cfi_endproc
 .LFE2201:
-	.size	_ZN4slay6engine6assets9PurgePNGsEv, .-_ZN4slay6engine6assets9PurgePNGsEv
+	.size	_ZN4slay6engine6assets9PurgePNGsESt16initializer_listIyE, .-_ZN4slay6engine6assets9PurgePNGsESt16initializer_listIyE
 	.section	.rodata
 	.align 8
 .LC5:
@@ -782,7 +929,7 @@ _ZN4slay6engine6assets9PurgePNGsEv:
 	.globl	_ZN4slay6engine6assets7LoadWAVEPKc
 	.type	_ZN4slay6engine6assets7LoadWAVEPKc, @function
 _ZN4slay6engine6assets7LoadWAVEPKc:
-.LFB2202:
+.LFB2203:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -802,7 +949,7 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	movq	%rax, -40(%rbp)
 	xorl	%eax, %eax
 	cmpq	$0, -80(%rbp)
-	jne	.L60
+	jne	.L77
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC5(%rip), %rax
@@ -811,10 +958,10 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L60:
+.L77:
 	movq	$1, -56(%rbp)
-	jmp	.L61
-.L65:
+	jmp	.L78
+.L82:
 	movq	-72(%rbp), %rax
 	leaq	24(%rax), %rdx
 	movq	-56(%rbp), %rax
@@ -825,7 +972,7 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L62
+	je	.L79
 	movq	-80(%rbp), %rax
 	movq	%rax, %rdi
 	call	Mix_LoadWAV@PLT
@@ -841,7 +988,7 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L63
+	je	.L80
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC6(%rip), %rax
@@ -850,12 +997,12 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L63:
+.L80:
 	movq	-56(%rbp), %rax
-	jmp	.L64
-.L62:
+	jmp	.L81
+.L79:
 	addq	$1, -56(%rbp)
-.L61:
+.L78:
 	movq	-72(%rbp), %rax
 	addq	$24, %rax
 	movq	%rax, %rdi
@@ -863,7 +1010,7 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	cmpq	%rax, -56(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L65
+	jne	.L82
 	movq	-80(%rbp), %rax
 	movq	%rax, %rdi
 	call	Mix_LoadWAV@PLT
@@ -894,7 +1041,7 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L66
+	je	.L83
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC6(%rip), %rax
@@ -903,18 +1050,18 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L66:
+.L83:
 	movq	-72(%rbp), %rax
 	addq	$24, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
 	subq	$1, %rax
-.L64:
+.L81:
 	movq	-40(%rbp), %rdx
 	subq	%fs:40, %rdx
-	je	.L67
+	je	.L84
 	call	__stack_chk_fail@PLT
-.L67:
+.L84:
 	addq	$56, %rsp
 	popq	%rbx
 	popq	%r12
@@ -923,7 +1070,7 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2202:
+.LFE2203:
 	.size	_ZN4slay6engine6assets7LoadWAVEPKc, .-_ZN4slay6engine6assets7LoadWAVEPKc
 	.section	.rodata
 	.align 8
@@ -937,7 +1084,7 @@ _ZN4slay6engine6assets7LoadWAVEPKc:
 	.globl	_ZN4slay6engine6assets9UnloadWAVEy
 	.type	_ZN4slay6engine6assets9UnloadWAVEy, @function
 _ZN4slay6engine6assets9UnloadWAVEy:
-.LFB2203:
+.LFB2204:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -950,7 +1097,7 @@ _ZN4slay6engine6assets9UnloadWAVEy:
 	movq	%rdi, -40(%rbp)
 	movq	%rsi, -48(%rbp)
 	cmpq	$0, -48(%rbp)
-	jne	.L69
+	jne	.L86
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC7(%rip), %rax
@@ -959,13 +1106,13 @@ _ZN4slay6engine6assets9UnloadWAVEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L69:
+.L86:
 	movq	-40(%rbp), %rax
 	addq	$24, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
 	cmpq	%rax, -48(%rbp)
-	jnb	.L70
+	jnb	.L87
 	movq	-40(%rbp), %rax
 	leaq	24(%rax), %rdx
 	movq	-48(%rbp), %rax
@@ -974,15 +1121,15 @@ _ZN4slay6engine6assets9UnloadWAVEy:
 	call	_ZN3neo5arrayIP9Mix_ChunkEixEy
 	movq	(%rax), %rax
 	testq	%rax, %rax
-	jne	.L71
-.L70:
+	jne	.L88
+.L87:
 	movl	$1, %eax
-	jmp	.L72
-.L71:
+	jmp	.L89
+.L88:
 	movl	$0, %eax
-.L72:
+.L89:
 	testb	%al, %al
-	je	.L73
+	je	.L90
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC8(%rip), %rax
@@ -991,7 +1138,7 @@ _ZN4slay6engine6assets9UnloadWAVEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L73:
+.L90:
 	movq	-40(%rbp), %rax
 	leaq	24(%rax), %rdx
 	movq	-48(%rbp), %rax
@@ -1014,17 +1161,28 @@ _ZN4slay6engine6assets9UnloadWAVEy:
 	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
 	subq	$1, %rax
 	cmpq	%rax, -48(%rbp)
-	sete	%al
+	jne	.L91
+	movq	-40(%rbp), %rax
+	addq	$24, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
+	cmpq	$1, %rax
+	jbe	.L91
+	movl	$1, %eax
+	jmp	.L92
+.L91:
+	movl	$0, %eax
+.L92:
 	testb	%al, %al
-	je	.L74
+	je	.L93
 	movq	-40(%rbp), %rax
 	addq	$24, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
 	subq	$1, %rax
 	movq	%rax, -24(%rbp)
-	jmp	.L75
-.L78:
+	jmp	.L94
+.L97:
 	movq	-40(%rbp), %rax
 	leaq	24(%rax), %rdx
 	movq	-24(%rbp), %rax
@@ -1035,15 +1193,15 @@ _ZN4slay6engine6assets9UnloadWAVEy:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	jne	.L80
+	jne	.L99
 	subq	$1, -24(%rbp)
-.L75:
+.L94:
 	cmpq	$0, -24(%rbp)
-	jne	.L78
-	jmp	.L77
-.L80:
+	jne	.L97
+	jmp	.L96
+.L99:
 	nop
-.L77:
+.L96:
 	addq	$1, -24(%rbp)
 	movq	-40(%rbp), %rax
 	leaq	24(%rax), %rbx
@@ -1057,72 +1215,7 @@ _ZN4slay6engine6assets9UnloadWAVEy:
 	movq	%rax, %rsi
 	movq	%rbx, %rdi
 	call	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy
-.L74:
-	movl	$0, %eax
-	movq	-8(%rbp), %rbx
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2203:
-	.size	_ZN4slay6engine6assets9UnloadWAVEy, .-_ZN4slay6engine6assets9UnloadWAVEy
-	.align 2
-	.globl	_ZN4slay6engine6assets9PurgeWAVsEv
-	.type	_ZN4slay6engine6assets9PurgeWAVsEv, @function
-_ZN4slay6engine6assets9PurgeWAVsEv:
-.LFB2204:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$40, %rsp
-	.cfi_offset 3, -24
-	movq	%rdi, -40(%rbp)
-	movq	$1, -24(%rbp)
-	jmp	.L82
-.L83:
-	movq	-40(%rbp), %rax
-	leaq	24(%rax), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIP9Mix_ChunkEixEy
-	movq	(%rax), %rax
-	movq	%rax, %rdi
-	call	Mix_FreeChunk@PLT
-	addq	$1, -24(%rbp)
-.L82:
-	movq	-40(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
-	cmpq	%rax, -24(%rbp)
-	setb	%al
-	testb	%al, %al
-	jne	.L83
-	movq	-40(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
-	cmpq	$1, %rax
-	seta	%al
-	testb	%al, %al
-	je	.L84
-	movq	-40(%rbp), %rax
-	leaq	24(%rax), %rbx
-	movq	-40(%rbp), %rax
-	addq	$24, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
-	subq	$1, %rax
-	movq	%rax, %rdx
-	movl	$1, %esi
-	movq	%rbx, %rdi
-	call	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy
-.L84:
+.L93:
 	movl	$0, %eax
 	movq	-8(%rbp), %rbx
 	leave
@@ -1130,7 +1223,167 @@ _ZN4slay6engine6assets9PurgeWAVsEv:
 	ret
 	.cfi_endproc
 .LFE2204:
-	.size	_ZN4slay6engine6assets9PurgeWAVsEv, .-_ZN4slay6engine6assets9PurgeWAVsEv
+	.size	_ZN4slay6engine6assets9UnloadWAVEy, .-_ZN4slay6engine6assets9UnloadWAVEy
+	.align 2
+	.globl	_ZN4slay6engine6assets9PurgeWAVsESt16initializer_listIyE
+	.type	_ZN4slay6engine6assets9PurgeWAVsESt16initializer_listIyE, @function
+_ZN4slay6engine6assets9PurgeWAVsESt16initializer_listIyE:
+.LFB2205:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	pushq	%rbx
+	subq	$56, %rsp
+	.cfi_offset 3, -24
+	movq	%rdi, -40(%rbp)
+	movq	%rdx, %rcx
+	movq	%rsi, %rax
+	movq	%rdi, %rdx
+	movq	%rcx, %rdx
+	movq	%rax, -64(%rbp)
+	movq	%rdx, -56(%rbp)
+	movq	$1, -32(%rbp)
+	jmp	.L101
+.L107:
+	movq	$0, -24(%rbp)
+	jmp	.L102
+.L105:
+	leaq	-64(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE5beginEv
+	movq	-24(%rbp), %rdx
+	salq	$3, %rdx
+	addq	%rdx, %rax
+	movq	(%rax), %rax
+	cmpq	%rax, -32(%rbp)
+	sete	%al
+	testb	%al, %al
+	jne	.L116
+	addq	$1, -24(%rbp)
+.L102:
+	leaq	-64(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	cmpq	%rax, -24(%rbp)
+	setb	%al
+	testb	%al, %al
+	jne	.L105
+	jmp	.L104
+.L116:
+	nop
+.L104:
+	leaq	-64(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	cmpq	%rax, -24(%rbp)
+	sete	%al
+	testb	%al, %al
+	je	.L106
+	movq	-40(%rbp), %rax
+	leaq	24(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkEixEy
+	movq	(%rax), %rax
+	movq	%rax, %rdi
+	call	Mix_FreeChunk@PLT
+	movq	-40(%rbp), %rax
+	leaq	24(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkEixEy
+	movq	$0, (%rax)
+.L106:
+	addq	$1, -32(%rbp)
+.L101:
+	movq	-40(%rbp), %rax
+	addq	$24, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
+	cmpq	%rax, -32(%rbp)
+	setb	%al
+	testb	%al, %al
+	jne	.L107
+	movq	-40(%rbp), %rax
+	leaq	24(%rax), %rbx
+	movq	-40(%rbp), %rax
+	addq	$24, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
+	subq	$1, %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	jne	.L108
+	movq	-40(%rbp), %rax
+	addq	$24, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
+	cmpq	$1, %rax
+	jbe	.L108
+	movl	$1, %eax
+	jmp	.L109
+.L108:
+	movl	$0, %eax
+.L109:
+	testb	%al, %al
+	je	.L110
+	movq	-40(%rbp), %rax
+	addq	$24, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
+	subq	$1, %rax
+	movq	%rax, -32(%rbp)
+	jmp	.L111
+.L114:
+	movq	-40(%rbp), %rax
+	leaq	24(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	setne	%al
+	testb	%al, %al
+	jne	.L117
+	subq	$1, -32(%rbp)
+.L111:
+	cmpq	$0, -32(%rbp)
+	jne	.L114
+	jmp	.L113
+.L117:
+	nop
+.L113:
+	addq	$1, -32(%rbp)
+	movq	-40(%rbp), %rax
+	leaq	24(%rax), %rbx
+	movq	-40(%rbp), %rax
+	addq	$24, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
+	subq	-32(%rbp), %rax
+	movq	%rax, %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy
+.L110:
+	movl	$0, %eax
+	movq	-8(%rbp), %rbx
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2205:
+	.size	_ZN4slay6engine6assets9PurgeWAVsESt16initializer_listIyE, .-_ZN4slay6engine6assets9PurgeWAVsESt16initializer_listIyE
 	.section	.rodata
 	.align 8
 .LC9:
@@ -1143,7 +1396,7 @@ _ZN4slay6engine6assets9PurgeWAVsEv:
 	.globl	_ZN4slay6engine6assets7LoadTTFEPKch
 	.type	_ZN4slay6engine6assets7LoadTTFEPKch, @function
 _ZN4slay6engine6assets7LoadTTFEPKch:
-.LFB2205:
+.LFB2206:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1165,7 +1418,7 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	movq	%rax, -40(%rbp)
 	xorl	%eax, %eax
 	cmpq	$0, -80(%rbp)
-	jne	.L87
+	jne	.L119
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC9(%rip), %rax
@@ -1174,10 +1427,10 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L87:
+.L119:
 	movq	$1, -56(%rbp)
-	jmp	.L88
-.L92:
+	jmp	.L120
+.L124:
 	movq	-72(%rbp), %rax
 	leaq	40(%rax), %rdx
 	movq	-56(%rbp), %rax
@@ -1188,7 +1441,7 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L89
+	je	.L121
 	movzbl	-84(%rbp), %edx
 	movq	-80(%rbp), %rax
 	movl	%edx, %esi
@@ -1206,7 +1459,7 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L90
+	je	.L122
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC10(%rip), %rax
@@ -1215,12 +1468,12 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L90:
+.L122:
 	movq	-56(%rbp), %rax
-	jmp	.L91
-.L89:
+	jmp	.L123
+.L121:
 	addq	$1, -56(%rbp)
-.L88:
+.L120:
 	movq	-72(%rbp), %rax
 	addq	$40, %rax
 	movq	%rax, %rdi
@@ -1228,7 +1481,7 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	cmpq	%rax, -56(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L92
+	jne	.L124
 	movzbl	-84(%rbp), %edx
 	movq	-80(%rbp), %rax
 	movl	%edx, %esi
@@ -1261,7 +1514,7 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L93
+	je	.L125
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC10(%rip), %rax
@@ -1270,18 +1523,18 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L93:
+.L125:
 	movq	-72(%rbp), %rax
 	addq	$40, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
 	subq	$1, %rax
-.L91:
+.L123:
 	movq	-40(%rbp), %rdx
 	subq	%fs:40, %rdx
-	je	.L94
+	je	.L126
 	call	__stack_chk_fail@PLT
-.L94:
+.L126:
 	addq	$72, %rsp
 	popq	%rbx
 	popq	%r12
@@ -1290,7 +1543,7 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2205:
+.LFE2206:
 	.size	_ZN4slay6engine6assets7LoadTTFEPKch, .-_ZN4slay6engine6assets7LoadTTFEPKch
 	.section	.rodata
 	.align 8
@@ -1304,7 +1557,7 @@ _ZN4slay6engine6assets7LoadTTFEPKch:
 	.globl	_ZN4slay6engine6assets9UnloadTTFEy
 	.type	_ZN4slay6engine6assets9UnloadTTFEy, @function
 _ZN4slay6engine6assets9UnloadTTFEy:
-.LFB2206:
+.LFB2207:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1317,7 +1570,7 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	movq	%rdi, -40(%rbp)
 	movq	%rsi, -48(%rbp)
 	cmpq	$0, -48(%rbp)
-	jne	.L96
+	jne	.L128
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC11(%rip), %rax
@@ -1326,13 +1579,13 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L96:
+.L128:
 	movq	-40(%rbp), %rax
 	addq	$40, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
 	cmpq	%rax, -48(%rbp)
-	jnb	.L97
+	jnb	.L129
 	movq	-40(%rbp), %rax
 	leaq	40(%rax), %rdx
 	movq	-48(%rbp), %rax
@@ -1341,15 +1594,15 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	call	_ZN3neo5arrayIP9_TTF_FontEixEy
 	movq	(%rax), %rax
 	testq	%rax, %rax
-	jne	.L98
-.L97:
+	jne	.L130
+.L129:
 	movl	$1, %eax
-	jmp	.L99
-.L98:
+	jmp	.L131
+.L130:
 	movl	$0, %eax
-.L99:
+.L131:
 	testb	%al, %al
-	je	.L100
+	je	.L132
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC12(%rip), %rax
@@ -1358,7 +1611,7 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L100:
+.L132:
 	movq	-40(%rbp), %rax
 	leaq	40(%rax), %rdx
 	movq	-48(%rbp), %rax
@@ -1381,17 +1634,28 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
 	subq	$1, %rax
 	cmpq	%rax, -48(%rbp)
-	sete	%al
+	jne	.L133
+	movq	-40(%rbp), %rax
+	addq	$40, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
+	cmpq	$1, %rax
+	jbe	.L133
+	movl	$1, %eax
+	jmp	.L134
+.L133:
+	movl	$0, %eax
+.L134:
 	testb	%al, %al
-	je	.L101
+	je	.L135
 	movq	-40(%rbp), %rax
 	addq	$40, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
 	subq	$1, %rax
 	movq	%rax, -32(%rbp)
-	jmp	.L102
-.L105:
+	jmp	.L136
+.L139:
 	movq	-40(%rbp), %rax
 	leaq	40(%rax), %rdx
 	movq	-32(%rbp), %rax
@@ -1402,15 +1666,15 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	jne	.L115
+	jne	.L149
 	subq	$1, -32(%rbp)
-.L102:
+.L136:
 	cmpq	$0, -32(%rbp)
-	jne	.L105
-	jmp	.L104
-.L115:
+	jne	.L139
+	jmp	.L138
+.L149:
 	nop
-.L104:
+.L138:
 	addq	$1, -32(%rbp)
 	movq	-40(%rbp), %rax
 	leaq	40(%rax), %rbx
@@ -1424,10 +1688,10 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	movq	%rax, %rsi
 	movq	%rbx, %rdi
 	call	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy
-.L101:
+.L135:
 	movq	$1, -32(%rbp)
-	jmp	.L106
-.L113:
+	jmp	.L140
+.L147:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -1439,10 +1703,10 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	jne	.L116
+	jne	.L150
 	movq	$1, -24(%rbp)
-	jmp	.L109
-.L112:
+	jmp	.L143
+.L146:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -1460,7 +1724,7 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	jne	.L117
+	jne	.L151
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -1479,7 +1743,7 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	cmpq	%rax, -48(%rbp)
 	sete	%al
 	testb	%al, %al
-	je	.L111
+	je	.L145
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -1495,12 +1759,12 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
 	movq	(%rax), %rax
 	movq	$0, 88(%rax)
-	jmp	.L111
-.L117:
+	jmp	.L145
+.L151:
 	nop
-.L111:
+.L145:
 	addq	$1, -24(%rbp)
-.L109:
+.L143:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -1515,13 +1779,13 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	cmpq	%rax, -24(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L112
-	jmp	.L108
-.L116:
+	jne	.L146
+	jmp	.L142
+.L150:
 	nop
-.L108:
+.L142:
 	addq	$1, -32(%rbp)
-.L106:
+.L140:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	addq	$528, %rax
@@ -1530,159 +1794,7 @@ _ZN4slay6engine6assets9UnloadTTFEy:
 	cmpq	%rax, -32(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L113
-	movl	$0, %eax
-	movq	-8(%rbp), %rbx
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2206:
-	.size	_ZN4slay6engine6assets9UnloadTTFEy, .-_ZN4slay6engine6assets9UnloadTTFEy
-	.align 2
-	.globl	_ZN4slay6engine6assets9PurgeTTFsEv
-	.type	_ZN4slay6engine6assets9PurgeTTFsEv, @function
-_ZN4slay6engine6assets9PurgeTTFsEv:
-.LFB2207:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$56, %rsp
-	.cfi_offset 3, -24
-	movq	%rdi, -56(%rbp)
-	movq	$1, -40(%rbp)
-	jmp	.L119
-.L126:
-	movq	-56(%rbp), %rax
-	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
-	movq	-40(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	movq	(%rax), %rax
-	testq	%rax, %rax
-	sete	%al
-	testb	%al, %al
-	jne	.L131
-	movq	$1, -32(%rbp)
-	jmp	.L122
-.L125:
-	movq	-56(%rbp), %rax
-	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
-	movq	-40(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	movq	(%rax), %rax
-	leaq	88(%rax), %rdx
-	movq	-32(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
-	movq	(%rax), %rax
-	testq	%rax, %rax
-	sete	%al
-	testb	%al, %al
-	jne	.L132
-	movq	-56(%rbp), %rax
-	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
-	movq	-40(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	movq	(%rax), %rax
-	leaq	88(%rax), %rdx
-	movq	-32(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
-	movq	(%rax), %rax
-	movq	$0, 88(%rax)
-	jmp	.L124
-.L132:
-	nop
-.L124:
-	addq	$1, -32(%rbp)
-.L122:
-	movq	-56(%rbp), %rax
-	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
-	movq	-40(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	movq	(%rax), %rax
-	addq	$88, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv
-	cmpq	%rax, -32(%rbp)
-	setb	%al
-	testb	%al, %al
-	jne	.L125
-	jmp	.L121
-.L131:
-	nop
-.L121:
-	addq	$1, -40(%rbp)
-.L119:
-	movq	-56(%rbp), %rax
-	movq	(%rax), %rax
-	addq	$528, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
-	cmpq	%rax, -40(%rbp)
-	setb	%al
-	testb	%al, %al
-	jne	.L126
-	movq	$1, -24(%rbp)
-	jmp	.L127
-.L128:
-	movq	-56(%rbp), %rax
-	leaq	40(%rax), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIP9_TTF_FontEixEy
-	movq	(%rax), %rax
-	movq	%rax, %rdi
-	call	TTF_CloseFont@PLT
-	addq	$1, -24(%rbp)
-.L127:
-	movq	-56(%rbp), %rax
-	addq	$40, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
-	cmpq	%rax, -24(%rbp)
-	setb	%al
-	testb	%al, %al
-	jne	.L128
-	movq	-56(%rbp), %rax
-	addq	$40, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
-	cmpq	$1, %rax
-	seta	%al
-	testb	%al, %al
-	je	.L129
-	movq	-56(%rbp), %rax
-	leaq	40(%rax), %rbx
-	movq	-56(%rbp), %rax
-	addq	$40, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
-	subq	$1, %rax
-	movq	%rax, %rdx
-	movl	$1, %esi
-	movq	%rbx, %rdi
-	call	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy
-.L129:
+	jne	.L147
 	movl	$0, %eax
 	movq	-8(%rbp), %rbx
 	leave
@@ -1690,7 +1802,273 @@ _ZN4slay6engine6assets9PurgeTTFsEv:
 	ret
 	.cfi_endproc
 .LFE2207:
-	.size	_ZN4slay6engine6assets9PurgeTTFsEv, .-_ZN4slay6engine6assets9PurgeTTFsEv
+	.size	_ZN4slay6engine6assets9UnloadTTFEy, .-_ZN4slay6engine6assets9UnloadTTFEy
+	.align 2
+	.globl	_ZN4slay6engine6assets9PurgeTTFsESt16initializer_listIyE
+	.type	_ZN4slay6engine6assets9PurgeTTFsESt16initializer_listIyE, @function
+_ZN4slay6engine6assets9PurgeTTFsESt16initializer_listIyE:
+.LFB2208:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	pushq	%rbx
+	subq	$72, %rsp
+	.cfi_offset 3, -24
+	movq	%rdi, -56(%rbp)
+	movq	%rdx, %rcx
+	movq	%rsi, %rax
+	movq	%rdi, %rdx
+	movq	%rcx, %rdx
+	movq	%rax, -80(%rbp)
+	movq	%rdx, -72(%rbp)
+	movq	$1, -48(%rbp)
+	jmp	.L153
+.L167:
+	movq	$0, -40(%rbp)
+	jmp	.L154
+.L157:
+	leaq	-80(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE5beginEv
+	movq	-40(%rbp), %rdx
+	salq	$3, %rdx
+	addq	%rdx, %rax
+	movq	(%rax), %rax
+	cmpq	%rax, -48(%rbp)
+	sete	%al
+	testb	%al, %al
+	jne	.L176
+	addq	$1, -40(%rbp)
+.L154:
+	leaq	-80(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	cmpq	%rax, -40(%rbp)
+	setb	%al
+	testb	%al, %al
+	jne	.L157
+	jmp	.L156
+.L176:
+	nop
+.L156:
+	leaq	-80(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	cmpq	%rax, -40(%rbp)
+	sete	%al
+	testb	%al, %al
+	je	.L158
+	movq	$1, -32(%rbp)
+	jmp	.L159
+.L166:
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	528(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	sete	%al
+	testb	%al, %al
+	jne	.L177
+	movq	$1, -24(%rbp)
+	jmp	.L162
+.L165:
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	528(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
+	movq	(%rax), %rax
+	leaq	88(%rax), %rdx
+	movq	-24(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	sete	%al
+	testb	%al, %al
+	jne	.L178
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	528(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
+	movq	(%rax), %rax
+	leaq	88(%rax), %rdx
+	movq	-24(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
+	movq	(%rax), %rax
+	movq	88(%rax), %rax
+	cmpq	%rax, -48(%rbp)
+	sete	%al
+	testb	%al, %al
+	je	.L164
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	528(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
+	movq	(%rax), %rax
+	leaq	88(%rax), %rdx
+	movq	-24(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
+	movq	(%rax), %rax
+	movq	$0, 88(%rax)
+	jmp	.L164
+.L178:
+	nop
+.L164:
+	addq	$1, -24(%rbp)
+.L162:
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	528(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
+	movq	(%rax), %rax
+	addq	$88, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv
+	cmpq	%rax, -24(%rbp)
+	setb	%al
+	testb	%al, %al
+	jne	.L165
+	jmp	.L161
+.L177:
+	nop
+.L161:
+	addq	$1, -32(%rbp)
+.L159:
+	movq	-56(%rbp), %rax
+	movq	(%rax), %rax
+	addq	$528, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
+	cmpq	%rax, -32(%rbp)
+	setb	%al
+	testb	%al, %al
+	jne	.L166
+	movq	-56(%rbp), %rax
+	leaq	40(%rax), %rdx
+	movq	-48(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontEixEy
+	movq	(%rax), %rax
+	movq	%rax, %rdi
+	call	TTF_CloseFont@PLT
+	movq	-56(%rbp), %rax
+	leaq	40(%rax), %rdx
+	movq	-48(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontEixEy
+	movq	$0, (%rax)
+.L158:
+	addq	$1, -48(%rbp)
+.L153:
+	movq	-56(%rbp), %rax
+	addq	$40, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
+	cmpq	%rax, -48(%rbp)
+	setb	%al
+	testb	%al, %al
+	jne	.L167
+	movq	-56(%rbp), %rax
+	leaq	40(%rax), %rbx
+	movq	-56(%rbp), %rax
+	addq	$40, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
+	subq	$1, %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	jne	.L168
+	movq	-56(%rbp), %rax
+	addq	$40, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
+	cmpq	$1, %rax
+	jbe	.L168
+	movl	$1, %eax
+	jmp	.L169
+.L168:
+	movl	$0, %eax
+.L169:
+	testb	%al, %al
+	je	.L170
+	movq	-56(%rbp), %rax
+	addq	$40, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
+	subq	$1, %rax
+	movq	%rax, -48(%rbp)
+	jmp	.L171
+.L174:
+	movq	-56(%rbp), %rax
+	leaq	40(%rax), %rdx
+	movq	-48(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	setne	%al
+	testb	%al, %al
+	jne	.L179
+	subq	$1, -48(%rbp)
+.L171:
+	cmpq	$0, -48(%rbp)
+	jne	.L174
+	jmp	.L173
+.L179:
+	nop
+.L173:
+	addq	$1, -48(%rbp)
+	movq	-56(%rbp), %rax
+	leaq	40(%rax), %rbx
+	movq	-56(%rbp), %rax
+	addq	$40, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
+	subq	-48(%rbp), %rax
+	movq	%rax, %rdx
+	movq	-48(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy
+.L170:
+	movl	$0, %eax
+	movq	-8(%rbp), %rbx
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2208:
+	.size	_ZN4slay6engine6assets9PurgeTTFsESt16initializer_listIyE, .-_ZN4slay6engine6assets9PurgeTTFsESt16initializer_listIyE
 	.section	.rodata
 	.align 8
 .LC13:
@@ -1712,7 +2090,7 @@ _ZN4slay6engine6assets9PurgeTTFsEv:
 	.globl	_ZN4slay6engine6assets10LoadCursorEPKctt
 	.type	_ZN4slay6engine6assets10LoadCursorEPKctt, @function
 _ZN4slay6engine6assets10LoadCursorEPKctt:
-.LFB2208:
+.LFB2209:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1735,7 +2113,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	movq	%rax, -40(%rbp)
 	xorl	%eax, %eax
 	cmpq	$0, -80(%rbp)
-	jne	.L134
+	jne	.L181
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC13(%rip), %rax
@@ -1744,7 +2122,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L134:
+.L181:
 	movq	-80(%rbp), %rax
 	movq	%rax, %rdi
 	call	IMG_Load@PLT
@@ -1752,7 +2130,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	cmpq	$0, -56(%rbp)
 	sete	%al
 	testb	%al, %al
-	je	.L135
+	je	.L182
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC14(%rip), %rax
@@ -1761,12 +2139,12 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L135:
+.L182:
 	movq	-56(%rbp), %rax
 	movl	16(%rax), %edx
 	movzwl	-84(%rbp), %eax
 	cmpl	%eax, %edx
-	jg	.L136
+	jg	.L183
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC15(%rip), %rax
@@ -1775,12 +2153,12 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L136:
+.L183:
 	movq	-56(%rbp), %rax
 	movl	20(%rax), %edx
 	movzwl	-88(%rbp), %eax
 	cmpl	%eax, %edx
-	jg	.L137
+	jg	.L184
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC16(%rip), %rax
@@ -1789,10 +2167,10 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L137:
+.L184:
 	movq	$1, -64(%rbp)
-	jmp	.L138
-.L142:
+	jmp	.L185
+.L189:
 	movq	-72(%rbp), %rax
 	leaq	56(%rax), %rdx
 	movq	-64(%rbp), %rax
@@ -1803,7 +2181,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L139
+	je	.L186
 	movzwl	-88(%rbp), %edx
 	movzwl	-84(%rbp), %ecx
 	movq	-56(%rbp), %rax
@@ -1822,7 +2200,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L140
+	je	.L187
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC17(%rip), %rax
@@ -1831,15 +2209,15 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L140:
+.L187:
 	movq	-56(%rbp), %rax
 	movq	%rax, %rdi
 	call	SDL_FreeSurface@PLT
 	movq	-64(%rbp), %rax
-	jmp	.L141
-.L139:
+	jmp	.L188
+.L186:
 	addq	$1, -64(%rbp)
-.L138:
+.L185:
 	movq	-72(%rbp), %rax
 	addq	$56, %rax
 	movq	%rax, %rdi
@@ -1847,7 +2225,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	cmpq	%rax, -64(%rbp)
 	setb	%al
 	testb	%al, %al
-	jne	.L142
+	jne	.L189
 	movzwl	-88(%rbp), %edx
 	movzwl	-84(%rbp), %ecx
 	movq	-56(%rbp), %rax
@@ -1881,7 +2259,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L143
+	je	.L190
 	movq	-80(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC17(%rip), %rax
@@ -1890,7 +2268,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L143:
+.L190:
 	movq	-56(%rbp), %rax
 	movq	%rax, %rdi
 	call	SDL_FreeSurface@PLT
@@ -1899,12 +2277,12 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
 	subq	$1, %rax
-.L141:
+.L188:
 	movq	-40(%rbp), %rdx
 	subq	%fs:40, %rdx
-	je	.L144
+	je	.L191
 	call	__stack_chk_fail@PLT
-.L144:
+.L191:
 	addq	$72, %rsp
 	popq	%rbx
 	popq	%r12
@@ -1913,7 +2291,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2208:
+.LFE2209:
 	.size	_ZN4slay6engine6assets10LoadCursorEPKctt, .-_ZN4slay6engine6assets10LoadCursorEPKctt
 	.section	.rodata
 	.align 8
@@ -1927,7 +2305,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	.globl	_ZN4slay6engine6assets12UnloadCursorEy
 	.type	_ZN4slay6engine6assets12UnloadCursorEy, @function
 _ZN4slay6engine6assets12UnloadCursorEy:
-.LFB2209:
+.LFB2210:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1940,7 +2318,7 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 	movq	%rdi, -40(%rbp)
 	movq	%rsi, -48(%rbp)
 	cmpq	$0, -48(%rbp)
-	jne	.L146
+	jne	.L193
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC18(%rip), %rax
@@ -1949,13 +2327,13 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L146:
+.L193:
 	movq	-40(%rbp), %rax
 	addq	$56, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
 	cmpq	%rax, -48(%rbp)
-	jnb	.L147
+	jnb	.L194
 	movq	-40(%rbp), %rax
 	leaq	56(%rax), %rdx
 	movq	-48(%rbp), %rax
@@ -1964,15 +2342,15 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 	call	_ZN3neo5arrayIP10SDL_CursorEixEy
 	movq	(%rax), %rax
 	testq	%rax, %rax
-	jne	.L148
-.L147:
+	jne	.L195
+.L194:
 	movl	$1, %eax
-	jmp	.L149
-.L148:
+	jmp	.L196
+.L195:
 	movl	$0, %eax
-.L149:
+.L196:
 	testb	%al, %al
-	je	.L150
+	je	.L197
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC19(%rip), %rax
@@ -1981,7 +2359,7 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L150:
+.L197:
 	movq	-40(%rbp), %rax
 	leaq	56(%rax), %rdx
 	movq	-48(%rbp), %rax
@@ -2004,17 +2382,28 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
 	subq	$1, %rax
 	cmpq	%rax, -48(%rbp)
-	sete	%al
+	jne	.L198
+	movq	-40(%rbp), %rax
+	addq	$56, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	cmpq	$1, %rax
+	jbe	.L198
+	movl	$1, %eax
+	jmp	.L199
+.L198:
+	movl	$0, %eax
+.L199:
 	testb	%al, %al
-	je	.L151
+	je	.L200
 	movq	-40(%rbp), %rax
 	addq	$56, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
 	subq	$1, %rax
 	movq	%rax, -24(%rbp)
-	jmp	.L152
-.L155:
+	jmp	.L201
+.L204:
 	movq	-40(%rbp), %rax
 	leaq	56(%rax), %rdx
 	movq	-24(%rbp), %rax
@@ -2025,15 +2414,15 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	jne	.L158
+	jne	.L207
 	subq	$1, -24(%rbp)
-.L152:
+.L201:
 	cmpq	$0, -24(%rbp)
-	jne	.L155
-	jmp	.L154
-.L158:
+	jne	.L204
+	jmp	.L203
+.L207:
 	nop
-.L154:
+.L203:
 	addq	$1, -24(%rbp)
 	movq	-40(%rbp), %rax
 	leaq	56(%rax), %rbx
@@ -2047,84 +2436,16 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 	movq	%rax, %rsi
 	movq	%rbx, %rdi
 	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy
-.L151:
+.L200:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	movq	512(%rax), %rax
 	cmpq	%rax, -48(%rbp)
-	jne	.L156
+	jne	.L205
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
 	movq	$0, 512(%rax)
-.L156:
-	movl	$0, %eax
-	movq	-8(%rbp), %rbx
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2209:
-	.size	_ZN4slay6engine6assets12UnloadCursorEy, .-_ZN4slay6engine6assets12UnloadCursorEy
-	.align 2
-	.globl	_ZN4slay6engine6assets12PurgeCursorsEv
-	.type	_ZN4slay6engine6assets12PurgeCursorsEv, @function
-_ZN4slay6engine6assets12PurgeCursorsEv:
-.LFB2210:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$40, %rsp
-	.cfi_offset 3, -24
-	movq	%rdi, -40(%rbp)
-	movq	-40(%rbp), %rax
-	movq	(%rax), %rax
-	movq	$0, 512(%rax)
-	movq	$1, -24(%rbp)
-	jmp	.L160
-.L161:
-	movq	-40(%rbp), %rax
-	leaq	56(%rax), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIP10SDL_CursorEixEy
-	movq	(%rax), %rax
-	movq	%rax, %rdi
-	call	SDL_FreeCursor@PLT
-	addq	$1, -24(%rbp)
-.L160:
-	movq	-40(%rbp), %rax
-	addq	$56, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
-	cmpq	%rax, -24(%rbp)
-	setb	%al
-	testb	%al, %al
-	jne	.L161
-	movq	-40(%rbp), %rax
-	addq	$56, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
-	cmpq	$1, %rax
-	seta	%al
-	testb	%al, %al
-	je	.L162
-	movq	-40(%rbp), %rax
-	leaq	56(%rax), %rbx
-	movq	-40(%rbp), %rax
-	addq	$56, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
-	subq	$1, %rax
-	movq	%rax, %rdx
-	movl	$1, %esi
-	movq	%rbx, %rdi
-	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy
-.L162:
+.L205:
 	movl	$0, %eax
 	movq	-8(%rbp), %rbx
 	leave
@@ -2132,13 +2453,176 @@ _ZN4slay6engine6assets12PurgeCursorsEv:
 	ret
 	.cfi_endproc
 .LFE2210:
-	.size	_ZN4slay6engine6assets12PurgeCursorsEv, .-_ZN4slay6engine6assets12PurgeCursorsEv
+	.size	_ZN4slay6engine6assets12UnloadCursorEy, .-_ZN4slay6engine6assets12UnloadCursorEy
+	.align 2
+	.globl	_ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE
+	.type	_ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE, @function
+_ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE:
+.LFB2211:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	pushq	%rbx
+	subq	$56, %rsp
+	.cfi_offset 3, -24
+	movq	%rdi, -40(%rbp)
+	movq	%rdx, %rcx
+	movq	%rsi, %rax
+	movq	%rdi, %rdx
+	movq	%rcx, %rdx
+	movq	%rax, -64(%rbp)
+	movq	%rdx, -56(%rbp)
+	movq	-40(%rbp), %rax
+	movq	(%rax), %rax
+	movq	$0, 512(%rax)
+	movq	$1, -32(%rbp)
+	jmp	.L209
+.L215:
+	movq	$0, -24(%rbp)
+	jmp	.L210
+.L213:
+	leaq	-64(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE5beginEv
+	movq	-24(%rbp), %rdx
+	salq	$3, %rdx
+	addq	%rdx, %rax
+	movq	(%rax), %rax
+	cmpq	%rax, -32(%rbp)
+	sete	%al
+	testb	%al, %al
+	jne	.L224
+	addq	$1, -24(%rbp)
+.L210:
+	leaq	-64(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	cmpq	%rax, -24(%rbp)
+	setb	%al
+	testb	%al, %al
+	jne	.L213
+	jmp	.L212
+.L224:
+	nop
+.L212:
+	leaq	-64(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	cmpq	%rax, -24(%rbp)
+	sete	%al
+	testb	%al, %al
+	je	.L214
+	movq	-40(%rbp), %rax
+	leaq	56(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorEixEy
+	movq	(%rax), %rax
+	movq	%rax, %rdi
+	call	SDL_FreeCursor@PLT
+	movq	-40(%rbp), %rax
+	leaq	56(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorEixEy
+	movq	$0, (%rax)
+.L214:
+	addq	$1, -32(%rbp)
+.L209:
+	movq	-40(%rbp), %rax
+	addq	$56, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	cmpq	%rax, -32(%rbp)
+	setb	%al
+	testb	%al, %al
+	jne	.L215
+	movq	-40(%rbp), %rax
+	leaq	56(%rax), %rbx
+	movq	-40(%rbp), %rax
+	addq	$56, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	subq	$1, %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	jne	.L216
+	movq	-40(%rbp), %rax
+	addq	$56, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	cmpq	$1, %rax
+	jbe	.L216
+	movl	$1, %eax
+	jmp	.L217
+.L216:
+	movl	$0, %eax
+.L217:
+	testb	%al, %al
+	je	.L218
+	movq	-40(%rbp), %rax
+	addq	$56, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	subq	$1, %rax
+	movq	%rax, -32(%rbp)
+	jmp	.L219
+.L222:
+	movq	-40(%rbp), %rax
+	leaq	56(%rax), %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	setne	%al
+	testb	%al, %al
+	jne	.L225
+	subq	$1, -32(%rbp)
+.L219:
+	cmpq	$0, -32(%rbp)
+	jne	.L222
+	jmp	.L221
+.L225:
+	nop
+.L221:
+	addq	$1, -32(%rbp)
+	movq	-40(%rbp), %rax
+	leaq	56(%rax), %rbx
+	movq	-40(%rbp), %rax
+	addq	$56, %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	subq	-32(%rbp), %rax
+	movq	%rax, %rdx
+	movq	-32(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy
+.L218:
+	movl	$0, %eax
+	movq	-8(%rbp), %rbx
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2211:
+	.size	_ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE, .-_ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE
 	.section	.text._ZNKSt16initializer_listIP11SDL_TextureE4sizeEv,"axG",@progbits,_ZNKSt16initializer_listIP11SDL_TextureE4sizeEv,comdat
 	.align 2
 	.weak	_ZNKSt16initializer_listIP11SDL_TextureE4sizeEv
 	.type	_ZNKSt16initializer_listIP11SDL_TextureE4sizeEv, @function
 _ZNKSt16initializer_listIP11SDL_TextureE4sizeEv:
-.LFB2276:
+.LFB2277:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2152,7 +2636,7 @@ _ZNKSt16initializer_listIP11SDL_TextureE4sizeEv:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2276:
+.LFE2277:
 	.size	_ZNKSt16initializer_listIP11SDL_TextureE4sizeEv, .-_ZNKSt16initializer_listIP11SDL_TextureE4sizeEv
 	.section	.rodata
 	.align 8
@@ -2163,7 +2647,7 @@ _ZNKSt16initializer_listIP11SDL_TextureE4sizeEv:
 	.weak	_ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E
 	.type	_ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E, @function
 _ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E:
-.LFB2277:
+.LFB2278:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2192,11 +2676,11 @@ _ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L167
+	je	.L229
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L170
-.L167:
+	jmp	.L232
+.L229:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	salq	$3, %rax
@@ -2210,7 +2694,7 @@ _ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L169
+	je	.L231
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP11SDL_TextureE4sizeEv
@@ -2222,7 +2706,7 @@ _ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L169:
+.L231:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %r12
@@ -2235,7 +2719,7 @@ _ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L170:
+.L232:
 	nop
 	addq	$32, %rsp
 	popq	%rbx
@@ -2244,7 +2728,7 @@ _ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2277:
+.LFE2278:
 	.size	_ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E, .-_ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E
 	.weak	_ZN3neo5arrayIP11SDL_TextureEC1ESt16initializer_listIS2_E
 	.set	_ZN3neo5arrayIP11SDL_TextureEC1ESt16initializer_listIS2_E,_ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E
@@ -2253,7 +2737,7 @@ _ZN3neo5arrayIP11SDL_TextureEC2ESt16initializer_listIS2_E:
 	.weak	_ZN3neo5arrayIP11SDL_TextureED2Ev
 	.type	_ZN3neo5arrayIP11SDL_TextureED2Ev, @function
 _ZN3neo5arrayIP11SDL_TextureED2Ev:
-.LFB2280:
+.LFB2281:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2263,14 +2747,14 @@ _ZN3neo5arrayIP11SDL_TextureED2Ev:
 	subq	$32, %rsp
 	movq	%rdi, -24(%rbp)
 	movq	$0, -8(%rbp)
-	jmp	.L172
-.L173:
+	jmp	.L234
+.L235:
 	addq	$1, -8(%rbp)
-.L172:
+.L234:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -8(%rbp)
-	jb	.L173
+	jb	.L235
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
@@ -2280,7 +2764,7 @@ _ZN3neo5arrayIP11SDL_TextureED2Ev:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2280:
+.LFE2281:
 	.size	_ZN3neo5arrayIP11SDL_TextureED2Ev, .-_ZN3neo5arrayIP11SDL_TextureED2Ev
 	.weak	_ZN3neo5arrayIP11SDL_TextureED1Ev
 	.set	_ZN3neo5arrayIP11SDL_TextureED1Ev,_ZN3neo5arrayIP11SDL_TextureED2Ev
@@ -2289,7 +2773,7 @@ _ZN3neo5arrayIP11SDL_TextureED2Ev:
 	.weak	_ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv
 	.type	_ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv, @function
 _ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv:
-.LFB2283:
+.LFB2284:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2303,14 +2787,14 @@ _ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2283:
+.LFE2284:
 	.size	_ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv, .-_ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv
 	.section	.text._ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E,"axG",@progbits,_ZN3neo5arrayIP9Mix_ChunkEC5ESt16initializer_listIS2_E,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E
 	.type	_ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E, @function
 _ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E:
-.LFB2284:
+.LFB2285:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2339,11 +2823,11 @@ _ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L177
+	je	.L239
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L180
-.L177:
+	jmp	.L242
+.L239:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	salq	$3, %rax
@@ -2357,7 +2841,7 @@ _ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L179
+	je	.L241
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv
@@ -2369,7 +2853,7 @@ _ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L179:
+.L241:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %r12
@@ -2382,7 +2866,7 @@ _ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L180:
+.L242:
 	nop
 	addq	$32, %rsp
 	popq	%rbx
@@ -2391,7 +2875,7 @@ _ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2284:
+.LFE2285:
 	.size	_ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E, .-_ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E
 	.weak	_ZN3neo5arrayIP9Mix_ChunkEC1ESt16initializer_listIS2_E
 	.set	_ZN3neo5arrayIP9Mix_ChunkEC1ESt16initializer_listIS2_E,_ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E
@@ -2400,7 +2884,7 @@ _ZN3neo5arrayIP9Mix_ChunkEC2ESt16initializer_listIS2_E:
 	.weak	_ZN3neo5arrayIP9Mix_ChunkED2Ev
 	.type	_ZN3neo5arrayIP9Mix_ChunkED2Ev, @function
 _ZN3neo5arrayIP9Mix_ChunkED2Ev:
-.LFB2287:
+.LFB2288:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2410,14 +2894,14 @@ _ZN3neo5arrayIP9Mix_ChunkED2Ev:
 	subq	$32, %rsp
 	movq	%rdi, -24(%rbp)
 	movq	$0, -8(%rbp)
-	jmp	.L182
-.L183:
+	jmp	.L244
+.L245:
 	addq	$1, -8(%rbp)
-.L182:
+.L244:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -8(%rbp)
-	jb	.L183
+	jb	.L245
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
@@ -2427,7 +2911,7 @@ _ZN3neo5arrayIP9Mix_ChunkED2Ev:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2287:
+.LFE2288:
 	.size	_ZN3neo5arrayIP9Mix_ChunkED2Ev, .-_ZN3neo5arrayIP9Mix_ChunkED2Ev
 	.weak	_ZN3neo5arrayIP9Mix_ChunkED1Ev
 	.set	_ZN3neo5arrayIP9Mix_ChunkED1Ev,_ZN3neo5arrayIP9Mix_ChunkED2Ev
@@ -2436,7 +2920,7 @@ _ZN3neo5arrayIP9Mix_ChunkED2Ev:
 	.weak	_ZNKSt16initializer_listIP9_TTF_FontE4sizeEv
 	.type	_ZNKSt16initializer_listIP9_TTF_FontE4sizeEv, @function
 _ZNKSt16initializer_listIP9_TTF_FontE4sizeEv:
-.LFB2290:
+.LFB2291:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2450,14 +2934,14 @@ _ZNKSt16initializer_listIP9_TTF_FontE4sizeEv:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2290:
+.LFE2291:
 	.size	_ZNKSt16initializer_listIP9_TTF_FontE4sizeEv, .-_ZNKSt16initializer_listIP9_TTF_FontE4sizeEv
 	.section	.text._ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E,"axG",@progbits,_ZN3neo5arrayIP9_TTF_FontEC5ESt16initializer_listIS2_E,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E
 	.type	_ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E, @function
 _ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E:
-.LFB2291:
+.LFB2292:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2486,11 +2970,11 @@ _ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L187
+	je	.L249
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L190
-.L187:
+	jmp	.L252
+.L249:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	salq	$3, %rax
@@ -2504,7 +2988,7 @@ _ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L189
+	je	.L251
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP9_TTF_FontE4sizeEv
@@ -2516,7 +3000,7 @@ _ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L189:
+.L251:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %r12
@@ -2529,7 +3013,7 @@ _ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L190:
+.L252:
 	nop
 	addq	$32, %rsp
 	popq	%rbx
@@ -2538,7 +3022,7 @@ _ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2291:
+.LFE2292:
 	.size	_ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E, .-_ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E
 	.weak	_ZN3neo5arrayIP9_TTF_FontEC1ESt16initializer_listIS2_E
 	.set	_ZN3neo5arrayIP9_TTF_FontEC1ESt16initializer_listIS2_E,_ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E
@@ -2547,7 +3031,7 @@ _ZN3neo5arrayIP9_TTF_FontEC2ESt16initializer_listIS2_E:
 	.weak	_ZN3neo5arrayIP9_TTF_FontED2Ev
 	.type	_ZN3neo5arrayIP9_TTF_FontED2Ev, @function
 _ZN3neo5arrayIP9_TTF_FontED2Ev:
-.LFB2294:
+.LFB2295:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2557,14 +3041,14 @@ _ZN3neo5arrayIP9_TTF_FontED2Ev:
 	subq	$32, %rsp
 	movq	%rdi, -24(%rbp)
 	movq	$0, -8(%rbp)
-	jmp	.L192
-.L193:
+	jmp	.L254
+.L255:
 	addq	$1, -8(%rbp)
-.L192:
+.L254:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -8(%rbp)
-	jb	.L193
+	jb	.L255
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
@@ -2574,7 +3058,7 @@ _ZN3neo5arrayIP9_TTF_FontED2Ev:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2294:
+.LFE2295:
 	.size	_ZN3neo5arrayIP9_TTF_FontED2Ev, .-_ZN3neo5arrayIP9_TTF_FontED2Ev
 	.weak	_ZN3neo5arrayIP9_TTF_FontED1Ev
 	.set	_ZN3neo5arrayIP9_TTF_FontED1Ev,_ZN3neo5arrayIP9_TTF_FontED2Ev
@@ -2583,7 +3067,7 @@ _ZN3neo5arrayIP9_TTF_FontED2Ev:
 	.weak	_ZNKSt16initializer_listIP10SDL_CursorE4sizeEv
 	.type	_ZNKSt16initializer_listIP10SDL_CursorE4sizeEv, @function
 _ZNKSt16initializer_listIP10SDL_CursorE4sizeEv:
-.LFB2297:
+.LFB2298:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2597,14 +3081,14 @@ _ZNKSt16initializer_listIP10SDL_CursorE4sizeEv:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2297:
+.LFE2298:
 	.size	_ZNKSt16initializer_listIP10SDL_CursorE4sizeEv, .-_ZNKSt16initializer_listIP10SDL_CursorE4sizeEv
 	.section	.text._ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E,"axG",@progbits,_ZN3neo5arrayIP10SDL_CursorEC5ESt16initializer_listIS2_E,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E
 	.type	_ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E, @function
 _ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E:
-.LFB2298:
+.LFB2299:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2633,11 +3117,11 @@ _ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L197
+	je	.L259
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L200
-.L197:
+	jmp	.L262
+.L259:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	salq	$3, %rax
@@ -2651,7 +3135,7 @@ _ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L199
+	je	.L261
 	leaq	-48(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP10SDL_CursorE4sizeEv
@@ -2663,7 +3147,7 @@ _ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L199:
+.L261:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %r12
@@ -2676,7 +3160,7 @@ _ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L200:
+.L262:
 	nop
 	addq	$32, %rsp
 	popq	%rbx
@@ -2685,7 +3169,7 @@ _ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2298:
+.LFE2299:
 	.size	_ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E, .-_ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E
 	.weak	_ZN3neo5arrayIP10SDL_CursorEC1ESt16initializer_listIS2_E
 	.set	_ZN3neo5arrayIP10SDL_CursorEC1ESt16initializer_listIS2_E,_ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E
@@ -2694,7 +3178,7 @@ _ZN3neo5arrayIP10SDL_CursorEC2ESt16initializer_listIS2_E:
 	.weak	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
 	.type	_ZN3neo5arrayIP11SDL_TextureE6LengthEv, @function
 _ZN3neo5arrayIP11SDL_TextureE6LengthEv:
-.LFB2303:
+.LFB2304:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2708,7 +3192,7 @@ _ZN3neo5arrayIP11SDL_TextureE6LengthEv:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2303:
+.LFE2304:
 	.size	_ZN3neo5arrayIP11SDL_TextureE6LengthEv, .-_ZN3neo5arrayIP11SDL_TextureE6LengthEv
 	.section	.rodata
 	.align 8
@@ -2719,7 +3203,7 @@ _ZN3neo5arrayIP11SDL_TextureE6LengthEv:
 	.weak	_ZN3neo5arrayIP11SDL_TextureEixEy
 	.type	_ZN3neo5arrayIP11SDL_TextureEixEy, @function
 _ZN3neo5arrayIP11SDL_TextureEixEy:
-.LFB2304:
+.LFB2305:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2732,7 +3216,7 @@ _ZN3neo5arrayIP11SDL_TextureEixEy:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L204
+	jb	.L266
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC21(%rip), %rax
@@ -2741,7 +3225,7 @@ _ZN3neo5arrayIP11SDL_TextureEixEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L204:
+.L266:
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-16(%rbp), %rdx
@@ -2751,7 +3235,7 @@ _ZN3neo5arrayIP11SDL_TextureEixEy:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2304:
+.LFE2305:
 	.size	_ZN3neo5arrayIP11SDL_TextureEixEy, .-_ZN3neo5arrayIP11SDL_TextureEixEy
 	.section	.rodata
 	.align 8
@@ -2762,7 +3246,7 @@ _ZN3neo5arrayIP11SDL_TextureEixEy:
 	.weak	_ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E
 	.type	_ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E, @function
 _ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E:
-.LFB2305:
+.LFB2306:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2789,7 +3273,7 @@ _ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	je	.L207
+	je	.L269
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP11SDL_TextureE4sizeEv
@@ -2813,7 +3297,7 @@ _ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L208
+	je	.L270
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP11SDL_TextureE4sizeEv
@@ -2825,7 +3309,7 @@ _ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L208:
+.L270:
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP11SDL_TextureE4sizeEv
@@ -2848,7 +3332,7 @@ _ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L207:
+.L269:
 	movq	-40(%rbp), %rax
 	addq	$40, %rsp
 	popq	%rbx
@@ -2858,7 +3342,7 @@ _ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2305:
+.LFE2306:
 	.size	_ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E, .-_ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E
 	.section	.rodata
 	.align 8
@@ -2875,7 +3359,7 @@ _ZN3neo5arrayIP11SDL_TextureEpLESt16initializer_listIS2_E:
 	.weak	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy
 	.type	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy, @function
 _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy:
-.LFB2306:
+.LFB2307:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2889,7 +3373,7 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -32(%rbp)
-	jb	.L211
+	jb	.L273
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -2899,14 +3383,14 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L211:
+.L273:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rdx
 	movq	-32(%rbp), %rcx
 	movq	-40(%rbp), %rax
 	addq	%rcx, %rax
 	cmpq	%rax, %rdx
-	jnb	.L212
+	jnb	.L274
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -2916,20 +3400,20 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L212:
+.L274:
 	cmpq	$0, -40(%rbp)
-	je	.L213
+	je	.L275
 	movq	-32(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	jmp	.L214
-.L215:
+	jmp	.L276
+.L277:
 	addq	$1, -16(%rbp)
-.L214:
+.L276:
 	movq	-32(%rbp), %rdx
 	movq	-40(%rbp), %rax
 	addq	%rdx, %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L215
+	jb	.L277
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	subq	-40(%rbp), %rax
@@ -2941,19 +3425,19 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L216
+	je	.L278
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
 	call	free@PLT
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L213
-.L216:
+	jmp	.L275
+.L278:
 	movq	-32(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	jmp	.L217
-.L218:
+	jmp	.L279
+.L280:
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-8(%rbp), %rcx
@@ -2969,11 +3453,11 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy:
 	movq	(%rcx), %rax
 	movq	%rax, (%rdx)
 	addq	$1, -8(%rbp)
-.L217:
+.L279:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -8(%rbp)
-	jb	.L218
+	jb	.L280
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %rdx
@@ -2989,7 +3473,7 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L213
+	je	.L275
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -2999,40 +3483,19 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L213:
+.L275:
 	movq	-24(%rbp), %rax
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2306:
+.LFE2307:
 	.size	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy, .-_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy
 	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	.type	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv, @function
 _ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv:
-.LFB2307:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2307:
-	.size	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv, .-_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
-	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy,comdat
-	.align 2
-	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	.type	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy, @function
-_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy:
 .LFB2308:
 	.cfi_startproc
 	pushq	%rbp
@@ -3040,38 +3503,20 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
-	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	cmpq	%rax, -16(%rbp)
-	jb	.L223
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC21(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L223:
-	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
-	movq	-16(%rbp), %rdx
-	salq	$3, %rdx
-	addq	%rdx, %rax
-	leave
+	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE2308:
-	.size	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy, .-_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv,comdat
+	.size	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv, .-_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
+	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy,comdat
 	.align 2
-	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv
-	.type	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv, @function
-_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv:
+	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
+	.type	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy, @function
+_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy:
 .LFB2309:
 	.cfi_startproc
 	pushq	%rbp
@@ -3079,20 +3524,38 @@ _ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
+	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	popq	%rbp
+	cmpq	%rax, -16(%rbp)
+	jb	.L285
+	movq	-16(%rbp), %rax
+	movq	%rax, %rsi
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L285:
+	movq	-8(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	-16(%rbp), %rdx
+	salq	$3, %rdx
+	addq	%rdx, %rax
+	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
 .LFE2309:
-	.size	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv, .-_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv
-	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy,comdat
+	.size	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy, .-_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
+	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv,comdat
 	.align 2
-	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy
-	.type	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy, @function
-_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy:
+	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv
+	.type	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv, @function
+_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv:
 .LFB2310:
 	.cfi_startproc
 	pushq	%rbp
@@ -3100,13 +3563,34 @@ _ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2310:
+	.size	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv, .-_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6LengthEv
+	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy,comdat
+	.align 2
+	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy
+	.type	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy, @function
+_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy:
+.LFB2311:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
 	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
 	movq	%rsi, -16(%rbp)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L228
+	jb	.L290
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC21(%rip), %rax
@@ -3115,7 +3599,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L228:
+.L290:
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-16(%rbp), %rdx
@@ -3125,14 +3609,14 @@ _ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2310:
+.LFE2311:
 	.size	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy, .-_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEEixEy
-	.section	.text._ZN3neo5arrayIP9Mix_ChunkE6LengthEv,"axG",@progbits,_ZN3neo5arrayIP9Mix_ChunkE6LengthEv,comdat
+	.section	.text._ZNKSt16initializer_listIyE5beginEv,"axG",@progbits,_ZNKSt16initializer_listIyE5beginEv,comdat
 	.align 2
-	.weak	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
-	.type	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv, @function
-_ZN3neo5arrayIP9Mix_ChunkE6LengthEv:
-.LFB2311:
+	.weak	_ZNKSt16initializer_listIyE5beginEv
+	.type	_ZNKSt16initializer_listIyE5beginEv, @function
+_ZNKSt16initializer_listIyE5beginEv:
+.LFB2312:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3146,14 +3630,35 @@ _ZN3neo5arrayIP9Mix_ChunkE6LengthEv:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2311:
+.LFE2312:
+	.size	_ZNKSt16initializer_listIyE5beginEv, .-_ZNKSt16initializer_listIyE5beginEv
+	.section	.text._ZN3neo5arrayIP9Mix_ChunkE6LengthEv,"axG",@progbits,_ZN3neo5arrayIP9Mix_ChunkE6LengthEv,comdat
+	.align 2
+	.weak	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
+	.type	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv, @function
+_ZN3neo5arrayIP9Mix_ChunkE6LengthEv:
+.LFB2313:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2313:
 	.size	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv, .-_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
 	.section	.text._ZN3neo5arrayIP9Mix_ChunkEixEy,"axG",@progbits,_ZN3neo5arrayIP9Mix_ChunkEixEy,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP9Mix_ChunkEixEy
 	.type	_ZN3neo5arrayIP9Mix_ChunkEixEy, @function
 _ZN3neo5arrayIP9Mix_ChunkEixEy:
-.LFB2312:
+.LFB2314:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3166,7 +3671,7 @@ _ZN3neo5arrayIP9Mix_ChunkEixEy:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L233
+	jb	.L297
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC21(%rip), %rax
@@ -3175,7 +3680,7 @@ _ZN3neo5arrayIP9Mix_ChunkEixEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L233:
+.L297:
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-16(%rbp), %rdx
@@ -3185,14 +3690,14 @@ _ZN3neo5arrayIP9Mix_ChunkEixEy:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2312:
+.LFE2314:
 	.size	_ZN3neo5arrayIP9Mix_ChunkEixEy, .-_ZN3neo5arrayIP9Mix_ChunkEixEy
 	.section	.text._ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E,"axG",@progbits,_ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E
 	.type	_ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E, @function
 _ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E:
-.LFB2313:
+.LFB2315:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3219,7 +3724,7 @@ _ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	je	.L236
+	je	.L300
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv
@@ -3243,7 +3748,7 @@ _ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L237
+	je	.L301
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv
@@ -3255,7 +3760,7 @@ _ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L237:
+.L301:
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP9Mix_ChunkE4sizeEv
@@ -3278,7 +3783,7 @@ _ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L236:
+.L300:
 	movq	-40(%rbp), %rax
 	addq	$40, %rsp
 	popq	%rbx
@@ -3288,14 +3793,14 @@ _ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2313:
+.LFE2315:
 	.size	_ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E, .-_ZN3neo5arrayIP9Mix_ChunkEpLESt16initializer_listIS2_E
 	.section	.text._ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy,"axG",@progbits,_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy
 	.type	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy, @function
 _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy:
-.LFB2314:
+.LFB2316:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3309,7 +3814,7 @@ _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -32(%rbp)
-	jb	.L240
+	jb	.L304
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -3319,14 +3824,14 @@ _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L240:
+.L304:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rdx
 	movq	-32(%rbp), %rcx
 	movq	-40(%rbp), %rax
 	addq	%rcx, %rax
 	cmpq	%rax, %rdx
-	jnb	.L241
+	jnb	.L305
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -3336,20 +3841,20 @@ _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L241:
+.L305:
 	cmpq	$0, -40(%rbp)
-	je	.L242
+	je	.L306
 	movq	-32(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	jmp	.L243
-.L244:
+	jmp	.L307
+.L308:
 	addq	$1, -16(%rbp)
-.L243:
+.L307:
 	movq	-32(%rbp), %rdx
 	movq	-40(%rbp), %rax
 	addq	%rdx, %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L244
+	jb	.L308
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	subq	-40(%rbp), %rax
@@ -3361,19 +3866,19 @@ _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L245
+	je	.L309
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
 	call	free@PLT
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L242
-.L245:
+	jmp	.L306
+.L309:
 	movq	-32(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	jmp	.L246
-.L247:
+	jmp	.L310
+.L311:
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-8(%rbp), %rcx
@@ -3389,11 +3894,11 @@ _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy:
 	movq	(%rcx), %rax
 	movq	%rax, (%rdx)
 	addq	$1, -8(%rbp)
-.L246:
+.L310:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -8(%rbp)
-	jb	.L247
+	jb	.L311
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %rdx
@@ -3409,7 +3914,7 @@ _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L242
+	je	.L306
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -3419,20 +3924,20 @@ _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L242:
+.L306:
 	movq	-24(%rbp), %rax
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2314:
+.LFE2316:
 	.size	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy, .-_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy
 	.section	.text._ZN3neo5arrayIP9_TTF_FontE6LengthEv,"axG",@progbits,_ZN3neo5arrayIP9_TTF_FontE6LengthEv,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP9_TTF_FontE6LengthEv
 	.type	_ZN3neo5arrayIP9_TTF_FontE6LengthEv, @function
 _ZN3neo5arrayIP9_TTF_FontE6LengthEv:
-.LFB2315:
+.LFB2317:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3446,14 +3951,14 @@ _ZN3neo5arrayIP9_TTF_FontE6LengthEv:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2315:
+.LFE2317:
 	.size	_ZN3neo5arrayIP9_TTF_FontE6LengthEv, .-_ZN3neo5arrayIP9_TTF_FontE6LengthEv
 	.section	.text._ZN3neo5arrayIP9_TTF_FontEixEy,"axG",@progbits,_ZN3neo5arrayIP9_TTF_FontEixEy,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP9_TTF_FontEixEy
 	.type	_ZN3neo5arrayIP9_TTF_FontEixEy, @function
 _ZN3neo5arrayIP9_TTF_FontEixEy:
-.LFB2316:
+.LFB2318:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3466,7 +3971,7 @@ _ZN3neo5arrayIP9_TTF_FontEixEy:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L252
+	jb	.L316
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC21(%rip), %rax
@@ -3475,7 +3980,7 @@ _ZN3neo5arrayIP9_TTF_FontEixEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L252:
+.L316:
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-16(%rbp), %rdx
@@ -3485,14 +3990,14 @@ _ZN3neo5arrayIP9_TTF_FontEixEy:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2316:
+.LFE2318:
 	.size	_ZN3neo5arrayIP9_TTF_FontEixEy, .-_ZN3neo5arrayIP9_TTF_FontEixEy
 	.section	.text._ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E,"axG",@progbits,_ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E
 	.type	_ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E, @function
 _ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E:
-.LFB2317:
+.LFB2319:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3519,7 +4024,7 @@ _ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	je	.L255
+	je	.L319
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP9_TTF_FontE4sizeEv
@@ -3543,7 +4048,7 @@ _ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L256
+	je	.L320
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP9_TTF_FontE4sizeEv
@@ -3555,7 +4060,7 @@ _ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L256:
+.L320:
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP9_TTF_FontE4sizeEv
@@ -3578,7 +4083,7 @@ _ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L255:
+.L319:
 	movq	-40(%rbp), %rax
 	addq	$40, %rsp
 	popq	%rbx
@@ -3588,14 +4093,14 @@ _ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2317:
+.LFE2319:
 	.size	_ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E, .-_ZN3neo5arrayIP9_TTF_FontEpLESt16initializer_listIS2_E
 	.section	.text._ZN3neo5arrayIP9_TTF_FontE6RemoveEyy,"axG",@progbits,_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy
 	.type	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy, @function
 _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy:
-.LFB2318:
+.LFB2320:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3609,7 +4114,7 @@ _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -32(%rbp)
-	jb	.L259
+	jb	.L323
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -3619,14 +4124,14 @@ _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L259:
+.L323:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rdx
 	movq	-32(%rbp), %rcx
 	movq	-40(%rbp), %rax
 	addq	%rcx, %rax
 	cmpq	%rax, %rdx
-	jnb	.L260
+	jnb	.L324
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -3636,20 +4141,20 @@ _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L260:
+.L324:
 	cmpq	$0, -40(%rbp)
-	je	.L261
+	je	.L325
 	movq	-32(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	jmp	.L262
-.L263:
+	jmp	.L326
+.L327:
 	addq	$1, -16(%rbp)
-.L262:
+.L326:
 	movq	-32(%rbp), %rdx
 	movq	-40(%rbp), %rax
 	addq	%rdx, %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L263
+	jb	.L327
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	subq	-40(%rbp), %rax
@@ -3661,19 +4166,19 @@ _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L264
+	je	.L328
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
 	call	free@PLT
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L261
-.L264:
+	jmp	.L325
+.L328:
 	movq	-32(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	jmp	.L265
-.L266:
+	jmp	.L329
+.L330:
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-8(%rbp), %rcx
@@ -3689,11 +4194,11 @@ _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy:
 	movq	(%rcx), %rax
 	movq	%rax, (%rdx)
 	addq	$1, -8(%rbp)
-.L265:
+.L329:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -8(%rbp)
-	jb	.L266
+	jb	.L330
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %rdx
@@ -3709,7 +4214,7 @@ _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L261
+	je	.L325
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -3719,79 +4224,19 @@ _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L261:
+.L325:
 	movq	-24(%rbp), %rax
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2318:
+.LFE2320:
 	.size	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy, .-_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy
 	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv
 	.type	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv, @function
 _ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv:
-.LFB2319:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2319:
-	.size	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv, .-_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv
-	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy,comdat
-	.align 2
-	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
-	.type	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy, @function
-_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy:
-.LFB2320:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	cmpq	%rax, -16(%rbp)
-	jb	.L271
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC21(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L271:
-	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
-	movq	-16(%rbp), %rdx
-	salq	$3, %rdx
-	addq	%rdx, %rax
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2320:
-	.size	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy, .-_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
-	.section	.text._ZN3neo5arrayIP10SDL_CursorE6LengthEv,"axG",@progbits,_ZN3neo5arrayIP10SDL_CursorE6LengthEv,comdat
-	.align 2
-	.weak	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
-	.type	_ZN3neo5arrayIP10SDL_CursorE6LengthEv, @function
-_ZN3neo5arrayIP10SDL_CursorE6LengthEv:
 .LFB2321:
 	.cfi_startproc
 	pushq	%rbp
@@ -3807,12 +4252,12 @@ _ZN3neo5arrayIP10SDL_CursorE6LengthEv:
 	ret
 	.cfi_endproc
 .LFE2321:
-	.size	_ZN3neo5arrayIP10SDL_CursorE6LengthEv, .-_ZN3neo5arrayIP10SDL_CursorE6LengthEv
-	.section	.text._ZN3neo5arrayIP10SDL_CursorEixEy,"axG",@progbits,_ZN3neo5arrayIP10SDL_CursorEixEy,comdat
+	.size	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv, .-_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv
+	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy,comdat
 	.align 2
-	.weak	_ZN3neo5arrayIP10SDL_CursorEixEy
-	.type	_ZN3neo5arrayIP10SDL_CursorEixEy, @function
-_ZN3neo5arrayIP10SDL_CursorEixEy:
+	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
+	.type	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy, @function
+_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy:
 .LFB2322:
 	.cfi_startproc
 	pushq	%rbp
@@ -3826,7 +4271,7 @@ _ZN3neo5arrayIP10SDL_CursorEixEy:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L276
+	jb	.L335
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	leaq	.LC21(%rip), %rax
@@ -3835,7 +4280,7 @@ _ZN3neo5arrayIP10SDL_CursorEixEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L276:
+.L335:
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-16(%rbp), %rdx
@@ -3846,13 +4291,73 @@ _ZN3neo5arrayIP10SDL_CursorEixEy:
 	ret
 	.cfi_endproc
 .LFE2322:
+	.size	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy, .-_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEEixEy
+	.section	.text._ZN3neo5arrayIP10SDL_CursorE6LengthEv,"axG",@progbits,_ZN3neo5arrayIP10SDL_CursorE6LengthEv,comdat
+	.align 2
+	.weak	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	.type	_ZN3neo5arrayIP10SDL_CursorE6LengthEv, @function
+_ZN3neo5arrayIP10SDL_CursorE6LengthEv:
+.LFB2323:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2323:
+	.size	_ZN3neo5arrayIP10SDL_CursorE6LengthEv, .-_ZN3neo5arrayIP10SDL_CursorE6LengthEv
+	.section	.text._ZN3neo5arrayIP10SDL_CursorEixEy,"axG",@progbits,_ZN3neo5arrayIP10SDL_CursorEixEy,comdat
+	.align 2
+	.weak	_ZN3neo5arrayIP10SDL_CursorEixEy
+	.type	_ZN3neo5arrayIP10SDL_CursorEixEy, @function
+_ZN3neo5arrayIP10SDL_CursorEixEy:
+.LFB2324:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	cmpq	%rax, -16(%rbp)
+	jb	.L340
+	movq	-16(%rbp), %rax
+	movq	%rax, %rsi
+	leaq	.LC21(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L340:
+	movq	-8(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	-16(%rbp), %rdx
+	salq	$3, %rdx
+	addq	%rdx, %rax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2324:
 	.size	_ZN3neo5arrayIP10SDL_CursorEixEy, .-_ZN3neo5arrayIP10SDL_CursorEixEy
 	.section	.text._ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E,"axG",@progbits,_ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E
 	.type	_ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E, @function
 _ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E:
-.LFB2323:
+.LFB2325:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3879,7 +4384,7 @@ _ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	setne	%al
 	testb	%al, %al
-	je	.L279
+	je	.L343
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP10SDL_CursorE4sizeEv
@@ -3903,7 +4408,7 @@ _ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L280
+	je	.L344
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP10SDL_CursorE4sizeEv
@@ -3915,7 +4420,7 @@ _ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L280:
+.L344:
 	leaq	-64(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIP10SDL_CursorE4sizeEv
@@ -3938,7 +4443,7 @@ _ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-.L279:
+.L343:
 	movq	-40(%rbp), %rax
 	addq	$40, %rsp
 	popq	%rbx
@@ -3948,14 +4453,14 @@ _ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E:
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2323:
+.LFE2325:
 	.size	_ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E, .-_ZN3neo5arrayIP10SDL_CursorEpLESt16initializer_listIS2_E
 	.section	.text._ZN3neo5arrayIP10SDL_CursorE6RemoveEyy,"axG",@progbits,_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy,comdat
 	.align 2
 	.weak	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy
 	.type	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy, @function
 _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy:
-.LFB2324:
+.LFB2326:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3969,7 +4474,7 @@ _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -32(%rbp)
-	jb	.L283
+	jb	.L347
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -3979,14 +4484,14 @@ _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L283:
+.L347:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rdx
 	movq	-32(%rbp), %rcx
 	movq	-40(%rbp), %rax
 	addq	%rcx, %rax
 	cmpq	%rax, %rdx
-	jnb	.L284
+	jnb	.L348
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -3996,20 +4501,20 @@ _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L284:
+.L348:
 	cmpq	$0, -40(%rbp)
-	je	.L285
+	je	.L349
 	movq	-32(%rbp), %rax
 	movq	%rax, -16(%rbp)
-	jmp	.L286
-.L287:
+	jmp	.L350
+.L351:
 	addq	$1, -16(%rbp)
-.L286:
+.L350:
 	movq	-32(%rbp), %rdx
 	movq	-40(%rbp), %rax
 	addq	%rdx, %rax
 	cmpq	%rax, -16(%rbp)
-	jb	.L287
+	jb	.L351
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	subq	-40(%rbp), %rax
@@ -4021,19 +4526,19 @@ _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L288
+	je	.L352
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rdi
 	call	free@PLT
 	movq	-24(%rbp), %rax
 	movq	$0, 8(%rax)
-	jmp	.L285
-.L288:
+	jmp	.L349
+.L352:
 	movq	-32(%rbp), %rax
 	movq	%rax, -8(%rbp)
-	jmp	.L289
-.L290:
+	jmp	.L353
+.L354:
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	-8(%rbp), %rcx
@@ -4049,11 +4554,11 @@ _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy:
 	movq	(%rcx), %rax
 	movq	%rax, (%rdx)
 	addq	$1, -8(%rbp)
-.L289:
+.L353:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	cmpq	%rax, -8(%rbp)
-	jb	.L290
+	jb	.L354
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	0(,%rax,8), %rdx
@@ -4069,7 +4574,7 @@ _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy:
 	testq	%rax, %rax
 	sete	%al
 	testb	%al, %al
-	je	.L285
+	je	.L349
 	movq	-40(%rbp), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
@@ -4079,61 +4584,19 @@ _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L285:
+.L349:
 	movq	-24(%rbp), %rax
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE2324:
+.LFE2326:
 	.size	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy, .-_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy
 	.section	.text._ZNKSt16initializer_listIP11SDL_TextureE5beginEv,"axG",@progbits,_ZNKSt16initializer_listIP11SDL_TextureE5beginEv,comdat
 	.align 2
 	.weak	_ZNKSt16initializer_listIP11SDL_TextureE5beginEv
 	.type	_ZNKSt16initializer_listIP11SDL_TextureE5beginEv, @function
 _ZNKSt16initializer_listIP11SDL_TextureE5beginEv:
-.LFB2375:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2375:
-	.size	_ZNKSt16initializer_listIP11SDL_TextureE5beginEv, .-_ZNKSt16initializer_listIP11SDL_TextureE5beginEv
-	.section	.text._ZNKSt16initializer_listIP9Mix_ChunkE5beginEv,"axG",@progbits,_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv,comdat
-	.align 2
-	.weak	_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv
-	.type	_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv, @function
-_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv:
-.LFB2376:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2376:
-	.size	_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv, .-_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv
-	.section	.text._ZNKSt16initializer_listIP9_TTF_FontE5beginEv,"axG",@progbits,_ZNKSt16initializer_listIP9_TTF_FontE5beginEv,comdat
-	.align 2
-	.weak	_ZNKSt16initializer_listIP9_TTF_FontE5beginEv
-	.type	_ZNKSt16initializer_listIP9_TTF_FontE5beginEv, @function
-_ZNKSt16initializer_listIP9_TTF_FontE5beginEv:
 .LFB2377:
 	.cfi_startproc
 	pushq	%rbp
@@ -4149,12 +4612,12 @@ _ZNKSt16initializer_listIP9_TTF_FontE5beginEv:
 	ret
 	.cfi_endproc
 .LFE2377:
-	.size	_ZNKSt16initializer_listIP9_TTF_FontE5beginEv, .-_ZNKSt16initializer_listIP9_TTF_FontE5beginEv
-	.section	.text._ZNKSt16initializer_listIP10SDL_CursorE5beginEv,"axG",@progbits,_ZNKSt16initializer_listIP10SDL_CursorE5beginEv,comdat
+	.size	_ZNKSt16initializer_listIP11SDL_TextureE5beginEv, .-_ZNKSt16initializer_listIP11SDL_TextureE5beginEv
+	.section	.text._ZNKSt16initializer_listIP9Mix_ChunkE5beginEv,"axG",@progbits,_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv,comdat
 	.align 2
-	.weak	_ZNKSt16initializer_listIP10SDL_CursorE5beginEv
-	.type	_ZNKSt16initializer_listIP10SDL_CursorE5beginEv, @function
-_ZNKSt16initializer_listIP10SDL_CursorE5beginEv:
+	.weak	_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv
+	.type	_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv, @function
+_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv:
 .LFB2378:
 	.cfi_startproc
 	pushq	%rbp
@@ -4170,6 +4633,48 @@ _ZNKSt16initializer_listIP10SDL_CursorE5beginEv:
 	ret
 	.cfi_endproc
 .LFE2378:
+	.size	_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv, .-_ZNKSt16initializer_listIP9Mix_ChunkE5beginEv
+	.section	.text._ZNKSt16initializer_listIP9_TTF_FontE5beginEv,"axG",@progbits,_ZNKSt16initializer_listIP9_TTF_FontE5beginEv,comdat
+	.align 2
+	.weak	_ZNKSt16initializer_listIP9_TTF_FontE5beginEv
+	.type	_ZNKSt16initializer_listIP9_TTF_FontE5beginEv, @function
+_ZNKSt16initializer_listIP9_TTF_FontE5beginEv:
+.LFB2379:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2379:
+	.size	_ZNKSt16initializer_listIP9_TTF_FontE5beginEv, .-_ZNKSt16initializer_listIP9_TTF_FontE5beginEv
+	.section	.text._ZNKSt16initializer_listIP10SDL_CursorE5beginEv,"axG",@progbits,_ZNKSt16initializer_listIP10SDL_CursorE5beginEv,comdat
+	.align 2
+	.weak	_ZNKSt16initializer_listIP10SDL_CursorE5beginEv
+	.type	_ZNKSt16initializer_listIP10SDL_CursorE5beginEv, @function
+_ZNKSt16initializer_listIP10SDL_CursorE5beginEv:
+.LFB2380:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2380:
 	.size	_ZNKSt16initializer_listIP10SDL_CursorE5beginEv, .-_ZNKSt16initializer_listIP10SDL_CursorE5beginEv
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

@@ -39,7 +39,7 @@ sint32 main(sint32 argc, char* *argv)
     Engine.Actors[Background].Textures[BackgroundTexture].Height = 720;
     Engine.Actors[Background].Textures[BackgroundTexture].Priority = 0;
 
-    //Engine.Camera.Bind(Player);
+    Engine.Camera.Bind(Player);
 
     while (Engine.Update())
     {

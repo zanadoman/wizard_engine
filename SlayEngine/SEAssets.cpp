@@ -66,7 +66,7 @@ namespace slay
         SDL_DestroyTexture(this->Textures[ID]);
         this->Textures[ID] = NULL;
 
-        if (ID == this->Textures.Length() - 1)
+        if (ID == this->Textures.Length() - 1 && 1 < this->Textures.Length())
         {
             for (i = this->Textures.Length() - 1; 0 < i; i--)
             {
@@ -146,7 +146,7 @@ namespace slay
             }
         }
 
-        if (this->Textures[this->Textures.Length() - 1] == NULL)
+        if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
         {
             for (i = this->Textures.Length() - 1; 0 < i; i--)
             {
@@ -212,7 +212,7 @@ namespace slay
         Mix_FreeChunk(this->Sounds[ID]);
         this->Sounds[ID] = NULL;
 
-        if (ID == this->Sounds.Length() - 1)
+        if (ID == this->Sounds.Length() - 1 && 1 < this->Sounds.Length())
         {
             for (i = this->Sounds.Length() - 1; 0 < i; i--)
             {
@@ -250,7 +250,7 @@ namespace slay
             }
         }
 
-        if (this->Sounds[this->Sounds.Length() - 1] == NULL)
+        if (this->Sounds[this->Sounds.Length() - 1] == NULL && 1 < this->Sounds.Length())
         {
             for (i = this->Sounds.Length() - 1; 0 < i; i--)
             {
@@ -316,7 +316,7 @@ namespace slay
         TTF_CloseFont(this->Fonts[ID]);
         this->Fonts[ID] = NULL;
 
-        if (ID == this->Fonts.Length() - 1)
+        if (ID == this->Fonts.Length() - 1 && 1 < this->Fonts.Length())
         {
             for (i = this->Fonts.Length() - 1; 0 < i; i--)
             {
@@ -396,7 +396,7 @@ namespace slay
             }
         }
 
-        if (this->Fonts[this->Fonts.Length() - 1] == NULL)
+        if (this->Fonts[this->Fonts.Length() - 1] == NULL && 1 < this->Fonts.Length())
         {
             for (i = this->Fonts.Length() - 1; 0 < i; i--)
             {
@@ -483,7 +483,7 @@ namespace slay
         SDL_FreeCursor(this->Cursors[ID]);
         this->Cursors[ID] = NULL;
 
-        if (ID == this->Cursors.Length() - 1)
+        if (ID == this->Cursors.Length() - 1 && 1 < this->Cursors.Length())
         {
             for (i = this->Cursors.Length() - 1; 0 < i; i--)
             {
@@ -528,7 +528,7 @@ namespace slay
             }
         }
 
-        if (this->Cursors[this->Cursors.Length() - 1] == NULL)
+        if (this->Cursors[this->Cursors.Length() - 1] == NULL && 1 < this->Cursors.Length())
         {
             for (i = this->Cursors.Length() - 1; 0 < i; i--)
             {

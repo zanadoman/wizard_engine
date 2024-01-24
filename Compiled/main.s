@@ -339,6 +339,12 @@ main:
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movb	$0, 38(%rax)
+	movq	-792(%rbp), %rax
+	leaq	-720(%rbp), %rdx
+	addq	$72, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6camera4BindEy@PLT
 	jmp	.L2
 .L19:
 	leaq	-720(%rbp), %rax

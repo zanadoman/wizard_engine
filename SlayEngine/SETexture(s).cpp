@@ -55,7 +55,7 @@ namespace slay
         delete this->Textures[ID];
         this->Textures[ID] = NULL;
 
-        if (ID == this->Textures.Length() - 1)
+        if (ID == this->Textures.Length() - 1 && 1 < this->Textures.Length())
         {
             for (i = this->Textures.Length() - 1; 0 < i; i--)
             {

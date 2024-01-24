@@ -55,7 +55,7 @@ namespace slay
         delete this->Colors[ID];
         this->Colors[ID] = NULL;
         
-        if (ID == this->Colors.Length() - 1)
+        if (ID == this->Colors.Length() - 1 && 1 < this->Colors.Length())
         {
             for (i = this->Colors.Length() - 1; 0 < i; i--)
             {

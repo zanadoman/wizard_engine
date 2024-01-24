@@ -56,7 +56,7 @@ namespace slay
         delete this->Texts[ID];
         this->Texts[ID] = NULL;
 
-        if (ID == this->Texts.Length() - 1)
+        if (ID == this->Texts.Length() - 1 && 1 < this->Texts.Length())
         {
             for (i = this->Texts.Length() - 1; 0 < i; i--)
             {

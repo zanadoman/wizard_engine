@@ -93,7 +93,7 @@ namespace slay
             }
         }
 
-        if (this->Actors[this->Actors.Length() - 1] == NULL)
+        if (this->Actors[this->Actors.Length() - 1] == NULL && 1 < this->Actors.Length())
         {
             for (i = this->Actors.Length() - 1; 0 < i; i--)
             {
