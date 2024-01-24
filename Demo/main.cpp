@@ -39,9 +39,6 @@ sint32 main(sint32 argc, char* *argv)
     Engine.Actors[Background].Textures[BackgroundTexture].Height = 720;
     Engine.Actors[Background].Textures[BackgroundTexture].Priority = 0;
 
-    uint64 Cursor = Engine.Assets.LoadCursor("test.png", 0, 0);
-    Engine.Mouse.SetCursor(Cursor);
-
     //Engine.Camera.Bind(Player);
 
     while (Engine.Update())
