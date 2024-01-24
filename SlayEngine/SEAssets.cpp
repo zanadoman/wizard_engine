@@ -350,12 +350,12 @@ namespace slay
 
         if (tmp->w <= HotSpotX)
         {
-            printf("slay::engine.assets.LoadCursor(): HotSpotX is out of range\nParams: Path: %s\n", Path);
+            printf("slay::engine.assets.LoadCursor(): HotSpotX out of range\nParams: Path: %s\n", Path);
             exit(1);
         }
         if (tmp->h <= HotSpotY)
         {
-            printf("slay::engine.assets.LoadCursor(): HotSpotY is out of range\nParams: Path: %s\n", Path);
+            printf("slay::engine.assets.LoadCursor(): HotSpotY out of range\nParams: Path: %s\n", Path);
             exit(1);
         }
 

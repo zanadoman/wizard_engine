@@ -1700,10 +1700,10 @@ _ZN4slay6engine6assets9PurgeTTFsEv:
 	.string	"slay::engine.assets.LoadCursor(): IMG_Load() failed\nParams: Path: %s\n"
 	.align 8
 .LC15:
-	.string	"slay::engine.assets.LoadCursor(): HotSpotX is out of range\nParams: Path: %s\n"
+	.string	"slay::engine.assets.LoadCursor(): HotSpotX out of range\nParams: Path: %s\n"
 	.align 8
 .LC16:
-	.string	"slay::engine.assets.LoadCursor(): HotSpotY is out of range\nParams: Path: %s\n"
+	.string	"slay::engine.assets.LoadCursor(): HotSpotY out of range\nParams: Path: %s\n"
 	.align 8
 .LC17:
 	.string	"slay::engine.assets.LoadCursor(): SDL_CreateColorCursor() failed\nParams: Path: %s\n"
