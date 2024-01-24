@@ -449,16 +449,16 @@ namespace slay
                 public:
                     uint64 LoadPNG(const char* Path);
                     uint8 UnloadPNG(uint64 ID);
-                    uint8 PurgePNGs();
+                    uint8 PurgePNGs(std::initializer_list<uint64> Keep);
                     uint64 LoadWAV(const char* Path);
                     uint8 UnloadWAV(uint64 ID);
-                    uint8 PurgeWAVs();
+                    uint8 PurgeWAVs(std::initializer_list<uint64> Keep);
                     uint64 LoadTTF(const char* Path, uint8 Size);
                     uint8 UnloadTTF(uint64 ID);
-                    uint8 PurgeTTFs();
+                    uint8 PurgeTTFs(std::initializer_list<uint64> Keep);
                     uint64 LoadCursor(const char* Path, uint16 HotSpotX, uint16 HotSpotY);
                     uint8 UnloadCursor(uint64 ID);
-                    uint8 PurgeCursors();
+                    uint8 PurgeCursors(std::initializer_list<uint64> Keep);
 
                 private:
                     array<SDL_Texture*> Textures;

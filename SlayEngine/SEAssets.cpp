@@ -1,3 +1,4 @@
+#include "Includes/SDL_mouse.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -101,7 +102,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::assets::PurgePNGs()
+    uint8 engine::assets::PurgePNGs(std::initializer_list<uint64> Keep)
     {
         for (uint64 i = 1; i < this->Engine.Actors.Actors.Length(); i++)
         {
@@ -199,7 +200,7 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::assets::PurgeWAVs()
+    uint8 engine::assets::PurgeWAVs(std::initializer_list<uint64> Keep)
     {
         for (uint64 i = 1; i < this->Sounds.Length(); i++)
         {
@@ -300,33 +301,60 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::assets::PurgeTTFs()
+    uint8 engine::assets::PurgeTTFs(std::initializer_list<uint64> Keep)
     {
-        for (uint64 i = 1; i < this->Engine.Actors.Actors.Length(); i++)
+        uint64 i, j;
+
+        for (i = 1; i < this->Fonts.Length(); i++)
         {
-            if (this->Engine.Actors.Actors[i] == NULL)
+            for (j = 0; j < Keep.size(); j++)
             {
-                continue;
+                if (i == Keep.begin()[j])
+                {
+                    break;
+                }
             }
 
-            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
+            if (j == Keep.size())
             {
-                if (this->Engine.Actors.Actors[i]->Texts.Texts[j] == NULL)
+                for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
                 {
-                    continue;
+                    if (this->Engine.Actors.Actors[k] == NULL)
+                    {
+                        continue;
+                    }
+
+                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Texts.Texts.Length(); l++)
+                    {
+                        if (this->Engine.Actors.Actors[k]->Texts.Texts[l] == NULL)
+                        {
+                            continue;
+                        }
+
+                        if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == i)
+                        {
+                            this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
+                        }
+                    }
                 }
 
-                this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
+                TTF_CloseFont(this->Fonts[i]);
+                this->Fonts[i] = NULL;
             }
         }
 
-        for (uint64 i = 1; i < this->Fonts.Length(); i++)
+        if (this->Fonts[this->Fonts.Length() - 1] == NULL)
         {
-            TTF_CloseFont(this->Fonts[i]);
-        }
-        if (1 < this->Fonts.Length())
-        {
-            this->Fonts.Remove(1, this->Fonts.Length() - 1);
+            for (i = this->Fonts.Length() - 1; 0 < i; i--)
+            {
+                if (this->Fonts[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Fonts.Remove(i, this->Fonts.Length() - i);
         }
 
         return 0;
@@ -424,17 +452,41 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::assets::PurgeCursors()
+    uint8 engine::assets::PurgeCursors(std::initializer_list<uint64> Keep)
     {
         this->Engine.Mouse.Cursor = 0;
 
-        for (uint64 i = 1; i < this->Cursors.Length(); i++)
+        uint64 i, j;
+
+        for (i = 1; i < this->Cursors.Length(); i++)
         {
-            SDL_FreeCursor(this->Cursors[i]);
+            for (j = 0; j < Keep.size(); j++)
+            {
+                if (i == Keep.begin()[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep.size())
+            {
+                SDL_FreeCursor(this->Cursors[i]);
+                this->Cursors[i] = NULL;
+            }
         }
-        if (1 < this->Cursors.Length())
+
+        if (this->Cursors[this->Cursors.Length() - 1] == NULL)
         {
-            this->Cursors.Remove(1, this->Cursors.Length() - 1);
+            for (i = this->Cursors.Length() - 1; 0 < i; i--)
+            {
+                if (this->Cursors[i] != NULL)
+                {
+                    break;
+                }
+            }
+
+            i++;
+            this->Cursors.Remove(i, this->Cursors.Length() - i);
         }
 
         return 0;
