@@ -22,6 +22,10 @@ _ZN4slay6engine6renderC2ERS0_:
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIN4slay6engine6render5tokenEEC1Ev
 	movq	-8(%rbp), %rax
+	movw	$0, 24(%rax)
+	movq	-8(%rbp), %rax
+	movw	$0, 26(%rax)
+	movq	-8(%rbp), %rax
 	movsd	.LC0(%rip), %xmm0
 	movsd	%xmm0, 32(%rax)
 	nop
