@@ -55,17 +55,16 @@ namespace slay
         delete this->Actors[ID];
         this->Actors[ID] = NULL;
 
-        if (ID == this->Actors.Length() - 1)
+        if (this->Actors[this->Actors.Length() - 1] == NULL && 1 < this->Actors.Length())
         {
-            for (i = this->Actors.Length() - 1; 0 < i; i--)
+            for (i = this->Actors.Length(); 1 < i; i--)
             {
-                if (this->Actors[i] != NULL)
+                if (this->Actors[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Actors.Remove(i, this->Actors.Length() - i);
         }
 
@@ -108,15 +107,14 @@ namespace slay
 
         if (this->Actors[this->Actors.Length() - 1] == NULL && 1 < this->Actors.Length())
         {
-            for (i = this->Actors.Length() - 1; 0 < i; i--)
+            for (i = this->Actors.Length(); 1 < i; i--)
             {
-                if (this->Actors[i] != NULL)
+                if (this->Actors[i - 1] != NULL)
                 {
                     break;
                 }
             }
-
-            i++;
+            
             this->Actors.Remove(i, this->Actors.Length() - i);
         }
 

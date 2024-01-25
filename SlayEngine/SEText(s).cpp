@@ -56,17 +56,16 @@ namespace slay
         delete this->Texts[ID];
         this->Texts[ID] = NULL;
 
-        if (ID == this->Texts.Length() - 1 && 1 < this->Texts.Length())
+        if (this->Texts[this->Texts.Length() - 1] == NULL && 1 < this->Texts.Length())
         {
-            for (i = this->Texts.Length() - 1; 0 < i; i--)
+            for (i = this->Texts.Length(); 1 < i; i--)
             {
-                if (this->Texts[i] != NULL)
+                if (this->Texts[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Texts.Remove(i, this->Texts.Length() - i);
         }
 
@@ -109,15 +108,14 @@ namespace slay
 
         if (this->Texts[this->Texts.Length() - 1] == NULL && 1 < this->Texts.Length())
         {
-            for (i = this->Texts.Length() - 1; 0 < i; i--)
+            for (i = this->Texts.Length(); 1 < i; i--)
             {
-                if (this->Texts[i] != NULL)
+                if (this->Texts[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Texts.Remove(i, this->Texts.Length() - i);
         }
 

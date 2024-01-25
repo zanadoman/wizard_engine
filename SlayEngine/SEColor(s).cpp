@@ -55,17 +55,16 @@ namespace slay
         delete this->Colors[ID];
         this->Colors[ID] = NULL;
         
-        if (ID == this->Colors.Length() - 1 && 1 < this->Colors.Length())
+        if (this->Colors[this->Colors.Length() - 1] == NULL && 1 < this->Colors.Length())
         {
-            for (i = this->Colors.Length() - 1; 0 < i; i--)
+            for (i = this->Colors.Length(); 1 < i; i--)
             {
-                if (this->Colors[i] != NULL)
+                if (this->Colors[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Colors.Remove(i, this->Colors.Length() - i);
         }
 
@@ -108,15 +107,14 @@ namespace slay
 
         if (this->Colors[this->Colors.Length() - 1] == NULL && 1 < this->Colors.Length())
         {
-            for (i = this->Colors.Length() - 1; 0 < i; i--)
+            for (i = this->Colors.Length(); 1 < i; i--)
             {
-                if (this->Colors[i] != NULL)
+                if (this->Colors[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Colors.Remove(i, this->Colors.Length() - i);
         }
 

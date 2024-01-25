@@ -436,11 +436,17 @@ _ZN4slay6engine6actors5actor6colors6DeleteEy:
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEEixEy
 	movq	$0, (%rax)
 	movq	-40(%rbp), %rax
+	leaq	16(%rax), %rbx
+	movq	-40(%rbp), %rax
 	addq	$16, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6LengthEv
 	subq	$1, %rax
-	cmpq	%rax, -48(%rbp)
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEEixEy
+	movq	(%rax), %rax
+	testq	%rax, %rax
 	jne	.L31
 	movq	-40(%rbp), %rax
 	addq	$16, %rax
@@ -459,15 +465,15 @@ _ZN4slay6engine6actors5actor6colors6DeleteEy:
 	addq	$16, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6LengthEv
-	subq	$1, %rax
 	movq	%rax, -24(%rbp)
 	jmp	.L34
 .L37:
 	movq	-40(%rbp), %rax
-	leaq	16(%rax), %rdx
-	movq	-24(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
+	addq	$16, %rax
+	movq	-24(%rbp), %rdx
+	subq	$1, %rdx
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEEixEy
 	movq	(%rax), %rax
 	testq	%rax, %rax
@@ -476,13 +482,12 @@ _ZN4slay6engine6actors5actor6colors6DeleteEy:
 	jne	.L39
 	subq	$1, -24(%rbp)
 .L34:
-	cmpq	$0, -24(%rbp)
-	jne	.L37
+	cmpq	$1, -24(%rbp)
+	ja	.L37
 	jmp	.L36
 .L39:
 	nop
 .L36:
-	addq	$1, -24(%rbp)
 	movq	-40(%rbp), %rax
 	leaq	16(%rax), %rbx
 	movq	-40(%rbp), %rax
@@ -722,15 +727,15 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	addq	$16, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6LengthEv
-	subq	$1, %rax
 	movq	%rax, -32(%rbp)
 	jmp	.L61
 .L64:
 	movq	-40(%rbp), %rax
-	leaq	16(%rax), %rdx
-	movq	-32(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
+	addq	$16, %rax
+	movq	-32(%rbp), %rdx
+	subq	$1, %rdx
+	movq	%rdx, %rsi
+	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEEixEy
 	movq	(%rax), %rax
 	testq	%rax, %rax
@@ -739,13 +744,12 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	jne	.L68
 	subq	$1, -32(%rbp)
 .L61:
-	cmpq	$0, -32(%rbp)
-	jne	.L64
+	cmpq	$1, -32(%rbp)
+	ja	.L64
 	jmp	.L63
 .L68:
 	nop
 .L63:
-	addq	$1, -32(%rbp)
 	movq	-40(%rbp), %rax
 	leaq	16(%rax), %rbx
 	movq	-40(%rbp), %rax

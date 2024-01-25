@@ -63,17 +63,16 @@ namespace slay
         SDL_DestroyTexture(this->Textures[ID]);
         this->Textures[ID] = NULL;
 
-        if (ID == this->Textures.Length() - 1 && 1 < this->Textures.Length())
+        if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
         {
-            for (i = this->Textures.Length() - 1; 0 < i; i--)
+            for (i = this->Textures.Length(); 1 < i; i--)
             {
-                if (this->Textures[i] != NULL)
+                if (this->Textures[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
@@ -158,15 +157,14 @@ namespace slay
 
         if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
         {
-            for (i = this->Textures.Length() - 1; 0 < i; i--)
+            for (i = this->Textures.Length(); 1 < i; i--)
             {
-                if (this->Textures[i] != NULL)
+                if (this->Textures[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
@@ -222,17 +220,16 @@ namespace slay
         Mix_FreeChunk(this->Sounds[ID]);
         this->Sounds[ID] = NULL;
 
-        if (ID == this->Sounds.Length() - 1 && 1 < this->Sounds.Length())
+        if (this->Sounds[this->Sounds.Length() - 1] == NULL && 1 < this->Sounds.Length())
         {
-            for (i = this->Sounds.Length() - 1; 0 < i; i--)
+            for (i = this->Sounds.Length(); 1 < i; i--)
             {
-                if (this->Sounds[i] != NULL)
+                if (this->Sounds[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Sounds.Remove(i, this->Sounds.Length() - i);
         }
 
@@ -275,15 +272,14 @@ namespace slay
 
         if (this->Sounds[this->Sounds.Length() - 1] == NULL && 1 < this->Sounds.Length())
         {
-            for (i = this->Sounds.Length() - 1; 0 < i; i--)
+            for (i = this->Sounds.Length(); 1 < i; i--)
             {
-                if (this->Sounds[i] != NULL)
+                if (this->Sounds[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Sounds.Remove(i, this->Sounds.Length() - i);
         }
 
@@ -339,17 +335,16 @@ namespace slay
         TTF_CloseFont(this->Fonts[ID]);
         this->Fonts[ID] = NULL;
 
-        if (ID == this->Fonts.Length() - 1 && 1 < this->Fonts.Length())
+        if (this->Fonts[this->Fonts.Length() - 1] == NULL && 1 < this->Fonts.Length())
         {
-            for (i = this->Fonts.Length() - 1; 0 < i; i--)
+            for (i = this->Fonts.Length(); 1 < i; i--)
             {
-                if (this->Fonts[i] != NULL)
+                if (this->Fonts[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Fonts.Remove(i, this->Fonts.Length() - i);
         }
 
@@ -434,15 +429,14 @@ namespace slay
 
         if (this->Fonts[this->Fonts.Length() - 1] == NULL && 1 < this->Fonts.Length())
         {
-            for (i = this->Fonts.Length() - 1; 0 < i; i--)
+            for (i = this->Fonts.Length(); 1 < i; i--)
             {
-                if (this->Fonts[i] != NULL)
+                if (this->Fonts[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Fonts.Remove(i, this->Fonts.Length() - i);
         }
 
@@ -519,17 +513,16 @@ namespace slay
         SDL_FreeCursor(this->Cursors[ID]);
         this->Cursors[ID] = NULL;
 
-        if (ID == this->Cursors.Length() - 1 && 1 < this->Cursors.Length())
+        if (this->Cursors[this->Cursors.Length() - 1] == NULL && 1 < this->Cursors.Length())
         {
-            for (i = this->Cursors.Length() - 1; 0 < i; i--)
+            for (i = this->Cursors.Length(); 1 < i; i--)
             {
-                if (this->Cursors[i] != NULL)
+                if (this->Cursors[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Cursors.Remove(i, this->Cursors.Length() - i);
         }
 
@@ -579,15 +572,14 @@ namespace slay
 
         if (this->Cursors[this->Cursors.Length() - 1] == NULL && 1 < this->Cursors.Length())
         {
-            for (i = this->Cursors.Length() - 1; 0 < i; i--)
+            for (i = this->Cursors.Length(); 1 < i; i--)
             {
-                if (this->Cursors[i] != NULL)
+                if (this->Cursors[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Cursors.Remove(i, this->Cursors.Length() - i);
         }
 

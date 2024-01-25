@@ -55,17 +55,16 @@ namespace slay
         delete this->Textures[ID];
         this->Textures[ID] = NULL;
 
-        if (ID == this->Textures.Length() - 1 && 1 < this->Textures.Length())
+        if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
         {
-            for (i = this->Textures.Length() - 1; 0 < i; i--)
+            for (i = this->Textures.Length(); 1 < i; i--)
             {
-                if (this->Textures[i] != NULL)
+                if (this->Textures[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
@@ -108,15 +107,14 @@ namespace slay
 
         if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
         {
-            for (i = this->Textures.Length() - 1; 0 < i; i--)
+            for (i = this->Textures.Length(); 1 < i; i--)
             {
-                if (this->Textures[i] != NULL)
+                if (this->Textures[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            i++;
             this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
