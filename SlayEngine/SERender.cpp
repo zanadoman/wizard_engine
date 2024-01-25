@@ -4,6 +4,8 @@ namespace slay
 {
     engine::render::render(engine& Engine) : Engine(Engine)
     {
+        this->RenderWidth = 0;
+        this->RenderHeight = 0;
         this->SamplingStep = 0.002;
     }
 

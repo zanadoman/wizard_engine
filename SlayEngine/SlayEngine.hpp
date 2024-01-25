@@ -2,7 +2,6 @@
 
 #include "Includes/NeoTypes++.hpp"
 #include <ctime>
-#include <initializer_list>
 
 #include "Includes/SDL.h"
 #include "Includes/SDL_image.h"
