@@ -343,8 +343,7 @@ namespace slay
 
     uint8 engine::render::OrderByPriorityMerge(uint64 Left, uint64 Middle, uint64 Right)
     {
-        uint64 i, j, k;
-        uint64 n1, n2;
+        uint64 i, j, k, n1, n2;
         token left[(n1 = Middle - Left + 1)];
         token right[(n2 = Right - Middle)];
 
