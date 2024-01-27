@@ -372,7 +372,6 @@ namespace slay
                                     uint64* Textures;
                                     flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs);
                                     ~flipbook();
-                                    uint8 Update();
                             };
 
                             public:

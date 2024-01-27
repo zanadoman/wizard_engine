@@ -238,17 +238,4 @@ namespace slay
 
         return 0;
     }
-
-    uint8 engine::actors::actor::flipbooks::flipbook::Update()
-    {
-        this->Current += (SDL_GetTicks() - this->Engine.Timing.PrevTick + this->TickDelay) / this->Delay;
-        this->TickDelay = (SDL_GetTicks() - this->Engine.Timing.PrevTick) % this->Delay;
-
-        if (this->Current == this->Length)
-        {
-            this->Loop ? this->Current = 0 : this->Current = this->Length - 1;
-        }
-
-        return 0;
-    }
 }

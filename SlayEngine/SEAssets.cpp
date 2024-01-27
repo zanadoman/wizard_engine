@@ -95,6 +95,22 @@ namespace slay
                     this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID = 0;
                 }
             }
+
+            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
+            {
+                if (this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL)
+                {
+                    continue;
+                }
+
+                for (uint64 k = 0; k < this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Length; k++)
+                {
+                    if (this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[k] == ID)
+                    {
+                        this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[k] = 0;
+                    }
+                }
+            }
         }
 
         return 0;
@@ -146,6 +162,22 @@ namespace slay
                         if (this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID == i)
                         {
                             this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID = 0;
+                        }
+                    }
+
+                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks.Length(); l++)
+                    {
+                        if (this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l] == NULL)
+                        {
+                            continue;
+                        }
+
+                        for (uint64 m = 0; m < this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Length; m++)
+                        {
+                            if (this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
+                            {
+                                this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] = 0;
+                            }
                         }
                     }
                 }
