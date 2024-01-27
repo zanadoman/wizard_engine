@@ -62,6 +62,7 @@ namespace slay
                 {
                     COLOR,
                     TEXTURE,
+                    FLIPBOOK,
                     TEXT
                 };
 
@@ -98,6 +99,7 @@ namespace slay
                     uint8 RenderingStage();
                     uint8 RenderColor(token Token);
                     uint8 RenderTexture(token Token);
+                    uint8 RenderFlipbook(token Token);
                     uint8 RenderText(token Token);
             } Render;
 

@@ -1,5 +1,4 @@
 #include "SlayEngine.hpp"
-#include <initializer_list>
 
 namespace slay
 {
@@ -15,6 +14,12 @@ namespace slay
 
     uint64 engine::actors::actor::flipbooks::New(std::initializer_list<uint64> TextureIDs)
     {
+        if (TextureIDs.size() < 2)
+        {
+            printf("slay::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: TextureIDs(length): %ld\n", TextureIDs.size());
+            exit(1);
+        }
+
         for (uint64 i = 0; i < TextureIDs.size(); i++)
         {
             if (TextureIDs.begin()[i] == 0)

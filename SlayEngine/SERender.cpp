@@ -151,6 +151,51 @@ namespace slay
                 }
             }
 
+            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
+            {
+                if (this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width == 0 || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height == 0 || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Visible == false || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current] == 0)
+                {
+                    continue;
+                }
+
+                x = this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetX;
+                y = this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetY;
+
+                if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
+                {
+                    layer = EPSILON;
+                }
+                if ((depth = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                {
+                    depth += EPSILON;
+                }
+
+                for (; layer < depth; layer += this->SamplingStep)
+                {
+                    area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width, this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height, layer);
+
+                    if (0 < buffer && this->RenderQueue[buffer - 1].Data == this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j] && !(this->RenderQueue[buffer - 1].Area.x != area.x || this->RenderQueue[buffer - 1].Area.y != area.y || this->RenderQueue[buffer - 1].Area.w != area.w || this->RenderQueue[buffer - 1].Area.h != area.h))
+                    {
+                        this->RenderQueue[buffer - 1].Layer = layer;
+                        continue;
+                    }
+
+                    if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
+                    {
+                        if (buffer == this->RenderQueue.Length())
+                        {
+                            this->RenderQueue += {token(this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j], FLIPBOOK, layer, this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Priority, area)};
+                        }
+                        else
+                        {
+                            this->RenderQueue[buffer] = token(this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j], FLIPBOOK, layer, this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Priority, area);
+                        }
+
+                        buffer++;
+                    }
+                }
+            }
+
             for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
             {
                 if (this->Engine.Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text.Length() < 2 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height == 0 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Visible == false || this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == 0)
@@ -423,6 +468,10 @@ namespace slay
                     this->RenderTexture(this->RenderQueue[i]);
                 break;
 
+                case FLIPBOOK:
+                    this->RenderFlipbook(this->RenderQueue[i]);
+                break;
+
                 case TEXT:
                     this->RenderText(this->RenderQueue[i]);
                 break;
@@ -439,6 +488,10 @@ namespace slay
 
                 case TEXTURE:
                     this->RenderTexture(this->RenderQueue[i]);
+                break;
+
+                case FLIPBOOK:
+                    this->RenderFlipbook(this->RenderQueue[i]);
                 break;
 
                 case TEXT:
@@ -495,6 +548,39 @@ namespace slay
         if (SDL_RenderCopyEx(this->Engine.Window.Renderer, this->Engine.Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], NULL, &Token.Area, -((engine::actors::actor::textures::texture*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderTexture(): SDL_RenderCopyEx failed\n");
+            exit(1);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::render::RenderFlipbook(token Token)
+    {
+        uint8 flip;
+
+        flip = SDL_FLIP_NONE;
+        if (((engine::actors::actor::flipbooks::flipbook*)Token.Data)->FlipHorizontal)
+        {
+            flip = SDL_FLIP_HORIZONTAL;
+        }
+        if (((engine::actors::actor::flipbooks::flipbook*)Token.Data)->FlipVertical)
+        {
+            flip |= SDL_FLIP_VERTICAL;
+        }
+
+        if (SDL_SetTextureColorMod(this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorB) != 0)
+        {
+            printf("slay::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\n");
+            exit(1);
+        }
+        if (SDL_SetTextureAlphaMod(this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorA) != 0)
+        {
+            printf("slay::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\n");
+            exit(1);
+        }
+        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current], NULL, &Token.Area, -((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        {
+            printf("slay::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\n");
             exit(1);
         }
 
