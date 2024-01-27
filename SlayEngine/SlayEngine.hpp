@@ -323,6 +323,66 @@ namespace slay
                                 ~textures();
                         } Textures;
 
+                        //__________Flipbooks__________________________________________________________________________
+
+                        class flipbooks
+                        {
+                            friend class engine;
+                            engine& Engine;
+                            actor& Actor;
+
+                            class flipbook
+                            {
+                                friend class engine;
+                                engine& Engine;
+                                actor& Actor;
+
+                                public:
+                                    bool OffsetLocked;
+                                    bool AngleLocked;
+                                    uint16 Width;
+                                    uint16 Height;
+                                    double Angle;
+                                    bool FlipHorizontal;
+                                    bool FlipVertical;
+                                    uint8 ColorR;
+                                    uint8 ColorG;
+                                    uint8 ColorB;
+                                    uint8 ColorA;
+                                    uint8 Priority;
+                                    bool Visible;
+                                    bool Loop;
+                                    sint32 GetOffsetX();
+                                    sint32 SetOffsetX(sint32 OffsetX);
+                                    sint32 GetOffsetY();
+                                    sint32 SetOffsetY(sint32 OffsetY);
+                                    uint8 Reset();
+
+                                private:
+                                    sint32 OffsetX;
+                                    sint32 OffsetY;
+                                    double OffsetLength;
+                                    double OffsetAngle;
+                                    uint64 Current;
+                                    uint64 TextureCount;
+                                    uint64* TextureIDs;
+                                    flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs);
+                                    ~flipbook();
+                                    uint8 Update();
+                            };
+
+                            public:
+                                uint64 New(std::initializer_list<uint64> TextureIDs);
+                                uint8 Delete(uint64 ID);
+                                uint8 Purge(std::initializer_list<uint64> Keep);
+                                flipbook& operator [] (uint64 ID);
+
+                            private:
+                                array<flipbook*> Flipbooks;
+                                flipbooks(engine& Engine, actor& Actor);
+                                ~flipbooks();
+                        } Flipbooks;
+
                         //__________Texts______________________________________________________________________________
 
                         class texts
