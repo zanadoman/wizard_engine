@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::actors::actor::actor(engine& Engine, uint64 Type) : Engine(Engine), Colors(Engine, *this), Textures(Engine, *this), Texts(Engine, *this)
+    engine::actors::actor::actor(engine& Engine, uint64 Type) : Engine(Engine), Colors(Engine, *this), Textures(Engine, *this), Flipbooks(Engine, *this), Texts(Engine, *this)
     {
         this->Width = 0;
         this->Height = 0;
@@ -94,6 +94,26 @@ namespace slay
             if (this->Textures.Textures[i]->AngleLocked)
             {
                 this->Textures.Textures[i]->Angle += change;
+            }
+        }
+
+        for (uint64 i = 1; i < this->Flipbooks.Flipbooks.Length(); i++)
+        {
+            if (this->Flipbooks.Flipbooks[i] == NULL)
+            {
+                continue;
+            }
+
+            if (this->Flipbooks.Flipbooks[i]->OffsetLocked)
+            {
+                cache = this->Flipbooks.Flipbooks[i]->OffsetAngle + Angle;
+                this->Flipbooks.Flipbooks[i]->OffsetX = round(this->Engine.Vector.TerminalX(this->X, this->Flipbooks.Flipbooks[i]->OffsetLength, cache) - this->X);
+                this->Flipbooks.Flipbooks[i]->OffsetY = round(this->Engine.Vector.TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, cache) - this->Y);
+            }
+
+            if (this->Flipbooks.Flipbooks[i]->AngleLocked)
+            {
+                this->Flipbooks.Flipbooks[i]->Angle += change;
             }
         }
 

@@ -953,7 +953,7 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetXEi:
 	movl	%esi, -28(%rbp)
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movsd	120(%rax), %xmm1
+	movsd	152(%rax), %xmm1
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	-28(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
@@ -961,7 +961,7 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetXEi:
 	movl	%eax, -8(%rbp)
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movsd	128(%rax), %xmm1
+	movsd	160(%rax), %xmm1
 	movq	-24(%rbp), %rax
 	movl	44(%rax), %eax
 	pxor	%xmm0, %xmm0
@@ -978,10 +978,10 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetXEi:
 	cvtsi2sdl	-8(%rbp), %xmm1
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movsd	128(%rax), %xmm0
+	movsd	160(%rax), %xmm0
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movq	120(%rax), %rax
+	movq	152(%rax), %rax
 	movapd	%xmm2, %xmm3
 	movapd	%xmm1, %xmm2
 	movapd	%xmm0, %xmm1
@@ -1000,10 +1000,10 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetXEi:
 	cvtsi2sdl	-8(%rbp), %xmm1
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movsd	128(%rax), %xmm0
+	movsd	160(%rax), %xmm0
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movq	120(%rax), %rax
+	movq	152(%rax), %rax
 	movapd	%xmm2, %xmm3
 	movapd	%xmm1, %xmm2
 	movapd	%xmm0, %xmm1
@@ -1060,7 +1060,7 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetYEi:
 	movl	%esi, -28(%rbp)
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movsd	120(%rax), %xmm1
+	movsd	152(%rax), %xmm1
 	movq	-24(%rbp), %rax
 	movl	40(%rax), %eax
 	pxor	%xmm0, %xmm0
@@ -1070,7 +1070,7 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetYEi:
 	movl	%eax, -8(%rbp)
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movsd	128(%rax), %xmm1
+	movsd	160(%rax), %xmm1
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	-28(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
@@ -1085,10 +1085,10 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetYEi:
 	cvtsi2sdl	-8(%rbp), %xmm1
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movsd	128(%rax), %xmm0
+	movsd	160(%rax), %xmm0
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movq	120(%rax), %rax
+	movq	152(%rax), %rax
 	movapd	%xmm2, %xmm3
 	movapd	%xmm1, %xmm2
 	movapd	%xmm0, %xmm1
@@ -1107,10 +1107,10 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetYEi:
 	cvtsi2sdl	-8(%rbp), %xmm1
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movsd	128(%rax), %xmm0
+	movsd	160(%rax), %xmm0
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
-	movq	120(%rax), %rax
+	movq	152(%rax), %rax
 	movapd	%xmm2, %xmm3
 	movapd	%xmm1, %xmm2
 	movapd	%xmm0, %xmm1

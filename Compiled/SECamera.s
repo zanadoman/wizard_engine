@@ -475,7 +475,7 @@ _ZN4slay6engine6camera6UpdateEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	movsd	120(%rax), %xmm0
+	movsd	152(%rax), %xmm0
 	movq	-8(%rbp), %rax
 	movsd	%xmm0, 40(%rax)
 .L42:
@@ -492,7 +492,7 @@ _ZN4slay6engine6camera6UpdateEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	movsd	128(%rax), %xmm0
+	movsd	160(%rax), %xmm0
 	movq	-8(%rbp), %rax
 	movsd	%xmm0, 48(%rax)
 .L43:

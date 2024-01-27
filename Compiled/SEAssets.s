@@ -1883,7 +1883,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	leaq	88(%rax), %rdx
+	leaq	120(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1901,7 +1901,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	leaq	88(%rax), %rdx
+	leaq	120(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1920,7 +1920,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	leaq	88(%rax), %rdx
+	leaq	120(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1941,7 +1941,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	addq	$88, %rax
+	addq	$120, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv
 	cmpq	%rax, -24(%rbp)
@@ -2133,7 +2133,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	leaq	88(%rax), %rdx
+	leaq	120(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2151,7 +2151,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	leaq	88(%rax), %rdx
+	leaq	120(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2170,7 +2170,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	leaq	88(%rax), %rdx
+	leaq	120(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2191,7 +2191,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
 	movq	(%rax), %rax
-	addq	$88, %rax
+	addq	$120, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6LengthEv
 	cmpq	%rax, -24(%rbp)

@@ -81,7 +81,7 @@ _ZN4slay6engine6actorsD2Ev:
 	je	.L5
 	movq	%rbx, %rdi
 	call	_ZN4slay6engine6actors5actorD1Ev@PLT
-	movl	$160, %esi
+	movl	$192, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 .L5:
@@ -166,7 +166,7 @@ _ZN4slay6engine6actors3NewEy:
 	sete	%al
 	testb	%al, %al
 	je	.L9
-	movl	$160, %edi
+	movl	$192, %edi
 	call	_Znwm@PLT
 .LEHE0:
 	movq	%rax, %rbx
@@ -215,7 +215,7 @@ _ZN4slay6engine6actors3NewEy:
 	setb	%al
 	testb	%al, %al
 	jne	.L12
-	movl	$160, %edi
+	movl	$192, %edi
 	call	_Znwm@PLT
 .LEHE2:
 	movq	%rax, %rbx
@@ -282,7 +282,7 @@ _ZN4slay6engine6actors3NewEy:
 	movq	%rax, %r12
 	testb	%r13b, %r13b
 	je	.L15
-	movl	$160, %esi
+	movl	$192, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 .L15:
@@ -298,7 +298,7 @@ _ZN4slay6engine6actors3NewEy:
 	movq	%rax, %r12
 	testb	%r14b, %r14b
 	je	.L18
-	movl	$160, %esi
+	movl	$192, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 .L18:
@@ -432,7 +432,7 @@ _ZN4slay6engine6actors6DeleteEy:
 	je	.L30
 	movq	%rbx, %rdi
 	call	_ZN4slay6engine6actors5actorD1Ev@PLT
-	movl	$160, %esi
+	movl	$192, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 .L30:
@@ -685,7 +685,7 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	je	.L56
 	movq	%rbx, %rdi
 	call	_ZN4slay6engine6actors5actorD1Ev@PLT
-	movl	$160, %esi
+	movl	$192, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 .L56:

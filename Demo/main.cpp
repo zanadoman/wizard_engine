@@ -14,22 +14,38 @@ using namespace slay;
 
 sint32 main(sint32 argc, char* *argv)
 {
-    uint64 Player, PlayerTexture, PlayerText, Background, BackgroundTexture, Texture1, Texture2, Font;
+    uint64 Player, PlayerText, Background, BackgroundTexture, Texture1, Texture2, Font;
+    uint64 PlayerFlipbook;
 
     engine Engine(NULL, 1920, 1080, 1000 / 165);
+
+    uint64 PlayerTextures[] = {
+        Engine.Assets.LoadTexture("player1.png"),
+        Engine.Assets.LoadTexture("player2.png"),
+        Engine.Assets.LoadTexture("player3.png"),
+        Engine.Assets.LoadTexture("player4.png"),
+        Engine.Assets.LoadTexture("player5.png"),
+        Engine.Assets.LoadTexture("player6.png")
+    };
     
     Player = Engine.Actors.New(0);
-    PlayerTexture = Engine.Actors[Player].Textures.New();
+    PlayerFlipbook = Engine.Actors[Player].Flipbooks.New({
+        PlayerTextures[0],
+        PlayerTextures[1],
+        PlayerTextures[2],
+        PlayerTextures[3],
+        PlayerTextures[4],
+        PlayerTextures[5]
+    });
+    Engine.Actors[Player].Flipbooks[PlayerFlipbook].Width = 100;
+    Engine.Actors[Player].Flipbooks[PlayerFlipbook].Height = 100;
+    Engine.Actors[Player].Flipbooks[PlayerFlipbook].OffsetLocked = true;
+    Engine.Actors[Player].Flipbooks[PlayerFlipbook].AngleLocked = true;
     PlayerText = Engine.Actors[Player].Texts.New();
-    Texture1 = Engine.Assets.LoadTexture("test.png");
     Font = Engine.Assets.LoadFont("crazy-pixel.ttf", 48);
 
     Engine.Actors[Player].SetLayer(1);
     Engine.Actors[Player].SetDepth(0.025);
-    Engine.Actors[Player].Textures[PlayerTexture].SetTextureID(Texture1);
-    Engine.Actors[Player].Textures[PlayerTexture].Width = 100;
-    Engine.Actors[Player].Textures[PlayerTexture].Height = 100;
-    Engine.Actors[Player].Textures[PlayerTexture].AngleLocked = true;
     *Engine.Actors[Player].Texts[PlayerText].String() = {"Player"};
     Engine.Actors[Player].Texts[PlayerText].SetFont(Font);
     Engine.Actors[Player].Texts[PlayerText].Height = 50;

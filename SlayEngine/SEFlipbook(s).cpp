@@ -183,6 +183,11 @@ namespace slay
             printf("slay::engine.actors[].flipbooks.flipbook(): Memory allocation failed\nParams: Engine: %p, Actor: %p, TextureIDs(length): %ld\n", &this->Engine, &this->Actor, TextureIDs.size());
             exit(1);
         }
+
+        for (uint64 i = 0; i < TextureIDs.size(); i++)
+        {
+            this->Textures[i] = TextureIDs.begin()[i];
+        }
     }
 
     engine::actors::actor::flipbooks::flipbook::~flipbook()

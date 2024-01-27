@@ -568,17 +568,17 @@ namespace slay
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_SetTextureColorMod(this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorB) != 0)
+        if (SDL_SetTextureColorMod(this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorB) != 0)
         {
             printf("slay::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\n");
             exit(1);
         }
-        if (SDL_SetTextureAlphaMod(this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorA) != 0)
+        if (SDL_SetTextureAlphaMod(this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorA) != 0)
         {
             printf("slay::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current], NULL, &Token.Area, -((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], NULL, &Token.Area, -((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\n");
             exit(1);
