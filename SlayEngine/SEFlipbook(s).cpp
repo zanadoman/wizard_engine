@@ -235,14 +235,7 @@ namespace slay
     {
         if (++this->Current == this->Length)
         {
-            if (this->Loop)
-            {
-                this->Current = 0;
-            }
-            else
-            {
-                this->Current--;
-            }
+            this->Loop ? this->Current = 0 : this->Current = this->Length - 1;
         }
 
         return 0;

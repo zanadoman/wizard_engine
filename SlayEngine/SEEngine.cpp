@@ -1,4 +1,5 @@
 #include "SlayEngine.hpp"
+#include <endian.h>
 
 namespace slay
 {
@@ -60,6 +61,24 @@ namespace slay
         this->Camera.Update();
         this->Render.Update();
         this->Timing.RenderTime = SDL_GetTicks() - this->Timing.PrevTick - this->Timing.GameTime;
+
+        for (uint64 i = 1; i < this->Actors.Actors.Length(); i++)
+        {
+            if (this->Actors.Actors[i] == NULL)
+            {
+                continue;
+            }
+            
+            for (uint64 j = 1; j < this->Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
+            {
+                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL)
+                {
+                    continue;
+                }
+                
+                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Update();
+            }
+        }
 
         for (i = 0; SDL_PollEvent(&event); i++)
         {
