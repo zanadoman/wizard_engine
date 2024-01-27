@@ -172,8 +172,8 @@ namespace slay
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->Current = 0;
-        this->TextureCount = TextureIDs.size();
-        if ((this->TextureIDs = (uint64*)malloc(sizeof(uint64) * TextureIDs.size())) == NULL)
+        this->Length = TextureIDs.size();
+        if ((this->Textures = (uint64*)malloc(sizeof(uint64) * TextureIDs.size())) == NULL)
         {
             printf("slay::engine.actors[].flipbooks.flipbook(): Memory allocation failed\nParams: Engine: %p, Actor: %p, TextureIDs(length): %ld\n", &this->Engine, &this->Actor, TextureIDs.size());
             exit(1);
@@ -182,7 +182,7 @@ namespace slay
 
     engine::actors::actor::flipbooks::flipbook::~flipbook()
     {
-        free(this->TextureIDs);
+        free(this->Textures);
     }
 
     sint32 engine::actors::actor::flipbooks::flipbook::GetOffsetX()
@@ -228,7 +228,7 @@ namespace slay
 
     uint8 engine::actors::actor::flipbooks::flipbook::Update()
     {
-        if (++this->Current == this->TextureCount)
+        if (++this->Current == this->Length)
         {
             if (this->Loop)
             {

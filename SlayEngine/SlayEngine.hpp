@@ -364,8 +364,8 @@ namespace slay
                                     double OffsetLength;
                                     double OffsetAngle;
                                     uint64 Current;
-                                    uint64 TextureCount;
-                                    uint64* TextureIDs;
+                                    uint64 Length;
+                                    uint64* Textures;
                                     flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs);
                                     ~flipbook();
                                     uint8 Update();
