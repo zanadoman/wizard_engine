@@ -150,7 +150,7 @@ main:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movw	$100, 18(%rax)
+	movl	$100, 16(%rax)
 	movq	-888(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
@@ -162,7 +162,7 @@ main:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movw	$100, 20(%rax)
+	movw	$100, 24(%rax)
 	movq	-888(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
@@ -174,7 +174,7 @@ main:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movb	$1, 16(%rax)
+	movw	$100, 26(%rax)
 	movq	-888(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
@@ -186,7 +186,19 @@ main:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movb	$1, 17(%rax)
+	movb	$1, 21(%rax)
+	movq	-888(%rbp), %rax
+	leaq	-736(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	leaq	72(%rax), %rdx
+	movq	-880(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
+	movb	$1, 22(%rax)
 	movq	-888(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx

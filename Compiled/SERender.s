@@ -1394,7 +1394,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzwl	18(%rax), %eax
+	movzwl	24(%rax), %eax
 	testw	%ax, %ax
 	je	.L55
 	movq	-280(%rbp), %rax
@@ -1411,7 +1411,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzwl	20(%rax), %eax
+	movzwl	26(%rax), %eax
 	testw	%ax, %ax
 	je	.L55
 	movq	-280(%rbp), %rax
@@ -1428,7 +1428,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzbl	37(%rax), %eax
+	movzbl	45(%rax), %eax
 	testb	%al, %al
 	je	.L55
 	movq	-280(%rbp), %rax
@@ -1445,7 +1445,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzbl	39(%rax), %eax
+	movzbl	47(%rax), %eax
 	movzbl	%al, %eax
 	testl	%eax, %eax
 	je	.L55
@@ -1463,7 +1463,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movq	88(%rax), %rbx
+	movq	96(%rax), %rbx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	528(%rax), %rdx
@@ -1516,7 +1516,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movl	44(%rax), %eax
+	movl	48(%rax), %eax
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%eax, %xmm0
 	addsd	-288(%rbp), %xmm0
@@ -1545,7 +1545,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movl	48(%rax), %eax
+	movl	52(%rax), %eax
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%eax, %xmm0
 	addsd	-288(%rbp), %xmm0
@@ -1639,7 +1639,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzwl	20(%rax), %eax
+	movzwl	26(%rax), %eax
 	movzwl	%ax, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
@@ -1655,7 +1655,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzwl	18(%rax), %eax
+	movzwl	24(%rax), %eax
 	movzwl	%ax, %ecx
 	movsd	-256(%rbp), %xmm1
 	movsd	-184(%rbp), %xmm0
@@ -1812,7 +1812,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzbl	38(%rax), %eax
+	movzbl	46(%rax), %eax
 	movzbl	%al, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
@@ -1867,7 +1867,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzbl	38(%rax), %eax
+	movzbl	46(%rax), %eax
 	movzbl	%al, %ebx
 	movq	-280(%rbp), %rax
 	movq	(%rax), %rax
@@ -4435,31 +4435,31 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	movq	%rdi, -56(%rbp)
 	movb	$0, -33(%rbp)
 	movq	16(%rbp), %rax
-	movzbl	32(%rax), %eax
+	movzbl	40(%rax), %eax
 	testb	%al, %al
 	je	.L200
 	movb	$1, -33(%rbp)
 .L200:
 	movq	16(%rbp), %rax
-	movzbl	33(%rax), %eax
+	movzbl	41(%rax), %eax
 	testb	%al, %al
 	je	.L201
 	orb	$2, -33(%rbp)
 .L201:
 	movq	16(%rbp), %rax
-	movzbl	36(%rax), %eax
+	movzbl	44(%rax), %eax
 	movzbl	%al, %r13d
 	movq	16(%rbp), %rax
-	movzbl	35(%rax), %eax
+	movzbl	43(%rax), %eax
 	movzbl	%al, %r12d
 	movq	16(%rbp), %rax
-	movzbl	34(%rax), %eax
+	movzbl	42(%rax), %eax
 	movzbl	%al, %ebx
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	560(%rax), %rdx
 	movq	16(%rbp), %rax
-	movq	88(%rax), %rcx
+	movq	96(%rax), %rcx
 	movq	16(%rbp), %rax
 	movq	72(%rax), %rax
 	salq	$3, %rax
@@ -4485,13 +4485,13 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	call	exit@PLT
 .L202:
 	movq	16(%rbp), %rax
-	movzbl	37(%rax), %eax
+	movzbl	45(%rax), %eax
 	movzbl	%al, %ebx
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	560(%rax), %rdx
 	movq	16(%rbp), %rax
-	movq	88(%rax), %rcx
+	movq	96(%rax), %rcx
 	movq	16(%rbp), %rax
 	movq	72(%rax), %rax
 	salq	$3, %rax
@@ -4516,7 +4516,7 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 .L203:
 	movzbl	-33(%rbp), %r12d
 	movq	16(%rbp), %rax
-	movsd	24(%rax), %xmm0
+	movsd	32(%rax), %xmm0
 	movq	.LC13(%rip), %xmm1
 	xorpd	%xmm1, %xmm0
 	movq	%xmm0, %rbx
@@ -4524,7 +4524,7 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	movq	(%rax), %rax
 	leaq	560(%rax), %rdx
 	movq	16(%rbp), %rax
-	movq	88(%rax), %rcx
+	movq	96(%rax), %rcx
 	movq	16(%rbp), %rax
 	movq	72(%rax), %rax
 	salq	$3, %rax

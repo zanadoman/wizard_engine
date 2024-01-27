@@ -1,3 +1,4 @@
+#include "Includes/SDL_timer.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -158,6 +159,8 @@ namespace slay
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs) : Engine(Engine), Actor(Actor)
     {
+        this->Delay = 50;
+        this->Loop = true;
         this->OffsetLocked = false;
         this->AngleLocked = false;
         this->Width = 0;
@@ -171,12 +174,12 @@ namespace slay
         this->ColorA = 255;
         this->Priority = 128;
         this->Visible = true;
-        this->Loop = true;
         this->OffsetX = 0;
         this->OffsetY = 0;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->Current = 0;
+        this->TickDelay = 0;
         this->Length = TextureIDs.size();
         if ((this->Textures = (uint64*)malloc(sizeof(uint64) * TextureIDs.size())) == NULL)
         {
@@ -238,7 +241,10 @@ namespace slay
 
     uint8 engine::actors::actor::flipbooks::flipbook::Update()
     {
-        if (++this->Current == this->Length)
+        this->Current += (SDL_GetTicks() - this->Engine.Timing.PrevTick + this->TickDelay) / this->Delay;
+        this->TickDelay = (SDL_GetTicks() - this->Engine.Timing.PrevTick) % this->Delay;
+
+        if (this->Current == this->Length)
         {
             this->Loop ? this->Current = 0 : this->Current = this->Length - 1;
         }

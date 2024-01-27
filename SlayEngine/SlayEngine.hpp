@@ -340,6 +340,8 @@ namespace slay
                                 actor& Actor;
 
                                 public:
+                                    uint32 Delay;
+                                    bool Loop;
                                     bool OffsetLocked;
                                     bool AngleLocked;
                                     uint16 Width;
@@ -353,7 +355,6 @@ namespace slay
                                     uint8 ColorA;
                                     uint8 Priority;
                                     bool Visible;
-                                    bool Loop;
                                     sint32 GetOffsetX();
                                     sint32 SetOffsetX(sint32 OffsetX);
                                     sint32 GetOffsetY();
@@ -366,6 +367,7 @@ namespace slay
                                     double OffsetLength;
                                     double OffsetAngle;
                                     uint64 Current;
+                                    uint32 TickDelay;
                                     uint64 Length;
                                     uint64* Textures;
                                     flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs);
@@ -565,5 +567,6 @@ namespace slay
 
         private:
             array<SDL_Event> EventQueue;
+            uint8 UpdateFlipbooks();
     };
 }

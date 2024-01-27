@@ -37,6 +37,7 @@ sint32 main(sint32 argc, char* *argv)
         PlayerTextures[4],
         PlayerTextures[5]
     });
+    Engine.Actors[Player].Flipbooks[PlayerFlipbook].Delay = 100;
     Engine.Actors[Player].Flipbooks[PlayerFlipbook].Width = 100;
     Engine.Actors[Player].Flipbooks[PlayerFlipbook].Height = 100;
     Engine.Actors[Player].Flipbooks[PlayerFlipbook].OffsetLocked = true;

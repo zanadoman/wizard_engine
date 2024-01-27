@@ -34,8 +34,6 @@ namespace slay
         this->Camera.OffsetY = -(this->Window.Height >> 1);
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
-
-        this->Update();
     }
 
     engine::~engine()
@@ -61,24 +59,6 @@ namespace slay
         this->Camera.Update();
         this->Render.Update();
         this->Timing.RenderTime = SDL_GetTicks() - this->Timing.PrevTick - this->Timing.GameTime;
-
-        for (uint64 i = 1; i < this->Actors.Actors.Length(); i++)
-        {
-            if (this->Actors.Actors[i] == NULL)
-            {
-                continue;
-            }
-            
-            for (uint64 j = 1; j < this->Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
-            {
-                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL)
-                {
-                    continue;
-                }
-                
-                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Update();
-            }
-        }
 
         for (i = 0; SDL_PollEvent(&event); i++)
         {
@@ -106,7 +86,38 @@ namespace slay
 
         this->Timing.Update();
 
+        this->UpdateFlipbooks();
+
         return true;
+    }
+
+    uint8 engine::UpdateFlipbooks()
+    {
+        for (uint64 i = 1; i < this->Actors.Actors.Length(); i++)
+        {
+            if (this->Actors.Actors[i] == NULL)
+            {
+                continue;
+            }
+            
+            for (uint64 j = 1; j < this->Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
+            {
+                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL)
+                {
+                    continue;
+                }
+
+                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current += (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TickDelay) / this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
+                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TickDelay = (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TickDelay) % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
+
+                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Length <= this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current)
+                {
+                    this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Loop ? this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current -= this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Length % (this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current + 1) : this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Length - 1;
+                }
+            }
+        }
+
+        return 0;
     }
 
     sint32 engine::Random(sint32 Min, sint32 Max)
