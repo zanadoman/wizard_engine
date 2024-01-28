@@ -8,11 +8,8 @@ namespace slay
         this->RenderWidth = 0;
         this->RenderHeight = 0;
         this->SamplingStep = 0.002;
-        if ((this->RenderQueue = (token*)malloc(sizeof(token) * (this->RenderQueueLength = this->BufferSize))) == NULL)
-        {
-            printf("slay::engine.render.render(): Memory allocation failed\n");
-            exit(1);
-        }
+        this->RenderQueueLength = 0;
+        this->RenderQueue = NULL;
     }
 
     engine::render::~render()
