@@ -39,14 +39,14 @@ main:
 	pushq	%r13
 	pushq	%r12
 	pushq	%rbx
-	subq	$888, %rsp
+	subq	$856, %rsp
 	.cfi_offset 15, -24
 	.cfi_offset 14, -32
 	.cfi_offset 13, -40
 	.cfi_offset 12, -48
 	.cfi_offset 3, -56
-	movl	%edi, -900(%rbp)
-	movq	%rsi, -912(%rbp)
+	movl	%edi, -868(%rbp)
+	movq	%rsi, -880(%rbp)
 	movq	%fs:40, %rax
 	movq	%rax, -56(%rbp)
 	xorl	%eax, %eax
@@ -66,140 +66,134 @@ main:
 	movq	%rax, %rdi
 .LEHB1:
 	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
-	movq	%rax, -832(%rbp)
+	movq	%rax, -784(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$552, %rax
 	leaq	.LC1(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
-	movq	%rax, -824(%rbp)
+	movq	%rax, -776(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$552, %rax
 	leaq	.LC2(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
-	movq	%rax, -816(%rbp)
+	movq	%rax, -768(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$552, %rax
 	leaq	.LC3(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
-	movq	%rax, -808(%rbp)
+	movq	%rax, -760(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$552, %rax
 	leaq	.LC4(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
-	movq	%rax, -800(%rbp)
+	movq	%rax, -752(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$552, %rax
 	leaq	.LC5(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
-	movq	%rax, -792(%rbp)
+	movq	%rax, -744(%rbp)
+	leaq	-784(%rbp), %rax
+	movq	%rax, %r14
+	movl	$6, %r15d
+	movq	%r14, %rcx
+	movq	%r15, %rbx
+	movq	%r14, %rax
+	movq	%r15, %rdx
+	leaq	-800(%rbp), %rax
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIyEC1ESt16initializer_listIyE
+.LEHE1:
 	leaq	-736(%rbp), %rax
 	addq	$520, %rax
 	movl	$0, %esi
 	movq	%rax, %rdi
+.LEHB2:
 	call	_ZN4slay6engine6actors3NewEy@PLT
-	movq	%rax, -888(%rbp)
-	movq	-888(%rbp), %rax
-	leaq	-736(%rbp), %rdx
-	addq	$520, %rdx
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	addq	$72, %rax
-	movq	-832(%rbp), %rdx
-	movq	%rdx, -784(%rbp)
-	movq	-824(%rbp), %rdx
-	movq	%rdx, -776(%rbp)
-	movq	-816(%rbp), %rdx
-	movq	%rdx, -768(%rbp)
-	movq	-808(%rbp), %rdx
-	movq	%rdx, -760(%rbp)
-	movq	-800(%rbp), %rdx
-	movq	%rdx, -752(%rbp)
-	movq	-792(%rbp), %rdx
-	movq	%rdx, -744(%rbp)
-	leaq	-784(%rbp), %rdx
-	movq	%rdx, %r14
-	movl	$6, %r15d
-	movq	%r14, %rcx
-	movq	%r15, %rbx
-	movq	%r14, %rsi
-	movq	%r15, %rdi
-	movq	%rdi, %rdx
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	call	_ZN4slay6engine6actors5actor9flipbooks3NewESt16initializer_listIyE@PLT
-	movq	%rax, -880(%rbp)
-	movq	-888(%rbp), %rax
+	movq	%rax, -856(%rbp)
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	72(%rax), %rdx
-	movq	-880(%rbp), %rax
+	leaq	-800(%rbp), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actors5actor9flipbooks3NewEPN3neo5arrayIyEE@PLT
+	movq	%rax, -848(%rbp)
+	movq	-856(%rbp), %rax
+	leaq	-736(%rbp), %rdx
+	addq	$520, %rdx
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	leaq	72(%rax), %rdx
+	movq	-848(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movl	$100, 16(%rax)
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	72(%rax), %rdx
-	movq	-880(%rbp), %rax
+	movq	-848(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movw	$100, 24(%rax)
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	72(%rax), %rdx
-	movq	-880(%rbp), %rax
+	movq	-848(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movw	$100, 26(%rax)
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	72(%rax), %rdx
-	movq	-880(%rbp), %rax
+	movq	-848(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movb	$1, 21(%rax)
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	72(%rax), %rdx
-	movq	-880(%rbp), %rax
+	movq	-848(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movb	$1, 22(%rax)
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -208,7 +202,7 @@ main:
 	addq	$104, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor5texts3NewEv@PLT
-	movq	%rax, -872(%rbp)
+	movq	%rax, -840(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$552, %rax
 	movl	$48, %edx
@@ -216,8 +210,8 @@ main:
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6assets8LoadFontEPKch@PLT
-	movq	%rax, -864(%rbp)
-	movq	-888(%rbp), %rax
+	movq	%rax, -832(%rbp)
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -228,7 +222,7 @@ main:
 	movq	%rax, %xmm0
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8SetLayerEd@PLT
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -244,14 +238,14 @@ main:
 	leaq	-784(%rbp), %rax
 	movq	%rax, %r12
 	movl	$1, %r13d
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	104(%rax), %rdx
-	movq	-872(%rbp), %rax
+	movq	-840(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
@@ -265,68 +259,68 @@ main:
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	104(%rax), %rdx
-	movq	-872(%rbp), %rax
+	movq	-840(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
 	movq	%rax, %rdx
-	movq	-864(%rbp), %rax
+	movq	-832(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor5texts4text7SetFontEy@PLT
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	104(%rax), %rdx
-	movq	-872(%rbp), %rax
+	movq	-840(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
 	movw	$50, 18(%rax)
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	104(%rax), %rdx
-	movq	-872(%rbp), %rax
+	movq	-840(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
 	movl	$50, %esi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi@PLT
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	104(%rax), %rdx
-	movq	-872(%rbp), %rax
+	movq	-840(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
 	movb	$1, 16(%rax)
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	104(%rax), %rdx
-	movq	-872(%rbp), %rax
+	movq	-840(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
@@ -336,8 +330,8 @@ main:
 	movl	$0, %esi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors3NewEy@PLT
-	movq	%rax, -856(%rbp)
-	movq	-856(%rbp), %rax
+	movq	%rax, -824(%rbp)
+	movq	-824(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -346,15 +340,15 @@ main:
 	addq	$40, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8textures3NewEv@PLT
-	movq	%rax, -848(%rbp)
+	movq	%rax, -816(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$552, %rax
 	leaq	.LC10(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
-	movq	%rax, -840(%rbp)
-	movq	-856(%rbp), %rax
+	movq	%rax, -808(%rbp)
+	movq	-824(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -365,59 +359,59 @@ main:
 	movq	%rax, %xmm0
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8SetLayerEd@PLT
-	movq	-856(%rbp), %rax
+	movq	-824(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	40(%rax), %rdx
-	movq	-848(%rbp), %rax
+	movq	-816(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movq	%rax, %rdx
-	movq	-840(%rbp), %rax
+	movq	-808(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8textures7texture12SetTextureIDEy@PLT
-	movq	-856(%rbp), %rax
+	movq	-824(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	40(%rax), %rdx
-	movq	-848(%rbp), %rax
+	movq	-816(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movw	$1280, 18(%rax)
-	movq	-856(%rbp), %rax
+	movq	-824(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	40(%rax), %rdx
-	movq	-848(%rbp), %rax
+	movq	-816(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movw	$720, 20(%rax)
-	movq	-856(%rbp), %rax
+	movq	-824(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	40(%rax), %rdx
-	movq	-848(%rbp), %rax
+	movq	-816(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movb	$0, 38(%rax)
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$72, %rdx
 	movq	%rax, %rsi
@@ -432,14 +426,14 @@ main:
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	je	.L3
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rbx
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -447,7 +441,7 @@ main:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movsd	%xmm0, -920(%rbp)
+	movsd	%xmm0, -888(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$624, %rax
 	movq	%rax, %rdi
@@ -469,7 +463,7 @@ main:
 .L5:
 	movsd	.LC11(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
-	addsd	-920(%rbp), %xmm0
+	addsd	-888(%rbp), %xmm0
 	movq	%xmm0, %rax
 	movq	%rax, %xmm0
 	movq	%rbx, %rdi
@@ -483,14 +477,14 @@ main:
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	je	.L6
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %r12
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -534,14 +528,14 @@ main:
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	je	.L9
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rbx
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -551,7 +545,7 @@ main:
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
 	movsd	.LC12(%rip), %xmm1
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -920(%rbp)
+	movsd	%xmm0, -888(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$624, %rax
 	movq	%rax, %rdi
@@ -573,8 +567,8 @@ main:
 .L11:
 	movsd	.LC13(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
-	movsd	%xmm0, -928(%rbp)
-	movq	-888(%rbp), %rax
+	movsd	%xmm0, -896(%rbp)
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -585,8 +579,8 @@ main:
 	movq	%xmm0, %rax
 	leaq	-736(%rbp), %rdx
 	addq	$544, %rdx
-	movsd	-920(%rbp), %xmm2
-	movsd	-928(%rbp), %xmm1
+	movsd	-888(%rbp), %xmm2
+	movsd	-896(%rbp), %xmm1
 	movq	%rax, %xmm0
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
@@ -594,14 +588,14 @@ main:
 	movq	%rax, %xmm0
 	movq	%rbx, %rdi
 	call	_ZN4slay6engine6actors5actor4SetXEd@PLT
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rbx
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -611,7 +605,7 @@ main:
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
 	movsd	.LC12(%rip), %xmm1
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -920(%rbp)
+	movsd	%xmm0, -888(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$624, %rax
 	movq	%rax, %rdi
@@ -633,8 +627,8 @@ main:
 .L13:
 	movsd	.LC13(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
-	movsd	%xmm0, -928(%rbp)
-	movq	-888(%rbp), %rax
+	movsd	%xmm0, -896(%rbp)
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -645,8 +639,8 @@ main:
 	movq	%xmm0, %rax
 	leaq	-736(%rbp), %rdx
 	addq	$544, %rdx
-	movsd	-920(%rbp), %xmm2
-	movsd	-928(%rbp), %xmm1
+	movsd	-888(%rbp), %xmm2
+	movsd	-896(%rbp), %xmm1
 	movq	%rax, %xmm0
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
@@ -663,14 +657,14 @@ main:
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	je	.L14
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rbx
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -680,7 +674,7 @@ main:
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
 	movsd	.LC12(%rip), %xmm1
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -920(%rbp)
+	movsd	%xmm0, -888(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$624, %rax
 	movq	%rax, %rdi
@@ -702,8 +696,8 @@ main:
 .L16:
 	movsd	.LC14(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
-	movsd	%xmm0, -928(%rbp)
-	movq	-888(%rbp), %rax
+	movsd	%xmm0, -896(%rbp)
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -714,8 +708,8 @@ main:
 	movq	%xmm0, %rax
 	leaq	-736(%rbp), %rdx
 	addq	$544, %rdx
-	movsd	-920(%rbp), %xmm2
-	movsd	-928(%rbp), %xmm1
+	movsd	-888(%rbp), %xmm2
+	movsd	-896(%rbp), %xmm1
 	movq	%rax, %xmm0
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
@@ -723,14 +717,14 @@ main:
 	movq	%rax, %xmm0
 	movq	%rbx, %rdi
 	call	_ZN4slay6engine6actors5actor4SetXEd@PLT
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rbx
-	movq	-888(%rbp), %rax
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -740,7 +734,7 @@ main:
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
 	movsd	.LC12(%rip), %xmm1
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -920(%rbp)
+	movsd	%xmm0, -888(%rbp)
 	leaq	-736(%rbp), %rax
 	addq	$624, %rax
 	movq	%rax, %rdi
@@ -762,8 +756,8 @@ main:
 .L18:
 	movsd	.LC14(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
-	movsd	%xmm0, -928(%rbp)
-	movq	-888(%rbp), %rax
+	movsd	%xmm0, -896(%rbp)
+	movq	-856(%rbp), %rax
 	leaq	-736(%rbp), %rdx
 	addq	$520, %rdx
 	movq	%rax, %rsi
@@ -774,8 +768,8 @@ main:
 	movq	%xmm0, %rax
 	leaq	-736(%rbp), %rdx
 	addq	$544, %rdx
-	movsd	-920(%rbp), %xmm2
-	movsd	-928(%rbp), %xmm1
+	movsd	-888(%rbp), %xmm2
+	movsd	-896(%rbp), %xmm1
 	movq	%rax, %xmm0
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
@@ -815,37 +809,47 @@ main:
 	leaq	-736(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6UpdateEv@PLT
-.LEHE1:
+.LEHE2:
 	testb	%al, %al
 	jne	.L19
 	movl	$0, %ebx
+	leaq	-800(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIyED1Ev
 	leaq	-736(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engineD1Ev@PLT
 	movl	%ebx, %eax
 	movq	-56(%rbp), %rdx
 	subq	%fs:40, %rdx
-	je	.L23
-	jmp	.L25
-.L24:
+	je	.L24
+	jmp	.L27
+.L26:
 	movq	%rax, %rbx
+	leaq	-800(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIyED1Ev
+	jmp	.L22
+.L25:
+	movq	%rax, %rbx
+.L22:
 	leaq	-736(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engineD1Ev@PLT
 	movq	%rbx, %rax
 	movq	-56(%rbp), %rdx
 	subq	%fs:40, %rdx
-	je	.L22
-	call	__stack_chk_fail@PLT
-.L22:
-	movq	%rax, %rdi
-.LEHB2:
-	call	_Unwind_Resume@PLT
-.LEHE2:
-.L25:
+	je	.L23
 	call	__stack_chk_fail@PLT
 .L23:
-	addq	$888, %rsp
+	movq	%rax, %rdi
+.LEHB3:
+	call	_Unwind_Resume@PLT
+.LEHE3:
+.L27:
+	call	__stack_chk_fail@PLT
+.L24:
+	addq	$856, %rsp
 	popq	%rbx
 	popq	%r12
 	popq	%r13
@@ -870,15 +874,191 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB2196
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L24-.LFB2196
+	.uleb128 .L25-.LFB2196
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB2196
 	.uleb128 .LEHE2-.LEHB2
+	.uleb128 .L26-.LFB2196
+	.uleb128 0
+	.uleb128 .LEHB3-.LFB2196
+	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
 .LLSDACSE2196:
 	.text
 	.size	main, .-main
+	.section	.text._ZNKSt16initializer_listIyE4sizeEv,"axG",@progbits,_ZNKSt16initializer_listIyE4sizeEv,comdat
+	.align 2
+	.weak	_ZNKSt16initializer_listIyE4sizeEv
+	.type	_ZNKSt16initializer_listIyE4sizeEv, @function
+_ZNKSt16initializer_listIyE4sizeEv:
+.LFB2262:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	8(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2262:
+	.size	_ZNKSt16initializer_listIyE4sizeEv, .-_ZNKSt16initializer_listIyE4sizeEv
+	.section	.rodata
+	.align 8
+.LC16:
+	.string	"neo::array(): Memory allocation failed\nParams: Elements(size, length): %ld, %ld\n"
+	.section	.text._ZN3neo5arrayIyEC2ESt16initializer_listIyE,"axG",@progbits,_ZN3neo5arrayIyEC5ESt16initializer_listIyE,comdat
+	.align 2
+	.weak	_ZN3neo5arrayIyEC2ESt16initializer_listIyE
+	.type	_ZN3neo5arrayIyEC2ESt16initializer_listIyE, @function
+_ZN3neo5arrayIyEC2ESt16initializer_listIyE:
+.LFB2263:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	pushq	%r12
+	pushq	%rbx
+	subq	$32, %rsp
+	.cfi_offset 12, -24
+	.cfi_offset 3, -32
+	movq	%rdi, -24(%rbp)
+	movq	%rdx, %rcx
+	movq	%rsi, %rax
+	movq	%rdi, %rdx
+	movq	%rcx, %rdx
+	movq	%rax, -48(%rbp)
+	movq	%rdx, -40(%rbp)
+	leaq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	movq	-24(%rbp), %rdx
+	movq	%rax, (%rdx)
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	testq	%rax, %rax
+	sete	%al
+	testb	%al, %al
+	je	.L31
+	movq	-24(%rbp), %rax
+	movq	$0, 8(%rax)
+	jmp	.L34
+.L31:
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	salq	$3, %rax
+	movq	%rax, %rdi
+	call	malloc@PLT
+	movq	%rax, %rdx
+	movq	-24(%rbp), %rax
+	movq	%rdx, 8(%rax)
+	movq	-24(%rbp), %rax
+	movq	8(%rax), %rax
+	testq	%rax, %rax
+	sete	%al
+	testb	%al, %al
+	je	.L33
+	leaq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE4sizeEv
+	movq	%rax, %rdx
+	movl	$8, %esi
+	leaq	.LC16(%rip), %rax
+	movq	%rax, %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L33:
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	0(,%rax,8), %r12
+	movq	-24(%rbp), %rax
+	movq	8(%rax), %rbx
+	leaq	-48(%rbp), %rax
+	movq	%rax, %rdi
+	call	_ZNKSt16initializer_listIyE5beginEv
+	movq	%r12, %rdx
+	movq	%rbx, %rsi
+	movq	%rax, %rdi
+	call	_ZN3neo9memCopyToEPKvPvy@PLT
+.L34:
+	nop
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2263:
+	.size	_ZN3neo5arrayIyEC2ESt16initializer_listIyE, .-_ZN3neo5arrayIyEC2ESt16initializer_listIyE
+	.weak	_ZN3neo5arrayIyEC1ESt16initializer_listIyE
+	.set	_ZN3neo5arrayIyEC1ESt16initializer_listIyE,_ZN3neo5arrayIyEC2ESt16initializer_listIyE
+	.section	.text._ZN3neo5arrayIyED2Ev,"axG",@progbits,_ZN3neo5arrayIyED5Ev,comdat
+	.align 2
+	.weak	_ZN3neo5arrayIyED2Ev
+	.type	_ZN3neo5arrayIyED2Ev, @function
+_ZN3neo5arrayIyED2Ev:
+.LFB2266:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$32, %rsp
+	movq	%rdi, -24(%rbp)
+	movq	$0, -8(%rbp)
+	jmp	.L36
+.L37:
+	addq	$1, -8(%rbp)
+.L36:
+	movq	-24(%rbp), %rax
+	movq	(%rax), %rax
+	cmpq	%rax, -8(%rbp)
+	jb	.L37
+	movq	-24(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, %rdi
+	call	free@PLT
+	nop
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2266:
+	.size	_ZN3neo5arrayIyED2Ev, .-_ZN3neo5arrayIyED2Ev
+	.weak	_ZN3neo5arrayIyED1Ev
+	.set	_ZN3neo5arrayIyED1Ev,_ZN3neo5arrayIyED2Ev
+	.section	.text._ZNKSt16initializer_listIyE5beginEv,"axG",@progbits,_ZNKSt16initializer_listIyE5beginEv,comdat
+	.align 2
+	.weak	_ZNKSt16initializer_listIyE5beginEv
+	.type	_ZNKSt16initializer_listIyE5beginEv, @function
+_ZNKSt16initializer_listIyE5beginEv:
+.LFB2318:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movq	(%rax), %rax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE2318:
+	.size	_ZNKSt16initializer_listIyE5beginEv, .-_ZNKSt16initializer_listIyE5beginEv
 	.section	.rodata
 	.align 8
 .LC7:

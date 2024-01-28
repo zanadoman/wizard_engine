@@ -19,7 +19,7 @@ sint32 main(sint32 argc, char* *argv)
 
     engine Engine(NULL, 1920, 1080, 1000 / 165);
 
-    uint64 PlayerTextures[] = {
+    array<uint64> PlayerTextures = {
         Engine.Assets.LoadTexture("player1.png"),
         Engine.Assets.LoadTexture("player2.png"),
         Engine.Assets.LoadTexture("player3.png"),
@@ -29,14 +29,7 @@ sint32 main(sint32 argc, char* *argv)
     };
     
     Player = Engine.Actors.New(0);
-    PlayerFlipbook = Engine.Actors[Player].Flipbooks.New({
-        PlayerTextures[0],
-        PlayerTextures[1],
-        PlayerTextures[2],
-        PlayerTextures[3],
-        PlayerTextures[4],
-        PlayerTextures[5]
-    });
+    PlayerFlipbook = Engine.Actors[Player].Flipbooks.New(&PlayerTextures);
 
     Engine.Actors[Player].Flipbooks[PlayerFlipbook].Delay = 100;
     Engine.Actors[Player].Flipbooks[PlayerFlipbook].Width = 100;

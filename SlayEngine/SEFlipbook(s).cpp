@@ -57,6 +57,50 @@ namespace slay
         return this->Flipbooks.Length() - 1;
     }
 
+    uint64 engine::actors::actor::flipbooks::New(array<uint64>* TextureIDs)
+    {
+        if (TextureIDs->Length() < 2)
+        {
+            printf("slay::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: TextureIDs(length): %lld\n", TextureIDs->Length());
+            exit(1);
+        }
+
+        for (uint64 i = 0; i < TextureIDs->Length(); i++)
+        {
+            if ((*TextureIDs)[i] == 0)
+            {
+                continue;
+            }
+            if (this->Engine.Assets.Textures.Length() <= (*TextureIDs)[i] || this->Engine.Assets.Textures[(*TextureIDs)[i]] == NULL)
+            {
+                printf("slay::engine.actors[].flipbooks.New(): Texture does not exists\nParams: TextureIDs(length): %lld\n", TextureIDs->Length());
+                exit(1);
+            }
+        }
+
+        for (uint64 i = 1; i < this->Flipbooks.Length(); i++)
+        {
+            if (this->Flipbooks[i] == NULL)
+            {
+                if ((this->Flipbooks[i] = new flipbook(this->Engine, this->Actor, TextureIDs)) == NULL)
+                {
+                    printf("slay::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: TextureIDs(length): %lld\n", TextureIDs->Length());
+                    exit(1);
+                }
+
+                return i;
+            }
+        }
+
+        if ((*(this->Flipbooks += {new flipbook(this->Engine, this->Actor, TextureIDs)}))[this->Flipbooks.Length() - 1] == NULL)
+        {
+            printf("slay::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: TextureIDs(length): %lld\n", TextureIDs->Length());
+            exit(1);
+        }
+
+        return this->Flipbooks.Length() - 1;
+    }
+
     uint8 engine::actors::actor::flipbooks::Delete(uint64 ID)
     {
         uint64 i;
@@ -190,6 +234,42 @@ namespace slay
         for (uint64 i = 0; i < TextureIDs.size(); i++)
         {
             this->Textures[i] = TextureIDs.begin()[i];
+        }
+    }
+
+    engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
+    {
+        this->Delay = 50;
+        this->Loop = true;
+        this->OffsetLocked = false;
+        this->AngleLocked = false;
+        this->Width = 0;
+        this->Height = 0;
+        this->Angle = 0;
+        this->FlipHorizontal = false;
+        this->FlipVertical = false;
+        this->ColorR = 255;
+        this->ColorG = 255;
+        this->ColorB = 255;
+        this->ColorA = 255;
+        this->Priority = 128;
+        this->Visible = true;
+        this->OffsetX = 0;
+        this->OffsetY = 0;
+        this->OffsetLength = 0;
+        this->OffsetAngle = 0;
+        this->Current = 0;
+        this->Remainder = 0;
+        this->Length = TextureIDs->Length();
+        if ((this->Textures = (uint64*)malloc(sizeof(uint64) * TextureIDs->Length())) == NULL)
+        {
+            printf("slay::engine.actors[].flipbooks.flipbook(): Memory allocation failed\nParams: Engine: %p, Actor: %p, TextureIDs(length): %lld\n", &this->Engine, &this->Actor, TextureIDs->Length());
+            exit(1);
+        }
+
+        for (uint64 i = 0; i < TextureIDs->Length(); i++)
+        {
+            this->Textures[i] = (*TextureIDs)[i];
         }
     }
 

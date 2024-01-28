@@ -371,11 +371,13 @@ namespace slay
                                     uint64 Length;
                                     uint64* Textures;
                                     flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs);
+                                    flipbook(engine& Engine, actor& Actor, array<uint64>* TextureIDs);
                                     ~flipbook();
                             };
 
                             public:
                                 uint64 New(std::initializer_list<uint64> TextureIDs);
+                                uint64 New(array<uint64>* TextureIDs);
                                 uint8 Delete(uint64 ID);
                                 uint8 Purge(std::initializer_list<uint64> Keep);
                                 flipbook& operator [] (uint64 ID);
