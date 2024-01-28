@@ -18,6 +18,7 @@ player::player(engine& Engine) : Engine(Engine)
     this->NameText = Engine.Actors[this->Actor].Texts.New();
 
     this->Engine.Actors[this->Actor].SetLayer(1);
+    this->Engine.Actors[this->Actor].SetDepth(0.05);
 
     this->Engine.Actors[this->Actor].Flipbooks[this->MainFlipbook].Delay = 100;
     this->Engine.Actors[this->Actor].Flipbooks[this->MainFlipbook].Width = 100;

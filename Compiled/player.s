@@ -15,7 +15,7 @@
 	.string	"assets/player/player6.png"
 .LC6:
 	.string	"assets/crazy-pixel.ttf"
-.LC8:
+.LC9:
 	.string	"Player"
 	.text
 	.align 2
@@ -181,6 +181,19 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rdx
+	movq	.LC8(%rip), %rax
+	movq	%rax, %xmm0
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actors5actor8SetDepthEd@PLT
+	movq	-120(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	520(%rax), %rdx
+	movq	-120(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	72(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	16(%rax), %rax
@@ -248,7 +261,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movb	$1, 22(%rax)
-	leaq	.LC8(%rip), %rax
+	leaq	.LC9(%rip), %rax
 	movq	%rax, -112(%rbp)
 	leaq	-112(%rbp), %rax
 	movq	%rax, %r12
@@ -548,7 +561,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movsd	.LC9(%rip), %xmm1
+	movsd	.LC10(%rip), %xmm1
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, -32(%rbp)
 	movq	-24(%rbp), %rax
@@ -571,7 +584,7 @@ _ZN6player6UpdateEv:
 	cvtsi2sdq	%rdx, %xmm0
 	addsd	%xmm0, %xmm0
 .L13:
-	movsd	.LC10(%rip), %xmm1
+	movsd	.LC11(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, -40(%rbp)
 	movq	-24(%rbp), %rax
@@ -616,7 +629,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movsd	.LC9(%rip), %xmm1
+	movsd	.LC10(%rip), %xmm1
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, -32(%rbp)
 	movq	-24(%rbp), %rax
@@ -639,7 +652,7 @@ _ZN6player6UpdateEv:
 	cvtsi2sdq	%rdx, %xmm0
 	addsd	%xmm0, %xmm0
 .L15:
-	movsd	.LC10(%rip), %xmm1
+	movsd	.LC11(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, -40(%rbp)
 	movq	-24(%rbp), %rax
@@ -694,7 +707,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movsd	.LC9(%rip), %xmm1
+	movsd	.LC10(%rip), %xmm1
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, -32(%rbp)
 	movq	-24(%rbp), %rax
@@ -717,7 +730,7 @@ _ZN6player6UpdateEv:
 	cvtsi2sdq	%rdx, %xmm0
 	addsd	%xmm0, %xmm0
 .L18:
-	movsd	.LC11(%rip), %xmm1
+	movsd	.LC12(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, -40(%rbp)
 	movq	-24(%rbp), %rax
@@ -762,7 +775,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movsd	.LC9(%rip), %xmm1
+	movsd	.LC10(%rip), %xmm1
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, -32(%rbp)
 	movq	-24(%rbp), %rax
@@ -785,7 +798,7 @@ _ZN6player6UpdateEv:
 	cvtsi2sdq	%rdx, %xmm0
 	addsd	%xmm0, %xmm0
 .L20:
-	movsd	.LC11(%rip), %xmm1
+	movsd	.LC12(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, -40(%rbp)
 	movq	-24(%rbp), %rax
@@ -857,7 +870,7 @@ _ZN6player6UpdateEv:
 	cvtsi2sdq	%rdx, %xmm0
 	addsd	%xmm0, %xmm0
 .L23:
-	movsd	.LC12(%rip), %xmm1
+	movsd	.LC13(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
 	addsd	-32(%rbp), %xmm0
 	movq	%xmm0, %rax
@@ -914,7 +927,7 @@ _ZN6player6UpdateEv:
 	cvtsi2sdq	%rdx, %xmm0
 	addsd	%xmm0, %xmm0
 .L26:
-	movsd	.LC12(%rip), %xmm1
+	movsd	.LC13(%rip), %xmm1
 	mulsd	%xmm1, %xmm0
 	movq	%rbx, %xmm3
 	subsd	%xmm0, %xmm3
@@ -1018,7 +1031,7 @@ _ZNKSt16initializer_listIyE4sizeEv:
 	.size	_ZNKSt16initializer_listIyE4sizeEv, .-_ZNKSt16initializer_listIyE4sizeEv
 	.section	.rodata
 	.align 8
-.LC13:
+.LC14:
 	.string	"neo::array=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.section	.text._ZN3neo5arrayIyEaSESt16initializer_listIyE,"axG",@progbits,_ZN3neo5arrayIyEaSESt16initializer_listIyE,comdat
 	.align 2
@@ -1108,7 +1121,7 @@ _ZN3neo5arrayIyEaSESt16initializer_listIyE:
 	call	_ZNKSt16initializer_listIyE4sizeEv
 	movq	%rax, %rdx
 	movl	$8, %esi
-	leaq	.LC13(%rip), %rax
+	leaq	.LC14(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
@@ -1161,7 +1174,7 @@ _ZN3neo5arrayIyE6LengthEv:
 	.size	_ZN3neo5arrayIyE6LengthEv, .-_ZN3neo5arrayIyE6LengthEv
 	.section	.rodata
 	.align 8
-.LC14:
+.LC15:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.section	.text._ZN3neo5arrayIyEixEy,"axG",@progbits,_ZN3neo5arrayIyEixEy,comdat
 	.align 2
@@ -1184,7 +1197,7 @@ _ZN3neo5arrayIyEixEy:
 	jb	.L46
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
-	leaq	.LC14(%rip), %rax
+	leaq	.LC15(%rip), %rax
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	printf@PLT
@@ -1229,19 +1242,23 @@ _ZNKSt16initializer_listIyE5beginEv:
 	.long	0
 	.long	1072693248
 	.align 8
-.LC9:
-	.long	0
-	.long	1079410688
+.LC8:
+	.long	-1717986918
+	.long	1068079513
 	.align 8
 .LC10:
 	.long	0
-	.long	1071644672
+	.long	1079410688
 	.align 8
 .LC11:
 	.long	0
-	.long	-1075838976
+	.long	1071644672
 	.align 8
 .LC12:
+	.long	0
+	.long	-1075838976
+	.align 8
+.LC13:
 	.long	-1717986918
 	.long	1070176665
 	.hidden	DW.ref.__gxx_personality_v0
