@@ -179,7 +179,7 @@ namespace slay
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->Current = 0;
-        this->TickDelay = 0;
+        this->Remainder = 0;
         this->Length = TextureIDs.size();
         if ((this->Textures = (uint64*)malloc(sizeof(uint64) * TextureIDs.size())) == NULL)
         {

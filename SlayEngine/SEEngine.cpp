@@ -107,8 +107,8 @@ namespace slay
                     continue;
                 }
 
-                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current += (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TickDelay) / this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
-                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TickDelay = (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TickDelay) % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
+                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current += (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder) / this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
+                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder = (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder) % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
 
                 if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Length <= this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current)
                 {

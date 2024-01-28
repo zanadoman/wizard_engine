@@ -367,7 +367,7 @@ namespace slay
                                     double OffsetLength;
                                     double OffsetAngle;
                                     uint64 Current;
-                                    uint32 TickDelay;
+                                    uint32 Remainder;
                                     uint64 Length;
                                     uint64* Textures;
                                     flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs);
