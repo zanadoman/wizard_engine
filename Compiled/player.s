@@ -200,7 +200,9 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movl	$100, 16(%rax)
+	movl	$100, %esi
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor9flipbooks8flipbook8SetDelayEj@PLT
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	520(%rax), %rdx
@@ -215,7 +217,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movw	$100, 24(%rax)
+	movw	$100, 20(%rax)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	520(%rax), %rdx
@@ -230,7 +232,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movw	$100, 26(%rax)
+	movw	$100, 22(%rax)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	520(%rax), %rdx
@@ -245,7 +247,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movb	$1, 21(%rax)
+	movb	$1, 17(%rax)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	520(%rax), %rdx
@@ -260,7 +262,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movb	$1, 22(%rax)
+	movb	$1, 18(%rax)
 	leaq	.LC9(%rip), %rax
 	movq	%rax, -112(%rbp)
 	leaq	-112(%rbp), %rax

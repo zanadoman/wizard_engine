@@ -739,7 +739,7 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movl	16(%rax), %ecx
+	movl	40(%rax), %ecx
 	movl	%ebx, %eax
 	movl	$0, %edx
 	divl	%ecx
@@ -791,7 +791,7 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movl	16(%rax), %ecx
+	movl	40(%rax), %ecx
 	movl	%ebx, %eax
 	movl	$0, %edx
 	divl	%ecx
@@ -856,7 +856,7 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzbl	20(%rax), %eax
+	movzbl	16(%rax), %eax
 	testb	%al, %al
 	je	.L35
 	movq	-40(%rbp), %rax

@@ -1,4 +1,6 @@
 /*
+**renderben reallocos listára váltani az arrayt
+**ahol meglehet adni initializer listet ott arrayt is lehessen
 **Overlap system
 **Collision system
 **Particle system

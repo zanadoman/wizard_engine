@@ -340,7 +340,6 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    uint32 Delay;
                                     bool Loop;
                                     bool OffsetLocked;
                                     bool AngleLocked;
@@ -355,6 +354,8 @@ namespace slay
                                     uint8 ColorA;
                                     uint8 Priority;
                                     bool Visible;
+                                    uint32 GetDelay();
+                                    uint32 SetDelay(uint32 Delay);
                                     sint32 GetOffsetX();
                                     sint32 SetOffsetX(sint32 OffsetX);
                                     sint32 GetOffsetY();
@@ -362,6 +363,7 @@ namespace slay
                                     uint8 Reset();
 
                                 private:
+                                    uint32 Delay;
                                     sint32 OffsetX;
                                     sint32 OffsetY;
                                     double OffsetLength;

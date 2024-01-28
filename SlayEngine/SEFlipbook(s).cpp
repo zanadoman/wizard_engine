@@ -203,7 +203,7 @@ namespace slay
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs) : Engine(Engine), Actor(Actor)
     {
-        this->Delay = 75;
+        this->Delay = 1;
         this->Loop = true;
         this->OffsetLocked = false;
         this->AngleLocked = false;
@@ -239,7 +239,7 @@ namespace slay
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
     {
-        this->Delay = 75;
+        this->Delay = 1;
         this->Loop = true;
         this->OffsetLocked = false;
         this->AngleLocked = false;
@@ -281,6 +281,22 @@ namespace slay
     sint32 engine::actors::actor::flipbooks::flipbook::GetOffsetX()
     {
         return this->OffsetX;
+    }
+
+    uint32 engine::actors::actor::flipbooks::flipbook::GetDelay()
+    {
+        return this->Delay;
+    }
+
+    uint32 engine::actors::actor::flipbooks::flipbook::SetDelay(uint32 Delay)
+    {
+        if (Delay == 0)
+        {
+            printf("slay::engine.actors[].flipbooks[].SetDelay(): Delay must not be 0\nParams: Delay: %d\n", Delay);
+            exit(1);
+        }
+
+        return this->Delay = Delay;
     }
 
     sint32 engine::actors::actor::flipbooks::flipbook::SetOffsetX(sint32 OffsetX)

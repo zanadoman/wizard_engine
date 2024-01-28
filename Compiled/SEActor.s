@@ -676,7 +676,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzbl	21(%rax), %eax
+	movzbl	17(%rax), %eax
 	testb	%al, %al
 	je	.L37
 	movq	-72(%rbp), %rax
@@ -725,7 +725,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movl	%ebx, 48(%rax)
+	movl	%ebx, 44(%rax)
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
 	leaq	544(%rax), %rbx
@@ -761,7 +761,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movl	%ebx, 52(%rax)
+	movl	%ebx, 48(%rax)
 .L37:
 	movq	-72(%rbp), %rax
 	leaq	88(%rax), %rdx
@@ -770,7 +770,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movzbl	22(%rax), %eax
+	movzbl	18(%rax), %eax
 	testb	%al, %al
 	je	.L36
 	movq	-72(%rbp), %rax
@@ -780,9 +780,9 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	%rdx, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor9flipbooks8flipbookEEixEy
 	movq	(%rax), %rax
-	movsd	32(%rax), %xmm0
+	movsd	24(%rax), %xmm0
 	addsd	-32(%rbp), %xmm0
-	movsd	%xmm0, 32(%rax)
+	movsd	%xmm0, 24(%rax)
 	jmp	.L36
 .L47:
 	nop
