@@ -203,7 +203,7 @@ namespace slay
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs) : Engine(Engine), Actor(Actor)
     {
-        this->Delay = 50;
+        this->Delay = 75;
         this->Loop = true;
         this->OffsetLocked = false;
         this->AngleLocked = false;
@@ -239,7 +239,7 @@ namespace slay
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
     {
-        this->Delay = 50;
+        this->Delay = 75;
         this->Loop = true;
         this->OffsetLocked = false;
         this->AngleLocked = false;

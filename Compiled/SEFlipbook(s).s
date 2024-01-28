@@ -1352,7 +1352,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_St16initializer_listIy
 	movq	-40(%rbp), %rdx
 	movq	%rdx, 8(%rax)
 	movq	-24(%rbp), %rax
-	movl	$50, 16(%rax)
+	movl	$75, 16(%rax)
 	movq	-24(%rbp), %rax
 	movb	$1, 20(%rax)
 	movq	-24(%rbp), %rax
@@ -1495,7 +1495,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_PN3neo5arrayIyEE:
 	movq	-40(%rbp), %rdx
 	movq	%rdx, 8(%rax)
 	movq	-24(%rbp), %rax
-	movl	$50, 16(%rax)
+	movl	$75, 16(%rax)
 	movq	-24(%rbp), %rax
 	movb	$1, 20(%rax)
 	movq	-24(%rbp), %rax
