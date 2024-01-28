@@ -525,7 +525,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 .L48:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -540,7 +540,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 .L40:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -558,7 +558,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 	jne	.L52
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -577,7 +577,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 	je	.L39
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -598,7 +598,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 .L37:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -616,7 +616,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 .L47:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -637,7 +637,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 .L46:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -660,7 +660,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 	je	.L45
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -682,7 +682,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 .L44:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -707,7 +707,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 .L41:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -728,7 +728,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 .L34:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$536, %rax
+	addq	$528, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -48(%rbp)
@@ -905,7 +905,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 .L84:
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -920,7 +920,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 .L76:
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -938,7 +938,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	jne	.L97
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -957,7 +957,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	je	.L75
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -978,7 +978,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 .L73:
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -996,7 +996,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 .L83:
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1017,7 +1017,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 .L82:
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1040,7 +1040,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	je	.L81
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1062,7 +1062,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 .L80:
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1087,7 +1087,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 .L77:
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-48(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -1108,7 +1108,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 .L70:
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$536, %rax
+	addq	$528, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -48(%rbp)
@@ -2080,7 +2080,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 .L179:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2095,7 +2095,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 .L178:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2113,7 +2113,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	jne	.L183
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2132,7 +2132,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	je	.L177
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2153,7 +2153,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 .L175:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2174,7 +2174,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 .L172:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$536, %rax
+	addq	$528, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -32(%rbp)
@@ -2330,7 +2330,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 .L205:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2345,7 +2345,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 .L204:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2363,7 +2363,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	jne	.L218
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2382,7 +2382,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	je	.L203
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2403,7 +2403,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 .L201:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -2424,7 +2424,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 .L198:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$536, %rax
+	addq	$528, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -32(%rbp)
@@ -2907,12 +2907,12 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 .L240:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	movq	520(%rax), %rax
+	movq	512(%rax), %rax
 	cmpq	%rax, -48(%rbp)
 	jne	.L245
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	movq	$0, 520(%rax)
+	movq	$0, 512(%rax)
 .L245:
 	movl	$0, %eax
 	movq	-8(%rbp), %rbx
@@ -3023,7 +3023,7 @@ _ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	jne	.L255
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	movq	$0, 520(%rax)
+	movq	$0, 512(%rax)
 	movq	$1, -32(%rbp)
 	jmp	.L256
 .L262:

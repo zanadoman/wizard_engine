@@ -23,7 +23,7 @@ _ZN10backgroundC2ERN4slay6engineE:
 	movq	%rdx, (%rax)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$560, %rax
+	addq	$552, %rax
 	leaq	.LC0(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
@@ -32,7 +32,7 @@ _ZN10backgroundC2ERN4slay6engineE:
 	movq	%rax, 24(%rdx)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$528, %rax
+	addq	$520, %rax
 	movl	$0, %esi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors3NewEy@PLT
@@ -40,7 +40,7 @@ _ZN10backgroundC2ERN4slay6engineE:
 	movq	%rax, 8(%rdx)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	520(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -53,7 +53,7 @@ _ZN10backgroundC2ERN4slay6engineE:
 	movq	%rax, 16(%rdx)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	520(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -66,7 +66,7 @@ _ZN10backgroundC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor8SetLayerEd@PLT
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	520(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -81,7 +81,7 @@ _ZN10backgroundC2ERN4slay6engineE:
 	movw	$1280, 18(%rax)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	520(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -96,7 +96,7 @@ _ZN10backgroundC2ERN4slay6engineE:
 	movw	$720, 20(%rax)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	520(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -140,7 +140,7 @@ _ZN10backgroundD2Ev:
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	560(%rax), %rdx
+	leaq	552(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	24(%rax), %rax
 	movq	%rax, %rsi
@@ -148,7 +148,7 @@ _ZN10backgroundD2Ev:
 	call	_ZN4slay6engine6assets13UnloadTextureEy@PLT
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	520(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi

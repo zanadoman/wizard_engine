@@ -156,14 +156,14 @@ _ZN4slay6engine5audio4PlayEytd:
 .L14:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$584, %rax
+	addq	$576, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
 	cmpq	%rax, -32(%rbp)
 	jnb	.L16
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -200,7 +200,7 @@ _ZN4slay6engine5audio4PlayEytd:
 	cvttsd2sil	%xmm0, %ebx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -211,7 +211,7 @@ _ZN4slay6engine5audio4PlayEytd:
 	call	Mix_VolumeChunk@PLT
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -306,14 +306,14 @@ _ZN4slay6engine5audio4PlayEytdt:
 .L26:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$584, %rax
+	addq	$576, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
 	cmpq	%rax, -32(%rbp)
 	jnb	.L28
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -351,7 +351,7 @@ _ZN4slay6engine5audio4PlayEytdt:
 	cvttsd2sil	%xmm0, %ebx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -363,7 +363,7 @@ _ZN4slay6engine5audio4PlayEytdt:
 	movzwl	-40(%rbp), %ebx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -520,14 +520,14 @@ _ZN4slay6engine5audio4PlayEytddd:
 .L44:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$584, %rax
+	addq	$576, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
 	cmpq	%rax, -32(%rbp)
 	jnb	.L46
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -568,7 +568,7 @@ _ZN4slay6engine5audio4PlayEytddd:
 	cvttsd2sil	%xmm0, %ebx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -579,7 +579,7 @@ _ZN4slay6engine5audio4PlayEytddd:
 	call	Mix_VolumeChunk@PLT
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -777,14 +777,14 @@ _ZN4slay6engine5audio4PlayEytdddt:
 .L65:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$584, %rax
+	addq	$576, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9Mix_ChunkE6LengthEv
 	cmpq	%rax, -32(%rbp)
 	jnb	.L67
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -826,7 +826,7 @@ _ZN4slay6engine5audio4PlayEytdddt:
 	cvttsd2sil	%xmm0, %ebx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -838,7 +838,7 @@ _ZN4slay6engine5audio4PlayEytdddt:
 	movzwl	-40(%rbp), %ebx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	584(%rax), %rdx
+	leaq	576(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi

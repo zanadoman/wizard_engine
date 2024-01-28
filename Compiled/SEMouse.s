@@ -87,7 +87,7 @@ _ZN4slay6engine5mouse4GetXEd:
 .L5:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	movsd	136(%rax), %xmm0
+	movsd	128(%rax), %xmm0
 	movsd	-32(%rbp), %xmm1
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, -8(%rbp)
@@ -99,11 +99,11 @@ _ZN4slay6engine5mouse4GetXEd:
 	divsd	-8(%rbp), %xmm1
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	movsd	120(%rax), %xmm0
+	movsd	112(%rax), %xmm0
 	addsd	%xmm0, %xmm1
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	movsd	88(%rax), %xmm0
+	movsd	80(%rax), %xmm0
 	divsd	-8(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
 .L7:
@@ -160,7 +160,7 @@ _ZN4slay6engine5mouse4GetYEd:
 .L14:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	movsd	136(%rax), %xmm0
+	movsd	128(%rax), %xmm0
 	movsd	-32(%rbp), %xmm1
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, -8(%rbp)
@@ -172,11 +172,11 @@ _ZN4slay6engine5mouse4GetYEd:
 	divsd	-8(%rbp), %xmm1
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	movsd	128(%rax), %xmm0
+	movsd	120(%rax), %xmm0
 	addsd	%xmm0, %xmm1
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	movsd	96(%rax), %xmm0
+	movsd	88(%rax), %xmm0
 	divsd	-8(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
 .L16:
@@ -378,14 +378,14 @@ _ZN4slay6engine5mouse9SetCursorEy:
 .L35:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$616, %rax
+	addq	$608, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP10SDL_CursorE6LengthEv
 	cmpq	%rax, -16(%rbp)
 	jnb	.L36
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	616(%rax), %rdx
+	leaq	608(%rax), %rdx
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -412,7 +412,7 @@ _ZN4slay6engine5mouse9SetCursorEy:
 .L39:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	616(%rax), %rdx
+	leaq	608(%rax), %rdx
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -477,7 +477,7 @@ _ZN4slay6engine5mouse6UpdateEv:
 .L47:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	672(%rax), %rdx
+	leaq	664(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -489,7 +489,7 @@ _ZN4slay6engine5mouse6UpdateEv:
 	je	.L43
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	672(%rax), %rdx
+	leaq	664(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -523,11 +523,11 @@ _ZN4slay6engine5mouse6UpdateEv:
 .L45:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	movzwl	66(%rax), %eax
+	movzwl	44(%rax), %eax
 	movzwl	%ax, %ebx
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	672(%rax), %rdx
+	leaq	664(%rax), %rdx
 	movq	-32(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -565,7 +565,7 @@ _ZN4slay6engine5mouse6UpdateEv:
 .L42:
 	movq	-56(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$672, %rax
+	addq	$664, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayI9SDL_EventE6LengthEv
 	cmpq	%rax, -32(%rbp)

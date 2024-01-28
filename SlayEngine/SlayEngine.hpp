@@ -85,11 +85,11 @@ namespace slay
                     double SetSamplingStep(double SamplingStep);
 
                 private:
-                    uint64 RenderQueueLength;
-                    token* RenderQueue;
                     uint16 RenderWidth;
                     uint16 RenderHeight;
                     double SamplingStep;
+                    uint64 RenderQueueLength;
+                    token* RenderQueue;
                     render(engine& Engine);
                     ~render();
                     uint8 Update();

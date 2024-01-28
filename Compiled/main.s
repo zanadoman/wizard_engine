@@ -13,14 +13,14 @@ main:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$824, %rsp
+	subq	$808, %rsp
 	.cfi_offset 3, -24
-	movl	%edi, -820(%rbp)
-	movq	%rsi, -832(%rbp)
+	movl	%edi, -804(%rbp)
+	movq	%rsi, -816(%rbp)
 	movq	%fs:40, %rax
 	movq	%rax, -24(%rbp)
 	xorl	%eax, %eax
-	leaq	-720(%rbp), %rax
+	leaq	-704(%rbp), %rax
 	movl	$6, %r8d
 	movl	$1080, %ecx
 	movl	$1920, %edx
@@ -29,47 +29,47 @@ main:
 .LEHB0:
 	call	_ZN4slay6engineC1EPKctth@PLT
 .LEHE0:
-	leaq	-720(%rbp), %rdx
-	leaq	-816(%rbp), %rax
+	leaq	-704(%rbp), %rdx
+	leaq	-800(%rbp), %rax
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 .LEHB1:
 	call	_ZN10backgroundC1ERN4slay6engineE@PLT
 .LEHE1:
-	leaq	-720(%rbp), %rdx
-	leaq	-784(%rbp), %rax
+	leaq	-704(%rbp), %rdx
+	leaq	-768(%rbp), %rax
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
 .LEHB2:
 	call	_ZN6playerC1ERN4slay6engineE@PLT
 .LEHE2:
-	movq	-776(%rbp), %rax
-	leaq	-720(%rbp), %rdx
-	addq	$80, %rdx
+	movq	-760(%rbp), %rax
+	leaq	-704(%rbp), %rdx
+	addq	$72, %rdx
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 .LEHB3:
 	call	_ZN4slay6engine6camera4BindEy@PLT
 	jmp	.L2
 .L3:
-	leaq	-784(%rbp), %rax
+	leaq	-768(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN6player6UpdateEv@PLT
 .L2:
-	leaq	-720(%rbp), %rax
+	leaq	-704(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6UpdateEv@PLT
 .LEHE3:
 	testb	%al, %al
 	jne	.L3
 	movl	$0, %ebx
-	leaq	-784(%rbp), %rax
+	leaq	-768(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN6playerD1Ev@PLT
-	leaq	-816(%rbp), %rax
+	leaq	-800(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN10backgroundD1Ev@PLT
-	leaq	-720(%rbp), %rax
+	leaq	-704(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engineD1Ev@PLT
 	movl	%ebx, %eax
@@ -79,21 +79,21 @@ main:
 	jmp	.L13
 .L12:
 	movq	%rax, %rbx
-	leaq	-784(%rbp), %rax
+	leaq	-768(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN6playerD1Ev@PLT
 	jmp	.L6
 .L11:
 	movq	%rax, %rbx
 .L6:
-	leaq	-816(%rbp), %rax
+	leaq	-800(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN10backgroundD1Ev@PLT
 	jmp	.L7
 .L10:
 	movq	%rax, %rbx
 .L7:
-	leaq	-720(%rbp), %rax
+	leaq	-704(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engineD1Ev@PLT
 	movq	%rbx, %rax

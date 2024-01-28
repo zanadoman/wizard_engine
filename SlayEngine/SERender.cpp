@@ -5,11 +5,14 @@ namespace slay
     engine::render::render(engine& Engine) : Engine(Engine)
     {
         this->BufferSize = 100;
-        this->RenderQueueLength = 0;
-        this->RenderQueue = NULL;
         this->RenderWidth = 0;
         this->RenderHeight = 0;
         this->SamplingStep = 0.002;
+        if ((this->RenderQueue = (token*)malloc(sizeof(token) * (this->RenderQueueLength = this->BufferSize))) == NULL)
+        {
+            printf("slay::engine.render.render(): Memory allocation failed\n");
+            exit(1);
+        }
     }
 
     engine::render::~render()
@@ -260,15 +263,14 @@ namespace slay
             }
         }
 
-        if ((this->RenderQueueLength = k) == 0)
-        {
-            free(this->RenderQueue);
-            this->RenderQueue = NULL;
-        }
-        else if (k < this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * this->RenderQueueLength)) == NULL)
+        if (k < this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (this->RenderQueueLength = k))) == NULL)
         {
             printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
             exit(1);
+        }
+        if (this->RenderQueueLength == 0)
+        {
+            this->RenderQueue = NULL;
         }
 
         return 0;
