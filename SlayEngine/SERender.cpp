@@ -12,6 +12,11 @@ namespace slay
         this->SamplingStep = 0.002;
     }
 
+    engine::render::~render()
+    {
+        free(this->RenderQueue);
+    }
+
     engine::render::token::token() {}
 
     engine::render::token::token(void* Data, type Type, double Layer, uint8 Priority, SDL_Rect Area)
@@ -254,7 +259,13 @@ namespace slay
                 }
             }
         }
-        if (k < this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (this->RenderQueueLength = k))) == NULL)
+
+        if ((this->RenderQueueLength = k) == 0)
+        {
+            free(this->RenderQueue);
+            this->RenderQueue = NULL;
+        }
+        else if (k < this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * this->RenderQueueLength)) == NULL)
         {
             printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
             exit(1);

@@ -91,6 +91,7 @@ namespace slay
                     uint16 RenderHeight;
                     double SamplingStep;
                     render(engine& Engine);
+                    ~render();
                     uint8 Update();
                     uint8 SelectionStage();
                     uint8 OrderingStage();
