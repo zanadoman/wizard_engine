@@ -56,7 +56,7 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN3neo5arrayIyEC1Ev
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$552, %rax
+	addq	$560, %rax
 	leaq	.LC0(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
@@ -65,7 +65,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, -112(%rbp)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$552, %rax
+	addq	$560, %rax
 	leaq	.LC1(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
@@ -73,7 +73,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, -104(%rbp)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$552, %rax
+	addq	$560, %rax
 	leaq	.LC2(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
@@ -81,7 +81,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, -96(%rbp)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$552, %rax
+	addq	$560, %rax
 	leaq	.LC3(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
@@ -89,7 +89,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, -88(%rbp)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$552, %rax
+	addq	$560, %rax
 	leaq	.LC4(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
@@ -97,7 +97,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, -80(%rbp)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$552, %rax
+	addq	$560, %rax
 	leaq	.LC5(%rip), %rdx
 	movq	%rdx, %rsi
 	movq	%rax, %rdi
@@ -118,7 +118,7 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN3neo5arrayIyEaSESt16initializer_listIyE
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$552, %rax
+	addq	$560, %rax
 	movl	$48, %edx
 	leaq	.LC6(%rip), %rcx
 	movq	%rcx, %rsi
@@ -127,14 +127,14 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	-120(%rbp), %rdx
 	movq	%rax, 48(%rdx)
 	movq	-128(%rbp), %rax
-	addq	$520, %rax
+	addq	$528, %rax
 	movl	$1, %esi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors3NewEy@PLT
 	movq	-120(%rbp), %rdx
 	movq	%rax, 8(%rdx)
 	movq	-128(%rbp), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -149,7 +149,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	-120(%rbp), %rdx
 	movq	%rax, 16(%rdx)
 	movq	-128(%rbp), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -162,7 +162,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, 40(%rdx)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -175,7 +175,7 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor8SetLayerEd@PLT
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -188,7 +188,7 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor8SetDepthEd@PLT
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -205,7 +205,7 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor9flipbooks8flipbook8SetDelayEj@PLT
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -220,7 +220,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movw	$100, 20(%rax)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -235,7 +235,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movw	$100, 22(%rax)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -250,7 +250,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movb	$1, 17(%rax)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -270,7 +270,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movl	$1, %r13d
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -294,7 +294,7 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -314,7 +314,7 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor5texts4text7SetFontEy@PLT
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -331,7 +331,7 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi@PLT
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -346,7 +346,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movw	$50, 18(%rax)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -361,7 +361,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movb	$1, 16(%rax)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-120(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -453,7 +453,7 @@ _ZN6playerD2Ev:
 .L9:
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	552(%rax), %rbx
+	leaq	560(%rax), %rbx
 	movq	-40(%rbp), %rax
 	leaq	24(%rax), %rdx
 	movzbl	-17(%rbp), %eax
@@ -479,7 +479,7 @@ _ZN6playerD2Ev:
 	jne	.L9
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	552(%rax), %rdx
+	leaq	560(%rax), %rdx
 	movq	-40(%rbp), %rax
 	movq	48(%rax), %rax
 	movq	%rax, %rsi
@@ -487,7 +487,7 @@ _ZN6playerD2Ev:
 	call	_ZN4slay6engine6assets10UnloadFontEy@PLT
 	movq	-40(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-40(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -535,7 +535,7 @@ _ZN6player6UpdateEv:
 	movq	%rdi, -24(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$152, %rax
+	addq	$160, %rax
 	movl	$82, %esi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
@@ -543,7 +543,7 @@ _ZN6player6UpdateEv:
 	je	.L11
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -552,10 +552,10 @@ _ZN6player6UpdateEv:
 	movq	%rax, %r12
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	544(%rax), %rbx
+	leaq	552(%rax), %rbx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -568,7 +568,7 @@ _ZN6player6UpdateEv:
 	movsd	%xmm0, -32(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$624, %rax
+	addq	$632, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
@@ -591,7 +591,7 @@ _ZN6player6UpdateEv:
 	movsd	%xmm0, -40(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -611,7 +611,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actors5actor4SetXEd@PLT
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -620,10 +620,10 @@ _ZN6player6UpdateEv:
 	movq	%rax, %r12
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	544(%rax), %rbx
+	leaq	552(%rax), %rbx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -636,7 +636,7 @@ _ZN6player6UpdateEv:
 	movsd	%xmm0, -32(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$624, %rax
+	addq	$632, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
@@ -659,7 +659,7 @@ _ZN6player6UpdateEv:
 	movsd	%xmm0, -40(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -681,7 +681,7 @@ _ZN6player6UpdateEv:
 .L11:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$152, %rax
+	addq	$160, %rax
 	movl	$81, %esi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
@@ -689,7 +689,7 @@ _ZN6player6UpdateEv:
 	je	.L16
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -698,10 +698,10 @@ _ZN6player6UpdateEv:
 	movq	%rax, %r12
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	544(%rax), %rbx
+	leaq	552(%rax), %rbx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -714,7 +714,7 @@ _ZN6player6UpdateEv:
 	movsd	%xmm0, -32(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$624, %rax
+	addq	$632, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
@@ -737,7 +737,7 @@ _ZN6player6UpdateEv:
 	movsd	%xmm0, -40(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -757,7 +757,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actors5actor4SetXEd@PLT
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -766,10 +766,10 @@ _ZN6player6UpdateEv:
 	movq	%rax, %r12
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	544(%rax), %rbx
+	leaq	552(%rax), %rbx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -782,7 +782,7 @@ _ZN6player6UpdateEv:
 	movsd	%xmm0, -32(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$624, %rax
+	addq	$632, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
@@ -805,7 +805,7 @@ _ZN6player6UpdateEv:
 	movsd	%xmm0, -40(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -826,7 +826,7 @@ _ZN6player6UpdateEv:
 .L16:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$152, %rax
+	addq	$160, %rax
 	movl	$80, %esi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
@@ -834,7 +834,7 @@ _ZN6player6UpdateEv:
 	je	.L21
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -843,7 +843,7 @@ _ZN6player6UpdateEv:
 	movq	%rax, %rbx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -854,7 +854,7 @@ _ZN6player6UpdateEv:
 	movsd	%xmm0, -32(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$624, %rax
+	addq	$632, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
@@ -883,7 +883,7 @@ _ZN6player6UpdateEv:
 .L21:
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$152, %rax
+	addq	$160, %rax
 	movl	$79, %esi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
@@ -891,7 +891,7 @@ _ZN6player6UpdateEv:
 	je	.L24
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -900,7 +900,7 @@ _ZN6player6UpdateEv:
 	movq	%rax, %r12
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	520(%rax), %rdx
+	leaq	528(%rax), %rdx
 	movq	-24(%rbp), %rax
 	movq	8(%rax), %rax
 	movq	%rax, %rsi
@@ -911,7 +911,7 @@ _ZN6player6UpdateEv:
 	movq	%xmm0, %rbx
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$624, %rax
+	addq	$632, %rax
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax

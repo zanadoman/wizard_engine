@@ -224,7 +224,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewESt16initializer_listIyE:
 	jne	.L34
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$560, %rax
+	addq	$568, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
 	movq	%rax, %rbx
@@ -239,7 +239,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewESt16initializer_listIyE:
 	jnb	.L14
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	560(%rax), %rbx
+	leaq	568(%rax), %rbx
 	leaq	-96(%rbp), %rax
 	movq	%rax, %rdi
 	call	_ZNKSt16initializer_listIyE5beginEv
@@ -569,7 +569,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEPN3neo5arrayIyEE:
 	jne	.L60
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$560, %rax
+	addq	$568, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP11SDL_TextureE6LengthEv
 	movq	%rax, %rbx
@@ -583,7 +583,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEPN3neo5arrayIyEE:
 	jnb	.L40
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	560(%rax), %rbx
+	leaq	568(%rax), %rbx
 	movq	-64(%rbp), %rdx
 	movq	-80(%rbp), %rax
 	movq	%rdx, %rsi
@@ -1750,7 +1750,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbook10SetOffsetXEi:
 	movl	%eax, -4(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	544(%rax), %rdx
+	leaq	552(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -1772,7 +1772,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbook10SetOffsetXEi:
 	movq	%rax, 56(%rdx)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	544(%rax), %rdx
+	leaq	552(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -1857,7 +1857,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbook10SetOffsetYEi:
 	movl	%eax, -4(%rbp)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	544(%rax), %rdx
+	leaq	552(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1
@@ -1879,7 +1879,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbook10SetOffsetYEi:
 	movq	%rax, 56(%rdx)
 	movq	-24(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	544(%rax), %rdx
+	leaq	552(%rax), %rdx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	-4(%rbp), %xmm2
 	pxor	%xmm1, %xmm1

@@ -80,11 +80,13 @@ namespace slay
                 };
 
                 public:
+                    uint16 BufferSize;
                     double GetSamplingStep();
                     double SetSamplingStep(double SamplingStep);
 
                 private:
-                    array<token> RenderQueue;
+                    uint64 RenderQueueLength;
+                    token* RenderQueue;
                     uint16 RenderWidth;
                     uint16 RenderHeight;
                     double SamplingStep;
