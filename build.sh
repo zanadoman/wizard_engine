@@ -7,11 +7,11 @@ ENDCOLOR="\e[0m"
 
 if [[ ! -z $1 && $1 == "-w" ]] || [[ ! -z $1 && $1 == "--windows" ]]
 then
-    x86_64-w64-mingw32-g++ -Wall -o Builds/Windows/bin.exe $(find . -name '*.cpp') -m64 -std=gnu++23 -mwindows -LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
+    x86_64-w64-mingw32-g++ -o Build/bin.exe $(find . -name '*.cpp') -m64 -std=gnu++23 -mwindows -LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
     if [ $? == 0 ]
     then
         echo -e "${BLUE}Windows ${GREEN}build successful!${ENDCOLOR}"
-        cd Builds/Windows
+        cd Build
         wine64 bin.exe
         if [ $? == 0 ]
         then
@@ -59,11 +59,11 @@ else
     fi
 fi
 
-g++ -o Builds/Linux/bin.out Compiled/*.s -Wl,-rpath=. -LSlayEngine/Libraries/Linux -lNeoTypes++ -lfreetype -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
+g++ -o Build/bin.out Compiled/*.s -Wl,-rpath=. -LSlayEngine/Libraries/Linux -lNeoTypes++ -lfreetype -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
 if [ $? == 0 ]
 then
     echo -e "${GREEN}Compilation successful!${ENDCOLOR}"
-    cd Builds/Linux
+    cd Build
     ./bin.out
     if [ $? == 0 ]
     then
