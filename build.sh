@@ -7,7 +7,7 @@ ENDCOLOR="\e[0m"
 
 if [[ ! -z $1 && $1 == "-w" ]] || [[ ! -z $1 && $1 == "--windows" ]]
 then
-    x86_64-w64-mingw32-g++ -o Builds/Windows/bin.exe $(find . -name '*.cpp') -m64 -std=gnu++23 -mwindows -LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
+    x86_64-w64-mingw32-g++ -Wall -o Builds/Windows/bin.exe $(find . -name '*.cpp') -m64 -std=gnu++23 -mwindows -LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
     if [ $? == 0 ]
     then
         echo -e "${BLUE}Windows ${GREEN}build successful!${ENDCOLOR}"
@@ -29,7 +29,7 @@ fi
 
 if [[ ! -z $1 && $1 == "-a" ]] || [[ ! -z $1 && $1 == "--all" ]]
 then
-    g++ -S $(find . -name '*.cpp') -m64 -std=gnu++23
+    g++ -Wall -S $(find . -name '*.cpp') -m64 -std=gnu++23
     if [ $? == 0 ]
     then
         rm Compiled/*.s
@@ -44,7 +44,7 @@ else
     git diff --name-only | grep "\.cpp" 1> /dev/null
     if [ $? == 0 ]
     then
-        g++ -S $(git diff --name-only | grep "\.cpp") -m64 -std=gnu++23
+        g++ -Wall -S $(git diff --name-only | grep "\.cpp") -m64 -std=gnu++23
         if [ $? == 0 ]
         then
             mv *.s Compiled
