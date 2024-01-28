@@ -187,6 +187,21 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
+	movl	$100, 16(%rax)
+	movq	-120(%rbp), %rax
+	movq	(%rax), %rax
+	leaq	520(%rax), %rdx
+	movq	-120(%rbp), %rax
+	movq	8(%rax), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	leaq	72(%rax), %rdx
+	movq	-120(%rbp), %rax
+	movq	16(%rax), %rax
+	movq	%rax, %rsi
+	movq	%rdx, %rdi
+	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movw	$100, 24(%rax)
 	movq	-120(%rbp), %rax
 	movq	(%rax), %rax
@@ -1227,8 +1242,8 @@ _ZNKSt16initializer_listIyE5beginEv:
 	.long	-1075838976
 	.align 8
 .LC12:
-	.long	858993459
-	.long	1070805811
+	.long	-1717986918
+	.long	1070176665
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat
