@@ -185,14 +185,14 @@ _ZN4slay6engine6camera4BindEy:
 .L15:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$528, %rax
+	addq	$536, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -16(%rbp)
 	jnb	.L16
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	536(%rax), %rdx
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -265,14 +265,14 @@ _ZN4slay6engine6camera5BindXEy:
 .L22:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$528, %rax
+	addq	$536, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -16(%rbp)
 	jnb	.L23
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	536(%rax), %rdx
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -342,14 +342,14 @@ _ZN4slay6engine6camera5BindYEy:
 .L29:
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	addq	$528, %rax
+	addq	$536, %rax
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
 	cmpq	%rax, -16(%rbp)
 	jnb	.L30
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	536(%rax), %rdx
 	movq	-16(%rbp), %rax
 	movq	%rax, %rsi
 	movq	%rdx, %rdi
@@ -468,7 +468,7 @@ _ZN4slay6engine6camera6UpdateEv:
 	je	.L42
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	536(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	24(%rax), %rax
 	movq	%rax, %rsi
@@ -485,7 +485,7 @@ _ZN4slay6engine6camera6UpdateEv:
 	je	.L43
 	movq	-8(%rbp), %rax
 	movq	(%rax), %rax
-	leaq	528(%rax), %rdx
+	leaq	536(%rax), %rdx
 	movq	-8(%rbp), %rax
 	movq	32(%rax), %rax
 	movq	%rax, %rsi
@@ -549,7 +549,7 @@ _ZN4slay6engine6camera9TransformEddttd:
 	movl	%eax, -48(%rbp)
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	movzwl	44(%rax), %eax
+	movzwl	42(%rax), %eax
 	movzwl	%ax, %ebx
 	movq	-88(%rbp), %rax
 	movq	%rax, %xmm0
@@ -607,7 +607,7 @@ _ZN4slay6engine6camera9TransformEddttd:
 	movl	%eax, -48(%rbp)
 	movq	-72(%rbp), %rax
 	movq	(%rax), %rax
-	movzwl	44(%rax), %eax
+	movzwl	42(%rax), %eax
 	movzwl	%ax, %ebx
 	movq	-72(%rbp), %rax
 	movsd	48(%rax), %xmm1

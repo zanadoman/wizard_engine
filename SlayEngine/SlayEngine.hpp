@@ -80,14 +80,16 @@ namespace slay
                 };
 
                 public:
-                    uint16 BufferSize;
                     double GetSamplingStep();
                     double SetSamplingStep(double SamplingStep);
+                    uint16 GetBufferSizeKB();
+                    uint16 SetBufferSizeKB(uint16 KiloBytes);
 
                 private:
                     uint16 RenderWidth;
                     uint16 RenderHeight;
                     double SamplingStep;
+                    uint16 BufferSize;
                     uint64 RenderQueueLength;
                     token* RenderQueue;
                     render(engine& Engine);
