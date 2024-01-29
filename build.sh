@@ -7,7 +7,7 @@ ENDCOLOR="\e[0m"
 
 if [[ ! -z $1 && $1 == "-w" ]] || [[ ! -z $1 && $1 == "--windows" ]]
 then
-    x86_64-w64-mingw32-g++ -Wall -Wextra -O3 -o Build/bin.exe $(find . -name '*.cpp') -m64 -std=gnu++23 -mwindows -LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
+    x86_64-w64-mingw32-g++ -O3 -o Build/bin.exe $(find . -name '*.cpp') -m64 -std=gnu++23 -mwindows -LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
     if [ $? == 0 ]
     then
         echo -e "${BLUE}Windows ${GREEN}build successful!${ENDCOLOR}"
