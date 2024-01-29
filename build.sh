@@ -29,7 +29,7 @@ fi
 
 if [[ ! -z $1 && $1 == "-a" ]] || [[ ! -z $1 && $1 == "--all" ]]
 then
-    g++ -Wall -Wextra -S $(find . -name '*.cpp') -m64 -std=gnu++23
+    g++ -Wall -Wextra -O3 -S $(find . -name '*.cpp') -m64 -std=gnu++23
     if [ $? == 0 ]
     then
         rm Compiled/*.s
@@ -44,7 +44,7 @@ else
     git diff --name-only | grep "\.cpp" 1> /dev/null
     if [ $? == 0 ]
     then
-        g++ -Wall -Wextra -S $(git diff --name-only | grep "\.cpp") -m64 -std=gnu++23
+        g++ -Wall -Wextra -O3 -S $(git diff --name-only | grep "\.cpp") -m64 -std=gnu++23
         if [ $? == 0 ]
         then
             mv *.s Compiled

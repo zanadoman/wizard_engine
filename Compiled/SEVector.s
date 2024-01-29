@@ -1,186 +1,108 @@
 	.file	"SEVector.cpp"
 	.text
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6vectorC2ERS0_
 	.type	_ZN4slay6engine6vectorC2ERS0_, @function
 _ZN4slay6engine6vectorC2ERS0_:
-.LFB2197:
+.LFB2232:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-8(%rbp), %rax
-	movq	-16(%rbp), %rdx
-	movq	%rdx, (%rax)
-	nop
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	movq	%rsi, (%rdi)
 	ret
 	.cfi_endproc
-.LFE2197:
+.LFE2232:
 	.size	_ZN4slay6engine6vectorC2ERS0_, .-_ZN4slay6engine6vectorC2ERS0_
 	.globl	_ZN4slay6engine6vectorC1ERS0_
 	.set	_ZN4slay6engine6vectorC1ERS0_,_ZN4slay6engine6vectorC2ERS0_
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6vector6LengthEdddd
 	.type	_ZN4slay6engine6vector6LengthEdddd, @function
 _ZN4slay6engine6vector6LengthEdddd:
-.LFB2199:
+.LFB2234:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$64, %rsp
-	movq	%rdi, -24(%rbp)
-	movsd	%xmm0, -32(%rbp)
-	movsd	%xmm1, -40(%rbp)
-	movsd	%xmm2, -48(%rbp)
-	movsd	%xmm3, -56(%rbp)
-	movsd	-48(%rbp), %xmm0
-	subsd	-32(%rbp), %xmm0
-	movsd	%xmm0, -16(%rbp)
-	movsd	-56(%rbp), %xmm0
-	subsd	-40(%rbp), %xmm0
-	movsd	%xmm0, -8(%rbp)
-	movsd	-16(%rbp), %xmm0
-	movapd	%xmm0, %xmm1
-	mulsd	%xmm0, %xmm1
-	movsd	-8(%rbp), %xmm0
-	mulsd	%xmm0, %xmm0
-	addsd	%xmm0, %xmm1
-	movq	%xmm1, %rax
-	movq	%rax, %xmm0
-	call	sqrt@PLT
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	leave
-	.cfi_def_cfa 7, 8
+	subsd	%xmm0, %xmm2
+	subsd	%xmm1, %xmm3
+	mulsd	%xmm2, %xmm2
+	mulsd	%xmm3, %xmm3
+	addsd	%xmm3, %xmm2
+	movapd	%xmm2, %xmm0
+	sqrtsd	%xmm0, %xmm0
 	ret
 	.cfi_endproc
-.LFE2199:
+.LFE2234:
 	.size	_ZN4slay6engine6vector6LengthEdddd, .-_ZN4slay6engine6vector6LengthEdddd
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6vector5AngleEdddd
 	.type	_ZN4slay6engine6vector5AngleEdddd, @function
 _ZN4slay6engine6vector5AngleEdddd:
-.LFB2200:
+.LFB2235:
 	.cfi_startproc
-	pushq	%rbp
+	subsd	%xmm0, %xmm2
+	subsd	%xmm1, %xmm3
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$64, %rsp
-	movq	%rdi, -24(%rbp)
-	movsd	%xmm0, -32(%rbp)
-	movsd	%xmm1, -40(%rbp)
-	movsd	%xmm2, -48(%rbp)
-	movsd	%xmm3, -56(%rbp)
-	movsd	-48(%rbp), %xmm0
-	subsd	-32(%rbp), %xmm0
-	movsd	%xmm0, -16(%rbp)
-	movsd	-56(%rbp), %xmm0
-	subsd	-40(%rbp), %xmm0
-	movsd	%xmm0, -8(%rbp)
-	movsd	-16(%rbp), %xmm0
-	movapd	%xmm0, %xmm1
-	mulsd	%xmm0, %xmm1
-	movsd	-8(%rbp), %xmm0
-	mulsd	%xmm0, %xmm0
-	addsd	%xmm0, %xmm1
-	movq	%xmm1, %rax
-	movq	%rax, %xmm0
-	call	sqrt@PLT
-	movsd	-16(%rbp), %xmm1
-	divsd	%xmm0, %xmm1
-	movq	%xmm1, %rax
-	movq	%rax, %xmm0
+	mulsd	%xmm3, %xmm3
+	movapd	%xmm2, %xmm0
+	mulsd	%xmm2, %xmm0
+	addsd	%xmm3, %xmm0
+	sqrtsd	%xmm0, %xmm0
+	divsd	%xmm0, %xmm2
+	movapd	%xmm2, %xmm0
 	call	acos@PLT
-	movsd	.LC0(%rip), %xmm1
-	mulsd	%xmm1, %xmm0
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	leave
-	.cfi_def_cfa 7, 8
+	mulsd	.LC0(%rip), %xmm0
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2200:
+.LFE2235:
 	.size	_ZN4slay6engine6vector5AngleEdddd, .-_ZN4slay6engine6vector5AngleEdddd
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6vector9TerminalXEddd
 	.type	_ZN4slay6engine6vector9TerminalXEddd, @function
 _ZN4slay6engine6vector9TerminalXEddd:
-.LFB2201:
+.LFB2236:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
-	movsd	%xmm0, -16(%rbp)
-	movsd	%xmm1, -24(%rbp)
-	movsd	%xmm2, -32(%rbp)
-	movsd	-32(%rbp), %xmm1
-	movsd	.LC1(%rip), %xmm0
-	mulsd	%xmm0, %xmm1
-	movq	%xmm1, %rax
-	movq	%rax, %xmm0
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 32
+	mulsd	.LC1(%rip), %xmm2
+	movsd	%xmm0, (%rsp)
+	movsd	%xmm1, 8(%rsp)
+	movapd	%xmm2, %xmm0
 	call	cos@PLT
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	mulsd	-24(%rbp), %xmm0
-	addsd	-16(%rbp), %xmm0
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	leave
-	.cfi_def_cfa 7, 8
+	mulsd	8(%rsp), %xmm0
+	addsd	(%rsp), %xmm0
+	addq	$24, %rsp
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2201:
+.LFE2236:
 	.size	_ZN4slay6engine6vector9TerminalXEddd, .-_ZN4slay6engine6vector9TerminalXEddd
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6vector9TerminalYEddd
 	.type	_ZN4slay6engine6vector9TerminalYEddd, @function
 _ZN4slay6engine6vector9TerminalYEddd:
-.LFB2202:
+.LFB2237:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
-	movsd	%xmm0, -16(%rbp)
-	movsd	%xmm1, -24(%rbp)
-	movsd	%xmm2, -32(%rbp)
-	movsd	-32(%rbp), %xmm1
-	movsd	.LC1(%rip), %xmm0
-	mulsd	%xmm0, %xmm1
-	movq	%xmm1, %rax
-	movq	%rax, %xmm0
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 32
+	mulsd	.LC1(%rip), %xmm2
+	movsd	%xmm0, (%rsp)
+	movsd	%xmm1, 8(%rsp)
+	movapd	%xmm2, %xmm0
 	call	sin@PLT
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	mulsd	-24(%rbp), %xmm0
-	addsd	-16(%rbp), %xmm0
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	leave
-	.cfi_def_cfa 7, 8
+	mulsd	8(%rsp), %xmm0
+	addsd	(%rsp), %xmm0
+	addq	$24, %rsp
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2202:
+.LFE2237:
 	.size	_ZN4slay6engine6vector9TerminalYEddd, .-_ZN4slay6engine6vector9TerminalYEddd
-	.section	.rodata
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:
 	.long	442745336

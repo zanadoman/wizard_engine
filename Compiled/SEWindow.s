@@ -1,79 +1,47 @@
 	.file	"SEWindow.cpp"
 	.text
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6windowC2ERS0_
 	.type	_ZN4slay6engine6windowC2ERS0_, @function
 _ZN4slay6engine6windowC2ERS0_:
-.LFB2197:
+.LFB2232:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-8(%rbp), %rax
-	movq	-16(%rbp), %rdx
-	movq	%rdx, (%rax)
-	movq	-8(%rbp), %rax
-	movq	$0, 8(%rax)
-	movq	-8(%rbp), %rax
-	movq	$0, 16(%rax)
-	movq	-8(%rbp), %rax
-	movw	$0, 24(%rax)
-	movq	-8(%rbp), %rax
-	movw	$0, 26(%rax)
-	nop
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	movq	%rsi, (%rdi)
+	movq	$0, 8(%rdi)
+	movq	$0, 16(%rdi)
+	movl	$0, 24(%rdi)
 	ret
 	.cfi_endproc
-.LFE2197:
+.LFE2232:
 	.size	_ZN4slay6engine6windowC2ERS0_, .-_ZN4slay6engine6windowC2ERS0_
 	.globl	_ZN4slay6engine6windowC1ERS0_
 	.set	_ZN4slay6engine6windowC1ERS0_,_ZN4slay6engine6windowC2ERS0_
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6window9GetHeightEv
 	.type	_ZN4slay6engine6window9GetHeightEv, @function
 _ZN4slay6engine6window9GetHeightEv:
-.LFB2199:
+.LFB2234:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movzwl	26(%rax), %eax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	movzwl	26(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE2199:
+.LFE2234:
 	.size	_ZN4slay6engine6window9GetHeightEv, .-_ZN4slay6engine6window9GetHeightEv
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6window8GetWidthEv
 	.type	_ZN4slay6engine6window8GetWidthEv, @function
 _ZN4slay6engine6window8GetWidthEv:
-.LFB2200:
+.LFB2235:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movzwl	24(%rax), %eax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	movzwl	24(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE2200:
+.LFE2235:
 	.size	_ZN4slay6engine6window8GetWidthEv, .-_ZN4slay6engine6window8GetWidthEv
-	.section	.rodata
+	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
 .LC0:
 	.string	"slay::engine.window.New(): SDL_CreateWindow() failed\nParams: Title: %s, Width: %d, Height: %d\n"
@@ -88,158 +56,146 @@ _ZN4slay6engine6window8GetWidthEv:
 	.string	"slay::engine.window.New(): SDL_SetRenderDrawBlendMode() failed\nParams: Title: %s, Width: %d, Height: %d\n"
 	.text
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6window4OpenEPKctt
 	.type	_ZN4slay6engine6window4OpenEPKctt, @function
 _ZN4slay6engine6window4OpenEPKctt:
-.LFB2201:
+.LFB2236:
 	.cfi_startproc
-	pushq	%rbp
+	pushq	%r15
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movl	%ecx, %eax
-	movw	%dx, -20(%rbp)
-	movw	%ax, -24(%rbp)
-	movzwl	-24(%rbp), %ecx
-	movzwl	-20(%rbp), %edx
-	movq	-16(%rbp), %rax
+	.cfi_offset 15, -16
+	movzwl	%cx, %r15d
 	movl	$4385, %r9d
-	movl	%ecx, %r8d
-	movl	%edx, %ecx
-	movl	$536805376, %edx
+	pushq	%r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
+	movzwl	%dx, %r14d
+	movl	%r15d, %r8d
+	pushq	%r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
+	movq	%rsi, %r13
 	movl	$536805376, %esi
-	movq	%rax, %rdi
+	pushq	%r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	movl	%edx, %r12d
+	movl	$536805376, %edx
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
+	movl	%ecx, %ebp
+	movl	%r14d, %ecx
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	movq	%rdi, %rbx
+	movq	%r13, %rdi
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 64
 	call	SDL_CreateWindow@PLT
-	movq	-8(%rbp), %rdx
-	movq	%rax, 8(%rdx)
-	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
+	movq	%rax, 8(%rbx)
 	testq	%rax, %rax
-	sete	%al
-	testb	%al, %al
-	je	.L7
-	movzwl	-24(%rbp), %ecx
-	movzwl	-20(%rbp), %edx
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC0(%rip), %rax
+	je	.L11
 	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L7:
-	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
 	movl	$2, %edx
 	movl	$-1, %esi
-	movq	%rax, %rdi
 	call	SDL_CreateRenderer@PLT
-	movq	-8(%rbp), %rdx
-	movq	%rax, 16(%rdx)
-	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	movq	%rax, 16(%rbx)
+	movq	%rax, %rdi
 	testq	%rax, %rax
-	sete	%al
-	testb	%al, %al
-	je	.L8
-	movzwl	-24(%rbp), %ecx
-	movzwl	-20(%rbp), %edx
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC1(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L8:
-	movzwl	-24(%rbp), %edx
-	movzwl	-20(%rbp), %ecx
-	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
-	movl	%ecx, %esi
-	movq	%rax, %rdi
+	je	.L12
+	movl	%r15d, %edx
+	movl	%r14d, %esi
 	call	SDL_RenderSetLogicalSize@PLT
 	testl	%eax, %eax
-	setne	%al
-	testb	%al, %al
-	je	.L9
-	movzwl	-24(%rbp), %ecx
-	movzwl	-20(%rbp), %edx
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC2(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L9:
-	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
+	jne	.L13
+	movq	16(%rbx), %rdi
 	movl	$1, %esi
-	movq	%rax, %rdi
 	call	SDL_SetRenderDrawBlendMode@PLT
 	testl	%eax, %eax
-	setne	%al
-	testb	%al, %al
-	je	.L10
-	movzwl	-24(%rbp), %ecx
-	movzwl	-20(%rbp), %edx
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC3(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
+	jne	.L14
+	movw	%r12w, 24(%rbx)
+	xorl	%eax, %eax
+	movw	%bp, 26(%rbx)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 56
+	popq	%rbx
+	.cfi_def_cfa_offset 48
+	popq	%rbp
+	.cfi_def_cfa_offset 40
+	popq	%r12
+	.cfi_def_cfa_offset 32
+	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
+	.cfi_def_cfa_offset 8
+	ret
+.L11:
+	.cfi_restore_state
+	leaq	.LC0(%rip), %rdi
+	movl	%r15d, %ecx
+	movl	%r14d, %edx
+	movq	%r13, %rsi
+	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L10:
-	movq	-8(%rbp), %rax
-	movzwl	-20(%rbp), %edx
-	movw	%dx, 24(%rax)
-	movq	-8(%rbp), %rax
-	movzwl	-24(%rbp), %edx
-	movw	%dx, 26(%rax)
-	movl	$0, %eax
-	leave
-	.cfi_def_cfa 7, 8
-	ret
+.L14:
+	leaq	.LC3(%rip), %rdi
+	movl	%r15d, %ecx
+	movl	%r14d, %edx
+	movq	%r13, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L13:
+	leaq	.LC2(%rip), %rdi
+	movl	%r15d, %ecx
+	movl	%r14d, %edx
+	movq	%r13, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L12:
+	leaq	.LC1(%rip), %rdi
+	movl	%r15d, %ecx
+	movl	%r14d, %edx
+	movq	%r13, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
-.LFE2201:
+.LFE2236:
 	.size	_ZN4slay6engine6window4OpenEPKctt, .-_ZN4slay6engine6window4OpenEPKctt
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6window5CloseEv
 	.type	_ZN4slay6engine6window5CloseEv, @function
 _ZN4slay6engine6window5CloseEv:
-.LFB2202:
+.LFB2237:
 	.cfi_startproc
-	pushq	%rbp
+	pushq	%rbx
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	16(%rax), %rax
-	movq	%rax, %rdi
+	.cfi_offset 3, -16
+	movq	%rdi, %rbx
+	movq	16(%rdi), %rdi
 	call	SDL_DestroyRenderer@PLT
-	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
-	movq	%rax, %rdi
+	movq	8(%rbx), %rdi
 	call	SDL_DestroyWindow@PLT
-	movl	$0, %eax
-	leave
-	.cfi_def_cfa 7, 8
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2202:
+.LFE2237:
 	.size	_ZN4slay6engine6window5CloseEv, .-_ZN4slay6engine6window5CloseEv
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

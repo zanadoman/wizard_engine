@@ -1,717 +1,456 @@
 	.file	"SECamera.cpp"
 	.text
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6cameraC2ERS0_
 	.type	_ZN4slay6engine6cameraC2ERS0_, @function
 _ZN4slay6engine6cameraC2ERS0_:
-.LFB2197:
+.LFB2232:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-8(%rbp), %rax
-	movq	-16(%rbp), %rdx
-	movq	%rdx, (%rax)
-	movq	-8(%rbp), %rax
+	movq	.LC0(%rip), %rax
 	pxor	%xmm0, %xmm0
-	movsd	%xmm0, 8(%rax)
-	movq	-8(%rbp), %rax
-	pxor	%xmm0, %xmm0
-	movsd	%xmm0, 16(%rax)
-	movq	-8(%rbp), %rax
-	movq	$0, 24(%rax)
-	movq	-8(%rbp), %rax
-	movq	$0, 32(%rax)
-	movq	-8(%rbp), %rax
-	pxor	%xmm0, %xmm0
-	movsd	%xmm0, 40(%rax)
-	movq	-8(%rbp), %rax
-	pxor	%xmm0, %xmm0
-	movsd	%xmm0, 48(%rax)
-	movq	-8(%rbp), %rax
-	movsd	.LC1(%rip), %xmm0
-	movsd	%xmm0, 56(%rax)
-	nop
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	pxor	%xmm1, %xmm1
+	movq	%rsi, (%rdi)
+	movups	%xmm0, 8(%rdi)
+	movq	%rax, 56(%rdi)
+	movups	%xmm1, 24(%rdi)
+	movups	%xmm0, 40(%rdi)
 	ret
 	.cfi_endproc
-.LFE2197:
+.LFE2232:
 	.size	_ZN4slay6engine6cameraC2ERS0_, .-_ZN4slay6engine6cameraC2ERS0_
 	.globl	_ZN4slay6engine6cameraC1ERS0_
 	.set	_ZN4slay6engine6cameraC1ERS0_,_ZN4slay6engine6cameraC2ERS0_
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera7GetZoomEv
 	.type	_ZN4slay6engine6camera7GetZoomEv, @function
 _ZN4slay6engine6camera7GetZoomEv:
-.LFB2199:
+.LFB2234:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movsd	56(%rax), %xmm0
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	movsd	56(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE2199:
+.LFE2234:
 	.size	_ZN4slay6engine6camera7GetZoomEv, .-_ZN4slay6engine6camera7GetZoomEv
-	.section	.rodata
+	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
-.LC2:
+.LC4:
 	.string	"slay::engine.camera.SetZoom(): Zoom must not be less than or equal to 0\nParams: Zoom: %lf\n"
 	.text
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera7SetZoomEd
 	.type	_ZN4slay6engine6camera7SetZoomEd, @function
 _ZN4slay6engine6camera7SetZoomEd:
-.LFB2200:
+.LFB2235:
 	.cfi_startproc
-	pushq	%rbp
+	pxor	%xmm1, %xmm1
+	comisd	%xmm0, %xmm1
+	jnb	.L12
+	movsd	%xmm0, 56(%rdi)
+	ret
+.L12:
+	pushq	%rax
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movsd	%xmm0, -16(%rbp)
-	pxor	%xmm0, %xmm0
-	comisd	-16(%rbp), %xmm0
-	jb	.L9
-	movq	-16(%rbp), %rax
-	movq	%rax, %xmm0
-	leaq	.LC2(%rip), %rax
-	movq	%rax, %rdi
+	leaq	.LC4(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L9:
-	movq	-8(%rbp), %rax
-	movsd	-16(%rbp), %xmm0
-	movsd	%xmm0, 56(%rax)
-	movq	-8(%rbp), %rax
-	movsd	56(%rax), %xmm0
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	leave
-	.cfi_def_cfa 7, 8
-	ret
 	.cfi_endproc
-.LFE2200:
+.LFE2235:
 	.size	_ZN4slay6engine6camera7SetZoomEd, .-_ZN4slay6engine6camera7SetZoomEd
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera9GetXActorEv
 	.type	_ZN4slay6engine6camera9GetXActorEv, @function
 _ZN4slay6engine6camera9GetXActorEv:
-.LFB2201:
+.LFB2236:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	movq	24(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE2201:
+.LFE2236:
 	.size	_ZN4slay6engine6camera9GetXActorEv, .-_ZN4slay6engine6camera9GetXActorEv
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera9GetYActorEv
 	.type	_ZN4slay6engine6camera9GetYActorEv, @function
 _ZN4slay6engine6camera9GetYActorEv:
-.LFB2202:
+.LFB2237:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	32(%rax), %rax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	movq	32(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE2202:
+.LFE2237:
 	.size	_ZN4slay6engine6camera9GetYActorEv, .-_ZN4slay6engine6camera9GetYActorEv
-	.section	.rodata
+	.section	.rodata.str1.8
 	.align 8
-.LC3:
+.LC5:
 	.string	"slay::engine.camera.Bind(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
-.LC4:
+.LC6:
 	.string	"slay::engine.camera.Bind(): Actor does not exists\nParams: Actor: %lld\n"
 	.text
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera4BindEy
 	.type	_ZN4slay6engine6camera4BindEy, @function
 _ZN4slay6engine6camera4BindEy:
-.LFB2203:
+.LFB2238:
 	.cfi_startproc
-	pushq	%rbp
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	cmpq	$0, -16(%rbp)
-	jne	.L15
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC3(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L15:
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	addq	$536, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
-	cmpq	%rax, -16(%rbp)
-	jnb	.L16
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	movq	(%rax), %rax
-	testq	%rax, %rax
-	jne	.L17
-.L16:
-	movl	$1, %eax
-	jmp	.L18
-.L17:
-	movl	$0, %eax
-.L18:
-	testb	%al, %al
-	je	.L19
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC4(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L19:
-	movq	-8(%rbp), %rax
-	movq	-16(%rbp), %rdx
-	movq	%rdx, 24(%rax)
-	movq	-8(%rbp), %rax
-	movq	-16(%rbp), %rdx
-	movq	%rdx, 32(%rax)
-	movl	$0, %eax
-	leave
-	.cfi_def_cfa 7, 8
+	testq	%rsi, %rsi
+	je	.L20
+	movq	(%rdi), %rax
+	cmpq	536(%rax), %rsi
+	jnb	.L17
+	movq	544(%rax), %rax
+	cmpq	$0, (%rax,%rsi,8)
+	je	.L17
+	movq	%rsi, %xmm0
+	xorl	%eax, %eax
+	punpcklqdq	%xmm0, %xmm0
+	movups	%xmm0, 24(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
+.L17:
+	.cfi_restore_state
+	leaq	.LC6(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L20:
+	leaq	.LC5(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
-.LFE2203:
+.LFE2238:
 	.size	_ZN4slay6engine6camera4BindEy, .-_ZN4slay6engine6camera4BindEy
-	.section	.rodata
+	.section	.rodata.str1.8
 	.align 8
-.LC5:
+.LC7:
 	.string	"slay::engine.camera.BindX(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
-.LC6:
+.LC8:
 	.string	"slay::engine.camera.BindX(): Actor does not exists\nParams: Actor: %lld\n"
 	.text
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera5BindXEy
 	.type	_ZN4slay6engine6camera5BindXEy, @function
 _ZN4slay6engine6camera5BindXEy:
-.LFB2204:
+.LFB2239:
 	.cfi_startproc
-	pushq	%rbp
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	cmpq	$0, -16(%rbp)
-	jne	.L22
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC5(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L22:
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	addq	$536, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
-	cmpq	%rax, -16(%rbp)
-	jnb	.L23
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	movq	(%rax), %rax
-	testq	%rax, %rax
-	jne	.L24
-.L23:
-	movl	$1, %eax
-	jmp	.L25
-.L24:
-	movl	$0, %eax
-.L25:
-	testb	%al, %al
+	testq	%rsi, %rsi
 	je	.L26
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC6(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
+	movq	(%rdi), %rax
+	cmpq	536(%rax), %rsi
+	jnb	.L23
+	movq	544(%rax), %rax
+	cmpq	$0, (%rax,%rsi,8)
+	je	.L23
+	movq	%rsi, 24(%rdi)
+	xorl	%eax, %eax
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+.L23:
+	.cfi_restore_state
+	leaq	.LC8(%rip), %rdi
+	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L26:
-	movq	-8(%rbp), %rax
-	movq	-16(%rbp), %rdx
-	movq	%rdx, 24(%rax)
-	movl	$0, %eax
-	leave
-	.cfi_def_cfa 7, 8
-	ret
+	leaq	.LC7(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
-.LFE2204:
+.LFE2239:
 	.size	_ZN4slay6engine6camera5BindXEy, .-_ZN4slay6engine6camera5BindXEy
-	.section	.rodata
+	.section	.rodata.str1.8
 	.align 8
-.LC7:
+.LC9:
 	.string	"slay::engine.camera.BindY(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
-.LC8:
+.LC10:
 	.string	"slay::engine.camera.BindY(): Actor does not exists\nParams: Actor: %lld\n"
 	.text
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera5BindYEy
 	.type	_ZN4slay6engine6camera5BindYEy, @function
 _ZN4slay6engine6camera5BindYEy:
-.LFB2205:
+.LFB2240:
 	.cfi_startproc
-	pushq	%rbp
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	cmpq	$0, -16(%rbp)
-	jne	.L29
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC7(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L29:
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	addq	$536, %rax
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
-	cmpq	%rax, -16(%rbp)
-	jnb	.L30
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	movq	(%rax), %rax
-	testq	%rax, %rax
-	jne	.L31
-.L30:
-	movl	$1, %eax
-	jmp	.L32
-.L31:
-	movl	$0, %eax
-.L32:
-	testb	%al, %al
-	je	.L33
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC8(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L33:
-	movq	-8(%rbp), %rax
-	movq	-16(%rbp), %rdx
-	movq	%rdx, 32(%rax)
-	movl	$0, %eax
-	leave
-	.cfi_def_cfa 7, 8
+	testq	%rsi, %rsi
+	je	.L32
+	movq	(%rdi), %rax
+	cmpq	536(%rax), %rsi
+	jnb	.L29
+	movq	544(%rax), %rax
+	cmpq	$0, (%rax,%rsi,8)
+	je	.L29
+	movq	%rsi, 32(%rdi)
+	xorl	%eax, %eax
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
+.L29:
+	.cfi_restore_state
+	leaq	.LC10(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L32:
+	leaq	.LC9(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
-.LFE2205:
+.LFE2240:
 	.size	_ZN4slay6engine6camera5BindYEy, .-_ZN4slay6engine6camera5BindYEy
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera6UnbindEv
 	.type	_ZN4slay6engine6camera6UnbindEv, @function
 _ZN4slay6engine6camera6UnbindEv:
-.LFB2206:
+.LFB2241:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	$0, 24(%rax)
-	movq	-8(%rbp), %rax
-	movq	$0, 32(%rax)
-	movl	$0, %eax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	pxor	%xmm0, %xmm0
+	xorl	%eax, %eax
+	movups	%xmm0, 24(%rdi)
 	ret
 	.cfi_endproc
-.LFE2206:
+.LFE2241:
 	.size	_ZN4slay6engine6camera6UnbindEv, .-_ZN4slay6engine6camera6UnbindEv
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera7UnbindXEv
 	.type	_ZN4slay6engine6camera7UnbindXEv, @function
 _ZN4slay6engine6camera7UnbindXEv:
-.LFB2207:
+.LFB2242:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	$0, 24(%rax)
-	movl	$0, %eax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	movq	$0, 24(%rdi)
+	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-.LFE2207:
+.LFE2242:
 	.size	_ZN4slay6engine6camera7UnbindXEv, .-_ZN4slay6engine6camera7UnbindXEv
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera7UnbindYEv
 	.type	_ZN4slay6engine6camera7UnbindYEv, @function
 _ZN4slay6engine6camera7UnbindYEv:
-.LFB2208:
+.LFB2243:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	$0, 32(%rax)
-	movl	$0, %eax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
+	movq	$0, 32(%rdi)
+	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-.LFE2208:
+.LFE2243:
 	.size	_ZN4slay6engine6camera7UnbindYEv, .-_ZN4slay6engine6camera7UnbindYEv
+	.section	.rodata.str1.8
+	.align 8
+.LC11:
+	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
+	.text
 	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6camera6UpdateEv
 	.type	_ZN4slay6engine6camera6UpdateEv, @function
 _ZN4slay6engine6camera6UpdateEv:
-.LFB2209:
+.LFB2244:
 	.cfi_startproc
-	pushq	%rbp
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
-	testq	%rax, %rax
-	je	.L42
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
-	movq	-8(%rbp), %rax
-	movq	24(%rax), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	movq	(%rax), %rax
-	movsd	152(%rax), %xmm0
-	movq	-8(%rbp), %rax
-	movsd	%xmm0, 40(%rax)
-.L42:
-	movq	-8(%rbp), %rax
-	movq	32(%rax), %rax
-	testq	%rax, %rax
-	je	.L43
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	leaq	536(%rax), %rdx
-	movq	-8(%rbp), %rax
-	movq	32(%rax), %rax
-	movq	%rax, %rsi
-	movq	%rdx, %rdi
-	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	movq	(%rax), %rax
-	movsd	160(%rax), %xmm0
-	movq	-8(%rbp), %rax
-	movsd	%xmm0, 48(%rax)
-.L43:
-	movl	$0, %eax
-	leave
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2209:
-	.size	_ZN4slay6engine6camera6UpdateEv, .-_ZN4slay6engine6camera6UpdateEv
-	.align 2
-	.globl	_ZN4slay6engine6camera9TransformEddttd
-	.type	_ZN4slay6engine6camera9TransformEddttd, @function
-_ZN4slay6engine6camera9TransformEddttd:
-.LFB2210:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	pushq	%rbx
-	subq	$104, %rsp
-	.cfi_offset 3, -24
-	movq	%rdi, -72(%rbp)
-	movsd	%xmm0, -80(%rbp)
-	movsd	%xmm1, -88(%rbp)
-	movl	%esi, %ecx
-	movl	%edx, %eax
-	movsd	%xmm2, -104(%rbp)
-	movl	%ecx, %edx
-	movw	%dx, -92(%rbp)
-	movw	%ax, -96(%rbp)
-	movq	%fs:40, %rax
-	movq	%rax, -24(%rbp)
+	movq	24(%rdi), %rsi
+	testq	%rsi, %rsi
+	jne	.L49
+	movq	32(%rdi), %rsi
+	testq	%rsi, %rsi
+	jne	.L50
+.L39:
 	xorl	%eax, %eax
-	pxor	%xmm0, %xmm0
-	ucomisd	-104(%rbp), %xmm0
-	jp	.L46
-	pxor	%xmm0, %xmm0
-	ucomisd	-104(%rbp), %xmm0
-	jne	.L46
-	movzwl	-92(%rbp), %eax
-	movl	%eax, -40(%rbp)
-	movzwl	-96(%rbp), %eax
-	movl	%eax, -36(%rbp)
-	movq	-80(%rbp), %rax
-	movq	%rax, %xmm0
-	call	round@PLT
-	cvttsd2sil	%xmm0, %eax
-	movl	-40(%rbp), %edx
-	sarl	%edx
-	subl	%edx, %eax
-	movl	%eax, -48(%rbp)
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	movzwl	42(%rax), %eax
-	movzwl	%ax, %ebx
-	movq	-88(%rbp), %rax
-	movq	%rax, %xmm0
-	call	round@PLT
-	cvttsd2sil	%xmm0, %eax
-	subl	%eax, %ebx
-	movl	%ebx, %ecx
-	movl	-36(%rbp), %eax
-	sarl	%eax
-	movl	%eax, %edx
-	movl	%ecx, %eax
-	subl	%edx, %eax
-	movl	%eax, -44(%rbp)
-	jmp	.L48
-.L46:
-	movq	-72(%rbp), %rax
-	movsd	56(%rax), %xmm0
-	movsd	-104(%rbp), %xmm1
-	mulsd	%xmm1, %xmm0
-	movsd	%xmm0, -56(%rbp)
-	movzwl	-92(%rbp), %eax
-	pxor	%xmm0, %xmm0
-	cvtsi2sdl	%eax, %xmm0
-	mulsd	-56(%rbp), %xmm0
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	call	round@PLT
-	cvttsd2sil	%xmm0, %eax
-	movl	%eax, -40(%rbp)
-	movzwl	-96(%rbp), %eax
-	pxor	%xmm0, %xmm0
-	cvtsi2sdl	%eax, %xmm0
-	mulsd	-56(%rbp), %xmm0
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	call	round@PLT
-	cvttsd2sil	%xmm0, %eax
-	movl	%eax, -36(%rbp)
-	movq	-72(%rbp), %rax
-	movsd	40(%rax), %xmm1
-	movq	-72(%rbp), %rax
-	movsd	8(%rax), %xmm0
-	divsd	-56(%rbp), %xmm0
-	addsd	%xmm0, %xmm1
-	movsd	-80(%rbp), %xmm0
-	subsd	%xmm1, %xmm0
-	mulsd	-56(%rbp), %xmm0
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	call	round@PLT
-	cvttsd2sil	%xmm0, %eax
-	movl	-40(%rbp), %edx
-	sarl	%edx
-	subl	%edx, %eax
-	movl	%eax, -48(%rbp)
-	movq	-72(%rbp), %rax
-	movq	(%rax), %rax
-	movzwl	42(%rax), %eax
-	movzwl	%ax, %ebx
-	movq	-72(%rbp), %rax
-	movsd	48(%rax), %xmm1
-	movq	-72(%rbp), %rax
-	movsd	16(%rax), %xmm0
-	divsd	-56(%rbp), %xmm0
-	addsd	%xmm0, %xmm1
-	movsd	-88(%rbp), %xmm0
-	subsd	%xmm1, %xmm0
-	mulsd	-56(%rbp), %xmm0
-	movq	%xmm0, %rax
-	movq	%rax, %xmm0
-	call	round@PLT
-	cvttsd2sil	%xmm0, %eax
-	movl	%ebx, %ecx
-	subl	%eax, %ecx
-	movl	-36(%rbp), %eax
-	sarl	%eax
-	movl	%eax, %edx
-	movl	%ecx, %eax
-	subl	%edx, %eax
-	movl	%eax, -44(%rbp)
-.L48:
-	movq	-48(%rbp), %rax
-	movq	-40(%rbp), %rdx
-	movq	-24(%rbp), %rcx
-	subq	%fs:40, %rcx
-	je	.L50
-	call	__stack_chk_fail@PLT
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L49:
+	.cfi_restore_state
+	movq	(%rdi), %rax
+	movq	544(%rax), %rdx
+	cmpq	536(%rax), %rsi
+	jnb	.L48
+	movq	(%rdx,%rsi,8), %rax
+	movq	32(%rdi), %rsi
+	movsd	152(%rax), %xmm0
+	movsd	%xmm0, 40(%rdi)
+	testq	%rsi, %rsi
+	je	.L39
 .L50:
-	movq	-8(%rbp), %rbx
-	leave
-	.cfi_def_cfa 7, 8
+	movq	(%rdi), %rax
+	movq	544(%rax), %rdx
+	cmpq	536(%rax), %rsi
+	jnb	.L48
+	movq	(%rdx,%rsi,8), %rax
+	movsd	160(%rax), %xmm0
+	xorl	%eax, %eax
+	movsd	%xmm0, 48(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-	.cfi_endproc
-.LFE2210:
-	.size	_ZN4slay6engine6camera9TransformEddttd, .-_ZN4slay6engine6camera9TransformEddttd
-	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv,comdat
-	.align 2
-	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
-	.type	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv, @function
-_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv:
-.LFB2275:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
-	.cfi_endproc
-.LFE2275:
-	.size	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv, .-_ZN3neo5arrayIPN4slay6engine6actors5actorEE6LengthEv
-	.section	.rodata
-	.align 8
-.LC9:
-	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
-	.section	.text._ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy,"axG",@progbits,_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy,comdat
-	.align 2
-	.weak	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	.type	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy, @function
-_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy:
-.LFB2276:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	movq	-8(%rbp), %rax
-	movq	(%rax), %rax
-	cmpq	%rax, -16(%rbp)
-	jb	.L55
-	movq	-16(%rbp), %rax
-	movq	%rax, %rsi
-	leaq	.LC9(%rip), %rax
-	movq	%rax, %rdi
-	movl	$0, %eax
+.L48:
+	.cfi_restore_state
+	leaq	.LC11(%rip), %rdi
+	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L55:
-	movq	-8(%rbp), %rax
-	movq	8(%rax), %rax
-	movq	-16(%rbp), %rdx
-	salq	$3, %rdx
-	addq	%rdx, %rax
-	leave
-	.cfi_def_cfa 7, 8
-	ret
 	.cfi_endproc
-.LFE2276:
-	.size	_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy, .-_ZN3neo5arrayIPN4slay6engine6actors5actorEEixEy
-	.section	.rodata
+.LFE2244:
+	.size	_ZN4slay6engine6camera6UpdateEv, .-_ZN4slay6engine6camera6UpdateEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6camera9TransformEddttd
+	.type	_ZN4slay6engine6camera9TransformEddttd, @function
+_ZN4slay6engine6camera9TransformEddttd:
+.LFB2245:
+	.cfi_startproc
+	pushq	%r15
+	.cfi_def_cfa_offset 16
+	.cfi_offset 15, -16
+	movapd	%xmm0, %xmm3
+	pxor	%xmm0, %xmm0
+	movq	%xmm1, %r15
+	pushq	%r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
+	movq	%rdi, %r14
+	pushq	%r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
+	pushq	%r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	movzwl	%dx, %r12d
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	movzwl	%si, %ebx
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 80
+	ucomisd	%xmm0, %xmm2
+	movq	(%rdi), %rax
+	movzwl	42(%rax), %r13d
+	jp	.L52
+	jne	.L52
+	movapd	%xmm3, %xmm0
+	call	round@PLT
+	movl	%ebx, %edx
+	cvttsd2sil	%xmm0, %ebp
+	sarl	%edx
+	movq	%r15, %xmm0
+	subl	%edx, %ebp
+.L57:
+	call	round@PLT
+	movl	%r13d, %edx
+	addq	$24, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 56
+	cvttsd2sil	%xmm0, %eax
+	subl	%eax, %edx
+	movl	%r12d, %eax
+	salq	$32, %r12
+	sarl	%eax
+	subl	%eax, %edx
+	movl	%ebp, %eax
+	salq	$32, %rdx
+	orq	%rdx, %rax
+	movl	%ebx, %edx
+	popq	%rbx
+	.cfi_def_cfa_offset 48
+	popq	%rbp
+	.cfi_def_cfa_offset 40
+	orq	%r12, %rdx
+	popq	%r12
+	.cfi_def_cfa_offset 32
+	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L52:
+	.cfi_restore_state
+	mulsd	56(%r14), %xmm2
+	pxor	%xmm0, %xmm0
+	movsd	%xmm3, 8(%rsp)
+	cvtsi2sdl	%ebx, %xmm0
+	mulsd	%xmm2, %xmm0
+	movsd	%xmm2, (%rsp)
+	call	round@PLT
+	movsd	(%rsp), %xmm2
+	cvttsd2sil	%xmm0, %ebx
+	pxor	%xmm0, %xmm0
+	cvtsi2sdl	%r12d, %xmm0
+	mulsd	%xmm2, %xmm0
+	call	round@PLT
+	movsd	(%rsp), %xmm2
+	movsd	8(%rsp), %xmm3
+	cvttsd2sil	%xmm0, %r12d
+	movsd	8(%r14), %xmm0
+	divsd	%xmm2, %xmm0
+	addsd	40(%r14), %xmm0
+	subsd	%xmm0, %xmm3
+	mulsd	%xmm2, %xmm3
+	movapd	%xmm3, %xmm0
+	call	round@PLT
+	movsd	(%rsp), %xmm2
+	movsd	16(%r14), %xmm1
+	movl	%ebx, %edx
+	cvttsd2sil	%xmm0, %ebp
+	movq	%r15, %xmm0
+	sarl	%edx
+	divsd	%xmm2, %xmm1
+	subl	%edx, %ebp
+	addsd	48(%r14), %xmm1
+	subsd	%xmm1, %xmm0
+	mulsd	%xmm2, %xmm0
+	jmp	.L57
+	.cfi_endproc
+.LFE2245:
+	.size	_ZN4slay6engine6camera9TransformEddttd, .-_ZN4slay6engine6camera9TransformEddttd
+	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
-.LC1:
+.LC0:
 	.long	0
 	.long	1072693248
 	.ident	"GCC: (GNU) 13.2.1 20230801"
