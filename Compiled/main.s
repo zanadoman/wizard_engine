@@ -13,10 +13,8 @@ main:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	pushq	%rbx
-	subq	$824, %rsp
+	subq	$808, %rsp
 	.cfi_offset 3, -24
-	movl	%edi, -820(%rbp)
-	movq	%rsi, -832(%rbp)
 	movq	%fs:40, %rax
 	movq	%rax, -24(%rbp)
 	xorl	%eax, %eax

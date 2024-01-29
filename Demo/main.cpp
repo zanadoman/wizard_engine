@@ -12,7 +12,7 @@
 
 #undef main
 
-sint32 main(sint32 argc, char* *argv)
+sint32 main()
 {
     engine Engine(NULL, 1920, 1080, 1000 / 165);
 
