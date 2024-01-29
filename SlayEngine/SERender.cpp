@@ -330,8 +330,19 @@ namespace slay
     uint8 engine::render::OrderByLayerMerge(uint64 Left, uint64 Middle, uint64 Right)
     {
         uint64 i, j, k, n1, n2;
-        token left[(n1 = Middle - Left + 1)];
-        token right[(n2 = Right - Middle)];
+        token* left;
+        token* right;
+
+        if ((left = (token*)malloc(sizeof(token) * (n1 = Middle - Left + 1))) == NULL)
+        {
+            printf("slay::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
+            exit(1);
+        }
+        if ((right = (token*)malloc(sizeof(token) * (n2 = Right - Middle))) == NULL)
+        {
+            printf("slay::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
+            exit(1);
+        }
 
         for (i = 0; i < n1; i++)
         {
@@ -369,6 +380,9 @@ namespace slay
             k++;
         }
 
+        free(left);
+        free(right);
+
         return 0;
     }
 
@@ -401,8 +415,19 @@ namespace slay
     uint8 engine::render::OrderByPriorityMerge(uint64 Left, uint64 Middle, uint64 Right)
     {
         uint64 i, j, k, n1, n2;
-        token left[(n1 = Middle - Left + 1)];
-        token right[(n2 = Right - Middle)];
+        token* left;
+        token* right;
+
+        if ((left = (token*)malloc(sizeof(token) * (n1 = Middle - Left + 1))) == NULL)
+        {
+            printf("slay::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
+            exit(1);
+        }
+        if ((right = (token*)malloc(sizeof(token) * (n2 = Right - Middle))) == NULL)
+        {
+            printf("slay::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
+            exit(1);
+        }
 
         for (i = 0; i < n1; i++)
         {
@@ -439,6 +464,9 @@ namespace slay
             j++;
             k++;
         }
+
+        free(left);
+        free(right);
 
         return 0;
     }

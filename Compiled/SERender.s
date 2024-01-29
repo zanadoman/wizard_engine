@@ -1280,6 +1280,11 @@ _ZN4slay6engine6render14SelectionStageEv:
 	.cfi_endproc
 .LFE2248:
 	.size	_ZN4slay6engine6render14SelectionStageEv, .-_ZN4slay6engine6render14SelectionStageEv
+	.section	.rodata.str1.8
+	.align 8
+.LC11:
+	.string	"slay::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld"
+	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6render17OrderByLayerMergeEyyy
@@ -1287,221 +1292,251 @@ _ZN4slay6engine6render14SelectionStageEv:
 _ZN4slay6engine6render17OrderByLayerMergeEyyy:
 .LFB2251:
 	.cfi_startproc
-	pushq	%rbp
+	movq	%rdx, %rax
+	pushq	%r15
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsi, %r8
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
+	.cfi_offset 15, -16
+	movq	%rdx, %r15
+	subq	%rsi, %rax
 	pushq	%r14
-	pushq	%r13
+	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
+	leaq	1(%rax), %r14
+	pushq	%r13
+	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movq	%rdx, %r13
-	movq	%r13, %r11
+	movq	%rsi, %r13
 	pushq	%r12
-	subq	%r13, %rcx
-	pushq	%rbx
-	subq	%rsi, %r11
+	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	.cfi_offset 3, -48
-	leaq	(%rcx,%rcx,2), %r12
-	movq	%rcx, %r10
-	leaq	1(%r11), %r9
-	salq	$4, %r12
-	leaq	(%r9,%r9,2), %r14
-	subq	$16, %rsp
-	salq	$4, %r14
-	movq	%fs:40, %rdx
-	movq	%rdx, -40(%rbp)
+	leaq	(%r14,%r14,2), %r10
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	movq	%r10, %rbx
+	salq	$4, %rbx
+	subq	$56, %rsp
+	.cfi_def_cfa_offset 112
+	movq	%rdi, 32(%rsp)
+	movq	%rbx, %rdi
+	movq	%rcx, 8(%rsp)
+	movq	%rax, 40(%rsp)
+	call	malloc@PLT
+	testq	%rax, %rax
+	je	.L265
+	movq	8(%rsp), %rsi
+	movq	%rax, %rbp
+	subq	%r15, %rsi
+	leaq	(%rsi,%rsi,2), %rdi
+	movq	%rsi, 24(%rsp)
+	salq	$4, %rdi
+	movq	%rdi, 16(%rsp)
+	call	malloc@PLT
+	movq	%rax, %r12
+	testq	%rax, %rax
+	je	.L265
+	testq	%r14, %r14
+	movq	16(%rsp), %rdi
+	movq	24(%rsp), %rsi
+	je	.L303
+	movq	32(%rsp), %rax
 	xorl	%edx, %edx
-	subq	%r14, %rsp
-	movq	%rsp, %rbx
-	subq	%r12, %rsp
-	movq	%rsp, %rcx
-	testq	%r9, %r9
-	je	.L299
-	leaq	(%rsi,%rsi), %rax
-	movq	40(%rdi), %rdi
-	xorl	%edx, %edx
-	leaq	(%rax,%rsi), %rsi
-	salq	$4, %rsi
-	addq	%rdi, %rsi
-	.p2align 4,,10
-	.p2align 3
-.L268:
-	movdqu	(%rsi,%rdx), %xmm1
-	movdqu	16(%rsi,%rdx), %xmm2
-	movdqu	28(%rsi,%rdx), %xmm3
-	movups	%xmm2, 16(%rbx,%rdx)
-	movups	%xmm1, (%rbx,%rdx)
-	movups	%xmm3, 28(%rbx,%rdx)
-	addq	$48, %rdx
-	cmpq	%rdx, %r14
-	jne	.L268
-	testq	%r10, %r10
-	je	.L300
-.L265:
-	leaq	0(%r13,%r13,2), %rsi
-	xorl	%edx, %edx
-	salq	$4, %rsi
-	addq	%rdi, %rsi
+	movq	40(%rax), %r8
+	leaq	(%r13,%r13), %rax
+	leaq	(%rax,%r13), %r11
+	salq	$4, %r11
+	addq	%r8, %r11
 	.p2align 4,,10
 	.p2align 3
 .L270:
-	movdqu	48(%rsi,%rdx), %xmm4
-	movdqu	64(%rsi,%rdx), %xmm5
-	movdqu	76(%rsi,%rdx), %xmm6
-	movups	%xmm5, 16(%rcx,%rdx)
-	movups	%xmm4, (%rcx,%rdx)
-	movups	%xmm6, 28(%rcx,%rdx)
+	movdqu	(%r11,%rdx), %xmm1
+	movdqu	16(%r11,%rdx), %xmm2
+	movdqu	28(%r11,%rdx), %xmm3
+	movups	%xmm2, 16(%rbp,%rdx)
+	movups	%xmm1, 0(%rbp,%rdx)
+	movups	%xmm3, 28(%rbp,%rdx)
 	addq	$48, %rdx
-	cmpq	%rdx, %r12
+	cmpq	%rdx, %rbx
 	jne	.L270
-	testq	%r9, %r9
-	je	.L282
-	addq	%r8, %rax
-	xorl	%r12d, %r12d
-	xorl	%esi, %esi
-	salq	$4, %rax
-	addq	%rdi, %rax
-	jmp	.L276
+	xorl	%r10d, %r10d
+	xorl	%r9d, %r9d
+	testq	%rsi, %rsi
+	je	.L269
+.L267:
+	leaq	(%r15,%r15,2), %r9
+	xorl	%edx, %edx
+	salq	$4, %r9
+	addq	%r8, %r9
 	.p2align 4,,10
 	.p2align 3
-.L302:
-	movdqu	0(%r13), %xmm5
-	addq	$1, %r12
-	addq	$1, %r8
+.L272:
+	movdqu	48(%r9,%rdx), %xmm4
+	movdqu	64(%r9,%rdx), %xmm5
+	movdqu	76(%r9,%rdx), %xmm6
+	movups	%xmm5, 16(%r12,%rdx)
+	movups	%xmm4, (%r12,%rdx)
+	movups	%xmm6, 28(%r12,%rdx)
+	addq	$48, %rdx
+	cmpq	%rdx, %rdi
+	jne	.L272
+	testq	%r14, %r14
+	je	.L283
+	addq	%r13, %rax
+	xorl	%r10d, %r10d
+	xorl	%r9d, %r9d
+	salq	$4, %rax
+	addq	%r8, %rax
+	jmp	.L278
+	.p2align 4,,10
+	.p2align 3
+.L305:
+	movdqu	(%rdi), %xmm5
+	addq	$1, %r10
+	addq	$1, %r13
 	addq	$48, %rax
-	movdqu	16(%r13), %xmm6
-	movdqu	28(%r13), %xmm7
+	movdqu	16(%rdi), %xmm6
+	movdqu	28(%rdi), %xmm7
 	movups	%xmm5, -48(%rax)
 	movups	%xmm6, -32(%rax)
 	movups	%xmm7, -20(%rax)
-	cmpq	%r9, %rsi
-	jnb	.L278
-.L303:
-	cmpq	%r10, %r12
-	jnb	.L301
-.L276:
-	leaq	(%r12,%r12,2), %r13
-	leaq	(%rsi,%rsi,2), %rdx
-	salq	$4, %r13
+	cmpq	%r14, %r9
+	jnb	.L280
+.L306:
+	cmpq	%rsi, %r10
+	jnb	.L304
+.L278:
+	leaq	(%r10,%r10,2), %rdi
+	leaq	(%r9,%r9,2), %rdx
+	salq	$4, %rdi
 	salq	$4, %rdx
-	addq	%rbx, %rdx
-	addq	%rcx, %r13
+	addq	%rbp, %rdx
+	addq	%r12, %rdi
 	movsd	16(%rdx), %xmm0
-	comisd	16(%r13), %xmm0
-	ja	.L302
+	comisd	16(%rdi), %xmm0
+	ja	.L305
 	movdqu	(%rdx), %xmm5
-	addq	$1, %rsi
-	addq	$1, %r8
+	addq	$1, %r9
+	addq	$1, %r13
 	addq	$48, %rax
 	movdqu	16(%rdx), %xmm6
 	movdqu	28(%rdx), %xmm7
 	movups	%xmm5, -48(%rax)
 	movups	%xmm6, -32(%rax)
 	movups	%xmm7, -20(%rax)
-	cmpq	%r9, %rsi
-	jb	.L303
-	.p2align 4,,10
-	.p2align 3
-.L278:
-	cmpq	%r10, %r12
-	jnb	.L266
-	leaq	(%r8,%r8), %rax
-.L272:
-	subq	%r12, %r10
-	leaq	(%r12,%r12,2), %rdx
-	addq	%r8, %rax
-	salq	$4, %rax
-	leaq	(%r10,%r10,2), %rsi
-	salq	$4, %rdx
-	addq	%rax, %rdi
-	salq	$4, %rsi
-	addq	%rdx, %rcx
-	xorl	%eax, %eax
+	cmpq	%r14, %r9
+	jb	.L306
 	.p2align 4,,10
 	.p2align 3
 .L280:
-	movdqu	(%rcx,%rax), %xmm2
-	movdqu	16(%rcx,%rax), %xmm3
-	movdqu	28(%rcx,%rax), %xmm4
-	movups	%xmm3, 16(%rdi,%rax)
-	movups	%xmm2, (%rdi,%rax)
-	movups	%xmm4, 28(%rdi,%rax)
+	cmpq	%rsi, %r10
+	jnb	.L268
+	leaq	(%r13,%r13), %rax
+.L274:
+	subq	%r10, %rsi
+	leaq	(%r10,%r10,2), %rdx
+	addq	%r13, %rax
+	salq	$4, %rax
+	leaq	(%rsi,%rsi,2), %rcx
+	salq	$4, %rdx
+	addq	%rax, %r8
+	salq	$4, %rcx
+	addq	%r12, %rdx
+	xorl	%eax, %eax
+	.p2align 4,,10
+	.p2align 3
+.L282:
+	movdqu	(%rdx,%rax), %xmm2
+	movdqu	16(%rdx,%rax), %xmm3
+	movdqu	28(%rdx,%rax), %xmm4
+	movups	%xmm3, 16(%r8,%rax)
+	movups	%xmm2, (%r8,%rax)
+	movups	%xmm4, 28(%r8,%rax)
 	addq	$48, %rax
-	cmpq	%rax, %rsi
-	jne	.L280
-.L266:
-	movq	-40(%rbp), %rax
-	subq	%fs:40, %rax
-	jne	.L304
-	leaq	-32(%rbp), %rsp
+	cmpq	%rax, %rcx
+	jne	.L282
+.L268:
+	movq	%rbp, %rdi
+	call	free@PLT
+	movq	%r12, %rdi
+	call	free@PLT
+	addq	$56, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
 	popq	%rbx
-	popq	%r12
-	popq	%r13
-	popq	%r14
+	.cfi_def_cfa_offset 48
 	popq	%rbp
-	.cfi_remember_state
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 40
+	popq	%r12
+	.cfi_def_cfa_offset 32
+	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
+	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L301:
+.L304:
 	.cfi_restore_state
-	cmpq	%r9, %rsi
-	jnb	.L278
-	leaq	(%r8,%r8), %rax
-.L267:
-	leaq	(%rsi,%rsi,2), %rdx
-	addq	%r8, %rax
-	movq	%rsi, %r13
-	salq	$4, %rdx
+	cmpq	%r14, %r9
+	jnb	.L280
+	leaq	(%r13,%r13), %rax
+.L269:
+	leaq	(%r9,%r9,2), %rdi
+	addq	%r13, %rax
+	movq	%r9, %r11
 	salq	$4, %rax
-	addq	%rdx, %rbx
-	leaq	(%rdi,%rax), %rdx
+	salq	$4, %rdi
+	leaq	(%r8,%rax), %rdx
+	addq	%rbp, %rdi
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L279:
-	movdqu	(%rbx,%rax), %xmm7
-	movdqu	16(%rbx,%rax), %xmm0
-	addq	$1, %r13
-	movdqu	28(%rbx,%rax), %xmm1
+.L281:
+	movdqu	(%rdi,%rax), %xmm7
+	movdqu	16(%rdi,%rax), %xmm0
+	addq	$1, %r11
+	movdqu	28(%rdi,%rax), %xmm1
 	movups	%xmm0, 16(%rdx,%rax)
 	movups	%xmm7, (%rdx,%rax)
 	movups	%xmm1, 28(%rdx,%rax)
 	addq	$48, %rax
-	cmpq	%r9, %r13
-	jb	.L279
-	subq	%rsi, %r11
-	addq	$1, %rsi
+	cmpq	%r14, %r11
+	jb	.L281
+	movq	40(%rsp), %rbx
 	xorl	%eax, %eax
-	cmpq	%rsi, %r9
-	cmovb	%rax, %r11
-	leaq	1(%r8,%r11), %r8
-	jmp	.L278
+	subq	%r9, %rbx
+	addq	$1, %r9
+	cmpq	%r9, %r14
+	cmovb	%rax, %rbx
+	leaq	1(%r13,%rbx), %r13
+	jmp	.L280
 	.p2align 4,,10
 	.p2align 3
-.L299:
-	testq	%r10, %r10
-	je	.L266
-	movq	40(%rdi), %rdi
-	leaq	(%rsi,%rsi), %rax
-	jmp	.L265
-	.p2align 4,,10
-	.p2align 3
-.L300:
-	xorl	%r12d, %r12d
-	xorl	%esi, %esi
+.L303:
+	testq	%rsi, %rsi
+	je	.L268
+	movq	32(%rsp), %rax
+	movq	40(%rax), %r8
+	leaq	(%r13,%r13), %rax
 	jmp	.L267
-.L282:
-	xorl	%r12d, %r12d
-	jmp	.L272
-.L304:
-	call	__stack_chk_fail@PLT
+.L283:
+	xorl	%r10d, %r10d
+	jmp	.L274
+.L265:
+	movq	8(%rsp), %rcx
+	movq	%r15, %rdx
+	movq	%r13, %rsi
+	xorl	%eax, %eax
+	leaq	.LC11(%rip), %rdi
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
 .LFE2251:
 	.size	_ZN4slay6engine6render17OrderByLayerMergeEyyy, .-_ZN4slay6engine6render17OrderByLayerMergeEyyy
@@ -1534,23 +1569,23 @@ _ZN4slay6engine6render12OrderByLayerEyy:
 	.cfi_def_cfa_offset 80
 	movq	%rsi, 8(%rsp)
 	cmpq	$1, %rdx
-	jbe	.L306
+	jbe	.L308
 	leaq	-1(%rdx), %r15
 	movq	%rdi, %r13
 	movq	%rdx, %r14
 	movl	$1, %ebp
 	cmpq	%r15, %rsi
-	jnb	.L306
+	jnb	.L308
 	.p2align 4,,10
 	.p2align 3
-.L307:
+.L309:
 	movq	%rbp, %r12
 	movq	8(%rsp), %rbx
 	addq	%rbp, %rbp
 	subq	$1, %r12
 	.p2align 4,,10
 	.p2align 3
-.L309:
+.L311:
 	leaq	(%rbx,%r12), %rdx
 	movq	%rbx, %rsi
 	movq	%r13, %rdi
@@ -1562,10 +1597,10 @@ _ZN4slay6engine6render12OrderByLayerEyy:
 	cmova	%r15, %rcx
 	call	_ZN4slay6engine6render17OrderByLayerMergeEyyy
 	cmpq	%r15, %rbx
-	jb	.L309
+	jb	.L311
 	cmpq	%r14, %rbp
-	jb	.L307
-.L306:
+	jb	.L309
+.L308:
 	addq	$24, %rsp
 	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
@@ -1585,6 +1620,11 @@ _ZN4slay6engine6render12OrderByLayerEyy:
 	.cfi_endproc
 .LFE2250:
 	.size	_ZN4slay6engine6render12OrderByLayerEyy, .-_ZN4slay6engine6render12OrderByLayerEyy
+	.section	.rodata.str1.8
+	.align 8
+.LC12:
+	.string	"slay::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld"
+	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6render20OrderByPriorityMergeEyyy
@@ -1592,221 +1632,251 @@ _ZN4slay6engine6render12OrderByLayerEyy:
 _ZN4slay6engine6render20OrderByPriorityMergeEyyy:
 .LFB2253:
 	.cfi_startproc
-	pushq	%rbp
+	movq	%rdx, %rax
+	pushq	%r15
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsi, %r8
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
+	.cfi_offset 15, -16
+	movq	%rdx, %r15
+	subq	%rsi, %rax
 	pushq	%r14
-	pushq	%r13
+	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
+	leaq	1(%rax), %r14
+	pushq	%r13
+	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movq	%rdx, %r13
-	movq	%r13, %r11
+	movq	%rsi, %r13
 	pushq	%r12
-	subq	%r13, %rcx
-	pushq	%rbx
-	subq	%rsi, %r11
+	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	.cfi_offset 3, -48
-	leaq	(%rcx,%rcx,2), %r12
-	movq	%rcx, %r10
-	leaq	1(%r11), %r9
-	salq	$4, %r12
-	leaq	(%r9,%r9,2), %r14
-	subq	$16, %rsp
-	salq	$4, %r14
-	movq	%fs:40, %rdx
-	movq	%rdx, -40(%rbp)
+	leaq	(%r14,%r14,2), %r10
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	movq	%r10, %rbx
+	salq	$4, %rbx
+	subq	$56, %rsp
+	.cfi_def_cfa_offset 112
+	movq	%rdi, 32(%rsp)
+	movq	%rbx, %rdi
+	movq	%rcx, 8(%rsp)
+	movq	%rax, 40(%rsp)
+	call	malloc@PLT
+	testq	%rax, %rax
+	je	.L319
+	movq	8(%rsp), %rsi
+	movq	%rax, %rbp
+	subq	%r15, %rsi
+	leaq	(%rsi,%rsi,2), %rdi
+	movq	%rsi, 24(%rsp)
+	salq	$4, %rdi
+	movq	%rdi, 16(%rsp)
+	call	malloc@PLT
+	movq	%rax, %r12
+	testq	%rax, %rax
+	je	.L319
+	testq	%r14, %r14
+	movq	16(%rsp), %rdi
+	movq	24(%rsp), %rsi
+	je	.L354
+	movq	32(%rsp), %rax
 	xorl	%edx, %edx
-	subq	%r14, %rsp
-	movq	%rsp, %rbx
-	subq	%r12, %rsp
-	movq	%rsp, %rcx
-	testq	%r9, %r9
-	je	.L348
-	leaq	(%rsi,%rsi), %rax
-	movq	40(%rdi), %rdi
-	xorl	%edx, %edx
-	leaq	(%rax,%rsi), %rsi
-	salq	$4, %rsi
-	addq	%rdi, %rsi
+	movq	40(%rax), %r8
+	leaq	(%r13,%r13), %rax
+	leaq	(%rax,%r13), %r11
+	salq	$4, %r11
+	addq	%r8, %r11
 	.p2align 4,,10
 	.p2align 3
-.L320:
-	movdqu	(%rsi,%rdx), %xmm0
-	movdqu	16(%rsi,%rdx), %xmm1
-	movdqu	28(%rsi,%rdx), %xmm2
-	movups	%xmm1, 16(%rbx,%rdx)
-	movups	%xmm0, (%rbx,%rdx)
-	movups	%xmm2, 28(%rbx,%rdx)
+.L324:
+	movdqu	(%r11,%rdx), %xmm0
+	movdqu	16(%r11,%rdx), %xmm1
+	movdqu	28(%r11,%rdx), %xmm2
+	movups	%xmm1, 16(%rbp,%rdx)
+	movups	%xmm0, 0(%rbp,%rdx)
+	movups	%xmm2, 28(%rbp,%rdx)
 	addq	$48, %rdx
-	cmpq	%rdx, %r14
-	jne	.L320
-	testq	%r10, %r10
-	je	.L349
-.L317:
-	leaq	0(%r13,%r13,2), %rsi
+	cmpq	%rdx, %rbx
+	jne	.L324
+	xorl	%r10d, %r10d
+	xorl	%r9d, %r9d
+	testq	%rsi, %rsi
+	je	.L323
+.L321:
+	leaq	(%r15,%r15,2), %r9
 	xorl	%edx, %edx
-	salq	$4, %rsi
-	addq	%rdi, %rsi
+	salq	$4, %r9
+	addq	%r8, %r9
 	.p2align 4,,10
 	.p2align 3
-.L322:
-	movdqu	48(%rsi,%rdx), %xmm3
-	movdqu	64(%rsi,%rdx), %xmm4
-	movdqu	76(%rsi,%rdx), %xmm5
-	movups	%xmm4, 16(%rcx,%rdx)
-	movups	%xmm3, (%rcx,%rdx)
-	movups	%xmm5, 28(%rcx,%rdx)
+.L326:
+	movdqu	48(%r9,%rdx), %xmm3
+	movdqu	64(%r9,%rdx), %xmm4
+	movdqu	76(%r9,%rdx), %xmm5
+	movups	%xmm4, 16(%r12,%rdx)
+	movups	%xmm3, (%r12,%rdx)
+	movups	%xmm5, 28(%r12,%rdx)
 	addq	$48, %rdx
-	cmpq	%rdx, %r12
-	jne	.L322
-	testq	%r9, %r9
-	je	.L333
-	addq	%r8, %rax
-	xorl	%r12d, %r12d
-	xorl	%esi, %esi
+	cmpq	%rdx, %rdi
+	jne	.L326
+	testq	%r14, %r14
+	je	.L336
+	addq	%r13, %rax
+	xorl	%r10d, %r10d
+	xorl	%r9d, %r9d
 	salq	$4, %rax
-	addq	%rdi, %rax
-	jmp	.L327
+	addq	%r8, %rax
+	jmp	.L331
 	.p2align 4,,10
 	.p2align 3
-.L351:
-	movdqu	0(%r13), %xmm4
-	addq	$1, %r12
-	addq	$1, %r8
+.L356:
+	movdqu	(%rdi), %xmm4
+	addq	$1, %r10
+	addq	$1, %r13
 	addq	$48, %rax
-	movdqu	16(%r13), %xmm5
-	movdqu	28(%r13), %xmm6
+	movdqu	16(%rdi), %xmm5
+	movdqu	28(%rdi), %xmm6
 	movups	%xmm4, -48(%rax)
 	movups	%xmm5, -32(%rax)
 	movups	%xmm6, -20(%rax)
-	cmpq	%r9, %rsi
-	jnb	.L329
-.L352:
-	cmpq	%r10, %r12
-	jnb	.L350
-.L327:
-	leaq	(%r12,%r12,2), %r13
-	leaq	(%rsi,%rsi,2), %rdx
-	salq	$4, %r13
+	cmpq	%r14, %r9
+	jnb	.L333
+.L357:
+	cmpq	%rsi, %r10
+	jnb	.L355
+.L331:
+	leaq	(%r10,%r10,2), %rdi
+	leaq	(%r9,%r9,2), %rdx
+	salq	$4, %rdi
 	salq	$4, %rdx
-	addq	%rbx, %rdx
-	addq	%rcx, %r13
-	movzbl	24(%rdx), %r14d
-	cmpb	%r14b, 24(%r13)
-	jb	.L351
+	addq	%rbp, %rdx
+	addq	%r12, %rdi
+	movzbl	24(%rdx), %ebx
+	cmpb	%bl, 24(%rdi)
+	jb	.L356
 	movdqu	(%rdx), %xmm7
-	addq	$1, %rsi
-	addq	$1, %r8
+	addq	$1, %r9
+	addq	$1, %r13
 	addq	$48, %rax
 	movdqu	16(%rdx), %xmm4
 	movdqu	28(%rdx), %xmm5
 	movups	%xmm7, -48(%rax)
 	movups	%xmm4, -32(%rax)
 	movups	%xmm5, -20(%rax)
-	cmpq	%r9, %rsi
-	jb	.L352
+	cmpq	%r14, %r9
+	jb	.L357
 	.p2align 4,,10
 	.p2align 3
-.L329:
-	cmpq	%r10, %r12
-	jnb	.L318
-	leaq	(%r8,%r8), %rax
-.L324:
-	subq	%r12, %r10
-	leaq	(%r12,%r12,2), %rdx
-	addq	%r8, %rax
+.L333:
+	cmpq	%rsi, %r10
+	jnb	.L322
+	leaq	(%r13,%r13), %rax
+.L328:
+	subq	%r10, %rsi
+	leaq	(%r10,%r10,2), %rdx
+	addq	%r13, %rax
 	salq	$4, %rax
-	leaq	(%r10,%r10,2), %rsi
+	leaq	(%rsi,%rsi,2), %rcx
 	salq	$4, %rdx
-	addq	%rax, %rdi
-	salq	$4, %rsi
-	addq	%rdx, %rcx
+	addq	%rax, %r8
+	salq	$4, %rcx
+	addq	%r12, %rdx
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L331:
-	movdqu	(%rcx,%rax), %xmm1
-	movdqu	16(%rcx,%rax), %xmm2
-	movdqu	28(%rcx,%rax), %xmm3
-	movups	%xmm2, 16(%rdi,%rax)
-	movups	%xmm1, (%rdi,%rax)
-	movups	%xmm3, 28(%rdi,%rax)
+.L335:
+	movdqu	(%rdx,%rax), %xmm1
+	movdqu	16(%rdx,%rax), %xmm2
+	movdqu	28(%rdx,%rax), %xmm3
+	movups	%xmm2, 16(%r8,%rax)
+	movups	%xmm1, (%r8,%rax)
+	movups	%xmm3, 28(%r8,%rax)
 	addq	$48, %rax
-	cmpq	%rax, %rsi
-	jne	.L331
-.L318:
-	movq	-40(%rbp), %rax
-	subq	%fs:40, %rax
-	jne	.L353
-	leaq	-32(%rbp), %rsp
+	cmpq	%rax, %rcx
+	jne	.L335
+.L322:
+	movq	%rbp, %rdi
+	call	free@PLT
+	movq	%r12, %rdi
+	call	free@PLT
+	addq	$56, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
 	popq	%rbx
-	popq	%r12
-	popq	%r13
-	popq	%r14
+	.cfi_def_cfa_offset 48
 	popq	%rbp
-	.cfi_remember_state
-	.cfi_def_cfa 7, 8
+	.cfi_def_cfa_offset 40
+	popq	%r12
+	.cfi_def_cfa_offset 32
+	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
+	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L350:
+.L355:
 	.cfi_restore_state
-	cmpq	%r9, %rsi
-	jnb	.L329
-	leaq	(%r8,%r8), %rax
-.L319:
-	leaq	(%rsi,%rsi,2), %rdx
-	addq	%r8, %rax
-	movq	%rsi, %r13
-	salq	$4, %rdx
+	cmpq	%r14, %r9
+	jnb	.L333
+	leaq	(%r13,%r13), %rax
+.L323:
+	leaq	(%r9,%r9,2), %rdi
+	addq	%r13, %rax
+	movq	%r9, %r11
 	salq	$4, %rax
-	addq	%rdx, %rbx
-	leaq	(%rdi,%rax), %rdx
+	salq	$4, %rdi
+	leaq	(%r8,%rax), %rdx
+	addq	%rbp, %rdi
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L330:
-	movdqu	(%rbx,%rax), %xmm6
-	movdqu	16(%rbx,%rax), %xmm7
-	addq	$1, %r13
-	movdqu	28(%rbx,%rax), %xmm0
+.L334:
+	movdqu	(%rdi,%rax), %xmm6
+	movdqu	16(%rdi,%rax), %xmm7
+	addq	$1, %r11
+	movdqu	28(%rdi,%rax), %xmm0
 	movups	%xmm7, 16(%rdx,%rax)
 	movups	%xmm6, (%rdx,%rax)
 	movups	%xmm0, 28(%rdx,%rax)
 	addq	$48, %rax
-	cmpq	%r9, %r13
-	jb	.L330
-	subq	%rsi, %r11
-	addq	$1, %rsi
+	cmpq	%r14, %r11
+	jb	.L334
+	movq	40(%rsp), %rbx
 	xorl	%eax, %eax
-	cmpq	%rsi, %r9
-	cmovb	%rax, %r11
-	leaq	1(%r8,%r11), %r8
-	jmp	.L329
+	subq	%r9, %rbx
+	addq	$1, %r9
+	cmpq	%r9, %r14
+	cmovb	%rax, %rbx
+	leaq	1(%r13,%rbx), %r13
+	jmp	.L333
 	.p2align 4,,10
 	.p2align 3
-.L348:
-	testq	%r10, %r10
-	je	.L318
-	movq	40(%rdi), %rdi
-	leaq	(%rsi,%rsi), %rax
-	jmp	.L317
-	.p2align 4,,10
-	.p2align 3
-.L349:
-	xorl	%r12d, %r12d
-	xorl	%esi, %esi
-	jmp	.L319
-.L333:
-	xorl	%r12d, %r12d
-	jmp	.L324
-.L353:
-	call	__stack_chk_fail@PLT
+.L354:
+	testq	%rsi, %rsi
+	je	.L322
+	movq	32(%rsp), %rax
+	movq	40(%rax), %r8
+	leaq	(%r13,%r13), %rax
+	jmp	.L321
+.L336:
+	xorl	%r10d, %r10d
+	jmp	.L328
+.L319:
+	movq	8(%rsp), %rcx
+	movq	%r15, %rdx
+	movq	%r13, %rsi
+	xorl	%eax, %eax
+	leaq	.LC12(%rip), %rdi
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
 .LFE2253:
 	.size	_ZN4slay6engine6render20OrderByPriorityMergeEyyy, .-_ZN4slay6engine6render20OrderByPriorityMergeEyyy
@@ -1839,23 +1909,23 @@ _ZN4slay6engine6render15OrderByPriorityEyy:
 	.cfi_def_cfa_offset 80
 	movq	%rsi, 8(%rsp)
 	cmpq	$1, %rdx
-	jbe	.L355
+	jbe	.L359
 	leaq	-1(%rdx), %r15
 	movq	%rdi, %r13
 	movq	%rdx, %r14
 	movl	$1, %ebp
 	cmpq	%r15, %rsi
-	jnb	.L355
+	jnb	.L359
 	.p2align 4,,10
 	.p2align 3
-.L356:
+.L360:
 	movq	%rbp, %r12
 	movq	8(%rsp), %rbx
 	addq	%rbp, %rbp
 	subq	$1, %r12
 	.p2align 4,,10
 	.p2align 3
-.L358:
+.L362:
 	leaq	(%rbx,%r12), %rdx
 	movq	%rbx, %rsi
 	movq	%r13, %rdi
@@ -1867,10 +1937,10 @@ _ZN4slay6engine6render15OrderByPriorityEyy:
 	cmova	%r15, %rcx
 	call	_ZN4slay6engine6render20OrderByPriorityMergeEyyy
 	cmpq	%r15, %rbx
-	jb	.L358
+	jb	.L362
 	cmpq	%r14, %rbp
-	jb	.L356
-.L355:
+	jb	.L360
+.L359:
 	addq	$24, %rsp
 	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
@@ -1906,141 +1976,142 @@ _ZN4slay6engine6render13OrderingStageEv:
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
+	movl	$1, %r13d
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	movl	$1, %r12d
+	movq	%rdi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	movq	%rdi, %rbx
-	subq	$40, %rsp
-	.cfi_def_cfa_offset 96
-	movq	32(%rdi), %rax
-	movq	%rax, 16(%rsp)
-	leaq	-1(%rax), %r15
-	cmpq	$1, %rax
-	jbe	.L366
-	.p2align 4,,10
-	.p2align 3
-.L365:
-	movq	%r12, %r13
-	xorl	%ebp, %ebp
-	addq	%r12, %r12
-	subq	$1, %r13
-	.p2align 4,,10
-	.p2align 3
-.L367:
-	leaq	0(%r13,%rbp), %rdx
-	movq	%rbp, %rsi
-	movq	%rbx, %rdi
-	cmpq	%r15, %rdx
-	cmova	%r15, %rdx
-	addq	%r12, %rbp
-	leaq	-1(%rbp), %rcx
-	cmpq	%r15, %rcx
-	cmova	%r15, %rcx
-	call	_ZN4slay6engine6render17OrderByLayerMergeEyyy
-	cmpq	%r15, %rbp
-	jb	.L367
-	movq	16(%rsp), %rax
-	cmpq	%rax, %r12
-	jb	.L365
-	movq	40(%rbx), %rax
-	movq	$1, (%rsp)
-	xorl	%r14d, %r14d
-	movq	$0, 8(%rsp)
-	movq	%rax, 24(%rsp)
-	jmp	.L375
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 80
+	movq	32(%rdi), %r15
+	leaq	-1(%r15), %rbp
+	cmpq	$1, %r15
+	jbe	.L388
 	.p2align 4,,10
 	.p2align 3
 .L369:
-	addq	$1, (%rsp)
-	addq	$1, %r14
-	movq	(%rsp), %rax
-	cmpq	%rax, 16(%rsp)
-	je	.L397
-.L375:
-	movq	(%rsp), %rax
-	movq	24(%rsp), %rdi
-	leaq	(%rax,%rax,2), %rdx
+	movq	%r13, %r14
+	xorl	%ebx, %ebx
+	addq	%r13, %r13
+	subq	$1, %r14
+	.p2align 4,,10
+	.p2align 3
+.L371:
+	leaq	(%r14,%rbx), %rdx
+	movq	%rbx, %rsi
+	movq	%r12, %rdi
+	cmpq	%rbp, %rdx
+	cmova	%rbp, %rdx
+	addq	%r13, %rbx
+	leaq	-1(%rbx), %rcx
+	cmpq	%rbp, %rcx
+	cmova	%rbp, %rcx
+	call	_ZN4slay6engine6render17OrderByLayerMergeEyyy
+	cmpq	%rbp, %rbx
+	jb	.L371
+	cmpq	%r15, %r13
+	jb	.L369
+	movq	32(%r12), %rsi
+	cmpq	$1, %rsi
+	jbe	.L388
+	movq	$0, 8(%rsp)
+	xorl	%r15d, %r15d
+	movl	$1, %ebp
+	jmp	.L379
+	.p2align 4,,10
+	.p2align 3
+.L373:
+	leaq	1(%rbp), %r13
+	addq	$1, %r15
+	cmpq	%rsi, %r13
+	jnb	.L398
+.L385:
+	movq	%r13, %rbp
+.L379:
 	movq	8(%rsp), %rax
+	movq	40(%r12), %rcx
+	leaq	0(%rbp,%rbp,2), %rdx
 	salq	$4, %rdx
 	leaq	(%rax,%rax,2), %rax
-	movsd	16(%rdi,%rdx), %xmm0
+	movsd	16(%rcx,%rdx), %xmm0
 	salq	$4, %rax
-	ucomisd	16(%rdi,%rax), %xmm0
-	jp	.L382
-	je	.L369
-.L382:
-	cmpq	$1, (%rsp)
-	je	.L371
-	movl	$1, %ebp
-	cmpq	%r14, 8(%rsp)
-	jnb	.L371
-	.p2align 4,,10
-	.p2align 3
-.L372:
-	movq	%rbp, %r12
-	movq	8(%rsp), %r13
-	addq	%rbp, %rbp
-	subq	$1, %r12
-	.p2align 4,,10
-	.p2align 3
-.L374:
-	leaq	0(%r13,%r12), %rdx
-	movq	%r13, %rsi
-	movq	%rbx, %rdi
-	cmpq	%r14, %rdx
-	cmova	%r14, %rdx
-	addq	%rbp, %r13
-	leaq	-1(%r13), %rcx
-	cmpq	%r14, %rcx
-	cmova	%r14, %rcx
-	call	_ZN4slay6engine6render20OrderByPriorityMergeEyyy
-	cmpq	%r14, %r13
-	jb	.L374
-	movq	(%rsp), %rax
-	cmpq	%rax, %rbp
-	jb	.L372
-.L371:
-	movq	(%rsp), %rax
-	movq	%rax, 8(%rsp)
-	jmp	.L369
-.L397:
-	movl	$1, %ebp
+	ucomisd	16(%rcx,%rax), %xmm0
+	jp	.L387
+	je	.L373
+.L387:
+	cmpq	$1, %rbp
+	je	.L399
 	cmpq	%r15, 8(%rsp)
-	jnb	.L366
+	jnb	.L378
+	movl	$1, %r13d
+	.p2align 4,,10
+	.p2align 3
+.L377:
+	movq	%r13, %r14
+	movq	8(%rsp), %rbx
+	addq	%r13, %r13
+	subq	$1, %r14
 	.p2align 4,,10
 	.p2align 3
 .L376:
-	movq	%rbp, %r12
-	movq	8(%rsp), %r13
-	addq	%rbp, %rbp
-	subq	$1, %r12
-	.p2align 4,,10
-	.p2align 3
-.L378:
-	leaq	0(%r13,%r12), %rdx
-	movq	%r13, %rsi
-	movq	%rbx, %rdi
+	leaq	(%rbx,%r14), %rdx
+	movq	%rbx, %rsi
+	movq	%r12, %rdi
 	cmpq	%r15, %rdx
 	cmova	%r15, %rdx
-	addq	%rbp, %r13
-	leaq	-1(%r13), %rcx
+	addq	%r13, %rbx
+	leaq	-1(%rbx), %rcx
 	cmpq	%r15, %rcx
 	cmova	%r15, %rcx
 	call	_ZN4slay6engine6render20OrderByPriorityMergeEyyy
-	cmpq	%r15, %r13
-	jb	.L378
-	movq	16(%rsp), %rax
-	cmpq	%rax, %rbp
+	cmpq	%r15, %rbx
 	jb	.L376
-.L366:
-	addq	$40, %rsp
+	cmpq	%rbp, %r13
+	jb	.L377
+	movq	32(%r12), %rsi
+.L378:
+	leaq	1(%rbp), %r13
+	movq	%rbp, 8(%rsp)
+	addq	$1, %r15
+	cmpq	%rsi, %r13
+	jb	.L385
+.L398:
+	movl	$1, %ebx
+	cmpq	%rbp, 8(%rsp)
+	jnb	.L388
+	.p2align 4,,10
+	.p2align 3
+.L380:
+	movq	%rbx, %r14
+	movq	8(%rsp), %r15
+	addq	%rbx, %rbx
+	subq	$1, %r14
+	.p2align 4,,10
+	.p2align 3
+.L382:
+	leaq	(%r15,%r14), %rdx
+	movq	%r15, %rsi
+	movq	%r12, %rdi
+	cmpq	%rbp, %rdx
+	cmova	%rbp, %rdx
+	addq	%rbx, %r15
+	leaq	-1(%r15), %rcx
+	cmpq	%rbp, %rcx
+	cmova	%rbp, %rcx
+	call	_ZN4slay6engine6render20OrderByPriorityMergeEyyy
+	cmpq	%rbp, %r15
+	jb	.L382
+	cmpq	%r13, %rbx
+	jb	.L380
+.L388:
+	addq	$24, %rsp
+	.cfi_remember_state
 	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
 	popq	%rbx
@@ -2056,15 +2127,19 @@ _ZN4slay6engine6render13OrderingStageEv:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
+.L399:
+	.cfi_restore_state
+	movq	$1, 8(%rsp)
+	jmp	.L373
 	.cfi_endproc
 .LFE2249:
 	.size	_ZN4slay6engine6render13OrderingStageEv, .-_ZN4slay6engine6render13OrderingStageEv
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
+.LC13:
 	.string	"slay::engine.render.RenderColor(): SDL_SetRenderDrawColor failed"
 	.align 8
-.LC12:
+.LC14:
 	.string	"slay::engine.render.RenderColor(): SDL_RenderFillRect failed"
 	.text
 	.align 2
@@ -2087,26 +2162,26 @@ _ZN4slay6engine6render11RenderColorENS1_5tokenE:
 	movzbl	25(%rax), %r8d
 	call	SDL_SetRenderDrawColor@PLT
 	testl	%eax, %eax
-	jne	.L402
+	jne	.L404
 	movq	(%rbx), %rax
 	leaq	44(%rsp), %rsi
 	movq	16(%rax), %rdi
 	call	SDL_RenderFillRect@PLT
 	testl	%eax, %eax
-	jne	.L403
+	jne	.L405
 	xorl	%eax, %eax
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L402:
+.L404:
 	.cfi_restore_state
-	leaq	.LC11(%rip), %rdi
+	leaq	.LC13(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L403:
-	leaq	.LC12(%rip), %rdi
+.L405:
+	leaq	.LC14(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -2115,13 +2190,13 @@ _ZN4slay6engine6render11RenderColorENS1_5tokenE:
 	.size	_ZN4slay6engine6render11RenderColorENS1_5tokenE, .-_ZN4slay6engine6render11RenderColorENS1_5tokenE
 	.section	.rodata.str1.8
 	.align 8
-.LC13:
+.LC15:
 	.string	"slay::engine.render.RenderTexture(): SDL_SetTextureColorMod failed"
 	.align 8
-.LC14:
+.LC16:
 	.string	"slay::engine.render.RenderTexture(): SDL_SetTextureAlphaMod failed"
 	.align 8
-.LC16:
+.LC18:
 	.string	"slay::engine.render.RenderTexture(): SDL_RenderCopyEx failed"
 	.text
 	.align 2
@@ -2153,35 +2228,35 @@ _ZN4slay6engine6render13RenderTextureENS1_5tokenE:
 	movq	576(%rdx), %rax
 	orl	%r9d, %ebx
 	cmpq	568(%rdx), %rsi
-	jnb	.L413
+	jnb	.L415
 	movq	(%rax,%rsi,8), %rax
 	movl	%r8d, %edx
 	movl	%edi, %esi
 	movq	%rax, %rdi
 	call	SDL_SetTextureColorMod@PLT
 	testl	%eax, %eax
-	jne	.L414
+	jne	.L416
 	movq	32(%rsp), %rdx
 	movq	0(%rbp), %rax
 	movzbl	37(%rdx), %ecx
 	movq	64(%rdx), %rsi
 	movq	576(%rax), %rdx
 	cmpq	568(%rax), %rsi
-	jnb	.L413
+	jnb	.L415
 	movq	(%rdx,%rsi,8), %rdi
 	movl	%ecx, %esi
 	call	SDL_SetTextureAlphaMod@PLT
 	testl	%eax, %eax
-	jne	.L415
+	jne	.L417
 	movq	32(%rsp), %rdx
 	movq	0(%rbp), %rax
 	movzbl	%bl, %r9d
 	movsd	24(%rdx), %xmm0
 	movq	64(%rdx), %rsi
-	xorpd	.LC15(%rip), %xmm0
+	xorpd	.LC17(%rip), %xmm0
 	movq	576(%rax), %rdx
 	cmpq	568(%rax), %rsi
-	jnb	.L413
+	jnb	.L415
 	movq	(%rdx,%rsi,8), %rsi
 	movq	16(%rax), %rdi
 	xorl	%r8d, %r8d
@@ -2189,7 +2264,7 @@ _ZN4slay6engine6render13RenderTextureENS1_5tokenE:
 	leaq	60(%rsp), %rcx
 	call	SDL_RenderCopyEx@PLT
 	testl	%eax, %eax
-	jne	.L416
+	jne	.L418
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -2199,25 +2274,25 @@ _ZN4slay6engine6render13RenderTextureENS1_5tokenE:
 	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
-.L413:
+.L415:
 	.cfi_restore_state
 	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L416:
+.L418:
+	leaq	.LC18(%rip), %rdi
+	call	puts@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L417:
 	leaq	.LC16(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L415:
-	leaq	.LC14(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L414:
-	leaq	.LC13(%rip), %rdi
+.L416:
+	leaq	.LC15(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -2226,13 +2301,13 @@ _ZN4slay6engine6render13RenderTextureENS1_5tokenE:
 	.size	_ZN4slay6engine6render13RenderTextureENS1_5tokenE, .-_ZN4slay6engine6render13RenderTextureENS1_5tokenE
 	.section	.rodata.str1.8
 	.align 8
-.LC17:
+.LC19:
 	.string	"slay::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed"
 	.align 8
-.LC18:
+.LC20:
 	.string	"slay::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed"
 	.align 8
-.LC19:
+.LC21:
 	.string	"slay::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed"
 	.text
 	.align 2
@@ -2266,7 +2341,7 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	movq	(%rax,%rcx,8), %rsi
 	movq	576(%rdx), %rax
 	cmpq	568(%rdx), %rsi
-	jnb	.L426
+	jnb	.L428
 	movq	(%rax,%rsi,8), %rax
 	movl	%r9d, %ecx
 	movl	%edi, %esi
@@ -2274,7 +2349,7 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	movq	%rax, %rdi
 	call	SDL_SetTextureColorMod@PLT
 	testl	%eax, %eax
-	jne	.L427
+	jne	.L429
 	movq	32(%rsp), %rax
 	movq	0(%rbp), %rdx
 	movq	72(%rax), %rcx
@@ -2283,24 +2358,24 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	movq	(%rax,%rcx,8), %rsi
 	movq	576(%rdx), %rax
 	cmpq	568(%rdx), %rsi
-	jnb	.L426
+	jnb	.L428
 	movq	(%rax,%rsi,8), %rax
 	movl	%edi, %esi
 	movq	%rax, %rdi
 	call	SDL_SetTextureAlphaMod@PLT
 	testl	%eax, %eax
-	jne	.L428
+	jne	.L430
 	movq	32(%rsp), %rdx
 	movq	0(%rbp), %rax
 	movzbl	%bl, %r9d
 	movsd	24(%rdx), %xmm0
 	movq	72(%rdx), %rcx
 	movq	96(%rdx), %rdx
-	xorpd	.LC15(%rip), %xmm0
+	xorpd	.LC17(%rip), %xmm0
 	movq	(%rdx,%rcx,8), %rsi
 	movq	576(%rax), %rdx
 	cmpq	568(%rax), %rsi
-	jnb	.L426
+	jnb	.L428
 	movq	(%rdx,%rsi,8), %rsi
 	movq	16(%rax), %rdi
 	xorl	%r8d, %r8d
@@ -2308,7 +2383,7 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	leaq	60(%rsp), %rcx
 	call	SDL_RenderCopyEx@PLT
 	testl	%eax, %eax
-	jne	.L429
+	jne	.L431
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -2318,25 +2393,25 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
-.L426:
+.L428:
 	.cfi_restore_state
 	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
+.L431:
+	leaq	.LC21(%rip), %rdi
+	call	puts@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L430:
+	leaq	.LC20(%rip), %rdi
+	call	puts@PLT
+	movl	$1, %edi
+	call	exit@PLT
 .L429:
 	leaq	.LC19(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L428:
-	leaq	.LC18(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L427:
-	leaq	.LC17(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -2345,10 +2420,10 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	.size	_ZN4slay6engine6render14RenderFlipbookENS1_5tokenE, .-_ZN4slay6engine6render14RenderFlipbookENS1_5tokenE
 	.section	.rodata.str1.8
 	.align 8
-.LC20:
+.LC22:
 	.string	"slay::engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed"
 	.align 8
-.LC21:
+.LC23:
 	.string	"slay::engine.render.OpenFrame(): SDL_RenderClear() failed"
 	.text
 	.align 2
@@ -2380,40 +2455,40 @@ _ZN4slay6engine6render14RenderingStageEv:
 	movq	16(%rax), %rdi
 	call	SDL_SetRenderDrawColor@PLT
 	testl	%eax, %eax
-	jne	.L472
+	jne	.L474
 	movq	0(%rbp), %rax
 	movq	16(%rax), %rdi
 	call	SDL_RenderClear@PLT
 	testl	%eax, %eax
-	jne	.L432
+	jne	.L434
 	movq	32(%rbp), %rcx
 	testq	%rcx, %rcx
-	je	.L450
+	je	.L452
 	movq	40(%rbp), %rax
 	xorl	%ebx, %ebx
 	pxor	%xmm1, %xmm1
 	leaq	16(%rax), %rdx
-	jmp	.L435
-	.p2align 4,,10
-	.p2align 3
-.L474:
-	addq	$1, %rbx
-	addq	$48, %rdx
-	cmpq	%rcx, %rbx
-	je	.L473
-.L435:
-	movsd	(%rdx), %xmm0
-	comisd	%xmm1, %xmm0
-	jbe	.L474
-	movq	%rbx, %r12
-	cmpq	%rcx, %rbx
-	jb	.L449
 	jmp	.L437
 	.p2align 4,,10
 	.p2align 3
 .L476:
-	testl	%edx, %edx
+	addq	$1, %rbx
+	addq	$48, %rdx
+	cmpq	%rcx, %rbx
 	je	.L475
+.L437:
+	movsd	(%rdx), %xmm0
+	comisd	%xmm1, %xmm0
+	jbe	.L476
+	movq	%rbx, %r12
+	cmpq	%rcx, %rbx
+	jb	.L451
+	jmp	.L439
+	.p2align 4,,10
+	.p2align 3
+.L478:
+	testl	%edx, %edx
+	je	.L477
 	movdqu	(%rax), %xmm5
 	subq	$48, %rsp
 	.cfi_def_cfa_offset 192
@@ -2427,22 +2502,22 @@ _ZN4slay6engine6render14RenderingStageEv:
 	movq	32(%rbp), %rcx
 	addq	$48, %rsp
 	.cfi_def_cfa_offset 144
-.L443:
+.L445:
 	addq	$1, %rbx
 	cmpq	%rcx, %rbx
-	jnb	.L448
-.L477:
+	jnb	.L450
+.L479:
 	movq	40(%rbp), %rax
-.L449:
+.L451:
 	leaq	(%rbx,%rbx,2), %rdx
 	salq	$4, %rdx
 	addq	%rdx, %rax
 	movl	8(%rax), %edx
 	cmpl	$2, %edx
-	je	.L438
-	jbe	.L476
+	je	.L440
+	jbe	.L478
 	cmpl	$3, %edx
-	jne	.L443
+	jne	.L445
 	movdqu	(%rax), %xmm5
 	xorl	%r8d, %r8d
 	xorl	%edx, %edx
@@ -2456,7 +2531,7 @@ _ZN4slay6engine6render14RenderingStageEv:
 	movsd	24(%rax), %xmm0
 	movaps	%xmm7, 32(%rsp)
 	movq	96(%rax), %rsi
-	xorpd	.LC15(%rip), %xmm0
+	xorpd	.LC17(%rip), %xmm0
 	negl	%r9d
 	andl	$2, %r9d
 	orb	32(%rax), %r9b
@@ -2465,24 +2540,24 @@ _ZN4slay6engine6render14RenderingStageEv:
 	movq	16(%rax), %rdi
 	call	SDL_RenderCopyEx@PLT
 	testl	%eax, %eax
-	jne	.L459
-.L446:
+	jne	.L461
+.L448:
 	movq	32(%rbp), %rcx
 	addq	$1, %rbx
 	cmpq	%rcx, %rbx
-	jb	.L477
-.L448:
+	jb	.L479
+.L450:
 	testq	%r12, %r12
-	je	.L450
+	je	.L452
 	movq	40(%rbp), %rax
-.L437:
+.L439:
 	xorl	%ebx, %ebx
-	jmp	.L460
+	jmp	.L462
 	.p2align 4,,10
 	.p2align 3
-.L479:
+.L481:
 	testl	%edx, %edx
-	je	.L478
+	je	.L480
 	movdqu	(%rax), %xmm5
 	subq	$48, %rsp
 	.cfi_def_cfa_offset 192
@@ -2495,21 +2570,21 @@ _ZN4slay6engine6render14RenderingStageEv:
 	call	_ZN4slay6engine6render13RenderTextureENS1_5tokenE
 	addq	$48, %rsp
 	.cfi_def_cfa_offset 144
-.L456:
+.L458:
 	addq	$1, %rbx
 	cmpq	%r12, %rbx
-	je	.L450
+	je	.L452
 	movq	40(%rbp), %rax
-.L460:
+.L462:
 	leaq	(%rbx,%rbx,2), %rdx
 	salq	$4, %rdx
 	addq	%rdx, %rax
 	movl	8(%rax), %edx
 	cmpl	$2, %edx
-	je	.L451
-	jbe	.L479
+	je	.L453
+	jbe	.L481
 	cmpl	$3, %edx
-	jne	.L456
+	jne	.L458
 	movdqu	(%rax), %xmm5
 	xorl	%r8d, %r8d
 	xorl	%edx, %edx
@@ -2523,7 +2598,7 @@ _ZN4slay6engine6render14RenderingStageEv:
 	movsd	24(%rax), %xmm0
 	movaps	%xmm7, 80(%rsp)
 	movq	96(%rax), %rsi
-	xorpd	.LC15(%rip), %xmm0
+	xorpd	.LC17(%rip), %xmm0
 	negl	%r9d
 	andl	$2, %r9d
 	orb	32(%rax), %r9b
@@ -2532,21 +2607,21 @@ _ZN4slay6engine6render14RenderingStageEv:
 	movq	16(%rax), %rdi
 	call	SDL_RenderCopyEx@PLT
 	testl	%eax, %eax
-	je	.L456
-.L459:
+	je	.L458
+.L461:
 	movq	104(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L468
+	jne	.L470
 	call	_ZN4slay6engine6render10RenderTextENS1_5tokenE.part.0
 	.p2align 4,,10
 	.p2align 3
-.L450:
+.L452:
 	movq	0(%rbp), %rax
 	movq	16(%rax), %rdi
 	call	SDL_RenderPresent@PLT
 	movq	104(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L468
+	jne	.L470
 	addq	$112, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
@@ -2560,7 +2635,7 @@ _ZN4slay6engine6render14RenderingStageEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L438:
+.L440:
 	.cfi_restore_state
 	movdqu	(%rax), %xmm2
 	subq	$48, %rsp
@@ -2575,10 +2650,10 @@ _ZN4slay6engine6render14RenderingStageEv:
 	movq	32(%rbp), %rcx
 	addq	$48, %rsp
 	.cfi_def_cfa_offset 144
-	jmp	.L443
+	jmp	.L445
 	.p2align 4,,10
 	.p2align 3
-.L475:
+.L477:
 	movdqu	(%rax), %xmm2
 	movq	0(%rbp), %rdi
 	movaps	%xmm2, (%rsp)
@@ -2594,21 +2669,21 @@ _ZN4slay6engine6render14RenderingStageEv:
 	movzbl	25(%rax), %r8d
 	call	SDL_SetRenderDrawColor@PLT
 	testl	%eax, %eax
-	jne	.L457
+	jne	.L459
 	movq	0(%rbp), %rax
 	leaq	28(%rsp), %rsi
 	movq	16(%rax), %rdi
 	call	SDL_RenderFillRect@PLT
 	testl	%eax, %eax
-	je	.L446
-.L458:
-	leaq	.LC12(%rip), %rdi
+	je	.L448
+.L460:
+	leaq	.LC14(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L451:
+.L453:
 	movdqu	(%rax), %xmm2
 	subq	$48, %rsp
 	.cfi_def_cfa_offset 192
@@ -2621,10 +2696,10 @@ _ZN4slay6engine6render14RenderingStageEv:
 	call	_ZN4slay6engine6render14RenderFlipbookENS1_5tokenE
 	addq	$48, %rsp
 	.cfi_def_cfa_offset 144
-	jmp	.L456
+	jmp	.L458
 	.p2align 4,,10
 	.p2align 3
-.L478:
+.L480:
 	movdqu	(%rax), %xmm2
 	movq	0(%rbp), %rdi
 	movaps	%xmm2, 48(%rsp)
@@ -2640,34 +2715,34 @@ _ZN4slay6engine6render14RenderingStageEv:
 	movzbl	25(%rax), %r8d
 	call	SDL_SetRenderDrawColor@PLT
 	testl	%eax, %eax
-	jne	.L457
+	jne	.L459
 	movq	0(%rbp), %rax
 	leaq	76(%rsp), %rsi
 	movq	16(%rax), %rdi
 	call	SDL_RenderFillRect@PLT
 	testl	%eax, %eax
-	je	.L456
-	jmp	.L458
+	je	.L458
+	jmp	.L460
 	.p2align 4,,10
 	.p2align 3
-.L473:
+.L475:
 	xorl	%r12d, %r12d
 	xorl	%ebx, %ebx
-	jmp	.L449
-.L457:
-	leaq	.LC11(%rip), %rdi
+	jmp	.L451
+.L459:
+	leaq	.LC13(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L468:
+.L470:
 	call	__stack_chk_fail@PLT
-.L432:
-	leaq	.LC21(%rip), %rdi
+.L434:
+	leaq	.LC23(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L472:
-	leaq	.LC20(%rip), %rdi
+.L474:
+	leaq	.LC22(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -2713,7 +2788,7 @@ _ZN4slay6engine6render10RenderTextENS1_5tokenE:
 	movzbl	33(%rax), %r9d
 	movsd	24(%rax), %xmm0
 	movq	96(%rax), %rsi
-	xorpd	.LC15(%rip), %xmm0
+	xorpd	.LC17(%rip), %xmm0
 	negl	%r9d
 	andl	$2, %r9d
 	orb	32(%rax), %r9b
@@ -2722,13 +2797,13 @@ _ZN4slay6engine6render10RenderTextENS1_5tokenE:
 	movq	16(%rax), %rdi
 	call	SDL_RenderCopyEx@PLT
 	testl	%eax, %eax
-	jne	.L485
+	jne	.L487
 	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L485:
+.L487:
 	.cfi_restore_state
 	call	_ZN4slay6engine6render10RenderTextENS1_5tokenE.part.0
 	.cfi_endproc
@@ -2753,7 +2828,7 @@ _ZN4slay6engine6render10RenderTextENS1_5tokenE:
 	.long	1071644672
 	.section	.rodata.cst16,"aM",@progbits,16
 	.align 16
-.LC15:
+.LC17:
 	.long	0
 	.long	-2147483648
 	.long	0
