@@ -24,6 +24,8 @@ sint32 main()
     while (Engine.Update())
     {
         Player.Update();
+
+        printf("%d %d %d %d\n", Engine.Timing.GetGameTime(), Engine.Timing.GetRenderTime(), Engine.Timing.GetWorkingTime(), Engine.Timing.GetFrameTime());
     }
 
     return 0;
