@@ -83,7 +83,7 @@ namespace slay
             }
             if (this->Textures.Length() <= Keep.begin()[i] || this->Textures[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -99,6 +99,56 @@ namespace slay
             }
 
             if (j == Keep.size())
+            {
+                delete this->Textures[i];
+                this->Textures[i] = NULL;
+            }
+        }
+
+        if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
+        {
+            for (i = this->Textures.Length(); 1 < i; i--)
+            {
+                if (this->Textures[i - 1] != NULL)
+                {
+                    break;
+                }
+            }
+
+            this->Textures.Remove(i, this->Textures.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::textures::Purge(array<uint64>* Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep->Length(); i++)
+        {
+            if ((*Keep)[i] == 0)
+            {
+                continue;
+            }
+            if (this->Textures.Length() <= (*Keep)[i] || this->Textures[(*Keep)[i]] == NULL)
+            {
+                printf("slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep: %p\n", Keep);
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Textures.Length(); i++)
+        {
+            for (j = 0; j < Keep->Length(); j++)
+            {
+                if (i == (*Keep)[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep->Length())
             {
                 delete this->Textures[i];
                 this->Textures[i] = NULL;
