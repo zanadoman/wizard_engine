@@ -266,6 +266,7 @@ namespace slay
                                 uint64 New();
                                 uint8 Delete(uint64);
                                 uint8 Purge(std::initializer_list<uint64> Keep);
+                                uint8 Purge(array<uint64>* Keep);
                                 color& operator [] (uint64 ID);
 
                             private:

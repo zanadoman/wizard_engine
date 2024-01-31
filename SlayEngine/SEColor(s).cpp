@@ -83,7 +83,7 @@ namespace slay
             }
             if (this->Colors.Length() <= Keep.begin()[i] || this->Colors[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -99,6 +99,56 @@ namespace slay
             }
 
             if (j == Keep.size())
+            {
+                delete this->Colors[i];
+                this->Colors[i] = NULL;
+            }
+        }
+
+        if (this->Colors[this->Colors.Length() - 1] == NULL && 1 < this->Colors.Length())
+        {
+            for (i = this->Colors.Length(); 1 < i; i--)
+            {
+                if (this->Colors[i - 1] != NULL)
+                {
+                    break;
+                }
+            }
+
+            this->Colors.Remove(i, this->Colors.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::colors::Purge(array<uint64>* Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep->Length(); i++)
+        {
+            if ((*Keep)[i] == 0)
+            {
+                continue;
+            }
+            if (this->Colors.Length() <= (*Keep)[i] || this->Colors[(*Keep)[i]] == NULL)
+            {
+                printf("slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep: %p\n", Keep);
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Colors.Length(); i++)
+        {
+            for (j = 0; j < Keep->Length(); j++)
+            {
+                if (i == (*Keep)[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep->Length())
             {
                 delete this->Colors[i];
                 this->Colors[i] = NULL;
