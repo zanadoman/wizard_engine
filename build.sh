@@ -9,6 +9,8 @@ LINUX_LIBRARIES="-LSlayEngine/Libraries/Linux -lNeoTypes++ -lSDL2 -lSDL2_image -
 LINUX_EXTRA_FLAGS="-Wl,-rpath=."
 LINUX_BUILD_NAME="bin.out"
 LINUX_BUILD_FOLDER="Build"
+LINUX_RUN_PREFIX=""
+LINUX_RUN_SUFFIX=""
 
 WINDOWS_COMPILER="x86_64-w64-mingw32-g++"
 WINDOWS_WARNINGS=""
@@ -16,6 +18,8 @@ WINDOWS_LIBRARIES="-LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_ima
 WINDOWS_EXTRA_FLAGS="-mwindows"
 WINDOWS_BUILD_NAME="bin.exe"
 WINDOWS_BUILD_FOLDER="Build"
+WINDOWS_RUN_PREFIX="wine64"
+WINDOWS_RUN_SUFFIX=""
 
 GIT_FILTER="*.cpp"
 GIT_FOLDER="Compiled"
@@ -25,6 +29,8 @@ GIT_LIBRARIES="-LSlayEngine/Libraries/Linux -lNeoTypes++ -lSDL2 -lSDL2_image -lS
 GIT_EXTRA_FLAGS="-Wl,-rpath=."
 GIT_BUILD_NAME="bin.out"
 GIT_BUILD_FOLDER="Build"
+GIT_RUN_PREFIX=""
+GIT_RUN_SUFFIX=""
 
 GREEN="\e[92m"
 RED="\e[91m"
@@ -40,8 +46,8 @@ then
     if ${LINUX_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${LINUX_EXTRA_FLAGS} ${LINUX_WARNINGS} -o ${LINUX_BUILD_FOLDER}/${LINUX_BUILD_NAME} ${SOURCES} ${LINUX_LIBRARIES} -lm
     then
         echo -e "${YELLOW}Linux ${GREEN}build successful!${ENDCOLOR}"
-        cd ${LINUX_BUILD_FOLDER} || exit 1
-        if ./${LINUX_BUILD_NAME}
+        cd ${LINUX_BUILD_FOLDER}
+        if ${LINUX_RUN_PREFIX} ./${LINUX_BUILD_NAME} ${LINUX_RUN_SUFFIX}
         then
             echo -e "${YELLOW}Linux ${GREEN}run successful!${ENDCOLOR}"
             exit 0
@@ -62,8 +68,8 @@ then
     if ${WINDOWS_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${WINDOWS_EXTRA_FLAGS} ${WINDOWS_WARNINGS} -o ${WINDOWS_BUILD_FOLDER}/${WINDOWS_BUILD_NAME} ${SOURCES} ${WINDOWS_LIBRARIES} -lm
     then
         echo -e "${BLUE}Windows ${GREEN}build successful!${ENDCOLOR}"
-        cd ${WINDOWS_BUILD_FOLDER} || exit 1
-        if wine64 ${WINDOWS_BUILD_NAME}
+        cd ${WINDOWS_BUILD_FOLDER}
+        if ${WINDOWS_RUN_PREFIX} ./${WINDOWS_BUILD_NAME} ${WINDOWS_RUN_SUFFIX}
         then
             echo -e "${BLUE}Windows ${GREEN}run successful!${ENDCOLOR}"
             exit 0
@@ -98,11 +104,11 @@ then
         echo -e "${MAGENTA}Git ${GREEN}compilation skipped!${ENDCOLOR}"
     fi
 
-    if ${GIT_COMPILER} -o ${GIT_BUILD_FOLDER}/${GIT_BUILD_NAME} $(ls ${GIT_FOLDER} *.s) ${GIT_LIBRARIES} -lm
+    if ${GIT_COMPILER} -o ${GIT_BUILD_FOLDER}/${GIT_BUILD_NAME} $(find ${GIT_FOLDER} -name "*.s") ${GIT_LIBRARIES} -lm
     then
         echo -e "${MAGENTA}Git ${GREEN}linking successful!${ENDCOLOR}"
         cd ${GIT_BUILD_FOLDER} || exit 1
-        if ./${GIT_BUILD_NAME}.out
+        if ${GIT_RUN_PREFIX} ./${GIT_BUILD_NAME} ${GIT_RUN_SUFFIX}
         then
             echo -e "${MAGENTA}Git ${GREEN}run successful!${ENDCOLOR}"
             exit 0
