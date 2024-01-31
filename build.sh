@@ -7,7 +7,7 @@ BUILD_FOLDER="Build"
 
 LINUX_COMPILER="g++"
 LINUX_WARNINGS="-Werror -Wall -Wextra"
-LINUX_LIBRARIES="-LSlayEngine/Libraries/Linux -lNeoTypes++ -lfreetype -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer"
+LINUX_LIBRARIES="-LSlayEngine/Libraries/Linux -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer"
 LINUX_EXTRA_FLAGS="-Wl,-rpath=."
 
 WINDOWS_COMPILER="x86_64-w64-mingw32-g++"
@@ -21,13 +21,15 @@ YELLOW="\e[93m"
 BLUE="\e[94m"
 ENDCOLOR="\e[0m"
 
+ls ${BUILD_FOLDER} &> /dev/null || mkdir ${BUILD_FOLDER}
+
 if [[ -n $1 && $1 == "-w" ]] || [[ -n $1 && $1 == "--windows" ]]
 then
     if ${WINDOWS_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${WINDOWS_EXTRA_FLAGS} ${WINDOWS_WARNINGS} -o ${BUILD_FOLDER}/${BUILD_NAME}.exe ${SOURCES} ${WINDOWS_LIBRARIES} -lm
     then
         echo -e "${BLUE}Windows ${GREEN}build successful!${ENDCOLOR}"
-        cd Build || exit 1
-        if wine64 bin.exe
+        cd ${BUILD_FOLDER} || exit 1
+        if wine64 ${BUILD_NAME}.exe
         then
             echo -e "${BLUE}Windows ${GREEN}run successful!${ENDCOLOR}"
             exit 0
@@ -46,8 +48,8 @@ then
     if ${LINUX_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${LINUX_EXTRA_FLAGS} ${LINUX_WARNINGS} -o ${BUILD_FOLDER}/${BUILD_NAME}.out ${SOURCES} ${LINUX_LIBRARIES} -lm
     then
         echo -e "${YELLOW}Linux ${GREEN}build successful!${ENDCOLOR}"
-        cd Build || exit 1
-        if ./bin.out
+        cd ${BUILD_FOLDER} || exit 1
+        if ./${BUILD_NAME}.out
         then
             echo -e "${YELLOW}Linux ${GREEN}run successful!${ENDCOLOR}"
             exit 0
