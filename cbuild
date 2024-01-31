@@ -45,7 +45,7 @@ BLUE="\e[94m"
 MAGENTA="\e[95m"
 ENDCOLOR="\e[0m"
 
-if [[ -n $1 && $1 == "-l" ]] || [[ -n $1 && $1 == "--linux" ]]
+if [[ -n ${1} && ${1} == "-l" ]] || [[ -n ${1} && ${1} == "--linux" ]]
 then
     ls "${LINUX_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${LINUX_ASSEMBLY_FOLDER}"
     ls "${LINUX_BUILD_FOLDER}" &> /dev/null || mkdir "${LINUX_BUILD_FOLDER}"
@@ -62,7 +62,7 @@ then
         exit 1
     fi
 
-    if ${LINUX_COMPILER} -o ${LINUX_BUILD_FOLDER}/${LINUX_BUILD_NAME} ${LINUX_ASSEMBLY_FOLDER}/*.s ${LINUX_LIBRARIES} -lm
+    if ${LINUX_COMPILER} -o "${LINUX_BUILD_FOLDER}/${LINUX_BUILD_NAME}" "${LINUX_ASSEMBLY_FOLDER}"/*.s ${LINUX_LIBRARIES} -lm
     then
         echo -e "${YELLOW}Linux ${GREEN}linking successful!${ENDCOLOR}"
     else
@@ -80,7 +80,7 @@ then
     fi
 fi
 
-if [[ -n $1 && $1 == "-w" ]] || [[ -n $1 && $1 == "--windows" ]]
+if [[ -n ${1} && ${1} == "-w" ]] || [[ -n ${1} && ${1} == "--windows" ]]
 then
     ls "${WINDOWS_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${WINDOWS_ASSEMBLY_FOLDER}"
     ls "${WINDOWS_BUILD_FOLDER}" &> /dev/null || mkdir "${WINDOWS_BUILD_FOLDER}"
@@ -97,7 +97,7 @@ then
         exit 1
     fi
 
-    if ${WINDOWS_COMPILER} -o ${WINDOWS_BUILD_FOLDER}/${WINDOWS_BUILD_NAME} ${WINDOWS_ASSEMBLY_FOLDER}/*.s ${WINDOWS_LIBRARIES} -lm
+    if ${WINDOWS_COMPILER} -o "${WINDOWS_BUILD_FOLDER}/${WINDOWS_BUILD_NAME}" "${WINDOWS_ASSEMBLY_FOLDER}"/*.s ${WINDOWS_LIBRARIES} -lm
     then
         echo -e "${BLUE}Windows ${GREEN}linking successful!${ENDCOLOR}"
     else
@@ -115,7 +115,7 @@ then
     fi
 fi
 
-if [[ -n $1 && $1 == "-g" ]] || [[ -n $1 && $1 == "--git" ]]
+if [[ -n ${1} && ${1} == "-g" ]] || [[ -n ${1} && ${1} == "--git" ]]
 then
     ls "${GIT_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${GIT_ASSEMBLY_FOLDER}"
     ls "${GIT_BUILD_FOLDER}" &> /dev/null || mkdir "${GIT_BUILD_FOLDER}"
@@ -131,7 +131,7 @@ then
         exit 1
     fi
 
-    if ${GIT_COMPILER} -o ${GIT_BUILD_FOLDER}/${GIT_BUILD_NAME} ${GIT_ASSEMBLY_FOLDER}/*.s ${GIT_LIBRARIES} -lm
+    if ${GIT_COMPILER} -o "${GIT_BUILD_FOLDER}/${GIT_BUILD_NAME}" "${GIT_ASSEMBLY_FOLDER}"/*.s ${GIT_LIBRARIES} -lm
     then
         echo -e "${MAGENTA}Git ${GREEN}linking successful!${ENDCOLOR}"
     else
@@ -149,4 +149,4 @@ then
     fi
 fi
 
-echo -e "\nUsage: ./build.sh [options]\n\nOptions:\n  -l|--linux\tBuild for ${YELLOW}Linux${ENDCOLOR} (x86_64).\n  -w|--windows\tBuild for ${BLUE}Windows${ENDCOLOR} (x86_64).\n  -g|--git\tRapid build with ${MAGENTA}git${ENDCOLOR}.\n"
+echo -e "\nUsage: cbuild [options]\n\nOptions:\n  -h|--help\tDisplay help.\n  -l|--linux\tBuild for ${YELLOW}Linux${ENDCOLOR} (x86_64).\n  -w|--windows\tBuild for ${BLUE}Windows${ENDCOLOR} (x86_64).\n  -g|--git\tRapid build with ${MAGENTA}git${ENDCOLOR}.\n"
