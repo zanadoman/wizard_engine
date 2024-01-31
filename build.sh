@@ -54,6 +54,7 @@ then
         rm *.s &> /dev/null
     else
         echo -e "${YELLOW}Linux ${RED}compilation failed!${ENDCOLOR}"
+        rm *.s &> /dev/null
         exit 1
     fi
 
@@ -88,6 +89,7 @@ then
         rm *.s &> /dev/null
     else
         echo -e "${BLUE}Windows ${RED}compilation failed!${ENDCOLOR}"
+        rm *.s &> /dev/null
         exit 1
     fi
 
@@ -121,6 +123,7 @@ then
         rm *.s &> /dev/null
     else
         echo -e "${MAGENTA}Git ${RED}compilation failed!${ENDCOLOR}"
+        rm *.s &> /dev/null
         exit 1
     fi
 

@@ -1,2 +1,3 @@
 *.s
-!Compiled/*.s
+!Compiled/Linux/*.s
+!Compiled/Windows/*.s
