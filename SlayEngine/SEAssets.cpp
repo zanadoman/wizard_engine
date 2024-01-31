@@ -128,7 +128,7 @@ namespace slay
             }
             if (this->Textures.Length() <= Keep.begin()[i] || this->Textures[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeTextures(): Texture does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.assets.PurgeTextures(): Texture does not exists\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -144,6 +144,93 @@ namespace slay
             }
 
             if (j == Keep.size())
+            {
+                for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
+                {
+                    if (this->Engine.Actors.Actors[k] == NULL)
+                    {
+                        continue;
+                    }
+
+                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Textures.Textures.Length(); l++)
+                    {
+                        if (this->Engine.Actors.Actors[k]->Textures.Textures[l] == NULL)
+                        {
+                            continue;
+                        }
+
+                        if (this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID == i)
+                        {
+                            this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID = 0;
+                        }
+                    }
+
+                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks.Length(); l++)
+                    {
+                        if (this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l] == NULL)
+                        {
+                            continue;
+                        }
+
+                        for (uint64 m = 0; m < this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Length; m++)
+                        {
+                            if (this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
+                            {
+                                this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] = 0;
+                            }
+                        }
+                    }
+                }
+
+                SDL_DestroyTexture(this->Textures[i]);
+                this->Textures[i] = NULL;
+            }
+        }
+
+        if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
+        {
+            for (i = this->Textures.Length(); 1 < i; i--)
+            {
+                if (this->Textures[i - 1] != NULL)
+                {
+                    break;
+                }
+            }
+
+            this->Textures.Remove(i, this->Textures.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::assets::PurgeTextures(array<uint64>* Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep->Length(); i++)
+        {
+            if ((*Keep)[i] == 0)
+            {
+                continue;
+            }
+            if (this->Textures.Length() <= (*Keep)[i] || this->Textures[(*Keep)[i]] == NULL)
+            {
+                printf("slay::engine.assets.PurgeTextures(): Texture does not exists\nParams: Keep: %p\n", Keep);
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Textures.Length(); i++)
+        {
+            for (j = 0; j < Keep->Length(); j++)
+            {
+                if (i == (*Keep)[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep->Length())
             {
                 for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
                 {
@@ -280,7 +367,7 @@ namespace slay
             }
             if (this->Sounds.Length() <= Keep.begin()[i] || this->Sounds[Keep.begin()[i]] == NULL)
             {
-                printf("slay::assets.PurgeSounds(): Sound does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::assets.PurgeSounds(): Sound does not exists\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -296,6 +383,56 @@ namespace slay
             }
 
             if (j == Keep.size())
+            {
+                Mix_FreeChunk(this->Sounds[i]);
+                this->Sounds[i] = NULL;
+            }
+        }
+
+        if (this->Sounds[this->Sounds.Length() - 1] == NULL && 1 < this->Sounds.Length())
+        {
+            for (i = this->Sounds.Length(); 1 < i; i--)
+            {
+                if (this->Sounds[i - 1] != NULL)
+                {
+                    break;
+                }
+            }
+
+            this->Sounds.Remove(i, this->Sounds.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::assets::PurgeSounds(array<uint64>* Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep->Length(); i++)
+        {
+            if ((*Keep)[i] == 0)
+            {
+                continue;
+            }
+            if (this->Sounds.Length() <= (*Keep)[i] || this->Sounds[(*Keep)[i]] == NULL)
+            {
+                printf("slay::assets.PurgeSounds(): Sound does not exists\nParams: Keep: %p\n", Keep);
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Sounds.Length(); i++)
+        {
+            for (j = 0; j < Keep->Length(); j++)
+            {
+                if (i == (*Keep)[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep->Length())
             {
                 Mix_FreeChunk(this->Sounds[i]);
                 this->Sounds[i] = NULL;
@@ -416,7 +553,7 @@ namespace slay
             }
             if (this->Fonts.Length() <= Keep.begin()[i] || this->Fonts[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeFonts(): Font does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.assets.PurgeFonts(): Font does not exists\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -432,6 +569,77 @@ namespace slay
             }
 
             if (j == Keep.size())
+            {
+                for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
+                {
+                    if (this->Engine.Actors.Actors[k] == NULL)
+                    {
+                        continue;
+                    }
+
+                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Texts.Texts.Length(); l++)
+                    {
+                        if (this->Engine.Actors.Actors[k]->Texts.Texts[l] == NULL)
+                        {
+                            continue;
+                        }
+
+                        if (this->Engine.Actors.Actors[k]->Texts.Texts[l]->FontID == i)
+                        {
+                            this->Engine.Actors.Actors[k]->Texts.Texts[l]->FontID = 0;
+                        }
+                    }
+                }
+
+                TTF_CloseFont(this->Fonts[i]);
+                this->Fonts[i] = NULL;
+            }
+        }
+
+        if (this->Fonts[this->Fonts.Length() - 1] == NULL && 1 < this->Fonts.Length())
+        {
+            for (i = this->Fonts.Length(); 1 < i; i--)
+            {
+                if (this->Fonts[i - 1] != NULL)
+                {
+                    break;
+                }
+            }
+
+            this->Fonts.Remove(i, this->Fonts.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::assets::PurgeFonts(array<uint64>* Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep->Length(); i++)
+        {
+            if ((*Keep)[i] == 0)
+            {
+                continue;
+            }
+            if (this->Fonts.Length() <= (*Keep)[i] || this->Fonts[(*Keep)[i]] == NULL)
+            {
+                printf("slay::engine.assets.PurgeFonts(): Font does not exists\nParams: Keep: %p\n", Keep);
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Fonts.Length(); i++)
+        {
+            for (j = 0; j < Keep->Length(); j++)
+            {
+                if (i == (*Keep)[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep->Length())
             {
                 for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
                 {
@@ -578,7 +786,7 @@ namespace slay
             }
             if (this->Cursors.Length() <= Keep.begin()[i] || this->Cursors[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeCursors(): Cursor does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.assets.PurgeCursors(): Cursor does not exists\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -596,6 +804,58 @@ namespace slay
             }
 
             if (j == Keep.size())
+            {
+                SDL_FreeCursor(this->Cursors[i]);
+                this->Cursors[i] = NULL;
+            }
+        }
+
+        if (this->Cursors[this->Cursors.Length() - 1] == NULL && 1 < this->Cursors.Length())
+        {
+            for (i = this->Cursors.Length(); 1 < i; i--)
+            {
+                if (this->Cursors[i - 1] != NULL)
+                {
+                    break;
+                }
+            }
+
+            this->Cursors.Remove(i, this->Cursors.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::assets::PurgeCursors(array<uint64>* Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep->Length(); i++)
+        {
+            if (Keep[i] == 0)
+            {
+                continue;
+            }
+            if (this->Cursors.Length() <= (*Keep)[i] || this->Cursors[(*Keep)[i]] == NULL)
+            {
+                printf("slay::engine.assets.PurgeCursors(): Cursor does not exists\nParams: Keep: %p\n", Keep);
+                exit(1);
+            }
+        }
+
+        this->Engine.Mouse.Cursor = 0;
+
+        for (i = 1; i < this->Cursors.Length(); i++)
+        {
+            for (j = 0; j < Keep->Length(); j++)
+            {
+                if (i == (*Keep)[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep->Length())
             {
                 SDL_FreeCursor(this->Cursors[i]);
                 this->Cursors[i] = NULL;
