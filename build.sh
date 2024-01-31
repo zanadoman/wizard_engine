@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SOURCES=$(find . -name '*.cpp')
-LANG_VERSION="gnu++23"
+LANGUAGE_VERSION="gnu++23"
 BUILD_NAME="bin"
 BUILD_FOLDER="Build"
 
@@ -23,7 +23,7 @@ ENDCOLOR="\e[0m"
 
 if [[ -n $1 && $1 == "-w" ]] || [[ -n $1 && $1 == "--windows" ]]
 then
-    if ${WINDOWS_COMPILER} -m64 -std=${LANG_VERSION} -O3 ${WINDOWS_EXTRA_FLAGS} ${WINDOWS_WARNINGS} -o ${BUILD_FOLDER}/${BUILD_NAME}.exe ${SOURCES} ${WINDOWS_LIBRARIES} -lm
+    if ${WINDOWS_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${WINDOWS_EXTRA_FLAGS} ${WINDOWS_WARNINGS} -o ${BUILD_FOLDER}/${BUILD_NAME}.exe ${SOURCES} ${WINDOWS_LIBRARIES} -lm
     then
         echo -e "${BLUE}Windows ${GREEN}build successful!${ENDCOLOR}"
         cd Build || exit 1
@@ -43,7 +43,7 @@ fi
 
 if [[ -n $1 && $1 == "-l" ]] || [[ -n $1 && $1 == "--linux" ]]
 then
-    if ${LINUX_COMPILER} -m64 -std=${LANG_VERSION} -O3 ${LINUX_EXTRA_FLAGS} ${LINUX_WARNINGS} -o ${BUILD_FOLDER}/${BUILD_NAME}.out ${SOURCES} ${LINUX_LIBRARIES} -lm
+    if ${LINUX_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${LINUX_EXTRA_FLAGS} ${LINUX_WARNINGS} -o ${BUILD_FOLDER}/${BUILD_NAME}.out ${SOURCES} ${LINUX_LIBRARIES} -lm
     then
         echo -e "${YELLOW}Linux ${GREEN}build successful!${ENDCOLOR}"
         cd Build || exit 1
