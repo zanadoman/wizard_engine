@@ -144,3 +144,5 @@ then
         exit 1
     fi
 fi
+
+echo -e "\nUsage: ./build.sh [options]\n\nOptions:\n  -l|--linux\tBuild for ${YELLOW}Linux${ENDCOLOR} (x86_64).\n  -w|--windows\tBuild for ${BLUE}Windows${ENDCOLOR} (x86_64).\n  -g|--git\tRapid build with ${MAGENTA}git${ENDCOLOR}.\n"
