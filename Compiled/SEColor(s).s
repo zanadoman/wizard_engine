@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
-.LFB2425:
+.LFB2428:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2425:
+.LFE2428:
 	.size	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -538,7 +538,7 @@ _ZN4slay6engine6actors5actor6colors6DeleteEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC9:
-	.string	"slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep(length) %ld\n"
+	.string	"slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -714,9 +714,192 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC10:
-	.string	"slay::engine.actors[].colors[]: Illegal access to NULL Color\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep: %p\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE
+	.type	_ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE, @function
+_ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
+.LFB2242:
+	.cfi_startproc
+	pushq	%r13
+	.cfi_def_cfa_offset 16
+	.cfi_offset 13, -16
+	pushq	%r12
+	.cfi_def_cfa_offset 24
+	.cfi_offset 12, -24
+	movq	%rsi, %r12
+	pushq	%rbp
+	.cfi_def_cfa_offset 32
+	.cfi_offset 6, -32
+	movq	%rdi, %rbp
+	pushq	%rbx
+	.cfi_def_cfa_offset 40
+	.cfi_offset 3, -40
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 48
+	movq	(%rsi), %rdx
+	movq	16(%rdi), %rsi
+	testq	%rdx, %rdx
+	je	.L126
+	movq	8(%r12), %rdi
+	xorl	%eax, %eax
+	.p2align 4,,10
+	.p2align 3
+.L129:
+	movq	(%rdi,%rax,8), %rcx
+	testq	%rcx, %rcx
+	je	.L127
+	cmpq	%rsi, %rcx
+	jnb	.L128
+	movq	24(%rbp), %r8
+	cmpq	$0, (%r8,%rcx,8)
+	je	.L128
+.L127:
+	addq	$1, %rax
+	cmpq	%rax, %rdx
+	jne	.L129
+.L126:
+	cmpq	$1, %rsi
+	jbe	.L130
+	movq	24(%rbp), %rdi
+	movl	$1, %ebx
+	testq	%rdx, %rdx
+	je	.L134
+	.p2align 4,,10
+	.p2align 3
+.L139:
+	movq	8(%r12), %rcx
+	xorl	%eax, %eax
+	jmp	.L133
+	.p2align 4,,10
+	.p2align 3
+.L163:
+	addq	$1, %rax
+	cmpq	%rax, %rdx
+	je	.L134
+.L133:
+	cmpq	%rbx, (%rcx,%rax,8)
+	jne	.L163
+	cmpq	%rax, %rdx
+	je	.L134
+	addq	$1, %rbx
+	cmpq	%rsi, %rbx
+	jnb	.L138
+.L165:
+	movq	(%r12), %rdx
+	testq	%rdx, %rdx
+	jne	.L139
+	.p2align 4,,10
+	.p2align 3
+.L134:
+	movq	(%rdi,%rbx,8), %rax
+	leaq	0(,%rbx,8), %r13
+	testq	%rax, %rax
+	je	.L136
+	movl	$56, %esi
+	movq	%rax, %rdi
+	call	_ZdlPvm@PLT
+	movq	16(%rbp), %rsi
+	movq	24(%rbp), %rdi
+.L136:
+	cmpq	%rsi, %rbx
+	jnb	.L164
+	addq	$1, %rbx
+	movq	$0, (%rdi,%r13)
+	cmpq	%rsi, %rbx
+	jb	.L165
+.L138:
+	cmpq	$0, -8(%rdi,%rsi,8)
+	leaq	-1(%rsi), %rdx
+	je	.L166
+.L160:
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 40
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 32
+	popq	%rbp
+	.cfi_def_cfa_offset 24
+	popq	%r12
+	.cfi_def_cfa_offset 16
+	popq	%r13
+	.cfi_def_cfa_offset 8
+	ret
+.L166:
+	.cfi_restore_state
+	movq	%rsi, %rcx
+	jmp	.L140
+	.p2align 4,,10
+	.p2align 3
+.L145:
+	leaq	-1(%rcx), %rax
+	cmpq	%rsi, %rax
+	jnb	.L167
+	cmpq	$0, (%rdi,%rax,8)
+	jne	.L168
+	movq	%rax, %rcx
+.L140:
+	cmpq	$1, %rcx
+	jne	.L145
+.L144:
+	leaq	16(%rbp), %rdi
+	movq	%rcx, %rsi
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 40
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 32
+	popq	%rbp
+	.cfi_def_cfa_offset 24
+	popq	%r12
+	.cfi_def_cfa_offset 16
+	popq	%r13
+	.cfi_def_cfa_offset 8
+	ret
+.L130:
+	.cfi_restore_state
+	testq	%rsi, %rsi
+	jne	.L160
+	orq	$-1, %rsi
+.L162:
+	leaq	.LC4(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.p2align 4,,10
+	.p2align 3
+.L168:
+	subq	%rcx, %rsi
+	movq	%rsi, %rdx
+	jmp	.L144
+.L128:
+	leaq	.LC10(%rip), %rdi
+	movq	%r12, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L167:
+	movq	%rax, %rsi
+	jmp	.L162
+.L164:
+	movq	%rbx, %rsi
+	jmp	.L162
+	.cfi_endproc
+.LFE2242:
+	.size	_ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE, .-_ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE
+	.section	.rodata.str1.8
 	.align 8
 .LC11:
+	.string	"slay::engine.actors[].colors[]: Illegal access to NULL Color\nParams: ID: %lld\n"
+	.align 8
+.LC12:
 	.string	"slay::engine.actors[].colors[]: Color does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -724,44 +907,44 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.globl	_ZN4slay6engine6actors5actor6colorsixEy
 	.type	_ZN4slay6engine6actors5actor6colorsixEy, @function
 _ZN4slay6engine6actors5actor6colorsixEy:
-.LFB2242:
+.LFB2243:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L130
+	je	.L174
 	cmpq	16(%rdi), %rsi
-	jnb	.L127
+	jnb	.L171
 	movq	24(%rdi), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L127
+	je	.L171
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L127:
+.L171:
 	.cfi_restore_state
+	leaq	.LC12(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L174:
 	leaq	.LC11(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L130:
-	leaq	.LC10(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
 	.cfi_endproc
-.LFE2242:
+.LFE2243:
 	.size	_ZN4slay6engine6actors5actor6colorsixEy, .-_ZN4slay6engine6actors5actor6colorsixEy
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_
 	.type	_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_, @function
 _ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_:
-.LFB2244:
+.LFB2245:
 	.cfi_startproc
 	movabsq	$-4294967296, %rax
 	pxor	%xmm0, %xmm0
@@ -775,7 +958,7 @@ _ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_:
 	movups	%xmm0, 40(%rdi)
 	ret
 	.cfi_endproc
-.LFE2244:
+.LFE2245:
 	.size	_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_, .-_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_
 	.globl	_ZN4slay6engine6actors5actor6colors5colorC1ERS0_RS2_
 	.set	_ZN4slay6engine6actors5actor6colors5colorC1ERS0_RS2_,_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_
@@ -784,19 +967,19 @@ _ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_:
 	.globl	_ZN4slay6engine6actors5actor6colors5color10GetOffsetXEv
 	.type	_ZN4slay6engine6actors5actor6colors5color10GetOffsetXEv, @function
 _ZN4slay6engine6actors5actor6colors5color10GetOffsetXEv:
-.LFB2246:
+.LFB2247:
 	.cfi_startproc
 	movl	28(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE2246:
+.LFE2247:
 	.size	_ZN4slay6engine6actors5actor6colors5color10GetOffsetXEv, .-_ZN4slay6engine6actors5actor6colors5color10GetOffsetXEv
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor6colors5color10SetOffsetXEi
 	.type	_ZN4slay6engine6actors5actor6colors5color10SetOffsetXEi, @function
 _ZN4slay6engine6actors5actor6colors5color10SetOffsetXEi:
-.LFB2247:
+.LFB2248:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -849,26 +1032,26 @@ _ZN4slay6engine6actors5actor6colors5color10SetOffsetXEi:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2247:
+.LFE2248:
 	.size	_ZN4slay6engine6actors5actor6colors5color10SetOffsetXEi, .-_ZN4slay6engine6actors5actor6colors5color10SetOffsetXEi
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor6colors5color10GetOffsetYEv
 	.type	_ZN4slay6engine6actors5actor6colors5color10GetOffsetYEv, @function
 _ZN4slay6engine6actors5actor6colors5color10GetOffsetYEv:
-.LFB2248:
+.LFB2249:
 	.cfi_startproc
 	movl	32(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE2248:
+.LFE2249:
 	.size	_ZN4slay6engine6actors5actor6colors5color10GetOffsetYEv, .-_ZN4slay6engine6actors5actor6colors5color10GetOffsetYEv
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor6colors5color10SetOffsetYEi
 	.type	_ZN4slay6engine6actors5actor6colors5color10SetOffsetYEi, @function
 _ZN4slay6engine6actors5actor6colors5color10SetOffsetYEi:
-.LFB2249:
+.LFB2250:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -921,7 +1104,7 @@ _ZN4slay6engine6actors5actor6colors5color10SetOffsetYEi:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2249:
+.LFE2250:
 	.size	_ZN4slay6engine6actors5actor6colors5color10SetOffsetYEi, .-_ZN4slay6engine6actors5actor6colors5color10SetOffsetYEi
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

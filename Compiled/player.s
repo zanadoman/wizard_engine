@@ -154,7 +154,7 @@ _ZN6playerC2ERN4slay6engineE:
 	leaq	72(%rax), %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movl	$100, %esi
-	movw	%si, 20(%rax)
+	movw	%si, 18(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
@@ -164,14 +164,14 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movl	$100, %ecx
 	movq	8(%rbx), %rsi
-	movw	%cx, 22(%rax)
+	movw	%cx, 20(%rax)
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	16(%rbx), %rsi
 	leaq	72(%rax), %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movb	$1, 17(%rax)
+	movb	$1, 16(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
@@ -179,7 +179,7 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	16(%rbx), %rsi
 	leaq	72(%rax), %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movb	$1, 18(%rax)
+	movb	$1, 17(%rax)
 	leaq	.LC10(%rip), %rax
 	movq	8(%rbx), %rsi
 	movq	%rax, (%rsp)

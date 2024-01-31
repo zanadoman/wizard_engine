@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6RemoveEyy.isra.0:
-.LFB2433:
+.LFB2436:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2433:
+.LFE2436:
 	.size	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -690,7 +690,7 @@ _ZN4slay6engine6actors5actor5texts6DeleteEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC12:
-	.string	"slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep(length) %ld\n"
+	.string	"slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -884,9 +884,214 @@ _ZN4slay6engine6actors5actor5texts5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC13:
-	.string	"slay::engine.actors[].texts[]: Illegal access to NULL Text\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep: %p\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE
+	.type	_ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE, @function
+_ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE:
+.LFB2242:
+	.cfi_startproc
+	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+	.cfi_lsda 0x1b,.LLSDA2242
+	pushq	%r14
+	.cfi_def_cfa_offset 16
+	.cfi_offset 14, -16
+	pushq	%r13
+	.cfi_def_cfa_offset 24
+	.cfi_offset 13, -24
+	pushq	%r12
+	.cfi_def_cfa_offset 32
+	.cfi_offset 12, -32
+	movq	%rsi, %r12
+	pushq	%rbp
+	.cfi_def_cfa_offset 40
+	.cfi_offset 6, -40
+	movq	%rdi, %rbp
+	pushq	%rbx
+	.cfi_def_cfa_offset 48
+	.cfi_offset 3, -48
+	movq	(%rsi), %rdx
+	movq	16(%rdi), %rsi
+	testq	%rdx, %rdx
+	je	.L130
+	movq	8(%r12), %rdi
+	xorl	%eax, %eax
+	.p2align 4,,10
+	.p2align 3
+.L133:
+	movq	(%rdi,%rax,8), %rcx
+	testq	%rcx, %rcx
+	je	.L131
+	cmpq	%rsi, %rcx
+	jnb	.L132
+	movq	24(%rbp), %r8
+	cmpq	$0, (%r8,%rcx,8)
+	je	.L132
+.L131:
+	addq	$1, %rax
+	cmpq	%rax, %rdx
+	jne	.L133
+.L130:
+	cmpq	$1, %rsi
+	jbe	.L134
+	movq	24(%rbp), %rdi
+	movl	$1, %ebx
+	testq	%rdx, %rdx
+	je	.L138
+	.p2align 4,,10
+	.p2align 3
+.L143:
+	movq	8(%r12), %rcx
+	xorl	%eax, %eax
+	jmp	.L137
+	.p2align 4,,10
+	.p2align 3
+.L167:
+	addq	$1, %rax
+	cmpq	%rax, %rdx
+	je	.L138
+.L137:
+	cmpq	%rbx, (%rcx,%rax,8)
+	jne	.L167
+	cmpq	%rax, %rdx
+	je	.L138
+	addq	$1, %rbx
+	cmpq	%rsi, %rbx
+	jnb	.L142
+.L169:
+	movq	(%r12), %rdx
+	testq	%rdx, %rdx
+	jne	.L143
+	.p2align 4,,10
+	.p2align 3
+.L138:
+	movq	(%rdi,%rbx,8), %r13
+	leaq	0(,%rbx,8), %r14
+	testq	%r13, %r13
+	je	.L140
+	movq	96(%r13), %rdi
+	call	SDL_DestroyTexture@PLT
+	leaq	40(%r13), %rdi
+	call	_ZN3neo6stringD1Ev@PLT
+	movl	$104, %esi
+	movq	%r13, %rdi
+	call	_ZdlPvm@PLT
+	movq	16(%rbp), %rsi
+	movq	24(%rbp), %rdi
+.L140:
+	cmpq	%rsi, %rbx
+	jnb	.L168
+	addq	$1, %rbx
+	movq	$0, (%rdi,%r14)
+	cmpq	%rsi, %rbx
+	jb	.L169
+.L142:
+	cmpq	$0, -8(%rdi,%rsi,8)
+	leaq	-1(%rsi), %rdx
+	je	.L170
+.L164:
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 40
+	xorl	%eax, %eax
+	popq	%rbp
+	.cfi_def_cfa_offset 32
+	popq	%r12
+	.cfi_def_cfa_offset 24
+	popq	%r13
+	.cfi_def_cfa_offset 16
+	popq	%r14
+	.cfi_def_cfa_offset 8
+	ret
+.L170:
+	.cfi_restore_state
+	movq	%rsi, %rcx
+	jmp	.L144
+	.p2align 4,,10
+	.p2align 3
+.L149:
+	leaq	-1(%rcx), %rax
+	cmpq	%rsi, %rax
+	jnb	.L171
+	cmpq	$0, (%rdi,%rax,8)
+	jne	.L172
+	movq	%rax, %rcx
+.L144:
+	cmpq	$1, %rcx
+	jne	.L149
+.L148:
+	leaq	16(%rbp), %rdi
+	movq	%rcx, %rsi
+.LEHB8:
+	call	_ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6RemoveEyy.isra.0
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 40
+	xorl	%eax, %eax
+	popq	%rbp
+	.cfi_def_cfa_offset 32
+	popq	%r12
+	.cfi_def_cfa_offset 24
+	popq	%r13
+	.cfi_def_cfa_offset 16
+	popq	%r14
+	.cfi_def_cfa_offset 8
+	ret
+.L134:
+	.cfi_restore_state
+	testq	%rsi, %rsi
+	jne	.L164
+	orq	$-1, %rsi
+.L166:
+	leaq	.LC5(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.p2align 4,,10
+	.p2align 3
+.L172:
+	subq	%rcx, %rsi
+	movq	%rsi, %rdx
+	jmp	.L148
+.L132:
+	leaq	.LC13(%rip), %rdi
+	movq	%r12, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+.LEHE8:
+	movl	$1, %edi
+	call	exit@PLT
+.L171:
+	movq	%rax, %rsi
+	jmp	.L166
+.L168:
+	movq	%rbx, %rsi
+	jmp	.L166
+	.cfi_endproc
+.LFE2242:
+	.section	.gcc_except_table
+.LLSDA2242:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE2242-.LLSDACSB2242
+.LLSDACSB2242:
+	.uleb128 .LEHB8-.LFB2242
+	.uleb128 .LEHE8-.LEHB8
+	.uleb128 0
+	.uleb128 0
+.LLSDACSE2242:
+	.text
+	.size	_ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE, .-_ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE
+	.section	.rodata.str1.8
 	.align 8
 .LC14:
+	.string	"slay::engine.actors[].texts[]: Illegal access to NULL Text\nParams: ID: %lld\n"
+	.align 8
+.LC15:
 	.string	"slay::engine.actors[].texts[]: Text does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -894,44 +1099,44 @@ _ZN4slay6engine6actors5actor5texts5PurgeESt16initializer_listIyE:
 	.globl	_ZN4slay6engine6actors5actor5textsixEy
 	.type	_ZN4slay6engine6actors5actor5textsixEy, @function
 _ZN4slay6engine6actors5actor5textsixEy:
-.LFB2242:
+.LFB2243:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L134
+	je	.L178
 	cmpq	16(%rdi), %rsi
-	jnb	.L131
+	jnb	.L175
 	movq	24(%rdi), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L131
+	je	.L175
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L131:
+.L175:
 	.cfi_restore_state
+	leaq	.LC15(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L178:
 	leaq	.LC14(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L134:
-	leaq	.LC13(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
 	.cfi_endproc
-.LFE2242:
+.LFE2243:
 	.size	_ZN4slay6engine6actors5actor5textsixEy, .-_ZN4slay6engine6actors5actor5textsixEy
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_
 	.type	_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_, @function
 _ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_:
-.LFB2244:
+.LFB2245:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -956,7 +1161,7 @@ _ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2244:
+.LFE2245:
 	.size	_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_, .-_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_
 	.globl	_ZN4slay6engine6actors5actor5texts4textC1ERS0_RS2_
 	.set	_ZN4slay6engine6actors5actor5texts4textC1ERS0_RS2_,_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_
@@ -965,19 +1170,19 @@ _ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_:
 	.globl	_ZN4slay6engine6actors5actor5texts4text10GetOffsetXEv
 	.type	_ZN4slay6engine6actors5actor5texts4text10GetOffsetXEv, @function
 _ZN4slay6engine6actors5actor5texts4text10GetOffsetXEv:
-.LFB2246:
+.LFB2247:
 	.cfi_startproc
 	movl	56(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE2246:
+.LFE2247:
 	.size	_ZN4slay6engine6actors5actor5texts4text10GetOffsetXEv, .-_ZN4slay6engine6actors5actor5texts4text10GetOffsetXEv
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi
 	.type	_ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi, @function
 _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
-.LFB2247:
+.LFB2248:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1030,26 +1235,26 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2247:
+.LFE2248:
 	.size	_ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi, .-_ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor5texts4text10GetOffsetYEv
 	.type	_ZN4slay6engine6actors5actor5texts4text10GetOffsetYEv, @function
 _ZN4slay6engine6actors5actor5texts4text10GetOffsetYEv:
-.LFB2248:
+.LFB2249:
 	.cfi_startproc
 	movl	60(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE2248:
+.LFE2249:
 	.size	_ZN4slay6engine6actors5actor5texts4text10GetOffsetYEv, .-_ZN4slay6engine6actors5actor5texts4text10GetOffsetYEv
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi
 	.type	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi, @function
 _ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi:
-.LFB2249:
+.LFB2250:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1102,17 +1307,17 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2249:
+.LFE2250:
 	.size	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi, .-_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor5texts4textD2Ev
 	.type	_ZN4slay6engine6actors5actor5texts4textD2Ev, @function
 _ZN4slay6engine6actors5actor5texts4textD2Ev:
-.LFB2251:
+.LFB2252:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2251
+	.cfi_lsda 0x1b,.LLSDA2252
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -1124,15 +1329,15 @@ _ZN4slay6engine6actors5actor5texts4textD2Ev:
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3neo6stringD1Ev@PLT
 	.cfi_endproc
-.LFE2251:
+.LFE2252:
 	.section	.gcc_except_table
-.LLSDA2251:
+.LLSDA2252:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2251-.LLSDACSB2251
-.LLSDACSB2251:
-.LLSDACSE2251:
+	.uleb128 .LLSDACSE2252-.LLSDACSB2252
+.LLSDACSB2252:
+.LLSDACSE2252:
 	.text
 	.size	_ZN4slay6engine6actors5actor5texts4textD2Ev, .-_ZN4slay6engine6actors5actor5texts4textD2Ev
 	.globl	_ZN4slay6engine6actors5actor5texts4textD1Ev
@@ -1142,7 +1347,7 @@ _ZN4slay6engine6actors5actor5texts4textD2Ev:
 	.globl	_ZN4slay6engine6actors5actor5texts4text6StringEv
 	.type	_ZN4slay6engine6actors5actor5texts4text6StringEv, @function
 _ZN4slay6engine6actors5actor5texts4text6StringEv:
-.LFB2253:
+.LFB2254:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1156,23 +1361,23 @@ _ZN4slay6engine6actors5actor5texts4text6StringEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2253:
+.LFE2254:
 	.size	_ZN4slay6engine6actors5actor5texts4text6StringEv, .-_ZN4slay6engine6actors5actor5texts4text6StringEv
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor5texts4text7GetFontEv
 	.type	_ZN4slay6engine6actors5actor5texts4text7GetFontEv, @function
 _ZN4slay6engine6actors5actor5texts4text7GetFontEv:
-.LFB2254:
+.LFB2255:
 	.cfi_startproc
 	movq	88(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE2254:
+.LFE2255:
 	.size	_ZN4slay6engine6actors5actor5texts4text7GetFontEv, .-_ZN4slay6engine6actors5actor5texts4text7GetFontEv
 	.section	.rodata.str1.8
 	.align 8
-.LC15:
+.LC16:
 	.string	"slay::engine.actors[].texts[].SetFont(): Font does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1180,37 +1385,37 @@ _ZN4slay6engine6actors5actor5texts4text7GetFontEv:
 	.globl	_ZN4slay6engine6actors5actor5texts4text7SetFontEy
 	.type	_ZN4slay6engine6actors5actor5texts4text7SetFontEy, @function
 _ZN4slay6engine6actors5actor5texts4text7SetFontEy:
-.LFB2255:
+.LFB2256:
 	.cfi_startproc
 	movq	%rsi, %rax
 	testq	%rsi, %rsi
-	je	.L151
+	je	.L195
 	movq	(%rdi), %rdx
 	cmpq	600(%rdx), %rsi
-	jnb	.L150
+	jnb	.L194
 	movq	608(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
-	je	.L150
+	je	.L194
 	movq	%rsi, %rdx
 	movq	%rdx, 88(%rdi)
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L151:
+.L195:
 	xorl	%edx, %edx
 	movq	%rdx, 88(%rdi)
 	ret
-.L150:
+.L194:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
-	leaq	.LC15(%rip), %rdi
+	leaq	.LC16(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2255:
+.LFE2256:
 	.size	_ZN4slay6engine6actors5actor5texts4text7SetFontEy, .-_ZN4slay6engine6actors5actor5texts4text7SetFontEy
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

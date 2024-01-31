@@ -310,13 +310,13 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	(%rcx,%rbp,8), %rcx
 	testq	%rcx, %rcx
 	je	.L77
+	cmpw	$0, 18(%rcx)
+	je	.L77
 	cmpw	$0, 20(%rcx)
 	je	.L77
-	cmpw	$0, 22(%rcx)
+	cmpb	$0, 38(%rcx)
 	je	.L77
-	cmpb	$0, 37(%rcx)
-	je	.L77
-	cmpb	$0, 39(%rcx)
+	cmpb	$0, 40(%rcx)
 	je	.L77
 	movq	72(%rcx), %r8
 	movq	96(%rcx), %rdi
@@ -992,9 +992,9 @@ _ZN4slay6engine6render14SelectionStageEv:
 	pxor	%xmm6, %xmm6
 	pxor	%xmm1, %xmm1
 	movsd	176(%rsi), %xmm5
-	cvtsi2sdl	44(%rcx), %xmm6
+	cvtsi2sdl	48(%rcx), %xmm6
 	addsd	152(%rsi), %xmm6
-	cvtsi2sdl	48(%rcx), %xmm1
+	cvtsi2sdl	52(%rcx), %xmm1
 	addsd	160(%rsi), %xmm1
 	movapd	%xmm5, %xmm2
 	subsd	%xmm0, %xmm2
@@ -1032,7 +1032,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	addq	$1, %r15
 	salq	$4, %rdx
 	addq	40(%r13), %rdx
-	movzbl	38(%rcx), %esi
+	movzbl	39(%rcx), %esi
 	movq	%rcx, (%rdx)
 	movl	$2, 8(%rdx)
 	movb	%sil, 24(%rdx)
@@ -1056,8 +1056,8 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movsd	56(%rsp), %xmm0
 	movsd	%xmm2, 32(%rsp)
 	movsd	%xmm1, 16(%rsp)
-	movzwl	20(%rax), %esi
-	movzwl	22(%rax), %edx
+	movzwl	18(%rax), %esi
+	movzwl	20(%rax), %edx
 	call	_ZN4slay6engine6camera9TransformEddttd@PLT
 	testq	%r15, %r15
 	movsd	16(%rsp), %xmm1
@@ -2331,12 +2331,12 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	movzbl	33(%rax), %r9d
 	movzbl	32(%rax), %ebx
 	movq	72(%rax), %rcx
-	movzbl	35(%rax), %r8d
+	movzbl	36(%rax), %r8d
 	negl	%r9d
-	movzbl	34(%rax), %edi
+	movzbl	35(%rax), %edi
 	andl	$2, %r9d
 	orl	%r9d, %ebx
-	movzbl	36(%rax), %r9d
+	movzbl	37(%rax), %r9d
 	movq	96(%rax), %rax
 	movq	(%rax,%rcx,8), %rsi
 	movq	576(%rdx), %rax
@@ -2353,7 +2353,7 @@ _ZN4slay6engine6render14RenderFlipbookENS1_5tokenE:
 	movq	32(%rsp), %rax
 	movq	0(%rbp), %rdx
 	movq	72(%rax), %rcx
-	movzbl	37(%rax), %edi
+	movzbl	38(%rax), %edi
 	movq	96(%rax), %rax
 	movq	(%rax,%rcx,8), %rsi
 	movq	576(%rdx), %rax

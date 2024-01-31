@@ -420,7 +420,7 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	movl	80(%rsi), %eax
 	xorl	%edx, %edx
 	addl	664(%r9), %eax
-	divl	40(%rsi)
+	divl	44(%rsi)
 	addq	72(%rsi), %rax
 	movq	%rax, 72(%rsi)
 	movq	%rax, %rcx
@@ -472,7 +472,7 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	.p2align 4,,10
 	.p2align 3
 .L48:
-	cmpb	$0, 16(%rsi)
+	cmpb	$0, 34(%rsi)
 	je	.L35
 	leaq	1(%rcx), %r12
 	xorl	%edx, %edx
