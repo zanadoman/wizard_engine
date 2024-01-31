@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#############################################################################################################################
+
 SOURCES=$(find . -name "*.cpp")
 LANGUAGE_VERSION="gnu++23"
 
@@ -33,6 +35,8 @@ GIT_BUILD_NAME=${LINUX_BUILD_NAME}
 GIT_BUILD_FOLDER=${LINUX_BUILD_FOLDER}
 GIT_RUN_PREFIX=${LINUX_RUN_PREFIX}
 GIT_RUN_SUFFIX=${LINUX_RUN_SUFFIX}
+
+#############################################################################################################################
 
 GREEN="\e[92m"
 RED="\e[91m"
