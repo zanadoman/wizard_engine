@@ -1,4 +1,3 @@
-#include "Includes/SDL_timer.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -147,7 +146,7 @@ namespace slay
             }
             if (this->Flipbooks.Length() <= Keep.begin()[i] || this->Flipbooks[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors[].flipbooks.Purge(): Flipbook does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.actors[].flipbooks.Purge(): Flipbook does not exists\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -163,6 +162,56 @@ namespace slay
             }
 
             if (j == Keep.size())
+            {
+                delete this->Flipbooks[i];
+                this->Flipbooks[i] = NULL;
+            }
+        }
+
+        if (this->Flipbooks[this->Flipbooks.Length() - 1] == NULL && 1 < this->Flipbooks.Length())
+        {
+            for (i = this->Flipbooks.Length(); 1 < i; i--)
+            {
+                if (this->Flipbooks[i - 1] != NULL)
+                {
+                    break;
+                }
+            }
+
+            this->Flipbooks.Remove(i, this->Flipbooks.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::flipbooks::Purge(array<uint64>* Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep->Length(); i++)
+        {
+            if ((*Keep)[i] == 0)
+            {
+                continue;
+            }
+            if (this->Flipbooks.Length() <= (*Keep)[i] || this->Flipbooks[(*Keep)[i]] == NULL)
+            {
+                printf("slay::engine.actors[].flipbooks.Purge(): Flipbook does not exists\nParams: Keep: %p\n", Keep);
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Flipbooks.Length(); i++)
+        {
+            for (j = 0; j < Keep->Length(); j++)
+            {
+                if (i == (*Keep)[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep->Length())
             {
                 delete this->Flipbooks[i];
                 this->Flipbooks[i] = NULL;
@@ -203,8 +252,6 @@ namespace slay
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs) : Engine(Engine), Actor(Actor)
     {
-        this->Delay = 1;
-        this->Loop = true;
         this->OffsetLocked = false;
         this->AngleLocked = false;
         this->Width = 0;
@@ -212,12 +259,14 @@ namespace slay
         this->Angle = 0;
         this->FlipHorizontal = false;
         this->FlipVertical = false;
+        this->Loop = true;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
         this->ColorA = 255;
         this->Priority = 128;
         this->Visible = true;
+        this->Delay = 1;
         this->OffsetX = 0;
         this->OffsetY = 0;
         this->OffsetLength = 0;
@@ -239,8 +288,6 @@ namespace slay
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
     {
-        this->Delay = 1;
-        this->Loop = true;
         this->OffsetLocked = false;
         this->AngleLocked = false;
         this->Width = 0;
@@ -248,12 +295,14 @@ namespace slay
         this->Angle = 0;
         this->FlipHorizontal = false;
         this->FlipVertical = false;
+        this->Loop = true;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
         this->ColorA = 255;
         this->Priority = 128;
         this->Visible = true;
+        this->Delay = 1;
         this->OffsetX = 0;
         this->OffsetY = 0;
         this->OffsetLength = 0;

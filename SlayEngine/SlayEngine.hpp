@@ -347,7 +347,6 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    bool Loop;
                                     bool OffsetLocked;
                                     bool AngleLocked;
                                     uint16 Width;
@@ -355,6 +354,7 @@ namespace slay
                                     double Angle;
                                     bool FlipHorizontal;
                                     bool FlipVertical;
+                                    bool Loop;
                                     uint8 ColorR;
                                     uint8 ColorG;
                                     uint8 ColorB;
@@ -389,6 +389,7 @@ namespace slay
                                 uint64 New(array<uint64>* TextureIDs);
                                 uint8 Delete(uint64 ID);
                                 uint8 Purge(std::initializer_list<uint64> Keep);
+                                uint8 Purge(array<uint64>* Keep);
                                 flipbook& operator [] (uint64 ID);
 
                             private:
