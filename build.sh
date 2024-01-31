@@ -50,7 +50,7 @@ then
     then
         echo -e "${YELLOW}Linux ${GREEN}compilation successful!${ENDCOLOR}"
         rm "${LINUX_ASSEMBLY_FOLDER}"/*.s &> /dev/null
-        mv *.s "${LINUX_ASSEMBLY_FOLDER}" || exit 1
+        mv *.s "${LINUX_ASSEMBLY_FOLDER}" &> /dev/null
         rm *.s &> /dev/null
     else
         echo -e "${YELLOW}Linux ${RED}compilation failed!${ENDCOLOR}"
@@ -85,7 +85,7 @@ then
     then
         echo -e "${BLUE}Windows ${GREEN}compilation successful!${ENDCOLOR}"
         rm "${WINDOWS_ASSEMBLY_FOLDER}"/*.s &> /dev/null
-        mv *.s "${WINDOWS_ASSEMBLY_FOLDER}" || exit 1
+        mv *.s "${WINDOWS_ASSEMBLY_FOLDER}" &> /dev/null
         rm *.s &> /dev/null
     else
         echo -e "${BLUE}Windows ${RED}compilation failed!${ENDCOLOR}"
@@ -119,7 +119,7 @@ then
     if ${GIT_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${GIT_EXTRA_FLAGS} ${GIT_WARNINGS} -S $(find $(git diff --name-only) -name ${GIT_FILTER})
     then
         echo -e "${MAGENTA}Git ${GREEN}compilation successful!${ENDCOLOR}"
-        mv *.s "${GIT_ASSEMBLY_FOLDER}" || exit 1
+        mv *.s "${GIT_ASSEMBLY_FOLDER}" &> /dev/null
         rm *.s &> /dev/null
     else
         echo -e "${MAGENTA}Git ${RED}compilation failed!${ENDCOLOR}"
