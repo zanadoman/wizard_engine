@@ -1,9 +1,9 @@
 #!/bin/bash
 
-SOURCES=$(find . -name '*.cpp')
+SOURCES=$(find . -name "*.cpp")
 LANGUAGE_VERSION="gnu++23"
 
-LINUX_ASSEMBLY_FOLDER="Compiled"
+LINUX_ASSEMBLY_FOLDER="Compiled/Linux"
 LINUX_COMPILER="g++"
 LINUX_WARNINGS="-Werror -Wall -Wextra"
 LINUX_LIBRARIES="-LSlayEngine/Libraries/Linux -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer"
@@ -13,7 +13,7 @@ LINUX_BUILD_FOLDER="Build"
 LINUX_RUN_PREFIX=""
 LINUX_RUN_SUFFIX=""
 
-WINDOWS_ASSEMBLY_FOLDER=""
+WINDOWS_ASSEMBLY_FOLDER="Compiled/Windows"
 WINDOWS_COMPILER="x86_64-w64-mingw32-g++"
 WINDOWS_WARNINGS=""
 WINDOWS_LIBRARIES="-LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer"
@@ -43,14 +43,14 @@ ENDCOLOR="\e[0m"
 
 if [[ -n $1 && $1 == "-l" ]] || [[ -n $1 && $1 == "--linux" ]]
 then
-    ls ${LINUX_ASSEMBLY_FOLDER} &> /dev/null || mkdir ${LINUX_ASSEMBLY_FOLDER}
-    ls ${LINUX_BUILD_FOLDER} &> /dev/null || mkdir ${LINUX_BUILD_FOLDER}
+    ls "${LINUX_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${LINUX_ASSEMBLY_FOLDER}"
+    ls "${LINUX_BUILD_FOLDER}" &> /dev/null || mkdir "${LINUX_BUILD_FOLDER}"
 
     if ${LINUX_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${LINUX_EXTRA_FLAGS} ${LINUX_WARNINGS} -S ${SOURCES}
     then
         echo -e "${YELLOW}Linux ${GREEN}compilation successful!${ENDCOLOR}"
-        rm ${LINUX_ASSEMBLY_FOLDER}/*.s &> /dev/null
-        mv *.s ${LINUX_ASSEMBLY_FOLDER} || exit 1
+        rm "${LINUX_ASSEMBLY_FOLDER}"/*.s &> /dev/null
+        mv *.s "${LINUX_ASSEMBLY_FOLDER}" || exit 1
         rm *.s &> /dev/null
     else
         echo -e "${YELLOW}Linux ${RED}compilation failed!${ENDCOLOR}"
@@ -65,7 +65,7 @@ then
         exit 1
     fi
 
-    if cd ${LINUX_BUILD_FOLDER} && ${LINUX_RUN_PREFIX} ./${LINUX_BUILD_NAME} ${LINUX_RUN_SUFFIX}
+    if cd "${LINUX_BUILD_FOLDER}" && ${LINUX_RUN_PREFIX} ./"${LINUX_BUILD_NAME}" ${LINUX_RUN_SUFFIX}
     then
         echo -e "${YELLOW}Linux ${GREEN}run successful!${ENDCOLOR}"
         exit 0
@@ -77,14 +77,14 @@ fi
 
 if [[ -n $1 && $1 == "-w" ]] || [[ -n $1 && $1 == "--windows" ]]
 then
-    ls ${WINDOWS_ASSEMBLY_FOLDER} &> /dev/null || mkdir ${WINDOWS_ASSEMBLY_FOLDER}
-    ls ${WINDOWS_BUILD_FOLDER} &> /dev/null || mkdir ${WINDOWS_BUILD_FOLDER}
+    ls "${WINDOWS_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${WINDOWS_ASSEMBLY_FOLDER}"
+    ls "${WINDOWS_BUILD_FOLDER}" &> /dev/null || mkdir "${WINDOWS_BUILD_FOLDER}"
 
     if ${WINDOWS_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${WINDOWS_EXTRA_FLAGS} ${WINDOWS_WARNINGS} -S ${SOURCES}
     then
         echo -e "${BLUE}Windows ${GREEN}compilation successful!${ENDCOLOR}"
-        rm ${WINDOWS_ASSEMBLY_FOLDER}/*.s &> /dev/null
-        mv *.s ${WINDOWS_ASSEMBLY_FOLDER} || exit 1
+        rm "${WINDOWS_ASSEMBLY_FOLDER}"/*.s &> /dev/null
+        mv *.s "${WINDOWS_ASSEMBLY_FOLDER}" || exit 1
         rm *.s &> /dev/null
     else
         echo -e "${BLUE}Windows ${RED}compilation failed!${ENDCOLOR}"
@@ -99,7 +99,7 @@ then
         exit 1
     fi
 
-    if cd ${WINDOWS_BUILD_FOLDER} && ${WINDOWS_RUN_PREFIX} ./${WINDOWS_BUILD_NAME} ${WINDOWS_RUN_SUFFIX}
+    if cd "${WINDOWS_BUILD_FOLDER}" && ${WINDOWS_RUN_PREFIX} ./"${WINDOWS_BUILD_NAME}" ${WINDOWS_RUN_SUFFIX}
     then
         echo -e "${BLUE}Windows ${GREEN}run successful!${ENDCOLOR}"
         exit 0
@@ -111,13 +111,13 @@ fi
 
 if [[ -n $1 && $1 == "-g" ]] || [[ -n $1 && $1 == "--git" ]]
 then
-    ls ${GIT_ASSEMBLY_FOLDER} &> /dev/null || mkdir ${GIT_ASSEMBLY_FOLDER}
-    ls ${GIT_BUILD_FOLDER} &> /dev/null || mkdir ${GIT_BUILD_FOLDER}
+    ls "${GIT_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${GIT_ASSEMBLY_FOLDER}"
+    ls "${GIT_BUILD_FOLDER}" &> /dev/null || mkdir "${GIT_BUILD_FOLDER}"
 
     if ${GIT_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${GIT_EXTRA_FLAGS} ${GIT_WARNINGS} -S $(find $(git diff --name-only) -name ${GIT_FILTER})
     then
         echo -e "${MAGENTA}Git ${GREEN}compilation successful!${ENDCOLOR}"
-        mv *.s ${GIT_ASSEMBLY_FOLDER} || exit 1
+        mv *.s "${GIT_ASSEMBLY_FOLDER}" || exit 1
         rm *.s &> /dev/null
     else
         echo -e "${MAGENTA}Git ${RED}compilation failed!${ENDCOLOR}"
@@ -132,7 +132,7 @@ then
         exit 1
     fi
 
-    if cd ${GIT_BUILD_FOLDER} && ${GIT_RUN_PREFIX} ./${GIT_BUILD_NAME} ${GIT_RUN_SUFFIX}
+    if cd "${GIT_BUILD_FOLDER}" && ${GIT_RUN_PREFIX} ./"${GIT_BUILD_NAME}" ${GIT_RUN_SUFFIX}
     then
         echo -e "${MAGENTA}Git ${GREEN}run successful!${ENDCOLOR}"
         exit 0
