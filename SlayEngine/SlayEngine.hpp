@@ -488,6 +488,7 @@ namespace slay
                     uint64 New(uint64 Type);
                     uint8 Delete(uint64 ID);
                     uint8 Purge(std::initializer_list<uint64> Keep);
+                    uint8 Purge(array<uint64>* Keep);
                     actor& operator [] (uint64 ID);
 
                 private:

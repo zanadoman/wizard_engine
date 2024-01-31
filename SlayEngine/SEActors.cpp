@@ -83,7 +83,7 @@ namespace slay
             }
             if (this->Actors.Length() <= Keep.begin()[i] || this->Actors[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors.Purge(): Actor does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.actors.Purge(): Actor does not exists\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -99,6 +99,56 @@ namespace slay
             }
 
             if (j == Keep.size())
+            {
+                delete this->Actors[i];
+                this->Actors[i] = NULL;
+            }
+        }
+
+        if (this->Actors[this->Actors.Length() - 1] == NULL && 1 < this->Actors.Length())
+        {
+            for (i = this->Actors.Length(); 1 < i; i--)
+            {
+                if (this->Actors[i - 1] != NULL)
+                {
+                    break;
+                }
+            }
+            
+            this->Actors.Remove(i, this->Actors.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::actors::Purge(array<uint64>* Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep->Length(); i++)
+        {
+            if ((*Keep)[i] == 0)
+            {
+                continue;
+            }
+            if (this->Actors.Length() <= (*Keep)[i] || this->Actors[(*Keep)[i]] == NULL)
+            {
+                printf("slay::engine.actors.Purge(): Actor does not exists\nParams: Keep: %p\n", Keep);
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Actors.Length(); i++)
+        {
+            for (j = 0; j < Keep->Length(); j++)
+            {
+                if (i == (*Keep)[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep->Length())
             {
                 delete this->Actors[i];
                 this->Actors[i] = NULL;
