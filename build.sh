@@ -1,19 +1,30 @@
-#!/bin/sh
+#!/bin/bash
 
-RED="\e[91m"
+SOURCES=$(find . -name '*.cpp')
+BUILD_NAME="bin"
+BUILD_FOLDER="Build"
+
+LINUX_COMPILER="g++"
+LINUX_WARNINGS="-Werror -Wall -Wextra"
+LINUX_LIBRARIES="-LSlayEngine/Libraries/Linux -lNeoTypes++ -lfreetype -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer"
+
+WINDOWS_COMPILER="x86_64-w64-mingw32-g++"
+WINDOWS_WARNINGS=""
+WINDOWS_LIBRARIES="-LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer"
+
 GREEN="\e[92m"
+RED="\e[91m"
+YELLOW="\e[93m"
 BLUE="\e[94m"
 ENDCOLOR="\e[0m"
 
-if [[ ! -z $1 && $1 == "-w" ]] || [[ ! -z $1 && $1 == "--windows" ]]
+if [[ -n $1 && $1 == "-w" ]] || [[ -n $1 && $1 == "--windows" ]]
 then
-    x86_64-w64-mingw32-g++ -O3 -o Build/bin.exe $(find . -name '*.cpp') -m64 -std=gnu++23 -mwindows -LSlayEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
-    if [ $? == 0 ]
+    if ${WINDOWS_COMPILER} -m64 -std=gnu++23 -O3 -mwindows ${WINDOWS_WARNINGS} -o ${BUILD_FOLDER}/${BUILD_NAME}.exe ${SOURCES} ${WINDOWS_LIBRARIES} -lm
     then
         echo -e "${BLUE}Windows ${GREEN}build successful!${ENDCOLOR}"
-        cd Build
-        wine64 bin.exe
-        if [ $? == 0 ]
+        cd Build || exit 1
+        if wine64 bin.exe
         then
             echo -e "${BLUE}Windows ${GREEN}run successful!${ENDCOLOR}"
             exit 0
@@ -27,53 +38,22 @@ then
     fi
 fi
 
-if [[ ! -z $1 && $1 == "-a" ]] || [[ ! -z $1 && $1 == "--all" ]]
+if [[ -n $1 && $1 == "-l" ]] || [[ -n $1 && $1 == "--linux" ]]
 then
-    g++ -Werror -Wall -Wextra -O3 -S $(find . -name '*.cpp') -m64 -std=gnu++23
-    if [ $? == 0 ]
+    if ${LINUX_COMPILER} -m64 -std=gnu++23 -O3 -Wl,-rpath=. ${LINUX_WARNINGS} -o ${BUILD_FOLDER}/${BUILD_NAME}.out ${SOURCES} ${LINUX_LIBRARIES} -lm
     then
-        rm Compiled/*.s
-        mv *.s Compiled
-        echo -e "${GREEN}Re-compilation successful!${ENDCOLOR}"
-    else
-        echo -e "${RED}Re-compilation failed!${ENDCOLOR}"
-        rm *.s
-        exit 1
-    fi
-else
-    git diff --name-only | grep "\.cpp" 1> /dev/null
-    if [ $? == 0 ]
-    then
-        g++ -Werror -Wall -Wextra -O3 -S $(git diff --name-only | grep "\.cpp") -m64 -std=gnu++23
-        if [ $? == 0 ]
+        echo -e "${YELLOW}Linux ${GREEN}build successful!${ENDCOLOR}"
+        cd Build || exit 1
+        if ./bin.out
         then
-            mv *.s Compiled
-            echo -e "${GREEN}Pre-compilation successful!${ENDCOLOR}"
+            echo -e "${YELLOW}Linux ${GREEN}run successful!${ENDCOLOR}"
+            exit 0
         else
-            echo -e "${RED}Pre-compilation failed!${ENDCOLOR}"
-            rm *.s
+            echo -e "${YELLOW}Linux ${RED}run failed!${ENDCOLOR}"
             exit 1
         fi
     else
-        echo -e "${GREEN}Pre-compilation skipped!${ENDCOLOR}"
-    fi
-fi
-
-g++ -o Build/bin.out Compiled/*.s -Wl,-rpath=. -LSlayEngine/Libraries/Linux -lNeoTypes++ -lfreetype -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lm
-if [ $? == 0 ]
-then
-    echo -e "${GREEN}Compilation successful!${ENDCOLOR}"
-    cd Build
-    ./bin.out
-    if [ $? == 0 ]
-    then
-        echo -e "${GREEN}Run successful!${ENDCOLOR}"
-        exit 0
-    else
-        echo -e "${RED}Run failed!${ENDCOLOR}"
+        echo -e "${YELLOW}Linux ${RED}build failed!${ENDCOLOR}"
         exit 1
     fi
-else
-    echo -e "${RED}Compilation failed!${ENDCOLOR}"
-    exit 1
 fi

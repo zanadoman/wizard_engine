@@ -482,7 +482,7 @@ namespace neo
 
     template <typename type> bool array<type>::operator == (array<type>* Array)
     {
-        if (Array == NULL || this->length != Array->Length)
+        if (Array == NULL || this->length != Array->length)
         {
             return false;
         }
@@ -492,7 +492,7 @@ namespace neo
             return true;
         }
 
-        return memCompare(this->elements, Array->Elements, sizeof(type) * this->length);
+        return memCompare(this->elements, Array->elements, sizeof(type) * this->length);
     }
 
     template <typename type> bool array<type>::operator != (array<type>* Array)
