@@ -1,4 +1,3 @@
-#include "Includes/SDL_render.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -84,7 +83,7 @@ namespace slay
             }
             if (this->Texts.Length() <= Keep.begin()[i] || this->Texts[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep(length) %ld\n", Keep.size());
+                printf("slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -100,6 +99,56 @@ namespace slay
             }
 
             if (j == Keep.size())
+            {
+                delete this->Texts[i];
+                this->Texts[i] = NULL;
+            }
+        }
+
+        if (this->Texts[this->Texts.Length() - 1] == NULL && 1 < this->Texts.Length())
+        {
+            for (i = this->Texts.Length(); 1 < i; i--)
+            {
+                if (this->Texts[i - 1] != NULL)
+                {
+                    break;
+                }
+            }
+
+            this->Texts.Remove(i, this->Texts.Length() - i);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::texts::Purge(array<uint64>* Keep)
+    {
+        uint64 i, j;
+
+        for (i = 0; i < Keep->Length(); i++)
+        {
+            if ((*Keep)[i] == 0)
+            {
+                continue;
+            }
+            if (this->Texts.Length() <= (*Keep)[i] || this->Texts[(*Keep)[i]] == NULL)
+            {
+                printf("slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep: %p\n", Keep);
+                exit(1);
+            }
+        }
+
+        for (i = 1; i < this->Texts.Length(); i++)
+        {
+            for (j = 0; j < Keep->Length(); j++)
+            {
+                if (i == (*Keep)[j])
+                {
+                    break;
+                }
+            }
+
+            if (j == Keep->Length())
             {
                 delete this->Texts[i];
                 this->Texts[i] = NULL;
