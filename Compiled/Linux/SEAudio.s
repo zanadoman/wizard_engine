@@ -682,10 +682,101 @@ _ZN4slay6engine5audio4PlayEytdddt:
 	.size	_ZN4slay6engine5audio4PlayEytdddt, .-_ZN4slay6engine5audio4PlayEytdddt
 	.align 2
 	.p2align 4
+	.globl	_ZN4slay6engine5audio5PauseEt
+	.type	_ZN4slay6engine5audio5PauseEt, @function
+_ZN4slay6engine5audio5PauseEt:
+.LFB2240:
+	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	movzwl	%si, %edi
+	call	Mix_Pause@PLT
+	xorl	%eax, %eax
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE2240:
+	.size	_ZN4slay6engine5audio5PauseEt, .-_ZN4slay6engine5audio5PauseEt
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5audio8PauseAllEv
+	.type	_ZN4slay6engine5audio8PauseAllEv, @function
+_ZN4slay6engine5audio8PauseAllEv:
+.LFB2241:
+	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	movl	$1, %edi
+	call	Mix_PauseAudio@PLT
+	xorl	%eax, %eax
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE2241:
+	.size	_ZN4slay6engine5audio8PauseAllEv, .-_ZN4slay6engine5audio8PauseAllEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5audio6ResumeEt
+	.type	_ZN4slay6engine5audio6ResumeEt, @function
+_ZN4slay6engine5audio6ResumeEt:
+.LFB2242:
+	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	movzwl	%si, %edi
+	call	Mix_Resume@PLT
+	xorl	%eax, %eax
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE2242:
+	.size	_ZN4slay6engine5audio6ResumeEt, .-_ZN4slay6engine5audio6ResumeEt
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5audio9ResumeAllEv
+	.type	_ZN4slay6engine5audio9ResumeAllEv, @function
+_ZN4slay6engine5audio9ResumeAllEv:
+.LFB2243:
+	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	xorl	%edi, %edi
+	call	Mix_PauseAudio@PLT
+	xorl	%eax, %eax
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE2243:
+	.size	_ZN4slay6engine5audio9ResumeAllEv, .-_ZN4slay6engine5audio9ResumeAllEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5audio8IsPausedEt
+	.type	_ZN4slay6engine5audio8IsPausedEt, @function
+_ZN4slay6engine5audio8IsPausedEt:
+.LFB2244:
+	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	movzwl	%si, %edi
+	call	Mix_Paused@PLT
+	cmpl	$1, %eax
+	sete	%al
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE2244:
+	.size	_ZN4slay6engine5audio8IsPausedEt, .-_ZN4slay6engine5audio8IsPausedEt
+	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine5audio4StopEt
 	.type	_ZN4slay6engine5audio4StopEt, @function
 _ZN4slay6engine5audio4StopEt:
-.LFB2240:
+.LFB2245:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -696,7 +787,7 @@ _ZN4slay6engine5audio4StopEt:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2240:
+.LFE2245:
 	.size	_ZN4slay6engine5audio4StopEt, .-_ZN4slay6engine5audio4StopEt
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

@@ -7,7 +7,7 @@
 	.def	_Z6printfPKcz;	.scl	2;	.type	32;	.endef
 	.seh_proc	_Z6printfPKcz
 _Z6printfPKcz:
-.LFB11:
+.LFB19:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -698,11 +698,92 @@ _ZN4slay6engine5audio4PlayEytdddt:
 	.seh_endproc
 	.align 2
 	.p2align 4
+	.globl	_ZN4slay6engine5audio5PauseEt
+	.def	_ZN4slay6engine5audio5PauseEt;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audio5PauseEt
+_ZN4slay6engine5audio5PauseEt:
+.LFB8441:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movzwl	%dx, %ecx
+	call	Mix_Pause
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5audio8PauseAllEv
+	.def	_ZN4slay6engine5audio8PauseAllEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audio8PauseAllEv
+_ZN4slay6engine5audio8PauseAllEv:
+.LFB8442:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movl	$1, %ecx
+	call	Mix_PauseAudio
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5audio6ResumeEt
+	.def	_ZN4slay6engine5audio6ResumeEt;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audio6ResumeEt
+_ZN4slay6engine5audio6ResumeEt:
+.LFB8443:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movzwl	%dx, %ecx
+	call	Mix_Resume
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5audio9ResumeAllEv
+	.def	_ZN4slay6engine5audio9ResumeAllEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audio9ResumeAllEv
+_ZN4slay6engine5audio9ResumeAllEv:
+.LFB8444:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	xorl	%ecx, %ecx
+	call	Mix_PauseAudio
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5audio8IsPausedEt
+	.def	_ZN4slay6engine5audio8IsPausedEt;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audio8IsPausedEt
+_ZN4slay6engine5audio8IsPausedEt:
+.LFB8445:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movzwl	%dx, %ecx
+	call	Mix_Paused
+	cmpl	$1, %eax
+	sete	%al
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine5audio4StopEt
 	.def	_ZN4slay6engine5audio4StopEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4slay6engine5audio4StopEt
 _ZN4slay6engine5audio4StopEt:
-.LFB8441:
+.LFB8446:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -731,4 +812,8 @@ _ZN4slay6engine5audio4StopEt:
 	.def	Mix_VolumeChunk;	.scl	2;	.type	32;	.endef
 	.def	Mix_PlayChannel;	.scl	2;	.type	32;	.endef
 	.def	Mix_SetPanning;	.scl	2;	.type	32;	.endef
+	.def	Mix_Pause;	.scl	2;	.type	32;	.endef
+	.def	Mix_PauseAudio;	.scl	2;	.type	32;	.endef
+	.def	Mix_Resume;	.scl	2;	.type	32;	.endef
+	.def	Mix_Paused;	.scl	2;	.type	32;	.endef
 	.def	Mix_HaltChannel;	.scl	2;	.type	32;	.endef
