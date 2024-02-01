@@ -431,7 +431,7 @@ _ZN4slay6engine6actors5actor6colors3NewEv:
 	.string	"slay::engine.actors[].colors.Delete(): Illegal deletion of NULL Color\nParams: ID: %lld\n"
 	.align 8
 .LC10:
-	.string	"slay::engine.actors[].colors.Delete(): Color does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[].colors.Delete(): Color does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -542,7 +542,7 @@ _ZN4slay6engine6actors5actor6colors6DeleteEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC11:
-	.string	"slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep(length): %ld\n"
+	.string	"slay::engine.actors[].colors.Purge(): Color does not exist\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -718,7 +718,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC12:
-	.string	"slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep: %p\n"
+	.string	"slay::engine.actors[].colors.Purge(): Color does not exist\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -904,7 +904,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	.string	"slay::engine.actors[].colors[]: Illegal access to NULL Color\nParams: ID: %lld\n"
 	.align 8
 .LC14:
-	.string	"slay::engine.actors[].colors[]: Color does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[].colors[]: Color does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4

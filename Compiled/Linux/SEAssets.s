@@ -979,7 +979,7 @@ _ZN4slay6engine6assets11LoadTextureEPKc:
 	.string	"slay::engine.assets.UnloadTexture(): Illegal deletion of NULL Texture\nParams: ID: %lld\n"
 	.align 8
 .LC11:
-	.string	"slay::engine.assets.UnloadTexture(): Texture does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.assets.UnloadTexture(): Texture does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1177,7 +1177,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC12:
-	.string	"slay::engine.assets.PurgeTextures(): Texture does not exists\nParams: Keep(length): %ld\n"
+	.string	"slay::engine.assets.PurgeTextures(): Texture does not exist\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1446,7 +1446,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC13:
-	.string	"slay::engine.assets.PurgeTextures(): Texture does not exists\nParams: Keep: %p\n"
+	.string	"slay::engine.assets.PurgeTextures(): Texture does not exist\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1847,7 +1847,7 @@ _ZN4slay6engine6assets9LoadSoundEPKc:
 	.string	"slay::engine.assets.UnloadSound(): Illegal deletion of NULL Sound\nParams: ID: %lld\n"
 	.align 8
 .LC17:
-	.string	"slay::engine.assets.UnloadSound(): Sound does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.assets.UnloadSound(): Sound does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1957,7 +1957,7 @@ _ZN4slay6engine6assets11UnloadSoundEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC18:
-	.string	"slay::assets.PurgeSounds(): Sound does not exists\nParams: Keep(length): %ld\n"
+	.string	"slay::assets.PurgeSounds(): Sound does not exist\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -2129,7 +2129,7 @@ _ZN4slay6engine6assets11PurgeSoundsESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC19:
-	.string	"slay::assets.PurgeSounds(): Sound does not exists\nParams: Keep: %p\n"
+	.string	"slay::assets.PurgeSounds(): Sound does not exist\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -2434,7 +2434,7 @@ _ZN4slay6engine6assets8LoadFontEPKch:
 	.string	"slay::engine.assets.UnloadFont(): Illegal deletion of NULL Font\nParams: ID: %lld\n"
 	.align 8
 .LC23:
-	.string	"slay::engine.assets.UnloadFont(): Font does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.assets.UnloadFont(): Font does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -2574,7 +2574,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC24:
-	.string	"slay::engine.assets.PurgeFonts(): Font does not exists\nParams: Keep(length): %ld\n"
+	.string	"slay::engine.assets.PurgeFonts(): Font does not exist\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -2789,7 +2789,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC25:
-	.string	"slay::engine.assets.PurgeFonts(): Font does not exists\nParams: Keep: %p\n"
+	.string	"slay::engine.assets.PurgeFonts(): Font does not exist\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -3201,7 +3201,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	.string	"slay::engine.assets.UnloadCursor(): Illegal deletion of NULL cursor\nParams: ID: %lld\n"
 	.align 8
 .LC32:
-	.string	"slay::engine.assets.UnloadCursor(): Cursor does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.assets.UnloadCursor(): Cursor does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -3309,7 +3309,7 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC33:
-	.string	"slay::engine.assets.PurgeCursors(): Cursor does not exists\nParams: Keep(length): %ld\n"
+	.string	"slay::engine.assets.PurgeCursors(): Cursor does not exist\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -3483,7 +3483,7 @@ _ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC34:
-	.string	"slay::engine.assets.PurgeCursors(): Cursor does not exists\nParams: Keep: %p\n"
+	.string	"slay::engine.assets.PurgeCursors(): Cursor does not exist\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4

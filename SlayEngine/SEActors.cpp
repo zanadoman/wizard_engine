@@ -54,7 +54,7 @@ namespace slay
         }
         if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
         {
-            printf("slay::engine.actors.Delete(): Actor does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors.Delete(): Actor does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -89,7 +89,7 @@ namespace slay
             }
             if (this->Actors.Length() <= Keep.begin()[i] || this->Actors[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors.Purge(): Actor does not exists\nParams: Keep(length): %ld\n", Keep.size());
+                printf("slay::engine.actors.Purge(): Actor does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -139,7 +139,7 @@ namespace slay
             }
             if (this->Actors.Length() <= (*Keep)[i] || this->Actors[(*Keep)[i]] == NULL)
             {
-                printf("slay::engine.actors.Purge(): Actor does not exists\nParams: Keep: %p\n", Keep);
+                printf("slay::engine.actors.Purge(): Actor does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
             }
         }
@@ -186,7 +186,7 @@ namespace slay
         }
         if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
         {
-            printf("slay::engine.actors[]: Actor does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[]: Actor does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 

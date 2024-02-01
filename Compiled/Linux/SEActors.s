@@ -579,7 +579,7 @@ _ZN4slay6engine6actors3NewEyddttd.cold:
 	.string	"slay::engine.actors.Delete(): Illegal deletion of NULL Actor\nParams: ID: %lld\n"
 	.align 8
 .LC11:
-	.string	"slay::engine.actors.Delete(): Actor does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.actors.Delete(): Actor does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -694,7 +694,7 @@ _ZN4slay6engine6actors6DeleteEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC12:
-	.string	"slay::engine.actors.Purge(): Actor does not exists\nParams: Keep(length): %ld\n"
+	.string	"slay::engine.actors.Purge(): Actor does not exist\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -869,7 +869,7 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC13:
-	.string	"slay::engine.actors.Purge(): Actor does not exists\nParams: Keep: %p\n"
+	.string	"slay::engine.actors.Purge(): Actor does not exist\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1058,7 +1058,7 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	.string	"slay::engine.actors[]: Illegal access to NULL Actor"
 	.align 8
 .LC15:
-	.string	"slay::engine.actors[]: Actor does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[]: Actor does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4

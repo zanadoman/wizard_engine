@@ -11,7 +11,7 @@ namespace slay
     {
         if (KEY_COUNT <= Key)
         {
-            printf("slay::engine.keys[]: Key does not exists\nParams: Key: %d\n", Key);
+            printf("slay::engine.keys[]: Key does not exist\nParams: Key: %d\n", Key);
             exit(1);
         }
 

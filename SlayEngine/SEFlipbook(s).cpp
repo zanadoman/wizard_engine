@@ -28,7 +28,7 @@ namespace slay
             }
             if (this->Engine.Assets.Textures.Length() <= TextureIDs.begin()[i] || this->Engine.Assets.Textures[TextureIDs.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors[].flipbooks.New(): Texture does not exists\nParams: TextureIDs(length): %ld\n", TextureIDs.size());
+                printf("slay::engine.actors[].flipbooks.New(): Texture does not exist\nParams: TextureIDs(length): %ld\n", TextureIDs.size());
                 exit(1);
             }
         }
@@ -72,7 +72,7 @@ namespace slay
             }
             if (this->Engine.Assets.Textures.Length() <= (*TextureIDs)[i] || this->Engine.Assets.Textures[(*TextureIDs)[i]] == NULL)
             {
-                printf("slay::engine.actors[].flipbooks.New(): Texture does not exists\nParams: TextureIDs(length): %lld\n", TextureIDs->Length());
+                printf("slay::engine.actors[].flipbooks.New(): Texture does not exist\nParams: TextureIDs(length): %lld\n", TextureIDs->Length());
                 exit(1);
             }
         }
@@ -111,7 +111,7 @@ namespace slay
         }
         if (this->Flipbooks.Length() <= ID || this->Flipbooks[ID] == NULL)
         {
-            printf("slay::engine.actors[].flipbooks.Delete(): Flipbook does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].flipbooks.Delete(): Flipbook does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -146,7 +146,7 @@ namespace slay
             }
             if (this->Flipbooks.Length() <= Keep.begin()[i] || this->Flipbooks[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors[].flipbooks.Purge(): Flipbook does not exists\nParams: Keep(length): %ld\n", Keep.size());
+                printf("slay::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -196,7 +196,7 @@ namespace slay
             }
             if (this->Flipbooks.Length() <= (*Keep)[i] || this->Flipbooks[(*Keep)[i]] == NULL)
             {
-                printf("slay::engine.actors[].flipbooks.Purge(): Flipbook does not exists\nParams: Keep: %p\n", Keep);
+                printf("slay::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
             }
         }
@@ -243,7 +243,7 @@ namespace slay
         }
         if (this->Flipbooks.Length() <= ID || this->Flipbooks[ID] == NULL)
         {
-            printf("slay::engine.actors[].flipbooks[]: Flipbook does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].flipbooks[]: Flipbook does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 

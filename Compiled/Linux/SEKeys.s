@@ -18,7 +18,7 @@ _ZN4slay6engine4keysC2ERS0_:
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
 .LC0:
-	.string	"slay::engine.keys[]: Key does not exists\nParams: Key: %d\n"
+	.string	"slay::engine.keys[]: Key does not exist\nParams: Key: %d\n"
 	.text
 	.align 2
 	.p2align 4

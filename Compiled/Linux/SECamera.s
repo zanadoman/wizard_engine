@@ -91,7 +91,7 @@ _ZN4slay6engine6camera9GetYActorEv:
 	.string	"slay::engine.camera.Bind(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
 .LC6:
-	.string	"slay::engine.camera.Bind(): Actor does not exists\nParams: Actor: %lld\n"
+	.string	"slay::engine.camera.Bind(): Actor does not exist\nParams: Actor: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -140,7 +140,7 @@ _ZN4slay6engine6camera4BindEy:
 	.string	"slay::engine.camera.BindX(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
 .LC8:
-	.string	"slay::engine.camera.BindX(): Actor does not exists\nParams: Actor: %lld\n"
+	.string	"slay::engine.camera.BindX(): Actor does not exist\nParams: Actor: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -187,7 +187,7 @@ _ZN4slay6engine6camera5BindXEy:
 	.string	"slay::engine.camera.BindY(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
 .LC10:
-	.string	"slay::engine.camera.BindY(): Actor does not exists\nParams: Actor: %lld\n"
+	.string	"slay::engine.camera.BindY(): Actor does not exist\nParams: Actor: %lld\n"
 	.text
 	.align 2
 	.p2align 4

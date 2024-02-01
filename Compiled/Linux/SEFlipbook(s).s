@@ -281,7 +281,7 @@ _ZN4slay6engine6actors5actor9flipbooksD2Ev:
 	.string	"slay::engine.actors[].flipbooks.Delete(): Illegal deletion of NULL Flipbook\nParams: ID: %lld\n"
 	.align 8
 .LC5:
-	.string	"slay::engine.actors[].flipbooks.Delete(): Flipbook does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[].flipbooks.Delete(): Flipbook does not exist\nParams: ID: %lld\n"
 	.align 8
 .LC6:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
@@ -399,7 +399,7 @@ _ZN4slay6engine6actors5actor9flipbooks6DeleteEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC7:
-	.string	"slay::engine.actors[].flipbooks.Purge(): Flipbook does not exists\nParams: Keep(length): %ld\n"
+	.string	"slay::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -574,7 +574,7 @@ _ZN4slay6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC8:
-	.string	"slay::engine.actors[].flipbooks.Purge(): Flipbook does not exists\nParams: Keep: %p\n"
+	.string	"slay::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -763,7 +763,7 @@ _ZN4slay6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	.string	"slay::engine.actors[].flipbooks[]: Illegal access to NULL Flipbook\nParams: ID: %lld\n"
 	.align 8
 .LC10:
-	.string	"slay::engine.actors[].flipbooks[]: Flipbook does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[].flipbooks[]: Flipbook does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -925,7 +925,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_St16initializer_listIy
 	.string	"slay::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: TextureIDs(length): %ld\n"
 	.align 8
 .LC13:
-	.string	"slay::engine.actors[].flipbooks.New(): Texture does not exists\nParams: TextureIDs(length): %ld\n"
+	.string	"slay::engine.actors[].flipbooks.New(): Texture does not exist\nParams: TextureIDs(length): %ld\n"
 	.align 8
 .LC14:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
@@ -1361,7 +1361,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_PN3neo5arrayIyEE:
 	.string	"slay::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: TextureIDs(length): %lld\n"
 	.align 8
 .LC19:
-	.string	"slay::engine.actors[].flipbooks.New(): Texture does not exists\nParams: TextureIDs(length): %lld\n"
+	.string	"slay::engine.actors[].flipbooks.New(): Texture does not exist\nParams: TextureIDs(length): %lld\n"
 	.align 8
 .LC20:
 	.string	"slay::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: TextureIDs(length): %lld\n"

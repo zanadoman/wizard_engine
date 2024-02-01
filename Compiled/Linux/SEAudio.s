@@ -64,7 +64,7 @@ _ZN4slay6engine5audio15SetGlobalVolumeEd:
 	.string	"slay::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf\n"
 	.align 8
 .LC4:
-	.string	"slay::engine.audio.Play(): WAV does not exists\nParams: ID: %lld, Channel: %d, Volume: %lf\n"
+	.string	"slay::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf\n"
 	.align 8
 .LC6:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
@@ -180,7 +180,7 @@ _ZN4slay6engine5audio4PlayEytd:
 	.string	"slay::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n"
 	.align 8
 .LC9:
-	.string	"slay::engine.audio.Play(): WAV does not exists\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n"
+	.string	"slay::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n"
 	.align 8
 .LC10:
 	.string	"slay::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n"
@@ -308,7 +308,7 @@ _ZN4slay6engine5audio4PlayEytdt:
 	.string	"slay::engine.audio.Play(): Right must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
 	.align 8
 .LC14:
-	.string	"slay::engine.audio.Play(): WAV does not exists\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
+	.string	"slay::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
 	.align 8
 .LC15:
 	.string	"slay::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
@@ -494,7 +494,7 @@ _ZN4slay6engine5audio4PlayEytddd:
 	.string	"slay::engine.audio.Play(): Right must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
 	.align 8
 .LC21:
-	.string	"slay::engine.audio.Play(): WAV does not exists\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
+	.string	"slay::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
 	.align 8
 .LC22:
 	.string	"slay::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"

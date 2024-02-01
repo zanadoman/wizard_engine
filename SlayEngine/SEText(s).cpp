@@ -59,7 +59,7 @@ namespace slay
         }
         if (this->Texts.Length() <= ID || this->Texts[ID] == NULL)
         {
-            printf("slay::engine.actors[].texts.Delete(): Text does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].texts.Delete(): Text does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -94,7 +94,7 @@ namespace slay
             }
             if (this->Texts.Length() <= Keep.begin()[i] || this->Texts[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep(length): %ld\n", Keep.size());
+                printf("slay::engine.actors[].texts.Purge(): Text does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -144,7 +144,7 @@ namespace slay
             }
             if (this->Texts.Length() <= (*Keep)[i] || this->Texts[(*Keep)[i]] == NULL)
             {
-                printf("slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep: %p\n", Keep);
+                printf("slay::engine.actors[].texts.Purge(): Text does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
             }
         }
@@ -191,7 +191,7 @@ namespace slay
         }
         if (this->Texts.Length() <= ID || this->Texts[ID] == NULL)
         {
-            printf("slay::engine.actors[].texts[]: Text does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].texts[]: Text does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -278,7 +278,7 @@ namespace slay
     {
         if (ID != 0 && (this->Engine.Assets.Fonts.Length() <= ID || this->Engine.Assets.Fonts[ID] == NULL))
         {
-            printf("slay::engine.actors[].texts[].SetFont(): Font does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].texts[].SetFont(): Font does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 

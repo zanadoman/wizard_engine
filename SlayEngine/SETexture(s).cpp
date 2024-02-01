@@ -54,7 +54,7 @@ namespace slay
         }
         if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
         {
-            printf("slay::engine.actors[].textures.Delete(): Texture does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].textures.Delete(): Texture does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -89,7 +89,7 @@ namespace slay
             }
             if (this->Textures.Length() <= Keep.begin()[i] || this->Textures[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep(length): %ld\n", Keep.size());
+                printf("slay::engine.actors[].textures.Purge(): Texture does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -139,7 +139,7 @@ namespace slay
             }
             if (this->Textures.Length() <= (*Keep)[i] || this->Textures[(*Keep)[i]] == NULL)
             {
-                printf("slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep: %p\n", Keep);
+                printf("slay::engine.actors[].textures.Purge(): Texture does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
             }
         }
@@ -186,7 +186,7 @@ namespace slay
         }
         if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
         {
-            printf("slay::engine.actors[].textures[]: Texture does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].textures[]: Texture does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -258,7 +258,7 @@ namespace slay
     {
         if (ID != 0 && (this->Engine.Assets.Textures.Length() <= ID || this->Engine.Assets.Textures[ID] == NULL))
         {
-            printf("slay::engine.actors[].textures[].SetTextureID(): Texture does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].textures[].SetTextureID(): Texture does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 

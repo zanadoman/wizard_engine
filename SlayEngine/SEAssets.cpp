@@ -56,7 +56,7 @@ namespace slay
         }
         if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
         {
-            printf("slay::engine.assets.UnloadTexture(): Texture does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadTexture(): Texture does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -128,7 +128,7 @@ namespace slay
             }
             if (this->Textures.Length() <= Keep.begin()[i] || this->Textures[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeTextures(): Texture does not exists\nParams: Keep(length): %ld\n", Keep.size());
+                printf("slay::engine.assets.PurgeTextures(): Texture does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -215,7 +215,7 @@ namespace slay
             }
             if (this->Textures.Length() <= (*Keep)[i] || this->Textures[(*Keep)[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeTextures(): Texture does not exists\nParams: Keep: %p\n", Keep);
+                printf("slay::engine.assets.PurgeTextures(): Texture does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
             }
         }
@@ -332,7 +332,7 @@ namespace slay
         }
         if (this->Sounds.Length() <= ID || this->Sounds[ID] == NULL)
         {
-            printf("slay::engine.assets.UnloadSound(): Sound does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadSound(): Sound does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -367,7 +367,7 @@ namespace slay
             }
             if (this->Sounds.Length() <= Keep.begin()[i] || this->Sounds[Keep.begin()[i]] == NULL)
             {
-                printf("slay::assets.PurgeSounds(): Sound does not exists\nParams: Keep(length): %ld\n", Keep.size());
+                printf("slay::assets.PurgeSounds(): Sound does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -417,7 +417,7 @@ namespace slay
             }
             if (this->Sounds.Length() <= (*Keep)[i] || this->Sounds[(*Keep)[i]] == NULL)
             {
-                printf("slay::assets.PurgeSounds(): Sound does not exists\nParams: Keep: %p\n", Keep);
+                printf("slay::assets.PurgeSounds(): Sound does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
             }
         }
@@ -497,7 +497,7 @@ namespace slay
         }
         if (this->Fonts.Length() <= ID || this->Fonts[ID] == NULL)
         {
-            printf("slay::engine.assets.UnloadFont(): Font does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadFont(): Font does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -553,7 +553,7 @@ namespace slay
             }
             if (this->Fonts.Length() <= Keep.begin()[i] || this->Fonts[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeFonts(): Font does not exists\nParams: Keep(length): %ld\n", Keep.size());
+                printf("slay::engine.assets.PurgeFonts(): Font does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -624,7 +624,7 @@ namespace slay
             }
             if (this->Fonts.Length() <= (*Keep)[i] || this->Fonts[(*Keep)[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeFonts(): Font does not exists\nParams: Keep: %p\n", Keep);
+                printf("slay::engine.assets.PurgeFonts(): Font does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
             }
         }
@@ -746,7 +746,7 @@ namespace slay
         }
         if (this->Cursors.Length() <= ID || this->Cursors[ID] == NULL)
         {
-            printf("slay::engine.assets.UnloadCursor(): Cursor does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.assets.UnloadCursor(): Cursor does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -786,7 +786,7 @@ namespace slay
             }
             if (this->Cursors.Length() <= Keep.begin()[i] || this->Cursors[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeCursors(): Cursor does not exists\nParams: Keep(length): %ld\n", Keep.size());
+                printf("slay::engine.assets.PurgeCursors(): Cursor does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -838,7 +838,7 @@ namespace slay
             }
             if (this->Cursors.Length() <= (*Keep)[i] || this->Cursors[(*Keep)[i]] == NULL)
             {
-                printf("slay::engine.assets.PurgeCursors(): Cursor does not exists\nParams: Keep: %p\n", Keep);
+                printf("slay::engine.assets.PurgeCursors(): Cursor does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
             }
         }

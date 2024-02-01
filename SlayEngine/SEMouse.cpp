@@ -99,7 +99,7 @@ namespace slay
         }
         if (this->Engine.Assets.Cursors.Length() <= ID || this->Engine.Assets.Cursors[ID] == NULL)
         {
-            printf("slay::engine.mouse.SetCursor(): Cursor does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.mouse.SetCursor(): Cursor does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 

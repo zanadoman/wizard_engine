@@ -661,7 +661,7 @@ _ZN4slay6engine6actors5actor5texts3NewEPKcy.cold:
 	.string	"slay::engine.actors[].texts.Delete(): Illegal deletion of NULL Text\nParams: ID: %lld\n"
 	.align 8
 .LC15:
-	.string	"slay::engine.actors[].texts.Delete(): Text does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[].texts.Delete(): Text does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -795,7 +795,7 @@ _ZN4slay6engine6actors5actor5texts6DeleteEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC16:
-	.string	"slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep(length): %ld\n"
+	.string	"slay::engine.actors[].texts.Purge(): Text does not exist\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -989,7 +989,7 @@ _ZN4slay6engine6actors5actor5texts5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC17:
-	.string	"slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep: %p\n"
+	.string	"slay::engine.actors[].texts.Purge(): Text does not exist\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1197,7 +1197,7 @@ _ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE:
 	.string	"slay::engine.actors[].texts[]: Illegal access to NULL Text\nParams: ID: %lld\n"
 	.align 8
 .LC19:
-	.string	"slay::engine.actors[].texts[]: Text does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[].texts[]: Text does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1599,7 +1599,7 @@ _ZN4slay6engine6actors5actor5texts4text7GetFontEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC21:
-	.string	"slay::engine.actors[].texts[].SetFont(): Font does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.actors[].texts[].SetFont(): Font does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4

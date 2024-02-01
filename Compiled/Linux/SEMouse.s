@@ -216,7 +216,7 @@ _ZN4slay6engine5mouse9GetCursorEv:
 	.string	"slay::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: ID: %lld\n"
 	.align 8
 .LC6:
-	.string	"slay::engine.mouse.SetCursor(): Cursor does not exists\nParams: ID: %lld\n"
+	.string	"slay::engine.mouse.SetCursor(): Cursor does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
 	.p2align 4

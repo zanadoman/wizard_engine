@@ -48,7 +48,7 @@ namespace slay
         }
         if (this->Colors.Length() <= ID || this->Colors[ID] == NULL)
         {
-            printf("slay::engine.actors[].colors.Delete(): Color does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].colors.Delete(): Color does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
@@ -83,7 +83,7 @@ namespace slay
             }
             if (this->Colors.Length() <= Keep.begin()[i] || this->Colors[Keep.begin()[i]] == NULL)
             {
-                printf("slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep(length): %ld\n", Keep.size());
+                printf("slay::engine.actors[].colors.Purge(): Color does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
             }
         }
@@ -133,7 +133,7 @@ namespace slay
             }
             if (this->Colors.Length() <= (*Keep)[i] || this->Colors[(*Keep)[i]] == NULL)
             {
-                printf("slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep: %p\n", Keep);
+                printf("slay::engine.actors[].colors.Purge(): Color does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
             }
         }
@@ -180,7 +180,7 @@ namespace slay
         }
         if (this->Colors.Length() <= ID || this->Colors[ID] == NULL)
         {
-            printf("slay::engine.actors[].colors[]: Color does not exists\nParams: ID: %lld\n", ID);
+            printf("slay::engine.actors[].colors[]: Color does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 

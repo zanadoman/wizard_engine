@@ -48,7 +48,7 @@ namespace slay
         }
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("slay::engine.camera.Bind(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.Bind(): Actor does not exist\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
@@ -67,7 +67,7 @@ namespace slay
         }
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("slay::engine.camera.BindX(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.BindX(): Actor does not exist\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
@@ -85,7 +85,7 @@ namespace slay
         }
         if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
         {
-            printf("slay::engine.camera.BindY(): Actor does not exists\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.BindY(): Actor does not exist\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
