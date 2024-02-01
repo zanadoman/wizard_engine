@@ -53,12 +53,14 @@ then
     if ${LINUX_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${LINUX_EXTRA_FLAGS} ${LINUX_WARNINGS} -S ${SOURCES}
     then
         echo -e "${YELLOW}Linux ${GREEN}compilation successful!${ENDCOLOR}"
-        rm "${LINUX_ASSEMBLY_FOLDER}"/*.s &> /dev/null
-        mv *.s "${LINUX_ASSEMBLY_FOLDER}" &> /dev/null
-        rm *.s &> /dev/null
+        if [ "${LINUX_ASSEMBLY_FOLDER}" != "." ] && [ "${LINUX_ASSEMBLY_FOLDER}" != "./" ]
+        then
+            rm "${LINUX_ASSEMBLY_FOLDER}"/*.s &> /dev/null
+        fi
+        mv ./*.s "${LINUX_ASSEMBLY_FOLDER}" &> /dev/null
     else
         echo -e "${YELLOW}Linux ${RED}compilation failed!${ENDCOLOR}"
-        rm *.s &> /dev/null
+        rm ./*.s &> /dev/null
         exit 1
     fi
 
@@ -88,12 +90,14 @@ then
     if ${WINDOWS_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${WINDOWS_EXTRA_FLAGS} ${WINDOWS_WARNINGS} -S ${SOURCES}
     then
         echo -e "${BLUE}Windows ${GREEN}compilation successful!${ENDCOLOR}"
-        rm "${WINDOWS_ASSEMBLY_FOLDER}"/*.s &> /dev/null
-        mv *.s "${WINDOWS_ASSEMBLY_FOLDER}" &> /dev/null
-        rm *.s &> /dev/null
+        if [ "${WINDOWS_ASSEMBLY_FOLDER}" != "." ] && [ "${WINDOWS_ASSEMBLY_FOLDER}" != "./" ]
+        then
+            rm "${WINDOWS_ASSEMBLY_FOLDER}"/*.s &> /dev/null
+        fi
+        mv ./*.s "${WINDOWS_ASSEMBLY_FOLDER}" &> /dev/null
     else
         echo -e "${BLUE}Windows ${RED}compilation failed!${ENDCOLOR}"
-        rm *.s &> /dev/null
+        rm ./*.s &> /dev/null
         exit 1
     fi
 
@@ -123,11 +127,10 @@ then
     if ${GIT_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${GIT_EXTRA_FLAGS} ${GIT_WARNINGS} -S $(find $(git diff --name-only) -name ${GIT_FILTER})
     then
         echo -e "${MAGENTA}Git ${GREEN}compilation successful!${ENDCOLOR}"
-        mv *.s "${GIT_ASSEMBLY_FOLDER}" &> /dev/null
-        rm *.s &> /dev/null
+        mv ./*.s "${GIT_ASSEMBLY_FOLDER}" &> /dev/null
     else
         echo -e "${MAGENTA}Git ${RED}compilation failed!${ENDCOLOR}"
-        rm *.s &> /dev/null
+        rm ./*.s &> /dev/null
         exit 1
     fi
 
