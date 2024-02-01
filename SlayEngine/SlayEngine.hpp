@@ -384,14 +384,14 @@ namespace slay
                                     uint32 Remainder;
                                     uint64 TexturesLength;
                                     uint64* Textures;
-                                    flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs);
-                                    flipbook(engine& Engine, actor& Actor, array<uint64>* TextureIDs);
+                                    flipbook(engine& Engine, actor& Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs);
+                                    flipbook(engine& Engine, actor& Actor, uint32 Delay, array<uint64>* TextureIDs);
                                     ~flipbook();
                             };
 
                             public:
-                                uint64 New(std::initializer_list<uint64> TextureIDs);
-                                uint64 New(array<uint64>* TextureIDs);
+                                uint64 New(uint32 Delay, std::initializer_list<uint64> TextureIDs);
+                                uint64 New(uint32 Delay, array<uint64>* TextureIDs);
                                 uint8 Delete(uint64 ID);
                                 uint8 Purge(std::initializer_list<uint64> Keep);
                                 uint8 Purge(array<uint64>* Keep);

@@ -21,7 +21,7 @@ namespace slay
         }
         if (FontID != 0 && (this->Engine.Assets.Fonts.Length() <= FontID || this->Engine.Assets.Fonts[FontID] == NULL))
         {
-            printf("slay::engine.actors[].texts.New(): FontID does not exist\nParams: String: %p, FontID: %lld\n", String, FontID);
+            printf("slay::engine.actors[].texts.New(): FontID does not exist\nParams: String: %s, FontID: %lld\n", String, FontID);
             exit(1);
         }
 
@@ -31,7 +31,7 @@ namespace slay
             {
                 if ((this->Texts[i] = new text(this->Engine, this->Actor, String, FontID)) == NULL)
                 {
-                    printf("slay::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %p, FontID: %lld\n", String, FontID);
+                    printf("slay::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
                     exit(1);
                 }
 
@@ -41,7 +41,7 @@ namespace slay
 
         if ((*(this->Texts += {new text(this->Engine, this->Actor, String, FontID)}))[this->Texts.Length() - 1] == NULL)
         {
-            printf("slay::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %p, FontID: %lld\n", String, FontID);
+            printf("slay::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
             exit(1);
         }
 

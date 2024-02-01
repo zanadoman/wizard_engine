@@ -295,7 +295,7 @@ _ZN4slay6engine6actors5actor5textsD2Ev:
 	.string	"slay::engine.actors[].texts.New(): String must not be NULL\nParams: String: %p, FontID: %lld\n"
 	.align 8
 .LC5:
-	.string	"slay::engine.actors[].texts.New(): FontID does not exist\nParams: String: %p, FontID: %lld\n"
+	.string	"slay::engine.actors[].texts.New(): FontID does not exist\nParams: String: %s, FontID: %lld\n"
 	.align 8
 .LC9:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
@@ -304,7 +304,7 @@ _ZN4slay6engine6actors5actor5textsD2Ev:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.align 8
 .LC11:
-	.string	"slay::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %p, FontID: %lld\n"
+	.string	"slay::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
 .LCOLDB13:

@@ -114,8 +114,9 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rbp, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	72(%rax), %rdi
-	movq	%r12, %rsi
-	call	_ZN4slay6engine6actors5actor9flipbooks3NewEPN3neo5arrayIyEE@PLT
+	movq	%r12, %rdx
+	movl	$100, %esi
+	call	_ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE@PLT
 	movq	%rax, 16(%rbx)
 	movq	8(%rbx), %rsi
 	movq	%rbp, %rdi
@@ -132,16 +133,6 @@ _ZN6playerC2ERN4slay6engineE:
 	movsd	.LC11(%rip), %xmm0
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8SetDepthEd@PLT
-	movq	(%rbx), %rax
-	movq	8(%rbx), %rsi
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	16(%rbx), %rsi
-	leaq	72(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movq	%rax, %rdi
-	movl	$100, %esi
-	call	_ZN4slay6engine6actors5actor9flipbooks8flipbook8SetDelayEj@PLT
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
