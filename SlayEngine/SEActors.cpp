@@ -12,13 +12,13 @@ namespace slay
         }
     }
 
-    uint64 engine::actors::New(uint64 Type)
+    uint64 engine::actors::New(uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer)
     {
         for (uint64 i = 1; i < this->Actors.Length(); i++)
         {
             if (this->Actors[i] == NULL)
             {
-                if ((this->Actors[i] = new actor(this->Engine, Type)) == NULL)
+                if ((this->Actors[i] = new actor(this->Engine, Type, X, Y, Width, Height, Layer)) == NULL)
                 {
                     printf("slay::engine.actors.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
                     exit(1);
@@ -28,7 +28,7 @@ namespace slay
             }
         }
 
-        if ((*(this->Actors += {new actor(this->Engine, Type)}))[this->Actors.Length() - 1] == NULL)
+        if ((*(this->Actors += {new actor(this->Engine, Type, X, Y, Width, Height, Layer)}))[this->Actors.Length() - 1] == NULL)
         {
             printf("slay::engine.actors.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
             exit(1);

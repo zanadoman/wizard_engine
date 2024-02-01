@@ -291,31 +291,39 @@ _ZN4slay6engine6actorsD2Ev:
 .LHOTB7:
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors3NewEy
-	.type	_ZN4slay6engine6actors3NewEy, @function
-_ZN4slay6engine6actors3NewEy:
+	.globl	_ZN4slay6engine6actors3NewEyddttd
+	.type	_ZN4slay6engine6actors3NewEyddttd, @function
+_ZN4slay6engine6actors3NewEyddttd:
 .LFB2237:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2237
-	pushq	%r13
+	pushq	%r15
 	.cfi_def_cfa_offset 16
-	.cfi_offset 13, -16
-	pushq	%r12
+	.cfi_offset 15, -16
+	pushq	%r14
 	.cfi_def_cfa_offset 24
-	.cfi_offset 12, -24
-	movq	%rsi, %r12
-	pushq	%rbp
+	.cfi_offset 14, -24
+	movl	%ecx, %r14d
+	pushq	%r13
 	.cfi_def_cfa_offset 32
-	.cfi_offset 6, -32
+	.cfi_offset 13, -32
+	movq	%rsi, %r13
+	pushq	%r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	movl	%edx, %r12d
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
 	movq	%rdi, %rbp
 	pushq	%rbx
-	.cfi_def_cfa_offset 40
-	.cfi_offset 3, -40
-	subq	$24, %rsp
-	.cfi_def_cfa_offset 64
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	subq	$56, %rsp
+	.cfi_def_cfa_offset 112
 	movq	%fs:40, %rax
-	movq	%rax, 8(%rsp)
+	movq	%rax, 40(%rsp)
 	movq	8(%rdi), %rax
 	cmpq	$1, %rax
 	jbe	.L43
@@ -332,38 +340,54 @@ _ZN4slay6engine6actors3NewEy:
 	cmpq	$0, (%rdx,%rbx,8)
 	jne	.L44
 	movl	$192, %edi
+	movsd	%xmm2, 24(%rsp)
+	movsd	%xmm1, 16(%rsp)
+	movsd	%xmm0, 8(%rsp)
 .LEHB0:
 	call	_Znwm@PLT
 .LEHE0:
 	movq	0(%rbp), %rsi
-	movq	%r12, %rdx
+	movzwl	%r12w, %ecx
+	movq	%r13, %rdx
+	movsd	24(%rsp), %xmm2
+	movzwl	%r14w, %r8d
 	movq	%rax, %rdi
-	movq	%rax, %r13
+	movq	%rax, %r15
+	movsd	16(%rsp), %xmm1
+	movsd	8(%rsp), %xmm0
 .LEHB1:
-	call	_ZN4slay6engine6actors5actorC1ERS0_y@PLT
+	call	_ZN4slay6engine6actors5actorC1ERS0_yddttd@PLT
 .LEHE1:
 	movq	16(%rbp), %rax
 	cmpq	8(%rbp), %rbx
 	jnb	.L63
-	movq	%r13, (%rax,%rbx,8)
+	movq	%r15, (%rax,%rbx,8)
 	jmp	.L42
 	.p2align 4,,10
 	.p2align 3
 .L43:
 	movl	$192, %edi
+	movsd	%xmm2, 24(%rsp)
+	movsd	%xmm1, 16(%rsp)
+	movsd	%xmm0, 8(%rsp)
 .LEHB2:
 	call	_Znwm@PLT
 .LEHE2:
 	movq	0(%rbp), %rsi
-	movq	%r12, %rdx
+	movzwl	%r12w, %ecx
+	movq	%r13, %rdx
+	movsd	24(%rsp), %xmm2
+	movzwl	%r14w, %r8d
 	movq	%rax, %rdi
 	movq	%rax, %rbx
+	movsd	16(%rsp), %xmm1
+	movsd	8(%rsp), %xmm0
 .LEHB3:
-	call	_ZN4slay6engine6actors5actorC1ERS0_y@PLT
+	call	_ZN4slay6engine6actors5actorC1ERS0_yddttd@PLT
 .LEHE3:
 	movq	8(%rbp), %rax
 	movq	16(%rbp), %rdi
-	movq	%rbx, (%rsp)
+	movq	%rbx, 32(%rsp)
 	leaq	1(%rax), %rsi
 	movq	%rsi, 8(%rbp)
 	salq	$3, %rsi
@@ -372,7 +396,7 @@ _ZN4slay6engine6actors3NewEy:
 	testq	%rax, %rax
 	je	.L64
 	movq	8(%rbp), %rdx
-	movq	%rsp, %rdi
+	leaq	32(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 .LEHB4:
@@ -385,20 +409,24 @@ _ZN4slay6engine6actors3NewEy:
 	cmpq	$0, (%rdx,%rax,8)
 	je	.L66
 .L42:
-	movq	8(%rsp), %rax
+	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L67
-	addq	$24, %rsp
+	addq	$56, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 40
+	.cfi_def_cfa_offset 56
 	movq	%rbx, %rax
 	popq	%rbx
-	.cfi_def_cfa_offset 32
+	.cfi_def_cfa_offset 48
 	popq	%rbp
-	.cfi_def_cfa_offset 24
+	.cfi_def_cfa_offset 40
 	popq	%r12
-	.cfi_def_cfa_offset 16
+	.cfi_def_cfa_offset 32
 	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
 .L63:
@@ -414,7 +442,7 @@ _ZN4slay6engine6actors3NewEy:
 	call	__stack_chk_fail@PLT
 .L66:
 	leaq	.LC6(%rip), %rdi
-	movq	%r12, %rsi
+	movq	%r13, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -471,19 +499,21 @@ _ZN4slay6engine6actors3NewEy:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDAC2237
-	.type	_ZN4slay6engine6actors3NewEy.cold, @function
-_ZN4slay6engine6actors3NewEy.cold:
+	.type	_ZN4slay6engine6actors3NewEyddttd.cold, @function
+_ZN4slay6engine6actors3NewEyddttd.cold:
 .LFSB2237:
 .L54:
-	.cfi_def_cfa_offset 64
-	.cfi_offset 3, -40
-	.cfi_offset 6, -32
-	.cfi_offset 12, -24
-	.cfi_offset 13, -16
+	.cfi_def_cfa_offset 112
+	.cfi_offset 3, -56
+	.cfi_offset 6, -48
+	.cfi_offset 12, -40
+	.cfi_offset 13, -32
+	.cfi_offset 14, -24
+	.cfi_offset 15, -16
 	movl	$192, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
-	movq	8(%rsp), %rax
+	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L62
 	movq	%rbp, %rdi
@@ -491,9 +521,9 @@ _ZN4slay6engine6actors3NewEy.cold:
 	call	_Unwind_Resume@PLT
 .L52:
 	movl	$192, %esi
-	movq	%r13, %rdi
+	movq	%r15, %rdi
 	call	_ZdlPvm@PLT
-	movq	8(%rsp), %rax
+	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L62
 	movq	%rbx, %rdi
@@ -517,9 +547,9 @@ _ZN4slay6engine6actors3NewEy.cold:
 .LLSDACSEC2237:
 	.section	.text.unlikely
 	.text
-	.size	_ZN4slay6engine6actors3NewEy, .-_ZN4slay6engine6actors3NewEy
+	.size	_ZN4slay6engine6actors3NewEyddttd, .-_ZN4slay6engine6actors3NewEyddttd
 	.section	.text.unlikely
-	.size	_ZN4slay6engine6actors3NewEy.cold, .-_ZN4slay6engine6actors3NewEy.cold
+	.size	_ZN4slay6engine6actors3NewEyddttd.cold, .-_ZN4slay6engine6actors3NewEyddttd.cold
 .LCOLDE7:
 	.text
 .LHOTE7:

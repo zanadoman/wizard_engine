@@ -2,15 +2,18 @@
 
 namespace slay
 {
-    engine::actors::actor::actor(engine& Engine, uint64 Type) : Engine(Engine), Colors(Engine, *this), Textures(Engine, *this), Flipbooks(Engine, *this), Texts(Engine, *this)
+    engine::actors::actor::actor(engine& Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, *this), Textures(Engine, *this), Flipbooks(Engine, *this), Texts(Engine, *this)
     {
-        this->Width = 0;
-        this->Height = 0;
+        this->Width = Width;
+        this->Height = Height;
         this->Type = Type;
-        this->X = 0;
-        this->Y = 0;
+        this->X = X;
+        this->Y = Y;
         this->Angle = 0;
-        this->Layer = 0;
+        if ((this->Layer = Layer) < 0)
+        {
+            printf("slay::engine.actors.actor.actor(): Layer must not be less than 0\nParams: Engine: %p, Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", &Engine, Type, X, Y, Width, Height, Layer);
+        }
         this->Depth = 0;
     }
 

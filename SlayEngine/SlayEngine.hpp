@@ -487,14 +487,14 @@ namespace slay
                         double Angle;
                         double Layer;
                         double Depth;
-                        actor(engine& Engine, uint64 Type);
+                        actor(engine& Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
                         ~actor();
                 };
 
                 //__________Actors_____________________________________________________________________________________
 
                 public:
-                    uint64 New(uint64 Type);
+                    uint64 New(uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
                     uint8 Delete(uint64 ID);
                     uint8 Purge(std::initializer_list<uint64> Keep);
                     uint8 Purge(array<uint64>* Keep);

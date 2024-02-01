@@ -19,11 +19,16 @@ _ZN10backgroundC2ERN4slay6engineE:
 	leaq	560(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
 	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
+	pxor	%xmm1, %xmm1
+	movl	$720, %ecx
 	xorl	%esi, %esi
 	movq	%rax, 24(%rbx)
 	movq	(%rbx), %rax
+	movl	$1280, %edx
+	movapd	%xmm1, %xmm0
+	movsd	.LC1(%rip), %xmm2
 	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actors3NewEy@PLT
+	call	_ZN4slay6engine6actors3NewEyddttd@PLT
 	movq	%rax, %rsi
 	movq	%rax, 8(%rbx)
 	movq	(%rbx), %rax
@@ -33,31 +38,6 @@ _ZN10backgroundC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor8textures3NewEv@PLT
 	movq	8(%rbx), %rsi
 	movq	%rax, 16(%rbx)
-	movq	(%rbx), %rax
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movsd	.LC1(%rip), %xmm0
-	movq	%rax, %rdi
-	call	_ZN4slay6engine6actors5actor8SetLayerEd@PLT
-	movq	(%rbx), %rax
-	movq	8(%rbx), %rsi
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	16(%rbx), %rsi
-	leaq	40(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
-	movl	$1280, %edx
-	movq	8(%rbx), %rsi
-	movw	%dx, 16(%rax)
-	movq	(%rbx), %rax
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	16(%rbx), %rsi
-	leaq	40(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
-	movl	$720, %ecx
-	movq	8(%rbx), %rsi
-	movw	%cx, 18(%rax)
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
