@@ -19,7 +19,7 @@
 	.string	"neo::array=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.section	.rodata.str1.1
 .LC7:
-	.string	"assets/FreeMono.ttf"
+	.string	"assets/FreeSans.ttf"
 .LC10:
 	.string	"Player"
 	.section	.text.unlikely,"ax",@progbits

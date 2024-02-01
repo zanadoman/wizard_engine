@@ -11,7 +11,7 @@ player::player(engine& Engine) : Engine(Engine)
         this->Engine.Assets.LoadTexture("assets/player/player5.png"),
         this->Engine.Assets.LoadTexture("assets/player/player6.png")
     };
-    this->NameTextFont = this->Engine.Assets.LoadFont("assets/FreeMono.ttf", 48);
+    this->NameTextFont = this->Engine.Assets.LoadFont("assets/FreeSans.ttf", 48);
 
     this->Actor = Engine.Actors.New(PLAYER);
     this->MainFlipbook = Engine.Actors[this->Actor].Flipbooks.New(&this->MainFlipbookTextures);
