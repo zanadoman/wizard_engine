@@ -276,19 +276,22 @@ _ZN4slay6engine6actorsD2Ev:
 	.set	_ZN4slay6engine6actorsD1Ev,_ZN4slay6engine6actorsD2Ev
 	.section	.rodata.str1.8
 	.align 8
-.LC4:
-	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
-	.align 8
 .LC5:
-	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
+	.string	"slay::engine.actors.New(): Layer must not be less than 0\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n"
 	.align 8
 .LC6:
-	.string	"slay::engine.actors.New(): Memory allocation failed\nParams: Type: %lld\n"
+	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
+	.align 8
+.LC7:
+	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
+	.align 8
+.LC8:
+	.string	"slay::engine.actors.New(): Memory allocation failed\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB7:
+.LCOLDB9:
 	.text
-.LHOTB7:
+.LHOTB9:
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors3NewEyddttd
@@ -304,53 +307,57 @@ _ZN4slay6engine6actors3NewEyddttd:
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
-	movl	%ecx, %r14d
+	movzwl	%cx, %r14d
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movq	%rsi, %r13
+	movzwl	%dx, %r13d
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	movl	%edx, %r12d
+	movq	%rsi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
-	movq	%rdi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
 	subq	$56, %rsp
 	.cfi_def_cfa_offset 112
+	movsd	%xmm0, 8(%rsp)
+	pxor	%xmm0, %xmm0
+	movsd	%xmm1, 16(%rsp)
+	movsd	%xmm2, 24(%rsp)
 	movq	%fs:40, %rax
 	movq	%rax, 40(%rsp)
+	xorl	%eax, %eax
+	comisd	%xmm2, %xmm0
+	ja	.L43
 	movq	8(%rdi), %rax
+	movq	%rdi, %rbp
 	cmpq	$1, %rax
-	jbe	.L43
+	jbe	.L45
 	movq	16(%rdi), %rdx
 	movl	$1, %ebx
-	jmp	.L47
+	jmp	.L49
 	.p2align 4,,10
 	.p2align 3
-.L44:
+.L46:
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	je	.L43
-.L47:
+	je	.L45
+.L49:
 	cmpq	$0, (%rdx,%rbx,8)
-	jne	.L44
+	jne	.L46
 	movl	$192, %edi
-	movsd	%xmm2, 24(%rsp)
-	movsd	%xmm1, 16(%rsp)
-	movsd	%xmm0, 8(%rsp)
 .LEHB0:
 	call	_Znwm@PLT
 .LEHE0:
 	movq	0(%rbp), %rsi
-	movzwl	%r12w, %ecx
-	movq	%r13, %rdx
+	movl	%r14d, %r8d
+	movl	%r13d, %ecx
 	movsd	24(%rsp), %xmm2
-	movzwl	%r14w, %r8d
+	movq	%r12, %rdx
 	movq	%rax, %rdi
 	movq	%rax, %r15
 	movsd	16(%rsp), %xmm1
@@ -360,24 +367,21 @@ _ZN4slay6engine6actors3NewEyddttd:
 .LEHE1:
 	movq	16(%rbp), %rax
 	cmpq	8(%rbp), %rbx
-	jnb	.L63
+	jnb	.L65
 	movq	%r15, (%rax,%rbx,8)
 	jmp	.L42
 	.p2align 4,,10
 	.p2align 3
-.L43:
+.L45:
 	movl	$192, %edi
-	movsd	%xmm2, 24(%rsp)
-	movsd	%xmm1, 16(%rsp)
-	movsd	%xmm0, 8(%rsp)
 .LEHB2:
 	call	_Znwm@PLT
 .LEHE2:
 	movq	0(%rbp), %rsi
-	movzwl	%r12w, %ecx
-	movq	%r13, %rdx
+	movl	%r14d, %r8d
+	movl	%r13d, %ecx
 	movsd	24(%rsp), %xmm2
-	movzwl	%r14w, %r8d
+	movq	%r12, %rdx
 	movq	%rax, %rdi
 	movq	%rax, %rbx
 	movsd	16(%rsp), %xmm1
@@ -394,7 +398,7 @@ _ZN4slay6engine6actors3NewEyddttd:
 	call	realloc@PLT
 	movq	%rax, 16(%rbp)
 	testq	%rax, %rax
-	je	.L64
+	je	.L66
 	movq	8(%rbp), %rdx
 	leaq	32(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
@@ -405,13 +409,13 @@ _ZN4slay6engine6actors3NewEyddttd:
 	movq	16(%rbp), %rdx
 	addq	$-1, %rax
 	movq	%rax, %rbx
-	jnc	.L65
+	jnc	.L67
 	cmpq	$0, (%rdx,%rax,8)
-	je	.L66
+	je	.L68
 .L42:
 	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L67
+	jne	.L69
 	addq	$56, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -429,41 +433,57 @@ _ZN4slay6engine6actors3NewEyddttd:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L63:
+.L65:
 	.cfi_restore_state
 	movq	%rbx, %rsi
-.L61:
-	leaq	.LC4(%rip), %rdi
+.L63:
+	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L43:
+	movsd	24(%rsp), %xmm2
+	movsd	16(%rsp), %xmm1
+	movl	%r14d, %ecx
+	movl	%r13d, %edx
+	movsd	8(%rsp), %xmm0
+	leaq	.LC5(%rip), %rdi
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L69:
+	call	__stack_chk_fail@PLT
+.L68:
+	movsd	24(%rsp), %xmm2
+	movl	%r14d, %ecx
+	movl	%r13d, %edx
+	movq	%r12, %rsi
+	movsd	16(%rsp), %xmm1
+	movsd	8(%rsp), %xmm0
+	movl	$3, %eax
+	leaq	.LC8(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L67:
-	call	__stack_chk_fail@PLT
-.L66:
-	leaq	.LC6(%rip), %rdi
-	movq	%r13, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L65:
 	orq	$-1, %rsi
-	jmp	.L61
-.L64:
-	leaq	.LC5(%rip), %rdi
+	jmp	.L63
+.L66:
+	leaq	.LC7(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
 .LEHE4:
 	movl	$1, %edi
 	call	exit@PLT
-.L57:
+.L59:
 	movq	%rax, %rbp
-	jmp	.L54
-.L58:
+	jmp	.L56
+.L60:
 	movq	%rax, %rbx
-	jmp	.L52
+	jmp	.L54
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
 .LLSDA2237:
@@ -478,7 +498,7 @@ _ZN4slay6engine6actors3NewEyddttd:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB2237
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L58-.LFB2237
+	.uleb128 .L60-.LFB2237
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB2237
 	.uleb128 .LEHE2-.LEHB2
@@ -486,7 +506,7 @@ _ZN4slay6engine6actors3NewEyddttd:
 	.uleb128 0
 	.uleb128 .LEHB3-.LFB2237
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L57-.LFB2237
+	.uleb128 .L59-.LFB2237
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB2237
 	.uleb128 .LEHE4-.LEHB4
@@ -502,7 +522,7 @@ _ZN4slay6engine6actors3NewEyddttd:
 	.type	_ZN4slay6engine6actors3NewEyddttd.cold, @function
 _ZN4slay6engine6actors3NewEyddttd.cold:
 .LFSB2237:
-.L54:
+.L56:
 	.cfi_def_cfa_offset 112
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -515,21 +535,21 @@ _ZN4slay6engine6actors3NewEyddttd.cold:
 	call	_ZdlPvm@PLT
 	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L62
+	jne	.L64
 	movq	%rbp, %rdi
 .LEHB5:
 	call	_Unwind_Resume@PLT
-.L52:
+.L54:
 	movl	$192, %esi
 	movq	%r15, %rdi
 	call	_ZdlPvm@PLT
 	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L62
+	jne	.L64
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .LEHE5:
-.L62:
+.L64:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE2237:
@@ -540,7 +560,7 @@ _ZN4slay6engine6actors3NewEyddttd.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC2237-.LLSDACSBC2237
 .LLSDACSBC2237:
-	.uleb128 .LEHB5-.LCOLDB7
+	.uleb128 .LEHB5-.LCOLDB9
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
@@ -550,15 +570,15 @@ _ZN4slay6engine6actors3NewEyddttd.cold:
 	.size	_ZN4slay6engine6actors3NewEyddttd, .-_ZN4slay6engine6actors3NewEyddttd
 	.section	.text.unlikely
 	.size	_ZN4slay6engine6actors3NewEyddttd.cold, .-_ZN4slay6engine6actors3NewEyddttd.cold
-.LCOLDE7:
+.LCOLDE9:
 	.text
-.LHOTE7:
+.LHOTE9:
 	.section	.rodata.str1.8
 	.align 8
-.LC8:
+.LC10:
 	.string	"slay::engine.actors.Delete(): Illegal deletion of NULL Actor\nParams: ID: %lld\n"
 	.align 8
-.LC9:
+.LC11:
 	.string	"slay::engine.actors.Delete(): Actor does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -578,15 +598,15 @@ _ZN4slay6engine6actors6DeleteEy:
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
 	testq	%rsi, %rsi
-	je	.L81
+	je	.L83
 	movq	%rdi, %rbp
 	movq	%rsi, %rbx
 	cmpq	8(%rdi), %rsi
-	jnb	.L70
+	jnb	.L72
 	movq	16(%rdi), %rax
 	movq	(%rax,%rsi,8), %r12
 	testq	%r12, %r12
-	je	.L70
+	je	.L72
 	movq	%r12, %rdi
 	call	_ZN4slay6engine6actors5actorD1Ev@PLT
 	movl	$192, %esi
@@ -595,11 +615,11 @@ _ZN4slay6engine6actors6DeleteEy:
 	movq	8(%rbp), %rax
 	movq	16(%rbp), %rdx
 	cmpq	%rax, %rbx
-	jnb	.L82
+	jnb	.L84
 	movq	$0, (%rdx,%rbx,8)
 	cmpq	$0, -8(%rdx,%rax,8)
 	leaq	-1(%rax), %r8
-	je	.L83
+	je	.L85
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -611,21 +631,21 @@ _ZN4slay6engine6actors6DeleteEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L83:
+.L85:
 	.cfi_restore_state
 	movq	%rax, %rsi
 	.p2align 4,,10
 	.p2align 3
-.L77:
+.L79:
 	movq	%rsi, %rcx
 	subq	$1, %rsi
 	cmpq	%rax, %rsi
-	jnb	.L80
+	jnb	.L82
 	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L84
+	jne	.L86
 	cmpq	$1, %rsi
-	jne	.L77
-.L76:
+	jne	.L79
+.L78:
 	leaq	8(%rbp), %rdi
 	movq	%r8, %rdx
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy.isra.0
@@ -640,29 +660,29 @@ _ZN4slay6engine6actors6DeleteEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L84:
+.L86:
 	.cfi_restore_state
 	subq	%rcx, %rax
 	movq	%rcx, %rsi
 	movq	%rax, %r8
-	jmp	.L76
+	jmp	.L78
+.L84:
+	movq	%rbx, %rsi
 .L82:
-	movq	%rbx, %rsi
-.L80:
-	leaq	.LC4(%rip), %rdi
+	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L70:
-	leaq	.LC9(%rip), %rdi
+.L72:
+	leaq	.LC11(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L81:
-	leaq	.LC8(%rip), %rdi
+.L83:
+	leaq	.LC10(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -673,7 +693,7 @@ _ZN4slay6engine6actors6DeleteEy:
 	.size	_ZN4slay6engine6actors6DeleteEy, .-_ZN4slay6engine6actors6DeleteEy
 	.section	.rodata.str1.8
 	.align 8
-.LC10:
+.LC12:
 	.string	"slay::engine.actors.Purge(): Actor does not exists\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
@@ -708,54 +728,54 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	.cfi_def_cfa_offset 64
 	movq	8(%rdi), %rsi
 	testq	%rdx, %rdx
-	je	.L86
+	je	.L88
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L89:
+.L91:
 	movq	(%r12,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L87
+	je	.L89
 	cmpq	%rsi, %rdx
-	jnb	.L88
+	jnb	.L90
 	movq	16(%r13), %rcx
 	cmpq	$0, (%rcx,%rdx,8)
-	je	.L88
-.L87:
+	je	.L90
+.L89:
 	addq	$1, %rax
 	cmpq	%rax, %rbx
-	jne	.L89
-.L86:
+	jne	.L91
+.L88:
 	cmpq	$1, %rsi
-	jbe	.L90
+	jbe	.L92
 	movq	16(%r13), %rdx
 	movl	$1, %ebp
 	.p2align 4,,10
 	.p2align 3
-.L91:
+.L93:
 	xorl	%eax, %eax
 	testq	%rbx, %rbx
-	jne	.L93
-	jmp	.L94
+	jne	.L95
+	jmp	.L96
 	.p2align 4,,10
 	.p2align 3
-.L124:
+.L126:
 	addq	$1, %rax
 	cmpq	%rax, %rbx
-	je	.L94
-.L93:
-	cmpq	%rbp, (%r12,%rax,8)
-	jne	.L124
-	cmpq	%rax, %rbx
-	je	.L94
+	je	.L96
 .L95:
+	cmpq	%rbp, (%r12,%rax,8)
+	jne	.L126
+	cmpq	%rax, %rbx
+	je	.L96
+.L97:
 	addq	$1, %rbp
 	cmpq	%rsi, %rbp
-	jb	.L91
+	jb	.L93
 	cmpq	$0, -8(%rdx,%rsi,8)
 	leaq	-1(%rsi), %r8
-	je	.L125
-.L121:
+	je	.L127
+.L123:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -775,12 +795,12 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L94:
+.L96:
 	.cfi_restore_state
 	movq	(%rdx,%rbp,8), %r14
 	leaq	0(,%rbp,8), %r15
 	testq	%r14, %r14
-	je	.L96
+	je	.L98
 	movq	%r14, %rdi
 	call	_ZN4slay6engine6actors5actorD1Ev@PLT
 	movl	$192, %esi
@@ -788,67 +808,67 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	call	_ZdlPvm@PLT
 	movq	8(%r13), %rsi
 	movq	16(%r13), %rdx
-.L96:
+.L98:
 	cmpq	%rsi, %rbp
-	jnb	.L126
+	jnb	.L128
 	movq	$0, (%rdx,%r15)
-	jmp	.L95
-.L125:
+	jmp	.L97
+.L127:
 	movq	%rsi, %rcx
-	jmp	.L99
+	jmp	.L101
 	.p2align 4,,10
 	.p2align 3
-.L104:
+.L106:
 	leaq	-1(%rcx), %rax
 	cmpq	%rsi, %rax
-	jnb	.L127
+	jnb	.L129
 	cmpq	$0, (%rdx,%rax,8)
-	jne	.L128
+	jne	.L130
 	movq	%rax, %rcx
-.L99:
+.L101:
 	cmpq	$1, %rcx
-	jne	.L104
-.L103:
+	jne	.L106
+.L105:
 	leaq	8(%r13), %rdi
 	movq	%r8, %rdx
 	movq	%rcx, %rsi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy.isra.0
-	jmp	.L121
-.L90:
+	jmp	.L123
+.L92:
 	testq	%rsi, %rsi
-	jne	.L121
+	jne	.L123
 	orq	$-1, %rsi
-.L123:
-	leaq	.LC4(%rip), %rdi
+.L125:
+	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L128:
+.L130:
 	subq	%rcx, %rsi
 	movq	%rsi, %r8
-	jmp	.L103
-.L88:
-	leaq	.LC10(%rip), %rdi
+	jmp	.L105
+.L90:
+	leaq	.LC12(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L127:
+.L129:
 	movq	%rax, %rsi
-	jmp	.L123
-.L126:
+	jmp	.L125
+.L128:
 	movq	%rbp, %rsi
-	jmp	.L123
+	jmp	.L125
 	.cfi_endproc
 .LFE2239:
 	.size	_ZN4slay6engine6actors5PurgeESt16initializer_listIyE, .-_ZN4slay6engine6actors5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
+.LC13:
 	.string	"slay::engine.actors.Purge(): Actor does not exists\nParams: Keep: %p\n"
 	.text
 	.align 2
@@ -878,62 +898,62 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	movq	(%rsi), %rdx
 	movq	8(%rdi), %rsi
 	testq	%rdx, %rdx
-	je	.L130
+	je	.L132
 	movq	8(%r12), %rdi
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L133:
+.L135:
 	movq	(%rdi,%rax,8), %rcx
 	testq	%rcx, %rcx
-	je	.L131
+	je	.L133
 	cmpq	%rsi, %rcx
-	jnb	.L132
+	jnb	.L134
 	movq	16(%rbp), %r8
 	cmpq	$0, (%r8,%rcx,8)
-	je	.L132
-.L131:
+	je	.L134
+.L133:
 	addq	$1, %rax
 	cmpq	%rax, %rdx
-	jne	.L133
-.L130:
+	jne	.L135
+.L132:
 	cmpq	$1, %rsi
-	jbe	.L134
+	jbe	.L136
 	movq	16(%rbp), %rdi
 	movl	$1, %ebx
 	testq	%rdx, %rdx
-	je	.L138
+	je	.L140
 	.p2align 4,,10
 	.p2align 3
-.L143:
+.L145:
 	movq	8(%r12), %rcx
 	xorl	%eax, %eax
-	jmp	.L137
+	jmp	.L139
 	.p2align 4,,10
 	.p2align 3
-.L167:
+.L169:
 	addq	$1, %rax
 	cmpq	%rax, %rdx
-	je	.L138
-.L137:
+	je	.L140
+.L139:
 	cmpq	%rbx, (%rcx,%rax,8)
-	jne	.L167
+	jne	.L169
 	cmpq	%rax, %rdx
-	je	.L138
+	je	.L140
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jnb	.L142
-.L169:
+	jnb	.L144
+.L171:
 	movq	(%r12), %rdx
 	testq	%rdx, %rdx
-	jne	.L143
+	jne	.L145
 	.p2align 4,,10
 	.p2align 3
-.L138:
+.L140:
 	movq	(%rdi,%rbx,8), %r13
 	leaq	0(,%rbx,8), %r14
 	testq	%r13, %r13
-	je	.L140
+	je	.L142
 	movq	%r13, %rdi
 	call	_ZN4slay6engine6actors5actorD1Ev@PLT
 	movl	$192, %esi
@@ -941,18 +961,18 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	call	_ZdlPvm@PLT
 	movq	8(%rbp), %rsi
 	movq	16(%rbp), %rdi
-.L140:
+.L142:
 	cmpq	%rsi, %rbx
-	jnb	.L168
+	jnb	.L170
 	addq	$1, %rbx
 	movq	$0, (%rdi,%r14)
 	cmpq	%rsi, %rbx
-	jb	.L169
-.L142:
+	jb	.L171
+.L144:
 	cmpq	$0, -8(%rdi,%rsi,8)
 	leaq	-1(%rsi), %rdx
-	je	.L170
-.L164:
+	je	.L172
+.L166:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -966,23 +986,23 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
-.L170:
+.L172:
 	.cfi_restore_state
 	movq	%rsi, %rcx
-	jmp	.L144
+	jmp	.L146
 	.p2align 4,,10
 	.p2align 3
-.L149:
+.L151:
 	leaq	-1(%rcx), %rax
 	cmpq	%rsi, %rax
-	jnb	.L171
+	jnb	.L173
 	cmpq	$0, (%rdi,%rax,8)
-	jne	.L172
+	jne	.L174
 	movq	%rax, %rcx
-.L144:
+.L146:
 	cmpq	$1, %rcx
-	jne	.L149
-.L148:
+	jne	.L151
+.L150:
 	leaq	8(%rbp), %rdi
 	movq	%rcx, %rsi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy.isra.0
@@ -999,45 +1019,45 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
-.L134:
+.L136:
 	.cfi_restore_state
 	testq	%rsi, %rsi
-	jne	.L164
+	jne	.L166
 	orq	$-1, %rsi
-.L166:
-	leaq	.LC4(%rip), %rdi
+.L168:
+	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L172:
+.L174:
 	subq	%rcx, %rsi
 	movq	%rsi, %rdx
-	jmp	.L148
-.L132:
-	leaq	.LC11(%rip), %rdi
+	jmp	.L150
+.L134:
+	leaq	.LC13(%rip), %rdi
 	movq	%r12, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L171:
+.L173:
 	movq	%rax, %rsi
-	jmp	.L166
-.L168:
+	jmp	.L168
+.L170:
 	movq	%rbx, %rsi
-	jmp	.L166
+	jmp	.L168
 	.cfi_endproc
 .LFE2242:
 	.size	_ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE, .-_ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
-.LC12:
+.LC14:
 	.string	"slay::engine.actors[]: Illegal access to NULL Actor"
 	.align 8
-.LC13:
+.LC15:
 	.string	"slay::engine.actors[]: Actor does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1050,26 +1070,26 @@ _ZN4slay6engine6actorsixEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L178
+	je	.L180
 	cmpq	8(%rdi), %rsi
-	jnb	.L175
+	jnb	.L177
 	movq	16(%rdi), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L175
+	je	.L177
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L175:
+.L177:
 	.cfi_restore_state
-	leaq	.LC13(%rip), %rdi
+	leaq	.LC15(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L178:
-	leaq	.LC12(%rip), %rdi
+.L180:
+	leaq	.LC14(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi

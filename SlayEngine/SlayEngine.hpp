@@ -434,7 +434,7 @@ namespace slay
                                     sint32 SetOffsetX(sint32 OffsetX);
                                     sint32 GetOffsetY();
                                     sint32 SetOffsetY(sint32 OffsetY);
-                                    string* String();
+                                    string* GetString();
                                     uint64 GetFont();
                                     uint64 SetFont(uint64 ID);
 
@@ -444,15 +444,15 @@ namespace slay
                                     double OffsetLength;
                                     double OffsetAngle;
                                     uint16 Width;
-                                    string Text;
+                                    string String;
                                     uint64 FontID;
                                     SDL_Texture* Texture;
-                                    text(engine& Engine, actor& Actor);
+                                    text(engine& Engine, actor& Actor, const char* String, uint64 FontID, uint16 Height, sint32 OffsetX, sint32 OffsetY);
                                     ~text();
                             };
 
                             public:
-                                uint64 New();
+                                uint64 New(const char* String, uint64 FontID, uint16 Height, sint32 OffsetX, sint32 OffsetY);
                                 uint8 Delete(uint64 ID);
                                 uint8 Purge(std::initializer_list<uint64> Keep);
                                 uint8 Purge(array<uint64>* Keep);

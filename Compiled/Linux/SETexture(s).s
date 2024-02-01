@@ -1146,21 +1146,15 @@ _ZN4slay6engine6actors5actor8textures7texture12SetTextureIDEy:
 	.cfi_startproc
 	movq	%rsi, %rax
 	testq	%rsi, %rsi
-	je	.L186
+	je	.L184
 	movq	(%rdi), %rdx
 	cmpq	568(%rdx), %rsi
 	jnb	.L185
 	movq	576(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
 	je	.L185
-	movq	%rsi, %rdx
-	movq	%rdx, 64(%rdi)
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L186:
-	xorl	%edx, %edx
-	movq	%rdx, 64(%rdi)
+.L184:
+	movq	%rax, 64(%rdi)
 	ret
 .L185:
 	pushq	%rdx

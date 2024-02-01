@@ -12,15 +12,26 @@ namespace slay
         }
     }
 
-    uint64 engine::actors::actor::texts::New()
+    uint64 engine::actors::actor::texts::New(const char* String, uint64 FontID, uint16 Height, sint32 OffsetX, sint32 OffsetY)
     {
+        if (String == NULL)
+        {
+            printf("slay::engine.actors[].texts.New(): String must not be NULL\nParams: String: %p, FontID: %lld, Height: %d, OffsetX: %d, OffsetY: %d\n", String, FontID, Height, OffsetX, OffsetY);
+            exit(1);
+        }
+        if (FontID != 0 && (this->Engine.Assets.Fonts.Length() <= FontID || this->Engine.Assets.Fonts[FontID] == NULL))
+        {
+            printf("slay::engine.actors[].texts.New(): FontID does not exist\nParams: String: %p, FontID: %lld, Height: %d, OffsetX: %d, OffsetY: %d\n", String, FontID, Height, OffsetX, OffsetY);
+            exit(1);
+        }
+
         for (uint64 i = 1; i < this->Texts.Length(); i++)
         {
             if (this->Texts[i] == NULL)
             {
-                if ((this->Texts[i] = new text(this->Engine, this->Actor)) == NULL)
+                if ((this->Texts[i] = new text(this->Engine, this->Actor, String, FontID, Height, OffsetX, OffsetY)) == NULL)
                 {
-                    printf("slay::engine.actors[].texts.New(): Memory allocation failed\n");
+                    printf("slay::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %p, FontID: %lld, Height: %d, OffsetX: %d, OffsetY: %d\n", String, FontID, Height, OffsetX, OffsetY);
                     exit(1);
                 }
 
@@ -28,9 +39,9 @@ namespace slay
             }
         }
 
-        if ((*(this->Texts += {new text(this->Engine, this->Actor)}))[this->Texts.Length() - 1] == NULL)
+        if ((*(this->Texts += {new text(this->Engine, this->Actor, String, FontID, Height, OffsetX, OffsetY)}))[this->Texts.Length() - 1] == NULL)
         {
-            printf("slay::engine.actors[].texts.New(): Memory allocation failed\n");
+            printf("slay::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %p, FontID: %lld, Height: %d, OffsetX: %d, OffsetY: %d\n", String, FontID, Height, OffsetX, OffsetY);
             exit(1);
         }
 
@@ -187,9 +198,11 @@ namespace slay
         return *this->Texts[ID];
     }
 
-    engine::actors::actor::texts::text::text(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::texts::text::text(engine& Engine, actor& Actor, const char* String, uint64 FontID, uint16 Height, sint32 OffsetX, sint32 OffsetY) : Engine(Engine), Actor(Actor)
     {
-        this->Height = this->Actor.Height;
+        sint32 x, y;
+
+        this->Height = Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
@@ -201,12 +214,13 @@ namespace slay
         this->AngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
-        this->OffsetX = 0;
-        this->OffsetY = 0;
-        this->OffsetLength = 0;
-        this->OffsetAngle = 0;
+        x = this->Actor.X + (this->OffsetX = OffsetX);
+        y = this->Actor.Y + (this->OffsetY = OffsetY);
+        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
+        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
         this->Width = 0;
-        this->FontID = 0;
+        this->String = {String};
+        this->FontID = FontID;
         this->Texture = NULL;
     }
 
@@ -249,12 +263,12 @@ namespace slay
         SDL_DestroyTexture(this->Texture);
     }
 
-    string* engine::actors::actor::texts::text::String()
+    string* engine::actors::actor::texts::text::GetString()
     {
         SDL_DestroyTexture(this->Texture);
         this->Texture = NULL;
 
-        return &this->Text;
+        return &this->String;
     }
 
     uint64 engine::actors::actor::texts::text::GetFont()
@@ -264,11 +278,7 @@ namespace slay
 
     uint64 engine::actors::actor::texts::text::SetFont(uint64 ID)
     {
-        if (ID == 0)
-        {
-            return this->FontID = ID;
-        }
-        if (this->Engine.Assets.Fonts.Length() <= ID || this->Engine.Assets.Fonts[ID] == NULL)
+        if (ID != 0 && (this->Engine.Assets.Fonts.Length() <= ID || this->Engine.Assets.Fonts[ID] == NULL))
         {
             printf("slay::engine.actors[].texts[].SetFont(): Font does not exists\nParams: ID: %lld\n", ID);
             exit(1);

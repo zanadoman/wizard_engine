@@ -10,10 +10,7 @@ namespace slay
         this->X = X;
         this->Y = Y;
         this->Angle = 0;
-        if ((this->Layer = Layer) < 0)
-        {
-            printf("slay::engine.actors.actor.actor(): Layer must not be less than 0\nParams: Engine: %p, Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", &Engine, Type, X, Y, Width, Height, Layer);
-        }
+        this->Layer = Layer;
         this->Depth = 0;
     }
 

@@ -250,11 +250,7 @@ namespace slay
 
     uint64 engine::actors::actor::textures::texture::SetTextureID(uint64 ID)
     {
-        if (ID == 0)
-        {
-            return this->TextureID = ID;
-        }
-        if (this->Engine.Assets.Textures.Length() <= ID || this->Engine.Assets.Textures[ID] == NULL)
+        if (ID != 0 && (this->Engine.Assets.Textures.Length() <= ID || this->Engine.Assets.Textures[ID] == NULL))
         {
             printf("slay::engine.actors[].textures[].SetTextureID(): Texture does not exists\nParams: ID: %lld\n", ID);
             exit(1);

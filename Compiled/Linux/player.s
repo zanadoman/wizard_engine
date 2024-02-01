@@ -20,7 +20,7 @@
 	.section	.rodata.str1.1
 .LC7:
 	.string	"assets/FreeSans.ttf"
-.LC11:
+.LC10:
 	.string	"Player"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
@@ -36,22 +36,19 @@ _ZN6playerC2ERN4slay6engineE:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2232
-	pushq	%r13
-	.cfi_def_cfa_offset 16
-	.cfi_offset 13, -16
 	pushq	%r12
-	.cfi_def_cfa_offset 24
-	.cfi_offset 12, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
 	pushq	%rbp
-	.cfi_def_cfa_offset 32
-	.cfi_offset 6, -32
+	.cfi_def_cfa_offset 24
+	.cfi_offset 6, -24
 	movq	%rsi, %rbp
 	pushq	%rbx
-	.cfi_def_cfa_offset 40
-	.cfi_offset 3, -40
+	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
 	movq	%rdi, %rbx
-	subq	$72, %rsp
-	.cfi_def_cfa_offset 112
+	subq	$64, %rsp
+	.cfi_def_cfa_offset 96
 	movq	%fs:40, %rax
 	movq	%rax, 56(%rsp)
 	xorl	%eax, %eax
@@ -94,9 +91,8 @@ _ZN6playerC2ERN4slay6engineE:
 	jne	.L12
 	movq	32(%rbx), %rsi
 .L4:
-	movq	%rsp, %r13
 	salq	$3, %rdx
-	movq	%r13, %rdi
+	movq	%rsp, %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
 	movq	(%rbx), %rax
 	movl	$48, %edx
@@ -124,14 +120,19 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	8(%rbx), %rsi
 	movq	%rbp, %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	48(%rbx), %rdx
 	leaq	104(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor5texts3NewEv@PLT
+	xorl	%r8d, %r8d
+	movl	$20, %ecx
+	movl	$40, %r9d
+	leaq	.LC10(%rip), %rsi
+	call	_ZN4slay6engine6actors5actor5texts3NewEPKcytii@PLT
 	movq	%rax, 40(%rbx)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
-	movsd	.LC10(%rip), %xmm0
+	movsd	.LC11(%rip), %xmm0
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8SetDepthEd@PLT
 	movq	(%rbx), %rax
@@ -144,63 +145,17 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, %rdi
 	movl	$100, %esi
 	call	_ZN4slay6engine6actors5actor9flipbooks8flipbook8SetDelayEj@PLT
-	movq	(%rbx), %rax
-	movq	8(%rbx), %rsi
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	40(%rbx), %rsi
-	leaq	104(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movl	$20, %edx
-	movq	8(%rbx), %rsi
-	movw	%dx, 16(%rax)
-	movq	(%rbx), %rax
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	40(%rbx), %rsi
-	leaq	104(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movq	%rax, %rdi
-	movl	$40, %esi
-	call	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi@PLT
-	leaq	.LC11(%rip), %rax
-	movq	8(%rbx), %rsi
-	movq	%rax, (%rsp)
-	movq	(%rbx), %rax
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	40(%rbx), %rsi
-	leaq	104(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movq	%rax, %rdi
-	call	_ZN4slay6engine6actors5actor5texts4text6StringEv@PLT
-	movq	%rax, %rdi
-	movq	%r13, %rsi
-	movl	$1, %edx
-	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
-	movq	(%rbx), %rax
-	movq	8(%rbx), %rsi
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	40(%rbx), %rsi
-	leaq	104(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movq	48(%rbx), %rsi
-	movq	%rax, %rdi
-	call	_ZN4slay6engine6actors5actor5texts4text7SetFontEy@PLT
 	movq	56(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L13
-	addq	$72, %rsp
+	addq	$64, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 40
-	popq	%rbx
 	.cfi_def_cfa_offset 32
-	popq	%rbp
+	popq	%rbx
 	.cfi_def_cfa_offset 24
-	popq	%r12
+	popq	%rbp
 	.cfi_def_cfa_offset 16
-	popq	%r13
+	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
@@ -254,11 +209,10 @@ _ZN6playerC2ERN4slay6engineE:
 _ZN6playerC2ERN4slay6engineE.cold:
 .LFSB2232:
 .L5:
-	.cfi_def_cfa_offset 112
-	.cfi_offset 3, -40
-	.cfi_offset 6, -32
-	.cfi_offset 12, -24
-	.cfi_offset 13, -16
+	.cfi_def_cfa_offset 96
+	.cfi_offset 3, -32
+	.cfi_offset 6, -24
+	.cfi_offset 12, -16
 	movq	32(%rbx), %rdi
 	call	free@PLT
 	movq	56(%rsp), %rax
@@ -659,7 +613,7 @@ _ZN6player6UpdateEv:
 	.long	0
 	.long	1072693248
 	.align 8
-.LC10:
+.LC11:
 	.long	-1717986918
 	.long	1068079513
 	.align 8
