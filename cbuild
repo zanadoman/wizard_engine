@@ -50,7 +50,7 @@ then
     ls "${LINUX_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${LINUX_ASSEMBLY_FOLDER}"
     ls "${LINUX_BUILD_FOLDER}" &> /dev/null || mkdir "${LINUX_BUILD_FOLDER}"
 
-    if ${LINUX_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${LINUX_EXTRA_FLAGS} ${LINUX_WARNINGS} -S ${SOURCES}
+    if ${LINUX_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${LINUX_WARNINGS} ${LINUX_EXTRA_FLAGS} -S ${SOURCES}
     then
         echo -e "${YELLOW}Linux ${GREEN}compilation successful!${ENDCOLOR}"
         if [ "${LINUX_ASSEMBLY_FOLDER}" != "." ] && [ "${LINUX_ASSEMBLY_FOLDER}" != "./" ]
@@ -87,7 +87,7 @@ then
     ls "${WINDOWS_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${WINDOWS_ASSEMBLY_FOLDER}"
     ls "${WINDOWS_BUILD_FOLDER}" &> /dev/null || mkdir "${WINDOWS_BUILD_FOLDER}"
 
-    if ${WINDOWS_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${WINDOWS_EXTRA_FLAGS} ${WINDOWS_WARNINGS} -S ${SOURCES}
+    if ${WINDOWS_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${WINDOWS_WARNINGS} ${WINDOWS_EXTRA_FLAGS} -S ${SOURCES}
     then
         echo -e "${BLUE}Windows ${GREEN}compilation successful!${ENDCOLOR}"
         if [ "${WINDOWS_ASSEMBLY_FOLDER}" != "." ] && [ "${WINDOWS_ASSEMBLY_FOLDER}" != "./" ]
@@ -124,7 +124,7 @@ then
     ls "${GIT_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${GIT_ASSEMBLY_FOLDER}"
     ls "${GIT_BUILD_FOLDER}" &> /dev/null || mkdir "${GIT_BUILD_FOLDER}"
 
-    if ${GIT_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${GIT_EXTRA_FLAGS} ${GIT_WARNINGS} -S $(git diff --name-only | grep ${GIT_GREP_FILTER})
+    if ${GIT_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${GIT_WARNINGS} ${GIT_EXTRA_FLAGS} -S $(git diff --name-only | grep ${GIT_GREP_FILTER})
     then
         echo -e "${MAGENTA}Git ${GREEN}compilation successful!${ENDCOLOR}"
         mv ./*.s "${GIT_ASSEMBLY_FOLDER}" &> /dev/null
