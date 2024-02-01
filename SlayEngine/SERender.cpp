@@ -102,6 +102,11 @@ namespace slay
                 {
                     area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
 
+                    if (area.w == 0 || area.h == 0)
+                    {
+                        continue;
+                    }
+
                     if (0 < k && this->RenderQueue[k - 1].Data == this->Engine.Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
                     {
                         this->RenderQueue[k - 1].Layer = layer;
@@ -144,6 +149,11 @@ namespace slay
                 {
                     area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, layer);
 
+                    if (area.w == 0 || area.h == 0)
+                    {
+                        continue;
+                    }
+
                     if (0 < k && this->RenderQueue[k - 1].Data == this->Engine.Actors.Actors[i]->Textures.Textures[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
                     {
                         this->RenderQueue[k - 1].Layer = layer;
@@ -185,6 +195,11 @@ namespace slay
                 for (; layer < depth; layer += this->SamplingStep)
                 {
                     area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width, this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height, layer);
+
+                    if (area.w == 0 || area.h == 0)
+                    {
+                        continue;
+                    }
 
                     if (0 < k && this->RenderQueue[k - 1].Data == this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
                     {
@@ -249,6 +264,11 @@ namespace slay
                 for (; layer < depth; layer += this->SamplingStep)
                 {
                     area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
+
+                    if (area.w == 0 || area.h == 0)
+                    {
+                        continue;
+                    }
 
                     if (0 < k && this->RenderQueue[k - 1].Data == this->Engine.Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
                     {
