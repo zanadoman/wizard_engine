@@ -48,7 +48,7 @@ _ZN10backgroundC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movl	$1280, %edx
 	movq	8(%rbx), %rsi
-	movw	%dx, 18(%rax)
+	movw	%dx, 16(%rax)
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
@@ -57,7 +57,7 @@ _ZN10backgroundC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movl	$720, %ecx
 	movq	8(%rbx), %rsi
-	movw	%cx, 20(%rax)
+	movw	%cx, 18(%rax)
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT

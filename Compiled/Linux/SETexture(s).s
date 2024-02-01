@@ -283,13 +283,13 @@ _ZN4slay6engine6actors5actor8texturesD2Ev:
 	.set	_ZN4slay6engine6actors5actor8texturesD1Ev,_ZN4slay6engine6actors5actor8texturesD2Ev
 	.section	.rodata.str1.8
 	.align 8
-.LC5:
+.LC4:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.align 8
-.LC6:
+.LC5:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.align 8
-.LC7:
+.LC6:
 	.string	"slay::engine.actors[].textures.New(): Memory allocation failed"
 	.text
 	.align 2
@@ -327,15 +327,18 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 	jne	.L47
 	movl	$72, %edi
 	call	_Znwm@PLT
-	xorl	%ecx, %ecx
+	movq	8(%rbp), %rdx
+	movl	$4294967295, %ecx
 	movdqu	0(%rbp), %xmm2
+	movq	%rcx, 20(%rax)
 	pxor	%xmm0, %xmm0
-	movw	%cx, 16(%rax)
+	movabsq	$72339069014638592, %rcx
+	movl	136(%rdx), %edx
+	movq	%rcx, 28(%rax)
+	movl	$384, %ecx
+	movw	%cx, 36(%rax)
+	movl	%edx, 16(%rax)
 	movq	24(%rbp), %rdx
-	movabsq	$108367866033537024, %rcx
-	movl	$0, 18(%rax)
-	movq	$0x000000000, 24(%rax)
-	movq	%rcx, 32(%rax)
 	movq	$0, 40(%rax)
 	movq	$0, 64(%rax)
 	movups	%xmm2, (%rax)
@@ -349,16 +352,19 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 .L46:
 	movl	$72, %edi
 	call	_Znwm@PLT
+	movq	8(%rbp), %rdx
 	movdqu	0(%rbp), %xmm1
-	xorl	%edx, %edx
+	movl	$4294967295, %ecx
+	movq	%rcx, 20(%rax)
 	pxor	%xmm0, %xmm0
-	movabsq	$108367866033537024, %rcx
-	movw	%dx, 16(%rax)
 	movq	24(%rbp), %rdi
-	movl	$0, 18(%rax)
-	movq	$0x000000000, 24(%rax)
-	movq	%rcx, 32(%rax)
+	movabsq	$72339069014638592, %rcx
+	movl	136(%rdx), %edx
+	movq	%rcx, 28(%rax)
 	movq	$0, 40(%rax)
+	movl	%edx, 16(%rax)
+	movl	$384, %edx
+	movw	%dx, 36(%rax)
 	movq	$0, 64(%rax)
 	movq	%rax, (%rsp)
 	movups	%xmm1, (%rax)
@@ -400,7 +406,7 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 	.cfi_restore_state
 	movq	%rbx, %rsi
 .L58:
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC4(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -408,7 +414,7 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 .L63:
 	call	__stack_chk_fail@PLT
 .L62:
-	leaq	.LC7(%rip), %rdi
+	leaq	.LC6(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -416,7 +422,7 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 	orq	$-1, %rsi
 	jmp	.L58
 .L60:
-	leaq	.LC6(%rip), %rdi
+	leaq	.LC5(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
@@ -427,10 +433,10 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 	.size	_ZN4slay6engine6actors5actor8textures3NewEv, .-_ZN4slay6engine6actors5actor8textures3NewEv
 	.section	.rodata.str1.8
 	.align 8
-.LC9:
+.LC7:
 	.string	"slay::engine.actors[].textures.Delete(): Illegal deletion of NULL Texture\nParams: ID: %lld\n"
 	.align 8
-.LC10:
+.LC8:
 	.string	"slay::engine.actors[].textures.Delete(): Texture does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -517,20 +523,20 @@ _ZN4slay6engine6actors5actor8textures6DeleteEy:
 .L78:
 	movq	%rbx, %rsi
 .L76:
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC4(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L66:
-	leaq	.LC10(%rip), %rdi
+	leaq	.LC8(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L77:
-	leaq	.LC9(%rip), %rdi
+	leaq	.LC7(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -541,7 +547,7 @@ _ZN4slay6engine6actors5actor8textures6DeleteEy:
 	.size	_ZN4slay6engine6actors5actor8textures6DeleteEy, .-_ZN4slay6engine6actors5actor8textures6DeleteEy
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
+.LC9:
 	.string	"slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
@@ -688,7 +694,7 @@ _ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	jne	.L117
 	orq	$-1, %rsi
 .L119:
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC4(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -700,7 +706,7 @@ _ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	movq	%rsi, %r8
 	jmp	.L99
 .L84:
-	leaq	.LC11(%rip), %rdi
+	leaq	.LC9(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -717,7 +723,7 @@ _ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	.size	_ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE, .-_ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC12:
+.LC10:
 	.string	"slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep: %p\n"
 	.text
 	.align 2
@@ -871,7 +877,7 @@ _ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 	jne	.L160
 	orq	$-1, %rsi
 .L162:
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC4(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -883,7 +889,7 @@ _ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 	movq	%rsi, %rdx
 	jmp	.L144
 .L128:
-	leaq	.LC12(%rip), %rdi
+	leaq	.LC10(%rip), %rdi
 	movq	%r12, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -900,10 +906,10 @@ _ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 	.size	_ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE, .-_ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
-.LC13:
+.LC11:
 	.string	"slay::engine.actors[].textures[]: Illegal access to NULL Texture\nParams: ID: %lld\n"
 	.align 8
-.LC14:
+.LC12:
 	.string	"slay::engine.actors[].textures[]: Texture does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -929,13 +935,13 @@ _ZN4slay6engine6actors5actor8texturesixEy:
 	ret
 .L171:
 	.cfi_restore_state
-	leaq	.LC14(%rip), %rdi
+	leaq	.LC12(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L174:
-	leaq	.LC13(%rip), %rdi
+	leaq	.LC11(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -950,15 +956,17 @@ _ZN4slay6engine6actors5actor8texturesixEy:
 _ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_:
 .LFB2245:
 	.cfi_startproc
-	xorl	%eax, %eax
+	movl	136(%rdx), %eax
 	pxor	%xmm0, %xmm0
 	movq	%rsi, (%rdi)
-	movw	%ax, 16(%rdi)
-	movabsq	$108367866033537024, %rax
 	movq	%rdx, 8(%rdi)
-	movl	$0, 18(%rdi)
-	movq	$0x000000000, 24(%rdi)
-	movq	%rax, 32(%rdi)
+	movl	%eax, 16(%rdi)
+	movl	$4294967295, %eax
+	movq	%rax, 20(%rdi)
+	movabsq	$72339069014638592, %rax
+	movq	%rax, 28(%rdi)
+	movl	$384, %eax
+	movw	%ax, 36(%rdi)
 	movq	$0, 40(%rdi)
 	movq	$0, 64(%rdi)
 	movups	%xmm0, 48(%rdi)
@@ -1126,7 +1134,7 @@ _ZN4slay6engine6actors5actor8textures7texture12GetTextureIDEv:
 	.size	_ZN4slay6engine6actors5actor8textures7texture12GetTextureIDEv, .-_ZN4slay6engine6actors5actor8textures7texture12GetTextureIDEv
 	.section	.rodata.str1.8
 	.align 8
-.LC15:
+.LC13:
 	.string	"slay::engine.actors[].textures[].SetTextureID(): Texture does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1158,7 +1166,7 @@ _ZN4slay6engine6actors5actor8textures7texture12SetTextureIDEy:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
-	leaq	.LC15(%rip), %rdi
+	leaq	.LC13(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi

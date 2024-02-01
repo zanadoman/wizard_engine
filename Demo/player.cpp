@@ -11,7 +11,7 @@ player::player(engine& Engine) : Engine(Engine)
         this->Engine.Assets.LoadTexture("assets/player/player5.png"),
         this->Engine.Assets.LoadTexture("assets/player/player6.png")
     };
-    this->NameTextFont = this->Engine.Assets.LoadFont("assets/crazy-pixel.ttf", 48);
+    this->NameTextFont = this->Engine.Assets.LoadFont("assets/FreeMono.ttf", 48);
 
     this->Actor = Engine.Actors.New(PLAYER);
     this->MainFlipbook = Engine.Actors[this->Actor].Flipbooks.New(&this->MainFlipbookTextures);
@@ -23,15 +23,11 @@ player::player(engine& Engine) : Engine(Engine)
     this->Engine.Actors[this->Actor].Flipbooks[this->MainFlipbook].SetDelay(100);
     this->Engine.Actors[this->Actor].Flipbooks[this->MainFlipbook].Width = 100;
     this->Engine.Actors[this->Actor].Flipbooks[this->MainFlipbook].Height = 100;
-    this->Engine.Actors[this->Actor].Flipbooks[this->MainFlipbook].OffsetLocked = true;
-    this->Engine.Actors[this->Actor].Flipbooks[this->MainFlipbook].AngleLocked = true;
 
+    this->Engine.Actors[this->Actor].Texts[this->NameText].Height = 20;
+    this->Engine.Actors[this->Actor].Texts[this->NameText].SetOffsetY(40);
     *this->Engine.Actors[this->Actor].Texts[this->NameText].String() = {"Player"};
     this->Engine.Actors[this->Actor].Texts[this->NameText].SetFont(this->NameTextFont);
-    this->Engine.Actors[this->Actor].Texts[this->NameText].SetOffsetY(50);
-    this->Engine.Actors[this->Actor].Texts[this->NameText].Height = 50;
-    this->Engine.Actors[this->Actor].Texts[this->NameText].OffsetLocked = true;
-    this->Engine.Actors[this->Actor].Texts[this->NameText].AngleLocked = true;
 }
 
 player::~player()

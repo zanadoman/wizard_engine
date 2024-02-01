@@ -283,13 +283,13 @@ _ZN4slay6engine6actors5actor6colorsD2Ev:
 	.set	_ZN4slay6engine6actors5actor6colorsD1Ev,_ZN4slay6engine6actors5actor6colorsD2Ev
 	.section	.rodata.str1.8
 	.align 8
-.LC4:
+.LC5:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.align 8
-.LC5:
+.LC6:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.align 8
-.LC6:
+.LC7:
 	.string	"slay::engine.actors[].colors.New(): Memory allocation failed"
 	.text
 	.align 2
@@ -327,15 +327,17 @@ _ZN4slay6engine6actors5actor6colors3NewEv:
 	jne	.L47
 	movl	$56, %edi
 	call	_Znwm@PLT
+	movq	8(%rbp), %rdx
 	movdqu	0(%rbp), %xmm2
+	movl	$-32767, %ecx
 	pxor	%xmm0, %xmm0
-	movabsq	$-4294967296, %rcx
-	movq	%rcx, 18(%rax)
-	xorl	%ecx, %ecx
+	movl	$-1, 20(%rax)
+	movl	136(%rdx), %edx
+	movw	%cx, 24(%rax)
+	movb	$1, 26(%rax)
+	movl	%edx, 16(%rax)
 	movq	24(%rbp), %rdx
-	movb	$0, 16(%rax)
-	movq	$384, 26(%rax)
-	movw	%cx, 34(%rax)
+	movq	$0, 28(%rax)
 	movups	%xmm2, (%rax)
 	movups	%xmm0, 40(%rax)
 	cmpq	16(%rbp), %rbx
@@ -347,15 +349,17 @@ _ZN4slay6engine6actors5actor6colors3NewEv:
 .L46:
 	movl	$56, %edi
 	call	_Znwm@PLT
+	movq	8(%rbp), %rdx
 	movdqu	0(%rbp), %xmm1
-	xorl	%edx, %edx
 	pxor	%xmm0, %xmm0
-	movabsq	$-4294967296, %rcx
-	movb	$0, 16(%rax)
+	movl	$-1, 20(%rax)
 	movq	24(%rbp), %rdi
-	movq	%rcx, 18(%rax)
-	movq	$384, 26(%rax)
-	movw	%dx, 34(%rax)
+	movl	136(%rdx), %edx
+	movb	$1, 26(%rax)
+	movq	$0, 28(%rax)
+	movl	%edx, 16(%rax)
+	movl	$-32767, %edx
+	movw	%dx, 24(%rax)
 	movq	%rax, (%rsp)
 	movups	%xmm1, (%rax)
 	movups	%xmm0, 40(%rax)
@@ -396,7 +400,7 @@ _ZN4slay6engine6actors5actor6colors3NewEv:
 	.cfi_restore_state
 	movq	%rbx, %rsi
 .L58:
-	leaq	.LC4(%rip), %rdi
+	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -404,7 +408,7 @@ _ZN4slay6engine6actors5actor6colors3NewEv:
 .L63:
 	call	__stack_chk_fail@PLT
 .L62:
-	leaq	.LC6(%rip), %rdi
+	leaq	.LC7(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -412,7 +416,7 @@ _ZN4slay6engine6actors5actor6colors3NewEv:
 	orq	$-1, %rsi
 	jmp	.L58
 .L60:
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC6(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
@@ -423,10 +427,10 @@ _ZN4slay6engine6actors5actor6colors3NewEv:
 	.size	_ZN4slay6engine6actors5actor6colors3NewEv, .-_ZN4slay6engine6actors5actor6colors3NewEv
 	.section	.rodata.str1.8
 	.align 8
-.LC7:
+.LC9:
 	.string	"slay::engine.actors[].colors.Delete(): Illegal deletion of NULL Color\nParams: ID: %lld\n"
 	.align 8
-.LC8:
+.LC10:
 	.string	"slay::engine.actors[].colors.Delete(): Color does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -513,20 +517,20 @@ _ZN4slay6engine6actors5actor6colors6DeleteEy:
 .L78:
 	movq	%rbx, %rsi
 .L76:
-	leaq	.LC4(%rip), %rdi
+	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L66:
-	leaq	.LC8(%rip), %rdi
+	leaq	.LC10(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L77:
-	leaq	.LC7(%rip), %rdi
+	leaq	.LC9(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -537,7 +541,7 @@ _ZN4slay6engine6actors5actor6colors6DeleteEy:
 	.size	_ZN4slay6engine6actors5actor6colors6DeleteEy, .-_ZN4slay6engine6actors5actor6colors6DeleteEy
 	.section	.rodata.str1.8
 	.align 8
-.LC9:
+.LC11:
 	.string	"slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
@@ -684,7 +688,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	jne	.L117
 	orq	$-1, %rsi
 .L119:
-	leaq	.LC4(%rip), %rdi
+	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -696,7 +700,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	movq	%rsi, %r8
 	jmp	.L99
 .L84:
-	leaq	.LC9(%rip), %rdi
+	leaq	.LC11(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -713,7 +717,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.size	_ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE, .-_ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC10:
+.LC12:
 	.string	"slay::engine.actors[].colors.Purge(): Color does not exists\nParams: Keep: %p\n"
 	.text
 	.align 2
@@ -867,7 +871,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	jne	.L160
 	orq	$-1, %rsi
 .L162:
-	leaq	.LC4(%rip), %rdi
+	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -879,7 +883,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	movq	%rsi, %rdx
 	jmp	.L144
 .L128:
-	leaq	.LC10(%rip), %rdi
+	leaq	.LC12(%rip), %rdi
 	movq	%r12, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -896,10 +900,10 @@ _ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	.size	_ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE, .-_ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
+.LC13:
 	.string	"slay::engine.actors[].colors[]: Illegal access to NULL Color\nParams: ID: %lld\n"
 	.align 8
-.LC12:
+.LC14:
 	.string	"slay::engine.actors[].colors[]: Color does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -925,13 +929,13 @@ _ZN4slay6engine6actors5actor6colorsixEy:
 	ret
 .L171:
 	.cfi_restore_state
-	leaq	.LC12(%rip), %rdi
+	leaq	.LC14(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L174:
-	leaq	.LC11(%rip), %rdi
+	leaq	.LC13(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -946,15 +950,16 @@ _ZN4slay6engine6actors5actor6colorsixEy:
 _ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_:
 .LFB2245:
 	.cfi_startproc
-	movabsq	$-4294967296, %rax
+	movl	136(%rdx), %eax
 	pxor	%xmm0, %xmm0
 	movq	%rsi, (%rdi)
-	movq	%rax, 18(%rdi)
-	xorl	%eax, %eax
 	movq	%rdx, 8(%rdi)
-	movb	$0, 16(%rdi)
-	movq	$384, 26(%rdi)
-	movw	%ax, 34(%rdi)
+	movl	%eax, 16(%rdi)
+	movl	$-32767, %eax
+	movl	$-1, 20(%rdi)
+	movw	%ax, 24(%rdi)
+	movb	$1, 26(%rdi)
+	movq	$0, 28(%rdi)
 	movups	%xmm0, 40(%rdi)
 	ret
 	.cfi_endproc

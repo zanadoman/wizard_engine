@@ -367,7 +367,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	leaq	0(,%rbp,8), %r12
 	testq	%rax, %rax
 	je	.L30
-	cmpb	$0, 16(%rax)
+	cmpb	$0, 24(%rax)
 	je	.L30
 	movq	(%rbx), %rsi
 	movq	%r14, %xmm2
@@ -415,7 +415,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 .L38:
 	cmpq	%rdx, %rbp
 	jnb	.L82
-	cmpb	$0, 17(%rax)
+	cmpb	$0, 35(%rax)
 	jne	.L83
 .L37:
 	addq	$1, %rbp
@@ -426,7 +426,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	leaq	0(,%rbp,8), %r12
 	testq	%rax, %rax
 	je	.L37
-	cmpb	$0, 16(%rax)
+	cmpb	$0, 34(%rax)
 	je	.L38
 	movq	(%rbx), %rsi
 	movq	%r14, %xmm2
@@ -458,7 +458,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	cmpq	%rdx, %rbp
 	jnb	.L82
 	movq	(%rcx,%r12), %rax
-	cmpb	$0, 17(%rax)
+	cmpb	$0, 35(%rax)
 	movl	%esi, 44(%rax)
 	je	.L37
 .L83:
@@ -480,7 +480,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 .L47:
 	cmpq	%rdx, %rbp
 	jnb	.L82
-	cmpb	$0, 17(%rax)
+	cmpb	$0, 35(%rax)
 	jne	.L84
 .L46:
 	addq	$1, %rbp
@@ -491,12 +491,12 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	leaq	0(,%rbp,8), %r12
 	testq	%rax, %rax
 	je	.L46
-	cmpb	$0, 16(%rax)
+	cmpb	$0, 34(%rax)
 	je	.L47
 	movq	(%rbx), %rsi
 	movq	%r14, %xmm2
-	addsd	64(%rax), %xmm2
-	movsd	56(%rax), %xmm1
+	addsd	56(%rax), %xmm2
+	movsd	48(%rax), %xmm1
 	movsd	152(%rbx), %xmm0
 	leaq	552(%rsi), %rdi
 	movsd	%xmm2, 8(%rsp)
@@ -511,8 +511,8 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	(%rax,%r12), %rax
 	movq	(%rbx), %rsi
 	movsd	160(%rbx), %xmm0
-	movl	%edx, 48(%rax)
-	movsd	56(%rax), %xmm1
+	movl	%edx, 40(%rax)
+	movsd	48(%rax), %xmm1
 	leaq	552(%rsi), %rdi
 	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
 	subsd	160(%rbx), %xmm0
@@ -523,8 +523,8 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	cmpq	%rdx, %rbp
 	jnb	.L82
 	movq	(%rcx,%r12), %rax
-	cmpb	$0, 17(%rax)
-	movl	%esi, 52(%rax)
+	cmpb	$0, 35(%rax)
+	movl	%esi, 44(%rax)
 	je	.L46
 .L84:
 	movq	%r15, %xmm0
@@ -545,7 +545,7 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 .L54:
 	cmpq	%rdx, %rbp
 	jnb	.L82
-	cmpb	$0, 17(%rax)
+	cmpb	$0, 35(%rax)
 	jne	.L85
 .L53:
 	addq	$1, %rbp
@@ -556,12 +556,12 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	leaq	0(,%rbp,8), %r12
 	testq	%rax, %rax
 	je	.L53
-	cmpb	$0, 16(%rax)
+	cmpb	$0, 34(%rax)
 	je	.L54
 	movq	(%rbx), %rsi
 	movq	%r14, %xmm2
-	addsd	72(%rax), %xmm2
-	movsd	64(%rax), %xmm1
+	addsd	56(%rax), %xmm2
+	movsd	48(%rax), %xmm1
 	movsd	152(%rbx), %xmm0
 	leaq	552(%rsi), %rdi
 	movsd	%xmm2, 8(%rsp)
@@ -576,8 +576,8 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	movq	(%rax,%r12), %rax
 	movq	(%rbx), %rsi
 	movsd	160(%rbx), %xmm0
-	movl	%edx, 56(%rax)
-	movsd	64(%rax), %xmm1
+	movl	%edx, 40(%rax)
+	movsd	48(%rax), %xmm1
 	leaq	552(%rsi), %rdi
 	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
 	subsd	160(%rbx), %xmm0
@@ -588,8 +588,8 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	cmpq	%rdx, %rbp
 	jnb	.L82
 	movq	(%rcx,%r12), %rax
-	cmpb	$0, 17(%rax)
-	movl	%esi, 60(%rax)
+	cmpb	$0, 35(%rax)
+	movl	%esi, 44(%rax)
 	je	.L53
 .L85:
 	movq	%r15, %xmm0

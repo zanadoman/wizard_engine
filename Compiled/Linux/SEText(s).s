@@ -242,7 +242,7 @@ _ZN4slay6engine6actors5actor5textsD2Ev:
 	movq	96(%rbp), %rdi
 	addq	$1, %rbx
 	call	SDL_DestroyTexture@PLT
-	leaq	40(%rbp), %rdi
+	leaq	72(%rbp), %rdi
 	call	_ZN3neo6stringD1Ev@PLT
 	movq	%rbp, %rdi
 	movl	$104, %esi
@@ -291,19 +291,19 @@ _ZN4slay6engine6actors5actor5textsD2Ev:
 	.set	_ZN4slay6engine6actors5actor5textsD1Ev,_ZN4slay6engine6actors5actor5textsD2Ev
 	.section	.rodata.str1.8
 	.align 8
-.LC5:
+.LC7:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.align 8
-.LC6:
+.LC8:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.align 8
-.LC7:
+.LC9:
 	.string	"slay::engine.actors[].texts.New(): Memory allocation failed"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB9:
+.LCOLDB11:
 	.text
-.LHOTB9:
+.LHOTB11:
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor5texts3NewEv
@@ -347,24 +347,28 @@ _ZN4slay6engine6actors5actor5texts3NewEv:
 	call	_Znwm@PLT
 .LEHE0:
 	movdqu	0(%rbp), %xmm2
-	leaq	40(%rax), %rdi
+	leaq	72(%rax), %rdi
 	movq	%rax, %r12
 	movups	%xmm2, (%rax)
 .LEHB1:
 	call	_ZN3neo6stringC1Ev@PLT
 .LEHE1:
-	movabsq	$108367866033537024, %rax
+	movq	8(%r12), %rax
+	movl	$384, %ecx
 	pxor	%xmm0, %xmm0
-	xorl	%edx, %edx
-	movl	$0, 16(%r12)
-	movq	%rax, 32(%r12)
+	xorl	%esi, %esi
+	movzwl	138(%rax), %eax
+	movw	%cx, 36(%r12)
+	movl	$-1, 18(%r12)
+	movw	%ax, 16(%r12)
 	movq	24(%rbp), %rax
 	movq	$0x000000000, 24(%r12)
-	movq	$0, 56(%r12)
-	movw	%dx, 80(%r12)
+	movl	$16842752, 32(%r12)
+	movq	$0, 40(%r12)
+	movw	%si, 64(%r12)
 	movq	$0, 88(%r12)
 	movq	$0, 96(%r12)
-	movups	%xmm0, 64(%r12)
+	movups	%xmm0, 48(%r12)
 	cmpq	16(%rbp), %rbx
 	jnb	.L63
 	movq	%r12, (%rax,%rbx,8)
@@ -377,29 +381,33 @@ _ZN4slay6engine6actors5actor5texts3NewEv:
 	call	_Znwm@PLT
 .LEHE2:
 	movdqu	0(%rbp), %xmm1
-	leaq	40(%rax), %rdi
+	leaq	72(%rax), %rdi
 	movq	%rax, %rbx
 	movups	%xmm1, (%rax)
 .LEHB3:
 	call	_ZN3neo6stringC1Ev@PLT
 .LEHE3:
-	movl	$0, 16(%rbx)
+	movq	8(%rbx), %rax
+	xorl	%edx, %edx
 	pxor	%xmm0, %xmm0
 	movq	24(%rbp), %rdi
-	movabsq	$108367866033537024, %rax
-	movq	%rax, 32(%rbx)
-	xorl	%eax, %eax
-	movw	%ax, 80(%rbx)
-	movq	16(%rbp), %rax
+	movq	%rbx, (%rsp)
+	movzwl	138(%rax), %eax
+	movl	$-1, 18(%rbx)
 	movq	$0x000000000, 24(%rbx)
+	movw	%ax, 16(%rbx)
+	movl	$384, %eax
+	movw	%ax, 36(%rbx)
+	movq	16(%rbp), %rax
+	movl	$16842752, 32(%rbx)
 	leaq	1(%rax), %rsi
-	movq	$0, 56(%rbx)
+	movq	$0, 40(%rbx)
 	movq	%rsi, 16(%rbp)
 	salq	$3, %rsi
+	movw	%dx, 64(%rbx)
 	movq	$0, 88(%rbx)
 	movq	$0, 96(%rbx)
-	movups	%xmm0, 64(%rbx)
-	movq	%rbx, (%rsp)
+	movups	%xmm0, 48(%rbx)
 	call	realloc@PLT
 	movq	%rax, 24(%rbp)
 	testq	%rax, %rax
@@ -436,7 +444,7 @@ _ZN4slay6engine6actors5actor5texts3NewEv:
 	.cfi_restore_state
 	movq	%rbx, %rsi
 .L61:
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -444,7 +452,7 @@ _ZN4slay6engine6actors5actor5texts3NewEv:
 .L67:
 	call	__stack_chk_fail@PLT
 .L66:
-	leaq	.LC7(%rip), %rdi
+	leaq	.LC9(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -452,7 +460,7 @@ _ZN4slay6engine6actors5actor5texts3NewEv:
 	orq	$-1, %rsi
 	jmp	.L61
 .L64:
-	leaq	.LC6(%rip), %rdi
+	leaq	.LC8(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
@@ -537,7 +545,7 @@ _ZN4slay6engine6actors5actor5texts3NewEv.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC2237-.LLSDACSBC2237
 .LLSDACSBC2237:
-	.uleb128 .LEHB5-.LCOLDB9
+	.uleb128 .LEHB5-.LCOLDB11
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
@@ -547,15 +555,15 @@ _ZN4slay6engine6actors5actor5texts3NewEv.cold:
 	.size	_ZN4slay6engine6actors5actor5texts3NewEv, .-_ZN4slay6engine6actors5actor5texts3NewEv
 	.section	.text.unlikely
 	.size	_ZN4slay6engine6actors5actor5texts3NewEv.cold, .-_ZN4slay6engine6actors5actor5texts3NewEv.cold
-.LCOLDE9:
+.LCOLDE11:
 	.text
-.LHOTE9:
+.LHOTE11:
 	.section	.rodata.str1.8
 	.align 8
-.LC10:
+.LC12:
 	.string	"slay::engine.actors[].texts.Delete(): Illegal deletion of NULL Text\nParams: ID: %lld\n"
 	.align 8
-.LC11:
+.LC13:
 	.string	"slay::engine.actors[].texts.Delete(): Text does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -588,7 +596,7 @@ _ZN4slay6engine6actors5actor5texts6DeleteEy:
 	je	.L70
 	movq	96(%r12), %rdi
 	call	SDL_DestroyTexture@PLT
-	leaq	40(%r12), %rdi
+	leaq	72(%r12), %rdi
 	call	_ZN3neo6stringD1Ev@PLT
 	movl	$104, %esi
 	movq	%r12, %rdi
@@ -651,20 +659,20 @@ _ZN4slay6engine6actors5actor5texts6DeleteEy:
 .L82:
 	movq	%rbx, %rsi
 .L80:
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L70:
-	leaq	.LC11(%rip), %rdi
+	leaq	.LC13(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L81:
-	leaq	.LC10(%rip), %rdi
+	leaq	.LC12(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -689,7 +697,7 @@ _ZN4slay6engine6actors5actor5texts6DeleteEy:
 	.size	_ZN4slay6engine6actors5actor5texts6DeleteEy, .-_ZN4slay6engine6actors5actor5texts6DeleteEy
 	.section	.rodata.str1.8
 	.align 8
-.LC12:
+.LC14:
 	.string	"slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
@@ -801,7 +809,7 @@ _ZN4slay6engine6actors5actor5texts5PurgeESt16initializer_listIyE:
 	je	.L96
 	movq	96(%r14), %rdi
 	call	SDL_DestroyTexture@PLT
-	leaq	40(%r14), %rdi
+	leaq	72(%r14), %rdi
 	call	_ZN3neo6stringD1Ev@PLT
 	movl	$104, %esi
 	movq	%r14, %rdi
@@ -840,7 +848,7 @@ _ZN4slay6engine6actors5actor5texts5PurgeESt16initializer_listIyE:
 	jne	.L121
 	orq	$-1, %rsi
 .L123:
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -852,7 +860,7 @@ _ZN4slay6engine6actors5actor5texts5PurgeESt16initializer_listIyE:
 	movq	%rsi, %r8
 	jmp	.L103
 .L88:
-	leaq	.LC12(%rip), %rdi
+	leaq	.LC14(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -883,7 +891,7 @@ _ZN4slay6engine6actors5actor5texts5PurgeESt16initializer_listIyE:
 	.size	_ZN4slay6engine6actors5actor5texts5PurgeESt16initializer_listIyE, .-_ZN4slay6engine6actors5actor5texts5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC13:
+.LC15:
 	.string	"slay::engine.actors[].texts.Purge(): Text does not exists\nParams: Keep: %p\n"
 	.text
 	.align 2
@@ -973,7 +981,7 @@ _ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE:
 	je	.L140
 	movq	96(%r13), %rdi
 	call	SDL_DestroyTexture@PLT
-	leaq	40(%r13), %rdi
+	leaq	72(%r13), %rdi
 	call	_ZN3neo6stringD1Ev@PLT
 	movl	$104, %esi
 	movq	%r13, %rdi
@@ -1045,7 +1053,7 @@ _ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE:
 	jne	.L164
 	orq	$-1, %rsi
 .L166:
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -1057,7 +1065,7 @@ _ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE:
 	movq	%rsi, %rdx
 	jmp	.L148
 .L132:
-	leaq	.LC13(%rip), %rdi
+	leaq	.LC15(%rip), %rdi
 	movq	%r12, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -1088,10 +1096,10 @@ _ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE:
 	.size	_ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE, .-_ZN4slay6engine6actors5actor5texts5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
-.LC14:
+.LC16:
 	.string	"slay::engine.actors[].texts[]: Illegal access to NULL Text\nParams: ID: %lld\n"
 	.align 8
-.LC15:
+.LC17:
 	.string	"slay::engine.actors[].texts[]: Text does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1117,13 +1125,13 @@ _ZN4slay6engine6actors5actor5textsixEy:
 	ret
 .L175:
 	.cfi_restore_state
-	leaq	.LC15(%rip), %rdi
+	leaq	.LC17(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L178:
-	leaq	.LC14(%rip), %rdi
+	leaq	.LC16(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -1142,21 +1150,25 @@ _ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_:
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
 	movq	%rdi, %rbx
-	leaq	40(%rdi), %rdi
-	movq	%rsi, -40(%rdi)
-	movq	%rdx, -32(%rdi)
+	leaq	72(%rdi), %rdi
+	movq	%rdx, -64(%rdi)
+	movq	%rsi, -72(%rdi)
 	call	_ZN3neo6stringC1Ev@PLT
+	movq	8(%rbx), %rax
 	pxor	%xmm0, %xmm0
-	movabsq	$108367866033537024, %rax
-	movl	$0, 16(%rbx)
-	movq	%rax, 32(%rbx)
-	xorl	%eax, %eax
+	xorl	%edx, %edx
+	movzwl	138(%rax), %eax
+	movl	$-1, 18(%rbx)
 	movq	$0x000000000, 24(%rbx)
-	movq	$0, 56(%rbx)
-	movw	%ax, 80(%rbx)
+	movw	%ax, 16(%rbx)
+	movl	$384, %eax
+	movl	$16842752, 32(%rbx)
+	movw	%ax, 36(%rbx)
+	movq	$0, 40(%rbx)
+	movw	%dx, 64(%rbx)
 	movq	$0, 88(%rbx)
 	movq	$0, 96(%rbx)
-	movups	%xmm0, 64(%rbx)
+	movups	%xmm0, 48(%rbx)
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
@@ -1172,7 +1184,7 @@ _ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_:
 _ZN4slay6engine6actors5actor5texts4text10GetOffsetXEv:
 .LFB2247:
 	.cfi_startproc
-	movl	56(%rdi), %eax
+	movl	40(%rdi), %eax
 	ret
 	.cfi_endproc
 .LFE2247:
@@ -1198,7 +1210,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 48
 	movq	8(%rdi), %rax
-	cvtsi2sdl	60(%rdi), %xmm0
+	cvtsi2sdl	44(%rdi), %xmm0
 	movsd	160(%rax), %xmm1
 	movsd	152(%rax), %xmm4
 	addsd	%xmm1, %xmm0
@@ -1217,16 +1229,16 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
 	call	_ZN4slay6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rdx
-	movsd	%xmm0, 64(%rbx)
+	movsd	%xmm0, 48(%rbx)
 	movsd	8(%rsp), %xmm3
 	movsd	(%rsp), %xmm2
 	movsd	152(%rax), %xmm0
 	movsd	160(%rax), %xmm1
 	leaq	552(%rdx), %rdi
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
-	movl	%ebp, 56(%rbx)
+	movl	%ebp, 40(%rbx)
 	movl	%ebp, %eax
-	movsd	%xmm0, 72(%rbx)
+	movsd	%xmm0, 56(%rbx)
 	addq	$24, %rsp
 	.cfi_def_cfa_offset 24
 	popq	%rbx
@@ -1244,7 +1256,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetXEi:
 _ZN4slay6engine6actors5actor5texts4text10GetOffsetYEv:
 .LFB2249:
 	.cfi_startproc
-	movl	60(%rdi), %eax
+	movl	44(%rdi), %eax
 	ret
 	.cfi_endproc
 .LFE2249:
@@ -1276,7 +1288,7 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi:
 	addsd	%xmm1, %xmm0
 	cvttsd2sil	%xmm0, %eax
 	pxor	%xmm0, %xmm0
-	cvtsi2sdl	56(%rdi), %xmm0
+	cvtsi2sdl	40(%rdi), %xmm0
 	cvtsi2sdl	%eax, %xmm3
 	addsd	%xmm4, %xmm0
 	cvttsd2sil	%xmm0, %eax
@@ -1289,16 +1301,16 @@ _ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi:
 	call	_ZN4slay6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rdx
-	movsd	%xmm0, 64(%rbx)
+	movsd	%xmm0, 48(%rbx)
 	movsd	8(%rsp), %xmm3
 	movsd	(%rsp), %xmm2
 	movsd	152(%rax), %xmm0
 	movsd	160(%rax), %xmm1
 	leaq	552(%rdx), %rdi
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
-	movl	%ebp, 60(%rbx)
+	movl	%ebp, 44(%rbx)
 	movl	%ebp, %eax
-	movsd	%xmm0, 72(%rbx)
+	movsd	%xmm0, 56(%rbx)
 	addq	$24, %rsp
 	.cfi_def_cfa_offset 24
 	popq	%rbx
@@ -1324,7 +1336,7 @@ _ZN4slay6engine6actors5actor5texts4textD2Ev:
 	movq	%rdi, %rbx
 	movq	96(%rdi), %rdi
 	call	SDL_DestroyTexture@PLT
-	leaq	40(%rbx), %rdi
+	leaq	72(%rbx), %rdi
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3neo6stringD1Ev@PLT
@@ -1355,7 +1367,7 @@ _ZN4slay6engine6actors5actor5texts4text6StringEv:
 	movq	%rdi, %rbx
 	movq	96(%rdi), %rdi
 	call	SDL_DestroyTexture@PLT
-	leaq	40(%rbx), %rax
+	leaq	72(%rbx), %rax
 	movq	$0, 96(%rbx)
 	popq	%rbx
 	.cfi_def_cfa_offset 8
@@ -1377,7 +1389,7 @@ _ZN4slay6engine6actors5actor5texts4text7GetFontEv:
 	.size	_ZN4slay6engine6actors5actor5texts4text7GetFontEv, .-_ZN4slay6engine6actors5actor5texts4text7GetFontEv
 	.section	.rodata.str1.8
 	.align 8
-.LC16:
+.LC18:
 	.string	"slay::engine.actors[].texts[].SetFont(): Font does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1409,7 +1421,7 @@ _ZN4slay6engine6actors5actor5texts4text7SetFontEy:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
-	leaq	.LC16(%rip), %rdi
+	leaq	.LC18(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi

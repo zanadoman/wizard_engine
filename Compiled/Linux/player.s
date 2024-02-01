@@ -19,7 +19,7 @@
 	.string	"neo::array=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.section	.rodata.str1.1
 .LC7:
-	.string	"assets/crazy-pixel.ttf"
+	.string	"assets/FreeMono.ttf"
 .LC10:
 	.string	"Player"
 	.section	.text.unlikely,"ax",@progbits
@@ -154,7 +154,7 @@ _ZN6playerC2ERN4slay6engineE:
 	leaq	72(%rax), %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movl	$100, %esi
-	movw	%si, 18(%rax)
+	movw	%si, 16(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
@@ -164,22 +164,25 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
 	movl	$100, %ecx
 	movq	8(%rbx), %rsi
-	movw	%cx, 20(%rax)
+	movw	%cx, 18(%rax)
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	16(%rbx), %rsi
-	leaq	72(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movb	$1, 16(%rax)
-	movq	(%rbx), %rax
+	movq	40(%rbx), %rsi
+	leaq	104(%rax), %rdi
+	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
+	movl	$20, %edx
 	movq	8(%rbx), %rsi
+	movw	%dx, 16(%rax)
+	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	16(%rbx), %rsi
-	leaq	72(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor9flipbooksixEy@PLT
-	movb	$1, 17(%rax)
+	movq	40(%rbx), %rsi
+	leaq	104(%rax), %rdi
+	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
+	movq	%rax, %rdi
+	movl	$40, %esi
+	call	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi@PLT
 	leaq	.LC10(%rip), %rax
 	movq	8(%rbx), %rsi
 	movq	%rax, (%rsp)
@@ -205,41 +208,6 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	48(%rbx), %rsi
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor5texts4text7SetFontEy@PLT
-	movq	(%rbx), %rax
-	movq	8(%rbx), %rsi
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	40(%rbx), %rsi
-	leaq	104(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movq	%rax, %rdi
-	movl	$50, %esi
-	call	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi@PLT
-	movq	(%rbx), %rax
-	movq	8(%rbx), %rsi
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	40(%rbx), %rsi
-	leaq	104(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movl	$50, %edx
-	movq	8(%rbx), %rsi
-	movw	%dx, 18(%rax)
-	movq	(%rbx), %rax
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	40(%rbx), %rsi
-	leaq	104(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movb	$1, 16(%rax)
-	movq	(%rbx), %rax
-	movq	8(%rbx), %rsi
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	40(%rbx), %rsi
-	leaq	104(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movb	$1, 17(%rax)
 	movq	56(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L13

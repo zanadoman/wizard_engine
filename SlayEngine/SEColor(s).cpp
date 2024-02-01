@@ -189,13 +189,13 @@ namespace slay
 
     engine::actors::actor::colors::color::color(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
     {
-        this->OffsetLocked = false;
-        this->Width = 0;
-        this->Height = 0;
+        this->Width = this->Actor.Width;
+        this->Height = this->Actor.Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
         this->ColorA = 255;
+        this->OffsetLocked = true;
         this->Priority = 128;
         this->Visible = true;
         this->OffsetX = 0;

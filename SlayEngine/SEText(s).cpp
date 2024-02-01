@@ -189,16 +189,16 @@ namespace slay
 
     engine::actors::actor::texts::text::text(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
     {
-        this->OffsetLocked = false;
-        this->AngleLocked = false;
-        this->Height = 0;
-        this->Angle = 0;
-        this->FlipHorizontal = false;
-        this->FlipVertical = false;
+        this->Height = this->Actor.Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
         this->ColorA = 255;
+        this->Angle = 0;
+        this->FlipHorizontal = false;
+        this->FlipVertical = false;
+        this->OffsetLocked = true;
+        this->AngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
         this->OffsetX = 0;

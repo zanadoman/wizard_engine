@@ -189,24 +189,24 @@ namespace slay
 
     engine::actors::actor::textures::texture::texture(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
     {
-        this->OffsetLocked = false;
-        this->AngleLocked = false;
-        this->Width = 0;
-        this->Height = 0;
-        this->Angle = 0;
-        this->FlipHorizontal = false;
-        this->FlipVertical = false;
+        this->Width = this->Actor.Width;
+        this->Height = this->Actor.Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
         this->ColorA = 255;
+        this->Angle = 0;
+        this->FlipHorizontal = false;
+        this->FlipVertical = false;
+        this->OffsetLocked = true;
+        this->AngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
-        this->TextureID = 0;
         this->OffsetX = 0;
         this->OffsetY = 0;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
+        this->TextureID = 0;
     }
 
     sint32 engine::actors::actor::textures::texture::GetOffsetX()

@@ -245,13 +245,13 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    bool OffsetLocked;
                                     uint16 Width;
                                     uint16 Height;
                                     uint8 ColorR;
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
+                                    bool OffsetLocked;
                                     uint8 Priority;
                                     bool Visible;
                                     sint32 GetOffsetX();
@@ -295,17 +295,17 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    bool OffsetLocked;
-                                    bool AngleLocked;
                                     uint16 Width;
                                     uint16 Height;
-                                    double Angle;
-                                    bool FlipHorizontal;
-                                    bool FlipVertical;
                                     uint8 ColorR;
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
+                                    double Angle;
+                                    bool FlipHorizontal;
+                                    bool FlipVertical;
+                                    bool OffsetLocked;
+                                    bool AngleLocked;
                                     uint8 Priority;
                                     bool Visible;
                                     sint32 GetOffsetX();
@@ -352,20 +352,20 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    bool OffsetLocked;
-                                    bool AngleLocked;
                                     uint16 Width;
                                     uint16 Height;
-                                    double Angle;
-                                    bool FlipHorizontal;
-                                    bool FlipVertical;
-                                    bool Loop;
                                     uint8 ColorR;
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
+                                    double Angle;
+                                    bool FlipHorizontal;
+                                    bool FlipVertical;
+                                    bool OffsetLocked;
+                                    bool AngleLocked;
                                     uint8 Priority;
                                     bool Visible;
+                                    bool Loop;
                                     uint32 GetDelay();
                                     uint32 SetDelay(uint32 Delay);
                                     sint32 GetOffsetX();
@@ -375,14 +375,14 @@ namespace slay
                                     uint8 Reset();
 
                                 private:
-                                    uint32 Delay;
                                     sint32 OffsetX;
                                     sint32 OffsetY;
                                     double OffsetLength;
                                     double OffsetAngle;
+                                    uint32 Delay;
                                     uint64 Current;
                                     uint32 Remainder;
-                                    uint64 Length;
+                                    uint64 TexturesLength;
                                     uint64* Textures;
                                     flipbook(engine& Engine, actor& Actor, std::initializer_list<uint64> TextureIDs);
                                     flipbook(engine& Engine, actor& Actor, array<uint64>* TextureIDs);
@@ -418,16 +418,16 @@ namespace slay
                                 actor& Actor;
 
                                 public:
-                                    bool OffsetLocked;
-                                    bool AngleLocked;
                                     uint16 Height;
-                                    double Angle;
-                                    bool FlipHorizontal;
-                                    bool FlipVertical;
                                     uint8 ColorR;
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
+                                    double Angle;
+                                    bool FlipHorizontal;
+                                    bool FlipVertical;
+                                    bool OffsetLocked;
+                                    bool AngleLocked;
                                     uint8 Priority;
                                     bool Visible;
                                     sint32 GetOffsetX();
@@ -439,12 +439,12 @@ namespace slay
                                     uint64 SetFont(uint64 ID);
 
                                 private:
-                                    string Text;
                                     sint32 OffsetX;
                                     sint32 OffsetY;
                                     double OffsetLength;
                                     double OffsetAngle;
                                     uint16 Width;
+                                    string Text;
                                     uint64 FontID;
                                     SDL_Texture* Texture;
                                     text(engine& Engine, actor& Actor);
