@@ -229,10 +229,7 @@ namespace slay
 
                 if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->Texture == NULL)
                 {
-                    color.r = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorR;
-                    color.g = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorG;
-                    color.b = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorB;
-                    color.a = this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA;
+                    color.r = color.g = color.b = color.a = 255;
 
                     if ((surface = TTF_RenderText_Blended(this->Engine.Assets.Fonts[this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID], this->Engine.Actors.Actors[i]->Texts.Texts[j]->Text(), color)) == NULL)
                     {
@@ -661,6 +658,16 @@ namespace slay
             flip |= SDL_FLIP_VERTICAL;
         }
 
+        if (SDL_SetTextureColorMod(((engine::actors::actor::texts::text*)Token.Data)->Texture, ((engine::actors::actor::texts::text*)Token.Data)->ColorR, ((engine::actors::actor::texts::text*)Token.Data)->ColorG, ((engine::actors::actor::texts::text*)Token.Data)->ColorB) != 0)
+        {
+            printf("slay::engine.render.RenderText(): SDL_SetTextureColorMod failed\n");
+            exit(1);
+        }
+        if (SDL_SetTextureAlphaMod(((engine::actors::actor::texts::text*)Token.Data)->Texture, ((engine::actors::actor::texts::text*)Token.Data)->ColorA) != 0)
+        {
+            printf("slay::engine.render.RenderText(): SDL_SetTextureAlphaMod failed\n");
+            exit(1);
+        }
         if (SDL_RenderCopyEx(this->Engine.Window.Renderer, ((engine::actors::actor::texts::text*)Token.Data)->Texture, NULL, &Token.Area, -((engine::actors::actor::texts::text*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderText(): SDL_RenderCopyEx failed\n");
