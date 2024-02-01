@@ -42,21 +42,21 @@ player::~player()
 
 uint8 player::Update()
 {
-    if (this->Engine.Keys[KEY_UP])
+    if (this->Engine.Keys[KEY_UP] && !this->Engine.Keys[KEY_DOWN])
     {
         this->Engine.Actors[this->Actor].SetX(this->Engine.Vector.TerminalX(this->Engine.Actors[this->Actor].GetX(), 0.5 * this->Engine.Timing.GetDeltaTime(), this->Engine.Actors[this->Actor].GetAngle() + 90));
         this->Engine.Actors[this->Actor].SetY(this->Engine.Vector.TerminalY(this->Engine.Actors[this->Actor].GetY(), 0.5 * this->Engine.Timing.GetDeltaTime(), this->Engine.Actors[this->Actor].GetAngle() + 90));
     }
-    else if (this->Engine.Keys[KEY_DOWN])
+    if (this->Engine.Keys[KEY_DOWN] && !this->Engine.Keys[KEY_UP])
     {
         this->Engine.Actors[this->Actor].SetX(this->Engine.Vector.TerminalX(this->Engine.Actors[this->Actor].GetX(), -0.5 * this->Engine.Timing.GetDeltaTime(), this->Engine.Actors[this->Actor].GetAngle() + 90));
         this->Engine.Actors[this->Actor].SetY(this->Engine.Vector.TerminalY(this->Engine.Actors[this->Actor].GetY(), -0.5 * this->Engine.Timing.GetDeltaTime(), this->Engine.Actors[this->Actor].GetAngle() + 90));
     }
-    if (this->Engine.Keys[KEY_LEFT])
+    if (this->Engine.Keys[KEY_LEFT] && !this->Engine.Keys[KEY_RIGHT])
     {
         this->Engine.Actors[this->Actor].SetAngle(this->Engine.Actors[this->Actor].GetAngle() + 0.2 * this->Engine.Timing.GetDeltaTime());
     }
-    else if (this->Engine.Keys[KEY_RIGHT])
+    if (this->Engine.Keys[KEY_RIGHT] && !this->Engine.Keys[KEY_LEFT])
     {
         this->Engine.Actors[this->Actor].SetAngle(this->Engine.Actors[this->Actor].GetAngle() - 0.2 * this->Engine.Timing.GetDeltaTime());
     }
