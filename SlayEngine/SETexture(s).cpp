@@ -12,15 +12,21 @@ namespace slay
         }
     }
 
-    uint64 engine::actors::actor::textures::New()
+    uint64 engine::actors::actor::textures::New(uint64 TextureID)
     {
+        if (TextureID != 0 && (this->Engine.Assets.Textures.Length() <= TextureID || this->Engine.Assets.Textures[TextureID] == NULL))
+        {
+            printf("slay::engine.actors[].textures.New(): TextureID does not exist\nParams: TextureID: %lld\n", TextureID);
+            exit(1);
+        }
+
         for (uint64 i = 1; i < this->Textures.Length(); i++)
         {
             if (this->Textures[i] == NULL)
             {
-                if ((this->Textures[i] = new texture(this->Engine, this->Actor)) == NULL)
+                if ((this->Textures[i] = new texture(this->Engine, this->Actor, TextureID)) == NULL)
                 {
-                    printf("slay::engine.actors[].textures.New(): Memory allocation failed\n");
+                    printf("slay::engine.actors[].textures.New(): Memory allocation failed\nParams: TextureID: %lld\n", TextureID);
                     exit(1);
                 }
 
@@ -28,9 +34,9 @@ namespace slay
             }
         }
 
-        if ((*(this->Textures += {new texture(this->Engine, this->Actor)}))[this->Textures.Length() - 1] == NULL)
+        if ((*(this->Textures += {new texture(this->Engine, this->Actor, TextureID)}))[this->Textures.Length() - 1] == NULL)
         {
-            printf("slay::engine.actors[].textures.New(): Memory allocation failed\n");
+            printf("slay::engine.actors[].textures.New(): Memory allocation failed\nParams: TextureID: %lld\n", TextureID);
             exit(1);
         }
 
@@ -187,7 +193,7 @@ namespace slay
         return *this->Textures[ID];
     }
 
-    engine::actors::actor::textures::texture::texture(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::textures::texture::texture(engine& Engine, actor& Actor, uint64 TextureID) : Engine(Engine), Actor(Actor)
     {
         this->Width = this->Actor.Width;
         this->Height = this->Actor.Height;
@@ -206,7 +212,7 @@ namespace slay
         this->OffsetY = 0;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
-        this->TextureID = 0;
+        this->TextureID = TextureID;
     }
 
     sint32 engine::actors::actor::textures::texture::GetOffsetX()

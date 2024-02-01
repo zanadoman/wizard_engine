@@ -15,11 +15,14 @@ player::player(engine& Engine) : Engine(Engine)
 
     this->Actor = Engine.Actors.New(PLAYER, 0, 0, 100, 100, 1);
     this->MainFlipbook = Engine.Actors[this->Actor].Flipbooks.New(&this->MainFlipbookTextures);
-    this->NameText = Engine.Actors[this->Actor].Texts.New("Player", this->NameTextFont, 20, 0, 40);
+    this->NameText = Engine.Actors[this->Actor].Texts.New("Player", this->NameTextFont);
 
     this->Engine.Actors[this->Actor].SetDepth(0.05);
 
     this->Engine.Actors[this->Actor].Flipbooks[this->MainFlipbook].SetDelay(100);
+
+    this->Engine.Actors[this->Actor].Texts[this->NameText].Height = 20;
+    this->Engine.Actors[this->Actor].Texts[this->NameText].SetOffsetY(40);
 }
 
 player::~player()

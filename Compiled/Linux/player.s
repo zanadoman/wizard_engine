@@ -122,11 +122,8 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	48(%rbx), %rdx
 	leaq	104(%rax), %rdi
-	xorl	%r8d, %r8d
-	movl	$20, %ecx
-	movl	$40, %r9d
 	leaq	.LC10(%rip), %rsi
-	call	_ZN4slay6engine6actors5actor5texts3NewEPKcytii@PLT
+	call	_ZN4slay6engine6actors5actor5texts3NewEPKcy@PLT
 	movq	%rax, 40(%rbx)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
@@ -145,6 +142,25 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	%rax, %rdi
 	movl	$100, %esi
 	call	_ZN4slay6engine6actors5actor9flipbooks8flipbook8SetDelayEj@PLT
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	528(%rax), %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	40(%rbx), %rsi
+	leaq	104(%rax), %rdi
+	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
+	movl	$20, %edx
+	movq	8(%rbx), %rsi
+	movw	%dx, 16(%rax)
+	movq	(%rbx), %rax
+	leaq	528(%rax), %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	40(%rbx), %rsi
+	leaq	104(%rax), %rdi
+	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
+	movq	%rax, %rdi
+	movl	$40, %esi
+	call	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi@PLT
 	movq	56(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L13

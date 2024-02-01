@@ -284,47 +284,64 @@ _ZN4slay6engine6actors5actor8texturesD2Ev:
 	.section	.rodata.str1.8
 	.align 8
 .LC4:
-	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
+	.string	"slay::engine.actors[].textures.New(): TextureID does not exist\nParams: TextureID: %lld\n"
 	.align 8
 .LC5:
-	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
+	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.align 8
 .LC6:
-	.string	"slay::engine.actors[].textures.New(): Memory allocation failed"
+	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
+	.align 8
+.LC7:
+	.string	"slay::engine.actors[].textures.New(): Memory allocation failed\nParams: TextureID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor8textures3NewEv
-	.type	_ZN4slay6engine6actors5actor8textures3NewEv, @function
-_ZN4slay6engine6actors5actor8textures3NewEv:
+	.globl	_ZN4slay6engine6actors5actor8textures3NewEy
+	.type	_ZN4slay6engine6actors5actor8textures3NewEy, @function
+_ZN4slay6engine6actors5actor8textures3NewEy:
 .LFB2237:
 	.cfi_startproc
-	pushq	%rbp
+	pushq	%r12
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
+	.cfi_offset 12, -16
+	movq	%rsi, %r12
+	pushq	%rbp
+	.cfi_def_cfa_offset 24
+	.cfi_offset 6, -24
 	movq	%rdi, %rbp
 	pushq	%rbx
-	.cfi_def_cfa_offset 24
-	.cfi_offset 3, -24
-	subq	$24, %rsp
+	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
+	subq	$16, %rsp
 	.cfi_def_cfa_offset 48
 	movq	%fs:40, %rax
 	movq	%rax, 8(%rsp)
-	movq	16(%rdi), %rax
+	xorl	%eax, %eax
+	testq	%rsi, %rsi
+	je	.L50
+	movq	(%rdi), %rax
+	cmpq	568(%rax), %rsi
+	jnb	.L49
+	movq	576(%rax), %rax
+	cmpq	$0, (%rax,%rsi,8)
+	je	.L49
+.L50:
+	movq	16(%rbp), %rax
 	cmpq	$1, %rax
-	jbe	.L46
-	movq	24(%rdi), %rdx
+	jbe	.L48
+	movq	24(%rbp), %rdx
 	movl	$1, %ebx
-	jmp	.L50
+	jmp	.L54
 	.p2align 4,,10
 	.p2align 3
-.L47:
+.L51:
 	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	je	.L46
-.L50:
+	cmpq	%rbx, %rax
+	je	.L48
+.L54:
 	cmpq	$0, (%rdx,%rbx,8)
-	jne	.L47
+	jne	.L51
 	movl	$72, %edi
 	call	_Znwm@PLT
 	movq	8(%rbp), %rdx
@@ -340,16 +357,16 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 	movl	%edx, 16(%rax)
 	movq	24(%rbp), %rdx
 	movq	$0, 40(%rax)
-	movq	$0, 64(%rax)
+	movq	%r12, 64(%rax)
 	movups	%xmm2, (%rax)
 	movups	%xmm0, 48(%rax)
 	cmpq	16(%rbp), %rbx
-	jnb	.L59
+	jnb	.L63
 	movq	%rax, (%rdx,%rbx,8)
 	jmp	.L45
 	.p2align 4,,10
 	.p2align 3
-.L46:
+.L48:
 	movl	$72, %edi
 	call	_Znwm@PLT
 	movq	8(%rbp), %rdx
@@ -365,7 +382,7 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 	movl	%edx, 16(%rax)
 	movl	$384, %edx
 	movw	%dx, 36(%rax)
-	movq	$0, 64(%rax)
+	movq	%r12, 64(%rax)
 	movq	%rax, (%rsp)
 	movups	%xmm1, (%rax)
 	movups	%xmm0, 48(%rax)
@@ -376,7 +393,7 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 	call	realloc@PLT
 	movq	%rax, 24(%rbp)
 	testq	%rax, %rax
-	je	.L60
+	je	.L64
 	movq	16(%rbp), %rdx
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
@@ -386,57 +403,68 @@ _ZN4slay6engine6actors5actor8textures3NewEv:
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax
 	movq	%rax, %rbx
-	jnc	.L61
+	jnc	.L65
 	cmpq	$0, (%rdx,%rax,8)
-	je	.L62
+	je	.L66
 .L45:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L63
-	addq	$24, %rsp
+	jne	.L67
+	addq	$16, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 24
+	.cfi_def_cfa_offset 32
 	movq	%rbx, %rax
 	popq	%rbx
-	.cfi_def_cfa_offset 16
+	.cfi_def_cfa_offset 24
 	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L59:
+.L63:
 	.cfi_restore_state
 	movq	%rbx, %rsi
-.L58:
-	leaq	.LC4(%rip), %rdi
+.L62:
+	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L63:
-	call	__stack_chk_fail@PLT
-.L62:
+.L64:
 	leaq	.LC6(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L61:
-	orq	$-1, %rsi
-	jmp	.L58
-.L60:
-	leaq	.LC5(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
+.L49:
+	leaq	.LC4(%rip), %rdi
+	movq	%r12, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L67:
+	call	__stack_chk_fail@PLT
+.L66:
+	leaq	.LC7(%rip), %rdi
+	movq	%r12, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L65:
+	orq	$-1, %rsi
+	jmp	.L62
 	.cfi_endproc
 .LFE2237:
-	.size	_ZN4slay6engine6actors5actor8textures3NewEv, .-_ZN4slay6engine6actors5actor8textures3NewEv
+	.size	_ZN4slay6engine6actors5actor8textures3NewEy, .-_ZN4slay6engine6actors5actor8textures3NewEy
 	.section	.rodata.str1.8
 	.align 8
-.LC7:
+.LC8:
 	.string	"slay::engine.actors[].textures.Delete(): Illegal deletion of NULL Texture\nParams: ID: %lld\n"
 	.align 8
-.LC8:
+.LC9:
 	.string	"slay::engine.actors[].textures.Delete(): Texture does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -455,25 +483,25 @@ _ZN4slay6engine6actors5actor8textures6DeleteEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
 	testq	%rsi, %rsi
-	je	.L77
+	je	.L81
 	movq	%rdi, %rbp
 	movq	%rsi, %rbx
 	cmpq	16(%rdi), %rsi
-	jnb	.L66
+	jnb	.L70
 	movq	24(%rdi), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
-	je	.L66
+	je	.L70
 	movl	$72, %esi
 	call	_ZdlPvm@PLT
 	movq	16(%rbp), %rax
 	movq	24(%rbp), %rdx
 	cmpq	%rax, %rbx
-	jnb	.L78
+	jnb	.L82
 	movq	$0, (%rdx,%rbx,8)
 	cmpq	$0, -8(%rdx,%rax,8)
 	leaq	-1(%rax), %r8
-	je	.L79
+	je	.L83
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -485,21 +513,21 @@ _ZN4slay6engine6actors5actor8textures6DeleteEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L79:
+.L83:
 	.cfi_restore_state
 	movq	%rax, %rsi
 	.p2align 4,,10
 	.p2align 3
-.L73:
+.L77:
 	movq	%rsi, %rcx
 	subq	$1, %rsi
 	cmpq	%rax, %rsi
-	jnb	.L76
+	jnb	.L80
 	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L80
+	jne	.L84
 	cmpq	$1, %rsi
-	jne	.L73
-.L72:
+	jne	.L77
+.L76:
 	leaq	16(%rbp), %rdi
 	movq	%r8, %rdx
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
@@ -514,29 +542,29 @@ _ZN4slay6engine6actors5actor8textures6DeleteEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L80:
+.L84:
 	.cfi_restore_state
 	subq	%rcx, %rax
 	movq	%rcx, %rsi
 	movq	%rax, %r8
-	jmp	.L72
-.L78:
+	jmp	.L76
+.L82:
 	movq	%rbx, %rsi
-.L76:
-	leaq	.LC4(%rip), %rdi
+.L80:
+	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L66:
+.L70:
+	leaq	.LC9(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L81:
 	leaq	.LC8(%rip), %rdi
-	movq	%rbx, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L77:
-	leaq	.LC7(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -547,7 +575,7 @@ _ZN4slay6engine6actors5actor8textures6DeleteEy:
 	.size	_ZN4slay6engine6actors5actor8textures6DeleteEy, .-_ZN4slay6engine6actors5actor8textures6DeleteEy
 	.section	.rodata.str1.8
 	.align 8
-.LC9:
+.LC10:
 	.string	"slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep(length): %ld\n"
 	.text
 	.align 2
@@ -577,54 +605,54 @@ _ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	movq	%rdx, %rbx
 	movq	16(%rdi), %rsi
 	testq	%rdx, %rdx
-	je	.L82
+	je	.L86
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L85:
+.L89:
 	movq	(%r12,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L83
+	je	.L87
 	cmpq	%rsi, %rdx
-	jnb	.L84
+	jnb	.L88
 	movq	24(%r13), %rcx
 	cmpq	$0, (%rcx,%rdx,8)
-	je	.L84
-.L83:
+	je	.L88
+.L87:
 	addq	$1, %rax
 	cmpq	%rax, %rbx
-	jne	.L85
-.L82:
+	jne	.L89
+.L86:
 	cmpq	$1, %rsi
-	jbe	.L86
+	jbe	.L90
 	movq	24(%r13), %rdx
 	movl	$1, %ebp
 	.p2align 4,,10
 	.p2align 3
-.L87:
+.L91:
 	xorl	%eax, %eax
 	testq	%rbx, %rbx
-	jne	.L89
-	jmp	.L90
+	jne	.L93
+	jmp	.L94
 	.p2align 4,,10
 	.p2align 3
-.L120:
+.L124:
 	addq	$1, %rax
 	cmpq	%rax, %rbx
-	je	.L90
-.L89:
+	je	.L94
+.L93:
 	cmpq	%rbp, (%r12,%rax,8)
-	jne	.L120
+	jne	.L124
 	cmpq	%rax, %rbx
-	je	.L90
-.L91:
+	je	.L94
+.L95:
 	addq	$1, %rbp
 	cmpq	%rsi, %rbp
-	jb	.L87
+	jb	.L91
 	cmpq	$0, -8(%rdx,%rsi,8)
 	leaq	-1(%rsi), %r8
-	je	.L121
-.L117:
+	je	.L125
+.L121:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -640,37 +668,37 @@ _ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L90:
+.L94:
 	.cfi_restore_state
 	movq	(%rdx,%rbp,8), %rdi
 	leaq	0(,%rbp,8), %r14
 	testq	%rdi, %rdi
-	je	.L92
+	je	.L96
 	movl	$72, %esi
 	call	_ZdlPvm@PLT
 	movq	16(%r13), %rsi
 	movq	24(%r13), %rdx
-.L92:
+.L96:
 	cmpq	%rsi, %rbp
-	jnb	.L122
+	jnb	.L126
 	movq	$0, (%rdx,%r14)
-	jmp	.L91
-.L121:
-	movq	%rsi, %rcx
 	jmp	.L95
+.L125:
+	movq	%rsi, %rcx
+	jmp	.L99
 	.p2align 4,,10
 	.p2align 3
-.L100:
+.L104:
 	leaq	-1(%rcx), %rax
 	cmpq	%rsi, %rax
-	jnb	.L123
+	jnb	.L127
 	cmpq	$0, (%rdx,%rax,8)
-	jne	.L124
+	jne	.L128
 	movq	%rax, %rcx
-.L95:
-	cmpq	$1, %rcx
-	jne	.L100
 .L99:
+	cmpq	$1, %rcx
+	jne	.L104
+.L103:
 	leaq	16(%r13), %rdi
 	movq	%r8, %rdx
 	movq	%rcx, %rsi
@@ -688,42 +716,42 @@ _ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
-.L86:
+.L90:
 	.cfi_restore_state
 	testq	%rsi, %rsi
-	jne	.L117
+	jne	.L121
 	orq	$-1, %rsi
-.L119:
-	leaq	.LC4(%rip), %rdi
+.L123:
+	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L124:
+.L128:
 	subq	%rcx, %rsi
 	movq	%rsi, %r8
-	jmp	.L99
-.L84:
-	leaq	.LC9(%rip), %rdi
+	jmp	.L103
+.L88:
+	leaq	.LC10(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L123:
+.L127:
 	movq	%rax, %rsi
-	jmp	.L119
-.L122:
+	jmp	.L123
+.L126:
 	movq	%rbp, %rsi
-	jmp	.L119
+	jmp	.L123
 	.cfi_endproc
 .LFE2239:
 	.size	_ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE, .-_ZN4slay6engine6actors5actor8textures5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC10:
+.LC11:
 	.string	"slay::engine.actors[].textures.Purge(): Texture does not exists\nParams: Keep: %p\n"
 	.text
 	.align 2
@@ -752,79 +780,79 @@ _ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 	movq	(%rsi), %rdx
 	movq	16(%rdi), %rsi
 	testq	%rdx, %rdx
-	je	.L126
+	je	.L130
 	movq	8(%r12), %rdi
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L129:
+.L133:
 	movq	(%rdi,%rax,8), %rcx
 	testq	%rcx, %rcx
-	je	.L127
+	je	.L131
 	cmpq	%rsi, %rcx
-	jnb	.L128
+	jnb	.L132
 	movq	24(%rbp), %r8
 	cmpq	$0, (%r8,%rcx,8)
-	je	.L128
-.L127:
+	je	.L132
+.L131:
 	addq	$1, %rax
 	cmpq	%rax, %rdx
-	jne	.L129
-.L126:
+	jne	.L133
+.L130:
 	cmpq	$1, %rsi
-	jbe	.L130
+	jbe	.L134
 	movq	24(%rbp), %rdi
 	movl	$1, %ebx
 	testq	%rdx, %rdx
-	je	.L134
+	je	.L138
 	.p2align 4,,10
 	.p2align 3
-.L139:
+.L143:
 	movq	8(%r12), %rcx
 	xorl	%eax, %eax
-	jmp	.L133
+	jmp	.L137
 	.p2align 4,,10
 	.p2align 3
-.L163:
+.L167:
 	addq	$1, %rax
 	cmpq	%rax, %rdx
-	je	.L134
-.L133:
+	je	.L138
+.L137:
 	cmpq	%rbx, (%rcx,%rax,8)
-	jne	.L163
+	jne	.L167
 	cmpq	%rax, %rdx
-	je	.L134
+	je	.L138
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jnb	.L138
-.L165:
+	jnb	.L142
+.L169:
 	movq	(%r12), %rdx
 	testq	%rdx, %rdx
-	jne	.L139
+	jne	.L143
 	.p2align 4,,10
 	.p2align 3
-.L134:
+.L138:
 	movq	(%rdi,%rbx,8), %rax
 	leaq	0(,%rbx,8), %r13
 	testq	%rax, %rax
-	je	.L136
+	je	.L140
 	movl	$72, %esi
 	movq	%rax, %rdi
 	call	_ZdlPvm@PLT
 	movq	16(%rbp), %rsi
 	movq	24(%rbp), %rdi
-.L136:
+.L140:
 	cmpq	%rsi, %rbx
-	jnb	.L164
+	jnb	.L168
 	addq	$1, %rbx
 	movq	$0, (%rdi,%r13)
 	cmpq	%rsi, %rbx
-	jb	.L165
-.L138:
+	jb	.L169
+.L142:
 	cmpq	$0, -8(%rdi,%rsi,8)
 	leaq	-1(%rsi), %rdx
-	je	.L166
-.L160:
+	je	.L170
+.L164:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -838,23 +866,23 @@ _ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L166:
+.L170:
 	.cfi_restore_state
 	movq	%rsi, %rcx
-	jmp	.L140
+	jmp	.L144
 	.p2align 4,,10
 	.p2align 3
-.L145:
+.L149:
 	leaq	-1(%rcx), %rax
 	cmpq	%rsi, %rax
-	jnb	.L167
+	jnb	.L171
 	cmpq	$0, (%rdi,%rax,8)
-	jne	.L168
+	jne	.L172
 	movq	%rax, %rcx
-.L140:
-	cmpq	$1, %rcx
-	jne	.L145
 .L144:
+	cmpq	$1, %rcx
+	jne	.L149
+.L148:
 	leaq	16(%rbp), %rdi
 	movq	%rcx, %rsi
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
@@ -871,45 +899,45 @@ _ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L130:
+.L134:
 	.cfi_restore_state
 	testq	%rsi, %rsi
-	jne	.L160
+	jne	.L164
 	orq	$-1, %rsi
-.L162:
-	leaq	.LC4(%rip), %rdi
+.L166:
+	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L168:
+.L172:
 	subq	%rcx, %rsi
 	movq	%rsi, %rdx
-	jmp	.L144
-.L128:
-	leaq	.LC10(%rip), %rdi
+	jmp	.L148
+.L132:
+	leaq	.LC11(%rip), %rdi
 	movq	%r12, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L167:
+.L171:
 	movq	%rax, %rsi
-	jmp	.L162
-.L164:
+	jmp	.L166
+.L168:
 	movq	%rbx, %rsi
-	jmp	.L162
+	jmp	.L166
 	.cfi_endproc
 .LFE2242:
 	.size	_ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE, .-_ZN4slay6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
+.LC12:
 	.string	"slay::engine.actors[].textures[]: Illegal access to NULL Texture\nParams: ID: %lld\n"
 	.align 8
-.LC12:
+.LC13:
 	.string	"slay::engine.actors[].textures[]: Texture does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -922,26 +950,26 @@ _ZN4slay6engine6actors5actor8texturesixEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L174
+	je	.L178
 	cmpq	16(%rdi), %rsi
-	jnb	.L171
+	jnb	.L175
 	movq	24(%rdi), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L171
+	je	.L175
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L171:
+.L175:
 	.cfi_restore_state
-	leaq	.LC12(%rip), %rdi
+	leaq	.LC13(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L174:
-	leaq	.LC11(%rip), %rdi
+.L178:
+	leaq	.LC12(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -951,9 +979,9 @@ _ZN4slay6engine6actors5actor8texturesixEy:
 	.size	_ZN4slay6engine6actors5actor8texturesixEy, .-_ZN4slay6engine6actors5actor8texturesixEy
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_
-	.type	_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_, @function
-_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_:
+	.globl	_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y
+	.type	_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y, @function
+_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y:
 .LFB2245:
 	.cfi_startproc
 	movl	136(%rdx), %eax
@@ -968,14 +996,14 @@ _ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_:
 	movl	$384, %eax
 	movw	%ax, 36(%rdi)
 	movq	$0, 40(%rdi)
-	movq	$0, 64(%rdi)
+	movq	%rcx, 64(%rdi)
 	movups	%xmm0, 48(%rdi)
 	ret
 	.cfi_endproc
 .LFE2245:
-	.size	_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_, .-_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_
-	.globl	_ZN4slay6engine6actors5actor8textures7textureC1ERS0_RS2_
-	.set	_ZN4slay6engine6actors5actor8textures7textureC1ERS0_RS2_,_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_
+	.size	_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y, .-_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y
+	.globl	_ZN4slay6engine6actors5actor8textures7textureC1ERS0_RS2_y
+	.set	_ZN4slay6engine6actors5actor8textures7textureC1ERS0_RS2_y,_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor8textures7texture10GetOffsetXEv
@@ -1134,7 +1162,7 @@ _ZN4slay6engine6actors5actor8textures7texture12GetTextureIDEv:
 	.size	_ZN4slay6engine6actors5actor8textures7texture12GetTextureIDEv, .-_ZN4slay6engine6actors5actor8textures7texture12GetTextureIDEv
 	.section	.rodata.str1.8
 	.align 8
-.LC13:
+.LC14:
 	.string	"slay::engine.actors[].textures[].SetTextureID(): Texture does not exists\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1146,21 +1174,21 @@ _ZN4slay6engine6actors5actor8textures7texture12SetTextureIDEy:
 	.cfi_startproc
 	movq	%rsi, %rax
 	testq	%rsi, %rsi
-	je	.L184
+	je	.L188
 	movq	(%rdi), %rdx
 	cmpq	568(%rdx), %rsi
-	jnb	.L185
+	jnb	.L189
 	movq	576(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
-	je	.L185
-.L184:
+	je	.L189
+.L188:
 	movq	%rax, 64(%rdi)
 	ret
-.L185:
+.L189:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
-	leaq	.LC13(%rip), %rdi
+	leaq	.LC14(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi

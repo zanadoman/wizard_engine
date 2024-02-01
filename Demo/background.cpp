@@ -5,9 +5,7 @@ background::background(engine& Engine) : Engine(Engine)
     this->MainTextureTexture = this->Engine.Assets.LoadTexture("assets/background/back.png");
 
     this->Actor = this->Engine.Actors.New(BACKGROUND, 0, 0, 1280, 720, 1);
-    this->MainTexture = this->Engine.Actors[this->Actor].Textures.New();
-
-    this->Engine.Actors[this->Actor].Textures[this->MainTexture].SetTextureID(this->MainTextureTexture);
+    this->MainTexture = this->Engine.Actors[this->Actor].Textures.New(this->MainTextureTexture);
 }
 
 background::~background()

@@ -29,26 +29,18 @@ _ZN10backgroundC2ERN4slay6engineE:
 	movsd	.LC1(%rip), %xmm2
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actors3NewEyddttd@PLT
-	movq	%rax, %rsi
 	movq	%rax, 8(%rbx)
+	movq	%rax, %rsi
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
-	leaq	40(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor8textures3NewEv@PLT
-	movq	8(%rbx), %rsi
-	movq	%rax, 16(%rbx)
-	movq	(%rbx), %rax
-	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
-	movq	16(%rbx), %rsi
-	leaq	40(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor8texturesixEy@PLT
 	movq	24(%rbx), %rsi
+	leaq	40(%rax), %rdi
+	call	_ZN4slay6engine6actors5actor8textures3NewEy@PLT
+	movq	%rax, 16(%rbx)
 	popq	%rbx
 	.cfi_def_cfa_offset 8
-	movq	%rax, %rdi
-	jmp	_ZN4slay6engine6actors5actor8textures7texture12SetTextureIDEy@PLT
+	ret
 	.cfi_endproc
 .LFE2232:
 	.size	_ZN10backgroundC2ERN4slay6engineE, .-_ZN10backgroundC2ERN4slay6engineE
