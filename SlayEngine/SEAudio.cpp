@@ -161,16 +161,14 @@ namespace slay
         return 0;
     }
 
+    bool engine::audio::IsPaused(uint16 Channel)
+    {
+        return (Mix_Paused(Channel) == 1);
+    }
+
     uint8 engine::audio::Pause(uint16 Channel)
     {   
         Mix_Pause(Channel);
-
-        return 0;
-    }
-
-    uint8 engine::audio::PauseAll()
-    {
-        Mix_PauseAudio(1);
 
         return 0;
     }
@@ -182,16 +180,18 @@ namespace slay
         return 0;
     }
 
+    uint8 engine::audio::PauseAll()
+    {
+        Mix_PauseAudio(1);
+
+        return 0;
+    }
+
     uint8 engine::audio::ResumeAll()
     {
         Mix_PauseAudio(0);
 
         return 0;
-    }
-
-    bool engine::audio::IsPaused(uint16 Channel)
-    {
-        return (Mix_Paused(Channel) == 1);
     }
 
     uint8 engine::audio::Stop(uint16 Channel)

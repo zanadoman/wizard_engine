@@ -154,11 +154,11 @@ namespace slay
                     uint8 Play(uint64 ID, uint16 Channel, double Volume, uint16 Loops);
                     uint8 Play(uint64 ID, uint16 Channel, double Volume, double Left, double Right);
                     uint8 Play(uint64 ID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops);
-                    uint8 Pause(uint16 Channel);
-                    uint8 PauseAll();
-                    uint8 Resume(uint16 Channel);
-                    uint8 ResumeAll();
                     bool IsPaused(uint16 Channel);
+                    uint8 Pause(uint16 Channel);
+                    uint8 Resume(uint16 Channel);
+                    uint8 PauseAll();
+                    uint8 ResumeAll();
                     uint8 Stop(uint16 Channel);
 
                 private:
