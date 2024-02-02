@@ -34,6 +34,7 @@ player::~player()
         this->Engine->Assets.UnloadTexture(this->MainFlipbookTextures[i]);
     }
     this->Engine->Assets.UnloadFont(this->NameTextFont);
+    
     this->Engine->Actors.Delete(this->Actor);
 }
 
