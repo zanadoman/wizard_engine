@@ -94,7 +94,7 @@ _ZN4slay6engine6camera9GetYActorEv:
 	.string	"slay::engine.camera.Bind(): Actor does not exist\nParams: Actor: %lld\n"
 	.align 8
 .LC7:
-	.string	"slay::engine.camera.Bind(): Actor must be in layer 0\nParams: Actor: %lld\n"
+	.string	"slay::engine.camera.Bind(): Actor must not be in Layer 0\nParams: Actor: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -158,7 +158,7 @@ _ZN4slay6engine6camera4BindEy:
 	.string	"slay::engine.camera.BindX(): Actor does not exist\nParams: Actor: %lld\n"
 	.align 8
 .LC10:
-	.string	"slay::engine.camera.BindX(): Actor must be in layer 0\nParams: Actor: %lld\n"
+	.string	"slay::engine.camera.BindX(): Actor must not be in Layer 0\nParams: Actor: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -220,7 +220,7 @@ _ZN4slay6engine6camera5BindXEy:
 	.string	"slay::engine.camera.BindY(): Actor does not exist\nParams: Actor: %lld\n"
 	.align 8
 .LC13:
-	.string	"slay::engine.camera.BindY(): Actor must be in layer 0\nParams: Actor: %lld\n"
+	.string	"slay::engine.camera.BindY(): Actor must not be in Layer 0\nParams: Actor: %lld\n"
 	.text
 	.align 2
 	.p2align 4

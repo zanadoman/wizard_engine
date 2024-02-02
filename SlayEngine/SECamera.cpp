@@ -53,7 +53,7 @@ namespace slay
         }
         if (this->Engine->Actors.Actors[Actor]->Layer == 0)
         {
-            printf("slay::engine.camera.Bind(): Actor must be in layer 0\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.Bind(): Actor must not be in Layer 0\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
@@ -77,7 +77,7 @@ namespace slay
         }
         if (this->Engine->Actors.Actors[Actor]->Layer == 0)
         {
-            printf("slay::engine.camera.BindX(): Actor must be in layer 0\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.BindX(): Actor must not be in Layer 0\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
@@ -100,7 +100,7 @@ namespace slay
         }
         if (this->Engine->Actors.Actors[Actor]->Layer == 0)
         {
-            printf("slay::engine.camera.BindY(): Actor must be in layer 0\nParams: Actor: %lld\n", Actor);
+            printf("slay::engine.camera.BindY(): Actor must not be in Layer 0\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 
