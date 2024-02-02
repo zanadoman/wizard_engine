@@ -1,5 +1,4 @@
 /*
-**ahol meglehet adni initializer listet ott arrayt is lehessen
 **Overlap system
 **Collision system
 **Particle system
