@@ -208,8 +208,8 @@ namespace slay
         this->Angle = 0;
         this->FlipHorizontal = false;
         this->FlipVertical = false;
-        this->OffsetLocked = true;
         this->AngleLocked = true;
+        this->OffsetAngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
         this->OffsetX = 0;

@@ -141,7 +141,7 @@ namespace slay
                 continue;
             }
 
-            if (this->Colors.Colors[i]->OffsetLocked)
+            if (this->Colors.Colors[i]->OffsetAngleLocked)
             {
                 cache = this->Colors.Colors[i]->OffsetAngle + Angle;
                 this->Colors.Colors[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Colors.Colors[i]->OffsetLength, cache));
@@ -156,16 +156,16 @@ namespace slay
                 continue;
             }
 
-            if (this->Textures.Textures[i]->OffsetLocked)
+            if (this->Textures.Textures[i]->AngleLocked)
+            {
+                this->Textures.Textures[i]->Angle += change;
+            }
+
+            if (this->Textures.Textures[i]->OffsetAngleLocked)
             {
                 cache = this->Textures.Textures[i]->OffsetAngle + Angle;
                 this->Textures.Textures[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Textures.Textures[i]->OffsetLength, cache));
                 this->Textures.Textures[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Textures.Textures[i]->OffsetLength, cache));
-            }
-
-            if (this->Textures.Textures[i]->AngleLocked)
-            {
-                this->Textures.Textures[i]->Angle += change;
             }
         }
 
@@ -176,16 +176,16 @@ namespace slay
                 continue;
             }
 
-            if (this->Flipbooks.Flipbooks[i]->OffsetLocked)
+            if (this->Flipbooks.Flipbooks[i]->AngleLocked)
+            {
+                this->Flipbooks.Flipbooks[i]->Angle += change;
+            }
+
+            if (this->Flipbooks.Flipbooks[i]->OffsetAngleLocked)
             {
                 cache = this->Flipbooks.Flipbooks[i]->OffsetAngle + Angle;
                 this->Flipbooks.Flipbooks[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Flipbooks.Flipbooks[i]->OffsetLength, cache));
                 this->Flipbooks.Flipbooks[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Flipbooks.Flipbooks[i]->OffsetLength, cache));
-            }
-
-            if (this->Flipbooks.Flipbooks[i]->AngleLocked)
-            {
-                this->Flipbooks.Flipbooks[i]->Angle += change;
             }
         }
 
@@ -196,16 +196,16 @@ namespace slay
                 continue;
             }
 
-            if (this->Texts.Texts[i]->OffsetLocked)
+            if (this->Texts.Texts[i]->AngleLocked)
+            {
+                this->Texts.Texts[i]->Angle += change;
+            }
+
+            if (this->Texts.Texts[i]->OffsetAngleLocked)
             {
                 cache = this->Texts.Texts[i]->OffsetAngle + Angle;
                 this->Texts.Texts[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Texts.Texts[i]->OffsetLength, cache));
                 this->Texts.Texts[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Texts.Texts[i]->OffsetLength, cache));
-            }
-
-            if (this->Texts.Texts[i]->AngleLocked)
-            {
-                this->Texts.Texts[i]->Angle += change;
             }
         }
 

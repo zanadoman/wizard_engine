@@ -256,7 +256,7 @@ namespace slay
                                     uint8 ColorG;
                                     uint8 ColorB;
                                     uint8 ColorA;
-                                    bool OffsetLocked;
+                                    bool OffsetAngleLocked;
                                     uint8 Priority;
                                     bool Visible;
                                     sint32 GetOffsetX();
@@ -309,8 +309,8 @@ namespace slay
                                     double Angle;
                                     bool FlipHorizontal;
                                     bool FlipVertical;
-                                    bool OffsetLocked;
                                     bool AngleLocked;
+                                    bool OffsetAngleLocked;
                                     uint8 Priority;
                                     bool Visible;
                                     sint32 GetOffsetX();
@@ -366,8 +366,8 @@ namespace slay
                                     double Angle;
                                     bool FlipHorizontal;
                                     bool FlipVertical;
-                                    bool OffsetLocked;
                                     bool AngleLocked;
+                                    bool OffsetAngleLocked;
                                     uint8 Priority;
                                     bool Visible;
                                     bool Loop;
@@ -431,8 +431,8 @@ namespace slay
                                     double Angle;
                                     bool FlipHorizontal;
                                     bool FlipVertical;
-                                    bool OffsetLocked;
                                     bool AngleLocked;
+                                    bool OffsetAngleLocked;
                                     uint8 Priority;
                                     bool Visible;
                                     sint32 GetOffsetX();

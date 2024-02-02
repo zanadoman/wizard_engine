@@ -195,7 +195,7 @@ namespace slay
         this->ColorG = 255;
         this->ColorB = 255;
         this->ColorA = 255;
-        this->OffsetLocked = true;
+        this->OffsetAngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
         this->OffsetX = 0;
