@@ -13,15 +13,18 @@ player::player(engine* Engine) : Engine(Engine)
     };
     this->NameTextFont = this->Engine->Assets.LoadFont("assets/FreeSans.ttf", 48);
 
-    this->Actor = this->Engine->Actors.New(PLAYER, 0, 0, 100, 100, 1);
+    this->Actor = this->Engine->Actors.New(PLAYER, 0, 0, 46, 70, 1);
     this->MainFlipbook = this->Engine->Actors[this->Actor].Flipbooks.New(100, &this->MainFlipbookTextures);
     this->NameText = this->Engine->Actors[this->Actor].Texts.New("Player", this->NameTextFont);
 
     this->Engine->Actors[this->Actor].HitboxVisible = true;
-    this->Engine->Actors[this->Actor].SetDepth(0.05);
+
+    this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].Width = 100;
+    this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].Height = 100;
+    this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].SetOffsetY(16);
 
     this->Engine->Actors[this->Actor].Texts[this->NameText].Height = 20;
-    this->Engine->Actors[this->Actor].Texts[this->NameText].SetOffsetY(40);
+    this->Engine->Actors[this->Actor].Texts[this->NameText].SetOffsetY(56);
 }
 
 player::~player()

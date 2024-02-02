@@ -75,6 +75,7 @@ namespace slay
         sint32 x1, x2, x3, x4;
         sint32 y1, y2, y3, y4;
         sint32 minX, maxX, minY, maxY;
+        sint32 tmp1, tmp2;
 
         change = Angle - this->Angle;
 
@@ -92,10 +93,10 @@ namespace slay
         y3 = this->Engine->Vector.TerminalY(this->Y, half, angle1 + 180);
         y4 = this->Engine->Vector.TerminalY(this->Y, half, angle2 + 180);
 
-        minX = min(min(x1, x2), min(x3, x4));
-        maxX = max(max(x1, x2), max(x3, x4));
-        minY = min(min(y1, y2), min(y3, y4));
-        maxY = max(max(y1, y2), max(y3, y4));
+        minX = (tmp1 = x1 < x2 ? x1 : x2) < (tmp2 = x3 < x4 ? x3 : x4) ? tmp1 : tmp2;
+        maxX = (tmp2 = x4 < x3 ? x3 : x4) < (tmp1 = x2 < x1 ? x1 : x2) ? tmp1 : tmp2;
+        minY = (tmp1 = y1 < y2 ? y1 : y2) < (tmp2 = y3 < y4 ? y3 : y4) ? tmp1 : tmp2;
+        maxY = (tmp2 = y4 < y3 ? y3 : y4) < (tmp1 = y2 < y1 ? y1 : y2) ? tmp1 : tmp2;
 
         this->HitboxWidth = maxX - minX;
         this->HitboxHeight = maxY - minY;
