@@ -70,60 +70,64 @@ _ZN4slay6engine6window8HasFocusEv:
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
 .LC0:
-	.string	"slay::engine.window.New(): SDL_CreateWindow() failed\nParams: Title: %s, Width: %d, Height: %d\n"
+	.string	"slay::engine.window.New(): SDL_CreateWindow() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d\n"
 	.align 8
 .LC1:
-	.string	"slay::engine.window.New(): SDL_CreateRenderer() failed\nParams: Title: %s, Width: %d, Height: %d\n"
+	.string	"slay::engine.window.New(): SDL_CreateRenderer() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d\n"
 	.align 8
 .LC2:
-	.string	"slay::engine.window.New(): SDL_RenderSetLogicalSize() failed\nParams: Title: %s, Width: %d, Height: %d\n"
+	.string	"slay::engine.window.New(): SDL_RenderSetLogicalSize() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d\n"
 	.align 8
 .LC3:
-	.string	"slay::engine.window.New(): SDL_SetRenderDrawBlendMode() failed\nParams: Title: %s, Width: %d, Height: %d\n"
+	.string	"slay::engine.window.New(): SDL_SetRenderDrawBlendMode() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d\n"
+	.align 8
+.LC4:
+	.string	"slay::engine.window.New(): IMG_Load() failed\nParams: Title: %s, IconPath: %s, Width: %d, Height: %d\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6window4OpenEPKctt
-	.type	_ZN4slay6engine6window4OpenEPKctt, @function
-_ZN4slay6engine6window4OpenEPKctt:
+	.globl	_ZN4slay6engine6window4OpenEPKcS3_tt
+	.type	_ZN4slay6engine6window4OpenEPKcS3_tt, @function
+_ZN4slay6engine6window4OpenEPKcS3_tt:
 .LFB2238:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movzwl	%cx, %r15d
+	movzwl	%r8w, %r15d
 	movl	$4385, %r9d
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
-	movzwl	%dx, %r14d
-	movl	%r15d, %r8d
+	movzwl	%cx, %r14d
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movq	%rsi, %r13
-	movl	$536805376, %esi
+	movq	%rdx, %r13
+	movl	$536805376, %edx
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	movl	%edx, %r12d
-	movl	$536805376, %edx
+	movl	%ecx, %r12d
+	movl	%r14d, %ecx
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
-	movl	%ecx, %ebp
-	movl	%r14d, %ecx
+	movl	%r8d, %ebp
+	movl	%r15d, %r8d
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
 	movq	%rdi, %rbx
-	movq	%r13, %rdi
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 64
+	movq	%rsi, %rdi
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 80
+	movq	%rsi, 8(%rsp)
+	movl	$536805376, %esi
 	call	SDL_CreateWindow@PLT
 	movq	%rax, 8(%rbx)
 	testq	%rax, %rax
-	je	.L13
+	je	.L18
 	movq	%rax, %rdi
 	movl	$2, %edx
 	movl	$-1, %esi
@@ -131,21 +135,34 @@ _ZN4slay6engine6window4OpenEPKctt:
 	movq	%rax, 16(%rbx)
 	movq	%rax, %rdi
 	testq	%rax, %rax
-	je	.L14
+	je	.L19
 	movl	%r15d, %edx
 	movl	%r14d, %esi
 	call	SDL_RenderSetLogicalSize@PLT
 	testl	%eax, %eax
-	jne	.L15
+	jne	.L20
 	movq	16(%rbx), %rdi
 	movl	$1, %esi
 	call	SDL_SetRenderDrawBlendMode@PLT
 	testl	%eax, %eax
-	jne	.L16
+	jne	.L21
+	testq	%r13, %r13
+	je	.L12
+	movq	%r13, %rdi
+	call	IMG_Load@PLT
+	testq	%rax, %rax
+	je	.L22
+	movq	8(%rbx), %rdi
+	movq	%rax, %rsi
+	movq	%rax, 8(%rsp)
+	call	SDL_SetWindowIcon@PLT
+	movq	8(%rsp), %rdi
+	call	SDL_FreeSurface@PLT
+.L12:
 	movw	%r12w, 24(%rbx)
 	xorl	%eax, %eax
 	movw	%bp, 26(%rbx)
-	addq	$8, %rsp
+	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
 	popq	%rbx
@@ -161,46 +178,59 @@ _ZN4slay6engine6window4OpenEPKctt:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L13:
+.L18:
 	.cfi_restore_state
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
 	leaq	.LC0(%rip), %rdi
-	movl	%r15d, %ecx
-	movl	%r14d, %edx
-	movq	%r13, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L16:
+.L21:
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
 	leaq	.LC3(%rip), %rdi
-	movl	%r15d, %ecx
-	movl	%r14d, %edx
-	movq	%r13, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L15:
+.L20:
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
 	leaq	.LC2(%rip), %rdi
-	movl	%r15d, %ecx
-	movl	%r14d, %edx
-	movq	%r13, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L14:
+.L19:
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
 	leaq	.LC1(%rip), %rdi
-	movl	%r15d, %ecx
-	movl	%r14d, %edx
-	movq	%r13, %rsi
 	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L22:
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
+	leaq	.LC4(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
 .LFE2238:
-	.size	_ZN4slay6engine6window4OpenEPKctt, .-_ZN4slay6engine6window4OpenEPKctt
+	.size	_ZN4slay6engine6window4OpenEPKcS3_tt, .-_ZN4slay6engine6window4OpenEPKcS3_tt
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6window5CloseEv

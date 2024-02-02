@@ -6,13 +6,13 @@
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
 .LC1:
-	.string	"slay::engine.engine(): SDL_Init() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n"
+	.string	"slay::engine.engine(): SDL_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n"
 	.align 8
 .LC2:
-	.string	"slay::engine.engine(): TTF_Init() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n"
+	.string	"slay::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n"
 	.align 8
 .LC3:
-	.string	"slay::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n"
+	.string	"slay::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
 .LCOLDB4:
@@ -20,9 +20,9 @@
 .LHOTB4:
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engineC2EPKctth
-	.type	_ZN4slay6engineC2EPKctth, @function
-_ZN4slay6engineC2EPKctth:
+	.globl	_ZN4slay6engineC2EPKcS2_tth
+	.type	_ZN4slay6engineC2EPKcS2_tth, @function
+_ZN4slay6engineC2EPKcS2_tth:
 .LFB2235:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
@@ -30,14 +30,15 @@ _ZN4slay6engineC2EPKctth:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
+	movq	%rdx, %r15
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
-	movl	%r8d, %r14d
+	movl	%r9d, %r14d
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movl	%edx, %r13d
+	movl	%r8d, %r13d
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
@@ -51,14 +52,14 @@ _ZN4slay6engineC2EPKctth:
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
 	movq	%rdi, %rbx
-	subq	$24, %rsp
-	.cfi_def_cfa_offset 80
+	subq	$40, %rsp
+	.cfi_def_cfa_offset 96
 .LEHB0:
 	call	_ZN4slay6engine6windowC1EPS0_@PLT
 	leaq	32(%rbx), %rax
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
-	movq	%rax, 8(%rsp)
+	movq	%rax, 16(%rsp)
 	call	_ZN4slay6engine6renderC1EPS0_@PLT
 .LEHE0:
 	leaq	80(%rbx), %rdi
@@ -74,9 +75,10 @@ _ZN4slay6engineC2EPKctth:
 	leaq	472(%rbx), %rdi
 	movq	%rbx, %rsi
 	call	_ZN4slay6engine5mouseC1EPS0_@PLT
-	leaq	528(%rbx), %r15
+	leaq	528(%rbx), %rax
 	movq	%rbx, %rsi
-	movq	%r15, %rdi
+	movq	%rax, %rdi
+	movq	%rax, 24(%rsp)
 	call	_ZN4slay6engine6actorsC1EPS0_@PLT
 .LEHE1:
 	leaq	552(%rbx), %rdi
@@ -110,30 +112,31 @@ _ZN4slay6engineC2EPKctth:
 	movl	$32784, %esi
 	movl	$44100, %edi
 	call	Mix_OpenAudio@PLT
+	movzwl	%r13w, %r8d
 	movzwl	%r12w, %ecx
-	movzwl	%r13w, %edx
 	testl	%eax, %eax
 	jne	.L21
 	xorl	%edi, %edi
-	movl	%edx, 4(%rsp)
-	movl	%ecx, (%rsp)
+	movl	%ecx, 12(%rsp)
+	movl	%r8d, 8(%rsp)
 	call	time@PLT
 	movl	%eax, %edi
 	call	srand@PLT
-	movl	(%rsp), %ecx
-	movl	4(%rsp), %edx
+	movl	8(%rsp), %r8d
+	movq	%r15, %rdx
 	movq	%rbp, %rsi
+	movl	12(%rsp), %ecx
 	movq	%rbx, %rdi
-	call	_ZN4slay6engine6window4OpenEPKctt@PLT
+	call	_ZN4slay6engine6window4OpenEPKcS3_tt@PLT
 	movzwl	24(%rbx), %eax
 	pxor	%xmm0, %xmm0
 	pxor	%xmm1, %xmm1
-	subl	$1, %r13d
 	subl	$1, %r12d
-	movw	%r13w, 40(%rbx)
+	subl	$1, %r13d
+	movw	%r12w, 40(%rbx)
 	xorl	%edi, %edi
 	shrw	%ax
-	movw	%r12w, 42(%rbx)
+	movw	%r13w, 42(%rbx)
 	movzwl	%ax, %eax
 	negl	%eax
 	cvtsi2sdl	%eax, %xmm0
@@ -147,7 +150,7 @@ _ZN4slay6engineC2EPKctth:
 	call	SDL_GetKeyboardState@PLT
 	movq	%rax, 168(%rbx)
 	movb	%r14b, 640(%rbx)
-	addq	$24, %rsp
+	addq	$40, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
 	popq	%rbx
@@ -166,8 +169,9 @@ _ZN4slay6engineC2EPKctth:
 .L19:
 	.cfi_restore_state
 	movzwl	%r12w, %ecx
-	movzwl	%r13w, %edx
-	movzbl	%r14b, %r8d
+	movzbl	%r14b, %r9d
+	movzwl	%r13w, %r8d
+	movq	%r15, %rdx
 	movq	%rbp, %rsi
 	leaq	.LC1(%rip), %rdi
 	xorl	%eax, %eax
@@ -176,16 +180,18 @@ _ZN4slay6engineC2EPKctth:
 	movl	$1, %edi
 	call	exit@PLT
 .L21:
-	movzbl	%r14b, %r8d
+	movzbl	%r14b, %r9d
+	movq	%r15, %rdx
 	movq	%rbp, %rsi
-	leaq	.LC3(%rip), %rdi
 	xorl	%eax, %eax
+	leaq	.LC3(%rip), %rdi
 	call	printf@PLT
 	jmp	.L5
 .L20:
 	movzwl	%r12w, %ecx
-	movzwl	%r13w, %edx
-	movzbl	%r14b, %r8d
+	movzbl	%r14b, %r9d
+	movzwl	%r13w, %r8d
+	movq	%r15, %rdx
 	movq	%rbp, %rsi
 	leaq	.LC2(%rip), %rdi
 	xorl	%eax, %eax
@@ -239,11 +245,11 @@ _ZN4slay6engineC2EPKctth:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDAC2235
-	.type	_ZN4slay6engineC2EPKctth.cold, @function
-_ZN4slay6engineC2EPKctth.cold:
+	.type	_ZN4slay6engineC2EPKcS2_tth.cold, @function
+_ZN4slay6engineC2EPKcS2_tth.cold:
 .LFSB2235:
 .L7:
-	.cfi_def_cfa_offset 80
+	.cfi_def_cfa_offset 96
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
 	.cfi_offset 12, -40
@@ -263,10 +269,10 @@ _ZN4slay6engineC2EPKctth.cold:
 	movq	%rbp, %rbx
 	call	free@PLT
 .L9:
-	movq	%r15, %rdi
+	movq	24(%rsp), %rdi
 	call	_ZN4slay6engine6actorsD1Ev@PLT
 .L10:
-	movq	8(%rsp), %rdi
+	movq	16(%rsp), %rdi
 	call	_ZN4slay6engine6renderD1Ev@PLT
 	movq	%rbx, %rdi
 .LEHB5:
@@ -288,14 +294,14 @@ _ZN4slay6engineC2EPKctth.cold:
 .LLSDACSEC2235:
 	.section	.text.unlikely
 	.text
-	.size	_ZN4slay6engineC2EPKctth, .-_ZN4slay6engineC2EPKctth
+	.size	_ZN4slay6engineC2EPKcS2_tth, .-_ZN4slay6engineC2EPKcS2_tth
 	.section	.text.unlikely
-	.size	_ZN4slay6engineC2EPKctth.cold, .-_ZN4slay6engineC2EPKctth.cold
+	.size	_ZN4slay6engineC2EPKcS2_tth.cold, .-_ZN4slay6engineC2EPKcS2_tth.cold
 .LCOLDE4:
 	.text
 .LHOTE4:
-	.globl	_ZN4slay6engineC1EPKctth
-	.set	_ZN4slay6engineC1EPKctth,_ZN4slay6engineC2EPKctth
+	.globl	_ZN4slay6engineC1EPKcS2_tth
+	.set	_ZN4slay6engineC1EPKcS2_tth,_ZN4slay6engineC2EPKcS2_tth
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engineD2Ev

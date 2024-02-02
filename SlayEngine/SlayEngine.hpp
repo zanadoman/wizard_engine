@@ -24,7 +24,7 @@ namespace slay
     class engine
     {   
         public:
-            engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime);
+            engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime);
             ~engine();
 
             bool Update();
@@ -50,7 +50,7 @@ namespace slay
                     uint16 Height;
                     uint32 State;
                     window(engine* Engine);
-                    uint8 Open(const char* Title, uint16 Width, uint16 Height);
+                    uint8 Open(const char* Title, const char* IconPath, uint16 Width, uint16 Height);
                     uint8 Close();
             } Window;
 

@@ -2,11 +2,15 @@
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC0:
+	.string	"assets/icon.png"
+.LC1:
+	.string	"Demo"
+.LC2:
 	.string	"%d %d %d %d\n"
 	.section	.text.unlikely,"ax",@progbits
-.LCOLDB1:
+.LCOLDB3:
 	.section	.text.startup,"ax",@progbits
-.LHOTB1:
+.LHOTB3:
 	.p2align 4
 	.globl	main
 	.type	main, @function
@@ -39,14 +43,15 @@ main:
 .LEHB0:
 	call	_Znwm@PLT
 .LEHE0:
-	movl	$6, %r8d
-	movl	$1080, %ecx
-	xorl	%esi, %esi
-	movl	$1920, %edx
+	movl	$6, %r9d
+	movl	$1080, %r8d
+	movl	$1920, %ecx
+	leaq	.LC0(%rip), %rdx
+	leaq	.LC1(%rip), %rsi
 	movq	%rax, %rdi
 	movq	%rax, %r13
 .LEHB1:
-	call	_ZN4slay6engineC1EPKctth@PLT
+	call	_ZN4slay6engineC1EPKcS2_tth@PLT
 .LEHE1:
 	movl	$32, %edi
 .LEHB2:
@@ -94,7 +99,7 @@ main:
 	movl	%r12d, %ecx
 	movl	%ebp, %edx
 	movl	%eax, %esi
-	leaq	.LC0(%rip), %rdi
+	leaq	.LC2(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 .L2:
@@ -228,7 +233,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC2231-.LLSDACSBC2231
 .LLSDACSBC2231:
-	.uleb128 .LEHB7-.LCOLDB1
+	.uleb128 .LEHB7-.LCOLDB3
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
@@ -238,9 +243,9 @@ main.cold:
 	.size	main, .-main
 	.section	.text.unlikely
 	.size	main.cold, .-main.cold
-.LCOLDE1:
+.LCOLDE3:
 	.section	.text.startup
-.LHOTE1:
+.LHOTE3:
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

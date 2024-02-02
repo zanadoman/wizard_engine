@@ -1,9 +1,8 @@
-#include "Includes/SDL_video.h"
 #include "SlayEngine.hpp"
 
 namespace slay
 {
-    engine::engine(const char* Title, uint16 Width, uint16 Height, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Vector(this), Assets(this), Timing(this)
+    engine::engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Vector(this), Assets(this), Timing(this)
     {
         if (Title == NULL)
         {
@@ -12,22 +11,22 @@ namespace slay
 
         if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
         {
-            printf("slay::engine.engine(): SDL_Init() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, Width, Height, TargetFrameTime);
+            printf("slay::engine.engine(): SDL_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
             exit(1);
         }
         if (TTF_Init() != 0)
         {
-            printf("slay::engine.engine(): TTF_Init() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, Width, Height, TargetFrameTime);
+            printf("slay::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
             exit(1);
         }
         if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) != 0)
         {
-            printf("slay::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, Width, Height, TargetFrameTime);
+            printf("slay::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
             exit(1);
         }
 
         srand(time(NULL));
-        this->Window.Open(Title, Width, Height);
+        this->Window.Open(Title, IconPath, Width, Height);
         this->Render.RenderWidth = Width - 1;
         this->Render.RenderHeight = Height - 1;
         this->Camera.OffsetX = -(this->Window.Width >> 1);
