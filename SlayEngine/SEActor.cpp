@@ -59,11 +59,46 @@ namespace slay
         return this->Angle;
     }
 
+    sint32 min(sint32 a, sint32 b)
+    {
+        return a < b ? a : b;
+    }
+
+    sint32 max(sint32 a, sint32 b)
+    {
+        return b < a ? a : b;
+    }
+
     double engine::actors::actor::SetAngle(double Angle)
     {
         double change, cache;
+        sint32 x1, x2, x3, x4;
+        sint32 y1, y2, y3, y4;
+        sint32 minX, maxX, minY, maxY;
 
         change = Angle - this->Angle;
+
+        double half = this->Engine->Vector.Length(0, 0, this->Width, this->Height) / 2;
+        double angle1 = this->Engine->Vector.Angle(0, 0, this->Width, this->Height) + Angle;
+        double angle2  = this->Engine->Vector.Angle(this->Width, 0, 0, this->Height) + Angle;
+
+        x1 = this->Engine->Vector.TerminalX(this->X, half, angle1);
+        x2 = this->Engine->Vector.TerminalX(this->X, half, angle2);
+        x3 = this->Engine->Vector.TerminalX(this->X, half, angle1 + 180);
+        x4 = this->Engine->Vector.TerminalX(this->X, half, angle2 + 180);
+
+        y1 = this->Engine->Vector.TerminalY(this->Y, half, angle1);
+        y2 = this->Engine->Vector.TerminalY(this->Y, half, angle2);
+        y3 = this->Engine->Vector.TerminalY(this->Y, half, angle1 + 180);
+        y4 = this->Engine->Vector.TerminalY(this->Y, half, angle2 + 180);
+
+        minX = min(min(x1, x2), min(x3, x4));
+        maxX = max(max(x1, x2), max(x3, x4));
+        minY = min(min(y1, y2), min(y3, y4));
+        maxY = max(max(y1, y2), max(y3, y4));
+
+        this->HitboxWidth = maxX - minX;
+        this->HitboxHeight = maxY - minY;
 
         for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
         {
