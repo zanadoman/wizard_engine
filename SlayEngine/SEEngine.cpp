@@ -25,14 +25,14 @@ namespace slay
             exit(1);
         }
 
-        srand(time(NULL));
         this->Window.Open(Title, IconPath, Width, Height);
         this->Render.RenderWidth = Width - 1;
         this->Render.RenderHeight = Height - 1;
-        this->Camera.OffsetX = -(this->Window.Width >> 1);
-        this->Camera.OffsetY = -(this->Window.Height >> 1);
+        this->Camera.OffsetX = -(Width >> 1);
+        this->Camera.OffsetY = -(Height >> 1);
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
+        srand(time(NULL));
     }
 
     engine::~engine()
@@ -61,6 +61,10 @@ namespace slay
 
         this->Timing.Update();
 
+        this->UpdateFlipbooks();
+
+        this->Window.State = SDL_GetWindowFlags(this->Window.Window);
+
         for (i = 0; SDL_PollEvent(&event); i++)
         {
             if (event.type == SDL_QUIT)
@@ -81,10 +85,6 @@ namespace slay
         {
             this->EventQueue.Remove(i, this->EventQueue.Length() - i);
         }
-
-        this->Window.State = SDL_GetWindowFlags(this->Window.Window);
-
-        this->UpdateFlipbooks();
 
         this->Keys.Update();
         this->Mouse.Update();

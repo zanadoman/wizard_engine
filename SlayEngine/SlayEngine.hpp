@@ -24,11 +24,6 @@ namespace slay
     class engine
     {   
         public:
-            engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime);
-            ~engine();
-
-            bool Update();
-            sint32 Random(sint32 Min, sint32 Max);
 
             //__________Window_________________________________________________________________________________________
 
@@ -604,6 +599,11 @@ namespace slay
             } Timing;
 
         //__________Engine_____________________________________________________________________________________________
+
+            engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime);
+            ~engine();
+            bool Update();
+            sint32 Random(sint32 Min, sint32 Max);
 
         private:
             array<SDL_Event> EventQueue;

@@ -1,9 +1,9 @@
 /*
-**Overlap system
-**Collision system
-**Particle system
-**Bloom
-**Networking
+**  Overlap system
+**  Collision system
+**  Particle system
+**  Bloom
+**  Networking
 */
 
 #include "demo.hpp"
@@ -12,7 +12,7 @@
 
 sint32 main()
 {
-    engine* Engine = new engine("Demo", "assets/icon.png", 1920, 1080, 1000 / 165);
+    engine* Engine = new engine(NULL, "assets/icon.png", 1920, 1080, 1000 / 165);
 
     background* Background = new background(Engine);
     player* Player = new player(Engine);
