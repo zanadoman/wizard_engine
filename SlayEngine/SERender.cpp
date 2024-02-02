@@ -245,9 +245,6 @@ namespace slay
                     this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width = surface->w * this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height / surface->h;
                     SDL_FreeSurface(surface);
                 }
-
-                x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Texts.Texts[j]->OffsetX;
-                y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Texts.Texts[j]->OffsetY;
                 
                 if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) < 0)
                 {
@@ -260,7 +257,7 @@ namespace slay
 
                 for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine->Camera.Transform(x, y, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height, layer);
+                    area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->Texts.Texts[j]->X, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Y, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height, layer);
 
                     if (area.w == 0 || area.h == 0)
                     {

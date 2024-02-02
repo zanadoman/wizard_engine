@@ -44,6 +44,17 @@ namespace slay
 
     double engine::actors::actor::SetX(double X)
     {
+        for (uint64 i = 1; i < this->Texts.Texts.Length(); i++)
+        {
+            if (this->Texts.Texts[i] == NULL)
+            {
+                continue;
+            }
+
+            this->Texts.Texts[i]->X = Engine->Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+            this->Texts.Texts[i]->Y = Engine->Vector.TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+        }
+
         return this->X = X;
     }
 
@@ -54,6 +65,17 @@ namespace slay
 
     double engine::actors::actor::SetY(double Y)
     {
+        for (uint64 i = 1; i < this->Texts.Texts.Length(); i++)
+        {
+            if (this->Texts.Texts[i] == NULL)
+            {
+                continue;
+            }
+
+            this->Texts.Texts[i]->X = Engine->Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+            this->Texts.Texts[i]->Y = Engine->Vector.TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+        }
+
         return this->Y = Y;
     }
 
@@ -203,10 +225,11 @@ namespace slay
 
             if (this->Texts.Texts[i]->OffsetAngleLocked)
             {
-                cache = this->Texts.Texts[i]->OffsetAngle + Angle;
-                this->Texts.Texts[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Texts.Texts[i]->OffsetLength, cache));
-                this->Texts.Texts[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Texts.Texts[i]->OffsetLength, cache));
+                this->Texts.Texts[i]->OffsetAngle += change;
             }
+
+            this->Texts.Texts[i]->X = Engine->Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+            this->Texts.Texts[i]->Y = Engine->Vector.TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
         }
 
         return this->Angle = Angle;

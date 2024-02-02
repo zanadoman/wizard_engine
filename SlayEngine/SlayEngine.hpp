@@ -435,20 +435,20 @@ namespace slay
                                     bool OffsetAngleLocked;
                                     uint8 Priority;
                                     bool Visible;
-                                    sint32 GetOffsetX();
-                                    sint32 SetOffsetX(sint32 OffsetX);
-                                    sint32 GetOffsetY();
-                                    sint32 SetOffsetY(sint32 OffsetY);
+                                    double GetX();
+                                    double SetX(double X);
+                                    double GetY();
+                                    double SetY(double Y);
                                     string* GetString();
                                     uint64 GetFont();
                                     uint64 SetFont(uint64 ID);
 
                                 private:
-                                    sint32 OffsetX;
-                                    sint32 OffsetY;
+                                    double X;
+                                    double Y;
+                                    uint16 Width;
                                     double OffsetLength;
                                     double OffsetAngle;
-                                    uint16 Width;
                                     string String;
                                     uint64 FontID;
                                     SDL_Texture* Texture;

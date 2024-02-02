@@ -24,7 +24,7 @@ player::player(engine* Engine) : Engine(Engine)
     this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].SetOffsetY(16);
 
     this->Engine->Actors[this->Actor].Texts[this->NameText].Height = 20;
-    this->Engine->Actors[this->Actor].Texts[this->NameText].SetOffsetY(56);
+    this->Engine->Actors[this->Actor].Texts[this->NameText].SetY(this->Engine->Actors[this->Actor].GetY() + 56);
 }
 
 player::~player()
@@ -60,7 +60,7 @@ uint8 player::Update()
 
     if (this->Engine->Keys[KEY_G])
     {
-        this->Engine->Actors[this->Actor].Texts[this->NameText].SetOffsetY(56);
+        this->Engine->Actors[this->Actor].Texts[this->NameText].SetY(this->Engine->Actors[this->Actor].GetY() + 56);
     }
 
     return 0;

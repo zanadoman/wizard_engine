@@ -2501,9 +2501,9 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L541
-	cmpq	%rbx, 88(%rdx)
+	cmpq	%rbx, 96(%rdx)
 	jne	.L541
-	movq	$0, 88(%rdx)
+	movq	$0, 96(%rdx)
 	jmp	.L541
 	.p2align 4,,10
 	.p2align 3
@@ -2695,9 +2695,9 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L575
-	cmpq	%rbx, 88(%rdx)
+	cmpq	%rbx, 96(%rdx)
 	jne	.L575
-	movq	$0, 88(%rdx)
+	movq	$0, 96(%rdx)
 	jmp	.L575
 	.p2align 4,,10
 	.p2align 3
@@ -2893,9 +2893,9 @@ _ZN4slay6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L635
-	cmpq	%rbx, 88(%rdx)
+	cmpq	%rbx, 96(%rdx)
 	jne	.L635
-	movq	$0, 88(%rdx)
+	movq	$0, 96(%rdx)
 	jmp	.L635
 	.p2align 4,,10
 	.p2align 3
