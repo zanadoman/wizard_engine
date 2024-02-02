@@ -229,12 +229,8 @@ namespace slay
 
     sint32 engine::actors::actor::texts::text::SetOffsetX(sint32 OffsetX)
     {
-        sint32 x, y;
-
-        x = this->Actor->X + OffsetX;
-        y = this->Actor->Y + this->OffsetY;
-        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
-        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetLength = this->Engine->Vector.Length(0, 0, OffsetX, this->OffsetY);
+        this->OffsetAngle = this->Engine->Vector.Angle(0, 0, OffsetX, this->OffsetY);
 
         return this->OffsetX = OffsetX;
     }
@@ -246,12 +242,8 @@ namespace slay
 
     sint32 engine::actors::actor::texts::text::SetOffsetY(sint32 OffsetY)
     {
-        sint32 x, y;
-
-        x = this->Actor->X + this->OffsetX;
-        y = this->Actor->Y + OffsetY;
-        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
-        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetLength = this->Engine->Vector.Length(0, 0, this->OffsetX, OffsetY);
+        this->OffsetAngle = this->Engine->Vector.Angle(0, 0, this->OffsetX, OffsetY);
 
         return this->OffsetY = OffsetY;
     }

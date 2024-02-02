@@ -1026,42 +1026,31 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetXEi:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	pxor	%xmm0, %xmm0
-	pxor	%xmm3, %xmm3
 	pxor	%xmm2, %xmm2
+	pxor	%xmm3, %xmm3
+	pxor	%xmm1, %xmm1
 	pushq	%rbx
 	.cfi_def_cfa_offset 24
 	.cfi_offset 3, -24
 	movq	%rdi, %rbx
+	cvtsi2sdl	%esi, %xmm2
+	movapd	%xmm1, %xmm0
 	movl	%esi, %ebp
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 48
-	movq	8(%rdi), %rax
-	cvtsi2sdl	44(%rdi), %xmm0
-	movsd	160(%rax), %xmm1
-	movsd	152(%rax), %xmm4
-	addsd	%xmm1, %xmm0
-	cvttsd2sil	%xmm0, %eax
-	pxor	%xmm0, %xmm0
-	cvtsi2sdl	%esi, %xmm0
-	cvtsi2sdl	%eax, %xmm3
-	addsd	%xmm4, %xmm0
-	cvttsd2sil	%xmm0, %eax
-	movapd	%xmm4, %xmm0
-	movsd	%xmm3, 8(%rsp)
-	cvtsi2sdl	%eax, %xmm2
 	movq	(%rdi), %rax
+	cvtsi2sdl	44(%rbx), %xmm3
+	movsd	%xmm2, 8(%rsp)
 	leaq	552(%rax), %rdi
-	movsd	%xmm2, (%rsp)
 	call	_ZN4slay6engine6vector6LengthEdddd@PLT
-	movq	8(%rbx), %rax
-	movq	(%rbx), %rdx
+	pxor	%xmm3, %xmm3
+	movq	(%rbx), %rax
+	pxor	%xmm1, %xmm1
+	cvtsi2sdl	44(%rbx), %xmm3
+	movsd	8(%rsp), %xmm2
 	movsd	%xmm0, 48(%rbx)
-	movsd	8(%rsp), %xmm3
-	movsd	(%rsp), %xmm2
-	movsd	152(%rax), %xmm0
-	movsd	160(%rax), %xmm1
-	leaq	552(%rdx), %rdi
+	movapd	%xmm1, %xmm0
+	leaq	552(%rax), %rdi
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
 	movl	%ebp, 40(%rbx)
 	movl	%ebp, %eax
@@ -1098,42 +1087,31 @@ _ZN4slay6engine6actors5actor8textures7texture10SetOffsetYEi:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	pxor	%xmm0, %xmm0
 	pxor	%xmm3, %xmm3
 	pxor	%xmm2, %xmm2
+	pxor	%xmm1, %xmm1
 	pushq	%rbx
 	.cfi_def_cfa_offset 24
 	.cfi_offset 3, -24
-	cvtsi2sdl	%esi, %xmm0
 	movq	%rdi, %rbx
+	cvtsi2sdl	%esi, %xmm3
+	movapd	%xmm1, %xmm0
 	movl	%esi, %ebp
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 48
-	movq	8(%rdi), %rax
-	movsd	160(%rax), %xmm1
-	movsd	152(%rax), %xmm4
-	addsd	%xmm1, %xmm0
-	cvttsd2sil	%xmm0, %eax
-	pxor	%xmm0, %xmm0
-	cvtsi2sdl	40(%rdi), %xmm0
-	cvtsi2sdl	%eax, %xmm3
-	addsd	%xmm4, %xmm0
-	cvttsd2sil	%xmm0, %eax
-	movapd	%xmm4, %xmm0
-	movsd	%xmm3, 8(%rsp)
-	cvtsi2sdl	%eax, %xmm2
 	movq	(%rdi), %rax
+	cvtsi2sdl	40(%rbx), %xmm2
+	movsd	%xmm3, 8(%rsp)
 	leaq	552(%rax), %rdi
-	movsd	%xmm2, (%rsp)
 	call	_ZN4slay6engine6vector6LengthEdddd@PLT
-	movq	8(%rbx), %rax
-	movq	(%rbx), %rdx
-	movsd	%xmm0, 48(%rbx)
+	pxor	%xmm2, %xmm2
+	movq	(%rbx), %rax
+	pxor	%xmm1, %xmm1
+	cvtsi2sdl	40(%rbx), %xmm2
 	movsd	8(%rsp), %xmm3
-	movsd	(%rsp), %xmm2
-	movsd	152(%rax), %xmm0
-	movsd	160(%rax), %xmm1
-	leaq	552(%rdx), %rdi
+	movsd	%xmm0, 48(%rbx)
+	movapd	%xmm1, %xmm0
+	leaq	552(%rax), %rdi
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
 	movl	%ebp, 44(%rbx)
 	movl	%ebp, %eax
@@ -1162,7 +1140,7 @@ _ZN4slay6engine6actors5actor8textures7texture12GetTextureIDEv:
 	.size	_ZN4slay6engine6actors5actor8textures7texture12GetTextureIDEv, .-_ZN4slay6engine6actors5actor8textures7texture12GetTextureIDEv
 	.section	.rodata.str1.8
 	.align 8
-.LC14:
+.LC15:
 	.string	"slay::engine.actors[].textures[].SetTextureID(): Texture does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1188,7 +1166,7 @@ _ZN4slay6engine6actors5actor8textures7texture12SetTextureIDEy:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
-	leaq	.LC14(%rip), %rdi
+	leaq	.LC15(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi

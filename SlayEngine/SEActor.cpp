@@ -114,15 +114,15 @@ namespace slay
         MedAngle1_180 = MedAngle1 + 180;
         MedAngle2_180 =  MedAngle2 + 180;
 
-        x1 = round(this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle1));
-        x2 = round(this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle2));
-        x3 = round(this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle1_180));
-        x4 = round(this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle2_180));
+        x1 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle1));
+        x2 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle2));
+        x3 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle1_180));
+        x4 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle2_180));
 
-        y1 = round(this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle1));
-        y2 = round(this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle2));
-        y3 = round(this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle1_180));
-        y4 = round(this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle2_180));
+        y1 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle1));
+        y2 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle2));
+        y3 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle1_180));
+        y4 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle2_180));
 
         minX = (tmp1 = x1 < x2 ? x1 : x2) < (tmp2 = x3 < x4 ? x3 : x4) ? tmp1 : tmp2;
         maxX = (tmp2 = x4 < x3 ? x3 : x4) < (tmp1 = x2 < x1 ? x1 : x2) ? tmp1 : tmp2;
@@ -144,8 +144,8 @@ namespace slay
             if (this->Colors.Colors[i]->OffsetLocked)
             {
                 cache = this->Colors.Colors[i]->OffsetAngle + Angle;
-                this->Colors.Colors[i]->OffsetX = round(this->Engine->Vector.TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, cache) - this->X);
-                this->Colors.Colors[i]->OffsetY = round(this->Engine->Vector.TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, cache) - this->Y);
+                this->Colors.Colors[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Colors.Colors[i]->OffsetLength, cache));
+                this->Colors.Colors[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Colors.Colors[i]->OffsetLength, cache));
             }
         }
 
@@ -159,8 +159,8 @@ namespace slay
             if (this->Textures.Textures[i]->OffsetLocked)
             {
                 cache = this->Textures.Textures[i]->OffsetAngle + Angle;
-                this->Textures.Textures[i]->OffsetX = round(this->Engine->Vector.TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, cache) - this->X);
-                this->Textures.Textures[i]->OffsetY = round(this->Engine->Vector.TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, cache) - this->Y);
+                this->Textures.Textures[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Textures.Textures[i]->OffsetLength, cache));
+                this->Textures.Textures[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Textures.Textures[i]->OffsetLength, cache));
             }
 
             if (this->Textures.Textures[i]->AngleLocked)
@@ -179,8 +179,8 @@ namespace slay
             if (this->Flipbooks.Flipbooks[i]->OffsetLocked)
             {
                 cache = this->Flipbooks.Flipbooks[i]->OffsetAngle + Angle;
-                this->Flipbooks.Flipbooks[i]->OffsetX = round(this->Engine->Vector.TerminalX(this->X, this->Flipbooks.Flipbooks[i]->OffsetLength, cache) - this->X);
-                this->Flipbooks.Flipbooks[i]->OffsetY = round(this->Engine->Vector.TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, cache) - this->Y);
+                this->Flipbooks.Flipbooks[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Flipbooks.Flipbooks[i]->OffsetLength, cache));
+                this->Flipbooks.Flipbooks[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Flipbooks.Flipbooks[i]->OffsetLength, cache));
             }
 
             if (this->Flipbooks.Flipbooks[i]->AngleLocked)
@@ -199,8 +199,8 @@ namespace slay
             if (this->Texts.Texts[i]->OffsetLocked)
             {
                 cache = this->Texts.Texts[i]->OffsetAngle + Angle;
-                this->Texts.Texts[i]->OffsetX = round(this->Engine->Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, cache) - this->X);
-                this->Texts.Texts[i]->OffsetY = round(this->Engine->Vector.TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, cache) - this->Y);
+                this->Texts.Texts[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Texts.Texts[i]->OffsetLength, cache));
+                this->Texts.Texts[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Texts.Texts[i]->OffsetLength, cache));
             }
 
             if (this->Texts.Texts[i]->AngleLocked)
