@@ -66,16 +66,16 @@ namespace slay
         return !this->Mode;
     }
 
-    bool engine::mouse::IsRelative()
-    {
-        return this->Mode;
-    }
-
     bool engine::mouse::SetAbsolute()
     {
         SDL_SetRelativeMouseMode(SDL_FALSE);
 
         return this->Mode = false;
+    }
+
+    bool engine::mouse::IsRelative()
+    {
+        return this->Mode;
     }
 
     bool engine::mouse::SetRelative()

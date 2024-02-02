@@ -197,8 +197,8 @@ namespace slay
                     double GetMotionX();
                     double GetMotionY();
                     bool IsAbsolute();
-                    bool IsRelative();
                     bool SetAbsolute();
+                    bool IsRelative();
                     bool SetRelative();
                     uint64 GetCursor();
                     uint64 SetCursor(uint64 ID);

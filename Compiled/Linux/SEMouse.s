@@ -146,22 +146,10 @@ _ZN4slay6engine5mouse10IsAbsoluteEv:
 	.size	_ZN4slay6engine5mouse10IsAbsoluteEv, .-_ZN4slay6engine5mouse10IsAbsoluteEv
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine5mouse10IsRelativeEv
-	.type	_ZN4slay6engine5mouse10IsRelativeEv, @function
-_ZN4slay6engine5mouse10IsRelativeEv:
-.LFB2239:
-	.cfi_startproc
-	movzbl	40(%rdi), %eax
-	ret
-	.cfi_endproc
-.LFE2239:
-	.size	_ZN4slay6engine5mouse10IsRelativeEv, .-_ZN4slay6engine5mouse10IsRelativeEv
-	.align 2
-	.p2align 4
 	.globl	_ZN4slay6engine5mouse11SetAbsoluteEv
 	.type	_ZN4slay6engine5mouse11SetAbsoluteEv, @function
 _ZN4slay6engine5mouse11SetAbsoluteEv:
-.LFB2240:
+.LFB2239:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -175,8 +163,20 @@ _ZN4slay6engine5mouse11SetAbsoluteEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2240:
+.LFE2239:
 	.size	_ZN4slay6engine5mouse11SetAbsoluteEv, .-_ZN4slay6engine5mouse11SetAbsoluteEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5mouse10IsRelativeEv
+	.type	_ZN4slay6engine5mouse10IsRelativeEv, @function
+_ZN4slay6engine5mouse10IsRelativeEv:
+.LFB2240:
+	.cfi_startproc
+	movzbl	40(%rdi), %eax
+	ret
+	.cfi_endproc
+.LFE2240:
+	.size	_ZN4slay6engine5mouse10IsRelativeEv, .-_ZN4slay6engine5mouse10IsRelativeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine5mouse11SetRelativeEv
