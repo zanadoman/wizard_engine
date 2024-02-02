@@ -1,3 +1,4 @@
+#include "Includes/SDL_video.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -82,6 +83,7 @@ namespace slay
 
         this->Keys.Update();
         this->Mouse.Update();
+        this->Window.State = SDL_GetWindowFlags(this->Window.Window);
 
         this->Timing.Update();
 

@@ -41,6 +41,32 @@ _ZN4slay6engine6window8GetWidthEv:
 	.cfi_endproc
 .LFE2235:
 	.size	_ZN4slay6engine6window8GetWidthEv, .-_ZN4slay6engine6window8GetWidthEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6window7IsShownEv
+	.type	_ZN4slay6engine6window7IsShownEv, @function
+_ZN4slay6engine6window7IsShownEv:
+.LFB2236:
+	.cfi_startproc
+	movl	28(%rdi), %eax
+	shrl	$2, %eax
+	andl	$1, %eax
+	ret
+	.cfi_endproc
+.LFE2236:
+	.size	_ZN4slay6engine6window7IsShownEv, .-_ZN4slay6engine6window7IsShownEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6window8HasFocusEv
+	.type	_ZN4slay6engine6window8HasFocusEv, @function
+_ZN4slay6engine6window8HasFocusEv:
+.LFB2237:
+	.cfi_startproc
+	movl	$1, %eax
+	ret
+	.cfi_endproc
+.LFE2237:
+	.size	_ZN4slay6engine6window8HasFocusEv, .-_ZN4slay6engine6window8HasFocusEv
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
 .LC0:
@@ -60,7 +86,7 @@ _ZN4slay6engine6window8GetWidthEv:
 	.globl	_ZN4slay6engine6window4OpenEPKctt
 	.type	_ZN4slay6engine6window4OpenEPKctt, @function
 _ZN4slay6engine6window4OpenEPKctt:
-.LFB2236:
+.LFB2238:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -97,7 +123,7 @@ _ZN4slay6engine6window4OpenEPKctt:
 	call	SDL_CreateWindow@PLT
 	movq	%rax, 8(%rbx)
 	testq	%rax, %rax
-	je	.L11
+	je	.L13
 	movq	%rax, %rdi
 	movl	$2, %edx
 	movl	$-1, %esi
@@ -105,17 +131,17 @@ _ZN4slay6engine6window4OpenEPKctt:
 	movq	%rax, 16(%rbx)
 	movq	%rax, %rdi
 	testq	%rax, %rax
-	je	.L12
+	je	.L14
 	movl	%r15d, %edx
 	movl	%r14d, %esi
 	call	SDL_RenderSetLogicalSize@PLT
 	testl	%eax, %eax
-	jne	.L13
+	jne	.L15
 	movq	16(%rbx), %rdi
 	movl	$1, %esi
 	call	SDL_SetRenderDrawBlendMode@PLT
 	testl	%eax, %eax
-	jne	.L14
+	jne	.L16
 	movw	%r12w, 24(%rbx)
 	xorl	%eax, %eax
 	movw	%bp, 26(%rbx)
@@ -135,7 +161,7 @@ _ZN4slay6engine6window4OpenEPKctt:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L11:
+.L13:
 	.cfi_restore_state
 	leaq	.LC0(%rip), %rdi
 	movl	%r15d, %ecx
@@ -145,7 +171,7 @@ _ZN4slay6engine6window4OpenEPKctt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L14:
+.L16:
 	leaq	.LC3(%rip), %rdi
 	movl	%r15d, %ecx
 	movl	%r14d, %edx
@@ -154,7 +180,7 @@ _ZN4slay6engine6window4OpenEPKctt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L13:
+.L15:
 	leaq	.LC2(%rip), %rdi
 	movl	%r15d, %ecx
 	movl	%r14d, %edx
@@ -163,7 +189,7 @@ _ZN4slay6engine6window4OpenEPKctt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L12:
+.L14:
 	leaq	.LC1(%rip), %rdi
 	movl	%r15d, %ecx
 	movl	%r14d, %edx
@@ -173,14 +199,14 @@ _ZN4slay6engine6window4OpenEPKctt:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2236:
+.LFE2238:
 	.size	_ZN4slay6engine6window4OpenEPKctt, .-_ZN4slay6engine6window4OpenEPKctt
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6window5CloseEv
 	.type	_ZN4slay6engine6window5CloseEv, @function
 _ZN4slay6engine6window5CloseEv:
-.LFB2237:
+.LFB2239:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -195,7 +221,7 @@ _ZN4slay6engine6window5CloseEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2237:
+.LFE2239:
 	.size	_ZN4slay6engine6window5CloseEv, .-_ZN4slay6engine6window5CloseEv
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

@@ -40,12 +40,15 @@ namespace slay
                 public:
                     uint16 GetHeight();
                     uint16 GetWidth();
+                    bool IsShown();
+                    bool HasFocus();
 
                 private:
                     SDL_Window* Window;
                     SDL_Renderer* Renderer;
                     uint16 Width;
                     uint16 Height;
+                    uint32 State;
                     window(engine* Engine);
                     uint8 Open(const char* Title, uint16 Width, uint16 Height);
                     uint8 Close();

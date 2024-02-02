@@ -1,3 +1,4 @@
+#include "Includes/SDL_video.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -18,6 +19,16 @@ namespace slay
     uint16 engine::window::GetWidth()
     {
         return this->Width;
+    }
+
+    bool engine::window::IsShown()
+    {
+        return ((this->State & SDL_WINDOW_SHOWN) == SDL_WINDOW_SHOWN);
+    }
+
+    bool engine::window::HasFocus()
+    {
+        return ((this->State & SDL_WINDOW_INPUT_FOCUS & SDL_WINDOW_MOUSE_FOCUS) == (SDL_WINDOW_INPUT_FOCUS & SDL_WINDOW_MOUSE_FOCUS));
     }
 
     uint8 engine::window::Open(const char* Title, uint16 Width, uint16 Height)

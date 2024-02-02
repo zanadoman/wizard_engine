@@ -571,7 +571,10 @@ _ZN4slay6engine6UpdateEv:
 	call	_ZN4slay6engine4keys6UpdateEv@PLT
 	leaq	472(%rbp), %rdi
 	call	_ZN4slay6engine5mouse6UpdateEv@PLT
+	movq	8(%rbp), %rdi
+	call	SDL_GetWindowFlags@PLT
 	leaq	632(%rbp), %rdi
+	movl	%eax, 28(%rbp)
 	call	_ZN4slay6engine6timing6UpdateEv@PLT
 	movq	%rbp, %rdi
 	call	_ZN4slay6engine15UpdateFlipbooksEv
