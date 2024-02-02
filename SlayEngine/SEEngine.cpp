@@ -113,7 +113,7 @@ namespace slay
 
                 if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength <= this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current)
                 {
-                    this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Loop ? this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current -= this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength % (this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current + 1) : this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength - 1;
+                    this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Loop ? this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength : this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength - 1;
                 }
             }
         }
