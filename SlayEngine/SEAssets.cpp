@@ -791,8 +791,6 @@ namespace slay
             }
         }
 
-        this->Engine->Mouse.Cursor = 0;
-
         for (i = 1; i < this->Cursors.Length(); i++)
         {
             for (j = 0; j < Keep.size(); j++)
@@ -805,6 +803,11 @@ namespace slay
 
             if (j == Keep.size())
             {
+                if (this->Engine->Mouse.Cursor == i)
+                {
+                    this->Engine->Mouse.Cursor = 0;
+                }
+
                 SDL_FreeCursor(this->Cursors[i]);
                 this->Cursors[i] = NULL;
             }
@@ -843,8 +846,6 @@ namespace slay
             }
         }
 
-        this->Engine->Mouse.Cursor = 0;
-
         for (i = 1; i < this->Cursors.Length(); i++)
         {
             for (j = 0; j < Keep->Length(); j++)
@@ -857,6 +858,11 @@ namespace slay
 
             if (j == Keep->Length())
             {
+                if (this->Engine->Mouse.Cursor == i)
+                {
+                    this->Engine->Mouse.Cursor = 0;
+                }
+
                 SDL_FreeCursor(this->Cursors[i]);
                 this->Cursors[i] = NULL;
             }

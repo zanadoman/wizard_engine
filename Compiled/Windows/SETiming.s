@@ -2,10 +2,10 @@
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6timingC2ERS0_
-	.def	_ZN4slay6engine6timingC2ERS0_;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine6timingC2ERS0_
-_ZN4slay6engine6timingC2ERS0_:
+	.globl	_ZN4slay6engine6timingC2EPS0_
+	.def	_ZN4slay6engine6timingC2EPS0_;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine6timingC2EPS0_
+_ZN4slay6engine6timingC2EPS0_:
 .LFB8433:
 	.seh_endprologue
 	pxor	%xmm0, %xmm0
@@ -17,9 +17,9 @@ _ZN4slay6engine6timingC2ERS0_:
 	movups	%xmm0, 12(%rcx)
 	ret
 	.seh_endproc
-	.globl	_ZN4slay6engine6timingC1ERS0_
-	.def	_ZN4slay6engine6timingC1ERS0_;	.scl	2;	.type	32;	.endef
-	.set	_ZN4slay6engine6timingC1ERS0_,_ZN4slay6engine6timingC2ERS0_
+	.globl	_ZN4slay6engine6timingC1EPS0_
+	.def	_ZN4slay6engine6timingC1EPS0_;	.scl	2;	.type	32;	.endef
+	.set	_ZN4slay6engine6timingC1EPS0_,_ZN4slay6engine6timingC2EPS0_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6timing11GetPrevTickEv

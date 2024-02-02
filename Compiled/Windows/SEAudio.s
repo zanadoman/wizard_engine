@@ -7,7 +7,7 @@
 	.def	_Z6printfPKcz;	.scl	2;	.type	32;	.endef
 	.seh_proc	_Z6printfPKcz
 _Z6printfPKcz:
-.LFB19:
+.LFB11:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -35,10 +35,10 @@ _Z6printfPKcz:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine5audioC2ERS0_
-	.def	_ZN4slay6engine5audioC2ERS0_;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine5audioC2ERS0_
-_ZN4slay6engine5audioC2ERS0_:
+	.globl	_ZN4slay6engine5audioC2EPS0_
+	.def	_ZN4slay6engine5audioC2EPS0_;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audioC2EPS0_
+_ZN4slay6engine5audioC2EPS0_:
 .LFB8433:
 	.seh_endprologue
 	movq	.LC0(%rip), %rax
@@ -46,9 +46,9 @@ _ZN4slay6engine5audioC2ERS0_:
 	movq	%rax, 8(%rcx)
 	ret
 	.seh_endproc
-	.globl	_ZN4slay6engine5audioC1ERS0_
-	.def	_ZN4slay6engine5audioC1ERS0_;	.scl	2;	.type	32;	.endef
-	.set	_ZN4slay6engine5audioC1ERS0_,_ZN4slay6engine5audioC2ERS0_
+	.globl	_ZN4slay6engine5audioC1EPS0_
+	.def	_ZN4slay6engine5audioC1EPS0_;	.scl	2;	.type	32;	.endef
+	.set	_ZN4slay6engine5audioC1EPS0_,_ZN4slay6engine5audioC2EPS0_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine5audio15GetGlobalVolumeEv
@@ -98,7 +98,7 @@ _ZN4slay6engine5audio15SetGlobalVolumeEd:
 	.ascii "slay::engine.audio.Play(): Volume must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf\12\0"
 	.align 8
 .LC4:
-	.ascii "slay::engine.audio.Play(): WAV does not exists\12Params: ID: %lld, Channel: %d, Volume: %lf\12\0"
+	.ascii "slay::engine.audio.Play(): WAV does not exist\12Params: ID: %lld, Channel: %d, Volume: %lf\12\0"
 	.align 8
 .LC6:
 	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"
@@ -207,7 +207,7 @@ _ZN4slay6engine5audio4PlayEytd:
 	.ascii "slay::engine.audio.Play(): Volume must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
 	.align 8
 .LC9:
-	.ascii "slay::engine.audio.Play(): WAV does not exists\12Params: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
+	.ascii "slay::engine.audio.Play(): WAV does not exist\12Params: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
 	.align 8
 .LC10:
 	.ascii "slay::engine.audio.Play(): Mix_PlayChannel() failed\12Params: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
@@ -328,7 +328,7 @@ _ZN4slay6engine5audio4PlayEytdt:
 	.ascii "slay::engine.audio.Play(): Right must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC14:
-	.ascii "slay::engine.audio.Play(): WAV does not exists\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "slay::engine.audio.Play(): WAV does not exist\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC15:
 	.ascii "slay::engine.audio.Play(): Mix_PlayChannel() failed\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
@@ -511,7 +511,7 @@ _ZN4slay6engine5audio4PlayEytddd:
 	.ascii "slay::engine.audio.Play(): Right must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC21:
-	.ascii "slay::engine.audio.Play(): WAV does not exists\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "slay::engine.audio.Play(): WAV does not exist\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC22:
 	.ascii "slay::engine.audio.Play(): Mix_PlayChannel() failed\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
@@ -698,32 +698,33 @@ _ZN4slay6engine5audio4PlayEytdddt:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine5audio5PauseEt
-	.def	_ZN4slay6engine5audio5PauseEt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine5audio5PauseEt
-_ZN4slay6engine5audio5PauseEt:
+	.globl	_ZN4slay6engine5audio8IsPausedEt
+	.def	_ZN4slay6engine5audio8IsPausedEt;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audio8IsPausedEt
+_ZN4slay6engine5audio8IsPausedEt:
 .LFB8441:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	movzwl	%dx, %ecx
-	call	Mix_Pause
-	xorl	%eax, %eax
+	call	Mix_Paused
+	cmpl	$1, %eax
+	sete	%al
 	addq	$40, %rsp
 	ret
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine5audio8PauseAllEv
-	.def	_ZN4slay6engine5audio8PauseAllEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine5audio8PauseAllEv
-_ZN4slay6engine5audio8PauseAllEv:
+	.globl	_ZN4slay6engine5audio5PauseEt
+	.def	_ZN4slay6engine5audio5PauseEt;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audio5PauseEt
+_ZN4slay6engine5audio5PauseEt:
 .LFB8442:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	movl	$1, %ecx
-	call	Mix_PauseAudio
+	movzwl	%dx, %ecx
+	call	Mix_Pause
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	ret
@@ -746,15 +747,15 @@ _ZN4slay6engine5audio6ResumeEt:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine5audio9ResumeAllEv
-	.def	_ZN4slay6engine5audio9ResumeAllEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine5audio9ResumeAllEv
-_ZN4slay6engine5audio9ResumeAllEv:
+	.globl	_ZN4slay6engine5audio8PauseAllEv
+	.def	_ZN4slay6engine5audio8PauseAllEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audio8PauseAllEv
+_ZN4slay6engine5audio8PauseAllEv:
 .LFB8444:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	xorl	%ecx, %ecx
+	movl	$1, %ecx
 	call	Mix_PauseAudio
 	xorl	%eax, %eax
 	addq	$40, %rsp
@@ -762,18 +763,17 @@ _ZN4slay6engine5audio9ResumeAllEv:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine5audio8IsPausedEt
-	.def	_ZN4slay6engine5audio8IsPausedEt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine5audio8IsPausedEt
-_ZN4slay6engine5audio8IsPausedEt:
+	.globl	_ZN4slay6engine5audio9ResumeAllEv
+	.def	_ZN4slay6engine5audio9ResumeAllEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5audio9ResumeAllEv
+_ZN4slay6engine5audio9ResumeAllEv:
 .LFB8445:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	movzwl	%dx, %ecx
-	call	Mix_Paused
-	cmpl	$1, %eax
-	sete	%al
+	xorl	%ecx, %ecx
+	call	Mix_PauseAudio
+	xorl	%eax, %eax
 	addq	$40, %rsp
 	ret
 	.seh_endproc
@@ -812,8 +812,8 @@ _ZN4slay6engine5audio4StopEt:
 	.def	Mix_VolumeChunk;	.scl	2;	.type	32;	.endef
 	.def	Mix_PlayChannel;	.scl	2;	.type	32;	.endef
 	.def	Mix_SetPanning;	.scl	2;	.type	32;	.endef
-	.def	Mix_Pause;	.scl	2;	.type	32;	.endef
-	.def	Mix_PauseAudio;	.scl	2;	.type	32;	.endef
-	.def	Mix_Resume;	.scl	2;	.type	32;	.endef
 	.def	Mix_Paused;	.scl	2;	.type	32;	.endef
+	.def	Mix_Pause;	.scl	2;	.type	32;	.endef
+	.def	Mix_Resume;	.scl	2;	.type	32;	.endef
+	.def	Mix_PauseAudio;	.scl	2;	.type	32;	.endef
 	.def	Mix_HaltChannel;	.scl	2;	.type	32;	.endef

@@ -35,10 +35,10 @@ _Z6printfPKcz:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine5mouseC2ERS0_
-	.def	_ZN4slay6engine5mouseC2ERS0_;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine5mouseC2ERS0_
-_ZN4slay6engine5mouseC2ERS0_:
+	.globl	_ZN4slay6engine5mouseC2EPS0_
+	.def	_ZN4slay6engine5mouseC2EPS0_;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5mouseC2EPS0_
+_ZN4slay6engine5mouseC2EPS0_:
 .LFB8433:
 	.seh_endprologue
 	movq	.LC0(%rip), %rax
@@ -51,9 +51,9 @@ _ZN4slay6engine5mouseC2ERS0_:
 	movups	%xmm0, 24(%rcx)
 	ret
 	.seh_endproc
-	.globl	_ZN4slay6engine5mouseC1ERS0_
-	.def	_ZN4slay6engine5mouseC1ERS0_;	.scl	2;	.type	32;	.endef
-	.set	_ZN4slay6engine5mouseC1ERS0_,_ZN4slay6engine5mouseC2ERS0_
+	.globl	_ZN4slay6engine5mouseC1EPS0_
+	.def	_ZN4slay6engine5mouseC1EPS0_;	.scl	2;	.type	32;	.endef
+	.set	_ZN4slay6engine5mouseC1EPS0_,_ZN4slay6engine5mouseC2EPS0_
 	.section .rdata,"dr"
 	.align 8
 .LC3:
@@ -174,22 +174,11 @@ _ZN4slay6engine5mouse10IsAbsoluteEv:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine5mouse10IsRelativeEv
-	.def	_ZN4slay6engine5mouse10IsRelativeEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine5mouse10IsRelativeEv
-_ZN4slay6engine5mouse10IsRelativeEv:
-.LFB8440:
-	.seh_endprologue
-	movzbl	40(%rcx), %eax
-	ret
-	.seh_endproc
-	.align 2
-	.p2align 4
 	.globl	_ZN4slay6engine5mouse11SetAbsoluteEv
 	.def	_ZN4slay6engine5mouse11SetAbsoluteEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4slay6engine5mouse11SetAbsoluteEv
 _ZN4slay6engine5mouse11SetAbsoluteEv:
-.LFB8441:
+.LFB8440:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -202,6 +191,17 @@ _ZN4slay6engine5mouse11SetAbsoluteEv:
 	movb	$0, 40(%rbx)
 	addq	$32, %rsp
 	popq	%rbx
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine5mouse10IsRelativeEv
+	.def	_ZN4slay6engine5mouse10IsRelativeEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine5mouse10IsRelativeEv
+_ZN4slay6engine5mouse10IsRelativeEv:
+.LFB8441:
+	.seh_endprologue
+	movzbl	40(%rcx), %eax
 	ret
 	.seh_endproc
 	.align 2
@@ -242,7 +242,7 @@ _ZN4slay6engine5mouse9GetCursorEv:
 	.ascii "slay::engine.mouse.SetCursor(): Illegal use of NULL cursor\12Params: ID: %lld\12\0"
 	.align 8
 .LC6:
-	.ascii "slay::engine.mouse.SetCursor(): Cursor does not exists\12Params: ID: %lld\12\0"
+	.ascii "slay::engine.mouse.SetCursor(): Cursor does not exist\12Params: ID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4

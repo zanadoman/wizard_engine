@@ -562,10 +562,10 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0:
 .LHOTB4:
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6assetsC2ERS0_
-	.def	_ZN4slay6engine6assetsC2ERS0_;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine6assetsC2ERS0_
-_ZN4slay6engine6assetsC2ERS0_:
+	.globl	_ZN4slay6engine6assetsC2EPS0_
+	.def	_ZN4slay6engine6assetsC2EPS0_;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine6assetsC2EPS0_
+_ZN4slay6engine6assetsC2EPS0_:
 .LFB8433:
 	pushq	%rsi
 	.seh_pushreg	%rsi
@@ -723,13 +723,13 @@ _ZN4slay6engine6assetsC2ERS0_:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
-	.def	_ZN4slay6engine6assetsC2ERS0_.cold;	.scl	3;	.type	32;	.endef
-	.seh_proc	_ZN4slay6engine6assetsC2ERS0_.cold
+	.def	_ZN4slay6engine6assetsC2EPS0_.cold;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN4slay6engine6assetsC2EPS0_.cold
 	.seh_stackalloc	88
 	.seh_savereg	%rbx, 72
 	.seh_savereg	%rsi, 80
 	.seh_endprologue
-_ZN4slay6engine6assetsC2ERS0_.cold:
+_ZN4slay6engine6assetsC2EPS0_.cold:
 .L117:
 	movq	48(%rbx), %rcx
 	call	free
@@ -764,9 +764,9 @@ _ZN4slay6engine6assetsC2ERS0_.cold:
 .LCOLDE4:
 	.text
 .LHOTE4:
-	.globl	_ZN4slay6engine6assetsC1ERS0_
-	.def	_ZN4slay6engine6assetsC1ERS0_;	.scl	2;	.type	32;	.endef
-	.set	_ZN4slay6engine6assetsC1ERS0_,_ZN4slay6engine6assetsC2ERS0_
+	.globl	_ZN4slay6engine6assetsC1EPS0_
+	.def	_ZN4slay6engine6assetsC1EPS0_;	.scl	2;	.type	32;	.endef
+	.set	_ZN4slay6engine6assetsC1EPS0_,_ZN4slay6engine6assetsC2EPS0_
 	.section .rdata,"dr"
 	.align 8
 .LC5:
@@ -930,7 +930,7 @@ _ZN4slay6engine6assets11LoadTextureEPKc:
 	.ascii "slay::engine.assets.UnloadTexture(): Illegal deletion of NULL Texture\12Params: ID: %lld\12\0"
 	.align 8
 .LC11:
-	.ascii "slay::engine.assets.UnloadTexture(): Texture does not exists\12Params: ID: %lld\12\0"
+	.ascii "slay::engine.assets.UnloadTexture(): Texture does not exist\12Params: ID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -998,9 +998,9 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L164
-	cmpq	%rbx, 64(%rdx)
+	cmpq	%rbx, 72(%rdx)
 	jne	.L164
-	movq	$0, 64(%rdx)
+	movq	$0, 72(%rdx)
 	movq	536(%rsi), %r8
 	jmp	.L164
 	.p2align 4,,10
@@ -1047,9 +1047,9 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 	cmpq	%rcx, %r9
 	jnb	.L198
 .L171:
-	cmpq	88(%rdx), %rax
+	cmpq	96(%rdx), %rax
 	jnb	.L169
-	movq	96(%rdx), %rcx
+	movq	104(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
 	jne	.L172
@@ -1125,7 +1125,7 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 	.section .rdata,"dr"
 	.align 8
 .LC12:
-	.ascii "slay::engine.assets.PurgeTextures(): Texture does not exists\12Params: Keep(length): %ld\12\0"
+	.ascii "slay::engine.assets.PurgeTextures(): Texture does not exist\12Params: Keep(length): %ld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -1243,9 +1243,9 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L215
-	cmpq	%rbx, 64(%rdx)
+	cmpq	%rbx, 72(%rdx)
 	jne	.L215
-	movq	$0, 64(%rdx)
+	movq	$0, 72(%rdx)
 	movq	536(%r12), %r8
 	jmp	.L215
 	.p2align 4,,10
@@ -1301,9 +1301,9 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	cmpq	%rcx, %r9
 	jnb	.L271
 .L222:
-	cmpq	88(%rdx), %rax
+	cmpq	96(%rdx), %rax
 	jnb	.L220
-	movq	96(%rdx), %rcx
+	movq	104(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
 	jne	.L223
@@ -1395,7 +1395,7 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC13:
-	.ascii "slay::engine.assets.PurgeTextures(): Texture does not exists\12Params: Keep: %p\12\0"
+	.ascii "slay::engine.assets.PurgeTextures(): Texture does not exist\12Params: Keep: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -1503,9 +1503,9 @@ _ZN4slay6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L288
-	cmpq	%rbx, 64(%rdx)
+	cmpq	%rbx, 72(%rdx)
 	jne	.L288
-	movq	$0, 64(%rdx)
+	movq	$0, 72(%rdx)
 	movq	536(%rbp), %r8
 	jmp	.L288
 	.p2align 4,,10
@@ -1574,9 +1574,9 @@ _ZN4slay6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	cmpq	%rcx, %r9
 	jnb	.L345
 .L295:
-	cmpq	88(%rdx), %rax
+	cmpq	96(%rdx), %rax
 	jnb	.L293
-	movq	96(%rdx), %rcx
+	movq	104(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
 	jne	.L296
@@ -1787,7 +1787,7 @@ _ZN4slay6engine6assets9LoadSoundEPKc:
 	.ascii "slay::engine.assets.UnloadSound(): Illegal deletion of NULL Sound\12Params: ID: %lld\12\0"
 	.align 8
 .LC17:
-	.ascii "slay::engine.assets.UnloadSound(): Sound does not exists\12Params: ID: %lld\12\0"
+	.ascii "slay::engine.assets.UnloadSound(): Sound does not exist\12Params: ID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -1885,7 +1885,7 @@ _ZN4slay6engine6assets11UnloadSoundEy:
 	.section .rdata,"dr"
 	.align 8
 .LC18:
-	.ascii "slay::assets.PurgeSounds(): Sound does not exists\12Params: Keep(length): %ld\12\0"
+	.ascii "slay::assets.PurgeSounds(): Sound does not exist\12Params: Keep(length): %ld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2044,7 +2044,7 @@ _ZN4slay6engine6assets11PurgeSoundsESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC19:
-	.ascii "slay::assets.PurgeSounds(): Sound does not exists\12Params: Keep: %p\12\0"
+	.ascii "slay::assets.PurgeSounds(): Sound does not exist\12Params: Keep: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2327,7 +2327,7 @@ _ZN4slay6engine6assets8LoadFontEPKch:
 	.ascii "slay::engine.assets.UnloadFont(): Illegal deletion of NULL Font\12Params: ID: %lld\12\0"
 	.align 8
 .LC23:
-	.ascii "slay::engine.assets.UnloadFont(): Font does not exists\12Params: ID: %lld\12\0"
+	.ascii "slay::engine.assets.UnloadFont(): Font does not exist\12Params: ID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2393,9 +2393,9 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L515
-	cmpq	%rbx, 88(%rdx)
+	cmpq	%rbx, 96(%rdx)
 	jne	.L515
-	movq	$0, 88(%rdx)
+	movq	$0, 96(%rdx)
 	jmp	.L515
 	.p2align 4,,10
 	.p2align 3
@@ -2461,7 +2461,7 @@ _ZN4slay6engine6assets10UnloadFontEy:
 	.section .rdata,"dr"
 	.align 8
 .LC24:
-	.ascii "slay::engine.assets.PurgeFonts(): Font does not exists\12Params: Keep(length): %ld\12\0"
+	.ascii "slay::engine.assets.PurgeFonts(): Font does not exist\12Params: Keep(length): %ld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2575,9 +2575,9 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L548
-	cmpq	%rbx, 88(%rdx)
+	cmpq	%rbx, 96(%rdx)
 	jne	.L548
-	movq	$0, 88(%rdx)
+	movq	$0, 96(%rdx)
 	jmp	.L548
 	.p2align 4,,10
 	.p2align 3
@@ -2672,7 +2672,7 @@ _ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC25:
-	.ascii "slay::engine.assets.PurgeFonts(): Font does not exists\12Params: Keep: %p\12\0"
+	.ascii "slay::engine.assets.PurgeFonts(): Font does not exist\12Params: Keep: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2778,9 +2778,9 @@ _ZN4slay6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L606
-	cmpq	%rbx, 88(%rdx)
+	cmpq	%rbx, 96(%rdx)
 	jne	.L606
-	movq	$0, 88(%rdx)
+	movq	$0, 96(%rdx)
 	jmp	.L606
 	.p2align 4,,10
 	.p2align 3
@@ -3068,7 +3068,7 @@ _ZN4slay6engine6assets10LoadCursorEPKctt:
 	.ascii "slay::engine.assets.UnloadCursor(): Illegal deletion of NULL cursor\12Params: ID: %lld\12\0"
 	.align 8
 .LC32:
-	.ascii "slay::engine.assets.UnloadCursor(): Cursor does not exists\12Params: ID: %lld\12\0"
+	.ascii "slay::engine.assets.UnloadCursor(): Cursor does not exist\12Params: ID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -3168,7 +3168,7 @@ _ZN4slay6engine6assets12UnloadCursorEy:
 	.section .rdata,"dr"
 	.align 8
 .LC33:
-	.ascii "slay::engine.assets.PurgeCursors(): Cursor does not exists\12Params: Keep(length): %ld\12\0"
+	.ascii "slay::engine.assets.PurgeCursors(): Cursor does not exist\12Params: Keep(length): %ld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -3188,10 +3188,11 @@ _ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	movq	8(%rdx), %rbx
+	movq	8(%rdx), %rsi
 	movq	(%rdx), %rdi
 	movq	%rcx, %rbp
-	testq	%rbx, %rbx
+	movq	56(%rcx), %rcx
+	testq	%rsi, %rsi
 	je	.L693
 	xorl	%eax, %eax
 	.p2align 4,,10
@@ -3200,53 +3201,46 @@ _ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	movq	(%rdi,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L694
-	cmpq	56(%rbp), %rdx
+	cmpq	%rcx, %rdx
 	jnb	.L695
-	movq	64(%rbp), %rcx
-	cmpq	$0, (%rcx,%rdx,8)
+	movq	64(%rbp), %r8
+	cmpq	$0, (%r8,%rdx,8)
 	je	.L695
 .L694:
 	addq	$1, %rax
-	cmpq	%rax, %rbx
+	cmpq	%rax, %rsi
 	jne	.L696
 .L693:
-	movq	0(%rbp), %rax
-	movq	$0, 520(%rax)
-	movq	56(%rbp), %rax
-	cmpq	$1, %rax
+	cmpq	$1, %rcx
 	jbe	.L697
-	movq	64(%rbp), %rcx
-	movl	$1, %esi
-.L698:
-	testq	%rbx, %rbx
-	je	.L701
-.L702:
-	xorl	%eax, %eax
-	jmp	.L700
+	movq	64(%rbp), %rdx
+	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L735:
+.L698:
+	xorl	%eax, %eax
+	testq	%rsi, %rsi
+	jne	.L700
+	jmp	.L701
+	.p2align 4,,10
+	.p2align 3
+.L728:
 	addq	$1, %rax
-	cmpq	%rax, %rbx
+	cmpq	%rax, %rsi
 	je	.L701
 .L700:
-	cmpq	(%rdi,%rax,8), %rsi
-	jne	.L735
-	cmpq	%rax, %rbx
-	je	.L701
-	movq	56(%rbp), %rax
-	addq	$1, %rsi
+	cmpq	%rbx, (%rdi,%rax,8)
+	jne	.L728
 	cmpq	%rax, %rsi
-	jb	.L702
-.L703:
-	movq	%rax, %r8
-	addq	$-1, %r8
-	jnc	.L714
-	cmpq	$0, (%rcx,%r8,8)
-	jne	.L721
-	cmpq	$1, %rax
-	jne	.L736
-.L721:
+	je	.L701
+.L702:
+	addq	$1, %rbx
+	cmpq	%rcx, %rbx
+	jb	.L698
+	cmpq	$0, -8(%rdx,%rcx,8)
+	leaq	-1(%rcx), %r8
+	je	.L729
+.L726:
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	popq	%rbx
@@ -3257,32 +3251,40 @@ _ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	.p2align 4,,10
 	.p2align 3
 .L701:
-	movq	(%rcx,%rsi,8), %rcx
+	movq	0(%rbp), %rax
+	cmpq	%rbx, 520(%rax)
+	jne	.L703
+	movq	$0, 520(%rax)
+	movq	56(%rbp), %rcx
+.L703:
+	cmpq	%rcx, %rbx
+	jnb	.L727
+	movq	(%rdx,%rbx,8), %rcx
 	call	SDL_FreeCursor
-	movq	56(%rbp), %rax
-	movq	64(%rbp), %rcx
-	cmpq	%rax, %rsi
-	jnb	.L737
-	movq	$0, (%rcx,%rsi,8)
-	addq	$1, %rsi
-	cmpq	%rax, %rsi
-	jb	.L698
-	jmp	.L703
-.L736:
-	movq	%rax, %rdx
+	movq	56(%rbp), %rcx
+	movq	64(%rbp), %rdx
+	cmpq	%rcx, %rbx
+	jnb	.L727
+	movq	$0, (%rdx,%rbx,8)
+	jmp	.L702
+.L729:
+	movq	%rcx, %r9
+	jmp	.L707
 	.p2align 4,,10
 	.p2align 3
-.L708:
-	movq	%rdx, %r9
-	subq	$1, %rdx
-	cmpq	%rax, %rdx
-	jnb	.L738
-	cmpq	$0, (%rcx,%rdx,8)
-	jne	.L739
-	cmpq	$1, %rdx
-	jne	.L708
-.L713:
+.L712:
+	leaq	-1(%r9), %rax
+	cmpq	%rcx, %rax
+	jnb	.L730
+	cmpq	$0, (%rdx,%rax,8)
+	jne	.L731
+	movq	%rax, %r9
+.L707:
+	cmpq	$1, %r9
+	jne	.L712
+.L711:
 	leaq	56(%rbp), %rcx
+	movq	%r9, %rdx
 	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$40, %rsp
@@ -3292,9 +3294,8 @@ _ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	popq	%rbp
 	ret
 .L697:
-	testq	%rax, %rax
-	jne	.L721
-.L714:
+	testq	%rcx, %rcx
+	jne	.L726
 	leaq	.LC7(%rip), %rcx
 	orq	$-1, %rdx
 	call	_Z6printfPKcz
@@ -3302,25 +3303,25 @@ _ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L739:
-	subq	%r9, %rax
-	movq	%r9, %rdx
-	movq	%rax, %r8
-	jmp	.L713
+.L731:
+	subq	%r9, %rcx
+	movq	%rcx, %r8
+	jmp	.L711
 .L695:
 	leaq	.LC33(%rip), %rcx
-	movq	%rbx, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L738:
-	leaq	.LC7(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L737:
-	leaq	.LC7(%rip), %rcx
 	movq	%rsi, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L730:
+	leaq	.LC7(%rip), %rcx
+	movq	%rax, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L727:
+	leaq	.LC7(%rip), %rcx
+	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -3329,7 +3330,7 @@ _ZN4slay6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC34:
-	.ascii "slay::engine.assets.PurgeCursors(): Cursor does not exists\12Params: Keep: %p\12\0"
+	.ascii "slay::engine.assets.PurgeCursors(): Cursor does not exist\12Params: Keep: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -3347,98 +3348,105 @@ _ZN4slay6engine6assets12PurgeCursorsEPN3neo5arrayIyEE:
 	subq	$32, %rsp
 	.seh_stackalloc	32
 	.seh_endprologue
-	movq	(%rdx), %r8
 	movq	%rcx, %rsi
+	movq	(%rdx), %rcx
 	movq	%rdx, %rdi
-	testq	%r8, %r8
-	je	.L741
-	movq	56(%rcx), %r10
-	movq	8(%rdx), %r9
+	movq	56(%rsi), %r10
+	testq	%rcx, %rcx
+	je	.L733
+	movq	8(%rdx), %r11
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L744:
-	movq	(%r9,%rax,8), %rdx
-	cmpq	%r10, %rdx
-	jnb	.L742
-	movq	64(%rsi), %rcx
-	cmpq	$0, (%rcx,%rdx,8)
-	je	.L742
-	addq	$1, %rax
-	cmpq	%r8, %rax
-	jne	.L744
-.L741:
-	movq	(%rsi), %rax
-	movq	$0, 520(%rax)
-	movq	56(%rsi), %rax
-	cmpq	$1, %rax
-	jbe	.L745
+.L736:
+	movq	(%r11,%rax,8), %r8
+	cmpq	%r10, %r8
+	jnb	.L734
 	movq	64(%rsi), %r9
-	movl	$1, %ebx
-	.p2align 4,,10
-	.p2align 3
-.L746:
-	movq	(%rdi), %rdx
-	testq	%rdx, %rdx
-	je	.L749
-	movq	8(%rdi), %rcx
-	xorl	%eax, %eax
-	jmp	.L748
-	.p2align 4,,10
-	.p2align 3
-.L779:
-	addq	$1, %rax
-	cmpq	%rax, %rdx
-	je	.L749
-.L748:
-	cmpq	%rbx, (%rcx,%rax,8)
-	jne	.L779
-	cmpq	%rax, %rdx
-	je	.L749
-	movq	56(%rsi), %rax
-.L750:
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jb	.L746
-	movq	%rax, %r8
-	addq	$-1, %r8
-	jnc	.L763
 	cmpq	$0, (%r9,%r8,8)
-	jne	.L769
-	cmpq	$1, %rax
-	jne	.L780
-.L769:
+	je	.L734
+	addq	$1, %rax
+	cmpq	%rax, %rcx
+	jne	.L736
+	cmpq	$1, %r10
+	je	.L762
+.L756:
+	movl	$1, %ebx
+	testq	%rcx, %rcx
+	je	.L742
+	.p2align 4,,10
+	.p2align 3
+.L748:
+	movq	8(%rdi), %r8
+	xorl	%eax, %eax
+	jmp	.L741
+	.p2align 4,,10
+	.p2align 3
+.L764:
+	addq	$1, %rax
+	cmpq	%rcx, %rax
+	je	.L742
+.L741:
+	cmpq	%rbx, (%r8,%rax,8)
+	jne	.L764
+	cmpq	%rcx, %rax
+	je	.L742
+	addq	$1, %rbx
+	cmpq	%r10, %rbx
+	jnb	.L747
+.L765:
+	movq	(%rdi), %rcx
+	testq	%rcx, %rcx
+	jne	.L748
+	.p2align 4,,10
+	.p2align 3
+.L742:
+	movq	(%rsi), %rax
+	cmpq	%rbx, 520(%rax)
+	jne	.L744
+	movq	$0, 520(%rax)
+	movq	56(%rsi), %r10
+.L744:
+	cmpq	%r10, %rbx
+	jnb	.L763
+	movq	(%r9,%rbx,8), %rcx
+	call	SDL_FreeCursor
+	movq	56(%rsi), %r10
+	movq	64(%rsi), %r9
+	cmpq	%r10, %rbx
+	jnb	.L763
+	movq	$0, (%r9,%rbx,8)
+	addq	$1, %rbx
+	cmpq	%r10, %rbx
+	jb	.L765
+.L747:
+	cmpq	$0, -8(%r9,%r10,8)
+	leaq	-1(%r10), %r8
+	je	.L766
+.L762:
 	xorl	%eax, %eax
 	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	ret
+.L766:
+	movq	%r10, %rax
+	jmp	.L749
 	.p2align 4,,10
 	.p2align 3
-.L749:
-	movq	(%r9,%rbx,8), %rcx
-	call	SDL_FreeCursor
-	movq	56(%rsi), %rax
-	movq	64(%rsi), %r9
-	cmpq	%rax, %rbx
-	jnb	.L781
-	movq	$0, (%r9,%rbx,8)
-	jmp	.L750
-.L780:
-	movq	%rax, %rdx
-	.p2align 4,,10
-	.p2align 3
-.L757:
-	movq	%rdx, %rcx
-	subq	$1, %rdx
-	cmpq	%rax, %rdx
-	jnb	.L782
+.L754:
+	leaq	-1(%rax), %rdx
+	cmpq	%r10, %rdx
+	jnb	.L767
 	cmpq	$0, (%r9,%rdx,8)
-	jne	.L783
-	cmpq	$1, %rdx
-	jne	.L757
-.L762:
+	jne	.L768
+	movq	%rdx, %rax
+.L749:
+	cmpq	$1, %rax
+	jne	.L754
+.L753:
+	movq	%rax, %rdx
 	leaq	56(%rsi), %rcx
 	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0
 	xorl	%eax, %eax
@@ -3447,34 +3455,35 @@ _ZN4slay6engine6assets12PurgeCursorsEPN3neo5arrayIyEE:
 	popq	%rsi
 	popq	%rdi
 	ret
-.L745:
-	testq	%rax, %rax
-	jne	.L769
-.L763:
-	leaq	.LC7(%rip), %rcx
-	orq	$-1, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	.p2align 4,,10
-	.p2align 3
-.L783:
-	subq	%rcx, %rax
-	movq	%rcx, %rdx
-	movq	%rax, %r8
-	jmp	.L762
-.L742:
+.L768:
+	subq	%rax, %r10
+	movq	%r10, %r8
+	jmp	.L753
+.L733:
+	cmpq	$1, %r10
+	jbe	.L738
+	movq	64(%rsi), %r9
+	jmp	.L756
+.L734:
 	leaq	.LC34(%rip), %rcx
 	movq	%rdi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L782:
+.L738:
+	testq	%r10, %r10
+	jne	.L762
+	leaq	.LC7(%rip), %rcx
+	orq	$-1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L767:
 	leaq	.LC7(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L781:
+.L763:
 	leaq	.LC7(%rip), %rcx
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
