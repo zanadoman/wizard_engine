@@ -208,37 +208,37 @@ namespace slay
         this->OffsetAngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
-        this->OffsetX = 0;
-        this->OffsetY = 0;
+        this->X = this->Actor->X;
+        this->Y = this->Actor->Y;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->TextureID = TextureID;
     }
 
-    sint32 engine::actors::actor::textures::texture::GetOffsetX()
+    double engine::actors::actor::textures::texture::GetX()
     {
-        return this->OffsetX;
+        return this->X;
     }
 
-    sint32 engine::actors::actor::textures::texture::SetOffsetX(sint32 OffsetX)
+    double engine::actors::actor::textures::texture::SetX(double X)
     {
-        this->OffsetLength = this->Engine->Vector.Length(0, 0, OffsetX, this->OffsetY);
-        this->OffsetAngle = this->Engine->Vector.Angle(0, 0, OffsetX, this->OffsetY);
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, X, this->Y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, X, this->Y);
 
-        return this->OffsetX = OffsetX;
+        return this->X = X;
     }
 
-    sint32 engine::actors::actor::textures::texture::GetOffsetY()
+    double engine::actors::actor::textures::texture::GetY()
     {
-        return this->OffsetY;
+        return this->Y;
     }
 
-    sint32 engine::actors::actor::textures::texture::SetOffsetY(sint32 OffsetY)
+    double engine::actors::actor::textures::texture::GetY(double Y)
     {
-        this->OffsetLength = this->Engine->Vector.Length(0, 0, this->OffsetX, OffsetY);
-        this->OffsetAngle = this->Engine->Vector.Angle(0, 0, this->OffsetX, OffsetY);
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, this->X, Y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y);
 
-        return this->OffsetY = OffsetY;
+        return this->Y = Y;
     }
 
     uint64 engine::actors::actor::textures::texture::GetTextureID()

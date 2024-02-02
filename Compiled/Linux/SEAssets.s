@@ -1046,9 +1046,9 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L175
-	cmpq	%rbx, 64(%rdx)
+	cmpq	%rbx, 72(%rdx)
 	jne	.L175
-	movq	$0, 64(%rdx)
+	movq	$0, 72(%rdx)
 	movq	536(%r10), %rsi
 	jmp	.L175
 	.p2align 4,,10
@@ -1299,9 +1299,9 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L228
-	cmpq	%rbx, 64(%rdx)
+	cmpq	%rbx, 72(%rdx)
 	jne	.L228
-	movq	$0, 64(%rdx)
+	movq	$0, 72(%rdx)
 	movq	536(%r10), %rsi
 	jmp	.L228
 	.p2align 4,,10
@@ -1550,9 +1550,9 @@ _ZN4slay6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L302
-	cmpq	%rbx, 64(%rdx)
+	cmpq	%rbx, 72(%rdx)
 	jne	.L302
-	movq	$0, 64(%rdx)
+	movq	$0, 72(%rdx)
 	movq	536(%r10), %rsi
 	jmp	.L302
 	.p2align 4,,10

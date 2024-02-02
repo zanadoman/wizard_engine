@@ -44,6 +44,17 @@ namespace slay
 
     double engine::actors::actor::SetX(double X)
     {
+        for (uint64 i = 1; i < this->Textures.Textures.Length(); i++)
+        {
+            if (this->Textures.Textures[i] == NULL)
+            {
+                continue;
+            }
+
+            this->Textures.Textures[i]->X = Engine->Vector.TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+            this->Textures.Textures[i]->Y = Engine->Vector.TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+        }
+
         for (uint64 i = 1; i < this->Flipbooks.Flipbooks.Length(); i++)
         {
             if (this->Flipbooks.Flipbooks[i] == NULL)
@@ -76,6 +87,17 @@ namespace slay
 
     double engine::actors::actor::SetY(double Y)
     {
+        for (uint64 i = 1; i < this->Textures.Textures.Length(); i++)
+        {
+            if (this->Textures.Textures[i] == NULL)
+            {
+                continue;
+            }
+
+            this->Textures.Textures[i]->X = Engine->Vector.TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+            this->Textures.Textures[i]->Y = Engine->Vector.TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+        }
+
         for (uint64 i = 1; i < this->Flipbooks.Flipbooks.Length(); i++)
         {
             if (this->Flipbooks.Flipbooks[i] == NULL)
@@ -207,10 +229,11 @@ namespace slay
 
             if (this->Textures.Textures[i]->OffsetAngleLocked)
             {
-                cache = this->Textures.Textures[i]->OffsetAngle + Angle;
-                this->Textures.Textures[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Textures.Textures[i]->OffsetLength, cache));
-                this->Textures.Textures[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Textures.Textures[i]->OffsetLength, cache));
+                this->Textures.Textures[i]->OffsetAngle += change;
             }
+
+            this->Textures.Textures[i]->X = Engine->Vector.TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+            this->Textures.Textures[i]->Y = Engine->Vector.TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Flipbooks.Flipbooks.Length(); i++)
