@@ -1,5 +1,3 @@
-#include "Includes/SDL_image.h"
-#include "Includes/SDL_surface.h"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -10,16 +8,17 @@ namespace slay
         this->Renderer = NULL;
         this->Width = 0;
         this->Height = 0;
-    }
-
-    uint16 engine::window::GetHeight()
-    {
-        return this->Height;
+        this->State = 0;
     }
 
     uint16 engine::window::GetWidth()
     {
         return this->Width;
+    }
+
+    uint16 engine::window::GetHeight()
+    {
+        return this->Height;
     }
 
     bool engine::window::IsShown()

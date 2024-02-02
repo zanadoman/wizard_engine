@@ -33,8 +33,8 @@ namespace slay
                 engine* Engine;
 
                 public:
-                    uint16 GetHeight();
                     uint16 GetWidth();
+                    uint16 GetHeight();
                     bool IsShown();
                     bool HasFocus();
 

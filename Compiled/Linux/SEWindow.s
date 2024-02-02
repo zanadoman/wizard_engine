@@ -10,7 +10,7 @@ _ZN4slay6engine6windowC2EPS0_:
 	movq	%rsi, (%rdi)
 	movq	$0, 8(%rdi)
 	movq	$0, 16(%rdi)
-	movl	$0, 24(%rdi)
+	movq	$0, 24(%rdi)
 	ret
 	.cfi_endproc
 .LFE2232:
@@ -19,28 +19,28 @@ _ZN4slay6engine6windowC2EPS0_:
 	.set	_ZN4slay6engine6windowC1EPS0_,_ZN4slay6engine6windowC2EPS0_
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6window9GetHeightEv
-	.type	_ZN4slay6engine6window9GetHeightEv, @function
-_ZN4slay6engine6window9GetHeightEv:
-.LFB2234:
-	.cfi_startproc
-	movzwl	26(%rdi), %eax
-	ret
-	.cfi_endproc
-.LFE2234:
-	.size	_ZN4slay6engine6window9GetHeightEv, .-_ZN4slay6engine6window9GetHeightEv
-	.align 2
-	.p2align 4
 	.globl	_ZN4slay6engine6window8GetWidthEv
 	.type	_ZN4slay6engine6window8GetWidthEv, @function
 _ZN4slay6engine6window8GetWidthEv:
-.LFB2235:
+.LFB2234:
 	.cfi_startproc
 	movzwl	24(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE2235:
+.LFE2234:
 	.size	_ZN4slay6engine6window8GetWidthEv, .-_ZN4slay6engine6window8GetWidthEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6window9GetHeightEv
+	.type	_ZN4slay6engine6window9GetHeightEv, @function
+_ZN4slay6engine6window9GetHeightEv:
+.LFB2235:
+	.cfi_startproc
+	movzwl	26(%rdi), %eax
+	ret
+	.cfi_endproc
+.LFE2235:
+	.size	_ZN4slay6engine6window9GetHeightEv, .-_ZN4slay6engine6window9GetHeightEv
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6window7IsShownEv
