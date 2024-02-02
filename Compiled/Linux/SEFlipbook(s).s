@@ -340,16 +340,16 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movl	%esi, %r14d
 	cmpq	$1, %rcx
 	jbe	.L77
-	movq	%rdi, %r13
-	movq	%rdx, %r12
+	movq	%rdi, %r12
+	movq	%rdx, %r13
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
 .L44:
-	movq	(%r12,%rax,8), %rdx
+	movq	0(%r13,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L45
-	movq	0(%r13), %rcx
+	movq	(%r12), %rcx
 	cmpq	568(%rcx), %rdx
 	jnb	.L46
 	movq	576(%rcx), %rcx
@@ -359,17 +359,17 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	addq	$1, %rax
 	cmpq	%rax, %rbp
 	jne	.L44
-	movq	16(%r13), %rax
+	movq	16(%r12), %rax
 	cmpq	$1, %rax
 	jbe	.L47
-	movq	24(%r13), %rdx
+	movq	24(%r12), %rdx
 	movl	$1, %ebx
 	jmp	.L52
 	.p2align 4,,10
 	.p2align 3
 .L48:
 	addq	$1, %rbx
-	cmpq	%rbx, %rax
+	cmpq	%rax, %rbx
 	je	.L47
 .L52:
 	cmpq	$0, (%rdx,%rbx,8)
@@ -377,7 +377,8 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movl	$104, %edi
 .LEHB0:
 	call	_Znwm@PLT
-	movdqu	0(%r13), %xmm0
+.LEHE0:
+	movdqu	(%r12), %xmm0
 	pxor	%xmm1, %xmm1
 	movq	%rax, %r15
 	movhlps	%xmm0, %xmm3
@@ -407,13 +408,15 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movdqa	16(%rsp), %xmm0
 	testq	%rax, %rax
 	movq	%rax, 96(%r15)
-	movq	%rax, %rdi
+	movq	%rax, %rsi
 	je	.L78
 	movq	%r14, %rdx
-	movq	%r12, %rsi
-	call	memcpy@PLT
-	movq	24(%r13), %rax
-	cmpq	16(%r13), %rbx
+	movq	%r13, %rdi
+.LEHB1:
+	call	_ZN3neo9memCopyToEPKvPvy@PLT
+.LEHE1:
+	movq	24(%r12), %rax
+	cmpq	16(%r12), %rbx
 	jnb	.L79
 	movq	%r15, (%rax,%rbx,8)
 	jmp	.L42
@@ -421,8 +424,10 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	.p2align 3
 .L47:
 	movl	$104, %edi
+.LEHB2:
 	call	_Znwm@PLT
-	movdqu	0(%r13), %xmm0
+.LEHE2:
+	movdqu	(%r12), %xmm0
 	pxor	%xmm1, %xmm1
 	movq	%rax, %rbx
 	movhlps	%xmm0, %xmm2
@@ -450,28 +455,31 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movdqa	(%rsp), %xmm0
 	testq	%rax, %rax
 	movq	%rax, 96(%rbx)
-	movq	%rax, %rdi
+	movq	%rax, %rsi
 	je	.L80
 	movq	%r14, %rdx
-	movq	%r12, %rsi
-	call	memcpy@PLT
-	movq	16(%r13), %rax
-	movq	24(%r13), %rdi
+	movq	%r13, %rdi
+.LEHB3:
+	call	_ZN3neo9memCopyToEPKvPvy@PLT
+.LEHE3:
+	movq	16(%r12), %rax
+	movq	24(%r12), %rdi
 	movq	%rbx, 32(%rsp)
 	leaq	1(%rax), %rsi
-	movq	%rsi, 16(%r13)
+	movq	%rsi, 16(%r12)
 	salq	$3, %rsi
 	call	realloc@PLT
-	movq	%rax, 24(%r13)
+	movq	%rax, 24(%r12)
 	testq	%rax, %rax
 	je	.L81
-	movq	16(%r13), %rdx
+	movq	16(%r12), %rdx
 	leaq	32(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
+.LEHB4:
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-	movq	16(%r13), %rax
-	movq	24(%r13), %rdx
+	movq	16(%r12), %rax
+	movq	24(%r12), %rdx
 	addq	$-1, %rax
 	movq	%rax, %rbx
 	jnc	.L82
@@ -544,7 +552,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
-.LEHE0:
+.LEHE4:
 	movl	$1, %edi
 	call	exit@PLT
 .L80:
@@ -553,18 +561,18 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movq	%r15, %rdx
 	xorl	%eax, %eax
 	leaq	.LC7(%rip), %rdi
-.LEHB1:
+.LEHB5:
 	call	printf@PLT
-.LEHE1:
+.LEHE5:
 	jmp	.L73
 .L78:
 	movq	%xmm0, %rsi
 	movq	%rbp, %rcx
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
-.LEHB2:
+.LEHB6:
 	call	printf@PLT
-.LEHE2:
+.LEHE6:
 	jmp	.L73
 .L79:
 	movq	%rbx, %rsi
@@ -589,10 +597,26 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB2237
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L66-.LFB2237
+	.uleb128 .L65-.LFB2237
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB2237
 	.uleb128 .LEHE2-.LEHB2
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB3-.LFB2237
+	.uleb128 .LEHE3-.LEHB3
+	.uleb128 .L66-.LFB2237
+	.uleb128 0
+	.uleb128 .LEHB4-.LFB2237
+	.uleb128 .LEHE4-.LEHB4
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB5-.LFB2237
+	.uleb128 .LEHE5-.LEHB5
+	.uleb128 .L66-.LFB2237
+	.uleb128 0
+	.uleb128 .LEHB6-.LFB2237
+	.uleb128 .LEHE6-.LEHB6
 	.uleb128 .L65-.LFB2237
 	.uleb128 0
 .LLSDACSE2237:
@@ -620,7 +644,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 	subq	%fs:40, %rax
 	jne	.L75
 	movq	%rbp, %rdi
-.LEHB3:
+.LEHB7:
 	call	_Unwind_Resume@PLT
 .L59:
 	movl	$104, %esi
@@ -631,7 +655,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 	jne	.L75
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
-.LEHE3:
+.LEHE7:
 .L75:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
@@ -643,8 +667,8 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC2237-.LLSDACSBC2237
 .LLSDACSBC2237:
-	.uleb128 .LEHB3-.LCOLDB11
-	.uleb128 .LEHE3-.LEHB3
+	.uleb128 .LEHB7-.LCOLDB11
+	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
 .LLSDACSEC2237:
@@ -1203,11 +1227,11 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_jSt16initializer_listI
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	movq	%rdx, %r12
+	movq	%r9, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
-	movq	%r9, %rbp
+	movq	%rdx, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
@@ -1235,15 +1259,13 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_jSt16initializer_listI
 	call	malloc@PLT
 	movq	%rax, 96(%rbx)
 	testq	%rax, %rax
-	je	.L197
-	testq	%rbp, %rbp
-	je	.L202
+	je	.L199
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
 	movq	%r15, %rdx
-	movq	%r13, %rsi
-	movq	%rax, %rdi
+	movq	%r13, %rdi
+	movq	%rax, %rsi
 	popq	%rbx
 	.cfi_def_cfa_offset 48
 	popq	%rbp
@@ -1256,32 +1278,12 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_jSt16initializer_listI
 	.cfi_def_cfa_offset 16
 	popq	%r15
 	.cfi_def_cfa_offset 8
-	jmp	memcpy@PLT
-	.p2align 4,,10
-	.p2align 3
-.L202:
-	.cfi_restore_state
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 56
-	popq	%rbx
-	.cfi_def_cfa_offset 48
-	popq	%rbp
-	.cfi_def_cfa_offset 40
-	popq	%r12
-	.cfi_def_cfa_offset 32
-	popq	%r13
-	.cfi_def_cfa_offset 24
-	popq	%r14
-	.cfi_def_cfa_offset 16
-	popq	%r15
-	.cfi_def_cfa_offset 8
-	ret
-.L197:
+	jmp	_ZN3neo9memCopyToEPKvPvy@PLT
+.L199:
 	.cfi_restore_state
 	leaq	.LC7(%rip), %rdi
-	movq	%rbp, %rcx
-	movq	%r12, %rdx
+	movq	%r12, %rcx
+	movq	%rbp, %rdx
 	movq	%r14, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -1346,27 +1348,27 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_jPN3neo5arrayIyEE:
 	call	malloc@PLT
 	movq	%rax, 96(%rbx)
 	testq	%rax, %rax
-	je	.L204
+	je	.L201
 	testq	%r13, %r13
-	je	.L203
+	je	.L200
 	movq	%rax, %rcx
 	leaq	-1(%r13), %rax
 	movq	8(%r12), %rdx
 	cmpq	$2, %rax
-	jbe	.L213
+	jbe	.L210
 	leaq	8(%rdx), %rsi
 	xorl	%eax, %eax
 	cmpq	%rsi, %rcx
-	jne	.L221
+	jne	.L218
 	.p2align 4,,10
 	.p2align 3
-.L211:
+.L208:
 	movq	(%rdx,%rax,8), %rsi
 	movq	%rsi, (%rcx,%rax,8)
 	addq	$1, %rax
 	cmpq	%rax, %r13
-	jne	.L211
-.L203:
+	jne	.L208
+.L200:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -1381,23 +1383,23 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_jPN3neo5arrayIyEE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L221:
+.L218:
 	.cfi_restore_state
 	movq	%r13, %rsi
 	shrq	%rsi
 	salq	$4, %rsi
 	.p2align 4,,10
 	.p2align 3
-.L207:
+.L204:
 	movdqu	(%rdx,%rax), %xmm1
 	movups	%xmm1, (%rcx,%rax)
 	addq	$16, %rax
 	cmpq	%rax, %rsi
-	jne	.L207
+	jne	.L204
 	movq	%r13, %rax
 	andq	$-2, %rax
 	andl	$1, %r13d
-	je	.L203
+	je	.L200
 	movq	(%rdx,%rax,8), %rdx
 	movq	%rdx, (%rcx,%rax,8)
 	popq	%rbx
@@ -1414,11 +1416,11 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2ERS0_RS2_jPN3neo5arrayIyEE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L213:
+.L210:
 	.cfi_restore_state
 	xorl	%eax, %eax
-	jmp	.L211
-.L204:
+	jmp	.L208
+.L201:
 	leaq	.LC18(%rip), %rdi
 	movq	%r13, %rcx
 	movq	%rbp, %rdx
@@ -1482,65 +1484,65 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	movq	%rax, 8(%rsp)
 	xorl	%eax, %eax
 	testl	%r13d, %r13d
-	je	.L252
+	je	.L249
 	cmpq	$1, %rsi
-	jbe	.L253
+	jbe	.L250
 	movq	%rdi, %rbp
 	movq	8(%rdx), %rdi
 	movq	%rdx, %r12
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L227:
+.L224:
 	movq	(%rdi,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L225
+	je	.L222
 	movq	0(%rbp), %rcx
 	cmpq	568(%rcx), %rdx
-	jnb	.L226
+	jnb	.L223
 	movq	576(%rcx), %rcx
 	cmpq	$0, (%rcx,%rdx,8)
-	je	.L226
-.L225:
+	je	.L223
+.L222:
 	addq	$1, %rax
 	cmpq	%rsi, %rax
-	jne	.L227
+	jne	.L224
 	movq	16(%rbp), %rax
 	cmpq	$1, %rax
-	jbe	.L228
+	jbe	.L225
 	movq	24(%rbp), %rdx
 	movl	$1, %ebx
-	jmp	.L232
+	jmp	.L229
 	.p2align 4,,10
 	.p2align 3
-.L229:
+.L226:
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	je	.L228
-.L232:
+	je	.L225
+.L229:
 	cmpq	$0, (%rdx,%rbx,8)
-	jne	.L229
+	jne	.L226
 	movl	$104, %edi
-.LEHB4:
+.LEHB8:
 	call	_Znwm@PLT
-.LEHE4:
+.LEHE8:
 	movq	8(%rbp), %rdx
 	movq	0(%rbp), %rsi
 	movq	%r12, %r8
 	movl	%r13d, %ecx
 	movq	%rax, %rdi
 	movq	%rax, %r14
-.LEHB5:
+.LEHB9:
 	call	_ZN4slay6engine6actors5actor9flipbooks8flipbookC1ERS0_RS2_jPN3neo5arrayIyEE
-.LEHE5:
+.LEHE9:
 	movq	24(%rbp), %rax
 	cmpq	16(%rbp), %rbx
-	jnb	.L254
+	jnb	.L251
 	movq	%r14, (%rax,%rbx,8)
-.L222:
+.L219:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L255
+	jne	.L252
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 48
@@ -1558,21 +1560,21 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L228:
+.L225:
 	.cfi_restore_state
 	movl	$104, %edi
-.LEHB6:
+.LEHB10:
 	call	_Znwm@PLT
-.LEHE6:
+.LEHE10:
 	movq	8(%rbp), %rdx
 	movq	0(%rbp), %rsi
 	movq	%r12, %r8
 	movl	%r13d, %ecx
 	movq	%rax, %rdi
 	movq	%rax, %rbx
-.LEHB7:
+.LEHB11:
 	call	_ZN4slay6engine6actors5actor9flipbooks8flipbookC1ERS0_RS2_jPN3neo5arrayIyEE
-.LEHE7:
+.LEHE11:
 	movq	16(%rbp), %rax
 	movq	24(%rbp), %rdi
 	movq	%rbx, (%rsp)
@@ -1582,20 +1584,20 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	call	realloc@PLT
 	movq	%rax, 24(%rbp)
 	testq	%rax, %rax
-	je	.L256
+	je	.L253
 	movq	16(%rbp), %rdx
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-.LEHB8:
+.LEHB12:
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
 	movq	16(%rbp), %rax
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax
 	movq	%rax, %rbx
-	jnc	.L257
+	jnc	.L254
 	cmpq	$0, (%rdx,%rax,8)
-	jne	.L222
+	jne	.L219
 	movq	(%r12), %rsi
 	leaq	.LC22(%rip), %rdi
 	xorl	%eax, %eax
@@ -1604,7 +1606,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L226:
+.L223:
 	movq	%rsi, %rdx
 	leaq	.LC21(%rip), %rdi
 	movl	%r13d, %esi
@@ -1612,7 +1614,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L253:
+.L250:
 	movq	%rsi, %rdx
 	leaq	.LC20(%rip), %rdi
 	movl	%r13d, %esi
@@ -1620,40 +1622,40 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L252:
+.L249:
 	movq	%rsi, %rdx
 	leaq	.LC19(%rip), %rdi
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L254:
+.L251:
 	movq	%rbx, %rsi
-.L250:
+.L247:
 	leaq	.LC8(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L255:
+.L252:
 	call	__stack_chk_fail@PLT
-.L256:
+.L253:
 	leaq	.LC9(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
-.LEHE8:
+.LEHE12:
 	movl	$1, %edi
 	call	exit@PLT
-.L257:
+.L254:
 	orq	$-1, %rsi
-	jmp	.L250
-.L242:
+	jmp	.L247
+.L239:
 	movq	%rax, %rbx
-	jmp	.L237
-.L243:
+	jmp	.L234
+.L240:
 	movq	%rax, %rbp
-	jmp	.L239
+	jmp	.L236
 	.section	.gcc_except_table
 .LLSDA2240:
 	.byte	0xff
@@ -1661,24 +1663,24 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	.byte	0x1
 	.uleb128 .LLSDACSE2240-.LLSDACSB2240
 .LLSDACSB2240:
-	.uleb128 .LEHB4-.LFB2240
-	.uleb128 .LEHE4-.LEHB4
-	.uleb128 0
-	.uleb128 0
-	.uleb128 .LEHB5-.LFB2240
-	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L242-.LFB2240
-	.uleb128 0
-	.uleb128 .LEHB6-.LFB2240
-	.uleb128 .LEHE6-.LEHB6
-	.uleb128 0
-	.uleb128 0
-	.uleb128 .LEHB7-.LFB2240
-	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L243-.LFB2240
-	.uleb128 0
 	.uleb128 .LEHB8-.LFB2240
 	.uleb128 .LEHE8-.LEHB8
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB9-.LFB2240
+	.uleb128 .LEHE9-.LEHB9
+	.uleb128 .L239-.LFB2240
+	.uleb128 0
+	.uleb128 .LEHB10-.LFB2240
+	.uleb128 .LEHE10-.LEHB10
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB11-.LFB2240
+	.uleb128 .LEHE11-.LEHB11
+	.uleb128 .L240-.LFB2240
+	.uleb128 0
+	.uleb128 .LEHB12-.LFB2240
+	.uleb128 .LEHE12-.LEHB12
 	.uleb128 0
 	.uleb128 0
 .LLSDACSE2240:
@@ -1691,7 +1693,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	.type	_ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold, @function
 _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 .LFSB2240:
-.L237:
+.L234:
 	.cfi_def_cfa_offset 64
 	.cfi_offset 3, -48
 	.cfi_offset 6, -40
@@ -1703,21 +1705,21 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 	call	_ZdlPvm@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L251
+	jne	.L248
 	movq	%rbx, %rdi
-.LEHB9:
+.LEHB13:
 	call	_Unwind_Resume@PLT
-.L239:
+.L236:
 	movl	$104, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L251
+	jne	.L248
 	movq	%rbp, %rdi
 	call	_Unwind_Resume@PLT
-.LEHE9:
-.L251:
+.LEHE13:
+.L248:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE2240:
@@ -1728,8 +1730,8 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC2240-.LLSDACSBC2240
 .LLSDACSBC2240:
-	.uleb128 .LEHB9-.LCOLDB23
-	.uleb128 .LEHE9-.LEHB9
+	.uleb128 .LEHB13-.LCOLDB23
+	.uleb128 .LEHE13-.LEHB13
 	.uleb128 0
 	.uleb128 0
 .LLSDACSEC2240:
@@ -1793,10 +1795,10 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
 	.cfi_startproc
 	movl	%esi, %eax
 	testl	%esi, %esi
-	je	.L266
+	je	.L263
 	movl	%esi, 64(%rdi)
 	ret
-.L266:
+.L263:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	leaq	.LC24(%rip), %rdi

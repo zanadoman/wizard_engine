@@ -1,3 +1,4 @@
+#include "Includes/NeoTypes++.hpp"
 #include "SlayEngine.hpp"
 
 namespace slay
@@ -290,10 +291,7 @@ namespace slay
             exit(1);
         }
 
-        for (uint64 i = 0; i < TextureIDs.size(); i++)
-        {
-            this->Textures[i] = TextureIDs.begin()[i];
-        }
+        memCopyTo(TextureIDs.begin(), &this->Textures[0], sizeof(uint64) * TextureIDs.size());
     }
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, uint32 Delay, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
