@@ -332,7 +332,7 @@ _ZN4slay6engine6actors5actor6colors3NewEv:
 	movl	$-32767, %ecx
 	pxor	%xmm0, %xmm0
 	movl	$-1, 20(%rax)
-	movl	136(%rdx), %edx
+	movl	168(%rdx), %edx
 	movw	%cx, 24(%rax)
 	movb	$1, 26(%rax)
 	movl	%edx, 16(%rax)
@@ -354,7 +354,7 @@ _ZN4slay6engine6actors5actor6colors3NewEv:
 	pxor	%xmm0, %xmm0
 	movl	$-1, 20(%rax)
 	movq	24(%rbp), %rdi
-	movl	136(%rdx), %edx
+	movl	168(%rdx), %edx
 	movb	$1, 26(%rax)
 	movq	$0, 28(%rax)
 	movl	%edx, 16(%rax)
@@ -950,7 +950,7 @@ _ZN4slay6engine6actors5actor6colorsixEy:
 _ZN4slay6engine6actors5actor6colors5colorC2EPS0_PS2_:
 .LFB2245:
 	.cfi_startproc
-	movl	136(%rdx), %eax
+	movl	168(%rdx), %eax
 	pxor	%xmm0, %xmm0
 	movq	%rsi, (%rdi)
 	movq	%rdx, 8(%rdi)

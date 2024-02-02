@@ -383,7 +383,7 @@ _ZN4slay6engine6actors5actor5texts3NewEPKcy:
 	pxor	%xmm0, %xmm0
 	movl	$1, %edx
 	movq	%r15, %rdi
-	movzwl	138(%rax), %eax
+	movzwl	170(%rax), %eax
 	movw	%si, 64(%r14)
 	movq	%rsp, %rsi
 	movl	$-1, 18(%r14)
@@ -425,7 +425,7 @@ _ZN4slay6engine6actors5actor5texts3NewEPKcy:
 	movq	%rsp, %r14
 	movq	%r14, %rsi
 	movq	%r15, %rdi
-	movzwl	138(%rax), %eax
+	movzwl	170(%rax), %eax
 	movw	%dx, 64(%rbx)
 	movl	$1, %edx
 	movl	$-1, 18(%rbx)
@@ -1283,7 +1283,7 @@ _ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy:
 	movq	%rsp, %rsi
 	movq	%r13, %rdi
 	movq	%r12, (%rsp)
-	movzwl	138(%rax), %eax
+	movzwl	170(%rax), %eax
 	movw	%dx, 64(%rbx)
 	movl	$1, %edx
 	movl	$-1, 18(%rbx)

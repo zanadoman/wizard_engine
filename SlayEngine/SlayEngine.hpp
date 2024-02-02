@@ -471,14 +471,16 @@ namespace slay
 
                     //__________Actor______________________________________________________________________________
 
-                        uint16 Width;
-                        uint16 Height;
                         bool HitboxVisible;
                         uint64 GetType();
                         double GetX();
                         double SetX(double X);
                         double GetY();
                         double SetY(double Y);
+                        uint16 GetWidth();
+                        uint16 SetWidth(uint16 Width);
+                        uint16 GetHeight();
+                        uint16 SetHeight(uint16 Height);
                         double GetAngle();
                         double SetAngle(double Angle);
                         double GetLayer();
@@ -492,11 +494,17 @@ namespace slay
                         uint64 Type;
                         double X;
                         double Y;
+                        uint16 Width;
+                        uint16 Height;
                         double Angle;
                         double Layer;
                         double Depth;
                         uint16 HitboxWidth;
                         uint16 HitboxHeight;
+                        double HitboxMedianLength;
+                        double HitboxMedian1Angle;
+                        double HitboxMedian2Angle;
+
                         actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
                         ~actor();
                 };

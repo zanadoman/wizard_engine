@@ -353,7 +353,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	.p2align 4,,10
 	.p2align 3
 .L266:
-	cmpb	$0, 140(%rcx)
+	cmpb	$0, 136(%rcx)
 	jne	.L269
 .L22:
 	addq	$1, %r14
@@ -419,14 +419,14 @@ _ZN4slay6engine6render14SelectionStageEv:
 	pxor	%xmm4, %xmm4
 	pxor	%xmm7, %xmm7
 	pxor	%xmm1, %xmm1
-	movsd	176(%rsi), %xmm3
+	movsd	184(%rsi), %xmm3
 	cvtsi2sdl	40(%rdi), %xmm4
 	movapd	%xmm3, %xmm2
 	cvtsi2sdl	44(%rdi), %xmm1
 	addsd	160(%rsi), %xmm1
 	addsd	%xmm0, %xmm4
 	movsd	.LC7(%rip), %xmm0
-	mulsd	184(%rsi), %xmm0
+	mulsd	192(%rsi), %xmm0
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm3
 	comisd	%xmm2, %xmm7
@@ -609,8 +609,8 @@ _ZN4slay6engine6render14SelectionStageEv:
 	pxor	%xmm7, %xmm7
 	pxor	%xmm4, %xmm4
 	pxor	%xmm1, %xmm1
-	mulsd	184(%rdi), %xmm0
-	movsd	176(%rdi), %xmm3
+	mulsd	192(%rdi), %xmm0
+	movsd	184(%rdi), %xmm3
 	cvtsi2sdl	28(%rsi), %xmm4
 	cvtsi2sdl	32(%rsi), %xmm1
 	addsd	152(%rdi), %xmm4
@@ -800,14 +800,14 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movq	%rdi, %xmm2
 	jmp	.L123
 .L269:
-	movzwl	192(%rcx), %esi
+	movzwl	200(%rcx), %esi
 	testw	%si, %si
 	je	.L22
-	movzwl	194(%rcx), %edi
+	movzwl	202(%rcx), %edi
 	testw	%di, %di
 	je	.L22
 	movsd	152(%rcx), %xmm0
-	movsd	176(%rcx), %xmm2
+	movsd	184(%rcx), %xmm2
 	movzwl	%di, %edx
 	leaq	80(%rax), %rdi
 	movsd	160(%rcx), %xmm1
@@ -894,7 +894,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	.p2align 3
 .L264:
 	pxor	%xmm0, %xmm0
-	movsd	176(%rdi), %xmm1
+	movsd	184(%rdi), %xmm1
 	cvtsi2sdl	40(%rsi), %xmm0
 	addsd	152(%rdi), %xmm0
 	movapd	%xmm1, %xmm2
@@ -904,7 +904,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	addsd	160(%rdi), %xmm0
 	movapd	%xmm0, %xmm7
 	movsd	.LC7(%rip), %xmm0
-	mulsd	184(%rdi), %xmm0
+	mulsd	192(%rdi), %xmm0
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm1
 	pxor	%xmm0, %xmm0
@@ -1004,10 +1004,10 @@ _ZN4slay6engine6render14SelectionStageEv:
 	jmp	.L67
 .L265:
 	movsd	.LC7(%rip), %xmm0
-	mulsd	184(%rdi), %xmm0
+	mulsd	192(%rdi), %xmm0
 	pxor	%xmm4, %xmm4
 	pxor	%xmm1, %xmm1
-	movsd	176(%rdi), %xmm3
+	movsd	184(%rdi), %xmm3
 	cvtsi2sdl	40(%rsi), %xmm4
 	addsd	152(%rdi), %xmm4
 	cvtsi2sdl	44(%rsi), %xmm1
@@ -1322,7 +1322,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	jnb	.L257
 	movq	(%rcx,%r15), %rsi
 	movq	(%rsp), %rbx
-	movsd	176(%rsi), %xmm1
+	movsd	184(%rsi), %xmm1
 	leaq	(%rbx,%rbx,2), %rcx
 	addq	$1, %rbx
 	salq	$4, %rcx

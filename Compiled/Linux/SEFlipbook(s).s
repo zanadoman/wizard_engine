@@ -383,7 +383,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movq	%rax, %r15
 	movq	8(%r13), %rax
 	movups	%xmm2, (%r15)
-	movl	136(%rax), %eax
+	movl	168(%rax), %eax
 	movl	%r14d, 64(%r15)
 	leaq	0(,%rbp,8), %r14
 	movw	%dx, 36(%r15)
@@ -422,7 +422,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movq	%rax, %rbx
 	movq	8(%r13), %rax
 	movups	%xmm1, (%rbx)
-	movl	136(%rax), %eax
+	movl	168(%rax), %eax
 	movl	%r14d, 64(%rbx)
 	leaq	0(,%rbp,8), %r14
 	movb	$1, 38(%rbx)
@@ -1199,7 +1199,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listI
 	movq	%rdi, %rbx
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 48
-	movl	136(%rdx), %eax
+	movl	168(%rdx), %eax
 	movq	%rsi, (%rdi)
 	movq	%rdx, 8(%rdi)
 	movl	%eax, 16(%rdi)
@@ -1293,7 +1293,7 @@ _ZN4slay6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	movl	136(%rdx), %eax
+	movl	168(%rdx), %eax
 	movq	%rdi, %rbx
 	movq	%rsi, (%rdi)
 	movl	%eax, 16(%rdi)

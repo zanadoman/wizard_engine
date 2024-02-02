@@ -4,17 +4,20 @@ namespace slay
 {
     engine::actors::actor::actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this)
     {
-        this->Width = Width;
-        this->Height = Height;
         this->HitboxVisible = false;
         this->Type = Type;
         this->X = X;
         this->Y = Y;
+        this->Width = Width;
+        this->Height = Height;
         this->Angle = 0;
         this->Layer = Layer;
         this->Depth = 0;
         this->HitboxWidth = Width;
         this->HitboxHeight = Height;
+        this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, this->Width, this->Height) / 2;
+        this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, this->Width, this->Height);
+        this->HitboxMedian2Angle = this->Engine->Vector.Angle(this->Width, 0, 0, this->Height);
     }
 
     engine::actors::actor::~actor()
@@ -54,6 +57,34 @@ namespace slay
         return this->Y = Y;
     }
 
+    uint16 engine::actors::actor::GetWidth()
+    {
+        return this->Width;
+    }
+
+    uint16 engine::actors::actor::SetWidth(uint16 Width)
+    {
+        this->HitboxMedianLength = this->Engine->Vector.Angle(0, 0, Width, this->Height) / 2;
+        this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, Width, this->Height);
+        this->HitboxMedian2Angle = this->Engine->Vector.Angle(Width, 0, 0, this->Height);
+
+        return this->Width = Width;
+    }
+
+    uint16 engine::actors::actor::GetHeight()
+    {
+        return this->Height;
+    }
+
+    uint16 engine::actors::actor::SetHeight(uint16 Height)
+    {
+        this->HitboxMedianLength = this->Engine->Vector.Angle(0, 0, this->Width, Height) / 2;
+        this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, this->Width, Height);
+        this->HitboxMedian2Angle = this->Engine->Vector.Angle(this->Width, 0, 0, Height);
+
+        return this->Height = Height;
+    }
+
     double engine::actors::actor::GetAngle()
     {
         return this->Angle;
@@ -72,26 +103,26 @@ namespace slay
     double engine::actors::actor::SetAngle(double Angle)
     {
         double change, cache;
+        double med1angle, med1angle180, med2angle, med2angle180;
         sint32 x1, x2, x3, x4;
         sint32 y1, y2, y3, y4;
         sint32 minX, maxX, minY, maxY;
         sint32 tmp1, tmp2;
 
-        change = Angle - this->Angle;
+        med1angle = this->Angle + this->HitboxMedian1Angle;
+        med1angle180 = med1angle + 180;
+        med2angle = this->Angle + this->HitboxMedian2Angle;
+        med2angle180 = med2angle + 180;
 
-        double half = this->Engine->Vector.Length(0, 0, this->Width, this->Height) / 2;
-        double angle1 = this->Engine->Vector.Angle(0, 0, this->Width, this->Height) + Angle;
-        double angle2  = this->Engine->Vector.Angle(this->Width, 0, 0, this->Height) + Angle;
+        x1 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, Angle + this->HitboxMedian1Angle);
+        x2 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, Angle + this->HitboxMedian2Angle);
+        x3 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, Angle + this->HitboxMedian1Angle + 180);
+        x4 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, Angle + this->HitboxMedian2Angle + 180);
 
-        x1 = this->Engine->Vector.TerminalX(this->X, half, angle1);
-        x2 = this->Engine->Vector.TerminalX(this->X, half, angle2);
-        x3 = this->Engine->Vector.TerminalX(this->X, half, angle1 + 180);
-        x4 = this->Engine->Vector.TerminalX(this->X, half, angle2 + 180);
-
-        y1 = this->Engine->Vector.TerminalY(this->Y, half, angle1);
-        y2 = this->Engine->Vector.TerminalY(this->Y, half, angle2);
-        y3 = this->Engine->Vector.TerminalY(this->Y, half, angle1 + 180);
-        y4 = this->Engine->Vector.TerminalY(this->Y, half, angle2 + 180);
+        y1 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, Angle + this->HitboxMedian1Angle);
+        y2 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, Angle + this->HitboxMedian2Angle);
+        y3 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, Angle + this->HitboxMedian1Angle + 180);
+        y4 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, Angle + this->HitboxMedian2Angle + 180);
 
         minX = (tmp1 = x1 < x2 ? x1 : x2) < (tmp2 = x3 < x4 ? x3 : x4) ? tmp1 : tmp2;
         maxX = (tmp2 = x4 < x3 ? x3 : x4) < (tmp1 = x2 < x1 ? x1 : x2) ? tmp1 : tmp2;
@@ -100,6 +131,8 @@ namespace slay
 
         this->HitboxWidth = maxX - minX;
         this->HitboxHeight = maxY - minY;
+
+        change = Angle - this->Angle;
 
         for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
         {
