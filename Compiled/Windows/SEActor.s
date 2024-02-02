@@ -908,18 +908,14 @@ _ZN4slay6engine6actors5actor4SetXEd:
 .LFB8440:
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$48, %rsp
-	.seh_stackalloc	48
-	movaps	%xmm6, 32(%rsp)
-	.seh_savexmm	%xmm6, 32
+	subq	$32, %rsp
+	.seh_stackalloc	32
 	.seh_endprologue
-	movapd	%xmm1, %xmm6
 	movq	%rcx, %rbx
+	movsd	%xmm1, 152(%rcx)
 	call	_ZN4slay6engine6actors5actor21UpdateMembersPositionEv
-	movapd	%xmm6, %xmm0
-	movsd	%xmm6, 152(%rbx)
-	movaps	32(%rsp), %xmm6
-	addq	$48, %rsp
+	movsd	152(%rbx), %xmm0
+	addq	$32, %rsp
 	popq	%rbx
 	ret
 	.seh_endproc
@@ -932,18 +928,14 @@ _ZN4slay6engine6actors5actor4SetYEd:
 .LFB8442:
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$48, %rsp
-	.seh_stackalloc	48
-	movaps	%xmm6, 32(%rsp)
-	.seh_savexmm	%xmm6, 32
+	subq	$32, %rsp
+	.seh_stackalloc	32
 	.seh_endprologue
-	movapd	%xmm1, %xmm6
 	movq	%rcx, %rbx
+	movsd	%xmm1, 160(%rcx)
 	call	_ZN4slay6engine6actors5actor21UpdateMembersPositionEv
-	movapd	%xmm6, %xmm0
-	movsd	%xmm6, 160(%rbx)
-	movaps	32(%rsp), %xmm6
-	addq	$48, %rsp
+	movsd	160(%rbx), %xmm0
+	addq	$32, %rsp
 	popq	%rbx
 	ret
 	.seh_endproc

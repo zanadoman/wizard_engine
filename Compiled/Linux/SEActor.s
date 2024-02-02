@@ -922,14 +922,9 @@ _ZN4slay6engine6actors5actor4SetXEd:
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
 	movq	%rdi, %rbx
-	subq	$16, %rsp
-	.cfi_def_cfa_offset 32
-	movsd	%xmm0, 8(%rsp)
+	movsd	%xmm0, 152(%rdi)
 	call	_ZN4slay6engine6actors5actor21UpdateMembersPositionEv
-	movsd	8(%rsp), %xmm0
-	movsd	%xmm0, 152(%rbx)
-	addq	$16, %rsp
-	.cfi_def_cfa_offset 16
+	movsd	152(%rbx), %xmm0
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
@@ -947,14 +942,9 @@ _ZN4slay6engine6actors5actor4SetYEd:
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
 	movq	%rdi, %rbx
-	subq	$16, %rsp
-	.cfi_def_cfa_offset 32
-	movsd	%xmm0, 8(%rsp)
+	movsd	%xmm0, 160(%rdi)
 	call	_ZN4slay6engine6actors5actor21UpdateMembersPositionEv
-	movsd	8(%rsp), %xmm0
-	movsd	%xmm0, 160(%rbx)
-	addq	$16, %rsp
-	.cfi_def_cfa_offset 16
+	movsd	160(%rbx), %xmm0
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret

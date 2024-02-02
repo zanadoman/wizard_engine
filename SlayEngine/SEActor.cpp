@@ -44,9 +44,11 @@ namespace slay
 
     double engine::actors::actor::SetX(double X)
     {
+        this->X = X;
+
         this->UpdateMembersPosition();
 
-        return this->X = X;
+        return this->X;
     }
 
     double engine::actors::actor::GetY()
@@ -56,9 +58,11 @@ namespace slay
 
     double engine::actors::actor::SetY(double Y)
     {
+        this->Y = Y;
+
         this->UpdateMembersPosition();
 
-        return this->Y = Y;
+        return this->Y;
     }
 
     uint16 engine::actors::actor::GetWidth()
