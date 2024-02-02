@@ -504,9 +504,9 @@ namespace slay
                         double HitboxMedianLength;
                         double HitboxMedian1Angle;
                         double HitboxMedian2Angle;
-
                         actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
                         ~actor();
+                        uint8 UpdateMembersPosition();
                 };
 
                 //__________Actors_____________________________________________________________________________________
