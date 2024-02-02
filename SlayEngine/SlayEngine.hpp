@@ -66,7 +66,8 @@ namespace slay
                     COLOR,
                     TEXTURE,
                     FLIPBOOK,
-                    TEXT
+                    TEXT,
+                    HITBOX
                 };
 
                 class token
@@ -109,6 +110,7 @@ namespace slay
                     uint8 RenderTexture(token Token);
                     uint8 RenderFlipbook(token Token);
                     uint8 RenderText(token Token);
+                    uint8 RenderHitbox(token Token);
             } Render;
 
             //__________Camera_________________________________________________________________________________________
@@ -471,6 +473,7 @@ namespace slay
 
                         uint16 Width;
                         uint16 Height;
+                        bool HitboxVisible;
                         uint64 GetType();
                         double GetX();
                         double SetX(double X);
@@ -482,6 +485,8 @@ namespace slay
                         double SetLayer(double Layer);
                         double GetDepth();
                         double SetDepth(double Depth);
+                        uint16 GetHitboxWidth();
+                        uint16 GetHitboxHeight();
 
                     private:
                         uint64 Type;
@@ -490,6 +495,8 @@ namespace slay
                         double Angle;
                         double Layer;
                         double Depth;
+                        uint16 HitboxWidth;
+                        uint16 HitboxHeight;
                         actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
                         ~actor();
                 };

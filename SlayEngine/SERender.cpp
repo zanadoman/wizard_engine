@@ -285,6 +285,22 @@ namespace slay
                     }
                 }
             }
+
+            if (this->Engine->Actors.Actors[i]->HitboxVisible && this->Engine->Actors.Actors[i]->HitboxWidth != 0 && this->Engine->Actors.Actors[i]->HitboxHeight != 0)
+            {
+                area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->X, this->Engine->Actors.Actors[i]->Y, this->Engine->Actors.Actors[i]->HitboxWidth, this->Engine->Actors.Actors[i]->HitboxHeight, this->Engine->Actors.Actors[i]->Layer);
+
+                if (area.w != 0 && area.h != 0 && ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight)))
+                {
+                    if (k == this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (++this->RenderQueueLength += this->BufferSize))) == NULL)
+                    {
+                        printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
+                        exit(1);
+                    }
+
+                    this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i], HITBOX, this->Engine->Actors.Actors[i]->Layer, 255, area);
+                }
+            }
         }
 
         if (k < this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (this->RenderQueueLength = k))) == NULL)
@@ -532,6 +548,10 @@ namespace slay
                 case TEXT:
                     this->RenderText(this->RenderQueue[i]);
                 break;
+
+                case HITBOX:
+                    this->RenderHitbox(this->RenderQueue[i]);
+                break;
             }
         }
 
@@ -553,6 +573,10 @@ namespace slay
 
                 case TEXT:
                     this->RenderText(this->RenderQueue[i]);
+                break;
+
+                case HITBOX:
+                    this->RenderHitbox(this->RenderQueue[i]);
                 break;
             }
         }
@@ -671,6 +695,22 @@ namespace slay
         if (SDL_RenderCopyEx(this->Engine->Window.Renderer, ((engine::actors::actor::texts::text*)Token.Data)->Texture, NULL, &Token.Area, -((engine::actors::actor::texts::text*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderText(): SDL_RenderCopyEx failed\n");
+            exit(1);
+        }
+
+        return 0;
+    }
+
+    uint8 engine::render::RenderHitbox(token Token)
+    {
+        if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, 255, 0, 0, 128) != 0)
+        {
+            printf("slay::engine.render.RenderHitbox(): SDL_SetRenderDrawColor failed\n");
+            exit(1);
+        }
+        if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token.Area) != 0)
+        {
+            printf("slay::engine.render.RenderHitbox(): SDL_RenderFillRect failed\n");
             exit(1);
         }
 

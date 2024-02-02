@@ -6,12 +6,15 @@ namespace slay
     {
         this->Width = Width;
         this->Height = Height;
+        this->HitboxVisible = false;
         this->Type = Type;
         this->X = X;
         this->Y = Y;
         this->Angle = 0;
         this->Layer = Layer;
         this->Depth = 0;
+        this->HitboxWidth = Width;
+        this->HitboxHeight = Height;
     }
 
     engine::actors::actor::~actor()
@@ -170,5 +173,15 @@ namespace slay
         }
 
         return this->Depth = Depth;
+    }
+
+    uint16 engine::actors::actor::GetHitboxWidth()
+    {
+        return this->HitboxWidth;
+    }
+
+    uint16 engine::actors::actor::GetHitboxHeight()
+    {
+        return this->HitboxHeight;
     }
 }

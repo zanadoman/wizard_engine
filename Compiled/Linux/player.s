@@ -128,6 +128,11 @@ _ZN6playerC2EPN4slay6engineE:
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
+	movb	$1, 140(%rax)
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	528(%rax), %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
 	movsd	.LC11(%rip), %xmm0
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8SetDepthEd@PLT

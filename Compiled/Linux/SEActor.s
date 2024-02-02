@@ -23,16 +23,16 @@ _ZN4slay6engine6actors5actorC2EPS0_yddttd:
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
 	unpcklpd	%xmm1, %xmm3
-	movl	%ecx, %r14d
+	movq	%rdx, %r14
+	movq	%rdi, %rdx
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movl	%r8d, %r13d
+	movl	%ecx, %r13d
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	movq	%rdx, %r12
-	movq	%rdi, %rdx
+	movl	%r8d, %r12d
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
@@ -74,11 +74,14 @@ _ZN4slay6engine6actors5actorC2EPS0_yddttd:
 .LEHE3:
 	movapd	(%rsp), %xmm3
 	movsd	24(%rsp), %xmm4
-	movw	%r14w, 136(%rbx)
-	movw	%r13w, 138(%rbx)
-	movq	%r12, 144(%rbx)
+	movw	%r13w, 136(%rbx)
+	movw	%r12w, 138(%rbx)
+	movb	$0, 140(%rbx)
+	movq	%r14, 144(%rbx)
 	movq	$0x000000000, 168(%rbx)
 	movq	$0x000000000, 184(%rbx)
+	movw	%r13w, 192(%rbx)
+	movw	%r12w, 194(%rbx)
 	movups	%xmm3, 152(%rbx)
 	movsd	%xmm4, 176(%rbx)
 	addq	$56, %rsp
@@ -717,6 +720,30 @@ _ZN4slay6engine6actors5actor8SetDepthEd:
 	.cfi_endproc
 .LFE2247:
 	.size	_ZN4slay6engine6actors5actor8SetDepthEd, .-_ZN4slay6engine6actors5actor8SetDepthEd
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor14GetHitboxWidthEv
+	.type	_ZN4slay6engine6actors5actor14GetHitboxWidthEv, @function
+_ZN4slay6engine6actors5actor14GetHitboxWidthEv:
+.LFB2248:
+	.cfi_startproc
+	movzwl	192(%rdi), %eax
+	ret
+	.cfi_endproc
+.LFE2248:
+	.size	_ZN4slay6engine6actors5actor14GetHitboxWidthEv, .-_ZN4slay6engine6actors5actor14GetHitboxWidthEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor15GetHitboxHeightEv
+	.type	_ZN4slay6engine6actors5actor15GetHitboxHeightEv, @function
+_ZN4slay6engine6actors5actor15GetHitboxHeightEv:
+.LFB2249:
+	.cfi_startproc
+	movzwl	194(%rdi), %eax
+	ret
+	.cfi_endproc
+.LFE2249:
+	.size	_ZN4slay6engine6actors5actor15GetHitboxHeightEv, .-_ZN4slay6engine6actors5actor15GetHitboxHeightEv
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat
