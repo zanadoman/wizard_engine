@@ -59,6 +59,8 @@ namespace slay
         this->Render.Update();
         this->Timing.RenderTime = SDL_GetTicks() - this->Timing.PrevTick - this->Timing.GameTime;
 
+        this->Timing.Update();
+
         for (i = 0; SDL_PollEvent(&event); i++)
         {
             if (event.type == SDL_QUIT)
@@ -80,13 +82,12 @@ namespace slay
             this->EventQueue.Remove(i, this->EventQueue.Length() - i);
         }
 
-        this->Keys.Update();
-        this->Mouse.Update();
         this->Window.State = SDL_GetWindowFlags(this->Window.Window);
 
-        this->Timing.Update();
-
         this->UpdateFlipbooks();
+
+        this->Keys.Update();
+        this->Mouse.Update();
 
         return true;
     }

@@ -539,7 +539,9 @@ _ZN4slay6engine6UpdateEv:
 	call	SDL_GetTicks@PLT
 	subl	648(%rbp), %eax
 	subl	644(%rbp), %eax
+	leaq	632(%rbp), %rdi
 	movl	%eax, 652(%rbp)
+	call	_ZN4slay6engine6timing6UpdateEv@PLT
 .L50:
 	movq	%r12, %rdi
 	call	SDL_PollEvent@PLT
@@ -573,17 +575,15 @@ _ZN4slay6engine6UpdateEv:
 	cmpq	%r12, %rbx
 	jb	.L66
 .L59:
+	movq	8(%rbp), %rdi
+	call	SDL_GetWindowFlags@PLT
+	movq	%rbp, %rdi
+	movl	%eax, 28(%rbp)
+	call	_ZN4slay6engine15UpdateFlipbooksEv
 	leaq	160(%rbp), %rdi
 	call	_ZN4slay6engine4keys6UpdateEv@PLT
 	leaq	472(%rbp), %rdi
 	call	_ZN4slay6engine5mouse6UpdateEv@PLT
-	movq	8(%rbp), %rdi
-	call	SDL_GetWindowFlags@PLT
-	leaq	632(%rbp), %rdi
-	movl	%eax, 28(%rbp)
-	call	_ZN4slay6engine6timing6UpdateEv@PLT
-	movq	%rbp, %rdi
-	call	_ZN4slay6engine15UpdateFlipbooksEv
 	movl	$1, %eax
 .L49:
 	movq	120(%rsp), %rdx
