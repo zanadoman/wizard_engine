@@ -61,6 +61,7 @@ uint8 player::Update()
     if (this->Engine->Keys[KEY_G])
     {
         this->Engine->Actors[this->Actor].Texts[this->NameText].SetY(this->Engine->Actors[this->Actor].GetY() + 56);
+        this->Engine->Actors[this->Actor].Texts[this->NameText].SetX(this->Engine->Actors[this->Actor].GetX());
     }
 
     return 0;

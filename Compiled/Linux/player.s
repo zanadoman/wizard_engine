@@ -508,16 +508,32 @@ _ZN6player6UpdateEv:
 	movq	40(%rbx), %rsi
 	leaq	104(%rax), %rdi
 	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi
 	movq	%rax, %rbp
-	addq	$528, %rdi
+	movq	(%rbx), %rax
+	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor4GetYEv@PLT
 	addsd	.LC12(%rip), %xmm0
 	movq	%rbp, %rdi
 	call	_ZN4slay6engine6actors5actor5texts4text4SetYEd@PLT
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	528(%rax), %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	40(%rbx), %rsi
+	leaq	104(%rax), %rdi
+	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
+	movq	(%rbx), %rdi
+	movq	8(%rbx), %rsi
+	movq	%rax, %rbp
+	addq	$528, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor4GetXEv@PLT
+	movq	%rbp, %rdi
+	call	_ZN4slay6engine6actors5actor5texts4text4SetXEd@PLT
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
