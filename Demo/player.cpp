@@ -58,5 +58,10 @@ uint8 player::Update()
         this->Engine->Actors[this->Actor].SetAngle(this->Engine->Actors[this->Actor].GetAngle() - 0.2 * this->Engine->Timing.GetDeltaTime());
     }
 
+    if (this->Engine->Keys[KEY_G])
+    {
+        this->Engine->Actors[this->Actor].Texts[this->NameText].SetOffsetY(56);
+    }
+
     return 0;
 }

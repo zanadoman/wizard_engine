@@ -365,29 +365,35 @@ _ZN6player6UpdateEv:
 	leaq	160(%rax), %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L46
+	jne	.L50
 .L22:
 	movq	(%rbx), %rax
 	movl	$81, %esi
 	leaq	160(%rax), %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L47
+	jne	.L51
 .L29:
 	movq	(%rbx), %rax
 	movl	$80, %esi
 	leaq	160(%rax), %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L48
+	jne	.L52
 .L36:
 	movq	(%rbx), %rax
 	movl	$79, %esi
 	leaq	160(%rax), %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L49
+	jne	.L53
 .L41:
+	movq	(%rbx), %rax
+	movl	$10, %esi
+	leaq	160(%rax), %rdi
+	call	_ZN4slay6engine4keysixENS_3keyE@PLT
+	testb	%al, %al
+	jne	.L54
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
@@ -401,7 +407,7 @@ _ZN6player6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L46:
+.L50:
 	.cfi_restore_state
 	movq	(%rbx), %rax
 	movl	$81, %esi
@@ -480,7 +486,32 @@ _ZN6player6UpdateEv:
 	jmp	.L22
 	.p2align 4,,10
 	.p2align 3
-.L49:
+.L54:
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	528(%rax), %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movq	40(%rbx), %rsi
+	leaq	104(%rax), %rdi
+	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
+	movl	$56, %esi
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor5texts4text10SetOffsetYEi@PLT
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 32
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 24
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L53:
+	.cfi_restore_state
 	movq	(%rbx), %rax
 	movl	$80, %esi
 	leaq	160(%rax), %rdi
@@ -498,9 +529,9 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movq	(%rbx), %rdi
+	movq	(%rbx), %rax
 	movsd	%xmm0, (%rsp)
-	addq	$632, %rdi
+	leaq	632(%rax), %rdi
 	call	_ZN4slay6engine6timing12GetDeltaTimeEv@PLT
 	pxor	%xmm1, %xmm1
 	movsd	(%rsp), %xmm0
@@ -510,21 +541,10 @@ _ZN6player6UpdateEv:
 	mulsd	.LC15(%rip), %xmm1
 	subsd	%xmm1, %xmm0
 	call	_ZN4slay6engine6actors5actor8SetAngleEd@PLT
-	addq	$16, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 32
-	xorl	%eax, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 24
-	popq	%rbp
-	.cfi_def_cfa_offset 16
-	popq	%r12
-	.cfi_def_cfa_offset 8
-	ret
+	jmp	.L41
 	.p2align 4,,10
 	.p2align 3
-.L48:
-	.cfi_restore_state
+.L52:
 	movq	(%rbx), %rax
 	movl	$79, %esi
 	leaq	160(%rax), %rdi
@@ -556,7 +576,7 @@ _ZN6player6UpdateEv:
 	jmp	.L36
 	.p2align 4,,10
 	.p2align 3
-.L47:
+.L51:
 	movq	(%rbx), %rax
 	movl	$82, %esi
 	leaq	160(%rax), %rdi
