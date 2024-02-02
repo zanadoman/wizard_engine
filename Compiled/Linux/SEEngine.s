@@ -423,19 +423,19 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	movq	(%rax,%rdi,8), %rsi
 	testq	%rsi, %rsi
 	je	.L44
-	movl	80(%rsi), %eax
+	movl	88(%rsi), %eax
 	xorl	%edx, %edx
 	addl	664(%r9), %eax
-	divl	64(%rsi)
-	addq	72(%rsi), %rax
-	movq	%rax, 72(%rsi)
+	divl	72(%rsi)
+	addq	80(%rsi), %rax
+	movq	%rax, 80(%rsi)
 	movq	%rax, %rcx
 	cmpq	536(%r9), %r10
 	jnb	.L45
 	cmpq	88(%r8), %rdi
 	jnb	.L47
-	movq	88(%rsi), %rax
-	movl	%edx, 80(%rsi)
+	movq	96(%rsi), %rax
+	movl	%edx, 88(%rsi)
 	cmpq	%rax, %rcx
 	jnb	.L48
 	addq	$1, %rdi
@@ -460,7 +460,7 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 .L35:
 	.cfi_restore_state
 	subq	$1, %rax
-	movq	%rax, 72(%rsi)
+	movq	%rax, 80(%rsi)
 .L44:
 	movq	536(%r9), %rax
 .L31:
@@ -484,7 +484,7 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	xorl	%edx, %edx
 	divq	%r12
 	subq	%rdx, %rcx
-	movq	%rcx, 72(%rsi)
+	movq	%rcx, 80(%rsi)
 	movq	536(%r9), %rax
 	jmp	.L31
 .L47:

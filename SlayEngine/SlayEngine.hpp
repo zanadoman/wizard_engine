@@ -371,17 +371,17 @@ namespace slay
                                     uint8 Priority;
                                     bool Visible;
                                     bool Loop;
+                                    double GetX();
+                                    double SetX(double X);
+                                    double GetY();
+                                    double SetY(double Y);
                                     uint32 GetDelay();
                                     uint32 SetDelay(uint32 Delay);
-                                    sint32 GetOffsetX();
-                                    sint32 SetOffsetX(sint32 OffsetX);
-                                    sint32 GetOffsetY();
-                                    sint32 SetOffsetY(sint32 OffsetY);
                                     uint8 Reset();
 
                                 private:
-                                    sint32 OffsetX;
-                                    sint32 OffsetY;
+                                    double X;
+                                    double Y;
                                     double OffsetLength;
                                     double OffsetAngle;
                                     uint32 Delay;

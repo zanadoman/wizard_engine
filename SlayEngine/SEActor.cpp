@@ -44,6 +44,17 @@ namespace slay
 
     double engine::actors::actor::SetX(double X)
     {
+        for (uint64 i = 1; i < this->Flipbooks.Flipbooks.Length(); i++)
+        {
+            if (this->Flipbooks.Flipbooks[i] == NULL)
+            {
+                continue;
+            }
+
+            this->Flipbooks.Flipbooks[i]->X = Engine->Vector.TerminalX(this->X, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
+            this->Flipbooks.Flipbooks[i]->Y = Engine->Vector.TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
+        }
+
         for (uint64 i = 1; i < this->Texts.Texts.Length(); i++)
         {
             if (this->Texts.Texts[i] == NULL)
@@ -65,6 +76,17 @@ namespace slay
 
     double engine::actors::actor::SetY(double Y)
     {
+        for (uint64 i = 1; i < this->Flipbooks.Flipbooks.Length(); i++)
+        {
+            if (this->Flipbooks.Flipbooks[i] == NULL)
+            {
+                continue;
+            }
+
+            this->Flipbooks.Flipbooks[i]->X = Engine->Vector.TerminalX(this->X, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
+            this->Flipbooks.Flipbooks[i]->Y = Engine->Vector.TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
+        }
+
         for (uint64 i = 1; i < this->Texts.Texts.Length(); i++)
         {
             if (this->Texts.Texts[i] == NULL)
@@ -205,10 +227,11 @@ namespace slay
 
             if (this->Flipbooks.Flipbooks[i]->OffsetAngleLocked)
             {
-                cache = this->Flipbooks.Flipbooks[i]->OffsetAngle + Angle;
-                this->Flipbooks.Flipbooks[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Flipbooks.Flipbooks[i]->OffsetLength, cache));
-                this->Flipbooks.Flipbooks[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Flipbooks.Flipbooks[i]->OffsetLength, cache));
+                this->Flipbooks.Flipbooks[i]->OffsetAngle += change;
             }
+
+            this->Flipbooks.Flipbooks[i]->X = Engine->Vector.TerminalX(this->X, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
+            this->Flipbooks.Flipbooks[i]->Y = Engine->Vector.TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Texts.Texts.Length(); i++)

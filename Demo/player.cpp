@@ -21,7 +21,7 @@ player::player(engine* Engine) : Engine(Engine)
 
     this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].Width = 100;
     this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].Height = 100;
-    this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].SetOffsetY(16);
+    this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].SetY(this->Engine->Actors[this->Actor].GetY() + 16);
 
     this->Engine->Actors[this->Actor].Texts[this->NameText].Height = 20;
     this->Engine->Actors[this->Actor].Texts[this->NameText].SetY(this->Engine->Actors[this->Actor].GetY() + 56);

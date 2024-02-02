@@ -1099,9 +1099,9 @@ _ZN4slay6engine6assets13UnloadTextureEy:
 	cmpq	%rcx, %rdi
 	jnb	.L211
 .L182:
-	cmpq	88(%rdx), %rax
+	cmpq	96(%rdx), %rax
 	jnb	.L180
-	movq	96(%rdx), %rcx
+	movq	104(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
 	jne	.L183
@@ -1357,9 +1357,9 @@ _ZN4slay6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	cmpq	%rcx, %rdi
 	jnb	.L286
 .L235:
-	cmpq	88(%rdx), %rax
+	cmpq	96(%rdx), %rax
 	jnb	.L233
-	movq	96(%rdx), %rcx
+	movq	104(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
 	jne	.L236
@@ -1623,9 +1623,9 @@ _ZN4slay6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	cmpq	%rcx, %rdi
 	jnb	.L361
 .L309:
-	cmpq	88(%rdx), %rax
+	cmpq	96(%rdx), %rax
 	jnb	.L307
-	movq	96(%rdx), %rcx
+	movq	104(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
 	jne	.L310

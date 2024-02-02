@@ -180,9 +180,6 @@ namespace slay
                     continue;
                 }
 
-                x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetX;
-                y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetY;
-
                 if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) < 0)
                 {
                     layer = EPSILON;
@@ -194,7 +191,7 @@ namespace slay
 
                 for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine->Camera.Transform(x, y, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height, layer);
+                    area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->X, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Y, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height, layer);
 
                     if (area.w == 0 || area.h == 0)
                     {

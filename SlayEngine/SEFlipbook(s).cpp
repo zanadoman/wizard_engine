@@ -276,8 +276,8 @@ namespace slay
         this->Priority = 128;
         this->Visible = true;
         this->Loop = true;
-        this->OffsetX = 0;
-        this->OffsetY = 0;
+        this->X = this->Actor->X;
+        this->Y = this->Actor->Y;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->Delay = Delay;
@@ -312,8 +312,8 @@ namespace slay
         this->Priority = 128;
         this->Visible = true;
         this->Loop = true;
-        this->OffsetX = 0;
-        this->OffsetY = 0;
+        this->X = this->Actor->X;
+        this->Y = this->Actor->Y;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->Delay = Delay;
@@ -337,9 +337,30 @@ namespace slay
         free(this->Textures);
     }
 
-    sint32 engine::actors::actor::flipbooks::flipbook::GetOffsetX()
+    double engine::actors::actor::flipbooks::flipbook::GetX()
     {
-        return this->OffsetX;
+        return this->X;
+    }
+
+    double engine::actors::actor::flipbooks::flipbook::SetX(double X)
+    {
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, X, this->Y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, X, this->Y);
+
+        return this->X = X;
+    }
+
+    double engine::actors::actor::flipbooks::flipbook::GetY()
+    {
+        return this->Y;
+    }
+
+    double engine::actors::actor::flipbooks::flipbook::SetY(double Y)
+    {
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, this->X, Y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y);
+
+        return this->Y = Y;
     }
 
     uint32 engine::actors::actor::flipbooks::flipbook::GetDelay()
@@ -356,27 +377,6 @@ namespace slay
         }
 
         return this->Delay = Delay;
-    }
-
-    sint32 engine::actors::actor::flipbooks::flipbook::SetOffsetX(sint32 OffsetX)
-    {
-        this->OffsetLength = this->Engine->Vector.Length(0, 0, OffsetX, this->OffsetY);
-        this->OffsetAngle = this->Engine->Vector.Angle(0, 0, OffsetX, this->OffsetY);
-
-        return this->OffsetX = OffsetX;
-    }
-
-    sint32 engine::actors::actor::flipbooks::flipbook::GetOffsetY()
-    {
-        return this->OffsetY;
-    }
-
-    sint32 engine::actors::actor::flipbooks::flipbook::SetOffsetY(sint32 OffsetY)
-    {
-        this->OffsetLength = this->Engine->Vector.Length(0, 0, this->OffsetX, OffsetY);
-        this->OffsetAngle = this->Engine->Vector.Angle(0, 0, this->OffsetX, OffsetY);
-
-        return this->OffsetY = OffsetY;
     }
 
     uint8 engine::actors::actor::flipbooks::flipbook::Reset()
