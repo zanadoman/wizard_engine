@@ -224,6 +224,19 @@ namespace slay
             printf("slay::engine.actors[].SetLayer(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
+        if (Layer == 0)
+        {
+            this->Depth = 0;
+
+            if (this->Engine->Actors.Actors[this->Engine->Camera.XActor] == this)
+            {
+                this->Engine->Camera.XActor = 0;
+            }
+            if (this->Engine->Actors.Actors[this->Engine->Camera.YActor] == this)
+            {
+                this->Engine->Camera.YActor = 0;
+            }
+        }
 
         return this->Layer = Layer;
     }
@@ -235,6 +248,11 @@ namespace slay
 
     double engine::actors::actor::SetDepth(double Depth)
     {
+        if (this->Layer == 0)
+        {
+            printf("slay::engine.actors[].SetDepth(): Illegal to set Depth when Layer is 0\nParams: Depth: %lf\n", Depth);
+            exit(1);
+        }
         if (Depth < 0)
         {
             printf("slay::engine::actors[].SetDepth(): Depth must not be less than 0\nParams: Depth: %lf\n", Depth);

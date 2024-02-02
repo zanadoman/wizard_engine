@@ -89,7 +89,7 @@ namespace slay
                 x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Colors.Colors[j]->OffsetX;
                 y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Colors.Colors[j]->OffsetY;
 
-                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) <= 0)
+                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) < 0)
                 {
                     layer = EPSILON;
                 }
@@ -136,7 +136,7 @@ namespace slay
                 x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Textures.Textures[j]->OffsetX;
                 y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Textures.Textures[j]->OffsetY;
 
-                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) <= 0)
+                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) < 0)
                 {
                     layer = EPSILON;
                 }
@@ -183,7 +183,7 @@ namespace slay
                 x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetX;
                 y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetY;
 
-                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) <= 0)
+                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) < 0)
                 {
                     layer = EPSILON;
                 }
@@ -249,7 +249,7 @@ namespace slay
                 x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Texts.Texts[j]->OffsetX;
                 y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Texts.Texts[j]->OffsetY;
                 
-                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) <= 0)
+                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) < 0)
                 {
                     layer = EPSILON;
                 }

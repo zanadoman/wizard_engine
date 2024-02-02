@@ -430,7 +430,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm3
 	comisd	%xmm2, %xmm7
-	jnb	.L271
+	ja	.L271
 	ucomisd	%xmm2, %xmm3
 	jp	.L123
 	jne	.L123
@@ -619,7 +619,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm3
 	comisd	%xmm2, %xmm7
-	jnb	.L276
+	ja	.L276
 	ucomisd	%xmm3, %xmm2
 	jp	.L29
 	jne	.L29
@@ -909,7 +909,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	addsd	%xmm0, %xmm1
 	pxor	%xmm0, %xmm0
 	comisd	%xmm2, %xmm0
-	jnb	.L284
+	ja	.L284
 	ucomisd	%xmm1, %xmm2
 	jp	.L56
 	jne	.L56
@@ -1017,7 +1017,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	addsd	%xmm0, %xmm3
 	pxor	%xmm0, %xmm0
 	comisd	%xmm2, %xmm0
-	jnb	.L289
+	ja	.L289
 	ucomisd	%xmm3, %xmm2
 	jp	.L82
 	jne	.L82

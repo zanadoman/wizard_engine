@@ -92,6 +92,9 @@ _ZN4slay6engine6camera9GetYActorEv:
 	.align 8
 .LC6:
 	.string	"slay::engine.camera.Bind(): Actor does not exist\nParams: Actor: %lld\n"
+	.align 8
+.LC7:
+	.string	"slay::engine.camera.Bind(): Actor must be in layer 0\nParams: Actor: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -103,17 +106,23 @@ _ZN4slay6engine6camera4BindEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L20
+	je	.L23
 	movq	(%rdi), %rax
 	cmpq	536(%rax), %rsi
 	jnb	.L17
 	movq	544(%rax), %rax
-	cmpq	$0, (%rax,%rsi,8)
+	movq	(%rax,%rsi,8), %rax
+	testq	%rax, %rax
 	je	.L17
+	pxor	%xmm1, %xmm1
+	ucomisd	184(%rax), %xmm1
 	movq	%rsi, %xmm0
-	xorl	%eax, %eax
 	punpcklqdq	%xmm0, %xmm0
+	jp	.L19
+	je	.L24
+.L19:
 	movups	%xmm0, 24(%rdi)
+	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
@@ -125,8 +134,14 @@ _ZN4slay6engine6camera4BindEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L20:
+.L23:
 	leaq	.LC5(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L24:
+	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -136,11 +151,14 @@ _ZN4slay6engine6camera4BindEy:
 	.size	_ZN4slay6engine6camera4BindEy, .-_ZN4slay6engine6camera4BindEy
 	.section	.rodata.str1.8
 	.align 8
-.LC7:
+.LC8:
 	.string	"slay::engine.camera.BindX(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
-.LC8:
+.LC9:
 	.string	"slay::engine.camera.BindX(): Actor does not exist\nParams: Actor: %lld\n"
+	.align 8
+.LC10:
+	.string	"slay::engine.camera.BindX(): Actor must be in layer 0\nParams: Actor: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -152,28 +170,40 @@ _ZN4slay6engine6camera5BindXEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L26
+	je	.L33
 	movq	(%rdi), %rax
 	cmpq	536(%rax), %rsi
-	jnb	.L23
+	jnb	.L27
 	movq	544(%rax), %rax
-	cmpq	$0, (%rax,%rsi,8)
-	je	.L23
+	movq	(%rax,%rsi,8), %rax
+	testq	%rax, %rax
+	je	.L27
+	pxor	%xmm0, %xmm0
+	ucomisd	184(%rax), %xmm0
+	jp	.L29
+	je	.L34
+.L29:
 	movq	%rsi, 24(%rdi)
 	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L23:
+.L27:
 	.cfi_restore_state
+	leaq	.LC9(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L33:
 	leaq	.LC8(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L26:
-	leaq	.LC7(%rip), %rdi
+.L34:
+	leaq	.LC10(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -183,11 +213,14 @@ _ZN4slay6engine6camera5BindXEy:
 	.size	_ZN4slay6engine6camera5BindXEy, .-_ZN4slay6engine6camera5BindXEy
 	.section	.rodata.str1.8
 	.align 8
-.LC9:
+.LC11:
 	.string	"slay::engine.camera.BindY(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
-.LC10:
+.LC12:
 	.string	"slay::engine.camera.BindY(): Actor does not exist\nParams: Actor: %lld\n"
+	.align 8
+.LC13:
+	.string	"slay::engine.camera.BindY(): Actor must be in layer 0\nParams: Actor: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -199,28 +232,40 @@ _ZN4slay6engine6camera5BindYEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L32
+	je	.L43
 	movq	(%rdi), %rax
 	cmpq	536(%rax), %rsi
-	jnb	.L29
+	jnb	.L37
 	movq	544(%rax), %rax
-	cmpq	$0, (%rax,%rsi,8)
-	je	.L29
+	movq	(%rax,%rsi,8), %rax
+	testq	%rax, %rax
+	je	.L37
+	pxor	%xmm0, %xmm0
+	ucomisd	184(%rax), %xmm0
+	jp	.L39
+	je	.L44
+.L39:
 	movq	%rsi, 32(%rdi)
 	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L29:
+.L37:
 	.cfi_restore_state
-	leaq	.LC10(%rip), %rdi
+	leaq	.LC12(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L32:
-	leaq	.LC9(%rip), %rdi
+.L43:
+	leaq	.LC11(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L44:
+	leaq	.LC13(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -270,7 +315,7 @@ _ZN4slay6engine6camera7UnbindYEv:
 	.size	_ZN4slay6engine6camera7UnbindYEv, .-_ZN4slay6engine6camera7UnbindYEv
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
+.LC14:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.text
 	.align 2
@@ -284,11 +329,11 @@ _ZN4slay6engine6camera6UpdateEv:
 	.cfi_def_cfa_offset 16
 	movq	24(%rdi), %rsi
 	testq	%rsi, %rsi
-	jne	.L49
+	jne	.L61
 	movq	32(%rdi), %rsi
 	testq	%rsi, %rsi
-	jne	.L50
-.L39:
+	jne	.L62
+.L51:
 	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -296,23 +341,23 @@ _ZN4slay6engine6camera6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L49:
+.L61:
 	.cfi_restore_state
 	movq	(%rdi), %rax
 	movq	544(%rax), %rdx
 	cmpq	536(%rax), %rsi
-	jnb	.L48
+	jnb	.L60
 	movq	(%rdx,%rsi,8), %rax
 	movq	32(%rdi), %rsi
 	movsd	152(%rax), %xmm0
 	movsd	%xmm0, 40(%rdi)
 	testq	%rsi, %rsi
-	je	.L39
-.L50:
+	je	.L51
+.L62:
 	movq	(%rdi), %rax
 	movq	544(%rax), %rdx
 	cmpq	536(%rax), %rsi
-	jnb	.L48
+	jnb	.L60
 	movq	(%rdx,%rsi,8), %rax
 	movsd	160(%rax), %xmm0
 	xorl	%eax, %eax
@@ -321,9 +366,9 @@ _ZN4slay6engine6camera6UpdateEv:
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L48:
+.L60:
 	.cfi_restore_state
-	leaq	.LC11(%rip), %rdi
+	leaq	.LC14(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -367,8 +412,8 @@ _ZN4slay6engine6camera9TransformEddttd:
 	ucomisd	%xmm0, %xmm2
 	movq	(%rdi), %rax
 	movzwl	42(%rax), %r13d
-	jp	.L52
-	jne	.L52
+	jp	.L64
+	jne	.L64
 	movapd	%xmm3, %xmm0
 	call	round@PLT
 	movl	%ebx, %edx
@@ -376,7 +421,7 @@ _ZN4slay6engine6camera9TransformEddttd:
 	sarl	%edx
 	movq	%r15, %xmm0
 	subl	%edx, %ebp
-.L57:
+.L69:
 	call	round@PLT
 	movl	%r13d, %edx
 	addq	$24, %rsp
@@ -408,7 +453,7 @@ _ZN4slay6engine6camera9TransformEddttd:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L52:
+.L64:
 	.cfi_restore_state
 	mulsd	56(%r14), %xmm2
 	pxor	%xmm0, %xmm0
@@ -444,7 +489,7 @@ _ZN4slay6engine6camera9TransformEddttd:
 	addsd	48(%r14), %xmm1
 	subsd	%xmm1, %xmm0
 	mulsd	%xmm2, %xmm0
-	jmp	.L57
+	jmp	.L69
 	.cfi_endproc
 .LFE2245:
 	.size	_ZN4slay6engine6camera9TransformEddttd, .-_ZN4slay6engine6camera9TransformEddttd

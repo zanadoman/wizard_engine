@@ -1017,15 +1017,54 @@ _ZN4slay6engine6actors5actor8SetLayerEd:
 .LFB2251:
 	.cfi_startproc
 	pxor	%xmm1, %xmm1
-	comisd	%xmm0, %xmm1
-	ja	.L105
-	movsd	%xmm0, 184(%rdi)
-	ret
-.L105:
-	pushq	%rax
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
+	comisd	%xmm0, %xmm1
+	ja	.L111
+	ucomisd	%xmm1, %xmm0
+	jp	.L102
+	je	.L112
+.L102:
+	movsd	%xmm0, 184(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L112:
+	.cfi_restore_state
+	movq	$0x000000000, 192(%rdi)
+	movq	(%rdi), %rax
+	movq	104(%rax), %rsi
+	movq	536(%rax), %rcx
+	movq	544(%rax), %rdx
+	cmpq	%rcx, %rsi
+	jnb	.L110
+	cmpq	%rdi, (%rdx,%rsi,8)
+	je	.L113
+.L104:
+	movq	112(%rax), %rsi
+	cmpq	%rcx, %rsi
+	jnb	.L110
+	cmpq	%rdi, (%rdx,%rsi,8)
+	jne	.L102
+	movq	$0, 112(%rax)
+	jmp	.L102
+	.p2align 4,,10
+	.p2align 3
+.L113:
+	movq	$0, 104(%rax)
+	jmp	.L104
+.L111:
 	leaq	.LC5(%rip), %rdi
 	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L110:
+	leaq	.LC3(%rip), %rdi
+	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -1047,6 +1086,9 @@ _ZN4slay6engine6actors5actor8GetDepthEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC6:
+	.string	"slay::engine.actors[].SetDepth(): Illegal to set Depth when Layer is 0\nParams: Depth: %lf\n"
+	.align 8
+.LC7:
 	.string	"slay::engine::actors[].SetDepth(): Depth must not be less than 0\nParams: Depth: %lf\n"
 	.text
 	.align 2
@@ -1056,15 +1098,30 @@ _ZN4slay6engine6actors5actor8GetDepthEv:
 _ZN4slay6engine6actors5actor8SetDepthEd:
 .LFB2253:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	pxor	%xmm1, %xmm1
+	ucomisd	184(%rdi), %xmm1
+	jp	.L116
+	je	.L124
+.L116:
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L115
+	ja	.L125
 	movsd	%xmm0, 192(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L115:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
+.L124:
+	.cfi_restore_state
 	leaq	.LC6(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L125:
+	leaq	.LC7(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi

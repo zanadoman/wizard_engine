@@ -51,6 +51,11 @@ namespace slay
             printf("slay::engine.camera.Bind(): Actor does not exist\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
+        if (this->Engine->Actors.Actors[Actor]->Layer == 0)
+        {
+            printf("slay::engine.camera.Bind(): Actor must be in layer 0\nParams: Actor: %lld\n", Actor);
+            exit(1);
+        }
 
         this->XActor = Actor;
         this->YActor = Actor;
@@ -70,6 +75,11 @@ namespace slay
             printf("slay::engine.camera.BindX(): Actor does not exist\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
+        if (this->Engine->Actors.Actors[Actor]->Layer == 0)
+        {
+            printf("slay::engine.camera.BindX(): Actor must be in layer 0\nParams: Actor: %lld\n", Actor);
+            exit(1);
+        }
 
         this->XActor = Actor;
 
@@ -86,6 +96,11 @@ namespace slay
         if (this->Engine->Actors.Actors.Length() <= Actor || this->Engine->Actors.Actors[Actor] == NULL)
         {
             printf("slay::engine.camera.BindY(): Actor does not exist\nParams: Actor: %lld\n", Actor);
+            exit(1);
+        }
+        if (this->Engine->Actors.Actors[Actor]->Layer == 0)
+        {
+            printf("slay::engine.camera.BindY(): Actor must be in layer 0\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
 

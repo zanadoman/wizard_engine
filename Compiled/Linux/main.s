@@ -5,10 +5,12 @@
 	.string	"assets/icon.png"
 .LC1:
 	.string	"Demo"
+.LC2:
+	.string	"%d %d %d %d\n"
 	.section	.text.unlikely,"ax",@progbits
-.LCOLDB2:
+.LCOLDB3:
 	.section	.text.startup,"ax",@progbits
-.LHOTB2:
+.LHOTB3:
 	.p2align 4
 	.globl	main
 	.type	main, @function
@@ -17,16 +19,27 @@ main:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2231
-	pushq	%r12
+	pushq	%r15
 	.cfi_def_cfa_offset 16
-	.cfi_offset 12, -16
+	.cfi_offset 15, -16
 	movl	$688, %edi
-	pushq	%rbp
+	pushq	%r14
 	.cfi_def_cfa_offset 24
-	.cfi_offset 6, -24
-	pushq	%rbx
+	.cfi_offset 14, -24
+	pushq	%r13
 	.cfi_def_cfa_offset 32
-	.cfi_offset 3, -32
+	.cfi_offset 13, -32
+	pushq	%r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 80
 .LEHB0:
 	call	_Znwm@PLT
 .LEHE0:
@@ -36,7 +49,7 @@ main:
 	leaq	.LC0(%rip), %rdx
 	leaq	.LC1(%rip), %rsi
 	movq	%rax, %rdi
-	movq	%rax, %rbx
+	movq	%rax, %r13
 .LEHB1:
 	call	_ZN4slay6engineC1EPKcS2_tth@PLT
 .LEHE1:
@@ -44,9 +57,9 @@ main:
 .LEHB2:
 	call	_Znwm@PLT
 .LEHE2:
-	movq	%rbx, %rsi
+	movq	%r13, %rsi
 	movq	%rax, %rdi
-	movq	%rax, %r12
+	movq	%rax, 8(%rsp)
 .LEHB3:
 	call	_ZN10backgroundC1EPN4slay6engineE@PLT
 .LEHE3:
@@ -54,55 +67,83 @@ main:
 .LEHB4:
 	call	_Znwm@PLT
 .LEHE4:
-	movq	%rbx, %rsi
+	movq	%r13, %rsi
 	movq	%rax, %rdi
-	movq	%rax, %rbp
+	movq	%rax, %r14
 .LEHB5:
 	call	_ZN6playerC1EPN4slay6engineE@PLT
 .LEHE5:
-	movq	8(%rbp), %rsi
-	leaq	80(%rbx), %rdi
+	movq	8(%r14), %rsi
+	leaq	80(%r13), %rdi
 .LEHB6:
 	call	_ZN4slay6engine6camera4BindEy@PLT
 	jmp	.L2
 	.p2align 4,,10
 	.p2align 3
 .L3:
-	movq	%rbp, %rdi
+	leaq	632(%r13), %rbx
+	movq	%r14, %rdi
 	call	_ZN6player6UpdateEv@PLT
-.L2:
 	movq	%rbx, %rdi
+	call	_ZN4slay6engine6timing12GetFrameTimeEv@PLT
+	movq	%rbx, %rdi
+	movl	%eax, %r15d
+	call	_ZN4slay6engine6timing14GetWorkingTimeEv@PLT
+	movq	%rbx, %rdi
+	movl	%eax, %r12d
+	call	_ZN4slay6engine6timing13GetRenderTimeEv@PLT
+	movq	%rbx, %rdi
+	movl	%eax, %ebp
+	call	_ZN4slay6engine6timing11GetGameTimeEv@PLT
+	movl	%r15d, %r8d
+	movl	%r12d, %ecx
+	movl	%ebp, %edx
+	movl	%eax, %esi
+	leaq	.LC2(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+.L2:
+	movq	%r13, %rdi
 	call	_ZN4slay6engine6UpdateEv@PLT
 .LEHE6:
 	testb	%al, %al
 	jne	.L3
-	movq	%r12, %rdi
+	movq	8(%rsp), %rbx
+	movq	%rbx, %rdi
 	call	_ZN10backgroundD1Ev@PLT
 	movl	$32, %esi
-	movq	%r12, %rdi
+	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
-	movq	%rbp, %rdi
+	movq	%r14, %rdi
 	call	_ZN6playerD1Ev@PLT
 	movl	$56, %esi
-	movq	%rbp, %rdi
+	movq	%r14, %rdi
 	call	_ZdlPvm@PLT
-	movq	%rbx, %rdi
+	movq	%r13, %rdi
 	call	_ZN4slay6engineD1Ev@PLT
-	movq	%rbx, %rdi
+	movq	%r13, %rdi
 	movl	$688, %esi
 	call	_ZdlPvm@PLT
-	popq	%rbx
+	addq	$24, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 24
+	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 48
 	popq	%rbp
-	.cfi_def_cfa_offset 16
+	.cfi_def_cfa_offset 40
 	popq	%r12
+	.cfi_def_cfa_offset 32
+	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
 .L7:
 	.cfi_restore_state
-	movq	%rax, %rbp
+	movq	%rax, %rbx
 	jmp	.L4
 .L9:
 	movq	%rax, %rbx
@@ -157,24 +198,27 @@ main:
 main.cold:
 .LFSB2231:
 .L4:
-	.cfi_def_cfa_offset 32
-	.cfi_offset 3, -32
-	.cfi_offset 6, -24
-	.cfi_offset 12, -16
-	movq	%rbx, %rdi
+	.cfi_def_cfa_offset 80
+	.cfi_offset 3, -56
+	.cfi_offset 6, -48
+	.cfi_offset 12, -40
+	.cfi_offset 13, -32
+	.cfi_offset 14, -24
+	.cfi_offset 15, -16
+	movq	%r13, %rdi
 	movl	$688, %esi
 	call	_ZdlPvm@PLT
-	movq	%rbp, %rdi
+	movq	%rbx, %rdi
 .LEHB7:
 	call	_Unwind_Resume@PLT
 .L6:
-	movq	%rbp, %rdi
+	movq	%r14, %rdi
 	movl	$56, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L5:
-	movq	%r12, %rdi
+	movq	8(%rsp), %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
@@ -189,7 +233,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC2231-.LLSDACSBC2231
 .LLSDACSBC2231:
-	.uleb128 .LEHB7-.LCOLDB2
+	.uleb128 .LEHB7-.LCOLDB3
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
@@ -199,9 +243,9 @@ main.cold:
 	.size	main, .-main
 	.section	.text.unlikely
 	.size	main.cold, .-main.cold
-.LCOLDE2:
+.LCOLDE3:
 	.section	.text.startup
-.LHOTE2:
+.LHOTE3:
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat
