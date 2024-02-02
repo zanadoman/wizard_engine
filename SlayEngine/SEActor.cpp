@@ -103,26 +103,26 @@ namespace slay
     double engine::actors::actor::SetAngle(double Angle)
     {
         double change, cache;
-        double med1angle, med1angle180, med2angle, med2angle180;
+        double MedAngle1, MedAngle2, MedAngle1_180, MedAngle2_180;
         sint32 x1, x2, x3, x4;
         sint32 y1, y2, y3, y4;
         sint32 minX, maxX, minY, maxY;
         sint32 tmp1, tmp2;
 
-        med1angle = this->Angle + this->HitboxMedian1Angle;
-        med1angle180 = med1angle + 180;
-        med2angle = this->Angle + this->HitboxMedian2Angle;
-        med2angle180 = med2angle + 180;
+        MedAngle1 = this->Angle + this->HitboxMedian1Angle;
+        MedAngle2 = this->Angle + this->HitboxMedian2Angle;
+        MedAngle1_180 = MedAngle1 + 180;
+        MedAngle2_180 =  MedAngle2 + 180;
 
-        x1 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, Angle + this->HitboxMedian1Angle);
-        x2 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, Angle + this->HitboxMedian2Angle);
-        x3 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, Angle + this->HitboxMedian1Angle + 180);
-        x4 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, Angle + this->HitboxMedian2Angle + 180);
+        x1 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle1);
+        x2 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle2);
+        x3 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle1_180);
+        x4 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle2_180);
 
-        y1 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, Angle + this->HitboxMedian1Angle);
-        y2 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, Angle + this->HitboxMedian2Angle);
-        y3 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, Angle + this->HitboxMedian1Angle + 180);
-        y4 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, Angle + this->HitboxMedian2Angle + 180);
+        y1 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle1);
+        y2 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle2);
+        y3 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle1_180);
+        y4 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle2_180);
 
         minX = (tmp1 = x1 < x2 ? x1 : x2) < (tmp2 = x3 < x4 ? x3 : x4) ? tmp1 : tmp2;
         maxX = (tmp2 = x4 < x3 ? x3 : x4) < (tmp1 = x2 < x1 ? x1 : x2) ? tmp1 : tmp2;
