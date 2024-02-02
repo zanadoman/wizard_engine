@@ -66,7 +66,7 @@ namespace slay
     uint8 engine::render::SelectionStage()
     {
         uint64 k;
-        double x, y, layer, depth;
+        double layer, depth;
         SDL_Rect area;
         SDL_Color color;
         SDL_Surface* surface;
@@ -86,9 +86,6 @@ namespace slay
                     continue;
                 }
 
-                x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Colors.Colors[j]->OffsetX;
-                y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Colors.Colors[j]->OffsetY;
-
                 if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) < 0)
                 {
                     layer = EPSILON;
@@ -100,7 +97,7 @@ namespace slay
 
                 for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine->Camera.Transform(x, y, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Height, layer);
+                    area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->Colors.Colors[j]->X, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Y, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Height, layer);
 
                     if (area.w == 0 || area.h == 0)
                     {

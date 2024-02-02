@@ -259,14 +259,14 @@ namespace slay
                                     bool OffsetAngleLocked;
                                     uint8 Priority;
                                     bool Visible;
-                                    sint32 GetOffsetX();
-                                    sint32 SetOffsetX(sint32 OffsetX);
-                                    sint32 GetOffsetY();
-                                    sint32 SetOffsetY(sint32 OffsetY);
+                                    double GetX();
+                                    double SetX(double X);
+                                    double GetY();
+                                    double SetY(double Y);
 
                                 private:
-                                    sint32 OffsetX;
-                                    sint32 OffsetY;
+                                    double X;
+                                    double Y;
                                     double OffsetLength;
                                     double OffsetAngle;
                                     color(engine* Engine, actor* Actor);

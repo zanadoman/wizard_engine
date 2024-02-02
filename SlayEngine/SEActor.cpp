@@ -44,6 +44,17 @@ namespace slay
 
     double engine::actors::actor::SetX(double X)
     {
+        for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
+        {
+            if (this->Colors.Colors[i] == NULL)
+            {
+                continue;
+            }
+
+            this->Colors.Colors[i]->X = Engine->Vector.TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+            this->Colors.Colors[i]->Y = Engine->Vector.TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+        }
+
         for (uint64 i = 1; i < this->Textures.Textures.Length(); i++)
         {
             if (this->Textures.Textures[i] == NULL)
@@ -87,6 +98,17 @@ namespace slay
 
     double engine::actors::actor::SetY(double Y)
     {
+        for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
+        {
+            if (this->Colors.Colors[i] == NULL)
+            {
+                continue;
+            }
+
+            this->Colors.Colors[i]->X = Engine->Vector.TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+            this->Colors.Colors[i]->Y = Engine->Vector.TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+        }
+
         for (uint64 i = 1; i < this->Textures.Textures.Length(); i++)
         {
             if (this->Textures.Textures[i] == NULL)
@@ -168,7 +190,7 @@ namespace slay
 
     double engine::actors::actor::SetAngle(double Angle)
     {
-        double change, cache;
+        double change;
         double MedAngle1, MedAngle2, MedAngle1_180, MedAngle2_180;
         sint32 x1, x2, x3, x4;
         sint32 y1, y2, y3, y4;
@@ -209,10 +231,11 @@ namespace slay
 
             if (this->Colors.Colors[i]->OffsetAngleLocked)
             {
-                cache = this->Colors.Colors[i]->OffsetAngle + Angle;
-                this->Colors.Colors[i]->OffsetX = round(this->Engine->Vector.TerminalX(0, this->Colors.Colors[i]->OffsetLength, cache));
-                this->Colors.Colors[i]->OffsetY = round(this->Engine->Vector.TerminalY(0, this->Colors.Colors[i]->OffsetLength, cache));
+                this->Colors.Colors[i]->OffsetAngle += change;
             }
+
+            this->Colors.Colors[i]->X = Engine->Vector.TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+            this->Colors.Colors[i]->Y = Engine->Vector.TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Textures.Textures.Length(); i++)
