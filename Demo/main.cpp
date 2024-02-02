@@ -13,19 +13,23 @@
 
 sint32 main()
 {
-    engine Engine(NULL, 1920, 1080, 1000 / 165);
+    engine* Engine = new engine(NULL, 1920, 1080, 1000 / 165);
 
-    background Background(Engine);
-    player Player(Engine);
+    background* Background = new background(Engine);
+    player* Player = new player(Engine);
 
-    Engine.Camera.Bind(Player.Actor);
+    Engine->Camera.Bind(Player->Actor);
 
-    while (Engine.Update())
+    while (Engine->Update())
     {
-        Player.Update();
+        Player->Update();
 
-        printf("%d %d %d %d\n", Engine.Timing.GetGameTime(), Engine.Timing.GetRenderTime(), Engine.Timing.GetWorkingTime(), Engine.Timing.GetFrameTime());
+        printf("%d %d %d %d\n", Engine->Timing.GetGameTime(), Engine->Timing.GetRenderTime(), Engine->Timing.GetWorkingTime(), Engine->Timing.GetFrameTime());
     }
+
+    delete Background;
+    delete Player;
+    delete Engine;
 
     return 0;
 }

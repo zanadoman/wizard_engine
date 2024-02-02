@@ -35,7 +35,7 @@ namespace slay
             class window
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 public:
                     uint16 GetHeight();
@@ -46,7 +46,7 @@ namespace slay
                     SDL_Renderer* Renderer;
                     uint16 Width;
                     uint16 Height;
-                    window(engine& Engine);
+                    window(engine* Engine);
                     uint8 Open(const char* Title, uint16 Width, uint16 Height);
                     uint8 Close();
             } Window;
@@ -56,7 +56,7 @@ namespace slay
             class render
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 enum type
                 {
@@ -92,7 +92,7 @@ namespace slay
                     uint16 BufferSize;
                     uint64 RenderQueueLength;
                     token* RenderQueue;
-                    render(engine& Engine);
+                    render(engine* Engine);
                     ~render();
                     uint8 Update();
                     uint8 SelectionStage();
@@ -113,7 +113,7 @@ namespace slay
             class camera
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 public:
                     double OffsetX;
@@ -135,7 +135,7 @@ namespace slay
                     double CameraX;
                     double CameraY;
                     double Zoom;
-                    camera(engine& Engine);
+                    camera(engine* Engine);
                     uint8 Update();
                     SDL_Rect Transform(double X, double Y, uint16 Width, uint16 Height, double Layer);
             } Camera;
@@ -145,7 +145,7 @@ namespace slay
             class audio
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 public:
                     double GetGlobalVolume();
@@ -163,7 +163,7 @@ namespace slay
 
                 private:
                     double GlobalVolume;
-                    audio(engine& Engine);
+                    audio(engine* Engine);
             } Audio;
 
             //__________Keys___________________________________________________________________________________________
@@ -171,7 +171,7 @@ namespace slay
             class keys
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 public:
                     bool operator [] (key Key);
@@ -179,7 +179,7 @@ namespace slay
                 private:
                     const uint8* SDL_KeyStates;
                     uint8 KeyStates[KEY_COUNT];
-                    keys(engine& Engine);
+                    keys(engine* Engine);
                     uint8 Update();
             } Keys;
 
@@ -188,7 +188,7 @@ namespace slay
             class mouse
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 public:
                     double Sensitivity;
@@ -210,7 +210,7 @@ namespace slay
                     double MotionY;
                     bool Mode;
                     uint64 Cursor;
-                    mouse(engine& Engine);
+                    mouse(engine* Engine);
                     uint8 Update();
             } Mouse;
 
@@ -219,14 +219,14 @@ namespace slay
             class actors
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 //__________Actor______________________________________________________________________________________
 
                 class actor
                 {
                     friend class engine;
-                    engine& Engine;
+                    engine* Engine;
 
                     public:
 
@@ -235,14 +235,14 @@ namespace slay
                         class colors
                         {
                             friend class engine;
-                            engine& Engine;
-                            actor& Actor;
+                            engine* Engine;
+                            actor* Actor;
 
                             class color
                             {
                                 friend class engine;
-                                engine& Engine;
-                                actor& Actor;
+                                engine* Engine;
+                                actor* Actor;
 
                                 public:
                                     uint16 Width;
@@ -264,7 +264,7 @@ namespace slay
                                     sint32 OffsetY;
                                     double OffsetLength;
                                     double OffsetAngle;
-                                    color(engine& Engine, actor& Actor);
+                                    color(engine* Engine, actor* Actor);
                             };
 
                             public:
@@ -276,7 +276,7 @@ namespace slay
 
                             private:
                                 array<color*> Colors;
-                                colors(engine& Engine, actor& Actor);
+                                colors(engine* Engine, actor* Actor);
                                 ~colors();
                         } Colors;
 
@@ -285,14 +285,14 @@ namespace slay
                         class textures
                         {
                             friend class engine;
-                            engine& Engine;
-                            actor& Actor;
+                            engine* Engine;
+                            actor* Actor;
 
                             class texture
                             {
                                 friend class engine;
-                                engine& Engine;
-                                actor& Actor;
+                                engine* Engine;
+                                actor* Actor;
 
                                 public:
                                     uint16 Width;
@@ -321,7 +321,7 @@ namespace slay
                                     double OffsetLength;
                                     double OffsetAngle;
                                     uint64 TextureID;
-                                    texture(engine& Engine, actor& Actor, uint64 TextureID);
+                                    texture(engine* Engine, actor* Actor, uint64 TextureID);
                             };
 
                             public:
@@ -333,7 +333,7 @@ namespace slay
 
                             private:
                                 array<texture*> Textures;
-                                textures(engine& Engine, actor& Actor);
+                                textures(engine* Engine, actor* Actor);
                                 ~textures();
                         } Textures;
 
@@ -342,14 +342,14 @@ namespace slay
                         class flipbooks
                         {
                             friend class engine;
-                            engine& Engine;
-                            actor& Actor;
+                            engine* Engine;
+                            actor* Actor;
 
                             class flipbook
                             {
                                 friend class engine;
-                                engine& Engine;
-                                actor& Actor;
+                                engine* Engine;
+                                actor* Actor;
 
                                 public:
                                     uint16 Width;
@@ -384,8 +384,8 @@ namespace slay
                                     uint32 Remainder;
                                     uint64 TexturesLength;
                                     uint64* Textures;
-                                    flipbook(engine& Engine, actor& Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs);
-                                    flipbook(engine& Engine, actor& Actor, uint32 Delay, array<uint64>* TextureIDs);
+                                    flipbook(engine* Engine, actor* Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs);
+                                    flipbook(engine* Engine, actor* Actor, uint32 Delay, array<uint64>* TextureIDs);
                                     ~flipbook();
                             };
 
@@ -399,7 +399,7 @@ namespace slay
 
                             private:
                                 array<flipbook*> Flipbooks;
-                                flipbooks(engine& Engine, actor& Actor);
+                                flipbooks(engine* Engine, actor* Actor);
                                 ~flipbooks();
                         } Flipbooks;
 
@@ -408,14 +408,14 @@ namespace slay
                         class texts
                         {
                             friend class engine;
-                            engine& Engine;
-                            actor& Actor;
+                            engine* Engine;
+                            actor* Actor;
 
                             class text
                             {
                                 friend class engine;
-                                engine& Engine;
-                                actor& Actor;
+                                engine* Engine;
+                                actor* Actor;
 
                                 public:
                                     uint16 Height;
@@ -447,7 +447,7 @@ namespace slay
                                     string String;
                                     uint64 FontID;
                                     SDL_Texture* Texture;
-                                    text(engine& Engine, actor& Actor, const char* String, uint64 FontID);
+                                    text(engine* Engine, actor* Actor, const char* String, uint64 FontID);
                                     ~text();
                             };
 
@@ -460,7 +460,7 @@ namespace slay
 
                             private:
                                 array<text*> Texts;
-                                texts(engine& Engine, actor& Actor);
+                                texts(engine* Engine, actor* Actor);
                                 ~texts();
                         } Texts;
 
@@ -487,7 +487,7 @@ namespace slay
                         double Angle;
                         double Layer;
                         double Depth;
-                        actor(engine& Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
+                        actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
                         ~actor();
                 };
 
@@ -502,7 +502,7 @@ namespace slay
 
                 private:
                     array<actor*> Actors;
-                    actors(engine& Engine);
+                    actors(engine* Engine);
                     ~actors();
             } Actors;
 
@@ -511,7 +511,7 @@ namespace slay
             class vector
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 public:
                     double Length(double X1, double Y1, double X2, double Y2);
@@ -520,7 +520,7 @@ namespace slay
                     double TerminalY(double InitialY, double Length, double Angle);
 
                 private:
-                    vector(engine& Engine);
+                    vector(engine* Engine);
             } Vector;
 
             //__________Assets_________________________________________________________________________________________
@@ -528,7 +528,7 @@ namespace slay
             class assets
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 public:
                     uint64 LoadTexture(const char* Path);
@@ -553,7 +553,7 @@ namespace slay
                     array<Mix_Chunk*> Sounds;
                     array<TTF_Font*> Fonts;
                     array<SDL_Cursor*> Cursors;
-                    assets(engine& Engine);
+                    assets(engine* Engine);
             } Assets;
 
             //__________Timing_________________________________________________________________________________________
@@ -561,7 +561,7 @@ namespace slay
             class timing
             {
                 friend class engine;
-                engine& Engine;
+                engine* Engine;
 
                 public:
                     uint8 TargetFrameTime;
@@ -581,7 +581,7 @@ namespace slay
                     sint16 IdleTime;
                     uint32 FrameTime;
                     uint32 DeltaTime;
-                    timing(engine& Engine);
+                    timing(engine* Engine);
                     uint8 Update();
             } Timing;
 

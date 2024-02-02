@@ -18,13 +18,10 @@ main:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	xorl	%esi, %esi
-	movl	$6, %r8d
-	movl	$1080, %ecx
+	movl	$688, %edi
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
-	movl	$1920, %edx
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
@@ -37,42 +34,55 @@ main:
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	subq	$824, %rsp
-	.cfi_def_cfa_offset 880
-	movq	%fs:40, %rax
-	movq	%rax, 808(%rsp)
-	xorl	%eax, %eax
-	leaq	112(%rsp), %r14
-	movq	%r14, %rdi
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 80
 .LEHB0:
-	call	_ZN4slay6engineC1EPKctth@PLT
+	call	_Znwm@PLT
 .LEHE0:
-	leaq	16(%rsp), %rdi
-	movq	%r14, %rsi
-	movq	%rdi, 8(%rsp)
+	movl	$6, %r8d
+	movl	$1080, %ecx
+	xorl	%esi, %esi
+	movl	$1920, %edx
+	movq	%rax, %rdi
+	movq	%rax, %r13
 .LEHB1:
-	call	_ZN10backgroundC1ERN4slay6engineE@PLT
+	call	_ZN4slay6engineC1EPKctth@PLT
 .LEHE1:
-	leaq	48(%rsp), %r15
-	movq	%r14, %rsi
-	movq	%r15, %rdi
+	movl	$32, %edi
 .LEHB2:
-	call	_ZN6playerC1ERN4slay6engineE@PLT
+	call	_Znwm@PLT
 .LEHE2:
-	movq	56(%rsp), %rsi
-	leaq	192(%rsp), %rdi
+	movq	%r13, %rsi
+	movq	%rax, %rdi
+	movq	%rax, 8(%rsp)
 .LEHB3:
+	call	_ZN10backgroundC1EPN4slay6engineE@PLT
+.LEHE3:
+	movl	$56, %edi
+.LEHB4:
+	call	_Znwm@PLT
+.LEHE4:
+	movq	%r13, %rsi
+	movq	%rax, %rdi
+	movq	%rax, %r14
+.LEHB5:
+	call	_ZN6playerC1EPN4slay6engineE@PLT
+.LEHE5:
+	movq	8(%r14), %rsi
+	leaq	80(%r13), %rdi
+.LEHB6:
 	call	_ZN4slay6engine6camera4BindEy@PLT
 	jmp	.L2
 	.p2align 4,,10
 	.p2align 3
 .L3:
+	leaq	632(%r13), %rbx
+	movq	%r14, %rdi
 	call	_ZN6player6UpdateEv@PLT
-	leaq	744(%rsp), %rbx
 	movq	%rbx, %rdi
 	call	_ZN4slay6engine6timing12GetFrameTimeEv@PLT
 	movq	%rbx, %rdi
-	movl	%eax, %r13d
+	movl	%eax, %r15d
 	call	_ZN4slay6engine6timing14GetWorkingTimeEv@PLT
 	movq	%rbx, %rdi
 	movl	%eax, %r12d
@@ -80,29 +90,36 @@ main:
 	movq	%rbx, %rdi
 	movl	%eax, %ebp
 	call	_ZN4slay6engine6timing11GetGameTimeEv@PLT
-	movl	%eax, %esi
-	movl	%r13d, %r8d
+	movl	%r15d, %r8d
 	movl	%r12d, %ecx
 	movl	%ebp, %edx
+	movl	%eax, %esi
 	leaq	.LC0(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 .L2:
-	movq	%r14, %rdi
+	movq	%r13, %rdi
 	call	_ZN4slay6engine6UpdateEv@PLT
-.LEHE3:
-	movq	%r15, %rdi
+.LEHE6:
 	testb	%al, %al
 	jne	.L3
-	call	_ZN6playerD1Ev@PLT
-	movq	8(%rsp), %rdi
+	movq	8(%rsp), %rbx
+	movq	%rbx, %rdi
 	call	_ZN10backgroundD1Ev@PLT
+	movl	$32, %esi
+	movq	%rbx, %rdi
+	call	_ZdlPvm@PLT
 	movq	%r14, %rdi
+	call	_ZN6playerD1Ev@PLT
+	movl	$56, %esi
+	movq	%r14, %rdi
+	call	_ZdlPvm@PLT
+	movq	%r13, %rdi
 	call	_ZN4slay6engineD1Ev@PLT
-	movq	808(%rsp), %rax
-	subq	%fs:40, %rax
-	jne	.L15
-	addq	$824, %rsp
+	movq	%r13, %rdi
+	movl	$688, %esi
+	call	_ZdlPvm@PLT
+	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
@@ -119,18 +136,16 @@ main:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L15:
+.L7:
 	.cfi_restore_state
-	call	__stack_chk_fail@PLT
-.L11:
 	movq	%rax, %rbx
 	jmp	.L4
-.L10:
-	movq	%rax, %rbx
-	jmp	.L5
 .L9:
 	movq	%rax, %rbx
 	jmp	.L6
+.L8:
+	movq	%rax, %rbx
+	jmp	.L5
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
 .LLSDA2231:
@@ -145,15 +160,27 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB2231
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L9-.LFB2231
+	.uleb128 .L7-.LFB2231
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB2231
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L10-.LFB2231
+	.uleb128 0
 	.uleb128 0
 	.uleb128 .LEHB3-.LFB2231
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L11-.LFB2231
+	.uleb128 .L8-.LFB2231
+	.uleb128 0
+	.uleb128 .LEHB4-.LFB2231
+	.uleb128 .LEHE4-.LEHB4
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB5-.LFB2231
+	.uleb128 .LEHE5-.LEHB5
+	.uleb128 .L9-.LFB2231
+	.uleb128 0
+	.uleb128 .LEHB6-.LFB2231
+	.uleb128 .LEHE6-.LEHB6
+	.uleb128 0
 	.uleb128 0
 .LLSDACSE2231:
 	.section	.text.startup
@@ -166,30 +193,32 @@ main:
 main.cold:
 .LFSB2231:
 .L4:
-	.cfi_def_cfa_offset 880
+	.cfi_def_cfa_offset 80
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
 	.cfi_offset 12, -40
 	.cfi_offset 13, -32
 	.cfi_offset 14, -24
 	.cfi_offset 15, -16
-	movq	%r15, %rdi
-	call	_ZN6playerD1Ev@PLT
-.L5:
-	movq	8(%rsp), %rdi
-	call	_ZN10backgroundD1Ev@PLT
+	movq	%r13, %rdi
+	movl	$688, %esi
+	call	_ZdlPvm@PLT
+	movq	%rbx, %rdi
+.LEHB7:
+	call	_Unwind_Resume@PLT
 .L6:
 	movq	%r14, %rdi
-	call	_ZN4slay6engineD1Ev@PLT
-	movq	808(%rsp), %rax
-	subq	%fs:40, %rax
-	jne	.L16
+	movl	$56, %esi
+	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
-.LEHB4:
 	call	_Unwind_Resume@PLT
-.LEHE4:
-.L16:
-	call	__stack_chk_fail@PLT
+.L5:
+	movq	8(%rsp), %rdi
+	movl	$32, %esi
+	call	_ZdlPvm@PLT
+	movq	%rbx, %rdi
+	call	_Unwind_Resume@PLT
+.LEHE7:
 	.cfi_endproc
 .LFE2231:
 	.section	.gcc_except_table
@@ -199,8 +228,8 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC2231-.LLSDACSBC2231
 .LLSDACSBC2231:
-	.uleb128 .LEHB4-.LCOLDB1
-	.uleb128 .LEHE4-.LEHB4
+	.uleb128 .LEHB7-.LCOLDB1
+	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
 .LLSDACSEC2231:

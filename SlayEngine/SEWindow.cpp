@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::window::window(engine& Engine) : Engine(Engine)
+    engine::window::window(engine* Engine) : Engine(Engine)
     {
         this->Window = NULL;
         this->Renderer = NULL;

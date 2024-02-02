@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::timing::timing(engine& Engine) : Engine(Engine)
+    engine::timing::timing(engine* Engine) : Engine(Engine)
     {
         this->TargetFrameTime = 0;
         this->PrevTick = 0;

@@ -157,9 +157,9 @@ _ZN3neo5arrayIPN4slay6engine6actors5actor5texts4textEE6RemoveEyy.isra.0:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor5textsC2ERS0_RS2_
-	.type	_ZN4slay6engine6actors5actor5textsC2ERS0_RS2_, @function
-_ZN4slay6engine6actors5actor5textsC2ERS0_RS2_:
+	.globl	_ZN4slay6engine6actors5actor5textsC2EPS0_PS2_
+	.type	_ZN4slay6engine6actors5actor5textsC2EPS0_PS2_, @function
+_ZN4slay6engine6actors5actor5textsC2EPS0_PS2_:
 .LFB2232:
 	.cfi_startproc
 	pushq	%rbx
@@ -206,9 +206,9 @@ _ZN4slay6engine6actors5actor5textsC2ERS0_RS2_:
 	call	exit@PLT
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN4slay6engine6actors5actor5textsC2ERS0_RS2_, .-_ZN4slay6engine6actors5actor5textsC2ERS0_RS2_
-	.globl	_ZN4slay6engine6actors5actor5textsC1ERS0_RS2_
-	.set	_ZN4slay6engine6actors5actor5textsC1ERS0_RS2_,_ZN4slay6engine6actors5actor5textsC2ERS0_RS2_
+	.size	_ZN4slay6engine6actors5actor5textsC2EPS0_PS2_, .-_ZN4slay6engine6actors5actor5textsC2EPS0_PS2_
+	.globl	_ZN4slay6engine6actors5actor5textsC1EPS0_PS2_
+	.set	_ZN4slay6engine6actors5actor5textsC1EPS0_PS2_,_ZN4slay6engine6actors5actor5textsC2EPS0_PS2_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor5textsD2Ev
@@ -1243,9 +1243,9 @@ _ZN4slay6engine6actors5actor5textsixEy:
 .LHOTB20:
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy
-	.type	_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy, @function
-_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy:
+	.globl	_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy
+	.type	_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy, @function
+_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy:
 .LFB2245:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
@@ -1342,8 +1342,8 @@ _ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDAC2245
-	.type	_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy.cold, @function
-_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy.cold:
+	.type	_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy.cold, @function
+_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy.cold:
 .LFSB2245:
 .L194:
 	.cfi_def_cfa_offset 64
@@ -1378,14 +1378,14 @@ _ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy.cold:
 .LLSDACSEC2245:
 	.section	.text.unlikely
 	.text
-	.size	_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy, .-_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy
+	.size	_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy, .-_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy
 	.section	.text.unlikely
-	.size	_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy.cold, .-_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy.cold
+	.size	_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy.cold, .-_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy.cold
 .LCOLDE20:
 	.text
 .LHOTE20:
-	.globl	_ZN4slay6engine6actors5actor5texts4textC1ERS0_RS2_PKcy
-	.set	_ZN4slay6engine6actors5actor5texts4textC1ERS0_RS2_PKcy,_ZN4slay6engine6actors5actor5texts4textC2ERS0_RS2_PKcy
+	.globl	_ZN4slay6engine6actors5actor5texts4textC1EPS0_PS2_PKcy
+	.set	_ZN4slay6engine6actors5actor5texts4textC1EPS0_PS2_PKcy,_ZN4slay6engine6actors5actor5texts4textC2EPS0_PS2_PKcy
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor5texts4text10GetOffsetXEv

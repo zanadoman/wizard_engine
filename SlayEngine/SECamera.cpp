@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::camera::camera(engine& Engine) : Engine(Engine)
+    engine::camera::camera(engine* Engine) : Engine(Engine)
     {
         this->OffsetX = 0;
         this->OffsetY = 0;
@@ -46,7 +46,7 @@ namespace slay
             printf("slay::engine.camera.Bind(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
-        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
+        if (this->Engine->Actors.Actors.Length() <= Actor || this->Engine->Actors.Actors[Actor] == NULL)
         {
             printf("slay::engine.camera.Bind(): Actor does not exist\nParams: Actor: %lld\n", Actor);
             exit(1);
@@ -65,7 +65,7 @@ namespace slay
             printf("slay::engine.camera.BindX(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
-        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
+        if (this->Engine->Actors.Actors.Length() <= Actor || this->Engine->Actors.Actors[Actor] == NULL)
         {
             printf("slay::engine.camera.BindX(): Actor does not exist\nParams: Actor: %lld\n", Actor);
             exit(1);
@@ -83,7 +83,7 @@ namespace slay
             printf("slay::engine.camera.BindY(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
             exit(1);
         }
-        if (this->Engine.Actors.Actors.Length() <= Actor || this->Engine.Actors.Actors[Actor] == NULL)
+        if (this->Engine->Actors.Actors.Length() <= Actor || this->Engine->Actors.Actors[Actor] == NULL)
         {
             printf("slay::engine.camera.BindY(): Actor does not exist\nParams: Actor: %lld\n", Actor);
             exit(1);
@@ -120,11 +120,11 @@ namespace slay
     {
         if (this->XActor != 0)
         {
-            this->CameraX = this->Engine.Actors.Actors[this->XActor]->X;
+            this->CameraX = this->Engine->Actors.Actors[this->XActor]->X;
         }
         if (this->YActor != 0)
         {
-            this->CameraY = this->Engine.Actors.Actors[this->YActor]->Y;
+            this->CameraY = this->Engine->Actors.Actors[this->YActor]->Y;
         }
 
         return 0;
@@ -141,7 +141,7 @@ namespace slay
             result.w = Width;
             result.h = Height;
             result.x = (sint32)round(X) - (result.w >> 1);
-            result.y = -((sint32)round(Y) - this->Engine.Render.RenderHeight) - (result.h >> 1);
+            result.y = -((sint32)round(Y) - this->Engine->Render.RenderHeight) - (result.h >> 1);
         }
         else
         {
@@ -149,7 +149,7 @@ namespace slay
             result.w = round(Width * cache);
             result.h = round(Height * cache);
             result.x = (sint32)round((X - (this->CameraX + this->OffsetX / cache)) * cache) - (result.w >> 1);
-            result.y = -((sint32)round((Y - (this->CameraY + this->OffsetY / cache)) * cache) - this->Engine.Render.RenderHeight) - (result.h >> 1);
+            result.y = -((sint32)round((Y - (this->CameraY + this->OffsetY / cache)) * cache) - this->Engine->Render.RenderHeight) - (result.h >> 1);
         }
 
         return result;

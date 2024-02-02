@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::mouse::mouse(engine& Engine) : Engine(Engine)
+    engine::mouse::mouse(engine* Engine) : Engine(Engine)
     {
         this->Sensitivity = 1;
         this->X = 0;
@@ -28,8 +28,8 @@ namespace slay
             return this->X;
         }
         
-        cache = this->Engine.Camera.Zoom * Layer;
-        return this->X / cache + this->Engine.Camera.CameraX + this->Engine.Camera.OffsetX / cache;
+        cache = this->Engine->Camera.Zoom * Layer;
+        return this->X / cache + this->Engine->Camera.CameraX + this->Engine->Camera.OffsetX / cache;
     }
 
     double engine::mouse::GetY(double Layer)
@@ -47,8 +47,8 @@ namespace slay
             return this->Y;
         }
         
-        cache = this->Engine.Camera.Zoom * Layer;
-        return this->Y / cache + this->Engine.Camera.CameraY + this->Engine.Camera.OffsetY / cache;
+        cache = this->Engine->Camera.Zoom * Layer;
+        return this->Y / cache + this->Engine->Camera.CameraY + this->Engine->Camera.OffsetY / cache;
     }
 
     double engine::mouse::GetMotionX()
@@ -97,13 +97,13 @@ namespace slay
             printf("slay::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: ID: %lld\n", ID);
             exit(1);
         }
-        if (this->Engine.Assets.Cursors.Length() <= ID || this->Engine.Assets.Cursors[ID] == NULL)
+        if (this->Engine->Assets.Cursors.Length() <= ID || this->Engine->Assets.Cursors[ID] == NULL)
         {
             printf("slay::engine.mouse.SetCursor(): Cursor does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
 
-        SDL_SetCursor(this->Engine.Assets.Cursors[ID]);
+        SDL_SetCursor(this->Engine->Assets.Cursors[ID]);
 
         return this->Cursor = ID;
     }
@@ -116,28 +116,28 @@ namespace slay
         this->MotionX = x * this->Sensitivity;
         this->MotionY = -(y * this->Sensitivity);
 
-        for (uint64 i = 0; i < this->Engine.EventQueue.Length(); i++)
+        for (uint64 i = 0; i < this->Engine->EventQueue.Length(); i++)
         {
-            if (this->Engine.EventQueue[i].type == SDL_MOUSEMOTION)
+            if (this->Engine->EventQueue[i].type == SDL_MOUSEMOTION)
             {
-                this->X = this->Engine.EventQueue[i].motion.x;
+                this->X = this->Engine->EventQueue[i].motion.x;
                 if (this->X < 0)
                 {
                     this->X = 0;
                 }
-                else if (this->Engine.Window.Width <= this->X)
+                else if (this->Engine->Window.Width <= this->X)
                 {
-                    this->X = this->Engine.Window.Width - 1;
+                    this->X = this->Engine->Window.Width - 1;
                 }
 
-                this->Y = -(this->Engine.EventQueue[i].motion.y - this->Engine.Render.RenderHeight);
+                this->Y = -(this->Engine->EventQueue[i].motion.y - this->Engine->Render.RenderHeight);
                 if (this->Y < 0)
                 {
                     this->Y = 0;
                 }
-                else if (this->Engine.Window.Height <= this->Y)
+                else if (this->Engine->Window.Height <= this->Y)
                 {
-                    this->Y = this->Engine.Window.Height - 1;
+                    this->Y = this->Engine->Window.Height - 1;
                 }
             }
         }

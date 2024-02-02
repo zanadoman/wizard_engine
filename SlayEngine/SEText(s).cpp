@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::actors::actor::texts::texts(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor), Texts({(text*)NULL}) {}
+    engine::actors::actor::texts::texts(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Texts({(text*)NULL}) {}
 
     engine::actors::actor::texts::~texts()
     {
@@ -19,7 +19,7 @@ namespace slay
             printf("slay::engine.actors[].texts.New(): String must not be NULL\nParams: String: %p, FontID: %lld\n", String, FontID);
             exit(1);
         }
-        if (FontID != 0 && (this->Engine.Assets.Fonts.Length() <= FontID || this->Engine.Assets.Fonts[FontID] == NULL))
+        if (FontID != 0 && (this->Engine->Assets.Fonts.Length() <= FontID || this->Engine->Assets.Fonts[FontID] == NULL))
         {
             printf("slay::engine.actors[].texts.New(): FontID does not exist\nParams: String: %s, FontID: %lld\n", String, FontID);
             exit(1);
@@ -198,9 +198,9 @@ namespace slay
         return *this->Texts[ID];
     }
 
-    engine::actors::actor::texts::text::text(engine& Engine, actor& Actor, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::texts::text::text(engine* Engine, actor* Actor, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
     {
-        this->Height = this->Actor.Height;
+        this->Height = this->Actor->Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
@@ -231,10 +231,10 @@ namespace slay
     {
         sint32 x, y;
 
-        x = this->Actor.X + OffsetX;
-        y = this->Actor.Y + this->OffsetY;
-        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
-        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+        x = this->Actor->X + OffsetX;
+        y = this->Actor->Y + this->OffsetY;
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
 
         return this->OffsetX = OffsetX;
     }
@@ -248,10 +248,10 @@ namespace slay
     {
         sint32 x, y;
 
-        x = this->Actor.X + this->OffsetX;
-        y = this->Actor.Y + OffsetY;
-        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
-        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+        x = this->Actor->X + this->OffsetX;
+        y = this->Actor->Y + OffsetY;
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
 
         return this->OffsetY = OffsetY;
     }
@@ -276,7 +276,7 @@ namespace slay
 
     uint64 engine::actors::actor::texts::text::SetFont(uint64 ID)
     {
-        if (ID != 0 && (this->Engine.Assets.Fonts.Length() <= ID || this->Engine.Assets.Fonts[ID] == NULL))
+        if (ID != 0 && (this->Engine->Assets.Fonts.Length() <= ID || this->Engine->Assets.Fonts[ID] == NULL))
         {
             printf("slay::engine.actors[].texts[].SetFont(): Font does not exist\nParams: ID: %lld\n", ID);
             exit(1);

@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::audio::audio(engine& Engine) : Engine(Engine)
+    engine::audio::audio(engine* Engine) : Engine(Engine)
     {
         this->GlobalVolume = 1;
     }
@@ -34,14 +34,14 @@ namespace slay
         {
             return 0;
         }
-        if (this->Engine.Assets.Sounds.Length() <= ID || this->Engine.Assets.Sounds[ID] == NULL)
+        if (this->Engine->Assets.Sounds.Length() <= ID || this->Engine->Assets.Sounds[ID] == NULL)
         {
             printf("slay::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf\n", ID, Channel, Volume);
             exit(1);
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[ID], this->GlobalVolume * Volume * 128);
-        if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[ID], 0) == -1)
+        Mix_VolumeChunk(this->Engine->Assets.Sounds[ID], this->GlobalVolume * Volume * 128);
+        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[ID], 0) == -1)
         {
             printf("slay::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf\n", ID, Channel, Volume);
             exit(1);
@@ -61,14 +61,14 @@ namespace slay
         {
             return 0;
         }
-        if (this->Engine.Assets.Sounds.Length() <= ID || this->Engine.Assets.Sounds[ID] == NULL)
+        if (this->Engine->Assets.Sounds.Length() <= ID || this->Engine->Assets.Sounds[ID] == NULL)
         {
             printf("slay::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", ID, Channel, Volume, Loops);
             exit(1);
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[ID], this->GlobalVolume * Volume * 128);
-        if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[ID], Loops) == -1)
+        Mix_VolumeChunk(this->Engine->Assets.Sounds[ID], this->GlobalVolume * Volume * 128);
+        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[ID], Loops) == -1)
         {
             printf("slay::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", ID, Channel, Volume, Loops);
             exit(1);
@@ -98,14 +98,14 @@ namespace slay
         {
             return 0;
         }
-        if (this->Engine.Assets.Sounds.Length() <= ID || this->Engine.Assets.Sounds[ID] == NULL)
+        if (this->Engine->Assets.Sounds.Length() <= ID || this->Engine->Assets.Sounds[ID] == NULL)
         {
             printf("slay::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", ID, Channel, Volume, Left, Right);
             exit(1);
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[ID], this->GlobalVolume * Volume * 128);
-        if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[ID], 0) == -1)
+        Mix_VolumeChunk(this->Engine->Assets.Sounds[ID], this->GlobalVolume * Volume * 128);
+        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[ID], 0) == -1)
         {
             printf("slay::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", ID, Channel, Volume, Left, Right);
             exit(1);
@@ -140,14 +140,14 @@ namespace slay
         {
             return 0;
         }
-        if (this->Engine.Assets.Sounds.Length() <= ID || this->Engine.Assets.Sounds[ID] == NULL)
+        if (this->Engine->Assets.Sounds.Length() <= ID || this->Engine->Assets.Sounds[ID] == NULL)
         {
             printf("slay::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", ID, Channel, Volume, Left, Right, Loops);
             exit(1);
         }
 
-        Mix_VolumeChunk(this->Engine.Assets.Sounds[ID], this->GlobalVolume * Volume * 128);
-        if (Mix_PlayChannel(Channel, this->Engine.Assets.Sounds[ID], Loops) == -1)
+        Mix_VolumeChunk(this->Engine->Assets.Sounds[ID], this->GlobalVolume * Volume * 128);
+        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[ID], Loops) == -1)
         {
             printf("slay::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", ID, Channel, Volume, Left, Right, Loops);
             exit(1);

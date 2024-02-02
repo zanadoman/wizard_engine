@@ -29,25 +29,21 @@
 .LHOTB12:
 	.align 2
 	.p2align 4
-	.globl	_ZN6playerC2ERN4slay6engineE
-	.type	_ZN6playerC2ERN4slay6engineE, @function
-_ZN6playerC2ERN4slay6engineE:
+	.globl	_ZN6playerC2EPN4slay6engineE
+	.type	_ZN6playerC2EPN4slay6engineE, @function
+_ZN6playerC2EPN4slay6engineE:
 .LFB2232:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA2232
-	pushq	%r12
-	.cfi_def_cfa_offset 16
-	.cfi_offset 12, -16
 	pushq	%rbp
-	.cfi_def_cfa_offset 24
-	.cfi_offset 6, -24
-	movq	%rsi, %rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
 	pushq	%rbx
-	.cfi_def_cfa_offset 32
-	.cfi_offset 3, -32
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
 	movq	%rdi, %rbx
-	subq	$64, %rsp
+	subq	$72, %rsp
 	.cfi_def_cfa_offset 96
 	movq	%fs:40, %rax
 	movq	%rax, 56(%rsp)
@@ -86,7 +82,7 @@ _ZN6playerC2ERN4slay6engineE:
 	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
 	movq	24(%rbx), %rdx
 	movq	%rax, 40(%rsp)
-	leaq	24(%rbx), %r12
+	leaq	24(%rbx), %rbp
 	cmpq	$6, %rdx
 	jne	.L12
 	movq	32(%rbx), %rsi
@@ -100,26 +96,28 @@ _ZN6playerC2ERN4slay6engineE:
 	leaq	560(%rax), %rdi
 	call	_ZN4slay6engine6assets8LoadFontEPKch@PLT
 	movq	%rax, 48(%rbx)
-	addq	$528, %rbp
+	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
-	movsd	.LC8(%rip), %xmm2
 	movl	$100, %ecx
 	movl	$100, %edx
 	movapd	%xmm1, %xmm0
-	movq	%rbp, %rdi
 	movl	$1, %esi
+	movsd	.LC8(%rip), %xmm2
+	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actors3NewEyddttd@PLT
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rsi
-	movq	%rbp, %rdi
+	movq	(%rbx), %rax
+	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	leaq	72(%rax), %rdi
-	movq	%r12, %rdx
+	movq	%rbp, %rdx
 	movl	$100, %esi
 	call	_ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE@PLT
 	movq	%rax, 16(%rbx)
+	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
-	movq	%rbp, %rdi
+	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	48(%rbx), %rdx
 	leaq	104(%rax), %rdi
@@ -155,14 +153,12 @@ _ZN6playerC2ERN4slay6engineE:
 	movq	56(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L13
-	addq	$64, %rsp
+	addq	$72, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 32
-	popq	%rbx
 	.cfi_def_cfa_offset 24
-	popq	%rbp
+	popq	%rbx
 	.cfi_def_cfa_offset 16
-	popq	%r12
+	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
@@ -212,14 +208,13 @@ _ZN6playerC2ERN4slay6engineE:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDAC2232
-	.type	_ZN6playerC2ERN4slay6engineE.cold, @function
-_ZN6playerC2ERN4slay6engineE.cold:
+	.type	_ZN6playerC2EPN4slay6engineE.cold, @function
+_ZN6playerC2EPN4slay6engineE.cold:
 .LFSB2232:
 .L5:
 	.cfi_def_cfa_offset 96
-	.cfi_offset 3, -32
-	.cfi_offset 6, -24
-	.cfi_offset 12, -16
+	.cfi_offset 3, -24
+	.cfi_offset 6, -16
 	movq	32(%rbx), %rdi
 	call	free@PLT
 	movq	56(%rsp), %rax
@@ -247,14 +242,14 @@ _ZN6playerC2ERN4slay6engineE.cold:
 .LLSDACSEC2232:
 	.section	.text.unlikely
 	.text
-	.size	_ZN6playerC2ERN4slay6engineE, .-_ZN6playerC2ERN4slay6engineE
+	.size	_ZN6playerC2EPN4slay6engineE, .-_ZN6playerC2EPN4slay6engineE
 	.section	.text.unlikely
-	.size	_ZN6playerC2ERN4slay6engineE.cold, .-_ZN6playerC2ERN4slay6engineE.cold
+	.size	_ZN6playerC2EPN4slay6engineE.cold, .-_ZN6playerC2EPN4slay6engineE.cold
 .LCOLDE12:
 	.text
 .LHOTE12:
-	.globl	_ZN6playerC1ERN4slay6engineE
-	.set	_ZN6playerC1ERN4slay6engineE,_ZN6playerC2ERN4slay6engineE
+	.globl	_ZN6playerC1EPN4slay6engineE
+	.set	_ZN6playerC1EPN4slay6engineE,_ZN6playerC2EPN4slay6engineE
 	.align 2
 	.p2align 4
 	.globl	_ZN6playerD2Ev

@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::actors::actor::textures::textures(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor), Textures({(texture*)NULL}) {}
+    engine::actors::actor::textures::textures(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Textures({(texture*)NULL}) {}
 
     engine::actors::actor::textures::~textures()
     {
@@ -14,7 +14,7 @@ namespace slay
 
     uint64 engine::actors::actor::textures::New(uint64 TextureID)
     {
-        if (TextureID != 0 && (this->Engine.Assets.Textures.Length() <= TextureID || this->Engine.Assets.Textures[TextureID] == NULL))
+        if (TextureID != 0 && (this->Engine->Assets.Textures.Length() <= TextureID || this->Engine->Assets.Textures[TextureID] == NULL))
         {
             printf("slay::engine.actors[].textures.New(): TextureID does not exist\nParams: TextureID: %lld\n", TextureID);
             exit(1);
@@ -193,10 +193,10 @@ namespace slay
         return *this->Textures[ID];
     }
 
-    engine::actors::actor::textures::texture::texture(engine& Engine, actor& Actor, uint64 TextureID) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::textures::texture::texture(engine* Engine, actor* Actor, uint64 TextureID) : Engine(Engine), Actor(Actor)
     {
-        this->Width = this->Actor.Width;
-        this->Height = this->Actor.Height;
+        this->Width = this->Actor->Width;
+        this->Height = this->Actor->Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
@@ -224,10 +224,10 @@ namespace slay
     {
         sint32 x, y;
 
-        x = this->Actor.X + OffsetX;
-        y = this->Actor.Y + this->OffsetY;
-        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
-        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+        x = this->Actor->X + OffsetX;
+        y = this->Actor->Y + this->OffsetY;
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
 
         return this->OffsetX = OffsetX;
     }
@@ -241,10 +241,10 @@ namespace slay
     {
         sint32 x, y;
 
-        x = this->Actor.X + this->OffsetX;
-        y = this->Actor.Y + OffsetY;
-        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
-        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+        x = this->Actor->X + this->OffsetX;
+        y = this->Actor->Y + OffsetY;
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
 
         return this->OffsetY = OffsetY;
     }
@@ -256,7 +256,7 @@ namespace slay
 
     uint64 engine::actors::actor::textures::texture::SetTextureID(uint64 ID)
     {
-        if (ID != 0 && (this->Engine.Assets.Textures.Length() <= ID || this->Engine.Assets.Textures[ID] == NULL))
+        if (ID != 0 && (this->Engine->Assets.Textures.Length() <= ID || this->Engine->Assets.Textures[ID] == NULL))
         {
             printf("slay::engine.actors[].textures[].SetTextureID(): Texture does not exist\nParams: ID: %lld\n", ID);
             exit(1);

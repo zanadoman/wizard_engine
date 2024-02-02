@@ -2,9 +2,9 @@
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6timingC2ERS0_
-	.type	_ZN4slay6engine6timingC2ERS0_, @function
-_ZN4slay6engine6timingC2ERS0_:
+	.globl	_ZN4slay6engine6timingC2EPS0_
+	.type	_ZN4slay6engine6timingC2EPS0_, @function
+_ZN4slay6engine6timingC2EPS0_:
 .LFB2232:
 	.cfi_startproc
 	pxor	%xmm0, %xmm0
@@ -17,9 +17,9 @@ _ZN4slay6engine6timingC2ERS0_:
 	ret
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN4slay6engine6timingC2ERS0_, .-_ZN4slay6engine6timingC2ERS0_
-	.globl	_ZN4slay6engine6timingC1ERS0_
-	.set	_ZN4slay6engine6timingC1ERS0_,_ZN4slay6engine6timingC2ERS0_
+	.size	_ZN4slay6engine6timingC2EPS0_, .-_ZN4slay6engine6timingC2EPS0_
+	.globl	_ZN4slay6engine6timingC1EPS0_
+	.set	_ZN4slay6engine6timingC1EPS0_,_ZN4slay6engine6timingC2EPS0_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6timing11GetPrevTickEv

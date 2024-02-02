@@ -12,11 +12,11 @@ typedef enum
 
 class background
 {
-    engine& Engine;
+    engine* Engine;
 
     public:
         uint64 Actor;
-        background(engine& Engine);
+        background(engine* Engine);
         ~background();
 
     private:
@@ -26,11 +26,11 @@ class background
 
 class player
 {
-    engine& Engine;
+    engine* Engine;
 
     public:
         uint64 Actor;
-        player(engine& Engine);
+        player(engine* Engine);
         ~player();
         uint8 Update();
 

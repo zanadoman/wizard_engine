@@ -157,9 +157,9 @@ _ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy.isra.0:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actorsC2ERS0_
-	.type	_ZN4slay6engine6actorsC2ERS0_, @function
-_ZN4slay6engine6actorsC2ERS0_:
+	.globl	_ZN4slay6engine6actorsC2EPS0_
+	.type	_ZN4slay6engine6actorsC2EPS0_, @function
+_ZN4slay6engine6actorsC2EPS0_:
 .LFB2232:
 	.cfi_startproc
 	pushq	%rbx
@@ -205,9 +205,9 @@ _ZN4slay6engine6actorsC2ERS0_:
 	call	exit@PLT
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN4slay6engine6actorsC2ERS0_, .-_ZN4slay6engine6actorsC2ERS0_
-	.globl	_ZN4slay6engine6actorsC1ERS0_
-	.set	_ZN4slay6engine6actorsC1ERS0_,_ZN4slay6engine6actorsC2ERS0_
+	.size	_ZN4slay6engine6actorsC2EPS0_, .-_ZN4slay6engine6actorsC2EPS0_
+	.globl	_ZN4slay6engine6actorsC1EPS0_
+	.set	_ZN4slay6engine6actorsC1EPS0_,_ZN4slay6engine6actorsC2EPS0_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actorsD2Ev
@@ -363,7 +363,7 @@ _ZN4slay6engine6actors3NewEyddttd:
 	movsd	16(%rsp), %xmm1
 	movsd	8(%rsp), %xmm0
 .LEHB1:
-	call	_ZN4slay6engine6actors5actorC1ERS0_yddttd@PLT
+	call	_ZN4slay6engine6actors5actorC1EPS0_yddttd@PLT
 .LEHE1:
 	movq	16(%rbp), %rax
 	cmpq	8(%rbp), %rbx
@@ -387,7 +387,7 @@ _ZN4slay6engine6actors3NewEyddttd:
 	movsd	16(%rsp), %xmm1
 	movsd	8(%rsp), %xmm0
 .LEHB3:
-	call	_ZN4slay6engine6actors5actorC1ERS0_yddttd@PLT
+	call	_ZN4slay6engine6actors5actorC1EPS0_yddttd@PLT
 .LEHE3:
 	movq	8(%rbp), %rax
 	movq	16(%rbp), %rdi

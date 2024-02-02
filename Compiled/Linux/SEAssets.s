@@ -578,9 +578,9 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0:
 .LHOTB4:
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6assetsC2ERS0_
-	.type	_ZN4slay6engine6assetsC2ERS0_, @function
-_ZN4slay6engine6assetsC2ERS0_:
+	.globl	_ZN4slay6engine6assetsC2EPS0_
+	.type	_ZN4slay6engine6assetsC2EPS0_, @function
+_ZN4slay6engine6assetsC2EPS0_:
 .LFB2232:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
@@ -751,8 +751,8 @@ _ZN4slay6engine6assetsC2ERS0_:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDAC2232
-	.type	_ZN4slay6engine6assetsC2ERS0_.cold, @function
-_ZN4slay6engine6assetsC2ERS0_.cold:
+	.type	_ZN4slay6engine6assetsC2EPS0_.cold, @function
+_ZN4slay6engine6assetsC2EPS0_.cold:
 .LFSB2232:
 .L120:
 	.cfi_def_cfa_offset 64
@@ -791,14 +791,14 @@ _ZN4slay6engine6assetsC2ERS0_.cold:
 .LLSDACSEC2232:
 	.section	.text.unlikely
 	.text
-	.size	_ZN4slay6engine6assetsC2ERS0_, .-_ZN4slay6engine6assetsC2ERS0_
+	.size	_ZN4slay6engine6assetsC2EPS0_, .-_ZN4slay6engine6assetsC2EPS0_
 	.section	.text.unlikely
-	.size	_ZN4slay6engine6assetsC2ERS0_.cold, .-_ZN4slay6engine6assetsC2ERS0_.cold
+	.size	_ZN4slay6engine6assetsC2EPS0_.cold, .-_ZN4slay6engine6assetsC2EPS0_.cold
 .LCOLDE4:
 	.text
 .LHOTE4:
-	.globl	_ZN4slay6engine6assetsC1ERS0_
-	.set	_ZN4slay6engine6assetsC1ERS0_,_ZN4slay6engine6assetsC2ERS0_
+	.globl	_ZN4slay6engine6assetsC1EPS0_
+	.set	_ZN4slay6engine6assetsC1EPS0_,_ZN4slay6engine6assetsC2EPS0_
 	.section	.rodata.str1.8
 	.align 8
 .LC5:

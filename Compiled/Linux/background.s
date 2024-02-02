@@ -6,9 +6,9 @@
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN10backgroundC2ERN4slay6engineE
-	.type	_ZN10backgroundC2ERN4slay6engineE, @function
-_ZN10backgroundC2ERN4slay6engineE:
+	.globl	_ZN10backgroundC2EPN4slay6engineE
+	.type	_ZN10backgroundC2EPN4slay6engineE, @function
+_ZN10backgroundC2EPN4slay6engineE:
 .LFB2232:
 	.cfi_startproc
 	pushq	%rbx
@@ -43,9 +43,9 @@ _ZN10backgroundC2ERN4slay6engineE:
 	ret
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN10backgroundC2ERN4slay6engineE, .-_ZN10backgroundC2ERN4slay6engineE
-	.globl	_ZN10backgroundC1ERN4slay6engineE
-	.set	_ZN10backgroundC1ERN4slay6engineE,_ZN10backgroundC2ERN4slay6engineE
+	.size	_ZN10backgroundC2EPN4slay6engineE, .-_ZN10backgroundC2EPN4slay6engineE
+	.globl	_ZN10backgroundC1EPN4slay6engineE
+	.set	_ZN10backgroundC1EPN4slay6engineE,_ZN10backgroundC2EPN4slay6engineE
 	.align 2
 	.p2align 4
 	.globl	_ZN10backgroundD2Ev

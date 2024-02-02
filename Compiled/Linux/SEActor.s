@@ -7,9 +7,9 @@
 .LHOTB1:
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actorC2ERS0_yddttd
-	.type	_ZN4slay6engine6actors5actorC2ERS0_yddttd, @function
-_ZN4slay6engine6actors5actorC2ERS0_yddttd:
+	.globl	_ZN4slay6engine6actors5actorC2EPS0_yddttd
+	.type	_ZN4slay6engine6actors5actorC2EPS0_yddttd, @function
+_ZN4slay6engine6actors5actorC2EPS0_yddttd:
 .LFB2232:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
@@ -49,7 +49,7 @@ _ZN4slay6engine6actors5actorC2ERS0_yddttd:
 	movsd	%xmm2, 24(%rsp)
 	movaps	%xmm3, (%rsp)
 .LEHB0:
-	call	_ZN4slay6engine6actors5actor6colorsC1ERS0_RS2_@PLT
+	call	_ZN4slay6engine6actors5actor6colorsC1EPS0_PS2_@PLT
 .LEHE0:
 	leaq	40(%rbx), %rax
 	movq	%rbx, %rdx
@@ -57,20 +57,20 @@ _ZN4slay6engine6actors5actorC2ERS0_yddttd:
 	movq	%rax, %rdi
 	movq	%rax, 40(%rsp)
 .LEHB1:
-	call	_ZN4slay6engine6actors5actor8texturesC1ERS0_RS2_@PLT
+	call	_ZN4slay6engine6actors5actor8texturesC1EPS0_PS2_@PLT
 .LEHE1:
 	leaq	72(%rbx), %r15
 	movq	%rbx, %rdx
 	movq	%rbp, %rsi
 	movq	%r15, %rdi
 .LEHB2:
-	call	_ZN4slay6engine6actors5actor9flipbooksC1ERS0_RS2_@PLT
+	call	_ZN4slay6engine6actors5actor9flipbooksC1EPS0_PS2_@PLT
 .LEHE2:
 	leaq	104(%rbx), %rdi
 	movq	%rbx, %rdx
 	movq	%rbp, %rsi
 .LEHB3:
-	call	_ZN4slay6engine6actors5actor5textsC1ERS0_RS2_@PLT
+	call	_ZN4slay6engine6actors5actor5textsC1EPS0_PS2_@PLT
 .LEHE3:
 	movapd	(%rsp), %xmm3
 	movsd	24(%rsp), %xmm4
@@ -138,8 +138,8 @@ _ZN4slay6engine6actors5actorC2ERS0_yddttd:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDAC2232
-	.type	_ZN4slay6engine6actors5actorC2ERS0_yddttd.cold, @function
-_ZN4slay6engine6actors5actorC2ERS0_yddttd.cold:
+	.type	_ZN4slay6engine6actors5actorC2EPS0_yddttd.cold, @function
+_ZN4slay6engine6actors5actorC2EPS0_yddttd.cold:
 .LFSB2232:
 .L2:
 	.cfi_def_cfa_offset 112
@@ -177,14 +177,14 @@ _ZN4slay6engine6actors5actorC2ERS0_yddttd.cold:
 .LLSDACSEC2232:
 	.section	.text.unlikely
 	.text
-	.size	_ZN4slay6engine6actors5actorC2ERS0_yddttd, .-_ZN4slay6engine6actors5actorC2ERS0_yddttd
+	.size	_ZN4slay6engine6actors5actorC2EPS0_yddttd, .-_ZN4slay6engine6actors5actorC2EPS0_yddttd
 	.section	.text.unlikely
-	.size	_ZN4slay6engine6actors5actorC2ERS0_yddttd.cold, .-_ZN4slay6engine6actors5actorC2ERS0_yddttd.cold
+	.size	_ZN4slay6engine6actors5actorC2EPS0_yddttd.cold, .-_ZN4slay6engine6actors5actorC2EPS0_yddttd.cold
 .LCOLDE1:
 	.text
 .LHOTE1:
-	.globl	_ZN4slay6engine6actors5actorC1ERS0_yddttd
-	.set	_ZN4slay6engine6actors5actorC1ERS0_yddttd,_ZN4slay6engine6actors5actorC2ERS0_yddttd
+	.globl	_ZN4slay6engine6actors5actorC1EPS0_yddttd
+	.set	_ZN4slay6engine6actors5actorC1EPS0_yddttd,_ZN4slay6engine6actors5actorC2EPS0_yddttd
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
 .LC2:

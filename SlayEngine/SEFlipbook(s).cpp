@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::actors::actor::flipbooks::flipbooks(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor), Flipbooks({(flipbook*)NULL}) {}
+    engine::actors::actor::flipbooks::flipbooks(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Flipbooks({(flipbook*)NULL}) {}
 
     engine::actors::actor::flipbooks::~flipbooks()
     {
@@ -31,7 +31,7 @@ namespace slay
             {
                 continue;
             }
-            if (this->Engine.Assets.Textures.Length() <= TextureIDs.begin()[i] || this->Engine.Assets.Textures[TextureIDs.begin()[i]] == NULL)
+            if (this->Engine->Assets.Textures.Length() <= TextureIDs.begin()[i] || this->Engine->Assets.Textures[TextureIDs.begin()[i]] == NULL)
             {
                 printf("slay::engine.actors[].flipbooks.New(): Texture does not exist\nParams: Delay: %d, TextureIDs(length): %ld\n", Delay, TextureIDs.size());
                 exit(1);
@@ -80,7 +80,7 @@ namespace slay
             {
                 continue;
             }
-            if (this->Engine.Assets.Textures.Length() <= (*TextureIDs)[i] || this->Engine.Assets.Textures[(*TextureIDs)[i]] == NULL)
+            if (this->Engine->Assets.Textures.Length() <= (*TextureIDs)[i] || this->Engine->Assets.Textures[(*TextureIDs)[i]] == NULL)
             {
                 printf("slay::engine.actors[].flipbooks.New(): Texture does not exist\nParams: Delay: %d, TextureIDs(length): %lld\n", Delay, TextureIDs->Length());
                 exit(1);
@@ -260,10 +260,10 @@ namespace slay
         return *this->Flipbooks[ID];
     }
 
-    engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::flipbooks::flipbook::flipbook(engine* Engine, actor* Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs) : Engine(Engine), Actor(Actor)
     {
-        this->Width = this->Actor.Width;
-        this->Height = this->Actor.Height;
+        this->Width = this->Actor->Width;
+        this->Height = this->Actor->Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
@@ -296,10 +296,10 @@ namespace slay
         }
     }
 
-    engine::actors::actor::flipbooks::flipbook::flipbook(engine& Engine, actor& Actor, uint32 Delay, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::flipbooks::flipbook::flipbook(engine* Engine, actor* Actor, uint32 Delay, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
     {
-        this->Width = this->Actor.Width;
-        this->Height = this->Actor.Height;
+        this->Width = this->Actor->Width;
+        this->Height = this->Actor->Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
@@ -362,10 +362,10 @@ namespace slay
     {
         sint32 x, y;
 
-        x = this->Actor.X + OffsetX;
-        y = this->Actor.Y + this->OffsetY;
-        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
-        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+        x = this->Actor->X + OffsetX;
+        y = this->Actor->Y + this->OffsetY;
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
 
         return this->OffsetX = OffsetX;
     }
@@ -379,10 +379,10 @@ namespace slay
     {
         sint32 x, y;
 
-        x = this->Actor.X + this->OffsetX;
-        y = this->Actor.Y + OffsetY;
-        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
-        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+        x = this->Actor->X + this->OffsetX;
+        y = this->Actor->Y + OffsetY;
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
 
         return this->OffsetY = OffsetY;
     }

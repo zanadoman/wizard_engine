@@ -7,7 +7,7 @@ LANGUAGE_VERSION="gnu++23"
 
 LINUX_ASSEMBLY_FOLDER="Compiled/Linux"
 LINUX_COMPILER="g++"
-LINUX_WARNINGS="-Werror -Wall -Wextra -Wno-class-memaccess"
+LINUX_WARNINGS="-Werror -Wall -Wextra -Wstack-usage=256 -Wno-class-memaccess"
 LINUX_LIBRARIES="-LSlayEngine/Libraries/Linux -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer"
 LINUX_EXTRA_FLAGS="-Wl,-rpath=."
 LINUX_BUILD_NAME="bin.out"

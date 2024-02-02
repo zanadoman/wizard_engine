@@ -157,9 +157,9 @@ _ZN3neo5arrayIPN4slay6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor8texturesC2ERS0_RS2_
-	.type	_ZN4slay6engine6actors5actor8texturesC2ERS0_RS2_, @function
-_ZN4slay6engine6actors5actor8texturesC2ERS0_RS2_:
+	.globl	_ZN4slay6engine6actors5actor8texturesC2EPS0_PS2_
+	.type	_ZN4slay6engine6actors5actor8texturesC2EPS0_PS2_, @function
+_ZN4slay6engine6actors5actor8texturesC2EPS0_PS2_:
 .LFB2232:
 	.cfi_startproc
 	pushq	%rbx
@@ -206,9 +206,9 @@ _ZN4slay6engine6actors5actor8texturesC2ERS0_RS2_:
 	call	exit@PLT
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN4slay6engine6actors5actor8texturesC2ERS0_RS2_, .-_ZN4slay6engine6actors5actor8texturesC2ERS0_RS2_
-	.globl	_ZN4slay6engine6actors5actor8texturesC1ERS0_RS2_
-	.set	_ZN4slay6engine6actors5actor8texturesC1ERS0_RS2_,_ZN4slay6engine6actors5actor8texturesC2ERS0_RS2_
+	.size	_ZN4slay6engine6actors5actor8texturesC2EPS0_PS2_, .-_ZN4slay6engine6actors5actor8texturesC2EPS0_PS2_
+	.globl	_ZN4slay6engine6actors5actor8texturesC1EPS0_PS2_
+	.set	_ZN4slay6engine6actors5actor8texturesC1EPS0_PS2_,_ZN4slay6engine6actors5actor8texturesC2EPS0_PS2_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor8texturesD2Ev
@@ -979,9 +979,9 @@ _ZN4slay6engine6actors5actor8texturesixEy:
 	.size	_ZN4slay6engine6actors5actor8texturesixEy, .-_ZN4slay6engine6actors5actor8texturesixEy
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y
-	.type	_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y, @function
-_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y:
+	.globl	_ZN4slay6engine6actors5actor8textures7textureC2EPS0_PS2_y
+	.type	_ZN4slay6engine6actors5actor8textures7textureC2EPS0_PS2_y, @function
+_ZN4slay6engine6actors5actor8textures7textureC2EPS0_PS2_y:
 .LFB2245:
 	.cfi_startproc
 	movl	136(%rdx), %eax
@@ -1001,9 +1001,9 @@ _ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y:
 	ret
 	.cfi_endproc
 .LFE2245:
-	.size	_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y, .-_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y
-	.globl	_ZN4slay6engine6actors5actor8textures7textureC1ERS0_RS2_y
-	.set	_ZN4slay6engine6actors5actor8textures7textureC1ERS0_RS2_y,_ZN4slay6engine6actors5actor8textures7textureC2ERS0_RS2_y
+	.size	_ZN4slay6engine6actors5actor8textures7textureC2EPS0_PS2_y, .-_ZN4slay6engine6actors5actor8textures7textureC2EPS0_PS2_y
+	.globl	_ZN4slay6engine6actors5actor8textures7textureC1EPS0_PS2_y
+	.set	_ZN4slay6engine6actors5actor8textures7textureC1EPS0_PS2_y,_ZN4slay6engine6actors5actor8textures7textureC2EPS0_PS2_y
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor8textures7texture10GetOffsetXEv

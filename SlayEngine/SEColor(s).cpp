@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::actors::actor::colors::colors(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor), Colors({(color*)NULL}) {}
+    engine::actors::actor::colors::colors(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Colors({(color*)NULL}) {}
 
     engine::actors::actor::colors::~colors()
     {
@@ -187,10 +187,10 @@ namespace slay
         return *this->Colors[ID];
     }
 
-    engine::actors::actor::colors::color::color(engine& Engine, actor& Actor) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::colors::color::color(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor)
     {
-        this->Width = this->Actor.Width;
-        this->Height = this->Actor.Height;
+        this->Width = this->Actor->Width;
+        this->Height = this->Actor->Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
@@ -213,10 +213,10 @@ namespace slay
     {
         sint32 x, y;
 
-        x = this->Actor.X + OffsetX;
-        y = this->Actor.Y + this->OffsetY;
-        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
-        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+        x = this->Actor->X + OffsetX;
+        y = this->Actor->Y + this->OffsetY;
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
 
         return this->OffsetX = OffsetX;
     }
@@ -230,10 +230,10 @@ namespace slay
     {
         sint32 x, y;
 
-        x = this->Actor.X + this->OffsetX;
-        y = this->Actor.Y + OffsetY;
-        this->OffsetLength = this->Engine.Vector.Length(this->Actor.X, this->Actor.Y, x, y);
-        this->OffsetAngle = this->Engine.Vector.Angle(this->Actor.X, this->Actor.Y, x, y);
+        x = this->Actor->X + this->OffsetX;
+        y = this->Actor->Y + OffsetY;
+        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, x, y);
+        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, x, y);
 
         return this->OffsetY = OffsetY;
     }

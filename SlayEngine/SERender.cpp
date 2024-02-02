@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::render::render(engine& Engine) : Engine(Engine)
+    engine::render::render(engine* Engine) : Engine(Engine)
     {
         this->RenderWidth = 0;
         this->RenderHeight = 0;
@@ -72,42 +72,42 @@ namespace slay
         SDL_Surface* surface;
 
         k = 0;
-        for (uint64 i = 1; i < this->Engine.Actors.Actors.Length(); i++)
+        for (uint64 i = 1; i < this->Engine->Actors.Actors.Length(); i++)
         {
-            if (this->Engine.Actors.Actors[i] == NULL)
+            if (this->Engine->Actors.Actors[i] == NULL)
             {
                 continue;
             }
 
-            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Colors.Colors.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Colors.Colors.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Colors.Colors[j] == NULL || this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width == 0 || this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height == 0 || this->Engine.Actors.Actors[i]->Colors.Colors[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Colors.Colors[j]->Visible == false)
+                if (this->Engine->Actors.Actors[i]->Colors.Colors[j] == NULL || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Width == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Height == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Visible == false)
                 {
                     continue;
                 }
 
-                x = this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetX;
-                y = this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Colors.Colors[j]->OffsetY;
+                x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Colors.Colors[j]->OffsetX;
+                y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Colors.Colors[j]->OffsetY;
 
-                if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
+                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) <= 0)
                 {
                     layer = EPSILON;
                 }
-                if ((depth = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                if ((depth = this->Engine->Actors.Actors[i]->Layer + this->Engine->Actors.Actors[i]->Depth / 2) == layer)
                 {
                     depth += EPSILON;
                 }
 
                 for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Height, layer);
+                    area = this->Engine->Camera.Transform(x, y, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Height, layer);
 
                     if (area.w == 0 || area.h == 0)
                     {
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine.Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine->Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
                     {
                         this->RenderQueue[k - 1].Layer = layer;
                         continue;
@@ -121,40 +121,40 @@ namespace slay
                             exit(1);
                         }
                         
-                        this->RenderQueue[k++] = token(this->Engine.Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine.Actors.Actors[i]->Colors.Colors[j]->Priority, area);
+                        this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Priority, area);
                     }
                 }
             }
 
-            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Textures.Textures.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Textures.Textures.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Textures.Textures[j] == NULL || this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width == 0 || this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height == 0 || this->Engine.Actors.Actors[i]->Textures.Textures[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Textures.Textures[j]->Visible == false || this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID == 0)
+                if (this->Engine->Actors.Actors[i]->Textures.Textures[j] == NULL || this->Engine->Actors.Actors[i]->Textures.Textures[j]->Width == 0 || this->Engine->Actors.Actors[i]->Textures.Textures[j]->Height == 0 || this->Engine->Actors.Actors[i]->Textures.Textures[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Textures.Textures[j]->Visible == false || this->Engine->Actors.Actors[i]->Textures.Textures[j]->TextureID == 0)
                 {
                     continue;
                 }
 
-                x = this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetX;
-                y = this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Textures.Textures[j]->OffsetY;
+                x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Textures.Textures[j]->OffsetX;
+                y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Textures.Textures[j]->OffsetY;
 
-                if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
+                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) <= 0)
                 {
                     layer = EPSILON;
                 }
-                if ((depth = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                if ((depth = this->Engine->Actors.Actors[i]->Layer + this->Engine->Actors.Actors[i]->Depth / 2) == layer)
                 {
                     depth += EPSILON;
                 }
 
                 for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Height, layer);
+                    area = this->Engine->Camera.Transform(x, y, this->Engine->Actors.Actors[i]->Textures.Textures[j]->Width, this->Engine->Actors.Actors[i]->Textures.Textures[j]->Height, layer);
 
                     if (area.w == 0 || area.h == 0)
                     {
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine.Actors.Actors[i]->Textures.Textures[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine->Actors.Actors[i]->Textures.Textures[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
                     {
                         this->RenderQueue[k - 1].Layer = layer;
                         continue;
@@ -168,40 +168,40 @@ namespace slay
                             exit(1);
                         }
                             
-                        this->RenderQueue[k++] = token(this->Engine.Actors.Actors[i]->Textures.Textures[j], TEXTURE, layer, this->Engine.Actors.Actors[i]->Textures.Textures[j]->Priority, area);
+                        this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Textures.Textures[j], TEXTURE, layer, this->Engine->Actors.Actors[i]->Textures.Textures[j]->Priority, area);
                     }
                 }
             }
 
-            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width == 0 || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height == 0 || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Visible == false || this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current] == 0)
+                if (this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Visible == false || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current] == 0)
                 {
                     continue;
                 }
 
-                x = this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetX;
-                y = this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetY;
+                x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetX;
+                y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->OffsetY;
 
-                if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
+                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) <= 0)
                 {
                     layer = EPSILON;
                 }
-                if ((depth = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                if ((depth = this->Engine->Actors.Actors[i]->Layer + this->Engine->Actors.Actors[i]->Depth / 2) == layer)
                 {
                     depth += EPSILON;
                 }
 
                 for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width, this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height, layer);
+                    area = this->Engine->Camera.Transform(x, y, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height, layer);
 
                     if (area.w == 0 || area.h == 0)
                     {
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
                     {
                         this->RenderQueue[k - 1].Layer = layer;
                         continue;
@@ -215,59 +215,59 @@ namespace slay
                             exit(1);
                         }
 
-                        this->RenderQueue[k++] = token(this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j], FLIPBOOK, layer, this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Priority, area);
+                        this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j], FLIPBOOK, layer, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Priority, area);
                     }
                 }
             }
 
-            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Texts.Texts.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine.Actors.Actors[i]->Texts.Texts[j]->String.Length() < 2 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height == 0 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || this->Engine.Actors.Actors[i]->Texts.Texts[j]->Visible == false || this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == 0)
+                if (this->Engine->Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine->Actors.Actors[i]->Texts.Texts[j]->String.Length() < 2 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Visible == false || this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID == 0)
                 {
                     continue;
                 }
 
-                if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->Texture == NULL)
+                if (this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture == NULL)
                 {
                     color.r = color.g = color.b = color.a = 255;
 
-                    if ((surface = TTF_RenderText_Blended(this->Engine.Assets.Fonts[this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID], this->Engine.Actors.Actors[i]->Texts.Texts[j]->String(), color)) == NULL)
+                    if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID], this->Engine->Actors.Actors[i]->Texts.Texts[j]->String(), color)) == NULL)
                     {
                         printf("slay::engine.render.SelectionStage(): TTF_RenderText_Blended failed\n");
                         exit(1);
                     }
-                    if ((this->Engine.Actors.Actors[i]->Texts.Texts[j]->Texture = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, surface)) == NULL)
+                    if ((this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
                     {
                         printf("slay::engine.render.SelectionStage(): SDL_CreateTextureFromSurface failed\n");
                         exit(1);
                     }
 
-                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width = surface->w * this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height / surface->h;
+                    this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width = surface->w * this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height / surface->h;
                     SDL_FreeSurface(surface);
                 }
 
-                x = this->Engine.Actors.Actors[i]->X + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetX;
-                y = this->Engine.Actors.Actors[i]->Y + this->Engine.Actors.Actors[i]->Texts.Texts[j]->OffsetY;
+                x = this->Engine->Actors.Actors[i]->X + this->Engine->Actors.Actors[i]->Texts.Texts[j]->OffsetX;
+                y = this->Engine->Actors.Actors[i]->Y + this->Engine->Actors.Actors[i]->Texts.Texts[j]->OffsetY;
                 
-                if ((layer = this->Engine.Actors.Actors[i]->Layer - this->Engine.Actors.Actors[i]->Depth / 2) <= 0)
+                if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) <= 0)
                 {
                     layer = EPSILON;
                 }
-                if ((depth = this->Engine.Actors.Actors[i]->Layer + this->Engine.Actors.Actors[i]->Depth / 2) == layer)
+                if ((depth = this->Engine->Actors.Actors[i]->Layer + this->Engine->Actors.Actors[i]->Depth / 2) == layer)
                 {
                     depth += EPSILON;
                 }
 
                 for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine.Camera.Transform(x, y, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Height, layer);
+                    area = this->Engine->Camera.Transform(x, y, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height, layer);
 
                     if (area.w == 0 || area.h == 0)
                     {
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine.Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine->Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
                     {
                         this->RenderQueue[k - 1].Layer = layer;
                         continue;
@@ -281,7 +281,7 @@ namespace slay
                             exit(1);
                         }
 
-                        this->RenderQueue[k++] = token(this->Engine.Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine.Actors.Actors[i]->Texts.Texts[j]->Priority, area);
+                        this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Priority, area);
                     }
                 }
             }
@@ -492,12 +492,12 @@ namespace slay
     {
         uint64 layered;
 
-        if (SDL_SetRenderDrawColor(this->Engine.Window.Renderer, 0, 0, 0, 255) != 0)
+        if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, 0, 0, 0, 255) != 0)
         {
             printf("slay::engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed\n");
             exit(1);
         }
-        if (SDL_RenderClear(this->Engine.Window.Renderer) != 0)
+        if (SDL_RenderClear(this->Engine->Window.Renderer) != 0)
         {
             printf("slay::engine.render.OpenFrame(): SDL_RenderClear() failed\n");
             exit(1);
@@ -557,19 +557,19 @@ namespace slay
             }
         }
 
-        SDL_RenderPresent(this->Engine.Window.Renderer);
+        SDL_RenderPresent(this->Engine->Window.Renderer);
 
         return 0;
     }
 
     uint8 engine::render::RenderColor(token Token)
     {
-        if (SDL_SetRenderDrawColor(this->Engine.Window.Renderer, ((engine::actors::actor::colors::color*)Token.Data)->ColorR, ((engine::actors::actor::colors::color*)Token.Data)->ColorG, ((engine::actors::actor::colors::color*)Token.Data)->ColorB, ((engine::actors::actor::colors::color*)Token.Data)->ColorA) != 0)
+        if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, ((engine::actors::actor::colors::color*)Token.Data)->ColorR, ((engine::actors::actor::colors::color*)Token.Data)->ColorG, ((engine::actors::actor::colors::color*)Token.Data)->ColorB, ((engine::actors::actor::colors::color*)Token.Data)->ColorA) != 0)
         {
             printf("slay::engine.render.RenderColor(): SDL_SetRenderDrawColor failed\n");
             exit(1);
         }
-        if (SDL_RenderFillRect(this->Engine.Window.Renderer, &Token.Area) != 0)
+        if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token.Area) != 0)
         {
             printf("slay::engine.render.RenderColor(): SDL_RenderFillRect failed\n");
             exit(1);
@@ -592,17 +592,17 @@ namespace slay
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_SetTextureColorMod(this->Engine.Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], ((engine::actors::actor::textures::texture*)Token.Data)->ColorR, ((engine::actors::actor::textures::texture*)Token.Data)->ColorG, ((engine::actors::actor::textures::texture*)Token.Data)->ColorB) != 0)
+        if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], ((engine::actors::actor::textures::texture*)Token.Data)->ColorR, ((engine::actors::actor::textures::texture*)Token.Data)->ColorG, ((engine::actors::actor::textures::texture*)Token.Data)->ColorB) != 0)
         {
             printf("slay::engine.render.RenderTexture(): SDL_SetTextureColorMod failed\n");
             exit(1);
         }
-        if (SDL_SetTextureAlphaMod(this->Engine.Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], ((engine::actors::actor::textures::texture*)Token.Data)->ColorA) != 0)
+        if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], ((engine::actors::actor::textures::texture*)Token.Data)->ColorA) != 0)
         {
             printf("slay::engine.render.RenderTexture(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, this->Engine.Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], NULL, &Token.Area, -((engine::actors::actor::textures::texture*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], NULL, &Token.Area, -((engine::actors::actor::textures::texture*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderTexture(): SDL_RenderCopyEx failed\n");
             exit(1);
@@ -625,17 +625,17 @@ namespace slay
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_SetTextureColorMod(this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorB) != 0)
+        if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorB) != 0)
         {
             printf("slay::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\n");
             exit(1);
         }
-        if (SDL_SetTextureAlphaMod(this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorA) != 0)
+        if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorA) != 0)
         {
             printf("slay::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, this->Engine.Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], NULL, &Token.Area, -((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], NULL, &Token.Area, -((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\n");
             exit(1);
@@ -668,7 +668,7 @@ namespace slay
             printf("slay::engine.render.RenderText(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine.Window.Renderer, ((engine::actors::actor::texts::text*)Token.Data)->Texture, NULL, &Token.Area, -((engine::actors::actor::texts::text*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, ((engine::actors::actor::texts::text*)Token.Data)->Texture, NULL, &Token.Area, -((engine::actors::actor::texts::text*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderText(): SDL_RenderCopyEx failed\n");
             exit(1);

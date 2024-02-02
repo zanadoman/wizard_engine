@@ -2,7 +2,7 @@
 
 namespace slay
 {
-    engine::assets::assets(engine& Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Sounds({(Mix_Chunk*)NULL}), Fonts({(TTF_Font*)NULL}), Cursors({(SDL_Cursor*)NULL}) {}
+    engine::assets::assets(engine* Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Sounds({(Mix_Chunk*)NULL}), Fonts({(TTF_Font*)NULL}), Cursors({(SDL_Cursor*)NULL}) {}
 
     uint64 engine::assets::LoadTexture(const char* Path)
     {
@@ -24,7 +24,7 @@ namespace slay
         {
             if (this->Textures[i] == NULL)
             {
-                if ((this->Textures[i] = SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, tmp)) == NULL)
+                if ((this->Textures[i] = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, tmp)) == NULL)
                 {
                     printf("slay::engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
                     exit(1);
@@ -35,7 +35,7 @@ namespace slay
             }
         }
 
-        if ((*(this->Textures += {SDL_CreateTextureFromSurface(this->Engine.Window.Renderer, tmp)}))[this->Textures.Length() - 1] == NULL)
+        if ((*(this->Textures += {SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, tmp)}))[this->Textures.Length() - 1] == NULL)
         {
             printf("slay::engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
             exit(1);
@@ -76,38 +76,38 @@ namespace slay
             this->Textures.Remove(i, this->Textures.Length() - i);
         }
 
-        for (i = 1; i < this->Engine.Actors.Actors.Length(); i++)
+        for (i = 1; i < this->Engine->Actors.Actors.Length(); i++)
         {
-            if (this->Engine.Actors.Actors[i] == NULL)
+            if (this->Engine->Actors.Actors[i] == NULL)
             {
                 continue;
             }
 
-            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Textures.Textures.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Textures.Textures.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Textures.Textures[j] == NULL)
+                if (this->Engine->Actors.Actors[i]->Textures.Textures[j] == NULL)
                 {
                     continue;
                 }
 
-                if (this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID == ID)
+                if (this->Engine->Actors.Actors[i]->Textures.Textures[j]->TextureID == ID)
                 {
-                    this->Engine.Actors.Actors[i]->Textures.Textures[j]->TextureID = 0;
+                    this->Engine->Actors.Actors[i]->Textures.Textures[j]->TextureID = 0;
                 }
             }
 
-            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL)
+                if (this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL)
                 {
                     continue;
                 }
 
-                for (uint64 k = 0; k < this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength; k++)
+                for (uint64 k = 0; k < this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength; k++)
                 {
-                    if (this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[k] == ID)
+                    if (this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[k] == ID)
                     {
-                        this->Engine.Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[k] = 0;
+                        this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[k] = 0;
                     }
                 }
             }
@@ -145,38 +145,38 @@ namespace slay
 
             if (j == Keep.size())
             {
-                for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
+                for (uint64 k = 1; k < this->Engine->Actors.Actors.Length(); k++)
                 {
-                    if (this->Engine.Actors.Actors[k] == NULL)
+                    if (this->Engine->Actors.Actors[k] == NULL)
                     {
                         continue;
                     }
 
-                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Textures.Textures.Length(); l++)
+                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Textures.Textures.Length(); l++)
                     {
-                        if (this->Engine.Actors.Actors[k]->Textures.Textures[l] == NULL)
+                        if (this->Engine->Actors.Actors[k]->Textures.Textures[l] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID == i)
+                        if (this->Engine->Actors.Actors[k]->Textures.Textures[l]->TextureID == i)
                         {
-                            this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID = 0;
+                            this->Engine->Actors.Actors[k]->Textures.Textures[l]->TextureID = 0;
                         }
                     }
 
-                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks.Length(); l++)
+                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks.Length(); l++)
                     {
-                        if (this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l] == NULL)
+                        if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l] == NULL)
                         {
                             continue;
                         }
 
-                        for (uint64 m = 0; m < this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->TexturesLength; m++)
+                        for (uint64 m = 0; m < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->TexturesLength; m++)
                         {
-                            if (this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
+                            if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
                             {
-                                this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] = 0;
+                                this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] = 0;
                             }
                         }
                     }
@@ -232,38 +232,38 @@ namespace slay
 
             if (j == Keep->Length())
             {
-                for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
+                for (uint64 k = 1; k < this->Engine->Actors.Actors.Length(); k++)
                 {
-                    if (this->Engine.Actors.Actors[k] == NULL)
+                    if (this->Engine->Actors.Actors[k] == NULL)
                     {
                         continue;
                     }
 
-                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Textures.Textures.Length(); l++)
+                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Textures.Textures.Length(); l++)
                     {
-                        if (this->Engine.Actors.Actors[k]->Textures.Textures[l] == NULL)
+                        if (this->Engine->Actors.Actors[k]->Textures.Textures[l] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID == i)
+                        if (this->Engine->Actors.Actors[k]->Textures.Textures[l]->TextureID == i)
                         {
-                            this->Engine.Actors.Actors[k]->Textures.Textures[l]->TextureID = 0;
+                            this->Engine->Actors.Actors[k]->Textures.Textures[l]->TextureID = 0;
                         }
                     }
 
-                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks.Length(); l++)
+                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks.Length(); l++)
                     {
-                        if (this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l] == NULL)
+                        if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l] == NULL)
                         {
                             continue;
                         }
 
-                        for (uint64 m = 0; m < this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->TexturesLength; m++)
+                        for (uint64 m = 0; m < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->TexturesLength; m++)
                         {
-                            if (this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
+                            if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
                             {
-                                this->Engine.Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] = 0;
+                                this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] = 0;
                             }
                         }
                     }
@@ -517,23 +517,23 @@ namespace slay
             this->Fonts.Remove(i, this->Fonts.Length() - i);
         }
 
-        for (i = 1; i < this->Engine.Actors.Actors.Length(); i++)
+        for (i = 1; i < this->Engine->Actors.Actors.Length(); i++)
         {
-            if (this->Engine.Actors.Actors[i] == NULL)
+            if (this->Engine->Actors.Actors[i] == NULL)
             {
                 continue;
             }
 
-            for (uint64 j = 1; j < this->Engine.Actors.Actors[i]->Texts.Texts.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Texts.Texts.Length(); j++)
             {
-                if (this->Engine.Actors.Actors[i]->Texts.Texts[j] == NULL)
+                if (this->Engine->Actors.Actors[i]->Texts.Texts[j] == NULL)
                 {
                     continue;
                 }
 
-                if (this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID == ID)
+                if (this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID == ID)
                 {
-                    this->Engine.Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
+                    this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
                 }
             }
         }
@@ -570,23 +570,23 @@ namespace slay
 
             if (j == Keep.size())
             {
-                for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
+                for (uint64 k = 1; k < this->Engine->Actors.Actors.Length(); k++)
                 {
-                    if (this->Engine.Actors.Actors[k] == NULL)
+                    if (this->Engine->Actors.Actors[k] == NULL)
                     {
                         continue;
                     }
 
-                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Texts.Texts.Length(); l++)
+                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Texts.Texts.Length(); l++)
                     {
-                        if (this->Engine.Actors.Actors[k]->Texts.Texts[l] == NULL)
+                        if (this->Engine->Actors.Actors[k]->Texts.Texts[l] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine.Actors.Actors[k]->Texts.Texts[l]->FontID == i)
+                        if (this->Engine->Actors.Actors[k]->Texts.Texts[l]->FontID == i)
                         {
-                            this->Engine.Actors.Actors[k]->Texts.Texts[l]->FontID = 0;
+                            this->Engine->Actors.Actors[k]->Texts.Texts[l]->FontID = 0;
                         }
                     }
                 }
@@ -641,23 +641,23 @@ namespace slay
 
             if (j == Keep->Length())
             {
-                for (uint64 k = 1; k < this->Engine.Actors.Actors.Length(); k++)
+                for (uint64 k = 1; k < this->Engine->Actors.Actors.Length(); k++)
                 {
-                    if (this->Engine.Actors.Actors[k] == NULL)
+                    if (this->Engine->Actors.Actors[k] == NULL)
                     {
                         continue;
                     }
 
-                    for (uint64 l = 1; l < this->Engine.Actors.Actors[k]->Texts.Texts.Length(); l++)
+                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Texts.Texts.Length(); l++)
                     {
-                        if (this->Engine.Actors.Actors[k]->Texts.Texts[l] == NULL)
+                        if (this->Engine->Actors.Actors[k]->Texts.Texts[l] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine.Actors.Actors[k]->Texts.Texts[l]->FontID == i)
+                        if (this->Engine->Actors.Actors[k]->Texts.Texts[l]->FontID == i)
                         {
-                            this->Engine.Actors.Actors[k]->Texts.Texts[l]->FontID = 0;
+                            this->Engine->Actors.Actors[k]->Texts.Texts[l]->FontID = 0;
                         }
                     }
                 }
@@ -766,9 +766,9 @@ namespace slay
             this->Cursors.Remove(i, this->Cursors.Length() - i);
         }
 
-        if (this->Engine.Mouse.Cursor == ID)
+        if (this->Engine->Mouse.Cursor == ID)
         {
-            this->Engine.Mouse.Cursor = 0;
+            this->Engine->Mouse.Cursor = 0;
         }
 
         return 0;
@@ -791,7 +791,7 @@ namespace slay
             }
         }
 
-        this->Engine.Mouse.Cursor = 0;
+        this->Engine->Mouse.Cursor = 0;
 
         for (i = 1; i < this->Cursors.Length(); i++)
         {
@@ -843,7 +843,7 @@ namespace slay
             }
         }
 
-        this->Engine.Mouse.Cursor = 0;
+        this->Engine->Mouse.Cursor = 0;
 
         for (i = 1; i < this->Cursors.Length(); i++)
         {

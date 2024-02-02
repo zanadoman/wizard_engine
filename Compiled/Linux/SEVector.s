@@ -2,18 +2,18 @@
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6vectorC2ERS0_
-	.type	_ZN4slay6engine6vectorC2ERS0_, @function
-_ZN4slay6engine6vectorC2ERS0_:
+	.globl	_ZN4slay6engine6vectorC2EPS0_
+	.type	_ZN4slay6engine6vectorC2EPS0_, @function
+_ZN4slay6engine6vectorC2EPS0_:
 .LFB2232:
 	.cfi_startproc
 	movq	%rsi, (%rdi)
 	ret
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN4slay6engine6vectorC2ERS0_, .-_ZN4slay6engine6vectorC2ERS0_
-	.globl	_ZN4slay6engine6vectorC1ERS0_
-	.set	_ZN4slay6engine6vectorC1ERS0_,_ZN4slay6engine6vectorC2ERS0_
+	.size	_ZN4slay6engine6vectorC2EPS0_, .-_ZN4slay6engine6vectorC2EPS0_
+	.globl	_ZN4slay6engine6vectorC1EPS0_
+	.set	_ZN4slay6engine6vectorC1EPS0_,_ZN4slay6engine6vectorC2EPS0_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6vector6LengthEdddd

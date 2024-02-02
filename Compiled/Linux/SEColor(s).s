@@ -157,9 +157,9 @@ _ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor6colorsC2ERS0_RS2_
-	.type	_ZN4slay6engine6actors5actor6colorsC2ERS0_RS2_, @function
-_ZN4slay6engine6actors5actor6colorsC2ERS0_RS2_:
+	.globl	_ZN4slay6engine6actors5actor6colorsC2EPS0_PS2_
+	.type	_ZN4slay6engine6actors5actor6colorsC2EPS0_PS2_, @function
+_ZN4slay6engine6actors5actor6colorsC2EPS0_PS2_:
 .LFB2232:
 	.cfi_startproc
 	pushq	%rbx
@@ -206,9 +206,9 @@ _ZN4slay6engine6actors5actor6colorsC2ERS0_RS2_:
 	call	exit@PLT
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN4slay6engine6actors5actor6colorsC2ERS0_RS2_, .-_ZN4slay6engine6actors5actor6colorsC2ERS0_RS2_
-	.globl	_ZN4slay6engine6actors5actor6colorsC1ERS0_RS2_
-	.set	_ZN4slay6engine6actors5actor6colorsC1ERS0_RS2_,_ZN4slay6engine6actors5actor6colorsC2ERS0_RS2_
+	.size	_ZN4slay6engine6actors5actor6colorsC2EPS0_PS2_, .-_ZN4slay6engine6actors5actor6colorsC2EPS0_PS2_
+	.globl	_ZN4slay6engine6actors5actor6colorsC1EPS0_PS2_
+	.set	_ZN4slay6engine6actors5actor6colorsC1EPS0_PS2_,_ZN4slay6engine6actors5actor6colorsC2EPS0_PS2_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor6colorsD2Ev
@@ -945,9 +945,9 @@ _ZN4slay6engine6actors5actor6colorsixEy:
 	.size	_ZN4slay6engine6actors5actor6colorsixEy, .-_ZN4slay6engine6actors5actor6colorsixEy
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_
-	.type	_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_, @function
-_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_:
+	.globl	_ZN4slay6engine6actors5actor6colors5colorC2EPS0_PS2_
+	.type	_ZN4slay6engine6actors5actor6colors5colorC2EPS0_PS2_, @function
+_ZN4slay6engine6actors5actor6colors5colorC2EPS0_PS2_:
 .LFB2245:
 	.cfi_startproc
 	movl	136(%rdx), %eax
@@ -964,9 +964,9 @@ _ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_:
 	ret
 	.cfi_endproc
 .LFE2245:
-	.size	_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_, .-_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_
-	.globl	_ZN4slay6engine6actors5actor6colors5colorC1ERS0_RS2_
-	.set	_ZN4slay6engine6actors5actor6colors5colorC1ERS0_RS2_,_ZN4slay6engine6actors5actor6colors5colorC2ERS0_RS2_
+	.size	_ZN4slay6engine6actors5actor6colors5colorC2EPS0_PS2_, .-_ZN4slay6engine6actors5actor6colors5colorC2EPS0_PS2_
+	.globl	_ZN4slay6engine6actors5actor6colors5colorC1EPS0_PS2_
+	.set	_ZN4slay6engine6actors5actor6colors5colorC1EPS0_PS2_,_ZN4slay6engine6actors5actor6colors5colorC2EPS0_PS2_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor6colors5color10GetOffsetXEv

@@ -2,9 +2,9 @@
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine5audioC2ERS0_
-	.type	_ZN4slay6engine5audioC2ERS0_, @function
-_ZN4slay6engine5audioC2ERS0_:
+	.globl	_ZN4slay6engine5audioC2EPS0_
+	.type	_ZN4slay6engine5audioC2EPS0_, @function
+_ZN4slay6engine5audioC2EPS0_:
 .LFB2232:
 	.cfi_startproc
 	movq	.LC0(%rip), %rax
@@ -13,9 +13,9 @@ _ZN4slay6engine5audioC2ERS0_:
 	ret
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN4slay6engine5audioC2ERS0_, .-_ZN4slay6engine5audioC2ERS0_
-	.globl	_ZN4slay6engine5audioC1ERS0_
-	.set	_ZN4slay6engine5audioC1ERS0_,_ZN4slay6engine5audioC2ERS0_
+	.size	_ZN4slay6engine5audioC2EPS0_, .-_ZN4slay6engine5audioC2EPS0_
+	.globl	_ZN4slay6engine5audioC1EPS0_
+	.set	_ZN4slay6engine5audioC1EPS0_,_ZN4slay6engine5audioC2EPS0_
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine5audio15GetGlobalVolumeEv

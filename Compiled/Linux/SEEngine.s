@@ -54,43 +54,43 @@ _ZN4slay6engineC2EPKctth:
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 80
 .LEHB0:
-	call	_ZN4slay6engine6windowC1ERS0_@PLT
+	call	_ZN4slay6engine6windowC1EPS0_@PLT
 	leaq	32(%rbx), %rax
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
 	movq	%rax, 8(%rsp)
-	call	_ZN4slay6engine6renderC1ERS0_@PLT
+	call	_ZN4slay6engine6renderC1EPS0_@PLT
 .LEHE0:
 	leaq	80(%rbx), %rdi
 	movq	%rbx, %rsi
 .LEHB1:
-	call	_ZN4slay6engine6cameraC1ERS0_@PLT
+	call	_ZN4slay6engine6cameraC1EPS0_@PLT
 	leaq	144(%rbx), %rdi
 	movq	%rbx, %rsi
-	call	_ZN4slay6engine5audioC1ERS0_@PLT
+	call	_ZN4slay6engine5audioC1EPS0_@PLT
 	leaq	160(%rbx), %rdi
 	movq	%rbx, %rsi
-	call	_ZN4slay6engine4keysC1ERS0_@PLT
+	call	_ZN4slay6engine4keysC1EPS0_@PLT
 	leaq	472(%rbx), %rdi
 	movq	%rbx, %rsi
-	call	_ZN4slay6engine5mouseC1ERS0_@PLT
+	call	_ZN4slay6engine5mouseC1EPS0_@PLT
 	leaq	528(%rbx), %r15
 	movq	%rbx, %rsi
 	movq	%r15, %rdi
-	call	_ZN4slay6engine6actorsC1ERS0_@PLT
+	call	_ZN4slay6engine6actorsC1EPS0_@PLT
 .LEHE1:
 	leaq	552(%rbx), %rdi
 	movq	%rbx, %rsi
 .LEHB2:
-	call	_ZN4slay6engine6vectorC1ERS0_@PLT
+	call	_ZN4slay6engine6vectorC1EPS0_@PLT
 	leaq	560(%rbx), %rdi
 	movq	%rbx, %rsi
-	call	_ZN4slay6engine6assetsC1ERS0_@PLT
+	call	_ZN4slay6engine6assetsC1EPS0_@PLT
 .LEHE2:
 	leaq	632(%rbx), %rdi
 	movq	%rbx, %rsi
 .LEHB3:
-	call	_ZN4slay6engine6timingC1ERS0_@PLT
+	call	_ZN4slay6engine6timingC1EPS0_@PLT
 .LEHE3:
 	testq	%rbp, %rbp
 	leaq	.LC0(%rip), %rax
