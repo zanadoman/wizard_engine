@@ -321,11 +321,11 @@ _ZN4slay6engineD2Ev:
 	movq	%rbp, %rdi
 	xorl	%esi, %esi
 	xorl	%edx, %edx
-	call	_ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE@PLT
+	call	_ZN4slay6engine6assets11PurgeSoundsESt16initializer_listIyE@PLT
 	movq	%rbp, %rdi
 	xorl	%esi, %esi
 	xorl	%edx, %edx
-	call	_ZN4slay6engine6assets11PurgeSoundsESt16initializer_listIyE@PLT
+	call	_ZN4slay6engine6assets10PurgeFontsESt16initializer_listIyE@PLT
 	xorl	%esi, %esi
 	xorl	%edx, %edx
 	movq	%rbp, %rdi

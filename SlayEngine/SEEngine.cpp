@@ -38,8 +38,8 @@ namespace slay
     engine::~engine()
     {
         this->Assets.PurgeTextures({});
-        this->Assets.PurgeFonts({});
         this->Assets.PurgeSounds({});
+        this->Assets.PurgeFonts({});
         this->Assets.PurgeCursors({});
 
         this->Window.Close();
