@@ -114,15 +114,15 @@ namespace slay
         MedAngle1_180 = MedAngle1 + 180;
         MedAngle2_180 =  MedAngle2 + 180;
 
-        x1 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle1);
-        x2 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle2);
-        x3 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle1_180);
-        x4 = this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle2_180);
+        x1 = round(this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle1));
+        x2 = round(this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle2));
+        x3 = round(this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle1_180));
+        x4 = round(this->Engine->Vector.TerminalX(this->X, this->HitboxMedianLength, MedAngle2_180));
 
-        y1 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle1);
-        y2 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle2);
-        y3 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle1_180);
-        y4 = this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle2_180);
+        y1 = round(this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle1));
+        y2 = round(this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle2));
+        y3 = round(this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle1_180));
+        y4 = round(this->Engine->Vector.TerminalY(this->Y, this->HitboxMedianLength, MedAngle2_180));
 
         minX = (tmp1 = x1 < x2 ? x1 : x2) < (tmp2 = x3 < x4 ? x3 : x4) ? tmp1 : tmp2;
         maxX = (tmp2 = x4 < x3 ? x3 : x4) < (tmp1 = x2 < x1 ? x1 : x2) ? tmp1 : tmp2;
