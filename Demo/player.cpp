@@ -65,6 +65,14 @@ uint8 player::Update()
         this->Engine->Actors[this->Actor].Texts[this->NameText].SetY(this->Engine->Actors[this->Actor].GetY() + 56);
         this->Engine->Actors[this->Actor].Texts[this->NameText].SetX(this->Engine->Actors[this->Actor].GetX());
     }
+    if (this->Engine->Keys[KEY_H])
+    {
+        this->Engine->Actors[this->Actor].SetWidth(100);
+    }
+    if (this->Engine->Keys[KEY_J])
+    {
+        this->Engine->Actors[this->Actor].SetWidth(46);
+    }
 
     return 0;
 }

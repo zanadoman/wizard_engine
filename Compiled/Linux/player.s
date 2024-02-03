@@ -386,35 +386,49 @@ _ZN6player6UpdateEv:
 	leaq	160(%rax), %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L50
+	jne	.L58
 .L22:
 	movq	(%rbx), %rax
 	movl	$81, %esi
 	leaq	160(%rax), %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L51
+	jne	.L59
 .L29:
 	movq	(%rbx), %rax
 	movl	$80, %esi
 	leaq	160(%rax), %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L52
+	jne	.L60
 .L36:
 	movq	(%rbx), %rax
 	movl	$79, %esi
 	leaq	160(%rax), %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L53
+	jne	.L61
 .L41:
 	movq	(%rbx), %rax
 	movl	$10, %esi
 	leaq	160(%rax), %rdi
 	call	_ZN4slay6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L54
+	jne	.L62
+.L45:
+	movq	(%rbx), %rax
+	movl	$11, %esi
+	leaq	160(%rax), %rdi
+	call	_ZN4slay6engine4keysixENS_3keyE@PLT
+	testb	%al, %al
+	jne	.L63
+.L46:
+	movq	(%rbx), %rax
+	movl	$13, %esi
+	leaq	160(%rax), %rdi
+	call	_ZN4slay6engine4keysixENS_3keyE@PLT
+	testb	%al, %al
+	jne	.L64
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
@@ -428,7 +442,7 @@ _ZN6player6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L50:
+.L58:
 	.cfi_restore_state
 	movq	(%rbx), %rax
 	movl	$81, %esi
@@ -507,7 +521,40 @@ _ZN6player6UpdateEv:
 	jmp	.L22
 	.p2align 4,,10
 	.p2align 3
-.L54:
+.L64:
+	movq	(%rbx), %rdi
+	movq	8(%rbx), %rsi
+	addq	$528, %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movl	$46, %esi
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor8SetWidthEt@PLT
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 32
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 24
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L63:
+	.cfi_restore_state
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	528(%rax), %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
+	movl	$100, %esi
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor8SetWidthEt@PLT
+	jmp	.L46
+	.p2align 4,,10
+	.p2align 3
+.L62:
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
@@ -532,30 +579,19 @@ _ZN6player6UpdateEv:
 	movq	40(%rbx), %rsi
 	leaq	104(%rax), %rdi
 	call	_ZN4slay6engine6actors5actor5textsixEy@PLT
-	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi
 	movq	%rax, %rbp
-	addq	$528, %rdi
+	movq	(%rbx), %rax
+	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor4GetXEv@PLT
 	movq	%rbp, %rdi
 	call	_ZN4slay6engine6actors5actor5texts4text4SetXEd@PLT
-	addq	$16, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 32
-	xorl	%eax, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 24
-	popq	%rbp
-	.cfi_def_cfa_offset 16
-	popq	%r12
-	.cfi_def_cfa_offset 8
-	ret
+	jmp	.L45
 	.p2align 4,,10
 	.p2align 3
-.L53:
-	.cfi_restore_state
+.L61:
 	movq	(%rbx), %rax
 	movl	$80, %esi
 	leaq	160(%rax), %rdi
@@ -588,7 +624,7 @@ _ZN6player6UpdateEv:
 	jmp	.L41
 	.p2align 4,,10
 	.p2align 3
-.L52:
+.L60:
 	movq	(%rbx), %rax
 	movl	$79, %esi
 	leaq	160(%rax), %rdi
@@ -620,7 +656,7 @@ _ZN6player6UpdateEv:
 	jmp	.L36
 	.p2align 4,,10
 	.p2align 3
-.L51:
+.L59:
 	movq	(%rbx), %rax
 	movl	$82, %esi
 	leaq	160(%rax), %rdi

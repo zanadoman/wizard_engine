@@ -501,6 +501,7 @@ namespace slay
                         double HitboxMedian2Angle;
                         actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
                         ~actor();
+                        uint8 UpdateHitboxScale();
                         uint8 UpdateMembersPosition();
                 };
 

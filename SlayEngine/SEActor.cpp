@@ -46,6 +46,8 @@ namespace slay
     {
         this->X = X;
 
+        //Collision simulation
+
         this->UpdateMembersPosition();
 
         return this->X;
@@ -60,6 +62,8 @@ namespace slay
     {
         this->Y = Y;
 
+        //Collision simulation
+
         this->UpdateMembersPosition();
 
         return this->Y;
@@ -72,11 +76,17 @@ namespace slay
 
     uint16 engine::actors::actor::SetWidth(uint16 Width)
     {
+        this->Width = Width;
+
         this->HitboxMedianLength = this->Engine->Vector.Angle(0, 0, Width, this->Height) / 2;
         this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, Width, this->Height);
         this->HitboxMedian2Angle = this->Engine->Vector.Angle(Width, 0, 0, this->Height);
 
-        return this->Width = Width;
+        this->UpdateHitboxScale();
+
+        //Collision simulation
+
+        return this->Width;
     }
 
     uint16 engine::actors::actor::GetHeight()
@@ -86,11 +96,17 @@ namespace slay
 
     uint16 engine::actors::actor::SetHeight(uint16 Height)
     {
+        this->Height = Height;
+
         this->HitboxMedianLength = this->Engine->Vector.Angle(0, 0, this->Width, Height) / 2;
         this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, this->Width, Height);
         this->HitboxMedian2Angle = this->Engine->Vector.Angle(this->Width, 0, 0, Height);
 
-        return this->Height = Height;
+        this->UpdateHitboxScale();
+
+        //Collision simulation
+
+        return this->Height;
     }
 
     double engine::actors::actor::GetAngle()
@@ -98,49 +114,13 @@ namespace slay
         return this->Angle;
     }
 
-    sint32 min(sint32 a, sint32 b)
-    {
-        return a < b ? a : b;
-    }
-
-    sint32 max(sint32 a, sint32 b)
-    {
-        return b < a ? a : b;
-    }
-
     double engine::actors::actor::SetAngle(double Angle)
     {
         double change;
-        double MedAngle1, MedAngle2, MedAngle1_180, MedAngle2_180;
-        sint32 x1, x2, x3, x4;
-        sint32 y1, y2, y3, y4;
-        sint32 minX, maxX, minY, maxY;
-        sint32 tmp1, tmp2;
-
-        MedAngle1 = this->Angle + this->HitboxMedian1Angle;
-        MedAngle2 = this->Angle + this->HitboxMedian2Angle;
-        MedAngle1_180 = MedAngle1 + 180;
-        MedAngle2_180 =  MedAngle2 + 180;
-
-        x1 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle1));
-        x2 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle2));
-        x3 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle1_180));
-        x4 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle2_180));
-
-        y1 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle1));
-        y2 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle2));
-        y3 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle1_180));
-        y4 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle2_180));
-
-        minX = (tmp1 = x1 < x2 ? x1 : x2) < (tmp2 = x3 < x4 ? x3 : x4) ? tmp1 : tmp2;
-        maxX = (tmp2 = x4 < x3 ? x3 : x4) < (tmp1 = x2 < x1 ? x1 : x2) ? tmp1 : tmp2;
-        minY = (tmp1 = y1 < y2 ? y1 : y2) < (tmp2 = y3 < y4 ? y3 : y4) ? tmp1 : tmp2;
-        maxY = (tmp2 = y4 < y3 ? y3 : y4) < (tmp1 = y2 < y1 ? y1 : y2) ? tmp1 : tmp2;
-
-        this->HitboxWidth = maxX - minX;
-        this->HitboxHeight = maxY - minY;
 
         change = Angle - this->Angle;
+
+        this->Angle = Angle;
 
         for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
         {
@@ -209,9 +189,10 @@ namespace slay
             }
         }
 
+        this->UpdateHitboxScale();
         this->UpdateMembersPosition();
 
-        return this->Angle = Angle;
+        return this->Angle;
     }
 
     double engine::actors::actor::GetLayer()
@@ -274,6 +255,40 @@ namespace slay
         return this->HitboxHeight;
     }
 
+    uint8 engine::actors::actor::UpdateHitboxScale()
+    {
+        double MedAngle1, MedAngle2, MedAngle1_180, MedAngle2_180;
+        sint32 x1, x2, x3, x4;
+        sint32 y1, y2, y3, y4;
+        sint32 minX, maxX, minY, maxY;
+        sint32 tmp1, tmp2;
+
+        MedAngle1 = this->Angle + this->HitboxMedian1Angle;
+        MedAngle2 = this->Angle + this->HitboxMedian2Angle;
+        MedAngle1_180 = MedAngle1 + 180;
+        MedAngle2_180 =  MedAngle2 + 180;
+
+        x1 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle1));
+        x2 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle2));
+        x3 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle1_180));
+        x4 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle2_180));
+
+        y1 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle1));
+        y2 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle2));
+        y3 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle1_180));
+        y4 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle2_180));
+
+        minX = (tmp1 = x1 < x2 ? x1 : x2) < (tmp2 = x3 < x4 ? x3 : x4) ? tmp1 : tmp2;
+        maxX = (tmp2 = x4 < x3 ? x3 : x4) < (tmp1 = x2 < x1 ? x1 : x2) ? tmp1 : tmp2;
+        minY = (tmp1 = y1 < y2 ? y1 : y2) < (tmp2 = y3 < y4 ? y3 : y4) ? tmp1 : tmp2;
+        maxY = (tmp2 = y4 < y3 ? y3 : y4) < (tmp1 = y2 < y1 ? y1 : y2) ? tmp1 : tmp2;
+
+        this->HitboxWidth = maxX - minX;
+        this->HitboxHeight = maxY - minY;
+
+        return 0;
+    }
+
     uint8 engine::actors::actor::UpdateMembersPosition()
     {
         for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
@@ -283,8 +298,8 @@ namespace slay
                 continue;
             }
 
-            this->Colors.Colors[i]->X = Engine->Vector.TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
-            this->Colors.Colors[i]->Y = Engine->Vector.TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+            this->Colors.Colors[i]->X = this->Engine->Vector.TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+            this->Colors.Colors[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Textures.Textures.Length(); i++)
@@ -294,8 +309,8 @@ namespace slay
                 continue;
             }
 
-            this->Textures.Textures[i]->X = Engine->Vector.TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
-            this->Textures.Textures[i]->Y = Engine->Vector.TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+            this->Textures.Textures[i]->X = this->Engine->Vector.TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+            this->Textures.Textures[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Flipbooks.Flipbooks.Length(); i++)
@@ -305,8 +320,8 @@ namespace slay
                 continue;
             }
 
-            this->Flipbooks.Flipbooks[i]->X = Engine->Vector.TerminalX(this->X, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
-            this->Flipbooks.Flipbooks[i]->Y = Engine->Vector.TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
+            this->Flipbooks.Flipbooks[i]->X = this->Engine->Vector.TerminalX(this->X, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
+            this->Flipbooks.Flipbooks[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Texts.Texts.Length(); i++)
@@ -316,8 +331,8 @@ namespace slay
                 continue;
             }
 
-            this->Texts.Texts[i]->X = Engine->Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
-            this->Texts.Texts[i]->Y = Engine->Vector.TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+            this->Texts.Texts[i]->X = this->Engine->Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+            this->Texts.Texts[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
         }
 
         return 0;

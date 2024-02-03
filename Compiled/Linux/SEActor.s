@@ -364,6 +364,350 @@ _ZN4slay6engine6actors5actor8GetWidthEv:
 	.size	_ZN4slay6engine6actors5actor8GetWidthEv, .-_ZN4slay6engine6actors5actor8GetWidthEv
 	.align 2
 	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor9GetHeightEv
+	.type	_ZN4slay6engine6actors5actor9GetHeightEv, @function
+_ZN4slay6engine6actors5actor9GetHeightEv:
+.LFB2244:
+	.cfi_startproc
+	movzwl	170(%rdi), %eax
+	ret
+	.cfi_endproc
+.LFE2244:
+	.size	_ZN4slay6engine6actors5actor9GetHeightEv, .-_ZN4slay6engine6actors5actor9GetHeightEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor8GetAngleEv
+	.type	_ZN4slay6engine6actors5actor8GetAngleEv, @function
+_ZN4slay6engine6actors5actor8GetAngleEv:
+.LFB2246:
+	.cfi_startproc
+	movsd	176(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE2246:
+	.size	_ZN4slay6engine6actors5actor8GetAngleEv, .-_ZN4slay6engine6actors5actor8GetAngleEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor8GetLayerEv
+	.type	_ZN4slay6engine6actors5actor8GetLayerEv, @function
+_ZN4slay6engine6actors5actor8GetLayerEv:
+.LFB2248:
+	.cfi_startproc
+	movsd	184(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE2248:
+	.size	_ZN4slay6engine6actors5actor8GetLayerEv, .-_ZN4slay6engine6actors5actor8GetLayerEv
+	.section	.rodata.str1.8
+	.align 8
+.LC4:
+	.string	"slay::engine.actors[].SetLayer(): Layer must not be less than 0\nParams: Layer: %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor8SetLayerEd
+	.type	_ZN4slay6engine6actors5actor8SetLayerEd, @function
+_ZN4slay6engine6actors5actor8SetLayerEd:
+.LFB2249:
+	.cfi_startproc
+	pxor	%xmm1, %xmm1
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	comisd	%xmm0, %xmm1
+	ja	.L43
+	ucomisd	%xmm1, %xmm0
+	jp	.L34
+	je	.L44
+.L34:
+	movsd	%xmm0, 184(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L44:
+	.cfi_restore_state
+	movq	$0x000000000, 192(%rdi)
+	movq	(%rdi), %rax
+	movq	104(%rax), %rsi
+	movq	536(%rax), %rcx
+	movq	544(%rax), %rdx
+	cmpq	%rcx, %rsi
+	jnb	.L42
+	cmpq	%rdi, (%rdx,%rsi,8)
+	je	.L45
+.L36:
+	movq	112(%rax), %rsi
+	cmpq	%rcx, %rsi
+	jnb	.L42
+	cmpq	%rdi, (%rdx,%rsi,8)
+	jne	.L34
+	movq	$0, 112(%rax)
+	jmp	.L34
+	.p2align 4,,10
+	.p2align 3
+.L45:
+	movq	$0, 104(%rax)
+	jmp	.L36
+.L43:
+	leaq	.LC4(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L42:
+	leaq	.LC3(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE2249:
+	.size	_ZN4slay6engine6actors5actor8SetLayerEd, .-_ZN4slay6engine6actors5actor8SetLayerEd
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor8GetDepthEv
+	.type	_ZN4slay6engine6actors5actor8GetDepthEv, @function
+_ZN4slay6engine6actors5actor8GetDepthEv:
+.LFB2250:
+	.cfi_startproc
+	movsd	192(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE2250:
+	.size	_ZN4slay6engine6actors5actor8GetDepthEv, .-_ZN4slay6engine6actors5actor8GetDepthEv
+	.section	.rodata.str1.8
+	.align 8
+.LC5:
+	.string	"slay::engine.actors[].SetDepth(): Illegal to set Depth when Layer is 0\nParams: Depth: %lf\n"
+	.align 8
+.LC6:
+	.string	"slay::engine::actors[].SetDepth(): Depth must not be less than 0\nParams: Depth: %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor8SetDepthEd
+	.type	_ZN4slay6engine6actors5actor8SetDepthEd, @function
+_ZN4slay6engine6actors5actor8SetDepthEd:
+.LFB2251:
+	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	pxor	%xmm1, %xmm1
+	ucomisd	184(%rdi), %xmm1
+	jp	.L48
+	je	.L56
+.L48:
+	pxor	%xmm1, %xmm1
+	comisd	%xmm0, %xmm1
+	ja	.L57
+	movsd	%xmm0, 192(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+.L56:
+	.cfi_restore_state
+	leaq	.LC5(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L57:
+	leaq	.LC6(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE2251:
+	.size	_ZN4slay6engine6actors5actor8SetDepthEd, .-_ZN4slay6engine6actors5actor8SetDepthEd
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor14GetHitboxWidthEv
+	.type	_ZN4slay6engine6actors5actor14GetHitboxWidthEv, @function
+_ZN4slay6engine6actors5actor14GetHitboxWidthEv:
+.LFB2252:
+	.cfi_startproc
+	movzwl	200(%rdi), %eax
+	ret
+	.cfi_endproc
+.LFE2252:
+	.size	_ZN4slay6engine6actors5actor14GetHitboxWidthEv, .-_ZN4slay6engine6actors5actor14GetHitboxWidthEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor15GetHitboxHeightEv
+	.type	_ZN4slay6engine6actors5actor15GetHitboxHeightEv, @function
+_ZN4slay6engine6actors5actor15GetHitboxHeightEv:
+.LFB2253:
+	.cfi_startproc
+	movzwl	202(%rdi), %eax
+	ret
+	.cfi_endproc
+.LFE2253:
+	.size	_ZN4slay6engine6actors5actor15GetHitboxHeightEv, .-_ZN4slay6engine6actors5actor15GetHitboxHeightEv
+	.align 2
+	.p2align 4
+	.globl	_ZN4slay6engine6actors5actor17UpdateHitboxScaleEv
+	.type	_ZN4slay6engine6actors5actor17UpdateHitboxScaleEv, @function
+_ZN4slay6engine6actors5actor17UpdateHitboxScaleEv:
+.LFB2254:
+	.cfi_startproc
+	pushq	%r15
+	.cfi_def_cfa_offset 16
+	.cfi_offset 15, -16
+	pushq	%r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
+	pushq	%r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
+	pushq	%r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	movq	%rdi, %rbx
+	subq	$40, %rsp
+	.cfi_def_cfa_offset 96
+	movsd	176(%rdi), %xmm0
+	movsd	216(%rdi), %xmm3
+	movsd	224(%rdi), %xmm4
+	movq	(%rdi), %rax
+	addsd	%xmm0, %xmm3
+	movsd	208(%rbx), %xmm1
+	addsd	%xmm0, %xmm4
+	movsd	.LC7(%rip), %xmm0
+	leaq	552(%rax), %rdi
+	movapd	%xmm3, %xmm5
+	movapd	%xmm3, %xmm2
+	movsd	%xmm3, 24(%rsp)
+	addsd	%xmm0, %xmm5
+	addsd	%xmm4, %xmm0
+	movsd	%xmm4, (%rsp)
+	movsd	%xmm0, 8(%rsp)
+	pxor	%xmm0, %xmm0
+	movq	%xmm5, %r13
+	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
+	call	round@PLT
+	movq	(%rbx), %rax
+	movsd	(%rsp), %xmm2
+	movsd	208(%rbx), %xmm1
+	cvttsd2sil	%xmm0, %r12d
+	pxor	%xmm0, %xmm0
+	leaq	552(%rax), %rdi
+	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
+	call	round@PLT
+	movq	(%rbx), %rax
+	movq	%r13, %xmm2
+	movsd	208(%rbx), %xmm1
+	cvttsd2sil	%xmm0, %esi
+	pxor	%xmm0, %xmm0
+	leaq	552(%rax), %rdi
+	movl	%esi, 20(%rsp)
+	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
+	call	round@PLT
+	movq	(%rbx), %rax
+	movsd	8(%rsp), %xmm2
+	cvttsd2sil	%xmm0, %ecx
+	movsd	208(%rbx), %xmm1
+	pxor	%xmm0, %xmm0
+	leaq	552(%rax), %rdi
+	movl	%ecx, 16(%rsp)
+	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
+	call	round@PLT
+	movsd	24(%rsp), %xmm3
+	movq	(%rbx), %rax
+	movsd	208(%rbx), %xmm1
+	cvttsd2sil	%xmm0, %r15d
+	pxor	%xmm0, %xmm0
+	movapd	%xmm3, %xmm2
+	leaq	552(%rax), %rdi
+	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
+	call	round@PLT
+	movq	(%rbx), %rax
+	movsd	(%rsp), %xmm2
+	movsd	208(%rbx), %xmm1
+	cvttsd2sil	%xmm0, %ebp
+	pxor	%xmm0, %xmm0
+	leaq	552(%rax), %rdi
+	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
+	call	round@PLT
+	movq	(%rbx), %rax
+	movq	%r13, %xmm2
+	movsd	208(%rbx), %xmm1
+	cvttsd2sil	%xmm0, %r14d
+	pxor	%xmm0, %xmm0
+	leaq	552(%rax), %rdi
+	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
+	call	round@PLT
+	movq	(%rbx), %rax
+	movsd	8(%rsp), %xmm2
+	movsd	208(%rbx), %xmm1
+	cvttsd2sil	%xmm0, %r13d
+	pxor	%xmm0, %xmm0
+	leaq	552(%rax), %rdi
+	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
+	call	round@PLT
+	movl	20(%rsp), %esi
+	movl	16(%rsp), %ecx
+	cvttsd2sil	%xmm0, %edx
+	cmpl	%esi, %r12d
+	movl	%esi, %eax
+	cmovge	%r12d, %eax
+	cmpl	%ecx, %eax
+	cmovl	%ecx, %eax
+	cmpl	%r15d, %eax
+	cmovl	%r15d, %eax
+	cmpl	%esi, %r12d
+	cmovg	%esi, %r12d
+	cmpl	%ecx, %r12d
+	cmovg	%ecx, %r12d
+	cmpl	%r15d, %r12d
+	cmovg	%r15d, %r12d
+	subl	%r12d, %eax
+	cmpl	%r14d, %ebp
+	movw	%ax, 200(%rbx)
+	movl	%r14d, %eax
+	cmovge	%ebp, %eax
+	cmpl	%r13d, %eax
+	cmovl	%r13d, %eax
+	cmpl	%edx, %eax
+	cmovl	%edx, %eax
+	cmpl	%r14d, %ebp
+	cmovg	%r14d, %ebp
+	cmpl	%r13d, %ebp
+	cmovg	%r13d, %ebp
+	cmpl	%edx, %ebp
+	cmovg	%edx, %ebp
+	subl	%ebp, %eax
+	movw	%ax, 202(%rbx)
+	addq	$40, %rsp
+	.cfi_def_cfa_offset 56
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 48
+	popq	%rbp
+	.cfi_def_cfa_offset 40
+	popq	%r12
+	.cfi_def_cfa_offset 32
+	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE2254:
+	.size	_ZN4slay6engine6actors5actor17UpdateHitboxScaleEv, .-_ZN4slay6engine6actors5actor17UpdateHitboxScaleEv
+	.align 2
+	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor8SetWidthEt
 	.type	_ZN4slay6engine6actors5actor8SetWidthEt, @function
 _ZN4slay6engine6actors5actor8SetWidthEt:
@@ -372,30 +716,24 @@ _ZN4slay6engine6actors5actor8SetWidthEt:
 	pushq	%r14
 	.cfi_def_cfa_offset 16
 	.cfi_offset 14, -16
-	movzwl	%si, %eax
 	pxor	%xmm2, %xmm2
 	pxor	%xmm3, %xmm3
-	pushq	%r12
-	.cfi_def_cfa_offset 24
-	.cfi_offset 12, -24
-	cvtsi2sdl	%eax, %xmm2
 	pxor	%xmm1, %xmm1
-	pushq	%rbp
-	.cfi_def_cfa_offset 32
-	.cfi_offset 6, -32
-	movapd	%xmm1, %xmm0
-	movl	%esi, %ebp
 	pushq	%rbx
-	.cfi_def_cfa_offset 40
-	.cfi_offset 3, -40
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+	movapd	%xmm1, %xmm0
 	movq	%rdi, %rbx
-	movq	%xmm2, %r14
 	subq	$8, %rsp
-	.cfi_def_cfa_offset 48
+	.cfi_def_cfa_offset 32
 	movzwl	170(%rdi), %eax
+	movw	%si, 168(%rdi)
+	movzwl	%si, %esi
+	cvtsi2sdl	%esi, %xmm2
 	movq	(%rdi), %rdx
 	cvtsi2sdl	%eax, %xmm3
 	leaq	552(%rdx), %rdi
+	movq	%xmm2, %r14
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
 	pxor	%xmm3, %xmm3
 	movq	(%rbx), %rcx
@@ -418,16 +756,13 @@ _ZN4slay6engine6actors5actor8SetWidthEt:
 	leaq	552(%rdx), %rdi
 	cvtsi2sdl	%eax, %xmm3
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
-	movw	%bp, 168(%rbx)
-	movl	%ebp, %eax
+	movq	%rbx, %rdi
 	movsd	%xmm0, 224(%rbx)
+	call	_ZN4slay6engine6actors5actor17UpdateHitboxScaleEv
+	movzwl	168(%rbx), %eax
 	addq	$8, %rsp
-	.cfi_def_cfa_offset 40
-	popq	%rbx
-	.cfi_def_cfa_offset 32
-	popq	%rbp
 	.cfi_def_cfa_offset 24
-	popq	%r12
+	popq	%rbx
 	.cfi_def_cfa_offset 16
 	popq	%r14
 	.cfi_def_cfa_offset 8
@@ -437,47 +772,29 @@ _ZN4slay6engine6actors5actor8SetWidthEt:
 	.size	_ZN4slay6engine6actors5actor8SetWidthEt, .-_ZN4slay6engine6actors5actor8SetWidthEt
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor9GetHeightEv
-	.type	_ZN4slay6engine6actors5actor9GetHeightEv, @function
-_ZN4slay6engine6actors5actor9GetHeightEv:
-.LFB2244:
-	.cfi_startproc
-	movzwl	170(%rdi), %eax
-	ret
-	.cfi_endproc
-.LFE2244:
-	.size	_ZN4slay6engine6actors5actor9GetHeightEv, .-_ZN4slay6engine6actors5actor9GetHeightEv
-	.align 2
-	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor9SetHeightEt
 	.type	_ZN4slay6engine6actors5actor9SetHeightEt, @function
 _ZN4slay6engine6actors5actor9SetHeightEt:
 .LFB2245:
 	.cfi_startproc
-	pushq	%r12
+	pushq	%rbx
 	.cfi_def_cfa_offset 16
-	.cfi_offset 12, -16
-	movzwl	%si, %eax
+	.cfi_offset 3, -16
 	pxor	%xmm3, %xmm3
 	pxor	%xmm2, %xmm2
-	pushq	%rbp
-	.cfi_def_cfa_offset 24
-	.cfi_offset 6, -24
-	cvtsi2sdl	%eax, %xmm3
 	pxor	%xmm1, %xmm1
-	movl	%esi, %ebp
-	pushq	%rbx
-	.cfi_def_cfa_offset 32
-	.cfi_offset 3, -32
-	movapd	%xmm1, %xmm0
 	movq	%rdi, %rbx
+	movapd	%xmm1, %xmm0
 	subq	$16, %rsp
-	.cfi_def_cfa_offset 48
+	.cfi_def_cfa_offset 32
 	movzwl	168(%rdi), %eax
+	movw	%si, 170(%rdi)
+	movzwl	%si, %esi
+	cvtsi2sdl	%esi, %xmm3
 	movq	(%rdi), %rdx
-	movsd	%xmm3, 8(%rsp)
 	cvtsi2sdl	%eax, %xmm2
 	leaq	552(%rdx), %rdi
+	movsd	%xmm3, 8(%rsp)
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
 	pxor	%xmm2, %xmm2
 	movq	(%rbx), %rcx
@@ -500,16 +817,13 @@ _ZN4slay6engine6actors5actor9SetHeightEt:
 	movq	(%rbx), %rax
 	leaq	552(%rax), %rdi
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
-	movw	%bp, 170(%rbx)
-	movl	%ebp, %eax
+	movq	%rbx, %rdi
 	movsd	%xmm0, 224(%rbx)
+	call	_ZN4slay6engine6actors5actor17UpdateHitboxScaleEv
+	movzwl	170(%rbx), %eax
 	addq	$16, %rsp
-	.cfi_def_cfa_offset 32
-	popq	%rbx
-	.cfi_def_cfa_offset 24
-	popq	%rbp
 	.cfi_def_cfa_offset 16
-	popq	%r12
+	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
@@ -517,209 +831,10 @@ _ZN4slay6engine6actors5actor9SetHeightEt:
 	.size	_ZN4slay6engine6actors5actor9SetHeightEt, .-_ZN4slay6engine6actors5actor9SetHeightEt
 	.align 2
 	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor8GetAngleEv
-	.type	_ZN4slay6engine6actors5actor8GetAngleEv, @function
-_ZN4slay6engine6actors5actor8GetAngleEv:
-.LFB2246:
-	.cfi_startproc
-	movsd	176(%rdi), %xmm0
-	ret
-	.cfi_endproc
-.LFE2246:
-	.size	_ZN4slay6engine6actors5actor8GetAngleEv, .-_ZN4slay6engine6actors5actor8GetAngleEv
-	.p2align 4
-	.globl	_ZN4slay3minEii
-	.type	_ZN4slay3minEii, @function
-_ZN4slay3minEii:
-.LFB2247:
-	.cfi_startproc
-	cmpl	%esi, %edi
-	movl	%esi, %eax
-	cmovle	%edi, %eax
-	ret
-	.cfi_endproc
-.LFE2247:
-	.size	_ZN4slay3minEii, .-_ZN4slay3minEii
-	.p2align 4
-	.globl	_ZN4slay3maxEii
-	.type	_ZN4slay3maxEii, @function
-_ZN4slay3maxEii:
-.LFB2248:
-	.cfi_startproc
-	cmpl	%edi, %esi
-	movl	%edi, %eax
-	cmovge	%esi, %eax
-	ret
-	.cfi_endproc
-.LFE2248:
-	.size	_ZN4slay3maxEii, .-_ZN4slay3maxEii
-	.align 2
-	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor8GetLayerEv
-	.type	_ZN4slay6engine6actors5actor8GetLayerEv, @function
-_ZN4slay6engine6actors5actor8GetLayerEv:
-.LFB2250:
-	.cfi_startproc
-	movsd	184(%rdi), %xmm0
-	ret
-	.cfi_endproc
-.LFE2250:
-	.size	_ZN4slay6engine6actors5actor8GetLayerEv, .-_ZN4slay6engine6actors5actor8GetLayerEv
-	.section	.rodata.str1.8
-	.align 8
-.LC4:
-	.string	"slay::engine.actors[].SetLayer(): Layer must not be less than 0\nParams: Layer: %lf\n"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor8SetLayerEd
-	.type	_ZN4slay6engine6actors5actor8SetLayerEd, @function
-_ZN4slay6engine6actors5actor8SetLayerEd:
-.LFB2251:
-	.cfi_startproc
-	pxor	%xmm1, %xmm1
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 16
-	comisd	%xmm0, %xmm1
-	ja	.L49
-	ucomisd	%xmm1, %xmm0
-	jp	.L40
-	je	.L50
-.L40:
-	movsd	%xmm0, 184(%rdi)
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L50:
-	.cfi_restore_state
-	movq	$0x000000000, 192(%rdi)
-	movq	(%rdi), %rax
-	movq	104(%rax), %rsi
-	movq	536(%rax), %rcx
-	movq	544(%rax), %rdx
-	cmpq	%rcx, %rsi
-	jnb	.L48
-	cmpq	%rdi, (%rdx,%rsi,8)
-	je	.L51
-.L42:
-	movq	112(%rax), %rsi
-	cmpq	%rcx, %rsi
-	jnb	.L48
-	cmpq	%rdi, (%rdx,%rsi,8)
-	jne	.L40
-	movq	$0, 112(%rax)
-	jmp	.L40
-	.p2align 4,,10
-	.p2align 3
-.L51:
-	movq	$0, 104(%rax)
-	jmp	.L42
-.L49:
-	leaq	.LC4(%rip), %rdi
-	movl	$1, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L48:
-	leaq	.LC3(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.cfi_endproc
-.LFE2251:
-	.size	_ZN4slay6engine6actors5actor8SetLayerEd, .-_ZN4slay6engine6actors5actor8SetLayerEd
-	.align 2
-	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor8GetDepthEv
-	.type	_ZN4slay6engine6actors5actor8GetDepthEv, @function
-_ZN4slay6engine6actors5actor8GetDepthEv:
-.LFB2252:
-	.cfi_startproc
-	movsd	192(%rdi), %xmm0
-	ret
-	.cfi_endproc
-.LFE2252:
-	.size	_ZN4slay6engine6actors5actor8GetDepthEv, .-_ZN4slay6engine6actors5actor8GetDepthEv
-	.section	.rodata.str1.8
-	.align 8
-.LC5:
-	.string	"slay::engine.actors[].SetDepth(): Illegal to set Depth when Layer is 0\nParams: Depth: %lf\n"
-	.align 8
-.LC6:
-	.string	"slay::engine::actors[].SetDepth(): Depth must not be less than 0\nParams: Depth: %lf\n"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor8SetDepthEd
-	.type	_ZN4slay6engine6actors5actor8SetDepthEd, @function
-_ZN4slay6engine6actors5actor8SetDepthEd:
-.LFB2253:
-	.cfi_startproc
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 16
-	pxor	%xmm1, %xmm1
-	ucomisd	184(%rdi), %xmm1
-	jp	.L54
-	je	.L62
-.L54:
-	pxor	%xmm1, %xmm1
-	comisd	%xmm0, %xmm1
-	ja	.L63
-	movsd	%xmm0, 192(%rdi)
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	ret
-.L62:
-	.cfi_restore_state
-	leaq	.LC5(%rip), %rdi
-	movl	$1, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L63:
-	leaq	.LC6(%rip), %rdi
-	movl	$1, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.cfi_endproc
-.LFE2253:
-	.size	_ZN4slay6engine6actors5actor8SetDepthEd, .-_ZN4slay6engine6actors5actor8SetDepthEd
-	.align 2
-	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor14GetHitboxWidthEv
-	.type	_ZN4slay6engine6actors5actor14GetHitboxWidthEv, @function
-_ZN4slay6engine6actors5actor14GetHitboxWidthEv:
-.LFB2254:
-	.cfi_startproc
-	movzwl	200(%rdi), %eax
-	ret
-	.cfi_endproc
-.LFE2254:
-	.size	_ZN4slay6engine6actors5actor14GetHitboxWidthEv, .-_ZN4slay6engine6actors5actor14GetHitboxWidthEv
-	.align 2
-	.p2align 4
-	.globl	_ZN4slay6engine6actors5actor15GetHitboxHeightEv
-	.type	_ZN4slay6engine6actors5actor15GetHitboxHeightEv, @function
-_ZN4slay6engine6actors5actor15GetHitboxHeightEv:
-.LFB2255:
-	.cfi_startproc
-	movzwl	202(%rdi), %eax
-	ret
-	.cfi_endproc
-.LFE2255:
-	.size	_ZN4slay6engine6actors5actor15GetHitboxHeightEv, .-_ZN4slay6engine6actors5actor15GetHitboxHeightEv
-	.align 2
-	.p2align 4
 	.globl	_ZN4slay6engine6actors5actor21UpdateMembersPositionEv
 	.type	_ZN4slay6engine6actors5actor21UpdateMembersPositionEv, @function
 _ZN4slay6engine6actors5actor21UpdateMembersPositionEv:
-.LFB2256:
+.LFB2255:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -909,7 +1024,7 @@ _ZN4slay6engine6actors5actor21UpdateMembersPositionEv:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2256:
+.LFE2255:
 	.size	_ZN4slay6engine6actors5actor21UpdateMembersPositionEv, .-_ZN4slay6engine6actors5actor21UpdateMembersPositionEv
 	.align 2
 	.p2align 4
@@ -956,148 +1071,19 @@ _ZN4slay6engine6actors5actor4SetYEd:
 	.globl	_ZN4slay6engine6actors5actor8SetAngleEd
 	.type	_ZN4slay6engine6actors5actor8SetAngleEd, @function
 _ZN4slay6engine6actors5actor8SetAngleEd:
-.LFB2249:
+.LFB2247:
 	.cfi_startproc
-	pushq	%r15
-	.cfi_def_cfa_offset 16
-	.cfi_offset 15, -16
-	pushq	%r14
-	.cfi_def_cfa_offset 24
-	.cfi_offset 14, -24
-	pushq	%r13
-	.cfi_def_cfa_offset 32
-	.cfi_offset 13, -32
-	pushq	%r12
-	.cfi_def_cfa_offset 40
-	.cfi_offset 12, -40
-	pushq	%rbp
-	.cfi_def_cfa_offset 48
-	.cfi_offset 6, -48
 	pushq	%rbx
-	.cfi_def_cfa_offset 56
-	.cfi_offset 3, -56
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movq	24(%rdi), %rdx
+	movapd	%xmm0, %xmm1
 	movq	%rdi, %rbx
-	subq	$56, %rsp
-	.cfi_def_cfa_offset 112
-	movsd	216(%rdi), %xmm3
-	movq	(%rdi), %rax
-	movsd	%xmm0, 24(%rsp)
-	movsd	176(%rdi), %xmm0
-	movsd	224(%rdi), %xmm4
-	movsd	208(%rbx), %xmm1
-	leaq	552(%rax), %rdi
-	addsd	%xmm0, %xmm3
-	addsd	%xmm0, %xmm4
-	movsd	.LC7(%rip), %xmm0
-	movapd	%xmm3, %xmm5
-	movapd	%xmm3, %xmm2
-	movsd	%xmm4, 8(%rsp)
-	addsd	%xmm0, %xmm5
-	addsd	%xmm4, %xmm0
-	movsd	%xmm3, 40(%rsp)
-	movsd	%xmm0, 16(%rsp)
-	pxor	%xmm0, %xmm0
-	movq	%xmm5, %r13
-	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
-	call	round@PLT
-	movq	(%rbx), %rax
-	movsd	8(%rsp), %xmm2
-	movsd	208(%rbx), %xmm1
-	cvttsd2sil	%xmm0, %r12d
-	pxor	%xmm0, %xmm0
-	leaq	552(%rax), %rdi
-	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
-	call	round@PLT
-	movq	(%rbx), %rax
-	movq	%r13, %xmm2
-	movsd	208(%rbx), %xmm1
-	cvttsd2sil	%xmm0, %esi
-	pxor	%xmm0, %xmm0
-	leaq	552(%rax), %rdi
-	movl	%esi, 36(%rsp)
-	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
-	call	round@PLT
-	movq	(%rbx), %rax
-	movsd	16(%rsp), %xmm2
-	cvttsd2sil	%xmm0, %ecx
-	movsd	208(%rbx), %xmm1
-	pxor	%xmm0, %xmm0
-	leaq	552(%rax), %rdi
-	movl	%ecx, 32(%rsp)
-	call	_ZN4slay6engine6vector9TerminalXEddd@PLT
-	call	round@PLT
-	movsd	40(%rsp), %xmm3
-	movq	(%rbx), %rax
-	movsd	208(%rbx), %xmm1
-	cvttsd2sil	%xmm0, %r15d
-	pxor	%xmm0, %xmm0
-	movapd	%xmm3, %xmm2
-	leaq	552(%rax), %rdi
-	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
-	call	round@PLT
-	movq	(%rbx), %rax
-	movsd	8(%rsp), %xmm2
-	movsd	208(%rbx), %xmm1
-	cvttsd2sil	%xmm0, %ebp
-	pxor	%xmm0, %xmm0
-	leaq	552(%rax), %rdi
-	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
-	call	round@PLT
-	movq	(%rbx), %rax
-	movq	%r13, %xmm2
-	movsd	208(%rbx), %xmm1
-	cvttsd2sil	%xmm0, %r14d
-	pxor	%xmm0, %xmm0
-	leaq	552(%rax), %rdi
-	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
-	call	round@PLT
-	movq	(%rbx), %rax
-	movsd	16(%rsp), %xmm2
-	movsd	208(%rbx), %xmm1
-	cvttsd2sil	%xmm0, %r13d
-	pxor	%xmm0, %xmm0
-	leaq	552(%rax), %rdi
-	call	_ZN4slay6engine6vector9TerminalYEddd@PLT
-	call	round@PLT
-	movl	36(%rsp), %esi
-	movl	32(%rsp), %ecx
-	cvttsd2sil	%xmm0, %edx
-	movsd	24(%rsp), %xmm0
-	subsd	176(%rbx), %xmm0
-	cmpl	%esi, %r12d
-	movl	%esi, %eax
-	cmovge	%r12d, %eax
-	cmpl	%ecx, %eax
-	cmovl	%ecx, %eax
-	cmpl	%r15d, %eax
-	cmovl	%r15d, %eax
-	cmpl	%esi, %r12d
-	cmovg	%esi, %r12d
-	cmpl	%ecx, %r12d
-	cmovg	%ecx, %r12d
-	cmpl	%r15d, %r12d
-	cmovg	%r15d, %r12d
-	subl	%r12d, %eax
-	cmpl	%r14d, %ebp
-	movw	%ax, 200(%rbx)
-	movl	%r14d, %eax
-	cmovge	%ebp, %eax
-	cmpl	%r13d, %eax
-	cmovl	%r13d, %eax
-	cmpl	%edx, %eax
-	cmovl	%edx, %eax
-	cmpl	%r14d, %ebp
-	cmovg	%r14d, %ebp
-	cmpl	%r13d, %ebp
-	cmovg	%r13d, %ebp
-	cmpl	%edx, %ebp
-	cmovg	%edx, %ebp
-	movq	24(%rbx), %rdx
-	subl	%ebp, %eax
-	movw	%ax, 202(%rbx)
+	subsd	176(%rdi), %xmm1
+	movsd	%xmm0, 176(%rdi)
 	cmpq	$1, %rdx
 	jbe	.L116
-	movq	32(%rbx), %rcx
+	movq	32(%rdi), %rcx
 	leaq	8(%rcx), %rax
 	leaq	(%rcx,%rdx,8), %rcx
 	jmp	.L118
@@ -1113,10 +1099,10 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	je	.L117
 	cmpb	$0, 24(%rdx)
 	je	.L117
-	movsd	56(%rdx), %xmm1
+	movsd	56(%rdx), %xmm0
 	addq	$8, %rax
-	addsd	%xmm0, %xmm1
-	movsd	%xmm1, 56(%rdx)
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 56(%rdx)
 	cmpq	%rcx, %rax
 	jne	.L118
 .L116:
@@ -1142,16 +1128,16 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	je	.L121
 	cmpb	$0, 34(%rax)
 	je	.L122
-	movsd	24(%rax), %xmm1
+	movsd	24(%rax), %xmm0
 	cmpb	$0, 35(%rax)
-	addsd	%xmm0, %xmm1
-	movsd	%xmm1, 24(%rax)
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 24(%rax)
 	je	.L121
 .L145:
-	movsd	64(%rax), %xmm1
+	movsd	64(%rax), %xmm0
 	addq	$8, %rdx
-	addsd	%xmm0, %xmm1
-	movsd	%xmm1, 64(%rax)
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 64(%rax)
 	cmpq	%rcx, %rdx
 	jne	.L124
 .L119:
@@ -1177,16 +1163,16 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	je	.L127
 	cmpb	$0, 34(%rax)
 	je	.L128
-	movsd	24(%rax), %xmm1
+	movsd	24(%rax), %xmm0
 	cmpb	$0, 35(%rax)
-	addsd	%xmm0, %xmm1
-	movsd	%xmm1, 24(%rax)
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 24(%rax)
 	je	.L127
 .L146:
-	movsd	64(%rax), %xmm1
+	movsd	64(%rax), %xmm0
 	addq	$8, %rdx
-	addsd	%xmm0, %xmm1
-	movsd	%xmm1, 64(%rax)
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 64(%rax)
 	cmpq	%rdx, %rcx
 	jne	.L130
 .L125:
@@ -1212,41 +1198,29 @@ _ZN4slay6engine6actors5actor8SetAngleEd:
 	je	.L133
 	cmpb	$0, 34(%rax)
 	je	.L134
-	movsd	24(%rax), %xmm1
+	movsd	24(%rax), %xmm0
 	cmpb	$0, 35(%rax)
-	addsd	%xmm0, %xmm1
-	movsd	%xmm1, 24(%rax)
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 24(%rax)
 	je	.L133
 .L147:
-	movsd	72(%rax), %xmm1
+	movsd	72(%rax), %xmm0
 	addq	$8, %rdx
-	addsd	%xmm0, %xmm1
-	movsd	%xmm1, 72(%rax)
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 72(%rax)
 	cmpq	%rdx, %rcx
 	jne	.L136
 .L131:
 	movq	%rbx, %rdi
+	call	_ZN4slay6engine6actors5actor17UpdateHitboxScaleEv
+	movq	%rbx, %rdi
 	call	_ZN4slay6engine6actors5actor21UpdateMembersPositionEv
-	movsd	24(%rsp), %xmm6
-	movsd	%xmm6, 176(%rbx)
-	addq	$56, %rsp
-	.cfi_def_cfa_offset 56
-	movapd	%xmm6, %xmm0
+	movsd	176(%rbx), %xmm0
 	popq	%rbx
-	.cfi_def_cfa_offset 48
-	popq	%rbp
-	.cfi_def_cfa_offset 40
-	popq	%r12
-	.cfi_def_cfa_offset 32
-	popq	%r13
-	.cfi_def_cfa_offset 24
-	popq	%r14
-	.cfi_def_cfa_offset 16
-	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2249:
+.LFE2247:
 	.size	_ZN4slay6engine6actors5actor8SetAngleEd, .-_ZN4slay6engine6actors5actor8SetAngleEd
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
