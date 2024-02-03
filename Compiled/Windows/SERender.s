@@ -491,10 +491,6 @@ _ZN4slay6engine6render14SelectionStageEv:
 	.p2align 4,,10
 	.p2align 3
 .L270:
-	movq	72(%rsp), %rax
-	sarq	$32, %rax
-	testl	%eax, %eax
-	je	.L123
 	pshufd	$255, %xmm7, %xmm0
 	movd	%xmm7, %r9d
 	movd	%xmm0, 64(%rsp)
@@ -563,6 +559,10 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	72(%rsp), %edx
 	movdqa	64(%rsp), %xmm7
 	testl	%edx, %edx
+	je	.L123
+	movq	72(%rsp), %rax
+	sarq	$32, %rax
+	testl	%eax, %eax
 	jne	.L270
 .L123:
 	addsd	16(%r12), %xmm6
@@ -656,7 +656,7 @@ _ZN4slay6engine6render14SelectionStageEv:
 	pxor	%xmm0, %xmm0
 	comisd	%xmm6, %xmm0
 	ja	.L271
-	ucomisd	%xmm6, %xmm8
+	ucomisd	%xmm8, %xmm6
 	jp	.L26
 	jne	.L26
 	addsd	.LC5(%rip), %xmm8
@@ -668,6 +668,10 @@ _ZN4slay6engine6render14SelectionStageEv:
 	.p2align 4,,10
 	.p2align 3
 .L275:
+	movq	72(%rsp), %rax
+	sarq	$32, %rax
+	testl	%eax, %eax
+	je	.L30
 	pshufd	$255, %xmm7, %xmm0
 	movd	%xmm7, %r9d
 	movd	%xmm0, 64(%rsp)
@@ -736,10 +740,6 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movl	72(%rsp), %r9d
 	movdqa	64(%rsp), %xmm7
 	testl	%r9d, %r9d
-	je	.L30
-	movq	72(%rsp), %rax
-	sarq	$32, %rax
-	testl	%eax, %eax
 	jne	.L275
 .L30:
 	addsd	16(%r12), %xmm6
@@ -754,18 +754,18 @@ _ZN4slay6engine6render14SelectionStageEv:
 	.p2align 4,,10
 	.p2align 3
 .L273:
-	movzwl	10(%r12), %eax
+	movzwl	10(%r12), %edx
 	subl	%r8d, %r9d
-	cmpl	%eax, %r9d
+	cmpl	%edx, %r9d
 	jle	.L35
-	movl	64(%rsp), %edx
-	sarl	%edx
-	movl	%edx, %ecx
+	movl	64(%rsp), %eax
+	sarl	%eax
+	movl	%eax, %ecx
 	addl	%r10d, %ecx
 	jns	.L35
 	movl	%r10d, %ecx
-	subl	%edx, %ecx
-	cmpl	%ecx, %eax
+	subl	%eax, %ecx
+	cmpl	%ecx, %edx
 	jl	.L30
 	cmpq	%r14, 32(%r12)
 	jne	.L42
@@ -1252,10 +1252,10 @@ _ZN4slay6engine6render14SelectionStageEv:
 	jne	.L58
 	cmpl	%r10d, 32(%r11)
 	jne	.L58
-	cmpl	%r8d, 36(%r11)
+	cmpl	36(%r11), %r8d
 	jne	.L58
 	movl	64(%rsp), %r15d
-	cmpl	40(%r11), %r15d
+	cmpl	%r15d, 40(%r11)
 	jne	.L58
 	movsd	%xmm6, 16(%r11)
 	jmp	.L64
@@ -1309,10 +1309,10 @@ _ZN4slay6engine6render14SelectionStageEv:
 	movdqa	%xmm6, %xmm0
 	movd	%xmm6, %edx
 	punpckhdq	%xmm6, %xmm0
-	movl	%edx, %edi
 	movd	%xmm0, %eax
 	sarl	%eax
-	addl	%eax, %edi
+	movl	%eax, %edi
+	addl	%edx, %edi
 	js	.L289
 .L141:
 	cmpq	%r14, 32(%r12)
@@ -1328,11 +1328,10 @@ _ZN4slay6engine6render14SelectionStageEv:
 	addq	$1, %r14
 	salq	$4, %rcx
 	addq	40(%r12), %rcx
-	movsd	184(%r8), %xmm0
 	movq	%r8, (%rcx)
 	movl	$4, 8(%rcx)
+	movq	$0x000000000, 16(%rcx)
 	movb	$-1, 24(%rcx)
-	movsd	%xmm0, 16(%rcx)
 	movups	%xmm6, 28(%rcx)
 	jmp	.L19
 .L18:
