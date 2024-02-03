@@ -15,9 +15,9 @@ namespace slay
         this->Depth = 0;
         this->HitboxWidth = Width;
         this->HitboxHeight = Height;
-        this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, this->Width, this->Height) / 2;
-        this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, this->Width, this->Height);
-        this->HitboxMedian2Angle = this->Engine->Vector.Angle(this->Width, 0, 0, this->Height);
+        this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, Height) / 2;
+        this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, Width, Height);
+        this->HitboxMedian2Angle = this->Engine->Vector.Angle(Width, 0, 0, Height);
     }
 
     engine::actors::actor::~actor()
@@ -78,7 +78,7 @@ namespace slay
     {
         this->Width = Width;
 
-        this->HitboxMedianLength = this->Engine->Vector.Angle(0, 0, Width, this->Height) / 2;
+        this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, this->Height) / 2;
         this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, Width, this->Height);
         this->HitboxMedian2Angle = this->Engine->Vector.Angle(Width, 0, 0, this->Height);
 
@@ -98,7 +98,7 @@ namespace slay
     {
         this->Height = Height;
 
-        this->HitboxMedianLength = this->Engine->Vector.Angle(0, 0, this->Width, Height) / 2;
+        this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, this->Width, Height) / 2;
         this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, this->Width, Height);
         this->HitboxMedian2Angle = this->Engine->Vector.Angle(this->Width, 0, 0, Height);
 

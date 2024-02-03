@@ -75,8 +75,8 @@ _ZN4slay6engine6actors5actorC2EPS0_yddttd:
 	call	_ZN4slay6engine6actors5actor5textsC1EPS0_PS2_@PLT
 .LEHE3:
 	movw	%bp, 168(%rbx)
-	pxor	%xmm3, %xmm3
-	pxor	%xmm2, %xmm2
+	pxor	%xmm6, %xmm6
+	pxor	%xmm7, %xmm7
 	movapd	(%rsp), %xmm4
 	movw	%r12w, 170(%rbx)
 	movsd	16(%rsp), %xmm5
@@ -87,41 +87,37 @@ _ZN4slay6engine6actors5actorC2EPS0_yddttd:
 	movapd	%xmm1, %xmm0
 	movw	%r12w, 202(%rbx)
 	movzwl	%r12w, %r12d
-	cvtsi2sdl	%ebp, %xmm2
-	cvtsi2sdl	%r12d, %xmm3
+	cvtsi2sdl	%ebp, %xmm7
+	cvtsi2sdl	%r12d, %xmm6
 	movb	$0, 136(%rbx)
 	leaq	552(%rax), %rdi
 	movq	%r14, 144(%rbx)
 	movq	$0x000000000, 176(%rbx)
-	movq	$0x000000000, 192(%rbx)
 	movups	%xmm4, 152(%rbx)
+	movapd	%xmm7, %xmm2
+	movq	%xmm7, %rbp
+	movq	$0x000000000, 192(%rbx)
+	movapd	%xmm6, %xmm3
+	movq	%xmm6, %r12
 	movsd	%xmm5, 184(%rbx)
 .LEHB4:
 	call	_ZN4slay6engine6vector6LengthEdddd@PLT
-	pxor	%xmm3, %xmm3
-	pxor	%xmm2, %xmm2
-	movq	(%rbx), %rcx
-	pxor	%xmm1, %xmm1
 	mulsd	.LC1(%rip), %xmm0
-	movzwl	170(%rbx), %edx
-	movzwl	168(%rbx), %eax
-	leaq	552(%rcx), %rdi
-	cvtsi2sdl	%edx, %xmm3
-	cvtsi2sdl	%eax, %xmm2
+	movq	(%rbx), %rax
+	pxor	%xmm1, %xmm1
+	movq	%r12, %xmm3
+	movq	%rbp, %xmm2
+	leaq	552(%rax), %rdi
 	movsd	%xmm0, 208(%rbx)
 	movapd	%xmm1, %xmm0
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
-	movzwl	170(%rbx), %eax
-	pxor	%xmm3, %xmm3
-	movq	(%rbx), %rcx
+	movq	(%rbx), %rax
 	pxor	%xmm2, %xmm2
-	movzwl	168(%rbx), %edx
+	movq	%r12, %xmm3
 	movsd	%xmm0, 216(%rbx)
-	pxor	%xmm0, %xmm0
 	movapd	%xmm2, %xmm1
-	cvtsi2sdl	%eax, %xmm3
-	leaq	552(%rcx), %rdi
-	cvtsi2sdl	%edx, %xmm0
+	movq	%rbp, %xmm0
+	leaq	552(%rax), %rdi
 	call	_ZN4slay6engine6vector5AngleEdddd@PLT
 .LEHE4:
 	movsd	%xmm0, 224(%rbx)
@@ -734,7 +730,7 @@ _ZN4slay6engine6actors5actor8SetWidthEt:
 	cvtsi2sdl	%eax, %xmm3
 	leaq	552(%rdx), %rdi
 	movq	%xmm2, %r14
-	call	_ZN4slay6engine6vector5AngleEdddd@PLT
+	call	_ZN4slay6engine6vector6LengthEdddd@PLT
 	pxor	%xmm3, %xmm3
 	movq	(%rbx), %rcx
 	pxor	%xmm1, %xmm1
@@ -795,7 +791,7 @@ _ZN4slay6engine6actors5actor9SetHeightEt:
 	cvtsi2sdl	%eax, %xmm2
 	leaq	552(%rdx), %rdi
 	movsd	%xmm3, 8(%rsp)
-	call	_ZN4slay6engine6vector5AngleEdddd@PLT
+	call	_ZN4slay6engine6vector6LengthEdddd@PLT
 	pxor	%xmm2, %xmm2
 	movq	(%rbx), %rcx
 	pxor	%xmm1, %xmm1
