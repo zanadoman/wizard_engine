@@ -17,6 +17,7 @@ player::player(engine* Engine) : Engine(Engine)
     this->MainFlipbook = this->Engine->Actors[this->Actor].Flipbooks.New(100, &this->MainFlipbookTextures);
     this->NameText = this->Engine->Actors[this->Actor].Texts.New("Player", this->NameTextFont);
 
+    this->Engine->Actors[this->Actor].SetDepth(0.05);
     this->Engine->Actors[this->Actor].HitboxVisible = true;
 
     this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].Width = 100;

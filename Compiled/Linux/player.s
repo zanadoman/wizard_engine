@@ -24,9 +24,9 @@
 	.string	"Player"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB13:
+.LCOLDB14:
 	.text
-.LHOTB13:
+.LHOTB14:
 	.align 2
 	.p2align 4
 	.globl	_ZN6playerC2EPN4slay6engineE
@@ -128,6 +128,13 @@ _ZN6playerC2EPN4slay6engineE:
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
 	call	_ZN4slay6engine6actorsixEy@PLT
+	movsd	.LC11(%rip), %xmm0
+	movq	%rax, %rdi
+	call	_ZN4slay6engine6actors5actor8SetDepthEd@PLT
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	528(%rax), %rdi
+	call	_ZN4slay6engine6actorsixEy@PLT
 	movb	$1, 136(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
@@ -161,7 +168,7 @@ _ZN6playerC2EPN4slay6engineE:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor4GetYEv@PLT
-	addsd	.LC11(%rip), %xmm0
+	addsd	.LC12(%rip), %xmm0
 	movq	%rbp, %rdi
 	call	_ZN4slay6engine6actors5actor9flipbooks8flipbook4SetYEd@PLT
 	movq	(%rbx), %rax
@@ -187,7 +194,7 @@ _ZN6playerC2EPN4slay6engineE:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor4GetYEv@PLT
-	addsd	.LC12(%rip), %xmm0
+	addsd	.LC13(%rip), %xmm0
 	movq	%rbp, %rdi
 	call	_ZN4slay6engine6actors5actor5texts4text4SetYEd@PLT
 	movq	56(%rsp), %rax
@@ -275,7 +282,7 @@ _ZN6playerC2EPN4slay6engineE.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC2232-.LLSDACSBC2232
 .LLSDACSBC2232:
-	.uleb128 .LEHB1-.LCOLDB13
+	.uleb128 .LEHB1-.LCOLDB14
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
@@ -285,9 +292,9 @@ _ZN6playerC2EPN4slay6engineE.cold:
 	.size	_ZN6playerC2EPN4slay6engineE, .-_ZN6playerC2EPN4slay6engineE
 	.section	.text.unlikely
 	.size	_ZN6playerC2EPN4slay6engineE.cold, .-_ZN6playerC2EPN4slay6engineE.cold
-.LCOLDE13:
+.LCOLDE14:
 	.text
-.LHOTE13:
+.LHOTE14:
 	.globl	_ZN6playerC1EPN4slay6engineE
 	.set	_ZN6playerC1EPN4slay6engineE,_ZN6playerC2EPN4slay6engineE
 	.align 2
@@ -440,7 +447,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movsd	.LC14(%rip), %xmm2
+	movsd	.LC15(%rip), %xmm2
 	movq	(%rbx), %rax
 	addsd	%xmm0, %xmm2
 	leaq	632(%rax), %rdi
@@ -450,7 +457,7 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rsi
 	movl	%eax, %eax
 	cvtsi2sdq	%rax, %xmm1
-	mulsd	.LC15(%rip), %xmm1
+	mulsd	.LC16(%rip), %xmm1
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	movsd	%xmm1, (%rsp)
@@ -474,7 +481,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movsd	.LC14(%rip), %xmm2
+	movsd	.LC15(%rip), %xmm2
 	movq	(%rbx), %rax
 	addsd	%xmm0, %xmm2
 	leaq	632(%rax), %rdi
@@ -484,7 +491,7 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rsi
 	movl	%eax, %eax
 	cvtsi2sdq	%rax, %xmm1
-	mulsd	.LC15(%rip), %xmm1
+	mulsd	.LC16(%rip), %xmm1
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	movsd	%xmm1, (%rsp)
@@ -515,7 +522,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor4GetYEv@PLT
-	addsd	.LC12(%rip), %xmm0
+	addsd	.LC13(%rip), %xmm0
 	movq	%rbp, %rdi
 	call	_ZN4slay6engine6actors5actor5texts4text4SetYEd@PLT
 	movq	(%rbx), %rax
@@ -575,7 +582,7 @@ _ZN6player6UpdateEv:
 	movq	%rbp, %rdi
 	movl	%eax, %eax
 	cvtsi2sdq	%rax, %xmm1
-	mulsd	.LC17(%rip), %xmm1
+	mulsd	.LC18(%rip), %xmm1
 	subsd	%xmm1, %xmm0
 	call	_ZN4slay6engine6actors5actor8SetAngleEd@PLT
 	jmp	.L41
@@ -607,7 +614,7 @@ _ZN6player6UpdateEv:
 	movq	%rbp, %rdi
 	movl	%eax, %eax
 	cvtsi2sdq	%rax, %xmm0
-	mulsd	.LC17(%rip), %xmm0
+	mulsd	.LC18(%rip), %xmm0
 	addsd	(%rsp), %xmm0
 	call	_ZN4slay6engine6actors5actor8SetAngleEd@PLT
 	jmp	.L36
@@ -631,7 +638,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movsd	.LC14(%rip), %xmm2
+	movsd	.LC15(%rip), %xmm2
 	movq	(%rbx), %rax
 	addsd	%xmm0, %xmm2
 	leaq	632(%rax), %rdi
@@ -641,7 +648,7 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rsi
 	movl	%eax, %eax
 	cvtsi2sdq	%rax, %xmm1
-	mulsd	.LC16(%rip), %xmm1
+	mulsd	.LC17(%rip), %xmm1
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	movsd	%xmm1, (%rsp)
@@ -665,7 +672,7 @@ _ZN6player6UpdateEv:
 	call	_ZN4slay6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN4slay6engine6actors5actor8GetAngleEv@PLT
-	movsd	.LC14(%rip), %xmm2
+	movsd	.LC15(%rip), %xmm2
 	movq	(%rbx), %rax
 	addsd	%xmm0, %xmm2
 	leaq	632(%rax), %rdi
@@ -675,7 +682,7 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rsi
 	movl	%eax, %eax
 	cvtsi2sdq	%rax, %xmm1
-	mulsd	.LC16(%rip), %xmm1
+	mulsd	.LC17(%rip), %xmm1
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	movsd	%xmm1, (%rsp)
@@ -699,26 +706,30 @@ _ZN6player6UpdateEv:
 	.long	1072693248
 	.align 8
 .LC11:
-	.long	0
-	.long	1076887552
+	.long	-1717986918
+	.long	1068079513
 	.align 8
 .LC12:
 	.long	0
-	.long	1078722560
+	.long	1076887552
 	.align 8
-.LC14:
+.LC13:
 	.long	0
-	.long	1079410688
+	.long	1078722560
 	.align 8
 .LC15:
 	.long	0
-	.long	1071644672
+	.long	1079410688
 	.align 8
 .LC16:
 	.long	0
-	.long	-1075838976
+	.long	1071644672
 	.align 8
 .LC17:
+	.long	0
+	.long	-1075838976
+	.align 8
+.LC18:
 	.long	-1717986918
 	.long	1070176665
 	.hidden	DW.ref.__gxx_personality_v0

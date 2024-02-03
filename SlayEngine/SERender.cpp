@@ -286,7 +286,7 @@ namespace slay
                         exit(1);
                     }
 
-                    this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i], HITBOX, this->Engine->Actors.Actors[i]->Layer, 255, area);
+                    this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i], HITBOX, 0, 255, area);
                 }
             }
         }
