@@ -499,10 +499,13 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC6:
-	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
+	.string	"neo::array.Insert(): Memory allocation failed\nParams: Index: %lld, Length: %lld\n"
 	.align 8
 .LC7:
 	.string	"neo::array.Remove(): Memory allocation failed\nParams: Index: %lld, Length: %lld\n"
+	.section	.rodata.str1.1
+.LC8:
+	.string	"%lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -520,79 +523,140 @@ _ZN4slay6engine6UpdateEv:
 	pushq	%rbp
 	.cfi_def_cfa_offset 32
 	.cfi_offset 6, -32
-	movq	%rdi, %rbp
+	xorl	%ebp, %ebp
 	pushq	%rbx
 	.cfi_def_cfa_offset 40
 	.cfi_offset 3, -40
-	xorl	%ebx, %ebx
-	subq	$136, %rsp
-	.cfi_def_cfa_offset 176
+	movq	%rdi, %rbx
+	subq	$72, %rsp
+	.cfi_def_cfa_offset 112
 	movq	%fs:40, %rax
-	movq	%rax, 120(%rsp)
+	movq	%rax, 56(%rsp)
 	xorl	%eax, %eax
 	movq	%rsp, %r12
-	leaq	64(%rsp), %r13
 	call	SDL_GetTicks@PLT
-	subl	644(%rbp), %eax
-	leaq	80(%rbp), %rdi
-	movl	%eax, 648(%rbp)
+	subl	644(%rbx), %eax
+	leaq	80(%rbx), %rdi
+	movl	%eax, 648(%rbx)
 	call	_ZN4slay6engine6camera6UpdateEv@PLT
-	leaq	32(%rbp), %rdi
+	leaq	32(%rbx), %rdi
 	call	_ZN4slay6engine6render6UpdateEv@PLT
 	call	SDL_GetTicks@PLT
-	subl	648(%rbp), %eax
-	subl	644(%rbp), %eax
-	leaq	632(%rbp), %rdi
-	movl	%eax, 652(%rbp)
+	subl	648(%rbx), %eax
+	subl	644(%rbx), %eax
+	leaq	632(%rbx), %rdi
+	movl	%eax, 652(%rbx)
 	call	_ZN4slay6engine6timing6UpdateEv@PLT
-	movq	%rbp, %rdi
+	movq	%rbx, %rdi
 	call	_ZN4slay6engine15UpdateFlipbooksEv
-	movq	8(%rbp), %rdi
+	movq	8(%rbx), %rdi
 	call	SDL_GetWindowFlags@PLT
-	movl	%eax, 28(%rbp)
+	movl	%eax, 28(%rbx)
+	jmp	.L51
+	.p2align 4,,10
+	.p2align 3
+.L53:
+	cmpq	%rax, %rbp
+	jnb	.L67
+	leaq	0(,%rbp,8), %rax
+	movdqa	(%rsp), %xmm3
+	subq	%rbp, %rax
+	addq	$1, %rbp
+	leaq	(%rdi,%rax,8), %rax
+	movups	%xmm3, (%rax)
+	movdqa	16(%rsp), %xmm4
+	movups	%xmm4, 16(%rax)
+	movdqa	32(%rsp), %xmm5
+	movups	%xmm5, 32(%rax)
+	movq	48(%rsp), %rdx
+	movq	%rdx, 48(%rax)
 .L51:
 	movq	%r12, %rdi
 	call	SDL_PollEvent@PLT
 	testl	%eax, %eax
-	je	.L64
-.L57:
+	je	.L68
 	cmpl	$256, (%rsp)
-	je	.L62
-	movq	680(%rbp), %rdi
-	cmpq	672(%rbp), %rbx
-	je	.L65
-	jnb	.L66
-	leaq	0(,%rbx,8), %rax
-	movdqa	(%rsp), %xmm0
-	subq	%rbx, %rax
-	addq	$1, %rbx
-	leaq	(%rdi,%rax,8), %rax
-	movq	%r12, %rdi
-	movups	%xmm0, (%rax)
-	movdqa	16(%rsp), %xmm1
-	movups	%xmm1, 16(%rax)
-	movdqa	32(%rsp), %xmm2
-	movups	%xmm2, 32(%rax)
-	movq	48(%rsp), %rdx
-	movq	%rdx, 48(%rax)
-	call	SDL_PollEvent@PLT
-	testl	%eax, %eax
-	jne	.L57
-.L64:
-	movq	672(%rbp), %r12
-	cmpq	%r12, %rbx
-	jb	.L67
+	je	.L64
+	movq	672(%rbx), %rax
+	movq	680(%rbx), %rdi
+	cmpq	%rax, %rbp
+	jne	.L53
+	leaq	11(%rbp), %r13
+	movq	%r13, 672(%rbx)
+	leaq	0(,%r13,8), %rsi
+	subq	%r13, %rsi
+	salq	$3, %rsi
+	call	realloc@PLT
+	movq	%rax, 680(%rbx)
+	movq	%rax, %rdi
+	testq	%rax, %rax
+	je	.L69
+	movq	672(%rbx), %rax
+	leaq	-1(%rax), %rdx
+	cmpq	%r13, %rdx
+	jb	.L53
+	leaq	0(,%rdx,8), %rcx
+	leaq	-12(%rax), %rsi
+	subq	%rdx, %rcx
+	leaq	(%rdi,%rcx,8), %rdx
+	leaq	0(,%rsi,8), %rcx
+	subq	%rsi, %rcx
+	leaq	(%rdi,%rcx,8), %rcx
+	movdqu	(%rcx), %xmm6
+	movups	%xmm6, (%rdx)
+	movdqu	16(%rcx), %xmm7
+	movups	%xmm7, 16(%rdx)
+	movdqu	32(%rcx), %xmm6
+	movups	%xmm6, 32(%rdx)
+	movq	48(%rcx), %rcx
+	movq	%rcx, 48(%rdx)
+	leaq	-2(%rax), %rcx
+	cmpq	%r13, %rcx
+	jb	.L57
+	leaq	0(,%rax,8), %rdx
+	subq	%rax, %rdx
+	leaq	-728(,%rdx,8), %rax
+	.p2align 4,,10
+	.p2align 3
+.L56:
+	movq	680(%rbx), %rdx
+	subq	$1, %rcx
+	movdqu	(%rdx,%rax), %xmm0
+	movdqu	16(%rdx,%rax), %xmm1
+	movdqu	32(%rdx,%rax), %xmm2
+	movq	48(%rdx,%rax), %rsi
+	movups	%xmm0, 616(%rdx,%rax)
+	movq	%rsi, 664(%rdx,%rax)
+	movups	%xmm1, 632(%rdx,%rax)
+	movups	%xmm2, 648(%rdx,%rax)
+	subq	$56, %rax
+	cmpq	%r13, %rcx
+	jnb	.L56
+.L57:
+	movq	672(%rbx), %rax
+	movq	680(%rbx), %rdi
+	jmp	.L53
+	.p2align 4,,10
+	.p2align 3
+.L68:
+	movq	672(%rbx), %r12
+	cmpq	%r12, %rbp
+	jb	.L70
 .L60:
-	leaq	160(%rbp), %rdi
+	movq	%r12, %rsi
+	leaq	.LC8(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	leaq	160(%rbx), %rdi
 	call	_ZN4slay6engine4keys6UpdateEv@PLT
-	leaq	472(%rbp), %rdi
+	leaq	472(%rbx), %rdi
 	call	_ZN4slay6engine5mouse6UpdateEv@PLT
 	movl	$1, %eax
 .L50:
-	movq	120(%rsp), %rdx
+	movq	56(%rsp), %rdx
 	subq	%fs:40, %rdx
-	jne	.L68
-	addq	$136, %rsp
+	jne	.L71
+	addq	$72, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
 	popq	%rbx
@@ -606,82 +670,57 @@ _ZN4slay6engine6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L65:
+.L64:
 	.cfi_restore_state
-	addq	$1, %rbx
-	movdqa	(%rsp), %xmm3
-	movq	48(%rsp), %rax
-	movq	%rbx, 672(%rbp)
-	leaq	0(,%rbx,8), %rsi
-	movdqa	16(%rsp), %xmm4
-	movdqa	32(%rsp), %xmm5
-	subq	%rbx, %rsi
-	movq	%rax, 112(%rsp)
-	salq	$3, %rsi
-	movaps	%xmm3, 64(%rsp)
-	movaps	%xmm4, 80(%rsp)
-	movaps	%xmm5, 96(%rsp)
-	call	realloc@PLT
-	movq	%rax, 680(%rbp)
-	testq	%rax, %rax
-	je	.L69
-	movq	672(%rbp), %rcx
-	movq	%r13, %rdi
-	leaq	-1(%rcx), %rdx
-	leaq	0(,%rdx,8), %rcx
-	subq	%rdx, %rcx
-	movl	$56, %edx
-	leaq	(%rax,%rcx,8), %rsi
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
-	jmp	.L51
-	.p2align 4,,10
-	.p2align 3
-.L62:
 	xorl	%eax, %eax
 	jmp	.L50
 	.p2align 4,,10
 	.p2align 3
-.L67:
-	movq	%rbx, 672(%rbp)
-	movq	680(%rbp), %rdi
-	testq	%rbx, %rbx
-	je	.L70
-	leaq	0(,%rbx,8), %rsi
-	subq	%rbx, %rsi
+.L70:
+	movq	%rbp, 672(%rbx)
+	movq	680(%rbx), %rdi
+	testq	%rbp, %rbp
+	je	.L72
+	leaq	0(,%rbp,8), %rsi
+	subq	%rbp, %rsi
 	salq	$3, %rsi
 	call	realloc@PLT
-	movq	%rax, 680(%rbp)
+	movq	%rax, 680(%rbx)
 	testq	%rax, %rax
-	jne	.L60
-	movq	%r12, %rdx
-	leaq	.LC7(%rip), %rdi
-	movq	%rbx, %rsi
-	subq	%rbx, %rdx
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L70:
-	call	free@PLT
-	movq	$0, 680(%rbp)
+	je	.L62
+	movq	672(%rbx), %r12
 	jmp	.L60
-.L66:
+.L72:
+	call	free@PLT
+	movq	672(%rbx), %r12
+	movq	$0, 680(%rbx)
+	jmp	.L60
+.L67:
 	leaq	.LC5(%rip), %rdi
-	movq	%rbx, %rsi
+	movq	%rbp, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L68:
-	call	__stack_chk_fail@PLT
 .L69:
 	leaq	.LC6(%rip), %rdi
-	movl	$1, %edx
-	movl	$56, %esi
+	movl	$11, %edx
+	movq	%rbp, %rsi
+	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
+.L62:
+	movq	%r12, %rdx
+	leaq	.LC7(%rip), %rdi
+	movq	%rbp, %rsi
+	xorl	%eax, %eax
+	subq	%rbp, %rdx
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L71:
+	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE2243:
 	.size	_ZN4slay6engine6UpdateEv, .-_ZN4slay6engine6UpdateEv

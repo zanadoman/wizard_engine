@@ -272,8 +272,7 @@ _ZN4slay6engine6render15GetBufferSizeKBEv:
 .LFB2242:
 	.cfi_startproc
 	movzwl	24(%rdi), %eax
-	leaq	(%rax,%rax,2), %rax
-	shrq	$6, %rax
+	shrq	$7, %rax
 	ret
 	.cfi_endproc
 .LFE2242:
@@ -285,14 +284,10 @@ _ZN4slay6engine6render15GetBufferSizeKBEv:
 _ZN4slay6engine6render15SetBufferSizeKBEt:
 .LFB2243:
 	.cfi_startproc
-	movabsq	$-6148914691236517205, %rax
-	movq	%rsi, %rdx
-	salq	$10, %rdx
-	andl	$67107840, %edx
-	mulq	%rdx
-	shrq	$5, %rdx
-	movw	%dx, 24(%rdi)
-	movl	%edx, %eax
+	salq	$7, %rsi
+	andl	$8388480, %esi
+	movw	%si, 24(%rdi)
+	movl	%esi, %eax
 	ret
 	.cfi_endproc
 .LFE2243:

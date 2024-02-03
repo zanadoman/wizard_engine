@@ -74,17 +74,16 @@ namespace slay
 
             if (i == this->EventQueue.Length())
             {
-                this->EventQueue += {event};
+                this->EventQueue.Insert(this->EventQueue.Length(), 11);
             }
-            else
-            {
-                this->EventQueue[i] = {event};
-            }
+            this->EventQueue[i] = {event};
         }
         if (i < this->EventQueue.Length())
         {
             this->EventQueue.Remove(i, this->EventQueue.Length() - i);
         }
+
+        printf("%lld\n", this->EventQueue.Length());
 
         this->Keys.Update();
         this->Mouse.Update();

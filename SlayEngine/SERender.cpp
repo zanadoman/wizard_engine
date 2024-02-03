@@ -7,7 +7,7 @@ namespace slay
         this->RenderWidth = 0;
         this->RenderHeight = 0;
         this->SamplingStep = 0.002;
-        this->BufferSize = 1 * 1024 / sizeof(token*);
+        this->BufferSize = 1024 / sizeof(token*);
     }
 
     engine::render::token::token() {}
