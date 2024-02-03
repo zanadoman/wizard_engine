@@ -86,6 +86,8 @@ namespace slay
 
         //Collision simulation
 
+        this->UpdateMembersPosition();
+
         return this->Width;
     }
 
@@ -105,6 +107,8 @@ namespace slay
         this->UpdateHitboxScale();
 
         //Collision simulation
+
+        this->UpdateMembersPosition();
 
         return this->Height;
     }
@@ -190,6 +194,9 @@ namespace slay
         }
 
         this->UpdateHitboxScale();
+
+        //Collision simulation
+
         this->UpdateMembersPosition();
 
         return this->Angle;
