@@ -7,7 +7,7 @@ namespace slay
         this->RenderWidth = 0;
         this->RenderHeight = 0;
         this->SamplingStep = 0.002;
-        this->BufferSize = 6 * 1024 / sizeof(token);
+        this->BufferSize = 1 * 1024 / sizeof(token*);
     }
 
     engine::render::token::token() {}
@@ -39,12 +39,12 @@ namespace slay
 
     uint16 engine::render::GetBufferSizeKB()
     {
-        return sizeof(token) * this->BufferSize / 1024;
+        return sizeof(token*) * this->BufferSize / 1024;
     }
 
     uint16 engine::render::SetBufferSizeKB(uint16 KiloBytes)
     {
-        return this->BufferSize = KiloBytes * 1024 / sizeof(token);
+        return this->BufferSize = KiloBytes * 1024 / sizeof(token*);
     }
 
     uint8 engine::render::Update()
