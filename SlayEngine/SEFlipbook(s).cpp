@@ -142,11 +142,7 @@ namespace slay
 
         for (i = 0; i < Keep.size(); i++)
         {
-            if (Keep.begin()[i] == 0)
-            {
-                continue;
-            }
-            if (this->Flipbooks.Length() <= Keep.begin()[i] || this->Flipbooks[Keep.begin()[i]] == NULL)
+            if (Keep.begin()[i] != 0 && (this->Flipbooks.Length() <= Keep.begin()[i] || this->Flipbooks[Keep.begin()[i]] == NULL))
             {
                 printf("slay::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
@@ -192,11 +188,7 @@ namespace slay
 
         for (i = 0; i < Keep->Length(); i++)
         {
-            if ((*Keep)[i] == 0)
-            {
-                continue;
-            }
-            if (this->Flipbooks.Length() <= (*Keep)[i] || this->Flipbooks[(*Keep)[i]] == NULL)
+            if ((*Keep)[i] != 0 && (this->Flipbooks.Length() <= (*Keep)[i] || this->Flipbooks[(*Keep)[i]] == NULL))
             {
                 printf("slay::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);

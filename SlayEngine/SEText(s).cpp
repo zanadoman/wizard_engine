@@ -88,11 +88,7 @@ namespace slay
 
         for (i = 0; i < Keep.size(); i++)
         {
-            if (Keep.begin()[i] == 0)
-            {
-                continue;
-            }
-            if (this->Texts.Length() <= Keep.begin()[i] || this->Texts[Keep.begin()[i]] == NULL)
+            if (Keep.begin()[i] != 0 && (this->Texts.Length() <= Keep.begin()[i] || this->Texts[Keep.begin()[i]] == NULL))
             {
                 printf("slay::engine.actors[].texts.Purge(): Text does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
@@ -138,11 +134,7 @@ namespace slay
 
         for (i = 0; i < Keep->Length(); i++)
         {
-            if ((*Keep)[i] == 0)
-            {
-                continue;
-            }
-            if (this->Texts.Length() <= (*Keep)[i] || this->Texts[(*Keep)[i]] == NULL)
+            if ((*Keep)[i] != 0 && (this->Texts.Length() <= (*Keep)[i] || this->Texts[(*Keep)[i]] == NULL))
             {
                 printf("slay::engine.actors[].texts.Purge(): Text does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);

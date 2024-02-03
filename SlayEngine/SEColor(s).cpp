@@ -77,11 +77,7 @@ namespace slay
 
         for (i = 0; i < Keep.size(); i++)
         {
-            if (Keep.begin()[i] == 0)
-            {
-                continue;
-            }
-            if (this->Colors.Length() <= Keep.begin()[i] || this->Colors[Keep.begin()[i]] == NULL)
+            if (Keep.begin()[i] != 0 && (this->Colors.Length() <= Keep.begin()[i] || this->Colors[Keep.begin()[i]] == NULL))
             {
                 printf("slay::engine.actors[].colors.Purge(): Color does not exist\nParams: Keep(length): %ld\n", Keep.size());
                 exit(1);
@@ -127,11 +123,7 @@ namespace slay
 
         for (i = 0; i < Keep->Length(); i++)
         {
-            if ((*Keep)[i] == 0)
-            {
-                continue;
-            }
-            if (this->Colors.Length() <= (*Keep)[i] || this->Colors[(*Keep)[i]] == NULL)
+            if ((*Keep)[i] != 0 && (this->Colors.Length() <= (*Keep)[i] || this->Colors[(*Keep)[i]] == NULL))
             {
                 printf("slay::engine.actors[].colors.Purge(): Color does not exist\nParams: Keep: %p\n", Keep);
                 exit(1);
