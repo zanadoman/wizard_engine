@@ -212,12 +212,19 @@ namespace slay
         this->OffsetAngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
+        this->X = this->Actor->X;
+        this->Y = this->Actor->Y;
+        this->Width = 0;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
-        this->Width = 0;
         this->String = {String};
         this->FontID = FontID;
         this->Texture = NULL;
+    }
+
+    engine::actors::actor::texts::text::~text()
+    {
+        SDL_DestroyTexture(this->Texture);
     }
 
     double engine::actors::actor::texts::text::GetX()
@@ -244,11 +251,6 @@ namespace slay
         this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y);
 
         return this->Y = Y;
-    }
-
-    engine::actors::actor::texts::text::~text()
-    {
-        SDL_DestroyTexture(this->Texture);
     }
 
     string* engine::actors::actor::texts::text::GetString()
