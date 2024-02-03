@@ -960,16 +960,16 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	xorl	%eax, %eax
 	testl	%esi, %esi
 	je	.L190
-	movl	%esi, %r13d
+	movl	%esi, %r14d
 	cmpq	$1, %rcx
 	jbe	.L191
 	movq	%rdi, %r12
-	movq	%rdx, %r14
+	movq	%rdx, %r13
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
 .L162:
-	movq	(%r14,%rax,8), %rdx
+	movq	0(%r13,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L163
 	movq	(%r12), %rcx
@@ -1002,10 +1002,10 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	call	_Znwm@PLT
 .LEHE0:
 	movq	8(%r12), %rdx
-	movq	%r14, %r8
+	movq	%r13, %r8
 	movq	%rbp, %r9
 	movq	(%r12), %rsi
-	movl	%r13d, %ecx
+	movl	%r14d, %ecx
 	movq	%rax, %rdi
 	movq	%rax, %r15
 .LEHB1:
@@ -1024,10 +1024,10 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	call	_Znwm@PLT
 .LEHE2:
 	movq	8(%r12), %rdx
-	movq	%r14, %r8
+	movq	%r13, %r8
 	movq	%rbp, %r9
 	movq	(%r12), %rsi
-	movl	%r13d, %ecx
+	movl	%r14d, %ecx
 	movq	%rax, %rdi
 	movq	%rax, %rbx
 .LEHB3:
@@ -1081,7 +1081,7 @@ _ZN4slay6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	.cfi_restore_state
 	leaq	.LC14(%rip), %rdi
 	movq	%rbp, %rdx
-	movl	%r13d, %esi
+	movl	%r14d, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi

@@ -27,11 +27,7 @@ namespace slay
 
         for (uint64 i = 0; i < TextureIDs.size(); i++)
         {
-            if (TextureIDs.begin()[i] == 0)
-            {
-                continue;
-            }
-            if (this->Engine->Assets.Textures.Length() <= TextureIDs.begin()[i] || this->Engine->Assets.Textures[TextureIDs.begin()[i]] == NULL)
+            if (TextureIDs.begin()[i] != 0 && (this->Engine->Assets.Textures.Length() <= TextureIDs.begin()[i] || this->Engine->Assets.Textures[TextureIDs.begin()[i]] == NULL))
             {
                 printf("slay::engine.actors[].flipbooks.New(): Texture does not exist\nParams: Delay: %d, TextureIDs(length): %ld\n", Delay, TextureIDs.size());
                 exit(1);
@@ -76,11 +72,7 @@ namespace slay
 
         for (uint64 i = 0; i < TextureIDs->Length(); i++)
         {
-            if ((*TextureIDs)[i] == 0)
-            {
-                continue;
-            }
-            if (this->Engine->Assets.Textures.Length() <= (*TextureIDs)[i] || this->Engine->Assets.Textures[(*TextureIDs)[i]] == NULL)
+            if ((*TextureIDs)[i] != 0 && (this->Engine->Assets.Textures.Length() <= (*TextureIDs)[i] || this->Engine->Assets.Textures[(*TextureIDs)[i]] == NULL))
             {
                 printf("slay::engine.actors[].flipbooks.New(): Texture does not exist\nParams: Delay: %d, TextureIDs(length): %lld\n", Delay, TextureIDs->Length());
                 exit(1);
