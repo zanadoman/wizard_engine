@@ -381,11 +381,9 @@ namespace slay
                                     uint32 Delay;
                                     uint64 Current;
                                     uint32 Remainder;
-                                    uint64 TexturesLength;
-                                    uint64* Textures;
+                                    array<uint64> Textures;
                                     flipbook(engine* Engine, actor* Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs);
                                     flipbook(engine* Engine, actor* Actor, uint32 Delay, array<uint64>* TextureIDs);
-                                    ~flipbook();
                             };
 
                             public:
