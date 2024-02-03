@@ -97,9 +97,9 @@ namespace slay
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine->Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1]->Data == this->Engine->Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[k - 1]->Area.x != area.x || this->RenderQueue[k - 1]->Area.y != area.y || this->RenderQueue[k - 1]->Area.w != area.w || this->RenderQueue[k - 1]->Area.h != area.h))
                     {
-                        this->RenderQueue[k - 1].Layer = layer;
+                        this->RenderQueue[k - 1]->Layer = layer;
                         continue;
                     }
 
@@ -110,7 +110,11 @@ namespace slay
                             this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
                         
-                        this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Priority, area);
+                        if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Priority, area)) == NULL)
+                        {
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
+                            exit(1);
+                        }
                     }
                 }
             }
@@ -140,9 +144,9 @@ namespace slay
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine->Actors.Actors[i]->Textures.Textures[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1]->Data == this->Engine->Actors.Actors[i]->Textures.Textures[j] && !(this->RenderQueue[k - 1]->Area.x != area.x || this->RenderQueue[k - 1]->Area.y != area.y || this->RenderQueue[k - 1]->Area.w != area.w || this->RenderQueue[k - 1]->Area.h != area.h))
                     {
-                        this->RenderQueue[k - 1].Layer = layer;
+                        this->RenderQueue[k - 1]->Layer = layer;
                         continue;
                     }
 
@@ -153,7 +157,11 @@ namespace slay
                             this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
                             
-                        this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Textures.Textures[j], TEXTURE, layer, this->Engine->Actors.Actors[i]->Textures.Textures[j]->Priority, area);
+                        if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i]->Textures.Textures[j], TEXTURE, layer, this->Engine->Actors.Actors[i]->Textures.Textures[j]->Priority, area)) == NULL)
+                        {
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
+                            exit(1);
+                        }
                     }
                 }
             }
@@ -183,9 +191,9 @@ namespace slay
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1]->Data == this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j] && !(this->RenderQueue[k - 1]->Area.x != area.x || this->RenderQueue[k - 1]->Area.y != area.y || this->RenderQueue[k - 1]->Area.w != area.w || this->RenderQueue[k - 1]->Area.h != area.h))
                     {
-                        this->RenderQueue[k - 1].Layer = layer;
+                        this->RenderQueue[k - 1]->Layer = layer;
                         continue;
                     }
 
@@ -196,7 +204,11 @@ namespace slay
                             this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
 
-                        this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j], FLIPBOOK, layer, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Priority, area);
+                        if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j], FLIPBOOK, layer, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Priority, area)) == NULL)
+                        {
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
+                            exit(1);
+                        }
                     }
                 }
             }
@@ -245,9 +257,9 @@ namespace slay
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1].Data == this->Engine->Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[k - 1].Area.x != area.x || this->RenderQueue[k - 1].Area.y != area.y || this->RenderQueue[k - 1].Area.w != area.w || this->RenderQueue[k - 1].Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1]->Data == this->Engine->Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[k - 1]->Area.x != area.x || this->RenderQueue[k - 1]->Area.y != area.y || this->RenderQueue[k - 1]->Area.w != area.w || this->RenderQueue[k - 1]->Area.h != area.h))
                     {
-                        this->RenderQueue[k - 1].Layer = layer;
+                        this->RenderQueue[k - 1]->Layer = layer;
                         continue;
                     }
 
@@ -258,7 +270,11 @@ namespace slay
                             this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
 
-                        this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Priority, area);
+                        if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Priority, area)) == NULL)
+                        {
+                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
+                            exit(1);
+                        }
                     }
                 }
             }
@@ -274,7 +290,11 @@ namespace slay
                         this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                     }
 
-                    this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i], HITBOX, 0, 255, area);
+                    if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i], HITBOX, 0, 255, area)) == NULL)
+                    {
+                        printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
+                        exit(1);
+                    }
                 }
             }
         }
@@ -294,7 +314,7 @@ namespace slay
         this->OrderByLayer(0, this->RenderQueue.Length());
         for (i = 1, j = 0; i < this->RenderQueue.Length(); i++)
         {
-            if (this->RenderQueue[i].Layer != this->RenderQueue[j].Layer)
+            if (this->RenderQueue[i]->Layer != this->RenderQueue[j]->Layer)
             {
                 this->OrderByPriority(j, i);
                 j = i;
@@ -334,15 +354,15 @@ namespace slay
     uint8 engine::render::OrderByLayerMerge(uint64 Left, uint64 Middle, uint64 Right)
     {
         uint64 i, j, k, n1, n2;
-        token* left;
-        token* right;
+        token* *left;
+        token* *right;
 
-        if ((left = (token*)malloc(sizeof(token) * (n1 = Middle - Left + 1))) == NULL)
+        if ((left = (token* *)malloc(sizeof(token*) * (n1 = Middle - Left + 1))) == NULL)
         {
             printf("slay::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
         }
-        if ((right = (token*)malloc(sizeof(token) * (n2 = Right - Middle))) == NULL)
+        if ((right = (token* *)malloc(sizeof(token*) * (n2 = Right - Middle))) == NULL)
         {
             printf("slay::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
@@ -359,7 +379,7 @@ namespace slay
 
         for (i = 0, j = 0, k = Left; i < n1 && j < n2; k++)
         {
-            if (right[j].Layer < left[i].Layer)
+            if (right[j]->Layer < left[i]->Layer)
             {
                 this->RenderQueue[k] = right[j];
                 j++;
@@ -419,15 +439,15 @@ namespace slay
     uint8 engine::render::OrderByPriorityMerge(uint64 Left, uint64 Middle, uint64 Right)
     {
         uint64 i, j, k, n1, n2;
-        token* left;
-        token* right;
+        token* *left;
+        token* *right;
 
-        if ((left = (token*)malloc(sizeof(token) * (n1 = Middle - Left + 1))) == NULL)
+        if ((left = (token* *)malloc(sizeof(token*) * (n1 = Middle - Left + 1))) == NULL)
         {
             printf("slay::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
         }
-        if ((right = (token*)malloc(sizeof(token) * (n2 = Right - Middle))) == NULL)
+        if ((right = (token* *)malloc(sizeof(token*) * (n2 = Right - Middle))) == NULL)
         {
             printf("slay::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
@@ -444,7 +464,7 @@ namespace slay
 
         for (i = 0, j = 0, k = Left; i < n1 && j < n2; k++)
         {
-            if (right[j].Priority < left[i].Priority)
+            if (right[j]->Priority < left[i]->Priority)
             {
                 this->RenderQueue[k] = right[j];
                 j++;
@@ -493,7 +513,7 @@ namespace slay
         layered = 0;
         for (uint64 i = 0; i < this->RenderQueue.Length(); i++)
         {
-            if (0 < this->RenderQueue[i].Layer)
+            if (0 < this->RenderQueue[i]->Layer)
             {
                 layered = i;
                 break;
@@ -502,7 +522,7 @@ namespace slay
 
         for (uint64 i = layered; i < this->RenderQueue.Length(); i++)
         {
-            switch (this->RenderQueue[i].Type)
+            switch (this->RenderQueue[i]->Type)
             {
                 case COLOR:
                     this->RenderColor(this->RenderQueue[i]);
@@ -528,7 +548,7 @@ namespace slay
 
         for (uint64 i = 0; i < layered; i++)
         {
-            switch (this->RenderQueue[i].Type)
+            switch (this->RenderQueue[i]->Type)
             {
                 case COLOR:
                     this->RenderColor(this->RenderQueue[i]);
@@ -557,133 +577,143 @@ namespace slay
         return 0;
     }
 
-    uint8 engine::render::RenderColor(token Token)
+    uint8 engine::render::RenderColor(token* Token)
     {
-        if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, ((engine::actors::actor::colors::color*)Token.Data)->ColorR, ((engine::actors::actor::colors::color*)Token.Data)->ColorG, ((engine::actors::actor::colors::color*)Token.Data)->ColorB, ((engine::actors::actor::colors::color*)Token.Data)->ColorA) != 0)
+        if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, ((engine::actors::actor::colors::color*)Token->Data)->ColorR, ((engine::actors::actor::colors::color*)Token->Data)->ColorG, ((engine::actors::actor::colors::color*)Token->Data)->ColorB, ((engine::actors::actor::colors::color*)Token->Data)->ColorA) != 0)
         {
             printf("slay::engine.render.RenderColor(): SDL_SetRenderDrawColor failed\n");
             exit(1);
         }
-        if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token.Area) != 0)
+        if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token->Area) != 0)
         {
             printf("slay::engine.render.RenderColor(): SDL_RenderFillRect failed\n");
             exit(1);
         }
 
+        delete Token;
+
         return 0;
     }
 
-    uint8 engine::render::RenderTexture(token Token)
+    uint8 engine::render::RenderTexture(token* Token)
     {
         uint8 flip;
 
         flip = SDL_FLIP_NONE;
-        if (((engine::actors::actor::textures::texture*)Token.Data)->FlipHorizontal)
+        if (((engine::actors::actor::textures::texture*)Token->Data)->FlipHorizontal)
         {
             flip = SDL_FLIP_HORIZONTAL;
         }
-        if (((engine::actors::actor::textures::texture*)Token.Data)->FlipVertical)
+        if (((engine::actors::actor::textures::texture*)Token->Data)->FlipVertical)
         {
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], ((engine::actors::actor::textures::texture*)Token.Data)->ColorR, ((engine::actors::actor::textures::texture*)Token.Data)->ColorG, ((engine::actors::actor::textures::texture*)Token.Data)->ColorB) != 0)
+        if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::textures::texture*)Token->Data)->TextureID], ((engine::actors::actor::textures::texture*)Token->Data)->ColorR, ((engine::actors::actor::textures::texture*)Token->Data)->ColorG, ((engine::actors::actor::textures::texture*)Token->Data)->ColorB) != 0)
         {
             printf("slay::engine.render.RenderTexture(): SDL_SetTextureColorMod failed\n");
             exit(1);
         }
-        if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], ((engine::actors::actor::textures::texture*)Token.Data)->ColorA) != 0)
+        if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::textures::texture*)Token->Data)->TextureID], ((engine::actors::actor::textures::texture*)Token->Data)->ColorA) != 0)
         {
             printf("slay::engine.render.RenderTexture(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::textures::texture*)Token.Data)->TextureID], NULL, &Token.Area, -((engine::actors::actor::textures::texture*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::textures::texture*)Token->Data)->TextureID], NULL, &Token->Area, -((engine::actors::actor::textures::texture*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderTexture(): SDL_RenderCopyEx failed\n");
             exit(1);
         }
 
+        delete Token;
+
         return 0;
     }
 
-    uint8 engine::render::RenderFlipbook(token Token)
+    uint8 engine::render::RenderFlipbook(token* Token)
     {
         uint8 flip;
 
         flip = SDL_FLIP_NONE;
-        if (((engine::actors::actor::flipbooks::flipbook*)Token.Data)->FlipHorizontal)
+        if (((engine::actors::actor::flipbooks::flipbook*)Token->Data)->FlipHorizontal)
         {
             flip = SDL_FLIP_HORIZONTAL;
         }
-        if (((engine::actors::actor::flipbooks::flipbook*)Token.Data)->FlipVertical)
+        if (((engine::actors::actor::flipbooks::flipbook*)Token->Data)->FlipVertical)
         {
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorB) != 0)
+        if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorB) != 0)
         {
             printf("slay::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\n");
             exit(1);
         }
-        if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token.Data)->ColorA) != 0)
+        if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorA) != 0)
         {
             printf("slay::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Current]], NULL, &Token.Area, -((engine::actors::actor::flipbooks::flipbook*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Current]], NULL, &Token->Area, -((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\n");
             exit(1);
         }
 
+        delete Token;
+
         return 0;
     }
 
-    uint8 engine::render::RenderText(token Token)
+    uint8 engine::render::RenderText(token* Token)
     {
         uint8 flip;
 
         flip = SDL_FLIP_NONE;
-        if (((engine::actors::actor::texts::text*)Token.Data)->FlipHorizontal)
+        if (((engine::actors::actor::texts::text*)Token->Data)->FlipHorizontal)
         {
             flip = SDL_FLIP_HORIZONTAL;
         }
-        if (((engine::actors::actor::texts::text*)Token.Data)->FlipVertical)
+        if (((engine::actors::actor::texts::text*)Token->Data)->FlipVertical)
         {
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_SetTextureColorMod(((engine::actors::actor::texts::text*)Token.Data)->Texture, ((engine::actors::actor::texts::text*)Token.Data)->ColorR, ((engine::actors::actor::texts::text*)Token.Data)->ColorG, ((engine::actors::actor::texts::text*)Token.Data)->ColorB) != 0)
+        if (SDL_SetTextureColorMod(((engine::actors::actor::texts::text*)Token->Data)->Texture, ((engine::actors::actor::texts::text*)Token->Data)->ColorR, ((engine::actors::actor::texts::text*)Token->Data)->ColorG, ((engine::actors::actor::texts::text*)Token->Data)->ColorB) != 0)
         {
             printf("slay::engine.render.RenderText(): SDL_SetTextureColorMod failed\n");
             exit(1);
         }
-        if (SDL_SetTextureAlphaMod(((engine::actors::actor::texts::text*)Token.Data)->Texture, ((engine::actors::actor::texts::text*)Token.Data)->ColorA) != 0)
+        if (SDL_SetTextureAlphaMod(((engine::actors::actor::texts::text*)Token->Data)->Texture, ((engine::actors::actor::texts::text*)Token->Data)->ColorA) != 0)
         {
             printf("slay::engine.render.RenderText(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, ((engine::actors::actor::texts::text*)Token.Data)->Texture, NULL, &Token.Area, -((engine::actors::actor::texts::text*)Token.Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, ((engine::actors::actor::texts::text*)Token->Data)->Texture, NULL, &Token->Area, -((engine::actors::actor::texts::text*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("slay::engine.render.RenderText(): SDL_RenderCopyEx failed\n");
             exit(1);
         }
 
+        delete Token;
+
         return 0;
     }
 
-    uint8 engine::render::RenderHitbox(token Token)
+    uint8 engine::render::RenderHitbox(token* Token)
     {
         if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, 255, 0, 0, 128) != 0)
         {
             printf("slay::engine.render.RenderHitbox(): SDL_SetRenderDrawColor failed\n");
             exit(1);
         }
-        if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token.Area) != 0)
+        if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token->Area) != 0)
         {
             printf("slay::engine.render.RenderHitbox(): SDL_RenderFillRect failed\n");
             exit(1);
         }
+
+        delete Token;
 
         return 0;
     }

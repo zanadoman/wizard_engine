@@ -103,7 +103,7 @@ namespace slay
                     continue;
                 }
 
-                for (uint64 k = 0; k < this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength; k++)
+                for (uint64 k = 0; k < this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length(); k++)
                 {
                     if (this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[k] == ID)
                     {
@@ -172,7 +172,7 @@ namespace slay
                             continue;
                         }
 
-                        for (uint64 m = 0; m < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->TexturesLength; m++)
+                        for (uint64 m = 0; m < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures.Length(); m++)
                         {
                             if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
                             {
@@ -259,7 +259,7 @@ namespace slay
                             continue;
                         }
 
-                        for (uint64 m = 0; m < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->TexturesLength; m++)
+                        for (uint64 m = 0; m < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures.Length(); m++)
                         {
                             if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
                             {

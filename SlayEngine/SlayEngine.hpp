@@ -90,7 +90,7 @@ namespace slay
                     uint16 RenderHeight;
                     double SamplingStep;
                     uint16 BufferSize;
-                    array<token> RenderQueue;
+                    array<token*> RenderQueue;
                     render(engine* Engine);
                     uint8 Update();
                     uint8 SelectionStage();
@@ -100,11 +100,11 @@ namespace slay
                     uint8 OrderByPriority(uint64 From, uint64 Until);
                     uint8 OrderByPriorityMerge(uint64 Left, uint64 Mid, uint64 Right);
                     uint8 RenderingStage();
-                    uint8 RenderColor(token Token);
-                    uint8 RenderTexture(token Token);
-                    uint8 RenderFlipbook(token Token);
-                    uint8 RenderText(token Token);
-                    uint8 RenderHitbox(token Token);
+                    uint8 RenderColor(token* Token);
+                    uint8 RenderTexture(token* Token);
+                    uint8 RenderFlipbook(token* Token);
+                    uint8 RenderText(token* Token);
+                    uint8 RenderHitbox(token* Token);
             } Render;
 
             //__________Camera_________________________________________________________________________________________
