@@ -23,10 +23,10 @@
 	.globl	_ZN4slay6engineC2EPKcS2_tth
 	.type	_ZN4slay6engineC2EPKcS2_tth, @function
 _ZN4slay6engineC2EPKcS2_tth:
-.LFB2235:
+.LFB2238:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2235
+	.cfi_lsda 0x1b,.LLSDA2238
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -56,10 +56,8 @@ _ZN4slay6engineC2EPKcS2_tth:
 	.cfi_def_cfa_offset 80
 .LEHB0:
 	call	_ZN4slay6engine6windowC1EPS0_@PLT
-	leaq	32(%rbx), %rax
+	leaq	32(%rbx), %rdi
 	movq	%rbx, %rsi
-	movq	%rax, %rdi
-	movq	%rax, (%rsp)
 	call	_ZN4slay6engine6renderC1EPS0_@PLT
 .LEHE0:
 	leaq	80(%rbx), %rdi
@@ -198,49 +196,49 @@ _ZN4slay6engineC2EPKcS2_tth:
 	movq	%rax, %rbp
 	jmp	.L8
 .L13:
-	movq	%rax, %rbx
+	movq	%rax, %rbp
 	jmp	.L9
 .L12:
-	movq	%rax, %rbx
+	movq	%rax, %rbp
 	jmp	.L10
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA2235:
+.LLSDA2238:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2235-.LLSDACSB2235
-.LLSDACSB2235:
-	.uleb128 .LEHB0-.LFB2235
+	.uleb128 .LLSDACSE2238-.LLSDACSB2238
+.LLSDACSB2238:
+	.uleb128 .LEHB0-.LFB2238
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB2235
+	.uleb128 .LEHB1-.LFB2238
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L12-.LFB2235
+	.uleb128 .L12-.LFB2238
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB2235
+	.uleb128 .LEHB2-.LFB2238
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L13-.LFB2235
+	.uleb128 .L13-.LFB2238
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB2235
+	.uleb128 .LEHB3-.LFB2238
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L14-.LFB2235
+	.uleb128 .L14-.LFB2238
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB2235
+	.uleb128 .LEHB4-.LFB2238
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L15-.LFB2235
+	.uleb128 .L15-.LFB2238
 	.uleb128 0
-.LLSDACSE2235:
+.LLSDACSE2238:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC2235
+	.cfi_lsda 0x1b,.LLSDAC2238
 	.type	_ZN4slay6engineC2EPKcS2_tth.cold, @function
 _ZN4slay6engineC2EPKcS2_tth.cold:
-.LFSB2235:
+.LFSB2238:
 .L7:
 	.cfi_def_cfa_offset 80
 	.cfi_offset 3, -56
@@ -259,32 +257,31 @@ _ZN4slay6engineC2EPKcS2_tth.cold:
 	movq	592(%rbx), %rdi
 	call	free@PLT
 	movq	576(%rbx), %rdi
-	movq	%rbp, %rbx
 	call	free@PLT
 .L9:
 	movq	8(%rsp), %rdi
 	call	_ZN4slay6engine6actorsD1Ev@PLT
 .L10:
-	movq	(%rsp), %rdi
-	call	_ZN4slay6engine6renderD1Ev@PLT
-	movq	%rbx, %rdi
+	movq	72(%rbx), %rdi
+	call	free@PLT
+	movq	%rbp, %rdi
 .LEHB5:
 	call	_Unwind_Resume@PLT
 .LEHE5:
 	.cfi_endproc
-.LFE2235:
+.LFE2238:
 	.section	.gcc_except_table
-.LLSDAC2235:
+.LLSDAC2238:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC2235-.LLSDACSBC2235
-.LLSDACSBC2235:
+	.uleb128 .LLSDACSEC2238-.LLSDACSBC2238
+.LLSDACSBC2238:
 	.uleb128 .LEHB5-.LCOLDB4
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC2235:
+.LLSDACSEC2238:
 	.section	.text.unlikely
 	.text
 	.size	_ZN4slay6engineC2EPKcS2_tth, .-_ZN4slay6engineC2EPKcS2_tth
@@ -300,10 +297,10 @@ _ZN4slay6engineC2EPKcS2_tth.cold:
 	.globl	_ZN4slay6engineD2Ev
 	.type	_ZN4slay6engineD2Ev, @function
 _ZN4slay6engineD2Ev:
-.LFB2238:
+.LFB2241:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2238
+	.cfi_lsda 0x1b,.LLSDA2241
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -347,24 +344,24 @@ _ZN4slay6engineD2Ev:
 	call	free@PLT
 	leaq	528(%rbx), %rdi
 	call	_ZN4slay6engine6actorsD1Ev@PLT
+	movq	72(%rbx), %rdi
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 24
-	leaq	32(%rbx), %rdi
 	popq	%rbx
 	.cfi_def_cfa_offset 16
 	popq	%rbp
 	.cfi_def_cfa_offset 8
-	jmp	_ZN4slay6engine6renderD1Ev@PLT
+	jmp	free@PLT
 	.cfi_endproc
-.LFE2238:
+.LFE2241:
 	.section	.gcc_except_table
-.LLSDA2238:
+.LLSDA2241:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2238-.LLSDACSB2238
-.LLSDACSB2238:
-.LLSDACSE2238:
+	.uleb128 .LLSDACSE2241-.LLSDACSB2241
+.LLSDACSB2241:
+.LLSDACSE2241:
 	.text
 	.size	_ZN4slay6engineD2Ev, .-_ZN4slay6engineD2Ev
 	.globl	_ZN4slay6engineD1Ev
@@ -379,7 +376,7 @@ _ZN4slay6engineD2Ev:
 	.globl	_ZN4slay6engine15UpdateFlipbooksEv
 	.type	_ZN4slay6engine15UpdateFlipbooksEv, @function
 _ZN4slay6engine15UpdateFlipbooksEv:
-.LFB2241:
+.LFB2244:
 	.cfi_startproc
 	movq	536(%rdi), %r11
 	cmpq	$1, %r11
@@ -497,7 +494,7 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2241:
+.LFE2244:
 	.size	_ZN4slay6engine15UpdateFlipbooksEv, .-_ZN4slay6engine15UpdateFlipbooksEv
 	.section	.rodata.str1.8
 	.align 8
@@ -512,7 +509,7 @@ _ZN4slay6engine15UpdateFlipbooksEv:
 	.globl	_ZN4slay6engine6UpdateEv
 	.type	_ZN4slay6engine6UpdateEv, @function
 _ZN4slay6engine6UpdateEv:
-.LFB2240:
+.LFB2243:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
@@ -686,14 +683,14 @@ _ZN4slay6engine6UpdateEv:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2240:
+.LFE2243:
 	.size	_ZN4slay6engine6UpdateEv, .-_ZN4slay6engine6UpdateEv
 	.align 2
 	.p2align 4
 	.globl	_ZN4slay6engine6RandomEii
 	.type	_ZN4slay6engine6RandomEii, @function
 _ZN4slay6engine6RandomEii:
-.LFB2242:
+.LFB2245:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -719,7 +716,7 @@ _ZN4slay6engine6RandomEii:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2242:
+.LFE2245:
 	.size	_ZN4slay6engine6RandomEii, .-_ZN4slay6engine6RandomEii
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

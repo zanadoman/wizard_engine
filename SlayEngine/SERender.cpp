@@ -8,13 +8,6 @@ namespace slay
         this->RenderHeight = 0;
         this->SamplingStep = 0.002;
         this->BufferSize = 6 * 1024 / sizeof(token);
-        this->RenderQueueLength = 0;
-        this->RenderQueue = NULL;
-    }
-
-    engine::render::~render()
-    {
-        free(this->RenderQueue);
     }
 
     engine::render::token::token() {}
@@ -112,10 +105,9 @@ namespace slay
 
                     if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                     {
-                        if (k == this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (++this->RenderQueueLength += this->BufferSize))) == NULL)
+                        if (k == this->RenderQueue.Length())
                         {
-                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
-                            exit(1);
+                            this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
                         
                         this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Priority, area);
@@ -156,10 +148,9 @@ namespace slay
 
                     if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                     {
-                        if (k == this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (++this->RenderQueueLength += this->BufferSize))) == NULL)
+                        if (k == this->RenderQueue.Length())
                         {
-                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
-                            exit(1);
+                            this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
                             
                         this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Textures.Textures[j], TEXTURE, layer, this->Engine->Actors.Actors[i]->Textures.Textures[j]->Priority, area);
@@ -200,10 +191,9 @@ namespace slay
 
                     if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                     {
-                        if (k == this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (++this->RenderQueueLength += this->BufferSize))) == NULL)
+                        if (k == this->RenderQueue.Length())
                         {
-                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
-                            exit(1);
+                            this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
 
                         this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j], FLIPBOOK, layer, this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Priority, area);
@@ -263,10 +253,9 @@ namespace slay
 
                     if ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight))
                     {
-                        if (k == this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (++this->RenderQueueLength += this->BufferSize))) == NULL)
+                        if (k == this->RenderQueue.Length())
                         {
-                            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
-                            exit(1);
+                            this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
 
                         this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Priority, area);
@@ -280,10 +269,9 @@ namespace slay
 
                 if (area.w != 0 && area.h != 0 && ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight)))
                 {
-                    if (k == this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (++this->RenderQueueLength += this->BufferSize))) == NULL)
+                    if (k == this->RenderQueue.Length())
                     {
-                        printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
-                        exit(1);
+                        this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                     }
 
                     this->RenderQueue[k++] = token(this->Engine->Actors.Actors[i], HITBOX, 0, 255, area);
@@ -291,14 +279,9 @@ namespace slay
             }
         }
 
-        if (k < this->RenderQueueLength && (this->RenderQueue = (token*)realloc(this->RenderQueue, sizeof(token) * (this->RenderQueueLength = k))) == NULL)
+        if (k < this->RenderQueue.Length())
         {
-            printf("slay::engine.render.SelectionStage(): Memory allocation failed\n");
-            exit(1);
-        }
-        if (this->RenderQueueLength == 0)
-        {
-            this->RenderQueue = NULL;
+            this->RenderQueue.Remove(k, this->RenderQueue.Length() - k);
         }
 
         return 0;
@@ -308,8 +291,8 @@ namespace slay
     {
         uint64 i, j;
 
-        this->OrderByLayer(0, this->RenderQueueLength);
-        for (i = 1, j = 0; i < this->RenderQueueLength; i++)
+        this->OrderByLayer(0, this->RenderQueue.Length());
+        for (i = 1, j = 0; i < this->RenderQueue.Length(); i++)
         {
             if (this->RenderQueue[i].Layer != this->RenderQueue[j].Layer)
             {
@@ -508,7 +491,7 @@ namespace slay
         }
 
         layered = 0;
-        for (uint64 i = 0; i < this->RenderQueueLength; i++)
+        for (uint64 i = 0; i < this->RenderQueue.Length(); i++)
         {
             if (0 < this->RenderQueue[i].Layer)
             {
@@ -517,7 +500,7 @@ namespace slay
             }
         }
 
-        for (uint64 i = layered; i < this->RenderQueueLength; i++)
+        for (uint64 i = layered; i < this->RenderQueue.Length(); i++)
         {
             switch (this->RenderQueue[i].Type)
             {

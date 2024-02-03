@@ -68,6 +68,7 @@ namespace slay
                 class token
                 {
                     friend class render;
+                    friend class array<token>;
 
                     void* Data;
                     type Type;
@@ -89,10 +90,8 @@ namespace slay
                     uint16 RenderHeight;
                     double SamplingStep;
                     uint16 BufferSize;
-                    uint64 RenderQueueLength;
-                    token* RenderQueue;
+                    array<token> RenderQueue;
                     render(engine* Engine);
-                    ~render();
                     uint8 Update();
                     uint8 SelectionStage();
                     uint8 OrderingStage();

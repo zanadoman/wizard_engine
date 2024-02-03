@@ -1,5 +1,4 @@
 /*
-**  neo::array -> realloc
 **  Collision system
 **  Camera smoothing
 **  Overlap system
