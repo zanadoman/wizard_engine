@@ -536,8 +536,8 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.seh_endprologue
 	movq	8(%rdx), %rbx
 	movq	(%rdx), %rdi
-	movq	16(%rcx), %r9
 	movq	%rcx, %rbp
+	movq	16(%rcx), %rcx
 	testq	%rbx, %rbx
 	je	.L70
 	xorl	%eax, %eax
@@ -547,17 +547,17 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	movq	(%rdi,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L71
-	cmpq	%r9, %rdx
+	cmpq	%rcx, %rdx
 	jnb	.L72
-	movq	24(%rbp), %rcx
-	cmpq	$0, (%rcx,%rdx,8)
+	movq	24(%rbp), %r8
+	cmpq	$0, (%r8,%rdx,8)
 	je	.L72
 .L71:
 	addq	$1, %rax
 	cmpq	%rax, %rbx
 	jne	.L73
 .L70:
-	cmpq	$1, %r9
+	cmpq	$1, %rcx
 	jbe	.L74
 	movq	24(%rbp), %rdx
 	movl	$1, %esi
@@ -581,10 +581,10 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	je	.L78
 .L79:
 	addq	$1, %rsi
-	cmpq	%r9, %rsi
+	cmpq	%rcx, %rsi
 	jb	.L75
-	cmpq	$0, -8(%rdx,%r9,8)
-	leaq	-1(%r9), %r8
+	cmpq	$0, -8(%rdx,%rcx,8)
+	leaq	-1(%rcx), %r8
 	je	.L107
 .L105:
 	xorl	%eax, %eax
@@ -598,37 +598,38 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.p2align 4,,10
 	.p2align 3
 .L78:
-	movq	(%rdx,%rsi,8), %rcx
+	movq	(%rdx,%rsi,8), %rax
 	leaq	0(,%rsi,8), %r12
-	testq	%rcx, %rcx
+	testq	%rax, %rax
 	je	.L80
 	movl	$64, %edx
+	movq	%rax, %rcx
 	call	_ZdlPvy
-	movq	16(%rbp), %r9
+	movq	16(%rbp), %rcx
 	movq	24(%rbp), %rdx
 .L80:
-	cmpq	%r9, %rsi
+	cmpq	%rcx, %rsi
 	jnb	.L108
 	movq	$0, (%rdx,%r12)
 	jmp	.L79
 .L107:
-	movq	%r9, %r10
+	movq	%rcx, %r9
 	jmp	.L83
 	.p2align 4,,10
 	.p2align 3
 .L88:
-	leaq	-1(%r10), %rax
-	cmpq	%r9, %rax
+	leaq	-1(%r9), %rax
+	cmpq	%rcx, %rax
 	jnb	.L109
 	cmpq	$0, (%rdx,%rax,8)
 	jne	.L110
-	movq	%rax, %r10
+	movq	%rax, %r9
 .L83:
-	cmpq	$1, %r10
+	cmpq	$1, %r9
 	jne	.L88
 .L87:
 	leaq	16(%rbp), %rcx
-	movq	%r10, %rdx
+	movq	%r9, %rdx
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$32, %rsp
@@ -639,7 +640,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	popq	%r12
 	ret
 .L74:
-	testq	%r9, %r9
+	testq	%rcx, %rcx
 	jne	.L105
 	leaq	.LC5(%rip), %rcx
 	orq	$-1, %rdx
@@ -649,8 +650,8 @@ _ZN4slay6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.p2align 4,,10
 	.p2align 3
 .L110:
-	movq	%r9, %r8
-	subq	%r10, %r8
+	subq	%r9, %rcx
+	movq	%rcx, %r8
 	jmp	.L87
 .L72:
 	leaq	.LC11(%rip), %rcx
@@ -696,39 +697,48 @@ _ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	.seh_stackalloc	40
 	.seh_endprologue
 	movq	16(%rcx), %r9
-	movq	%rdx, %rdi
+	movq	%rdx, %rsi
 	movq	(%rdx), %rdx
-	movq	%rcx, %rsi
+	movq	%rcx, %rdi
 	testq	%rdx, %rdx
 	je	.L112
-	movq	8(%rdi), %r8
+	movq	8(%rsi), %r8
 	xorl	%eax, %eax
+	jmp	.L115
 	.p2align 4,,10
 	.p2align 3
+.L113:
+	addq	$1, %rax
+	cmpq	%rax, %rdx
+	je	.L112
 .L115:
 	movq	(%r8,%rax,8), %rcx
 	testq	%rcx, %rcx
 	je	.L113
 	cmpq	%r9, %rcx
 	jnb	.L114
-	movq	24(%rsi), %r10
+	movq	24(%rdi), %r10
 	cmpq	$0, (%r10,%rcx,8)
-	je	.L114
-.L113:
-	addq	$1, %rax
-	cmpq	%rax, %rdx
-	jne	.L115
+	jne	.L113
+.L114:
+	leaq	.LC12(%rip), %rcx
+	movq	%rsi, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	.p2align 4,,10
+	.p2align 3
 .L112:
 	cmpq	$1, %r9
 	jbe	.L116
-	movq	24(%rsi), %r10
+	movq	24(%rdi), %r10
 	movl	$1, %ebx
 	testq	%rdx, %rdx
 	je	.L120
 	.p2align 4,,10
 	.p2align 3
 .L125:
-	movq	8(%rdi), %rcx
+	movq	8(%rsi), %rcx
 	xorl	%eax, %eax
 	jmp	.L119
 	.p2align 4,,10
@@ -746,7 +756,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	cmpq	%r9, %rbx
 	jnb	.L124
 .L149:
-	movq	(%rdi), %rdx
+	movq	(%rsi), %rdx
 	testq	%rdx, %rdx
 	jne	.L125
 	.p2align 4,,10
@@ -758,8 +768,8 @@ _ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	je	.L122
 	movl	$64, %edx
 	call	_ZdlPvy
-	movq	16(%rsi), %r9
-	movq	24(%rsi), %r10
+	movq	16(%rdi), %r9
+	movq	24(%rdi), %r10
 .L122:
 	cmpq	%r9, %rbx
 	jnb	.L148
@@ -796,7 +806,7 @@ _ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	jne	.L131
 .L130:
 	movq	%rax, %rdx
-	leaq	16(%rsi), %rcx
+	leaq	16(%rdi), %rcx
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$40, %rsp
@@ -816,15 +826,9 @@ _ZN4slay6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	.p2align 4,,10
 	.p2align 3
 .L152:
+	subq	%rax, %r9
 	movq	%r9, %r8
-	subq	%rax, %r8
 	jmp	.L130
-.L114:
-	leaq	.LC12(%rip), %rcx
-	movq	%rdi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
 .L151:
 	leaq	.LC5(%rip), %rcx
 	call	_Z6printfPKcz

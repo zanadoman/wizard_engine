@@ -691,8 +691,8 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	.seh_endprologue
 	movq	8(%rdx), %rbx
 	movq	(%rdx), %rdi
-	movq	8(%rcx), %r9
 	movq	%rcx, %rbp
+	movq	8(%rcx), %rcx
 	testq	%rbx, %rbx
 	je	.L76
 	xorl	%eax, %eax
@@ -702,17 +702,17 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	movq	(%rdi,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L77
-	cmpq	%r9, %rdx
+	cmpq	%rcx, %rdx
 	jnb	.L78
-	movq	16(%rbp), %rcx
-	cmpq	$0, (%rcx,%rdx,8)
+	movq	16(%rbp), %r8
+	cmpq	$0, (%r8,%rdx,8)
 	je	.L78
 .L77:
 	addq	$1, %rax
 	cmpq	%rax, %rbx
 	jne	.L79
 .L76:
-	cmpq	$1, %r9
+	cmpq	$1, %rcx
 	jbe	.L80
 	movq	16(%rbp), %rdx
 	movl	$1, %esi
@@ -736,10 +736,10 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	je	.L84
 .L85:
 	addq	$1, %rsi
-	cmpq	%r9, %rsi
+	cmpq	%rcx, %rsi
 	jb	.L81
-	cmpq	$0, -8(%rdx,%r9,8)
-	leaq	-1(%r9), %r8
+	cmpq	$0, -8(%rdx,%rcx,8)
+	leaq	-1(%rcx), %r8
 	je	.L113
 .L111:
 	xorl	%eax, %eax
@@ -763,31 +763,31 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	movl	$232, %edx
 	movq	%r12, %rcx
 	call	_ZdlPvy
-	movq	8(%rbp), %r9
+	movq	8(%rbp), %rcx
 	movq	16(%rbp), %rdx
 .L86:
-	cmpq	%r9, %rsi
+	cmpq	%rcx, %rsi
 	jnb	.L114
 	movq	$0, (%rdx,%r13)
 	jmp	.L85
 .L113:
-	movq	%r9, %r10
+	movq	%rcx, %r9
 	jmp	.L89
 	.p2align 4,,10
 	.p2align 3
 .L94:
-	leaq	-1(%r10), %rax
-	cmpq	%r9, %rax
+	leaq	-1(%r9), %rax
+	cmpq	%rcx, %rax
 	jnb	.L115
 	cmpq	$0, (%rdx,%rax,8)
 	jne	.L116
-	movq	%rax, %r10
+	movq	%rax, %r9
 .L89:
-	cmpq	$1, %r10
+	cmpq	$1, %r9
 	jne	.L94
 .L93:
 	leaq	8(%rbp), %rcx
-	movq	%r10, %rdx
+	movq	%r9, %rdx
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$40, %rsp
@@ -799,7 +799,7 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	popq	%r13
 	ret
 .L80:
-	testq	%r9, %r9
+	testq	%rcx, %rcx
 	jne	.L111
 	leaq	.LC6(%rip), %rcx
 	orq	$-1, %rdx
@@ -809,8 +809,8 @@ _ZN4slay6engine6actors5PurgeESt16initializer_listIyE:
 	.p2align 4,,10
 	.p2align 3
 .L116:
-	movq	%r9, %r8
-	subq	%r10, %r8
+	subq	%r9, %rcx
+	movq	%rcx, %r8
 	jmp	.L93
 .L78:
 	leaq	.LC12(%rip), %rcx
@@ -858,39 +858,48 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	.seh_stackalloc	32
 	.seh_endprologue
 	movq	8(%rcx), %r9
-	movq	%rdx, %rdi
+	movq	%rdx, %rsi
 	movq	(%rdx), %rdx
-	movq	%rcx, %rsi
+	movq	%rcx, %rdi
 	testq	%rdx, %rdx
 	je	.L118
-	movq	8(%rdi), %r8
+	movq	8(%rsi), %r8
 	xorl	%eax, %eax
+	jmp	.L121
 	.p2align 4,,10
 	.p2align 3
+.L119:
+	addq	$1, %rax
+	cmpq	%rax, %rdx
+	je	.L118
 .L121:
 	movq	(%r8,%rax,8), %rcx
 	testq	%rcx, %rcx
 	je	.L119
 	cmpq	%r9, %rcx
 	jnb	.L120
-	movq	16(%rsi), %r10
+	movq	16(%rdi), %r10
 	cmpq	$0, (%r10,%rcx,8)
-	je	.L120
-.L119:
-	addq	$1, %rax
-	cmpq	%rax, %rdx
-	jne	.L121
+	jne	.L119
+.L120:
+	leaq	.LC13(%rip), %rcx
+	movq	%rsi, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	.p2align 4,,10
+	.p2align 3
 .L118:
 	cmpq	$1, %r9
 	jbe	.L122
-	movq	16(%rsi), %r10
+	movq	16(%rdi), %r10
 	movl	$1, %ebx
 	testq	%rdx, %rdx
 	je	.L126
 	.p2align 4,,10
 	.p2align 3
 .L131:
-	movq	8(%rdi), %rcx
+	movq	8(%rsi), %rcx
 	xorl	%eax, %eax
 	jmp	.L125
 	.p2align 4,,10
@@ -908,7 +917,7 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	cmpq	%r9, %rbx
 	jnb	.L130
 .L155:
-	movq	(%rdi), %rdx
+	movq	(%rsi), %rdx
 	testq	%rdx, %rdx
 	jne	.L131
 	.p2align 4,,10
@@ -923,8 +932,8 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	movl	$232, %edx
 	movq	%rbp, %rcx
 	call	_ZdlPvy
-	movq	8(%rsi), %r9
-	movq	16(%rsi), %r10
+	movq	8(%rdi), %r9
+	movq	16(%rdi), %r10
 .L128:
 	cmpq	%r9, %rbx
 	jnb	.L154
@@ -962,7 +971,7 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	jne	.L137
 .L136:
 	movq	%rax, %rdx
-	leaq	8(%rsi), %rcx
+	leaq	8(%rdi), %rcx
 	call	_ZN3neo5arrayIPN4slay6engine6actors5actorEE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$32, %rsp
@@ -983,15 +992,9 @@ _ZN4slay6engine6actors5PurgeEPN3neo5arrayIyEE:
 	.p2align 4,,10
 	.p2align 3
 .L158:
+	subq	%rax, %r9
 	movq	%r9, %r8
-	subq	%rax, %r8
 	jmp	.L136
-.L120:
-	leaq	.LC13(%rip), %rcx
-	movq	%rdi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
 .L157:
 	leaq	.LC6(%rip), %rcx
 	call	_Z6printfPKcz
