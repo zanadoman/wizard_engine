@@ -6,6 +6,8 @@ background::background(engine* Engine) : Engine(Engine)
 
     this->Actor = this->Engine->Actors.New(BACKGROUND, 0, 0, 1280, 720, 1);
     this->MainTexture = this->Engine->Actors[this->Actor].Textures.New(this->MainTextureTexture);
+
+    this->Engine->Actors[this->Actor].HitboxVisible = true;
 }
 
 background::~background()

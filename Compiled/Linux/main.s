@@ -69,16 +69,13 @@ main:
 .LEHB5:
 	call	_ZN6playerC1EPN3wze6engineE@PLT
 .LEHE5:
-	movq	8(%r14), %rsi
-	leaq	80(%rbx), %rdi
-.LEHB6:
-	call	_ZN3wze6engine6camera4BindEy@PLT
 	jmp	.L2
 	.p2align 4,,10
 	.p2align 3
 .L3:
 	movq	%r14, %rdi
 	leaq	528(%rbx), %r12
+.LEHB6:
 	call	_ZN6player6UpdateEv@PLT
 	movq	8(%r15), %rsi
 	movq	%r12, %rdi

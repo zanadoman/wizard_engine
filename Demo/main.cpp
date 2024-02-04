@@ -18,7 +18,7 @@ sint32 main()
     background* Background = new background(Engine);
     player* Player = new player(Engine);
 
-    Engine->Camera.Bind(Player->Actor);
+    //Engine->Camera.Bind(Player->Actor);
 
     while (Engine->Update())
     {

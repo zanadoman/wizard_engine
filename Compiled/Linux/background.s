@@ -37,7 +37,12 @@ _ZN10backgroundC2EPN3wze6engineE:
 	movq	24(%rbx), %rsi
 	leaq	40(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
+	movq	(%rbx), %rdi
+	movq	8(%rbx), %rsi
 	movq	%rax, 16(%rbx)
+	addq	$528, %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movb	$1, 136(%rax)
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
