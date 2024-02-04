@@ -527,36 +527,6 @@ namespace wze
                     ~actors();
             } Actors;
 
-            //__________Collision______________________________________________________________________________________
-
-            class collision
-            {
-                friend class engine;
-                engine* Engine;
-
-                enum direction
-                {
-                    TOP = 1,
-                    BOT = 2,
-                    LEFT = 4,
-                    RIGHT = 8,
-                    TOP_LEFT = 16,
-                    TOP_RIGHT = 32,
-                    BOT_LEFT = 64,
-                    BOT_RIGHT = 128,
-                    NONE = 0
-                };
-
-                public:
-                    
-                private:
-                    array<array<actors::actor*>> CollisionLayers;
-                    collision(engine* Engine);
-                    bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
-                    direction GetCollisionDirection(double Actor1PrevTopLeftX, double Actor1PrevTopLeftY, double Actor1PrevBotRightX, double Actor1PrevBotRightY, double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
-                    bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
-            } Collision;
-
             //__________Vector_________________________________________________________________________________________
 
             class vector
@@ -636,7 +606,7 @@ namespace wze
                     uint8 Update();
             } Timing;
 
-        //__________Engine_____________________________________________________________________________________________
+            //__________Engine_________________________________________________________________________________________
 
             engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime);
             ~engine();
@@ -644,6 +614,36 @@ namespace wze
             sint32 Random(sint32 Min, sint32 Max);
 
         private:
+
+            //__________Collision______________________________________________________________________________________
+
+            class collision
+            {
+                friend class engine;
+                engine* Engine;
+
+                enum direction
+                {
+                    TOP = 1,
+                    BOT = 2,
+                    LEFT = 4,
+                    RIGHT = 8,
+                    TOP_LEFT = 16,
+                    TOP_RIGHT = 32,
+                    BOT_LEFT = 64,
+                    BOT_RIGHT = 128,
+                    NONE = 0
+                };
+
+                array<array<actors::actor*>> CollisionLayers;
+                collision(engine* Engine);
+                bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
+                direction GetCollisionDirection(double Actor1PrevTopLeftX, double Actor1PrevTopLeftY, double Actor1PrevBotRightX, double Actor1PrevBotRightY, double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
+                bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
+            } Collision;
+
+            //__________Engine_________________________________________________________________________________________
+
             array<SDL_Event> EventQueue;
             uint8 UpdateFlipbooks();
     };
