@@ -541,9 +541,9 @@ namespace wze
                 };
 
                 public:
-
-                private:
                     bool CheckCollision(actors::actor* Actor1, actors::actor* Actor2);
+                private:
+                    
             } Collision;
 
             //__________Vector_________________________________________________________________________________________
