@@ -96,84 +96,84 @@ namespace wze
             }
         }
 
-        if (Actor2TopLeftX < Actor1PrevTopLeftX && Actor2TopLeftY < Actor1PrevTopLeftY)
+        if (Actor2TopLeftX < Actor1PrevTopLeftX && Actor1PrevTopLeftY < Actor2TopLeftY)
         {
             if (Actor1PrevTopLeftX <= Actor2BotRightX)
             {
                 return TOP;
             }
-            if (Actor1PrevTopLeftY <= Actor2BotRightY)
+            if (Actor2BotRightY <= Actor1PrevTopLeftY)
             {
                 return LEFT;
             }
-            if (Actor2BotRightX - Actor1TopLeftX > Actor2BotRightY - Actor1TopLeftY)
+            if (Actor2BotRightX - Actor1TopLeftX > Actor1TopLeftY - Actor2BotRightY)
             {
                 return TOP;
             }
-            if (Actor2BotRightX - Actor1TopLeftX < Actor2BotRightY - Actor1TopLeftY)
+            if (Actor2BotRightX - Actor1TopLeftX < Actor1TopLeftY - Actor2BotRightY)
             {
                 return LEFT;
             }
 
             return TOP_LEFT;
         }
-        if (Actor1PrevBotRightX < Actor2BotRightX && Actor2TopLeftY < Actor1PrevTopLeftY)
+        if (Actor1PrevBotRightX < Actor2BotRightX && Actor1PrevTopLeftY < Actor2TopLeftY)
         {
             if (Actor2TopLeftX <= Actor1PrevBotRightX)
             {
                 return TOP;
             }
-            if (Actor1PrevTopLeftY <= Actor2BotRightY)
+            if (Actor2BotRightY <= Actor1PrevTopLeftY)
             {
                 return RIGHT;
             }
-            if (Actor1BotRightX - Actor2TopLeftX > Actor2BotRightY - Actor1TopLeftY)
+            if (Actor1BotRightX - Actor2TopLeftX > Actor1TopLeftY - Actor2BotRightY)
             {
                 return TOP;
             }
-            if (Actor1BotRightX - Actor2TopLeftX < Actor2BotRightY - Actor1TopLeftY)
+            if (Actor1BotRightX - Actor2TopLeftX < Actor1TopLeftY - Actor2BotRightY)
             {
                 return RIGHT;
             }
 
             return TOP_RIGHT;
         }
-        if (Actor2TopLeftX < Actor1PrevTopLeftX && Actor1PrevBotRightY < Actor2BotRightY)
+        if (Actor2TopLeftX < Actor1PrevTopLeftX && Actor2BotRightY < Actor1PrevBotRightY)
         {
             if (Actor1PrevTopLeftX <= Actor2BotRightX)
             {
                 return BOT;
             }
-            if (Actor2TopLeftY <= Actor1PrevBotRightY)
+            if (Actor1PrevBotRightY <= Actor2TopLeftY)
             {
                 return LEFT;
             }
-            if (Actor2BotRightX - Actor1TopLeftX > Actor1BotRightY - Actor2TopLeftY)
+            if (Actor2BotRightX - Actor1TopLeftX > Actor2TopLeftY - Actor1BotRightY)
             {
                 return BOT;
             }
-            if (Actor2BotRightX - Actor1TopLeftX < Actor1BotRightY - Actor2TopLeftY)
+            if (Actor2BotRightX - Actor1TopLeftX < Actor2TopLeftY - Actor1BotRightY)
             {
                 return LEFT;
             }
 
             return BOT_LEFT;
         }
-        if (Actor1PrevBotRightX < Actor2BotRightX && Actor1PrevBotRightY < Actor2BotRightY)
+        if (Actor1PrevBotRightX < Actor2BotRightX && Actor2BotRightY < Actor1PrevBotRightY)
         {
             if (Actor2TopLeftX <= Actor1PrevBotRightX)
             {
                 return BOT;
             }
-            if (Actor2TopLeftY <= Actor1PrevBotRightY)
+            if (Actor1PrevBotRightY <= Actor2TopLeftY)
             {
                 return RIGHT;
             }
-            if (Actor1BotRightX - Actor2TopLeftX > Actor1BotRightY - Actor2TopLeftY)
+            if (Actor1BotRightX - Actor2TopLeftX > Actor2TopLeftY - Actor1BotRightY)
             {
                 return BOT;
             }
-            if (Actor1BotRightX - Actor2TopLeftX < Actor1BotRightY - Actor2TopLeftY)
+            if (Actor1BotRightX - Actor2TopLeftX < Actor2TopLeftY - Actor1BotRightY)
             {
                 return RIGHT;
             }
