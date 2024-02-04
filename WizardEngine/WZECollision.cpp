@@ -75,16 +75,16 @@ namespace wze
 
         if ((Actor2TopLeftX <= Actor1PrevTopLeftX && Actor1PrevBotRightX <= Actor2BotRightX) || (Actor1PrevTopLeftX <= Actor2TopLeftX && Actor2BotRightX <= Actor1PrevBotRightX))
         {
-            if (Actor2BotRightY < Actor1PrevTopLeftY)
+            if (Actor1PrevTopLeftY < Actor2BotRightY)
             {
                 return TOP;
             }
-            if (Actor1PrevBotRightY < Actor2TopLeftY)
+            if (Actor2TopLeftY < Actor1PrevBotRightY)
             {    
                 return BOT;
             }
         }
-        if ((Actor2TopLeftY <= Actor1PrevTopLeftY && Actor1PrevBotRightY <= Actor2BotRightY) || (Actor1PrevTopLeftY <= Actor2TopLeftY && Actor2BotRightY <= Actor1PrevBotRightY))
+        if ((Actor2BotRightY <= Actor1PrevBotRightY && Actor1PrevTopLeftY <= Actor2TopLeftY) || (Actor1PrevBotRightY <= Actor2BotRightY && Actor2TopLeftY <= Actor1PrevTopLeftY))
         {
             if (Actor2BotRightX < Actor1PrevTopLeftX)
             {
