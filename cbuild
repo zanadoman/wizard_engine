@@ -2,7 +2,7 @@
 
 #############################################################################################################################
 
-SOURCES=$(find . -name "*.cpp")
+SOURCES="$(find Demo -name "*.cpp") $(find WizardEngine -name "*.cpp")"
 LANGUAGE_VERSION="gnu++23"
 
 LINUX_ASSEMBLY_FOLDER="Compiled/Linux"
