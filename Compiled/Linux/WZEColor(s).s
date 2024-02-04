@@ -332,8 +332,8 @@ _ZN3wze6engine6actors5actor6colors3NewEv:
 	movl	$-32767, %esi
 	pxor	%xmm0, %xmm0
 	movl	$-1, 20(%rax)
-	movl	216(%rdx), %ecx
-	movupd	184(%rdx), %xmm4
+	movl	200(%rdx), %ecx
+	movupd	168(%rdx), %xmm4
 	movw	%si, 24(%rax)
 	movb	$1, 26(%rax)
 	movq	24(%rbp), %rdx
@@ -355,8 +355,8 @@ _ZN3wze6engine6actors5actor6colors3NewEv:
 	pxor	%xmm0, %xmm0
 	movl	$-1, 20(%rax)
 	movq	24(%rbp), %rdi
-	movl	216(%rdx), %ecx
-	movupd	184(%rdx), %xmm2
+	movl	200(%rdx), %ecx
+	movupd	168(%rdx), %xmm2
 	movb	$1, 26(%rax)
 	movq	%rax, (%rsp)
 	movl	%ecx, 16(%rax)
@@ -952,8 +952,8 @@ _ZN3wze6engine6actors5actor6colorsixEy:
 _ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_:
 .LFB2245:
 	.cfi_startproc
-	movl	216(%rdx), %eax
-	movupd	184(%rdx), %xmm1
+	movl	200(%rdx), %eax
+	movupd	168(%rdx), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rsi, (%rdi)
 	movq	%rdx, 8(%rdi)
@@ -1000,18 +1000,18 @@ _ZN3wze6engine6actors5actor6colors5color4SetXEd:
 	movq	(%rdi), %rdx
 	movsd	40(%rbx), %xmm3
 	movsd	%xmm2, 8(%rsp)
-	movsd	192(%rax), %xmm1
-	movsd	184(%rax), %xmm0
-	leaq	560(%rdx), %rdi
+	movsd	176(%rax), %xmm1
+	movsd	168(%rax), %xmm0
+	leaq	576(%rdx), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rcx
 	movsd	8(%rsp), %xmm2
 	movsd	%xmm0, 48(%rbx)
 	movsd	40(%rbx), %xmm3
-	movsd	184(%rax), %xmm0
-	movsd	192(%rax), %xmm1
-	leaq	560(%rcx), %rdi
+	movsd	168(%rax), %xmm0
+	movsd	176(%rax), %xmm1
+	leaq	576(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
 	movsd	%xmm0, 56(%rbx)
@@ -1055,18 +1055,18 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	movq	(%rdi), %rdx
 	movsd	32(%rbx), %xmm2
 	movsd	%xmm3, 8(%rsp)
-	movsd	192(%rax), %xmm1
-	movsd	184(%rax), %xmm0
-	leaq	560(%rdx), %rdi
+	movsd	176(%rax), %xmm1
+	movsd	168(%rax), %xmm0
+	leaq	576(%rdx), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rcx
 	movsd	8(%rsp), %xmm3
 	movsd	%xmm0, 48(%rbx)
 	movsd	32(%rbx), %xmm2
-	movsd	184(%rax), %xmm0
-	movsd	192(%rax), %xmm1
-	leaq	560(%rcx), %rdi
+	movsd	168(%rax), %xmm0
+	movsd	176(%rax), %xmm1
+	leaq	576(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
 	movsd	%xmm0, 56(%rbx)

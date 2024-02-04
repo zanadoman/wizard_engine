@@ -464,8 +464,6 @@ namespace wze
 
                     //__________Actor______________________________________________________________________________
 
-                        uint64 OverlapLayer;
-                        uint64 CollisionLayer;
                         uint64 Force;
                         uint64 Resistance;
                         bool HitboxVisible;
@@ -484,6 +482,8 @@ namespace wze
                         double SetLayer(double Layer);
                         double GetDepth();
                         double SetDepth(double Depth);
+                        uint8 GetCollisionLayer();
+                        uint8 SetCollisionLayer(uint8 Layer);
                         uint16 GetHitboxWidth();
                         uint16 GetHitboxHeight();
 
@@ -498,6 +498,7 @@ namespace wze
                         double Angle;
                         double Layer;
                         double Depth;
+                        uint8 CollisionLayer;
                         uint16 HitboxWidth;
                         uint16 HitboxHeight;
                         uint16 PrevHitboxWidth;
@@ -551,10 +552,11 @@ namespace wze
                 public:
                     
                 private:
+                    array<array<actors::actor*>> CollisionLayers;
+                    collision(engine* Engine);
                     bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
                     direction GetCollisionDirection(double Actor1PrevTopLeftX, double Actor1PrevTopLeftY, double Actor1PrevBotRightX, double Actor1PrevBotRightY, double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
                     bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
-                    collision(engine* Engine);
             } Collision;
 
             //__________Vector_________________________________________________________________________________________

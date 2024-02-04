@@ -51,34 +51,34 @@ _ZN6playerC2EPN3wze6engineE:
 	movq	%rsi, (%rdi)
 	movq	$0, 24(%rdi)
 	movq	$0, 32(%rdi)
-	leaq	568(%rsi), %rdi
+	leaq	584(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
 .LEHB0:
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	movq	%rax, (%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC1(%rip), %rsi
-	leaq	568(%rax), %rdi
+	leaq	584(%rax), %rdi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	movq	%rax, 8(%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC2(%rip), %rsi
-	leaq	568(%rax), %rdi
+	leaq	584(%rax), %rdi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	movq	%rax, 16(%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC3(%rip), %rsi
-	leaq	568(%rax), %rdi
+	leaq	584(%rax), %rdi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	movq	%rax, 24(%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC4(%rip), %rsi
-	leaq	568(%rax), %rdi
+	leaq	584(%rax), %rdi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	movq	%rax, 32(%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC5(%rip), %rsi
-	leaq	568(%rax), %rdi
+	leaq	584(%rax), %rdi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	movq	24(%rbx), %rdx
 	movq	%rax, 40(%rsp)
@@ -93,7 +93,7 @@ _ZN6playerC2EPN3wze6engineE:
 	movq	(%rbx), %rax
 	movl	$48, %edx
 	leaq	.LC7(%rip), %rsi
-	leaq	568(%rax), %rdi
+	leaq	584(%rax), %rdi
 	call	_ZN3wze6engine6assets8LoadFontEPKch@PLT
 	movq	%rax, 48(%rbx)
 	movq	(%rbx), %rax
@@ -135,7 +135,7 @@ _ZN6playerC2EPN3wze6engineE:
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movb	$1, 168(%rax)
+	movb	$1, 152(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
@@ -326,7 +326,7 @@ _ZN6playerD2Ev:
 	addl	$1, %ebp
 	movq	(%rdx,%rax,8), %rsi
 	movq	(%rbx), %rax
-	leaq	568(%rax), %rdi
+	leaq	584(%rax), %rdi
 	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
 	movzbl	%bpl, %eax
 	cmpq	24(%rbx), %rax
@@ -334,7 +334,7 @@ _ZN6playerD2Ev:
 .L16:
 	movq	(%rbx), %rax
 	movq	48(%rbx), %rsi
-	leaq	568(%rax), %rdi
+	leaq	584(%rax), %rdi
 	call	_ZN3wze6engine6assets10UnloadFontEy@PLT
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
@@ -464,7 +464,7 @@ _ZN6player6UpdateEv:
 	movsd	.LC15(%rip), %xmm2
 	movq	(%rbx), %rax
 	addsd	%xmm0, %xmm2
-	leaq	640(%rax), %rdi
+	leaq	656(%rax), %rdi
 	movsd	%xmm2, 8(%rsp)
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	pxor	%xmm1, %xmm1
@@ -480,7 +480,7 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	(%rsp), %xmm1
 	movsd	8(%rsp), %xmm2
-	leaq	560(%rbp), %rdi
+	leaq	576(%rbp), %rdi
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor4SetXEd@PLT
@@ -498,7 +498,7 @@ _ZN6player6UpdateEv:
 	movsd	.LC15(%rip), %xmm2
 	movq	(%rbx), %rax
 	addsd	%xmm0, %xmm2
-	leaq	640(%rax), %rdi
+	leaq	656(%rax), %rdi
 	movsd	%xmm2, 8(%rsp)
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	pxor	%xmm1, %xmm1
@@ -514,7 +514,7 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	movsd	8(%rsp), %xmm2
 	movsd	(%rsp), %xmm1
-	leaq	560(%rbp), %rdi
+	leaq	576(%rbp), %rdi
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor4SetYEd@PLT
@@ -611,7 +611,7 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	(%rbx), %rax
 	movsd	%xmm0, (%rsp)
-	leaq	640(%rax), %rdi
+	leaq	656(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	pxor	%xmm1, %xmm1
 	movsd	(%rsp), %xmm0
@@ -644,7 +644,7 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	(%rbx), %rax
 	movsd	%xmm0, (%rsp)
-	leaq	640(%rax), %rdi
+	leaq	656(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	pxor	%xmm0, %xmm0
 	movq	%rbp, %rdi
@@ -677,7 +677,7 @@ _ZN6player6UpdateEv:
 	movsd	.LC15(%rip), %xmm2
 	movq	(%rbx), %rax
 	addsd	%xmm0, %xmm2
-	leaq	640(%rax), %rdi
+	leaq	656(%rax), %rdi
 	movsd	%xmm2, 8(%rsp)
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	pxor	%xmm1, %xmm1
@@ -693,7 +693,7 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	(%rsp), %xmm1
 	movsd	8(%rsp), %xmm2
-	leaq	560(%rbp), %rdi
+	leaq	576(%rbp), %rdi
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor4SetXEd@PLT
@@ -711,7 +711,7 @@ _ZN6player6UpdateEv:
 	movsd	.LC15(%rip), %xmm2
 	movq	(%rbx), %rax
 	addsd	%xmm0, %xmm2
-	leaq	640(%rax), %rdi
+	leaq	656(%rax), %rdi
 	movsd	%xmm2, 8(%rsp)
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	pxor	%xmm1, %xmm1
@@ -727,7 +727,7 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	movsd	8(%rsp), %xmm2
 	movsd	(%rsp), %xmm1
-	leaq	560(%rbp), %rdi
+	leaq	576(%rbp), %rdi
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor4SetYEd@PLT

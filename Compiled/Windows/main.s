@@ -30,13 +30,10 @@ _Z6printfPKcz.constprop.0:
 	ret
 	.seh_endproc
 	.def	__main;	.scl	2;	.type	32;	.endef
-	.section .rdata,"dr"
-.LC1:
-	.ascii "assets/icon.png\0"
 	.section	.text.unlikely,"x"
-.LCOLDB2:
+.LCOLDB1:
 	.section	.text.startup,"x"
-.LHOTB2:
+.LHOTB1:
 	.p2align 4
 	.globl	main
 	.def	main;	.scl	2;	.type	32;	.endef
@@ -63,17 +60,17 @@ main:
 	.seh_stackalloc	56
 	.seh_endprologue
 	call	__main
-	movl	$688, %ecx
+	movl	$712, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
-	movl	$6, 40(%rsp)
-	xorl	%edx, %edx
 	movl	$1920, %r9d
-	movl	$1080, 32(%rsp)
-	leaq	.LC1(%rip), %r8
+	xorl	%r8d, %r8d
+	xorl	%edx, %edx
+	movl	$6, 40(%rsp)
 	movq	%rax, %rcx
 	movq	%rax, %rdi
+	movl	$1080, 32(%rsp)
 .LEHB1:
 	call	_ZN3wze6engineC1EPKcS2_tth
 .LEHE1:
@@ -99,7 +96,7 @@ main:
 .LEHE5:
 	movq	8(%rbp), %rdx
 	leaq	80(%rdi), %rcx
-	leaq	632(%rdi), %rbx
+	leaq	656(%rdi), %rbx
 	leaq	.LC0(%rip), %r12
 .LEHB6:
 	call	_ZN3wze6engine6camera4BindEy
@@ -144,7 +141,7 @@ main:
 	call	_ZdlPvy
 	movq	%rdi, %rcx
 	call	_ZN3wze6engineD1Ev
-	movl	$688, %edx
+	movl	$712, %edx
 	movq	%rdi, %rcx
 	call	_ZdlPvy
 	xorl	%eax, %eax
@@ -223,7 +220,7 @@ main:
 main.cold:
 .L6:
 	movq	%rdi, %rcx
-	movl	$688, %edx
+	movl	$712, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 .LEHB7:
@@ -250,7 +247,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8432-.LLSDACSBC8432
 .LLSDACSBC8432:
-	.uleb128 .LEHB7-.LCOLDB2
+	.uleb128 .LEHB7-.LCOLDB1
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
@@ -259,9 +256,9 @@ main.cold:
 	.section	.text.startup,"x"
 	.section	.text.unlikely,"x"
 	.seh_endproc
-.LCOLDE2:
+.LCOLDE1:
 	.section	.text.startup,"x"
-.LHOTE2:
+.LHOTE1:
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
 	.def	_Znwy;	.scl	2;	.type	32;	.endef

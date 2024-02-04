@@ -4,8 +4,6 @@ namespace wze
 {
     engine::actors::actor::actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this)
     {
-        this->OverlapLayer = 0;
-        this->CollisionLayer = 0;
         this->Force = 0;
         this->Resistance = 0;
         this->HitboxVisible = false;
@@ -19,6 +17,7 @@ namespace wze
         this->Angle = 0;
         this->Layer = Layer;
         this->Depth = 0;
+        this->CollisionLayer = 0;
         this->HitboxWidth = Width;
         this->HitboxHeight = Height;
         this->PrevHitboxWidth = Width;
@@ -26,6 +25,8 @@ namespace wze
         this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, Height) / 2;
         this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, Width, Height);
         this->HitboxMedian2Angle = this->Engine->Vector.Angle(Width, 0, 0, Height);
+
+        this->Engine->Collision.CollisionLayers[0] += {this};
     }
 
     engine::actors::actor::~actor()
@@ -37,6 +38,14 @@ namespace wze
         if (this->Engine->Actors.Actors[this->Engine->Camera.YActor] == this)
         {
             this->Engine->Camera.YActor = 0;
+        }
+
+        for (uint64 i = 0; i < this->Engine->Collision.CollisionLayers[this->CollisionLayer].Length(); i++)
+        {
+            if (this->Engine->Collision.CollisionLayers[this->CollisionLayer][i] == this)
+            {
+                this->Engine->Collision.CollisionLayers[this->CollisionLayer].Remove(i, 1);
+            }
         }
     }
 
@@ -283,6 +292,26 @@ namespace wze
         }
 
         return this->Depth = Depth;
+    }
+
+    uint8 engine::actors::actor::GetCollisionLayer()
+    {
+        return this->CollisionLayer;
+    }
+
+    uint8 engine::actors::actor::SetCollisionLayer(uint8 CollisionLayer)
+    {
+        for (uint64 i = 0; i < this->Engine->Collision.CollisionLayers[this->CollisionLayer].Length(); i++)
+        {
+            if (this->Engine->Collision.CollisionLayers[this->CollisionLayer][i] == this)
+            {
+                this->Engine->Collision.CollisionLayers[this->CollisionLayer].Remove(i, 1);
+            }
+        }
+
+        this->Engine->Collision.CollisionLayers[CollisionLayer] += {this};
+
+        return this->CollisionLayer = CollisionLayer;
     }
 
     uint16 engine::actors::actor::GetHitboxWidth()

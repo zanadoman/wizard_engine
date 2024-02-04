@@ -2,7 +2,7 @@
 
 namespace wze
 {
-    engine::collision::collision(engine* Engine) : Engine(Engine) {}
+    engine::collision::collision(engine* Engine) : Engine(Engine), CollisionLayers(256) {}
 
     bool engine::collision::CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY)
     {

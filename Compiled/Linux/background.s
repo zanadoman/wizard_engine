@@ -16,7 +16,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	.cfi_offset 3, -16
 	movq	%rdi, %rbx
 	movq	%rsi, (%rdi)
-	leaq	568(%rsi), %rdi
+	leaq	584(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	pxor	%xmm1, %xmm1
@@ -42,7 +42,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	movq	%rax, 16(%rbx)
 	addq	$528, %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movb	$1, 168(%rax)
+	movb	$1, 152(%rax)
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
@@ -66,7 +66,7 @@ _ZN10backgroundD2Ev:
 	movq	(%rdi), %rax
 	movq	%rdi, %rbx
 	movq	24(%rdi), %rsi
-	leaq	568(%rax), %rdi
+	leaq	584(%rax), %rdi
 	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi

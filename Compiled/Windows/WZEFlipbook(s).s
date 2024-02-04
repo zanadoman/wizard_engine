@@ -801,11 +801,11 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.seh_endprologue
 	pxor	%xmm0, %xmm0
 	xorl	%esi, %esi
-	movupd	152(%r8), %xmm1
+	movupd	168(%r8), %xmm1
 	movq	112(%rsp), %rax
 	movq	(%rax), %rbp
 	movq	8(%rax), %rdi
-	movl	168(%r8), %eax
+	movl	200(%r8), %eax
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
 	movl	%eax, 16(%rcx)
@@ -980,9 +980,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	testq	%rcx, %rcx
 	je	.L155
 	movq	0(%rbp), %r8
-	cmpq	568(%r8), %rcx
+	cmpq	592(%r8), %rcx
 	jnb	.L156
-	movq	576(%r8), %r8
+	movq	600(%r8), %r8
 	cmpq	$0, (%r8,%rcx,8)
 	je	.L156
 .L155:
@@ -1243,9 +1243,9 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	subq	$56, %rsp
 	.seh_stackalloc	56
 	.seh_endprologue
-	movl	168(%r8), %eax
+	movl	200(%r8), %eax
 	movq	112(%rsp), %rbx
-	movupd	152(%r8), %xmm0
+	movupd	168(%r8), %xmm0
 	movl	%eax, 16(%rcx)
 	movl	$4294967295, %eax
 	movq	%rcx, %rsi
@@ -1435,9 +1435,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	testq	%rcx, %rcx
 	je	.L199
 	movq	(%rsi), %rbx
-	cmpq	568(%rbx), %rcx
+	cmpq	592(%rbx), %rcx
 	jnb	.L200
-	movq	576(%rbx), %r8
+	movq	600(%rbx), %r8
 	cmpq	$0, (%r8,%rcx,8)
 	jne	.L199
 .L200:
@@ -1675,25 +1675,25 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	.seh_stackalloc	48
 	.seh_endprologue
 	movq	8(%rcx), %rax
-	movsd	160(%rax), %xmm2
+	movsd	176(%rax), %xmm2
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm3
-	movsd	152(%rax), %xmm1
+	movsd	168(%rax), %xmm1
 	movq	(%rcx), %rax
 	movsd	48(%rbx), %xmm0
 	movsd	%xmm3, 72(%rsp)
-	leaq	552(%rax), %rcx
+	leaq	576(%rax), %rcx
 	movsd	%xmm0, 32(%rsp)
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
 	movsd	72(%rsp), %xmm3
 	movsd	%xmm0, 56(%rbx)
 	movsd	48(%rbx), %xmm0
-	movsd	160(%rax), %xmm2
-	movsd	152(%rax), %xmm1
+	movsd	176(%rax), %xmm2
+	movsd	168(%rax), %xmm1
 	movq	(%rbx), %rax
 	movsd	%xmm0, 32(%rsp)
-	leaq	552(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6vector5AngleEdddd
 	movsd	72(%rsp), %xmm3
 	movsd	%xmm0, 64(%rbx)
@@ -1729,23 +1729,23 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	.seh_savexmm	%xmm6, 48
 	.seh_endprologue
 	movq	8(%rcx), %rax
-	movsd	160(%rax), %xmm2
+	movsd	176(%rax), %xmm2
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
-	movsd	152(%rax), %xmm1
+	movsd	168(%rax), %xmm1
 	movq	(%rcx), %rax
 	movsd	%xmm6, 32(%rsp)
 	movsd	40(%rbx), %xmm3
-	leaq	552(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
 	movsd	%xmm0, 56(%rbx)
-	movsd	160(%rax), %xmm2
-	movsd	152(%rax), %xmm1
+	movsd	176(%rax), %xmm2
+	movsd	168(%rax), %xmm1
 	movq	(%rbx), %rax
 	movsd	%xmm6, 32(%rsp)
 	movsd	40(%rbx), %xmm3
-	leaq	552(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6vector5AngleEdddd
 	movsd	%xmm6, 48(%rbx)
 	movsd	%xmm0, 64(%rbx)

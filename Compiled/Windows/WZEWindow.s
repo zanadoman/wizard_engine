@@ -109,8 +109,10 @@ _ZN3wze6engine6window8HasFocusEv:
 	.align 8
 .LC3:
 	.ascii "wze::engine.window.New(): SDL_SetRenderDrawBlendMode() failed\12Params: Title: %s, IconPath: %p, Width: %d, Height: %d\12\0"
-	.align 8
 .LC4:
+	.ascii "engine/icon.png\0"
+	.align 8
+.LC5:
 	.ascii "wze::engine.window.New(): IMG_Load() failed\12Params: Title: %s, IconPath: %s, Width: %d, Height: %d\12\0"
 	.text
 	.align 2
@@ -156,26 +158,27 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rcx
 	testq	%rax, %rax
-	je	.L18
+	je	.L17
 	movl	$2, %r8d
 	movl	$-1, %edx
 	call	SDL_CreateRenderer
 	movq	%rax, 16(%rbx)
 	movq	%rax, %rcx
 	testq	%rax, %rax
-	je	.L19
+	je	.L18
 	movl	%r13d, %r8d
 	movl	%r12d, %edx
 	call	SDL_RenderSetLogicalSize
 	testl	%eax, %eax
-	jne	.L20
+	jne	.L19
 	movq	16(%rbx), %rcx
 	movl	$1, %edx
 	call	SDL_SetRenderDrawBlendMode
 	testl	%eax, %eax
-	jne	.L21
+	jne	.L20
 	testq	%rdi, %rdi
-	je	.L13
+	je	.L21
+.L13:
 	movq	%rdi, %rcx
 	call	IMG_Load
 	movq	%rax, %r15
@@ -186,7 +189,6 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	SDL_SetWindowIcon
 	movq	%r15, %rcx
 	call	SDL_FreeSurface
-.L13:
 	xorl	%eax, %eax
 	movw	%si, 24(%rbx)
 	movw	%r14w, 26(%rbx)
@@ -200,16 +202,12 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	popq	%r14
 	popq	%r15
 	ret
-.L18:
-	movl	%r13d, 32(%rsp)
-	movl	%r12d, %r9d
-	movq	%rdi, %r8
-	movq	%rbp, %rdx
-	leaq	.LC0(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
+	.p2align 4,,10
+	.p2align 3
 .L21:
+	leaq	.LC4(%rip), %rdi
+	jmp	.L13
+.L20:
 	movl	%r13d, 32(%rsp)
 	movl	%r12d, %r9d
 	movq	%rdi, %r8
@@ -218,7 +216,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L20:
+.L19:
 	movl	%r13d, 32(%rsp)
 	movl	%r12d, %r9d
 	movq	%rdi, %r8
@@ -227,7 +225,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L19:
+.L18:
 	movl	%r13d, 32(%rsp)
 	movl	%r12d, %r9d
 	movq	%rdi, %r8
@@ -236,12 +234,21 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
+.L17:
+	movl	%r13d, 32(%rsp)
+	movl	%r12d, %r9d
+	movq	%rdi, %r8
+	movq	%rbp, %rdx
+	leaq	.LC0(%rip), %rcx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
 .L22:
 	movl	%r13d, 32(%rsp)
 	movl	%r12d, %r9d
 	movq	%rdi, %r8
 	movq	%rbp, %rdx
-	leaq	.LC4(%rip), %rcx
+	leaq	.LC5(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit

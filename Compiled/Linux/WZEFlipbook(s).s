@@ -834,9 +834,9 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	pushq	%rbx
 	.cfi_def_cfa_offset 48
 	.cfi_offset 3, -48
-	movl	216(%rdx), %eax
+	movl	200(%rdx), %eax
 	movq	%rdi, %rbx
-	movupd	184(%rdx), %xmm1
+	movupd	168(%rdx), %xmm1
 	movq	%rsi, (%rdi)
 	movl	%eax, 16(%rdi)
 	movl	$4294967295, %eax
@@ -1029,9 +1029,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	testq	%rdx, %rdx
 	je	.L166
 	movq	(%r12), %rcx
-	cmpq	576(%rcx), %rdx
+	cmpq	592(%rcx), %rdx
 	jnb	.L167
-	movq	584(%rcx), %rcx
+	movq	600(%rcx), %rcx
 	cmpq	$0, (%rcx,%rdx,8)
 	je	.L167
 .L166:
@@ -1313,8 +1313,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	movl	216(%rdx), %eax
-	movupd	184(%rdx), %xmm1
+	movl	200(%rdx), %eax
+	movupd	168(%rdx), %xmm1
 	movq	%rsi, (%rdi)
 	movl	%eax, 16(%rdi)
 	movl	$4294967295, %eax
@@ -1520,9 +1520,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	testq	%rdx, %rdx
 	je	.L218
 	movq	0(%rbp), %rdi
-	cmpq	576(%rdi), %rdx
+	cmpq	592(%rdi), %rdx
 	jnb	.L219
-	movq	584(%rdi), %rdi
+	movq	600(%rdi), %rdi
 	cmpq	$0, (%rdi,%rdx,8)
 	jne	.L218
 .L219:
@@ -1791,18 +1791,18 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	movq	(%rdi), %rdx
 	movsd	48(%rbx), %xmm3
 	movsd	%xmm2, 8(%rsp)
-	movsd	192(%rax), %xmm1
-	movsd	184(%rax), %xmm0
-	leaq	560(%rdx), %rdi
+	movsd	176(%rax), %xmm1
+	movsd	168(%rax), %xmm0
+	leaq	576(%rdx), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rcx
 	movsd	8(%rsp), %xmm2
 	movsd	%xmm0, 56(%rbx)
 	movsd	48(%rbx), %xmm3
-	movsd	184(%rax), %xmm0
-	movsd	192(%rax), %xmm1
-	leaq	560(%rcx), %rdi
+	movsd	168(%rax), %xmm0
+	movsd	176(%rax), %xmm1
+	leaq	576(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
 	movsd	%xmm0, 64(%rbx)
@@ -1846,18 +1846,18 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	movq	(%rdi), %rdx
 	movsd	40(%rbx), %xmm2
 	movsd	%xmm3, 8(%rsp)
-	movsd	192(%rax), %xmm1
-	movsd	184(%rax), %xmm0
-	leaq	560(%rdx), %rdi
+	movsd	176(%rax), %xmm1
+	movsd	168(%rax), %xmm0
+	leaq	576(%rdx), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rcx
 	movsd	8(%rsp), %xmm3
 	movsd	%xmm0, 56(%rbx)
 	movsd	40(%rbx), %xmm2
-	movsd	184(%rax), %xmm0
-	movsd	192(%rax), %xmm1
-	leaq	560(%rcx), %rdi
+	movsd	168(%rax), %xmm0
+	movsd	176(%rax), %xmm1
+	leaq	576(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
 	movsd	%xmm0, 64(%rbx)

@@ -150,7 +150,7 @@ _ZN3wze6engine6camera4BindEy:
 	testq	%rax, %rax
 	je	.L15
 	pxor	%xmm1, %xmm1
-	ucomisd	184(%rax), %xmm1
+	ucomisd	216(%rax), %xmm1
 	jp	.L17
 	je	.L21
 .L17:
@@ -206,7 +206,7 @@ _ZN3wze6engine6camera5BindXEy:
 	testq	%rax, %rax
 	je	.L24
 	pxor	%xmm0, %xmm0
-	ucomisd	184(%rax), %xmm0
+	ucomisd	216(%rax), %xmm0
 	jp	.L26
 	je	.L30
 .L26:
@@ -262,7 +262,7 @@ _ZN3wze6engine6camera5BindYEy:
 	testq	%rax, %rax
 	je	.L33
 	pxor	%xmm0, %xmm0
-	ucomisd	184(%rax), %xmm0
+	ucomisd	216(%rax), %xmm0
 	jp	.L35
 	je	.L39
 .L35:
@@ -358,7 +358,7 @@ _ZN3wze6engine6camera6UpdateEv:
 	jnb	.L54
 	movq	(%r8,%rdx,8), %rax
 	movq	32(%rcx), %rdx
-	movsd	152(%rax), %xmm0
+	movsd	168(%rax), %xmm0
 	movsd	%xmm0, 40(%rcx)
 	testq	%rdx, %rdx
 	je	.L46
@@ -368,7 +368,7 @@ _ZN3wze6engine6camera6UpdateEv:
 	cmpq	536(%rax), %rdx
 	jnb	.L54
 	movq	(%r8,%rdx,8), %rax
-	movsd	160(%rax), %xmm0
+	movsd	176(%rax), %xmm0
 	xorl	%eax, %eax
 	movsd	%xmm0, 48(%rcx)
 	addq	$40, %rsp

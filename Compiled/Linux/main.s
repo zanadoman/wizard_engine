@@ -18,7 +18,7 @@ main:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movl	$696, %edi
+	movl	$712, %edi
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
@@ -77,7 +77,7 @@ main:
 	.p2align 4,,10
 	.p2align 3
 .L3:
-	leaq	640(%r13), %rbx
+	leaq	656(%r13), %rbx
 	movq	%r14, %rdi
 	call	_ZN6player6UpdateEv@PLT
 	movq	%rbx, %rdi
@@ -118,7 +118,7 @@ main:
 	movq	%r13, %rdi
 	call	_ZN3wze6engineD1Ev@PLT
 	movq	%r13, %rdi
-	movl	$696, %esi
+	movl	$712, %esi
 	call	_ZdlPvm@PLT
 	addq	$24, %rsp
 	.cfi_remember_state
@@ -202,7 +202,7 @@ main.cold:
 	.cfi_offset 14, -24
 	.cfi_offset 15, -16
 	movq	%r13, %rdi
-	movl	$696, %esi
+	movl	$712, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 .LEHB7:

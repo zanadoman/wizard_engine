@@ -306,9 +306,9 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	testq	%rdx, %rdx
 	je	.L43
 	movq	(%rcx), %rax
-	cmpq	568(%rax), %rdx
+	cmpq	592(%rax), %rdx
 	jnb	.L42
-	movq	576(%rax), %rax
+	movq	600(%rax), %rax
 	cmpq	$0, (%rax,%rdx,8)
 	je	.L42
 .L43:
@@ -334,8 +334,8 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	movl	$384, %r8d
 	pxor	%xmm0, %xmm0
 	movw	%r8w, 36(%rax)
-	movl	168(%rdx), %ecx
-	movupd	152(%rdx), %xmm4
+	movl	200(%rdx), %ecx
+	movupd	168(%rdx), %xmm4
 	movq	%rdi, 72(%rax)
 	movq	24(%rsi), %rdx
 	movups	%xmm3, (%rax)
@@ -364,8 +364,8 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	movdqu	(%rsi), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rdi, 72(%rax)
-	movl	168(%rdx), %ecx
-	movupd	152(%rdx), %xmm2
+	movl	200(%rdx), %ecx
+	movupd	168(%rdx), %xmm2
 	movq	%rax, 40(%rsp)
 	movups	%xmm1, (%rax)
 	movl	%ecx, 16(%rax)
@@ -920,8 +920,8 @@ _ZN3wze6engine6actors5actor8texturesixEy:
 _ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_y:
 .LFB8446:
 	.seh_endprologue
-	movupd	152(%r8), %xmm0
-	movl	168(%r8), %eax
+	movupd	168(%r8), %xmm0
+	movl	200(%r8), %eax
 	movl	%eax, 16(%rcx)
 	movl	$4294967295, %eax
 	movq	%rax, 20(%rcx)
@@ -964,25 +964,25 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	.seh_stackalloc	48
 	.seh_endprologue
 	movq	8(%rcx), %rax
-	movsd	160(%rax), %xmm2
+	movsd	176(%rax), %xmm2
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm3
-	movsd	152(%rax), %xmm1
+	movsd	168(%rax), %xmm1
 	movq	(%rcx), %rax
 	movsd	48(%rbx), %xmm0
 	movsd	%xmm3, 72(%rsp)
-	leaq	552(%rax), %rcx
+	leaq	576(%rax), %rcx
 	movsd	%xmm0, 32(%rsp)
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
 	movsd	72(%rsp), %xmm3
 	movsd	%xmm0, 56(%rbx)
 	movsd	48(%rbx), %xmm0
-	movsd	160(%rax), %xmm2
-	movsd	152(%rax), %xmm1
+	movsd	176(%rax), %xmm2
+	movsd	168(%rax), %xmm1
 	movq	(%rbx), %rax
 	movsd	%xmm0, 32(%rsp)
-	leaq	552(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6vector5AngleEdddd
 	movsd	72(%rsp), %xmm3
 	movsd	%xmm0, 64(%rbx)
@@ -1018,23 +1018,23 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	.seh_savexmm	%xmm6, 48
 	.seh_endprologue
 	movq	8(%rcx), %rax
-	movsd	160(%rax), %xmm2
+	movsd	176(%rax), %xmm2
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
-	movsd	152(%rax), %xmm1
+	movsd	168(%rax), %xmm1
 	movq	(%rcx), %rax
 	movsd	%xmm6, 32(%rsp)
 	movsd	40(%rbx), %xmm3
-	leaq	552(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
 	movsd	%xmm0, 56(%rbx)
-	movsd	160(%rax), %xmm2
-	movsd	152(%rax), %xmm1
+	movsd	176(%rax), %xmm2
+	movsd	168(%rax), %xmm1
 	movq	(%rbx), %rax
 	movsd	%xmm6, 32(%rsp)
 	movsd	40(%rbx), %xmm3
-	leaq	552(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6vector5AngleEdddd
 	movsd	%xmm6, 48(%rbx)
 	movsd	%xmm0, 64(%rbx)
@@ -1074,9 +1074,9 @@ _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
 	testq	%rdx, %rdx
 	je	.L169
 	movq	(%rcx), %rdx
-	cmpq	568(%rdx), %rax
+	cmpq	592(%rdx), %rax
 	jnb	.L170
-	movq	576(%rdx), %rdx
+	movq	600(%rdx), %rdx
 	cmpq	$0, (%rdx,%rax,8)
 	je	.L170
 .L169:
