@@ -349,7 +349,7 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	movl	$384, %esi
 	pxor	%xmm0, %xmm0
 	movw	%si, 36(%rax)
-	movl	168(%rdx), %ecx
+	movl	184(%rdx), %ecx
 	movupd	152(%rdx), %xmm4
 	movq	%r12, 72(%rax)
 	movq	24(%rbp), %rdx
@@ -375,7 +375,7 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	pxor	%xmm0, %xmm0
 	movq	%r12, 72(%rax)
 	movq	24(%rbp), %rdi
-	movl	168(%rdx), %ecx
+	movl	184(%rdx), %ecx
 	movupd	152(%rdx), %xmm2
 	movq	%rax, (%rsp)
 	movups	%xmm1, (%rax)
@@ -986,7 +986,7 @@ _ZN3wze6engine6actors5actor8texturesixEy:
 _ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_y:
 .LFB2245:
 	.cfi_startproc
-	movl	168(%rdx), %eax
+	movl	184(%rdx), %eax
 	movupd	152(%rdx), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rsi, (%rdi)

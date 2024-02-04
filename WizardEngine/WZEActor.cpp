@@ -8,6 +8,8 @@ namespace wze
         this->Type = Type;
         this->X = X;
         this->Y = Y;
+        this->PrevX = X;
+        this->PrevY = Y;
         this->Width = Width;
         this->Height = Height;
         this->Angle = 0;
@@ -15,6 +17,8 @@ namespace wze
         this->Depth = 0;
         this->HitboxWidth = Width;
         this->HitboxHeight = Height;
+        this->PrevHitboxWidth = Width;
+        this->PrevHitboxHeight = Height;
         this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, Height) / 2;
         this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, Width, Height);
         this->HitboxMedian2Angle = this->Engine->Vector.Angle(Width, 0, 0, Height);
@@ -50,6 +54,11 @@ namespace wze
 
         this->UpdateMembersPosition();
 
+        this->PrevX = this->X;
+        this->PrevY = this->Y;
+        this->PrevHitboxWidth = this->Width;
+        this->PrevHitboxHeight = this->Height;
+
         return this->X;
     }
 
@@ -65,6 +74,11 @@ namespace wze
         //Collision simulation
 
         this->UpdateMembersPosition();
+
+        this->PrevX = this->X;
+        this->PrevY = this->Y;
+        this->PrevHitboxWidth = this->Width;
+        this->PrevHitboxHeight = this->Height;
 
         return this->Y;
     }
@@ -88,6 +102,11 @@ namespace wze
 
         this->UpdateMembersPosition();
 
+        this->PrevX = this->X;
+        this->PrevY = this->Y;
+        this->PrevHitboxWidth = this->Width;
+        this->PrevHitboxHeight = this->Height;
+
         return this->Width;
     }
 
@@ -109,6 +128,11 @@ namespace wze
         //Collision simulation
 
         this->UpdateMembersPosition();
+
+        this->PrevX = this->X;
+        this->PrevY = this->Y;
+        this->PrevHitboxWidth = this->Width;
+        this->PrevHitboxHeight = this->Height;
 
         return this->Height;
     }
@@ -198,6 +222,11 @@ namespace wze
         //Collision simulation
 
         this->UpdateMembersPosition();
+
+        this->PrevX = this->X;
+        this->PrevY = this->Y;
+        this->PrevHitboxWidth = this->Width;
+        this->PrevHitboxHeight = this->Height;
 
         return this->Angle;
     }

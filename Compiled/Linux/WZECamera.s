@@ -115,7 +115,7 @@ _ZN3wze6engine6camera4BindEy:
 	testq	%rax, %rax
 	je	.L17
 	pxor	%xmm1, %xmm1
-	ucomisd	184(%rax), %xmm1
+	ucomisd	200(%rax), %xmm1
 	movq	%rsi, %xmm0
 	punpcklqdq	%xmm0, %xmm0
 	jp	.L19
@@ -179,7 +179,7 @@ _ZN3wze6engine6camera5BindXEy:
 	testq	%rax, %rax
 	je	.L27
 	pxor	%xmm0, %xmm0
-	ucomisd	184(%rax), %xmm0
+	ucomisd	200(%rax), %xmm0
 	jp	.L29
 	je	.L34
 .L29:
@@ -241,7 +241,7 @@ _ZN3wze6engine6camera5BindYEy:
 	testq	%rax, %rax
 	je	.L37
 	pxor	%xmm0, %xmm0
-	ucomisd	184(%rax), %xmm0
+	ucomisd	200(%rax), %xmm0
 	jp	.L39
 	je	.L44
 .L39:

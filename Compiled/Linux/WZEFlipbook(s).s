@@ -834,7 +834,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	pushq	%rbx
 	.cfi_def_cfa_offset 48
 	.cfi_offset 3, -48
-	movl	168(%rdx), %eax
+	movl	184(%rdx), %eax
 	movq	%rdi, %rbx
 	movupd	152(%rdx), %xmm1
 	movq	%rsi, (%rdi)
@@ -1313,7 +1313,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	movl	168(%rdx), %eax
+	movl	184(%rdx), %eax
 	movupd	152(%rdx), %xmm1
 	movq	%rsi, (%rdi)
 	movl	%eax, 16(%rdi)

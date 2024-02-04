@@ -548,9 +548,9 @@ _ZN3wze6engine6render14SelectionStageEv:
 	je	.L301
 .L143:
 	movsd	.LC8(%rip), %xmm0
-	mulsd	192(%rsi), %xmm0
+	mulsd	208(%rsi), %xmm0
 	pxor	%xmm7, %xmm7
-	movsd	184(%rsi), %xmm1
+	movsd	200(%rsi), %xmm1
 	movapd	%xmm1, %xmm2
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm1
@@ -725,14 +725,14 @@ _ZN3wze6engine6render14SelectionStageEv:
 	.p2align 4,,10
 	.p2align 3
 .L299:
-	movzwl	200(%rcx), %esi
+	movzwl	216(%rcx), %esi
 	testw	%si, %si
 	je	.L52
-	movzwl	202(%rcx), %edi
+	movzwl	218(%rcx), %edi
 	testw	%di, %di
 	je	.L52
 	movsd	152(%rcx), %xmm0
-	movsd	184(%rcx), %xmm2
+	movsd	200(%rcx), %xmm2
 	movzwl	%di, %edx
 	leaq	80(%rax), %rdi
 	movsd	160(%rcx), %xmm1
@@ -763,8 +763,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jmp	.L156
 .L292:
 	movsd	.LC8(%rip), %xmm0
-	mulsd	192(%rdi), %xmm0
-	movsd	184(%rdi), %xmm1
+	mulsd	208(%rdi), %xmm0
+	movsd	200(%rdi), %xmm1
 	movapd	%xmm1, %xmm2
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm1
@@ -1003,8 +1003,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jmp	.L174
 .L293:
 	movsd	.LC8(%rip), %xmm0
-	mulsd	192(%rdi), %xmm0
-	movsd	184(%rdi), %xmm1
+	mulsd	208(%rdi), %xmm0
+	movsd	200(%rdi), %xmm1
 	movapd	%xmm1, %xmm2
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm1
@@ -1163,8 +1163,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	.p2align 3
 .L295:
 	movsd	.LC8(%rip), %xmm0
-	mulsd	192(%rdi), %xmm0
-	movsd	184(%rdi), %xmm1
+	mulsd	208(%rdi), %xmm0
+	movsd	200(%rdi), %xmm1
 	movapd	%xmm1, %xmm2
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm1

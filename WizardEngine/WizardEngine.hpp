@@ -487,6 +487,8 @@ namespace wze
                         uint64 Type;
                         double X;
                         double Y;
+                        double PrevX;
+                        double PrevY;
                         uint16 Width;
                         uint16 Height;
                         double Angle;
@@ -494,6 +496,8 @@ namespace wze
                         double Depth;
                         uint16 HitboxWidth;
                         uint16 HitboxHeight;
+                        uint16 PrevHitboxWidth;
+                        uint16 PrevHitboxHeight;
                         double HitboxMedianLength;
                         double HitboxMedian1Angle;
                         double HitboxMedian2Angle;
@@ -543,7 +547,8 @@ namespace wze
                 public:
                     
                 private:
-                    bool CheckCollision(actors::actor* Actor1, actors::actor* Actor2);
+                    bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
+                    direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
                     collision(engine* Engine);
             } Collision;
 

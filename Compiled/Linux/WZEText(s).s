@@ -381,7 +381,7 @@ _ZN3wze6engine6actors5actor5texts3NewEPKcy:
 	movl	$384, %esi
 	xorl	%edi, %edi
 	pxor	%xmm0, %xmm0
-	movzwl	170(%rax), %edx
+	movzwl	186(%rax), %edx
 	movw	%si, 36(%r14)
 	movq	%rsp, %rsi
 	movl	$-1, 18(%r14)
@@ -426,7 +426,7 @@ _ZN3wze6engine6actors5actor5texts3NewEPKcy:
 	movq	%rsp, %r14
 	movq	%r14, %rsi
 	movq	%r15, %rdi
-	movzwl	170(%rax), %edx
+	movzwl	186(%rax), %edx
 	movl	$-1, 18(%rbx)
 	movq	$0x000000000, 24(%rbx)
 	movw	%dx, 16(%rbx)
@@ -1291,7 +1291,7 @@ _ZN3wze6engine6actors5actor5texts4textC2EPS0_PS2_PKcy:
 	movq	%rsp, %rsi
 	movq	%r13, %rdi
 	movq	%r12, (%rsp)
-	movzwl	170(%rax), %edx
+	movzwl	186(%rax), %edx
 	movl	$-1, 18(%rbx)
 	movq	$0x000000000, 24(%rbx)
 	movw	%dx, 16(%rbx)
