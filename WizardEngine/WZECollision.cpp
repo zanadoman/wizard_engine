@@ -293,4 +293,22 @@ namespace wze
 
         return false;
     }
+
+    uint8 engine::collision::ResolveCollisionLayer(uint64 Layer)
+    {
+        for (uint64 i = 0; i < this->CollisionLayers[Layer].Length(); i++)
+        {
+            this->CollisionLayers[Layer][i]->PrevX = this->CollisionLayers[Layer][i]->X;
+            this->CollisionLayers[Layer][i]->PrevY = this->CollisionLayers[Layer][i]->Y;
+            this->CollisionLayers[Layer][i]->PrevHitboxWidth = this->CollisionLayers[Layer][i]->HitboxWidth;
+            this->CollisionLayers[Layer][i]->PrevHitboxHeight = this->CollisionLayers[Layer][i]->HitboxHeight;
+        }
+
+        return 0;
+    }
+
+    uint8 engine::collision::NewCollisionBranch(uint64 Layer, uint64 Root, uint64 RootForce, uint64 CurrentBranch)
+    {
+        return 0;
+    }
 }

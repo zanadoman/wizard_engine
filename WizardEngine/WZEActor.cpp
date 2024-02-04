@@ -62,14 +62,9 @@ namespace wze
     {
         this->X = X;
 
-        //Collision simulation
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
 
         this->UpdateMembersPosition();
-
-        this->PrevX = this->X;
-        this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->HitboxWidth;
-        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->X;
     }
@@ -83,14 +78,9 @@ namespace wze
     {
         this->Y = Y;
 
-        //Collision simulation
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
 
         this->UpdateMembersPosition();
-
-        this->PrevX = this->X;
-        this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->HitboxWidth;
-        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->Y;
     }
@@ -110,14 +100,9 @@ namespace wze
 
         this->UpdateHitboxScale();
 
-        //Collision simulation
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
 
         this->UpdateMembersPosition();
-
-        this->PrevX = this->X;
-        this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->HitboxWidth;
-        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->Width;
     }
@@ -137,14 +122,9 @@ namespace wze
 
         this->UpdateHitboxScale();
 
-        //Collision simulation
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
 
         this->UpdateMembersPosition();
-
-        this->PrevX = this->X;
-        this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->HitboxWidth;
-        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->Height;
     }
@@ -231,14 +211,9 @@ namespace wze
 
         this->UpdateHitboxScale();
 
-        //Collision simulation
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
 
         this->UpdateMembersPosition();
-
-        this->PrevX = this->X;
-        this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->HitboxWidth;
-        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->Angle;
     }
@@ -312,6 +287,11 @@ namespace wze
         if (CollisionLayer != 0)
         {
             this->Engine->Collision.CollisionLayers[CollisionLayer] += {this};
+
+            this->PrevX = this->X;
+            this->PrevY = this->Y;
+            this->PrevHitboxWidth = this->HitboxWidth;
+            this->PrevHitboxHeight = this->HitboxHeight;
         }
 
         return this->CollisionLayer = CollisionLayer;
