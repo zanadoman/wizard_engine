@@ -923,7 +923,7 @@ _ZN3wze6engine6actors5actor4SetXEd:
 	movsd	%xmm0, 152(%rdi)
 	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
 	movupd	152(%rbx), %xmm0
-	movl	184(%rbx), %eax
+	movl	216(%rbx), %eax
 	movl	%eax, 220(%rbx)
 	movups	%xmm0, 168(%rbx)
 	popq	%rbx
@@ -946,7 +946,7 @@ _ZN3wze6engine6actors5actor4SetYEd:
 	movsd	%xmm0, 160(%rdi)
 	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
 	movupd	152(%rbx), %xmm0
-	movl	184(%rbx), %eax
+	movl	216(%rbx), %eax
 	movups	%xmm0, 168(%rbx)
 	unpckhpd	%xmm0, %xmm0
 	movl	%eax, 220(%rbx)
@@ -1011,10 +1011,10 @@ _ZN3wze6engine6actors5actor8SetWidthEt:
 	call	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	movd	184(%rbx), %xmm0
+	movl	216(%rbx), %eax
 	movupd	152(%rbx), %xmm4
-	movd	%xmm0, 220(%rbx)
-	pextrw	$0, %xmm0, %eax
+	movl	%eax, 220(%rbx)
+	movzwl	184(%rbx), %eax
 	movups	%xmm4, 168(%rbx)
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 24
@@ -1078,10 +1078,10 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	call	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	movd	184(%rbx), %xmm0
+	movl	216(%rbx), %eax
 	movupd	152(%rbx), %xmm4
-	movd	%xmm0, 220(%rbx)
-	pextrw	$1, %xmm0, %eax
+	movl	%eax, 220(%rbx)
+	movzwl	186(%rbx), %eax
 	movups	%xmm4, 168(%rbx)
 	addq	$16, %rsp
 	.cfi_def_cfa_offset 16
@@ -1241,7 +1241,7 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
 	movupd	152(%rbx), %xmm2
-	movl	184(%rbx), %eax
+	movl	216(%rbx), %eax
 	movsd	192(%rbx), %xmm0
 	movl	%eax, 220(%rbx)
 	movups	%xmm2, 168(%rbx)

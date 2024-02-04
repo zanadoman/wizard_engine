@@ -545,10 +545,10 @@ namespace wze
                 };
 
                 public:
+                    direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
                     
                 private:
                     bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
-                    direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
                     collision(engine* Engine);
             } Collision;
 

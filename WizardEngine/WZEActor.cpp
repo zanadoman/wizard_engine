@@ -56,8 +56,8 @@ namespace wze
 
         this->PrevX = this->X;
         this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->Width;
-        this->PrevHitboxHeight = this->Height;
+        this->PrevHitboxWidth = this->HitboxWidth;
+        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->X;
     }
@@ -77,8 +77,8 @@ namespace wze
 
         this->PrevX = this->X;
         this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->Width;
-        this->PrevHitboxHeight = this->Height;
+        this->PrevHitboxWidth = this->HitboxWidth;
+        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->Y;
     }
@@ -104,8 +104,8 @@ namespace wze
 
         this->PrevX = this->X;
         this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->Width;
-        this->PrevHitboxHeight = this->Height;
+        this->PrevHitboxWidth = this->HitboxWidth;
+        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->Width;
     }
@@ -131,8 +131,8 @@ namespace wze
 
         this->PrevX = this->X;
         this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->Width;
-        this->PrevHitboxHeight = this->Height;
+        this->PrevHitboxWidth = this->HitboxWidth;
+        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->Height;
     }
@@ -225,8 +225,8 @@ namespace wze
 
         this->PrevX = this->X;
         this->PrevY = this->Y;
-        this->PrevHitboxWidth = this->Width;
-        this->PrevHitboxHeight = this->Height;
+        this->PrevHitboxWidth = this->HitboxWidth;
+        this->PrevHitboxHeight = this->HitboxHeight;
 
         return this->Angle;
     }
