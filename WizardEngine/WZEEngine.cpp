@@ -83,8 +83,6 @@ namespace wze
             this->EventQueue.Remove(i, this->EventQueue.Length() - i);
         }
 
-        printf("%lld\n", this->EventQueue.Length());
-
         this->Keys.Update();
         this->Mouse.Update();
 

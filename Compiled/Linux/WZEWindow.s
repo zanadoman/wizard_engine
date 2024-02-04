@@ -80,12 +80,13 @@ _ZN3wze6engine6window8HasFocusEv:
 	.align 8
 .LC3:
 	.string	"wze::engine.window.New(): SDL_SetRenderDrawBlendMode() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d\n"
-	.align 8
-.LC4:
-	.string	"wze::engine.window.New(): IMG_Load() failed\nParams: Title: %s, IconPath: %s, Width: %d, Height: %d\n"
 	.section	.rodata.str1.1,"aMS",@progbits,1
-.LC5:
+.LC4:
 	.string	"engine/icon.png"
+	.section	.rodata.str1.8
+	.align 8
+.LC5:
+	.string	"wze::engine.window.New(): IMG_Load() failed\nParams: Title: %s, IconPath: %s, Width: %d, Height: %d\n"
 	.text
 	.align 2
 	.p2align 4
@@ -130,7 +131,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	SDL_CreateWindow@PLT
 	movq	%rax, 8(%rbx)
 	testq	%rax, %rax
-	je	.L20
+	je	.L16
 	movq	%rax, %rdi
 	movl	$2, %edx
 	movl	$-1, %esi
@@ -138,25 +139,24 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	movq	%rax, 16(%rbx)
 	movq	%rax, %rdi
 	testq	%rax, %rax
-	je	.L21
+	je	.L17
 	movl	%r15d, %edx
 	movl	%r14d, %esi
 	call	SDL_RenderSetLogicalSize@PLT
 	testl	%eax, %eax
-	jne	.L22
+	jne	.L18
 	movq	16(%rbx), %rdi
 	movl	$1, %esi
 	call	SDL_SetRenderDrawBlendMode@PLT
 	testl	%eax, %eax
-	jne	.L23
-	testq	%r13, %r13
 	jne	.L19
-	leaq	.LC5(%rip), %r13
-.L19:
+	testq	%r13, %r13
+	je	.L20
 	movq	%r13, %rdi
 	call	IMG_Load@PLT
 	testq	%rax, %rax
-	je	.L24
+	je	.L15
+.L13:
 	movq	8(%rbx), %rdi
 	movq	%rax, %rsi
 	movq	%rax, 8(%rsp)
@@ -182,8 +182,25 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L23:
+	.p2align 4,,10
+	.p2align 3
+.L20:
 	.cfi_restore_state
+	leaq	.LC4(%rip), %r13
+	movq	%r13, %rdi
+	call	IMG_Load@PLT
+	testq	%rax, %rax
+	jne	.L13
+.L15:
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
+	leaq	.LC5(%rip), %rdi
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L19:
 	movq	8(%rsp), %rsi
 	movl	%r15d, %r8d
 	movl	%r14d, %ecx
@@ -193,27 +210,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L21:
-	movq	8(%rsp), %rsi
-	movl	%r15d, %r8d
-	movl	%r14d, %ecx
-	movq	%r13, %rdx
-	leaq	.LC1(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L20:
-	movq	8(%rsp), %rsi
-	movl	%r15d, %r8d
-	movl	%r14d, %ecx
-	movq	%r13, %rdx
-	leaq	.LC0(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L22:
+.L18:
 	movq	8(%rsp), %rsi
 	movl	%r15d, %r8d
 	movl	%r14d, %ecx
@@ -223,12 +220,23 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L24:
+.L16:
 	movq	8(%rsp), %rsi
 	movl	%r15d, %r8d
 	movl	%r14d, %ecx
 	movq	%r13, %rdx
-	leaq	.LC4(%rip), %rdi
+	leaq	.LC0(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L17:
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
+	leaq	.LC1(%rip), %rdi
+	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT

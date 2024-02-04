@@ -503,9 +503,6 @@ _ZN3wze6engine15UpdateFlipbooksEv:
 	.align 8
 .LC7:
 	.string	"neo::array.Remove(): Memory allocation failed\nParams: Index: %lld, Length: %lld\n"
-	.section	.rodata.str1.1
-.LC8:
-	.string	"%lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -523,11 +520,11 @@ _ZN3wze6engine6UpdateEv:
 	pushq	%rbp
 	.cfi_def_cfa_offset 32
 	.cfi_offset 6, -32
-	xorl	%ebp, %ebp
+	movq	%rdi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 40
 	.cfi_offset 3, -40
-	movq	%rdi, %rbx
+	xorl	%ebx, %ebx
 	subq	$72, %rsp
 	.cfi_def_cfa_offset 112
 	movq	%fs:40, %rax
@@ -535,33 +532,33 @@ _ZN3wze6engine6UpdateEv:
 	xorl	%eax, %eax
 	movq	%rsp, %r12
 	call	SDL_GetTicks@PLT
-	subl	652(%rbx), %eax
-	leaq	80(%rbx), %rdi
-	movl	%eax, 656(%rbx)
+	subl	652(%rbp), %eax
+	leaq	80(%rbp), %rdi
+	movl	%eax, 656(%rbp)
 	call	_ZN3wze6engine6camera6UpdateEv@PLT
-	leaq	32(%rbx), %rdi
+	leaq	32(%rbp), %rdi
 	call	_ZN3wze6engine6render6UpdateEv@PLT
 	call	SDL_GetTicks@PLT
-	subl	656(%rbx), %eax
-	subl	652(%rbx), %eax
-	leaq	640(%rbx), %rdi
-	movl	%eax, 660(%rbx)
+	subl	656(%rbp), %eax
+	subl	652(%rbp), %eax
+	leaq	640(%rbp), %rdi
+	movl	%eax, 660(%rbp)
 	call	_ZN3wze6engine6timing6UpdateEv@PLT
-	movq	%rbx, %rdi
+	movq	%rbp, %rdi
 	call	_ZN3wze6engine15UpdateFlipbooksEv
-	movq	8(%rbx), %rdi
+	movq	8(%rbp), %rdi
 	call	SDL_GetWindowFlags@PLT
-	movl	%eax, 28(%rbx)
+	movl	%eax, 28(%rbp)
 	jmp	.L51
 	.p2align 4,,10
 	.p2align 3
 .L53:
-	cmpq	%rax, %rbp
+	cmpq	%rax, %rbx
 	jnb	.L67
-	leaq	0(,%rbp,8), %rax
+	leaq	0(,%rbx,8), %rax
 	movdqa	(%rsp), %xmm3
-	subq	%rbp, %rax
-	addq	$1, %rbp
+	subq	%rbx, %rax
+	addq	$1, %rbx
 	leaq	(%rdi,%rax,8), %rax
 	movups	%xmm3, (%rax)
 	movdqa	16(%rsp), %xmm4
@@ -577,21 +574,21 @@ _ZN3wze6engine6UpdateEv:
 	je	.L68
 	cmpl	$256, (%rsp)
 	je	.L64
-	movq	680(%rbx), %rax
-	movq	688(%rbx), %rdi
-	cmpq	%rax, %rbp
+	movq	680(%rbp), %rax
+	movq	688(%rbp), %rdi
+	cmpq	%rax, %rbx
 	jne	.L53
-	leaq	11(%rbp), %r13
-	movq	%r13, 680(%rbx)
+	leaq	11(%rbx), %r13
+	movq	%r13, 680(%rbp)
 	leaq	0(,%r13,8), %rsi
 	subq	%r13, %rsi
 	salq	$3, %rsi
 	call	realloc@PLT
-	movq	%rax, 688(%rbx)
+	movq	%rax, 688(%rbp)
 	movq	%rax, %rdi
 	testq	%rax, %rax
 	je	.L69
-	movq	680(%rbx), %rax
+	movq	680(%rbp), %rax
 	leaq	-1(%rax), %rdx
 	cmpq	%r13, %rdx
 	jb	.L53
@@ -619,7 +616,7 @@ _ZN3wze6engine6UpdateEv:
 	.p2align 4,,10
 	.p2align 3
 .L56:
-	movq	688(%rbx), %rdx
+	movq	688(%rbp), %rdx
 	subq	$1, %rcx
 	movdqu	(%rdx,%rax), %xmm0
 	movdqu	16(%rdx,%rax), %xmm1
@@ -633,23 +630,19 @@ _ZN3wze6engine6UpdateEv:
 	cmpq	%r13, %rcx
 	jnb	.L56
 .L57:
-	movq	680(%rbx), %rax
-	movq	688(%rbx), %rdi
+	movq	680(%rbp), %rax
+	movq	688(%rbp), %rdi
 	jmp	.L53
 	.p2align 4,,10
 	.p2align 3
 .L68:
-	movq	680(%rbx), %r12
-	cmpq	%r12, %rbp
+	movq	680(%rbp), %r12
+	cmpq	%r12, %rbx
 	jb	.L70
-.L60:
-	movq	%r12, %rsi
-	leaq	.LC8(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	leaq	160(%rbx), %rdi
+.L62:
+	leaq	160(%rbp), %rdi
 	call	_ZN3wze6engine4keys6UpdateEv@PLT
-	leaq	472(%rbx), %rdi
+	leaq	472(%rbp), %rdi
 	call	_ZN3wze6engine5mouse6UpdateEv@PLT
 	movl	$1, %eax
 .L50:
@@ -677,27 +670,33 @@ _ZN3wze6engine6UpdateEv:
 	.p2align 4,,10
 	.p2align 3
 .L70:
-	movq	%rbp, 680(%rbx)
-	movq	688(%rbx), %rdi
-	testq	%rbp, %rbp
+	movq	%rbx, 680(%rbp)
+	movq	688(%rbp), %rdi
+	testq	%rbx, %rbx
 	je	.L72
-	leaq	0(,%rbp,8), %rsi
-	subq	%rbp, %rsi
+	leaq	0(,%rbx,8), %rsi
+	subq	%rbx, %rsi
 	salq	$3, %rsi
 	call	realloc@PLT
-	movq	%rax, 688(%rbx)
+	movq	%rax, 688(%rbp)
 	testq	%rax, %rax
-	je	.L62
-	movq	680(%rbx), %r12
-	jmp	.L60
+	jne	.L62
+	movq	%r12, %rdx
+	leaq	.LC7(%rip), %rdi
+	movq	%rbx, %rsi
+	subq	%rbx, %rdx
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.p2align 4,,10
+	.p2align 3
 .L72:
 	call	free@PLT
-	movq	680(%rbx), %r12
-	movq	$0, 688(%rbx)
-	jmp	.L60
+	movq	$0, 688(%rbp)
+	jmp	.L62
 .L67:
 	leaq	.LC5(%rip), %rdi
-	movq	%rbp, %rsi
+	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -705,17 +704,8 @@ _ZN3wze6engine6UpdateEv:
 .L69:
 	leaq	.LC6(%rip), %rdi
 	movl	$11, %edx
-	movq	%rbp, %rsi
+	movq	%rbx, %rsi
 	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L62:
-	movq	%r12, %rdx
-	leaq	.LC7(%rip), %rdi
-	movq	%rbp, %rsi
-	xorl	%eax, %eax
-	subq	%rbp, %rdx
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
