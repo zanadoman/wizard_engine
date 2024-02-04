@@ -79,9 +79,12 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	%rax, 8(%rsp)
 	call	_ZN3wze6engine6actorsC1EPS0_@PLT
 .LEHE1:
-	leaq	560(%rbx), %rdi
+	leaq	552(%rbx), %rdi
 	movq	%rbx, %rsi
 .LEHB2:
+	call	_ZN3wze6engine9collisionC1EPS0_@PLT
+	leaq	560(%rbx), %rdi
+	movq	%rbx, %rsi
 	call	_ZN3wze6engine6vectorC1EPS0_@PLT
 	leaq	568(%rbx), %rdi
 	movq	%rbx, %rsi
