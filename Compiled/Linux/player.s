@@ -135,7 +135,7 @@ _ZN6playerC2EPN3wze6engineE:
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movb	$1, 136(%rax)
+	movb	$1, 168(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	528(%rax), %rdi

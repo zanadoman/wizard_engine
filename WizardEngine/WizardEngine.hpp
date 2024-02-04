@@ -5,6 +5,7 @@
 
 #include "Includes/SDL.h"
 #include "Includes/SDL_image.h"
+#include "Includes/SDL_stdinc.h"
 #include "Includes/SDL_ttf.h"
 #include "Includes/SDL_mixer.h"
 
@@ -464,6 +465,10 @@ namespace wze
 
                     //__________Actor______________________________________________________________________________
 
+                        uint64 OverlapLayer;
+                        uint64 CollisionLayer;
+                        uint64 Force;
+                        uint64 Resistance;
                         bool HitboxVisible;
                         uint64 GetType();
                         double GetX();
@@ -545,10 +550,11 @@ namespace wze
                 };
 
                 public:
-                    direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
                     
                 private:
                     bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
+                    direction GetCollisionDirection(double Actor1PrevTopLeftX, double Actor1PrevTopLeftY, double Actor1PrevBotRightX, double Actor1PrevBotRightY, double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
+                    bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
                     collision(engine* Engine);
             } Collision;
 
