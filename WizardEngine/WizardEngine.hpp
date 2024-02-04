@@ -5,9 +5,8 @@
 
 #include "Includes/SDL.h"
 #include "Includes/SDL_image.h"
-#include "Includes/SDL_stdinc.h"
-#include "Includes/SDL_ttf.h"
 #include "Includes/SDL_mixer.h"
+#include "Includes/SDL_ttf.h"
 
 #include "WZEKeys.hpp"
 
