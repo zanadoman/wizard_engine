@@ -24,7 +24,7 @@ sint32 main()
     {
         Player->Update();
 
-        //Engine->Collision.CheckCollision(&Engine->Actors[Player->Actor], &Engine->Actors[Background->Actor]);
+        Engine->Collision.CheckCollision(&Engine->Actors[Player->Actor], &Engine->Actors[Background->Actor]);
 
         printf("%d %d %d %d\n", Engine->Timing.GetGameTime(), Engine->Timing.GetRenderTime(), Engine->Timing.GetWorkingTime(), Engine->Timing.GetFrameTime());
     }
