@@ -1584,13 +1584,13 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 .L643:
 	divsd	%xmm0, %xmm2
 	movsd	.LC2(%rip), %xmm0
+	movapd	%xmm1, %xmm3
 	movsd	.LC0(%rip), %xmm4
 	subsd	%xmm2, %xmm0
-	movapd	%xmm0, %xmm3
-	mulsd	%xmm1, %xmm3
-	mulsd	%xmm6, %xmm0
 	mulsd	%xmm2, %xmm1
 	mulsd	%xmm6, %xmm2
+	mulsd	%xmm0, %xmm3
+	mulsd	%xmm6, %xmm0
 	addsd	%xmm4, %xmm3
 	addsd	%xmm4, %xmm0
 	subsd	%xmm3, %xmm14
@@ -1616,13 +1616,13 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 .L660:
 	divsd	%xmm1, %xmm0
 	movsd	.LC2(%rip), %xmm1
+	movapd	%xmm5, %xmm3
 	movsd	.LC0(%rip), %xmm4
 	subsd	%xmm0, %xmm1
-	movapd	%xmm1, %xmm3
-	mulsd	%xmm5, %xmm3
-	mulsd	%xmm2, %xmm1
 	mulsd	%xmm0, %xmm5
 	mulsd	%xmm2, %xmm0
+	mulsd	%xmm1, %xmm3
+	mulsd	%xmm2, %xmm1
 	addsd	%xmm4, %xmm3
 	addsd	%xmm4, %xmm1
 	addsd	%xmm14, %xmm3
@@ -1648,13 +1648,13 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 .L622:
 	divsd	%xmm1, %xmm2
 	movsd	.LC2(%rip), %xmm0
+	movapd	%xmm5, %xmm1
 	movsd	.LC0(%rip), %xmm3
 	subsd	%xmm2, %xmm0
-	movapd	%xmm0, %xmm1
-	mulsd	%xmm5, %xmm1
-	mulsd	%xmm6, %xmm0
 	mulsd	%xmm2, %xmm5
 	mulsd	%xmm6, %xmm2
+	mulsd	%xmm0, %xmm1
+	mulsd	%xmm6, %xmm0
 	addsd	%xmm3, %xmm1
 	addsd	%xmm3, %xmm0
 	addsd	%xmm14, %xmm1
@@ -1681,13 +1681,13 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 .L680:
 	divsd	%xmm3, %xmm0
 	movsd	.LC2(%rip), %xmm3
+	movapd	%xmm1, %xmm4
 	movsd	.LC0(%rip), %xmm5
 	subsd	%xmm0, %xmm3
-	movapd	%xmm3, %xmm4
-	mulsd	%xmm1, %xmm4
-	mulsd	%xmm2, %xmm3
 	mulsd	%xmm0, %xmm1
 	mulsd	%xmm2, %xmm0
+	mulsd	%xmm3, %xmm4
+	mulsd	%xmm2, %xmm3
 	addsd	%xmm5, %xmm4
 	addsd	%xmm5, %xmm3
 	subsd	%xmm4, %xmm14
