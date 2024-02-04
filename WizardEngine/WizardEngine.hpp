@@ -530,20 +530,20 @@ namespace wze
                     NONE = 0,
 
                     TOP = 1,
-                    BOTTOM = 2,
+                    BOT = 2,
                     LEFT = 4,
                     RIGHT = 8,
 
                     TOP_LEFT = 16,
                     TOP_RIGHT = 32,
-                    BOTTOM_LEFT = 64,
-                    BOTTOM_RIGHT = 128
+                    BOT_LEFT = 64,
+                    BOT_RIGHT = 128
                 };
 
                 public:
 
                 private:
-                    bool CheckCollision(actors::actor Actor1, actors::actor Actor2);
+                    bool CheckCollision(actors::actor* Actor1, actors::actor* Actor2);
             } Collision;
 
             //__________Vector_________________________________________________________________________________________
