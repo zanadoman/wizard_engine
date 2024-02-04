@@ -431,7 +431,8 @@ namespace wze
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
-                                    string* GetString();
+                                    const char* GetString();
+                                    const char* SetString(const char* String);
                                     uint64 GetFont();
                                     uint64 SetFont(uint64 ID);
 

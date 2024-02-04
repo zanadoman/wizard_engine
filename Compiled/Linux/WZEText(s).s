@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0:
-.LFB2438:
+.LFB2439:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2438:
+.LFE2439:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -1488,12 +1488,12 @@ _ZN3wze6engine6actors5actor5texts4text4SetXEd:
 	.globl	_ZN3wze6engine6actors5actor5texts4text4GetYEv
 	.type	_ZN3wze6engine6actors5actor5texts4text4GetYEv, @function
 _ZN3wze6engine6actors5actor5texts4text4GetYEv:
-.LFB2437:
+.LFB2438:
 	.cfi_startproc
 	movsd	40(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE2437:
+.LFE2438:
 	.size	_ZN3wze6engine6actors5actor5texts4text4GetYEv, .-_ZN3wze6engine6actors5actor5texts4text4GetYEv
 	.align 2
 	.p2align 4
@@ -1545,35 +1545,86 @@ _ZN3wze6engine6actors5actor5texts4text4SetYEd:
 _ZN3wze6engine6actors5actor5texts4text9GetStringEv:
 .LFB2254:
 	.cfi_startproc
-	pushq	%rbx
-	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
-	movq	%rdi, %rbx
-	movq	104(%rdi), %rdi
-	call	SDL_DestroyTexture@PLT
-	leaq	80(%rbx), %rax
-	movq	$0, 104(%rbx)
-	popq	%rbx
-	.cfi_def_cfa_offset 8
-	ret
+	addq	$80, %rdi
+	jmp	_ZN3neo6stringclEv@PLT
 	.cfi_endproc
 .LFE2254:
 	.size	_ZN3wze6engine6actors5actor5texts4text9GetStringEv, .-_ZN3wze6engine6actors5actor5texts4text9GetStringEv
+	.section	.rodata.str1.8
+	.align 8
+.LC21:
+	.string	"wze::engine.actors[].texts[].SetString(): String must not be NULL\nParams: String: %p\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc
+	.type	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc, @function
+_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc:
+.LFB2255:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 48
+	movq	%fs:40, %rax
+	movq	%rax, 8(%rsp)
+	xorl	%eax, %eax
+	testq	%rsi, %rsi
+	je	.L215
+	movq	%rdi, %rbx
+	movq	104(%rdi), %rdi
+	movq	%rsi, %rbp
+	addq	$80, %rbx
+	call	SDL_DestroyTexture@PLT
+	movq	$0, 24(%rbx)
+	movq	%rsp, %rsi
+	movq	%rbx, %rdi
+	movl	$1, %edx
+	movq	%rbp, (%rsp)
+	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
+	movq	8(%rsp), %rax
+	subq	%fs:40, %rax
+	jne	.L216
+	addq	$24, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	movq	%rbx, %rdi
+	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
+	.cfi_def_cfa_offset 8
+	jmp	_ZN3neo6stringclEv@PLT
+.L215:
+	.cfi_restore_state
+	leaq	.LC21(%rip), %rdi
+	xorl	%esi, %esi
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L216:
+	call	__stack_chk_fail@PLT
+	.cfi_endproc
+.LFE2255:
+	.size	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc, .-_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor5texts4text7GetFontEv
 	.type	_ZN3wze6engine6actors5actor5texts4text7GetFontEv, @function
 _ZN3wze6engine6actors5actor5texts4text7GetFontEv:
-.LFB2255:
+.LFB2256:
 	.cfi_startproc
 	movq	96(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE2255:
+.LFE2256:
 	.size	_ZN3wze6engine6actors5actor5texts4text7GetFontEv, .-_ZN3wze6engine6actors5actor5texts4text7GetFontEv
 	.section	.rodata.str1.8
 	.align 8
-.LC21:
+.LC22:
 	.string	"wze::engine.actors[].texts[].SetFont(): Font does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1581,31 +1632,31 @@ _ZN3wze6engine6actors5actor5texts4text7GetFontEv:
 	.globl	_ZN3wze6engine6actors5actor5texts4text7SetFontEy
 	.type	_ZN3wze6engine6actors5actor5texts4text7SetFontEy, @function
 _ZN3wze6engine6actors5actor5texts4text7SetFontEy:
-.LFB2256:
+.LFB2257:
 	.cfi_startproc
 	movq	%rsi, %rax
 	testq	%rsi, %rsi
-	je	.L213
+	je	.L219
 	movq	(%rdi), %rdx
 	cmpq	600(%rdx), %rsi
-	jnb	.L214
+	jnb	.L220
 	movq	608(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
-	je	.L214
-.L213:
+	je	.L220
+.L219:
 	movq	%rax, 96(%rdi)
 	ret
-.L214:
+.L220:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
-	leaq	.LC21(%rip), %rdi
+	leaq	.LC22(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2256:
+.LFE2257:
 	.size	_ZN3wze6engine6actors5actor5texts4text7SetFontEy, .-_ZN3wze6engine6actors5actor5texts4text7SetFontEy
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

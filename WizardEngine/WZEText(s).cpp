@@ -245,12 +245,25 @@ namespace wze
         return this->Y = Y;
     }
 
-    string* engine::actors::actor::texts::text::GetString()
+    const char* engine::actors::actor::texts::text::GetString()
     {
+        return this->String();
+    }
+
+    const char* engine::actors::actor::texts::text::SetString(const char* String)
+    {
+        if (String == NULL)
+        {
+            printf("wze::engine.actors[].texts[].SetString(): String must not be NULL\nParams: String: %p\n", String);
+            exit(1);
+        }
+
         SDL_DestroyTexture(this->Texture);
         this->Texture = NULL;
 
-        return &this->String;
+        this->String = {String};
+
+        return this->String();
     }
 
     uint64 engine::actors::actor::texts::text::GetFont()
