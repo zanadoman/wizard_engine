@@ -25,8 +25,6 @@ namespace wze
         this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, Height) / 2;
         this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, Width, Height);
         this->HitboxMedian2Angle = this->Engine->Vector.Angle(Width, 0, 0, Height);
-
-        this->Engine->Collision.CollisionLayers[0] += {this};
     }
 
     engine::actors::actor::~actor()
@@ -45,6 +43,7 @@ namespace wze
             if (this->Engine->Collision.CollisionLayers[this->CollisionLayer][i] == this)
             {
                 this->Engine->Collision.CollisionLayers[this->CollisionLayer].Remove(i, 1);
+                break;
             }
         }
     }
@@ -306,10 +305,14 @@ namespace wze
             if (this->Engine->Collision.CollisionLayers[this->CollisionLayer][i] == this)
             {
                 this->Engine->Collision.CollisionLayers[this->CollisionLayer].Remove(i, 1);
+                break;
             }
         }
-
-        this->Engine->Collision.CollisionLayers[CollisionLayer] += {this};
+        
+        if (CollisionLayer != 0)
+        {
+            this->Engine->Collision.CollisionLayers[CollisionLayer] += {this};
+        }
 
         return this->CollisionLayer = CollisionLayer;
     }
