@@ -83,6 +83,9 @@ _ZN3wze6engine6window8HasFocusEv:
 	.align 8
 .LC4:
 	.string	"wze::engine.window.New(): IMG_Load() failed\nParams: Title: %s, IconPath: %s, Width: %d, Height: %d\n"
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC5:
+	.string	"engine/icon.png"
 	.text
 	.align 2
 	.p2align 4
@@ -127,7 +130,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	SDL_CreateWindow@PLT
 	movq	%rax, 8(%rbx)
 	testq	%rax, %rax
-	je	.L18
+	je	.L20
 	movq	%rax, %rdi
 	movl	$2, %edx
 	movl	$-1, %esi
@@ -135,30 +138,31 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	movq	%rax, 16(%rbx)
 	movq	%rax, %rdi
 	testq	%rax, %rax
-	je	.L19
+	je	.L21
 	movl	%r15d, %edx
 	movl	%r14d, %esi
 	call	SDL_RenderSetLogicalSize@PLT
 	testl	%eax, %eax
-	jne	.L20
+	jne	.L22
 	movq	16(%rbx), %rdi
 	movl	$1, %esi
 	call	SDL_SetRenderDrawBlendMode@PLT
 	testl	%eax, %eax
-	jne	.L21
+	jne	.L23
 	testq	%r13, %r13
-	je	.L12
+	jne	.L19
+	leaq	.LC5(%rip), %r13
+.L19:
 	movq	%r13, %rdi
 	call	IMG_Load@PLT
 	testq	%rax, %rax
-	je	.L22
+	je	.L24
 	movq	8(%rbx), %rdi
 	movq	%rax, %rsi
 	movq	%rax, 8(%rsp)
 	call	SDL_SetWindowIcon@PLT
 	movq	8(%rsp), %rdi
 	call	SDL_FreeSurface@PLT
-.L12:
 	movw	%r12w, 24(%rbx)
 	xorl	%eax, %eax
 	movw	%bp, 26(%rbx)
@@ -178,18 +182,8 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L18:
+.L23:
 	.cfi_restore_state
-	movq	8(%rsp), %rsi
-	movl	%r15d, %r8d
-	movl	%r14d, %ecx
-	movq	%r13, %rdx
-	leaq	.LC0(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L21:
 	movq	8(%rsp), %rsi
 	movl	%r15d, %r8d
 	movl	%r14d, %ecx
@@ -199,17 +193,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L20:
-	movq	8(%rsp), %rsi
-	movl	%r15d, %r8d
-	movl	%r14d, %ecx
-	movq	%r13, %rdx
-	leaq	.LC2(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L19:
+.L21:
 	movq	8(%rsp), %rsi
 	movl	%r15d, %r8d
 	movl	%r14d, %ecx
@@ -219,7 +203,27 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
+.L20:
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
+	leaq	.LC0(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 .L22:
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
+	leaq	.LC2(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L24:
 	movq	8(%rsp), %rsi
 	movl	%r15d, %r8d
 	movl	%r14d, %ecx

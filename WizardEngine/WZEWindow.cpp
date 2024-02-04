@@ -56,17 +56,19 @@ namespace wze
             exit(1);
         }
 
-        if (IconPath != NULL)
+        if (IconPath != NULL && (icon = IMG_Load(IconPath)) == NULL)
         {
-            if ((icon = IMG_Load(IconPath)) == NULL)
-            {
-                printf("wze::engine.window.New(): IMG_Load() failed\nParams: Title: %s, IconPath: %s, Width: %d, Height: %d\n", Title, IconPath, Width, Height);
-                exit(1);
-            }
-
-            SDL_SetWindowIcon(this->Window, icon);
-            SDL_FreeSurface(icon);
+            printf("wze::engine.window.New(): IMG_Load() failed\nParams: Title: %s, IconPath: %s, Width: %d, Height: %d\n", Title, IconPath, Width, Height);
+            exit(1);
         }
+        if (IconPath == NULL && (icon = IMG_Load("engine/icon.png")) == NULL)
+        {
+            printf("wze::engine.window.New(): IMG_Load() failed\nParams: Title: %s, IconPath: %s, Width: %d, Height: %d\n", Title, "engine/icon.png", Width, Height);
+            exit(1);
+        }
+
+        SDL_SetWindowIcon(this->Window, icon);
+        SDL_FreeSurface(icon);
 
         this->Width = Width;
         this->Height = Height;

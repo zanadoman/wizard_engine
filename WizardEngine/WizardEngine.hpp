@@ -518,6 +518,34 @@ namespace wze
                     ~actors();
             } Actors;
 
+            //__________Collision______________________________________________________________________________________
+
+            class collision
+            {
+                friend class engine;
+                engine* Engine;
+
+                enum direction
+                {
+                    NONE = 0,
+
+                    TOP = 1,
+                    BOTTOM = 2,
+                    LEFT = 4,
+                    RIGHT = 8,
+
+                    TOP_LEFT = 16,
+                    TOP_RIGHT = 32,
+                    BOTTOM_LEFT = 64,
+                    BOTTOM_RIGHT = 128
+                };
+
+                public:
+
+                private:
+                    bool CheckCollision(actors::actor Actor1, actors::actor Actor2);
+            } Collision;
+
             //__________Vector_________________________________________________________________________________________
 
             class vector

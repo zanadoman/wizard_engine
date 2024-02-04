@@ -2,13 +2,11 @@
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC0:
-	.string	"assets/icon.png"
-.LC1:
 	.string	"%d %d %d %d\n"
 	.section	.text.unlikely,"ax",@progbits
-.LCOLDB2:
+.LCOLDB1:
 	.section	.text.startup,"ax",@progbits
-.LHOTB2:
+.LHOTB1:
 	.p2align 4
 	.globl	main
 	.type	main, @function
@@ -20,7 +18,7 @@ main:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movl	$688, %edi
+	movl	$696, %edi
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
@@ -42,10 +40,10 @@ main:
 	call	_Znwm@PLT
 .LEHE0:
 	movl	$6, %r9d
+	xorl	%edx, %edx
 	xorl	%esi, %esi
 	movl	$1080, %r8d
 	movl	$1920, %ecx
-	leaq	.LC0(%rip), %rdx
 	movq	%rax, %rdi
 	movq	%rax, %r13
 .LEHB1:
@@ -79,7 +77,7 @@ main:
 	.p2align 4,,10
 	.p2align 3
 .L3:
-	leaq	632(%r13), %rbx
+	leaq	640(%r13), %rbx
 	movq	%r14, %rdi
 	call	_ZN6player6UpdateEv@PLT
 	movq	%rbx, %rdi
@@ -97,7 +95,7 @@ main:
 	movl	%r12d, %ecx
 	movl	%ebp, %edx
 	movl	%eax, %esi
-	leaq	.LC1(%rip), %rdi
+	leaq	.LC0(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 .L2:
@@ -120,7 +118,7 @@ main:
 	movq	%r13, %rdi
 	call	_ZN3wze6engineD1Ev@PLT
 	movq	%r13, %rdi
-	movl	$688, %esi
+	movl	$696, %esi
 	call	_ZdlPvm@PLT
 	addq	$24, %rsp
 	.cfi_remember_state
@@ -204,7 +202,7 @@ main.cold:
 	.cfi_offset 14, -24
 	.cfi_offset 15, -16
 	movq	%r13, %rdi
-	movl	$688, %esi
+	movl	$696, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 .LEHB7:
@@ -231,7 +229,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC2231-.LLSDACSBC2231
 .LLSDACSBC2231:
-	.uleb128 .LEHB7-.LCOLDB2
+	.uleb128 .LEHB7-.LCOLDB1
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
@@ -241,9 +239,9 @@ main.cold:
 	.size	main, .-main
 	.section	.text.unlikely
 	.size	main.cold, .-main.cold
-.LCOLDE2:
+.LCOLDE1:
 	.section	.text.startup
-.LHOTE2:
+.LHOTE1:
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

@@ -79,24 +79,24 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	%rax, 8(%rsp)
 	call	_ZN3wze6engine6actorsC1EPS0_@PLT
 .LEHE1:
-	leaq	552(%rbx), %rdi
+	leaq	560(%rbx), %rdi
 	movq	%rbx, %rsi
 .LEHB2:
 	call	_ZN3wze6engine6vectorC1EPS0_@PLT
-	leaq	560(%rbx), %rdi
+	leaq	568(%rbx), %rdi
 	movq	%rbx, %rsi
 	call	_ZN3wze6engine6assetsC1EPS0_@PLT
 .LEHE2:
-	leaq	632(%rbx), %rdi
+	leaq	640(%rbx), %rdi
 	movq	%rbx, %rsi
 .LEHB3:
 	call	_ZN3wze6engine6timingC1EPS0_@PLT
 .LEHE3:
 	testq	%r13, %r13
 	leaq	.LC0(%rip), %rax
-	movq	$0, 672(%rbx)
-	movl	$48, %edi
 	movq	$0, 680(%rbx)
+	movl	$48, %edi
+	movq	$0, 688(%rbx)
 	cmove	%rax, %r13
 .LEHB4:
 	call	SDL_Init@PLT
@@ -136,7 +136,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	unpcklpd	%xmm1, %xmm0
 	movups	%xmm0, 88(%rbx)
 	call	SDL_GetKeyboardState@PLT
-	movb	%r14b, 640(%rbx)
+	movb	%r14b, 648(%rbx)
 	xorl	%edi, %edi
 	movq	%rax, 168(%rbx)
 	call	time@PLT
@@ -247,16 +247,16 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	.cfi_offset 13, -32
 	.cfi_offset 14, -24
 	.cfi_offset 15, -16
-	movq	680(%rbx), %rdi
+	movq	688(%rbx), %rdi
 	call	free@PLT
 .L8:
-	movq	624(%rbx), %rdi
+	movq	632(%rbx), %rdi
 	call	free@PLT
-	movq	608(%rbx), %rdi
+	movq	616(%rbx), %rdi
 	call	free@PLT
-	movq	592(%rbx), %rdi
+	movq	600(%rbx), %rdi
 	call	free@PLT
-	movq	576(%rbx), %rdi
+	movq	584(%rbx), %rdi
 	call	free@PLT
 .L9:
 	movq	8(%rsp), %rdi
@@ -304,7 +304,7 @@ _ZN3wze6engineD2Ev:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	leaq	560(%rdi), %rbp
+	leaq	568(%rdi), %rbp
 	xorl	%esi, %esi
 	xorl	%edx, %edx
 	pushq	%rbx
@@ -332,15 +332,15 @@ _ZN3wze6engineD2Ev:
 	call	TTF_Quit@PLT
 	call	SDL_CloseAudio@PLT
 	call	SDL_Quit@PLT
-	movq	680(%rbx), %rdi
+	movq	688(%rbx), %rdi
 	call	free@PLT
-	movq	624(%rbx), %rdi
+	movq	632(%rbx), %rdi
 	call	free@PLT
-	movq	608(%rbx), %rdi
+	movq	616(%rbx), %rdi
 	call	free@PLT
-	movq	592(%rbx), %rdi
+	movq	600(%rbx), %rdi
 	call	free@PLT
-	movq	576(%rbx), %rdi
+	movq	584(%rbx), %rdi
 	call	free@PLT
 	leaq	528(%rbx), %rdi
 	call	_ZN3wze6engine6actorsD1Ev@PLT
@@ -414,7 +414,7 @@ _ZN3wze6engine15UpdateFlipbooksEv:
 	je	.L46
 	movl	88(%rcx), %eax
 	xorl	%edx, %edx
-	addl	664(%r8), %eax
+	addl	672(%r8), %eax
 	divl	72(%rcx)
 	addq	80(%rcx), %rax
 	movq	%rax, 80(%rcx)
@@ -535,17 +535,17 @@ _ZN3wze6engine6UpdateEv:
 	xorl	%eax, %eax
 	movq	%rsp, %r12
 	call	SDL_GetTicks@PLT
-	subl	644(%rbx), %eax
+	subl	652(%rbx), %eax
 	leaq	80(%rbx), %rdi
-	movl	%eax, 648(%rbx)
+	movl	%eax, 656(%rbx)
 	call	_ZN3wze6engine6camera6UpdateEv@PLT
 	leaq	32(%rbx), %rdi
 	call	_ZN3wze6engine6render6UpdateEv@PLT
 	call	SDL_GetTicks@PLT
-	subl	648(%rbx), %eax
-	subl	644(%rbx), %eax
-	leaq	632(%rbx), %rdi
-	movl	%eax, 652(%rbx)
+	subl	656(%rbx), %eax
+	subl	652(%rbx), %eax
+	leaq	640(%rbx), %rdi
+	movl	%eax, 660(%rbx)
 	call	_ZN3wze6engine6timing6UpdateEv@PLT
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine15UpdateFlipbooksEv
@@ -577,21 +577,21 @@ _ZN3wze6engine6UpdateEv:
 	je	.L68
 	cmpl	$256, (%rsp)
 	je	.L64
-	movq	672(%rbx), %rax
-	movq	680(%rbx), %rdi
+	movq	680(%rbx), %rax
+	movq	688(%rbx), %rdi
 	cmpq	%rax, %rbp
 	jne	.L53
 	leaq	11(%rbp), %r13
-	movq	%r13, 672(%rbx)
+	movq	%r13, 680(%rbx)
 	leaq	0(,%r13,8), %rsi
 	subq	%r13, %rsi
 	salq	$3, %rsi
 	call	realloc@PLT
-	movq	%rax, 680(%rbx)
+	movq	%rax, 688(%rbx)
 	movq	%rax, %rdi
 	testq	%rax, %rax
 	je	.L69
-	movq	672(%rbx), %rax
+	movq	680(%rbx), %rax
 	leaq	-1(%rax), %rdx
 	cmpq	%r13, %rdx
 	jb	.L53
@@ -619,7 +619,7 @@ _ZN3wze6engine6UpdateEv:
 	.p2align 4,,10
 	.p2align 3
 .L56:
-	movq	680(%rbx), %rdx
+	movq	688(%rbx), %rdx
 	subq	$1, %rcx
 	movdqu	(%rdx,%rax), %xmm0
 	movdqu	16(%rdx,%rax), %xmm1
@@ -633,13 +633,13 @@ _ZN3wze6engine6UpdateEv:
 	cmpq	%r13, %rcx
 	jnb	.L56
 .L57:
-	movq	672(%rbx), %rax
-	movq	680(%rbx), %rdi
+	movq	680(%rbx), %rax
+	movq	688(%rbx), %rdi
 	jmp	.L53
 	.p2align 4,,10
 	.p2align 3
 .L68:
-	movq	672(%rbx), %r12
+	movq	680(%rbx), %r12
 	cmpq	%r12, %rbp
 	jb	.L70
 .L60:
@@ -677,23 +677,23 @@ _ZN3wze6engine6UpdateEv:
 	.p2align 4,,10
 	.p2align 3
 .L70:
-	movq	%rbp, 672(%rbx)
-	movq	680(%rbx), %rdi
+	movq	%rbp, 680(%rbx)
+	movq	688(%rbx), %rdi
 	testq	%rbp, %rbp
 	je	.L72
 	leaq	0(,%rbp,8), %rsi
 	subq	%rbp, %rsi
 	salq	$3, %rsi
 	call	realloc@PLT
-	movq	%rax, 680(%rbx)
+	movq	%rax, 688(%rbx)
 	testq	%rax, %rax
 	je	.L62
-	movq	672(%rbx), %r12
+	movq	680(%rbx), %r12
 	jmp	.L60
 .L72:
 	call	free@PLT
-	movq	672(%rbx), %r12
-	movq	$0, 680(%rbx)
+	movq	680(%rbx), %r12
+	movq	$0, 688(%rbx)
 	jmp	.L60
 .L67:
 	leaq	.LC5(%rip), %rdi
