@@ -49,7 +49,7 @@ main:
 	movq	%rax, %rdi
 	movq	%rax, %r13
 .LEHB1:
-	call	_ZN4slay6engineC1EPKcS2_tth@PLT
+	call	_ZN3wze6engineC1EPKcS2_tth@PLT
 .LEHE1:
 	movl	$32, %edi
 .LEHB2:
@@ -59,7 +59,7 @@ main:
 	movq	%rax, %rdi
 	movq	%rax, 8(%rsp)
 .LEHB3:
-	call	_ZN10backgroundC1EPN4slay6engineE@PLT
+	call	_ZN10backgroundC1EPN3wze6engineE@PLT
 .LEHE3:
 	movl	$56, %edi
 .LEHB4:
@@ -69,12 +69,12 @@ main:
 	movq	%rax, %rdi
 	movq	%rax, %r14
 .LEHB5:
-	call	_ZN6playerC1EPN4slay6engineE@PLT
+	call	_ZN6playerC1EPN3wze6engineE@PLT
 .LEHE5:
 	movq	8(%r14), %rsi
 	leaq	80(%r13), %rdi
 .LEHB6:
-	call	_ZN4slay6engine6camera4BindEy@PLT
+	call	_ZN3wze6engine6camera4BindEy@PLT
 	jmp	.L2
 	.p2align 4,,10
 	.p2align 3
@@ -83,16 +83,16 @@ main:
 	movq	%r14, %rdi
 	call	_ZN6player6UpdateEv@PLT
 	movq	%rbx, %rdi
-	call	_ZN4slay6engine6timing12GetFrameTimeEv@PLT
+	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
 	movq	%rbx, %rdi
 	movl	%eax, %r15d
-	call	_ZN4slay6engine6timing14GetWorkingTimeEv@PLT
+	call	_ZN3wze6engine6timing14GetWorkingTimeEv@PLT
 	movq	%rbx, %rdi
 	movl	%eax, %r12d
-	call	_ZN4slay6engine6timing13GetRenderTimeEv@PLT
+	call	_ZN3wze6engine6timing13GetRenderTimeEv@PLT
 	movq	%rbx, %rdi
 	movl	%eax, %ebp
-	call	_ZN4slay6engine6timing11GetGameTimeEv@PLT
+	call	_ZN3wze6engine6timing11GetGameTimeEv@PLT
 	movl	%r15d, %r8d
 	movl	%r12d, %ecx
 	movl	%ebp, %edx
@@ -102,7 +102,7 @@ main:
 	call	printf@PLT
 .L2:
 	movq	%r13, %rdi
-	call	_ZN4slay6engine6UpdateEv@PLT
+	call	_ZN3wze6engine6UpdateEv@PLT
 .LEHE6:
 	testb	%al, %al
 	jne	.L3
@@ -118,7 +118,7 @@ main:
 	movq	%r14, %rdi
 	call	_ZdlPvm@PLT
 	movq	%r13, %rdi
-	call	_ZN4slay6engineD1Ev@PLT
+	call	_ZN3wze6engineD1Ev@PLT
 	movq	%r13, %rdi
 	movl	$688, %esi
 	call	_ZdlPvm@PLT

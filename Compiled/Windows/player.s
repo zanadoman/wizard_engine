@@ -59,10 +59,10 @@ _Z6printfPKcz:
 .LHOTB14:
 	.align 2
 	.p2align 4
-	.globl	_ZN6playerC2EPN4slay6engineE
-	.def	_ZN6playerC2EPN4slay6engineE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN6playerC2EPN4slay6engineE
-_ZN6playerC2EPN4slay6engineE:
+	.globl	_ZN6playerC2EPN3wze6engineE
+	.def	_ZN6playerC2EPN3wze6engineE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN6playerC2EPN3wze6engineE
+_ZN6playerC2EPN3wze6engineE:
 .LFB8433:
 	pushq	%rsi
 	.seh_pushreg	%rsi
@@ -78,32 +78,32 @@ _ZN6playerC2EPN4slay6engineE:
 	leaq	560(%rdx), %rcx
 	leaq	.LC0(%rip), %rdx
 .LEHB0:
-	call	_ZN4slay6engine6assets11LoadTextureEPKc
+	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	movq	%rax, 64(%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC1(%rip), %rdx
 	leaq	560(%rax), %rcx
-	call	_ZN4slay6engine6assets11LoadTextureEPKc
+	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	movq	%rax, 72(%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC2(%rip), %rdx
 	leaq	560(%rax), %rcx
-	call	_ZN4slay6engine6assets11LoadTextureEPKc
+	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	movq	%rax, 80(%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC3(%rip), %rdx
 	leaq	560(%rax), %rcx
-	call	_ZN4slay6engine6assets11LoadTextureEPKc
+	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	movq	%rax, 88(%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC4(%rip), %rdx
 	leaq	560(%rax), %rcx
-	call	_ZN4slay6engine6assets11LoadTextureEPKc
+	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	movq	%rax, 96(%rsp)
 	movq	(%rbx), %rax
 	leaq	.LC5(%rip), %rdx
 	leaq	560(%rax), %rcx
-	call	_ZN4slay6engine6assets11LoadTextureEPKc
+	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	movq	%rax, 104(%rsp)
 	movq	24(%rbx), %rax
 	leaq	24(%rbx), %rsi
@@ -118,7 +118,7 @@ _ZN6playerC2EPN4slay6engineE:
 	movl	$48, %r8d
 	leaq	.LC7(%rip), %rdx
 	leaq	560(%rax), %rcx
-	call	_ZN4slay6engine6assets8LoadFontEPKch
+	call	_ZN3wze6engine6assets8LoadFontEPKch
 	movq	%rax, 48(%rbx)
 	movq	(%rbx), %rax
 	pxor	%xmm3, %xmm3
@@ -129,101 +129,101 @@ _ZN6playerC2EPN4slay6engineE:
 	movq	.LC8(%rip), %rax
 	movl	$46, 32(%rsp)
 	movq	%rax, 48(%rsp)
-	call	_ZN4slay6engine6actors3NewEyddttd
+	call	_ZN3wze6engine6actors3NewEyddttd
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rdx
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	leaq	72(%rax), %rcx
 	movq	%rsi, %r8
 	movl	$100, %edx
-	call	_ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE
+	call	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE
 	movq	%rax, 16(%rbx)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	48(%rbx), %r8
 	leaq	104(%rax), %rcx
 	leaq	.LC10(%rip), %rdx
-	call	_ZN4slay6engine6actors5actor5texts3NewEPKcy
+	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy
 	movq	%rax, 40(%rbx)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movsd	.LC11(%rip), %xmm1
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor8SetDepthEd
+	call	_ZN3wze6engine6actors5actor8SetDepthEd
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movb	$1, 136(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	16(%rbx), %rdx
 	leaq	72(%rax), %rcx
-	call	_ZN4slay6engine6actors5actor9flipbooksixEy
+	call	_ZN3wze6engine6actors5actor9flipbooksixEy
 	movl	$100, %r8d
 	movq	8(%rbx), %rdx
 	movw	%r8w, 16(%rax)
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	16(%rbx), %rdx
 	leaq	72(%rax), %rcx
-	call	_ZN4slay6engine6actors5actor9flipbooksixEy
+	call	_ZN3wze6engine6actors5actor9flipbooksixEy
 	movl	$100, %ecx
 	movq	8(%rbx), %rdx
 	movw	%cx, 18(%rax)
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	16(%rbx), %rdx
 	leaq	72(%rax), %rcx
-	call	_ZN4slay6engine6actors5actor9flipbooksixEy
+	call	_ZN3wze6engine6actors5actor9flipbooksixEy
 	movq	%rax, %rsi
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor4GetYEv
+	call	_ZN3wze6engine6actors5actor4GetYEv
 	movsd	.LC12(%rip), %xmm1
 	movq	%rsi, %rcx
 	addsd	%xmm0, %xmm1
-	call	_ZN4slay6engine6actors5actor9flipbooks8flipbook4SetYEd
+	call	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	40(%rbx), %rdx
 	leaq	104(%rax), %rcx
-	call	_ZN4slay6engine6actors5actor5textsixEy
+	call	_ZN3wze6engine6actors5actor5textsixEy
 	movl	$20, %edx
 	movw	%dx, 16(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	40(%rbx), %rdx
 	leaq	104(%rax), %rcx
-	call	_ZN4slay6engine6actors5actor5textsixEy
+	call	_ZN3wze6engine6actors5actor5textsixEy
 	movq	%rax, %rsi
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor4GetYEv
+	call	_ZN3wze6engine6actors5actor4GetYEv
 	movsd	.LC13(%rip), %xmm1
 	movq	%rsi, %rcx
 	addsd	%xmm0, %xmm1
-	call	_ZN4slay6engine6actors5actor5texts4text4SetYEd
+	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd
 	nop
 	addq	$120, %rsp
 	popq	%rbx
@@ -270,13 +270,13 @@ _ZN6playerC2EPN4slay6engineE:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
-	.def	_ZN6playerC2EPN4slay6engineE.cold;	.scl	3;	.type	32;	.endef
-	.seh_proc	_ZN6playerC2EPN4slay6engineE.cold
+	.def	_ZN6playerC2EPN3wze6engineE.cold;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN6playerC2EPN3wze6engineE.cold
 	.seh_stackalloc	136
 	.seh_savereg	%rbx, 120
 	.seh_savereg	%rsi, 128
 	.seh_endprologue
-_ZN6playerC2EPN4slay6engineE.cold:
+_ZN6playerC2EPN3wze6engineE.cold:
 .L7:
 	movq	32(%rbx), %rcx
 	call	free
@@ -305,9 +305,9 @@ _ZN6playerC2EPN4slay6engineE.cold:
 .LCOLDE14:
 	.text
 .LHOTE14:
-	.globl	_ZN6playerC1EPN4slay6engineE
-	.def	_ZN6playerC1EPN4slay6engineE;	.scl	2;	.type	32;	.endef
-	.set	_ZN6playerC1EPN4slay6engineE,_ZN6playerC2EPN4slay6engineE
+	.globl	_ZN6playerC1EPN3wze6engineE
+	.def	_ZN6playerC1EPN3wze6engineE;	.scl	2;	.type	32;	.endef
+	.set	_ZN6playerC1EPN3wze6engineE,_ZN6playerC2EPN3wze6engineE
 	.align 2
 	.p2align 4
 	.globl	_ZN6playerD2Ev
@@ -335,7 +335,7 @@ _ZN6playerD2Ev:
 	movq	(%rdx,%rax,8), %rdx
 	movq	(%rbx), %rax
 	leaq	560(%rax), %rcx
-	call	_ZN4slay6engine6assets13UnloadTextureEy
+	call	_ZN3wze6engine6assets13UnloadTextureEy
 	movzbl	%sil, %eax
 	cmpq	24(%rbx), %rax
 	jb	.L13
@@ -343,11 +343,11 @@ _ZN6playerD2Ev:
 	movq	(%rbx), %rax
 	movq	48(%rbx), %rdx
 	leaq	560(%rax), %rcx
-	call	_ZN4slay6engine6assets10UnloadFontEy
+	call	_ZN3wze6engine6assets10UnloadFontEy
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actors6DeleteEy
+	call	_ZN3wze6engine6actors6DeleteEy
 	movq	32(%rbx), %rcx
 	addq	$40, %rsp
 	popq	%rbx
@@ -391,49 +391,49 @@ _ZN6player6UpdateEv:
 	movq	(%rcx), %rax
 	movq	%rcx, %rbx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L52
 .L17:
 	movq	(%rbx), %rax
 	movl	$81, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L53
 .L24:
 	movq	(%rbx), %rax
 	movl	$80, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L54
 .L31:
 	movq	(%rbx), %rax
 	movl	$79, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L55
 .L36:
 	movq	(%rbx), %rax
 	movl	$10, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L56
 .L40:
 	movq	(%rbx), %rax
 	movl	$11, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L57
 .L41:
 	movq	(%rbx), %rax
 	movl	$13, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L58
 .L42:
@@ -451,27 +451,27 @@ _ZN6player6UpdateEv:
 	movq	(%rbx), %rax
 	movl	$81, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L17
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	(%rbx), %rsi
 	movq	8(%rbx), %rdx
 	movq	%rax, %rdi
 	leaq	528(%rsi), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor8GetAngleEv
+	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movsd	.LC15(%rip), %xmm7
 	movq	(%rbx), %rax
 	movapd	%xmm0, %xmm3
 	addsd	%xmm7, %xmm3
 	leaq	632(%rax), %rcx
 	movsd	%xmm3, 40(%rsp)
-	call	_ZN4slay6engine6timing12GetDeltaTimeEv
+	call	_ZN3wze6engine6timing12GetDeltaTimeEv
 	pxor	%xmm2, %xmm2
 	movq	8(%rbx), %rdx
 	movsd	.LC16(%rip), %xmm6
@@ -481,34 +481,34 @@ _ZN6player6UpdateEv:
 	leaq	528(%rax), %rcx
 	mulsd	%xmm6, %xmm2
 	movsd	%xmm2, 32(%rsp)
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor4GetXEv
+	call	_ZN3wze6engine6actors5actor4GetXEv
 	movsd	32(%rsp), %xmm2
 	movsd	40(%rsp), %xmm3
 	leaq	552(%rsi), %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN4slay6engine6vector9TerminalXEddd
+	call	_ZN3wze6engine6vector9TerminalXEddd
 	movq	%rdi, %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN4slay6engine6actors5actor4SetXEd
+	call	_ZN3wze6engine6actors5actor4SetXEd
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	(%rbx), %rsi
 	movq	8(%rbx), %rdx
 	movq	%rax, %rdi
 	leaq	528(%rsi), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor8GetAngleEv
+	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movq	(%rbx), %rax
 	movapd	%xmm0, %xmm3
 	addsd	%xmm7, %xmm3
 	leaq	632(%rax), %rcx
 	movsd	%xmm3, 40(%rsp)
-	call	_ZN4slay6engine6timing12GetDeltaTimeEv
+	call	_ZN3wze6engine6timing12GetDeltaTimeEv
 	pxor	%xmm2, %xmm2
 	movq	8(%rbx), %rdx
 	movl	%eax, %eax
@@ -517,17 +517,17 @@ _ZN6player6UpdateEv:
 	leaq	528(%rax), %rcx
 	mulsd	%xmm6, %xmm2
 	movsd	%xmm2, 32(%rsp)
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor4GetYEv
+	call	_ZN3wze6engine6actors5actor4GetYEv
 	movsd	40(%rsp), %xmm3
 	movsd	32(%rsp), %xmm2
 	leaq	552(%rsi), %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN4slay6engine6vector9TerminalYEddd
+	call	_ZN3wze6engine6vector9TerminalYEddd
 	movq	%rdi, %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN4slay6engine6actors5actor4SetYEd
+	call	_ZN3wze6engine6actors5actor4SetYEd
 	jmp	.L17
 	.p2align 4,,10
 	.p2align 3
@@ -535,10 +535,10 @@ _ZN6player6UpdateEv:
 	movq	(%rbx), %rcx
 	movq	8(%rbx), %rdx
 	addq	$528, %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movl	$46, %edx
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor8SetWidthEt
+	call	_ZN3wze6engine6actors5actor8SetWidthEt
 	jmp	.L42
 	.p2align 4,,10
 	.p2align 3
@@ -546,10 +546,10 @@ _ZN6player6UpdateEv:
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movl	$100, %edx
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor8SetWidthEt
+	call	_ZN3wze6engine6actors5actor8SetWidthEt
 	jmp	.L41
 	.p2align 4,,10
 	.p2align 3
@@ -557,38 +557,38 @@ _ZN6player6UpdateEv:
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	40(%rbx), %rdx
 	leaq	104(%rax), %rcx
-	call	_ZN4slay6engine6actors5actor5textsixEy
+	call	_ZN3wze6engine6actors5actor5textsixEy
 	movq	8(%rbx), %rdx
 	movq	%rax, %rsi
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor4GetYEv
+	call	_ZN3wze6engine6actors5actor4GetYEv
 	movsd	.LC13(%rip), %xmm1
 	movq	%rsi, %rcx
 	addsd	%xmm0, %xmm1
-	call	_ZN4slay6engine6actors5actor5texts4text4SetYEd
+	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	40(%rbx), %rdx
 	leaq	104(%rax), %rcx
-	call	_ZN4slay6engine6actors5actor5textsixEy
+	call	_ZN3wze6engine6actors5actor5textsixEy
 	movq	8(%rbx), %rdx
 	movq	%rax, %rsi
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor4GetXEv
+	call	_ZN3wze6engine6actors5actor4GetXEv
 	movq	%rsi, %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN4slay6engine6actors5actor5texts4text4SetXEd
+	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd
 	jmp	.L40
 	.p2align 4,,10
 	.p2align 3
@@ -596,24 +596,24 @@ _ZN6player6UpdateEv:
 	movq	(%rbx), %rax
 	movl	$80, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L36
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	8(%rbx), %rdx
 	movq	%rax, %rsi
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor8GetAngleEv
+	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movq	(%rbx), %rax
 	movsd	%xmm0, 32(%rsp)
 	leaq	632(%rax), %rcx
-	call	_ZN4slay6engine6timing12GetDeltaTimeEv
+	call	_ZN3wze6engine6timing12GetDeltaTimeEv
 	pxor	%xmm2, %xmm2
 	movsd	32(%rsp), %xmm1
 	movq	%rsi, %rcx
@@ -621,7 +621,7 @@ _ZN6player6UpdateEv:
 	cvtsi2sdq	%rax, %xmm2
 	mulsd	.LC18(%rip), %xmm2
 	subsd	%xmm2, %xmm1
-	call	_ZN4slay6engine6actors5actor8SetAngleEd
+	call	_ZN3wze6engine6actors5actor8SetAngleEd
 	jmp	.L36
 	.p2align 4,,10
 	.p2align 3
@@ -629,31 +629,31 @@ _ZN6player6UpdateEv:
 	movq	(%rbx), %rax
 	movl	$79, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L31
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	8(%rbx), %rdx
 	movq	%rax, %rsi
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor8GetAngleEv
+	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movq	(%rbx), %rax
 	movapd	%xmm0, %xmm6
 	leaq	632(%rax), %rcx
-	call	_ZN4slay6engine6timing12GetDeltaTimeEv
+	call	_ZN3wze6engine6timing12GetDeltaTimeEv
 	pxor	%xmm1, %xmm1
 	movq	%rsi, %rcx
 	movl	%eax, %eax
 	cvtsi2sdq	%rax, %xmm1
 	mulsd	.LC18(%rip), %xmm1
 	addsd	%xmm6, %xmm1
-	call	_ZN4slay6engine6actors5actor8SetAngleEd
+	call	_ZN3wze6engine6actors5actor8SetAngleEd
 	jmp	.L31
 	.p2align 4,,10
 	.p2align 3
@@ -661,27 +661,27 @@ _ZN6player6UpdateEv:
 	movq	(%rbx), %rax
 	movl	$82, %edx
 	leaq	160(%rax), %rcx
-	call	_ZN4slay6engine4keysixENS_3keyE
+	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	jne	.L24
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	(%rbx), %rsi
 	movq	8(%rbx), %rdx
 	movq	%rax, %rdi
 	leaq	528(%rsi), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor8GetAngleEv
+	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movsd	.LC15(%rip), %xmm7
 	movq	(%rbx), %rax
 	movapd	%xmm0, %xmm3
 	addsd	%xmm7, %xmm3
 	leaq	632(%rax), %rcx
 	movsd	%xmm3, 40(%rsp)
-	call	_ZN4slay6engine6timing12GetDeltaTimeEv
+	call	_ZN3wze6engine6timing12GetDeltaTimeEv
 	pxor	%xmm2, %xmm2
 	movq	8(%rbx), %rdx
 	movsd	.LC17(%rip), %xmm6
@@ -691,34 +691,34 @@ _ZN6player6UpdateEv:
 	leaq	528(%rax), %rcx
 	mulsd	%xmm6, %xmm2
 	movsd	%xmm2, 32(%rsp)
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor4GetXEv
+	call	_ZN3wze6engine6actors5actor4GetXEv
 	movsd	32(%rsp), %xmm2
 	movsd	40(%rsp), %xmm3
 	leaq	552(%rsi), %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN4slay6engine6vector9TerminalXEddd
+	call	_ZN3wze6engine6vector9TerminalXEddd
 	movq	%rdi, %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN4slay6engine6actors5actor4SetXEd
+	call	_ZN3wze6engine6actors5actor4SetXEd
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	528(%rax), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	(%rbx), %rsi
 	movq	8(%rbx), %rdx
 	movq	%rax, %rdi
 	leaq	528(%rsi), %rcx
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor8GetAngleEv
+	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movq	(%rbx), %rax
 	movapd	%xmm0, %xmm3
 	addsd	%xmm7, %xmm3
 	leaq	632(%rax), %rcx
 	movsd	%xmm3, 40(%rsp)
-	call	_ZN4slay6engine6timing12GetDeltaTimeEv
+	call	_ZN3wze6engine6timing12GetDeltaTimeEv
 	pxor	%xmm2, %xmm2
 	movq	8(%rbx), %rdx
 	movl	%eax, %eax
@@ -727,17 +727,17 @@ _ZN6player6UpdateEv:
 	leaq	528(%rax), %rcx
 	mulsd	%xmm6, %xmm2
 	movsd	%xmm2, 32(%rsp)
-	call	_ZN4slay6engine6actorsixEy
+	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
-	call	_ZN4slay6engine6actors5actor4GetYEv
+	call	_ZN3wze6engine6actors5actor4GetYEv
 	movsd	40(%rsp), %xmm3
 	movsd	32(%rsp), %xmm2
 	leaq	552(%rsi), %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN4slay6engine6vector9TerminalYEddd
+	call	_ZN3wze6engine6vector9TerminalYEddd
 	movq	%rdi, %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN4slay6engine6actors5actor4SetYEd
+	call	_ZN3wze6engine6actors5actor4SetYEd
 	jmp	.L24
 	.seh_endproc
 	.section .rdata,"dr"
@@ -775,34 +775,34 @@ _ZN6player6UpdateEv:
 	.long	1070176665
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6assets11LoadTextureEPKc;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6assets11LoadTextureEPKc;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6assets8LoadFontEPKch;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors3NewEyddttd;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actorsixEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor5texts3NewEPKcy;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor8SetDepthEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor9flipbooksixEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor4GetYEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor9flipbooks8flipbook4SetYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor5textsixEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor5texts4text4SetYEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6assets8LoadFontEPKch;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors3NewEyddttd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actorsixEy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor5texts3NewEPKcy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor8SetDepthEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor9flipbooksixEy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor4GetYEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor5textsixEy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor5texts4text4SetYEd;	.scl	2;	.type	32;	.endef
 	.def	realloc;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
 	.def	free;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6assets13UnloadTextureEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6assets10UnloadFontEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors6DeleteEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine4keysixENS_3keyE;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor8GetAngleEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6timing12GetDeltaTimeEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor4GetXEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6vector9TerminalXEddd;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor4SetXEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6vector9TerminalYEddd;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor4SetYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor8SetWidthEt;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor5texts4text4SetXEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6actors5actor8SetAngleEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6assets13UnloadTextureEy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6assets10UnloadFontEy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors6DeleteEy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine4keysixENS_3keyE;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor8GetAngleEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6timing12GetDeltaTimeEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor4GetXEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6vector9TerminalXEddd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor4SetXEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6vector9TerminalYEddd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor4SetYEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor8SetWidthEt;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor5texts4text4SetXEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor8SetAngleEd;	.scl	2;	.type	32;	.endef

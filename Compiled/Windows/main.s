@@ -75,7 +75,7 @@ main:
 	movq	%rax, %rcx
 	movq	%rax, %rdi
 .LEHB1:
-	call	_ZN4slay6engineC1EPKcS2_tth
+	call	_ZN3wze6engineC1EPKcS2_tth
 .LEHE1:
 	movl	$32, %ecx
 .LEHB2:
@@ -85,7 +85,7 @@ main:
 	movq	%rax, %rcx
 	movq	%rax, %r13
 .LEHB3:
-	call	_ZN10backgroundC1EPN4slay6engineE
+	call	_ZN10backgroundC1EPN3wze6engineE
 .LEHE3:
 	movl	$56, %ecx
 .LEHB4:
@@ -95,14 +95,14 @@ main:
 	movq	%rax, %rcx
 	movq	%rax, %rbp
 .LEHB5:
-	call	_ZN6playerC1EPN4slay6engineE
+	call	_ZN6playerC1EPN3wze6engineE
 .LEHE5:
 	movq	8(%rbp), %rdx
 	leaq	80(%rdi), %rcx
 	leaq	632(%rdi), %rbx
 	leaq	.LC0(%rip), %r12
 .LEHB6:
-	call	_ZN4slay6engine6camera4BindEy
+	call	_ZN3wze6engine6camera4BindEy
 	jmp	.L4
 	.p2align 4,,10
 	.p2align 3
@@ -110,16 +110,16 @@ main:
 	movq	%rbp, %rcx
 	call	_ZN6player6UpdateEv
 	movq	%rbx, %rcx
-	call	_ZN4slay6engine6timing12GetFrameTimeEv
+	call	_ZN3wze6engine6timing12GetFrameTimeEv
 	movq	%rbx, %rcx
 	movl	%eax, %r15d
-	call	_ZN4slay6engine6timing14GetWorkingTimeEv
+	call	_ZN3wze6engine6timing14GetWorkingTimeEv
 	movq	%rbx, %rcx
 	movl	%eax, %r14d
-	call	_ZN4slay6engine6timing13GetRenderTimeEv
+	call	_ZN3wze6engine6timing13GetRenderTimeEv
 	movq	%rbx, %rcx
 	movl	%eax, %esi
-	call	_ZN4slay6engine6timing11GetGameTimeEv
+	call	_ZN3wze6engine6timing11GetGameTimeEv
 	movl	%r15d, 32(%rsp)
 	movl	%r14d, %r9d
 	movl	%esi, %r8d
@@ -128,7 +128,7 @@ main:
 	call	_Z6printfPKcz.constprop.0
 .L4:
 	movq	%rdi, %rcx
-	call	_ZN4slay6engine6UpdateEv
+	call	_ZN3wze6engine6UpdateEv
 .LEHE6:
 	testb	%al, %al
 	jne	.L5
@@ -143,7 +143,7 @@ main:
 	movq	%rbp, %rcx
 	call	_ZdlPvy
 	movq	%rdi, %rcx
-	call	_ZN4slay6engineD1Ev
+	call	_ZN3wze6engineD1Ev
 	movl	$688, %edx
 	movq	%rdi, %rcx
 	call	_ZdlPvy
@@ -265,18 +265,18 @@ main.cold:
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engineC1EPKcS2_tth;	.scl	2;	.type	32;	.endef
-	.def	_ZN10backgroundC1EPN4slay6engineE;	.scl	2;	.type	32;	.endef
-	.def	_ZN6playerC1EPN4slay6engineE;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6camera4BindEy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engineC1EPKcS2_tth;	.scl	2;	.type	32;	.endef
+	.def	_ZN10backgroundC1EPN3wze6engineE;	.scl	2;	.type	32;	.endef
+	.def	_ZN6playerC1EPN3wze6engineE;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6camera4BindEy;	.scl	2;	.type	32;	.endef
 	.def	_ZN6player6UpdateEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6timing12GetFrameTimeEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6timing14GetWorkingTimeEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6timing13GetRenderTimeEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6timing11GetGameTimeEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engine6UpdateEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6timing12GetFrameTimeEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6timing14GetWorkingTimeEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6timing13GetRenderTimeEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6timing11GetGameTimeEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN10backgroundD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZN6playerD1Ev;	.scl	2;	.type	32;	.endef
-	.def	_ZN4slay6engineD1Ev;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engineD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef

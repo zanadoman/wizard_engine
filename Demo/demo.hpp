@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../SlayEngine/SlayEngine.hpp"
+#include "../WizardEngine/WizardEngine.hpp"
 
-using namespace slay;
+using namespace wze;
 
 typedef enum
 {

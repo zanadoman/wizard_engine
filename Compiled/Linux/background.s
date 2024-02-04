@@ -6,9 +6,9 @@
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN10backgroundC2EPN4slay6engineE
-	.type	_ZN10backgroundC2EPN4slay6engineE, @function
-_ZN10backgroundC2EPN4slay6engineE:
+	.globl	_ZN10backgroundC2EPN3wze6engineE
+	.type	_ZN10backgroundC2EPN3wze6engineE, @function
+_ZN10backgroundC2EPN3wze6engineE:
 .LFB2232:
 	.cfi_startproc
 	pushq	%rbx
@@ -18,7 +18,7 @@ _ZN10backgroundC2EPN4slay6engineE:
 	movq	%rsi, (%rdi)
 	leaq	560(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
-	call	_ZN4slay6engine6assets11LoadTextureEPKc@PLT
+	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	pxor	%xmm1, %xmm1
 	movl	$720, %ecx
 	xorl	%esi, %esi
@@ -28,24 +28,24 @@ _ZN10backgroundC2EPN4slay6engineE:
 	movapd	%xmm1, %xmm0
 	movsd	.LC1(%rip), %xmm2
 	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actors3NewEyddttd@PLT
+	call	_ZN3wze6engine6actors3NewEyddttd@PLT
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rsi
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
-	call	_ZN4slay6engine6actorsixEy@PLT
+	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	24(%rbx), %rsi
 	leaq	40(%rax), %rdi
-	call	_ZN4slay6engine6actors5actor8textures3NewEy@PLT
+	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
 	movq	%rax, 16(%rbx)
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN10backgroundC2EPN4slay6engineE, .-_ZN10backgroundC2EPN4slay6engineE
-	.globl	_ZN10backgroundC1EPN4slay6engineE
-	.set	_ZN10backgroundC1EPN4slay6engineE,_ZN10backgroundC2EPN4slay6engineE
+	.size	_ZN10backgroundC2EPN3wze6engineE, .-_ZN10backgroundC2EPN3wze6engineE
+	.globl	_ZN10backgroundC1EPN3wze6engineE
+	.set	_ZN10backgroundC1EPN3wze6engineE,_ZN10backgroundC2EPN3wze6engineE
 	.align 2
 	.p2align 4
 	.globl	_ZN10backgroundD2Ev
@@ -62,11 +62,11 @@ _ZN10backgroundD2Ev:
 	movq	%rdi, %rbx
 	movq	24(%rdi), %rsi
 	leaq	560(%rax), %rdi
-	call	_ZN4slay6engine6assets13UnloadTextureEy@PLT
+	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi
 	addq	$528, %rdi
-	call	_ZN4slay6engine6actors6DeleteEy@PLT
+	call	_ZN3wze6engine6actors6DeleteEy@PLT
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
