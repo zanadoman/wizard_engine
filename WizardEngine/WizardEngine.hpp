@@ -536,17 +536,15 @@ namespace wze
 
                 enum direction
                 {
-                    NONE = 0,
-
                     TOP = 1,
                     BOT = 2,
                     LEFT = 4,
                     RIGHT = 8,
-
                     TOP_LEFT = 16,
                     TOP_RIGHT = 32,
                     BOT_LEFT = 64,
-                    BOT_RIGHT = 128
+                    BOT_RIGHT = 128,
+                    NONE = 0
                 };
 
                 public:
