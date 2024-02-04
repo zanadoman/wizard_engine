@@ -266,7 +266,7 @@ namespace wze
                     Actor1->Y -= (Actor1TopLeftY - Actor2BotRightY) * cache + EPSILON;
                     Actor2->Y += (Actor1TopLeftY - Actor2BotRightY) * ratio;
 
-                    Actor1->X -= (Actor1BotRightX - Actor2TopLeftX) * (1 - ratio) + EPSILON;
+                    Actor1->X -= (Actor1BotRightX - Actor2TopLeftX) * cache + EPSILON;
                     Actor2->X += (Actor1BotRightX - Actor2TopLeftX) * ratio;
                 return true;
 
