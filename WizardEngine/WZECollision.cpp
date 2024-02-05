@@ -341,14 +341,17 @@ namespace wze
 
             for (uint64 NextBranch = 0; NextBranch < this->CollisionLayers[Layer].Length(); NextBranch++)
             {
-                if (NextBranch != Root && this->CollisionLayers[Layer][Root]->Force <= ForceRequirement)
+                if (NextBranch != Root)
                 {
-                    this->ResolveCollision(this->CollisionLayers[Layer][Root], 0, this->CollisionLayers[Layer][NextBranch]);
-                }
-                else if (NextBranch != Root && this->ResolveCollision(this->CollisionLayers[Layer][Root], this->CollisionLayers[Layer][NextBranch]->Resistance + this->CollisionLayers[Layer][Root]->Force - ForceRequirement, this->CollisionLayers[Layer][NextBranch]))
-                {
-                    this->NewCollisionBranch(Layer, Root, this->CollisionLayers[Layer][Root]->Force - ForceRequirement, NextBranch);
-                    this->ResolveCollision(this->CollisionLayers[Layer][Root], 0, this->CollisionLayers[Layer][NextBranch]);
+                    if (this->CollisionLayers[Layer][Root]->Force <= ForceRequirement)
+                    {
+                        this->ResolveCollision(this->CollisionLayers[Layer][Root], 0, this->CollisionLayers[Layer][NextBranch]);
+                    }
+                    else if (this->ResolveCollision(this->CollisionLayers[Layer][Root], this->CollisionLayers[Layer][NextBranch]->Resistance + this->CollisionLayers[Layer][Root]->Force - ForceRequirement, this->CollisionLayers[Layer][NextBranch]))
+                    {
+                        this->NewCollisionBranch(Layer, Root, this->CollisionLayers[Layer][Root]->Force - ForceRequirement, NextBranch);
+                        this->ResolveCollision(this->CollisionLayers[Layer][Root], 0, this->CollisionLayers[Layer][NextBranch]);
+                    }
                 }
             }
         }
@@ -379,14 +382,17 @@ namespace wze
 
         for (uint64 NextBranch = 0; NextBranch < this->CollisionLayers[Layer].Length(); NextBranch++)
         {
-            if (NextBranch != Root && NextBranch != CurrentBranch && RootForce <= ForceRequirement)
+            if (NextBranch != Root && NextBranch != CurrentBranch)
             {
-                this->ResolveCollision(this->CollisionLayers[Layer][CurrentBranch], 0, this->CollisionLayers[Layer][NextBranch]);
-            }
-            else if (NextBranch != Root && NextBranch != CurrentBranch && this->ResolveCollision(this->CollisionLayers[Layer][CurrentBranch], this->CollisionLayers[Layer][NextBranch]->Resistance + RootForce - ForceRequirement, this->CollisionLayers[Layer][NextBranch]))
-            {
-                this->NewCollisionBranch(Layer, Root, RootForce - ForceRequirement, NextBranch);
-                this->ResolveCollision(this->CollisionLayers[Layer][CurrentBranch], 0, this->CollisionLayers[Layer][NextBranch]);
+                if (RootForce <= ForceRequirement)
+                {
+                    this->ResolveCollision(this->CollisionLayers[Layer][CurrentBranch], 0, this->CollisionLayers[Layer][NextBranch]);
+                }
+                else if (this->ResolveCollision(this->CollisionLayers[Layer][CurrentBranch], this->CollisionLayers[Layer][NextBranch]->Resistance + RootForce - ForceRequirement, this->CollisionLayers[Layer][NextBranch]))
+                {
+                    this->NewCollisionBranch(Layer, Root, RootForce - ForceRequirement, NextBranch);
+                    this->ResolveCollision(this->CollisionLayers[Layer][CurrentBranch], 0, this->CollisionLayers[Layer][NextBranch]);
+                }
             }
         }
 
