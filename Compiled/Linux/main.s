@@ -1,12 +1,12 @@
 	.file	"main.cpp"
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
-.LC0:
+.LC3:
 	.string	"%d %d %d %d\n"
 	.section	.text.unlikely,"ax",@progbits
-.LCOLDB1:
+.LCOLDB4:
 	.section	.text.startup,"ax",@progbits
-.LHOTB1:
+.LHOTB4:
 	.p2align 4
 	.globl	main
 	.type	main, @function
@@ -69,7 +69,7 @@ main:
 	movl	$81, %ecx
 	movl	$82, %edx
 	movq	%rax, %rdi
-	movq	%rax, %r15
+	movq	%rax, %r14
 .LEHB5:
 	call	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_@PLT
 .LEHE5:
@@ -83,7 +83,7 @@ main:
 	movl	$22, %ecx
 	movl	$26, %edx
 	movq	%rax, %rdi
-	movq	%rax, %r14
+	movq	%rax, %r15
 .LEHB7:
 	call	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_@PLT
 .LEHE7:
@@ -278,19 +278,30 @@ main:
 	call	_ZN5crateC1EPN3wze6engineEddtt@PLT
 .LEHE19:
 	movq	8(%r14), %rsi
-	leaq	80(%rbx), %rdi
+	leaq	80(%rbx), %rbp
+	movq	%rbp, %rdi
 .LEHB20:
 	call	_ZN3wze6engine6camera4BindEy@PLT
+	movb	$1, 104(%rbx)
+	movsd	.LC0(%rip), %xmm0
+	movq	%rbp, %rdi
+	call	_ZN3wze6engine6camera11SetMinSpeedEd@PLT
+	movsd	.LC1(%rip), %xmm0
+	movq	%rbp, %rdi
+	call	_ZN3wze6engine6camera11SetMaxSpeedEd@PLT
+	movsd	.LC2(%rip), %xmm0
+	movq	%rbp, %rdi
+	call	_ZN3wze6engine6camera15SetAccelerationEd@PLT
 	movq	%r14, 8(%rsp)
 	movq	%r13, 56(%rsp)
 	jmp	.L2
 	.p2align 4,,10
 	.p2align 3
 .L3:
-	movq	%r15, %rdi
+	movq	8(%rsp), %rdi
 	leaq	672(%rbx), %rbp
 	call	_ZN6player6UpdateEv@PLT
-	movq	8(%rsp), %rdi
+	movq	%r15, %rdi
 	call	_ZN6player6UpdateEv@PLT
 	movq	(%rsp), %rdi
 	call	_ZN10flashlight6UpdateEv@PLT
@@ -309,7 +320,7 @@ main:
 	movl	%r13d, %ecx
 	movl	%r12d, %edx
 	movl	%eax, %esi
-	leaq	.LC0(%rip), %rdi
+	leaq	.LC3(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 .L2:
@@ -355,15 +366,15 @@ main:
 	movl	$40, %esi
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	call	_ZN6playerD1Ev@PLT
 	movl	$72, %esi
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	call	_ZdlPvm@PLT
-	movq	%r15, %rdi
+	movq	%r14, %rdi
 	call	_ZN6playerD1Ev@PLT
 	movl	$72, %esi
-	movq	%r15, %rdi
+	movq	%r14, %rdi
 	call	_ZdlPvm@PLT
 	movq	48(%rsp), %r15
 	movq	%r15, %rdi
@@ -577,13 +588,13 @@ main.cold:
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L7:
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	movl	$72, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L6:
-	movq	%r15, %rdi
+	movq	%r14, %rdi
 	movl	$72, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
@@ -604,7 +615,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8144-.LLSDACSBC8144
 .LLSDACSBC8144:
-	.uleb128 .LEHB21-.LCOLDB1
+	.uleb128 .LEHB21-.LCOLDB4
 	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
@@ -614,9 +625,22 @@ main.cold:
 	.size	main, .-main
 	.section	.text.unlikely
 	.size	main.cold, .-main.cold
-.LCOLDE1:
+.LCOLDE4:
 	.section	.text.startup
-.LHOTE1:
+.LHOTE4:
+	.section	.rodata.cst8,"aM",@progbits,8
+	.align 8
+.LC0:
+	.long	-1717986918
+	.long	1070176665
+	.align 8
+.LC1:
+	.long	0
+	.long	1071644672
+	.align 8
+.LC2:
+	.long	-350469331
+	.long	1059731170
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat
