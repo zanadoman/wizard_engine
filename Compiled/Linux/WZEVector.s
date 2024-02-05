@@ -40,19 +40,30 @@ _ZN3wze6engine6vector5AngleEdddd:
 .LFB8148:
 	.cfi_startproc
 	subsd	%xmm0, %xmm2
-	subsd	%xmm1, %xmm3
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 16
-	mulsd	%xmm3, %xmm3
+	movapd	%xmm3, %xmm4
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 32
+	subsd	%xmm1, %xmm4
+	movsd	%xmm3, 8(%rsp)
+	movsd	%xmm1, (%rsp)
 	movapd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm0
-	addsd	%xmm3, %xmm0
+	mulsd	%xmm4, %xmm4
+	addsd	%xmm4, %xmm0
 	sqrtsd	%xmm0, %xmm0
 	divsd	%xmm0, %xmm2
 	movapd	%xmm2, %xmm0
 	call	acos@PLT
+	movsd	(%rsp), %xmm1
+	movsd	8(%rsp), %xmm3
 	mulsd	.LC0(%rip), %xmm0
-	addq	$8, %rsp
+	comisd	%xmm1, %xmm3
+	jbe	.L4
+	movsd	.LC1(%rip), %xmm1
+	subsd	%xmm0, %xmm1
+	movapd	%xmm1, %xmm0
+.L4:
+	addq	$24, %rsp
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
@@ -67,7 +78,7 @@ _ZN3wze6engine6vector9TerminalXEddd:
 	.cfi_startproc
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 32
-	mulsd	.LC1(%rip), %xmm2
+	mulsd	.LC2(%rip), %xmm2
 	movsd	%xmm0, (%rsp)
 	movsd	%xmm1, 8(%rsp)
 	movapd	%xmm2, %xmm0
@@ -89,7 +100,7 @@ _ZN3wze6engine6vector9TerminalYEddd:
 	.cfi_startproc
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 32
-	mulsd	.LC1(%rip), %xmm2
+	mulsd	.LC2(%rip), %xmm2
 	movsd	%xmm0, (%rsp)
 	movsd	%xmm1, 8(%rsp)
 	movapd	%xmm2, %xmm0
@@ -109,6 +120,10 @@ _ZN3wze6engine6vector9TerminalYEddd:
 	.long	1078765020
 	.align 8
 .LC1:
+	.long	0
+	.long	1081507840
+	.align 8
+.LC2:
 	.long	-1571644103
 	.long	1066524486
 	.ident	"GCC: (GNU) 13.2.1 20230801"

@@ -87,15 +87,25 @@ main:
 .LEHB7:
 	call	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_@PLT
 .LEHE7:
-	movl	$32, %edi
+	movl	$40, %edi
 .LEHB8:
 	call	_Znwm@PLT
 .LEHE8:
+	movq	%rbx, %rsi
+	movq	%rax, %rdi
+	movq	%rax, (%rsp)
+.LEHB9:
+	call	_ZN10flashlightC1EPN3wze6engineE@PLT
+.LEHE9:
+	movl	$32, %edi
+.LEHB10:
+	call	_Znwm@PLT
+.LEHE10:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
 	movq	%rax, 16(%rsp)
-.LEHB9:
+.LEHB11:
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$150, %edx
 	movl	$50, %esi
@@ -122,16 +132,16 @@ main:
 	movq	%r13, %xmm1
 	movq	%rbx, %rsi
 	call	_ZN5crateC1EPN3wze6engineEddtt@PLT
-.LEHE9:
+.LEHE11:
 	movl	$32, %edi
-.LEHB10:
+.LEHB12:
 	call	_Znwm@PLT
-.LEHE10:
+.LEHE12:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
 	movq	%rax, 24(%rsp)
-.LEHB11:
+.LEHB13:
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$150, %edx
 	movl	$50, %esi
@@ -158,16 +168,16 @@ main:
 	movq	%r13, %xmm1
 	movq	%rbx, %rsi
 	call	_ZN5crateC1EPN3wze6engineEddtt@PLT
-.LEHE11:
+.LEHE13:
 	movl	$32, %edi
-.LEHB12:
+.LEHB14:
 	call	_Znwm@PLT
-.LEHE12:
+.LEHE14:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
 	movq	%rax, 32(%rsp)
-.LEHB13:
+.LEHB15:
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$150, %edx
 	movl	$50, %esi
@@ -194,16 +204,16 @@ main:
 	movq	%r13, %xmm1
 	movq	%rbx, %rsi
 	call	_ZN5crateC1EPN3wze6engineEddtt@PLT
-.LEHE13:
+.LEHE15:
 	movl	$32, %edi
-.LEHB14:
+.LEHB16:
 	call	_Znwm@PLT
-.LEHE14:
+.LEHE16:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
 	movq	%rax, 40(%rsp)
-.LEHB15:
+.LEHB17:
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$150, %edx
 	movl	$50, %esi
@@ -230,26 +240,26 @@ main:
 	movq	%r13, %xmm1
 	movq	%rbx, %rsi
 	call	_ZN5crateC1EPN3wze6engineEddtt@PLT
-.LEHE15:
+.LEHE17:
 	movl	$32, %edi
-.LEHB16:
+.LEHB18:
 	call	_Znwm@PLT
-.LEHE16:
+.LEHE18:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
 	movq	%rax, %r13
-.LEHB17:
+.LEHB19:
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
-	movzwl	%ax, %r12d
+	movzwl	%ax, %ebp
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$500, %edx
 	movl	$-500, %esi
 	movq	%rbx, %rdi
-	movzwl	%ax, %ebp
+	movzwl	%ax, %r12d
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm6, %xmm6
 	movl	$500, %edx
@@ -260,17 +270,17 @@ main:
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm0, %xmm0
 	movsd	8(%rsp), %xmm1
-	movl	%r12d, %ecx
-	movl	%ebp, %edx
+	movl	%ebp, %ecx
+	movl	%r12d, %edx
 	cvtsi2sdl	%eax, %xmm0
 	movq	%rbx, %rsi
 	movq	%r13, %rdi
 	call	_ZN5crateC1EPN3wze6engineEddtt@PLT
-.LEHE17:
+.LEHE19:
 	movq	8(%r14), %rsi
 	leaq	80(%rbx), %rbp
 	movq	%rbp, %rdi
-.LEHB18:
+.LEHB20:
 	call	_ZN3wze6engine6camera4BindEy@PLT
 	movb	$1, 104(%rbx)
 	movsd	.LC0(%rip), %xmm0
@@ -293,6 +303,8 @@ main:
 	call	_ZN6player6UpdateEv@PLT
 	movq	%r15, %rdi
 	call	_ZN6player6UpdateEv@PLT
+	movq	(%rsp), %rdi
+	call	_ZN10flashlight6UpdateEv@PLT
 	movq	%rbp, %rdi
 	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
 	movq	%rbp, %rdi
@@ -314,7 +326,7 @@ main:
 .L2:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6UpdateEv@PLT
-.LEHE18:
+.LEHE20:
 	testb	%al, %al
 	jne	.L3
 	movq	56(%rsp), %r13
@@ -346,6 +358,12 @@ main:
 	movq	%rbp, %rdi
 	call	_ZN5crateD1Ev@PLT
 	movl	$32, %esi
+	movq	%rbp, %rdi
+	call	_ZdlPvm@PLT
+	movq	(%rsp), %rbp
+	movq	%rbp, %rdi
+	call	_ZN10flashlightD1Ev@PLT
+	movl	$40, %esi
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
 	movq	%r15, %rdi
@@ -386,32 +404,35 @@ main:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L13:
+.L14:
 	.cfi_restore_state
 	movq	%rax, %rbp
 	jmp	.L4
-.L21:
+.L23:
+	movq	%rax, %rbx
+	jmp	.L13
+.L22:
 	movq	%rax, %rbx
 	jmp	.L12
-.L17:
-	movq	%rax, %rbx
-	jmp	.L8
-.L19:
-	movq	%rax, %rbx
-	jmp	.L10
-.L15:
-	movq	%rax, %rbx
-	jmp	.L6
-.L20:
+.L21:
 	movq	%rax, %rbx
 	jmp	.L11
-.L16:
+.L20:
 	movq	%rax, %rbx
-	jmp	.L7
-.L18:
+	jmp	.L10
+.L19:
 	movq	%rax, %rbx
 	jmp	.L9
-.L14:
+.L18:
+	movq	%rax, %rbx
+	jmp	.L8
+.L17:
+	movq	%rax, %rbx
+	jmp	.L7
+.L16:
+	movq	%rax, %rbx
+	jmp	.L6
+.L15:
 	movq	%rax, %rbx
 	jmp	.L5
 	.globl	__gxx_personality_v0
@@ -428,7 +449,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB8144
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L13-.LFB8144
+	.uleb128 .L14-.LFB8144
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB8144
 	.uleb128 .LEHE2-.LEHB2
@@ -436,7 +457,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB3-.LFB8144
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L14-.LFB8144
+	.uleb128 .L15-.LFB8144
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB8144
 	.uleb128 .LEHE4-.LEHB4
@@ -444,7 +465,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB8144
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L15-.LFB8144
+	.uleb128 .L16-.LFB8144
 	.uleb128 0
 	.uleb128 .LEHB6-.LFB8144
 	.uleb128 .LEHE6-.LEHB6
@@ -452,7 +473,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB7-.LFB8144
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L16-.LFB8144
+	.uleb128 .L17-.LFB8144
 	.uleb128 0
 	.uleb128 .LEHB8-.LFB8144
 	.uleb128 .LEHE8-.LEHB8
@@ -460,7 +481,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB9-.LFB8144
 	.uleb128 .LEHE9-.LEHB9
-	.uleb128 .L17-.LFB8144
+	.uleb128 .L18-.LFB8144
 	.uleb128 0
 	.uleb128 .LEHB10-.LFB8144
 	.uleb128 .LEHE10-.LEHB10
@@ -468,7 +489,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB11-.LFB8144
 	.uleb128 .LEHE11-.LEHB11
-	.uleb128 .L18-.LFB8144
+	.uleb128 .L19-.LFB8144
 	.uleb128 0
 	.uleb128 .LEHB12-.LFB8144
 	.uleb128 .LEHE12-.LEHB12
@@ -476,7 +497,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB13-.LFB8144
 	.uleb128 .LEHE13-.LEHB13
-	.uleb128 .L19-.LFB8144
+	.uleb128 .L20-.LFB8144
 	.uleb128 0
 	.uleb128 .LEHB14-.LFB8144
 	.uleb128 .LEHE14-.LEHB14
@@ -484,7 +505,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB15-.LFB8144
 	.uleb128 .LEHE15-.LEHB15
-	.uleb128 .L20-.LFB8144
+	.uleb128 .L21-.LFB8144
 	.uleb128 0
 	.uleb128 .LEHB16-.LFB8144
 	.uleb128 .LEHE16-.LEHB16
@@ -492,10 +513,18 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB17-.LFB8144
 	.uleb128 .LEHE17-.LEHB17
-	.uleb128 .L21-.LFB8144
+	.uleb128 .L22-.LFB8144
 	.uleb128 0
 	.uleb128 .LEHB18-.LFB8144
 	.uleb128 .LEHE18-.LEHB18
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB19-.LFB8144
+	.uleb128 .LEHE19-.LEHB19
+	.uleb128 .L23-.LFB8144
+	.uleb128 0
+	.uleb128 .LEHB20-.LFB8144
+	.uleb128 .LEHE20-.LEHB20
 	.uleb128 0
 	.uleb128 0
 .LLSDACSE8144:
@@ -520,35 +549,41 @@ main.cold:
 	movl	$752, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbp, %rdi
-.LEHB19:
+.LEHB21:
 	call	_Unwind_Resume@PLT
-.L12:
+.L13:
 	movq	%r13, %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
-.L11:
+.L12:
 	movq	40(%rsp), %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
-.L10:
+.L11:
 	movq	32(%rsp), %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
-.L9:
+.L10:
 	movq	24(%rsp), %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
-.L8:
+.L9:
 	movq	16(%rsp), %rdi
 	movl	$32, %esi
+	call	_ZdlPvm@PLT
+	movq	%rbx, %rdi
+	call	_Unwind_Resume@PLT
+.L8:
+	movq	(%rsp), %rdi
+	movl	$40, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
@@ -570,7 +605,7 @@ main.cold:
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
-.LEHE19:
+.LEHE21:
 	.cfi_endproc
 .LFE8144:
 	.section	.gcc_except_table
@@ -580,8 +615,8 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8144-.LLSDACSBC8144
 .LLSDACSBC8144:
-	.uleb128 .LEHB19-.LCOLDB4
-	.uleb128 .LEHE19-.LEHB19
+	.uleb128 .LEHB21-.LCOLDB4
+	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
 .LLSDACSEC8144:
@@ -601,7 +636,7 @@ main.cold:
 	.align 8
 .LC1:
 	.long	0
-	.long	1075052544
+	.long	1071644672
 	.align 8
 .LC2:
 	.long	-350469331

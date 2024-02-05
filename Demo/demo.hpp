@@ -8,7 +8,8 @@ typedef enum
 {
     BACKGROUND,
     PLAYER,
-    CRATE
+    CRATE,
+    FLASHLIGHT
 } ACTORS;
 
 class background
@@ -55,6 +56,22 @@ class crate
         crate(engine* Engine, double X, double Y, uint16 Width, uint16 Height);
         ~crate();
     
+    private:
+        uint64 Texture;
+        uint64 TextureAsset;
+};
+
+class flashlight
+{
+    engine* Engine;
+    player* Player;
+
+    public:
+        uint64 Actor;
+        flashlight(engine* Engine);
+        ~flashlight();
+        uint8 Update();
+
     private:
         uint64 Texture;
         uint64 TextureAsset;
