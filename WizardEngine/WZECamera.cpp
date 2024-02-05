@@ -154,7 +154,10 @@ namespace wze
             exit(1);
         }
 
-        this->CurrentSpeed = MinSpeed;
+        if (this->CurrentSpeed == this->MinSpeed)
+        {
+            this->CurrentSpeed = MinSpeed;   
+        }
 
         return this->MinSpeed = MinSpeed;
     }
