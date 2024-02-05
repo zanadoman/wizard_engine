@@ -7,7 +7,8 @@ using namespace wze;
 typedef enum
 {
     BACKGROUND,
-    PLAYER
+    PLAYER,
+    CRATE
 } ACTORS;
 
 class background
@@ -39,4 +40,18 @@ class player
         array<uint64> MainFlipbookTextures;
         uint64 NameText;
         uint64 NameTextFont;
+};
+
+class crate
+{
+    engine* Engine;
+
+    public:
+        uint64 Actor;
+        crate(engine* Engine, double X, double Y, uint16 Width, uint16 Height);
+        ~crate();
+    
+    private:
+        uint64 Texture;
+        uint64 TextureAsset;
 };

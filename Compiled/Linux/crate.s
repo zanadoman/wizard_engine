@@ -1,31 +1,43 @@
-	.file	"background.cpp"
+	.file	"crate.cpp"
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC0:
-	.string	"assets/background/back.png"
+	.string	"assets/crate.png"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN10backgroundC2EPN3wze6engineE
-	.type	_ZN10backgroundC2EPN3wze6engineE, @function
-_ZN10backgroundC2EPN3wze6engineE:
+	.globl	_ZN5crateC2EPN3wze6engineEddtt
+	.type	_ZN5crateC2EPN3wze6engineEddtt, @function
+_ZN5crateC2EPN3wze6engineEddtt:
 .LFB2232:
 	.cfi_startproc
-	pushq	%rbx
+	pushq	%r12
 	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
+	.cfi_offset 12, -16
+	movl	%ecx, %r12d
+	pushq	%rbp
+	.cfi_def_cfa_offset 24
+	.cfi_offset 6, -24
+	movl	%edx, %ebp
+	pushq	%rbx
+	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
 	movq	%rdi, %rbx
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 48
 	movq	%rsi, (%rdi)
 	leaq	560(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
+	movsd	%xmm0, 8(%rsp)
+	movsd	%xmm1, (%rsp)
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
-	pxor	%xmm1, %xmm1
-	movl	$720, %ecx
-	xorl	%esi, %esi
+	movsd	(%rsp), %xmm1
+	movzwl	%r12w, %ecx
+	movzwl	%bp, %edx
 	movq	%rax, 24(%rbx)
 	movq	(%rbx), %rax
-	movl	$1280, %edx
-	movapd	%xmm1, %xmm0
+	movl	$2, %esi
+	movsd	8(%rsp), %xmm0
 	movsd	.LC1(%rip), %xmm2
 	leaq	528(%rax), %rdi
 	call	_ZN3wze6engine6actors3NewEyddttd@PLT
@@ -37,20 +49,37 @@ _ZN10backgroundC2EPN3wze6engineE:
 	movq	24(%rbx), %rsi
 	leaq	40(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
+	movq	8(%rbx), %rsi
 	movq	%rax, 16(%rbx)
+	movq	(%rbx), %rax
+	leaq	528(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movq	(%rbx), %rdi
+	movq	8(%rbx), %rsi
+	movq	$50, 144(%rax)
+	addq	$528, %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	addq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	movl	$1, %esi
 	popq	%rbx
+	.cfi_def_cfa_offset 24
+	movq	%rax, %rdi
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
 	.cfi_def_cfa_offset 8
-	ret
+	jmp	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
 	.cfi_endproc
 .LFE2232:
-	.size	_ZN10backgroundC2EPN3wze6engineE, .-_ZN10backgroundC2EPN3wze6engineE
-	.globl	_ZN10backgroundC1EPN3wze6engineE
-	.set	_ZN10backgroundC1EPN3wze6engineE,_ZN10backgroundC2EPN3wze6engineE
+	.size	_ZN5crateC2EPN3wze6engineEddtt, .-_ZN5crateC2EPN3wze6engineEddtt
+	.globl	_ZN5crateC1EPN3wze6engineEddtt
+	.set	_ZN5crateC1EPN3wze6engineEddtt,_ZN5crateC2EPN3wze6engineEddtt
 	.align 2
 	.p2align 4
-	.globl	_ZN10backgroundD2Ev
-	.type	_ZN10backgroundD2Ev, @function
-_ZN10backgroundD2Ev:
+	.globl	_ZN5crateD2Ev
+	.type	_ZN5crateD2Ev, @function
+_ZN5crateD2Ev:
 .LFB2235:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
@@ -82,9 +111,9 @@ _ZN10backgroundD2Ev:
 .LLSDACSB2235:
 .LLSDACSE2235:
 	.text
-	.size	_ZN10backgroundD2Ev, .-_ZN10backgroundD2Ev
-	.globl	_ZN10backgroundD1Ev
-	.set	_ZN10backgroundD1Ev,_ZN10backgroundD2Ev
+	.size	_ZN5crateD2Ev, .-_ZN5crateD2Ev
+	.globl	_ZN5crateD1Ev
+	.set	_ZN5crateD1Ev,_ZN5crateD2Ev
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC1:

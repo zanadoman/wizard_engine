@@ -17,6 +17,11 @@ sint32 main()
 
     background* Background = new background(Engine);
     player* Player = new player(Engine);
+    crate* crate1 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
+    crate* crate2 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
+    crate* crate3 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
+    crate* crate4 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
+    crate* crate5 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
 
     Engine->Camera.Bind(Player->Actor);
 
@@ -27,8 +32,13 @@ sint32 main()
         printf("%d %d %d %d\n", Engine->Timing.GetGameTime(), Engine->Timing.GetRenderTime(), Engine->Timing.GetWorkingTime(), Engine->Timing.GetFrameTime());
     }
 
-    delete Background;
+    delete crate5;
+    delete crate4;
+    delete crate3;
+    delete crate2;
+    delete crate1;
     delete Player;
+    delete Background;
     delete Engine;
 
     return 0;
