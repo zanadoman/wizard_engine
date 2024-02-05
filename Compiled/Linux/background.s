@@ -16,7 +16,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	.cfi_offset 3, -16
 	movq	%rdi, %rbx
 	movq	%rsi, (%rdi)
-	leaq	584(%rsi), %rdi
+	leaq	560(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	pxor	%xmm1, %xmm1
@@ -37,9 +37,16 @@ _ZN10backgroundC2EPN3wze6engineE:
 	movq	24(%rbx), %rsi
 	leaq	40(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
-	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi
 	movq	%rax, 16(%rbx)
+	movq	(%rbx), %rax
+	leaq	528(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movl	$1, %esi
+	movq	%rax, %rdi
+	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
+	movq	(%rbx), %rdi
+	movq	8(%rbx), %rsi
 	addq	$528, %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movb	$1, 152(%rax)
@@ -66,7 +73,7 @@ _ZN10backgroundD2Ev:
 	movq	(%rdi), %rax
 	movq	%rdi, %rbx
 	movq	24(%rdi), %rsi
-	leaq	584(%rax), %rdi
+	leaq	560(%rax), %rdi
 	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi

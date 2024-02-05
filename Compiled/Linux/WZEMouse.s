@@ -238,9 +238,9 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	movq	(%rdi), %rax
 	movq	%rdi, %rbp
 	movq	%rsi, %rbx
-	cmpq	640(%rax), %rsi
+	cmpq	616(%rax), %rsi
 	jnb	.L38
-	movq	648(%rax), %rax
+	movq	624(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
 	je	.L38

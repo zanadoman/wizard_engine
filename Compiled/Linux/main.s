@@ -77,7 +77,7 @@ main:
 	.p2align 4,,10
 	.p2align 3
 .L3:
-	leaq	656(%r13), %rbx
+	leaq	632(%r13), %rbx
 	movq	%r14, %rdi
 	call	_ZN6player6UpdateEv@PLT
 	movq	%rbx, %rdi
