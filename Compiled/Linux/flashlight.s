@@ -34,16 +34,8 @@ _ZN10flashlightC2EPN3wze6engineE:
 	movl	$3, %esi
 	leaq	568(%rax), %rdi
 	call	_ZN3wze6engine6actors3NewEyddttd@PLT
-	movq	%rax, 16(%rbx)
 	movq	%rax, %rsi
-	movq	(%rbx), %rax
-	leaq	568(%rax), %rdi
-	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	32(%rbx), %rsi
-	leaq	40(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
-	movq	16(%rbx), %rsi
-	movq	%rax, 24(%rbx)
+	movq	%rax, 16(%rbx)
 	movq	(%rbx), %rax
 	leaq	568(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
@@ -126,25 +118,17 @@ _ZN10flashlightD2Ev:
 _ZN10flashlight6UpdateEv:
 .LFB8150:
 	.cfi_startproc
-	pushq	%r12
-	.cfi_def_cfa_offset 16
-	.cfi_offset 12, -16
 	pushq	%rbp
-	.cfi_def_cfa_offset 24
-	.cfi_offset 6, -24
-	pushq	%rbx
-	.cfi_def_cfa_offset 32
-	.cfi_offset 3, -32
-	movq	%rdi, %rbx
-	subq	$32, %rsp
-	.cfi_def_cfa_offset 64
-	movq	(%rdi), %rax
-	movq	16(%rdi), %rsi
-	leaq	568(%rax), %rdi
-	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	(%rbx), %rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
 	pxor	%xmm0, %xmm0
-	movq	%rax, %r12
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+	movq	%rdi, %rbx
+	subq	$40, %rsp
+	.cfi_def_cfa_offset 64
+	movq	(%rdi), %rbp
 	leaq	512(%rbp), %rdi
 	call	_ZN3wze6engine5mouse4GetYEd@PLT
 	movq	(%rbx), %rax
@@ -159,10 +143,10 @@ _ZN10flashlight6UpdateEv:
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
-	movq	(%rbx), %rdi
+	movq	(%rbx), %rax
 	movq	16(%rbx), %rsi
 	movsd	%xmm0, 8(%rsp)
-	addq	$568, %rdi
+	leaq	568(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
@@ -171,16 +155,35 @@ _ZN10flashlight6UpdateEv:
 	leaq	592(%rbp), %rdi
 	movsd	8(%rsp), %xmm1
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	movq	%r12, %rdi
-	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
-	addq	$32, %rsp
-	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jnp	.L11
+	addq	$40, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
 	xorl	%eax, %eax
 	popq	%rbx
-	.cfi_def_cfa_offset 24
-	popq	%rbp
 	.cfi_def_cfa_offset 16
-	popq	%r12
+	popq	%rbp
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L11:
+	.cfi_restore_state
+	movq	(%rbx), %rdi
+	movq	16(%rbx), %rsi
+	movsd	%xmm0, 8(%rsp)
+	addq	$568, %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movsd	8(%rsp), %xmm0
+	movq	%rax, %rdi
+	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
+	addq	$40, %rsp
+	.cfi_def_cfa_offset 24
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc

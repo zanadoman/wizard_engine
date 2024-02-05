@@ -41,11 +41,10 @@ _ZN3wze6engine6vector5AngleEdddd:
 	.cfi_startproc
 	subsd	%xmm0, %xmm2
 	movapd	%xmm3, %xmm4
-	subq	$24, %rsp
-	.cfi_def_cfa_offset 32
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
 	subsd	%xmm1, %xmm4
-	movsd	%xmm3, 8(%rsp)
-	movsd	%xmm1, (%rsp)
+	comisd	%xmm3, %xmm1
 	movapd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm0
 	mulsd	%xmm4, %xmm4
@@ -53,17 +52,23 @@ _ZN3wze6engine6vector5AngleEdddd:
 	sqrtsd	%xmm0, %xmm0
 	divsd	%xmm0, %xmm2
 	movapd	%xmm2, %xmm0
+	jbe	.L9
 	call	acos@PLT
-	movsd	(%rsp), %xmm1
-	movsd	8(%rsp), %xmm3
+	movsd	.LC0(%rip), %xmm1
+	mulsd	%xmm0, %xmm1
+	movsd	.LC1(%rip), %xmm0
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	subsd	%xmm1, %xmm0
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L9:
+	.cfi_restore_state
+	call	acos@PLT
 	mulsd	.LC0(%rip), %xmm0
-	comisd	%xmm3, %xmm1
-	jbe	.L4
-	movsd	.LC1(%rip), %xmm1
-	subsd	%xmm0, %xmm1
-	movapd	%xmm1, %xmm0
-.L4:
-	addq	$24, %rsp
+	addq	$8, %rsp
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
