@@ -62,9 +62,14 @@ namespace wze
     {
         this->X = X;
 
-        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-
-        this->UpdateMembersPosition();
+        if (this->CollisionLayer != 0)
+        {
+            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
+        }
+        else
+        {
+            this->UpdateMembersPosition();
+        }
 
         return this->X;
     }
@@ -78,9 +83,14 @@ namespace wze
     {
         this->Y = Y;
 
-        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-
-        this->UpdateMembersPosition();
+        if (this->CollisionLayer != 0)
+        {
+            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
+        }
+        else
+        {
+            this->UpdateMembersPosition();
+        }
 
         return this->Y;
     }
@@ -100,9 +110,14 @@ namespace wze
 
         this->UpdateHitboxScale();
 
-        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-
-        this->UpdateMembersPosition();
+        if (this->CollisionLayer != 0)
+        {
+            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
+        }
+        else
+        {
+            this->UpdateMembersPosition();
+        }
 
         return this->Width;
     }
@@ -122,9 +137,14 @@ namespace wze
 
         this->UpdateHitboxScale();
 
-        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-
-        this->UpdateMembersPosition();
+        if (this->CollisionLayer != 0)
+        {
+            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
+        }
+        else
+        {
+            this->UpdateMembersPosition();
+        }
 
         return this->Height;
     }
@@ -211,9 +231,14 @@ namespace wze
 
         this->UpdateHitboxScale();
 
-        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-
-        this->UpdateMembersPosition();
+        if (this->CollisionLayer != 0)
+        {
+            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
+        }
+        else
+        {
+            this->UpdateMembersPosition();
+        }
 
         return this->Angle;
     }
