@@ -326,6 +326,33 @@ namespace wze
 
     uint8 engine::collision::ResolveCollisionLayer(uint64 Layer)
     {
+        uint64 ForceRequirement;
+
+        for (uint64 Root = 0; Root < this->CollisionLayers[Layer].Length(); Root++)
+        {
+            ForceRequirement = 0;
+            for (uint64 NextBranch = 0; NextBranch < this->CollisionLayers[Layer].Length(); NextBranch++)
+            {
+                if (NextBranch != Root && this->GetCollisionDirection(this->CollisionLayers[Layer][Root], this->CollisionLayers[Layer][NextBranch]) != NONE)
+                {
+                    ForceRequirement += this->CollisionLayers[Layer][NextBranch]->Resistance;
+                }
+            }
+
+            for (uint64 NextBranch = 0; NextBranch < this->CollisionLayers[Layer].Length(); NextBranch++)
+            {
+                if (NextBranch != Root && this->CollisionLayers[Layer][Root]->Force <= ForceRequirement)
+                {
+                    this->ResolveCollision(this->CollisionLayers[Layer][Root], 0, this->CollisionLayers[Layer][NextBranch]);
+                }
+                else if (NextBranch != Root && this->ResolveCollision(this->CollisionLayers[Layer][Root], this->CollisionLayers[Layer][NextBranch]->Resistance + this->CollisionLayers[Layer][Root]->Force - ForceRequirement, this->CollisionLayers[Layer][NextBranch]))
+                {
+                    this->NewCollisionBranch(Layer, Root, this->CollisionLayers[Layer][Root]->Force - ForceRequirement, NextBranch);
+                    this->ResolveCollision(this->CollisionLayers[Layer][Root], 0, this->CollisionLayers[Layer][NextBranch]);
+                }
+            }
+        }
+
         for (uint64 i = 0; i < this->CollisionLayers[Layer].Length(); i++)
         {
             this->CollisionLayers[Layer][i]->PrevX = this->CollisionLayers[Layer][i]->X;
