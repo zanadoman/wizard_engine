@@ -31,11 +31,15 @@ class player
 
     public:
         uint64 Actor;
-        player(engine* Engine);
+        player(engine* Engine, key Forward, key Backward, key Left, key Right);
         ~player();
         uint8 Update();
 
     private:
+        key Forward;
+        key Backward;
+        key Left;
+        key Right;
         uint64 MainFlipbook;
         array<uint64> MainFlipbookTextures;
         uint64 NameText;

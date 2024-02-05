@@ -1,7 +1,12 @@
 #include "demo.hpp"
 
-player::player(engine* Engine) : Engine(Engine)
+player::player(engine* Engine, key Forward, key Backward, key Left, key Right) : Engine(Engine)
 {
+    this->Forward = Forward;
+    this->Backward = Backward;
+    this->Left = Left;
+    this->Right = Right;
+
     this->MainFlipbookTextures = 
     {
         this->Engine->Assets.LoadTexture("assets/player/player1.png"),
@@ -18,6 +23,7 @@ player::player(engine* Engine) : Engine(Engine)
     this->NameText = this->Engine->Actors[this->Actor].Texts.New("Player", this->NameTextFont);
 
     this->Engine->Actors[this->Actor].Force = 150;
+    this->Engine->Actors[this->Actor].Resistance = 100;
     this->Engine->Actors[this->Actor].SetDepth(0.05);
     this->Engine->Actors[this->Actor].SetCollisionLayer(1);
     this->Engine->Actors[this->Actor].HitboxVisible = true;
@@ -43,21 +49,21 @@ player::~player()
 
 uint8 player::Update()
 {
-    if (this->Engine->Keys[KEY_UP] && !this->Engine->Keys[KEY_DOWN])
+    if (this->Engine->Keys[this->Forward] && !this->Engine->Keys[this->Backward])
     {
         this->Engine->Actors[this->Actor].SetX(this->Engine->Vector.TerminalX(this->Engine->Actors[this->Actor].GetX(), 0.5 * this->Engine->Timing.GetDeltaTime(), this->Engine->Actors[this->Actor].GetAngle() + 90));
         this->Engine->Actors[this->Actor].SetY(this->Engine->Vector.TerminalY(this->Engine->Actors[this->Actor].GetY(), 0.5 * this->Engine->Timing.GetDeltaTime(), this->Engine->Actors[this->Actor].GetAngle() + 90));
     }
-    if (this->Engine->Keys[KEY_DOWN] && !this->Engine->Keys[KEY_UP])
+    if (this->Engine->Keys[this->Backward] && !this->Engine->Keys[this->Forward])
     {
         this->Engine->Actors[this->Actor].SetX(this->Engine->Vector.TerminalX(this->Engine->Actors[this->Actor].GetX(), -0.5 * this->Engine->Timing.GetDeltaTime(), this->Engine->Actors[this->Actor].GetAngle() + 90));
         this->Engine->Actors[this->Actor].SetY(this->Engine->Vector.TerminalY(this->Engine->Actors[this->Actor].GetY(), -0.5 * this->Engine->Timing.GetDeltaTime(), this->Engine->Actors[this->Actor].GetAngle() + 90));
     }
-    if (this->Engine->Keys[KEY_LEFT] && !this->Engine->Keys[KEY_RIGHT])
+    if (this->Engine->Keys[this->Left] && !this->Engine->Keys[this->Right])
     {
         this->Engine->Actors[this->Actor].SetAngle(this->Engine->Actors[this->Actor].GetAngle() + 0.2 * this->Engine->Timing.GetDeltaTime());
     }
-    if (this->Engine->Keys[KEY_RIGHT] && !this->Engine->Keys[KEY_LEFT])
+    if (this->Engine->Keys[this->Right] && !this->Engine->Keys[this->Left])
     {
         this->Engine->Actors[this->Actor].SetAngle(this->Engine->Actors[this->Actor].GetAngle() - 0.2 * this->Engine->Timing.GetDeltaTime());
     }
