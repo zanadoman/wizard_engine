@@ -501,27 +501,89 @@ _ZN3wze6engine6camera6UpdateEv:
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	movq	32(%rdi), %rsi
-	movq	%rdi, %rbx
-	testq	%rsi, %rsi
-	je	.L91
-	movq	(%rdi), %rax
 	movzbl	24(%rdi), %ebp
+	movq	%rdi, %rbx
+	movq	32(%rdi), %rsi
+	testb	%bpl, %bpl
+	jne	.L91
+	testq	%rsi, %rsi
+	je	.L180
+	movq	(%rdi), %rax
 	movq	576(%rax), %rcx
 	movq	584(%rax), %rdi
-	testb	%bpl, %bpl
-	je	.L92
-	movsd	48(%rbx), %xmm0
 	cmpq	%rcx, %rsi
-	jnb	.L164
+	jnb	.L178
+	movq	(%rdi,%rsi,8), %rdx
+	movsd	168(%rdx), %xmm0
+	movq	40(%rbx), %rdx
+	movsd	%xmm0, 48(%rbx)
+	testq	%rdx, %rdx
+	je	.L158
+.L126:
+	cmpq	%rcx, %rdx
+	jnb	.L179
+	movq	(%rdi,%rdx,8), %rdx
+	movsd	176(%rdx), %xmm0
+	movsd	%xmm0, 56(%rbx)
+.L135:
+	testb	%bpl, %bpl
+	je	.L158
+.L115:
+	movsd	96(%rbx), %xmm2
+	movsd	80(%rbx), %xmm0
+	comisd	%xmm2, %xmm0
+	jbe	.L158
+	movl	708(%rax), %eax
+	pxor	%xmm1, %xmm1
+	cvtsi2sdq	%rax, %xmm1
+	mulsd	88(%rbx), %xmm1
+	addsd	%xmm2, %xmm1
+	minsd	%xmm1, %xmm0
+	movsd	%xmm0, 96(%rbx)
+.L158:
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	xorl	%eax, %eax
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L180:
+	.cfi_restore_state
+	movq	40(%rdi), %rdx
+	testq	%rdx, %rdx
+	je	.L158
+	movq	(%rdi), %rax
+	movq	576(%rax), %rcx
+	movq	584(%rax), %rdi
+	jmp	.L126
+	.p2align 4,,10
+	.p2align 3
+.L91:
+	movq	(%rdi), %rax
+	movsd	48(%rdi), %xmm0
+	movq	576(%rax), %rcx
+	movq	584(%rax), %rdi
+	cmpq	%rcx, %rsi
+	jnb	.L178
 	movq	(%rdi,%rsi,8), %rdx
 	movsd	168(%rdx), %xmm2
 	movq	40(%rbx), %rdx
+	ucomisd	%xmm2, %xmm0
+	jp	.L150
+	je	.L95
+.L150:
+	testq	%rsi, %rsi
+	je	.L148
 	comisd	%xmm0, %xmm2
-	jbe	.L156
+	jbe	.L169
 	leaq	592(%rax), %r12
 	cmpq	%rcx, %rdx
-	jnb	.L165
+	jnb	.L179
 	movq	(%rdi,%rdx,8), %rax
 	movsd	56(%rbx), %xmm1
 	movq	%r12, %rdi
@@ -542,40 +604,46 @@ _ZN3wze6engine6camera6UpdateEv:
 	movq	576(%rax), %rcx
 	movq	584(%rax), %rdi
 	cmpq	%rcx, %rsi
-	jnb	.L164
+	jnb	.L178
 	movq	(%rdi,%rsi,8), %rdx
 	movsd	168(%rdx), %xmm1
 	movq	40(%rbx), %rdx
 	comisd	%xmm1, %xmm0
-	ja	.L162
-.L157:
-	testq	%rdx, %rdx
-	jne	.L112
-	jmp	.L163
-	.p2align 4,,10
-	.p2align 3
-.L91:
-	movq	40(%rdi), %rdx
+	ja	.L122
+.L175:
 	testq	%rdx, %rdx
 	je	.L115
-	movq	(%rdi), %rax
-	xorl	%ebp, %ebp
-	movq	576(%rax), %rcx
-	movq	584(%rax), %rdi
-.L112:
-	cmpb	$0, 24(%rbx)
-	je	.L114
-.L116:
+	movzbl	24(%rbx), %r8d
+	testb	%r8b, %r8b
+	jne	.L147
+	jmp	.L126
+	.p2align 4,,10
+	.p2align 3
+.L95:
+	movsd	56(%rbx), %xmm0
+	cmpq	%rcx, %rdx
+	jnb	.L179
+	movq	(%rdi,%rdx,8), %r8
+	ucomisd	176(%r8), %xmm0
+	jp	.L148
+	jne	.L148
+	movsd	72(%rbx), %xmm0
+	movsd	%xmm0, 96(%rbx)
+.L148:
+	testq	%rdx, %rdx
+	je	.L158
+	xorl	%r8d, %r8d
+.L147:
 	movsd	56(%rbx), %xmm1
 	cmpq	%rcx, %rdx
-	jnb	.L165
+	jnb	.L179
 	movq	(%rdi,%rdx,8), %rdx
 	movsd	176(%rdx), %xmm3
 	comisd	%xmm1, %xmm3
-	jbe	.L160
+	jbe	.L170
 	leaq	592(%rax), %rbp
 	cmpq	%rcx, %rsi
-	jnb	.L164
+	jnb	.L178
 	movq	(%rdi,%rsi,8), %rax
 	movsd	48(%rbx), %xmm0
 	movq	%rbp, %rdi
@@ -595,77 +663,23 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	%xmm0, 56(%rbx)
 	movq	584(%rax), %rdx
 	cmpq	576(%rax), %rsi
-	jnb	.L164
+	jnb	.L178
 	movq	(%rdx,%rsi,8), %rdx
 	movsd	176(%rdx), %xmm1
 	comisd	%xmm1, %xmm0
-	jbe	.L163
-.L133:
-	movsd	72(%rbx), %xmm2
-	movsd	%xmm1, 56(%rbx)
-	movsd	%xmm2, 96(%rbx)
-	jmp	.L103
-	.p2align 4,,10
-	.p2align 3
-.L92:
-	cmpq	%rcx, %rsi
-	jnb	.L164
-	movq	(%rdi,%rsi,8), %rdx
-	movsd	168(%rdx), %xmm0
-	movq	40(%rbx), %rdx
-	movsd	%xmm0, 48(%rbx)
-	testq	%rdx, %rdx
-	je	.L115
-.L114:
-	cmpq	%rcx, %rdx
-	jnb	.L165
-	movq	(%rdi,%rdx,8), %rdx
-	movsd	176(%rdx), %xmm0
-	movsd	%xmm0, 56(%rbx)
-.L127:
-	testb	%bpl, %bpl
-	je	.L115
-.L163:
-	movsd	96(%rbx), %xmm2
-.L103:
-	movsd	80(%rbx), %xmm0
-	comisd	%xmm2, %xmm0
 	jbe	.L115
-	movl	708(%rax), %eax
-	pxor	%xmm1, %xmm1
-	cvtsi2sdq	%rax, %xmm1
-	mulsd	88(%rbx), %xmm1
-	addsd	%xmm2, %xmm1
-	minsd	%xmm1, %xmm0
-	movsd	%xmm0, 96(%rbx)
-.L115:
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbp
-	.cfi_def_cfa_offset 16
-	popq	%r12
-	.cfi_def_cfa_offset 8
-	ret
+.L177:
+	movsd	%xmm1, 56(%rbx)
+	jmp	.L115
 	.p2align 4,,10
 	.p2align 3
-.L156:
-	.cfi_restore_state
-	comisd	%xmm2, %xmm0
-	ja	.L167
-	testq	%rdx, %rdx
-	je	.L115
-	xorl	%ebp, %ebp
-	jmp	.L116
-	.p2align 4,,10
-	.p2align 3
-.L160:
+.L170:
 	comisd	%xmm3, %xmm1
-	jbe	.L127
+	movl	%r8d, %ebp
+	jbe	.L135
 	leaq	592(%rax), %rbp
 	cmpq	%rcx, %rsi
-	jnb	.L164
+	jnb	.L178
 	movq	(%rdi,%rsi,8), %rax
 	movsd	48(%rbx), %xmm0
 	movq	%rbp, %rdi
@@ -687,18 +701,20 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	%xmm0, 56(%rbx)
 	movq	584(%rax), %rdx
 	cmpq	576(%rax), %rsi
-	jnb	.L164
+	jnb	.L178
 	movq	(%rdx,%rsi,8), %rdx
 	movsd	176(%rdx), %xmm1
 	comisd	%xmm0, %xmm1
-	jbe	.L163
-	jmp	.L133
+	jbe	.L115
+	jmp	.L177
 	.p2align 4,,10
 	.p2align 3
-.L167:
+.L169:
+	comisd	%xmm2, %xmm0
+	jbe	.L148
 	leaq	592(%rax), %r12
 	cmpq	%rcx, %rdx
-	jnb	.L165
+	jnb	.L179
 	movq	(%rdi,%rdx,8), %rax
 	movsd	56(%rbx), %xmm1
 	movq	%r12, %rdi
@@ -719,22 +735,18 @@ _ZN3wze6engine6camera6UpdateEv:
 	movq	576(%rax), %rcx
 	movq	584(%rax), %rdi
 	cmpq	%rcx, %rsi
-	jnb	.L164
+	jnb	.L178
 	movq	(%rdi,%rsi,8), %rdx
 	movsd	168(%rdx), %xmm1
 	movq	40(%rbx), %rdx
 	comisd	%xmm0, %xmm1
-	jbe	.L157
-.L162:
-	movsd	72(%rbx), %xmm2
+	jbe	.L175
+.L122:
 	movsd	%xmm1, 48(%rbx)
-	movsd	%xmm2, 96(%rbx)
-	testq	%rdx, %rdx
-	je	.L103
-	jmp	.L112
-.L165:
+	jmp	.L175
+.L179:
 	movq	%rdx, %rsi
-.L164:
+.L178:
 	leaq	.LC20(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -779,8 +791,8 @@ _ZN3wze6engine6camera9TransformEddttd:
 	ucomisd	%xmm0, %xmm2
 	movq	(%rdi), %rax
 	movzwl	42(%rax), %r13d
-	jp	.L169
-	jne	.L169
+	jp	.L182
+	jne	.L182
 	movapd	%xmm3, %xmm0
 	call	round@PLT
 	movl	%ebx, %edx
@@ -788,7 +800,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	sarl	%edx
 	movq	%r15, %xmm0
 	subl	%edx, %ebp
-.L174:
+.L187:
 	call	round@PLT
 	movl	%r13d, %edx
 	addq	$24, %rsp
@@ -820,7 +832,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L169:
+.L182:
 	.cfi_restore_state
 	mulsd	64(%r14), %xmm2
 	pxor	%xmm0, %xmm0
@@ -856,7 +868,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	addsd	56(%r14), %xmm1
 	subsd	%xmm1, %xmm0
 	mulsd	%xmm2, %xmm0
-	jmp	.L174
+	jmp	.L187
 	.cfi_endproc
 .LFE8164:
 	.size	_ZN3wze6engine6camera9TransformEddttd, .-_ZN3wze6engine6camera9TransformEddttd

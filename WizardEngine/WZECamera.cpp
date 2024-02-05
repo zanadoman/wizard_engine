@@ -156,7 +156,7 @@ namespace wze
 
         if (this->CurrentSpeed == this->MinSpeed)
         {
-            this->CurrentSpeed = MinSpeed;   
+            this->CurrentSpeed = MinSpeed;
         }
 
         return this->MinSpeed = MinSpeed;
@@ -210,6 +210,14 @@ namespace wze
 
         moved = false;
 
+        if (this->Smoothing)
+        {
+            if (this->CameraX == this->Engine->Actors.Actors[this->XActor]->X && this->CameraY == this->Engine->Actors.Actors[this->YActor]->Y)
+            {
+                this->CurrentSpeed = this->MinSpeed;
+            }
+        }
+
         if (this->XActor != 0)
         {
             if (this->Smoothing)
@@ -221,7 +229,6 @@ namespace wze
                     if (this->Engine->Actors.Actors[this->XActor]->X < this->CameraX)
                     {
                         this->CameraX = this->Engine->Actors.Actors[this->XActor]->X;
-                        this->CurrentSpeed = this->MinSpeed;
                     }
 
                     moved = true;
@@ -233,7 +240,6 @@ namespace wze
                     if (this->CameraX < this->Engine->Actors.Actors[this->XActor]->X)
                     {
                         this->CameraX = this->Engine->Actors.Actors[this->XActor]->X;
-                        this->CurrentSpeed = this->MinSpeed;
                     }
 
                     moved = true;
@@ -255,7 +261,6 @@ namespace wze
                     if (this->Engine->Actors.Actors[this->YActor]->Y < this->CameraY)
                     {
                         this->CameraY = this->Engine->Actors.Actors[this->YActor]->Y;
-                        this->CurrentSpeed = this->MinSpeed;
                     }
 
                     moved = true;
@@ -267,7 +272,6 @@ namespace wze
                     if (this->CameraY < this->Engine->Actors.Actors[this->YActor]->Y)
                     {
                         this->CameraY = this->Engine->Actors.Actors[this->YActor]->Y;
-                        this->CurrentSpeed = this->MinSpeed;
                     }
 
                     moved = true;

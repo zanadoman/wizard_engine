@@ -601,7 +601,7 @@ main.cold:
 	.align 8
 .LC1:
 	.long	0
-	.long	1071644672
+	.long	1075052544
 	.align 8
 .LC2:
 	.long	-350469331
