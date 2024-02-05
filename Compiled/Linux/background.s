@@ -20,11 +20,11 @@ _ZN10backgroundC2EPN3wze6engineE:
 	leaq	.LC0(%rip), %rsi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	pxor	%xmm1, %xmm1
-	movl	$720, %ecx
+	movl	$1080, %ecx
 	xorl	%esi, %esi
 	movq	%rax, 24(%rbx)
 	movq	(%rbx), %rax
-	movl	$1280, %edx
+	movl	$1920, %edx
 	movapd	%xmm1, %xmm0
 	movsd	.LC1(%rip), %xmm2
 	leaq	528(%rax), %rdi
@@ -88,8 +88,8 @@ _ZN10backgroundD2Ev:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC1:
-	.long	0
-	.long	1072693248
+	.long	-1717986918
+	.long	1072273817
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

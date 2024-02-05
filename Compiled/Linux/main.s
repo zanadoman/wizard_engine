@@ -85,14 +85,14 @@ main:
 	movq	%rbx, %rdi
 	movzwl	%ax, %ebp
 	call	_ZN3wze6engine6RandomEii@PLT
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm2, %xmm2
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	cvtsi2sdl	%eax, %xmm2
 	movq	%xmm2, %r12
@@ -122,14 +122,14 @@ main:
 	movq	%rbx, %rdi
 	movzwl	%ax, %r12d
 	call	_ZN3wze6engine6RandomEii@PLT
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm3, %xmm3
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	cvtsi2sdl	%eax, %xmm3
 	movq	%xmm3, %rbp
@@ -159,14 +159,14 @@ main:
 	movq	%rbx, %rdi
 	movzwl	%ax, %r12d
 	call	_ZN3wze6engine6RandomEii@PLT
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm4, %xmm4
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	cvtsi2sdl	%eax, %xmm4
 	movq	%xmm4, %rbp
@@ -196,14 +196,14 @@ main:
 	movq	%rbx, %rdi
 	movzwl	%ax, %r12d
 	call	_ZN3wze6engine6RandomEii@PLT
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm5, %xmm5
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	cvtsi2sdl	%eax, %xmm5
 	movq	%xmm5, %rbp
@@ -233,14 +233,14 @@ main:
 	movq	%rbx, %rdi
 	movzwl	%ax, %r12d
 	call	_ZN3wze6engine6RandomEii@PLT
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm6, %xmm6
-	movl	$1000, %edx
-	movl	$100, %esi
+	movl	$500, %edx
+	movl	$-500, %esi
 	movq	%rbx, %rdi
 	cvtsi2sdl	%eax, %xmm6
 	movq	%xmm6, %rbp

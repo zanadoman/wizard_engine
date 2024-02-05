@@ -17,11 +17,11 @@ sint32 main()
 
     background* Background = new background(Engine);
     player* Player = new player(Engine);
-    crate* crate1 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
-    crate* crate2 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
-    crate* crate3 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
-    crate* crate4 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
-    crate* crate5 = new crate(Engine, Engine->Random(100, 1000), Engine->Random(100, 1000), Engine->Random(50, 150), Engine->Random(50, 150));
+    crate* crate1 = new crate(Engine, Engine->Random(-500, 500), Engine->Random(-500, 500), Engine->Random(50, 150), Engine->Random(50, 150));
+    crate* crate2 = new crate(Engine, Engine->Random(-500, 500), Engine->Random(-500, 500), Engine->Random(50, 150), Engine->Random(50, 150));
+    crate* crate3 = new crate(Engine, Engine->Random(-500, 500), Engine->Random(-500, 500), Engine->Random(50, 150), Engine->Random(50, 150));
+    crate* crate4 = new crate(Engine, Engine->Random(-500, 500), Engine->Random(-500, 500), Engine->Random(50, 150), Engine->Random(50, 150));
+    crate* crate5 = new crate(Engine, Engine->Random(-500, 500), Engine->Random(-500, 500), Engine->Random(50, 150), Engine->Random(50, 150));
 
     Engine->Camera.Bind(Player->Actor);
 

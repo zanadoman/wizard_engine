@@ -37,8 +37,8 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movq	%rax, 24(%rbx)
 	movq	(%rbx), %rax
 	movl	$2, %esi
-	movsd	8(%rsp), %xmm0
 	movsd	.LC1(%rip), %xmm2
+	movsd	8(%rsp), %xmm0
 	leaq	528(%rax), %rdi
 	call	_ZN3wze6engine6actors3NewEyddttd@PLT
 	movq	%rax, 8(%rbx)
@@ -54,9 +54,21 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movq	(%rbx), %rax
 	leaq	528(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi
 	movq	$50, 144(%rax)
+	movq	(%rbx), %rax
+	leaq	528(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movq	8(%rbx), %rsi
+	movb	$1, 152(%rax)
+	movq	(%rbx), %rax
+	leaq	528(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movsd	.LC2(%rip), %xmm0
+	movq	%rax, %rdi
+	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
+	movq	(%rbx), %rdi
+	movq	8(%rbx), %rsi
 	addq	$528, %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	addq	$16, %rsp
@@ -119,6 +131,10 @@ _ZN5crateD2Ev:
 .LC1:
 	.long	0
 	.long	1072693248
+	.align 8
+.LC2:
+	.long	-1717986918
+	.long	1068079513
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat
