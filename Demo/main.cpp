@@ -25,6 +25,10 @@ sint32 main()
     crate* crate5 = new crate(Engine, Engine->Random(-500, 500), Engine->Random(-500, 500), Engine->Random(50, 150), Engine->Random(50, 150));
 
     Engine->Camera.Bind(Player1->Actor);
+    Engine->Camera.Smoothing = true;
+    Engine->Camera.SetMinSpeed(0.2);
+    Engine->Camera.SetMaxSpeed(0.5);
+    Engine->Camera.SetAcceleration(0.0002);
 
     while (Engine->Update())
     {

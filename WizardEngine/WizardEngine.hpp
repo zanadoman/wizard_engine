@@ -126,6 +126,7 @@ namespace wze
                 public:
                     double OffsetX;
                     double OffsetY;
+                    bool Smoothing;
                     double GetZoom();
                     double SetZoom(double Zoom);
                     uint64 GetXActor();
@@ -136,6 +137,12 @@ namespace wze
                     uint8 Unbind();
                     uint8 UnbindX();
                     uint8 UnbindY();
+                    double GetMinSpeed();
+                    double SetMinSpeed(double Speed);
+                    double GetMaxSpeed();
+                    double SetMaxSpeed(double Speed);
+                    double GetAcceleration();
+                    double SetAcceleration(double Acceleration);
 
                 private:
                     uint64 XActor;
@@ -143,6 +150,10 @@ namespace wze
                     double CameraX;
                     double CameraY;
                     double Zoom;
+                    double MinSpeed;
+                    double MaxSpeed;
+                    double Acceleration;
+                    double CurrentSpeed;
                     camera(engine* Engine);
                     uint8 Update();
                     SDL_Rect Transform(double X, double Y, uint16 Width, uint16 Height, double Layer);

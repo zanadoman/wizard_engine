@@ -26,7 +26,7 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movzwl	%di, %edi
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
-	leaq	560(%rdx), %rcx
+	leaq	600(%rdx), %rcx
 	leaq	.LC0(%rip), %rdx
 	movsd	%xmm2, 72(%rsp)
 	movsd	%xmm3, 64(%rsp)
@@ -37,7 +37,7 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movq	%rax, 24(%rbx)
 	movq	(%rbx), %rax
 	movl	%edi, 40(%rsp)
-	leaq	528(%rax), %rcx
+	leaq	568(%rax), %rcx
 	movq	.LC1(%rip), %rax
 	movl	%esi, 32(%rsp)
 	movq	%rax, 48(%rsp)
@@ -45,7 +45,7 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rdx
 	movq	(%rbx), %rax
-	leaq	528(%rax), %rcx
+	leaq	568(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	24(%rbx), %rdx
 	leaq	40(%rax), %rcx
@@ -53,19 +53,19 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movq	8(%rbx), %rdx
 	movq	%rax, 16(%rbx)
 	movq	(%rbx), %rax
-	leaq	528(%rax), %rcx
+	leaq	568(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	8(%rbx), %rdx
 	movq	$50, 144(%rax)
 	movq	(%rbx), %rax
-	leaq	528(%rax), %rcx
+	leaq	568(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movsd	.LC2(%rip), %xmm1
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor8SetDepthEd
 	movq	(%rbx), %rcx
 	movq	8(%rbx), %rdx
-	addq	$528, %rcx
+	addq	$568, %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movl	$1, %edx
 	movq	%rax, %rcx
@@ -93,11 +93,11 @@ _ZN5crateD2Ev:
 	movq	(%rcx), %rax
 	movq	24(%rcx), %rdx
 	movq	%rcx, %rbx
-	leaq	560(%rax), %rcx
+	leaq	600(%rax), %rcx
 	call	_ZN3wze6engine6assets13UnloadTextureEy
 	movq	(%rbx), %rcx
 	movq	8(%rbx), %rdx
-	addq	$528, %rcx
+	addq	$568, %rcx
 	call	_ZN3wze6engine6actors6DeleteEy
 	nop
 	addq	$32, %rsp

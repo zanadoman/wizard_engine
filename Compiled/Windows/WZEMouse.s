@@ -79,11 +79,11 @@ _ZN3wze6engine5mouse4GetXEd:
 	je	.L4
 .L10:
 	movq	(%rcx), %rax
-	mulsd	136(%rax), %xmm1
+	mulsd	144(%rax), %xmm1
 	movsd	88(%rax), %xmm2
 	divsd	%xmm1, %xmm2
 	divsd	%xmm1, %xmm0
-	addsd	120(%rax), %xmm0
+	addsd	128(%rax), %xmm0
 	addsd	%xmm2, %xmm0
 .L4:
 	addq	$40, %rsp
@@ -121,11 +121,11 @@ _ZN3wze6engine5mouse4GetYEd:
 	je	.L13
 .L19:
 	movq	(%rcx), %rax
-	mulsd	136(%rax), %xmm1
+	mulsd	144(%rax), %xmm1
 	movsd	96(%rax), %xmm2
 	divsd	%xmm1, %xmm2
 	divsd	%xmm1, %xmm0
-	addsd	128(%rax), %xmm0
+	addsd	136(%rax), %xmm0
 	addsd	%xmm2, %xmm0
 .L13:
 	addq	$40, %rsp
@@ -263,9 +263,9 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	testq	%rdx, %rdx
 	je	.L33
 	movq	(%rcx), %rax
-	cmpq	616(%rax), %rdx
+	cmpq	656(%rax), %rdx
 	jnb	.L31
-	movq	624(%rax), %rax
+	movq	664(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L31
@@ -312,7 +312,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	cvtsi2sdl	40(%rsp), %xmm0
 	movsd	8(%rbx), %xmm2
 	cvtsi2sdl	44(%rsp), %xmm1
-	movq	696(%r8), %rdx
+	movq	736(%r8), %rdx
 	mulsd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm1
 	xorpd	.LC7(%rip), %xmm1
@@ -320,7 +320,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	movups	%xmm0, 24(%rbx)
 	testq	%rdx, %rdx
 	je	.L35
-	movq	704(%r8), %rax
+	movq	744(%r8), %rax
 	leaq	0(,%rdx,8), %rcx
 	subq	%rdx, %rcx
 	leaq	(%rax,%rcx,8), %rcx
