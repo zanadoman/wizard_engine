@@ -267,7 +267,7 @@ namespace wze
                 }
                 else if (this->Engine->Actors.Actors[this->YActor]->Y < this->CameraY)
                 {
-                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, -this->CurrentSpeed * this->Engine->Timing.DeltaTime, this->Engine->Vector.Angle(this->CameraX, this->CameraY, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y));
+                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeed * this->Engine->Timing.DeltaTime, this->Engine->Vector.Angle(this->CameraX, this->CameraY, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y));
 
                     if (this->CameraY < this->Engine->Actors.Actors[this->YActor]->Y)
                     {

@@ -57,7 +57,7 @@ _ZN3wze6engine6vector5AngleEdddd:
 	movsd	(%rsp), %xmm1
 	movsd	8(%rsp), %xmm3
 	mulsd	.LC0(%rip), %xmm0
-	comisd	%xmm1, %xmm3
+	comisd	%xmm3, %xmm1
 	jbe	.L4
 	movsd	.LC1(%rip), %xmm1
 	subsd	%xmm0, %xmm1

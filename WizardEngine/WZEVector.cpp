@@ -25,7 +25,7 @@ namespace wze
 
         result = acos((x) / sqrt((x) * (x) + (y) * (y))) * DEG;
 
-        if (Y1 > Y2)
+        if (Y2 < Y1)
         {
             result = 360 - result;
         }

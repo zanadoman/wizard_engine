@@ -686,15 +686,13 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	168(%rax), %xmm2
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movq	(%rbx), %rax
-	pxor	%xmm3, %xmm3
+	pxor	%xmm1, %xmm1
 	movq	%rbp, %rdi
-	movsd	96(%rbx), %xmm1
-	xorpd	.LC21(%rip), %xmm1
 	movapd	%xmm0, %xmm2
-	movl	708(%rax), %eax
 	movsd	56(%rbx), %xmm0
-	cvtsi2sdq	%rax, %xmm3
-	mulsd	%xmm3, %xmm1
+	movl	708(%rax), %eax
+	cvtsi2sdq	%rax, %xmm1
+	mulsd	96(%rbx), %xmm1
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	movq	(%rbx), %rax
 	movq	40(%rbx), %rsi
@@ -877,12 +875,5 @@ _ZN3wze6engine6camera9TransformEddttd:
 .LC1:
 	.long	0
 	.long	1072693248
-	.section	.rodata.cst16,"aM",@progbits,16
-	.align 16
-.LC21:
-	.long	0
-	.long	-2147483648
-	.long	0
-	.long	0
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits
