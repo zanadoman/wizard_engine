@@ -10,7 +10,7 @@
 	.globl	_ZN3wze6engine9collisionC2EPS0_
 	.type	_ZN3wze6engine9collisionC2EPS0_, @function
 _ZN3wze6engine9collisionC2EPS0_:
-.LFB2232:
+.LFB8145:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -44,7 +44,7 @@ _ZN3wze6engine9collisionC2EPS0_:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2232:
+.LFE8145:
 	.size	_ZN3wze6engine9collisionC2EPS0_, .-_ZN3wze6engine9collisionC2EPS0_
 	.globl	_ZN3wze6engine9collisionC1EPS0_
 	.set	_ZN3wze6engine9collisionC1EPS0_,_ZN3wze6engine9collisionC2EPS0_
@@ -53,7 +53,7 @@ _ZN3wze6engine9collisionC2EPS0_:
 	.globl	_ZN3wze6engine9collision14CheckCollisionEdddddddd
 	.type	_ZN3wze6engine9collision14CheckCollisionEdddddddd, @function
 _ZN3wze6engine9collision14CheckCollisionEdddddddd:
-.LFB2234:
+.LFB8147:
 	.cfi_startproc
 	xorl	%eax, %eax
 	comisd	%xmm2, %xmm4
@@ -330,14 +330,14 @@ _ZN3wze6engine9collision14CheckCollisionEdddddddd:
 	jb	.L55
 	jmp	.L104
 	.cfi_endproc
-.LFE2234:
+.LFE8147:
 	.size	_ZN3wze6engine9collision14CheckCollisionEdddddddd, .-_ZN3wze6engine9collision14CheckCollisionEdddddddd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 	.type	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_, @function
 _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
-.LFB2235:
+.LFB8148:
 	.cfi_startproc
 	movq	%rsi, %rax
 	pxor	%xmm0, %xmm0
@@ -843,14 +843,14 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	jnb	.L248
 	jmp	.L138
 	.cfi_endproc
-.LFE2235:
+.LFE8148:
 	.size	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_, .-_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
 	.type	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_, @function
 _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
-.LFB2236:
+.LFB8149:
 	.cfi_startproc
 	movq	%rdx, %r11
 	movq	%rcx, %rdx
@@ -1241,7 +1241,7 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	movsd	%xmm3, 168(%r10)
 	jmp	.L367
 	.cfi_endproc
-.LFE2236:
+.LFE8149:
 	.size	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_, .-_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
 	.section	.rodata.str1.8
 	.align 8
@@ -1253,7 +1253,7 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	.globl	_ZN3wze6engine9collision18NewCollisionBranchEyyyy
 	.type	_ZN3wze6engine9collision18NewCollisionBranchEyyyy, @function
 _ZN3wze6engine9collision18NewCollisionBranchEyyyy:
-.LFB2238:
+.LFB8151:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -1456,14 +1456,14 @@ _ZN3wze6engine9collision18NewCollisionBranchEyyyy:
 	movq	%r15, %rsi
 	jmp	.L437
 	.cfi_endproc
-.LFE2238:
+.LFE8151:
 	.size	_ZN3wze6engine9collision18NewCollisionBranchEyyyy, .-_ZN3wze6engine9collision18NewCollisionBranchEyyyy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine9collision21ResolveCollisionLayerEy
 	.type	_ZN3wze6engine9collision21ResolveCollisionLayerEy, @function
 _ZN3wze6engine9collision21ResolveCollisionLayerEy:
-.LFB2237:
+.LFB8150:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -1678,7 +1678,7 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	movq	%r15, %rsi
 	jmp	.L470
 	.cfi_endproc
-.LFE2237:
+.LFE8150:
 	.size	_ZN3wze6engine9collision21ResolveCollisionLayerEy, .-_ZN3wze6engine9collision21ResolveCollisionLayerEy
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

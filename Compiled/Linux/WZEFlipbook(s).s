@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0:
-.LFB2452:
+.LFB8365:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2452:
+.LFE8365:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -160,7 +160,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0:
 	.globl	_ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_
 	.type	_ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_, @function
 _ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_:
-.LFB2232:
+.LFB8145:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -205,7 +205,7 @@ _ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2232:
+.LFE8145:
 	.size	_ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_, .-_ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_
 	.globl	_ZN3wze6engine6actors5actor9flipbooksC1EPS0_PS2_
 	.set	_ZN3wze6engine6actors5actor9flipbooksC1EPS0_PS2_,_ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_
@@ -214,7 +214,7 @@ _ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_:
 	.globl	_ZN3wze6engine6actors5actor9flipbooksD2Ev
 	.type	_ZN3wze6engine6actors5actor9flipbooksD2Ev, @function
 _ZN3wze6engine6actors5actor9flipbooksD2Ev:
-.LFB2238:
+.LFB8151:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -271,7 +271,7 @@ _ZN3wze6engine6actors5actor9flipbooksD2Ev:
 	.cfi_def_cfa_offset 8
 	jmp	free@PLT
 	.cfi_endproc
-.LFE2238:
+.LFE8151:
 	.size	_ZN3wze6engine6actors5actor9flipbooksD2Ev, .-_ZN3wze6engine6actors5actor9flipbooksD2Ev
 	.globl	_ZN3wze6engine6actors5actor9flipbooksD1Ev
 	.set	_ZN3wze6engine6actors5actor9flipbooksD1Ev,_ZN3wze6engine6actors5actor9flipbooksD2Ev
@@ -291,7 +291,7 @@ _ZN3wze6engine6actors5actor9flipbooksD2Ev:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks6DeleteEy
 	.type	_ZN3wze6engine6actors5actor9flipbooks6DeleteEy, @function
 _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
-.LFB2244:
+.LFB8157:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -394,7 +394,7 @@ _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2244:
+.LFE8157:
 	.size	_ZN3wze6engine6actors5actor9flipbooks6DeleteEy, .-_ZN3wze6engine6actors5actor9flipbooks6DeleteEy
 	.section	.rodata.str1.8
 	.align 8
@@ -406,7 +406,7 @@ _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE
 	.type	_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE, @function
 _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
-.LFB2245:
+.LFB8158:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -566,7 +566,7 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	movq	%rbp, %rsi
 	jmp	.L97
 	.cfi_endproc
-.LFE2245:
+.LFE8158:
 	.size	_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
@@ -578,7 +578,7 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE, @function
 _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
-.LFB2246:
+.LFB8159:
 	.cfi_startproc
 	pushq	%r14
 	.cfi_def_cfa_offset 16
@@ -755,7 +755,7 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	movq	%rbx, %rsi
 	jmp	.L139
 	.cfi_endproc
-.LFE2246:
+.LFE8159:
 	.size	_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
@@ -770,7 +770,7 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	.globl	_ZN3wze6engine6actors5actor9flipbooksixEy
 	.type	_ZN3wze6engine6actors5actor9flipbooksixEy, @function
 _ZN3wze6engine6actors5actor9flipbooksixEy:
-.LFB2247:
+.LFB8160:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -800,7 +800,7 @@ _ZN3wze6engine6actors5actor9flipbooksixEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2247:
+.LFE8160:
 	.size	_ZN3wze6engine6actors5actor9flipbooksixEy, .-_ZN3wze6engine6actors5actor9flipbooksixEy
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
@@ -812,10 +812,10 @@ _ZN3wze6engine6actors5actor9flipbooksixEy:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE:
-.LFB2249:
+.LFB8162:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2249
+	.cfi_lsda 0x1b,.LLSDA8162
 	pushq	%r14
 	.cfi_def_cfa_offset 16
 	.cfi_offset 14, -16
@@ -903,26 +903,26 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	jmp	.L155
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA2249:
+.LLSDA8162:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2249-.LLSDACSB2249
-.LLSDACSB2249:
-	.uleb128 .LEHB0-.LFB2249
+	.uleb128 .LLSDACSE8162-.LLSDACSB8162
+.LLSDACSB8162:
+	.uleb128 .LEHB0-.LFB8162
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L157-.LFB2249
+	.uleb128 .L157-.LFB8162
 	.uleb128 0
-.LLSDACSE2249:
+.LLSDACSE8162:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC2249
+	.cfi_lsda 0x1b,.LLSDAC8162
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE.cold, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE.cold:
-.LFSB2249:
+.LFSB8162:
 .L155:
 	.cfi_def_cfa_offset 48
 	.cfi_offset 3, -48
@@ -937,19 +937,19 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	call	_Unwind_Resume@PLT
 .LEHE1:
 	.cfi_endproc
-.LFE2249:
+.LFE8162:
 	.section	.gcc_except_table
-.LLSDAC2249:
+.LLSDAC8162:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC2249-.LLSDACSBC2249
-.LLSDACSBC2249:
+	.uleb128 .LLSDACSEC8162-.LLSDACSBC8162
+.LLSDACSBC8162:
 	.uleb128 .LEHB1-.LCOLDB11
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC2249:
+.LLSDACSEC8162:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE, .-_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE
@@ -986,10 +986,10 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.globl	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE
 	.type	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE, @function
 _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
-.LFB2240:
+.LFB8153:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2240
+	.cfi_lsda 0x1b,.LLSDA8153
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -1191,42 +1191,42 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movq	%rax, %rbx
 	jmp	.L177
 	.section	.gcc_except_table
-.LLSDA2240:
+.LLSDA8153:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2240-.LLSDACSB2240
-.LLSDACSB2240:
-	.uleb128 .LEHB2-.LFB2240
+	.uleb128 .LLSDACSE8153-.LLSDACSB8153
+.LLSDACSB8153:
+	.uleb128 .LEHB2-.LFB8153
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB2240
+	.uleb128 .LEHB3-.LFB8153
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L183-.LFB2240
+	.uleb128 .L183-.LFB8153
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB2240
+	.uleb128 .LEHB4-.LFB8153
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB2240
+	.uleb128 .LEHB5-.LFB8153
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L184-.LFB2240
+	.uleb128 .L184-.LFB8153
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB2240
+	.uleb128 .LEHB6-.LFB8153
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE2240:
+.LLSDACSE8153:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC2240
+	.cfi_lsda 0x1b,.LLSDAC8153
 	.type	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold, @function
 _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
-.LFSB2240:
+.LFSB8153:
 .L179:
 	.cfi_def_cfa_offset 80
 	.cfi_offset 3, -56
@@ -1257,19 +1257,19 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 .L192:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE2240:
+.LFE8153:
 	.section	.gcc_except_table
-.LLSDAC2240:
+.LLSDAC8153:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC2240-.LLSDACSBC2240
-.LLSDACSBC2240:
+	.uleb128 .LLSDACSEC8153-.LLSDACSBC8153
+.LLSDACSBC8153:
 	.uleb128 .LEHB7-.LCOLDB17
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC2240:
+.LLSDACSEC8153:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE, .-_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE
@@ -1298,10 +1298,10 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
-.LFB2252:
+.LFB8165:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2252
+	.cfi_lsda 0x1b,.LLSDA8165
 	pushq	%r12
 	.cfi_def_cfa_offset 16
 	.cfi_offset 12, -16
@@ -1396,26 +1396,26 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	movq	%rax, %rbx
 	jmp	.L207
 	.section	.gcc_except_table
-.LLSDA2252:
+.LLSDA8165:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2252-.LLSDACSB2252
-.LLSDACSB2252:
-	.uleb128 .LEHB8-.LFB2252
+	.uleb128 .LLSDACSE8165-.LLSDACSB8165
+.LLSDACSB8165:
+	.uleb128 .LEHB8-.LFB8165
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L209-.LFB2252
+	.uleb128 .L209-.LFB8165
 	.uleb128 0
-.LLSDACSE2252:
+.LLSDACSE8165:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC2252
+	.cfi_lsda 0x1b,.LLSDAC8165
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
-.LFSB2252:
+.LFSB8165:
 .L207:
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
@@ -1428,19 +1428,19 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
 	call	_Unwind_Resume@PLT
 .LEHE9:
 	.cfi_endproc
-.LFE2252:
+.LFE8165:
 	.section	.gcc_except_table
-.LLSDAC2252:
+.LLSDAC8165:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC2252-.LLSDACSBC2252
-.LLSDACSBC2252:
+	.uleb128 .LLSDACSEC8165-.LLSDACSBC8165
+.LLSDACSBC8165:
 	.uleb128 .LEHB9-.LCOLDB21
 	.uleb128 .LEHE9-.LEHB9
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC2252:
+.LLSDACSEC8165:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE
@@ -1474,10 +1474,10 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE, @function
 _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
-.LFB2243:
+.LFB8156:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2243
+	.cfi_lsda 0x1b,.LLSDA8156
 	pushq	%r14
 	.cfi_def_cfa_offset 16
 	.cfi_offset 14, -16
@@ -1675,42 +1675,42 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	movq	%rax, %rbx
 	jmp	.L230
 	.section	.gcc_except_table
-.LLSDA2243:
+.LLSDA8156:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2243-.LLSDACSB2243
-.LLSDACSB2243:
-	.uleb128 .LEHB10-.LFB2243
+	.uleb128 .LLSDACSE8156-.LLSDACSB8156
+.LLSDACSB8156:
+	.uleb128 .LEHB10-.LFB8156
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB11-.LFB2243
+	.uleb128 .LEHB11-.LFB8156
 	.uleb128 .LEHE11-.LEHB11
-	.uleb128 .L235-.LFB2243
+	.uleb128 .L235-.LFB8156
 	.uleb128 0
-	.uleb128 .LEHB12-.LFB2243
+	.uleb128 .LEHB12-.LFB8156
 	.uleb128 .LEHE12-.LEHB12
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB13-.LFB2243
+	.uleb128 .LEHB13-.LFB8156
 	.uleb128 .LEHE13-.LEHB13
-	.uleb128 .L236-.LFB2243
+	.uleb128 .L236-.LFB8156
 	.uleb128 0
-	.uleb128 .LEHB14-.LFB2243
+	.uleb128 .LEHB14-.LFB8156
 	.uleb128 .LEHE14-.LEHB14
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE2243:
+.LLSDACSE8156:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC2243
+	.cfi_lsda 0x1b,.LLSDAC8156
 	.type	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold, @function
 _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
-.LFSB2243:
+.LFSB8156:
 .L232:
 	.cfi_def_cfa_offset 64
 	.cfi_offset 3, -48
@@ -1740,19 +1740,19 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 .L244:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE2243:
+.LFE8156:
 	.section	.gcc_except_table
-.LLSDAC2243:
+.LLSDAC8156:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC2243-.LLSDACSBC2243
-.LLSDACSBC2243:
+	.uleb128 .LLSDACSEC8156-.LLSDACSBC8156
+.LLSDACSBC8156:
 	.uleb128 .LEHB15-.LCOLDB26
 	.uleb128 .LEHE15-.LEHB15
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC2243:
+.LLSDACSEC8156:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE
@@ -1766,19 +1766,19 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv:
-.LFB2254:
+.LFB8167:
 	.cfi_startproc
 	movsd	40(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE2254:
+.LFE8167:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
-.LFB2255:
+.LFB8168:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1814,26 +1814,26 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2255:
+.LFE8168:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv:
-.LFB2256:
+.LFB8169:
 	.cfi_startproc
 	movsd	48(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE2256:
+.LFE8169:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
-.LFB2257:
+.LFB8170:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1869,19 +1869,19 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2257:
+.LFE8170:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv:
-.LFB2258:
+.LFB8171:
 	.cfi_startproc
 	movl	72(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE2258:
+.LFE8171:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv
 	.section	.rodata.str1.8
 	.align 8
@@ -1893,7 +1893,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
-.LFB2259:
+.LFB8172:
 	.cfi_startproc
 	movl	%esi, %eax
 	testl	%esi, %esi
@@ -1909,20 +1909,20 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2259:
+.LFE8172:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv:
-.LFB2260:
+.LFB8173:
 	.cfi_startproc
 	movq	$0, 80(%rdi)
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-.LFE2260:
+.LFE8173:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

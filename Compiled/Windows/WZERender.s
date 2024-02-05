@@ -960,9 +960,9 @@ _ZN3wze6engine6render14SelectionStageEv:
 	cmpq	120(%rcx), %rdi
 	jnb	.L281
 	movq	(%r8,%rbp), %rcx
-	movq	632(%rax), %r8
+	movq	608(%rax), %r8
 	movq	96(%rcx), %rcx
-	cmpq	624(%rax), %rcx
+	cmpq	600(%rax), %rcx
 	jnb	.L309
 	orl	$-256, 92(%rsp)
 	movq	(%r8,%rcx,8), %rcx
@@ -2516,8 +2516,8 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	andl	$2, %edx
 	orl	%edx, %ebx
 	movq	72(%rax), %rdx
-	movq	600(%rcx), %rax
-	cmpq	592(%rcx), %rdx
+	movq	576(%rcx), %rax
+	cmpq	568(%rcx), %rdx
 	jnb	.L496
 	movq	(%rax,%rdx,8), %rcx
 	movl	%r10d, %edx
@@ -2527,9 +2527,9 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	movq	(%rsi), %rdx
 	movq	(%rdi), %rax
 	movzbl	23(%rdx), %ecx
-	movq	600(%rax), %r8
+	movq	576(%rax), %r8
 	movq	72(%rdx), %rdx
-	cmpq	592(%rax), %rdx
+	cmpq	568(%rax), %rdx
 	jnb	.L496
 	movq	(%r8,%rdx,8), %rax
 	movl	%ecx, %edx
@@ -2542,10 +2542,10 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	movzbl	%bl, %edx
 	leaq	28(%rsi), %r9
 	movsd	24(%rcx), %xmm0
-	movq	600(%rax), %r8
+	movq	576(%rax), %r8
 	xorpd	.LC19(%rip), %xmm0
 	movq	72(%rcx), %rcx
-	cmpq	592(%rax), %rcx
+	cmpq	568(%rax), %rcx
 	jnb	.L499
 	movq	(%r8,%rcx,8), %r10
 	movq	16(%rax), %rcx
@@ -2634,8 +2634,8 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	cmpq	96(%rax), %rdx
 	jnb	.L513
 	movq	(%r11,%rdx,8), %rdx
-	movq	600(%rcx), %rax
-	cmpq	592(%rcx), %rdx
+	movq	576(%rcx), %rax
+	cmpq	568(%rcx), %rdx
 	jnb	.L513
 	movq	(%rax,%rdx,8), %rcx
 	movl	%r10d, %edx
@@ -2650,8 +2650,8 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	cmpq	96(%rax), %rdx
 	jnb	.L513
 	movq	(%r9,%rdx,8), %rdx
-	movq	600(%rcx), %rax
-	cmpq	592(%rcx), %rdx
+	movq	576(%rcx), %rax
+	cmpq	568(%rcx), %rdx
 	jnb	.L513
 	movq	(%rax,%rdx,8), %rcx
 	movl	%r8d, %edx
@@ -2669,8 +2669,8 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	cmpq	96(%rax), %r8
 	jnb	.L516
 	movq	(%r10,%r8,8), %rax
-	movq	600(%rcx), %r8
-	cmpq	592(%rcx), %rax
+	movq	576(%rcx), %r8
+	cmpq	568(%rcx), %rax
 	jnb	.L517
 	movq	(%r8,%rax,8), %rax
 	movq	16(%rcx), %rcx

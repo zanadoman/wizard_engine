@@ -9,7 +9,7 @@
 	.globl	_ZN5crateC2EPN3wze6engineEddtt
 	.type	_ZN5crateC2EPN3wze6engineEddtt, @function
 _ZN5crateC2EPN3wze6engineEddtt:
-.LFB2232:
+.LFB8145:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -78,7 +78,7 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
 	.cfi_endproc
-.LFE2232:
+.LFE8145:
 	.size	_ZN5crateC2EPN3wze6engineEddtt, .-_ZN5crateC2EPN3wze6engineEddtt
 	.globl	_ZN5crateC1EPN3wze6engineEddtt
 	.set	_ZN5crateC1EPN3wze6engineEddtt,_ZN5crateC2EPN3wze6engineEddtt
@@ -87,10 +87,10 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	.globl	_ZN5crateD2Ev
 	.type	_ZN5crateD2Ev, @function
 _ZN5crateD2Ev:
-.LFB2235:
+.LFB8148:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2235
+	.cfi_lsda 0x1b,.LLSDA8148
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -107,16 +107,16 @@ _ZN5crateD2Ev:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2235:
+.LFE8148:
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA2235:
+.LLSDA8148:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2235-.LLSDACSB2235
-.LLSDACSB2235:
-.LLSDACSE2235:
+	.uleb128 .LLSDACSE8148-.LLSDACSB8148
+.LLSDACSB8148:
+.LLSDACSE8148:
 	.text
 	.size	_ZN5crateD2Ev, .-_ZN5crateD2Ev
 	.globl	_ZN5crateD1Ev

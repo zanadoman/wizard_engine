@@ -23,10 +23,10 @@
 	.globl	_ZN3wze6engineC2EPKcS2_tth
 	.type	_ZN3wze6engineC2EPKcS2_tth, @function
 _ZN3wze6engineC2EPKcS2_tth:
-.LFB2241:
+.LFB8154:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2241
+	.cfi_lsda 0x1b,.LLSDA8154
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -206,42 +206,42 @@ _ZN3wze6engineC2EPKcS2_tth:
 	jmp	.L12
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA2241:
+.LLSDA8154:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2241-.LLSDACSB2241
-.LLSDACSB2241:
-	.uleb128 .LEHB0-.LFB2241
+	.uleb128 .LLSDACSE8154-.LLSDACSB8154
+.LLSDACSB8154:
+	.uleb128 .LEHB0-.LFB8154
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB2241
+	.uleb128 .LEHB1-.LFB8154
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L14-.LFB2241
+	.uleb128 .L14-.LFB8154
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB2241
+	.uleb128 .LEHB2-.LFB8154
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L15-.LFB2241
+	.uleb128 .L15-.LFB8154
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB2241
+	.uleb128 .LEHB3-.LFB8154
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L16-.LFB2241
+	.uleb128 .L16-.LFB8154
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB2241
+	.uleb128 .LEHB4-.LFB8154
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L17-.LFB2241
+	.uleb128 .L17-.LFB8154
 	.uleb128 0
-.LLSDACSE2241:
+.LLSDACSE8154:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC2241
+	.cfi_lsda 0x1b,.LLSDAC8154
 	.type	_ZN3wze6engineC2EPKcS2_tth.cold, @function
 _ZN3wze6engineC2EPKcS2_tth.cold:
-.LFSB2241:
+.LFSB8154:
 .L7:
 	.cfi_def_cfa_offset 80
 	.cfi_offset 3, -56
@@ -285,19 +285,19 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	call	_Unwind_Resume@PLT
 .LEHE5:
 	.cfi_endproc
-.LFE2241:
+.LFE8154:
 	.section	.gcc_except_table
-.LLSDAC2241:
+.LLSDAC8154:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC2241-.LLSDACSBC2241
-.LLSDACSBC2241:
+	.uleb128 .LLSDACSEC8154-.LLSDACSBC8154
+.LLSDACSBC8154:
 	.uleb128 .LEHB5-.LCOLDB4
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC2241:
+.LLSDACSEC8154:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engineC2EPKcS2_tth, .-_ZN3wze6engineC2EPKcS2_tth
@@ -313,10 +313,10 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	.globl	_ZN3wze6engineD2Ev
 	.type	_ZN3wze6engineD2Ev, @function
 _ZN3wze6engineD2Ev:
-.LFB2244:
+.LFB8157:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2244
+	.cfi_lsda 0x1b,.LLSDA8157
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -386,15 +386,15 @@ _ZN3wze6engineD2Ev:
 	.cfi_def_cfa_offset 8
 	jmp	free@PLT
 	.cfi_endproc
-.LFE2244:
+.LFE8157:
 	.section	.gcc_except_table
-.LLSDA2244:
+.LLSDA8157:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2244-.LLSDACSB2244
-.LLSDACSB2244:
-.LLSDACSE2244:
+	.uleb128 .LLSDACSE8157-.LLSDACSB8157
+.LLSDACSB8157:
+.LLSDACSE8157:
 	.text
 	.size	_ZN3wze6engineD2Ev, .-_ZN3wze6engineD2Ev
 	.globl	_ZN3wze6engineD1Ev
@@ -409,7 +409,7 @@ _ZN3wze6engineD2Ev:
 	.globl	_ZN3wze6engine15UpdateFlipbooksEv
 	.type	_ZN3wze6engine15UpdateFlipbooksEv, @function
 _ZN3wze6engine15UpdateFlipbooksEv:
-.LFB2247:
+.LFB8160:
 	.cfi_startproc
 	movq	536(%rdi), %r11
 	cmpq	$1, %r11
@@ -527,7 +527,7 @@ _ZN3wze6engine15UpdateFlipbooksEv:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2247:
+.LFE8160:
 	.size	_ZN3wze6engine15UpdateFlipbooksEv, .-_ZN3wze6engine15UpdateFlipbooksEv
 	.section	.rodata.str1.8
 	.align 8
@@ -542,7 +542,7 @@ _ZN3wze6engine15UpdateFlipbooksEv:
 	.globl	_ZN3wze6engine6UpdateEv
 	.type	_ZN3wze6engine6UpdateEv, @function
 _ZN3wze6engine6UpdateEv:
-.LFB2246:
+.LFB8159:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
@@ -745,14 +745,14 @@ _ZN3wze6engine6UpdateEv:
 .L77:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE2246:
+.LFE8159:
 	.size	_ZN3wze6engine6UpdateEv, .-_ZN3wze6engine6UpdateEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6RandomEii
 	.type	_ZN3wze6engine6RandomEii, @function
 _ZN3wze6engine6RandomEii:
-.LFB2248:
+.LFB8161:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -778,7 +778,7 @@ _ZN3wze6engine6RandomEii:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2248:
+.LFE8161:
 	.size	_ZN3wze6engine6RandomEii, .-_ZN3wze6engine6RandomEii
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

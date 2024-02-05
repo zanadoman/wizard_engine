@@ -12,7 +12,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0:
-.LFB2446:
+.LFB8359:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -142,7 +142,7 @@ _ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2446:
+.LFE8359:
 	.size	_ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -153,7 +153,7 @@ _ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0:
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0:
-.LFB2447:
+.LFB8360:
 	.cfi_startproc
 	cmpq	%rdi, %rdx
 	jnb	.L34
@@ -169,14 +169,14 @@ _ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2447:
+.LFE8360:
 	.size	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6renderC2EPS0_
 	.type	_ZN3wze6engine6renderC2EPS0_, @function
 _ZN3wze6engine6renderC2EPS0_:
-.LFB2232:
+.LFB8145:
 	.cfi_startproc
 	movq	.LC3(%rip), %rax
 	movq	%rsi, (%rdi)
@@ -188,7 +188,7 @@ _ZN3wze6engine6renderC2EPS0_:
 	movw	%ax, 24(%rdi)
 	ret
 	.cfi_endproc
-.LFE2232:
+.LFE8145:
 	.size	_ZN3wze6engine6renderC2EPS0_, .-_ZN3wze6engine6renderC2EPS0_
 	.globl	_ZN3wze6engine6renderC1EPS0_
 	.set	_ZN3wze6engine6renderC1EPS0_,_ZN3wze6engine6renderC2EPS0_
@@ -197,11 +197,11 @@ _ZN3wze6engine6renderC2EPS0_:
 	.globl	_ZN3wze6engine6render5tokenC2Ev
 	.type	_ZN3wze6engine6render5tokenC2Ev, @function
 _ZN3wze6engine6render5tokenC2Ev:
-.LFB2235:
+.LFB8148:
 	.cfi_startproc
 	ret
 	.cfi_endproc
-.LFE2235:
+.LFE8148:
 	.size	_ZN3wze6engine6render5tokenC2Ev, .-_ZN3wze6engine6render5tokenC2Ev
 	.globl	_ZN3wze6engine6render5tokenC1Ev
 	.set	_ZN3wze6engine6render5tokenC1Ev,_ZN3wze6engine6render5tokenC2Ev
@@ -210,7 +210,7 @@ _ZN3wze6engine6render5tokenC2Ev:
 	.globl	_ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect
 	.type	_ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect, @function
 _ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect:
-.LFB2238:
+.LFB8151:
 	.cfi_startproc
 	movq	%rsi, (%rdi)
 	movl	%edx, 8(%rdi)
@@ -220,7 +220,7 @@ _ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect:
 	movsd	%xmm0, 16(%rdi)
 	ret
 	.cfi_endproc
-.LFE2238:
+.LFE8151:
 	.size	_ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect, .-_ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect
 	.globl	_ZN3wze6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect
 	.set	_ZN3wze6engine6render5tokenC1EPvNS1_4typeEdh8SDL_Rect,_ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect
@@ -229,12 +229,12 @@ _ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect:
 	.globl	_ZN3wze6engine6render15GetSamplingStepEv
 	.type	_ZN3wze6engine6render15GetSamplingStepEv, @function
 _ZN3wze6engine6render15GetSamplingStepEv:
-.LFB2240:
+.LFB8153:
 	.cfi_startproc
 	movsd	16(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE2240:
+.LFE8153:
 	.size	_ZN3wze6engine6render15GetSamplingStepEv, .-_ZN3wze6engine6render15GetSamplingStepEv
 	.section	.rodata.str1.8
 	.align 8
@@ -246,7 +246,7 @@ _ZN3wze6engine6render15GetSamplingStepEv:
 	.globl	_ZN3wze6engine6render15SetSamplingStepEd
 	.type	_ZN3wze6engine6render15SetSamplingStepEd, @function
 _ZN3wze6engine6render15SetSamplingStepEd:
-.LFB2241:
+.LFB8154:
 	.cfi_startproc
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
@@ -262,27 +262,27 @@ _ZN3wze6engine6render15SetSamplingStepEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2241:
+.LFE8154:
 	.size	_ZN3wze6engine6render15SetSamplingStepEd, .-_ZN3wze6engine6render15SetSamplingStepEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render15GetBufferSizeKBEv
 	.type	_ZN3wze6engine6render15GetBufferSizeKBEv, @function
 _ZN3wze6engine6render15GetBufferSizeKBEv:
-.LFB2242:
+.LFB8155:
 	.cfi_startproc
 	movzwl	24(%rdi), %eax
 	shrq	$7, %rax
 	ret
 	.cfi_endproc
-.LFE2242:
+.LFE8155:
 	.size	_ZN3wze6engine6render15GetBufferSizeKBEv, .-_ZN3wze6engine6render15GetBufferSizeKBEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render15SetBufferSizeKBEt
 	.type	_ZN3wze6engine6render15SetBufferSizeKBEt, @function
 _ZN3wze6engine6render15SetBufferSizeKBEt:
-.LFB2243:
+.LFB8156:
 	.cfi_startproc
 	salq	$7, %rsi
 	andl	$8388480, %esi
@@ -290,7 +290,7 @@ _ZN3wze6engine6render15SetBufferSizeKBEt:
 	movl	%esi, %eax
 	ret
 	.cfi_endproc
-.LFE2243:
+.LFE8156:
 	.size	_ZN3wze6engine6render15SetBufferSizeKBEt, .-_ZN3wze6engine6render15SetBufferSizeKBEt
 	.section	.rodata.str1.8
 	.align 8
@@ -312,10 +312,10 @@ _ZN3wze6engine6render15SetBufferSizeKBEt:
 	.globl	_ZN3wze6engine6render14SelectionStageEv
 	.type	_ZN3wze6engine6render14SelectionStageEv, @function
 _ZN3wze6engine6render14SelectionStageEv:
-.LFB2245:
+.LFB8158:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA2245
+	.cfi_lsda 0x1b,.LLSDA8158
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -1620,66 +1620,66 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jmp	.L192
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA2245:
+.LLSDA8158:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE2245-.LLSDACSB2245
-.LLSDACSB2245:
-	.uleb128 .LEHB0-.LFB2245
+	.uleb128 .LLSDACSE8158-.LLSDACSB8158
+.LLSDACSB8158:
+	.uleb128 .LEHB0-.LFB8158
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB2245
+	.uleb128 .LEHB1-.LFB8158
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L203-.LFB2245
+	.uleb128 .L203-.LFB8158
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB2245
+	.uleb128 .LEHB2-.LFB8158
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB2245
+	.uleb128 .LEHB3-.LFB8158
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L207-.LFB2245
+	.uleb128 .L207-.LFB8158
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB2245
+	.uleb128 .LEHB4-.LFB8158
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB2245
+	.uleb128 .LEHB5-.LFB8158
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L203-.LFB2245
+	.uleb128 .L203-.LFB8158
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB2245
+	.uleb128 .LEHB6-.LFB8158
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB2245
+	.uleb128 .LEHB7-.LFB8158
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L206-.LFB2245
+	.uleb128 .L206-.LFB8158
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB2245
+	.uleb128 .LEHB8-.LFB8158
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L204-.LFB2245
+	.uleb128 .L204-.LFB8158
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB2245
+	.uleb128 .LEHB9-.LFB8158
 	.uleb128 .LEHE9-.LEHB9
-	.uleb128 .L205-.LFB2245
+	.uleb128 .L205-.LFB8158
 	.uleb128 0
-	.uleb128 .LEHB10-.LFB2245
+	.uleb128 .LEHB10-.LFB8158
 	.uleb128 .LEHE10-.LEHB10
-	.uleb128 .L204-.LFB2245
+	.uleb128 .L204-.LFB8158
 	.uleb128 0
-.LLSDACSE2245:
+.LLSDACSE8158:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC2245
+	.cfi_lsda 0x1b,.LLSDAC8158
 	.type	_ZN3wze6engine6render14SelectionStageEv.cold, @function
 _ZN3wze6engine6render14SelectionStageEv.cold:
-.LFSB2245:
+.LFSB8158:
 .L194:
 	.cfi_def_cfa_offset 128
 	.cfi_offset 3, -56
@@ -1702,19 +1702,19 @@ _ZN3wze6engine6render14SelectionStageEv.cold:
 	call	_Unwind_Resume@PLT
 .LEHE11:
 	.cfi_endproc
-.LFE2245:
+.LFE8158:
 	.section	.gcc_except_table
-.LLSDAC2245:
+.LLSDAC8158:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC2245-.LLSDACSBC2245
-.LLSDACSBC2245:
+	.uleb128 .LLSDACSEC8158-.LLSDACSBC8158
+.LLSDACSBC8158:
 	.uleb128 .LEHB11-.LCOLDB12
 	.uleb128 .LEHE11-.LEHB11
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC2245:
+.LLSDACSEC8158:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6render14SelectionStageEv, .-_ZN3wze6engine6render14SelectionStageEv
@@ -1733,7 +1733,7 @@ _ZN3wze6engine6render14SelectionStageEv.cold:
 	.globl	_ZN3wze6engine6render17OrderByLayerMergeEyyy
 	.type	_ZN3wze6engine6render17OrderByLayerMergeEyyy, @function
 _ZN3wze6engine6render17OrderByLayerMergeEyyy:
-.LFB2248:
+.LFB8161:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -1935,14 +1935,14 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2248:
+.LFE8161:
 	.size	_ZN3wze6engine6render17OrderByLayerMergeEyyy, .-_ZN3wze6engine6render17OrderByLayerMergeEyyy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render12OrderByLayerEyy
 	.type	_ZN3wze6engine6render12OrderByLayerEyy, @function
 _ZN3wze6engine6render12OrderByLayerEyy:
-.LFB2247:
+.LFB8160:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -2015,7 +2015,7 @@ _ZN3wze6engine6render12OrderByLayerEyy:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2247:
+.LFE8160:
 	.size	_ZN3wze6engine6render12OrderByLayerEyy, .-_ZN3wze6engine6render12OrderByLayerEyy
 	.section	.rodata.str1.8
 	.align 8
@@ -2027,7 +2027,7 @@ _ZN3wze6engine6render12OrderByLayerEyy:
 	.globl	_ZN3wze6engine6render20OrderByPriorityMergeEyyy
 	.type	_ZN3wze6engine6render20OrderByPriorityMergeEyyy, @function
 _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
-.LFB2250:
+.LFB8163:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -2229,14 +2229,14 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2250:
+.LFE8163:
 	.size	_ZN3wze6engine6render20OrderByPriorityMergeEyyy, .-_ZN3wze6engine6render20OrderByPriorityMergeEyyy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render15OrderByPriorityEyy
 	.type	_ZN3wze6engine6render15OrderByPriorityEyy, @function
 _ZN3wze6engine6render15OrderByPriorityEyy:
-.LFB2249:
+.LFB8162:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -2309,14 +2309,14 @@ _ZN3wze6engine6render15OrderByPriorityEyy:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2249:
+.LFE8162:
 	.size	_ZN3wze6engine6render15OrderByPriorityEyy, .-_ZN3wze6engine6render15OrderByPriorityEyy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render13OrderingStageEv
 	.type	_ZN3wze6engine6render13OrderingStageEv, @function
 _ZN3wze6engine6render13OrderingStageEv:
-.LFB2246:
+.LFB8159:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -2490,7 +2490,7 @@ _ZN3wze6engine6render13OrderingStageEv:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2246:
+.LFE8159:
 	.size	_ZN3wze6engine6render13OrderingStageEv, .-_ZN3wze6engine6render13OrderingStageEv
 	.section	.rodata.str1.8
 	.align 8
@@ -2505,7 +2505,7 @@ _ZN3wze6engine6render13OrderingStageEv:
 	.globl	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
 	.type	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE, @function
 _ZN3wze6engine6render11RenderColorEPNS1_5tokenE:
-.LFB2252:
+.LFB8165:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -2557,7 +2557,7 @@ _ZN3wze6engine6render11RenderColorEPNS1_5tokenE:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2252:
+.LFE8165:
 	.size	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE, .-_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
 	.section	.rodata.str1.8
 	.align 8
@@ -2575,7 +2575,7 @@ _ZN3wze6engine6render11RenderColorEPNS1_5tokenE:
 	.globl	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
 	.type	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE, @function
 _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
-.LFB2253:
+.LFB8166:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -2673,7 +2673,7 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2253:
+.LFE8166:
 	.size	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE, .-_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
 	.section	.rodata.str1.8
 	.align 8
@@ -2691,7 +2691,7 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	.globl	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
 	.type	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE, @function
 _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
-.LFB2254:
+.LFB8167:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -2803,7 +2803,7 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2254:
+.LFE8167:
 	.size	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE, .-_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
 	.section	.rodata.str1.8
 	.align 8
@@ -2821,7 +2821,7 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	.globl	_ZN3wze6engine6render10RenderTextEPNS1_5tokenE
 	.type	_ZN3wze6engine6render10RenderTextEPNS1_5tokenE, @function
 _ZN3wze6engine6render10RenderTextEPNS1_5tokenE:
-.LFB2255:
+.LFB8168:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -2895,7 +2895,7 @@ _ZN3wze6engine6render10RenderTextEPNS1_5tokenE:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2255:
+.LFE8168:
 	.size	_ZN3wze6engine6render10RenderTextEPNS1_5tokenE, .-_ZN3wze6engine6render10RenderTextEPNS1_5tokenE
 	.section	.rodata.str1.8
 	.align 8
@@ -2916,7 +2916,7 @@ _ZN3wze6engine6render10RenderTextEPNS1_5tokenE:
 	.globl	_ZN3wze6engine6render14RenderingStageEv
 	.type	_ZN3wze6engine6render14RenderingStageEv, @function
 _ZN3wze6engine6render14RenderingStageEv:
-.LFB2251:
+.LFB8164:
 	.cfi_startproc
 	pushq	%r14
 	.cfi_def_cfa_offset 16
@@ -3195,14 +3195,14 @@ _ZN3wze6engine6render14RenderingStageEv:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2251:
+.LFE8164:
 	.size	_ZN3wze6engine6render14RenderingStageEv, .-_ZN3wze6engine6render14RenderingStageEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render6UpdateEv
 	.type	_ZN3wze6engine6render6UpdateEv, @function
 _ZN3wze6engine6render6UpdateEv:
-.LFB2244:
+.LFB8157:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -3218,14 +3218,14 @@ _ZN3wze6engine6render6UpdateEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2244:
+.LFE8157:
 	.size	_ZN3wze6engine6render6UpdateEv, .-_ZN3wze6engine6render6UpdateEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
 	.type	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE, @function
 _ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE:
-.LFB2256:
+.LFB8169:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -3279,7 +3279,7 @@ _ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2256:
+.LFE8169:
 	.size	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE, .-_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

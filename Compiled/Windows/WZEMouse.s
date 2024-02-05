@@ -263,9 +263,9 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	testq	%rdx, %rdx
 	je	.L33
 	movq	(%rcx), %rax
-	cmpq	640(%rax), %rdx
+	cmpq	616(%rax), %rdx
 	jnb	.L31
-	movq	648(%rax), %rax
+	movq	624(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L31

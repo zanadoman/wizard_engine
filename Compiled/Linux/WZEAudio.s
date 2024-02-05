@@ -5,14 +5,14 @@
 	.globl	_ZN3wze6engine5audioC2EPS0_
 	.type	_ZN3wze6engine5audioC2EPS0_, @function
 _ZN3wze6engine5audioC2EPS0_:
-.LFB2232:
+.LFB8145:
 	.cfi_startproc
 	movq	.LC0(%rip), %rax
 	movq	%rsi, (%rdi)
 	movq	%rax, 8(%rdi)
 	ret
 	.cfi_endproc
-.LFE2232:
+.LFE8145:
 	.size	_ZN3wze6engine5audioC2EPS0_, .-_ZN3wze6engine5audioC2EPS0_
 	.globl	_ZN3wze6engine5audioC1EPS0_
 	.set	_ZN3wze6engine5audioC1EPS0_,_ZN3wze6engine5audioC2EPS0_
@@ -21,12 +21,12 @@ _ZN3wze6engine5audioC2EPS0_:
 	.globl	_ZN3wze6engine5audio15GetGlobalVolumeEv
 	.type	_ZN3wze6engine5audio15GetGlobalVolumeEv, @function
 _ZN3wze6engine5audio15GetGlobalVolumeEv:
-.LFB2234:
+.LFB8147:
 	.cfi_startproc
 	movsd	8(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE2234:
+.LFE8147:
 	.size	_ZN3wze6engine5audio15GetGlobalVolumeEv, .-_ZN3wze6engine5audio15GetGlobalVolumeEv
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
@@ -38,7 +38,7 @@ _ZN3wze6engine5audio15GetGlobalVolumeEv:
 	.globl	_ZN3wze6engine5audio15SetGlobalVolumeEd
 	.type	_ZN3wze6engine5audio15SetGlobalVolumeEd, @function
 _ZN3wze6engine5audio15SetGlobalVolumeEd:
-.LFB2235:
+.LFB8148:
 	.cfi_startproc
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
@@ -56,7 +56,7 @@ _ZN3wze6engine5audio15SetGlobalVolumeEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2235:
+.LFE8148:
 	.size	_ZN3wze6engine5audio15SetGlobalVolumeEd, .-_ZN3wze6engine5audio15SetGlobalVolumeEd
 	.section	.rodata.str1.8
 	.align 8
@@ -77,7 +77,7 @@ _ZN3wze6engine5audio15SetGlobalVolumeEd:
 	.globl	_ZN3wze6engine5audio4PlayEytd
 	.type	_ZN3wze6engine5audio4PlayEytd, @function
 _ZN3wze6engine5audio4PlayEytd:
-.LFB2236:
+.LFB8149:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -172,7 +172,7 @@ _ZN3wze6engine5audio4PlayEytd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2236:
+.LFE8149:
 	.size	_ZN3wze6engine5audio4PlayEytd, .-_ZN3wze6engine5audio4PlayEytd
 	.section	.rodata.str1.8
 	.align 8
@@ -190,7 +190,7 @@ _ZN3wze6engine5audio4PlayEytd:
 	.globl	_ZN3wze6engine5audio4PlayEytdt
 	.type	_ZN3wze6engine5audio4PlayEytdt, @function
 _ZN3wze6engine5audio4PlayEytdt:
-.LFB2237:
+.LFB8150:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
@@ -294,7 +294,7 @@ _ZN3wze6engine5audio4PlayEytdt:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2237:
+.LFE8150:
 	.size	_ZN3wze6engine5audio4PlayEytdt, .-_ZN3wze6engine5audio4PlayEytdt
 	.section	.rodata.str1.8
 	.align 8
@@ -321,7 +321,7 @@ _ZN3wze6engine5audio4PlayEytdt:
 	.globl	_ZN3wze6engine5audio4PlayEytddd
 	.type	_ZN3wze6engine5audio4PlayEytddd, @function
 _ZN3wze6engine5audio4PlayEytddd:
-.LFB2238:
+.LFB8151:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -480,7 +480,7 @@ _ZN3wze6engine5audio4PlayEytddd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2238:
+.LFE8151:
 	.size	_ZN3wze6engine5audio4PlayEytddd, .-_ZN3wze6engine5audio4PlayEytddd
 	.section	.rodata.str1.8
 	.align 8
@@ -507,7 +507,7 @@ _ZN3wze6engine5audio4PlayEytddd:
 	.globl	_ZN3wze6engine5audio4PlayEytdddt
 	.type	_ZN3wze6engine5audio4PlayEytdddt, @function
 _ZN3wze6engine5audio4PlayEytdddt:
-.LFB2239:
+.LFB8152:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
@@ -678,14 +678,14 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2239:
+.LFE8152:
 	.size	_ZN3wze6engine5audio4PlayEytdddt, .-_ZN3wze6engine5audio4PlayEytdddt
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5audio8IsPausedEt
 	.type	_ZN3wze6engine5audio8IsPausedEt, @function
 _ZN3wze6engine5audio8IsPausedEt:
-.LFB2240:
+.LFB8153:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -697,14 +697,14 @@ _ZN3wze6engine5audio8IsPausedEt:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2240:
+.LFE8153:
 	.size	_ZN3wze6engine5audio8IsPausedEt, .-_ZN3wze6engine5audio8IsPausedEt
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5audio5PauseEt
 	.type	_ZN3wze6engine5audio5PauseEt, @function
 _ZN3wze6engine5audio5PauseEt:
-.LFB2241:
+.LFB8154:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -715,14 +715,14 @@ _ZN3wze6engine5audio5PauseEt:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2241:
+.LFE8154:
 	.size	_ZN3wze6engine5audio5PauseEt, .-_ZN3wze6engine5audio5PauseEt
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5audio6ResumeEt
 	.type	_ZN3wze6engine5audio6ResumeEt, @function
 _ZN3wze6engine5audio6ResumeEt:
-.LFB2242:
+.LFB8155:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -733,14 +733,14 @@ _ZN3wze6engine5audio6ResumeEt:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2242:
+.LFE8155:
 	.size	_ZN3wze6engine5audio6ResumeEt, .-_ZN3wze6engine5audio6ResumeEt
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5audio8PauseAllEv
 	.type	_ZN3wze6engine5audio8PauseAllEv, @function
 _ZN3wze6engine5audio8PauseAllEv:
-.LFB2243:
+.LFB8156:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -751,14 +751,14 @@ _ZN3wze6engine5audio8PauseAllEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2243:
+.LFE8156:
 	.size	_ZN3wze6engine5audio8PauseAllEv, .-_ZN3wze6engine5audio8PauseAllEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5audio9ResumeAllEv
 	.type	_ZN3wze6engine5audio9ResumeAllEv, @function
 _ZN3wze6engine5audio9ResumeAllEv:
-.LFB2244:
+.LFB8157:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -769,14 +769,14 @@ _ZN3wze6engine5audio9ResumeAllEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2244:
+.LFE8157:
 	.size	_ZN3wze6engine5audio9ResumeAllEv, .-_ZN3wze6engine5audio9ResumeAllEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5audio4StopEt
 	.type	_ZN3wze6engine5audio4StopEt, @function
 _ZN3wze6engine5audio4StopEt:
-.LFB2245:
+.LFB8158:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -787,7 +787,7 @@ _ZN3wze6engine5audio4StopEt:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2245:
+.LFE8158:
 	.size	_ZN3wze6engine5audio4StopEt, .-_ZN3wze6engine5audio4StopEt
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

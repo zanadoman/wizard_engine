@@ -136,9 +136,9 @@ _ZN3wze6engine5audio4PlayEytd:
 	testq	%rdx, %rdx
 	je	.L14
 	movq	(%rcx), %rax
-	cmpq	608(%rax), %rdx
+	cmpq	584(%rax), %rdx
 	jnb	.L15
-	movq	616(%rax), %rax
+	movq	592(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L15
@@ -148,8 +148,8 @@ _ZN3wze6engine5audio4PlayEytd:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	(%rdi), %rax
-	movq	616(%rax), %rdx
-	cmpq	608(%rax), %rbx
+	movq	592(%rax), %rdx
+	cmpq	584(%rax), %rbx
 	jnb	.L22
 	movzwl	%si, %esi
 	movq	(%rdx,%rbx,8), %rdx
@@ -246,9 +246,9 @@ _ZN3wze6engine5audio4PlayEytdt:
 	je	.L28
 	movq	(%rcx), %rax
 	movzwl	%bp, %ebp
-	cmpq	608(%rax), %rdx
+	cmpq	584(%rax), %rdx
 	jnb	.L29
-	movq	616(%rax), %rax
+	movq	592(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L29
@@ -258,8 +258,8 @@ _ZN3wze6engine5audio4PlayEytdt:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	(%rdi), %rax
-	movq	616(%rax), %rdx
-	cmpq	608(%rax), %rbx
+	movq	592(%rax), %rdx
+	cmpq	584(%rax), %rbx
 	jnb	.L36
 	movzwl	%si, %esi
 	movq	(%rdx,%rbx,8), %rdx
@@ -381,9 +381,9 @@ _ZN3wze6engine5audio4PlayEytddd:
 	testq	%rdx, %rdx
 	je	.L48
 	movq	(%rcx), %rax
-	cmpq	608(%rax), %rdx
+	cmpq	584(%rax), %rdx
 	jnb	.L49
-	movq	616(%rax), %rax
+	movq	592(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L49
@@ -393,8 +393,8 @@ _ZN3wze6engine5audio4PlayEytddd:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	(%rdi), %rax
-	movq	616(%rax), %rdx
-	cmpq	608(%rax), %rbx
+	movq	592(%rax), %rdx
+	cmpq	584(%rax), %rbx
 	jnb	.L59
 	movzwl	%si, %esi
 	movq	(%rdx,%rbx,8), %rdx
@@ -568,9 +568,9 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	je	.L72
 	movq	(%rcx), %rax
 	movzwl	%si, %esi
-	cmpq	608(%rax), %rdx
+	cmpq	584(%rax), %rdx
 	jnb	.L73
-	movq	616(%rax), %rax
+	movq	592(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L73
@@ -580,8 +580,8 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	0(%rbp), %rax
-	movq	616(%rax), %rdx
-	cmpq	608(%rax), %rbx
+	movq	592(%rax), %rdx
+	cmpq	584(%rax), %rbx
 	jnb	.L83
 	movzwl	%di, %edi
 	movq	(%rdx,%rbx,8), %rdx

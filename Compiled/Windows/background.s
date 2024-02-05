@@ -18,7 +18,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	.seh_endprologue
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
-	leaq	584(%rdx), %rcx
+	leaq	560(%rdx), %rcx
 	leaq	.LC0(%rip), %rdx
 	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	pxor	%xmm3, %xmm3
@@ -26,10 +26,10 @@ _ZN10backgroundC2EPN3wze6engineE:
 	movq	%rax, 24(%rbx)
 	movq	(%rbx), %rax
 	movapd	%xmm3, %xmm2
-	movl	$720, 40(%rsp)
+	movl	$1080, 40(%rsp)
 	leaq	528(%rax), %rcx
 	movq	.LC1(%rip), %rax
-	movl	$1280, 32(%rsp)
+	movl	$1920, 32(%rsp)
 	movq	%rax, 48(%rsp)
 	call	_ZN3wze6engine6actors3NewEyddttd
 	movq	%rax, 8(%rbx)
@@ -40,12 +40,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	movq	24(%rbx), %rdx
 	leaq	40(%rax), %rcx
 	call	_ZN3wze6engine6actors5actor8textures3NewEy
-	movq	(%rbx), %rcx
-	movq	8(%rbx), %rdx
 	movq	%rax, 16(%rbx)
-	addq	$528, %rcx
-	call	_ZN3wze6engine6actorsixEy
-	movb	$1, 152(%rax)
 	addq	$64, %rsp
 	popq	%rbx
 	ret
@@ -68,7 +63,7 @@ _ZN10backgroundD2Ev:
 	movq	(%rcx), %rax
 	movq	24(%rcx), %rdx
 	movq	%rcx, %rbx
-	leaq	584(%rax), %rcx
+	leaq	560(%rax), %rcx
 	call	_ZN3wze6engine6assets13UnloadTextureEy
 	movq	(%rbx), %rcx
 	movq	8(%rbx), %rdx
@@ -96,8 +91,8 @@ _ZN10backgroundD2Ev:
 	.section .rdata,"dr"
 	.align 8
 .LC1:
-	.long	0
-	.long	1072693248
+	.long	-1717986918
+	.long	1072273817
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	_ZN3wze6engine6assets11LoadTextureEPKc;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors3NewEyddttd;	.scl	2;	.type	32;	.endef

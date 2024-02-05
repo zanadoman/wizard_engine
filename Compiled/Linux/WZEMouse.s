@@ -5,7 +5,7 @@
 	.globl	_ZN3wze6engine5mouseC2EPS0_
 	.type	_ZN3wze6engine5mouseC2EPS0_, @function
 _ZN3wze6engine5mouseC2EPS0_:
-.LFB2232:
+.LFB8145:
 	.cfi_startproc
 	movq	.LC0(%rip), %rax
 	pxor	%xmm0, %xmm0
@@ -17,7 +17,7 @@ _ZN3wze6engine5mouseC2EPS0_:
 	movups	%xmm0, 24(%rdi)
 	ret
 	.cfi_endproc
-.LFE2232:
+.LFE8145:
 	.size	_ZN3wze6engine5mouseC2EPS0_, .-_ZN3wze6engine5mouseC2EPS0_
 	.globl	_ZN3wze6engine5mouseC1EPS0_
 	.set	_ZN3wze6engine5mouseC1EPS0_,_ZN3wze6engine5mouseC2EPS0_
@@ -31,7 +31,7 @@ _ZN3wze6engine5mouseC2EPS0_:
 	.globl	_ZN3wze6engine5mouse4GetXEd
 	.type	_ZN3wze6engine5mouse4GetXEd, @function
 _ZN3wze6engine5mouse4GetXEd:
-.LFB2234:
+.LFB8147:
 	.cfi_startproc
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
@@ -62,7 +62,7 @@ _ZN3wze6engine5mouse4GetXEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2234:
+.LFE8147:
 	.size	_ZN3wze6engine5mouse4GetXEd, .-_ZN3wze6engine5mouse4GetXEd
 	.section	.rodata.str1.8
 	.align 8
@@ -74,7 +74,7 @@ _ZN3wze6engine5mouse4GetXEd:
 	.globl	_ZN3wze6engine5mouse4GetYEd
 	.type	_ZN3wze6engine5mouse4GetYEd, @function
 _ZN3wze6engine5mouse4GetYEd:
-.LFB2235:
+.LFB8148:
 	.cfi_startproc
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
@@ -105,51 +105,51 @@ _ZN3wze6engine5mouse4GetYEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2235:
+.LFE8148:
 	.size	_ZN3wze6engine5mouse4GetYEd, .-_ZN3wze6engine5mouse4GetYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5mouse10GetMotionXEv
 	.type	_ZN3wze6engine5mouse10GetMotionXEv, @function
 _ZN3wze6engine5mouse10GetMotionXEv:
-.LFB2236:
+.LFB8149:
 	.cfi_startproc
 	movsd	24(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE2236:
+.LFE8149:
 	.size	_ZN3wze6engine5mouse10GetMotionXEv, .-_ZN3wze6engine5mouse10GetMotionXEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5mouse10GetMotionYEv
 	.type	_ZN3wze6engine5mouse10GetMotionYEv, @function
 _ZN3wze6engine5mouse10GetMotionYEv:
-.LFB2237:
+.LFB8150:
 	.cfi_startproc
 	movsd	32(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE2237:
+.LFE8150:
 	.size	_ZN3wze6engine5mouse10GetMotionYEv, .-_ZN3wze6engine5mouse10GetMotionYEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5mouse10IsAbsoluteEv
 	.type	_ZN3wze6engine5mouse10IsAbsoluteEv, @function
 _ZN3wze6engine5mouse10IsAbsoluteEv:
-.LFB2238:
+.LFB8151:
 	.cfi_startproc
 	movzbl	40(%rdi), %eax
 	xorl	$1, %eax
 	ret
 	.cfi_endproc
-.LFE2238:
+.LFE8151:
 	.size	_ZN3wze6engine5mouse10IsAbsoluteEv, .-_ZN3wze6engine5mouse10IsAbsoluteEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5mouse11SetAbsoluteEv
 	.type	_ZN3wze6engine5mouse11SetAbsoluteEv, @function
 _ZN3wze6engine5mouse11SetAbsoluteEv:
-.LFB2239:
+.LFB8152:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -163,26 +163,26 @@ _ZN3wze6engine5mouse11SetAbsoluteEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2239:
+.LFE8152:
 	.size	_ZN3wze6engine5mouse11SetAbsoluteEv, .-_ZN3wze6engine5mouse11SetAbsoluteEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5mouse10IsRelativeEv
 	.type	_ZN3wze6engine5mouse10IsRelativeEv, @function
 _ZN3wze6engine5mouse10IsRelativeEv:
-.LFB2240:
+.LFB8153:
 	.cfi_startproc
 	movzbl	40(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE2240:
+.LFE8153:
 	.size	_ZN3wze6engine5mouse10IsRelativeEv, .-_ZN3wze6engine5mouse10IsRelativeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5mouse11SetRelativeEv
 	.type	_ZN3wze6engine5mouse11SetRelativeEv, @function
 _ZN3wze6engine5mouse11SetRelativeEv:
-.LFB2241:
+.LFB8154:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -196,19 +196,19 @@ _ZN3wze6engine5mouse11SetRelativeEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE2241:
+.LFE8154:
 	.size	_ZN3wze6engine5mouse11SetRelativeEv, .-_ZN3wze6engine5mouse11SetRelativeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5mouse9GetCursorEv
 	.type	_ZN3wze6engine5mouse9GetCursorEv, @function
 _ZN3wze6engine5mouse9GetCursorEv:
-.LFB2242:
+.LFB8155:
 	.cfi_startproc
 	movq	48(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE2242:
+.LFE8155:
 	.size	_ZN3wze6engine5mouse9GetCursorEv, .-_ZN3wze6engine5mouse9GetCursorEv
 	.section	.rodata.str1.8
 	.align 8
@@ -223,7 +223,7 @@ _ZN3wze6engine5mouse9GetCursorEv:
 	.globl	_ZN3wze6engine5mouse9SetCursorEy
 	.type	_ZN3wze6engine5mouse9SetCursorEy, @function
 _ZN3wze6engine5mouse9SetCursorEy:
-.LFB2243:
+.LFB8156:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -271,14 +271,14 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2243:
+.LFE8156:
 	.size	_ZN3wze6engine5mouse9SetCursorEy, .-_ZN3wze6engine5mouse9SetCursorEy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5mouse6UpdateEv
 	.type	_ZN3wze6engine5mouse6UpdateEv, @function
 _ZN3wze6engine5mouse6UpdateEv:
-.LFB2244:
+.LFB8157:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -375,7 +375,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 .L60:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE2244:
+.LFE8157:
 	.size	_ZN3wze6engine5mouse6UpdateEv, .-_ZN3wze6engine5mouse6UpdateEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

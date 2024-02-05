@@ -5,13 +5,13 @@
 	.globl	_ZN3wze6engine4keysC2EPS0_
 	.type	_ZN3wze6engine4keysC2EPS0_, @function
 _ZN3wze6engine4keysC2EPS0_:
-.LFB2232:
+.LFB8145:
 	.cfi_startproc
 	movq	%rsi, (%rdi)
 	movq	$0, 8(%rdi)
 	ret
 	.cfi_endproc
-.LFE2232:
+.LFE8145:
 	.size	_ZN3wze6engine4keysC2EPS0_, .-_ZN3wze6engine4keysC2EPS0_
 	.globl	_ZN3wze6engine4keysC1EPS0_
 	.set	_ZN3wze6engine4keysC1EPS0_,_ZN3wze6engine4keysC2EPS0_
@@ -25,7 +25,7 @@ _ZN3wze6engine4keysC2EPS0_:
 	.globl	_ZN3wze6engine4keysixENS_3keyE
 	.type	_ZN3wze6engine4keysixENS_3keyE, @function
 _ZN3wze6engine4keysixENS_3keyE:
-.LFB2234:
+.LFB8147:
 	.cfi_startproc
 	cmpl	$295, %esi
 	jg	.L8
@@ -42,14 +42,14 @@ _ZN3wze6engine4keysixENS_3keyE:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE2234:
+.LFE8147:
 	.size	_ZN3wze6engine4keysixENS_3keyE, .-_ZN3wze6engine4keysixENS_3keyE
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine4keys6UpdateEv
 	.type	_ZN3wze6engine4keys6UpdateEv, @function
 _ZN3wze6engine4keys6UpdateEv:
-.LFB2235:
+.LFB8148:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -124,7 +124,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	movq	696(%rsi), %rdi
 	jmp	.L11
 	.cfi_endproc
-.LFE2235:
+.LFE8148:
 	.size	_ZN3wze6engine4keys6UpdateEv, .-_ZN3wze6engine4keys6UpdateEv
 	.section	.rodata.cst2,"aM",@progbits,2
 	.align 2

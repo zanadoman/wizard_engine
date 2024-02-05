@@ -56,8 +56,10 @@ main:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$56, %rsp
-	.seh_stackalloc	56
+	subq	$120, %rsp
+	.seh_stackalloc	120
+	movaps	%xmm6, 96(%rsp)
+	.seh_savexmm	%xmm6, 96
 	.seh_endprologue
 	call	__main
 	movl	$712, %ecx
@@ -69,7 +71,7 @@ main:
 	xorl	%edx, %edx
 	movl	$6, 40(%rsp)
 	movq	%rax, %rcx
-	movq	%rax, %rdi
+	movq	%rax, %rbx
 	movl	$1080, 32(%rsp)
 .LEHB1:
 	call	_ZN3wze6engineC1EPKcS2_tth
@@ -78,74 +80,309 @@ main:
 .LEHB2:
 	call	_Znwy
 .LEHE2:
-	movq	%rdi, %rdx
+	movq	%rbx, %rdx
 	movq	%rax, %rcx
-	movq	%rax, %r13
+	movq	%rax, 48(%rsp)
 .LEHB3:
 	call	_ZN10backgroundC1EPN3wze6engineE
 .LEHE3:
-	movl	$56, %ecx
+	movl	$72, %ecx
 .LEHB4:
 	call	_Znwy
 .LEHE4:
-	movq	%rdi, %rdx
+	movl	$7, 40(%rsp)
+	movq	%rbx, %rdx
+	movl	$22, %r9d
+	movl	$4, 32(%rsp)
+	movl	$26, %r8d
+	movq	%rax, %rcx
+	movq	%rax, %r12
+.LEHB5:
+	call	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_
+.LEHE5:
+	movl	$72, %ecx
+.LEHB6:
+	call	_Znwy
+.LEHE6:
+	movl	$79, 40(%rsp)
+	movq	%rbx, %rdx
+	movl	$81, %r9d
+	movl	$80, 32(%rsp)
+	movl	$82, %r8d
 	movq	%rax, %rcx
 	movq	%rax, %rbp
-.LEHB5:
-	call	_ZN6playerC1EPN3wze6engineE
-.LEHE5:
-	movq	8(%rbp), %rdx
-	leaq	80(%rdi), %rcx
-	leaq	656(%rdi), %rbx
-	leaq	.LC0(%rip), %r12
-.LEHB6:
-	call	_ZN3wze6engine6camera4BindEy
+.LEHB7:
+	call	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_
+.LEHE7:
+	movl	$32, %ecx
+.LEHB8:
+	call	_Znwy
+.LEHE8:
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movq	%rax, 56(%rsp)
+	movq	%rax, %r14
+.LEHB9:
+	call	_ZN3wze6engine6RandomEii
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %edi
+	call	_ZN3wze6engine6RandomEii
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %esi
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm6, %xmm6
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	cvtsi2sdl	%eax, %xmm6
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm2, %xmm2
+	movl	%edi, 40(%rsp)
+	movapd	%xmm6, %xmm3
+	movq	%rbx, %rdx
+	cvtsi2sdl	%eax, %xmm2
+	movl	%esi, 32(%rsp)
+	movq	%r14, %rcx
+	call	_ZN5crateC1EPN3wze6engineEddtt
+.LEHE9:
+	movl	$32, %ecx
+.LEHB10:
+	call	_Znwy
+.LEHE10:
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movq	%rax, 64(%rsp)
+	movq	%rax, %r15
+.LEHB11:
+	call	_ZN3wze6engine6RandomEii
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %edi
+	call	_ZN3wze6engine6RandomEii
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %esi
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm6, %xmm6
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	cvtsi2sdl	%eax, %xmm6
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm2, %xmm2
+	movl	%edi, 40(%rsp)
+	movapd	%xmm6, %xmm3
+	movq	%rbx, %rdx
+	cvtsi2sdl	%eax, %xmm2
+	movl	%esi, 32(%rsp)
+	movq	%r15, %rcx
+	call	_ZN5crateC1EPN3wze6engineEddtt
+.LEHE11:
+	movl	$32, %ecx
+.LEHB12:
+	call	_Znwy
+.LEHE12:
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movq	%rax, 72(%rsp)
+	movq	%rax, %r14
+.LEHB13:
+	call	_ZN3wze6engine6RandomEii
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %esi
+	call	_ZN3wze6engine6RandomEii
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %edi
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm6, %xmm6
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	cvtsi2sdl	%eax, %xmm6
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm2, %xmm2
+	movl	%esi, 40(%rsp)
+	movapd	%xmm6, %xmm3
+	movq	%rbx, %rdx
+	cvtsi2sdl	%eax, %xmm2
+	movl	%edi, 32(%rsp)
+	movq	%r14, %rcx
+	call	_ZN5crateC1EPN3wze6engineEddtt
+.LEHE13:
+	movl	$32, %ecx
+.LEHB14:
+	call	_Znwy
+.LEHE14:
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movq	%rax, 80(%rsp)
+	movq	%rax, %r15
+.LEHB15:
+	call	_ZN3wze6engine6RandomEii
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %esi
+	call	_ZN3wze6engine6RandomEii
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %edi
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm6, %xmm6
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	cvtsi2sdl	%eax, %xmm6
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm2, %xmm2
+	movl	%esi, 40(%rsp)
+	movapd	%xmm6, %xmm3
+	movq	%rbx, %rdx
+	cvtsi2sdl	%eax, %xmm2
+	movl	%edi, 32(%rsp)
+	movq	%r15, %rcx
+	call	_ZN5crateC1EPN3wze6engineEddtt
+.LEHE15:
+	movl	$32, %ecx
+.LEHB16:
+	call	_Znwy
+.LEHE16:
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movq	%rax, 88(%rsp)
+	movq	%rax, %r14
+.LEHB17:
+	call	_ZN3wze6engine6RandomEii
+	movl	$150, %r8d
+	movl	$50, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %esi
+	call	_ZN3wze6engine6RandomEii
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	movzwl	%ax, %edi
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm6, %xmm6
+	movl	$500, %r8d
+	movl	$-500, %edx
+	movq	%rbx, %rcx
+	cvtsi2sdl	%eax, %xmm6
+	call	_ZN3wze6engine6RandomEii
+	pxor	%xmm2, %xmm2
+	movl	%esi, 40(%rsp)
+	movapd	%xmm6, %xmm3
+	movq	%rbx, %rdx
+	cvtsi2sdl	%eax, %xmm2
+	movl	%edi, 32(%rsp)
+	movq	%r14, %rcx
+	call	_ZN5crateC1EPN3wze6engineEddtt
+.LEHE17:
+	leaq	632(%rbx), %rsi
+	leaq	.LC0(%rip), %r13
 	jmp	.L4
 	.p2align 4,,10
 	.p2align 3
 .L5:
+	movq	%r12, %rcx
+.LEHB18:
+	call	_ZN6player6UpdateEv
 	movq	%rbp, %rcx
 	call	_ZN6player6UpdateEv
-	movq	%rbx, %rcx
+	movq	%rsi, %rcx
 	call	_ZN3wze6engine6timing12GetFrameTimeEv
-	movq	%rbx, %rcx
+	movq	%rsi, %rcx
 	movl	%eax, %r15d
 	call	_ZN3wze6engine6timing14GetWorkingTimeEv
-	movq	%rbx, %rcx
+	movq	%rsi, %rcx
 	movl	%eax, %r14d
 	call	_ZN3wze6engine6timing13GetRenderTimeEv
-	movq	%rbx, %rcx
-	movl	%eax, %esi
+	movq	%rsi, %rcx
+	movl	%eax, %edi
 	call	_ZN3wze6engine6timing11GetGameTimeEv
 	movl	%r15d, 32(%rsp)
 	movl	%r14d, %r9d
-	movl	%esi, %r8d
+	movl	%edi, %r8d
 	movl	%eax, %edx
-	movq	%r12, %rcx
+	movq	%r13, %rcx
 	call	_Z6printfPKcz.constprop.0
 .L4:
-	movq	%rdi, %rcx
+	movq	%rbx, %rcx
 	call	_ZN3wze6engine6UpdateEv
-.LEHE6:
+.LEHE18:
 	testb	%al, %al
 	jne	.L5
-	movq	%r13, %rcx
-	call	_ZN10backgroundD1Ev
+	movq	88(%rsp), %rdi
+	movq	%rdi, %rcx
+	call	_ZN5crateD1Ev
 	movl	$32, %edx
-	movq	%r13, %rcx
+	movq	%rdi, %rcx
+	call	_ZdlPvy
+	movq	80(%rsp), %rdi
+	movq	%rdi, %rcx
+	call	_ZN5crateD1Ev
+	movl	$32, %edx
+	movq	%rdi, %rcx
+	call	_ZdlPvy
+	movq	72(%rsp), %rdi
+	movq	%rdi, %rcx
+	call	_ZN5crateD1Ev
+	movl	$32, %edx
+	movq	%rdi, %rcx
+	call	_ZdlPvy
+	movq	64(%rsp), %rdi
+	movq	%rdi, %rcx
+	call	_ZN5crateD1Ev
+	movl	$32, %edx
+	movq	%rdi, %rcx
+	call	_ZdlPvy
+	movq	56(%rsp), %rdi
+	movq	%rdi, %rcx
+	call	_ZN5crateD1Ev
+	movl	$32, %edx
+	movq	%rdi, %rcx
 	call	_ZdlPvy
 	movq	%rbp, %rcx
 	call	_ZN6playerD1Ev
-	movl	$56, %edx
+	movl	$72, %edx
 	movq	%rbp, %rcx
 	call	_ZdlPvy
+	movq	%r12, %rcx
+	call	_ZN6playerD1Ev
+	movl	$72, %edx
+	movq	%r12, %rcx
+	call	_ZdlPvy
+	movq	48(%rsp), %rdi
 	movq	%rdi, %rcx
-	call	_ZN3wze6engineD1Ev
-	movl	$712, %edx
+	call	_ZN10backgroundD1Ev
+	movl	$32, %edx
 	movq	%rdi, %rcx
 	call	_ZdlPvy
+	movq	%rbx, %rcx
+	call	_ZN3wze6engineD1Ev
+	movl	$712, %edx
+	movq	%rbx, %rcx
+	call	_ZdlPvy
+	nop
+	movaps	96(%rsp), %xmm6
 	xorl	%eax, %eax
-	addq	$56, %rsp
+	addq	$120, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
@@ -155,13 +392,31 @@ main:
 	popq	%r14
 	popq	%r15
 	ret
-.L9:
-	movq	%rax, %rbx
+.L15:
+	movq	%rax, %rsi
 	jmp	.L6
-.L11:
+.L23:
+	movq	%rax, %rbx
+	jmp	.L14
+.L19:
+	movq	%rax, %rbx
+	jmp	.L10
+.L21:
+	movq	%rax, %rbx
+	jmp	.L12
+.L17:
 	movq	%rax, %rbx
 	jmp	.L8
-.L10:
+.L22:
+	movq	%rax, %rbx
+	jmp	.L13
+.L18:
+	movq	%rax, %rbx
+	jmp	.L9
+.L20:
+	movq	%rax, %rbx
+	jmp	.L11
+.L16:
 	movq	%rax, %rbx
 	jmp	.L7
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
@@ -179,7 +434,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB8432
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L9-.LFB8432
+	.uleb128 .L15-.LFB8432
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB8432
 	.uleb128 .LEHE2-.LEHB2
@@ -187,7 +442,7 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB3-.LFB8432
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L10-.LFB8432
+	.uleb128 .L16-.LFB8432
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB8432
 	.uleb128 .LEHE4-.LEHB4
@@ -195,10 +450,58 @@ main:
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB8432
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L11-.LFB8432
+	.uleb128 .L17-.LFB8432
 	.uleb128 0
 	.uleb128 .LEHB6-.LFB8432
 	.uleb128 .LEHE6-.LEHB6
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB7-.LFB8432
+	.uleb128 .LEHE7-.LEHB7
+	.uleb128 .L18-.LFB8432
+	.uleb128 0
+	.uleb128 .LEHB8-.LFB8432
+	.uleb128 .LEHE8-.LEHB8
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB9-.LFB8432
+	.uleb128 .LEHE9-.LEHB9
+	.uleb128 .L19-.LFB8432
+	.uleb128 0
+	.uleb128 .LEHB10-.LFB8432
+	.uleb128 .LEHE10-.LEHB10
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB11-.LFB8432
+	.uleb128 .LEHE11-.LEHB11
+	.uleb128 .L20-.LFB8432
+	.uleb128 0
+	.uleb128 .LEHB12-.LFB8432
+	.uleb128 .LEHE12-.LEHB12
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB13-.LFB8432
+	.uleb128 .LEHE13-.LEHB13
+	.uleb128 .L21-.LFB8432
+	.uleb128 0
+	.uleb128 .LEHB14-.LFB8432
+	.uleb128 .LEHE14-.LEHB14
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB15-.LFB8432
+	.uleb128 .LEHE15-.LEHB15
+	.uleb128 .L22-.LFB8432
+	.uleb128 0
+	.uleb128 .LEHB16-.LFB8432
+	.uleb128 .LEHE16-.LEHB16
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB17-.LFB8432
+	.uleb128 .LEHE17-.LEHB17
+	.uleb128 .L23-.LFB8432
+	.uleb128 0
+	.uleb128 .LEHB18-.LFB8432
+	.uleb128 .LEHE18-.LEHB18
 	.uleb128 0
 	.uleb128 0
 .LLSDACSE8432:
@@ -207,38 +510,75 @@ main:
 	.section	.text.unlikely,"x"
 	.def	main.cold;	.scl	3;	.type	32;	.endef
 	.seh_proc	main.cold
-	.seh_stackalloc	120
-	.seh_savereg	%rbx, 56
-	.seh_savereg	%rsi, 64
-	.seh_savereg	%rdi, 72
-	.seh_savereg	%rbp, 80
-	.seh_savereg	%r12, 88
-	.seh_savereg	%r13, 96
-	.seh_savereg	%r14, 104
-	.seh_savereg	%r15, 112
+	.seh_stackalloc	184
+	.seh_savereg	%rbx, 120
+	.seh_savereg	%rsi, 128
+	.seh_savereg	%rdi, 136
+	.seh_savereg	%rbp, 144
+	.seh_savexmm	%xmm6, 96
+	.seh_savereg	%r12, 152
+	.seh_savereg	%r13, 160
+	.seh_savereg	%r14, 168
+	.seh_savereg	%r15, 176
 	.seh_endprologue
 main.cold:
 .L6:
-	movq	%rdi, %rcx
+	movq	%rbx, %rcx
 	movl	$712, %edx
 	call	_ZdlPvy
+	movq	%rsi, %rcx
+.LEHB19:
+	call	_Unwind_Resume
+.L14:
+	movq	88(%rsp), %rcx
+	movl	$32, %edx
+	call	_ZdlPvy
 	movq	%rbx, %rcx
-.LEHB7:
+	call	_Unwind_Resume
+.L13:
+	movq	80(%rsp), %rcx
+	movl	$32, %edx
+	call	_ZdlPvy
+	movq	%rbx, %rcx
+	call	_Unwind_Resume
+.L12:
+	movq	72(%rsp), %rcx
+	movl	$32, %edx
+	call	_ZdlPvy
+	movq	%rbx, %rcx
+	call	_Unwind_Resume
+.L11:
+	movq	64(%rsp), %rcx
+	movl	$32, %edx
+	call	_ZdlPvy
+	movq	%rbx, %rcx
+	call	_Unwind_Resume
+.L10:
+	movq	56(%rsp), %rcx
+	movl	$32, %edx
+	call	_ZdlPvy
+	movq	%rbx, %rcx
+	call	_Unwind_Resume
+.L9:
+	movq	%rbp, %rcx
+	movl	$72, %edx
+	call	_ZdlPvy
+	movq	%rbx, %rcx
 	call	_Unwind_Resume
 .L8:
-	movq	%rbp, %rcx
-	movl	$56, %edx
+	movq	%r12, %rcx
+	movl	$72, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
 .L7:
-	movq	%r13, %rcx
+	movq	48(%rsp), %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
 	nop
-.LEHE7:
+.LEHE19:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
 .LLSDAC8432:
@@ -247,8 +587,8 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8432-.LLSDACSBC8432
 .LLSDACSBC8432:
-	.uleb128 .LEHB7-.LCOLDB1
-	.uleb128 .LEHE7-.LEHB7
+	.uleb128 .LEHB19-.LCOLDB1
+	.uleb128 .LEHE19-.LEHB19
 	.uleb128 0
 	.uleb128 0
 .LLSDACSEC8432:
@@ -264,16 +604,18 @@ main.cold:
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engineC1EPKcS2_tth;	.scl	2;	.type	32;	.endef
 	.def	_ZN10backgroundC1EPN3wze6engineE;	.scl	2;	.type	32;	.endef
-	.def	_ZN6playerC1EPN3wze6engineE;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera4BindEy;	.scl	2;	.type	32;	.endef
+	.def	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6RandomEii;	.scl	2;	.type	32;	.endef
+	.def	_ZN5crateC1EPN3wze6engineEddtt;	.scl	2;	.type	32;	.endef
 	.def	_ZN6player6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6timing12GetFrameTimeEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6timing14GetWorkingTimeEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6timing13GetRenderTimeEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6timing11GetGameTimeEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6UpdateEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN10backgroundD1Ev;	.scl	2;	.type	32;	.endef
+	.def	_ZN5crateD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZN6playerD1Ev;	.scl	2;	.type	32;	.endef
+	.def	_ZN10backgroundD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engineD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
