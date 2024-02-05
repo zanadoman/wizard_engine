@@ -63,20 +63,6 @@ main:
 .LEHB4:
 	call	_Znwm@PLT
 .LEHE4:
-	movl	$7, %r9d
-	movl	$4, %r8d
-	movq	%rbx, %rsi
-	movl	$22, %ecx
-	movl	$26, %edx
-	movq	%rax, %rdi
-	movq	%rax, %r15
-.LEHB5:
-	call	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_@PLT
-.LEHE5:
-	movl	$72, %edi
-.LEHB6:
-	call	_Znwm@PLT
-.LEHE6:
 	movl	$79, %r9d
 	movl	$80, %r8d
 	movq	%rbx, %rsi
@@ -84,6 +70,20 @@ main:
 	movl	$82, %edx
 	movq	%rax, %rdi
 	movq	%rax, %r14
+.LEHB5:
+	call	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_@PLT
+.LEHE5:
+	movl	$72, %edi
+.LEHB6:
+	call	_Znwm@PLT
+.LEHE6:
+	movl	$7, %r9d
+	movl	$4, %r8d
+	movq	%rbx, %rsi
+	movl	$22, %ecx
+	movl	$26, %edx
+	movq	%rax, %rdi
+	movq	%rax, %r15
 .LEHB7:
 	call	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_@PLT
 .LEHE7:
@@ -267,17 +267,20 @@ main:
 	movq	%r13, %rdi
 	call	_ZN5crateC1EPN3wze6engineEddtt@PLT
 .LEHE17:
+	movq	8(%r14), %rsi
+	leaq	80(%rbx), %rdi
+.LEHB18:
+	call	_ZN3wze6engine6camera4BindEy@PLT
 	movq	%r14, 8(%rsp)
 	movq	%r13, 56(%rsp)
 	jmp	.L2
 	.p2align 4,,10
 	.p2align 3
 .L3:
-	movq	%r15, %rdi
-	leaq	632(%rbx), %rbp
-.LEHB18:
-	call	_ZN6player6UpdateEv@PLT
 	movq	8(%rsp), %rdi
+	leaq	632(%rbx), %rbp
+	call	_ZN6player6UpdateEv@PLT
+	movq	%r15, %rdi
 	call	_ZN6player6UpdateEv@PLT
 	movq	%rbp, %rdi
 	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
@@ -334,15 +337,15 @@ main:
 	movl	$32, %esi
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	call	_ZN6playerD1Ev@PLT
 	movl	$72, %esi
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	call	_ZdlPvm@PLT
-	movq	%r15, %rdi
+	movq	%r14, %rdi
 	call	_ZN6playerD1Ev@PLT
 	movl	$72, %esi
-	movq	%r15, %rdi
+	movq	%r14, %rdi
 	call	_ZdlPvm@PLT
 	movq	48(%rsp), %r15
 	movq	%r15, %rdi
@@ -539,13 +542,13 @@ main.cold:
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L7:
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	movl	$72, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L6:
-	movq	%r15, %rdi
+	movq	%r14, %rdi
 	movl	$72, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
