@@ -44,9 +44,9 @@ _ZN10flashlightC2EPN3wze6engineE:
 	call	_ZN3wze6engine6window8GetWidthEv@PLT
 	pxor	%xmm0, %xmm0
 	movq	%rbp, %rdi
+	shrw	%ax
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
-	mulsd	.LC2(%rip), %xmm0
 	call	_ZN3wze6engine6actors5actor4SetXEd@PLT
 	movq	(%rbx), %rax
 	movq	16(%rbx), %rsi
@@ -56,16 +56,16 @@ _ZN10flashlightC2EPN3wze6engineE:
 	movq	%rax, %rbp
 	call	_ZN3wze6engine6window9GetHeightEv@PLT
 	pxor	%xmm0, %xmm0
-	movq	%rbp, %rdi
-	movzwl	%ax, %eax
-	cvtsi2sdl	%eax, %xmm0
-	mulsd	.LC2(%rip), %xmm0
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 24
+	movq	%rbp, %rdi
+	shrw	%ax
 	popq	%rbx
 	.cfi_def_cfa_offset 16
 	popq	%rbp
 	.cfi_def_cfa_offset 8
+	movzwl	%ax, %eax
+	cvtsi2sdl	%eax, %xmm0
 	jmp	_ZN3wze6engine6actors5actor4SetYEd@PLT
 	.cfi_endproc
 .LFE8145:
@@ -189,11 +189,6 @@ _ZN10flashlight6UpdateEv:
 	.cfi_endproc
 .LFE8150:
 	.size	_ZN10flashlight6UpdateEv, .-_ZN10flashlight6UpdateEv
-	.section	.rodata.cst8,"aM",@progbits,8
-	.align 8
-.LC2:
-	.long	0
-	.long	1071644672
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

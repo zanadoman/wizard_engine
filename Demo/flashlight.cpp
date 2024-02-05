@@ -6,8 +6,8 @@ flashlight::flashlight(engine* Engine) : Engine(Engine)
 
     this->Actor = this->Engine->Actors.New(FLASHLIGHT, 0, 0, 3000, 3000, 0);
     //this->Texture = this->Engine->Actors[this->Actor].Textures.New(this->TextureAsset);
-    this->Engine->Actors[this->Actor].SetX(this->Engine->Window.GetWidth() / 2.0);
-    this->Engine->Actors[this->Actor].SetY(this->Engine->Window.GetHeight() / 2.0);
+    this->Engine->Actors[this->Actor].SetX(this->Engine->Window.GetWidth() >> 1);
+    this->Engine->Actors[this->Actor].SetY(this->Engine->Window.GetHeight() >> 1);
 }
 
 flashlight::~flashlight()
