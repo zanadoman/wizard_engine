@@ -358,6 +358,8 @@ namespace wze
 
         for (uint64 i = 0; i < this->CollisionLayers[Layer].Length(); i++)
         {
+            this->CollisionLayers[Layer][i]->UpdateMembersPosition();
+
             this->CollisionLayers[Layer][i]->PrevX = this->CollisionLayers[Layer][i]->X;
             this->CollisionLayers[Layer][i]->PrevY = this->CollisionLayers[Layer][i]->Y;
             this->CollisionLayers[Layer][i]->PrevHitboxWidth = this->CollisionLayers[Layer][i]->HitboxWidth;

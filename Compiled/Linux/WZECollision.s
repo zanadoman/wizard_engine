@@ -1480,90 +1480,93 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
+	movq	%rsi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	movq	%rsi, %rbx
 	subq	$56, %rsp
 	.cfi_def_cfa_offset 112
 	movq	8(%rdi), %r12
 	movq	16(%rdi), %r11
-	movq	%rdi, 8(%rsp)
 	cmpq	%r12, %rsi
 	jnb	.L443
 	movq	%rsi, %rax
-	xorl	%r14d, %r14d
+	movq	%rdi, %rbx
+	xorl	%r13d, %r13d
 	salq	$4, %rax
 	movq	%rax, 40(%rsp)
-	leaq	(%r11,%rax), %rbp
+	leaq	(%r11,%rax), %r14
 	.p2align 4,,10
 	.p2align 3
 .L457:
-	movq	0(%rbp), %r9
-	cmpq	%r9, %r14
-	jnb	.L474
-	movq	$0, 16(%rsp)
-	leaq	0(,%r14,8), %r13
+	movq	(%r14), %r9
+	cmpq	%r9, %r13
+	jnb	.L472
+	leaq	0(,%r13,8), %rax
 	xorl	%r15d, %r15d
+	movq	$0, 16(%rsp)
+	movq	%rax, 8(%rsp)
 	jmp	.L445
 	.p2align 4,,10
 	.p2align 3
 .L444:
 	addq	$1, %r15
 	cmpq	%r15, %r9
-	je	.L475
+	je	.L473
 .L445:
-	cmpq	%r14, %r15
+	cmpq	%r13, %r15
 	je	.L444
-	movq	8(%rbp), %rax
+	movq	8(%r14), %rax
 	movq	8(%rsp), %rdi
 	movq	(%rax,%r15,8), %r10
-	movq	(%rax,%r13), %rsi
+	movq	(%rax,%rdi), %rsi
+	movq	%rbx, %rdi
 	movq	%r10, %rdx
 	call	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 	testl	%eax, %eax
 	je	.L444
 	addq	$1, %r15
-	movq	144(%r10), %rdi
-	addq	%rdi, 16(%rsp)
+	movq	144(%r10), %rcx
+	addq	%rcx, 16(%rsp)
 	cmpq	%r15, %r9
 	jne	.L445
 	.p2align 4,,10
 	.p2align 3
-.L475:
-	cmpq	%r12, %rbx
+.L473:
+	cmpq	%r12, %rbp
 	jnb	.L443
 	xorl	%r15d, %r15d
 	jmp	.L447
 	.p2align 4,,10
 	.p2align 3
-.L477:
-	movq	8(%rsp), %rdi
+.L475:
 	xorl	%edx, %edx
+	movq	%rbx, %rdi
 	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
 .L452:
 	addq	$1, %r15
-	cmpq	%r12, %rbx
+	cmpq	%r12, %rbp
 	jnb	.L443
 .L447:
-	movq	0(%rbp), %rax
+	movq	(%r14), %rax
 	cmpq	%rax, %r15
-	jnb	.L476
+	jnb	.L474
 .L456:
-	cmpq	%r14, %r15
+	cmpq	%r13, %r15
 	je	.L452
-	movq	8(%rbp), %rdx
-	cmpq	%rax, %r14
-	jnb	.L473
-	movq	(%rdx,%r13), %rsi
-	leaq	0(,%r15,8), %rax
+	movq	8(%r14), %rdx
+	cmpq	%rax, %r13
+	jnb	.L471
+	movq	8(%rsp), %rax
 	movq	(%rdx,%r15,8), %rcx
+	movq	(%rdx,%rax), %rsi
+	leaq	0(,%r15,8), %rax
 	movq	%rax, 24(%rsp)
 	movq	136(%rsi), %r10
 	cmpq	%r10, 16(%rsp)
-	jnb	.L477
+	jnb	.L475
 	movq	16(%rsp), %rax
-	movq	8(%rsp), %rdi
+	movq	%rbx, %rdi
 	subq	%rax, %r10
 	movq	%r10, %rdx
 	addq	144(%rcx), %rdx
@@ -1572,44 +1575,44 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	movq	32(%rsp), %r10
 	testb	%al, %al
 	je	.L452
-	movq	8(%rsp), %rbp
 	movq	%r15, %r8
 	movq	%r10, %rcx
-	movq	%r14, %rdx
-	movq	%rbx, %rsi
-	movq	%rbp, %rdi
+	movq	%r13, %rdx
+	movq	%rbp, %rsi
+	movq	%rbx, %rdi
 	call	_ZN3wze6engine9collision18NewCollisionBranchEyyyy
-	movq	8(%rbp), %r12
-	movq	16(%rbp), %r11
-	cmpq	%r12, %rbx
+	movq	8(%rbx), %r12
+	movq	16(%rbx), %r11
+	cmpq	%r12, %rbp
 	jnb	.L443
 	movq	40(%rsp), %rax
-	leaq	(%r11,%rax), %rbp
-	movq	0(%rbp), %rdx
-	movq	8(%rbp), %rax
+	leaq	(%r11,%rax), %r14
+	movq	(%r14), %rdx
+	movq	8(%r14), %rax
 	cmpq	%rdx, %r15
-	jnb	.L478
-	movq	24(%rsp), %rdi
-	movq	(%rax,%rdi), %rcx
-	cmpq	%rdx, %r14
-	jnb	.L473
-	movq	(%rax,%r13), %rsi
+	jnb	.L476
+	movq	24(%rsp), %rcx
+	movq	(%rax,%rcx), %rcx
+	cmpq	%rdx, %r13
+	jnb	.L471
 	movq	8(%rsp), %rdi
 	xorl	%edx, %edx
 	addq	$1, %r15
+	movq	(%rax,%rdi), %rsi
+	movq	%rbx, %rdi
 	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
-	movq	0(%rbp), %rax
+	movq	(%r14), %rax
 	cmpq	%rax, %r15
 	jb	.L456
 	.p2align 4,,10
 	.p2align 3
-.L476:
-	addq	$1, %r14
-	cmpq	%r12, %rbx
+.L474:
+	addq	$1, %r13
+	cmpq	%r12, %rbp
 	jb	.L457
 .L443:
-	movq	%rbx, %rsi
-.L472:
+	movq	%rbp, %rsi
+.L470:
 	leaq	.LC3(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -1617,23 +1620,36 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L474:
-	testq	%r9, %r9
-	je	.L470
-	movq	8(%rbp), %rdx
-	leaq	(%rdx,%r9,8), %rsi
+.L472:
+	cmpq	%r12, %rbp
+	jnb	.L443
+	xorl	%r12d, %r12d
+	jmp	.L459
 	.p2align 4,,10
 	.p2align 3
-.L460:
-	movq	(%rdx), %rax
-	addq	$8, %rdx
+.L461:
+	movq	8(%r14), %rax
+	leaq	0(,%r12,8), %r13
+	movq	(%rax,%r12,8), %rdi
+	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv@PLT
+	movq	16(%rbx), %r11
+	cmpq	8(%rbx), %rbp
+	jnb	.L443
+	movq	40(%rsp), %rax
+	leaq	(%r11,%rax), %r14
+	movq	(%r14), %r9
+	movq	8(%r14), %rax
+	cmpq	%r9, %r12
+	jnb	.L477
+	movq	(%rax,%r13), %rax
+	addq	$1, %r12
+	movl	234(%rax), %edx
 	movupd	168(%rax), %xmm0
-	movl	234(%rax), %ecx
+	movl	%edx, 238(%rax)
 	movups	%xmm0, 184(%rax)
-	movl	%ecx, 238(%rax)
-	cmpq	%rsi, %rdx
-	jne	.L460
-.L470:
+.L459:
+	cmpq	%r9, %r12
+	jb	.L461
 	addq	$56, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -1651,13 +1667,16 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L473:
+.L471:
 	.cfi_restore_state
-	movq	%r14, %rsi
-	jmp	.L472
-.L478:
+	movq	%r13, %rsi
+	jmp	.L470
+.L477:
+	movq	%r12, %rsi
+	jmp	.L470
+.L476:
 	movq	%r15, %rsi
-	jmp	.L472
+	jmp	.L470
 	.cfi_endproc
 .LFE2237:
 	.size	_ZN3wze6engine9collision21ResolveCollisionLayerEy, .-_ZN3wze6engine9collision21ResolveCollisionLayerEy

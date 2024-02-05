@@ -8,7 +8,6 @@ crate::crate(engine* Engine, double X, double Y, uint16 Width, uint16 Height) : 
     this->Texture = this->Engine->Actors[this->Actor].Textures.New(this->TextureAsset);
 
     this->Engine->Actors[this->Actor].Resistance = 50;
-    this->Engine->Actors[this->Actor].HitboxVisible = true;
     this->Engine->Actors[this->Actor].SetDepth(0.05);
     this->Engine->Actors[this->Actor].SetCollisionLayer(1);
 }
