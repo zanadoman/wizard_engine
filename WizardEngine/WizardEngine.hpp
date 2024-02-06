@@ -507,6 +507,41 @@ namespace wze
                                 ~texts();
                         } Texts;
 
+                        //__________OverlapBoxes_______________________________________________________________________
+
+                        class overlapboxes
+                        {
+                            friend class engine;
+                            engine* Engine;
+                            actor* Actor;
+
+                            class overlapbox
+                            {
+                                friend class engine;
+                                engine* Engine;
+                                actor* Actor;
+
+                                public:
+
+                                private:
+                                    overlapbox(engine* Engine, actor* Actor);
+                                    ~overlapbox(); 
+                            };
+
+                            public:
+                                uint64 New();
+                                uint8 Delete(uint64 ID);
+                                uint8 Purge(std::initializer_list<uint64> Keep);
+                                uint8 Purge(array<uint64>* Keep);
+                                overlapbox& operator [] (uint64 ID);
+
+                            private:
+                                array<overlapbox*> OverlapBoxes;
+                                overlapboxes(engine* Engine, actor* Actor);
+                                ~overlapboxes();
+
+                        } OverlapBoxes;
+
                     //__________Actor______________________________________________________________________________
 
                         uint64 Force;
