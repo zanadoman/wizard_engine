@@ -1824,9 +1824,11 @@ _ZN3wze6engine6actors5actor5texts4text9SetStringEPKc:
 	xorl	%eax, %eax
 	testq	%rsi, %rsi
 	je	.L279
+	xorl	%eax, %eax
 	movq	%rdi, %rbx
-	movq	112(%rdi), %rdi
 	movq	%rsi, %r12
+	movw	%ax, 56(%rdi)
+	movq	112(%rdi), %rdi
 	leaq	88(%rbx), %rbp
 	call	SDL_DestroyTexture@PLT
 	cmpq	$0, 64(%rbx)
@@ -1995,7 +1997,9 @@ _ZN3wze6engine6actors5actor5texts4text7SetFontEy:
 	cmpq	$0, (%rax,%rsi,8)
 	je	.L288
 .L287:
+	xorl	%eax, %eax
 	movq	112(%rbx), %rdi
+	movw	%ax, 56(%rbx)
 	call	SDL_DestroyTexture@PLT
 	cmpq	$0, 64(%rbx)
 	movq	$0, 112(%rbx)

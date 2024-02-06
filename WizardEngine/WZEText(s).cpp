@@ -337,6 +337,8 @@ namespace wze
             exit(1);
         }
 
+        this->Width = 0;
+
         SDL_DestroyTexture(this->Texture);
         this->Texture = NULL;
 
@@ -377,6 +379,8 @@ namespace wze
             printf("wze::engine.actors[].texts[].SetFont(): Font does not exist\nParams: ID: %lld\n", ID);
             exit(1);
         }
+
+        this->Width = 0;
 
         SDL_DestroyTexture(this->Texture);
         this->Texture = NULL;
