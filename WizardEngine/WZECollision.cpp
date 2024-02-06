@@ -349,7 +349,7 @@ namespace wze
         return false;
     }
 
-    uint8 engine::collision::ResolveCollisionLayer(uint64 CollisionLayer)
+    uint8 engine::collision::ResolveCollisionLayer(uint64 CollisionLayer, actors::actor* Caller)
     {
         array<actors::actor*> NextBranches(this->BufferSize);
         uint64 i, ForceRequirement;
@@ -395,9 +395,15 @@ namespace wze
             }
         }
 
+        Caller->PrevX = Caller->X;
+        Caller->PrevY = Caller->Y;
+        Caller->PrevHitboxWidth = Caller->HitboxWidth;
+        Caller->PrevHitboxHeight = Caller->HitboxHeight;
+        Caller->UpdateMembersPosition();
+
         for (uint64 i = 0; i < cache->Length(); i++)
         {
-            if ((*cache)[i]->X != (*cache)[i]->PrevX || (*cache)[i]->Y != (*cache)[i]->PrevY)
+            if ((*cache)[i] != Caller && ((*cache)[i]->X != (*cache)[i]->PrevX || (*cache)[i]->Y != (*cache)[i]->PrevY))
             {
                 (*cache)[i]->PrevX = (*cache)[i]->X;
                 (*cache)[i]->PrevY = (*cache)[i]->Y;

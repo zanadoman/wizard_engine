@@ -561,6 +561,45 @@ _ZN3wze6engine6actors5actor4GetXEv:
 	.cfi_endproc
 .LFE8151:
 	.size	_ZN3wze6engine6actors5actor4GetXEv, .-_ZN3wze6engine6actors5actor4GetXEv
+	.section	.rodata.str1.8
+	.align 8
+.LC8:
+	.string	"engine.actors[].SetX(): X must not be NaN\nParams: X: %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor4SetXEd
+	.type	_ZN3wze6engine6actors5actor4SetXEd, @function
+_ZN3wze6engine6actors5actor4SetXEd:
+.LFB8152:
+	.cfi_startproc
+	ucomisd	%xmm0, %xmm0
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	jp	.L73
+	movq	(%rdi), %rax
+	movq	%rdi, %rbx
+	movzbl	264(%rdi), %esi
+	movsd	%xmm0, 200(%rdi)
+	movq	%rbx, %rdx
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE@PLT
+	movsd	200(%rbx), %xmm0
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+.L73:
+	.cfi_restore_state
+	leaq	.LC8(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8152:
+	.size	_ZN3wze6engine6actors5actor4SetXEd, .-_ZN3wze6engine6actors5actor4SetXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor4GetYEv
@@ -573,6 +612,45 @@ _ZN3wze6engine6actors5actor4GetYEv:
 	.cfi_endproc
 .LFE8153:
 	.size	_ZN3wze6engine6actors5actor4GetYEv, .-_ZN3wze6engine6actors5actor4GetYEv
+	.section	.rodata.str1.8
+	.align 8
+.LC9:
+	.string	"engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor4SetYEd
+	.type	_ZN3wze6engine6actors5actor4SetYEd, @function
+_ZN3wze6engine6actors5actor4SetYEd:
+.LFB8154:
+	.cfi_startproc
+	ucomisd	%xmm0, %xmm0
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	jp	.L81
+	movq	(%rdi), %rax
+	movq	%rdi, %rbx
+	movzbl	264(%rdi), %esi
+	movsd	%xmm0, 208(%rdi)
+	movq	%rbx, %rdx
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE@PLT
+	movsd	208(%rbx), %xmm0
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+.L81:
+	.cfi_restore_state
+	leaq	.LC9(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8154:
+	.size	_ZN3wze6engine6actors5actor4SetYEd, .-_ZN3wze6engine6actors5actor4SetYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8GetWidthEv
@@ -623,10 +701,10 @@ _ZN3wze6engine6actors5actor8GetLayerEv:
 	.size	_ZN3wze6engine6actors5actor8GetLayerEv, .-_ZN3wze6engine6actors5actor8GetLayerEv
 	.section	.rodata.str1.8
 	.align 8
-.LC8:
+.LC10:
 	.string	"wze::engine.actors[].SetLayer(): Layer must not be NaN\nParams: Layer: %lf\n"
 	.align 8
-.LC9:
+.LC11:
 	.string	"wze::engine.actors[].SetLayer(): Layer must not be less than 0\nParams: Layer: %lf\n"
 	.text
 	.align 2
@@ -639,14 +717,14 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	ucomisd	%xmm0, %xmm0
-	jp	.L90
+	jp	.L104
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L91
+	ja	.L105
 	ucomisd	%xmm1, %xmm0
-	jp	.L79
-	je	.L92
-.L79:
+	jp	.L93
+	je	.L106
+.L93:
 	movsd	%xmm0, 248(%rdi)
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -654,7 +732,7 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L92:
+.L106:
 	.cfi_restore_state
 	movq	$0x000000000, 256(%rdi)
 	movq	(%rdi), %rax
@@ -662,35 +740,35 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 	movq	640(%rax), %rcx
 	movq	648(%rax), %rdx
 	cmpq	%rcx, %rsi
-	jnb	.L89
+	jnb	.L103
 	cmpq	%rdi, (%rdx,%rsi,8)
-	je	.L93
-.L81:
+	je	.L107
+.L95:
 	movq	120(%rax), %rsi
 	cmpq	%rcx, %rsi
-	jnb	.L89
+	jnb	.L103
 	cmpq	%rdi, (%rdx,%rsi,8)
-	jne	.L79
+	jne	.L93
 	movq	$0, 120(%rax)
-	jmp	.L79
+	jmp	.L93
 	.p2align 4,,10
 	.p2align 3
-.L93:
+.L107:
 	movq	$0, 112(%rax)
-	jmp	.L81
-.L90:
-	leaq	.LC8(%rip), %rdi
+	jmp	.L95
+.L104:
+	leaq	.LC10(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L91:
-	leaq	.LC9(%rip), %rdi
+.L105:
+	leaq	.LC11(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L89:
+.L103:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -713,13 +791,13 @@ _ZN3wze6engine6actors5actor8GetDepthEv:
 	.size	_ZN3wze6engine6actors5actor8GetDepthEv, .-_ZN3wze6engine6actors5actor8GetDepthEv
 	.section	.rodata.str1.8
 	.align 8
-.LC10:
+.LC12:
 	.string	"wze::engine.actors[].SetDepth(): Depth must not be NaN\nParams: Depth: %lf\n"
 	.align 8
-.LC11:
+.LC13:
 	.string	"wze::engine.actors[].SetDepth(): Illegal to set Depth when Layer is 0\nParams: Depth: %lf\n"
 	.align 8
-.LC12:
+.LC14:
 	.string	"wze::engine::actors[].SetDepth(): Depth must not be less than 0\nParams: Depth: %lf\n"
 	.text
 	.align 2
@@ -732,35 +810,35 @@ _ZN3wze6engine6actors5actor8SetDepthEd:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	ucomisd	%xmm0, %xmm0
-	jp	.L108
+	jp	.L122
 	pxor	%xmm1, %xmm1
 	ucomisd	248(%rdi), %xmm1
-	jp	.L98
-	je	.L109
-.L98:
+	jp	.L112
+	je	.L123
+.L112:
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L110
+	ja	.L124
 	movsd	%xmm0, 256(%rdi)
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L108:
+.L122:
 	.cfi_restore_state
-	leaq	.LC10(%rip), %rdi
-	movl	$1, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L110:
 	leaq	.LC12(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L109:
-	leaq	.LC11(%rip), %rdi
+.L124:
+	leaq	.LC14(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L123:
+	leaq	.LC13(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -782,7 +860,7 @@ _ZN3wze6engine6actors5actor17GetCollisionLayerEv:
 	.size	_ZN3wze6engine6actors5actor17GetCollisionLayerEv, .-_ZN3wze6engine6actors5actor17GetCollisionLayerEv
 	.section	.rodata.str1.8
 	.align 8
-.LC13:
+.LC15:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.text
 	.align 2
@@ -815,29 +893,29 @@ _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
 	movq	(%rdi), %rax
 	movq	680(%rax), %rdi
 	cmpq	672(%rax), %rsi
-	jnb	.L123
+	jnb	.L137
 	salq	$4, %rsi
 	addq	%rsi, %rdi
 	xorl	%esi, %esi
 	movq	(%rdi), %rdx
-	jmp	.L114
+	jmp	.L128
 	.p2align 4,,10
 	.p2align 3
-.L117:
+.L131:
 	movq	8(%rdi), %rax
 	cmpq	%rbx, (%rax,%rsi,8)
-	je	.L124
+	je	.L138
 	addq	$1, %rsi
-.L114:
+.L128:
 	cmpq	%rsi, %rdx
-	jne	.L117
+	jne	.L131
 	testb	%r12b, %r12b
-	jne	.L125
-.L118:
+	jne	.L139
+.L132:
 	movb	%r12b, 264(%rbx)
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L126
+	jne	.L140
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -853,19 +931,19 @@ _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L124:
+.L138:
 	.cfi_restore_state
 	movl	$1, %edx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0
 	testb	%r12b, %r12b
-	je	.L118
-.L125:
+	je	.L132
+.L139:
 	movq	(%rbx), %rax
 	movq	%rbx, (%rsp)
 	movzbl	%r12b, %esi
 	movq	680(%rax), %r13
 	cmpq	672(%rax), %rsi
-	jnb	.L123
+	jnb	.L137
 	salq	$4, %rsi
 	addq	%rsi, %r13
 	movq	0(%r13), %rax
@@ -876,27 +954,23 @@ _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
 	call	realloc@PLT
 	movq	%rax, 8(%r13)
 	testq	%rax, %rax
-	je	.L127
+	je	.L141
 	movq	0(%r13), %rdx
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-	movupd	200(%rbx), %xmm0
-	movl	266(%rbx), %eax
-	movups	%xmm0, 216(%rbx)
-	movl	%eax, 270(%rbx)
-	jmp	.L118
-.L123:
+	jmp	.L132
+.L137:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L126:
+.L140:
 	call	__stack_chk_fail@PLT
-.L127:
-	leaq	.LC13(%rip), %rdi
+.L141:
+	leaq	.LC15(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
@@ -964,7 +1038,7 @@ _ZN3wze6engine6actors5actor17UpdateHitboxScaleEv:
 	addsd	%xmm0, %xmm3
 	movsd	280(%rbx), %xmm1
 	addsd	%xmm0, %xmm4
-	movsd	.LC14(%rip), %xmm0
+	movsd	.LC16(%rip), %xmm0
 	leaq	688(%rax), %rdi
 	movapd	%xmm3, %xmm5
 	movapd	%xmm3, %xmm2
@@ -1090,303 +1164,6 @@ _ZN3wze6engine6actors5actor17UpdateHitboxScaleEv:
 	.size	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv, .-_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	.type	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv, @function
-_ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
-.LFB8170:
-	.cfi_startproc
-	pushq	%r12
-	.cfi_def_cfa_offset 16
-	.cfi_offset 12, -16
-	pushq	%rbp
-	.cfi_def_cfa_offset 24
-	.cfi_offset 6, -24
-	pushq	%rbx
-	.cfi_def_cfa_offset 32
-	.cfi_offset 3, -32
-	movq	24(%rdi), %rdx
-	movq	%rdi, %rbx
-	cmpq	$1, %rdx
-	jbe	.L140
-	movq	32(%rdi), %rcx
-	movl	$1, %ebp
-	.p2align 4,,10
-	.p2align 3
-.L139:
-	movq	(%rcx,%rbp,8), %rax
-	leaq	0(,%rbp,8), %r12
-	testq	%rax, %rax
-	je	.L136
-	movq	(%rbx), %rsi
-	movsd	56(%rax), %xmm2
-	movsd	48(%rax), %xmm1
-	movsd	200(%rbx), %xmm0
-	leaq	688(%rsi), %rdi
-	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
-	movq	32(%rbx), %rax
-	cmpq	24(%rbx), %rbp
-	jnb	.L176
-	movq	(%rax,%r12), %rax
-	movq	(%rbx), %rsi
-	movsd	%xmm0, 32(%rax)
-	movsd	56(%rax), %xmm2
-	movsd	208(%rbx), %xmm0
-	leaq	688(%rsi), %rdi
-	movsd	48(%rax), %xmm1
-	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
-	movq	24(%rbx), %rdx
-	movq	32(%rbx), %rcx
-	cmpq	%rdx, %rbp
-	jnb	.L176
-	movq	(%rcx,%r12), %rax
-	movsd	%xmm0, 40(%rax)
-.L136:
-	addq	$1, %rbp
-	cmpq	%rdx, %rbp
-	jb	.L139
-.L140:
-	movq	56(%rbx), %rdx
-	cmpq	$1, %rdx
-	jbe	.L135
-	movq	64(%rbx), %rcx
-	movl	$1, %ebp
-	.p2align 4,,10
-	.p2align 3
-.L146:
-	movq	(%rcx,%rbp,8), %rax
-	leaq	0(,%rbp,8), %r12
-	testq	%rax, %rax
-	je	.L143
-	movq	(%rbx), %rsi
-	movsd	64(%rax), %xmm2
-	movsd	56(%rax), %xmm1
-	movsd	200(%rbx), %xmm0
-	leaq	688(%rsi), %rdi
-	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
-	movq	64(%rbx), %rax
-	cmpq	56(%rbx), %rbp
-	jnb	.L176
-	movq	(%rax,%r12), %rax
-	movq	(%rbx), %rsi
-	movsd	%xmm0, 40(%rax)
-	movsd	64(%rax), %xmm2
-	movsd	208(%rbx), %xmm0
-	leaq	688(%rsi), %rdi
-	movsd	56(%rax), %xmm1
-	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
-	movq	56(%rbx), %rdx
-	movq	64(%rbx), %rcx
-	cmpq	%rdx, %rbp
-	jnb	.L176
-	movq	(%rcx,%r12), %rax
-	movsd	%xmm0, 48(%rax)
-.L143:
-	addq	$1, %rbp
-	cmpq	%rdx, %rbp
-	jb	.L146
-.L135:
-	movq	88(%rbx), %rdx
-	cmpq	$1, %rdx
-	jbe	.L142
-	movq	96(%rbx), %rcx
-	movl	$1, %ebp
-	.p2align 4,,10
-	.p2align 3
-.L152:
-	movq	(%rcx,%rbp,8), %rax
-	leaq	0(,%rbp,8), %r12
-	testq	%rax, %rax
-	je	.L149
-	movq	(%rbx), %rsi
-	movsd	64(%rax), %xmm2
-	movsd	56(%rax), %xmm1
-	movsd	200(%rbx), %xmm0
-	leaq	688(%rsi), %rdi
-	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
-	movq	96(%rbx), %rax
-	cmpq	88(%rbx), %rbp
-	jnb	.L176
-	movq	(%rax,%r12), %rax
-	movq	(%rbx), %rsi
-	movsd	%xmm0, 40(%rax)
-	movsd	64(%rax), %xmm2
-	movsd	208(%rbx), %xmm0
-	leaq	688(%rsi), %rdi
-	movsd	56(%rax), %xmm1
-	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
-	movq	88(%rbx), %rdx
-	movq	96(%rbx), %rcx
-	cmpq	%rdx, %rbp
-	jnb	.L176
-	movq	(%rcx,%r12), %rax
-	movsd	%xmm0, 48(%rax)
-.L149:
-	addq	$1, %rbp
-	cmpq	%rdx, %rbp
-	jb	.L152
-.L142:
-	movq	120(%rbx), %rdx
-	cmpq	$1, %rdx
-	jbe	.L173
-	movq	128(%rbx), %rcx
-	movl	$1, %ebp
-	.p2align 4,,10
-	.p2align 3
-.L156:
-	movq	(%rcx,%rbp,8), %rax
-	leaq	0(,%rbp,8), %r12
-	testq	%rax, %rax
-	je	.L153
-	movq	(%rbx), %rsi
-	movsd	80(%rax), %xmm2
-	movsd	72(%rax), %xmm1
-	movsd	200(%rbx), %xmm0
-	leaq	688(%rsi), %rdi
-	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
-	movq	128(%rbx), %rax
-	cmpq	120(%rbx), %rbp
-	jnb	.L176
-	movq	(%rax,%r12), %rax
-	movq	(%rbx), %rsi
-	movsd	%xmm0, 40(%rax)
-	movsd	80(%rax), %xmm2
-	movsd	208(%rbx), %xmm0
-	leaq	688(%rsi), %rdi
-	movsd	72(%rax), %xmm1
-	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
-	movq	120(%rbx), %rdx
-	movq	128(%rbx), %rcx
-	cmpq	%rdx, %rbp
-	jnb	.L176
-	movq	(%rcx,%r12), %rax
-	movsd	%xmm0, 48(%rax)
-.L153:
-	addq	$1, %rbp
-	cmpq	%rdx, %rbp
-	jb	.L156
-.L173:
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbp
-	.cfi_def_cfa_offset 16
-	popq	%r12
-	.cfi_def_cfa_offset 8
-	ret
-.L176:
-	.cfi_restore_state
-	leaq	.LC7(%rip), %rdi
-	movq	%rbp, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.cfi_endproc
-.LFE8170:
-	.size	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv, .-_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	.section	.rodata.str1.8
-	.align 8
-.LC15:
-	.string	"engine.actors[].SetX(): X must not be NaN\nParams: X: %lf\n"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor4SetXEd
-	.type	_ZN3wze6engine6actors5actor4SetXEd, @function
-_ZN3wze6engine6actors5actor4SetXEd:
-.LFB8152:
-	.cfi_startproc
-	ucomisd	%xmm0, %xmm0
-	pushq	%rbx
-	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
-	jp	.L185
-	movzbl	264(%rdi), %esi
-	movq	%rdi, %rbx
-	movsd	%xmm0, 200(%rdi)
-	testb	%sil, %sil
-	jne	.L186
-	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	movsd	200(%rbx), %xmm0
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L186:
-	.cfi_restore_state
-	movq	(%rdi), %rax
-	leaq	656(%rax), %rdi
-	call	_ZN3wze6engine9collision21ResolveCollisionLayerEy@PLT
-	movsd	200(%rbx), %xmm0
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	ret
-.L185:
-	.cfi_restore_state
-	leaq	.LC15(%rip), %rdi
-	movl	$1, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.cfi_endproc
-.LFE8152:
-	.size	_ZN3wze6engine6actors5actor4SetXEd, .-_ZN3wze6engine6actors5actor4SetXEd
-	.section	.rodata.str1.8
-	.align 8
-.LC16:
-	.string	"engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor4SetYEd
-	.type	_ZN3wze6engine6actors5actor4SetYEd, @function
-_ZN3wze6engine6actors5actor4SetYEd:
-.LFB8154:
-	.cfi_startproc
-	ucomisd	%xmm0, %xmm0
-	pushq	%rbx
-	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
-	movsd	%xmm0, 208(%rdi)
-	jp	.L195
-	movzbl	264(%rdi), %esi
-	movq	%rdi, %rbx
-	testb	%sil, %sil
-	jne	.L196
-	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	movsd	208(%rbx), %xmm0
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L196:
-	.cfi_restore_state
-	movq	(%rdi), %rax
-	leaq	656(%rax), %rdi
-	call	_ZN3wze6engine9collision21ResolveCollisionLayerEy@PLT
-	movsd	208(%rbx), %xmm0
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	ret
-.L195:
-	.cfi_restore_state
-	leaq	.LC16(%rip), %rdi
-	movl	$1, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.cfi_endproc
-.LFE8154:
-	.size	_ZN3wze6engine6actors5actor4SetYEd, .-_ZN3wze6engine6actors5actor4SetYEd
-	.align 2
-	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8SetWidthEt
 	.type	_ZN3wze6engine6actors5actor8SetWidthEt, @function
 _ZN3wze6engine6actors5actor8SetWidthEt:
@@ -1409,32 +1186,29 @@ _ZN3wze6engine6actors5actor8SetWidthEt:
 	movw	%si, 232(%rdi)
 	movzwl	%si, %esi
 	cvtsi2sdl	%esi, %xmm2
-	movq	(%rdi), %rdx
+	movq	(%rdi), %rcx
 	cvtsi2sdl	%eax, %xmm3
-	leaq	688(%rdx), %rdi
+	leaq	688(%rcx), %rdi
 	movq	%xmm2, %r14
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	mulsd	.LC4(%rip), %xmm0
 	pxor	%xmm1, %xmm1
 	ucomisd	%xmm1, %xmm0
 	movsd	%xmm0, 280(%rbx)
-	jp	.L198
-	jne	.L198
+	jp	.L147
+	jne	.L147
 	movsd	%xmm1, 288(%rbx)
-.L200:
+.L149:
 	pxor	%xmm0, %xmm0
-.L203:
+.L152:
 	movsd	%xmm0, 296(%rbx)
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
-	movzbl	264(%rbx), %esi
-	testb	%sil, %sil
-	je	.L204
 	movq	(%rbx), %rax
+	movzbl	264(%rbx), %esi
+	movq	%rbx, %rdx
 	leaq	656(%rax), %rdi
-	call	_ZN3wze6engine9collision21ResolveCollisionLayerEy@PLT
-	movl	266(%rbx), %eax
-	movl	%eax, 270(%rbx)
+	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE@PLT
 	movzwl	232(%rbx), %eax
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -1446,49 +1220,34 @@ _ZN3wze6engine6actors5actor8SetWidthEt:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L204:
-	.cfi_restore_state
-	movq	%rbx, %rdi
-	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	movzwl	232(%rbx), %eax
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	popq	%rbx
-	.cfi_def_cfa_offset 16
-	popq	%r14
-	.cfi_def_cfa_offset 8
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L198:
+.L147:
 	.cfi_restore_state
 	pxor	%xmm3, %xmm3
-	movq	(%rbx), %rcx
+	movq	(%rbx), %rdx
 	pxor	%xmm1, %xmm1
 	movq	%r14, %xmm2
 	movzwl	234(%rbx), %eax
 	movapd	%xmm1, %xmm0
-	leaq	688(%rcx), %rdi
+	leaq	688(%rdx), %rdi
 	cvtsi2sdl	%eax, %xmm3
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	280(%rbx), %xmm1
 	movsd	%xmm0, 288(%rbx)
 	pxor	%xmm0, %xmm0
 	ucomisd	%xmm0, %xmm1
-	jp	.L201
-	je	.L200
-.L201:
+	jp	.L150
+	je	.L149
+.L150:
 	pxor	%xmm3, %xmm3
-	movq	(%rbx), %rcx
+	movq	(%rbx), %rdx
 	pxor	%xmm2, %xmm2
 	movq	%r14, %xmm0
 	movzwl	234(%rbx), %eax
 	movapd	%xmm2, %xmm1
-	leaq	688(%rcx), %rdi
+	leaq	688(%rdx), %rdi
 	cvtsi2sdl	%eax, %xmm3
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	jmp	.L203
+	jmp	.L152
 	.cfi_endproc
 .LFE8156:
 	.size	_ZN3wze6engine6actors5actor8SetWidthEt, .-_ZN3wze6engine6actors5actor8SetWidthEt
@@ -1513,9 +1272,9 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	movw	%si, 234(%rdi)
 	movzwl	%si, %esi
 	cvtsi2sdl	%esi, %xmm3
-	movq	(%rdi), %rdx
+	movq	(%rdi), %rcx
 	cvtsi2sdl	%eax, %xmm2
-	leaq	688(%rdx), %rdi
+	leaq	688(%rcx), %rdi
 	movsd	%xmm3, 8(%rsp)
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	pxor	%xmm1, %xmm1
@@ -1523,23 +1282,20 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	mulsd	.LC4(%rip), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movsd	%xmm0, 280(%rbx)
-	jp	.L209
-	jne	.L209
+	jp	.L156
+	jne	.L156
 	movsd	%xmm1, 288(%rbx)
-.L211:
+.L158:
 	pxor	%xmm0, %xmm0
-.L214:
+.L161:
 	movsd	%xmm0, 296(%rbx)
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
-	movzbl	264(%rbx), %esi
-	testb	%sil, %sil
-	je	.L215
 	movq	(%rbx), %rax
+	movzbl	264(%rbx), %esi
+	movq	%rbx, %rdx
 	leaq	656(%rax), %rdi
-	call	_ZN3wze6engine9collision21ResolveCollisionLayerEy@PLT
-	movl	266(%rbx), %eax
-	movl	%eax, 270(%rbx)
+	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE@PLT
 	movzwl	234(%rbx), %eax
 	addq	$16, %rsp
 	.cfi_remember_state
@@ -1549,38 +1305,25 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L215:
-	.cfi_restore_state
-	movq	%rbx, %rdi
-	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	movzwl	234(%rbx), %eax
-	addq	$16, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 16
-	popq	%rbx
-	.cfi_def_cfa_offset 8
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L209:
+.L156:
 	.cfi_restore_state
 	movzwl	232(%rbx), %eax
 	pxor	%xmm2, %xmm2
-	movq	(%rbx), %rcx
+	movq	(%rbx), %rdx
 	pxor	%xmm1, %xmm1
 	movapd	%xmm1, %xmm0
 	movsd	%xmm3, 8(%rsp)
 	cvtsi2sdl	%eax, %xmm2
-	leaq	688(%rcx), %rdi
+	leaq	688(%rdx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	280(%rbx), %xmm1
 	movsd	8(%rsp), %xmm3
 	movsd	%xmm0, 288(%rbx)
 	pxor	%xmm0, %xmm0
 	ucomisd	%xmm0, %xmm1
-	jp	.L212
-	je	.L211
-.L212:
+	jp	.L159
+	je	.L158
+.L159:
 	movzwl	232(%rbx), %eax
 	pxor	%xmm0, %xmm0
 	pxor	%xmm2, %xmm2
@@ -1589,7 +1332,7 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	movq	(%rbx), %rax
 	leaq	688(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	jmp	.L214
+	jmp	.L161
 	.cfi_endproc
 .LFE8158:
 	.size	_ZN3wze6engine6actors5actor9SetHeightEt, .-_ZN3wze6engine6actors5actor9SetHeightEt
@@ -1609,166 +1352,156 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	jp	.L257
+	jp	.L198
 	movq	24(%rdi), %rdx
 	movapd	%xmm0, %xmm1
 	movq	%rdi, %rbx
 	subsd	240(%rdi), %xmm1
 	movsd	%xmm0, 240(%rdi)
 	cmpq	$1, %rdx
-	jbe	.L222
+	jbe	.L167
 	movq	32(%rdi), %rcx
 	leaq	8(%rcx), %rax
 	leaq	(%rcx,%rdx,8), %rcx
-	jmp	.L224
+	jmp	.L169
 	.p2align 4,,10
 	.p2align 3
-.L223:
+.L168:
 	addq	$8, %rax
 	cmpq	%rcx, %rax
-	je	.L222
-.L224:
+	je	.L167
+.L169:
 	movq	(%rax), %rdx
 	testq	%rdx, %rdx
-	je	.L223
+	je	.L168
 	cmpb	$0, 24(%rdx)
-	je	.L223
+	je	.L168
 	movsd	56(%rdx), %xmm0
 	addq	$8, %rax
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 56(%rdx)
 	cmpq	%rcx, %rax
-	jne	.L224
-.L222:
+	jne	.L169
+.L167:
 	movq	56(%rbx), %rax
 	cmpq	$1, %rax
-	jbe	.L225
+	jbe	.L170
 	movq	64(%rbx), %rcx
 	leaq	8(%rcx), %rdx
 	leaq	(%rcx,%rax,8), %rcx
-	jmp	.L230
+	jmp	.L175
 	.p2align 4,,10
 	.p2align 3
-.L228:
+.L173:
 	cmpb	$0, 35(%rax)
-	jne	.L258
-.L227:
+	jne	.L199
+.L172:
 	addq	$8, %rdx
-	cmpq	%rdx, %rcx
-	je	.L225
-.L230:
+	cmpq	%rcx, %rdx
+	je	.L170
+.L175:
 	movq	(%rdx), %rax
 	testq	%rax, %rax
-	je	.L227
+	je	.L172
 	cmpb	$0, 34(%rax)
-	je	.L228
+	je	.L173
 	movsd	24(%rax), %xmm0
 	cmpb	$0, 35(%rax)
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 24(%rax)
-	je	.L227
-.L258:
+	je	.L172
+.L199:
 	movsd	64(%rax), %xmm0
 	addq	$8, %rdx
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 64(%rax)
-	cmpq	%rdx, %rcx
-	jne	.L230
-.L225:
+	cmpq	%rcx, %rdx
+	jne	.L175
+.L170:
 	movq	88(%rbx), %rax
 	cmpq	$1, %rax
-	jbe	.L231
+	jbe	.L176
 	movq	96(%rbx), %rcx
 	leaq	8(%rcx), %rdx
 	leaq	(%rcx,%rax,8), %rcx
-	jmp	.L236
+	jmp	.L181
 	.p2align 4,,10
 	.p2align 3
-.L234:
+.L179:
 	cmpb	$0, 35(%rax)
-	jne	.L259
-.L233:
+	jne	.L200
+.L178:
 	addq	$8, %rdx
-	cmpq	%rcx, %rdx
-	je	.L231
-.L236:
+	cmpq	%rdx, %rcx
+	je	.L176
+.L181:
 	movq	(%rdx), %rax
 	testq	%rax, %rax
-	je	.L233
+	je	.L178
 	cmpb	$0, 34(%rax)
-	je	.L234
+	je	.L179
 	movsd	24(%rax), %xmm0
 	cmpb	$0, 35(%rax)
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 24(%rax)
-	je	.L233
-.L259:
+	je	.L178
+.L200:
 	movsd	64(%rax), %xmm0
 	addq	$8, %rdx
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 64(%rax)
-	cmpq	%rcx, %rdx
-	jne	.L236
-.L231:
+	cmpq	%rdx, %rcx
+	jne	.L181
+.L176:
 	movq	120(%rbx), %rax
 	cmpq	$1, %rax
-	jbe	.L237
+	jbe	.L182
 	movq	128(%rbx), %rcx
 	leaq	8(%rcx), %rdx
 	leaq	(%rcx,%rax,8), %rcx
-	jmp	.L242
+	jmp	.L187
 	.p2align 4,,10
 	.p2align 3
-.L240:
+.L185:
 	cmpb	$0, 35(%rax)
-	jne	.L260
-.L239:
+	jne	.L201
+.L184:
 	addq	$8, %rdx
-	cmpq	%rcx, %rdx
-	je	.L237
-.L242:
+	cmpq	%rdx, %rcx
+	je	.L182
+.L187:
 	movq	(%rdx), %rax
 	testq	%rax, %rax
-	je	.L239
+	je	.L184
 	cmpb	$0, 34(%rax)
-	je	.L240
+	je	.L185
 	movsd	24(%rax), %xmm0
 	cmpb	$0, 35(%rax)
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 24(%rax)
-	je	.L239
-.L260:
+	je	.L184
+.L201:
 	movsd	80(%rax), %xmm0
 	addq	$8, %rdx
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 80(%rax)
-	cmpq	%rcx, %rdx
-	jne	.L242
-.L237:
+	cmpq	%rdx, %rcx
+	jne	.L187
+.L182:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
+	movq	(%rbx), %rax
 	movzbl	264(%rbx), %esi
-	testb	%sil, %sil
-	jne	.L261
-.L243:
-	movq	%rbx, %rdi
-	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
+	movq	%rbx, %rdx
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE@PLT
 	movsd	240(%rbx), %xmm0
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L261:
+.L198:
 	.cfi_restore_state
-	movq	(%rbx), %rax
-	leaq	656(%rax), %rdi
-	call	_ZN3wze6engine9collision21ResolveCollisionLayerEy@PLT
-	movl	266(%rbx), %eax
-	movl	%eax, 270(%rbx)
-	jmp	.L243
-.L257:
 	leaq	.LC17(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
@@ -1777,13 +1510,210 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	.cfi_endproc
 .LFE8160:
 	.size	_ZN3wze6engine6actors5actor8SetAngleEd, .-_ZN3wze6engine6actors5actor8SetAngleEd
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
+	.type	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv, @function
+_ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
+.LFB8170:
+	.cfi_startproc
+	pushq	%r12
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
+	pushq	%rbp
+	.cfi_def_cfa_offset 24
+	.cfi_offset 6, -24
+	pushq	%rbx
+	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
+	movq	24(%rdi), %rdx
+	movq	%rdi, %rbx
+	cmpq	$1, %rdx
+	jbe	.L210
+	movq	32(%rdi), %rcx
+	movl	$1, %ebp
+	.p2align 4,,10
+	.p2align 3
+.L209:
+	movq	(%rcx,%rbp,8), %rax
+	leaq	0(,%rbp,8), %r12
+	testq	%rax, %rax
+	je	.L206
+	movq	(%rbx), %rsi
+	movsd	56(%rax), %xmm2
+	movsd	48(%rax), %xmm1
+	movsd	200(%rbx), %xmm0
+	leaq	688(%rsi), %rdi
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	32(%rbx), %rax
+	cmpq	24(%rbx), %rbp
+	jnb	.L246
+	movq	(%rax,%r12), %rax
+	movq	(%rbx), %rsi
+	movsd	%xmm0, 32(%rax)
+	movsd	56(%rax), %xmm2
+	movsd	208(%rbx), %xmm0
+	leaq	688(%rsi), %rdi
+	movsd	48(%rax), %xmm1
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movq	24(%rbx), %rdx
+	movq	32(%rbx), %rcx
+	cmpq	%rdx, %rbp
+	jnb	.L246
+	movq	(%rcx,%r12), %rax
+	movsd	%xmm0, 40(%rax)
+.L206:
+	addq	$1, %rbp
+	cmpq	%rdx, %rbp
+	jb	.L209
+.L210:
+	movq	56(%rbx), %rdx
+	cmpq	$1, %rdx
+	jbe	.L205
+	movq	64(%rbx), %rcx
+	movl	$1, %ebp
+	.p2align 4,,10
+	.p2align 3
+.L216:
+	movq	(%rcx,%rbp,8), %rax
+	leaq	0(,%rbp,8), %r12
+	testq	%rax, %rax
+	je	.L213
+	movq	(%rbx), %rsi
+	movsd	64(%rax), %xmm2
+	movsd	56(%rax), %xmm1
+	movsd	200(%rbx), %xmm0
+	leaq	688(%rsi), %rdi
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	64(%rbx), %rax
+	cmpq	56(%rbx), %rbp
+	jnb	.L246
+	movq	(%rax,%r12), %rax
+	movq	(%rbx), %rsi
+	movsd	%xmm0, 40(%rax)
+	movsd	64(%rax), %xmm2
+	movsd	208(%rbx), %xmm0
+	leaq	688(%rsi), %rdi
+	movsd	56(%rax), %xmm1
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movq	56(%rbx), %rdx
+	movq	64(%rbx), %rcx
+	cmpq	%rdx, %rbp
+	jnb	.L246
+	movq	(%rcx,%r12), %rax
+	movsd	%xmm0, 48(%rax)
+.L213:
+	addq	$1, %rbp
+	cmpq	%rdx, %rbp
+	jb	.L216
+.L205:
+	movq	88(%rbx), %rdx
+	cmpq	$1, %rdx
+	jbe	.L212
+	movq	96(%rbx), %rcx
+	movl	$1, %ebp
+	.p2align 4,,10
+	.p2align 3
+.L222:
+	movq	(%rcx,%rbp,8), %rax
+	leaq	0(,%rbp,8), %r12
+	testq	%rax, %rax
+	je	.L219
+	movq	(%rbx), %rsi
+	movsd	64(%rax), %xmm2
+	movsd	56(%rax), %xmm1
+	movsd	200(%rbx), %xmm0
+	leaq	688(%rsi), %rdi
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	96(%rbx), %rax
+	cmpq	88(%rbx), %rbp
+	jnb	.L246
+	movq	(%rax,%r12), %rax
+	movq	(%rbx), %rsi
+	movsd	%xmm0, 40(%rax)
+	movsd	64(%rax), %xmm2
+	movsd	208(%rbx), %xmm0
+	leaq	688(%rsi), %rdi
+	movsd	56(%rax), %xmm1
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movq	88(%rbx), %rdx
+	movq	96(%rbx), %rcx
+	cmpq	%rdx, %rbp
+	jnb	.L246
+	movq	(%rcx,%r12), %rax
+	movsd	%xmm0, 48(%rax)
+.L219:
+	addq	$1, %rbp
+	cmpq	%rdx, %rbp
+	jb	.L222
+.L212:
+	movq	120(%rbx), %rdx
+	cmpq	$1, %rdx
+	jbe	.L243
+	movq	128(%rbx), %rcx
+	movl	$1, %ebp
+	.p2align 4,,10
+	.p2align 3
+.L226:
+	movq	(%rcx,%rbp,8), %rax
+	leaq	0(,%rbp,8), %r12
+	testq	%rax, %rax
+	je	.L223
+	movq	(%rbx), %rsi
+	movsd	80(%rax), %xmm2
+	movsd	72(%rax), %xmm1
+	movsd	200(%rbx), %xmm0
+	leaq	688(%rsi), %rdi
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	128(%rbx), %rax
+	cmpq	120(%rbx), %rbp
+	jnb	.L246
+	movq	(%rax,%r12), %rax
+	movq	(%rbx), %rsi
+	movsd	%xmm0, 40(%rax)
+	movsd	80(%rax), %xmm2
+	movsd	208(%rbx), %xmm0
+	leaq	688(%rsi), %rdi
+	movsd	72(%rax), %xmm1
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movq	120(%rbx), %rdx
+	movq	128(%rbx), %rcx
+	cmpq	%rdx, %rbp
+	jnb	.L246
+	movq	(%rcx,%r12), %rax
+	movsd	%xmm0, 48(%rax)
+.L223:
+	addq	$1, %rbp
+	cmpq	%rdx, %rbp
+	jb	.L226
+.L243:
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	xorl	%eax, %eax
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
+	.cfi_def_cfa_offset 8
+	ret
+.L246:
+	.cfi_restore_state
+	leaq	.LC7(%rip), %rdi
+	movq	%rbp, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8170:
+	.size	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv, .-_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC4:
 	.long	0
 	.long	1071644672
 	.align 8
-.LC14:
+.LC16:
 	.long	0
 	.long	1080459264
 	.hidden	DW.ref.__gxx_personality_v0

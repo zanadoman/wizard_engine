@@ -67,15 +67,7 @@ namespace wze
         }
 
         this->X = X;
-
-        if (this->CollisionLayer != 0)
-        {
-            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-        }
-        else
-        {
-            this->UpdateMembersPosition();
-        }
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer, this);
 
         return this->X;
     }
@@ -87,22 +79,14 @@ namespace wze
 
     double engine::actors::actor::SetY(double Y)
     {
-        this->Y = Y;
-
         if (Y != Y)
         {
             printf("engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
             exit(1);
         }
 
-        if (this->CollisionLayer != 0)
-        {
-            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-        }
-        else
-        {
-            this->UpdateMembersPosition();
-        }
+        this->Y = Y;
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer, this);
 
         return this->Y;
     }
@@ -121,17 +105,7 @@ namespace wze
         this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(Width, 0, 0, this->Height) : 0;
 
         this->UpdateHitboxScale();
-
-        if (this->CollisionLayer != 0)
-        {
-            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-            this->PrevHitboxWidth = this->HitboxWidth;
-            this->PrevHitboxHeight = this->HitboxHeight;
-        }
-        else
-        {
-            this->UpdateMembersPosition();
-        }
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer, this);
 
         return this->Width;
     }
@@ -150,17 +124,7 @@ namespace wze
         this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(this->Width, 0, 0, Height) : 0;
 
         this->UpdateHitboxScale();
-
-        if (this->CollisionLayer != 0)
-        {
-            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-            this->PrevHitboxWidth = this->HitboxWidth;
-            this->PrevHitboxHeight = this->HitboxHeight;
-        }
-        else
-        {
-            this->UpdateMembersPosition();
-        }
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer, this);
 
         return this->Height;
     }
@@ -252,15 +216,7 @@ namespace wze
         }
 
         this->UpdateHitboxScale();
-
-        if (this->CollisionLayer != 0)
-        {
-            this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
-            this->PrevHitboxWidth = this->HitboxWidth;
-            this->PrevHitboxHeight = this->HitboxHeight;
-        }
-
-        this->UpdateMembersPosition();
+        this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer, this);
 
         return this->Angle;
     }
@@ -344,11 +300,6 @@ namespace wze
         if (CollisionLayer != 0)
         {
             this->Engine->Collision.CollisionLayers[CollisionLayer] += {this};
-
-            this->PrevX = this->X;
-            this->PrevY = this->Y;
-            this->PrevHitboxWidth = this->HitboxWidth;
-            this->PrevHitboxHeight = this->HitboxHeight;
         }
 
         return this->CollisionLayer = CollisionLayer;
