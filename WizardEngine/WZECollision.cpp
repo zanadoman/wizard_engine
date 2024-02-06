@@ -405,16 +405,22 @@ namespace wze
             }
         }
 
-        for (uint64 NextBranch = 0; NextBranch < i; NextBranch++)
+        if (RootForce <= ForceRequirement)
         {
-            if (RootForce <= ForceRequirement)
+            for (uint64 NextBranch = 0; NextBranch < i; NextBranch++)
             {
                 this->ResolveCollision(CurrentBranch, 0, NextBranches[NextBranch]);
             }
-            else if (this->ResolveCollision(CurrentBranch, NextBranches[NextBranch]->Resistance + RootForce - ForceRequirement, NextBranches[NextBranch]))
+        }
+        else
+        {
+            for (uint64 NextBranch = 0; NextBranch < i; NextBranch++)
             {
-                this->NewCollisionBranch(Cache, Root, RootForce - ForceRequirement, NextBranches[NextBranch]);
-                this->ResolveCollision(CurrentBranch, 0, NextBranches[NextBranch]);
+                if (this->ResolveCollision(CurrentBranch, NextBranches[NextBranch]->Resistance + RootForce - ForceRequirement, NextBranches[NextBranch]))
+                {
+                    this->NewCollisionBranch(Cache, Root, RootForce - ForceRequirement, NextBranches[NextBranch]);
+                    this->ResolveCollision(CurrentBranch, 0, NextBranches[NextBranch]);
+                }
             }
         }
 
