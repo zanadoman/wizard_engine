@@ -321,9 +321,9 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	testq	%rsi, %rsi
 	je	.L50
 	movq	(%rdi), %rax
-	cmpq	672(%rax), %rsi
+	cmpq	704(%rax), %rsi
 	jnb	.L49
-	movq	680(%rax), %rax
+	movq	712(%rax), %rax
 	cmpq	$0, (%rax,%rsi,8)
 	je	.L49
 .L50:
@@ -1076,7 +1076,7 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 .L189:
 	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	656(%rax), %rdi
+	leaq	688(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
 	jmp	.L191
@@ -1085,7 +1085,7 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 .L195:
 	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	656(%rax), %rdi
+	leaq	688(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	8(%rsp), %xmm2
@@ -1176,7 +1176,7 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 .L213:
 	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	656(%rax), %rdi
+	leaq	688(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
 	jmp	.L215
@@ -1185,7 +1185,7 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 .L219:
 	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	656(%rax), %rdi
+	leaq	688(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	40(%rbx), %xmm2
@@ -1234,9 +1234,9 @@ _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
 	testq	%rsi, %rsi
 	je	.L226
 	movq	(%rdi), %rdx
-	cmpq	672(%rdx), %rsi
+	cmpq	704(%rdx), %rsi
 	jnb	.L227
-	movq	680(%rdx), %rdx
+	movq	712(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
 	je	.L227
 .L226:

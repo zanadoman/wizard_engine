@@ -2,7 +2,7 @@
 
 namespace wze
 {
-    engine::engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Vector(this), Assets(this), Timing(this), Collision(this)
+    engine::engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Assets(this), Timing(this)
     {
         if (Title == NULL)
         {

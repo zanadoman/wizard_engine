@@ -2,7 +2,20 @@
 
 namespace wze
 {
-    engine::collision::collision(engine* Engine) : Engine(Engine), CollisionLayers(256) {}
+    engine::collision::collision(engine* Engine) : Engine(Engine), CollisionLayers(256)
+    {
+        this->BufferSize = 128 / sizeof(actors::actor*);
+    }
+
+    uint8 engine::collision::GetBufferSizeB()
+    {
+        return sizeof(actors::actor*) * this->BufferSize;
+    }
+
+    uint8 engine::collision::SetBufferSizeB(uint8 Bytes)
+    {
+        return sizeof(actors::actor*) * (this->BufferSize = Bytes / sizeof(actors::actor*));
+    }
 
     bool engine::collision::CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY)
     {
@@ -338,7 +351,7 @@ namespace wze
 
     uint8 engine::collision::ResolveCollisionLayer(uint64 CollisionLayer)
     {
-        array<actors::actor*> NextBranches(10);
+        array<actors::actor*> NextBranches(this->BufferSize);
         uint64 i, ForceRequirement;
         array<actors::actor*>* cache;
 
@@ -354,7 +367,7 @@ namespace wze
                 {
                     if (i == NextBranches.Length())
                     {
-                        NextBranches.Insert(NextBranches.Length(), 11);
+                        NextBranches.Insert(NextBranches.Length(), 1 + this->BufferSize);
                     }
 
                     NextBranches[i++] = (*cache)[NextBranch];
@@ -397,7 +410,7 @@ namespace wze
 
     uint8 engine::collision::NewCollisionBranch(array<actors::actor*>* Cache, actors::actor* Root, uint64 RootForce, actors::actor* CurrentBranch)
     {
-        array<actors::actor*> NextBranches(10);
+        array<actors::actor*> NextBranches(this->BufferSize);
         uint64 i, ForceRequirement;
 
         i = 0;
@@ -408,7 +421,7 @@ namespace wze
             {
                 if (i == NextBranches.Length())
                 {
-                    NextBranches.Insert(NextBranches.Length(), 11);
+                    NextBranches.Insert(NextBranches.Length(), 1 + this->BufferSize);
                 }
 
                 NextBranches[i++] = (*Cache)[NextBranch];

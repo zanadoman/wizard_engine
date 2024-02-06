@@ -493,9 +493,9 @@ _ZN3wze6engine6actors5actor5texts3NewEPKcy:
 .L44:
 	.cfi_restore_state
 	movq	(%rdi), %rax
-	cmpq	704(%rax), %rdx
+	cmpq	736(%rax), %rdx
 	jnb	.L47
-	movq	712(%rax), %rax
+	movq	744(%rax), %rax
 	cmpq	$0, (%rax,%rdx,8)
 	jne	.L48
 .L47:
@@ -1497,7 +1497,7 @@ _ZN3wze6engine6actors5actor5texts4text4SetXEd:
 .L213:
 	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	656(%rax), %rdi
+	leaq	688(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
 	jmp	.L215
@@ -1506,7 +1506,7 @@ _ZN3wze6engine6actors5actor5texts4text4SetXEd:
 .L219:
 	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	656(%rax), %rdi
+	leaq	688(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	8(%rsp), %xmm2
@@ -1597,7 +1597,7 @@ _ZN3wze6engine6actors5actor5texts4text4SetYEd:
 .L237:
 	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	656(%rax), %rdi
+	leaq	688(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
 	jmp	.L239
@@ -1606,7 +1606,7 @@ _ZN3wze6engine6actors5actor5texts4text4SetYEd:
 .L243:
 	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	656(%rax), %rdi
+	leaq	688(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	40(%rbx), %xmm2
@@ -1727,9 +1727,9 @@ _ZN3wze6engine6actors5actor5texts4text7SetFontEy:
 	testq	%rsi, %rsi
 	je	.L258
 	movq	(%rdi), %rdx
-	cmpq	704(%rdx), %rsi
+	cmpq	736(%rdx), %rsi
 	jnb	.L259
-	movq	712(%rdx), %rdx
+	movq	744(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
 	je	.L259
 .L258:

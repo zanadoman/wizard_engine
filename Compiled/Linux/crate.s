@@ -26,7 +26,7 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 48
 	movq	%rsi, (%rdi)
-	leaq	664(%rsi), %rdi
+	leaq	696(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
 	movsd	%xmm0, 8(%rsp)
 	movsd	%xmm1, (%rsp)
@@ -97,7 +97,7 @@ _ZN5crateD2Ev:
 	movq	(%rdi), %rax
 	movq	%rdi, %rbx
 	movq	24(%rdi), %rsi
-	leaq	664(%rax), %rdi
+	leaq	696(%rax), %rdi
 	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi

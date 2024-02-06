@@ -572,6 +572,41 @@ namespace wze
                     ~actors();
             } Actors;
 
+            //__________Collision______________________________________________________________________________________
+
+            class collision
+            {
+                friend class engine;
+                engine* Engine;
+
+                enum direction
+                {
+                    TOP = 1,
+                    BOT = 2,
+                    LEFT = 4,
+                    RIGHT = 8,
+                    TOP_LEFT = 16,
+                    TOP_RIGHT = 32,
+                    BOT_LEFT = 64,
+                    BOT_RIGHT = 128,
+                    NONE = 0
+                };
+
+                public:
+                    uint8 GetBufferSizeB();
+                    uint8 SetBufferSizeB(uint8 Bytes);
+
+                private:
+                    uint16 BufferSize;
+                    array<array<actors::actor*>> CollisionLayers;
+                    collision(engine* Engine);
+                    bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
+                    direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
+                    bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
+                    uint8 ResolveCollisionLayer(uint64 CollisionLayer);
+                    uint8 NewCollisionBranch(array<actors::actor*>* Cache, actors::actor* Root, uint64 RootForce, actors::actor* CurrentBranch);
+            } Collision;
+
             //__________Vector_________________________________________________________________________________________
 
             class vector
@@ -659,35 +694,6 @@ namespace wze
             sint32 Random(sint32 Min, sint32 Max);
 
         private:
-
-            //__________Collision______________________________________________________________________________________
-
-            class collision
-            {
-                friend class engine;
-                engine* Engine;
-
-                enum direction
-                {
-                    TOP = 1,
-                    BOT = 2,
-                    LEFT = 4,
-                    RIGHT = 8,
-                    TOP_LEFT = 16,
-                    TOP_RIGHT = 32,
-                    BOT_LEFT = 64,
-                    BOT_RIGHT = 128,
-                    NONE = 0
-                };
-
-                array<array<actors::actor*>> CollisionLayers;
-                collision(engine* Engine);
-                bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
-                direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
-                bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
-                uint8 ResolveCollisionLayer(uint64 CollisionLayer);
-                uint8 NewCollisionBranch(array<actors::actor*>* Cache, actors::actor* Root, uint64 RootForce, actors::actor* CurrentBranch);
-            } Collision;
 
             //__________Engine_________________________________________________________________________________________
 

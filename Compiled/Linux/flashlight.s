@@ -21,7 +21,7 @@ _ZN10flashlightC2EPN3wze6engineE:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
 	movq	%rsi, (%rdi)
-	leaq	664(%rsi), %rdi
+	leaq	696(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	pxor	%xmm2, %xmm2
@@ -87,7 +87,7 @@ _ZN10flashlightD2Ev:
 	movq	(%rdi), %rax
 	movq	%rdi, %rbx
 	movq	32(%rdi), %rsi
-	leaq	664(%rax), %rdi
+	leaq	696(%rax), %rdi
 	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
 	movq	(%rbx), %rdi
 	movq	16(%rbx), %rsi
@@ -152,7 +152,7 @@ _ZN10flashlight6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	24(%rsp), %xmm3
 	movsd	16(%rsp), %xmm2
-	leaq	656(%rbp), %rdi
+	leaq	688(%rbp), %rdi
 	movsd	8(%rsp), %xmm1
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	ucomisd	%xmm0, %xmm0

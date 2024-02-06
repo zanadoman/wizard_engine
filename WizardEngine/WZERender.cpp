@@ -7,7 +7,7 @@ namespace wze
         this->RenderWidth = 0;
         this->RenderHeight = 0;
         this->SamplingStep = 0.002;
-        this->BufferSize = 1024 / sizeof(token*);
+        this->BufferSize = 1 * 1024 / sizeof(token*);
     }
 
     engine::render::token::token() {}
@@ -44,12 +44,12 @@ namespace wze
 
     uint16 engine::render::GetBufferSizeKB()
     {
-        return sizeof(token*) * this->BufferSize / 1024;
+        return sizeof(actors::actor*) * this->BufferSize / 1024;
     }
 
     uint16 engine::render::SetBufferSizeKB(uint16 KiloBytes)
     {
-        return this->BufferSize = KiloBytes * 1024 / sizeof(token*);
+        return sizeof(actors::actor*) * (this->BufferSize = KiloBytes * 1024 / sizeof(token*)) / 1024;
     }
 
     uint8 engine::render::Update()
