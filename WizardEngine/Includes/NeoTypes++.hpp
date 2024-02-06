@@ -138,7 +138,8 @@ namespace neo
             bool Contains(std::initializer_list<double> Numbers);
 
             string* Read();
-            array<string>* Split(char Separator);
+            uint64 Split(char Separator, array<string>* Result);
+            uint64 Split(char Separator, array<string*>* Result);
             string* Reverse();
 
             uint64 ToUINT();
@@ -827,8 +828,11 @@ namespace neo
             printf("neo::array.ReadFile(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
-
-        this->Clear();
+        if (this->length != 0)
+        {
+            printf("neo::array.ReadFile(): This must be empty\nParams: Path: %s\n", Path);
+            exit(1);
+        }
 
         if ((file = fopen(Path, "r")) != NULL)
         {
@@ -873,8 +877,11 @@ namespace neo
             printf("neo::array.ReadFile(): Path must not be NULL\nParams: Path: %p\n", Path);
             exit(1);
         }
-
-        this->Clear();
+        if (this->length != 0)
+        {
+            printf("neo::array.ReadFile(): This must be empty\nParams: Path: %s\n", Path);
+            exit(1);
+        }
 
         if ((file = fopen(Path, "r")) != NULL)
         {

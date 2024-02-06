@@ -9,7 +9,8 @@ LINUX_ASSEMBLY_FOLDER="Compiled/Linux"
 LINUX_COMPILER="g++"
 LINUX_WARNINGS="-Werror -Wall -Wextra -Wstack-usage=256 -Wno-class-memaccess"
 LINUX_LIBRARIES="-LWizardEngine/Libraries/Linux -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf"
-LINUX_EXTRA_FLAGS="-Wl,-rpath=."
+LINUX_COMPILE_FLAGS="-Wl,-rpath=."
+LINUX_LINK_FLAGS=""
 LINUX_BUILD_NAME="bin.out"
 LINUX_BUILD_FOLDER="Build"
 LINUX_RUN_PREFIX=""
@@ -19,7 +20,8 @@ WINDOWS_ASSEMBLY_FOLDER="Compiled/Windows"
 WINDOWS_COMPILER="x86_64-w64-mingw32-g++"
 WINDOWS_WARNINGS=""
 WINDOWS_LIBRARIES="-LWizardEngine/Libraries/Windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf"
-WINDOWS_EXTRA_FLAGS="-mwindows"
+WINDOWS_COMPILE_FLAGS=""
+WINDOWS_LINK_FLAGS="-mwindows"
 WINDOWS_BUILD_NAME="bin.exe"
 WINDOWS_BUILD_FOLDER="Build"
 WINDOWS_RUN_PREFIX="wine64"
@@ -30,7 +32,8 @@ GIT_ASSEMBLY_FOLDER=${LINUX_ASSEMBLY_FOLDER}
 GIT_COMPILER=${LINUX_COMPILER}
 GIT_WARNINGS=${LINUX_WARNINGS}
 GIT_LIBRARIES=${LINUX_LIBRARIES}
-GIT_EXTRA_FLAGS=${LINUX_EXTRA_FLAGS}
+GIT_COMPILE_FLAGS=${LINUX_COMPILE_FLAGS}
+GIT_LINK_FLAGS=${LINUX_LINK_FLAGS}
 GIT_BUILD_NAME=${LINUX_BUILD_NAME}
 GIT_BUILD_FOLDER=${LINUX_BUILD_FOLDER}
 GIT_RUN_PREFIX=${LINUX_RUN_PREFIX}
@@ -50,7 +53,7 @@ then
     ls "${LINUX_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${LINUX_ASSEMBLY_FOLDER}"
     ls "${LINUX_BUILD_FOLDER}" &> /dev/null || mkdir "${LINUX_BUILD_FOLDER}"
 
-    if ${LINUX_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${LINUX_WARNINGS} ${LINUX_EXTRA_FLAGS} -S ${SOURCES}
+    if ${LINUX_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${LINUX_WARNINGS} ${LINUX_COMPILE_FLAGS} -S ${SOURCES}
     then
         echo -e "${YELLOW}Linux ${GREEN}compilation successful!${ENDCOLOR}"
         if [ "${LINUX_ASSEMBLY_FOLDER}" != "." ] && [ "${LINUX_ASSEMBLY_FOLDER}" != "./" ]
@@ -64,7 +67,7 @@ then
         exit 1
     fi
 
-    if ${LINUX_COMPILER} -o "${LINUX_BUILD_FOLDER}/${LINUX_BUILD_NAME}" "${LINUX_ASSEMBLY_FOLDER}"/*.s ${LINUX_LIBRARIES} -lm
+    if ${LINUX_COMPILER} ${LINUX_LINK_FLAGS} -o "${LINUX_BUILD_FOLDER}/${LINUX_BUILD_NAME}" "${LINUX_ASSEMBLY_FOLDER}"/*.s ${LINUX_LIBRARIES} -lm
     then
         echo -e "${YELLOW}Linux ${GREEN}linking successful!${ENDCOLOR}"
     else
@@ -87,7 +90,7 @@ then
     ls "${WINDOWS_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${WINDOWS_ASSEMBLY_FOLDER}"
     ls "${WINDOWS_BUILD_FOLDER}" &> /dev/null || mkdir "${WINDOWS_BUILD_FOLDER}"
 
-    if ${WINDOWS_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${WINDOWS_WARNINGS} ${WINDOWS_EXTRA_FLAGS} -S ${SOURCES}
+    if ${WINDOWS_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${WINDOWS_WARNINGS} ${WINDOWS_COMPILE_FLAGS} -S ${SOURCES}
     then
         echo -e "${BLUE}Windows ${GREEN}compilation successful!${ENDCOLOR}"
         if [ "${WINDOWS_ASSEMBLY_FOLDER}" != "." ] && [ "${WINDOWS_ASSEMBLY_FOLDER}" != "./" ]
@@ -101,7 +104,7 @@ then
         exit 1
     fi
 
-    if ${WINDOWS_COMPILER} -o "${WINDOWS_BUILD_FOLDER}/${WINDOWS_BUILD_NAME}" "${WINDOWS_ASSEMBLY_FOLDER}"/*.s ${WINDOWS_LIBRARIES} -lm
+    if ${WINDOWS_COMPILER} ${WINDOWS_LINK_FLAGS} -o "${WINDOWS_BUILD_FOLDER}/${WINDOWS_BUILD_NAME}" "${WINDOWS_ASSEMBLY_FOLDER}"/*.s ${WINDOWS_LIBRARIES} -lm
     then
         echo -e "${BLUE}Windows ${GREEN}linking successful!${ENDCOLOR}"
     else
@@ -124,7 +127,7 @@ then
     ls "${GIT_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${GIT_ASSEMBLY_FOLDER}"
     ls "${GIT_BUILD_FOLDER}" &> /dev/null || mkdir "${GIT_BUILD_FOLDER}"
 
-    if ${GIT_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${GIT_WARNINGS} ${GIT_EXTRA_FLAGS} -S $(git diff --name-only | grep ${GIT_GREP_FILTER})
+    if ${GIT_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${GIT_WARNINGS} ${GIT_COMPILE_FLAGS} -S $(git diff --name-only | grep ${GIT_GREP_FILTER})
     then
         echo -e "${MAGENTA}Git ${GREEN}compilation successful!${ENDCOLOR}"
         mv ./*.s "${GIT_ASSEMBLY_FOLDER}" &> /dev/null
@@ -134,7 +137,7 @@ then
         exit 1
     fi
 
-    if ${GIT_COMPILER} -o "${GIT_BUILD_FOLDER}/${GIT_BUILD_NAME}" "${GIT_ASSEMBLY_FOLDER}"/*.s ${GIT_LIBRARIES} -lm
+    if ${GIT_COMPILER} ${GIT_LINK_FLAGS} -o "${GIT_BUILD_FOLDER}/${GIT_BUILD_NAME}" "${GIT_ASSEMBLY_FOLDER}"/*.s ${GIT_LIBRARIES} -lm
     then
         echo -e "${MAGENTA}Git ${GREEN}linking successful!${ENDCOLOR}"
     else
