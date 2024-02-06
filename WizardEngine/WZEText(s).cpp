@@ -263,7 +263,7 @@ namespace wze
 
     double engine::actors::actor::texts::text::GetY()
     {
-        return this->X;
+        return this->Y;
     }
 
     double engine::actors::actor::texts::text::SetY(double Y)

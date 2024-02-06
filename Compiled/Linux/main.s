@@ -59,7 +59,7 @@ main:
 .LEHB3:
 	call	_ZN10backgroundC1EPN3wze6engineE@PLT
 .LEHE3:
-	movl	$72, %edi
+	movl	$80, %edi
 .LEHB4:
 	call	_Znwm@PLT
 .LEHE4:
@@ -73,7 +73,7 @@ main:
 .LEHB5:
 	call	_ZN6playerC1EPN3wze6engineENS0_3keyES3_S3_S3_@PLT
 .LEHE5:
-	movl	$72, %edi
+	movl	$80, %edi
 .LEHB6:
 	call	_Znwm@PLT
 .LEHE6:
@@ -399,12 +399,12 @@ main:
 	call	_ZdlPvm@PLT
 	movq	%r15, %rdi
 	call	_ZN6playerD1Ev@PLT
-	movl	$72, %esi
+	movl	$80, %esi
 	movq	%r15, %rdi
 	call	_ZdlPvm@PLT
 	movq	%r14, %rdi
 	call	_ZN6playerD1Ev@PLT
-	movl	$72, %esi
+	movl	$80, %esi
 	movq	%r14, %rdi
 	call	_ZdlPvm@PLT
 	movq	48(%rsp), %r15
@@ -620,13 +620,13 @@ main.cold:
 	call	_Unwind_Resume@PLT
 .L7:
 	movq	%r15, %rdi
-	movl	$72, %esi
+	movl	$80, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L6:
 	movq	%r14, %rdi
-	movl	$72, %esi
+	movl	$80, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT

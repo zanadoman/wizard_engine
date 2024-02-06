@@ -71,6 +71,7 @@ namespace wze
                     TEXTURE,
                     FLIPBOOK,
                     TEXT,
+                    OVERLAPBOX,
                     HITBOX
                 };
 
@@ -113,6 +114,7 @@ namespace wze
                     uint8 RenderTexture(token* Token);
                     uint8 RenderFlipbook(token* Token);
                     uint8 RenderText(token* Token);
+                    uint8 RenderOverlapbox(token* Token);
                     uint8 RenderHitbox(token* Token);
             } Render;
 
@@ -525,6 +527,8 @@ namespace wze
                                 actor* Actor;
 
                                 public:
+                                    bool AngleLocked;
+                                    bool OffsetAngleLocked;
                                     bool Visible;
                                     uint64 GetType();
                                     double GetX();
@@ -535,8 +539,10 @@ namespace wze
                                     uint16 SetWidth(uint16 Width);
                                     uint16 GetHeight();
                                     uint16 SetHeight(uint16 Height);
-                                    uint16 GetHitboxWidth();
-                                    uint16 GetHitboxHeight();
+                                    double GetAngle();
+                                    double SetAngle(double Angle);
+                                    uint16 GetActiveWidth();
+                                    uint16 GetActiveHeight();
 
                                 private:
                                     uint64 Type;
@@ -544,28 +550,32 @@ namespace wze
                                     double Y;
                                     uint16 Width;
                                     uint16 Height;
-                                    uint16 HitboxWidth;
-                                    uint16 HitboxHeight;
-                                    double HitboxMedianLength;
-                                    double HitboxMedian1Angle;
-                                    double HitboxMedian2Angle;
-                                    overlapbox(engine* Engine, actor* Actor);
-                                    ~overlapbox(); 
+                                    double Angle;
+                                    double OffsetLength;
+                                    double OffsetAngle;
+                                    uint16 ActiveWidth;
+                                    uint16 ActiveHeight;
+                                    double ActiveMedianLength;
+                                    double ActiveMedian1Angle;
+                                    double ActiveMedian2Angle;
+                                    overlapbox(engine* Engine, actor* Actor, uint64 Type);
+                                    ~overlapbox();
+                                    uint8 UpdateOverlapboxScale();
                             };
 
                             public:
-                                uint64 New();
+                                uint64 New(uint64 Type);
                                 uint8 Delete(uint64 ID);
                                 uint8 Purge(std::initializer_list<uint64> Keep);
                                 uint8 Purge(array<uint64>* Keep);
                                 overlapbox& operator [] (uint64 ID);
 
                             private:
-                                array<overlapbox*> OverlapBoxes;
+                                array<overlapbox*> Overlapboxes;
                                 overlapboxes(engine* Engine, actor* Actor);
                                 ~overlapboxes();
 
-                        } OverlapBoxes;
+                        } Overlapboxes;
 
                     //__________Actor______________________________________________________________________________
 

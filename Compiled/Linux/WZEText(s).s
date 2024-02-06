@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0:
-.LFB8355:
+.LFB8353:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8355:
+.LFE8353:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor5texts4textEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -1541,12 +1541,12 @@ _ZN3wze6engine6actors5actor5texts4text4SetXEd:
 	.globl	_ZN3wze6engine6actors5actor5texts4text4GetYEv
 	.type	_ZN3wze6engine6actors5actor5texts4text4GetYEv, @function
 _ZN3wze6engine6actors5actor5texts4text4GetYEv:
-.LFB8354:
+.LFB8165:
 	.cfi_startproc
-	movsd	40(%rdi), %xmm0
+	movsd	48(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8354:
+.LFE8165:
 	.size	_ZN3wze6engine6actors5actor5texts4text4GetYEv, .-_ZN3wze6engine6actors5actor5texts4text4GetYEv
 	.section	.rodata.str1.8
 	.align 8

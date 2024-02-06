@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
-.LFB8349:
+.LFB8351:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8349:
+.LFE8351:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
@@ -1350,160 +1350,225 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 _ZN3wze6engine6actors5actor8SetAngleEd:
 .LFB8160:
 	.cfi_startproc
-	ucomisd	%xmm0, %xmm0
-	pushq	%rbx
+	pushq	%r12
 	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
-	jp	.L199
+	.cfi_offset 12, -16
+	pushq	%rbp
+	.cfi_def_cfa_offset 24
+	.cfi_offset 6, -24
+	pushq	%rbx
+	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 48
+	ucomisd	%xmm0, %xmm0
+	jp	.L216
 	movq	24(%rdi), %rdx
 	movapd	%xmm0, %xmm1
-	movq	%rdi, %rbx
+	movq	%rdi, %rbp
 	subsd	248(%rdi), %xmm1
 	movsd	%xmm0, 248(%rdi)
 	cmpq	$1, %rdx
-	jbe	.L168
+	jbe	.L173
 	movq	32(%rdi), %rcx
 	leaq	8(%rcx), %rax
 	leaq	(%rcx,%rdx,8), %rcx
-	jmp	.L170
+	jmp	.L172
 	.p2align 4,,10
 	.p2align 3
-.L169:
+.L171:
 	addq	$8, %rax
 	cmpq	%rcx, %rax
-	je	.L168
-.L170:
+	je	.L173
+.L172:
 	movq	(%rax), %rdx
 	testq	%rdx, %rdx
-	je	.L169
+	je	.L171
 	cmpb	$0, 24(%rdx)
-	je	.L169
+	je	.L171
 	movsd	56(%rdx), %xmm0
 	addq	$8, %rax
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 56(%rdx)
 	cmpq	%rcx, %rax
-	jne	.L170
-.L168:
-	movq	56(%rbx), %rax
-	cmpq	$1, %rax
-	jbe	.L171
-	movq	64(%rbx), %rcx
-	leaq	8(%rcx), %rdx
-	leaq	(%rcx,%rax,8), %rcx
-	jmp	.L176
-	.p2align 4,,10
-	.p2align 3
-.L174:
-	cmpb	$0, 35(%rax)
-	jne	.L200
+	jne	.L172
 .L173:
-	addq	$8, %rdx
-	cmpq	%rcx, %rdx
-	je	.L171
-.L176:
-	movq	(%rdx), %rax
-	testq	%rax, %rax
-	je	.L173
-	cmpb	$0, 34(%rax)
-	je	.L174
-	movsd	24(%rax), %xmm0
-	cmpb	$0, 35(%rax)
-	addsd	%xmm1, %xmm0
-	movsd	%xmm0, 24(%rax)
-	je	.L173
-.L200:
-	movsd	64(%rax), %xmm0
-	addq	$8, %rdx
-	addsd	%xmm1, %xmm0
-	movsd	%xmm0, 64(%rax)
-	cmpq	%rcx, %rdx
-	jne	.L176
-.L171:
-	movq	88(%rbx), %rax
+	movq	56(%rbp), %rax
 	cmpq	$1, %rax
-	jbe	.L177
-	movq	96(%rbx), %rcx
+	jbe	.L170
+	movq	64(%rbp), %rcx
 	leaq	8(%rcx), %rdx
 	leaq	(%rcx,%rax,8), %rcx
-	jmp	.L182
+	jmp	.L180
 	.p2align 4,,10
 	.p2align 3
-.L180:
+.L178:
 	cmpb	$0, 35(%rax)
-	jne	.L201
-.L179:
-	addq	$8, %rdx
-	cmpq	%rdx, %rcx
-	je	.L177
-.L182:
-	movq	(%rdx), %rax
-	testq	%rax, %rax
-	je	.L179
-	cmpb	$0, 34(%rax)
-	je	.L180
-	movsd	24(%rax), %xmm0
-	cmpb	$0, 35(%rax)
-	addsd	%xmm1, %xmm0
-	movsd	%xmm0, 24(%rax)
-	je	.L179
-.L201:
-	movsd	64(%rax), %xmm0
-	addq	$8, %rdx
-	addsd	%xmm1, %xmm0
-	movsd	%xmm0, 64(%rax)
-	cmpq	%rdx, %rcx
-	jne	.L182
+	jne	.L217
 .L177:
-	movq	120(%rbx), %rax
-	cmpq	$1, %rax
-	jbe	.L183
-	movq	128(%rbx), %rcx
-	leaq	8(%rcx), %rdx
-	leaq	(%rcx,%rax,8), %rcx
-	jmp	.L188
-	.p2align 4,,10
-	.p2align 3
-.L186:
-	cmpb	$0, 35(%rax)
-	jne	.L202
-.L185:
 	addq	$8, %rdx
-	cmpq	%rdx, %rcx
-	je	.L183
-.L188:
+	cmpq	%rcx, %rdx
+	je	.L170
+.L180:
 	movq	(%rdx), %rax
 	testq	%rax, %rax
-	je	.L185
+	je	.L177
 	cmpb	$0, 34(%rax)
-	je	.L186
+	je	.L178
 	movsd	24(%rax), %xmm0
 	cmpb	$0, 35(%rax)
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 24(%rax)
+	je	.L177
+.L217:
+	movsd	64(%rax), %xmm0
+	addq	$8, %rdx
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 64(%rax)
+	cmpq	%rcx, %rdx
+	jne	.L180
+.L170:
+	movq	88(%rbp), %rax
+	cmpq	$1, %rax
+	jbe	.L175
+	movq	96(%rbp), %rcx
+	leaq	8(%rcx), %rdx
+	leaq	(%rcx,%rax,8), %rcx
+	jmp	.L187
+	.p2align 4,,10
+	.p2align 3
+.L185:
+	cmpb	$0, 35(%rax)
+	jne	.L218
+.L184:
+	addq	$8, %rdx
+	cmpq	%rdx, %rcx
+	je	.L175
+.L187:
+	movq	(%rdx), %rax
+	testq	%rax, %rax
+	je	.L184
+	cmpb	$0, 34(%rax)
 	je	.L185
-.L202:
+	movsd	24(%rax), %xmm0
+	cmpb	$0, 35(%rax)
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 24(%rax)
+	je	.L184
+.L218:
+	movsd	64(%rax), %xmm0
+	addq	$8, %rdx
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 64(%rax)
+	cmpq	%rdx, %rcx
+	jne	.L187
+.L175:
+	movq	120(%rbp), %rax
+	cmpq	$1, %rax
+	jbe	.L182
+	movq	128(%rbp), %rcx
+	leaq	8(%rcx), %rdx
+	leaq	(%rcx,%rax,8), %rcx
+	jmp	.L194
+	.p2align 4,,10
+	.p2align 3
+.L192:
+	cmpb	$0, 35(%rax)
+	jne	.L219
+.L191:
+	addq	$8, %rdx
+	cmpq	%rdx, %rcx
+	je	.L182
+.L194:
+	movq	(%rdx), %rax
+	testq	%rax, %rax
+	je	.L191
+	cmpb	$0, 34(%rax)
+	je	.L192
+	movsd	24(%rax), %xmm0
+	cmpb	$0, 35(%rax)
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 24(%rax)
+	je	.L191
+.L219:
 	movsd	80(%rax), %xmm0
 	addq	$8, %rdx
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 80(%rax)
 	cmpq	%rdx, %rcx
-	jne	.L188
-.L183:
-	movq	%rbx, %rdi
+	jne	.L194
+.L182:
+	movq	152(%rbp), %rax
+	cmpq	$1, %rax
+	jbe	.L189
+	movq	160(%rbp), %rdx
+	movl	$1, %ebx
+	jmp	.L200
+	.p2align 4,,10
+	.p2align 3
+.L196:
+	cmpq	%rax, %rbx
+	jnb	.L220
+	movq	(%rdx,%r12), %rcx
+	cmpb	$0, 17(%rcx)
+	jne	.L221
+.L195:
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	jnb	.L189
+.L200:
+	movq	(%rdx,%rbx,8), %rdi
+	leaq	0(,%rbx,8), %r12
+	testq	%rdi, %rdi
+	je	.L195
+	cmpb	$0, 16(%rdi)
+	je	.L196
+	movapd	%xmm1, %xmm0
+	addsd	56(%rdi), %xmm0
+	movsd	%xmm1, 8(%rsp)
+	movsd	%xmm0, 56(%rdi)
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv@PLT
+	movq	152(%rbp), %rax
+	movq	160(%rbp), %rdx
+	movsd	8(%rsp), %xmm1
+	jmp	.L196
+	.p2align 4,,10
+	.p2align 3
+.L221:
+	movsd	72(%rcx), %xmm0
+	addq	$1, %rbx
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, 72(%rcx)
+	cmpq	%rax, %rbx
+	jb	.L200
+.L189:
+	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
-	movq	(%rbx), %rax
-	movzbl	272(%rbx), %esi
-	movq	%rbx, %rdx
+	movq	0(%rbp), %rax
+	movzbl	272(%rbp), %esi
+	movq	%rbp, %rdx
 	leaq	656(%rax), %rdi
 	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE@PLT
-	movsd	248(%rbx), %xmm0
-	popq	%rbx
+	movsd	248(%rbp), %xmm0
+	addq	$16, %rsp
 	.cfi_remember_state
+	.cfi_def_cfa_offset 32
+	popq	%rbx
+	.cfi_def_cfa_offset 24
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L199:
+.L220:
 	.cfi_restore_state
+	leaq	.LC7(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L216:
 	leaq	.LC17(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
@@ -1531,16 +1596,16 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	movq	24(%rdi), %rdx
 	movq	%rdi, %rbx
 	cmpq	$1, %rdx
-	jbe	.L211
+	jbe	.L230
 	movq	32(%rdi), %rcx
 	movl	$1, %ebp
 	.p2align 4,,10
 	.p2align 3
-.L210:
+.L229:
 	movq	(%rcx,%rbp,8), %rax
 	leaq	0(,%rbp,8), %r12
 	testq	%rax, %rax
-	je	.L207
+	je	.L226
 	movq	(%rbx), %rsi
 	movsd	56(%rax), %xmm2
 	movsd	48(%rax), %xmm1
@@ -1549,7 +1614,7 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	movq	32(%rbx), %rax
 	cmpq	24(%rbx), %rbp
-	jnb	.L247
+	jnb	.L276
 	movq	(%rax,%r12), %rax
 	movq	(%rbx), %rsi
 	movsd	%xmm0, 32(%rax)
@@ -1561,26 +1626,26 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	movq	24(%rbx), %rdx
 	movq	32(%rbx), %rcx
 	cmpq	%rdx, %rbp
-	jnb	.L247
+	jnb	.L276
 	movq	(%rcx,%r12), %rax
 	movsd	%xmm0, 40(%rax)
-.L207:
+.L226:
 	addq	$1, %rbp
 	cmpq	%rdx, %rbp
-	jb	.L210
-.L211:
+	jb	.L229
+.L230:
 	movq	56(%rbx), %rdx
 	cmpq	$1, %rdx
-	jbe	.L206
+	jbe	.L225
 	movq	64(%rbx), %rcx
 	movl	$1, %ebp
 	.p2align 4,,10
 	.p2align 3
-.L217:
+.L236:
 	movq	(%rcx,%rbp,8), %rax
 	leaq	0(,%rbp,8), %r12
 	testq	%rax, %rax
-	je	.L214
+	je	.L233
 	movq	(%rbx), %rsi
 	movsd	64(%rax), %xmm2
 	movsd	56(%rax), %xmm1
@@ -1589,7 +1654,7 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	movq	64(%rbx), %rax
 	cmpq	56(%rbx), %rbp
-	jnb	.L247
+	jnb	.L276
 	movq	(%rax,%r12), %rax
 	movq	(%rbx), %rsi
 	movsd	%xmm0, 40(%rax)
@@ -1601,26 +1666,26 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	movq	56(%rbx), %rdx
 	movq	64(%rbx), %rcx
 	cmpq	%rdx, %rbp
-	jnb	.L247
+	jnb	.L276
 	movq	(%rcx,%r12), %rax
 	movsd	%xmm0, 48(%rax)
-.L214:
+.L233:
 	addq	$1, %rbp
 	cmpq	%rdx, %rbp
-	jb	.L217
-.L206:
+	jb	.L236
+.L225:
 	movq	88(%rbx), %rdx
 	cmpq	$1, %rdx
-	jbe	.L213
+	jbe	.L232
 	movq	96(%rbx), %rcx
 	movl	$1, %ebp
 	.p2align 4,,10
 	.p2align 3
-.L223:
+.L242:
 	movq	(%rcx,%rbp,8), %rax
 	leaq	0(,%rbp,8), %r12
 	testq	%rax, %rax
-	je	.L220
+	je	.L239
 	movq	(%rbx), %rsi
 	movsd	64(%rax), %xmm2
 	movsd	56(%rax), %xmm1
@@ -1629,7 +1694,7 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	movq	96(%rbx), %rax
 	cmpq	88(%rbx), %rbp
-	jnb	.L247
+	jnb	.L276
 	movq	(%rax,%r12), %rax
 	movq	(%rbx), %rsi
 	movsd	%xmm0, 40(%rax)
@@ -1641,26 +1706,26 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	movq	88(%rbx), %rdx
 	movq	96(%rbx), %rcx
 	cmpq	%rdx, %rbp
-	jnb	.L247
+	jnb	.L276
 	movq	(%rcx,%r12), %rax
 	movsd	%xmm0, 48(%rax)
-.L220:
+.L239:
 	addq	$1, %rbp
 	cmpq	%rdx, %rbp
-	jb	.L223
-.L213:
+	jb	.L242
+.L232:
 	movq	120(%rbx), %rdx
 	cmpq	$1, %rdx
-	jbe	.L244
+	jbe	.L238
 	movq	128(%rbx), %rcx
 	movl	$1, %ebp
 	.p2align 4,,10
 	.p2align 3
-.L227:
+.L248:
 	movq	(%rcx,%rbp,8), %rax
 	leaq	0(,%rbp,8), %r12
 	testq	%rax, %rax
-	je	.L224
+	je	.L245
 	movq	(%rbx), %rsi
 	movsd	80(%rax), %xmm2
 	movsd	72(%rax), %xmm1
@@ -1669,7 +1734,7 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	movq	128(%rbx), %rax
 	cmpq	120(%rbx), %rbp
-	jnb	.L247
+	jnb	.L276
 	movq	(%rax,%r12), %rax
 	movq	(%rbx), %rsi
 	movsd	%xmm0, 40(%rax)
@@ -1681,14 +1746,54 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	movq	120(%rbx), %rdx
 	movq	128(%rbx), %rcx
 	cmpq	%rdx, %rbp
-	jnb	.L247
+	jnb	.L276
 	movq	(%rcx,%r12), %rax
 	movsd	%xmm0, 48(%rax)
-.L224:
+.L245:
 	addq	$1, %rbp
 	cmpq	%rdx, %rbp
-	jb	.L227
-.L244:
+	jb	.L248
+.L238:
+	movq	152(%rbx), %rdx
+	cmpq	$1, %rdx
+	jbe	.L273
+	movq	160(%rbx), %rcx
+	movl	$1, %ebp
+	.p2align 4,,10
+	.p2align 3
+.L252:
+	movq	(%rcx,%rbp,8), %rax
+	leaq	0(,%rbp,8), %r12
+	testq	%rax, %rax
+	je	.L249
+	movq	(%rbx), %rsi
+	movsd	72(%rax), %xmm2
+	movsd	64(%rax), %xmm1
+	movsd	208(%rbx), %xmm0
+	leaq	688(%rsi), %rdi
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	160(%rbx), %rax
+	cmpq	152(%rbx), %rbp
+	jnb	.L276
+	movq	(%rax,%r12), %rax
+	movq	(%rbx), %rcx
+	movsd	%xmm0, 32(%rax)
+	movsd	72(%rax), %xmm2
+	movsd	216(%rbx), %xmm0
+	leaq	688(%rcx), %rdi
+	movsd	64(%rax), %xmm1
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movq	152(%rbx), %rdx
+	movq	160(%rbx), %rcx
+	cmpq	%rdx, %rbp
+	jnb	.L276
+	movq	(%rcx,%r12), %rax
+	movsd	%xmm0, 40(%rax)
+.L249:
+	addq	$1, %rbp
+	cmpq	%rdx, %rbp
+	jb	.L252
+.L273:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -1698,7 +1803,7 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L247:
+.L276:
 	.cfi_restore_state
 	leaq	.LC7(%rip), %rdi
 	movq	%rbp, %rsi

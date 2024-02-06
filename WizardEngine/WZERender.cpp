@@ -263,6 +263,30 @@ namespace wze
                 }
             }
 
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length(); j++)
+            {
+                if (this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j] == NULL || !this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->Visible || this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveWidth == 0 || this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveHeight == 0)
+                {
+                    continue;
+                }
+
+                area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->X, this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->Y, this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveWidth, this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveHeight, this->Engine->Actors.Actors[i]->Layer);
+            
+                if (area.w != 0 && area.h != 0 && ((0 <= area.x + (area.w >> 1) || area.x - (area.w >> 1) <= this->RenderHeight || 0 <= area.y + (area.h >> 1) || area.y - (area.h >> 1) <= this->RenderHeight)))
+                {
+                    if (k == this->RenderQueue.Length())
+                    {
+                        this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
+                    }
+
+                    if ((this->RenderQueue[k++] = new token(NULL, OVERLAPBOX, 0, 255, area)) == NULL)
+                    {
+                        printf("wze::engine.render.SelectionStage(): Memory allocation failed\n");
+                        exit(1);
+                    }
+                }
+            }
+
             if (this->Engine->Actors.Actors[i]->HitboxVisible && this->Engine->Actors.Actors[i]->HitboxWidth != 0 && this->Engine->Actors.Actors[i]->HitboxHeight != 0)
             {
                 area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->X, this->Engine->Actors.Actors[i]->Y, this->Engine->Actors.Actors[i]->HitboxWidth, this->Engine->Actors.Actors[i]->HitboxHeight, this->Engine->Actors.Actors[i]->Layer);
@@ -274,7 +298,7 @@ namespace wze
                         this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                     }
 
-                    if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i], HITBOX, 0, 255, area)) == NULL)
+                    if ((this->RenderQueue[k++] = new token(NULL, HITBOX, 0, 255, area)) == NULL)
                     {
                         printf("wze::engine.render.SelectionStage(): Memory allocation failed\n");
                         exit(1);
@@ -524,6 +548,10 @@ namespace wze
                     this->RenderText(this->RenderQueue[i]);
                 break;
 
+                case OVERLAPBOX:
+                    this->RenderOverlapbox(this->RenderQueue[i]);
+                break;
+
                 case HITBOX:
                     this->RenderHitbox(this->RenderQueue[i]);
                 break;
@@ -548,6 +576,10 @@ namespace wze
 
                 case TEXT:
                     this->RenderText(this->RenderQueue[i]);
+                break;
+
+                case OVERLAPBOX:
+                    this->RenderOverlapbox(this->RenderQueue[i]);
                 break;
 
                 case HITBOX:
@@ -676,6 +708,24 @@ namespace wze
         if (SDL_RenderCopyEx(this->Engine->Window.Renderer, ((engine::actors::actor::texts::text*)Token->Data)->Texture, NULL, &Token->Area, -((engine::actors::actor::texts::text*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("wze::engine.render.RenderText(): SDL_RenderCopyEx failed\n");
+            exit(1);
+        }
+
+        delete Token;
+
+        return 0;
+    }
+
+    uint8 engine::render::RenderOverlapbox(token* Token)
+    {
+        if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, 255, 0, 0, 128) != 0)
+        {
+            printf("wze::engine.render.RenderOverlapbox(): SDL_SetRenderDrawColor failed\n");
+            exit(1);
+        }
+        if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token->Area) != 0)
+        {
+            printf("wze::engine.render.RenderOverlapbox(): SDL_RenderFillRect failed\n");
             exit(1);
         }
 

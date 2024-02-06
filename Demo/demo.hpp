@@ -12,6 +12,11 @@ typedef enum
     FLASHLIGHT
 } ACTORS;
 
+typedef enum
+{
+    PLAYERTEXT,
+} OVERLAPBOXES;
+
 class background
 {
     engine* Engine;
@@ -45,6 +50,7 @@ class player
         array<uint64> MainFlipbookTextures;
         uint64 NameText;
         uint64 NameTextFont;
+        uint64 TextOverlapBox;
 };
 
 class crate

@@ -21,6 +21,7 @@ player::player(engine* Engine, key Forward, key Backward, key Left, key Right) :
     this->Actor = this->Engine->Actors.New(PLAYER, 0, 0, 46, 70, 1);
     this->MainFlipbook = this->Engine->Actors[this->Actor].Flipbooks.New(100, &this->MainFlipbookTextures);
     this->NameText = this->Engine->Actors[this->Actor].Texts.New("Player", this->NameTextFont);
+    this->TextOverlapBox = this->Engine->Actors[this->Actor].Overlapboxes.New(PLAYERTEXT);
 
     this->Engine->Actors[this->Actor].Force = 150;
     this->Engine->Actors[this->Actor].Resistance = 100;
@@ -34,6 +35,11 @@ player::player(engine* Engine, key Forward, key Backward, key Left, key Right) :
 
     this->Engine->Actors[this->Actor].Texts[this->NameText].SetHeight(20);
     this->Engine->Actors[this->Actor].Texts[this->NameText].SetY(this->Engine->Actors[this->Actor].GetY() + 56);
+
+    this->Engine->Actors[this->Actor].Overlapboxes[this->TextOverlapBox].SetWidth(this->Engine->Actors[this->Actor].Texts[this->NameText].GetWidth());
+    this->Engine->Actors[this->Actor].Overlapboxes[this->TextOverlapBox].SetHeight(this->Engine->Actors[this->Actor].Texts[this->NameText].GetHeight());
+    this->Engine->Actors[this->Actor].Overlapboxes[this->TextOverlapBox].SetY(this->Engine->Actors[this->Actor].Texts[this->NameText].GetY());
+    this->Engine->Actors[this->Actor].Overlapboxes[this->TextOverlapBox].Visible = true;
 }
 
 player::~player()

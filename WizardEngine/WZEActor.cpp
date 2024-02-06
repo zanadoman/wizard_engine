@@ -2,7 +2,7 @@
 
 namespace wze
 {
-    engine::actors::actor::actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), OverlapBoxes(Engine, this)
+    engine::actors::actor::actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
     {
         this->Visible = true;
         this->Force = 0;
@@ -216,6 +216,25 @@ namespace wze
             }
         }
 
+        for (uint64 i = 1; i < this->Overlapboxes.Overlapboxes.Length(); i++)
+        {
+            if (this->Overlapboxes.Overlapboxes[i] == NULL)
+            {
+                continue;
+            }
+
+            if (this->Overlapboxes.Overlapboxes[i]->AngleLocked)
+            {
+                this->Overlapboxes.Overlapboxes[i]->Angle += change;
+                this->Overlapboxes.Overlapboxes[i]->UpdateOverlapboxScale();
+            }
+
+            if (this->Overlapboxes.Overlapboxes[i]->OffsetAngleLocked)
+            {
+                this->Overlapboxes.Overlapboxes[i]->OffsetAngle += change;
+            }
+        }
+
         this->UpdateHitboxScale();
         this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer, this);
 
@@ -394,6 +413,17 @@ namespace wze
 
             this->Texts.Texts[i]->X = this->Engine->Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
             this->Texts.Texts[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+        }
+
+        for (uint64 i = 1; i < this->Overlapboxes.Overlapboxes.Length(); i++)
+        {
+            if (this->Overlapboxes.Overlapboxes[i] == NULL)
+            {
+                continue;
+            }
+
+            this->Overlapboxes.Overlapboxes[i]->X = this->Engine->Vector.TerminalX(this->X, this->Overlapboxes.Overlapboxes[i]->OffsetLength, this->Overlapboxes.Overlapboxes[i]->OffsetAngle);
+            this->Overlapboxes.Overlapboxes[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Overlapboxes.Overlapboxes[i]->OffsetLength, this->Overlapboxes.Overlapboxes[i]->OffsetAngle);
         }
 
         return 0;
