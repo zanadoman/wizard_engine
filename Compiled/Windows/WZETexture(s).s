@@ -334,8 +334,8 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	movl	$384, %r8d
 	pxor	%xmm0, %xmm0
 	movw	%r8w, 36(%rax)
-	movl	200(%rdx), %ecx
-	movupd	168(%rdx), %xmm4
+	movl	232(%rdx), %ecx
+	movupd	200(%rdx), %xmm4
 	movq	%rdi, 72(%rax)
 	movq	24(%rsi), %rdx
 	movups	%xmm3, (%rax)
@@ -364,8 +364,8 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	movdqu	(%rsi), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rdi, 72(%rax)
-	movl	200(%rdx), %ecx
-	movupd	168(%rdx), %xmm2
+	movl	232(%rdx), %ecx
+	movupd	200(%rdx), %xmm2
 	movq	%rax, 40(%rsp)
 	movups	%xmm1, (%rax)
 	movl	%ecx, 16(%rax)
@@ -920,8 +920,8 @@ _ZN3wze6engine6actors5actor8texturesixEy:
 _ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_y:
 .LFB8446:
 	.seh_endprologue
-	movupd	168(%r8), %xmm0
-	movl	200(%r8), %eax
+	movupd	200(%r8), %xmm0
+	movl	232(%r8), %eax
 	movl	%eax, 16(%rcx)
 	movl	$4294967295, %eax
 	movq	%rax, 20(%rcx)
@@ -973,16 +973,48 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	ucomisd	%xmm1, %xmm1
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
-	jp	.L185
+	jp	.L181
 	movq	8(%rcx), %rax
-	movsd	168(%rax), %xmm1
+	movsd	48(%rcx), %xmm0
+	movsd	200(%rax), %xmm1
+	movsd	208(%rax), %xmm2
 	ucomisd	%xmm6, %xmm1
-	jp	.L178
-	jne	.L178
+	jp	.L167
+	jne	.L167
+	ucomisd	%xmm0, %xmm2
+	jp	.L167
+	jne	.L167
 	movq	$0x000000000, 56(%rcx)
-.L171:
-	pxor	%xmm0, %xmm0
 .L175:
+	pxor	%xmm0, %xmm0
+	jmp	.L174
+	.p2align 4,,10
+	.p2align 3
+.L167:
+	movq	(%rbx), %rax
+	movapd	%xmm6, %xmm3
+	movsd	%xmm0, 32(%rsp)
+	leaq	688(%rax), %rcx
+	call	_ZN3wze6engine6vector6LengthEdddd
+	movq	8(%rbx), %rax
+	movapd	%xmm0, %xmm3
+	movsd	48(%rbx), %xmm0
+	movsd	200(%rax), %xmm1
+	movsd	208(%rax), %xmm2
+	movsd	%xmm3, 56(%rbx)
+	ucomisd	%xmm1, %xmm6
+	jp	.L171
+	jne	.L171
+	ucomisd	%xmm0, %xmm2
+	jp	.L171
+	je	.L175
+.L171:
+	movq	(%rbx), %rax
+	movapd	%xmm6, %xmm3
+	movsd	%xmm0, 32(%rsp)
+	leaq	688(%rax), %rcx
+	call	_ZN3wze6engine6vector5AngleEdddd
+.L174:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm6, %xmm0
 	movsd	%xmm6, 40(%rbx)
@@ -990,45 +1022,7 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	addq	$64, %rsp
 	popq	%rbx
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L178:
-	movsd	176(%rax), %xmm2
-	movsd	48(%rbx), %xmm0
-	ucomisd	%xmm0, %xmm2
-	jp	.L179
-	jne	.L179
-	movq	$0x000000000, 56(%rbx)
-.L176:
-	movsd	176(%rax), %xmm2
-	ucomisd	%xmm0, %xmm2
-	jp	.L173
-	je	.L171
-.L173:
-	movq	(%rbx), %rax
-	movapd	%xmm6, %xmm3
-	movsd	%xmm0, 32(%rsp)
-	leaq	688(%rax), %rcx
-	call	_ZN3wze6engine6vector5AngleEdddd
-	jmp	.L175
-	.p2align 4,,10
-	.p2align 3
-.L179:
-	movq	(%rbx), %rax
-	movapd	%xmm6, %xmm3
-	movsd	%xmm0, 32(%rsp)
-	leaq	688(%rax), %rcx
-	call	_ZN3wze6engine6vector6LengthEdddd
-	movq	8(%rbx), %rax
-	movsd	168(%rax), %xmm1
-	movsd	%xmm0, 56(%rbx)
-	ucomisd	%xmm1, %xmm6
-	jp	.L184
-	je	.L171
-.L184:
-	movsd	48(%rbx), %xmm0
-	jmp	.L176
-.L185:
+.L181:
 	leaq	.LC15(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
@@ -1069,17 +1063,45 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	ucomisd	%xmm1, %xmm1
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
-	jp	.L205
+	jp	.L200
 	movq	8(%rcx), %rax
 	movsd	40(%rcx), %xmm3
-	movsd	168(%rax), %xmm1
+	movsd	200(%rax), %xmm1
+	movsd	208(%rax), %xmm2
 	ucomisd	%xmm3, %xmm1
-	jp	.L201
-	jne	.L201
+	jp	.L186
+	jne	.L186
+	ucomisd	%xmm2, %xmm6
+	jp	.L186
+	jne	.L186
 	movq	$0x000000000, 56(%rcx)
 .L194:
 	pxor	%xmm0, %xmm0
-.L198:
+	jmp	.L193
+	.p2align 4,,10
+	.p2align 3
+.L186:
+	movq	(%rbx), %rax
+	movsd	%xmm6, 32(%rsp)
+	leaq	688(%rax), %rcx
+	call	_ZN3wze6engine6vector6LengthEdddd
+	movq	8(%rbx), %rax
+	movsd	40(%rbx), %xmm3
+	movsd	200(%rax), %xmm1
+	movsd	208(%rax), %xmm2
+	movsd	%xmm0, 56(%rbx)
+	ucomisd	%xmm3, %xmm1
+	jp	.L190
+	jne	.L190
+	ucomisd	%xmm2, %xmm6
+	jp	.L190
+	je	.L194
+.L190:
+	movq	(%rbx), %rax
+	movsd	%xmm6, 32(%rsp)
+	leaq	688(%rax), %rcx
+	call	_ZN3wze6engine6vector5AngleEdddd
+.L193:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm6, %xmm0
 	movsd	%xmm6, 48(%rbx)
@@ -1087,41 +1109,7 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	addq	$64, %rsp
 	popq	%rbx
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L201:
-	movsd	176(%rax), %xmm2
-	ucomisd	%xmm6, %xmm2
-	jp	.L202
-	jne	.L202
-	movq	$0x000000000, 56(%rbx)
-.L199:
-	movsd	176(%rax), %xmm2
-	ucomisd	%xmm6, %xmm2
-	jp	.L196
-	je	.L194
-.L196:
-	movq	(%rbx), %rax
-	movsd	%xmm6, 32(%rsp)
-	leaq	688(%rax), %rcx
-	call	_ZN3wze6engine6vector5AngleEdddd
-	jmp	.L198
-	.p2align 4,,10
-	.p2align 3
-.L202:
-	movq	(%rbx), %rax
-	movsd	%xmm6, 32(%rsp)
-	leaq	688(%rax), %rcx
-	call	_ZN3wze6engine6vector6LengthEdddd
-	movq	8(%rbx), %rax
-	movsd	40(%rbx), %xmm3
-	movsd	168(%rax), %xmm1
-	movsd	%xmm0, 56(%rbx)
-	ucomisd	%xmm3, %xmm1
-	jp	.L199
-	jne	.L199
-	jmp	.L194
-.L205:
+.L200:
 	leaq	.LC16(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
@@ -1157,18 +1145,18 @@ _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
 	.seh_endprologue
 	movq	%rdx, %rax
 	testq	%rdx, %rdx
-	je	.L208
+	je	.L203
 	movq	(%rcx), %rdx
 	cmpq	704(%rdx), %rax
-	jnb	.L209
+	jnb	.L204
 	movq	712(%rdx), %rdx
 	cmpq	$0, (%rdx,%rax,8)
-	je	.L209
-.L208:
+	je	.L204
+.L203:
 	movq	%rax, 72(%rcx)
 	addq	$40, %rsp
 	ret
-.L209:
+.L204:
 	leaq	.LC17(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
@@ -1185,5 +1173,5 @@ _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
 	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6vector5AngleEdddd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector6LengthEdddd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6vector5AngleEdddd;	.scl	2;	.type	32;	.endef

@@ -575,19 +575,19 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	pxor	%xmm10, %xmm10
 	pxor	%xmm9, %xmm9
 	pxor	%xmm8, %xmm8
-	movsd	168(%r8), %xmm6
+	movsd	200(%r8), %xmm6
 	movq	%rcx, %r10
-	movzwl	238(%rdx), %ecx
+	movzwl	270(%rdx), %ecx
 	movq	%rdx, %rax
-	movsd	184(%rax), %xmm7
+	movsd	216(%rax), %xmm7
 	movl	%ecx, %edx
 	cvtsi2sdl	%ecx, %xmm10
-	movzwl	234(%r8), %ecx
+	movzwl	266(%r8), %ecx
 	shrw	%dx
 	movzwl	%dx, %edx
 	cvtsi2sdl	%ecx, %xmm8
 	cvtsi2sdl	%edx, %xmm0
-	movzwl	240(%rax), %edx
+	movzwl	272(%rax), %edx
 	movl	%edx, %r9d
 	shrw	%r9w
 	subsd	%xmm0, %xmm7
@@ -597,21 +597,21 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	movl	%ecx, %edx
 	cvtsi2sdl	%r9d, %xmm11
 	shrw	%dx
-	addsd	192(%rax), %xmm11
+	addsd	224(%rax), %xmm11
 	movzwl	%dx, %edx
 	addsd	%xmm7, %xmm10
 	movapd	%xmm11, %xmm13
 	subsd	%xmm0, %xmm13
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%edx, %xmm0
-	movzwl	236(%r8), %edx
+	movzwl	268(%r8), %edx
 	movl	%edx, %r9d
 	shrw	%r9w
 	subsd	%xmm0, %xmm6
 	movzwl	%r9w, %r9d
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%r9d, %xmm9
-	addsd	176(%r8), %xmm9
+	addsd	208(%r8), %xmm9
 	cvtsi2sdl	%edx, %xmm0
 	comisd	%xmm10, %xmm6
 	addsd	%xmm6, %xmm8
@@ -687,18 +687,18 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	.p2align 4,,10
 	.p2align 3
 .L164:
-	movzwl	234(%rax), %ecx
+	movzwl	266(%rax), %ecx
 	pxor	%xmm0, %xmm0
 	pxor	%xmm2, %xmm2
 	pxor	%xmm3, %xmm3
-	movsd	168(%rax), %xmm1
+	movsd	200(%rax), %xmm1
 	movl	%ecx, %edx
 	cvtsi2sdl	%ecx, %xmm3
 	movq	%r10, %rcx
 	shrw	%dx
 	movzwl	%dx, %edx
 	cvtsi2sdl	%edx, %xmm0
-	movzwl	236(%rax), %edx
+	movzwl	268(%rax), %edx
 	movl	%edx, %r8d
 	shrw	%r8w
 	subsd	%xmm0, %xmm1
@@ -707,7 +707,7 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	cvtsi2sdl	%edx, %xmm0
 	xorl	%edx, %edx
 	cvtsi2sdl	%r8d, %xmm2
-	addsd	176(%rax), %xmm2
+	addsd	208(%rax), %xmm2
 	movsd	%xmm12, 64(%rsp)
 	addsd	%xmm1, %xmm3
 	movsd	%xmm8, 56(%rsp)
@@ -1125,23 +1125,23 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	xorl	%r9d, %r9d
 	testl	%eax, %eax
 	je	.L380
-	movzwl	234(%rbx), %ecx
+	movzwl	266(%rbx), %ecx
 	pxor	%xmm0, %xmm0
 	pxor	%xmm2, %xmm2
-	movsd	168(%rbx), %xmm1
+	movsd	200(%rbx), %xmm1
 	pxor	%xmm5, %xmm5
 	pxor	%xmm4, %xmm4
 	pxor	%xmm3, %xmm3
-	movsd	176(%rbx), %xmm9
+	movsd	208(%rbx), %xmm9
 	movl	%ecx, %edx
 	movapd	%xmm1, %xmm10
-	movsd	168(%r11), %xmm7
+	movsd	200(%r11), %xmm7
 	shrw	%dx
 	cvtsi2sdl	%ecx, %xmm5
-	movzwl	234(%r11), %ecx
+	movzwl	266(%r11), %ecx
 	movzwl	%dx, %edx
 	cvtsi2sdl	%edx, %xmm0
-	movzwl	236(%rbx), %edx
+	movzwl	268(%rbx), %edx
 	cvtsi2sdl	%ecx, %xmm4
 	movl	%edx, %r8d
 	shrw	%r8w
@@ -1159,16 +1159,16 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	subsd	%xmm0, %xmm11
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%edx, %xmm0
-	movzwl	236(%r11), %edx
+	movzwl	268(%r11), %edx
 	movl	%edx, %r8d
 	cvtsi2sdl	%edx, %xmm3
-	movq	144(%r11), %rdx
+	movq	176(%r11), %rdx
 	shrw	%r8w
 	subsd	%xmm0, %xmm7
 	movzwl	%r8w, %r8d
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%r8d, %xmm0
-	addsd	176(%r11), %xmm0
+	addsd	208(%r11), %xmm0
 	addsd	%xmm7, %xmm4
 	movapd	%xmm0, %xmm12
 	subsd	%xmm3, %xmm12
@@ -1338,8 +1338,8 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	addsd	%xmm2, %xmm5
 	addsd	%xmm9, %xmm0
 	subsd	%xmm5, %xmm1
-	movsd	%xmm0, 176(%rbx)
-	movsd	%xmm1, 168(%rbx)
+	movsd	%xmm0, 208(%rbx)
+	movsd	%xmm1, 200(%rbx)
 	jmp	.L393
 	.p2align 4,,10
 	.p2align 3
@@ -1356,13 +1356,13 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	addsd	%xmm3, %xmm6
 	addsd	%xmm9, %xmm2
 	subsd	%xmm6, %xmm1
-	movsd	%xmm2, 176(%rbx)
-	movsd	176(%r11), %xmm2
+	movsd	%xmm2, 208(%rbx)
+	movsd	208(%r11), %xmm2
 	subsd	%xmm0, %xmm2
-	movsd	%xmm2, 176(%r11)
-	movsd	%xmm1, 168(%rbx)
-	addsd	168(%r11), %xmm8
-	movsd	%xmm8, 168(%r11)
+	movsd	%xmm2, 208(%r11)
+	movsd	%xmm1, 200(%rbx)
+	addsd	200(%r11), %xmm8
+	movsd	%xmm8, 200(%r11)
 	.p2align 4,,10
 	.p2align 3
 .L393:
@@ -1372,7 +1372,7 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	subsd	%xmm7, %xmm5
 	addsd	.LC3(%rip), %xmm5
 	subsd	%xmm5, %xmm1
-	movsd	%xmm1, 168(%rbx)
+	movsd	%xmm1, 200(%rbx)
 	jmp	.L393
 .L386:
 	subsd	%xmm10, %xmm4
@@ -1383,27 +1383,27 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	addsd	%xmm0, %xmm3
 	subsd	%xmm2, %xmm9
 	addsd	%xmm1, %xmm3
-	movsd	%xmm9, 176(%rbx)
-	movsd	%xmm3, 168(%rbx)
+	movsd	%xmm9, 208(%rbx)
+	movsd	%xmm3, 200(%rbx)
 	jmp	.L393
 .L390:
 	subsd	%xmm12, %xmm2
 	addsd	.LC3(%rip), %xmm2
 	subsd	%xmm2, %xmm9
-	movsd	%xmm9, 176(%rbx)
+	movsd	%xmm9, 208(%rbx)
 	jmp	.L393
 .L389:
 	subsd	%xmm11, %xmm0
 	addsd	.LC3(%rip), %xmm0
 	addsd	%xmm9, %xmm0
-	movsd	%xmm0, 176(%rbx)
+	movsd	%xmm0, 208(%rbx)
 	jmp	.L393
 .L388:
 	subsd	%xmm10, %xmm4
 	movsd	.LC3(%rip), %xmm3
 	addsd	%xmm4, %xmm3
 	addsd	%xmm1, %xmm3
-	movsd	%xmm3, 168(%rbx)
+	movsd	%xmm3, 200(%rbx)
 	jmp	.L393
 .L384:
 	subsd	%xmm12, %xmm2
@@ -1413,8 +1413,8 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	addsd	%xmm0, %xmm5
 	subsd	%xmm2, %xmm9
 	subsd	%xmm5, %xmm1
-	movsd	%xmm9, 176(%rbx)
-	movsd	%xmm1, 168(%rbx)
+	movsd	%xmm9, 208(%rbx)
+	movsd	%xmm1, 200(%rbx)
 	jmp	.L393
 .L399:
 	subsd	%xmm12, %xmm2
@@ -1427,15 +1427,15 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	addsd	%xmm3, %xmm0
 	addsd	%xmm3, %xmm6
 	subsd	%xmm0, %xmm9
-	movsd	%xmm9, 176(%rbx)
-	addsd	176(%r11), %xmm2
-	movsd	%xmm2, 176(%r11)
+	movsd	%xmm9, 208(%rbx)
+	addsd	208(%r11), %xmm2
+	movsd	%xmm2, 208(%r11)
 .L413:
 	subsd	%xmm6, %xmm1
 	mulsd	%xmm8, %xmm5
-	movsd	%xmm1, 168(%rbx)
-	addsd	168(%r11), %xmm5
-	movsd	%xmm5, 168(%r11)
+	movsd	%xmm1, 200(%rbx)
+	addsd	200(%r11), %xmm5
+	movsd	%xmm5, 200(%r11)
 	jmp	.L393
 .L401:
 	subsd	%xmm12, %xmm2
@@ -1445,10 +1445,10 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	mulsd	%xmm8, %xmm2
 	addsd	%xmm5, %xmm0
 	subsd	%xmm0, %xmm9
-	movsd	%xmm9, 176(%rbx)
-	addsd	176(%r11), %xmm2
+	movsd	%xmm9, 208(%rbx)
+	addsd	208(%r11), %xmm2
 .L412:
-	movsd	%xmm2, 176(%r11)
+	movsd	%xmm2, 208(%r11)
 	subsd	%xmm10, %xmm4
 	mulsd	%xmm4, %xmm6
 	movapd	%xmm4, %xmm3
@@ -1456,10 +1456,10 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 .L414:
 	mulsd	%xmm8, %xmm3
 	addsd	%xmm1, %xmm6
-	movsd	%xmm6, 168(%rbx)
-	movsd	168(%r11), %xmm0
+	movsd	%xmm6, 200(%rbx)
+	movsd	200(%r11), %xmm0
 	subsd	%xmm3, %xmm0
-	movsd	%xmm0, 168(%r11)
+	movsd	%xmm0, 200(%r11)
 	jmp	.L393
 .L402:
 	subsd	%xmm7, %xmm5
@@ -1478,10 +1478,10 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	addsd	.LC3(%rip), %xmm6
 	mulsd	%xmm8, %xmm0
 	addsd	%xmm9, %xmm6
-	movsd	%xmm6, 176(%rbx)
-	movsd	176(%r11), %xmm1
+	movsd	%xmm6, 208(%rbx)
+	movsd	208(%r11), %xmm1
 	subsd	%xmm0, %xmm1
-	movsd	%xmm1, 176(%r11)
+	movsd	%xmm1, 208(%r11)
 	jmp	.L393
 .L405:
 	subsd	%xmm12, %xmm2
@@ -1489,9 +1489,9 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	addsd	.LC3(%rip), %xmm6
 	mulsd	%xmm8, %xmm2
 	subsd	%xmm6, %xmm9
-	movsd	%xmm9, 176(%rbx)
-	addsd	176(%r11), %xmm2
-	movsd	%xmm2, 176(%r11)
+	movsd	%xmm9, 208(%rbx)
+	addsd	208(%r11), %xmm2
+	movsd	%xmm2, 208(%r11)
 	jmp	.L393
 	.p2align 4,,10
 	.p2align 3
@@ -1503,8 +1503,8 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	mulsd	%xmm8, %xmm0
 	addsd	%xmm5, %xmm2
 	addsd	%xmm9, %xmm2
-	movsd	%xmm2, 176(%rbx)
-	movsd	176(%r11), %xmm2
+	movsd	%xmm2, 208(%rbx)
+	movsd	208(%r11), %xmm2
 	subsd	%xmm0, %xmm2
 	jmp	.L412
 	.p2align 4,,10
@@ -1518,8 +1518,8 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	addsd	%xmm2, %xmm3
 	addsd	%xmm9, %xmm0
 	addsd	%xmm1, %xmm3
-	movsd	%xmm0, 176(%rbx)
-	movsd	%xmm3, 168(%rbx)
+	movsd	%xmm0, 208(%rbx)
+	movsd	%xmm3, 200(%rbx)
 	jmp	.L393
 	.seh_endproc
 	.section .rdata,"dr"
@@ -1608,7 +1608,7 @@ _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES
 	jnb	.L459
 	addq	$1, %r12
 	movq	%rax, (%rcx,%rsi,8)
-	addq	144(%rax), %r15
+	addq	176(%rax), %r15
 	movq	%rdx, %rsi
 	cmpq	%r11, %r12
 	jb	.L426
@@ -1632,7 +1632,7 @@ _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES
 	movq	(%r12,%r13,8), %r15
 	movq	%rbx, %rdx
 	movq	%rdi, %rcx
-	movq	144(%r15), %r8
+	movq	176(%r15), %r8
 	movq	%r15, %r9
 	addq	%r14, %r8
 	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
@@ -1824,10 +1824,10 @@ _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES
 .LHOTB7:
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine9collision21ResolveCollisionLayerEy
-	.def	_ZN3wze6engine9collision21ResolveCollisionLayerEy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine9collision21ResolveCollisionLayerEy
-_ZN3wze6engine9collision21ResolveCollisionLayerEy:
+	.globl	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE
+	.def	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE
+_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE:
 .LFB8440:
 	pushq	%r15
 	.seh_pushreg	%r15
@@ -1851,6 +1851,7 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	movzwl	8(%rcx), %edi
 	movq	%rcx, 192(%rsp)
 	movq	%rdx, %rbx
+	movq	%r8, 208(%rsp)
 	movq	%rdi, 96(%rsp)
 	testq	%rdi, %rdi
 	jne	.L464
@@ -1860,23 +1861,23 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	movq	192(%rsp), %rax
 	movq	24(%rax), %r12
 	cmpq	16(%rax), %rbx
-	jnb	.L515
+	jnb	.L518
 	salq	$4, %rbx
 	addq	%rbx, %r12
 	movq	(%r12), %rbp
 	testq	%rbp, %rbp
 	je	.L467
 	leaq	96(%rsp), %rax
-	movq	8(%r12), %r11
 	xorl	%ebx, %ebx
 	movq	%rax, 88(%rsp)
 	.p2align 4,,10
 	.p2align 3
 .L487:
-	leaq	0(,%rbx,8), %r13
+	movq	8(%r12), %r11
 	xorl	%esi, %esi
 	xorl	%r14d, %r14d
 	xorl	%edi, %edi
+	leaq	0(,%rbx,8), %r13
 	.p2align 4,,10
 	.p2align 3
 .L474:
@@ -1885,33 +1886,33 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	movq	(%r11,%rsi,8), %r8
 	leaq	0(,%rsi,8), %r15
 	cmpq	%rbp, %rbx
-	jnb	.L515
+	jnb	.L518
 	movq	(%r11,%r13), %rdx
 	movq	192(%rsp), %rcx
 	call	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 	testl	%eax, %eax
 	je	.L468
 	cmpq	%rdi, 96(%rsp)
-	je	.L519
+	je	.L522
 .L471:
 	cmpq	%rbp, %rsi
-	jnb	.L520
+	jnb	.L523
 	movq	(%r11,%r15), %rax
 	movq	104(%rsp), %rcx
 	leaq	1(%rdi), %rdx
 	cmpq	96(%rsp), %rdi
-	jnb	.L521
+	jnb	.L524
 	movq	%rax, (%rcx,%rdi,8)
-	addq	144(%rax), %r14
+	addq	176(%rax), %r14
 	movq	%rdx, %rdi
 .L468:
 	addq	$1, %rsi
 	cmpq	%rbp, %rsi
 	jb	.L474
 	cmpq	%rbp, %rbx
-	jnb	.L515
+	jnb	.L518
 	movq	(%r11,%r13), %r15
-	cmpq	136(%r15), %r14
+	cmpq	168(%r15), %r14
 	jnb	.L476
 	testq	%rdi, %rdi
 	je	.L481
@@ -1926,26 +1927,26 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 .L484:
 	addq	$1, %rsi
 	cmpq	%rsi, %rdi
-	je	.L522
+	je	.L481
 .L486:
 	cmpq	%rsi, 80(%rsp)
-	je	.L523
+	je	.L525
 	movq	72(%rsp), %rax
 	movq	8(%r12), %rdx
 	movq	(%rax,%rsi,8), %r9
-	movq	144(%r9), %rax
+	movq	176(%r9), %rax
 	cmpq	%rbp, %rbx
-	jnb	.L515
+	jnb	.L518
 	movq	(%rdx,%r13), %r15
 	movq	192(%rsp), %rcx
 	movq	%r9, 64(%rsp)
-	movq	136(%r15), %r11
+	movq	168(%r15), %r11
 	movq	%r15, %rdx
 	subq	%r14, %r11
 	leaq	(%rax,%r11), %r8
-	movq	%r11, 56(%rsp)
+	movq	%r11, 48(%rsp)
 	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
-	movq	56(%rsp), %r11
+	movq	48(%rsp), %r11
 	movq	64(%rsp), %r9
 	testb	%al, %al
 	je	.L484
@@ -1961,7 +1962,7 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	movq	(%rax,%rsi,8), %r9
 	movq	8(%r12), %rax
 	cmpq	%rbp, %rbx
-	jnb	.L515
+	jnb	.L518
 	movq	(%rax,%r13), %rdx
 	movq	192(%rsp), %rcx
 	xorl	%r8d, %r8d
@@ -1969,40 +1970,51 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
 	cmpq	%rsi, %rdi
 	jne	.L486
-.L522:
-	movq	8(%r12), %r11
 .L481:
 	addq	$1, %rbx
 	cmpq	%rbp, %rbx
 	jb	.L487
-.L526:
+.L527:
 	movq	104(%rsp), %rsi
+.L467:
+	movq	208(%rsp), %rax
+	movq	208(%rsp), %rdi
+	movupd	200(%rax), %xmm3
+	movq	%rdi, %rcx
+	movups	%xmm3, 216(%rax)
+	movl	266(%rax), %eax
+	movaps	%xmm3, 48(%rsp)
+	movl	%eax, 270(%rdi)
+	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
+	movq	(%r12), %rdx
 	xorl	%ebx, %ebx
-	jmp	.L492
+	testq	%rdx, %rdx
+	je	.L493
 	.p2align 4,,10
 	.p2align 3
-.L524:
-	movq	8(%r12), %r11
-.L492:
-	movq	(%r11,%rbx,8), %rcx
-	movupd	168(%rcx), %xmm0
-	ucomisd	184(%rcx), %xmm0
-	jp	.L488
-	jne	.L488
+.L488:
+	movq	8(%r12), %rax
+	movq	(%rax,%rbx,8), %rcx
+	cmpq	208(%rsp), %rcx
+	je	.L489
+	movupd	200(%rcx), %xmm0
+	ucomisd	216(%rcx), %xmm0
+	jp	.L490
+	jne	.L490
 	movapd	%xmm0, %xmm2
 	unpckhpd	%xmm2, %xmm2
-	ucomisd	192(%rcx), %xmm2
-	jp	.L488
-	je	.L490
-.L488:
-	movups	%xmm0, 184(%rcx)
-	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	movq	(%r12), %rbp
+	ucomisd	224(%rcx), %xmm2
+	jp	.L490
+	je	.L489
 .L490:
+	movups	%xmm0, 216(%rcx)
+	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
+	movq	(%r12), %rdx
+.L489:
 	addq	$1, %rbx
-	cmpq	%rbp, %rbx
-	jb	.L524
-.L467:
+	cmpq	%rdx, %rbx
+	jb	.L488
+.L493:
 	movq	%rsi, %rcx
 	call	free
 	xorl	%eax, %eax
@@ -2018,7 +2030,7 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L519:
+.L522:
 	movq	192(%rsp), %rax
 	movq	88(%rsp), %rcx
 	movq	%rdi, %rdx
@@ -2033,32 +2045,31 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 .L476:
 	testq	%rdi, %rdi
 	je	.L481
-	xorl	%esi, %esi
-	movq	%rbx, 56(%rsp)
+	xorl	%r13d, %r13d
+	movq	%rbx, 48(%rsp)
 	movq	96(%rsp), %r14
-	movq	%rsi, %rbx
-	movq	104(%rsp), %r13
-	movq	192(%rsp), %rsi
+	movq	%r13, %rbx
+	movq	104(%rsp), %rsi
+	movq	192(%rsp), %r13
 	.p2align 4,,10
 	.p2align 3
 .L480:
 	cmpq	%rbx, %r14
-	je	.L525
-	movq	0(%r13,%rbx,8), %r9
+	je	.L526
+	movq	(%rsi,%rbx,8), %r9
 	xorl	%r8d, %r8d
 	movq	%r15, %rdx
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	addq	$1, %rbx
 	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
 	cmpq	%rbx, %rdi
 	jne	.L480
-	movq	56(%rsp), %rbx
-	movq	8(%r12), %r11
+	movq	48(%rsp), %rbx
 	addq	$1, %rbx
 	cmpq	%rbp, %rbx
 	jb	.L487
-	jmp	.L526
-.L515:
+	jmp	.L527
+.L518:
 	movq	%rbx, %rdx
 	leaq	.LC5(%rip), %rcx
 	call	_Z6printfPKcz
@@ -2082,31 +2093,31 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L525:
+.L526:
 	movq	%r14, %rdx
 	leaq	.LC5(%rip), %rcx
 .LEHB6:
 	call	_Z6printfPKcz
 	jmp	.L470
-.L523:
+.L525:
 	movq	80(%rsp), %rdx
 	leaq	.LC5(%rip), %rcx
 	call	_Z6printfPKcz
 	jmp	.L470
-.L521:
+.L524:
 	movq	%rdi, %rdx
 	leaq	.LC5(%rip), %rcx
 	call	_Z6printfPKcz
 	jmp	.L470
-.L520:
+.L523:
 	movq	%rsi, %rdx
 	leaq	.LC5(%rip), %rcx
 	call	_Z6printfPKcz
 .LEHE6:
 	jmp	.L470
-.L494:
+.L496:
 	movq	%rax, %rbx
-	jmp	.L493
+	jmp	.L494
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
 .LLSDA8440:
@@ -2117,7 +2128,7 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 .LLSDACSB8440:
 	.uleb128 .LEHB4-.LFB8440
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L494-.LFB8440
+	.uleb128 .L496-.LFB8440
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB8440
 	.uleb128 .LEHE5-.LEHB5
@@ -2125,14 +2136,14 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	.uleb128 0
 	.uleb128 .LEHB6-.LFB8440
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L494-.LFB8440
+	.uleb128 .L496-.LFB8440
 	.uleb128 0
 .LLSDACSE8440:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
-	.def	_ZN3wze6engine9collision21ResolveCollisionLayerEy.cold;	.scl	3;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine9collision21ResolveCollisionLayerEy.cold
+	.def	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE.cold;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE.cold
 	.seh_stackalloc	184
 	.seh_savereg	%rbx, 120
 	.seh_savereg	%rsi, 128
@@ -2143,8 +2154,8 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	.seh_savereg	%r14, 168
 	.seh_savereg	%r15, 176
 	.seh_endprologue
-_ZN3wze6engine9collision21ResolveCollisionLayerEy.cold:
-.L493:
+_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE.cold:
+.L494:
 	movq	104(%rsp), %rcx
 	call	free
 	movq	%rbx, %rcx

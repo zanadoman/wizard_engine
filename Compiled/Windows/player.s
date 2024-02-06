@@ -161,12 +161,12 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rdx
 	leaq	632(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
-	movq	$150, 136(%rax)
+	movq	$150, 168(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	632(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
-	movq	$100, 144(%rax)
+	movq	$100, 176(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	632(%rax), %rcx
@@ -185,18 +185,9 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rdx
 	leaq	632(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
-	movb	$1, 152(%rax)
+	movb	$1, 184(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
-	leaq	632(%rax), %rcx
-	call	_ZN3wze6engine6actorsixEy
-	movq	32(%rbx), %rdx
-	leaq	72(%rax), %rcx
-	call	_ZN3wze6engine6actors5actor9flipbooksixEy
-	movl	$100, %r8d
-	movq	8(%rbx), %rdx
-	movw	%r8w, 16(%rax)
-	movq	(%rbx), %rax
 	leaq	632(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	32(%rbx), %rdx
@@ -204,8 +195,17 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	call	_ZN3wze6engine6actors5actor9flipbooksixEy
 	movl	$100, %ecx
 	movq	8(%rbx), %rdx
-	movw	%cx, 18(%rax)
+	movw	%cx, 16(%rax)
 	movq	(%rbx), %rax
+	leaq	632(%rax), %rcx
+	call	_ZN3wze6engine6actorsixEy
+	movq	32(%rbx), %rdx
+	leaq	72(%rax), %rcx
+	call	_ZN3wze6engine6actors5actor9flipbooksixEy
+	movl	$100, %edx
+	movw	%dx, 18(%rax)
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rdx
 	leaq	632(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	32(%rbx), %rdx
@@ -229,8 +229,9 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	56(%rbx), %rdx
 	leaq	104(%rax), %rcx
 	call	_ZN3wze6engine6actors5actor5textsixEy
+	movq	%rax, %rcx
 	movl	$20, %edx
-	movw	%dx, 16(%rax)
+	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	632(%rax), %rcx
@@ -813,6 +814,7 @@ _ZN6player6UpdateEv:
 	.def	_ZN3wze6engine6actors5actor4GetYEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor5textsixEy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor5texts4text4SetYEd;	.scl	2;	.type	32;	.endef
 	.def	realloc;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef

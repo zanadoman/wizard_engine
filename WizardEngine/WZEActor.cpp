@@ -29,15 +29,6 @@ namespace wze
 
     engine::actors::actor::~actor()
     {
-        if (this->Engine->Actors.Actors[this->Engine->Camera.XActor] == this)
-        {
-            this->Engine->Camera.XActor = 0;
-        }
-        if (this->Engine->Actors.Actors[this->Engine->Camera.YActor] == this)
-        {
-            this->Engine->Camera.YActor = 0;
-        }
-
         for (uint64 i = 0; i < this->Engine->Collision.CollisionLayers[this->CollisionLayer].Length(); i++)
         {
             if (this->Engine->Collision.CollisionLayers[this->CollisionLayer][i] == this)
@@ -45,6 +36,15 @@ namespace wze
                 this->Engine->Collision.CollisionLayers[this->CollisionLayer].Remove(i, 1);
                 break;
             }
+        }
+
+        if (this->Engine->Actors.Actors[this->Engine->Camera.XActor] == this)
+        {
+            this->Engine->Camera.XActor = 0;
+        }
+        if (this->Engine->Actors.Actors[this->Engine->Camera.YActor] == this)
+        {
+            this->Engine->Camera.YActor = 0;
         }
     }
 

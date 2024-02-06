@@ -1,3 +1,4 @@
+#include "Includes/NeoTypes++.hpp"
 #include "WizardEngine.hpp"
 
 namespace wze
@@ -220,7 +221,7 @@ namespace wze
         {
             color.r = color.g = color.b = color.a = 255;
 
-            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->FontID], String, color)) == NULL)
+            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
             {
                 printf("wze::engine.actors[].texts[].text(): TTF_RenderText_Blended failed\nParams: String: %s\n", String);
                 exit(1);
@@ -337,6 +338,8 @@ namespace wze
             exit(1);
         }
 
+        this->String = {String};
+
         this->Width = 0;
 
         SDL_DestroyTexture(this->Texture);
@@ -346,7 +349,7 @@ namespace wze
         {
             color.r = color.g = color.b = color.a = 255;
 
-            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->FontID], String, color)) == NULL)
+            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
             {
                 printf("wze::engine.actors[].texts[].SetString(): TTF_RenderText_Blended failed\nParams: String: %s\n", String);
                 exit(1);
@@ -361,7 +364,7 @@ namespace wze
             SDL_FreeSurface(surface);
         }
 
-        return (this->String = {String})();
+        return this->String();
     }
 
     uint64 engine::actors::actor::texts::text::GetFont()
@@ -385,11 +388,11 @@ namespace wze
         SDL_DestroyTexture(this->Texture);
         this->Texture = NULL;
 
-        if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
+        if (this->Height != 0 && 1 < this->String.Length() && ID != 0)
         {
             color.r = color.g = color.b = color.a = 255;
 
-            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
+            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[ID], this->String(), color)) == NULL)
             {
                 printf("wze::engine.actors[].texts[].SetFont(): TTF_RenderText_Blended failed\nParams: ID: %lld\n", ID);
                 exit(1);
