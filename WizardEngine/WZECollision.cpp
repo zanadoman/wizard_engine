@@ -386,10 +386,9 @@ namespace wze
         {
             if ((*cache)[i]->X != (*cache)[i]->PrevX || (*cache)[i]->Y != (*cache)[i]->PrevY)
             {
-                (*cache)[i]->UpdateMembersPosition();
-
                 (*cache)[i]->PrevX = (*cache)[i]->X;
                 (*cache)[i]->PrevY = (*cache)[i]->Y;
+                (*cache)[i]->UpdateMembersPosition();
             }
         }
 
