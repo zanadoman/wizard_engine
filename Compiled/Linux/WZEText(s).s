@@ -1440,6 +1440,11 @@ _ZN3wze6engine6actors5actor5texts4text4GetXEv:
 	.cfi_endproc
 .LFE8163:
 	.size	_ZN3wze6engine6actors5actor5texts4text4GetXEv, .-_ZN3wze6engine6actors5actor5texts4text4GetXEv
+	.section	.rodata.str1.8
+	.align 8
+.LC21:
+	.string	"wze::engine.actors[].texts[].SetX(): X must not be NaN\nParams: X: %lf\n"
+	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor5texts4text4SetXEd
@@ -1450,36 +1455,76 @@ _ZN3wze6engine6actors5actor5texts4text4SetXEd:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	movq	%rdi, %rbx
 	movapd	%xmm0, %xmm2
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L226
 	movq	8(%rdi), %rax
-	movq	(%rdi), %rdx
-	movsd	48(%rbx), %xmm3
-	movsd	%xmm2, 8(%rsp)
-	movsd	176(%rax), %xmm1
+	movq	%rdi, %rbx
 	movsd	168(%rax), %xmm0
-	leaq	656(%rdx), %rdi
-	call	_ZN3wze6engine6vector6LengthEdddd@PLT
-	movq	8(%rbx), %rax
-	movq	(%rbx), %rcx
-	movsd	8(%rsp), %xmm2
-	movsd	%xmm0, 64(%rbx)
-	movsd	48(%rbx), %xmm3
-	movsd	168(%rax), %xmm0
-	movsd	176(%rax), %xmm1
-	leaq	656(%rcx), %rdi
-	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	movsd	8(%rsp), %xmm2
+	ucomisd	%xmm2, %xmm0
+	jp	.L218
+	jne	.L218
+	movq	$0x000000000, 64(%rdi)
+.L211:
+	pxor	%xmm0, %xmm0
+.L215:
 	movsd	%xmm0, 72(%rbx)
+	movapd	%xmm2, %xmm0
 	movsd	%xmm2, 40(%rbx)
 	addq	$16, %rsp
+	.cfi_remember_state
 	.cfi_def_cfa_offset 16
-	movapd	%xmm2, %xmm0
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
+	.p2align 4,,10
+	.p2align 3
+.L218:
+	.cfi_restore_state
+	movsd	176(%rax), %xmm1
+	movsd	48(%rbx), %xmm3
+	ucomisd	%xmm3, %xmm1
+	jp	.L219
+	jne	.L219
+	movq	$0x000000000, 64(%rbx)
+.L216:
+	movsd	176(%rax), %xmm1
+	ucomisd	%xmm3, %xmm1
+	jp	.L213
+	je	.L211
+.L213:
+	movq	(%rbx), %rax
+	movsd	%xmm2, 8(%rsp)
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine6vector5AngleEdddd@PLT
+	movsd	8(%rsp), %xmm2
+	jmp	.L215
+	.p2align 4,,10
+	.p2align 3
+.L219:
+	movq	(%rbx), %rax
+	movsd	%xmm2, 8(%rsp)
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine6vector6LengthEdddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm2
+	movapd	%xmm0, %xmm1
+	movsd	168(%rax), %xmm0
+	movsd	%xmm1, 64(%rbx)
+	ucomisd	%xmm0, %xmm2
+	jp	.L225
+	je	.L211
+.L225:
+	movsd	48(%rbx), %xmm3
+	jmp	.L216
+.L226:
+	leaq	.LC21(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
 .LFE8164:
 	.size	_ZN3wze6engine6actors5actor5texts4text4SetXEd, .-_ZN3wze6engine6actors5actor5texts4text4SetXEd
@@ -1495,6 +1540,11 @@ _ZN3wze6engine6actors5actor5texts4text4GetYEv:
 	.cfi_endproc
 .LFE8351:
 	.size	_ZN3wze6engine6actors5actor5texts4text4GetYEv, .-_ZN3wze6engine6actors5actor5texts4text4GetYEv
+	.section	.rodata.str1.8
+	.align 8
+.LC22:
+	.string	"wze::engine.actors[].texts[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
+	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor5texts4text4SetYEd
@@ -1505,36 +1555,75 @@ _ZN3wze6engine6actors5actor5texts4text4SetYEd:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	movq	%rdi, %rbx
 	movapd	%xmm0, %xmm3
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L247
 	movq	8(%rdi), %rax
-	movq	(%rdi), %rdx
-	movsd	40(%rbx), %xmm2
-	movsd	%xmm3, 8(%rsp)
-	movsd	176(%rax), %xmm1
+	movsd	40(%rdi), %xmm2
+	movq	%rdi, %rbx
 	movsd	168(%rax), %xmm0
-	leaq	656(%rdx), %rdi
-	call	_ZN3wze6engine6vector6LengthEdddd@PLT
-	movq	8(%rbx), %rax
-	movq	(%rbx), %rcx
-	movsd	8(%rsp), %xmm3
-	movsd	%xmm0, 64(%rbx)
-	movsd	40(%rbx), %xmm2
-	movsd	168(%rax), %xmm0
-	movsd	176(%rax), %xmm1
-	leaq	656(%rcx), %rdi
-	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	movsd	8(%rsp), %xmm3
+	ucomisd	%xmm2, %xmm0
+	jp	.L242
+	jne	.L242
+	movq	$0x000000000, 64(%rdi)
+.L235:
+	pxor	%xmm0, %xmm0
+.L239:
 	movsd	%xmm0, 72(%rbx)
+	movapd	%xmm3, %xmm0
 	movsd	%xmm3, 48(%rbx)
 	addq	$16, %rsp
+	.cfi_remember_state
 	.cfi_def_cfa_offset 16
-	movapd	%xmm3, %xmm0
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
+	.p2align 4,,10
+	.p2align 3
+.L242:
+	.cfi_restore_state
+	movsd	176(%rax), %xmm1
+	ucomisd	%xmm3, %xmm1
+	jp	.L243
+	jne	.L243
+	movq	$0x000000000, 64(%rbx)
+.L240:
+	movsd	176(%rax), %xmm1
+	ucomisd	%xmm3, %xmm1
+	jp	.L237
+	je	.L235
+.L237:
+	movq	(%rbx), %rax
+	movsd	%xmm3, 8(%rsp)
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine6vector5AngleEdddd@PLT
+	movsd	8(%rsp), %xmm3
+	jmp	.L239
+	.p2align 4,,10
+	.p2align 3
+.L243:
+	movq	(%rbx), %rax
+	movsd	%xmm3, 8(%rsp)
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine6vector6LengthEdddd@PLT
+	movq	8(%rbx), %rax
+	movsd	40(%rbx), %xmm2
+	movapd	%xmm0, %xmm1
+	movsd	8(%rsp), %xmm3
+	movsd	168(%rax), %xmm0
+	movsd	%xmm1, 64(%rbx)
+	ucomisd	%xmm2, %xmm0
+	jp	.L240
+	jne	.L240
+	jmp	.L235
+.L247:
+	leaq	.LC22(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
 .LFE8166:
 	.size	_ZN3wze6engine6actors5actor5texts4text4SetYEd, .-_ZN3wze6engine6actors5actor5texts4text4SetYEd
@@ -1552,7 +1641,7 @@ _ZN3wze6engine6actors5actor5texts4text9GetStringEv:
 	.size	_ZN3wze6engine6actors5actor5texts4text9GetStringEv, .-_ZN3wze6engine6actors5actor5texts4text9GetStringEv
 	.section	.rodata.str1.8
 	.align 8
-.LC21:
+.LC23:
 	.string	"wze::engine.actors[].texts[].SetString(): String must not be NULL\nParams: String: %p\n"
 	.text
 	.align 2
@@ -1574,7 +1663,7 @@ _ZN3wze6engine6actors5actor5texts4text9SetStringEPKc:
 	movq	%rax, 8(%rsp)
 	xorl	%eax, %eax
 	testq	%rsi, %rsi
-	je	.L215
+	je	.L254
 	movq	%rdi, %rbx
 	movq	104(%rdi), %rdi
 	movq	%rsi, %rbp
@@ -1588,7 +1677,7 @@ _ZN3wze6engine6actors5actor5texts4text9SetStringEPKc:
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L216
+	jne	.L255
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -1598,14 +1687,14 @@ _ZN3wze6engine6actors5actor5texts4text9SetStringEPKc:
 	popq	%rbp
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3neo6stringclEv@PLT
-.L215:
+.L254:
 	.cfi_restore_state
-	leaq	.LC21(%rip), %rdi
+	leaq	.LC23(%rip), %rdi
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L216:
+.L255:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8168:
@@ -1624,7 +1713,7 @@ _ZN3wze6engine6actors5actor5texts4text7GetFontEv:
 	.size	_ZN3wze6engine6actors5actor5texts4text7GetFontEv, .-_ZN3wze6engine6actors5actor5texts4text7GetFontEv
 	.section	.rodata.str1.8
 	.align 8
-.LC22:
+.LC24:
 	.string	"wze::engine.actors[].texts[].SetFont(): Font does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1636,21 +1725,21 @@ _ZN3wze6engine6actors5actor5texts4text7SetFontEy:
 	.cfi_startproc
 	movq	%rsi, %rax
 	testq	%rsi, %rsi
-	je	.L219
+	je	.L258
 	movq	(%rdi), %rdx
 	cmpq	704(%rdx), %rsi
-	jnb	.L220
+	jnb	.L259
 	movq	712(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
-	je	.L220
-.L219:
+	je	.L259
+.L258:
 	movq	%rax, 96(%rdi)
 	ret
-.L220:
+.L259:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
-	leaq	.LC22(%rip), %rdi
+	leaq	.LC24(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi

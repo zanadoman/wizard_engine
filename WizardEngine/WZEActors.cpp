@@ -14,6 +14,21 @@ namespace wze
 
     uint64 engine::actors::New(uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer)
     {
+        if (X != X)
+        {
+            printf("wze::engine.actors.New(): X must not be NaN\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
+            exit(1);
+        }
+        if (Y != Y)
+        {
+            printf("wze::engine.actors.New(): Y must not be NaN\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
+            exit(1);
+        }
+        if (Layer != Layer)
+        {
+            printf("wze::engine.actors.New(): Layer must not be NaN\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
+            exit(1);
+        }
         if (Layer < 0)
         {
             printf("wze::engine.actors.New(): Layer must not be less than 0\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);

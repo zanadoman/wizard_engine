@@ -407,12 +407,15 @@ namespace wze
                                     uint8 Priority;
                                     bool Visible;
                                     bool Loop;
+                                    bool Paused;
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
                                     uint32 GetDelay();
                                     uint32 SetDelay(uint32 Delay);
+                                    bool IsPlaying();
+                                    uint64 GetCurrentFrame();
                                     uint8 Reset();
 
                                 private:
@@ -421,7 +424,7 @@ namespace wze
                                     double OffsetLength;
                                     double OffsetAngle;
                                     uint32 Delay;
-                                    uint64 Current;
+                                    uint64 CurrentFrame;
                                     uint32 Remainder;
                                     array<uint64> Textures;
                                     flipbook(engine* Engine, actor* Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs);

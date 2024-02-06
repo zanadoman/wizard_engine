@@ -100,17 +100,17 @@ namespace wze
             
             for (uint64 j = 1; j < this->Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
             {
-                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL)
+                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL || this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Paused)
                 {
                     continue;
                 }
 
-                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current += (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder) / this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
+                this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame += (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder) / this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
                 this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder = (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder) % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
 
-                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() <= this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current)
+                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() <= this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame)
                 {
-                    this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Loop ? this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() : this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() - 1;
+                    this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Loop ? this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() : this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() - 1;
                 }
             }
         }

@@ -23,7 +23,10 @@ _ZN3wze6engine5mouseC2EPS0_:
 	.set	_ZN3wze6engine5mouseC1EPS0_,_ZN3wze6engine5mouseC2EPS0_
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
-.LC3:
+.LC2:
+	.string	"engine.mouse.GetX(): Layer must not be NaN\nParams: Layer: %lf\n"
+	.align 8
+.LC4:
 	.string	"engine.mouse.GetY(): Layer must not be less than 0\nParams: Layer: %lf\n"
 	.text
 	.align 2
@@ -33,15 +36,19 @@ _ZN3wze6engine5mouseC2EPS0_:
 _ZN3wze6engine5mouse4GetXEd:
 .LFB8147:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L16
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L14
+	ja	.L17
 	ucomisd	%xmm1, %xmm0
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	16(%rdi), %xmm2
-	jp	.L9
+	jp	.L12
 	je	.L3
-.L9:
+.L12:
 	movq	(%rdi), %rax
 	movsd	144(%rax), %xmm1
 	mulsd	%xmm0, %xmm1
@@ -52,11 +59,19 @@ _ZN3wze6engine5mouse4GetXEd:
 	addsd	%xmm0, %xmm2
 .L3:
 	movapd	%xmm2, %xmm0
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L14:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC3(%rip), %rdi
+.L16:
+	.cfi_restore_state
+	leaq	.LC2(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L17:
+	leaq	.LC4(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -66,7 +81,10 @@ _ZN3wze6engine5mouse4GetXEd:
 	.size	_ZN3wze6engine5mouse4GetXEd, .-_ZN3wze6engine5mouse4GetXEd
 	.section	.rodata.str1.8
 	.align 8
-.LC4:
+.LC5:
+	.string	"engine.mouse.GetY(): Layer must not be NaN\nParams: Layer: %lf\n"
+	.align 8
+.LC6:
 	.string	"engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n"
 	.text
 	.align 2
@@ -76,15 +94,19 @@ _ZN3wze6engine5mouse4GetXEd:
 _ZN3wze6engine5mouse4GetYEd:
 .LFB8148:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L31
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L26
+	ja	.L32
 	ucomisd	%xmm1, %xmm0
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	20(%rdi), %xmm2
-	jp	.L21
-	je	.L15
-.L21:
+	jp	.L27
+	je	.L18
+.L27:
 	movq	(%rdi), %rax
 	movsd	144(%rax), %xmm1
 	mulsd	%xmm0, %xmm1
@@ -93,13 +115,21 @@ _ZN3wze6engine5mouse4GetYEd:
 	divsd	%xmm1, %xmm2
 	addsd	136(%rax), %xmm2
 	addsd	%xmm0, %xmm2
-.L15:
+.L18:
 	movapd	%xmm2, %xmm0
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L26:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC4(%rip), %rdi
+.L31:
+	.cfi_restore_state
+	leaq	.LC5(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L32:
+	leaq	.LC6(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -212,10 +242,10 @@ _ZN3wze6engine5mouse9GetCursorEv:
 	.size	_ZN3wze6engine5mouse9GetCursorEv, .-_ZN3wze6engine5mouse9GetCursorEv
 	.section	.rodata.str1.8
 	.align 8
-.LC5:
+.LC7:
 	.string	"wze::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: ID: %lld\n"
 	.align 8
-.LC6:
+.LC8:
 	.string	"wze::engine.mouse.SetCursor(): Cursor does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -234,16 +264,16 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
 	testq	%rsi, %rsi
-	je	.L41
+	je	.L47
 	movq	(%rdi), %rax
 	movq	%rdi, %rbp
 	movq	%rsi, %rbx
 	cmpq	720(%rax), %rsi
-	jnb	.L38
+	jnb	.L44
 	movq	728(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
-	je	.L38
+	je	.L44
 	call	SDL_SetCursor@PLT
 	movq	%rbx, 48(%rbp)
 	addq	$8, %rsp
@@ -255,16 +285,16 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
-.L38:
+.L44:
 	.cfi_restore_state
-	leaq	.LC6(%rip), %rdi
+	leaq	.LC8(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L41:
-	leaq	.LC5(%rip), %rdi
+.L47:
+	leaq	.LC7(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -301,52 +331,52 @@ _ZN3wze6engine5mouse6UpdateEv:
 	movq	800(%rsi), %rdx
 	mulsd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm1
-	xorpd	.LC7(%rip), %xmm1
+	xorpd	.LC9(%rip), %xmm1
 	unpcklpd	%xmm1, %xmm0
 	movups	%xmm0, 24(%rbx)
 	testq	%rdx, %rdx
-	je	.L43
+	je	.L49
 	movq	808(%rsi), %rax
 	leaq	0(,%rdx,8), %rcx
 	subq	%rdx, %rcx
 	leaq	(%rax,%rcx,8), %rcx
-	jmp	.L50
+	jmp	.L56
 	.p2align 4,,10
 	.p2align 3
-.L45:
+.L51:
 	addq	$56, %rax
 	cmpq	%rax, %rcx
-	je	.L43
-.L50:
+	je	.L49
+.L56:
 	cmpl	$1024, (%rax)
-	jne	.L45
+	jne	.L51
 	movl	20(%rax), %edx
 	movl	%edx, 16(%rbx)
 	testl	%edx, %edx
-	js	.L57
+	js	.L63
 	movzwl	24(%rsi), %edi
 	cmpl	%edi, %edx
-	jge	.L58
-.L47:
+	jge	.L64
+.L53:
 	movzwl	42(%rsi), %edx
 	subl	24(%rax), %edx
 	movl	%edx, 20(%rbx)
-	js	.L59
-.L48:
+	js	.L65
+.L54:
 	movzwl	26(%rsi), %edi
 	cmpl	%edi, %edx
-	jl	.L45
+	jl	.L51
 	subl	$1, %edi
 	addq	$56, %rax
 	movl	%edi, 20(%rbx)
 	cmpq	%rax, %rcx
-	jne	.L50
+	jne	.L56
 	.p2align 4,,10
 	.p2align 3
-.L43:
+.L49:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L60
+	jne	.L66
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 16
@@ -356,23 +386,23 @@ _ZN3wze6engine5mouse6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L57:
+.L63:
 	.cfi_restore_state
 	movzwl	42(%rsi), %edx
 	movl	$0, 16(%rbx)
 	subl	24(%rax), %edx
 	movl	%edx, 20(%rbx)
-	jns	.L48
-.L59:
+	jns	.L54
+.L65:
 	movl	$0, 20(%rbx)
-	jmp	.L45
+	jmp	.L51
 	.p2align 4,,10
 	.p2align 3
-.L58:
+.L64:
 	subl	$1, %edi
 	movl	%edi, 16(%rbx)
-	jmp	.L47
-.L60:
+	jmp	.L53
+.L66:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8157:
@@ -384,7 +414,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	.long	1072693248
 	.section	.rodata.cst16,"aM",@progbits,16
 	.align 16
-.LC7:
+.LC9:
 	.long	0
 	.long	-2147483648
 	.long	0

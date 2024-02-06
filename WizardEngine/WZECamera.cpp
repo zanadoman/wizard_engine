@@ -33,6 +33,11 @@ namespace wze
 
     double engine::camera::SetZoom(double Zoom)
     {
+        if (Zoom != Zoom)
+        {
+            printf("wze::engine.camera.SetZoom(): Zoom must not be NaN\nParams: Zoom: %lf\n", Zoom);
+            exit(1);
+        }
         if (Zoom <= 0)
         {
             printf("wze::engine.camera.SetZoom(): Zoom must not be less than or equal to 0\nParams: Zoom: %lf\n", Zoom);
@@ -151,6 +156,11 @@ namespace wze
 
     double engine::camera::SetMinSpeedX(double MinSpeedX)
     {
+        if (MinSpeedX != MinSpeedX)
+        {
+            printf("wze::engine.camera.SetMinSpeedX(): MinSpeedX must not be NaN\nParams: MinSpeedX: %lf\n", MinSpeedX);
+            exit(1);
+        }
         if (MinSpeedX <= 0)
         {
             printf("wze::engine.camera.SetMinSpeedX(): MinSpeedX must not be less than or equal to 0\nParams: MinSpeedX: %lf\n", MinSpeedX);
@@ -177,6 +187,11 @@ namespace wze
 
     double engine::camera::SetMinSpeedY(double MinSpeedY)
     {
+        if (MinSpeedY != MinSpeedY)
+        {
+            printf("wze::engine.camera.SetMinSpeedY(): MinSpeedY must not be NaN\nParams: MinSpeedY: %lf\n", MinSpeedY);
+            exit(1);
+        }
         if (MinSpeedY <= 0)
         {
             printf("wze::engine.camera.SetMinSpeedY(): MinSpeedY must not be less than or equal to 0\nParams: MinSpeedY: %lf\n", MinSpeedY);
@@ -203,6 +218,11 @@ namespace wze
 
     double engine::camera::SetMaxSpeedX(double MaxSpeedX)
     {
+        if (MaxSpeedX != MaxSpeedX)
+        {
+            printf("wze::engine.camera.SetMaxSpeedX(): MaxSpeedX must not be NaN\nParams: MaxSpeedX: %lf\n", MaxSpeedX);
+            exit(1);
+        }
         if (MaxSpeedX <= 0)
         {
             printf("wze::engine.camera.SetMaxSpeedX(): MaxSpeedX must not be less than or equal to 0\nParams: MaxSpeedX: %lf\n", MaxSpeedX);
@@ -229,6 +249,11 @@ namespace wze
 
     double engine::camera::SetMaxSpeedY(double MaxSpeedY)
     {
+        if (MaxSpeedY != MaxSpeedY)
+        {
+            printf("wze::engine.camera.SetMaxSpeedY(): MaxSpeedY must not be NaN\nParams: MaxSpeedY: %lf\n", MaxSpeedY);
+            exit(1);
+        }
         if (MaxSpeedY <= 0)
         {
             printf("wze::engine.camera.SetMaxSpeedY(): MaxSpeedY must not be less than or equal to 0\nParams: MaxSpeedY: %lf\n", MaxSpeedY);
@@ -255,6 +280,11 @@ namespace wze
 
     double engine::camera::SetDecelerationRateX(double DecelerationRateX)
     {
+        if (DecelerationRateX != DecelerationRateX)
+        {
+            printf("wze::engine.camera.SetDecelerationRateX(): DecelerationRateX must not be NaN\nParams: DecelerationRateX: %lf\n", DecelerationRateX);
+            exit(1);
+        }
         if (DecelerationRateX <= 0)
         {
             printf("wze::engine.camera.SetDecelerationRateX(): DecelerationRateX must not be less than or equal to 0\nParams: DecelerationRateX: %lf\n", DecelerationRateX);
@@ -271,6 +301,11 @@ namespace wze
 
     double engine::camera::SetDecelerationRateY(double DecelerationRateY)
     {
+        if (DecelerationRateY != DecelerationRateY)
+        {
+            printf("wze::engine.camera.SetDecelerationRateY(): DecelerationRateY must not be NaN\nParams: DecelerationRateY: %lf\n", DecelerationRateY);
+            exit(1);
+        }
         if (DecelerationRateY <= 0)
         {
             printf("wze::engine.camera.SetDecelerationRateY(): DecelerationRateY must not be less than or equal to 0\nParams: DecelerationRateY: %lf\n", DecelerationRateY);
@@ -287,6 +322,11 @@ namespace wze
 
     double engine::camera::SetAccelerationRateX(double AccelerationRateX)
     {
+        if (AccelerationRateX != AccelerationRateX)
+        {
+            printf("wze::engine.camera.SetAccelerationRateX(): AccelerationRateX must not be NaN\nParams: AccelerationRateX: %lf\n", AccelerationRateX);
+            exit(1);
+        }
         if (AccelerationRateX <= 0)
         {
             printf("wze::engine.camera.SetAccelerationRateX(): AccelerationRateX must not be less than or equal to 0\nParams: AccelerationRateX: %lf\n", AccelerationRateX);
@@ -303,6 +343,11 @@ namespace wze
 
     double engine::camera::SetAccelerationRateY(double AccelerationRateY)
     {
+        if (AccelerationRateY != AccelerationRateY)
+        {
+            printf("wze::engine.camera.SetAccelerationRateY(): AccelerationRateY must not be NaN\nParams: AccelerationRateY: %lf\n", AccelerationRateY);
+            exit(1);
+        }
         if (AccelerationRateY <= 0)
         {
             printf("wze::engine.camera.SetAccelerationRateY(): AccelerationRateY must not be less than or equal to 0\nParams: AccelerationRateY: %lf\n", AccelerationRateY);
@@ -319,6 +364,11 @@ namespace wze
 
     double engine::camera::SetSlowDownRangeX(double SlowDownRangeX)
     {
+        if (SlowDownRangeX != SlowDownRangeX)
+        {
+            printf("wze::engine.camera.SetSlowDownRangeX(): SlowDownRangeX must not be NaN\nParams: SlowDownRangeX: %lf\n", SlowDownRangeX);
+            exit(1);
+        }
         if (SlowDownRangeX < 0)
         {
             printf("wze::engine.camera.SetSlowDownRangeX(): SlowDownRangeX must not be less than 0\nParams: SlowDownRangeX: %lf\n", SlowDownRangeX);
@@ -335,6 +385,11 @@ namespace wze
 
     double engine::camera::SetSlowDownRangeY(double SlowDownRangeY)
     {
+        if (SlowDownRangeY != SlowDownRangeY)
+        {
+            printf("wze::engine.camera.SetSlowDownRangeY(): SlowDownRangeY must not be NaN\nParams: SlowDownRangeY: %lf\n", SlowDownRangeY);
+            exit(1);
+        }
         if (SlowDownRangeY < 0)
         {
             printf("wze::engine.camera.SetSlowDownRangeY(): SlowDownRangeY must not be less than 0\nParams: SlowDownRangeY: %lf\n", SlowDownRangeY);

@@ -14,6 +14,11 @@ namespace wze
 
     double engine::audio::SetGlobalVolume(double GlobalVolume)
     {
+        if (GlobalVolume != GlobalVolume)
+        {
+            printf("wze::engine.audio.SetGlobalVolume(): GlobalVolume must not be NaN\nParams: Volume: %lf\n", GlobalVolume);
+            exit(1);
+        }
         if (GlobalVolume < 0 || 1 < GlobalVolume)
         {
             printf("wze::engine.audio.SetGlobalVolume(): GlobalVolume must be in range [0, 1]\nParams: Volume: %lf\n", GlobalVolume);
@@ -25,6 +30,11 @@ namespace wze
 
     uint8 engine::audio::Play(uint64 ID, uint16 Channel, double Volume)
     {
+        if (Volume != Volume)
+        {
+            printf("wze::engine.audio.Play(): Volume must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf\n", ID, Channel, Volume);
+            exit(1);
+        }
         if (Volume < 0 || 1 < Volume)
         {
             printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf\n", ID, Channel, Volume);
@@ -52,6 +62,11 @@ namespace wze
 
     uint8 engine::audio::Play(uint64 ID, uint16 Channel, double Volume, uint16 Loops)
     {
+        if (Volume != Volume)
+        {
+            printf("wze::engine.audio.Play(): Volume must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", ID, Channel, Volume, Loops);
+            exit(1);
+        }
         if (Volume < 0 || 1 < Volume)
         {
             printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", ID, Channel, Volume, Loops);
@@ -79,14 +94,29 @@ namespace wze
 
     uint8 engine::audio::Play(uint64 ID, uint16 Channel, double Volume, double Left, double Right)
     {
+        if (Volume != Volume)
+        {
+            printf("wze::engine.audio.Play(): Volume must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", ID, Channel, Volume, Left, Right);
+            exit(1);
+        }
         if (Volume < 0 || 1 < Volume)
         {
             printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", ID, Channel, Volume, Left, Right);
             exit(1);
         }
+        if (Left != Left)
+        {
+            printf("wze::engine.audio.Play(): Left must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", ID, Channel, Volume, Left, Right);
+            exit(1);
+        }
         if (Left < 0 || 1 < Left)
         {
             printf("wze::engine.audio.Play(): Left must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", ID, Channel, Volume, Left, Right);
+            exit(1);
+        }
+        if (Right != Right)
+        {
+            printf("wze::engine.audio.Play(): Right must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", ID, Channel, Volume, Left, Right);
             exit(1);
         }
         if (Right < 0 || 1 < Right)
@@ -121,14 +151,29 @@ namespace wze
 
     uint8 engine::audio::Play(uint64 ID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops)
     {
+        if (Volume != Volume)
+        {
+            printf("wze::engine.audio.Play(): Volume must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", ID, Channel, Volume, Left, Right, Loops);
+            exit(1);
+        }
         if (Volume < 0 || 1 < Volume)
         {
             printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", ID, Channel, Volume, Left, Right, Loops);
             exit(1);
         }
+        if (Left != Left)
+        {
+            printf("wze::engine.audio.Play(): Left must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", ID, Channel, Volume, Left, Right, Loops);
+            exit(1);
+        }
         if (Left < 0 || 1 < Left)
         {
             printf("wze::engine.audio.Play(): Left must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", ID, Channel, Volume, Left, Right, Loops);
+            exit(1);
+        }
+        if (Right != Right)
+        {
+            printf("wze::engine.audio.Play(): Right must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", ID, Channel, Volume, Left, Right, Loops);
             exit(1);
         }
         if (Right < 0 || 1 < Right)

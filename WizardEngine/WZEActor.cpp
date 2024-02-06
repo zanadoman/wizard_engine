@@ -23,8 +23,8 @@ namespace wze
         this->PrevHitboxWidth = Width;
         this->PrevHitboxHeight = Height;
         this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, Height) / 2;
-        this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, Width, Height);
-        this->HitboxMedian2Angle = this->Engine->Vector.Angle(Width, 0, 0, Height);
+        this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, Width, Height) : 0;
+        this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(Width, 0, 0, Height) : 0;
     }
 
     engine::actors::actor::~actor()
@@ -60,6 +60,12 @@ namespace wze
 
     double engine::actors::actor::SetX(double X)
     {
+        if (X != X)
+        {
+            printf("engine.actors[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
+            exit(1);
+        }
+
         this->X = X;
 
         if (this->CollisionLayer != 0)
@@ -83,6 +89,12 @@ namespace wze
     {
         this->Y = Y;
 
+        if (Y != Y)
+        {
+            printf("engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            exit(1);
+        }
+
         if (this->CollisionLayer != 0)
         {
             this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
@@ -105,8 +117,8 @@ namespace wze
         this->Width = Width;
 
         this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, this->Height) / 2;
-        this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, Width, this->Height);
-        this->HitboxMedian2Angle = this->Engine->Vector.Angle(Width, 0, 0, this->Height);
+        this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, Width, this->Height) : 0;
+        this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(Width, 0, 0, this->Height) : 0;
 
         this->UpdateHitboxScale();
 
@@ -132,8 +144,8 @@ namespace wze
         this->Height = Height;
 
         this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, this->Width, Height) / 2;
-        this->HitboxMedian1Angle = this->Engine->Vector.Angle(0, 0, this->Width, Height);
-        this->HitboxMedian2Angle = this->Engine->Vector.Angle(this->Width, 0, 0, Height);
+        this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, this->Width, Height) : 0;
+        this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(this->Width, 0, 0, Height) : 0;
 
         this->UpdateHitboxScale();
 
@@ -157,6 +169,12 @@ namespace wze
     double engine::actors::actor::SetAngle(double Angle)
     {
         double change;
+
+        if (Angle != Angle)
+        {
+            printf("engine.actors[].SetAngle(): Angle must not be NaN\nParams: Angle: %lf\n", Angle);
+            exit(1);
+        }
 
         change = Angle - this->Angle;
 
@@ -250,6 +268,11 @@ namespace wze
 
     double engine::actors::actor::SetLayer(double Layer)
     {
+        if (Layer != Layer)
+        {
+            printf("wze::engine.actors[].SetLayer(): Layer must not be NaN\nParams: Layer: %lf\n", Layer);
+            exit(1);
+        }
         if (Layer < 0)
         {
             printf("wze::engine.actors[].SetLayer(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
@@ -279,6 +302,11 @@ namespace wze
 
     double engine::actors::actor::SetDepth(double Depth)
     {
+        if (Depth != Depth)
+        {
+            printf("wze::engine.actors[].SetDepth(): Depth must not be NaN\nParams: Depth: %lf\n", Depth);
+            exit(1);
+        }
         if (this->Layer == 0)
         {
             printf("wze::engine.actors[].SetDepth(): Illegal to set Depth when Layer is 0\nParams: Depth: %lf\n", Depth);

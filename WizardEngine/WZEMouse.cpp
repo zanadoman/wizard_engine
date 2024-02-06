@@ -17,6 +17,11 @@ namespace wze
     {
         double cache;
 
+        if (Layer != Layer)
+        {
+            printf("engine.mouse.GetX(): Layer must not be NaN\nParams: Layer: %lf\n", Layer);
+            exit(1);
+        }
         if (Layer < 0)
         {
             printf("engine.mouse.GetY(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
@@ -36,6 +41,11 @@ namespace wze
     {
         double cache;
 
+        if (Layer != Layer)
+        {
+            printf("engine.mouse.GetY(): Layer must not be NaN\nParams: Layer: %lf\n", Layer);
+            exit(1);
+        }
         if (Layer < 0)
         {
             printf("engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);

@@ -30,7 +30,10 @@ _ZN3wze6engine5audio15GetGlobalVolumeEv:
 	.size	_ZN3wze6engine5audio15GetGlobalVolumeEv, .-_ZN3wze6engine5audio15GetGlobalVolumeEv
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
-.LC2:
+.LC1:
+	.string	"wze::engine.audio.SetGlobalVolume(): GlobalVolume must not be NaN\nParams: Volume: %lf\n"
+	.align 8
+.LC3:
 	.string	"wze::engine.audio.SetGlobalVolume(): GlobalVolume must be in range [0, 1]\nParams: Volume: %lf\n"
 	.text
 	.align 2
@@ -40,17 +43,29 @@ _ZN3wze6engine5audio15GetGlobalVolumeEv:
 _ZN3wze6engine5audio15SetGlobalVolumeEd:
 .LFB8148:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L14
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L5
+	ja	.L7
 	comisd	.LC0(%rip), %xmm0
-	ja	.L5
+	ja	.L7
 	movsd	%xmm0, 8(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L5:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC2(%rip), %rdi
+.L7:
+	.cfi_restore_state
+	leaq	.LC3(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L14:
+	leaq	.LC1(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -60,16 +75,19 @@ _ZN3wze6engine5audio15SetGlobalVolumeEd:
 	.size	_ZN3wze6engine5audio15SetGlobalVolumeEd, .-_ZN3wze6engine5audio15SetGlobalVolumeEd
 	.section	.rodata.str1.8
 	.align 8
-.LC3:
+.LC4:
+	.string	"wze::engine.audio.Play(): Volume must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf\n"
+	.align 8
+.LC5:
 	.string	"wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf\n"
 	.align 8
-.LC4:
+.LC6:
 	.string	"wze::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf\n"
 	.align 8
-.LC6:
+.LC8:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.align 8
-.LC7:
+.LC9:
 	.string	"wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf\n"
 	.text
 	.align 2
@@ -82,7 +100,6 @@ _ZN3wze6engine5audio4PlayEytd:
 	pushq	%r12
 	.cfi_def_cfa_offset 16
 	.cfi_offset 12, -16
-	pxor	%xmm1, %xmm1
 	pushq	%rbp
 	.cfi_def_cfa_offset 24
 	.cfi_offset 6, -24
@@ -93,31 +110,34 @@ _ZN3wze6engine5audio4PlayEytd:
 	movq	%rsi, %rbx
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 48
+	ucomisd	%xmm0, %xmm0
+	jp	.L32
+	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L12
+	ja	.L18
 	comisd	.LC0(%rip), %xmm0
-	ja	.L12
+	ja	.L18
 	testq	%rsi, %rsi
-	je	.L15
+	je	.L21
 	movq	(%rdi), %rax
 	movq	%rdi, %r12
 	cmpq	688(%rax), %rsi
-	jnb	.L16
+	jnb	.L22
 	movq	696(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
-	je	.L16
+	je	.L22
 	movapd	%xmm0, %xmm1
 	movsd	%xmm0, 8(%rsp)
 	mulsd	8(%r12), %xmm1
-	mulsd	.LC5(%rip), %xmm1
+	mulsd	.LC7(%rip), %xmm1
 	cvttsd2sil	%xmm1, %esi
 	call	Mix_VolumeChunk@PLT
 	movq	(%r12), %rax
 	movsd	8(%rsp), %xmm0
 	cmpq	688(%rax), %rbx
 	movq	696(%rax), %rdx
-	jnb	.L24
+	jnb	.L33
 	movq	(%rdx,%rbx,8), %rsi
 	movzwl	%bp, %ebp
 	xorl	%edx, %edx
@@ -126,8 +146,8 @@ _ZN3wze6engine5audio4PlayEytd:
 	call	Mix_PlayChannel@PLT
 	movsd	8(%rsp), %xmm0
 	cmpl	$-1, %eax
-	je	.L25
-.L15:
+	je	.L34
+.L21:
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
@@ -139,35 +159,42 @@ _ZN3wze6engine5audio4PlayEytd:
 	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L12:
+.L18:
 	.cfi_restore_state
-	leaq	.LC3(%rip), %rdi
+	leaq	.LC5(%rip), %rdi
 	movzwl	%bp, %edx
 	movq	%rbx, %rsi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L16:
+.L22:
+	leaq	.LC6(%rip), %rdi
+	movzwl	%bp, %edx
+	movq	%rbx, %rsi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L32:
 	leaq	.LC4(%rip), %rdi
-	movzwl	%bp, %edx
-	movq	%rbx, %rsi
+	movzwl	%dx, %edx
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L25:
-	leaq	.LC7(%rip), %rdi
+.L33:
+	leaq	.LC8(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L34:
+	leaq	.LC9(%rip), %rdi
 	movl	%ebp, %edx
 	movq	%rbx, %rsi
 	movl	$1, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L24:
-	leaq	.LC6(%rip), %rdi
-	movq	%rbx, %rsi
-	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -176,13 +203,16 @@ _ZN3wze6engine5audio4PlayEytd:
 	.size	_ZN3wze6engine5audio4PlayEytd, .-_ZN3wze6engine5audio4PlayEytd
 	.section	.rodata.str1.8
 	.align 8
-.LC8:
+.LC10:
+	.string	"wze::engine.audio.Play(): Volume must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n"
+	.align 8
+.LC11:
 	.string	"wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n"
 	.align 8
-.LC9:
+.LC12:
 	.string	"wze::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n"
 	.align 8
-.LC10:
+.LC13:
 	.string	"wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\n"
 	.text
 	.align 2
@@ -195,56 +225,58 @@ _ZN3wze6engine5audio4PlayEytdt:
 	pushq	%r13
 	.cfi_def_cfa_offset 16
 	.cfi_offset 13, -16
-	pxor	%xmm1, %xmm1
 	pushq	%r12
 	.cfi_def_cfa_offset 24
 	.cfi_offset 12, -24
+	movl	%edx, %r12d
 	pushq	%rbp
 	.cfi_def_cfa_offset 32
 	.cfi_offset 6, -32
-	movl	%edx, %ebp
 	pushq	%rbx
 	.cfi_def_cfa_offset 40
 	.cfi_offset 3, -40
 	movq	%rsi, %rbx
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 64
+	ucomisd	%xmm0, %xmm0
+	jp	.L52
+	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L27
+	ja	.L38
 	comisd	.LC0(%rip), %xmm0
-	ja	.L27
+	ja	.L38
 	testq	%rsi, %rsi
-	je	.L30
+	je	.L41
 	movq	(%rdi), %rax
 	movq	%rdi, %r13
-	movzwl	%cx, %r12d
+	movzwl	%cx, %ebp
 	cmpq	688(%rax), %rsi
-	jnb	.L31
+	jnb	.L42
 	movq	696(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
-	je	.L31
+	je	.L42
 	movapd	%xmm0, %xmm1
 	movsd	%xmm0, 8(%rsp)
 	mulsd	8(%r13), %xmm1
-	mulsd	.LC5(%rip), %xmm1
+	mulsd	.LC7(%rip), %xmm1
 	cvttsd2sil	%xmm1, %esi
 	call	Mix_VolumeChunk@PLT
 	movq	0(%r13), %rax
 	movsd	8(%rsp), %xmm0
 	cmpq	688(%rax), %rbx
 	movq	696(%rax), %rdx
-	jnb	.L39
+	jnb	.L53
 	movq	(%rdx,%rbx,8), %rsi
-	movzwl	%bp, %ebp
-	movl	%r12d, %edx
+	movzwl	%r12w, %r12d
+	movl	%ebp, %edx
 	movsd	%xmm0, 8(%rsp)
-	movl	%ebp, %edi
+	movl	%r12d, %edi
 	call	Mix_PlayChannel@PLT
 	movsd	8(%rsp), %xmm0
 	cmpl	$-1, %eax
-	je	.L40
-.L30:
+	je	.L54
+.L41:
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -258,38 +290,46 @@ _ZN3wze6engine5audio4PlayEytdt:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L27:
+.L38:
 	.cfi_restore_state
-	leaq	.LC8(%rip), %rdi
 	movzwl	%cx, %ecx
-	movzwl	%bp, %edx
+	movzwl	%r12w, %edx
+	movq	%rbx, %rsi
+	movl	$1, %eax
+	leaq	.LC11(%rip), %rdi
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L42:
+	leaq	.LC12(%rip), %rdi
+	movzwl	%r12w, %edx
+	movl	%ebp, %ecx
 	movq	%rbx, %rsi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L31:
-	leaq	.LC9(%rip), %rdi
-	movzwl	%bp, %edx
-	movl	%r12d, %ecx
-	movq	%rbx, %rsi
-	movl	$1, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L40:
+.L52:
 	leaq	.LC10(%rip), %rdi
-	movl	%r12d, %ecx
-	movl	%ebp, %edx
-	movq	%rbx, %rsi
+	movzwl	%cx, %ecx
+	movzwl	%dx, %edx
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L39:
-	leaq	.LC6(%rip), %rdi
+.L53:
+	leaq	.LC8(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L54:
+	leaq	.LC13(%rip), %rdi
+	movl	%ebp, %ecx
+	movl	%r12d, %edx
+	movq	%rbx, %rsi
+	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -298,22 +338,31 @@ _ZN3wze6engine5audio4PlayEytdt:
 	.size	_ZN3wze6engine5audio4PlayEytdt, .-_ZN3wze6engine5audio4PlayEytdt
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
-	.string	"wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
-	.align 8
-.LC12:
-	.string	"wze::engine.audio.Play(): Left must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
-	.align 8
-.LC13:
-	.string	"wze::engine.audio.Play(): Right must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
-	.align 8
 .LC14:
-	.string	"wze::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
+	.string	"wze::engine.audio.Play(): Volume must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
 	.align 8
 .LC15:
-	.string	"wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
+	.string	"wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
+	.align 8
+.LC16:
+	.string	"wze::engine.audio.Play(): Left must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
 	.align 8
 .LC17:
+	.string	"wze::engine.audio.Play(): Left must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
+	.align 8
+.LC18:
+	.string	"wze::engine.audio.Play(): Right must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
+	.align 8
+.LC19:
+	.string	"wze::engine.audio.Play(): Right must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
+	.align 8
+.LC20:
+	.string	"wze::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
+	.align 8
+.LC21:
+	.string	"wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
+	.align 8
+.LC23:
 	.string	"wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n"
 	.text
 	.align 2
@@ -326,7 +375,6 @@ _ZN3wze6engine5audio4PlayEytddd:
 	pushq	%r12
 	.cfi_def_cfa_offset 16
 	.cfi_offset 12, -16
-	movapd	%xmm0, %xmm3
 	pushq	%rbp
 	.cfi_def_cfa_offset 24
 	.cfi_offset 6, -24
@@ -337,63 +385,83 @@ _ZN3wze6engine5audio4PlayEytddd:
 	movq	%rsi, %rbx
 	subq	$32, %rsp
 	.cfi_def_cfa_offset 64
-	movsd	%xmm0, 24(%rsp)
-	pxor	%xmm0, %xmm0
-	comisd	%xmm3, %xmm0
-	movsd	%xmm1, 8(%rsp)
-	movsd	%xmm2, 16(%rsp)
-	ja	.L42
-	movsd	.LC0(%rip), %xmm1
-	comisd	%xmm1, %xmm3
-	ja	.L42
-	movsd	8(%rsp), %xmm4
+	ucomisd	%xmm0, %xmm0
+	jp	.L89
+	pxor	%xmm3, %xmm3
+	comisd	%xmm0, %xmm3
+	ja	.L58
+	movsd	.LC0(%rip), %xmm4
 	comisd	%xmm4, %xmm0
-	ja	.L45
-	comisd	%xmm1, %xmm4
-	ja	.L45
-	comisd	%xmm2, %xmm0
-	ja	.L48
-	comisd	%xmm1, %xmm2
-	ja	.L48
+	ja	.L58
+	ucomisd	%xmm1, %xmm1
+	jp	.L90
+	comisd	%xmm1, %xmm3
+	ja	.L63
+	comisd	%xmm4, %xmm1
+	ja	.L63
+	ucomisd	%xmm2, %xmm2
+	jp	.L91
+	comisd	%xmm2, %xmm3
+	ja	.L68
+	comisd	%xmm4, %xmm2
+	ja	.L68
 	testq	%rsi, %rsi
-	je	.L51
+	je	.L71
 	movq	(%rdi), %rax
 	movq	%rdi, %r12
 	cmpq	688(%rax), %rsi
-	jnb	.L52
+	jnb	.L72
 	movq	696(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
-	je	.L52
-	movsd	8(%r12), %xmm0
-	mulsd	%xmm3, %xmm0
-	mulsd	.LC5(%rip), %xmm0
-	cvttsd2sil	%xmm0, %esi
+	je	.L72
+	movapd	%xmm0, %xmm3
+	movsd	%xmm2, 24(%rsp)
+	mulsd	8(%r12), %xmm3
+	movsd	%xmm1, 16(%rsp)
+	mulsd	.LC7(%rip), %xmm3
+	movsd	%xmm0, 8(%rsp)
+	cvttsd2sil	%xmm3, %esi
 	call	Mix_VolumeChunk@PLT
 	movq	(%r12), %rax
-	movq	696(%rax), %rdx
+	movsd	8(%rsp), %xmm0
+	movsd	16(%rsp), %xmm1
+	movsd	24(%rsp), %xmm2
 	cmpq	688(%rax), %rbx
-	jnb	.L63
+	movq	696(%rax), %rdx
+	jnb	.L92
 	movq	(%rdx,%rbx,8), %rsi
 	movzwl	%bp, %ebp
 	xorl	%edx, %edx
+	movsd	%xmm2, 24(%rsp)
 	movl	%ebp, %edi
+	movsd	%xmm1, 16(%rsp)
+	movsd	%xmm0, 8(%rsp)
 	call	Mix_PlayChannel@PLT
-	cmpl	$-1, %eax
-	je	.L64
-	movsd	.LC16(%rip), %xmm0
+	movsd	8(%rsp), %xmm0
 	movsd	16(%rsp), %xmm1
+	cmpl	$-1, %eax
+	movsd	24(%rsp), %xmm2
+	je	.L93
+	movsd	.LC22(%rip), %xmm3
+	movapd	%xmm2, %xmm4
 	movl	%ebp, %edi
-	mulsd	%xmm0, %xmm1
-	mulsd	8(%rsp), %xmm0
-	cvttsd2sil	%xmm1, %edx
-	cvttsd2sil	%xmm0, %esi
+	movsd	%xmm0, 24(%rsp)
+	movsd	%xmm2, 16(%rsp)
+	mulsd	%xmm3, %xmm4
+	movsd	%xmm1, 8(%rsp)
+	mulsd	%xmm1, %xmm3
+	cvttsd2sil	%xmm4, %edx
+	cvttsd2sil	%xmm3, %esi
 	movzbl	%dl, %edx
 	movzbl	%sil, %esi
 	call	Mix_SetPanning@PLT
+	movsd	8(%rsp), %xmm1
+	movsd	16(%rsp), %xmm2
 	testl	%eax, %eax
-	je	.L65
-.L51:
+	movsd	24(%rsp), %xmm0
+	je	.L94
+.L71:
 	addq	$32, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
@@ -405,77 +473,80 @@ _ZN3wze6engine5audio4PlayEytddd:
 	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L42:
+.L58:
 	.cfi_restore_state
-	movsd	16(%rsp), %xmm2
-	movsd	8(%rsp), %xmm1
+	leaq	.LC15(%rip), %rdi
 	movzwl	%bp, %edx
 	movq	%rbx, %rsi
-	movsd	24(%rsp), %xmm0
-	leaq	.LC11(%rip), %rdi
 	movl	$3, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L48:
-	movsd	16(%rsp), %xmm2
-	movsd	8(%rsp), %xmm1
+.L68:
+	leaq	.LC19(%rip), %rdi
 	movzwl	%bp, %edx
 	movq	%rbx, %rsi
-	movsd	24(%rsp), %xmm0
-	leaq	.LC13(%rip), %rdi
-	movl	$3, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L45:
-	movsd	16(%rsp), %xmm2
-	movsd	8(%rsp), %xmm1
-	movzwl	%bp, %edx
-	movq	%rbx, %rsi
-	movsd	24(%rsp), %xmm0
-	leaq	.LC12(%rip), %rdi
-	movl	$3, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L52:
-	movsd	16(%rsp), %xmm2
-	movsd	8(%rsp), %xmm1
-	movzwl	%bp, %edx
-	movq	%rbx, %rsi
-	movsd	24(%rsp), %xmm0
-	leaq	.LC14(%rip), %rdi
 	movl	$3, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L63:
-	leaq	.LC6(%rip), %rdi
+	leaq	.LC17(%rip), %rdi
+	movzwl	%bp, %edx
+	movq	%rbx, %rsi
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L72:
+	leaq	.LC20(%rip), %rdi
+	movzwl	%bp, %edx
+	movq	%rbx, %rsi
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L89:
+	leaq	.LC14(%rip), %rdi
+	movzwl	%dx, %edx
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L91:
+	leaq	.LC18(%rip), %rdi
+	movzwl	%dx, %edx
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L90:
+	leaq	.LC16(%rip), %rdi
+	movzwl	%dx, %edx
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L92:
+	leaq	.LC8(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L65:
-	movsd	16(%rsp), %xmm2
+.L94:
+	leaq	.LC23(%rip), %rdi
 	movl	%ebp, %edx
 	movq	%rbx, %rsi
 	movl	$3, %eax
-	movsd	8(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	leaq	.LC17(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L64:
-	movsd	16(%rsp), %xmm2
+.L93:
+	leaq	.LC21(%rip), %rdi
 	movl	%ebp, %edx
 	movq	%rbx, %rsi
 	movl	$3, %eax
-	movsd	8(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	leaq	.LC15(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -484,22 +555,31 @@ _ZN3wze6engine5audio4PlayEytddd:
 	.size	_ZN3wze6engine5audio4PlayEytddd, .-_ZN3wze6engine5audio4PlayEytddd
 	.section	.rodata.str1.8
 	.align 8
-.LC18:
+.LC24:
+	.string	"wze::engine.audio.Play(): Volume must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
+	.align 8
+.LC25:
 	.string	"wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
 	.align 8
-.LC19:
+.LC26:
+	.string	"wze::engine.audio.Play(): Left must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
+	.align 8
+.LC27:
 	.string	"wze::engine.audio.Play(): Left must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
 	.align 8
-.LC20:
+.LC28:
+	.string	"wze::engine.audio.Play(): Right must not be NaN\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
+	.align 8
+.LC29:
 	.string	"wze::engine.audio.Play(): Right must be in range [0, 1]\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
 	.align 8
-.LC21:
+.LC30:
 	.string	"wze::engine.audio.Play(): WAV does not exist\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
 	.align 8
-.LC22:
+.LC31:
 	.string	"wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
 	.align 8
-.LC23:
+.LC32:
 	.string	"wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n"
 	.text
 	.align 2
@@ -512,7 +592,6 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	pushq	%r13
 	.cfi_def_cfa_offset 16
 	.cfi_offset 13, -16
-	movapd	%xmm0, %xmm3
 	pushq	%r12
 	.cfi_def_cfa_offset 24
 	.cfi_offset 12, -24
@@ -526,64 +605,84 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	movq	%rsi, %rbx
 	subq	$40, %rsp
 	.cfi_def_cfa_offset 80
-	movsd	%xmm0, 24(%rsp)
-	pxor	%xmm0, %xmm0
-	comisd	%xmm3, %xmm0
-	movsd	%xmm1, 8(%rsp)
-	movsd	%xmm2, 16(%rsp)
-	ja	.L67
-	movsd	.LC0(%rip), %xmm1
-	comisd	%xmm1, %xmm3
-	ja	.L67
-	movsd	8(%rsp), %xmm4
+	ucomisd	%xmm0, %xmm0
+	jp	.L129
+	pxor	%xmm3, %xmm3
+	comisd	%xmm0, %xmm3
+	ja	.L98
+	movsd	.LC0(%rip), %xmm4
 	comisd	%xmm4, %xmm0
-	ja	.L70
-	comisd	%xmm1, %xmm4
-	ja	.L70
-	comisd	%xmm2, %xmm0
-	ja	.L73
-	comisd	%xmm1, %xmm2
-	ja	.L73
+	ja	.L98
+	ucomisd	%xmm1, %xmm1
+	jp	.L130
+	comisd	%xmm1, %xmm3
+	ja	.L103
+	comisd	%xmm4, %xmm1
+	ja	.L103
+	ucomisd	%xmm2, %xmm2
+	jp	.L131
+	comisd	%xmm2, %xmm3
+	ja	.L108
+	comisd	%xmm4, %xmm2
+	ja	.L108
 	testq	%rsi, %rsi
-	je	.L76
+	je	.L111
 	movq	(%rdi), %rax
 	movq	%rdi, %r12
 	movzwl	%cx, %r13d
 	cmpq	688(%rax), %rsi
-	jnb	.L77
+	jnb	.L112
 	movq	696(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
-	je	.L77
-	movsd	8(%r12), %xmm0
-	mulsd	%xmm3, %xmm0
-	mulsd	.LC5(%rip), %xmm0
-	cvttsd2sil	%xmm0, %esi
+	je	.L112
+	movapd	%xmm0, %xmm3
+	movsd	%xmm2, 24(%rsp)
+	mulsd	8(%r12), %xmm3
+	movsd	%xmm1, 16(%rsp)
+	mulsd	.LC7(%rip), %xmm3
+	movsd	%xmm0, 8(%rsp)
+	cvttsd2sil	%xmm3, %esi
 	call	Mix_VolumeChunk@PLT
 	movq	(%r12), %rax
-	movq	696(%rax), %rdx
+	movsd	8(%rsp), %xmm0
+	movsd	16(%rsp), %xmm1
+	movsd	24(%rsp), %xmm2
 	cmpq	688(%rax), %rbx
-	jnb	.L88
+	movq	696(%rax), %rdx
+	jnb	.L132
 	movq	(%rdx,%rbx,8), %rsi
 	movzwl	%bp, %ebp
 	movl	%r13d, %edx
+	movsd	%xmm2, 24(%rsp)
 	movl	%ebp, %edi
+	movsd	%xmm1, 16(%rsp)
+	movsd	%xmm0, 8(%rsp)
 	call	Mix_PlayChannel@PLT
-	cmpl	$-1, %eax
-	je	.L89
-	movsd	.LC16(%rip), %xmm0
+	movsd	8(%rsp), %xmm0
 	movsd	16(%rsp), %xmm1
+	cmpl	$-1, %eax
+	movsd	24(%rsp), %xmm2
+	je	.L133
+	movsd	.LC22(%rip), %xmm3
+	movapd	%xmm2, %xmm4
 	movl	%ebp, %edi
-	mulsd	%xmm0, %xmm1
-	mulsd	8(%rsp), %xmm0
-	cvttsd2sil	%xmm1, %edx
-	cvttsd2sil	%xmm0, %esi
+	movsd	%xmm0, 24(%rsp)
+	movsd	%xmm2, 16(%rsp)
+	mulsd	%xmm3, %xmm4
+	movsd	%xmm1, 8(%rsp)
+	mulsd	%xmm1, %xmm3
+	cvttsd2sil	%xmm4, %edx
+	cvttsd2sil	%xmm3, %esi
 	movzbl	%dl, %edx
 	movzbl	%sil, %esi
 	call	Mix_SetPanning@PLT
+	movsd	8(%rsp), %xmm1
+	movsd	16(%rsp), %xmm2
 	testl	%eax, %eax
-	je	.L90
-.L76:
+	movsd	24(%rsp), %xmm0
+	je	.L134
+.L111:
 	addq	$40, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -597,83 +696,89 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L67:
+.L98:
 	.cfi_restore_state
-	movsd	16(%rsp), %xmm2
+	leaq	.LC25(%rip), %rdi
 	movzwl	%cx, %ecx
 	movzwl	%bp, %edx
 	movq	%rbx, %rsi
-	movsd	8(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
 	movl	$3, %eax
-	leaq	.LC18(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L73:
-	movsd	16(%rsp), %xmm2
+.L108:
+	leaq	.LC29(%rip), %rdi
 	movzwl	%cx, %ecx
 	movzwl	%bp, %edx
 	movq	%rbx, %rsi
-	movsd	8(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
 	movl	$3, %eax
-	leaq	.LC20(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L70:
-	movsd	16(%rsp), %xmm2
+.L103:
+	leaq	.LC27(%rip), %rdi
 	movzwl	%cx, %ecx
 	movzwl	%bp, %edx
 	movq	%rbx, %rsi
-	movsd	8(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
 	movl	$3, %eax
-	leaq	.LC19(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L77:
-	movsd	16(%rsp), %xmm2
+.L112:
+	leaq	.LC30(%rip), %rdi
 	movzwl	%bp, %edx
 	movl	%r13d, %ecx
 	movq	%rbx, %rsi
-	movsd	8(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
 	movl	$3, %eax
-	leaq	.LC21(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L88:
-	leaq	.LC6(%rip), %rdi
+.L129:
+	leaq	.LC24(%rip), %rdi
+	movzwl	%cx, %ecx
+	movzwl	%dx, %edx
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L131:
+	leaq	.LC28(%rip), %rdi
+	movzwl	%cx, %ecx
+	movzwl	%dx, %edx
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L130:
+	leaq	.LC26(%rip), %rdi
+	movzwl	%cx, %ecx
+	movzwl	%dx, %edx
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L132:
+	leaq	.LC8(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L90:
-	movsd	16(%rsp), %xmm2
+.L134:
+	leaq	.LC32(%rip), %rdi
 	movl	%r13d, %ecx
 	movl	%ebp, %edx
 	movq	%rbx, %rsi
-	movsd	8(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
 	movl	$3, %eax
-	leaq	.LC23(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L89:
-	movsd	16(%rsp), %xmm2
+.L133:
+	leaq	.LC31(%rip), %rdi
 	movl	%r13d, %ecx
 	movl	%ebp, %edx
 	movq	%rbx, %rsi
-	movsd	8(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
 	movl	$3, %eax
-	leaq	.LC22(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -795,11 +900,11 @@ _ZN3wze6engine5audio4StopEt:
 	.long	0
 	.long	1072693248
 	.align 8
-.LC5:
+.LC7:
 	.long	0
 	.long	1080033280
 	.align 8
-.LC16:
+.LC22:
 	.long	0
 	.long	1081073664
 	.ident	"GCC: (GNU) 13.2.1 20230801"

@@ -47,7 +47,10 @@ _ZN3wze6engine6camera7GetZoomEv:
 	.size	_ZN3wze6engine6camera7GetZoomEv, .-_ZN3wze6engine6camera7GetZoomEv
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
-.LC10:
+.LC9:
+	.string	"wze::engine.camera.SetZoom(): Zoom must not be NaN\nParams: Zoom: %lf\n"
+	.align 8
+.LC11:
 	.string	"wze::engine.camera.SetZoom(): Zoom must not be less than or equal to 0\nParams: Zoom: %lf\n"
 	.text
 	.align 2
@@ -57,15 +60,27 @@ _ZN3wze6engine6camera7GetZoomEv:
 _ZN3wze6engine6camera7SetZoomEd:
 .LFB8148:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L14
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L12
+	jnb	.L15
 	movsd	%xmm0, 64(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L12:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC10(%rip), %rdi
+.L14:
+	.cfi_restore_state
+	leaq	.LC9(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L15:
+	leaq	.LC11(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -99,13 +114,13 @@ _ZN3wze6engine6camera9GetYActorEv:
 	.size	_ZN3wze6engine6camera9GetYActorEv, .-_ZN3wze6engine6camera9GetYActorEv
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
+.LC12:
 	.string	"wze::engine.camera.Bind(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
-.LC12:
+.LC13:
 	.string	"wze::engine.camera.Bind(): Actor does not exist\nParams: Actor: %lld\n"
 	.align 8
-.LC13:
+.LC14:
 	.string	"wze::engine.camera.Bind(): Actor must not be in Layer 0\nParams: Actor: %lld\n"
 	.text
 	.align 2
@@ -118,42 +133,42 @@ _ZN3wze6engine6camera4BindEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L23
+	je	.L26
 	movq	(%rdi), %rax
 	cmpq	640(%rax), %rsi
-	jnb	.L17
+	jnb	.L20
 	movq	648(%rax), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L17
+	je	.L20
 	pxor	%xmm1, %xmm1
 	ucomisd	216(%rax), %xmm1
 	movq	%rsi, %xmm0
 	punpcklqdq	%xmm0, %xmm0
-	jp	.L19
-	je	.L24
-.L19:
+	jp	.L22
+	je	.L27
+.L22:
 	movups	%xmm0, 32(%rdi)
 	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L17:
+.L20:
 	.cfi_restore_state
+	leaq	.LC13(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L26:
 	leaq	.LC12(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L23:
-	leaq	.LC11(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L24:
-	leaq	.LC13(%rip), %rdi
+.L27:
+	leaq	.LC14(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -163,13 +178,13 @@ _ZN3wze6engine6camera4BindEy:
 	.size	_ZN3wze6engine6camera4BindEy, .-_ZN3wze6engine6camera4BindEy
 	.section	.rodata.str1.8
 	.align 8
-.LC14:
+.LC15:
 	.string	"wze::engine.camera.BindX(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
-.LC15:
+.LC16:
 	.string	"wze::engine.camera.BindX(): Actor does not exist\nParams: Actor: %lld\n"
 	.align 8
-.LC16:
+.LC17:
 	.string	"wze::engine.camera.BindX(): Actor must not be in Layer 0\nParams: Actor: %lld\n"
 	.text
 	.align 2
@@ -182,40 +197,40 @@ _ZN3wze6engine6camera5BindXEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L33
+	je	.L36
 	movq	(%rdi), %rax
 	cmpq	640(%rax), %rsi
-	jnb	.L27
+	jnb	.L30
 	movq	648(%rax), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L27
+	je	.L30
 	pxor	%xmm0, %xmm0
 	ucomisd	216(%rax), %xmm0
-	jp	.L29
-	je	.L34
-.L29:
+	jp	.L32
+	je	.L37
+.L32:
 	movq	%rsi, 32(%rdi)
 	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L27:
+.L30:
 	.cfi_restore_state
+	leaq	.LC16(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L36:
 	leaq	.LC15(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L33:
-	leaq	.LC14(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L34:
-	leaq	.LC16(%rip), %rdi
+.L37:
+	leaq	.LC17(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -225,13 +240,13 @@ _ZN3wze6engine6camera5BindXEy:
 	.size	_ZN3wze6engine6camera5BindXEy, .-_ZN3wze6engine6camera5BindXEy
 	.section	.rodata.str1.8
 	.align 8
-.LC17:
+.LC18:
 	.string	"wze::engine.camera.BindY(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n"
 	.align 8
-.LC18:
+.LC19:
 	.string	"wze::engine.camera.BindY(): Actor does not exist\nParams: Actor: %lld\n"
 	.align 8
-.LC19:
+.LC20:
 	.string	"wze::engine.camera.BindY(): Actor must not be in Layer 0\nParams: Actor: %lld\n"
 	.text
 	.align 2
@@ -244,40 +259,40 @@ _ZN3wze6engine6camera5BindYEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L43
+	je	.L46
 	movq	(%rdi), %rax
 	cmpq	640(%rax), %rsi
-	jnb	.L37
+	jnb	.L40
 	movq	648(%rax), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L37
+	je	.L40
 	pxor	%xmm0, %xmm0
 	ucomisd	216(%rax), %xmm0
-	jp	.L39
-	je	.L44
-.L39:
+	jp	.L42
+	je	.L47
+.L42:
 	movq	%rsi, 40(%rdi)
 	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L37:
+.L40:
 	.cfi_restore_state
+	leaq	.LC19(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L46:
 	leaq	.LC18(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L43:
-	leaq	.LC17(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L44:
-	leaq	.LC19(%rip), %rdi
+.L47:
+	leaq	.LC20(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -339,10 +354,13 @@ _ZN3wze6engine6camera12GetMinSpeedXEv:
 	.size	_ZN3wze6engine6camera12GetMinSpeedXEv, .-_ZN3wze6engine6camera12GetMinSpeedXEv
 	.section	.rodata.str1.8
 	.align 8
-.LC20:
+.LC21:
+	.string	"wze::engine.camera.SetMinSpeedX(): MinSpeedX must not be NaN\nParams: MinSpeedX: %lf\n"
+	.align 8
+.LC22:
 	.string	"wze::engine.camera.SetMinSpeedX(): MinSpeedX must not be less than or equal to 0\nParams: MinSpeedX: %lf\n"
 	.align 8
-.LC21:
+.LC23:
 	.string	"wze::engine.camera.SetMinSpeedX(): MinSpeedX must not be greater than MaxSpeedX\nParams: MinSpeedX: %lf\n"
 	.text
 	.align 2
@@ -352,33 +370,41 @@ _ZN3wze6engine6camera12GetMinSpeedXEv:
 _ZN3wze6engine6camera12SetMinSpeedXEd:
 .LFB8158:
 	.cfi_startproc
-	pxor	%xmm1, %xmm1
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L69
+	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L62
+	jnb	.L70
 	comisd	88(%rdi), %xmm0
-	ja	.L63
+	ja	.L71
 	movsd	152(%rdi), %xmm1
 	ucomisd	72(%rdi), %xmm1
-	jp	.L54
-	jne	.L54
+	jp	.L59
+	jne	.L59
 	movsd	%xmm0, 152(%rdi)
-.L54:
+.L59:
 	movsd	%xmm0, 72(%rdi)
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L63:
+.L71:
 	.cfi_restore_state
-	leaq	.LC21(%rip), %rdi
+	leaq	.LC23(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L62:
-	leaq	.LC20(%rip), %rdi
+.L70:
+	leaq	.LC22(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L69:
+	leaq	.LC21(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -400,10 +426,13 @@ _ZN3wze6engine6camera12GetMinSpeedYEv:
 	.size	_ZN3wze6engine6camera12GetMinSpeedYEv, .-_ZN3wze6engine6camera12GetMinSpeedYEv
 	.section	.rodata.str1.8
 	.align 8
-.LC22:
+.LC24:
+	.string	"wze::engine.camera.SetMinSpeedY(): MinSpeedY must not be NaN\nParams: MinSpeedY: %lf\n"
+	.align 8
+.LC25:
 	.string	"wze::engine.camera.SetMinSpeedY(): MinSpeedY must not be less than or equal to 0\nParams: MinSpeedY: %lf\n"
 	.align 8
-.LC23:
+.LC26:
 	.string	"wze::engine.camera.SetMinSpeedY(): MinSpeedY must not be greater than MaxSpeedY\nParams: MinSpeedY: %lf\n"
 	.text
 	.align 2
@@ -413,33 +442,41 @@ _ZN3wze6engine6camera12GetMinSpeedYEv:
 _ZN3wze6engine6camera12SetMinSpeedYEd:
 .LFB8160:
 	.cfi_startproc
-	pxor	%xmm1, %xmm1
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L90
+	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L78
+	jnb	.L91
 	comisd	96(%rdi), %xmm0
-	ja	.L79
+	ja	.L92
 	movsd	160(%rdi), %xmm1
 	ucomisd	80(%rdi), %xmm1
-	jp	.L70
-	jne	.L70
+	jp	.L80
+	jne	.L80
 	movsd	%xmm0, 160(%rdi)
-.L70:
+.L80:
 	movsd	%xmm0, 80(%rdi)
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L79:
+.L92:
 	.cfi_restore_state
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC26(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L78:
-	leaq	.LC22(%rip), %rdi
+.L91:
+	leaq	.LC25(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L90:
+	leaq	.LC24(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -461,10 +498,13 @@ _ZN3wze6engine6camera12GetMaxSpeedXEv:
 	.size	_ZN3wze6engine6camera12GetMaxSpeedXEv, .-_ZN3wze6engine6camera12GetMaxSpeedXEv
 	.section	.rodata.str1.8
 	.align 8
-.LC24:
+.LC27:
+	.string	"wze::engine.camera.SetMaxSpeedX(): MaxSpeedX must not be NaN\nParams: MaxSpeedX: %lf\n"
+	.align 8
+.LC28:
 	.string	"wze::engine.camera.SetMaxSpeedX(): MaxSpeedX must not be less than or equal to 0\nParams: MaxSpeedX: %lf\n"
 	.align 8
-.LC25:
+.LC29:
 	.string	"wze::engine.camera.SetMaxSpeedX(): MaxSpeedX must not be less than MinSpeedX\nParams: MaxSpeedX: %lf\n"
 	.text
 	.align 2
@@ -474,33 +514,41 @@ _ZN3wze6engine6camera12GetMaxSpeedXEv:
 _ZN3wze6engine6camera12SetMaxSpeedXEd:
 .LFB8162:
 	.cfi_startproc
-	pxor	%xmm1, %xmm1
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L111
+	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L94
+	jnb	.L112
 	movsd	72(%rdi), %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L95
+	ja	.L113
 	movsd	152(%rdi), %xmm1
 	comisd	%xmm0, %xmm1
-	jbe	.L86
+	jbe	.L101
 	movsd	%xmm0, 152(%rdi)
-.L86:
+.L101:
 	movsd	%xmm0, 88(%rdi)
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L95:
+.L113:
 	.cfi_restore_state
-	leaq	.LC25(%rip), %rdi
+	leaq	.LC29(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L94:
-	leaq	.LC24(%rip), %rdi
+.L112:
+	leaq	.LC28(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L111:
+	leaq	.LC27(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -522,10 +570,13 @@ _ZN3wze6engine6camera12GetMaxSpeedYEv:
 	.size	_ZN3wze6engine6camera12GetMaxSpeedYEv, .-_ZN3wze6engine6camera12GetMaxSpeedYEv
 	.section	.rodata.str1.8
 	.align 8
-.LC26:
+.LC30:
+	.string	"wze::engine.camera.SetMaxSpeedY(): MaxSpeedY must not be NaN\nParams: MaxSpeedY: %lf\n"
+	.align 8
+.LC31:
 	.string	"wze::engine.camera.SetMaxSpeedY(): MaxSpeedY must not be less than or equal to 0\nParams: MaxSpeedY: %lf\n"
 	.align 8
-.LC27:
+.LC32:
 	.string	"wze::engine.camera.SetMaxSpeedY(): MaxSpeedY must not be less than MinSpeedY\nParams: MaxSpeedY: %lf\n"
 	.text
 	.align 2
@@ -535,33 +586,41 @@ _ZN3wze6engine6camera12GetMaxSpeedYEv:
 _ZN3wze6engine6camera12SetMaxSpeedYEd:
 .LFB8164:
 	.cfi_startproc
-	pxor	%xmm1, %xmm1
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L132
+	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L110
+	jnb	.L133
 	movsd	80(%rdi), %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L111
+	ja	.L134
 	movsd	160(%rdi), %xmm1
 	comisd	%xmm0, %xmm1
-	jbe	.L102
+	jbe	.L122
 	movsd	%xmm0, 160(%rdi)
-.L102:
+.L122:
 	movsd	%xmm0, 96(%rdi)
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L111:
+.L134:
 	.cfi_restore_state
-	leaq	.LC27(%rip), %rdi
+	leaq	.LC32(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L110:
-	leaq	.LC26(%rip), %rdi
+.L133:
+	leaq	.LC31(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L132:
+	leaq	.LC30(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -583,7 +642,10 @@ _ZN3wze6engine6camera20GetDecelerationRateXEv:
 	.size	_ZN3wze6engine6camera20GetDecelerationRateXEv, .-_ZN3wze6engine6camera20GetDecelerationRateXEv
 	.section	.rodata.str1.8
 	.align 8
-.LC28:
+.LC33:
+	.string	"wze::engine.camera.SetDecelerationRateX(): DecelerationRateX must not be NaN\nParams: DecelerationRateX: %lf\n"
+	.align 8
+.LC34:
 	.string	"wze::engine.camera.SetDecelerationRateX(): DecelerationRateX must not be less than or equal to 0\nParams: DecelerationRateX: %lf\n"
 	.text
 	.align 2
@@ -593,15 +655,27 @@ _ZN3wze6engine6camera20GetDecelerationRateXEv:
 _ZN3wze6engine6camera20SetDecelerationRateXEd:
 .LFB8166:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L146
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L121
+	jnb	.L147
 	movsd	%xmm0, 104(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L121:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC28(%rip), %rdi
+.L146:
+	.cfi_restore_state
+	leaq	.LC33(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L147:
+	leaq	.LC34(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -623,7 +697,10 @@ _ZN3wze6engine6camera20GetDecelerationRateYEv:
 	.size	_ZN3wze6engine6camera20GetDecelerationRateYEv, .-_ZN3wze6engine6camera20GetDecelerationRateYEv
 	.section	.rodata.str1.8
 	.align 8
-.LC29:
+.LC35:
+	.string	"wze::engine.camera.SetDecelerationRateY(): DecelerationRateY must not be NaN\nParams: DecelerationRateY: %lf\n"
+	.align 8
+.LC36:
 	.string	"wze::engine.camera.SetDecelerationRateY(): DecelerationRateY must not be less than or equal to 0\nParams: DecelerationRateY: %lf\n"
 	.text
 	.align 2
@@ -633,15 +710,27 @@ _ZN3wze6engine6camera20GetDecelerationRateYEv:
 _ZN3wze6engine6camera20SetDecelerationRateYEd:
 .LFB8168:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L159
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L131
+	jnb	.L160
 	movsd	%xmm0, 112(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L131:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC29(%rip), %rdi
+.L159:
+	.cfi_restore_state
+	leaq	.LC35(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L160:
+	leaq	.LC36(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -663,7 +752,10 @@ _ZN3wze6engine6camera20GetAccelerationRateXEv:
 	.size	_ZN3wze6engine6camera20GetAccelerationRateXEv, .-_ZN3wze6engine6camera20GetAccelerationRateXEv
 	.section	.rodata.str1.8
 	.align 8
-.LC30:
+.LC37:
+	.string	"wze::engine.camera.SetAccelerationRateX(): AccelerationRateX must not be NaN\nParams: AccelerationRateX: %lf\n"
+	.align 8
+.LC38:
 	.string	"wze::engine.camera.SetAccelerationRateX(): AccelerationRateX must not be less than or equal to 0\nParams: AccelerationRateX: %lf\n"
 	.text
 	.align 2
@@ -673,15 +765,27 @@ _ZN3wze6engine6camera20GetAccelerationRateXEv:
 _ZN3wze6engine6camera20SetAccelerationRateXEd:
 .LFB8170:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L172
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L141
+	jnb	.L173
 	movsd	%xmm0, 120(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L141:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC30(%rip), %rdi
+.L172:
+	.cfi_restore_state
+	leaq	.LC37(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L173:
+	leaq	.LC38(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -703,7 +807,10 @@ _ZN3wze6engine6camera20GetAccelerationRateYEv:
 	.size	_ZN3wze6engine6camera20GetAccelerationRateYEv, .-_ZN3wze6engine6camera20GetAccelerationRateYEv
 	.section	.rodata.str1.8
 	.align 8
-.LC31:
+.LC39:
+	.string	"wze::engine.camera.SetAccelerationRateY(): AccelerationRateY must not be NaN\nParams: AccelerationRateY: %lf\n"
+	.align 8
+.LC40:
 	.string	"wze::engine.camera.SetAccelerationRateY(): AccelerationRateY must not be less than or equal to 0\nParams: AccelerationRateY: %lf\n"
 	.text
 	.align 2
@@ -713,15 +820,27 @@ _ZN3wze6engine6camera20GetAccelerationRateYEv:
 _ZN3wze6engine6camera20SetAccelerationRateYEd:
 .LFB8172:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L185
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L151
+	jnb	.L186
 	movsd	%xmm0, 128(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L151:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC31(%rip), %rdi
+.L185:
+	.cfi_restore_state
+	leaq	.LC39(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L186:
+	leaq	.LC40(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -743,7 +862,10 @@ _ZN3wze6engine6camera17GetSlowDownRangeXEv:
 	.size	_ZN3wze6engine6camera17GetSlowDownRangeXEv, .-_ZN3wze6engine6camera17GetSlowDownRangeXEv
 	.section	.rodata.str1.8
 	.align 8
-.LC32:
+.LC41:
+	.string	"wze::engine.camera.SetSlowDownRangeX(): SlowDownRangeX must not be NaN\nParams: SlowDownRangeX: %lf\n"
+	.align 8
+.LC42:
 	.string	"wze::engine.camera.SetSlowDownRangeX(): SlowDownRangeX must not be less than 0\nParams: SlowDownRangeX: %lf\n"
 	.text
 	.align 2
@@ -753,15 +875,27 @@ _ZN3wze6engine6camera17GetSlowDownRangeXEv:
 _ZN3wze6engine6camera17SetSlowDownRangeXEd:
 .LFB8174:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L198
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L161
+	ja	.L199
 	movsd	%xmm0, 136(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L161:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC32(%rip), %rdi
+.L198:
+	.cfi_restore_state
+	leaq	.LC41(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L199:
+	leaq	.LC42(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -783,7 +917,10 @@ _ZN3wze6engine6camera17GetSlowDownRangeYEv:
 	.size	_ZN3wze6engine6camera17GetSlowDownRangeYEv, .-_ZN3wze6engine6camera17GetSlowDownRangeYEv
 	.section	.rodata.str1.8
 	.align 8
-.LC33:
+.LC43:
+	.string	"wze::engine.camera.SetSlowDownRangeY(): SlowDownRangeY must not be NaN\nParams: SlowDownRangeY: %lf\n"
+	.align 8
+.LC44:
 	.string	"wze::engine.camera.SetSlowDownRangeY(): SlowDownRangeY must not be less than 0\nParams: SlowDownRangeY: %lf\n"
 	.text
 	.align 2
@@ -793,15 +930,27 @@ _ZN3wze6engine6camera17GetSlowDownRangeYEv:
 _ZN3wze6engine6camera17SetSlowDownRangeYEd:
 .LFB8176:
 	.cfi_startproc
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	ucomisd	%xmm0, %xmm0
+	jp	.L211
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L171
+	ja	.L212
 	movsd	%xmm0, 144(%rdi)
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
-.L171:
-	pushq	%rax
-	.cfi_def_cfa_offset 16
-	leaq	.LC33(%rip), %rdi
+.L211:
+	.cfi_restore_state
+	leaq	.LC43(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L212:
+	leaq	.LC44(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -811,7 +960,7 @@ _ZN3wze6engine6camera17SetSlowDownRangeYEd:
 	.size	_ZN3wze6engine6camera17SetSlowDownRangeYEd, .-_ZN3wze6engine6camera17SetSlowDownRangeYEd
 	.section	.rodata.str1.8
 	.align 8
-.LC34:
+.LC45:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.text
 	.align 2
@@ -836,39 +985,39 @@ _ZN3wze6engine6camera6UpdateEv:
 	movzbl	24(%rdi), %r12d
 	movq	32(%rdi), %rax
 	testb	%r12b, %r12b
-	jne	.L173
+	jne	.L214
 	testq	%rax, %rax
-	je	.L283
+	je	.L324
 	movq	(%rdi), %rbp
-.L174:
+.L215:
 	movq	640(%rbp), %rcx
 	movq	648(%rbp), %rdx
 	cmpq	%rcx, %rax
-	jnb	.L296
+	jnb	.L337
 	movq	(%rdx,%rax,8), %rax
 	movq	40(%rbx), %rsi
 	movsd	168(%rax), %xmm0
 	movsd	%xmm0, 48(%rbx)
 	testq	%rsi, %rsi
-	je	.L266
+	je	.L307
 	xorl	%r12d, %r12d
-.L191:
+.L232:
 	cmpq	%rcx, %rsi
-	jnb	.L291
+	jnb	.L332
 	movq	(%rdx,%rsi,8), %rax
 	movsd	176(%rax), %xmm0
 	movsd	%xmm0, 56(%rbx)
-.L221:
+.L262:
 	testb	%r12b, %r12b
-	je	.L266
-.L201:
+	je	.L307
+.L242:
 	movsd	152(%rbx), %xmm0
 	comisd	72(%rbx), %xmm0
-	ja	.L297
-.L228:
+	ja	.L338
+.L269:
 	movsd	88(%rbx), %xmm1
 	comisd	%xmm0, %xmm1
-	jbe	.L234
+	jbe	.L275
 	movq	(%rbx), %rax
 	pxor	%xmm2, %xmm2
 	movl	772(%rax), %eax
@@ -877,14 +1026,14 @@ _ZN3wze6engine6camera6UpdateEv:
 	addsd	%xmm2, %xmm0
 	minsd	%xmm0, %xmm1
 	movsd	%xmm1, 152(%rbx)
-.L234:
+.L275:
 	movsd	160(%rbx), %xmm0
 	comisd	80(%rbx), %xmm0
-	ja	.L298
-.L240:
+	ja	.L339
+.L281:
 	movsd	96(%rbx), %xmm1
 	comisd	%xmm0, %xmm1
-	jbe	.L266
+	jbe	.L307
 	movq	(%rbx), %rax
 	pxor	%xmm2, %xmm2
 	movl	772(%rax), %eax
@@ -893,7 +1042,7 @@ _ZN3wze6engine6camera6UpdateEv:
 	addsd	%xmm2, %xmm0
 	minsd	%xmm0, %xmm1
 	movsd	%xmm1, 160(%rbx)
-.L266:
+.L307:
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
@@ -907,69 +1056,69 @@ _ZN3wze6engine6camera6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L283:
+.L324:
 	.cfi_restore_state
 	movq	40(%rdi), %rsi
 	testq	%rsi, %rsi
-	je	.L266
+	je	.L307
 	movq	(%rdi), %rbp
 	movq	640(%rbp), %rcx
 	movq	648(%rbp), %rdx
-	jmp	.L191
+	jmp	.L232
 	.p2align 4,,10
 	.p2align 3
-.L173:
+.L214:
 	movq	(%rdi), %rbp
 	movsd	48(%rdi), %xmm0
 	movq	640(%rbp), %rcx
 	movq	648(%rbp), %rdx
 	cmpq	%rcx, %rax
-	jnb	.L296
+	jnb	.L337
 	movq	(%rdx,%rax,8), %rsi
 	movsd	168(%rsi), %xmm2
 	ucomisd	%xmm2, %xmm0
-	jp	.L177
-	jne	.L177
+	jp	.L218
+	jne	.L218
 	movsd	72(%rdi), %xmm1
 	movsd	%xmm1, 152(%rdi)
-.L177:
+.L218:
 	movq	40(%rbx), %rsi
 	movsd	56(%rbx), %xmm1
 	cmpq	%rcx, %rsi
-	jnb	.L291
+	jnb	.L332
 	movq	(%rdx,%rsi,8), %rdi
 	movsd	176(%rdi), %xmm3
 	ucomisd	%xmm3, %xmm1
-	jp	.L184
-	jne	.L184
+	jp	.L225
+	jne	.L225
 	ucomisd	%xmm2, %xmm0
 	movsd	80(%rbx), %xmm4
 	movsd	%xmm4, 160(%rbx)
-	jp	.L184
-	jne	.L184
+	jp	.L225
+	jne	.L225
 	pxor	%xmm2, %xmm2
 	testq	%rax, %rax
-	jne	.L193
-.L250:
+	jne	.L234
+.L291:
 	testq	%rsi, %rsi
-	je	.L266
+	je	.L307
 	ucomisd	%xmm2, %xmm2
 	movq	(%rbx), %rbp
 	movq	640(%rbp), %rcx
 	movq	648(%rbp), %rdx
 	setnp	%r12b
 	andb	24(%rbx), %r12b
-	je	.L191
-.L252:
+	je	.L232
+.L293:
 	xorl	%r12d, %r12d
-.L190:
+.L231:
 	movsd	56(%rbx), %xmm0
 	cmpq	%rcx, %rsi
-	jnb	.L291
+	jnb	.L332
 	movq	(%rdx,%rsi,8), %rax
 	movsd	176(%rax), %xmm1
 	comisd	%xmm0, %xmm1
-	jbe	.L286
+	jbe	.L327
 	movl	772(%rbp), %eax
 	pxor	%xmm1, %xmm1
 	leaq	656(%rbp), %rdi
@@ -981,49 +1130,49 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	%xmm0, 56(%rbx)
 	movq	648(%rbp), %rax
 	cmpq	640(%rbp), %rsi
-	jnb	.L291
+	jnb	.L332
 	movq	(%rax,%rsi,8), %rax
 	movsd	176(%rax), %xmm1
 	comisd	%xmm1, %xmm0
-	jbe	.L201
-.L289:
+	jbe	.L242
+.L330:
 	movsd	%xmm1, 56(%rbx)
-	jmp	.L201
+	jmp	.L242
 	.p2align 4,,10
 	.p2align 3
-.L184:
+.L225:
 	leaq	656(%rbp), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movq	32(%rbx), %rax
 	movapd	%xmm0, %xmm2
 	testq	%rax, %rax
-	je	.L299
+	je	.L340
 	movq	(%rbx), %rbp
 	cmpb	$0, 24(%rbx)
 	movq	640(%rbp), %rcx
 	movq	648(%rbp), %rdx
-	je	.L174
+	je	.L215
 	ucomisd	%xmm0, %xmm0
-	jp	.L174
+	jp	.L215
 	movsd	48(%rbx), %xmm0
 	cmpq	%rcx, %rax
-	jb	.L193
-.L296:
+	jb	.L234
+.L337:
 	movq	%rax, %rsi
-.L291:
-	leaq	.LC34(%rip), %rdi
+.L332:
+	leaq	.LC45(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L299:
+.L340:
 	movq	40(%rbx), %rsi
-	jmp	.L250
+	jmp	.L291
 	.p2align 4,,10
 	.p2align 3
-.L298:
+.L339:
 	movq	(%rbx), %rbp
 	movq	40(%rbx), %rsi
 	leaq	632(%rbp), %rdi
@@ -1045,12 +1194,12 @@ _ZN3wze6engine6camera6UpdateEv:
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movsd	144(%rbx), %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L242
+	jnb	.L283
 	movsd	160(%rbx), %xmm0
-	jmp	.L240
+	jmp	.L281
 	.p2align 4,,10
 	.p2align 3
-.L297:
+.L338:
 	leaq	632(%rbp), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
@@ -1070,16 +1219,16 @@ _ZN3wze6engine6camera6UpdateEv:
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movsd	136(%rbx), %xmm1
 	comisd	%xmm0, %xmm1
-	jnb	.L230
+	jnb	.L271
 	movsd	152(%rbx), %xmm0
-	jmp	.L228
+	jmp	.L269
 	.p2align 4,,10
 	.p2align 3
-.L193:
+.L234:
 	movq	(%rdx,%rax,8), %rax
 	movsd	168(%rax), %xmm1
 	comisd	%xmm0, %xmm1
-	jbe	.L285
+	jbe	.L326
 	movl	772(%rbp), %eax
 	pxor	%xmm1, %xmm1
 	leaq	656(%rbp), %rdi
@@ -1094,21 +1243,21 @@ _ZN3wze6engine6camera6UpdateEv:
 	movq	640(%rbp), %rcx
 	movq	648(%rbp), %rdx
 	cmpq	%rcx, %rsi
-	jnb	.L291
+	jnb	.L332
 	movq	(%rdx,%rsi,8), %rax
 	movq	40(%rbx), %rsi
 	movsd	168(%rax), %xmm1
 	comisd	%xmm1, %xmm0
-	ja	.L210
-.L293:
+	ja	.L251
+.L334:
 	testq	%rsi, %rsi
-	je	.L201
+	je	.L242
 	cmpb	$0, 24(%rbx)
-	jne	.L190
-	jmp	.L191
+	jne	.L231
+	jmp	.L232
 	.p2align 4,,10
 	.p2align 3
-.L242:
+.L283:
 	movq	(%rbx), %rax
 	pxor	%xmm0, %xmm0
 	movsd	160(%rbx), %xmm1
@@ -1119,10 +1268,10 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	80(%rbx), %xmm0
 	maxsd	%xmm1, %xmm0
 	movsd	%xmm0, 160(%rbx)
-	jmp	.L266
+	jmp	.L307
 	.p2align 4,,10
 	.p2align 3
-.L230:
+.L271:
 	movq	(%rbx), %rax
 	pxor	%xmm0, %xmm0
 	movsd	152(%rbx), %xmm1
@@ -1133,12 +1282,12 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	72(%rbx), %xmm0
 	maxsd	%xmm1, %xmm0
 	movsd	%xmm0, 152(%rbx)
-	jmp	.L234
+	jmp	.L275
 	.p2align 4,,10
 	.p2align 3
-.L286:
+.L327:
 	comisd	%xmm1, %xmm0
-	jbe	.L221
+	jbe	.L262
 	movl	772(%rbp), %eax
 	pxor	%xmm1, %xmm1
 	leaq	656(%rbp), %rdi
@@ -1150,24 +1299,24 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	%xmm0, 56(%rbx)
 	movq	648(%rbp), %rax
 	cmpq	640(%rbp), %rsi
-	jnb	.L291
+	jnb	.L332
 	movq	(%rax,%rsi,8), %rax
 	movsd	176(%rax), %xmm1
 	comisd	%xmm0, %xmm1
-	jbe	.L201
-	jmp	.L289
+	jbe	.L242
+	jmp	.L330
 	.p2align 4,,10
 	.p2align 3
-.L285:
+.L326:
 	comisd	%xmm1, %xmm0
-	ja	.L205
+	ja	.L246
 	movq	40(%rbx), %rsi
 	testq	%rsi, %rsi
-	jne	.L252
-	jmp	.L266
+	jne	.L293
+	jmp	.L307
 	.p2align 4,,10
 	.p2align 3
-.L205:
+.L246:
 	movl	772(%rbp), %eax
 	pxor	%xmm1, %xmm1
 	leaq	656(%rbp), %rdi
@@ -1182,15 +1331,15 @@ _ZN3wze6engine6camera6UpdateEv:
 	movq	640(%rbp), %rcx
 	movq	648(%rbp), %rdx
 	cmpq	%rcx, %rsi
-	jnb	.L291
+	jnb	.L332
 	movq	(%rdx,%rsi,8), %rax
 	movq	40(%rbx), %rsi
 	movsd	168(%rax), %xmm1
 	comisd	%xmm0, %xmm1
-	jbe	.L293
-.L210:
+	jbe	.L334
+.L251:
 	movsd	%xmm1, 48(%rbx)
-	jmp	.L293
+	jmp	.L334
 	.cfi_endproc
 .LFE8177:
 	.size	_ZN3wze6engine6camera6UpdateEv, .-_ZN3wze6engine6camera6UpdateEv
@@ -1230,8 +1379,8 @@ _ZN3wze6engine6camera9TransformEddttd:
 	ucomisd	%xmm0, %xmm2
 	movq	(%rdi), %rax
 	movzwl	42(%rax), %r13d
-	jp	.L301
-	jne	.L301
+	jp	.L342
+	jne	.L342
 	movapd	%xmm3, %xmm0
 	call	round@PLT
 	movl	%ebx, %edx
@@ -1239,7 +1388,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	sarl	%edx
 	movq	%r15, %xmm0
 	subl	%edx, %ebp
-.L306:
+.L347:
 	call	round@PLT
 	movl	%r13d, %edx
 	addq	$24, %rsp
@@ -1271,7 +1420,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L301:
+.L342:
 	.cfi_restore_state
 	mulsd	64(%r14), %xmm2
 	pxor	%xmm0, %xmm0
@@ -1307,7 +1456,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	addsd	56(%r14), %xmm1
 	subsd	%xmm1, %xmm0
 	mulsd	%xmm2, %xmm0
-	jmp	.L306
+	jmp	.L347
 	.cfi_endproc
 .LFE8178:
 	.size	_ZN3wze6engine6camera9TransformEddttd, .-_ZN3wze6engine6camera9TransformEddttd

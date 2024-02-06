@@ -1019,6 +1019,11 @@ _ZN3wze6engine6actors5actor8textures7texture4GetXEv:
 	.cfi_endproc
 .LFE8160:
 	.size	_ZN3wze6engine6actors5actor8textures7texture4GetXEv, .-_ZN3wze6engine6actors5actor8textures7texture4GetXEv
+	.section	.rodata.str1.8
+	.align 8
+.LC15:
+	.string	"wze::engine.actors[].textures[].SetX(): X must not be NaN\nParams: X: %lf\n"
+	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8textures7texture4SetXEd
@@ -1029,36 +1034,76 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	movq	%rdi, %rbx
 	movapd	%xmm0, %xmm2
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L202
 	movq	8(%rdi), %rax
-	movq	(%rdi), %rdx
-	movsd	48(%rbx), %xmm3
-	movsd	%xmm2, 8(%rsp)
-	movsd	176(%rax), %xmm1
+	movq	%rdi, %rbx
 	movsd	168(%rax), %xmm0
-	leaq	656(%rdx), %rdi
-	call	_ZN3wze6engine6vector6LengthEdddd@PLT
-	movq	8(%rbx), %rax
-	movq	(%rbx), %rcx
-	movsd	8(%rsp), %xmm2
-	movsd	%xmm0, 56(%rbx)
-	movsd	48(%rbx), %xmm3
-	movsd	168(%rax), %xmm0
-	movsd	176(%rax), %xmm1
-	leaq	656(%rcx), %rdi
-	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	movsd	8(%rsp), %xmm2
+	ucomisd	%xmm2, %xmm0
+	jp	.L194
+	jne	.L194
+	movq	$0x000000000, 56(%rdi)
+.L187:
+	pxor	%xmm0, %xmm0
+.L191:
 	movsd	%xmm0, 64(%rbx)
+	movapd	%xmm2, %xmm0
 	movsd	%xmm2, 40(%rbx)
 	addq	$16, %rsp
+	.cfi_remember_state
 	.cfi_def_cfa_offset 16
-	movapd	%xmm2, %xmm0
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
+	.p2align 4,,10
+	.p2align 3
+.L194:
+	.cfi_restore_state
+	movsd	176(%rax), %xmm1
+	movsd	48(%rbx), %xmm3
+	ucomisd	%xmm3, %xmm1
+	jp	.L195
+	jne	.L195
+	movq	$0x000000000, 56(%rbx)
+.L192:
+	movsd	176(%rax), %xmm1
+	ucomisd	%xmm3, %xmm1
+	jp	.L189
+	je	.L187
+.L189:
+	movq	(%rbx), %rax
+	movsd	%xmm2, 8(%rsp)
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine6vector5AngleEdddd@PLT
+	movsd	8(%rsp), %xmm2
+	jmp	.L191
+	.p2align 4,,10
+	.p2align 3
+.L195:
+	movq	(%rbx), %rax
+	movsd	%xmm2, 8(%rsp)
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine6vector6LengthEdddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm2
+	movapd	%xmm0, %xmm1
+	movsd	168(%rax), %xmm0
+	movsd	%xmm1, 56(%rbx)
+	ucomisd	%xmm0, %xmm2
+	jp	.L201
+	je	.L187
+.L201:
+	movsd	48(%rbx), %xmm3
+	jmp	.L192
+.L202:
+	leaq	.LC15(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
 .LFE8161:
 	.size	_ZN3wze6engine6actors5actor8textures7texture4SetXEd, .-_ZN3wze6engine6actors5actor8textures7texture4SetXEd
@@ -1074,6 +1119,11 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEv:
 	.cfi_endproc
 .LFE8162:
 	.size	_ZN3wze6engine6actors5actor8textures7texture4GetYEv, .-_ZN3wze6engine6actors5actor8textures7texture4GetYEv
+	.section	.rodata.str1.8
+	.align 8
+.LC16:
+	.string	"wze::engine.actors[].textures[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
+	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8textures7texture4GetYEd
@@ -1084,36 +1134,75 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	movq	%rdi, %rbx
 	movapd	%xmm0, %xmm3
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L223
 	movq	8(%rdi), %rax
-	movq	(%rdi), %rdx
-	movsd	40(%rbx), %xmm2
-	movsd	%xmm3, 8(%rsp)
-	movsd	176(%rax), %xmm1
+	movsd	40(%rdi), %xmm2
+	movq	%rdi, %rbx
 	movsd	168(%rax), %xmm0
-	leaq	656(%rdx), %rdi
-	call	_ZN3wze6engine6vector6LengthEdddd@PLT
-	movq	8(%rbx), %rax
-	movq	(%rbx), %rcx
-	movsd	8(%rsp), %xmm3
-	movsd	%xmm0, 56(%rbx)
-	movsd	40(%rbx), %xmm2
-	movsd	168(%rax), %xmm0
-	movsd	176(%rax), %xmm1
-	leaq	656(%rcx), %rdi
-	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	movsd	8(%rsp), %xmm3
+	ucomisd	%xmm2, %xmm0
+	jp	.L218
+	jne	.L218
+	movq	$0x000000000, 56(%rdi)
+.L211:
+	pxor	%xmm0, %xmm0
+.L215:
 	movsd	%xmm0, 64(%rbx)
+	movapd	%xmm3, %xmm0
 	movsd	%xmm3, 48(%rbx)
 	addq	$16, %rsp
+	.cfi_remember_state
 	.cfi_def_cfa_offset 16
-	movapd	%xmm3, %xmm0
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
+	.p2align 4,,10
+	.p2align 3
+.L218:
+	.cfi_restore_state
+	movsd	176(%rax), %xmm1
+	ucomisd	%xmm3, %xmm1
+	jp	.L219
+	jne	.L219
+	movq	$0x000000000, 56(%rbx)
+.L216:
+	movsd	176(%rax), %xmm1
+	ucomisd	%xmm3, %xmm1
+	jp	.L213
+	je	.L211
+.L213:
+	movq	(%rbx), %rax
+	movsd	%xmm3, 8(%rsp)
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine6vector5AngleEdddd@PLT
+	movsd	8(%rsp), %xmm3
+	jmp	.L215
+	.p2align 4,,10
+	.p2align 3
+.L219:
+	movq	(%rbx), %rax
+	movsd	%xmm3, 8(%rsp)
+	leaq	656(%rax), %rdi
+	call	_ZN3wze6engine6vector6LengthEdddd@PLT
+	movq	8(%rbx), %rax
+	movsd	40(%rbx), %xmm2
+	movapd	%xmm0, %xmm1
+	movsd	8(%rsp), %xmm3
+	movsd	168(%rax), %xmm0
+	movsd	%xmm1, 56(%rbx)
+	ucomisd	%xmm2, %xmm0
+	jp	.L216
+	jne	.L216
+	jmp	.L211
+.L223:
+	leaq	.LC16(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
 .LFE8163:
 	.size	_ZN3wze6engine6actors5actor8textures7texture4GetYEd, .-_ZN3wze6engine6actors5actor8textures7texture4GetYEd
@@ -1131,7 +1220,7 @@ _ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv:
 	.size	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv, .-_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv
 	.section	.rodata.str1.8
 	.align 8
-.LC14:
+.LC17:
 	.string	"wze::engine.actors[].textures[].SetTextureID(): Texture does not exist\nParams: ID: %lld\n"
 	.text
 	.align 2
@@ -1143,21 +1232,21 @@ _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
 	.cfi_startproc
 	movq	%rsi, %rax
 	testq	%rsi, %rsi
-	je	.L187
+	je	.L226
 	movq	(%rdi), %rdx
 	cmpq	672(%rdx), %rsi
-	jnb	.L188
+	jnb	.L227
 	movq	680(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
-	je	.L188
-.L187:
+	je	.L227
+.L226:
 	movq	%rax, 72(%rdi)
 	ret
-.L188:
+.L227:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
-	leaq	.LC14(%rip), %rdi
+	leaq	.LC17(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi

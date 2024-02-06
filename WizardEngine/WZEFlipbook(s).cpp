@@ -260,12 +260,13 @@ namespace wze
         this->Priority = 128;
         this->Visible = true;
         this->Loop = true;
+        this->Paused = false;
         this->X = this->Actor->X;
         this->Y = this->Actor->Y;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->Delay = Delay;
-        this->Current = 0;
+        this->CurrentFrame = 0;
         this->Remainder = 0;
         this->Textures = {TextureIDs};
     }
@@ -286,12 +287,13 @@ namespace wze
         this->Priority = 128;
         this->Visible = true;
         this->Loop = true;
+        this->Paused = false;
         this->X = this->Actor->X;
         this->Y = this->Actor->Y;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->Delay = Delay;
-        this->Current = 0;
+        this->CurrentFrame = 0;
         this->Remainder = 0;
         this->Textures = {TextureIDs};
     }
@@ -303,8 +305,14 @@ namespace wze
 
     double engine::actors::actor::flipbooks::flipbook::SetX(double X)
     {
-        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, X, this->Y);
-        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, X, this->Y);
+        if (X != X)
+        {
+            printf("wze::engine.actors[].flipbooks[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
+            exit(1);
+        }
+
+        this->OffsetLength = this->Actor->X != X && this->Actor->Y != this->Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
+        this->OffsetAngle = this->Actor->X != X && this->Actor->Y != this->Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
 
         return this->X = X;
     }
@@ -316,8 +324,14 @@ namespace wze
 
     double engine::actors::actor::flipbooks::flipbook::SetY(double Y)
     {
-        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, this->X, Y);
-        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y);
+        if (Y != Y)
+        {
+            printf("wze::engine.actors[].flipbooks[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            exit(1);
+        }
+
+        this->OffsetLength = this->Actor->X != this->X && this->Actor->Y != Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
+        this->OffsetAngle = this->Actor->X != this->X && this->Actor->Y != Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
 
         return this->Y = Y;
     }
@@ -338,9 +352,19 @@ namespace wze
         return this->Delay = Delay;
     }
 
+    bool engine::actors::actor::flipbooks::flipbook::IsPlaying()
+    {
+        return !(this->Paused || (!this->Loop && this->CurrentFrame == this->Textures.Length() - 1));
+    }
+
+    uint64 engine::actors::actor::flipbooks::flipbook::GetCurrentFrame()
+    {
+        return this->CurrentFrame;
+    }
+
     uint8 engine::actors::actor::flipbooks::flipbook::Reset()
     {
-        this->Current = 0;
+        this->CurrentFrame = 0;
 
         return 0;
     }

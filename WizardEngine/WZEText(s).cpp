@@ -226,8 +226,14 @@ namespace wze
 
     double engine::actors::actor::texts::text::SetX(double X)
     {
-        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, X, this->Y);
-        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, X, this->Y);
+        if (X != X)
+        {
+            printf("wze::engine.actors[].texts[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
+            exit(1);
+        }
+
+        this->OffsetLength = this->Actor->X != X && this->Actor->Y != this->Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
+        this->OffsetAngle = this->Actor->X != X && this->Actor->Y != this->Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
 
         return this->X = X;
     }
@@ -239,8 +245,14 @@ namespace wze
 
     double engine::actors::actor::texts::text::SetY(double Y)
     {
-        this->OffsetLength = this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, this->X, Y);
-        this->OffsetAngle = this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y);
+        if (Y != Y)
+        {
+            printf("wze::engine.actors[].texts[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            exit(1);
+        }
+
+        this->OffsetLength = this->Actor->X != this->X && this->Actor->Y != Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
+        this->OffsetAngle = this->Actor->X != this->X && this->Actor->Y != Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
 
         return this->Y = Y;
     }

@@ -28,6 +28,11 @@ namespace wze
 
     double engine::render::SetSamplingStep(double SamplingStep)
     {
+        if (SamplingStep != SamplingStep)
+        {
+            printf("wze::engine.render.SetSamplingStep(): SamplingStep must not be NaN\nParams: SamplingStep: %lf\n", SamplingStep);
+            exit(1);
+        }
         if (SamplingStep <= 0)
         {
             printf("wze::engine.render.SetSamplingStep(): SamplingStep must not be less than or equal to 0\nParams: SamplingStep: %lf\n", SamplingStep);
@@ -168,7 +173,7 @@ namespace wze
 
             for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
             {
-                if (this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Visible == false || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Current] == 0)
+                if (this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Visible == false || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame] == 0)
                 {
                     continue;
                 }
@@ -644,17 +649,17 @@ namespace wze
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorB) != 0)
+        if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->CurrentFrame]], ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorB) != 0)
         {
             printf("wze::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\n");
             exit(1);
         }
-        if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Current]], ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorA) != 0)
+        if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->CurrentFrame]], ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorA) != 0)
         {
             printf("wze::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Current]], NULL, &Token->Area, -((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->CurrentFrame]], NULL, &Token->Area, -((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
             printf("wze::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\n");
             exit(1);
