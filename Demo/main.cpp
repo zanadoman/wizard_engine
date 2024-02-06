@@ -1,5 +1,4 @@
 /*
-**  Collision system
 **  Overlap system
 **  Particle system
 **  Bloom
