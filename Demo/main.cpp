@@ -1,6 +1,5 @@
 /*
 **  Collision system
-**  Camera smoothing
 **  Overlap system
 **  Particle system
 **  Bloom
