@@ -685,8 +685,8 @@ namespace wze
                 bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
                 direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
                 bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
-                uint8 ResolveCollisionLayer(uint64 Layer);
-                uint8 NewCollisionBranch(uint64 Layer, uint64 Root, uint64 RootForce, uint64 CurrentBranch);
+                uint8 ResolveCollisionLayer(uint64 CollisionLayer);
+                uint8 NewCollisionBranch(array<actors::actor*>* Cache, uint64 Root, uint64 RootForce, uint64 CurrentBranch);
             } Collision;
 
             //__________Engine_________________________________________________________________________________________

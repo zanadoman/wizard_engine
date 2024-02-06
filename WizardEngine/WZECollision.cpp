@@ -336,76 +336,79 @@ namespace wze
         return false;
     }
 
-    uint8 engine::collision::ResolveCollisionLayer(uint64 Layer)
+    uint8 engine::collision::ResolveCollisionLayer(uint64 CollisionLayer)
     {
         uint64 ForceRequirement;
+        array<actors::actor*>* cache;
 
-        for (uint64 Root = 0; Root < this->CollisionLayers[Layer].Length(); Root++)
+        cache = &this->CollisionLayers[CollisionLayer];
+
+        for (uint64 Root = 0; Root < cache->Length(); Root++)
         {
             ForceRequirement = 0;
-            for (uint64 NextBranch = 0; NextBranch < this->CollisionLayers[Layer].Length(); NextBranch++)
+            for (uint64 NextBranch = 0; NextBranch < cache->Length(); NextBranch++)
             {
-                if (NextBranch != Root && this->GetCollisionDirection(this->CollisionLayers[Layer][Root], this->CollisionLayers[Layer][NextBranch]) != NONE)
+                if (NextBranch != Root && this->GetCollisionDirection((*cache)[Root], (*cache)[NextBranch]) != NONE)
                 {
-                    ForceRequirement += this->CollisionLayers[Layer][NextBranch]->Resistance;
+                    ForceRequirement += (*cache)[NextBranch]->Resistance;
                 }
             }
 
-            for (uint64 NextBranch = 0; NextBranch < this->CollisionLayers[Layer].Length(); NextBranch++)
+            for (uint64 NextBranch = 0; NextBranch < cache->Length(); NextBranch++)
             {
                 if (NextBranch != Root)
                 {
-                    if (this->CollisionLayers[Layer][Root]->Force <= ForceRequirement)
+                    if ((*cache)[Root]->Force <= ForceRequirement)
                     {
-                        this->ResolveCollision(this->CollisionLayers[Layer][Root], 0, this->CollisionLayers[Layer][NextBranch]);
+                        this->ResolveCollision((*cache)[Root], 0, (*cache)[NextBranch]);
                     }
-                    else if (this->ResolveCollision(this->CollisionLayers[Layer][Root], this->CollisionLayers[Layer][NextBranch]->Resistance + this->CollisionLayers[Layer][Root]->Force - ForceRequirement, this->CollisionLayers[Layer][NextBranch]))
+                    else if (this->ResolveCollision((*cache)[Root], (*cache)[NextBranch]->Resistance + (*cache)[Root]->Force - ForceRequirement, (*cache)[NextBranch]))
                     {
-                        this->NewCollisionBranch(Layer, Root, this->CollisionLayers[Layer][Root]->Force - ForceRequirement, NextBranch);
-                        this->ResolveCollision(this->CollisionLayers[Layer][Root], 0, this->CollisionLayers[Layer][NextBranch]);
+                        this->NewCollisionBranch(cache, Root, (*cache)[Root]->Force - ForceRequirement, NextBranch);
+                        this->ResolveCollision((*cache)[Root], 0, (*cache)[NextBranch]);
                     }
                 }
             }
         }
 
-        for (uint64 i = 0; i < this->CollisionLayers[Layer].Length(); i++)
+        for (uint64 i = 0; i < cache->Length(); i++)
         {
-            this->CollisionLayers[Layer][i]->UpdateMembersPosition();
+            (*cache)[i]->UpdateMembersPosition();
 
-            this->CollisionLayers[Layer][i]->PrevX = this->CollisionLayers[Layer][i]->X;
-            this->CollisionLayers[Layer][i]->PrevY = this->CollisionLayers[Layer][i]->Y;
-            this->CollisionLayers[Layer][i]->PrevHitboxWidth = this->CollisionLayers[Layer][i]->HitboxWidth;
-            this->CollisionLayers[Layer][i]->PrevHitboxHeight = this->CollisionLayers[Layer][i]->HitboxHeight;
+            (*cache)[i]->PrevX = (*cache)[i]->X;
+            (*cache)[i]->PrevY = (*cache)[i]->Y;
+            (*cache)[i]->PrevHitboxWidth = (*cache)[i]->HitboxWidth;
+            (*cache)[i]->PrevHitboxHeight = (*cache)[i]->HitboxHeight;
         }
 
         return 0;
     }
 
-    uint8 engine::collision::NewCollisionBranch(uint64 Layer, uint64 Root, uint64 RootForce, uint64 CurrentBranch)
+    uint8 engine::collision::NewCollisionBranch(array<actors::actor*>* Cache, uint64 Root, uint64 RootForce, uint64 CurrentBranch)
     {
         uint64 ForceRequirement;
 
         ForceRequirement = 0;
-        for (uint64 NextBranch = 0; NextBranch < this->CollisionLayers[Layer].Length(); NextBranch++)
+        for (uint64 NextBranch = 0; NextBranch < Cache->Length(); NextBranch++)
         {
-            if (NextBranch != Root && NextBranch != CurrentBranch && this->GetCollisionDirection(this->CollisionLayers[Layer][CurrentBranch], this->CollisionLayers[Layer][NextBranch]) != NONE)
+            if (NextBranch != Root && NextBranch != CurrentBranch && this->GetCollisionDirection((*Cache)[CurrentBranch], (*Cache)[NextBranch]) != NONE)
             {
-                ForceRequirement += this->CollisionLayers[Layer][NextBranch]->Resistance;
+                ForceRequirement += (*Cache)[NextBranch]->Resistance;
             }
         }
 
-        for (uint64 NextBranch = 0; NextBranch < this->CollisionLayers[Layer].Length(); NextBranch++)
+        for (uint64 NextBranch = 0; NextBranch < Cache->Length(); NextBranch++)
         {
             if (NextBranch != Root && NextBranch != CurrentBranch)
             {
                 if (RootForce <= ForceRequirement)
                 {
-                    this->ResolveCollision(this->CollisionLayers[Layer][CurrentBranch], 0, this->CollisionLayers[Layer][NextBranch]);
+                    this->ResolveCollision((*Cache)[CurrentBranch], 0, (*Cache)[NextBranch]);
                 }
-                else if (this->ResolveCollision(this->CollisionLayers[Layer][CurrentBranch], this->CollisionLayers[Layer][NextBranch]->Resistance + RootForce - ForceRequirement, this->CollisionLayers[Layer][NextBranch]))
+                else if (this->ResolveCollision((*Cache)[CurrentBranch], (*Cache)[NextBranch]->Resistance + RootForce - ForceRequirement, (*Cache)[NextBranch]))
                 {
-                    this->NewCollisionBranch(Layer, Root, RootForce - ForceRequirement, NextBranch);
-                    this->ResolveCollision(this->CollisionLayers[Layer][CurrentBranch], 0, this->CollisionLayers[Layer][NextBranch]);
+                    this->NewCollisionBranch(Cache, Root, RootForce - ForceRequirement, NextBranch);
+                    this->ResolveCollision((*Cache)[CurrentBranch], 0, (*Cache)[NextBranch]);
                 }
             }
         }
