@@ -195,7 +195,6 @@ namespace wze
         SDL_Surface* surface;
         SDL_Color color;
 
-        this->Height = this->Actor->Height;
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
@@ -210,13 +209,14 @@ namespace wze
         this->X = this->Actor->X;
         this->Y = this->Actor->Y;
         this->Width = 0;
+        this->Height = this->Actor->Height;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->String = {String};
         this->FontID = FontID;
         this->Texture = NULL;
 
-        if (FontID != 0)
+        if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
             color.r = color.g = color.b = color.a = 255;
 
@@ -291,9 +291,31 @@ namespace wze
 
     uint16 engine::actors::actor::texts::text::SetHeight(uint16 Height)
     {
-        if (this->Height != 0)
+        SDL_Surface* surface;
+        SDL_Color color;
+
+        this->Width = 0;
+
+        SDL_DestroyTexture(this->Texture);
+        this->Texture = NULL;
+
+        if (Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
-            this->Width = round(this->Width * (double)Height / this->Height);
+            color.r = color.g = color.b = color.a = 255;
+
+            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].SetHeight(): TTF_RenderText_Blended failed\nParams: Height: %d\n", Height);
+                exit(1);
+            }
+            if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].SetHeight(): SDL_CreateTextureFromSurface failed\nParams: Height: %d\n", Height);
+                exit(1);
+            }
+
+            this->Width = round(surface->w * double(Height) / surface->h);
+            SDL_FreeSurface(surface);
         }
 
         return this->Height = Height;
@@ -318,7 +340,7 @@ namespace wze
         SDL_DestroyTexture(this->Texture);
         this->Texture = NULL;
 
-        if (this->FontID != 0)
+        if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
             color.r = color.g = color.b = color.a = 255;
 
@@ -359,7 +381,7 @@ namespace wze
         SDL_DestroyTexture(this->Texture);
         this->Texture = NULL;
 
-        if (this->FontID != 0)
+        if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
             color.r = color.g = color.b = color.a = 255;
 

@@ -486,8 +486,8 @@ namespace wze
                                 private:
                                     double X;
                                     double Y;
-                                    uint64 Height;
                                     uint16 Width;
+                                    uint64 Height;
                                     double OffsetLength;
                                     double OffsetAngle;
                                     string String;
