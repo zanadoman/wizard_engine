@@ -386,30 +386,35 @@ namespace wze
 
     uint8 engine::collision::NewCollisionBranch(array<actors::actor*>* Cache, actors::actor* Root, uint64 RootForce, actors::actor* CurrentBranch)
     {
-        uint64 ForceRequirement;
+        array<actors::actor*> NextBranches(10);
+        uint64 i, ForceRequirement;
 
+        i = 0;
         ForceRequirement = 0;
         for (uint64 NextBranch = 0; NextBranch < Cache->Length(); NextBranch++)
         {
             if ((*Cache)[NextBranch] != Root && (*Cache)[NextBranch] != CurrentBranch && this->GetCollisionDirection(CurrentBranch, (*Cache)[NextBranch]) != NONE)
             {
+                if (i == NextBranches.Length())
+                {
+                    NextBranches.Insert(NextBranches.Length(), 11);
+                }
+
+                NextBranches[i++] = (*Cache)[NextBranch];
                 ForceRequirement += (*Cache)[NextBranch]->Resistance;
             }
         }
 
-        for (uint64 NextBranch = 0; NextBranch < Cache->Length(); NextBranch++)
+        for (uint64 NextBranch = 0; NextBranch < i; NextBranch++)
         {
-            if ((*Cache)[NextBranch] != Root && (*Cache)[NextBranch] != CurrentBranch)
+            if (RootForce <= ForceRequirement)
             {
-                if (RootForce <= ForceRequirement)
-                {
-                    this->ResolveCollision(CurrentBranch, 0, (*Cache)[NextBranch]);
-                }
-                else if (this->ResolveCollision(CurrentBranch, (*Cache)[NextBranch]->Resistance + RootForce - ForceRequirement, (*Cache)[NextBranch]))
-                {
-                    this->NewCollisionBranch(Cache, Root, RootForce - ForceRequirement, (*Cache)[NextBranch]);
-                    this->ResolveCollision(CurrentBranch, 0, (*Cache)[NextBranch]);
-                }
+                this->ResolveCollision(CurrentBranch, 0, NextBranches[NextBranch]);
+            }
+            else if (this->ResolveCollision(CurrentBranch, NextBranches[NextBranch]->Resistance + RootForce - ForceRequirement, NextBranches[NextBranch]))
+            {
+                this->NewCollisionBranch(Cache, Root, RootForce - ForceRequirement, NextBranches[NextBranch]);
+                this->ResolveCollision(CurrentBranch, 0, NextBranches[NextBranch]);
             }
         }
 
