@@ -460,7 +460,6 @@ namespace wze
                                 actor* Actor;
 
                                 public:
-                                    uint16 Height;
                                     uint8 ColorR;
                                     uint8 ColorG;
                                     uint8 ColorB;
@@ -476,6 +475,9 @@ namespace wze
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
+                                    uint16 GetWidth();
+                                    uint16 GetHeight();
+                                    uint16 SetHeight(uint16);
                                     const char* GetString();
                                     const char* SetString(const char* String);
                                     uint64 GetFont();
@@ -484,6 +486,7 @@ namespace wze
                                 private:
                                     double X;
                                     double Y;
+                                    uint64 Height;
                                     uint16 Width;
                                     double OffsetLength;
                                     double OffsetAngle;

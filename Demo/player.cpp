@@ -32,7 +32,7 @@ player::player(engine* Engine, key Forward, key Backward, key Left, key Right) :
     this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].Height = 100;
     this->Engine->Actors[this->Actor].Flipbooks[this->MainFlipbook].SetY(this->Engine->Actors[this->Actor].GetY() + 16);
 
-    this->Engine->Actors[this->Actor].Texts[this->NameText].Height = 20;
+    this->Engine->Actors[this->Actor].Texts[this->NameText].SetHeight(20);
     this->Engine->Actors[this->Actor].Texts[this->NameText].SetY(this->Engine->Actors[this->Actor].GetY() + 56);
 }
 

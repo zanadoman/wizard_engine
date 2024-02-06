@@ -834,9 +834,9 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	pushq	%rbx
 	.cfi_def_cfa_offset 48
 	.cfi_offset 3, -48
-	movl	200(%rdx), %eax
+	movl	232(%rdx), %eax
 	movq	%rdi, %rbx
-	movupd	168(%rdx), %xmm1
+	movupd	200(%rdx), %xmm1
 	movq	%rsi, (%rdi)
 	movl	%eax, 16(%rdi)
 	movabsq	$283124260995072, %rax
@@ -1310,8 +1310,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	movl	200(%rdx), %eax
-	movupd	168(%rdx), %xmm1
+	movl	232(%rdx), %eax
+	movupd	200(%rdx), %xmm1
 	movq	%rsi, (%rdi)
 	movl	%eax, 16(%rdi)
 	movabsq	$283124260995072, %rax
@@ -1786,17 +1786,49 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
 	ucomisd	%xmm0, %xmm0
-	jp	.L275
+	jp	.L271
 	movq	8(%rdi), %rax
+	movsd	48(%rdi), %xmm3
 	movq	%rdi, %rbx
-	movsd	168(%rax), %xmm0
+	movsd	200(%rax), %xmm0
+	movsd	208(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
-	jp	.L267
-	jne	.L267
+	jp	.L256
+	jne	.L256
+	ucomisd	%xmm3, %xmm1
+	jp	.L256
+	jne	.L256
 	movq	$0x000000000, 56(%rdi)
-.L260:
-	pxor	%xmm0, %xmm0
 .L264:
+	pxor	%xmm0, %xmm0
+	jmp	.L263
+	.p2align 4,,10
+	.p2align 3
+.L256:
+	movq	(%rbx), %rax
+	movsd	%xmm2, 8(%rsp)
+	leaq	688(%rax), %rdi
+	call	_ZN3wze6engine6vector6LengthEdddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm2
+	movapd	%xmm0, %xmm4
+	movsd	48(%rbx), %xmm3
+	movsd	200(%rax), %xmm0
+	movsd	208(%rax), %xmm1
+	movsd	%xmm4, 56(%rbx)
+	ucomisd	%xmm0, %xmm2
+	jp	.L260
+	jne	.L260
+	ucomisd	%xmm3, %xmm1
+	jp	.L260
+	je	.L264
+.L260:
+	movq	(%rbx), %rax
+	movsd	%xmm2, 8(%rsp)
+	leaq	688(%rax), %rdi
+	call	_ZN3wze6engine6vector5AngleEdddd@PLT
+	movsd	8(%rsp), %xmm2
+.L263:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm2, %xmm0
 	movsd	%xmm2, 40(%rbx)
@@ -1806,47 +1838,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L267:
+.L271:
 	.cfi_restore_state
-	movsd	176(%rax), %xmm1
-	movsd	48(%rbx), %xmm3
-	ucomisd	%xmm3, %xmm1
-	jp	.L268
-	jne	.L268
-	movq	$0x000000000, 56(%rbx)
-.L265:
-	movsd	176(%rax), %xmm1
-	ucomisd	%xmm3, %xmm1
-	jp	.L262
-	je	.L260
-.L262:
-	movq	(%rbx), %rax
-	movsd	%xmm2, 8(%rsp)
-	leaq	688(%rax), %rdi
-	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	movsd	8(%rsp), %xmm2
-	jmp	.L264
-	.p2align 4,,10
-	.p2align 3
-.L268:
-	movq	(%rbx), %rax
-	movsd	%xmm2, 8(%rsp)
-	leaq	688(%rax), %rdi
-	call	_ZN3wze6engine6vector6LengthEdddd@PLT
-	movq	8(%rbx), %rax
-	movsd	8(%rsp), %xmm2
-	movapd	%xmm0, %xmm1
-	movsd	168(%rax), %xmm0
-	movsd	%xmm1, 56(%rbx)
-	ucomisd	%xmm0, %xmm2
-	jp	.L274
-	je	.L260
-.L274:
-	movsd	48(%rbx), %xmm3
-	jmp	.L265
-.L275:
 	leaq	.LC30(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
@@ -1886,18 +1879,49 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
 	ucomisd	%xmm0, %xmm0
-	jp	.L296
+	jp	.L291
 	movq	8(%rdi), %rax
 	movsd	40(%rdi), %xmm2
 	movq	%rdi, %rbx
-	movsd	168(%rax), %xmm0
+	movsd	200(%rax), %xmm0
+	movsd	208(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
-	jp	.L291
-	jne	.L291
+	jp	.L276
+	jne	.L276
+	ucomisd	%xmm1, %xmm3
+	jp	.L276
+	jne	.L276
 	movq	$0x000000000, 56(%rdi)
 .L284:
 	pxor	%xmm0, %xmm0
-.L288:
+	jmp	.L283
+	.p2align 4,,10
+	.p2align 3
+.L276:
+	movq	(%rbx), %rax
+	movsd	%xmm3, 8(%rsp)
+	leaq	688(%rax), %rdi
+	call	_ZN3wze6engine6vector6LengthEdddd@PLT
+	movq	8(%rbx), %rax
+	movsd	40(%rbx), %xmm2
+	movapd	%xmm0, %xmm4
+	movsd	8(%rsp), %xmm3
+	movsd	200(%rax), %xmm0
+	movsd	208(%rax), %xmm1
+	movsd	%xmm4, 56(%rbx)
+	ucomisd	%xmm2, %xmm0
+	jp	.L280
+	jne	.L280
+	ucomisd	%xmm1, %xmm3
+	jp	.L280
+	je	.L284
+.L280:
+	movq	(%rbx), %rax
+	movsd	%xmm3, 8(%rsp)
+	leaq	688(%rax), %rdi
+	call	_ZN3wze6engine6vector5AngleEdddd@PLT
+	movsd	8(%rsp), %xmm3
+.L283:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm3, %xmm0
 	movsd	%xmm3, 48(%rbx)
@@ -1907,45 +1931,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
-	.p2align 4,,10
-	.p2align 3
 .L291:
 	.cfi_restore_state
-	movsd	176(%rax), %xmm1
-	ucomisd	%xmm3, %xmm1
-	jp	.L292
-	jne	.L292
-	movq	$0x000000000, 56(%rbx)
-.L289:
-	movsd	176(%rax), %xmm1
-	ucomisd	%xmm3, %xmm1
-	jp	.L286
-	je	.L284
-.L286:
-	movq	(%rbx), %rax
-	movsd	%xmm3, 8(%rsp)
-	leaq	688(%rax), %rdi
-	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	movsd	8(%rsp), %xmm3
-	jmp	.L288
-	.p2align 4,,10
-	.p2align 3
-.L292:
-	movq	(%rbx), %rax
-	movsd	%xmm3, 8(%rsp)
-	leaq	688(%rax), %rdi
-	call	_ZN3wze6engine6vector6LengthEdddd@PLT
-	movq	8(%rbx), %rax
-	movsd	40(%rbx), %xmm2
-	movapd	%xmm0, %xmm1
-	movsd	8(%rsp), %xmm3
-	movsd	168(%rax), %xmm0
-	movsd	%xmm1, 56(%rbx)
-	ucomisd	%xmm2, %xmm0
-	jp	.L289
-	jne	.L289
-	jmp	.L284
-.L296:
 	leaq	.LC31(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
@@ -1980,10 +1967,10 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
 	.cfi_startproc
 	movl	%esi, %eax
 	testl	%esi, %esi
-	je	.L303
+	je	.L298
 	movl	%esi, 72(%rdi)
 	ret
-.L303:
+.L298:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	leaq	.LC32(%rip), %rdi
@@ -2003,15 +1990,15 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv:
 	.cfi_startproc
 	xorl	%eax, %eax
 	cmpb	$0, 39(%rdi)
-	jne	.L304
+	jne	.L299
 	movzbl	38(%rdi), %eax
 	testb	%al, %al
-	je	.L307
-.L304:
+	je	.L302
+.L299:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L307:
+.L302:
 	movq	96(%rdi), %rax
 	subq	$1, %rax
 	cmpq	80(%rdi), %rax

@@ -66,8 +66,6 @@ namespace wze
         uint64 k;
         double layer, depth;
         SDL_Rect area;
-        SDL_Color color;
-        SDL_Surface* surface;
 
         k = 0;
         for (uint64 i = 1; i < this->Engine->Actors.Actors.Length(); i++)
@@ -223,25 +221,6 @@ namespace wze
                 if (this->Engine->Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine->Actors.Actors[i]->Texts.Texts[j]->String.Length() < 2 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Visible == false || this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID == 0)
                 {
                     continue;
-                }
-
-                if (this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture == NULL)
-                {
-                    color.r = color.g = color.b = color.a = 255;
-
-                    if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID], this->Engine->Actors.Actors[i]->Texts.Texts[j]->String(), color)) == NULL)
-                    {
-                        printf("wze::engine.render.SelectionStage(): TTF_RenderText_Blended failed\n");
-                        exit(1);
-                    }
-                    if ((this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
-                    {
-                        printf("wze::engine.render.SelectionStage(): SDL_CreateTextureFromSurface failed\n");
-                        exit(1);
-                    }
-
-                    this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width = surface->w * this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height / surface->h;
-                    SDL_FreeSurface(surface);
                 }
                 
                 if ((layer = this->Engine->Actors.Actors[i]->Layer - this->Engine->Actors.Actors[i]->Depth / 2) < 0)

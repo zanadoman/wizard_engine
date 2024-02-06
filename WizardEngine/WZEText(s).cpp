@@ -192,6 +192,9 @@ namespace wze
 
     engine::actors::actor::texts::text::text(engine* Engine, actor* Actor, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
     {
+        SDL_Surface* surface;
+        SDL_Color color;
+
         this->Height = this->Actor->Height;
         this->ColorR = 255;
         this->ColorG = 255;
@@ -212,6 +215,25 @@ namespace wze
         this->String = {String};
         this->FontID = FontID;
         this->Texture = NULL;
+
+        if (FontID != 0)
+        {
+            color.r = color.g = color.b = color.a = 255;
+
+            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->FontID], String, color)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].text(): TTF_RenderText_Blended failed\nParams: String: %s\n", String);
+                exit(1);
+            }
+            if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].text(): SDL_CreateTextureFromSurface failed\nParams: String: %s\n", String);
+                exit(1);
+            }
+
+            this->Width = round(surface->w * double(this->Height) / surface->h);
+            SDL_FreeSurface(surface);
+        }
     }
 
     engine::actors::actor::texts::text::~text()
@@ -232,8 +254,8 @@ namespace wze
             exit(1);
         }
 
-        this->OffsetLength = this->Actor->X != X && this->Actor->Y != this->Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
-        this->OffsetAngle = this->Actor->X != X && this->Actor->Y != this->Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
+        this->OffsetLength = this->Actor->X != X || this->Actor->Y != this->Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
+        this->OffsetAngle = this->Actor->X != X || this->Actor->Y != this->Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
 
         return this->X = X;
     }
@@ -251,10 +273,30 @@ namespace wze
             exit(1);
         }
 
-        this->OffsetLength = this->Actor->X != this->X && this->Actor->Y != Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
-        this->OffsetAngle = this->Actor->X != this->X && this->Actor->Y != Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
+        this->OffsetLength = this->Actor->X != this->X || this->Actor->Y != Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
+        this->OffsetAngle = this->Actor->X != this->X || this->Actor->Y != Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
 
         return this->Y = Y;
+    }
+
+    uint16 engine::actors::actor::texts::text::GetWidth()
+    {
+        return this->Width;
+    }
+
+    uint16 engine::actors::actor::texts::text::GetHeight()
+    {
+        return this->Height;
+    }
+
+    uint16 engine::actors::actor::texts::text::SetHeight(uint16 Height)
+    {
+        if (this->Height != 0)
+        {
+            this->Width = round(this->Width * (double)Height / this->Height);
+        }
+
+        return this->Height = Height;
     }
 
     const char* engine::actors::actor::texts::text::GetString()
@@ -264,6 +306,9 @@ namespace wze
 
     const char* engine::actors::actor::texts::text::SetString(const char* String)
     {
+        SDL_Surface* surface;
+        SDL_Color color;
+
         if (String == NULL)
         {
             printf("wze::engine.actors[].texts[].SetString(): String must not be NULL\nParams: String: %p\n", String);
@@ -273,9 +318,26 @@ namespace wze
         SDL_DestroyTexture(this->Texture);
         this->Texture = NULL;
 
-        this->String = {String};
+        if (this->FontID != 0)
+        {
+            color.r = color.g = color.b = color.a = 255;
 
-        return this->String();
+            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->FontID], String, color)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].SetString(): TTF_RenderText_Blended failed\nParams: String: %s\n", String);
+                exit(1);
+            }
+            if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].SetString(): SDL_CreateTextureFromSurface failed\nParams: String: %s\n", String);
+                exit(1);
+            }
+
+            this->Width = round(surface->w * double(this->Height) / surface->h);
+            SDL_FreeSurface(surface);
+        }
+
+        return (this->String = {String})();
     }
 
     uint64 engine::actors::actor::texts::text::GetFont()
@@ -285,10 +347,35 @@ namespace wze
 
     uint64 engine::actors::actor::texts::text::SetFont(uint64 ID)
     {
+        SDL_Surface* surface;
+        SDL_Color color;
+
         if (ID != 0 && (this->Engine->Assets.Fonts.Length() <= ID || this->Engine->Assets.Fonts[ID] == NULL))
         {
             printf("wze::engine.actors[].texts[].SetFont(): Font does not exist\nParams: ID: %lld\n", ID);
             exit(1);
+        }
+
+        SDL_DestroyTexture(this->Texture);
+        this->Texture = NULL;
+
+        if (this->FontID != 0)
+        {
+            color.r = color.g = color.b = color.a = 255;
+
+            if ((surface = TTF_RenderText_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].SetFont(): TTF_RenderText_Blended failed\nParams: ID: %lld\n", ID);
+                exit(1);
+            }
+            if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].SetFont(): SDL_CreateTextureFromSurface failed\nParams: ID: %lld\n", ID);
+                exit(1);
+            }
+
+            this->Width = round(surface->w * double(this->Height) / surface->h);
+            SDL_FreeSurface(surface);
         }
 
         return this->FontID = ID;

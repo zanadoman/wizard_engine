@@ -2,7 +2,7 @@
 
 namespace wze
 {
-    engine::actors::actor::actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this)
+    engine::actors::actor::actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), OverlapBoxes(Engine, this)
     {
         this->Force = 0;
         this->Resistance = 0;
@@ -259,10 +259,8 @@ namespace wze
             this->PrevHitboxWidth = this->HitboxWidth;
             this->PrevHitboxHeight = this->HitboxHeight;
         }
-        else
-        {
-            this->UpdateMembersPosition();
-        }
+
+        this->UpdateMembersPosition();
 
         return this->Angle;
     }
