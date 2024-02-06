@@ -1,7 +1,5 @@
 #!/bin/bash
 
-VERSION="Beta 0.0.0"
-
 rm -r "Release/Linux (x86_64)"
 mkdir "Release/Linux (x86_64)"
 g++ -m64 -std=gnu++23 -O3 -c $(find WizardEngine -name "*.cpp")
