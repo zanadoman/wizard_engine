@@ -384,12 +384,13 @@ namespace wze
 
         for (uint64 i = 0; i < cache->Length(); i++)
         {
-            (*cache)[i]->UpdateMembersPosition();
+            if ((*cache)[i]->X != (*cache)[i]->PrevX || (*cache)[i]->Y != (*cache)[i]->PrevY)
+            {
+                (*cache)[i]->UpdateMembersPosition();
 
-            (*cache)[i]->PrevX = (*cache)[i]->X;
-            (*cache)[i]->PrevY = (*cache)[i]->Y;
-            (*cache)[i]->PrevHitboxWidth = (*cache)[i]->HitboxWidth;
-            (*cache)[i]->PrevHitboxHeight = (*cache)[i]->HitboxHeight;
+                (*cache)[i]->PrevX = (*cache)[i]->X;
+                (*cache)[i]->PrevY = (*cache)[i]->Y;
+            }
         }
 
         return 0;

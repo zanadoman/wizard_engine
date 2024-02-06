@@ -125,6 +125,8 @@ namespace wze
         if (this->CollisionLayer != 0)
         {
             this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
+            this->PrevHitboxWidth = this->HitboxWidth;
+            this->PrevHitboxHeight = this->HitboxHeight;
         }
         else
         {
@@ -152,6 +154,8 @@ namespace wze
         if (this->CollisionLayer != 0)
         {
             this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
+            this->PrevHitboxWidth = this->HitboxWidth;
+            this->PrevHitboxHeight = this->HitboxHeight;
         }
         else
         {
@@ -252,6 +256,8 @@ namespace wze
         if (this->CollisionLayer != 0)
         {
             this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer);
+            this->PrevHitboxWidth = this->HitboxWidth;
+            this->PrevHitboxHeight = this->HitboxHeight;
         }
         else
         {

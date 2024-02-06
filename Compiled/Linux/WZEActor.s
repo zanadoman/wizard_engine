@@ -1268,7 +1268,7 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC15:
-	.string	"engine.actors.actor.SetX(): X must not be NaN\nParams: X: %lf\n"
+	.string	"engine.actors[].SetX(): X must not be NaN\nParams: X: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1318,7 +1318,7 @@ _ZN3wze6engine6actors5actor4SetXEd:
 	.section	.rodata.str1.8
 	.align 8
 .LC16:
-	.string	"engine.actors.actor.SetY(): Y must not be NaN\nParams: Y: %lf\n"
+	.string	"engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1413,6 +1413,8 @@ _ZN3wze6engine6actors5actor8SetWidthEt:
 	movq	(%rbx), %rax
 	leaq	776(%rax), %rdi
 	call	_ZN3wze6engine9collision21ResolveCollisionLayerEy@PLT
+	movl	234(%rbx), %eax
+	movl	%eax, 238(%rbx)
 	movzwl	200(%rbx), %eax
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -1516,6 +1518,8 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	movq	(%rbx), %rax
 	leaq	776(%rax), %rdi
 	call	_ZN3wze6engine9collision21ResolveCollisionLayerEy@PLT
+	movl	234(%rbx), %eax
+	movl	%eax, 238(%rbx)
 	movzwl	202(%rbx), %eax
 	addq	$16, %rsp
 	.cfi_remember_state
@@ -1572,7 +1576,7 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	.section	.rodata.str1.8
 	.align 8
 .LC17:
-	.string	"engine.actors.actor.SetAngle(): Angle must not be NaN\nParams: Angle: %lf\n"
+	.string	"engine.actors[].SetAngle(): Angle must not be NaN\nParams: Angle: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1630,7 +1634,7 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	jne	.L254
 .L225:
 	addq	$8, %rdx
-	cmpq	%rcx, %rdx
+	cmpq	%rdx, %rcx
 	je	.L223
 .L228:
 	movq	(%rdx), %rax
@@ -1648,7 +1652,7 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	addq	$8, %rdx
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 64(%rax)
-	cmpq	%rcx, %rdx
+	cmpq	%rdx, %rcx
 	jne	.L228
 .L223:
 	movq	88(%rbx), %rax
@@ -1665,7 +1669,7 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	jne	.L255
 .L231:
 	addq	$8, %rdx
-	cmpq	%rdx, %rcx
+	cmpq	%rcx, %rdx
 	je	.L229
 .L234:
 	movq	(%rdx), %rax
@@ -1683,7 +1687,7 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	addq	$8, %rdx
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 64(%rax)
-	cmpq	%rdx, %rcx
+	cmpq	%rcx, %rdx
 	jne	.L234
 .L229:
 	movq	120(%rbx), %rax
@@ -1700,7 +1704,7 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	jne	.L256
 .L237:
 	addq	$8, %rdx
-	cmpq	%rdx, %rcx
+	cmpq	%rcx, %rdx
 	je	.L235
 .L240:
 	movq	(%rdx), %rax
@@ -1718,7 +1722,7 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	addq	$8, %rdx
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 72(%rax)
-	cmpq	%rdx, %rcx
+	cmpq	%rcx, %rdx
 	jne	.L240
 .L235:
 	movq	%rbx, %rdi
@@ -1740,7 +1744,9 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	movq	(%rbx), %rax
 	leaq	776(%rax), %rdi
 	call	_ZN3wze6engine9collision21ResolveCollisionLayerEy@PLT
+	movl	234(%rbx), %eax
 	movsd	208(%rbx), %xmm0
+	movl	%eax, 238(%rbx)
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8

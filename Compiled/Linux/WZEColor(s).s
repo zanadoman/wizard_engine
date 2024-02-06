@@ -985,7 +985,7 @@ _ZN3wze6engine6actors5actor6colors5color4GetXEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC16:
-	.string	"engine.actors.actor.colors.color.SetX(): X must not be NaN\nParams: X: %lf\n"
+	.string	"engine.actors[].colors[].SetX(): X must not be NaN\nParams: X: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1085,7 +1085,7 @@ _ZN3wze6engine6actors5actor6colors5color4GetYEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC17:
-	.string	"engine.actors.actor.colors.color.SetY(): Y must not be NaN\nParams: Y: %lf\n"
+	.string	"engine.actors[].colors[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
 	.text
 	.align 2
 	.p2align 4
