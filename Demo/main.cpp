@@ -26,11 +26,16 @@ sint32 main()
 
     Engine->Camera.Bind(Player1->Actor);
     Engine->Camera.Smoothing = true;
-    Engine->Camera.SetMinSpeed(0.2);
-    Engine->Camera.SetMaxSpeed(0.5);
-    Engine->Camera.SetDecelerationRate(0.001);
-    Engine->Camera.SetAccelerationRate(0.0002);
-    Engine->Camera.SetSlowDownRange(100);
+    Engine->Camera.SetMinSpeedX(0.2);
+    Engine->Camera.SetMaxSpeedX(0.5);
+    Engine->Camera.SetDecelerationRateX(0.001);
+    Engine->Camera.SetAccelerationRateX(0.0002);
+    Engine->Camera.SetSlowDownRangeX(100);
+    Engine->Camera.SetMinSpeedY(0.2);
+    Engine->Camera.SetMaxSpeedY(0.5);
+    Engine->Camera.SetDecelerationRateY(0.001);
+    Engine->Camera.SetAccelerationRateY(0.0002);
+    Engine->Camera.SetSlowDownRangeY(100);
 
     while (Engine->Update())
     {

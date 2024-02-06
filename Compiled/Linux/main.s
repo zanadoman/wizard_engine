@@ -18,7 +18,7 @@ main:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movl	$768, %edi
+	movl	$816, %edi
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
@@ -282,22 +282,47 @@ main:
 	movq	%rbp, %rdi
 .LEHB20:
 	call	_ZN3wze6engine6camera4BindEy@PLT
+	movq	.LC0(%rip), %rax
 	movb	$1, 104(%rbx)
-	movsd	.LC0(%rip), %xmm0
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6camera11SetMinSpeedEd@PLT
-	movsd	.LC1(%rip), %xmm0
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera12SetMinSpeedXEd@PLT
+	movq	.LC1(%rip), %rax
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6camera11SetMaxSpeedEd@PLT
-	movsd	.LC2(%rip), %xmm0
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera12SetMaxSpeedXEd@PLT
+	movq	.LC2(%rip), %rax
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6camera19SetDecelerationRateEd@PLT
-	movsd	.LC3(%rip), %xmm0
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera20SetDecelerationRateXEd@PLT
+	movq	.LC3(%rip), %rax
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6camera19SetAccelerationRateEd@PLT
-	movsd	.LC4(%rip), %xmm0
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera20SetAccelerationRateXEd@PLT
+	movq	.LC4(%rip), %rax
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6camera16SetSlowDownRangeEd@PLT
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera17SetSlowDownRangeXEd@PLT
+	movq	.LC0(%rip), %rax
+	movq	%rbp, %rdi
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera12SetMinSpeedYEd@PLT
+	movq	.LC1(%rip), %rax
+	movq	%rbp, %rdi
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera12SetMaxSpeedYEd@PLT
+	movq	.LC2(%rip), %rax
+	movq	%rbp, %rdi
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera20SetDecelerationRateYEd@PLT
+	movq	.LC3(%rip), %rax
+	movq	%rbp, %rdi
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera20SetAccelerationRateYEd@PLT
+	movq	.LC4(%rip), %rax
+	movq	%rbp, %rdi
+	movq	%rax, %xmm0
+	call	_ZN3wze6engine6camera17SetSlowDownRangeYEd@PLT
 	movq	%r14, 8(%rsp)
 	movq	%r13, 56(%rsp)
 	jmp	.L2
@@ -305,7 +330,7 @@ main:
 	.p2align 3
 .L3:
 	movq	8(%rsp), %rdi
-	leaq	688(%rbx), %rbp
+	leaq	736(%rbx), %rbp
 	call	_ZN6player6UpdateEv@PLT
 	movq	%r15, %rdi
 	call	_ZN6player6UpdateEv@PLT
@@ -391,7 +416,7 @@ main:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engineD1Ev@PLT
 	movq	%rbx, %rdi
-	movl	$768, %esi
+	movl	$816, %esi
 	call	_ZdlPvm@PLT
 	addq	$72, %rsp
 	.cfi_remember_state
@@ -552,7 +577,7 @@ main.cold:
 	.cfi_offset 14, -24
 	.cfi_offset 15, -16
 	movq	%rbx, %rdi
-	movl	$768, %esi
+	movl	$816, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbp, %rdi
 .LEHB21:

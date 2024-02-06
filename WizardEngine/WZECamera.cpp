@@ -12,12 +12,18 @@ namespace wze
         this->CameraX = 0;
         this->CameraY = 0;
         this->Zoom = 1;
-        this->MinSpeed = 0.25;
-        this->MaxSpeed = 0.75;
-        this->AccelerationRate = 0.001;
-        this->AccelerationRate = 0.001;
-        this->SlowDownRange = 0;
-        this->CurrentSpeed = 0.25;
+        this->MinSpeedX = 0.25;
+        this->MinSpeedY = 0.25;
+        this->MaxSpeedX = 0.75;
+        this->MaxSpeedY = 0.75;
+        this->AccelerationRateX = 0.001;
+        this->AccelerationRateY = 0.001;
+        this->AccelerationRateX = 0.001;
+        this->AccelerationRateY = 0.001;
+        this->SlowDownRangeX = 0;
+        this->SlowDownRangeY = 0;
+        this->CurrentSpeedX = 0.25;
+        this->CurrentSpeedY = 0.25;
     }
 
     double engine::camera::GetZoom()
@@ -138,104 +144,204 @@ namespace wze
         return 0;
     }
 
-    double engine::camera::GetMinSpeed()
+    double engine::camera::GetMinSpeedX()
     {
-        return this->MinSpeed;
+        return this->MinSpeedX;
     }
 
-    double engine::camera::SetMinSpeed(double MinSpeed)
+    double engine::camera::SetMinSpeedX(double MinSpeedX)
     {
-        if (MinSpeed <= 0)
+        if (MinSpeedX <= 0)
         {
-            printf("wze::engine.camera.SetMinSpeed(): MinSpeed must not be less than or equal to 0\nParams: MinSpeed: %lf\n", MinSpeed);
+            printf("wze::engine.camera.SetMinSpeedX(): MinSpeedX must not be less than or equal to 0\nParams: MinSpeedX: %lf\n", MinSpeedX);
             exit(1);
         }
-        if (this->MaxSpeed < MinSpeed)
+        if (this->MaxSpeedX < MinSpeedX)
         {
-            printf("wze::engine.camera.SetMinSpeed(): MinSpeed must not be greater than MaxSpeed\nParams: MinSpeed: %lf\n", MinSpeed);
-            exit(1);
-        }
-
-        if (this->CurrentSpeed == this->MinSpeed)
-        {
-            this->CurrentSpeed = MinSpeed;
-        }
-
-        return this->MinSpeed = MinSpeed;
-    }
-
-    double engine::camera::GetMaxSpeed()
-    {
-        return this->MaxSpeed;
-    }
-
-    double engine::camera::SetMaxSpeed(double MaxSpeed)
-    {
-        if (MaxSpeed <= 0)
-        {
-            printf("wze::engine.camera.SetMaxSpeed(): MaxSpeed must not be less than or equal to 0\nParams: MaxSpeed: %lf\n", MaxSpeed);
-            exit(1);
-        }
-        if (MaxSpeed < this->MinSpeed)
-        {
-            printf("wze::engine.camera.SetMaxSpeed(): MaxSpeed must not be less than MinSpeed\nParams: MaxSpeed: %lf\n", MaxSpeed);
+            printf("wze::engine.camera.SetMinSpeedX(): MinSpeedX must not be greater than MaxSpeedX\nParams: MinSpeedX: %lf\n", MinSpeedX);
             exit(1);
         }
 
-        if (MaxSpeed < this->CurrentSpeed)
+        if (this->CurrentSpeedX == this->MinSpeedX)
         {
-            this->CurrentSpeed = MaxSpeed;
+            this->CurrentSpeedX = MinSpeedX;
         }
 
-        return this->MaxSpeed = MaxSpeed;
+        return this->MinSpeedX = MinSpeedX;
     }
 
-    double engine::camera::GetDecelerationRate()
+    double engine::camera::GetMinSpeedY()
     {
-        return this->DecelerationRate;
+        return this->MinSpeedY;
     }
 
-    double engine::camera::SetDecelerationRate(double DecelerationRate)
+    double engine::camera::SetMinSpeedY(double MinSpeedY)
     {
-        if (DecelerationRate <= 0)
+        if (MinSpeedY <= 0)
         {
-            printf("wze::engine.camera.SetDecelerationRate(): DecelerationRate must not be less than or equal to 0\nParams: DecelerationRate: %lf\n", DecelerationRate);
+            printf("wze::engine.camera.SetMinSpeedY(): MinSpeedY must not be less than or equal to 0\nParams: MinSpeedY: %lf\n", MinSpeedY);
+            exit(1);
+        }
+        if (this->MaxSpeedY < MinSpeedY)
+        {
+            printf("wze::engine.camera.SetMinSpeedY(): MinSpeedY must not be greater than MaxSpeedY\nParams: MinSpeedY: %lf\n", MinSpeedY);
             exit(1);
         }
 
-        return this->DecelerationRate = DecelerationRate;
-    }
-
-    double engine::camera::GetAccelerationRate()
-    {
-        return this->AccelerationRate;
-    }
-
-    double engine::camera::SetAccelerationRate(double AccelerationRate)
-    {
-        if (AccelerationRate <= 0)
+        if (this->CurrentSpeedY == this->MinSpeedY)
         {
-            printf("wze::engine.camera.SetAccelerationRate(): AccelerationRate must not be less than or equal to 0\nParams: AccelerationRate: %lf\n", AccelerationRate);
+            this->CurrentSpeedY = MinSpeedY;
+        }
+
+        return this->MinSpeedY = MinSpeedY;
+    }
+
+    double engine::camera::GetMaxSpeedX()
+    {
+        return this->MaxSpeedX;
+    }
+
+    double engine::camera::SetMaxSpeedX(double MaxSpeedX)
+    {
+        if (MaxSpeedX <= 0)
+        {
+            printf("wze::engine.camera.SetMaxSpeedX(): MaxSpeedX must not be less than or equal to 0\nParams: MaxSpeedX: %lf\n", MaxSpeedX);
+            exit(1);
+        }
+        if (MaxSpeedX < this->MinSpeedX)
+        {
+            printf("wze::engine.camera.SetMaxSpeedX(): MaxSpeedX must not be less than MinSpeedX\nParams: MaxSpeedX: %lf\n", MaxSpeedX);
             exit(1);
         }
 
-        return this->AccelerationRate = AccelerationRate;
-    }
-
-    double engine::camera::GetSlowDownRange()
-    {
-        return this->SlowDownRange;
-    }
-
-    double engine::camera::SetSlowDownRange(double SlowDownRange)
-    {
-        if (SlowDownRange <= 0)
+        if (MaxSpeedX < this->CurrentSpeedX)
         {
-            printf("wze::engine.camera.SetSlowDownRange(): SlowDownRange must not be less than or equal to 0\nParams: SlowDownRange: %lf\n", SlowDownRange);
+            this->CurrentSpeedX = MaxSpeedX;
+        }
+
+        return this->MaxSpeedX = MaxSpeedX;
+    }
+
+    double engine::camera::GetMaxSpeedY()
+    {
+        return this->MaxSpeedY;
+    }
+
+    double engine::camera::SetMaxSpeedY(double MaxSpeedY)
+    {
+        if (MaxSpeedY <= 0)
+        {
+            printf("wze::engine.camera.SetMaxSpeedY(): MaxSpeedY must not be less than or equal to 0\nParams: MaxSpeedY: %lf\n", MaxSpeedY);
+            exit(1);
+        }
+        if (MaxSpeedY < this->MinSpeedY)
+        {
+            printf("wze::engine.camera.SetMaxSpeedY(): MaxSpeedY must not be less than MinSpeedY\nParams: MaxSpeedY: %lf\n", MaxSpeedY);
             exit(1);
         }
 
-        return this->SlowDownRange = SlowDownRange;
+        if (MaxSpeedY < this->CurrentSpeedY)
+        {
+            this->CurrentSpeedY = MaxSpeedY;
+        }
+
+        return this->MaxSpeedY = MaxSpeedY;
+    }
+
+    double engine::camera::GetDecelerationRateX()
+    {
+        return this->DecelerationRateX;
+    }
+
+    double engine::camera::SetDecelerationRateX(double DecelerationRateX)
+    {
+        if (DecelerationRateX <= 0)
+        {
+            printf("wze::engine.camera.SetDecelerationRateX(): DecelerationRateX must not be less than or equal to 0\nParams: DecelerationRateX: %lf\n", DecelerationRateX);
+            exit(1);
+        }
+
+        return this->DecelerationRateX = DecelerationRateX;
+    }
+
+    double engine::camera::GetDecelerationRateY()
+    {
+        return this->DecelerationRateY;
+    }
+
+    double engine::camera::SetDecelerationRateY(double DecelerationRateY)
+    {
+        if (DecelerationRateY <= 0)
+        {
+            printf("wze::engine.camera.SetDecelerationRateY(): DecelerationRateY must not be less than or equal to 0\nParams: DecelerationRateY: %lf\n", DecelerationRateY);
+            exit(1);
+        }
+
+        return this->DecelerationRateY = DecelerationRateY;
+    }
+
+    double engine::camera::GetAccelerationRateX()
+    {
+        return this->AccelerationRateX;
+    }
+
+    double engine::camera::SetAccelerationRateX(double AccelerationRateX)
+    {
+        if (AccelerationRateX <= 0)
+        {
+            printf("wze::engine.camera.SetAccelerationRateX(): AccelerationRateX must not be less than or equal to 0\nParams: AccelerationRateX: %lf\n", AccelerationRateX);
+            exit(1);
+        }
+
+        return this->AccelerationRateX = AccelerationRateX;
+    }
+
+    double engine::camera::GetAccelerationRateY()
+    {
+        return this->AccelerationRateY;
+    }
+
+    double engine::camera::SetAccelerationRateY(double AccelerationRateY)
+    {
+        if (AccelerationRateY <= 0)
+        {
+            printf("wze::engine.camera.SetAccelerationRateY(): AccelerationRateY must not be less than or equal to 0\nParams: AccelerationRateY: %lf\n", AccelerationRateY);
+            exit(1);
+        }
+
+        return this->AccelerationRateY = AccelerationRateY;
+    }
+
+    double engine::camera::GetSlowDownRangeX()
+    {
+        return this->SlowDownRangeX;
+    }
+
+    double engine::camera::SetSlowDownRangeX(double SlowDownRangeX)
+    {
+        if (SlowDownRangeX < 0)
+        {
+            printf("wze::engine.camera.SetSlowDownRangeX(): SlowDownRangeX must not be less than 0\nParams: SlowDownRangeX: %lf\n", SlowDownRangeX);
+            exit(1);
+        }
+
+        return this->SlowDownRangeX = SlowDownRangeX;
+    }
+
+    double engine::camera::GetSlowDownRangeY()
+    {
+        return this->SlowDownRangeY;
+    }
+
+    double engine::camera::SetSlowDownRangeY(double SlowDownRangeY)
+    {
+        if (SlowDownRangeY < 0)
+        {
+            printf("wze::engine.camera.SetSlowDownRangeY(): SlowDownRangeY must not be less than 0\nParams: SlowDownRangeY: %lf\n", SlowDownRangeY);
+            exit(1);
+        }
+
+        return this->SlowDownRangeY = SlowDownRangeY;
     }
 
     uint8 engine::camera::Update()
@@ -248,11 +354,15 @@ namespace wze
 
         if (this->Smoothing)
         {
-            if (this->CameraX == this->Engine->Actors.Actors[this->XActor]->X && this->CameraY == this->Engine->Actors.Actors[this->YActor]->Y)
+            if (this->CameraX == this->Engine->Actors.Actors[this->XActor]->X)
             {
-                this->CurrentSpeed = this->MinSpeed;
+                this->CurrentSpeedX = this->MinSpeedX;
             }
-            else
+            if (this->CameraY == this->Engine->Actors.Actors[this->YActor]->Y)
+            {
+                this->CurrentSpeedY = this->MinSpeedY;
+            }
+            if (this->CameraX != this->Engine->Actors.Actors[this->XActor]->X || this->CameraY != this->Engine->Actors.Actors[this->YActor]->Y)
             {
                 angle = this->Engine->Vector.Angle(this->CameraX, this->CameraY, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y);
             }
@@ -264,7 +374,7 @@ namespace wze
             {
                 if (this->CameraX < this->Engine->Actors.Actors[this->XActor]->X)
                 {
-                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeed * this->Engine->Timing.DeltaTime, angle);
+                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeedX * this->Engine->Timing.DeltaTime, angle);
 
                     if (this->Engine->Actors.Actors[this->XActor]->X < this->CameraX)
                     {
@@ -275,7 +385,7 @@ namespace wze
                 }
                 else if (this->Engine->Actors.Actors[this->XActor]->X < this->CameraX)
                 {
-                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeed * this->Engine->Timing.DeltaTime, angle);
+                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeedX * this->Engine->Timing.DeltaTime, angle);
 
                     if (this->CameraX < this->Engine->Actors.Actors[this->XActor]->X)
                     {
@@ -297,7 +407,7 @@ namespace wze
             {
                 if (this->CameraY < this->Engine->Actors.Actors[this->YActor]->Y)
                 {
-                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeed * this->Engine->Timing.DeltaTime, angle);
+                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeedY * this->Engine->Timing.DeltaTime, angle);
 
                     if (this->Engine->Actors.Actors[this->YActor]->Y < this->CameraY)
                     {
@@ -308,7 +418,7 @@ namespace wze
                 }
                 else if (this->Engine->Actors.Actors[this->YActor]->Y < this->CameraY)
                 {
-                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeed * this->Engine->Timing.DeltaTime, angle);
+                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeedY * this->Engine->Timing.DeltaTime, angle);
 
                     if (this->CameraY < this->Engine->Actors.Actors[this->YActor]->Y)
                     {
@@ -324,22 +434,40 @@ namespace wze
             }
         }
 
-        if (moved && this->MinSpeed < this->CurrentSpeed && this->Engine->Vector.Length(this->CameraX, this->CameraY, this->Engine->Actors[this->XActor].GetX(), this->Engine->Actors[this->YActor].GetY()) <= this->SlowDownRange)
+        if (moved && this->MinSpeedX < this->CurrentSpeedX && this->Engine->Vector.Length(this->CameraX, this->CameraY, this->Engine->Actors[this->XActor].GetX(), this->Engine->Actors[this->YActor].GetY()) <= this->SlowDownRangeX)
         {
-            this->CurrentSpeed -= this->DecelerationRate * this->Engine->Timing.DeltaTime;
+            this->CurrentSpeedX -= this->DecelerationRateX * this->Engine->Timing.DeltaTime;
 
-            if (this->CurrentSpeed < this->MinSpeed)
+            if (this->CurrentSpeedX < this->MinSpeedX)
             {
-                this->CurrentSpeed = this->MinSpeed;
+                this->CurrentSpeedX = this->MinSpeedX;
             }
         }
-        else if (moved && this->CurrentSpeed < this->MaxSpeed)
+        else if (moved && this->CurrentSpeedX < this->MaxSpeedX)
         {
-            this->CurrentSpeed += this->AccelerationRate * this->Engine->Timing.DeltaTime;
+            this->CurrentSpeedX += this->AccelerationRateX * this->Engine->Timing.DeltaTime;
 
-            if (this->MaxSpeed < this->CurrentSpeed)
+            if (this->MaxSpeedX < this->CurrentSpeedX)
             {
-                this->CurrentSpeed = this->MaxSpeed;
+                this->CurrentSpeedX = this->MaxSpeedX;
+            }
+        }
+        if (moved && this->MinSpeedY < this->CurrentSpeedY && this->Engine->Vector.Length(this->CameraX, this->CameraY, this->Engine->Actors[this->XActor].GetX(), this->Engine->Actors[this->YActor].GetY()) <= this->SlowDownRangeY)
+        {
+            this->CurrentSpeedY -= this->DecelerationRateY * this->Engine->Timing.DeltaTime;
+
+            if (this->CurrentSpeedY < this->MinSpeedY)
+            {
+                this->CurrentSpeedY = this->MinSpeedY;
+            }
+        }
+        else if (moved && this->CurrentSpeedY < this->MaxSpeedY)
+        {
+            this->CurrentSpeedY += this->AccelerationRateY * this->Engine->Timing.DeltaTime;
+
+            if (this->MaxSpeedY < this->CurrentSpeedY)
+            {
+                this->CurrentSpeedY = this->MaxSpeedY;
             }
         }
 

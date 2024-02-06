@@ -1002,7 +1002,7 @@ _ZN3wze6engine6actors5actor6colors5color4SetXEd:
 	movsd	%xmm2, 8(%rsp)
 	movsd	176(%rax), %xmm1
 	movsd	168(%rax), %xmm0
-	leaq	608(%rdx), %rdi
+	leaq	656(%rdx), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rcx
@@ -1011,7 +1011,7 @@ _ZN3wze6engine6actors5actor6colors5color4SetXEd:
 	movsd	40(%rbx), %xmm3
 	movsd	168(%rax), %xmm0
 	movsd	176(%rax), %xmm1
-	leaq	608(%rcx), %rdi
+	leaq	656(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
 	movsd	%xmm0, 56(%rbx)
@@ -1057,7 +1057,7 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	movsd	%xmm3, 8(%rsp)
 	movsd	176(%rax), %xmm1
 	movsd	168(%rax), %xmm0
-	leaq	608(%rdx), %rdi
+	leaq	656(%rdx), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rcx
@@ -1066,7 +1066,7 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	movsd	32(%rbx), %xmm2
 	movsd	168(%rax), %xmm0
 	movsd	176(%rax), %xmm1
-	leaq	608(%rcx), %rdi
+	leaq	656(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
 	movsd	%xmm0, 56(%rbx)
