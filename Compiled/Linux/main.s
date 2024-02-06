@@ -2,11 +2,13 @@
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC5:
+	.string	"%d\n"
+.LC6:
 	.string	"%d %d %d %d\n"
 	.section	.text.unlikely,"ax",@progbits
-.LCOLDB6:
+.LCOLDB7:
 	.section	.text.startup,"ax",@progbits
-.LHOTB6:
+.LHOTB7:
 	.p2align 4
 	.globl	main
 	.type	main, @function
@@ -34,8 +36,8 @@ main:
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	subq	$72, %rsp
-	.cfi_def_cfa_offset 128
+	subq	$88, %rsp
+	.cfi_def_cfa_offset 144
 .LEHB0:
 	call	_Znwm@PLT
 .LEHE0:
@@ -55,7 +57,7 @@ main:
 .LEHE2:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
-	movq	%rax, 48(%rsp)
+	movq	%rax, 64(%rsp)
 .LEHB3:
 	call	_ZN10backgroundC1EPN3wze6engineE@PLT
 .LEHE3:
@@ -93,7 +95,7 @@ main:
 .LEHE8:
 	movq	%rbx, %rsi
 	movq	%rax, %rdi
-	movq	%rax, (%rsp)
+	movq	%rax, 16(%rsp)
 .LEHB9:
 	call	_ZN10flashlightC1EPN3wze6engineE@PLT
 .LEHE9:
@@ -104,7 +106,7 @@ main:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
-	movq	%rax, 16(%rsp)
+	movq	%rax, 32(%rsp)
 .LEHB11:
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$150, %edx
@@ -125,7 +127,7 @@ main:
 	movq	%xmm2, %r13
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm0, %xmm0
-	movq	16(%rsp), %rdi
+	movq	32(%rsp), %rdi
 	movl	%r12d, %ecx
 	movl	%ebp, %edx
 	cvtsi2sdl	%eax, %xmm0
@@ -140,7 +142,7 @@ main:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
-	movq	%rax, 24(%rsp)
+	movq	%rax, 40(%rsp)
 .LEHB13:
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$150, %edx
@@ -161,7 +163,7 @@ main:
 	movq	%xmm3, %r13
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm0, %xmm0
-	movq	24(%rsp), %rdi
+	movq	40(%rsp), %rdi
 	movl	%r12d, %ecx
 	movl	%ebp, %edx
 	cvtsi2sdl	%eax, %xmm0
@@ -176,7 +178,7 @@ main:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
-	movq	%rax, 32(%rsp)
+	movq	%rax, 48(%rsp)
 .LEHB15:
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$150, %edx
@@ -197,7 +199,7 @@ main:
 	movq	%xmm4, %r13
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm0, %xmm0
-	movq	32(%rsp), %rdi
+	movq	48(%rsp), %rdi
 	movl	%r12d, %ecx
 	movl	%ebp, %edx
 	cvtsi2sdl	%eax, %xmm0
@@ -212,7 +214,7 @@ main:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
-	movq	%rax, 40(%rsp)
+	movq	%rax, 56(%rsp)
 .LEHB17:
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$150, %edx
@@ -233,7 +235,7 @@ main:
 	movq	%xmm5, %r13
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm0, %xmm0
-	movq	40(%rsp), %rdi
+	movq	56(%rsp), %rdi
 	movl	%r12d, %ecx
 	movl	%ebp, %edx
 	cvtsi2sdl	%eax, %xmm0
@@ -254,12 +256,12 @@ main:
 	movl	$150, %edx
 	movl	$50, %esi
 	movq	%rbx, %rdi
-	movzwl	%ax, %ebp
+	movzwl	%ax, %r12d
 	call	_ZN3wze6engine6RandomEii@PLT
 	movl	$500, %edx
 	movl	$-500, %esi
 	movq	%rbx, %rdi
-	movzwl	%ax, %r12d
+	movzwl	%ax, %ebp
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm6, %xmm6
 	movl	$500, %edx
@@ -270,15 +272,15 @@ main:
 	call	_ZN3wze6engine6RandomEii@PLT
 	pxor	%xmm0, %xmm0
 	movsd	8(%rsp), %xmm1
-	movl	%ebp, %ecx
-	movl	%r12d, %edx
+	movl	%r12d, %ecx
+	movl	%ebp, %edx
 	cvtsi2sdl	%eax, %xmm0
 	movq	%rbx, %rsi
 	movq	%r13, %rdi
 	call	_ZN5crateC1EPN3wze6engineEddtt@PLT
 .LEHE19:
-	movq	8(%r14), %rsi
 	leaq	80(%rbx), %rbp
+	movq	8(%r14), %rsi
 	movq	%rbp, %rdi
 .LEHB20:
 	call	_ZN3wze6engine6camera4BindEy@PLT
@@ -321,25 +323,40 @@ main:
 	call	_ZN3wze6engine6camera20SetAccelerationRateYEd@PLT
 	movq	.LC4(%rip), %rax
 	movq	%rbp, %rdi
+	leaq	768(%rbx), %rbp
 	movq	%rax, %xmm0
 	call	_ZN3wze6engine6camera17SetSlowDownRangeYEd@PLT
-	movq	%r14, 8(%rsp)
-	movq	%r13, 56(%rsp)
+	leaq	632(%rbx), %rax
+	movq	%rbx, 8(%rsp)
+	movq	%rax, 24(%rsp)
+	movq	%r13, 72(%rsp)
 	jmp	.L2
 	.p2align 4,,10
 	.p2align 3
 .L3:
-	movq	8(%rsp), %rdi
-	leaq	768(%rbx), %rbp
+	movq	%r14, %rdi
 	call	_ZN6player6UpdateEv@PLT
 	movq	%r15, %rdi
 	call	_ZN6player6UpdateEv@PLT
-	movq	(%rsp), %rdi
+	movq	16(%rsp), %rdi
 	call	_ZN10flashlight6UpdateEv@PLT
+	movq	8(%r14), %rsi
+	movq	24(%rsp), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movq	16(%r14), %rsi
+	leaq	136(%rax), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
+	movq	16(%r15), %rsi
+	movq	%rax, %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15IsCollidingWithEy@PLT
+	leaq	.LC5(%rip), %rdi
+	movzbl	%al, %esi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movq	%rbp, %rdi
 	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
 	movq	%rbp, %rdi
-	movl	%eax, %r14d
+	movl	%eax, %ebx
 	call	_ZN3wze6engine6timing14GetWorkingTimeEv@PLT
 	movq	%rbp, %rdi
 	movl	%eax, %r13d
@@ -347,25 +364,37 @@ main:
 	movq	%rbp, %rdi
 	movl	%eax, %r12d
 	call	_ZN3wze6engine6timing11GetGameTimeEv@PLT
-	movl	%r14d, %r8d
+	movl	%ebx, %r8d
 	movl	%r13d, %ecx
 	movl	%r12d, %edx
 	movl	%eax, %esi
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 .L2:
-	movq	%rbx, %rdi
+	movq	8(%rsp), %rdi
 	call	_ZN3wze6engine6UpdateEv@PLT
 .LEHE20:
 	testb	%al, %al
 	jne	.L3
-	movq	56(%rsp), %r13
-	movq	8(%rsp), %r14
+	movq	72(%rsp), %r13
+	movq	8(%rsp), %rbx
 	movq	%r13, %rdi
 	call	_ZN5crateD1Ev@PLT
 	movl	$32, %esi
 	movq	%r13, %rdi
+	call	_ZdlPvm@PLT
+	movq	56(%rsp), %rbp
+	movq	%rbp, %rdi
+	call	_ZN5crateD1Ev@PLT
+	movl	$32, %esi
+	movq	%rbp, %rdi
+	call	_ZdlPvm@PLT
+	movq	48(%rsp), %rbp
+	movq	%rbp, %rdi
+	call	_ZN5crateD1Ev@PLT
+	movl	$32, %esi
+	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
 	movq	40(%rsp), %rbp
 	movq	%rbp, %rdi
@@ -379,19 +408,7 @@ main:
 	movl	$32, %esi
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
-	movq	24(%rsp), %rbp
-	movq	%rbp, %rdi
-	call	_ZN5crateD1Ev@PLT
-	movl	$32, %esi
-	movq	%rbp, %rdi
-	call	_ZdlPvm@PLT
 	movq	16(%rsp), %rbp
-	movq	%rbp, %rdi
-	call	_ZN5crateD1Ev@PLT
-	movl	$32, %esi
-	movq	%rbp, %rdi
-	call	_ZdlPvm@PLT
-	movq	(%rsp), %rbp
 	movq	%rbp, %rdi
 	call	_ZN10flashlightD1Ev@PLT
 	movl	$40, %esi
@@ -407,7 +424,7 @@ main:
 	movl	$80, %esi
 	movq	%r14, %rdi
 	call	_ZdlPvm@PLT
-	movq	48(%rsp), %r15
+	movq	64(%rsp), %r15
 	movq	%r15, %rdi
 	call	_ZN10backgroundD1Ev@PLT
 	movl	$32, %esi
@@ -418,7 +435,7 @@ main:
 	movq	%rbx, %rdi
 	movl	$824, %esi
 	call	_ZdlPvm@PLT
-	addq	$72, %rsp
+	addq	$88, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
@@ -569,7 +586,7 @@ main:
 main.cold:
 .LFSB8144:
 .L4:
-	.cfi_def_cfa_offset 128
+	.cfi_def_cfa_offset 144
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
 	.cfi_offset 12, -40
@@ -589,31 +606,31 @@ main.cold:
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L12:
-	movq	40(%rsp), %rdi
+	movq	56(%rsp), %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L11:
-	movq	32(%rsp), %rdi
+	movq	48(%rsp), %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L10:
-	movq	24(%rsp), %rdi
+	movq	40(%rsp), %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L9:
-	movq	16(%rsp), %rdi
+	movq	32(%rsp), %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L8:
-	movq	(%rsp), %rdi
+	movq	16(%rsp), %rdi
 	movl	$40, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
@@ -631,7 +648,7 @@ main.cold:
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L5:
-	movq	48(%rsp), %rdi
+	movq	64(%rsp), %rdi
 	movl	$32, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
@@ -646,7 +663,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8144-.LLSDACSBC8144
 .LLSDACSBC8144:
-	.uleb128 .LEHB21-.LCOLDB6
+	.uleb128 .LEHB21-.LCOLDB7
 	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
@@ -656,9 +673,9 @@ main.cold:
 	.size	main, .-main
 	.section	.text.unlikely
 	.size	main.cold, .-main.cold
-.LCOLDE6:
+.LCOLDE7:
 	.section	.text.startup
-.LHOTE6:
+.LHOTE7:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:

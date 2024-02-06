@@ -56,9 +56,9 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	%rax, 56(%rsp)
 	xorl	%eax, %eax
 	movq	%rsi, (%rdi)
-	movq	$0, 40(%rdi)
 	movq	$0, 48(%rdi)
-	movups	%xmm0, 16(%rdi)
+	movq	$0, 56(%rdi)
+	movups	%xmm0, 24(%rdi)
 	leaq	696(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
 .LEHB0:
@@ -88,12 +88,12 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	leaq	.LC5(%rip), %rsi
 	leaq	696(%rax), %rdi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
-	movq	40(%rbx), %rdx
+	movq	48(%rbx), %rdx
 	movq	%rax, 40(%rsp)
-	leaq	40(%rbx), %rbp
+	leaq	48(%rbx), %rbp
 	cmpq	$6, %rdx
 	jne	.L12
-	movq	48(%rbx), %rsi
+	movq	56(%rbx), %rsi
 .L4:
 	salq	$3, %rdx
 	movq	%rsp, %rdi
@@ -103,7 +103,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	leaq	.LC7(%rip), %rsi
 	leaq	696(%rax), %rdi
 	call	_ZN3wze6engine6assets8LoadFontEPKch@PLT
-	movq	%rax, 64(%rbx)
+	movq	%rax, 72(%rbx)
 	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
 	movl	$70, %ecx
@@ -122,16 +122,16 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	%rbp, %rdx
 	movl	$100, %esi
 	call	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE@PLT
-	movq	%rax, 32(%rbx)
+	movq	%rax, 40(%rbx)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	64(%rbx), %rdx
+	movq	72(%rbx), %rdx
 	leaq	104(%rax), %rdi
 	leaq	.LC10(%rip), %rsi
 	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
-	movq	%rax, 56(%rbx)
+	movq	%rax, 64(%rbx)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
@@ -139,7 +139,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	leaq	136(%rax), %rdi
 	xorl	%esi, %esi
 	call	_ZN3wze6engine6actors5actor12overlapboxes3NewEy@PLT
-	movq	%rax, 72(%rbx)
+	movq	%rax, 16(%rbx)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
@@ -173,7 +173,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	32(%rbx), %rsi
+	movq	40(%rbx), %rsi
 	leaq	72(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor9flipbooksixEy@PLT
 	movl	$100, %ecx
@@ -182,7 +182,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	(%rbx), %rax
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	32(%rbx), %rsi
+	movq	40(%rbx), %rsi
 	leaq	72(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor9flipbooksixEy@PLT
 	movl	$100, %edx
@@ -191,7 +191,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	(%rbx), %rax
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	32(%rbx), %rsi
+	movq	40(%rbx), %rsi
 	leaq	72(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor9flipbooksixEy@PLT
 	movq	%rax, %rbp
@@ -208,7 +208,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	56(%rbx), %rsi
+	movq	64(%rbx), %rsi
 	leaq	104(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
 	movq	%rax, %rdi
@@ -218,7 +218,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	56(%rbx), %rsi
+	movq	64(%rbx), %rsi
 	leaq	104(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
 	movq	%rax, %rbp
@@ -235,7 +235,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	72(%rbx), %rsi
+	movq	16(%rbx), %rsi
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
 	movq	%rax, %rbp
@@ -243,7 +243,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	56(%rbx), %rsi
+	movq	64(%rbx), %rsi
 	leaq	104(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
 	movq	%rax, %rdi
@@ -255,7 +255,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	72(%rbx), %rsi
+	movq	16(%rbx), %rsi
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
 	movq	%rax, %rbp
@@ -263,7 +263,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	56(%rbx), %rsi
+	movq	64(%rbx), %rsi
 	leaq	104(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
 	movq	%rax, %rdi
@@ -275,7 +275,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	72(%rbx), %rsi
+	movq	16(%rbx), %rsi
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
 	movq	%rax, %rbp
@@ -283,7 +283,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	56(%rbx), %rsi
+	movq	64(%rbx), %rsi
 	leaq	104(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
 	movq	%rax, %rdi
@@ -294,7 +294,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	72(%rbx), %rsi
+	movq	16(%rbx), %rsi
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
 	movb	$1, 18(%rax)
@@ -313,15 +313,15 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	.p2align 3
 .L12:
 	.cfi_restore_state
-	movq	$6, 40(%rbx)
-	movq	48(%rbx), %rdi
+	movq	$6, 48(%rbx)
+	movq	56(%rbx), %rdi
 	movl	$48, %esi
 	call	realloc@PLT
-	movq	%rax, 48(%rbx)
+	movq	%rax, 56(%rbx)
 	movq	%rax, %rsi
 	testq	%rax, %rax
 	je	.L3
-	movq	40(%rbx), %rdx
+	movq	48(%rbx), %rdx
 	jmp	.L4
 .L13:
 	call	__stack_chk_fail@PLT
@@ -363,7 +363,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_.cold:
 	.cfi_def_cfa_offset 96
 	.cfi_offset 3, -24
 	.cfi_offset 6, -16
-	movq	48(%rbx), %rdi
+	movq	56(%rbx), %rdi
 	call	free@PLT
 	movq	56(%rsp), %rax
 	subq	%fs:40, %rax
@@ -416,32 +416,32 @@ _ZN6playerD2Ev:
 	movq	%rdi, %rbx
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
-	cmpq	$0, 40(%rdi)
+	cmpq	$0, 48(%rdi)
 	je	.L16
 	xorl	%ebp, %ebp
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
 .L17:
-	movq	48(%rbx), %rdx
+	movq	56(%rbx), %rdx
 	addl	$1, %ebp
 	movq	(%rdx,%rax,8), %rsi
 	movq	(%rbx), %rax
 	leaq	696(%rax), %rdi
 	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
 	movzbl	%bpl, %eax
-	cmpq	40(%rbx), %rax
+	cmpq	48(%rbx), %rax
 	jb	.L17
 .L16:
 	movq	(%rbx), %rax
-	movq	64(%rbx), %rsi
+	movq	72(%rbx), %rsi
 	leaq	696(%rax), %rdi
 	call	_ZN3wze6engine6assets10UnloadFontEy@PLT
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actors6DeleteEy@PLT
-	movq	48(%rbx), %rdi
+	movq	56(%rbx), %rdi
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 24
 	popq	%rbx
@@ -483,28 +483,28 @@ _ZN6player6UpdateEv:
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 48
 	movq	(%rdi), %rax
-	movl	16(%rdi), %esi
+	movl	24(%rdi), %esi
 	leaq	264(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	jne	.L58
 .L22:
 	movq	(%rbx), %rax
-	movl	20(%rbx), %esi
+	movl	28(%rbx), %esi
 	leaq	264(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	jne	.L59
 .L29:
 	movq	(%rbx), %rax
-	movl	24(%rbx), %esi
+	movl	32(%rbx), %esi
 	leaq	264(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	jne	.L60
 .L36:
 	movq	(%rbx), %rax
-	movl	28(%rbx), %esi
+	movl	36(%rbx), %esi
 	leaq	264(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
@@ -546,7 +546,7 @@ _ZN6player6UpdateEv:
 .L58:
 	.cfi_restore_state
 	movq	(%rbx), %rax
-	movl	20(%rbx), %esi
+	movl	28(%rbx), %esi
 	leaq	264(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
@@ -660,7 +660,7 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	56(%rbx), %rsi
+	movq	64(%rbx), %rsi
 	leaq	104(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
 	movq	8(%rbx), %rsi
@@ -677,7 +677,7 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	56(%rbx), %rsi
+	movq	64(%rbx), %rsi
 	leaq	104(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
 	movq	8(%rbx), %rsi
@@ -689,12 +689,45 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	632(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movq	16(%rbx), %rsi
+	leaq	136(%rax), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
+	movq	8(%rbx), %rsi
+	movq	%rax, %rbp
+	movq	(%rbx), %rax
+	leaq	632(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movq	%rax, %rdi
+	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
+	addsd	.LC13(%rip), %xmm0
+	movq	%rbp, %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd@PLT
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	632(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movq	16(%rbx), %rsi
+	leaq	136(%rax), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
+	movq	8(%rbx), %rsi
+	movq	%rax, %rbp
+	movq	(%rbx), %rax
+	leaq	632(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movq	%rax, %rdi
+	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
+	movq	%rbp, %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd@PLT
 	jmp	.L45
 	.p2align 4,,10
 	.p2align 3
 .L61:
 	movq	(%rbx), %rax
-	movl	24(%rbx), %esi
+	movl	32(%rbx), %esi
 	leaq	264(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
@@ -727,7 +760,7 @@ _ZN6player6UpdateEv:
 	.p2align 3
 .L60:
 	movq	(%rbx), %rax
-	movl	28(%rbx), %esi
+	movl	36(%rbx), %esi
 	leaq	264(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
@@ -759,7 +792,7 @@ _ZN6player6UpdateEv:
 	.p2align 3
 .L59:
 	movq	(%rbx), %rax
-	movl	16(%rbx), %esi
+	movl	24(%rbx), %esi
 	leaq	264(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al

@@ -37,6 +37,7 @@ class player
 
     public:
         uint64 Actor;
+        uint64 TextOverlapBox;
         player(engine* Engine, key Forward, key Backward, key Left, key Right);
         ~player();
         uint8 Update();
@@ -50,7 +51,6 @@ class player
         array<uint64> MainFlipbookTextures;
         uint64 NameText;
         uint64 NameTextFont;
-        uint64 TextOverlapBox;
 };
 
 class crate

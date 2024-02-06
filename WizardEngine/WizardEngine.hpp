@@ -543,6 +543,7 @@ namespace wze
                                     double SetAngle(double Angle);
                                     uint16 GetActiveWidth();
                                     uint16 GetActiveHeight();
+                                    bool IsCollidingWith(uint64 ID);
 
                                 private:
                                     uint64 Type;
@@ -574,6 +575,7 @@ namespace wze
                                 array<overlapbox*> Overlapboxes;
                                 overlapboxes(engine* Engine, actor* Actor);
                                 ~overlapboxes();
+                                bool CheckOverlap(overlapbox* Overlapbox1, overlapbox* Overlapbox2);
 
                         } Overlapboxes;
 

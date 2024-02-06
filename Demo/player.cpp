@@ -78,6 +78,8 @@ uint8 player::Update()
     {
         this->Engine->Actors[this->Actor].Texts[this->NameText].SetY(this->Engine->Actors[this->Actor].GetY() + 56);
         this->Engine->Actors[this->Actor].Texts[this->NameText].SetX(this->Engine->Actors[this->Actor].GetX());
+        this->Engine->Actors[this->Actor].Overlapboxes[this->TextOverlapBox].SetY(this->Engine->Actors[this->Actor].GetY() + 56);
+        this->Engine->Actors[this->Actor].Overlapboxes[this->TextOverlapBox].SetX(this->Engine->Actors[this->Actor].GetX());
     }
     if (this->Engine->Keys[KEY_H])
     {
