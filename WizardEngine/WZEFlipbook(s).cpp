@@ -48,7 +48,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Flipbooks += {new flipbook(this->Engine, this->Actor, Delay, TextureIDs)}))[this->Flipbooks.Length() - 1] == NULL)
+        if ((this->Flipbooks += {new flipbook(this->Engine, this->Actor, Delay, TextureIDs)})[this->Flipbooks.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: TextureIDs(length): %ld\n", TextureIDs.size());
             exit(1);
@@ -93,7 +93,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Flipbooks += {new flipbook(this->Engine, this->Actor, Delay, TextureIDs)}))[this->Flipbooks.Length() - 1] == NULL)
+        if ((this->Flipbooks += {new flipbook(this->Engine, this->Actor, Delay, TextureIDs)})[this->Flipbooks.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: TextureIDs(length): %lld\n", TextureIDs->Length());
             exit(1);

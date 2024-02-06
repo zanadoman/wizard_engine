@@ -28,7 +28,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Colors += {new color(this->Engine, this->Actor)}))[this->Colors.Length() - 1] == NULL)
+        if ((this->Colors += {new color(this->Engine, this->Actor)})[this->Colors.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].colors.New(): Memory allocation failed\n");
             exit(1);

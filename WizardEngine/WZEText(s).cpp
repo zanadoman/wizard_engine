@@ -39,7 +39,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Texts += {new text(this->Engine, this->Actor, String, FontID)}))[this->Texts.Length() - 1] == NULL)
+        if ((this->Texts += {new text(this->Engine, this->Actor, String, FontID)})[this->Texts.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
             exit(1);

@@ -49,7 +49,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Actors += {new actor(this->Engine, Type, X, Y, Width, Height, Layer)}))[this->Actors.Length() - 1] == NULL)
+        if ((this->Actors += {new actor(this->Engine, Type, X, Y, Width, Height, Layer)})[this->Actors.Length() - 1] == NULL)
         {
             printf("wze::engine.actors.New(): Memory allocation failed\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
             exit(1);

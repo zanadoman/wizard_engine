@@ -35,33 +35,33 @@ namespace neo
             uint64 Length();
             type& operator [] (uint64 Index);
 
-            array<type>* operator = (std::initializer_list<type> Elements);
-            array<type>* operator = (std::initializer_list<array<type>*> Arrays);
-            array<type>* operator -= (std::initializer_list<type> Elements);
-            array<type>* operator -= (std::initializer_list<array<type>*> Arrays);
-            array<type>* operator += (std::initializer_list<type> Elements);
-            array<type>* operator += (std::initializer_list<array<type>*> Arrays);
+            array<type>& operator = (std::initializer_list<type> Elements);
+            array<type>& operator = (std::initializer_list<array<type>*> Arrays);
+            array<type>& operator -= (std::initializer_list<type> Elements);
+            array<type>& operator -= (std::initializer_list<array<type>*> Arrays);
+            array<type>& operator += (std::initializer_list<type> Elements);
+            array<type>& operator += (std::initializer_list<array<type>*> Arrays);
             bool operator == (array<type>* Array);
             bool operator != (array<type>* Array);
 
-            array<type>* Insert(uint64 Index, uint64 Length);
-            array<type>* Insert(uint64 Index, std::initializer_list<type> Elements);
-            array<type>* Insert(uint64 Index, std::initializer_list<array <type>*> Arrays);
+            array<type>& Insert(uint64 Index, uint64 Length);
+            array<type>& Insert(uint64 Index, std::initializer_list<type> Elements);
+            array<type>& Insert(uint64 Index, std::initializer_list<array <type>*> Arrays);
 
-            array<type>* Remove(uint64 Index, uint64 Length);
+            array<type>& Remove(uint64 Index, uint64 Length);
 
             bool Contains(std::initializer_list<type> Elements);
             bool Contains(std::initializer_list<array <type>*> Arrays);
 
-            array<type>* Reverse();
+            array<type>& Reverse();
 
-            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, const char*>::value, array<typeTMP>*>::type WriteFile(const char* Path);
-            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, string>::value, array<typeTMP>*>::type WriteFile(const char* Path);
-            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, string*>::value, array<typeTMP>*>::type WriteFile(const char* Path);
-            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, string>::value, array<typeTMP>*>::type ReadFile(const char* Path);
-            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, string*>::value, array<typeTMP>*>::type ReadFile(const char* Path);
+            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, const char*>::value, array<typeTMP>&>::type WriteFile(const char* Path);
+            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, string>::value, array<typeTMP>&>::type WriteFile(const char* Path);
+            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, string*>::value, array<typeTMP>&>::type WriteFile(const char* Path);
+            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, string>::value, array<typeTMP>&>::type ReadFile(const char* Path);
+            template <typename typeTMP = type> typename std::enable_if<std::is_same<typeTMP, string*>::value, array<typeTMP>&>::type ReadFile(const char* Path);
 
-            array<type>* Clear();
+            array<type>& Clear();
 
         private:
             uint64 length;
@@ -87,26 +87,26 @@ namespace neo
             const char* operator () ();
             char& operator [] (uint64 Index);
 
-            string* operator = (std::initializer_list<char> Characters);
-            string* operator = (std::initializer_list<const char*> Literals);
-            string* operator = (std::initializer_list<string*> Strings);
-            string* operator = (std::initializer_list<uint64> Numbers);
-            string* operator = (std::initializer_list<sint64> Numbers);
-            string* operator = (std::initializer_list<double> Numbers);
+            string& operator = (std::initializer_list<char> Characters);
+            string& operator = (std::initializer_list<const char*> Literals);
+            string& operator = (std::initializer_list<string*> Strings);
+            string& operator = (std::initializer_list<uint64> Numbers);
+            string& operator = (std::initializer_list<sint64> Numbers);
+            string& operator = (std::initializer_list<double> Numbers);
 
-            string* operator -= (std::initializer_list<char> Characters);
-            string* operator -= (std::initializer_list<const char*> Literals);
-            string* operator -= (std::initializer_list<string*> Strings);
-            string* operator -= (std::initializer_list<uint64> Numbers);
-            string* operator -= (std::initializer_list<sint64> Numbers);
-            string* operator -= (std::initializer_list<double> Numbers);
+            string& operator -= (std::initializer_list<char> Characters);
+            string& operator -= (std::initializer_list<const char*> Literals);
+            string& operator -= (std::initializer_list<string*> Strings);
+            string& operator -= (std::initializer_list<uint64> Numbers);
+            string& operator -= (std::initializer_list<sint64> Numbers);
+            string& operator -= (std::initializer_list<double> Numbers);
 
-            string* operator += (std::initializer_list<char> Characters);
-            string* operator += (std::initializer_list<const char*> Literals);
-            string* operator += (std::initializer_list<string*> Strings);
-            string* operator += (std::initializer_list<uint64> Numbers);
-            string* operator += (std::initializer_list<sint64> Numbers);
-            string* operator += (std::initializer_list<double> Numbers);
+            string& operator += (std::initializer_list<char> Characters);
+            string& operator += (std::initializer_list<const char*> Literals);
+            string& operator += (std::initializer_list<string*> Strings);
+            string& operator += (std::initializer_list<uint64> Numbers);
+            string& operator += (std::initializer_list<sint64> Numbers);
+            string& operator += (std::initializer_list<double> Numbers);
 
             bool operator == (char Character);
             bool operator == (const char* Literal);
@@ -121,14 +121,14 @@ namespace neo
             bool operator != (sint64 Number);
             bool operator != (double Number);
 
-            string* Insert(uint64 Index, std::initializer_list<char> Characters);
-            string* Insert(uint64 Index, std::initializer_list<const char*> Literals);
-            string* Insert(uint64 Index, std::initializer_list<string*> Strings);
-            string* Insert(uint64 Index, std::initializer_list<uint64> Numbers);
-            string* Insert(uint64 Index, std::initializer_list<sint64> Numbers);
-            string* Insert(uint64 Index, std::initializer_list<double> Numbers);
+            string& Insert(uint64 Index, std::initializer_list<char> Characters);
+            string& Insert(uint64 Index, std::initializer_list<const char*> Literals);
+            string& Insert(uint64 Index, std::initializer_list<string*> Strings);
+            string& Insert(uint64 Index, std::initializer_list<uint64> Numbers);
+            string& Insert(uint64 Index, std::initializer_list<sint64> Numbers);
+            string& Insert(uint64 Index, std::initializer_list<double> Numbers);
 
-            string* Remove(uint64 Index, uint64 Length);
+            string& Remove(uint64 Index, uint64 Length);
 
             bool Contains(std::initializer_list<char> Characters);
             bool Contains(std::initializer_list<const char*> Literals);
@@ -137,10 +137,10 @@ namespace neo
             bool Contains(std::initializer_list<sint64> Numbers);
             bool Contains(std::initializer_list<double> Numbers);
 
-            string* Read();
+            string& Read();
             uint64 Split(char Separator, array<string>* Result);
             uint64 Split(char Separator, array<string*>* Result);
-            string* Reverse();
+            string& Reverse();
 
             uint64 ToUINT();
             uint64 ToUINT(bool* Success);
@@ -283,7 +283,7 @@ namespace neo
         return this->elements[Index];
     }
 
-    template <typename type> array<type>* array<type>::operator = (std::initializer_list<type> Elements)
+    template <typename type> array<type>& array<type>::operator = (std::initializer_list<type> Elements)
     {
         for (uint64 i = 0; i < this->length; i++)
         {
@@ -307,10 +307,10 @@ namespace neo
             memCopyTo(Elements.begin(), this->elements, sizeof(type) * this->length);
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> array<type>* array<type>::operator = (std::initializer_list<array<type>*> Arrays)
+    template <typename type> array<type>& array<type>::operator = (std::initializer_list<array<type>*> Arrays)
     {
         uint64 lengthPrev;
 
@@ -358,10 +358,10 @@ namespace neo
             }
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> array<type>* array<type>::operator -= (std::initializer_list<type> Elements)
+    template <typename type> array<type>& array<type>::operator -= (std::initializer_list<type> Elements)
     {
         if (Elements.size() != 0)
         {
@@ -379,10 +379,10 @@ namespace neo
             memCopyTo(Elements.begin(), this->elements, sizeof(type) * Elements.size());
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> array<type>* array<type>::operator -= (std::initializer_list<array<type>*> Arrays)
+    template <typename type> array<type>& array<type>::operator -= (std::initializer_list<array<type>*> Arrays)
     {
         uint64 lengthPrev;
 
@@ -423,10 +423,10 @@ namespace neo
             }
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> array<type>* array<type>::operator += (std::initializer_list<type> Elements)
+    template <typename type> array<type>& array<type>::operator += (std::initializer_list<type> Elements)
     {
         if (Elements.size() != 0)
         {
@@ -439,10 +439,10 @@ namespace neo
             memCopyTo(Elements.begin(), &this->elements[this->length - Elements.size()], sizeof(type) * Elements.size());
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> array<type>* array<type>::operator += (std::initializer_list<array<type>*> Arrays)
+    template <typename type> array<type>& array<type>::operator += (std::initializer_list<array<type>*> Arrays)
     {
         uint64 lengthPrev;
 
@@ -478,7 +478,7 @@ namespace neo
             }
         }
 
-        return this;
+        return *this;
     }
 
     template <typename type> bool array<type>::operator == (array<type>* Array)
@@ -501,7 +501,7 @@ namespace neo
         return !(*this == Array);
     }
 
-    template <typename type> array<type>* array<type>::Insert(uint64 Index, uint64 Length)
+    template <typename type> array<type>& array<type>::Insert(uint64 Index, uint64 Length)
     {
         if (this->length < Index)
         {
@@ -528,10 +528,10 @@ namespace neo
             }
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> array<type>* array<type>::Insert(uint64 Index, std::initializer_list<type> Elements)
+    template <typename type> array<type>& array<type>::Insert(uint64 Index, std::initializer_list<type> Elements)
     {
         if (this->length < Index)
         {
@@ -555,10 +555,10 @@ namespace neo
             memCopyTo(Elements.begin(), &this->elements[Index], sizeof(type) * Elements.size());
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> array<type>* array<type>::Insert(uint64 Index, std::initializer_list<array<type>*> Arrays)
+    template <typename type> array<type>& array<type>::Insert(uint64 Index, std::initializer_list<array<type>*> Arrays)
     {
         uint64 lengthPrev;
 
@@ -605,10 +605,10 @@ namespace neo
             }
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> array<type>* array<type>::Remove(uint64 Index, uint64 Length)
+    template <typename type> array<type>& array<type>::Remove(uint64 Index, uint64 Length)
     {
         if (this->length <= Index)
         {
@@ -648,7 +648,7 @@ namespace neo
             }
         }
 
-        return this;
+        return *this;
     }
 
     template <typename type> bool array<type>::Contains(std::initializer_list<type> Elements)
@@ -709,7 +709,7 @@ namespace neo
         return false;
     }
 
-    template <typename type> array<type>* array<type>::Reverse()
+    template <typename type> array<type>& array<type>::Reverse()
     {
         type tmp;
 
@@ -720,10 +720,10 @@ namespace neo
             this->elements[this->length - 1 - i] = tmp;
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, const char*>::value, array<typeTMP>*>::type array<type>::WriteFile(const char* Path)
+    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, const char*>::value, array<typeTMP>&>::type array<type>::WriteFile(const char* Path)
     {
         FILE* file;
 
@@ -750,10 +750,10 @@ namespace neo
             fclose(file);
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, string>::value, array<typeTMP>*>::type array<type>::WriteFile(const char* Path)
+    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, string>::value, array<typeTMP>&>::type array<type>::WriteFile(const char* Path)
     {
         FILE* file;
 
@@ -780,10 +780,10 @@ namespace neo
             fclose(file);
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, string*>::value, array<typeTMP>*>::type array<type>::WriteFile(const char* Path)
+    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, string*>::value, array<typeTMP>&>::type array<type>::WriteFile(const char* Path)
     {
         FILE* file;
 
@@ -815,10 +815,10 @@ namespace neo
             fclose(file);
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, string>::value, array<typeTMP>*>::type array<type>::ReadFile(const char* Path)
+    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, string>::value, array<typeTMP>&>::type array<type>::ReadFile(const char* Path)
     {
         FILE* file;
         char tmp;
@@ -864,10 +864,10 @@ namespace neo
             fclose(file);
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, string*>::value, array<typeTMP>*>::type array<type>::ReadFile(const char* Path)
+    template <typename type> template <typename typeTMP> typename std::enable_if<std::is_same<typeTMP, string*>::value, array<typeTMP>&>::type array<type>::ReadFile(const char* Path)
     {
         FILE* file;
         char tmp;
@@ -916,10 +916,10 @@ namespace neo
             fclose(file);
         }
 
-        return this;
+        return *this;
     }
 
-    template <typename type> array<type>* array<type>::Clear()
+    template <typename type> array<type>& array<type>::Clear()
     {
         for (uint64 i = 0; i < this->length; i++)
         {
@@ -930,6 +930,6 @@ namespace neo
         free(this->elements);
         this->elements = NULL;
 
-        return this;
+        return *this;
     }
 }

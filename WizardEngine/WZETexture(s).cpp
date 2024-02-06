@@ -34,7 +34,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Textures += {new texture(this->Engine, this->Actor, TextureID)}))[this->Textures.Length() - 1] == NULL)
+        if ((this->Textures += {new texture(this->Engine, this->Actor, TextureID)})[this->Textures.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].textures.New(): Memory allocation failed\nParams: TextureID: %lld\n", TextureID);
             exit(1);

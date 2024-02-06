@@ -35,7 +35,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Textures += {SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, tmp)}))[this->Textures.Length() - 1] == NULL)
+        if ((this->Textures += {SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, tmp)})[this->Textures.Length() - 1] == NULL)
         {
             printf("wze::engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n", Path);
             exit(1);
@@ -304,7 +304,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Sounds += {Mix_LoadWAV(Path)}))[this->Sounds.Length() - 1] == NULL)
+        if ((this->Sounds += {Mix_LoadWAV(Path)})[this->Sounds.Length() - 1] == NULL)
         {
             printf("wze::engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n", Path);
             exit(1);
@@ -461,7 +461,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Fonts += {TTF_OpenFont(Path, Size)}))[this->Fonts.Length() - 1] == NULL)
+        if ((this->Fonts += {TTF_OpenFont(Path, Size)})[this->Fonts.Length() - 1] == NULL)
         {
             printf("wze::engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n", Path);
             exit(1);
@@ -701,7 +701,7 @@ namespace wze
             }
         }
 
-        if ((*(this->Cursors += {SDL_CreateColorCursor(tmp, HotSpotX, HotSpotY)}))[this->Cursors.Length() - 1] == NULL)
+        if ((this->Cursors += {SDL_CreateColorCursor(tmp, HotSpotX, HotSpotY)})[this->Cursors.Length() - 1] == NULL)
         {
             printf("wze::engine.assets.LoadCursor(): SDL_CreateColorCursor() failed\nParams: Path: %s\n", Path);
             exit(1);
