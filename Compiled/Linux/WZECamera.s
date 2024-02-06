@@ -1350,113 +1350,197 @@ _ZN3wze6engine6camera6UpdateEv:
 _ZN3wze6engine6camera9TransformEddttd:
 .LFB8178:
 	.cfi_startproc
-	pushq	%r15
-	.cfi_def_cfa_offset 16
-	.cfi_offset 15, -16
 	movapd	%xmm0, %xmm3
 	pxor	%xmm0, %xmm0
-	movq	%xmm1, %r15
-	pushq	%r14
-	.cfi_def_cfa_offset 24
-	.cfi_offset 14, -24
-	movq	%rdi, %r14
-	pushq	%r13
-	.cfi_def_cfa_offset 32
-	.cfi_offset 13, -32
-	pushq	%r12
-	.cfi_def_cfa_offset 40
-	.cfi_offset 12, -40
-	movzwl	%dx, %r12d
-	pushq	%rbp
-	.cfi_def_cfa_offset 48
-	.cfi_offset 6, -48
-	pushq	%rbx
-	.cfi_def_cfa_offset 56
-	.cfi_offset 3, -56
-	movzwl	%si, %ebx
-	subq	$24, %rsp
-	.cfi_def_cfa_offset 80
-	ucomisd	%xmm0, %xmm2
 	movq	(%rdi), %rax
-	movzwl	42(%rax), %r13d
+	movl	%edx, %ecx
+	ucomisd	%xmm0, %xmm2
+	movzwl	%si, %edx
+	movzwl	%cx, %esi
+	movzwl	42(%rax), %ecx
 	jp	.L342
 	jne	.L342
-	movapd	%xmm3, %xmm0
-	call	round@PLT
-	movl	%ebx, %edx
-	cvttsd2sil	%xmm0, %ebp
-	sarl	%edx
-	movq	%r15, %xmm0
-	subl	%edx, %ebp
-.L347:
-	call	round@PLT
-	movl	%r13d, %edx
-	addq	$24, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 56
-	cvttsd2sil	%xmm0, %eax
-	subl	%eax, %edx
-	movl	%r12d, %eax
-	salq	$32, %r12
-	sarl	%eax
-	subl	%eax, %edx
-	movl	%ebp, %eax
-	salq	$32, %rdx
-	orq	%rdx, %rax
-	movl	%ebx, %edx
-	popq	%rbx
-	.cfi_def_cfa_offset 48
-	popq	%rbp
-	.cfi_def_cfa_offset 40
-	orq	%r12, %rdx
-	popq	%r12
-	.cfi_def_cfa_offset 32
-	popq	%r13
-	.cfi_def_cfa_offset 24
-	popq	%r14
-	.cfi_def_cfa_offset 16
-	popq	%r15
-	.cfi_def_cfa_offset 8
+	movq	.LC47(%rip), %xmm0
+	movsd	.LC46(%rip), %xmm5
+	movapd	%xmm3, %xmm2
+	andpd	%xmm0, %xmm2
+	movapd	%xmm0, %xmm4
+	ucomisd	%xmm2, %xmm5
+	ja	.L352
+.L344:
+	cvttsd2sil	%xmm3, %eax
+	movl	%edx, %edi
+	movapd	%xmm1, %xmm2
+	sarl	%edi
+	andpd	%xmm0, %xmm2
+	subl	%edi, %eax
+	ucomisd	%xmm2, %xmm5
+	ja	.L353
+.L345:
+	cvttsd2sil	%xmm1, %edi
+	subl	%edi, %ecx
+	movl	%esi, %edi
+	sarl	%edi
+	subl	%edi, %ecx
+.L346:
+	salq	$32, %rcx
+	movl	%edx, %edx
+	orq	%rcx, %rax
+	movq	%rsi, %rcx
+	salq	$32, %rcx
+	orq	%rcx, %rdx
 	ret
 	.p2align 4,,10
 	.p2align 3
 .L342:
-	.cfi_restore_state
-	mulsd	64(%r14), %xmm2
-	pxor	%xmm0, %xmm0
-	movsd	%xmm3, 8(%rsp)
-	cvtsi2sdl	%ebx, %xmm0
-	mulsd	%xmm2, %xmm0
-	movsd	%xmm2, (%rsp)
-	call	round@PLT
-	movsd	(%rsp), %xmm2
-	cvttsd2sil	%xmm0, %ebx
-	pxor	%xmm0, %xmm0
-	cvtsi2sdl	%r12d, %xmm0
-	mulsd	%xmm2, %xmm0
-	call	round@PLT
-	movsd	(%rsp), %xmm2
-	movsd	8(%rsp), %xmm3
-	cvttsd2sil	%xmm0, %r12d
-	movsd	8(%r14), %xmm0
-	divsd	%xmm2, %xmm0
-	addsd	48(%r14), %xmm0
-	subsd	%xmm0, %xmm3
+	mulsd	64(%rdi), %xmm2
+	pxor	%xmm4, %xmm4
+	movq	.LC47(%rip), %xmm0
+	cvtsi2sdl	%edx, %xmm4
+	movsd	.LC46(%rip), %xmm5
+	movapd	%xmm0, %xmm7
+	mulsd	%xmm2, %xmm4
+	movapd	%xmm4, %xmm6
+	andpd	%xmm0, %xmm6
+	ucomisd	%xmm6, %xmm5
+	ja	.L354
+.L347:
+	cvttsd2sil	%xmm4, %edx
+	pxor	%xmm4, %xmm4
+	movapd	%xmm0, %xmm7
+	cvtsi2sdl	%esi, %xmm4
+	mulsd	%xmm2, %xmm4
+	movapd	%xmm4, %xmm6
+	andpd	%xmm0, %xmm6
+	ucomisd	%xmm6, %xmm5
+	ja	.L355
+.L348:
+	cvttsd2sil	%xmm4, %esi
+	movsd	8(%rdi), %xmm4
+	movapd	%xmm0, %xmm6
+	divsd	%xmm2, %xmm4
+	addsd	48(%rdi), %xmm4
+	subsd	%xmm4, %xmm3
 	mulsd	%xmm2, %xmm3
-	movapd	%xmm3, %xmm0
-	call	round@PLT
-	movsd	(%rsp), %xmm2
-	movsd	16(%r14), %xmm1
-	movl	%ebx, %edx
-	cvttsd2sil	%xmm0, %ebp
-	movq	%r15, %xmm0
-	sarl	%edx
-	divsd	%xmm2, %xmm1
-	subl	%edx, %ebp
-	addsd	56(%r14), %xmm1
-	subsd	%xmm1, %xmm0
-	mulsd	%xmm2, %xmm0
+	movapd	%xmm3, %xmm4
+	andpd	%xmm0, %xmm4
+	ucomisd	%xmm4, %xmm5
+	ja	.L356
+.L349:
+	cvttsd2sil	%xmm3, %eax
+	movsd	16(%rdi), %xmm3
+	movl	%edx, %r8d
+	sarl	%r8d
+	divsd	%xmm2, %xmm3
+	subl	%r8d, %eax
+	addsd	56(%rdi), %xmm3
+	subsd	%xmm3, %xmm1
+	mulsd	%xmm1, %xmm2
+	movapd	%xmm2, %xmm1
+	andpd	%xmm0, %xmm1
+	ucomisd	%xmm1, %xmm5
+	ja	.L357
+	cvttsd2sil	%xmm2, %edi
+	subl	%edi, %ecx
+	movl	%esi, %edi
+	sarl	%edi
+	subl	%edi, %ecx
+	jmp	.L346
+	.p2align 4,,10
+	.p2align 3
+.L357:
+	cvttsd2siq	%xmm2, %rdi
+	pxor	%xmm1, %xmm1
+	movsd	.LC48(%rip), %xmm4
+	andnpd	%xmm2, %xmm0
+	cvtsi2sdq	%rdi, %xmm1
+	movapd	%xmm1, %xmm3
+	cmpnlesd	%xmm2, %xmm3
+	andpd	%xmm4, %xmm3
+	subsd	%xmm3, %xmm1
+	orpd	%xmm0, %xmm1
+	movapd	%xmm1, %xmm2
+	cvttsd2sil	%xmm2, %edi
+	subl	%edi, %ecx
+	movl	%esi, %edi
+	sarl	%edi
+	subl	%edi, %ecx
+	jmp	.L346
+	.p2align 4,,10
+	.p2align 3
+.L356:
+	cvttsd2siq	%xmm3, %rax
+	pxor	%xmm4, %xmm4
+	andnpd	%xmm3, %xmm6
+	movsd	.LC48(%rip), %xmm8
+	cvtsi2sdq	%rax, %xmm4
+	movapd	%xmm4, %xmm7
+	cmpnlesd	%xmm3, %xmm7
+	andpd	%xmm8, %xmm7
+	subsd	%xmm7, %xmm4
+	movapd	%xmm4, %xmm3
+	orpd	%xmm6, %xmm3
+	jmp	.L349
+	.p2align 4,,10
+	.p2align 3
+.L355:
+	cvttsd2siq	%xmm4, %rax
+	pxor	%xmm6, %xmm6
+	andnpd	%xmm4, %xmm7
+	movsd	.LC48(%rip), %xmm9
+	cvtsi2sdq	%rax, %xmm6
+	movapd	%xmm6, %xmm8
+	cmpnlesd	%xmm4, %xmm8
+	andpd	%xmm9, %xmm8
+	subsd	%xmm8, %xmm6
+	orpd	%xmm7, %xmm6
+	movapd	%xmm6, %xmm4
+	jmp	.L348
+	.p2align 4,,10
+	.p2align 3
+.L354:
+	cvttsd2siq	%xmm4, %rax
+	pxor	%xmm6, %xmm6
+	andnpd	%xmm4, %xmm7
+	movsd	.LC48(%rip), %xmm9
+	cvtsi2sdq	%rax, %xmm6
+	movapd	%xmm6, %xmm8
+	cmpnlesd	%xmm4, %xmm8
+	andpd	%xmm9, %xmm8
+	subsd	%xmm8, %xmm6
+	orpd	%xmm7, %xmm6
+	movapd	%xmm6, %xmm4
 	jmp	.L347
+	.p2align 4,,10
+	.p2align 3
+.L353:
+	cvttsd2siq	%xmm1, %rdi
+	pxor	%xmm2, %xmm2
+	movsd	.LC48(%rip), %xmm4
+	andnpd	%xmm1, %xmm0
+	cvtsi2sdq	%rdi, %xmm2
+	movapd	%xmm2, %xmm3
+	cmpnlesd	%xmm1, %xmm3
+	andpd	%xmm4, %xmm3
+	subsd	%xmm3, %xmm2
+	movapd	%xmm2, %xmm1
+	orpd	%xmm0, %xmm1
+	jmp	.L345
+	.p2align 4,,10
+	.p2align 3
+.L352:
+	cvttsd2siq	%xmm3, %rax
+	pxor	%xmm2, %xmm2
+	movsd	.LC48(%rip), %xmm7
+	andnpd	%xmm3, %xmm4
+	cvtsi2sdq	%rax, %xmm2
+	movapd	%xmm2, %xmm6
+	cmpnlesd	%xmm3, %xmm6
+	andpd	%xmm7, %xmm6
+	subsd	%xmm6, %xmm2
+	movapd	%xmm2, %xmm3
+	orpd	%xmm4, %xmm3
+	jmp	.L344
 	.cfi_endproc
 .LFE8178:
 	.size	_ZN3wze6engine6camera9TransformEddttd, .-_ZN3wze6engine6camera9TransformEddttd
@@ -1480,5 +1564,17 @@ _ZN3wze6engine6camera9TransformEddttd:
 	.long	-755914244
 	.long	1062232653
 	.set	.LC6,.LC0+8
+	.align 8
+.LC46:
+	.long	0
+	.long	1127219200
+	.section	.rodata.cst16
+	.align 16
+.LC47:
+	.long	-1
+	.long	2147483647
+	.long	0
+	.long	0
+	.set	.LC48,.LC0
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

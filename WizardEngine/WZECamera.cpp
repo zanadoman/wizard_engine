@@ -539,16 +539,16 @@ namespace wze
         {
             result.w = Width;
             result.h = Height;
-            result.x = (sint32)round(X) - (result.w >> 1);
-            result.y = -((sint32)round(Y) - this->Engine->Render.RenderHeight) - (result.h >> 1);
+            result.x = (sint32)floor(X) - (result.w >> 1);
+            result.y = -((sint32)floor(Y) - this->Engine->Render.RenderHeight) - (result.h >> 1);
         }
         else
         {
             cache = this->Zoom * Layer;
-            result.w = round(Width * cache);
-            result.h = round(Height * cache);
-            result.x = (sint32)round((X - (this->CameraX + this->OffsetX / cache)) * cache) - (result.w >> 1);
-            result.y = -((sint32)round((Y - (this->CameraY + this->OffsetY / cache)) * cache) - this->Engine->Render.RenderHeight) - (result.h >> 1);
+            result.w = floor(Width * cache);
+            result.h = floor(Height * cache);
+            result.x = (sint32)floor((X - (this->CameraX + this->OffsetX / cache)) * cache) - (result.w >> 1);
+            result.y = -((sint32)floor((Y - (this->CameraY + this->OffsetY / cache)) * cache) - this->Engine->Render.RenderHeight) - (result.h >> 1);
         }
 
         return result;
