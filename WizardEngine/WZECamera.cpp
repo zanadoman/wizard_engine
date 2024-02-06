@@ -145,12 +145,12 @@ namespace wze
     {
         if (MinSpeed <= 0)
         {
-            printf("wze::engine.camera.SetMinSpeed(): MinSpeed must not be less than or equal to 0\nParams: Speed: %lf\n", MinSpeed);
+            printf("wze::engine.camera.SetMinSpeed(): MinSpeed must not be less than or equal to 0\nParams: MinSpeed: %lf\n", MinSpeed);
             exit(1);
         }
         if (this->MaxSpeed < MinSpeed)
         {
-            printf("wze::engine.camera.SetMinSpeed(): MinSpeed must not be greater than MaxSpeed\nParams: Speed: %lf\n", MinSpeed);
+            printf("wze::engine.camera.SetMinSpeed(): MinSpeed must not be greater than MaxSpeed\nParams: MinSpeed: %lf\n", MinSpeed);
             exit(1);
         }
 
@@ -171,12 +171,12 @@ namespace wze
     {
         if (MaxSpeed <= 0)
         {
-            printf("wze::engine.camera.SetMaxSpeed(): MaxSpeed must not be less than or equal to 0\nParams: Speed: %lf\n", MaxSpeed);
+            printf("wze::engine.camera.SetMaxSpeed(): MaxSpeed must not be less than or equal to 0\nParams: MaxSpeed: %lf\n", MaxSpeed);
             exit(1);
         }
         if (MaxSpeed < this->MinSpeed)
         {
-            printf("wze::engine.camera.SetMaxSpeed(): MaxSpeed must not be less than MinSpeed\nParams: Speed: %lf\n", MaxSpeed);
+            printf("wze::engine.camera.SetMaxSpeed(): MaxSpeed must not be less than MinSpeed\nParams: MaxSpeed: %lf\n", MaxSpeed);
             exit(1);
         }
 
@@ -206,8 +206,10 @@ namespace wze
 
     uint8 engine::camera::Update()
     {
+        double angle;
         bool moved;
 
+        angle = 0;
         moved = false;
 
         if (this->Smoothing)
@@ -216,15 +218,19 @@ namespace wze
             {
                 this->CurrentSpeed = this->MinSpeed;
             }
+            else
+            {
+                angle = this->Engine->Vector.Angle(this->CameraX, this->CameraY, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y);
+            }
         }
 
         if (this->XActor != 0)
         {
-            if (this->Smoothing)
+            if (this->Smoothing && angle == angle)
             {
                 if (this->CameraX < this->Engine->Actors.Actors[this->XActor]->X)
                 {
-                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeed * this->Engine->Timing.DeltaTime, this->Engine->Vector.Angle(this->CameraX, this->CameraY, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y));
+                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeed * this->Engine->Timing.DeltaTime, angle);
 
                     if (this->Engine->Actors.Actors[this->XActor]->X < this->CameraX)
                     {
@@ -235,7 +241,7 @@ namespace wze
                 }
                 else if (this->Engine->Actors.Actors[this->XActor]->X < this->CameraX)
                 {
-                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeed * this->Engine->Timing.DeltaTime, this->Engine->Vector.Angle(this->CameraX, this->CameraY, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y));
+                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeed * this->Engine->Timing.DeltaTime, angle);
 
                     if (this->CameraX < this->Engine->Actors.Actors[this->XActor]->X)
                     {
@@ -250,13 +256,14 @@ namespace wze
                 this->CameraX = this->Engine->Actors.Actors[this->XActor]->X;
             }
         }
+        
         if (this->YActor != 0)
         {
-            if (this->Smoothing)
+            if (this->Smoothing && angle == angle)
             {
                 if (this->CameraY < this->Engine->Actors.Actors[this->YActor]->Y)
                 {
-                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeed * this->Engine->Timing.DeltaTime, this->Engine->Vector.Angle(this->CameraX, this->CameraY, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y));
+                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeed * this->Engine->Timing.DeltaTime, angle);
 
                     if (this->Engine->Actors.Actors[this->YActor]->Y < this->CameraY)
                     {
@@ -267,7 +274,7 @@ namespace wze
                 }
                 else if (this->Engine->Actors.Actors[this->YActor]->Y < this->CameraY)
                 {
-                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeed * this->Engine->Timing.DeltaTime, this->Engine->Vector.Angle(this->CameraX, this->CameraY, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y));
+                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeed * this->Engine->Timing.DeltaTime, angle);
 
                     if (this->CameraY < this->Engine->Actors.Actors[this->YActor]->Y)
                     {
