@@ -349,8 +349,8 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	movl	$384, %esi
 	pxor	%xmm0, %xmm0
 	movw	%si, 36(%rax)
-	movl	232(%rdx), %ecx
-	movupd	200(%rdx), %xmm4
+	movl	240(%rdx), %ecx
+	movupd	208(%rdx), %xmm4
 	movq	%r12, 72(%rax)
 	movq	24(%rbp), %rdx
 	movups	%xmm3, (%rax)
@@ -375,8 +375,8 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	pxor	%xmm0, %xmm0
 	movq	%r12, 72(%rax)
 	movq	24(%rbp), %rdi
-	movl	232(%rdx), %ecx
-	movupd	200(%rdx), %xmm2
+	movl	240(%rdx), %ecx
+	movupd	208(%rdx), %xmm2
 	movq	%rax, (%rsp)
 	movups	%xmm1, (%rax)
 	movl	%ecx, 16(%rax)
@@ -986,8 +986,8 @@ _ZN3wze6engine6actors5actor8texturesixEy:
 _ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_y:
 .LFB8158:
 	.cfi_startproc
-	movl	232(%rdx), %eax
-	movupd	200(%rdx), %xmm1
+	movl	240(%rdx), %eax
+	movupd	208(%rdx), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rsi, (%rdi)
 	movq	%rdx, 8(%rdi)
@@ -1042,8 +1042,8 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	movq	8(%rdi), %rax
 	movsd	48(%rdi), %xmm3
 	movq	%rdi, %rbx
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
 	jp	.L183
 	jne	.L183
@@ -1065,8 +1065,8 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	movsd	8(%rsp), %xmm2
 	movapd	%xmm0, %xmm4
 	movsd	48(%rbx), %xmm3
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	movsd	%xmm4, 56(%rbx)
 	ucomisd	%xmm0, %xmm2
 	jp	.L187
@@ -1135,8 +1135,8 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	movq	8(%rdi), %rax
 	movsd	40(%rdi), %xmm2
 	movq	%rdi, %rbx
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
 	jp	.L203
 	jne	.L203
@@ -1158,8 +1158,8 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	movsd	40(%rbx), %xmm2
 	movapd	%xmm0, %xmm4
 	movsd	8(%rsp), %xmm3
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	movsd	%xmm4, 56(%rbx)
 	ucomisd	%xmm2, %xmm0
 	jp	.L207

@@ -332,8 +332,8 @@ _ZN3wze6engine6actors5actor6colors3NewEv:
 	movl	$-32767, %esi
 	pxor	%xmm0, %xmm0
 	movl	$-1, 20(%rax)
-	movl	232(%rdx), %ecx
-	movupd	200(%rdx), %xmm4
+	movl	240(%rdx), %ecx
+	movupd	208(%rdx), %xmm4
 	movw	%si, 24(%rax)
 	movb	$1, 26(%rax)
 	movq	24(%rbp), %rdx
@@ -355,8 +355,8 @@ _ZN3wze6engine6actors5actor6colors3NewEv:
 	pxor	%xmm0, %xmm0
 	movl	$-1, 20(%rax)
 	movq	24(%rbp), %rdi
-	movl	232(%rdx), %ecx
-	movupd	200(%rdx), %xmm2
+	movl	240(%rdx), %ecx
+	movupd	208(%rdx), %xmm2
 	movb	$1, 26(%rax)
 	movq	%rax, (%rsp)
 	movl	%ecx, 16(%rax)
@@ -952,8 +952,8 @@ _ZN3wze6engine6actors5actor6colorsixEy:
 _ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_:
 .LFB8158:
 	.cfi_startproc
-	movl	232(%rdx), %eax
-	movupd	200(%rdx), %xmm1
+	movl	240(%rdx), %eax
+	movupd	208(%rdx), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rsi, (%rdi)
 	movq	%rdx, 8(%rdi)
@@ -1005,8 +1005,8 @@ _ZN3wze6engine6actors5actor6colors5color4SetXEd:
 	movq	8(%rdi), %rax
 	movsd	40(%rdi), %xmm3
 	movq	%rdi, %rbx
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
 	jp	.L179
 	jne	.L179
@@ -1028,8 +1028,8 @@ _ZN3wze6engine6actors5actor6colors5color4SetXEd:
 	movsd	8(%rsp), %xmm2
 	movapd	%xmm0, %xmm4
 	movsd	40(%rbx), %xmm3
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	movsd	%xmm4, 48(%rbx)
 	ucomisd	%xmm0, %xmm2
 	jp	.L183
@@ -1098,8 +1098,8 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	movq	8(%rdi), %rax
 	movsd	32(%rdi), %xmm2
 	movq	%rdi, %rbx
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
 	jp	.L199
 	jne	.L199
@@ -1121,8 +1121,8 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	movsd	32(%rbx), %xmm2
 	movapd	%xmm0, %xmm4
 	movsd	8(%rsp), %xmm3
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	movsd	%xmm4, 48(%rbx)
 	ucomisd	%xmm2, %xmm0
 	jp	.L203

@@ -56,7 +56,7 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	leaq	632(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	8(%rbx), %rdx
-	movq	$50, 176(%rax)
+	movq	$50, 184(%rax)
 	movq	(%rbx), %rax
 	leaq	632(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy

@@ -936,8 +936,8 @@ _ZN3wze6engine6actors5actor5texts4textC2EPS0_PS2_PKcy:
 	movq	%r13, %rdi
 	movl	$-1, 16(%rbx)
 	movq	$0x000000000, 24(%rbx)
-	movupd	200(%rax), %xmm2
-	movzwl	234(%rax), %eax
+	movupd	208(%rax), %xmm2
+	movzwl	242(%rax), %eax
 	movw	%dx, 56(%rbx)
 	movl	$1, %edx
 	movl	$16842752, 32(%rbx)
@@ -1478,8 +1478,8 @@ _ZN3wze6engine6actors5actor5texts4text4SetXEd:
 	movq	8(%rdi), %rax
 	movsd	48(%rdi), %xmm3
 	movq	%rdi, %rbx
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
 	jp	.L210
 	jne	.L210
@@ -1501,8 +1501,8 @@ _ZN3wze6engine6actors5actor5texts4text4SetXEd:
 	movsd	8(%rsp), %xmm2
 	movapd	%xmm0, %xmm4
 	movsd	48(%rbx), %xmm3
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	movsd	%xmm4, 72(%rbx)
 	ucomisd	%xmm0, %xmm2
 	jp	.L214
@@ -1571,8 +1571,8 @@ _ZN3wze6engine6actors5actor5texts4text4SetYEd:
 	movq	8(%rdi), %rax
 	movsd	40(%rdi), %xmm2
 	movq	%rdi, %rbx
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
 	jp	.L230
 	jne	.L230
@@ -1594,8 +1594,8 @@ _ZN3wze6engine6actors5actor5texts4text4SetYEd:
 	movsd	40(%rbx), %xmm2
 	movapd	%xmm0, %xmm4
 	movsd	8(%rsp), %xmm3
-	movsd	200(%rax), %xmm0
-	movsd	208(%rax), %xmm1
+	movsd	208(%rax), %xmm0
+	movsd	216(%rax), %xmm1
 	movsd	%xmm4, 72(%rbx)
 	ucomisd	%xmm2, %xmm0
 	jp	.L234

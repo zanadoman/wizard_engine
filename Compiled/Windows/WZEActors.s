@@ -248,7 +248,7 @@ _ZN3wze6engine6actorsD2Ev:
 	addq	$1, %rbx
 	call	_ZN3wze6engine6actors5actorD1Ev
 	movq	%rsi, %rcx
-	movl	$304, %edx
+	movl	$312, %edx
 	call	_ZdlPvy
 	movq	8(%rdi), %rax
 	movq	16(%rdi), %rcx
@@ -361,7 +361,7 @@ _ZN3wze6engine6actors3NewEyddttd:
 .L51:
 	cmpq	$0, (%rcx,%rbx,8)
 	jne	.L48
-	movl	$304, %ecx
+	movl	$312, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
@@ -385,7 +385,7 @@ _ZN3wze6engine6actors3NewEyddttd:
 	.p2align 4,,10
 	.p2align 3
 .L47:
-	movl	$304, %ecx
+	movl	$312, %ecx
 .LEHB2:
 	call	_Znwy
 .LEHE2:
@@ -565,14 +565,14 @@ _ZN3wze6engine6actors3NewEyddttd:
 _ZN3wze6engine6actors3NewEyddttd.cold:
 .L57:
 	movq	%rbx, %rcx
-	movl	$304, %edx
+	movl	$312, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB5:
 	call	_Unwind_Resume
 .L56:
 	movq	%r13, %rcx
-	movl	$304, %edx
+	movl	$312, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
@@ -635,7 +635,7 @@ _ZN3wze6engine6actors6DeleteEy:
 	movq	%rdi, %rcx
 	call	_ZN3wze6engine6actors5actorD1Ev
 	movq	%rdi, %rcx
-	movl	$304, %edx
+	movl	$312, %edx
 	call	_ZdlPvy
 	movq	8(%rsi), %rax
 	movq	16(%rsi), %rcx
@@ -805,7 +805,7 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	je	.L101
 	movq	%r12, %rcx
 	call	_ZN3wze6engine6actors5actorD1Ev
-	movl	$304, %edx
+	movl	$312, %edx
 	movq	%r12, %rcx
 	call	_ZdlPvy
 	movq	8(%rbp), %rcx
@@ -974,7 +974,7 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	je	.L143
 	movq	%rbp, %rcx
 	call	_ZN3wze6engine6actors5actorD1Ev
-	movl	$304, %edx
+	movl	$312, %edx
 	movq	%rbp, %rcx
 	call	_ZdlPvy
 	movq	8(%rdi), %r9

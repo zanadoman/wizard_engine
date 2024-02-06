@@ -801,11 +801,11 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.seh_endprologue
 	pxor	%xmm0, %xmm0
 	xorl	%esi, %esi
-	movupd	200(%r8), %xmm1
+	movupd	208(%r8), %xmm1
 	movq	112(%rsp), %rax
 	movq	(%rax), %rbp
 	movq	8(%rax), %rdi
-	movl	232(%r8), %eax
+	movl	240(%r8), %eax
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
 	movl	%eax, 16(%rcx)
@@ -1240,9 +1240,9 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	subq	$56, %rsp
 	.seh_stackalloc	56
 	.seh_endprologue
-	movl	232(%r8), %eax
+	movl	240(%r8), %eax
 	movq	112(%rsp), %rbx
-	movupd	200(%r8), %xmm0
+	movupd	208(%r8), %xmm0
 	movl	%eax, 16(%rcx)
 	movq	%rcx, %rsi
 	movabsq	$283124260995072, %rax
@@ -1681,8 +1681,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	jp	.L244
 	movq	8(%rcx), %rax
 	movsd	48(%rcx), %xmm0
-	movsd	200(%rax), %xmm1
-	movsd	208(%rax), %xmm2
+	movsd	208(%rax), %xmm1
+	movsd	216(%rax), %xmm2
 	ucomisd	%xmm6, %xmm1
 	jp	.L230
 	jne	.L230
@@ -1704,8 +1704,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	movq	8(%rbx), %rax
 	movapd	%xmm0, %xmm3
 	movsd	48(%rbx), %xmm0
-	movsd	200(%rax), %xmm1
-	movsd	208(%rax), %xmm2
+	movsd	208(%rax), %xmm1
+	movsd	216(%rax), %xmm2
 	movsd	%xmm3, 56(%rbx)
 	ucomisd	%xmm1, %xmm6
 	jp	.L234
@@ -1771,8 +1771,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	jp	.L263
 	movq	8(%rcx), %rax
 	movsd	40(%rcx), %xmm3
-	movsd	200(%rax), %xmm1
-	movsd	208(%rax), %xmm2
+	movsd	208(%rax), %xmm1
+	movsd	216(%rax), %xmm2
 	ucomisd	%xmm3, %xmm1
 	jp	.L249
 	jne	.L249
@@ -1792,8 +1792,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
 	movsd	40(%rbx), %xmm3
-	movsd	200(%rax), %xmm1
-	movsd	208(%rax), %xmm2
+	movsd	208(%rax), %xmm1
+	movsd	216(%rax), %xmm2
 	movsd	%xmm0, 56(%rbx)
 	ucomisd	%xmm3, %xmm1
 	jp	.L253

@@ -70,7 +70,7 @@ namespace wze
         k = 0;
         for (uint64 i = 1; i < this->Engine->Actors.Actors.Length(); i++)
         {
-            if (this->Engine->Actors.Actors[i] == NULL)
+            if (this->Engine->Actors.Actors[i] == NULL || !this->Engine->Actors.Actors[i]->Visible)
             {
                 continue;
             }

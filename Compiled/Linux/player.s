@@ -136,12 +136,12 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	$150, 168(%rax)
+	movq	$150, 176(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	$100, 176(%rax)
+	movq	$100, 184(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
@@ -160,7 +160,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movb	$1, 184(%rax)
+	movb	$1, 192(%rax)
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	632(%rax), %rdi

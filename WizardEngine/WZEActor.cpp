@@ -4,6 +4,7 @@ namespace wze
 {
     engine::actors::actor::actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), OverlapBoxes(Engine, this)
     {
+        this->Visible = true;
         this->Force = 0;
         this->Resistance = 0;
         this->HitboxVisible = false;

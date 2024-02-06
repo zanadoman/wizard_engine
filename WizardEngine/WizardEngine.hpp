@@ -525,8 +525,30 @@ namespace wze
                                 actor* Actor;
 
                                 public:
+                                    bool Visible;
+                                    uint64 GetType();
+                                    double GetX();
+                                    double SetX(double X);
+                                    double GetY();
+                                    double SetY(double Y);
+                                    uint16 GetWidth();
+                                    uint16 SetWidth(uint16 Width);
+                                    uint16 GetHeight();
+                                    uint16 SetHeight(uint16 Height);
+                                    uint16 GetHitboxWidth();
+                                    uint16 GetHitboxHeight();
 
                                 private:
+                                    uint64 Type;
+                                    double X;
+                                    double Y;
+                                    uint16 Width;
+                                    uint16 Height;
+                                    uint16 HitboxWidth;
+                                    uint16 HitboxHeight;
+                                    double HitboxMedianLength;
+                                    double HitboxMedian1Angle;
+                                    double HitboxMedian2Angle;
                                     overlapbox(engine* Engine, actor* Actor);
                                     ~overlapbox(); 
                             };
@@ -547,6 +569,7 @@ namespace wze
 
                     //__________Actor______________________________________________________________________________
 
+                        bool Visible;
                         uint64 Force;
                         uint64 Resistance;
                         bool HitboxVisible;
