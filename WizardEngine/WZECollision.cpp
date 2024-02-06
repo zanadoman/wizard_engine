@@ -187,7 +187,7 @@ namespace wze
     bool engine::collision::ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2)
     {
         direction Direction;
-        double ratio, cache;
+        double ratio, difference, cache;
 
         double Actor1TopLeftX;
         double Actor1TopLeftY;
@@ -265,55 +265,67 @@ namespace wze
             switch (Direction)
             {
                 case TOP:
-                    Actor1->Y -= (Actor1TopLeftY - Actor2BotRightY) * cache + EPSILON;
-                    Actor2->Y += (Actor1TopLeftY - Actor2BotRightY) * ratio;
+                    difference = (Actor1TopLeftY - Actor2BotRightY);
+                    Actor1->Y -= difference * cache + EPSILON;
+                    Actor2->Y += difference * ratio;
                 return true;
 
                 case BOT:
-                    Actor1->Y += (Actor2TopLeftY - Actor1BotRightY) * cache + EPSILON;
-                    Actor2->Y -= (Actor2TopLeftY - Actor1BotRightY) * ratio;
+                    difference = (Actor2TopLeftY - Actor1BotRightY);
+                    Actor1->Y += difference * cache + EPSILON;
+                    Actor2->Y -= difference * ratio;
                 return true;
 
                 case LEFT:
-                    Actor1->X += (Actor2BotRightX - Actor1TopLeftX) * cache + EPSILON;
-                    Actor2->X -= (Actor2BotRightX - Actor1TopLeftX) * ratio;
+                    difference = (Actor2BotRightX - Actor1TopLeftX);
+                    Actor1->X += difference * cache + EPSILON;
+                    Actor2->X -= difference * ratio;
                 return true;
 
                 case RIGHT:
-                    Actor1->X -= (Actor1BotRightX - Actor2TopLeftX) * cache + EPSILON;
-                    Actor2->X += (Actor1BotRightX - Actor2TopLeftX) * ratio;
+                    difference = (Actor1BotRightX - Actor2TopLeftX);
+                    Actor1->X -= difference * cache + EPSILON;
+                    Actor2->X += difference * ratio;
                 return true;
 
                 case TOP_LEFT:
-                    Actor1->Y -= (Actor1TopLeftY - Actor2BotRightY) * cache + EPSILON;
-                    Actor2->Y += (Actor1TopLeftY - Actor2BotRightY) * ratio;
+                    difference = (Actor1TopLeftY - Actor2BotRightY);
+                    Actor1->Y -= difference * cache + EPSILON;
+                    Actor2->Y += difference * ratio;
 
-                    Actor1->X += (Actor2BotRightX - Actor1TopLeftX) * cache + EPSILON;
-                    Actor2->X -= (Actor2BotRightX - Actor1TopLeftX) * ratio;
+                    difference = (Actor2BotRightX - Actor1TopLeftX);
+                    Actor1->X += difference * cache + EPSILON;
+                    Actor2->X -= difference * ratio;
                 return true;
 
                 case TOP_RIGHT:
-                    Actor1->Y -= (Actor1TopLeftY - Actor2BotRightY) * cache + EPSILON;
-                    Actor2->Y += (Actor1TopLeftY - Actor2BotRightY) * ratio;
+                    difference = (Actor1TopLeftY - Actor2BotRightY);
+                    Actor1->Y -= difference * cache + EPSILON;
+                    Actor2->Y += difference * ratio;
 
-                    Actor1->X -= (Actor1BotRightX - Actor2TopLeftX) * cache + EPSILON;
-                    Actor2->X += (Actor1BotRightX - Actor2TopLeftX) * ratio;
+                    difference = (Actor1BotRightX - Actor2TopLeftX);
+                    Actor1->X -= difference * cache + EPSILON;
+                    Actor2->X += difference * ratio;
                 return true;
 
                 case BOT_LEFT:
-                    Actor1->Y += (Actor2TopLeftY - Actor1BotRightY) * cache + EPSILON;
-                    Actor2->Y -= (Actor2TopLeftY - Actor1BotRightY) * ratio;
+                    difference = (Actor2TopLeftY - Actor1BotRightY);
+                    Actor1->Y += difference * cache + EPSILON;
+                    Actor2->Y -= difference * ratio;
 
-                    Actor1->X += (Actor2BotRightX - Actor1TopLeftX) * cache + EPSILON;
-                    Actor2->X -= (Actor2BotRightX - Actor1TopLeftX) * ratio;
+                    difference = (Actor2BotRightX - Actor1TopLeftX);
+                    Actor1->X += difference * cache + EPSILON;
+                    Actor2->X -= difference * ratio;
                 return true;
 
                 case BOT_RIGHT:
-                    Actor1->Y += (Actor2TopLeftY - Actor1BotRightY) * cache + EPSILON;
-                    Actor2->Y -= (Actor2TopLeftY - Actor1BotRightY) * ratio;
+                    difference = (Actor2TopLeftY - Actor1BotRightY);
+                    Actor1->Y += difference * cache + EPSILON;
+                    Actor2->Y -= difference * ratio;
 
-                    Actor1->X -= (Actor1BotRightX - Actor2TopLeftX) * cache + EPSILON;
-                    Actor2->X += (Actor1BotRightX - Actor2TopLeftX) * ratio;
+                    difference = (Actor1BotRightX - Actor2TopLeftX);
+                    Actor1->X -= difference * cache + EPSILON;
+                    Actor2->X += difference * ratio;
                 return true;
 
                 case NONE:
