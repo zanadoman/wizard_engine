@@ -686,7 +686,7 @@ namespace wze
                 direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
                 bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
                 uint8 ResolveCollisionLayer(uint64 CollisionLayer);
-                uint8 NewCollisionBranch(array<actors::actor*>* Cache, uint64 Root, uint64 RootForce, uint64 CurrentBranch);
+                uint8 NewCollisionBranch(array<actors::actor*>* Cache, actors::actor* Root, uint64 RootForce, actors::actor* CurrentBranch);
             } Collision;
 
             //__________Engine_________________________________________________________________________________________
