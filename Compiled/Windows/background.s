@@ -18,7 +18,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	.seh_endprologue
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
-	leaq	600(%rdx), %rcx
+	leaq	696(%rdx), %rcx
 	leaq	.LC0(%rip), %rdx
 	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	pxor	%xmm3, %xmm3
@@ -27,7 +27,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	movq	(%rbx), %rax
 	movapd	%xmm3, %xmm2
 	movl	$1080, 40(%rsp)
-	leaq	568(%rax), %rcx
+	leaq	632(%rax), %rcx
 	movq	.LC1(%rip), %rax
 	movl	$1920, 32(%rsp)
 	movq	%rax, 48(%rsp)
@@ -35,7 +35,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rdx
 	movq	(%rbx), %rax
-	leaq	568(%rax), %rcx
+	leaq	632(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	24(%rbx), %rdx
 	leaq	40(%rax), %rcx
@@ -63,11 +63,11 @@ _ZN10backgroundD2Ev:
 	movq	(%rcx), %rax
 	movq	24(%rcx), %rdx
 	movq	%rcx, %rbx
-	leaq	600(%rax), %rcx
+	leaq	696(%rax), %rcx
 	call	_ZN3wze6engine6assets13UnloadTextureEy
 	movq	(%rbx), %rcx
 	movq	8(%rbx), %rdx
-	addq	$568, %rcx
+	addq	$632, %rcx
 	call	_ZN3wze6engine6actors6DeleteEy
 	nop
 	addq	$32, %rsp

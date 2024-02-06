@@ -90,49 +90,53 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	%rbx, %rdx
 .LEHB1:
 	call	_ZN3wze6engine6cameraC1EPS0_
-	leaq	184(%rbx), %rcx
+	leaq	248(%rbx), %rcx
 	movq	%rbx, %rdx
 	call	_ZN3wze6engine5audioC1EPS0_
-	leaq	200(%rbx), %rcx
+	leaq	264(%rbx), %rcx
 	movq	%rbx, %rdx
 	call	_ZN3wze6engine4keysC1EPS0_
-	leaq	512(%rbx), %rcx
+	leaq	576(%rbx), %rcx
 	movq	%rbx, %rdx
 	call	_ZN3wze6engine5mouseC1EPS0_
-	leaq	568(%rbx), %rbp
+	leaq	632(%rbx), %rbp
 	movq	%rbx, %rdx
 	movq	%rbp, %rcx
 	call	_ZN3wze6engine6actorsC1EPS0_
 .LEHE1:
-	leaq	592(%rbx), %rcx
+	leaq	656(%rbx), %rcx
 	movq	%rbx, %rdx
 .LEHB2:
-	call	_ZN3wze6engine6vectorC1EPS0_
-	leaq	600(%rbx), %rcx
-	movq	%rbx, %rdx
-	call	_ZN3wze6engine6assetsC1EPS0_
+	call	_ZN3wze6engine9collisionC1EPS0_
 .LEHE2:
-	leaq	672(%rbx), %rcx
+	leaq	688(%rbx), %rcx
 	movq	%rbx, %rdx
 .LEHB3:
-	call	_ZN3wze6engine6timingC1EPS0_
-	leaq	712(%rbx), %rcx
-	movq	%rbx, %rdx
-	call	_ZN3wze6engine9collisionC1EPS0_
+	call	_ZN3wze6engine6vectorC1EPS0_
 .LEHE3:
+	leaq	696(%rbx), %rcx
+	movq	%rbx, %rdx
+.LEHB4:
+	call	_ZN3wze6engine6assetsC1EPS0_
+.LEHE4:
+	leaq	768(%rbx), %rcx
+	movq	%rbx, %rdx
+.LEHB5:
+	call	_ZN3wze6engine6timingC1EPS0_
+.LEHE5:
 	testq	%r13, %r13
 	leaq	.LC0(%rip), %rax
-	movq	$0, 736(%rbx)
+	movq	$0, 808(%rbx)
 	movl	$48, %ecx
-	movq	$0, 744(%rbx)
+	movq	$0, 816(%rbx)
 	cmove	%rax, %r13
-.LEHB4:
+.LEHB6:
 	call	SDL_Init
 	testl	%eax, %eax
-	jne	.L20
+	jne	.L27
 	call	TTF_Init
 	testl	%eax, %eax
-	jne	.L21
+	jne	.L28
 	movl	$2048, %r9d
 	movl	$2, %r8d
 	movl	$32784, %edx
@@ -142,7 +146,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movzwl	%si, %r9d
 	movzwl	%r12w, %eax
 	testl	%edx, %edx
-	jne	.L22
+	jne	.L29
 	movl	%eax, 32(%rsp)
 	movq	%r14, %r8
 	movq	%r13, %rdx
@@ -167,9 +171,9 @@ _ZN3wze6engineC2EPKcS2_tth:
 	unpcklpd	%xmm1, %xmm0
 	movups	%xmm0, 88(%rbx)
 	call	SDL_GetKeyboardState
-	movq	%rax, 208(%rbx)
+	movq	%rax, 272(%rbx)
 	xorl	%ecx, %ecx
-	movb	%dil, 680(%rbx)
+	movb	%dil, 776(%rbx)
 	call	*__imp__time64(%rip)
 	movl	%eax, %ecx
 	addq	$48, %rsp
@@ -181,7 +185,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	popq	%r13
 	popq	%r14
 	jmp	srand
-.L20:
+.L27:
 	movzbl	%dil, %edi
 	movzwl	%r12w, %eax
 	movzwl	%si, %r9d
@@ -191,10 +195,10 @@ _ZN3wze6engineC2EPKcS2_tth:
 	leaq	.LC1(%rip), %rcx
 	movl	%eax, 32(%rsp)
 	call	_Z6printfPKcz
-.L7:
+.L10:
 	movl	$1, %ecx
 	call	exit
-.L22:
+.L29:
 	movzbl	%dil, %edi
 	movl	%eax, 32(%rsp)
 	movq	%r14, %r8
@@ -202,8 +206,8 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movl	%edi, 40(%rsp)
 	leaq	.LC3(%rip), %rcx
 	call	_Z6printfPKcz
-	jmp	.L7
-.L21:
+	jmp	.L10
+.L28:
 	movzbl	%dil, %edi
 	movzwl	%r12w, %eax
 	movzwl	%si, %r9d
@@ -213,20 +217,26 @@ _ZN3wze6engineC2EPKcS2_tth:
 	leaq	.LC2(%rip), %rcx
 	movl	%eax, 32(%rsp)
 	call	_Z6printfPKcz
-.LEHE4:
-	jmp	.L7
-.L19:
+.LEHE6:
+	jmp	.L10
+.L21:
 	movq	%rax, %rsi
-	jmp	.L9
-.L18:
+	jmp	.L17
+.L20:
+	movq	%rax, %rsi
+	jmp	.L18
+.L23:
 	movq	%rax, %rsi
 	jmp	.L12
-.L17:
+.L22:
 	movq	%rax, %rsi
 	jmp	.L13
-.L16:
+.L25:
 	movq	%rax, %rsi
-	jmp	.L14
+	jmp	.L15
+.L24:
+	movq	%rax, %rsi
+	jmp	.L15
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
@@ -242,19 +252,27 @@ _ZN3wze6engineC2EPKcS2_tth:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB8442
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L16-.LFB8442
+	.uleb128 .L20-.LFB8442
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB8442
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L17-.LFB8442
+	.uleb128 .L21-.LFB8442
 	.uleb128 0
 	.uleb128 .LEHB3-.LFB8442
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L18-.LFB8442
+	.uleb128 .L24-.LFB8442
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB8442
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L19-.LFB8442
+	.uleb128 .L25-.LFB8442
+	.uleb128 0
+	.uleb128 .LEHB5-.LFB8442
+	.uleb128 .LEHE5-.LEHB5
+	.uleb128 .L22-.LFB8442
+	.uleb128 0
+	.uleb128 .LEHB6-.LFB8442
+	.uleb128 .LEHE6-.LEHB6
+	.uleb128 .L23-.LFB8442
 	.uleb128 0
 .LLSDACSE8442:
 	.text
@@ -272,42 +290,44 @@ _ZN3wze6engineC2EPKcS2_tth:
 	.seh_savereg	%r14, 96
 	.seh_endprologue
 _ZN3wze6engineC2EPKcS2_tth.cold:
-.L9:
-	movq	744(%rbx), %rcx
+.L12:
+	movq	816(%rbx), %rcx
+	call	free
+.L13:
+	movq	760(%rbx), %rcx
 	xorl	%edi, %edi
 	call	free
-.L10:
+	movq	744(%rbx), %rcx
+	call	free
 	movq	728(%rbx), %rcx
-	cmpq	720(%rbx), %rdi
-	jnb	.L23
+	call	free
+	movq	712(%rbx), %rcx
+	call	free
+.L14:
+	movq	680(%rbx), %rcx
+	cmpq	672(%rbx), %rdi
+	jb	.L16
+	call	free
+.L17:
+	movq	%rbp, %rcx
+	call	_ZN3wze6engine6actorsD1Ev
+.L18:
+	movq	72(%rbx), %rcx
+	call	free
+	movq	%rsi, %rcx
+.LEHB7:
+	call	_Unwind_Resume
+.LEHE7:
+.L15:
+	xorl	%edi, %edi
+	jmp	.L14
+.L16:
 	movq	%rdi, %rax
 	addq	$1, %rdi
 	salq	$4, %rax
 	movq	8(%rcx,%rax), %rcx
 	call	free
-	jmp	.L10
-.L23:
-	call	free
-.L12:
-	movq	664(%rbx), %rcx
-	call	free
-	movq	648(%rbx), %rcx
-	call	free
-	movq	632(%rbx), %rcx
-	call	free
-	movq	616(%rbx), %rcx
-	call	free
-.L13:
-	movq	%rbp, %rcx
-	call	_ZN3wze6engine6actorsD1Ev
-.L14:
-	movq	72(%rbx), %rcx
-	call	free
-	movq	%rsi, %rcx
-.LEHB5:
-	call	_Unwind_Resume
-	nop
-.LEHE5:
+	jmp	.L14
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
 .LLSDAC8442:
@@ -316,8 +336,8 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8442-.LLSDACSBC8442
 .LLSDACSBC8442:
-	.uleb128 .LEHB5-.LCOLDB4
-	.uleb128 .LEHE5-.LEHB5
+	.uleb128 .LEHB7-.LCOLDB4
+	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
 .LLSDACSEC8442:
@@ -347,7 +367,7 @@ _ZN3wze6engineD2Ev:
 	subq	$48, %rsp
 	.seh_stackalloc	48
 	.seh_endprologue
-	leaq	600(%rcx), %rbx
+	leaq	696(%rcx), %rbx
 	leaq	32(%rsp), %rdi
 	movq	%rcx, %rsi
 	movq	$0, 32(%rsp)
@@ -375,34 +395,34 @@ _ZN3wze6engineD2Ev:
 	call	TTF_Quit
 	call	SDL_CloseAudio
 	call	SDL_Quit
+	movq	816(%rsi), %rcx
+	call	free
+	movq	760(%rsi), %rcx
+	call	free
 	movq	744(%rsi), %rcx
 	call	free
-	cmpq	$0, 720(%rsi)
-	je	.L25
+	movq	728(%rsi), %rcx
+	call	free
+	movq	712(%rsi), %rcx
+	call	free
+	cmpq	$0, 672(%rsi)
+	je	.L31
 	xorl	%ebx, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L26:
+.L32:
 	movq	%rbx, %rax
 	addq	$1, %rbx
 	salq	$4, %rax
-	addq	728(%rsi), %rax
+	addq	680(%rsi), %rax
 	movq	8(%rax), %rcx
 	call	free
-	cmpq	720(%rsi), %rbx
-	jb	.L26
-.L25:
-	movq	728(%rsi), %rcx
+	cmpq	672(%rsi), %rbx
+	jb	.L32
+.L31:
+	movq	680(%rsi), %rcx
 	call	free
-	movq	664(%rsi), %rcx
-	call	free
-	movq	648(%rsi), %rcx
-	call	free
-	movq	632(%rsi), %rcx
-	call	free
-	movq	616(%rsi), %rcx
-	call	free
-	leaq	568(%rsi), %rcx
+	leaq	632(%rsi), %rcx
 	call	_ZN3wze6engine6actorsD1Ev
 	movq	72(%rsi), %rcx
 	addq	$48, %rsp
@@ -447,54 +467,58 @@ _ZN3wze6engine15UpdateFlipbooksEv:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	movq	576(%rcx), %rsi
-	movq	%rcx, %r10
+	movq	640(%rcx), %rsi
+	movq	%rcx, %r11
 	cmpq	$1, %rsi
-	jbe	.L46
-	movq	584(%rcx), %rdi
-	movl	$1, %r11d
+	jbe	.L53
+	movq	648(%rcx), %rdi
+	movl	$1, %r9d
 	.p2align 4,,10
 	.p2align 3
-.L31:
-	movq	(%rdi,%r11,8), %r9
-	testq	%r9, %r9
-	je	.L43
-	cmpq	576(%r10), %r11
-	jnb	.L48
-	movq	88(%r9), %rbx
+.L37:
+	movq	(%rdi,%r9,8), %r10
+	testq	%r10, %r10
+	je	.L50
+	cmpq	640(%r11), %r9
+	jnb	.L55
+	movq	88(%r10), %rbx
 	movl	$1, %r8d
 	.p2align 4,,10
 	.p2align 3
-.L41:
+.L48:
 	cmpq	%rbx, %r8
-	jnb	.L43
-.L42:
-	movq	96(%r9), %rax
+	jnb	.L50
+.L49:
+	movq	96(%r10), %rax
 	movq	(%rax,%r8,8), %rcx
 	testq	%rcx, %rcx
-	je	.L47
+	je	.L54
+	cmpb	$0, 39(%rcx)
+	jne	.L54
 	movl	88(%rcx), %eax
 	xorl	%edx, %edx
-	addl	704(%r10), %eax
+	addl	800(%r11), %eax
 	divl	72(%rcx)
 	addq	80(%rcx), %rax
 	movq	%rax, 80(%rcx)
-	cmpq	576(%r10), %r11
-	jnb	.L48
-	cmpq	88(%r9), %r8
-	jnb	.L49
+	cmpq	640(%r11), %r9
+	jnb	.L55
+	cmpq	88(%r10), %r8
+	jnb	.L56
 	movq	96(%rcx), %rbp
 	movl	%edx, 88(%rcx)
 	cmpq	%rbp, %rax
-	jnb	.L50
+	jnb	.L57
 	addq	$1, %r8
 	cmpq	%rbx, %r8
-	jb	.L42
-.L43:
-	addq	$1, %r11
-	cmpq	%rsi, %r11
-	jne	.L31
-.L46:
+	jb	.L49
+	.p2align 4,,10
+	.p2align 3
+.L50:
+	addq	$1, %r9
+	cmpq	%rsi, %r9
+	jne	.L37
+.L53:
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	popq	%rbx
@@ -504,32 +528,34 @@ _ZN3wze6engine15UpdateFlipbooksEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L39:
+.L46:
 	subq	$1, %rbp
 	movq	%rbp, 80(%rcx)
-.L47:
-	movq	576(%r10), %rax
-.L35:
+	.p2align 4,,10
+	.p2align 3
+.L54:
+	movq	640(%r11), %rax
+.L41:
 	addq	$1, %r8
-	cmpq	%rax, %r11
-	jb	.L41
-.L48:
+	cmpq	%rax, %r9
+	jb	.L48
+.L55:
 	leaq	.LC5(%rip), %rcx
-	movq	%r11, %rdx
+	movq	%r9, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L50:
+.L57:
 	cmpb	$0, 38(%rcx)
-	je	.L39
+	je	.L46
 	xorl	%edx, %edx
 	divq	%rbp
 	movq	%rdx, 80(%rcx)
-	movq	576(%r10), %rax
-	jmp	.L35
-.L49:
+	movq	640(%r11), %rax
+	jmp	.L41
+.L56:
 	leaq	.LC5(%rip), %rcx
 	movq	%r8, %rdx
 	call	_Z6printfPKcz
@@ -570,29 +596,29 @@ _ZN3wze6engine6UpdateEv:
 	movq	%rcx, %rbx
 	leaq	32(%rsp), %rbp
 	call	SDL_GetTicks
-	subl	684(%rbx), %eax
+	subl	780(%rbx), %eax
 	leaq	80(%rbx), %rcx
-	movl	%eax, 688(%rbx)
+	movl	%eax, 784(%rbx)
 	call	_ZN3wze6engine6camera6UpdateEv
 	leaq	32(%rbx), %rcx
 	call	_ZN3wze6engine6render6UpdateEv
 	call	SDL_GetTicks
-	subl	688(%rbx), %eax
-	subl	684(%rbx), %eax
-	leaq	672(%rbx), %rcx
-	movl	%eax, 692(%rbx)
+	subl	784(%rbx), %eax
+	subl	780(%rbx), %eax
+	leaq	768(%rbx), %rcx
+	movl	%eax, 788(%rbx)
 	call	_ZN3wze6engine6timing6UpdateEv
 	movq	%rbx, %rcx
 	call	_ZN3wze6engine15UpdateFlipbooksEv
 	movq	8(%rbx), %rcx
 	call	SDL_GetWindowFlags
 	movl	%eax, 28(%rbx)
-	jmp	.L52
+	jmp	.L59
 	.p2align 4,,10
 	.p2align 3
-.L54:
+.L61:
 	cmpq	%rax, %rdi
-	jnb	.L66
+	jnb	.L73
 	movdqa	32(%rsp), %xmm3
 	addq	$1, %rdi
 	movups	%xmm3, (%rcx,%rsi)
@@ -603,31 +629,31 @@ _ZN3wze6engine6UpdateEv:
 	movq	80(%rsp), %rax
 	movq	%rax, 48(%rcx,%rsi)
 	addq	$56, %rsi
-.L52:
+.L59:
 	movq	%rbp, %rcx
 	call	SDL_PollEvent
 	testl	%eax, %eax
-	je	.L67
+	je	.L74
 	cmpl	$256, 32(%rsp)
-	je	.L64
-	movq	736(%rbx), %rax
-	movq	744(%rbx), %rcx
+	je	.L71
+	movq	808(%rbx), %rax
+	movq	816(%rbx), %rcx
 	cmpq	%rax, %rdi
-	jne	.L54
+	jne	.L61
 	leaq	11(%rdi), %r12
-	movq	%r12, 736(%rbx)
+	movq	%r12, 808(%rbx)
 	leaq	0(,%r12,8), %rdx
 	subq	%r12, %rdx
 	salq	$3, %rdx
 	call	realloc
-	movq	%rax, 744(%rbx)
+	movq	%rax, 816(%rbx)
 	movq	%rax, %rcx
 	testq	%rax, %rax
-	je	.L68
-	movq	736(%rbx), %rax
+	je	.L75
+	movq	808(%rbx), %rax
 	leaq	-1(%rax), %rdx
 	cmpq	%r12, %rdx
-	jb	.L54
+	jb	.L61
 	leaq	0(,%rdx,8), %r8
 	leaq	-12(%rax), %r9
 	subq	%rdx, %r8
@@ -645,14 +671,14 @@ _ZN3wze6engine6UpdateEv:
 	movq	%rcx, 48(%rdx)
 	leaq	-2(%rax), %rcx
 	cmpq	%r12, %rcx
-	jb	.L58
+	jb	.L65
 	leaq	0(,%rax,8), %rdx
 	subq	%rax, %rdx
 	leaq	-728(,%rdx,8), %rax
 	.p2align 4,,10
 	.p2align 3
-.L57:
-	movq	744(%rbx), %rdx
+.L64:
+	movq	816(%rbx), %rdx
 	subq	$1, %rcx
 	movdqu	(%rdx,%rax), %xmm0
 	movdqu	16(%rdx,%rax), %xmm1
@@ -664,21 +690,21 @@ _ZN3wze6engine6UpdateEv:
 	movups	%xmm2, 648(%rdx,%rax)
 	subq	$56, %rax
 	cmpq	%r12, %rcx
-	jnb	.L57
-.L58:
-	movq	736(%rbx), %rax
-	movq	744(%rbx), %rcx
-	jmp	.L54
+	jnb	.L64
+.L65:
+	movq	808(%rbx), %rax
+	movq	816(%rbx), %rcx
+	jmp	.L61
 	.p2align 4,,10
 	.p2align 3
-.L67:
-	movq	736(%rbx), %rsi
+.L74:
+	movq	808(%rbx), %rsi
 	cmpq	%rsi, %rdi
-	jb	.L69
-.L63:
-	leaq	200(%rbx), %rcx
+	jb	.L76
+.L70:
+	leaq	264(%rbx), %rcx
 	call	_ZN3wze6engine4keys6UpdateEv
-	leaq	512(%rbx), %rcx
+	leaq	576(%rbx), %rcx
 	call	_ZN3wze6engine5mouse6UpdateEv
 	movl	$1, %eax
 	addq	$96, %rsp
@@ -690,7 +716,7 @@ _ZN3wze6engine6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L64:
+.L71:
 	xorl	%eax, %eax
 	addq	$96, %rsp
 	popq	%rbx
@@ -701,18 +727,18 @@ _ZN3wze6engine6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L69:
-	movq	%rdi, 736(%rbx)
-	movq	744(%rbx), %rcx
+.L76:
+	movq	%rdi, 808(%rbx)
+	movq	816(%rbx), %rcx
 	testq	%rdi, %rdi
-	je	.L70
+	je	.L77
 	leaq	0(,%rdi,8), %rdx
 	subq	%rdi, %rdx
 	salq	$3, %rdx
 	call	realloc
-	movq	%rax, 744(%rbx)
+	movq	%rax, 816(%rbx)
 	testq	%rax, %rax
-	jne	.L63
+	jne	.L70
 	subq	%rdi, %rsi
 	leaq	.LC7(%rip), %rcx
 	movq	%rdi, %rdx
@@ -722,17 +748,17 @@ _ZN3wze6engine6UpdateEv:
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L70:
+.L77:
 	call	free
-	movq	$0, 744(%rbx)
-	jmp	.L63
-.L66:
+	movq	$0, 816(%rbx)
+	jmp	.L70
+.L73:
 	leaq	.LC5(%rip), %rcx
 	movq	%rdi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L68:
+.L75:
 	leaq	.LC6(%rip), %rcx
 	movl	$11, %r8d
 	movq	%rdi, %rdx
@@ -776,10 +802,10 @@ _ZN3wze6engine6RandomEii:
 	.def	_ZN3wze6engine4keysC1EPS0_;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine5mouseC1EPS0_;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actorsC1EPS0_;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine9collisionC1EPS0_;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vectorC1EPS0_;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6assetsC1EPS0_;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6timingC1EPS0_;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine9collisionC1EPS0_;	.scl	2;	.type	32;	.endef
 	.def	SDL_Init;	.scl	2;	.type	32;	.endef
 	.def	TTF_Init;	.scl	2;	.type	32;	.endef
 	.def	Mix_OpenAudio;	.scl	2;	.type	32;	.endef

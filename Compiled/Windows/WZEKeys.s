@@ -109,7 +109,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	movb	%al, 309(%rbx)
 	xorl	%eax, %eax
 	movb	%dl, 308(%rbx)
-	movq	736(%r8), %r9
+	movq	808(%r8), %r9
 	xorl	%edx, %edx
 	testq	%r9, %r9
 	jne	.L8
@@ -122,7 +122,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	cmpq	%r9, %rdx
 	jnb	.L16
 .L8:
-	movq	744(%r8), %rcx
+	movq	816(%r8), %rcx
 	addq	%rax, %rcx
 	cmpl	$1027, (%rcx)
 	jne	.L9
@@ -133,7 +133,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	addq	$1, %rdx
 	addq	$56, %rax
 	movw	%cx, 310(%rbx)
-	movq	736(%r8), %r9
+	movq	808(%r8), %r9
 	cmpq	%r9, %rdx
 	jb	.L8
 .L16:
@@ -147,14 +147,14 @@ _ZN3wze6engine4keys6UpdateEv:
 	je	.L11
 	movl	$256, %r9d
 	movw	%r9w, 310(%rbx)
-	movq	736(%r8), %r9
+	movq	808(%r8), %r9
 	jmp	.L9
 	.p2align 4,,10
 	.p2align 3
 .L11:
 	xorl	%ecx, %ecx
 	movw	%cx, 310(%rbx)
-	movq	736(%r8), %r9
+	movq	808(%r8), %r9
 	jmp	.L9
 	.seh_endproc
 	.section .rdata,"dr"

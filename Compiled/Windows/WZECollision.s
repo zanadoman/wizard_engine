@@ -35,6 +35,134 @@ _Z6printfPKcz:
 	.section .rdata,"dr"
 	.align 8
 .LC0:
+	.ascii "neo::array.Insert(): Index out of range\12Params: Index: %lld, Length: %lld\12\0"
+	.align 8
+.LC1:
+	.ascii "neo::array.Insert(): Memory allocation failed\12Params: Index: %lld, Length: %lld\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.def	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0
+_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0:
+.LFB8625:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	movq	%rdx, %rbx
+	movq	(%rcx), %rdx
+	movq	%rcx, %rsi
+	movq	%r8, %rdi
+	cmpq	%rbx, %rdx
+	jb	.L26
+	testq	%r8, %r8
+	jne	.L27
+.L3:
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L27:
+	addq	%r8, %rdx
+	movq	%rdx, (%rcx)
+	movq	8(%rcx), %rcx
+	salq	$3, %rdx
+	call	realloc
+	movq	%rax, 8(%rsi)
+	movq	%rax, %r8
+	testq	%rax, %rax
+	je	.L28
+	movq	(%rsi), %rcx
+	leaq	(%rbx,%rdi), %rdx
+	leaq	-1(%rcx), %rax
+	cmpq	%rdx, %rax
+	jb	.L3
+	movq	%rcx, %r9
+	subq	%rdx, %r9
+	leaq	-1(%r9), %r10
+	cmpq	$2, %r10
+	jbe	.L7
+	leaq	8(,%rdi,8), %r10
+	testq	%r10, %r10
+	je	.L7
+	testq	%rdx, %rdx
+	je	.L7
+	movq	%rcx, %rdx
+	leaq	-16(%r8,%rcx,8), %r10
+	movq	%r9, %rcx
+	shrq	%rcx
+	subq	%rdi, %rdx
+	negq	%rcx
+	leaq	-16(%r8,%rdx,8), %r11
+	xorl	%edx, %edx
+	salq	$4, %rcx
+	.p2align 4,,10
+	.p2align 3
+.L8:
+	movdqu	(%r11,%rdx), %xmm0
+	movups	%xmm0, (%r10,%rdx)
+	subq	$16, %rdx
+	cmpq	%rcx, %rdx
+	jne	.L8
+	movq	%r9, %rdx
+	andq	$-2, %rdx
+	subq	%rdx, %rax
+	andl	$1, %r9d
+	je	.L3
+	movq	%rax, %rdx
+	subq	%rdi, %rdx
+	movq	(%r8,%rdx,8), %rdx
+	movq	%rdx, (%r8,%rax,8)
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L7:
+	negq	%rdi
+	leaq	(%r8,%rdi,8), %r9
+	.p2align 4,,10
+	.p2align 3
+.L10:
+	movq	(%r9,%rax,8), %rcx
+	movq	%rcx, (%r8,%rax,8)
+	subq	$1, %rax
+	cmpq	%rdx, %rax
+	jnb	.L10
+	addq	$32, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+.L26:
+	leaq	.LC0(%rip), %rcx
+	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L28:
+	leaq	.LC1(%rip), %rcx
+	movq	%rdi, %r8
+	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC2:
 	.ascii "neo::array(): Memory allocation failed\12Params: Length: %lld\12\0"
 	.text
 	.align 2
@@ -51,26 +179,28 @@ _ZN3wze6engine9collisionC2EPS0_:
 	.seh_endprologue
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
-	movq	$256, 8(%rcx)
+	movq	$256, 16(%rcx)
 	movl	$4096, %ecx
 	call	malloc
-	movq	%rax, 16(%rbx)
+	movq	%rax, 24(%rbx)
 	testq	%rax, %rax
-	je	.L7
+	je	.L33
 	leaq	4096(%rax), %rdx
 	.p2align 4,,10
 	.p2align 3
-.L5:
+.L31:
 	movq	$0, (%rax)
 	addq	$16, %rax
 	movq	$0, -8(%rax)
 	cmpq	%rdx, %rax
-	jne	.L5
+	jne	.L31
+	movl	$16, %eax
+	movw	%ax, 8(%rbx)
 	addq	$32, %rsp
 	popq	%rbx
 	ret
-.L7:
-	leaq	.LC0(%rip), %rcx
+.L33:
+	leaq	.LC2(%rip), %rcx
 	movl	$256, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -82,309 +212,335 @@ _ZN3wze6engine9collisionC2EPS0_:
 	.set	_ZN3wze6engine9collisionC1EPS0_,_ZN3wze6engine9collisionC2EPS0_
 	.align 2
 	.p2align 4
+	.globl	_ZN3wze6engine9collision14GetBufferSizeBEv
+	.def	_ZN3wze6engine9collision14GetBufferSizeBEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine9collision14GetBufferSizeBEv
+_ZN3wze6engine9collision14GetBufferSizeBEv:
+.LFB8435:
+	.seh_endprologue
+	movzwl	8(%rcx), %eax
+	sall	$3, %eax
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine9collision14SetBufferSizeBEh
+	.def	_ZN3wze6engine9collision14SetBufferSizeBEh;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine9collision14SetBufferSizeBEh
+_ZN3wze6engine9collision14SetBufferSizeBEh:
+.LFB8436:
+	.seh_endprologue
+	movzbl	%dl, %edx
+	shrw	$3, %dx
+	leal	0(,%rdx,8), %eax
+	movw	%dx, 8(%rcx)
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
 	.globl	_ZN3wze6engine9collision14CheckCollisionEdddddddd
 	.def	_ZN3wze6engine9collision14CheckCollisionEdddddddd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision14CheckCollisionEdddddddd
 _ZN3wze6engine9collision14CheckCollisionEdddddddd:
-.LFB8435:
+.LFB8437:
 	.seh_endprologue
 	xorl	%eax, %eax
 	movsd	48(%rsp), %xmm0
 	movsd	64(%rsp), %xmm4
 	comisd	%xmm3, %xmm0
-	ja	.L8
+	ja	.L36
 	comisd	%xmm4, %xmm1
-	ja	.L8
+	ja	.L36
 	movsd	72(%rsp), %xmm5
 	comisd	%xmm2, %xmm5
-	ja	.L8
+	ja	.L36
 	movsd	40(%rsp), %xmm5
 	comisd	56(%rsp), %xmm5
-	ja	.L8
+	ja	.L36
 	comisd	%xmm1, %xmm4
-	jb	.L10
+	jb	.L38
 	comisd	%xmm4, %xmm3
-	jb	.L132
+	jb	.L160
 	movsd	72(%rsp), %xmm5
 	comisd	40(%rsp), %xmm5
-	jb	.L114
+	jb	.L142
 	comisd	%xmm5, %xmm2
 	movl	$1, %eax
-	jnb	.L8
+	jnb	.L36
 	comisd	%xmm0, %xmm1
-	jnb	.L19
+	jnb	.L47
 	comisd	%xmm1, %xmm0
-	jnb	.L20
-.L21:
+	jnb	.L48
+.L49:
 	comisd	%xmm0, %xmm3
-	jnb	.L133
+	jnb	.L161
 	movsd	56(%rsp), %xmm5
 	comisd	40(%rsp), %xmm5
-	jnb	.L58
+	jnb	.L86
 	comisd	%xmm0, %xmm1
-	jnb	.L51
+	jnb	.L79
 	xorl	%eax, %eax
 	comisd	%xmm1, %xmm0
-	jb	.L42
-.L8:
+	jb	.L70
+.L36:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L27:
+.L55:
 	movsd	56(%rsp), %xmm5
 	movl	$1, %eax
 	comisd	%xmm2, %xmm5
-	jnb	.L8
+	jnb	.L36
 	.p2align 4,,10
 	.p2align 3
-.L10:
+.L38:
 	comisd	%xmm1, %xmm0
-	jnb	.L14
-.L25:
+	jnb	.L42
+.L53:
 	comisd	%xmm0, %xmm3
-	jb	.L16
-.L28:
+	jb	.L44
+.L56:
 	comisd	%xmm3, %xmm4
-	jnb	.L15
+	jnb	.L43
 	comisd	%xmm1, %xmm4
-	jb	.L49
-	jmp	.L33
+	jb	.L77
+	jmp	.L61
 	.p2align 4,,10
 	.p2align 3
-.L14:
+.L42:
 	comisd	%xmm0, %xmm3
-	jnb	.L22
+	jnb	.L50
 	comisd	%xmm1, %xmm4
-	jnb	.L29
-.L129:
+	jnb	.L57
+.L157:
 	comisd	%xmm0, %xmm1
-	jb	.L35
-.L34:
+	jb	.L63
+.L62:
 	comisd	%xmm1, %xmm4
-	jb	.L64
+	jb	.L92
 	.p2align 4,,10
 	.p2align 3
-.L51:
+.L79:
 	movsd	40(%rsp), %xmm5
 	comisd	72(%rsp), %xmm5
-	jb	.L64
-.L77:
+	jb	.L92
+.L105:
 	movsd	56(%rsp), %xmm5
 	comisd	40(%rsp), %xmm5
-	jb	.L64
-.L104:
+	jb	.L92
+.L132:
 	movl	$1, %eax
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L132:
+.L160:
 	comisd	%xmm0, %xmm1
-	jnb	.L13
+	jnb	.L41
 	comisd	%xmm1, %xmm0
-	jnb	.L14
+	jnb	.L42
 	comisd	%xmm0, %xmm3
-	jnb	.L15
+	jnb	.L43
 	.p2align 4,,10
 	.p2align 3
-.L16:
-	comisd	%xmm1, %xmm4
-	jnb	.L29
-.L49:
-	comisd	%xmm0, %xmm1
-	jnb	.L34
-.L64:
-	comisd	%xmm1, %xmm0
-	jnb	.L35
-.L42:
-	comisd	%xmm0, %xmm3
-	jb	.L125
 .L44:
+	comisd	%xmm1, %xmm4
+	jnb	.L57
+.L77:
+	comisd	%xmm0, %xmm1
+	jnb	.L62
+.L92:
+	comisd	%xmm1, %xmm0
+	jnb	.L63
+.L70:
+	comisd	%xmm0, %xmm3
+	jb	.L153
+.L72:
 	comisd	%xmm3, %xmm4
-	jnb	.L52
-.L125:
+	jnb	.L80
+.L153:
 	xorl	%eax, %eax
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L114:
+.L142:
 	comisd	%xmm0, %xmm1
-	jnb	.L19
+	jnb	.L47
 	comisd	%xmm1, %xmm0
-	jb	.L21
+	jb	.L49
 	.p2align 4,,10
 	.p2align 3
-.L22:
+.L50:
 	movsd	72(%rsp), %xmm5
 	comisd	40(%rsp), %xmm5
-	jnb	.L20
+	jnb	.L48
 	comisd	%xmm3, %xmm4
-	jnb	.L15
+	jnb	.L43
 	comisd	%xmm1, %xmm4
-	jb	.L129
-.L33:
+	jb	.L157
+.L61:
 	movsd	56(%rsp), %xmm5
 	comisd	40(%rsp), %xmm5
-	jb	.L47
-.L58:
+	jb	.L75
+.L86:
 	comisd	56(%rsp), %xmm2
 	movl	$1, %eax
-	jnb	.L8
+	jnb	.L36
 	comisd	%xmm0, %xmm1
-	jb	.L134
-.L55:
+	jb	.L162
+.L83:
 	movsd	40(%rsp), %xmm5
 	comisd	72(%rsp), %xmm5
 	movl	$1, %eax
-	jb	.L64
+	jb	.L92
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L13:
+.L41:
 	comisd	72(%rsp), %xmm2
-	jnb	.L27
+	jnb	.L55
 	comisd	%xmm1, %xmm0
-	jnb	.L14
+	jnb	.L42
 	comisd	%xmm0, %xmm3
-	jnb	.L28
+	jnb	.L56
 	.p2align 4,,10
 	.p2align 3
-.L29:
+.L57:
 	comisd	%xmm4, %xmm3
-	jnb	.L33
-.L45:
+	jnb	.L61
+.L73:
 	comisd	%xmm0, %xmm1
-	jnb	.L51
+	jnb	.L79
 	comisd	%xmm1, %xmm0
-	jnb	.L35
+	jnb	.L63
 	comisd	%xmm0, %xmm3
-	jb	.L125
+	jb	.L153
 	.p2align 4,,10
 	.p2align 3
-.L52:
+.L80:
 	movsd	40(%rsp), %xmm5
 	comisd	72(%rsp), %xmm5
-	jb	.L125
+	jb	.L153
 	movsd	56(%rsp), %xmm5
 	comisd	40(%rsp), %xmm5
 	setnb	%al
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L15:
+.L43:
 	comisd	72(%rsp), %xmm2
-	jb	.L119
-.L80:
+	jb	.L147
+.L108:
 	movsd	56(%rsp), %xmm5
 	movl	$1, %eax
 	comisd	%xmm2, %xmm5
-	jnb	.L8
+	jnb	.L36
 	comisd	%xmm1, %xmm4
-	jnb	.L41
+	jnb	.L69
 	comisd	%xmm1, %xmm0
-	jb	.L42
+	jb	.L70
 	comisd	40(%rsp), %xmm5
-	jb	.L44
+	jb	.L72
 	ret
-.L121:
+.L149:
 	comisd	%xmm0, %xmm1
-	jnb	.L51
+	jnb	.L79
 	.p2align 4,,10
 	.p2align 3
-.L35:
+.L63:
 	comisd	%xmm0, %xmm3
-	jb	.L125
-.L61:
+	jb	.L153
+.L89:
 	movsd	56(%rsp), %xmm5
 	comisd	40(%rsp), %xmm5
-	jb	.L44
-.L56:
+	jb	.L72
+.L84:
 	comisd	56(%rsp), %xmm2
 	movl	$1, %eax
-	jb	.L44
+	jb	.L72
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L20:
+.L48:
 	comisd	72(%rsp), %xmm2
 	movl	$1, %eax
-	jb	.L28
-	jmp	.L8
+	jb	.L56
+	jmp	.L36
 	.p2align 4,,10
 	.p2align 3
-.L119:
+.L147:
 	comisd	%xmm1, %xmm4
-	jnb	.L29
+	jnb	.L57
 	comisd	%xmm1, %xmm0
-	jnb	.L61
-	jmp	.L42
-	.p2align 4,,10
-	.p2align 3
-.L19:
-	comisd	72(%rsp), %xmm2
-	jb	.L115
-	movsd	56(%rsp), %xmm5
-	movl	$1, %eax
-	comisd	%xmm2, %xmm5
-	jnb	.L8
-	comisd	%xmm1, %xmm0
-	jnb	.L22
-	jmp	.L25
-.L41:
-	ucomisd	%xmm4, %xmm3
-	jp	.L45
-	jne	.L45
-	comisd	40(%rsp), %xmm5
-	jnb	.L8
+	jnb	.L89
+	jmp	.L70
 	.p2align 4,,10
 	.p2align 3
 .L47:
-	comisd	%xmm0, %xmm1
-	jb	.L64
-	jmp	.L51
-.L115:
-	comisd	%xmm1, %xmm0
-	jnb	.L22
-	ucomisd	%xmm4, %xmm3
-	jp	.L113
-	je	.L74
-.L113:
+	comisd	72(%rsp), %xmm2
+	jb	.L143
 	movsd	56(%rsp), %xmm5
+	movl	$1, %eax
+	comisd	%xmm2, %xmm5
+	jnb	.L36
+	comisd	%xmm1, %xmm0
+	jnb	.L50
+	jmp	.L53
+.L69:
+	ucomisd	%xmm4, %xmm3
+	jp	.L73
+	jne	.L73
 	comisd	40(%rsp), %xmm5
-	jnb	.L76
-	movsd	40(%rsp), %xmm5
-	comisd	72(%rsp), %xmm5
-	jnb	.L77
-	jmp	.L42
+	jnb	.L36
 	.p2align 4,,10
 	.p2align 3
-.L134:
-	comisd	%xmm1, %xmm0
-	jb	.L42
-	jmp	.L56
-.L133:
-	comisd	%xmm3, %xmm4
-	jnb	.L15
-	movsd	56(%rsp), %xmm5
-	comisd	40(%rsp), %xmm5
-	jb	.L121
-	comisd	%xmm5, %xmm2
-	jnb	.L104
+.L75:
 	comisd	%xmm0, %xmm1
-	jnb	.L55
-	jmp	.L56
-.L74:
-	comisd	72(%rsp), %xmm2
-	jnb	.L80
+	jb	.L92
+	jmp	.L79
+.L143:
+	comisd	%xmm1, %xmm0
+	jnb	.L50
+	ucomisd	%xmm4, %xmm3
+	jp	.L141
+	je	.L102
+.L141:
 	movsd	56(%rsp), %xmm5
 	comisd	40(%rsp), %xmm5
-	jb	.L51
+	jnb	.L104
+	movsd	40(%rsp), %xmm5
+	comisd	72(%rsp), %xmm5
+	jnb	.L105
+	jmp	.L70
+	.p2align 4,,10
+	.p2align 3
+.L162:
+	comisd	%xmm1, %xmm0
+	jb	.L70
+	jmp	.L84
+.L161:
+	comisd	%xmm3, %xmm4
+	jnb	.L43
+	movsd	56(%rsp), %xmm5
+	comisd	40(%rsp), %xmm5
+	jb	.L149
 	comisd	%xmm5, %xmm2
-	jb	.L55
-	jmp	.L104
-.L76:
+	jnb	.L132
+	comisd	%xmm0, %xmm1
+	jnb	.L83
+	jmp	.L84
+.L102:
+	comisd	72(%rsp), %xmm2
+	jnb	.L108
+	movsd	56(%rsp), %xmm5
+	comisd	40(%rsp), %xmm5
+	jb	.L79
+	comisd	%xmm5, %xmm2
+	jb	.L83
+	jmp	.L132
+.L104:
 	comisd	56(%rsp), %xmm2
-	jb	.L55
-	jmp	.L104
+	jb	.L83
+	jmp	.L132
 	.seh_endproc
 	.align 2
 	.p2align 4
@@ -392,7 +548,7 @@ _ZN3wze6engine9collision14CheckCollisionEdddddddd:
 	.def	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
-.LFB8436:
+.LFB8438:
 	subq	$232, %rsp
 	.seh_stackalloc	232
 	movaps	%xmm6, 80(%rsp)
@@ -461,44 +617,44 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	addsd	%xmm6, %xmm8
 	movapd	%xmm9, %xmm12
 	subsd	%xmm0, %xmm12
-	ja	.L136
+	ja	.L164
 	comisd	%xmm8, %xmm7
-	ja	.L136
+	ja	.L164
 	comisd	%xmm11, %xmm12
-	ja	.L136
+	ja	.L164
 	comisd	%xmm9, %xmm13
-	ja	.L136
+	ja	.L164
 	comisd	%xmm7, %xmm8
-	jb	.L306
+	jb	.L334
 	comisd	%xmm8, %xmm10
-	jb	.L345
+	jb	.L373
 	xorl	%edx, %edx
 	comisd	%xmm13, %xmm12
-	jnb	.L135
+	jnb	.L163
 	comisd	%xmm6, %xmm7
-	jb	.L336
+	jb	.L364
 	comisd	%xmm12, %xmm11
-	jb	.L308
+	jb	.L336
 	comisd	%xmm11, %xmm9
-	jnb	.L135
+	jnb	.L163
 	comisd	%xmm7, %xmm6
-	jnb	.L149
+	jnb	.L177
 	.p2align 4,,10
 	.p2align 3
-.L150:
+.L178:
 	comisd	%xmm10, %xmm8
-	jnb	.L144
+	jnb	.L172
 	comisd	%xmm7, %xmm8
-	jnb	.L146
+	jnb	.L174
 	comisd	%xmm6, %xmm7
-	jnb	.L160
-.L171:
+	jnb	.L188
+.L199:
 	comisd	%xmm13, %xmm9
-	jb	.L136
+	jb	.L164
 	xorl	%edx, %edx
 	comisd	%xmm9, %xmm11
-	jb	.L183
-.L135:
+	jb	.L211
+.L163:
 	movaps	80(%rsp), %xmm6
 	movaps	96(%rsp), %xmm7
 	movl	%edx, %eax
@@ -513,24 +669,24 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L306:
+.L334:
 	comisd	%xmm7, %xmm6
-	jnb	.L155
+	jnb	.L183
 	comisd	%xmm6, %xmm10
-	jnb	.L346
+	jnb	.L374
 	comisd	%xmm7, %xmm8
-	jb	.L314
-.L156:
+	jb	.L342
+.L184:
 	comisd	%xmm8, %xmm10
-	jnb	.L146
+	jnb	.L174
 	comisd	%xmm6, %xmm7
-	jnb	.L176
-.L161:
+	jnb	.L204
+.L189:
 	comisd	%xmm6, %xmm10
-	jnb	.L171
+	jnb	.L199
 	.p2align 4,,10
 	.p2align 3
-.L136:
+.L164:
 	movzwl	234(%rax), %ecx
 	pxor	%xmm0, %xmm0
 	pxor	%xmm2, %xmm2
@@ -562,376 +718,376 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	movsd	%xmm14, 32(%rsp)
 	call	_ZN3wze6engine9collision14CheckCollisionEdddddddd
 	testb	%al, %al
-	je	.L135
+	je	.L163
 	comisd	%xmm6, %xmm7
-	jb	.L316
+	jb	.L344
 	comisd	%xmm10, %xmm8
-	jnb	.L195
+	jnb	.L223
 	ucomisd	%xmm6, %xmm7
-	jp	.L298
-	je	.L196
-.L298:
+	jp	.L326
+	je	.L224
+.L326:
 	comisd	%xmm12, %xmm13
-	jb	.L347
+	jb	.L375
 	.p2align 4,,10
 	.p2align 3
-.L198:
+.L226:
 	comisd	%xmm11, %xmm9
-	jnb	.L207
+	jnb	.L235
 	comisd	%xmm13, %xmm12
-	jnb	.L207
+	jnb	.L235
 	comisd	%xmm6, %xmm7
-	ja	.L229
+	ja	.L257
 	comisd	%xmm10, %xmm8
-	ja	.L242
+	ja	.L270
 	comisd	%xmm6, %xmm7
-	ja	.L229
+	ja	.L257
 	.p2align 4,,10
 	.p2align 3
-.L230:
+.L258:
 	comisd	%xmm10, %xmm8
-	ja	.L226
-.L324:
+	ja	.L254
+.L352:
 	xorl	%edx, %edx
-	jmp	.L135
+	jmp	.L163
 	.p2align 4,,10
 	.p2align 3
-.L316:
+.L344:
 	comisd	%xmm7, %xmm6
-	jb	.L201
-.L196:
-	comisd	%xmm8, %xmm10
-	jnb	.L195
-	comisd	%xmm12, %xmm13
-	jnb	.L198
-	comisd	%xmm13, %xmm12
-	jnb	.L203
-	comisd	%xmm10, %xmm8
-	jbe	.L214
+	jb	.L229
 .L224:
+	comisd	%xmm8, %xmm10
+	jnb	.L223
+	comisd	%xmm12, %xmm13
+	jnb	.L226
+	comisd	%xmm13, %xmm12
+	jnb	.L231
+	comisd	%xmm10, %xmm8
+	jbe	.L242
+.L252:
 	comisd	%xmm11, %xmm9
-	jbe	.L216
-.L222:
+	jbe	.L244
+.L250:
 	comisd	%xmm6, %xmm10
-	jnb	.L272
+	jnb	.L300
 	comisd	%xmm12, %xmm11
 	movl	$8, %edx
-	jnb	.L135
+	jnb	.L163
 	subsd	%xmm6, %xmm3
 	subsd	%xmm12, %xmm2
 	movl	$1, %edx
 	comisd	%xmm2, %xmm3
-	ja	.L135
+	ja	.L163
 	comisd	%xmm3, %xmm2
 	movl	$8, %edx
 	movl	$32, %eax
 	cmovbe	%eax, %edx
-	jmp	.L135
+	jmp	.L163
 	.p2align 4,,10
 	.p2align 3
-.L195:
+.L223:
 	comisd	%xmm11, %xmm12
 	movl	$1, %edx
-	ja	.L135
+	ja	.L163
 	comisd	%xmm9, %xmm13
 	movl	$2, %edx
-	ja	.L135
-.L201:
+	ja	.L163
+.L229:
 	comisd	%xmm12, %xmm13
-	jnb	.L198
+	jnb	.L226
 	comisd	%xmm13, %xmm12
-	jnb	.L203
+	jnb	.L231
 	comisd	%xmm6, %xmm7
-	jbe	.L323
+	jbe	.L351
 	comisd	%xmm11, %xmm9
-	ja	.L219
+	ja	.L247
 	comisd	%xmm10, %xmm8
-	jbe	.L220
+	jbe	.L248
 	comisd	%xmm11, %xmm9
-	ja	.L222
-	jmp	.L344
+	ja	.L250
+	jmp	.L372
 	.p2align 4,,10
 	.p2align 3
-.L347:
+.L375:
 	comisd	%xmm13, %xmm12
-	jb	.L348
+	jb	.L376
 	comisd	%xmm9, %xmm11
-	jb	.L219
+	jb	.L247
 	.p2align 4,,10
 	.p2align 3
-.L207:
+.L235:
 	comisd	%xmm8, %xmm7
 	movl	$4, %edx
-	ja	.L135
+	ja	.L163
 	comisd	%xmm10, %xmm6
 	movl	$8, %edx
-	ja	.L135
+	ja	.L163
 	comisd	%xmm6, %xmm7
-	jbe	.L349
+	jbe	.L377
 	comisd	%xmm11, %xmm9
-	ja	.L219
+	ja	.L247
 	comisd	%xmm10, %xmm8
-	jbe	.L220
-.L216:
+	jbe	.L248
+.L244:
 	comisd	%xmm6, %xmm7
-	jbe	.L226
-.L344:
+	jbe	.L254
+.L372:
 	comisd	%xmm12, %xmm13
-	jbe	.L324
+	jbe	.L352
 	.p2align 4,,10
 	.p2align 3
-.L229:
+.L257:
 	comisd	%xmm7, %xmm8
 	movl	$2, %edx
-	jnb	.L135
+	jnb	.L163
 	comisd	%xmm13, %xmm9
 	movl	$4, %edx
-	jnb	.L135
+	jnb	.L163
 	subsd	%xmm1, %xmm8
 	subsd	%xmm14, %xmm9
 	movl	$2, %edx
 	comisd	%xmm9, %xmm8
-	ja	.L135
+	ja	.L163
 	comisd	%xmm8, %xmm9
 	movl	$4, %edx
 	movl	$64, %eax
 	cmovbe	%eax, %edx
-	jmp	.L135
+	jmp	.L163
 	.p2align 4,,10
 	.p2align 3
-.L203:
+.L231:
 	comisd	%xmm9, %xmm11
-	jnb	.L207
+	jnb	.L235
 	comisd	%xmm6, %xmm7
-	ja	.L219
+	ja	.L247
 	comisd	%xmm10, %xmm8
-	ja	.L222
+	ja	.L250
 	comisd	%xmm6, %xmm7
-	jbe	.L230
-	jmp	.L344
+	jbe	.L258
+	jmp	.L372
 	.p2align 4,,10
 	.p2align 3
-.L219:
+.L247:
 	comisd	%xmm7, %xmm8
 	movl	$1, %edx
-	jnb	.L135
+	jnb	.L163
 	comisd	%xmm12, %xmm11
 	movl	$4, %edx
-	jnb	.L135
+	jnb	.L163
 	subsd	%xmm1, %xmm8
 	subsd	%xmm12, %xmm2
 	movl	$1, %edx
 	comisd	%xmm2, %xmm8
-	ja	.L135
+	ja	.L163
 	comisd	%xmm8, %xmm2
 	movl	$4, %edx
 	movl	$16, %eax
 	cmovbe	%eax, %edx
-	jmp	.L135
+	jmp	.L163
 	.p2align 4,,10
 	.p2align 3
-.L345:
+.L373:
 	comisd	%xmm6, %xmm7
-	jnb	.L140
+	jnb	.L168
 	comisd	%xmm6, %xmm10
-	jnb	.L350
-.L307:
+	jnb	.L378
+.L335:
 	comisd	%xmm7, %xmm8
-	jnb	.L156
+	jnb	.L184
 	comisd	%xmm6, %xmm7
-	jb	.L161
-.L160:
+	jb	.L189
+.L188:
 	comisd	%xmm7, %xmm8
-	jnb	.L176
-.L185:
+	jnb	.L204
+.L213:
 	comisd	%xmm7, %xmm6
-	jnb	.L161
+	jnb	.L189
 	comisd	%xmm6, %xmm10
-	jb	.L136
-.L183:
+	jb	.L164
+.L211:
 	comisd	%xmm10, %xmm8
-	jb	.L136
-.L174:
+	jb	.L164
+.L202:
 	xorl	%edx, %edx
 	comisd	%xmm12, %xmm13
-	jnb	.L135
-	jmp	.L136
+	jnb	.L163
+	jmp	.L164
 	.p2align 4,,10
 	.p2align 3
-.L349:
+.L377:
 	comisd	%xmm10, %xmm8
-	jbe	.L214
+	jbe	.L242
 	comisd	%xmm11, %xmm9
 	movl	$1, %edx
-	ja	.L135
-	jmp	.L216
+	ja	.L163
+	jmp	.L244
 	.p2align 4,,10
 	.p2align 3
-.L314:
+.L342:
 	comisd	%xmm6, %xmm7
-	jb	.L185
-	jmp	.L160
+	jb	.L213
+	jmp	.L188
 	.p2align 4,,10
 	.p2align 3
-.L346:
+.L374:
 	comisd	%xmm10, %xmm8
-	jnb	.L144
+	jnb	.L172
 	comisd	%xmm7, %xmm8
-	jb	.L185
+	jb	.L213
 	.p2align 4,,10
 	.p2align 3
-.L146:
+.L174:
 	comisd	%xmm13, %xmm9
-	jb	.L315
-.L246:
+	jb	.L343
+.L274:
 	xorl	%edx, %edx
 	comisd	%xmm9, %xmm11
-	jnb	.L135
+	jnb	.L163
 	comisd	%xmm6, %xmm7
-	jb	.L183
-.L176:
+	jb	.L211
+.L204:
 	xorl	%edx, %edx
-.L342:
+.L370:
 	comisd	%xmm12, %xmm13
-	jnb	.L135
-	jmp	.L185
+	jnb	.L163
+	jmp	.L213
 	.p2align 4,,10
 	.p2align 3
-.L323:
+.L351:
 	comisd	%xmm10, %xmm8
-	jbe	.L214
+	jbe	.L242
 	comisd	%xmm11, %xmm9
-	ja	.L222
-.L226:
+	ja	.L250
+.L254:
 	comisd	%xmm12, %xmm13
-	jbe	.L324
-.L242:
+	jbe	.L352
+.L270:
 	comisd	%xmm6, %xmm10
 	movl	$2, %edx
-	jnb	.L135
+	jnb	.L163
 	comisd	%xmm13, %xmm9
 	movl	$8, %edx
-	jnb	.L135
+	jnb	.L163
 	subsd	%xmm6, %xmm3
 	subsd	%xmm14, %xmm9
 	movl	$2, %edx
 	comisd	%xmm9, %xmm3
-	ja	.L135
+	ja	.L163
 	comisd	%xmm3, %xmm9
 	movl	$8, %edx
 	movl	$128, %eax
 	cmovbe	%eax, %edx
-	jmp	.L135
+	jmp	.L163
 	.p2align 4,,10
 	.p2align 3
-.L155:
+.L183:
 	comisd	%xmm6, %xmm10
-	jb	.L307
-.L149:
+	jb	.L335
+.L177:
 	xorl	%edx, %edx
 	comisd	%xmm13, %xmm12
-	jnb	.L135
-	jmp	.L150
+	jnb	.L163
+	jmp	.L178
 	.p2align 4,,10
 	.p2align 3
-.L214:
+.L242:
 	comisd	%xmm6, %xmm7
-	jbe	.L230
-.L220:
+	jbe	.L258
+.L248:
 	comisd	%xmm12, %xmm13
-	jbe	.L230
-	jmp	.L229
+	jbe	.L258
+	jmp	.L257
 	.p2align 4,,10
 	.p2align 3
-.L350:
+.L378:
 	xorl	%edx, %edx
 	comisd	%xmm13, %xmm12
-	jnb	.L135
+	jnb	.L163
 	.p2align 4,,10
 	.p2align 3
-.L144:
+.L172:
 	comisd	%xmm12, %xmm11
-	jb	.L156
-.L247:
+	jb	.L184
+.L275:
 	xorl	%edx, %edx
 	comisd	%xmm11, %xmm9
-	jnb	.L135
+	jnb	.L163
 	ucomisd	%xmm8, %xmm10
-	jp	.L293
-	je	.L168
-.L293:
+	jp	.L321
+	je	.L196
+.L321:
 	xorl	%edx, %edx
 	comisd	%xmm6, %xmm7
-	jnb	.L342
+	jnb	.L370
 	comisd	%xmm13, %xmm9
-	jb	.L136
-	jmp	.L135
+	jb	.L164
+	jmp	.L163
 	.p2align 4,,10
 	.p2align 3
-.L140:
-	comisd	%xmm12, %xmm11
-	jb	.L309
-	xorl	%edx, %edx
-	comisd	%xmm11, %xmm9
-	jnb	.L135
-.L309:
-	comisd	%xmm7, %xmm6
-	jnb	.L155
-	comisd	%xmm6, %xmm10
-	jb	.L156
-	jmp	.L150
-	.p2align 4,,10
-	.p2align 3
-.L315:
-	comisd	%xmm6, %xmm7
-	jb	.L171
-	ucomisd	%xmm6, %xmm7
-	jp	.L183
-	jne	.L183
-	jmp	.L171
-.L351:
-	xorl	%edx, %edx
-.L336:
-	comisd	%xmm13, %xmm12
-	jnb	.L135
-	comisd	%xmm10, %xmm8
-	jnb	.L144
-	jmp	.L146
-	.p2align 4,,10
-	.p2align 3
-.L348:
-	comisd	%xmm11, %xmm9
-	ja	.L219
-	comisd	%xmm10, %xmm8
-	ja	.L224
-	jmp	.L220
-.L308:
-	ucomisd	%xmm6, %xmm7
-	jp	.L151
-	je	.L351
-.L151:
-	ucomisd	%xmm8, %xmm10
-	jp	.L241
-	jne	.L241
-	comisd	%xmm12, %xmm11
-	jnb	.L247
-	jmp	.L146
 .L168:
-	comisd	%xmm13, %xmm9
-	jnb	.L135
+	comisd	%xmm12, %xmm11
+	jb	.L337
+	xorl	%edx, %edx
+	comisd	%xmm11, %xmm9
+	jnb	.L163
+.L337:
+	comisd	%xmm7, %xmm6
+	jnb	.L183
+	comisd	%xmm6, %xmm10
+	jb	.L184
+	jmp	.L178
+	.p2align 4,,10
+	.p2align 3
+.L343:
 	comisd	%xmm6, %xmm7
-	jb	.L171
+	jb	.L199
 	ucomisd	%xmm6, %xmm7
-	jp	.L174
-	jne	.L174
-	jmp	.L171
-.L272:
-	movl	$1, %edx
-	jmp	.L135
-.L241:
+	jp	.L211
+	jne	.L211
+	jmp	.L199
+.L379:
+	xorl	%edx, %edx
+.L364:
+	comisd	%xmm13, %xmm12
+	jnb	.L163
+	comisd	%xmm10, %xmm8
+	jnb	.L172
+	jmp	.L174
+	.p2align 4,,10
+	.p2align 3
+.L376:
+	comisd	%xmm11, %xmm9
+	ja	.L247
+	comisd	%xmm10, %xmm8
+	ja	.L252
+	jmp	.L248
+.L336:
+	ucomisd	%xmm6, %xmm7
+	jp	.L179
+	je	.L379
+.L179:
+	ucomisd	%xmm8, %xmm10
+	jp	.L269
+	jne	.L269
+	comisd	%xmm12, %xmm11
+	jnb	.L275
+	jmp	.L174
+.L196:
 	comisd	%xmm13, %xmm9
-	jnb	.L246
-	jmp	.L136
+	jnb	.L163
+	comisd	%xmm6, %xmm7
+	jb	.L199
+	ucomisd	%xmm6, %xmm7
+	jp	.L202
+	jne	.L202
+	jmp	.L199
+.L300:
+	movl	$1, %edx
+	jmp	.L163
+.L269:
+	comisd	%xmm13, %xmm9
+	jnb	.L274
+	jmp	.L164
 	.seh_endproc
 	.align 2
 	.p2align 4
@@ -939,7 +1095,7 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	.def	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
 _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
-.LFB8437:
+.LFB8439:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -968,7 +1124,7 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	call	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 	xorl	%r9d, %r9d
 	testl	%eax, %eax
-	je	.L352
+	je	.L380
 	movzwl	234(%rbx), %ecx
 	pxor	%xmm0, %xmm0
 	pxor	%xmm2, %xmm2
@@ -976,7 +1132,7 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	pxor	%xmm5, %xmm5
 	pxor	%xmm4, %xmm4
 	pxor	%xmm3, %xmm3
-	movsd	176(%rbx), %xmm8
+	movsd	176(%rbx), %xmm9
 	movl	%ecx, %edx
 	movapd	%xmm1, %xmm10
 	movsd	168(%r11), %xmm7
@@ -998,7 +1154,7 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	shrw	%dx
 	addsd	%xmm10, %xmm5
 	movzwl	%dx, %edx
-	addsd	%xmm8, %xmm2
+	addsd	%xmm9, %xmm2
 	movapd	%xmm2, %xmm11
 	subsd	%xmm0, %xmm11
 	pxor	%xmm0, %xmm0
@@ -1017,63 +1173,63 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	movapd	%xmm0, %xmm12
 	subsd	%xmm3, %xmm12
 	cmpq	%rsi, %rdx
-	jb	.L354
+	jb	.L382
 	cmpl	$32, %eax
-	ja	.L355
-	leaq	.L357(%rip), %rdx
+	ja	.L383
+	leaq	.L385(%rip), %rdx
 	movl	%eax, %eax
 	movslq	(%rdx,%rax,4), %rax
 	addq	%rdx, %rax
 	jmp	*%rax
 	.section .rdata,"dr"
 	.align 4
-.L357:
-	.long	.L382-.L357
-	.long	.L362-.L357
-	.long	.L361-.L357
-	.long	.L382-.L357
-	.long	.L360-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L359-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L358-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L382-.L357
-	.long	.L356-.L357
+.L385:
+	.long	.L410-.L385
+	.long	.L390-.L385
+	.long	.L389-.L385
+	.long	.L410-.L385
+	.long	.L388-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L387-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L386-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L410-.L385
+	.long	.L384-.L385
 	.text
 	.p2align 4,,10
 	.p2align 3
-.L370:
+.L398:
 	cmpl	$64, %eax
-	je	.L378
+	je	.L406
 	cmpl	$128, %eax
-	je	.L379
+	je	.L407
 	.p2align 4,,10
 	.p2align 3
-.L382:
+.L410:
 	xorl	%r9d, %r9d
-.L352:
+.L380:
 	movaps	32(%rsp), %xmm6
 	movaps	48(%rsp), %xmm7
 	movl	%r9d, %eax
@@ -1088,78 +1244,78 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L354:
+.L382:
 	testq	%rsi, %rsi
-	js	.L366
-	pxor	%xmm9, %xmm9
-	cvtsi2sdq	%rsi, %xmm9
+	js	.L394
+	pxor	%xmm8, %xmm8
+	cvtsi2sdq	%rsi, %xmm8
 	addq	%rsi, %rdx
-	js	.L368
-.L388:
+	js	.L396
+.L415:
 	pxor	%xmm3, %xmm3
 	cvtsi2sdq	%rdx, %xmm3
-.L369:
-	divsd	%xmm3, %xmm9
-	movsd	.LC2(%rip), %xmm6
-	subsd	%xmm9, %xmm6
+.L397:
+	divsd	%xmm3, %xmm8
+	movsd	.LC4(%rip), %xmm6
+	subsd	%xmm8, %xmm6
 	cmpl	$32, %eax
-	ja	.L370
-	leaq	.L372(%rip), %rdx
+	ja	.L398
+	leaq	.L400(%rip), %rdx
 	movl	%eax, %eax
 	movslq	(%rdx,%rax,4), %rax
 	addq	%rdx, %rax
 	jmp	*%rax
 	.section .rdata,"dr"
 	.align 4
-.L372:
-	.long	.L382-.L372
-	.long	.L377-.L372
-	.long	.L376-.L372
-	.long	.L382-.L372
-	.long	.L375-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L374-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L373-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L382-.L372
-	.long	.L371-.L372
+.L400:
+	.long	.L410-.L400
+	.long	.L405-.L400
+	.long	.L404-.L400
+	.long	.L410-.L400
+	.long	.L403-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L402-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L401-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L410-.L400
+	.long	.L399-.L400
 	.text
 	.p2align 4,,10
 	.p2align 3
-.L366:
+.L394:
 	movq	%rsi, %rcx
 	movq	%rsi, %r8
-	pxor	%xmm9, %xmm9
+	pxor	%xmm8, %xmm8
 	shrq	%rcx
 	andl	$1, %r8d
 	orq	%r8, %rcx
-	cvtsi2sdq	%rcx, %xmm9
-	addsd	%xmm9, %xmm9
+	cvtsi2sdq	%rcx, %xmm8
+	addsd	%xmm8, %xmm8
 	addq	%rsi, %rdx
-	jns	.L388
-.L368:
+	jns	.L415
+.L396:
 	movq	%rdx, %rcx
 	andl	$1, %edx
 	pxor	%xmm3, %xmm3
@@ -1167,209 +1323,221 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	orq	%rdx, %rcx
 	cvtsi2sdq	%rcx, %xmm3
 	addsd	%xmm3, %xmm3
-	jmp	.L369
+	jmp	.L397
 	.p2align 4,,10
 	.p2align 3
-.L355:
+.L383:
 	cmpl	$64, %eax
-	je	.L363
+	je	.L391
 	cmpl	$128, %eax
-	jne	.L352
+	jne	.L380
 	subsd	%xmm11, %xmm0
 	subsd	%xmm7, %xmm5
-	movsd	.LC1(%rip), %xmm2
+	movsd	.LC3(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	addsd	%xmm2, %xmm5
-	addsd	%xmm8, %xmm0
+	addsd	%xmm9, %xmm0
 	subsd	%xmm5, %xmm1
 	movsd	%xmm0, 176(%rbx)
 	movsd	%xmm1, 168(%rbx)
-	jmp	.L365
+	jmp	.L393
 	.p2align 4,,10
 	.p2align 3
-.L379:
+.L407:
 	subsd	%xmm11, %xmm0
-	movsd	.LC1(%rip), %xmm3
-	movapd	%xmm0, %xmm2
-	mulsd	%xmm6, %xmm2
-	mulsd	%xmm9, %xmm0
+	movapd	%xmm6, %xmm2
+	subsd	%xmm7, %xmm5
+	movsd	.LC3(%rip), %xmm3
+	mulsd	%xmm0, %xmm2
+	mulsd	%xmm5, %xmm6
+	mulsd	%xmm8, %xmm0
+	mulsd	%xmm5, %xmm8
 	addsd	%xmm3, %xmm2
-	addsd	%xmm8, %xmm2
+	addsd	%xmm3, %xmm6
+	addsd	%xmm9, %xmm2
+	subsd	%xmm6, %xmm1
 	movsd	%xmm2, 176(%rbx)
 	movsd	176(%r11), %xmm2
 	subsd	%xmm0, %xmm2
-.L384:
 	movsd	%xmm2, 176(%r11)
-	subsd	%xmm7, %xmm5
-	mulsd	%xmm5, %xmm6
-	addsd	%xmm3, %xmm6
-.L386:
-	subsd	%xmm6, %xmm1
-	mulsd	%xmm9, %xmm5
 	movsd	%xmm1, 168(%rbx)
-	addsd	168(%r11), %xmm5
-	movsd	%xmm5, 168(%r11)
+	addsd	168(%r11), %xmm8
+	movsd	%xmm8, 168(%r11)
 	.p2align 4,,10
 	.p2align 3
-.L365:
+.L393:
 	movl	$1, %r9d
-	jmp	.L352
-.L359:
+	jmp	.L380
+.L387:
 	subsd	%xmm7, %xmm5
-	addsd	.LC1(%rip), %xmm5
+	addsd	.LC3(%rip), %xmm5
 	subsd	%xmm5, %xmm1
 	movsd	%xmm1, 168(%rbx)
-	jmp	.L365
-.L358:
+	jmp	.L393
+.L386:
 	subsd	%xmm10, %xmm4
 	subsd	%xmm12, %xmm2
-	movsd	.LC1(%rip), %xmm0
+	movsd	.LC3(%rip), %xmm0
 	movapd	%xmm4, %xmm3
 	addsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm3
-	subsd	%xmm2, %xmm8
+	subsd	%xmm2, %xmm9
 	addsd	%xmm1, %xmm3
-	movsd	%xmm8, 176(%rbx)
+	movsd	%xmm9, 176(%rbx)
 	movsd	%xmm3, 168(%rbx)
-	jmp	.L365
-.L362:
+	jmp	.L393
+.L390:
 	subsd	%xmm12, %xmm2
-	addsd	.LC1(%rip), %xmm2
-	subsd	%xmm2, %xmm8
-	movsd	%xmm8, 176(%rbx)
-	jmp	.L365
-.L361:
+	addsd	.LC3(%rip), %xmm2
+	subsd	%xmm2, %xmm9
+	movsd	%xmm9, 176(%rbx)
+	jmp	.L393
+.L389:
 	subsd	%xmm11, %xmm0
-	addsd	.LC1(%rip), %xmm0
-	addsd	%xmm8, %xmm0
+	addsd	.LC3(%rip), %xmm0
+	addsd	%xmm9, %xmm0
 	movsd	%xmm0, 176(%rbx)
-	jmp	.L365
-.L360:
+	jmp	.L393
+.L388:
 	subsd	%xmm10, %xmm4
-	movsd	.LC1(%rip), %xmm3
+	movsd	.LC3(%rip), %xmm3
 	addsd	%xmm4, %xmm3
 	addsd	%xmm1, %xmm3
 	movsd	%xmm3, 168(%rbx)
-	jmp	.L365
-.L356:
+	jmp	.L393
+.L384:
 	subsd	%xmm12, %xmm2
 	subsd	%xmm7, %xmm5
-	movsd	.LC1(%rip), %xmm0
+	movsd	.LC3(%rip), %xmm0
 	addsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm5
-	subsd	%xmm2, %xmm8
+	subsd	%xmm2, %xmm9
 	subsd	%xmm5, %xmm1
-	movsd	%xmm8, 176(%rbx)
+	movsd	%xmm9, 176(%rbx)
 	movsd	%xmm1, 168(%rbx)
-	jmp	.L365
-.L371:
+	jmp	.L393
+.L399:
 	subsd	%xmm12, %xmm2
-	movsd	.LC1(%rip), %xmm3
-	movapd	%xmm2, %xmm0
-	mulsd	%xmm6, %xmm0
-	mulsd	%xmm9, %xmm2
+	movapd	%xmm6, %xmm0
+	movsd	.LC3(%rip), %xmm3
+	subsd	%xmm7, %xmm5
+	mulsd	%xmm2, %xmm0
+	mulsd	%xmm5, %xmm6
+	mulsd	%xmm8, %xmm2
 	addsd	%xmm3, %xmm0
-	subsd	%xmm0, %xmm8
-	movsd	%xmm8, 176(%rbx)
+	addsd	%xmm3, %xmm6
+	subsd	%xmm0, %xmm9
+	movsd	%xmm9, 176(%rbx)
 	addsd	176(%r11), %xmm2
-	jmp	.L384
-.L373:
+	movsd	%xmm2, 176(%r11)
+.L413:
+	subsd	%xmm6, %xmm1
+	mulsd	%xmm8, %xmm5
+	movsd	%xmm1, 168(%rbx)
+	addsd	168(%r11), %xmm5
+	movsd	%xmm5, 168(%r11)
+	jmp	.L393
+.L401:
 	subsd	%xmm12, %xmm2
-	movsd	.LC1(%rip), %xmm5
-	movapd	%xmm2, %xmm0
-	mulsd	%xmm6, %xmm0
-	mulsd	%xmm9, %xmm2
+	movapd	%xmm6, %xmm0
+	movsd	.LC3(%rip), %xmm5
+	mulsd	%xmm2, %xmm0
+	mulsd	%xmm8, %xmm2
 	addsd	%xmm5, %xmm0
-	subsd	%xmm0, %xmm8
-	movsd	%xmm8, 176(%rbx)
+	subsd	%xmm0, %xmm9
+	movsd	%xmm9, 176(%rbx)
 	addsd	176(%r11), %xmm2
-.L385:
+.L412:
 	movsd	%xmm2, 176(%r11)
 	subsd	%xmm10, %xmm4
 	mulsd	%xmm4, %xmm6
 	movapd	%xmm4, %xmm3
 	addsd	%xmm5, %xmm6
-.L387:
-	mulsd	%xmm9, %xmm3
+.L414:
+	mulsd	%xmm8, %xmm3
 	addsd	%xmm1, %xmm6
 	movsd	%xmm6, 168(%rbx)
 	movsd	168(%r11), %xmm0
 	subsd	%xmm3, %xmm0
 	movsd	%xmm0, 168(%r11)
-	jmp	.L365
-.L374:
+	jmp	.L393
+.L402:
 	subsd	%xmm7, %xmm5
 	mulsd	%xmm5, %xmm6
-	addsd	.LC1(%rip), %xmm6
-	jmp	.L386
-.L375:
+	addsd	.LC3(%rip), %xmm6
+	jmp	.L413
+.L403:
 	subsd	%xmm10, %xmm4
 	mulsd	%xmm4, %xmm6
 	movapd	%xmm4, %xmm3
-	addsd	.LC1(%rip), %xmm6
-	jmp	.L387
-.L376:
+	addsd	.LC3(%rip), %xmm6
+	jmp	.L414
+.L404:
 	subsd	%xmm11, %xmm0
 	mulsd	%xmm0, %xmm6
-	addsd	.LC1(%rip), %xmm6
-	mulsd	%xmm9, %xmm0
-	addsd	%xmm8, %xmm6
+	addsd	.LC3(%rip), %xmm6
+	mulsd	%xmm8, %xmm0
+	addsd	%xmm9, %xmm6
 	movsd	%xmm6, 176(%rbx)
 	movsd	176(%r11), %xmm1
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, 176(%r11)
-	jmp	.L365
-.L377:
+	jmp	.L393
+.L405:
 	subsd	%xmm12, %xmm2
 	mulsd	%xmm2, %xmm6
-	addsd	.LC1(%rip), %xmm6
-	mulsd	%xmm9, %xmm2
-	subsd	%xmm6, %xmm8
-	movsd	%xmm8, 176(%rbx)
+	addsd	.LC3(%rip), %xmm6
+	mulsd	%xmm8, %xmm2
+	subsd	%xmm6, %xmm9
+	movsd	%xmm9, 176(%rbx)
 	addsd	176(%r11), %xmm2
 	movsd	%xmm2, 176(%r11)
-	jmp	.L365
+	jmp	.L393
 	.p2align 4,,10
 	.p2align 3
-.L378:
+.L406:
 	subsd	%xmm11, %xmm0
-	movsd	.LC1(%rip), %xmm5
-	movapd	%xmm0, %xmm2
-	mulsd	%xmm6, %xmm2
-	mulsd	%xmm9, %xmm0
+	movapd	%xmm6, %xmm2
+	movsd	.LC3(%rip), %xmm5
+	mulsd	%xmm0, %xmm2
+	mulsd	%xmm8, %xmm0
 	addsd	%xmm5, %xmm2
-	addsd	%xmm8, %xmm2
+	addsd	%xmm9, %xmm2
 	movsd	%xmm2, 176(%rbx)
 	movsd	176(%r11), %xmm2
 	subsd	%xmm0, %xmm2
-	jmp	.L385
+	jmp	.L412
 	.p2align 4,,10
 	.p2align 3
-.L363:
+.L391:
 	subsd	%xmm10, %xmm4
 	subsd	%xmm11, %xmm0
-	movsd	.LC1(%rip), %xmm2
+	movsd	.LC3(%rip), %xmm2
 	movapd	%xmm4, %xmm3
 	addsd	%xmm2, %xmm0
 	addsd	%xmm2, %xmm3
-	addsd	%xmm8, %xmm0
+	addsd	%xmm9, %xmm0
 	addsd	%xmm1, %xmm3
 	movsd	%xmm0, 176(%rbx)
 	movsd	%xmm3, 168(%rbx)
-	jmp	.L365
+	jmp	.L393
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC3:
+.LC5:
 	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"
+	.section	.text.unlikely,"x"
+	.align 2
+.LCOLDB6:
 	.text
+.LHOTB6:
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine9collision18NewCollisionBranchEyyyy
-	.def	_ZN3wze6engine9collision18NewCollisionBranchEyyyy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine9collision18NewCollisionBranchEyyyy
-_ZN3wze6engine9collision18NewCollisionBranchEyyyy:
-.LFB8439:
+	.globl	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_
+	.def	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_
+_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_:
+.LFB8441:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -1389,86 +1557,94 @@ _ZN3wze6engine9collision18NewCollisionBranchEyyyy:
 	subq	$88, %rsp
 	.seh_stackalloc	88
 	.seh_endprologue
+	movzwl	8(%rcx), %esi
 	movq	192(%rsp), %rbx
-	movq	16(%rcx), %rdi
+	movq	%rdx, 168(%rsp)
+	movq	%rcx, %rdi
+	movq	%r8, %rbp
 	movq	%r9, 184(%rsp)
-	movq	%rcx, %r12
-	movq	%rdx, %rbp
-	movq	%r8, %rsi
-	cmpq	8(%rcx), %rdx
-	jnb	.L390
-	movq	%rdx, %r14
-	leaq	0(,%rbx,8), %rax
-	salq	$4, %r14
-	movq	%rax, 56(%rsp)
-	leaq	(%rdi,%r14), %r15
-	movq	(%r15), %r13
-	cmpq	%r13, %rbx
-	jnb	.L407
-	movq	$0, 64(%rsp)
-	xorl	%r11d, %r11d
-	movq	%r15, %rsi
-	movq	%rdi, 72(%rsp)
-	movq	%r8, %rdi
+	movq	%rsi, 64(%rsp)
+	testq	%rsi, %rsi
+	jne	.L417
+	movq	$0, 72(%rsp)
+	xorl	%r12d, %r12d
+.L420:
+	movq	168(%rsp), %rax
+	movq	(%rax), %r11
+	testq	%r11, %r11
+	je	.L419
+	movq	8(%rax), %r14
+	xorl	%r12d, %r12d
+	xorl	%r15d, %r15d
+	xorl	%esi, %esi
+	jmp	.L426
 	.p2align 4,,10
 	.p2align 3
-.L393:
-	cmpq	%r11, %rbx
-	je	.L392
-	cmpq	%r11, %rdi
-	je	.L392
-	movq	8(%rsi), %rax
-	movq	56(%rsp), %rcx
-	movq	(%rax,%r11,8), %r15
-	movq	(%rax,%rcx), %rdx
-	movq	%r12, %rcx
-	movq	%r15, %r8
+.L421:
+	addq	$1, %r12
+	cmpq	%r11, %r12
+	jnb	.L456
+.L426:
+	movq	(%r14,%r12,8), %r8
+	leaq	0(,%r12,8), %r13
+	cmpq	%rbp, %r8
+	je	.L421
+	cmpq	%rbx, %r8
+	je	.L421
+	movq	%rbx, %rdx
+	movq	%rdi, %rcx
 	call	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 	testl	%eax, %eax
-	jne	.L434
-.L392:
-	addq	$1, %r11
-	cmpq	%r11, %r13
-	jne	.L393
-	movq	%rdi, %rsi
-	movq	72(%rsp), %rdi
-.L394:
-	xorl	%r15d, %r15d
-	movq	%r13, %rax
-	movq	%rbx, 192(%rsp)
-	movq	%r12, %rbx
-	movq	192(%rsp), %r12
-	cmpq	%rax, %r15
-	jnb	.L435
-.L406:
-	cmpq	%r15, %rsi
-	je	.L433
-	cmpq	%r15, %r12
-	je	.L433
-	movq	8(%rdi,%r14), %rdx
-	movq	64(%rsp), %rcx
-	leaq	0(,%r15,8), %r13
-	movq	(%rdx,%r15,8), %r9
-	cmpq	184(%rsp), %rcx
-	jb	.L401
-	cmpq	%rax, %r12
-	jnb	.L431
-	movq	56(%rsp), %rax
-	xorl	%r8d, %r8d
-	movq	%rbx, %rcx
-	movq	(%rdx,%rax), %rdx
+	je	.L421
+	cmpq	%rsi, 64(%rsp)
+	je	.L457
+.L422:
+	cmpq	%r11, %r12
+	jnb	.L458
+	movq	(%r14,%r13), %rax
+	movq	72(%rsp), %rcx
+	leaq	1(%rsi), %rdx
+	cmpq	64(%rsp), %rsi
+	jnb	.L459
+	addq	$1, %r12
+	movq	%rax, (%rcx,%rsi,8)
+	addq	144(%rax), %r15
+	movq	%rdx, %rsi
+	cmpq	%r11, %r12
+	jb	.L426
+	.p2align 4,,10
+	.p2align 3
+.L456:
+	movq	72(%rsp), %r12
+	cmpq	184(%rsp), %r15
+	jnb	.L427
+	testq	%rsi, %rsi
+	je	.L419
+	movq	64(%rsp), %rax
+	xorl	%r13d, %r13d
+	movq	%rax, 56(%rsp)
+	movq	184(%rsp), %rax
+	subq	%r15, %rax
+	movq	%rax, %r14
+.L434:
+	cmpq	%r13, 56(%rsp)
+	je	.L460
+	movq	(%r12,%r13,8), %r15
+	movq	%rbx, %rdx
+	movq	%rdi, %rcx
+	movq	144(%r15), %r8
+	movq	%r15, %r9
+	addq	%r14, %r8
 	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
+	testb	%al, %al
+	jne	.L461
 .L433:
-	movq	8(%rbx), %rax
-	movq	16(%rbx), %rdi
-	addq	$1, %r15
-	cmpq	%rax, %rbp
-	jnb	.L390
-.L405:
-	movq	(%rdi,%r14), %rax
-	cmpq	%rax, %r15
-	jb	.L406
-.L435:
+	addq	$1, %r13
+	cmpq	%r13, %rsi
+	jne	.L434
+.L419:
+	movq	%r12, %rcx
+	call	free
 	xorl	%eax, %eax
 	addq	$88, %rsp
 	popq	%rbx
@@ -1482,94 +1658,177 @@ _ZN3wze6engine9collision18NewCollisionBranchEyyyy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L401:
-	movq	184(%rsp), %rdi
-	movq	144(%r9), %r8
-	subq	%rcx, %rdi
-	addq	%rdi, %r8
-	cmpq	%rax, %r12
-	jnb	.L431
-	movq	56(%rsp), %rax
-	movq	%rbx, %rcx
-	movq	(%rdx,%rax), %rdx
-	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
-	testb	%al, %al
-	je	.L433
-	movq	%r15, 32(%rsp)
-	movq	%rdi, %r9
-	movq	%rsi, %r8
-	movq	%rbp, %rdx
-	movq	%rbx, %rcx
-	call	_ZN3wze6engine9collision18NewCollisionBranchEyyyy
-	movq	16(%rbx), %rdi
-	cmpq	8(%rbx), %rbp
-	jnb	.L390
-	leaq	(%rdi,%r14), %rax
-	movq	(%rax), %rdx
-	movq	8(%rax), %rax
-	cmpq	%rdx, %r15
-	jnb	.L436
-	movq	(%rax,%r13), %r9
-	cmpq	%rdx, %r12
-	jnb	.L431
-	movq	56(%rsp), %rcx
-	xorl	%r8d, %r8d
-	addq	$1, %r15
-	movq	(%rax,%rcx), %rdx
-	movq	%rbx, %rcx
-	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
-	jmp	.L405
+.L427:
+	testq	%rsi, %rsi
+	je	.L419
+	movq	64(%rsp), %r13
+	xorl	%ebp, %ebp
 	.p2align 4,,10
 	.p2align 3
-.L434:
-	movq	144(%r15), %rcx
-	addq	%rcx, 64(%rsp)
-	jmp	.L392
-.L390:
-	leaq	.LC3(%rip), %rcx
-	movq	%rbp, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
 .L431:
-	movq	%r12, %rbx
-.L402:
-	leaq	.LC3(%rip), %rcx
+	cmpq	%rbp, %r13
+	je	.L462
+	movq	(%r12,%rbp,8), %r9
+	xorl	%r8d, %r8d
 	movq	%rbx, %rdx
+	movq	%rdi, %rcx
+	addq	$1, %rbp
+	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
+	cmpq	%rbp, %rsi
+	jne	.L431
+	jmp	.L419
+	.p2align 4,,10
+	.p2align 3
+.L461:
+	movq	%r15, 32(%rsp)
+	movq	%r14, %r9
+	movq	%rbp, %r8
+	movq	%rdi, %rcx
+	movq	168(%rsp), %rdx
+.LEHB0:
+	call	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_
+	movq	(%r12,%r13,8), %r9
+	xorl	%r8d, %r8d
+	movq	%rbx, %rdx
+	movq	%rdi, %rcx
+	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
+	jmp	.L433
+	.p2align 4,,10
+	.p2align 3
+.L457:
+	movzwl	8(%rdi), %eax
+	leaq	64(%rsp), %rcx
+	movq	%rsi, %rdx
+	leaq	1(%rax), %r8
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0
+.LEHE0:
+	movq	168(%rsp), %rax
+	movq	(%rax), %r11
+	movq	8(%rax), %r14
+	jmp	.L422
+	.p2align 4,,10
+	.p2align 3
+.L417:
+	leaq	0(,%rsi,8), %rcx
+	call	malloc
+	movq	%rax, 72(%rsp)
+	movq	%rax, %r12
+	testq	%rax, %rax
+	jne	.L420
+	leaq	.LC2(%rip), %rcx
+	movq	%rsi, %rdx
+.LEHB1:
 	call	_Z6printfPKcz
+.LEHE1:
 	movl	$1, %ecx
 	call	exit
-.L407:
-	xorl	%eax, %eax
-	jmp	.L391
-.L396:
-	cmpq	%rax, %rsi
-	je	.L395
-	cmpq	%rax, %rbx
-	jne	.L402
-.L395:
-	addq	$1, %rax
-.L391:
-	cmpq	%rax, %r13
-	jne	.L396
-	xorl	%eax, %eax
-	movq	%rax, 64(%rsp)
-	jmp	.L394
+	.p2align 4,,10
+	.p2align 3
+.L462:
+	movq	%r13, %rdx
+	leaq	.LC5(%rip), %rcx
+.LEHB2:
+	call	_Z6printfPKcz
+.L425:
+	movl	$1, %ecx
+	call	exit
+.L459:
+	movq	%rsi, %rdx
+	leaq	.LC5(%rip), %rcx
+	call	_Z6printfPKcz
+	jmp	.L425
+.L458:
+	movq	%r12, %rdx
+	leaq	.LC5(%rip), %rcx
+	call	_Z6printfPKcz
+	jmp	.L425
+.L460:
+	movq	56(%rsp), %rdx
+	leaq	.LC5(%rip), %rcx
+	call	_Z6printfPKcz
+.LEHE2:
+	jmp	.L425
 .L436:
-	leaq	.LC3(%rip), %rcx
-	movq	%r15, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
+	movq	%rax, %rbx
+	jmp	.L435
+	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
+	.seh_handler	__gxx_personality_seh0, @unwind, @except
+	.seh_handlerdata
+.LLSDA8441:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE8441-.LLSDACSB8441
+.LLSDACSB8441:
+	.uleb128 .LEHB0-.LFB8441
+	.uleb128 .LEHE0-.LEHB0
+	.uleb128 .L436-.LFB8441
+	.uleb128 0
+	.uleb128 .LEHB1-.LFB8441
+	.uleb128 .LEHE1-.LEHB1
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB2-.LFB8441
+	.uleb128 .LEHE2-.LEHB2
+	.uleb128 .L436-.LFB8441
+	.uleb128 0
+.LLSDACSE8441:
+	.text
 	.seh_endproc
+	.section	.text.unlikely,"x"
+	.def	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_.cold;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_.cold
+	.seh_stackalloc	152
+	.seh_savereg	%rbx, 88
+	.seh_savereg	%rsi, 96
+	.seh_savereg	%rdi, 104
+	.seh_savereg	%rbp, 112
+	.seh_savereg	%r12, 120
+	.seh_savereg	%r13, 128
+	.seh_savereg	%r14, 136
+	.seh_savereg	%r15, 144
+	.seh_endprologue
+_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_.cold:
+.L435:
+	movq	72(%rsp), %rcx
+	call	free
+	movq	%rbx, %rcx
+.LEHB3:
+	call	_Unwind_Resume
+	nop
+.LEHE3:
+	.seh_handler	__gxx_personality_seh0, @unwind, @except
+	.seh_handlerdata
+.LLSDAC8441:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSEC8441-.LLSDACSBC8441
+.LLSDACSBC8441:
+	.uleb128 .LEHB3-.LCOLDB6
+	.uleb128 .LEHE3-.LEHB3
+	.uleb128 0
+	.uleb128 0
+.LLSDACSEC8441:
+	.section	.text.unlikely,"x"
+	.text
+	.section	.text.unlikely,"x"
+	.seh_endproc
+.LCOLDE6:
+	.text
+.LHOTE6:
+	.section	.text.unlikely,"x"
+	.align 2
+.LCOLDB7:
+	.text
+.LHOTB7:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine9collision21ResolveCollisionLayerEy
 	.def	_ZN3wze6engine9collision21ResolveCollisionLayerEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision21ResolveCollisionLayerEy
 _ZN3wze6engine9collision21ResolveCollisionLayerEy:
-.LFB8438:
+.LFB8440:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -1586,170 +1845,168 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$88, %rsp
-	.seh_stackalloc	88
+	subq	$120, %rsp
+	.seh_stackalloc	120
 	.seh_endprologue
-	movq	8(%rcx), %r12
-	movq	16(%rcx), %rsi
-	movq	%rcx, %rdi
-	movq	%rdx, %rbp
-	cmpq	%r12, %rdx
-	jnb	.L439
-	movq	%rdx, %rax
-	xorl	%r14d, %r14d
-	salq	$4, %rax
-	movq	%rax, 72(%rsp)
-	addq	%rax, %rsi
-	.p2align 4,,10
-	.p2align 3
-.L453:
-	movq	(%rsi), %rbx
-	cmpq	%rbx, %r14
-	jnb	.L466
-	movq	$0, 56(%rsp)
-	leaq	0(,%r14,8), %r13
-	xorl	%r11d, %r11d
-	jmp	.L441
-	.p2align 4,,10
-	.p2align 3
-.L440:
-	addq	$1, %r11
-	cmpq	%r11, %rbx
+	movzwl	8(%rcx), %edi
+	movq	%rcx, 192(%rsp)
+	movq	%rdx, %rbx
+	movq	%rdi, 96(%rsp)
+	testq	%rdi, %rdi
+	jne	.L464
+	movq	$0, 104(%rsp)
+	xorl	%esi, %esi
+.L465:
+	movq	192(%rsp), %rax
+	movq	24(%rax), %r12
+	cmpq	16(%rax), %rbx
+	jnb	.L515
+	salq	$4, %rbx
+	addq	%rbx, %r12
+	movq	(%r12), %rbp
+	testq	%rbp, %rbp
 	je	.L467
-.L441:
-	cmpq	%r14, %r11
-	je	.L440
-	movq	8(%rsi), %rax
-	movq	%rdi, %rcx
-	movq	(%rax,%r11,8), %r15
-	movq	(%rax,%r13), %rdx
-	movq	%r15, %r8
+	leaq	96(%rsp), %rax
+	movq	8(%r12), %r11
+	xorl	%ebx, %ebx
+	movq	%rax, 88(%rsp)
+	.p2align 4,,10
+	.p2align 3
+.L487:
+	leaq	0(,%rbx,8), %r13
+	xorl	%esi, %esi
+	xorl	%r14d, %r14d
+	xorl	%edi, %edi
+	.p2align 4,,10
+	.p2align 3
+.L474:
+	cmpq	%rsi, %rbx
+	je	.L468
+	movq	(%r11,%rsi,8), %r8
+	leaq	0(,%rsi,8), %r15
+	cmpq	%rbp, %rbx
+	jnb	.L515
+	movq	(%r11,%r13), %rdx
+	movq	192(%rsp), %rcx
 	call	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 	testl	%eax, %eax
-	je	.L440
-	addq	$1, %r11
-	movq	144(%r15), %rcx
-	addq	%rcx, 56(%rsp)
-	cmpq	%r11, %rbx
-	jne	.L441
-	.p2align 4,,10
-	.p2align 3
-.L467:
-	cmpq	%r12, %rbp
-	jnb	.L439
-	xorl	%ebx, %ebx
-	jmp	.L443
-	.p2align 4,,10
-	.p2align 3
-.L469:
-	xorl	%r8d, %r8d
-	movq	%rax, %rdx
-	movq	%rdi, %rcx
-	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
-.L448:
-	addq	$1, %rbx
-	cmpq	%r12, %rbp
-	jnb	.L439
-.L443:
-	movq	(%rsi), %rax
-	cmpq	%rax, %rbx
-	jnb	.L468
-.L452:
-	cmpq	%r14, %rbx
-	je	.L448
-	movq	8(%rsi), %rdx
-	cmpq	%rax, %r14
-	jnb	.L465
-	movq	(%rdx,%r13), %rax
-	movq	(%rdx,%rbx,8), %r9
-	leaq	0(,%rbx,8), %r15
-	movq	136(%rax), %r11
-	cmpq	%r11, 56(%rsp)
-	jnb	.L469
-	movq	56(%rsp), %rcx
-	movq	%rax, %rdx
-	subq	%rcx, %r11
-	movq	%rdi, %rcx
-	movq	%r11, %r8
-	addq	144(%r9), %r8
-	movq	%r11, 64(%rsp)
-	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
-	movq	64(%rsp), %r11
-	testb	%al, %al
-	je	.L448
-	movq	%rbx, 32(%rsp)
-	movq	%r11, %r9
-	movq	%r14, %r8
-	movq	%rbp, %rdx
-	movq	%rdi, %rcx
-	call	_ZN3wze6engine9collision18NewCollisionBranchEyyyy
-	movq	8(%rdi), %r12
-	movq	16(%rdi), %rsi
-	cmpq	%r12, %rbp
-	jnb	.L439
-	movq	72(%rsp), %rax
-	addq	%rax, %rsi
-	movq	(%rsi), %rdx
-	movq	8(%rsi), %rax
-	cmpq	%rdx, %rbx
-	jnb	.L470
-	movq	(%rax,%r15), %r9
-	cmpq	%rdx, %r14
-	jnb	.L465
-	movq	(%rax,%r13), %rdx
-	xorl	%r8d, %r8d
-	movq	%rdi, %rcx
-	addq	$1, %rbx
-	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
-	movq	(%rsi), %rax
-	cmpq	%rax, %rbx
-	jb	.L452
-	.p2align 4,,10
-	.p2align 3
+	je	.L468
+	cmpq	%rdi, 96(%rsp)
+	je	.L519
+.L471:
+	cmpq	%rbp, %rsi
+	jnb	.L520
+	movq	(%r11,%r15), %rax
+	movq	104(%rsp), %rcx
+	leaq	1(%rdi), %rdx
+	cmpq	96(%rsp), %rdi
+	jnb	.L521
+	movq	%rax, (%rcx,%rdi,8)
+	addq	144(%rax), %r14
+	movq	%rdx, %rdi
 .L468:
-	addq	$1, %r14
-	cmpq	%r12, %rbp
-	jb	.L453
-.L439:
-	leaq	.LC3(%rip), %rcx
-	movq	%rbp, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
+	addq	$1, %rsi
+	cmpq	%rbp, %rsi
+	jb	.L474
+	cmpq	%rbp, %rbx
+	jnb	.L515
+	movq	(%r11,%r13), %r15
+	cmpq	136(%r15), %r14
+	jnb	.L476
+	testq	%rdi, %rdi
+	je	.L481
+	movq	96(%rsp), %rax
+	xorl	%esi, %esi
+	movq	%rax, 80(%rsp)
+	movq	104(%rsp), %rax
+	movq	%rax, 72(%rsp)
+	jmp	.L486
 	.p2align 4,,10
 	.p2align 3
-.L466:
-	cmpq	%r12, %rbp
-	jnb	.L439
-	xorl	%r12d, %r12d
-	jmp	.L455
-	.p2align 4,,10
-	.p2align 3
-.L457:
-	movq	8(%rsi), %rax
-	leaq	0(,%r12,8), %r13
-	movq	(%rax,%r12,8), %rcx
-	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
-	movq	16(%rdi), %rsi
-	cmpq	8(%rdi), %rbp
-	jnb	.L439
+.L484:
+	addq	$1, %rsi
+	cmpq	%rsi, %rdi
+	je	.L522
+.L486:
+	cmpq	%rsi, 80(%rsp)
+	je	.L523
 	movq	72(%rsp), %rax
-	addq	%rax, %rsi
-	movq	(%rsi), %rbx
-	movq	8(%rsi), %rax
-	cmpq	%rbx, %r12
-	jnb	.L471
-	movq	(%rax,%r13), %rax
-	addq	$1, %r12
-	movl	234(%rax), %edx
-	movupd	168(%rax), %xmm0
-	movl	%edx, 238(%rax)
-	movups	%xmm0, 184(%rax)
-.L455:
-	cmpq	%rbx, %r12
-	jb	.L457
+	movq	8(%r12), %rdx
+	movq	(%rax,%rsi,8), %r9
+	movq	144(%r9), %rax
+	cmpq	%rbp, %rbx
+	jnb	.L515
+	movq	(%rdx,%r13), %r15
+	movq	192(%rsp), %rcx
+	movq	%r9, 64(%rsp)
+	movq	136(%r15), %r11
+	movq	%r15, %rdx
+	subq	%r14, %r11
+	leaq	(%rax,%r11), %r8
+	movq	%r11, 56(%rsp)
+	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
+	movq	56(%rsp), %r11
+	movq	64(%rsp), %r9
+	testb	%al, %al
+	je	.L484
+	movq	%r9, 32(%rsp)
+	movq	%r15, %r8
+	movq	%r11, %r9
+	movq	%r12, %rdx
+	movq	192(%rsp), %rcx
+.LEHB4:
+	call	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_
+	movq	72(%rsp), %rax
+	movq	(%r12), %rbp
+	movq	(%rax,%rsi,8), %r9
+	movq	8(%r12), %rax
+	cmpq	%rbp, %rbx
+	jnb	.L515
+	movq	(%rax,%r13), %rdx
+	movq	192(%rsp), %rcx
+	xorl	%r8d, %r8d
+	addq	$1, %rsi
+	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
+	cmpq	%rsi, %rdi
+	jne	.L486
+.L522:
+	movq	8(%r12), %r11
+.L481:
+	addq	$1, %rbx
+	cmpq	%rbp, %rbx
+	jb	.L487
+.L526:
+	movq	104(%rsp), %rsi
+	xorl	%ebx, %ebx
+	jmp	.L492
+	.p2align 4,,10
+	.p2align 3
+.L524:
+	movq	8(%r12), %r11
+.L492:
+	movq	(%r11,%rbx,8), %rcx
+	movupd	168(%rcx), %xmm0
+	ucomisd	184(%rcx), %xmm0
+	jp	.L488
+	jne	.L488
+	movapd	%xmm0, %xmm2
+	unpckhpd	%xmm2, %xmm2
+	ucomisd	192(%rcx), %xmm2
+	jp	.L488
+	je	.L490
+.L488:
+	movups	%xmm0, 184(%rcx)
+	call	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
+	movq	(%r12), %rbp
+.L490:
+	addq	$1, %rbx
+	cmpq	%rbp, %rbx
+	jb	.L524
+.L467:
+	movq	%rsi, %rcx
+	call	free
 	xorl	%eax, %eax
-	addq	$88, %rsp
+	addq	$120, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
@@ -1759,37 +2016,176 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEy:
 	popq	%r14
 	popq	%r15
 	ret
-.L465:
-	leaq	.LC3(%rip), %rcx
-	movq	%r14, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L471:
-	leaq	.LC3(%rip), %rcx
-	movq	%r12, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L470:
-	leaq	.LC3(%rip), %rcx
+	.p2align 4,,10
+	.p2align 3
+.L519:
+	movq	192(%rsp), %rax
+	movq	88(%rsp), %rcx
+	movq	%rdi, %rdx
+	movzwl	8(%rax), %eax
+	leaq	1(%rax), %r8
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0
+	movq	(%r12), %rbp
+	movq	8(%r12), %r11
+	jmp	.L471
+	.p2align 4,,10
+	.p2align 3
+.L476:
+	testq	%rdi, %rdi
+	je	.L481
+	xorl	%esi, %esi
+	movq	%rbx, 56(%rsp)
+	movq	96(%rsp), %r14
+	movq	%rsi, %rbx
+	movq	104(%rsp), %r13
+	movq	192(%rsp), %rsi
+	.p2align 4,,10
+	.p2align 3
+.L480:
+	cmpq	%rbx, %r14
+	je	.L525
+	movq	0(%r13,%rbx,8), %r9
+	xorl	%r8d, %r8d
+	movq	%r15, %rdx
+	movq	%rsi, %rcx
+	addq	$1, %rbx
+	call	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
+	cmpq	%rbx, %rdi
+	jne	.L480
+	movq	56(%rsp), %rbx
+	movq	8(%r12), %r11
+	addq	$1, %rbx
+	cmpq	%rbp, %rbx
+	jb	.L487
+	jmp	.L526
+.L515:
 	movq	%rbx, %rdx
+	leaq	.LC5(%rip), %rcx
 	call	_Z6printfPKcz
+.LEHE4:
+.L470:
 	movl	$1, %ecx
 	call	exit
-	nop
+.L464:
+	leaq	0(,%rdi,8), %rcx
+	call	malloc
+	movq	%rax, 104(%rsp)
+	movq	%rax, %rsi
+	testq	%rax, %rax
+	jne	.L465
+	leaq	.LC2(%rip), %rcx
+	movq	%rdi, %rdx
+.LEHB5:
+	call	_Z6printfPKcz
+.LEHE5:
+	movl	$1, %ecx
+	call	exit
+	.p2align 4,,10
+	.p2align 3
+.L525:
+	movq	%r14, %rdx
+	leaq	.LC5(%rip), %rcx
+.LEHB6:
+	call	_Z6printfPKcz
+	jmp	.L470
+.L523:
+	movq	80(%rsp), %rdx
+	leaq	.LC5(%rip), %rcx
+	call	_Z6printfPKcz
+	jmp	.L470
+.L521:
+	movq	%rdi, %rdx
+	leaq	.LC5(%rip), %rcx
+	call	_Z6printfPKcz
+	jmp	.L470
+.L520:
+	movq	%rsi, %rdx
+	leaq	.LC5(%rip), %rcx
+	call	_Z6printfPKcz
+.LEHE6:
+	jmp	.L470
+.L494:
+	movq	%rax, %rbx
+	jmp	.L493
+	.seh_handler	__gxx_personality_seh0, @unwind, @except
+	.seh_handlerdata
+.LLSDA8440:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE8440-.LLSDACSB8440
+.LLSDACSB8440:
+	.uleb128 .LEHB4-.LFB8440
+	.uleb128 .LEHE4-.LEHB4
+	.uleb128 .L494-.LFB8440
+	.uleb128 0
+	.uleb128 .LEHB5-.LFB8440
+	.uleb128 .LEHE5-.LEHB5
+	.uleb128 0
+	.uleb128 0
+	.uleb128 .LEHB6-.LFB8440
+	.uleb128 .LEHE6-.LEHB6
+	.uleb128 .L494-.LFB8440
+	.uleb128 0
+.LLSDACSE8440:
+	.text
 	.seh_endproc
+	.section	.text.unlikely,"x"
+	.def	_ZN3wze6engine9collision21ResolveCollisionLayerEy.cold;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine9collision21ResolveCollisionLayerEy.cold
+	.seh_stackalloc	184
+	.seh_savereg	%rbx, 120
+	.seh_savereg	%rsi, 128
+	.seh_savereg	%rdi, 136
+	.seh_savereg	%rbp, 144
+	.seh_savereg	%r12, 152
+	.seh_savereg	%r13, 160
+	.seh_savereg	%r14, 168
+	.seh_savereg	%r15, 176
+	.seh_endprologue
+_ZN3wze6engine9collision21ResolveCollisionLayerEy.cold:
+.L493:
+	movq	104(%rsp), %rcx
+	call	free
+	movq	%rbx, %rcx
+.LEHB7:
+	call	_Unwind_Resume
+	nop
+.LEHE7:
+	.seh_handler	__gxx_personality_seh0, @unwind, @except
+	.seh_handlerdata
+.LLSDAC8440:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSEC8440-.LLSDACSBC8440
+.LLSDACSBC8440:
+	.uleb128 .LEHB7-.LCOLDB7
+	.uleb128 .LEHE7-.LEHB7
+	.uleb128 0
+	.uleb128 0
+.LLSDACSEC8440:
+	.section	.text.unlikely,"x"
+	.text
+	.section	.text.unlikely,"x"
+	.seh_endproc
+.LCOLDE7:
+	.text
+.LHOTE7:
 	.section .rdata,"dr"
 	.align 8
-.LC1:
+.LC3:
 	.long	-350469331
 	.long	1058682594
 	.align 8
-.LC2:
+.LC4:
 	.long	0
 	.long	1072693248
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
-	.def	malloc;	.scl	2;	.type	32;	.endef
+	.def	realloc;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
+	.def	malloc;	.scl	2;	.type	32;	.endef
+	.def	free;	.scl	2;	.type	32;	.endef
+	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv;	.scl	2;	.type	32;	.endef

@@ -918,6 +918,11 @@ _ZN3wze6engine6actors5actor6colors5color4GetXEv:
 	movsd	32(%rcx), %xmm0
 	ret
 	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC16:
+	.ascii "engine.actors[].colors[].SetX(): X must not be NaN\12Params: X: %lf\12\0"
+	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor6colors5color4SetXEd
@@ -927,37 +932,76 @@ _ZN3wze6engine6actors5actor6colors5color4SetXEd:
 .LFB8449:
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$48, %rsp
-	.seh_stackalloc	48
+	subq	$64, %rsp
+	.seh_stackalloc	64
+	movaps	%xmm6, 48(%rsp)
+	.seh_savexmm	%xmm6, 48
 	.seh_endprologue
-	movq	8(%rcx), %rax
-	movsd	176(%rax), %xmm2
+	ucomisd	%xmm1, %xmm1
 	movq	%rcx, %rbx
-	movapd	%xmm1, %xmm3
+	movapd	%xmm1, %xmm6
+	jp	.L181
+	movq	8(%rcx), %rax
 	movsd	168(%rax), %xmm1
-	movq	(%rcx), %rax
-	movsd	40(%rbx), %xmm0
-	movsd	%xmm3, 72(%rsp)
-	leaq	592(%rax), %rcx
-	movsd	%xmm0, 32(%rsp)
-	call	_ZN3wze6engine6vector6LengthEdddd
-	movq	8(%rbx), %rax
-	movsd	72(%rsp), %xmm3
-	movsd	%xmm0, 48(%rbx)
-	movsd	40(%rbx), %xmm0
-	movsd	176(%rax), %xmm2
-	movsd	168(%rax), %xmm1
-	movq	(%rbx), %rax
-	movsd	%xmm0, 32(%rsp)
-	leaq	592(%rax), %rcx
-	call	_ZN3wze6engine6vector5AngleEdddd
-	movsd	72(%rsp), %xmm3
+	ucomisd	%xmm6, %xmm1
+	jp	.L174
+	jne	.L174
+	movq	$0x000000000, 48(%rcx)
+.L167:
+	pxor	%xmm0, %xmm0
+.L171:
 	movsd	%xmm0, 56(%rbx)
-	movapd	%xmm3, %xmm0
-	movsd	%xmm3, 32(%rbx)
-	addq	$48, %rsp
+	movapd	%xmm6, %xmm0
+	movsd	%xmm6, 32(%rbx)
+	movaps	48(%rsp), %xmm6
+	addq	$64, %rsp
 	popq	%rbx
 	ret
+	.p2align 4,,10
+	.p2align 3
+.L174:
+	movsd	176(%rax), %xmm2
+	movsd	40(%rbx), %xmm0
+	ucomisd	%xmm0, %xmm2
+	jp	.L175
+	jne	.L175
+	movq	$0x000000000, 48(%rbx)
+.L172:
+	movsd	176(%rax), %xmm2
+	ucomisd	%xmm0, %xmm2
+	jp	.L169
+	je	.L167
+.L169:
+	movq	(%rbx), %rax
+	movapd	%xmm6, %xmm3
+	movsd	%xmm0, 32(%rsp)
+	leaq	688(%rax), %rcx
+	call	_ZN3wze6engine6vector5AngleEdddd
+	jmp	.L171
+	.p2align 4,,10
+	.p2align 3
+.L175:
+	movq	(%rbx), %rax
+	movapd	%xmm6, %xmm3
+	movsd	%xmm0, 32(%rsp)
+	leaq	688(%rax), %rcx
+	call	_ZN3wze6engine6vector6LengthEdddd
+	movq	8(%rbx), %rax
+	movsd	168(%rax), %xmm1
+	movsd	%xmm0, 48(%rbx)
+	ucomisd	%xmm1, %xmm6
+	jp	.L180
+	je	.L167
+.L180:
+	movsd	40(%rbx), %xmm0
+	jmp	.L172
+.L181:
+	leaq	.LC16(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
 	.seh_endproc
 	.align 2
 	.p2align 4
@@ -970,6 +1014,11 @@ _ZN3wze6engine6actors5actor6colors5color4GetYEv:
 	movsd	40(%rcx), %xmm0
 	ret
 	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC17:
+	.ascii "engine.actors[].colors[].SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
+	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor6colors5color4SetYEd
@@ -984,32 +1033,68 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	movaps	%xmm6, 48(%rsp)
 	.seh_savexmm	%xmm6, 48
 	.seh_endprologue
-	movq	8(%rcx), %rax
-	movsd	176(%rax), %xmm2
+	ucomisd	%xmm1, %xmm1
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
+	jp	.L201
+	movq	8(%rcx), %rax
+	movsd	32(%rcx), %xmm3
 	movsd	168(%rax), %xmm1
-	movq	(%rcx), %rax
-	movsd	%xmm6, 32(%rsp)
-	movsd	32(%rbx), %xmm3
-	leaq	592(%rax), %rcx
-	call	_ZN3wze6engine6vector6LengthEdddd
-	movq	8(%rbx), %rax
-	movsd	%xmm0, 48(%rbx)
-	movsd	176(%rax), %xmm2
-	movsd	168(%rax), %xmm1
-	movq	(%rbx), %rax
-	movsd	%xmm6, 32(%rsp)
-	movsd	32(%rbx), %xmm3
-	leaq	592(%rax), %rcx
-	call	_ZN3wze6engine6vector5AngleEdddd
-	movsd	%xmm6, 40(%rbx)
+	ucomisd	%xmm3, %xmm1
+	jp	.L197
+	jne	.L197
+	movq	$0x000000000, 48(%rcx)
+.L190:
+	pxor	%xmm0, %xmm0
+.L194:
 	movsd	%xmm0, 56(%rbx)
 	movapd	%xmm6, %xmm0
+	movsd	%xmm6, 40(%rbx)
 	movaps	48(%rsp), %xmm6
 	addq	$64, %rsp
 	popq	%rbx
 	ret
+	.p2align 4,,10
+	.p2align 3
+.L197:
+	movsd	176(%rax), %xmm2
+	ucomisd	%xmm6, %xmm2
+	jp	.L198
+	jne	.L198
+	movq	$0x000000000, 48(%rbx)
+.L195:
+	movsd	176(%rax), %xmm2
+	ucomisd	%xmm6, %xmm2
+	jp	.L192
+	je	.L190
+.L192:
+	movq	(%rbx), %rax
+	movsd	%xmm6, 32(%rsp)
+	leaq	688(%rax), %rcx
+	call	_ZN3wze6engine6vector5AngleEdddd
+	jmp	.L194
+	.p2align 4,,10
+	.p2align 3
+.L198:
+	movq	(%rbx), %rax
+	movsd	%xmm6, 32(%rsp)
+	leaq	688(%rax), %rcx
+	call	_ZN3wze6engine6vector6LengthEdddd
+	movq	8(%rbx), %rax
+	movsd	32(%rbx), %xmm3
+	movsd	168(%rax), %xmm1
+	movsd	%xmm0, 48(%rbx)
+	ucomisd	%xmm3, %xmm1
+	jp	.L195
+	jne	.L195
+	jmp	.L190
+.L201:
+	leaq	.LC17(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
 	.seh_endproc
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
@@ -1020,5 +1105,5 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6vector6LengthEdddd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector5AngleEdddd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6vector6LengthEdddd;	.scl	2;	.type	32;	.endef
