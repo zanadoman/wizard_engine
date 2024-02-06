@@ -199,6 +199,11 @@ namespace wze
         double Actor2BotRightX;
         double Actor2BotRightY;
 
+        if ((Direction = this->GetCollisionDirection(Actor1, Actor2)) == NONE)
+        {
+            return false;
+        }
+
         Actor1TopLeftX = Actor1->X - (Actor1->HitboxWidth >> 1);
         Actor1TopLeftY = Actor1->Y + (Actor1->HitboxHeight >> 1);
         Actor1BotRightX = Actor1TopLeftX + Actor1->HitboxWidth;
@@ -208,11 +213,6 @@ namespace wze
         Actor2TopLeftY = Actor2->Y + (Actor2->HitboxHeight >> 1);
         Actor2BotRightX = Actor2TopLeftX + Actor2->HitboxWidth;
         Actor2BotRightY = Actor2TopLeftY - Actor2->HitboxHeight;
-
-        if ((Direction = this->GetCollisionDirection(Actor1, Actor2)) == NONE)
-        {
-            return false;
-        }
 
         if (Actor1Force <= Actor2->Resistance)
         {
