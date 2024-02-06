@@ -1017,10 +1017,10 @@ _ZN3wze6engine6assets13UnloadTextureEy:
 	je	.L209
 .L167:
 	movq	0(%rbp), %r10
-	movq	576(%r10), %rsi
+	movq	592(%r10), %rsi
 	cmpq	$1, %rsi
 	jbe	.L203
-	movq	584(%r10), %r11
+	movq	600(%r10), %r11
 	movl	$1, %r8d
 	.p2align 4,,10
 	.p2align 3
@@ -1049,7 +1049,7 @@ _ZN3wze6engine6assets13UnloadTextureEy:
 	cmpq	%rbx, 72(%rdx)
 	jne	.L175
 	movq	$0, 72(%rdx)
-	movq	576(%r10), %rsi
+	movq	592(%r10), %rsi
 	jmp	.L175
 	.p2align 4,,10
 	.p2align 3
@@ -1106,7 +1106,7 @@ _ZN3wze6engine6assets13UnloadTextureEy:
 	cmpq	%rbx, (%rcx)
 	jne	.L183
 	movq	$0, (%rcx)
-	movq	576(%r10), %rsi
+	movq	592(%r10), %rsi
 	addq	$1, %rax
 	cmpq	%rsi, %r8
 	jb	.L184
@@ -1270,10 +1270,10 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 .L222:
 	.cfi_restore_state
 	movq	0(%rbp), %r10
-	movq	576(%r10), %rsi
+	movq	592(%r10), %rsi
 	cmpq	$1, %rsi
 	jbe	.L225
-	movq	584(%r10), %r11
+	movq	600(%r10), %r11
 	movl	$1, %r8d
 	.p2align 4,,10
 	.p2align 3
@@ -1302,7 +1302,7 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	cmpq	%rbx, 72(%rdx)
 	jne	.L228
 	movq	$0, 72(%rdx)
-	movq	576(%r10), %rsi
+	movq	592(%r10), %rsi
 	jmp	.L228
 	.p2align 4,,10
 	.p2align 3
@@ -1364,7 +1364,7 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	cmpq	%rbx, (%rcx)
 	jne	.L236
 	movq	$0, (%rcx)
-	movq	576(%r10), %rsi
+	movq	592(%r10), %rsi
 	addq	$1, %rax
 	cmpq	%rsi, %r8
 	jb	.L237
@@ -1531,10 +1531,10 @@ _ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	.p2align 3
 .L297:
 	movq	0(%rbp), %r10
-	movq	576(%r10), %rsi
+	movq	592(%r10), %rsi
 	cmpq	$1, %rsi
 	jbe	.L299
-	movq	584(%r10), %r11
+	movq	600(%r10), %r11
 	movl	$1, %r8d
 	.p2align 4,,10
 	.p2align 3
@@ -1563,7 +1563,7 @@ _ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	cmpq	%rbx, 72(%rdx)
 	jne	.L302
 	movq	$0, 72(%rdx)
-	movq	576(%r10), %rsi
+	movq	592(%r10), %rsi
 	jmp	.L302
 	.p2align 4,,10
 	.p2align 3
@@ -1640,7 +1640,7 @@ _ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	cmpq	%rbx, (%rcx)
 	jne	.L310
 	movq	$0, (%rcx)
-	movq	576(%r10), %rsi
+	movq	592(%r10), %rsi
 	addq	$1, %rax
 	cmpq	%rsi, %r8
 	jb	.L311
@@ -2478,10 +2478,10 @@ _ZN3wze6engine6assets10UnloadFontEy:
 	je	.L556
 .L531:
 	movq	0(%rbp), %r8
-	movq	576(%r8), %r9
+	movq	592(%r8), %r9
 	cmpq	$1, %r9
 	jbe	.L551
-	movq	584(%r8), %r10
+	movq	600(%r8), %r10
 	movl	$1, %esi
 	.p2align 4,,10
 	.p2align 3
@@ -2489,7 +2489,7 @@ _ZN3wze6engine6assets10UnloadFontEy:
 	movq	(%r10,%rsi,8), %rcx
 	testq	%rcx, %rcx
 	je	.L545
-	cmpq	576(%r8), %rsi
+	cmpq	592(%r8), %rsi
 	jnb	.L542
 	movq	120(%rcx), %rdi
 	movl	$1, %eax
@@ -2498,7 +2498,7 @@ _ZN3wze6engine6assets10UnloadFontEy:
 	.p2align 3
 .L541:
 	addq	$1, %rax
-	cmpq	576(%r8), %rsi
+	cmpq	592(%r8), %rsi
 	jnb	.L542
 .L543:
 	cmpq	%rdi, %rax
@@ -2672,10 +2672,10 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 .L567:
 	.cfi_restore_state
 	movq	0(%r13), %r8
-	movq	576(%r8), %r9
+	movq	592(%r8), %r9
 	cmpq	$1, %r9
 	jbe	.L570
-	movq	584(%r8), %r10
+	movq	600(%r8), %r10
 	movl	$1, %esi
 	.p2align 4,,10
 	.p2align 3
@@ -2683,7 +2683,7 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	movq	(%r10,%rsi,8), %rcx
 	testq	%rcx, %rcx
 	je	.L579
-	cmpq	576(%r8), %rsi
+	cmpq	592(%r8), %rsi
 	jnb	.L611
 	movq	120(%rcx), %rdi
 	movl	$1, %eax
@@ -2692,7 +2692,7 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	.p2align 3
 .L575:
 	addq	$1, %rax
-	cmpq	576(%r8), %rsi
+	cmpq	592(%r8), %rsi
 	jnb	.L611
 .L577:
 	cmpq	%rdi, %rax
@@ -2880,10 +2880,10 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	.p2align 3
 .L628:
 	movq	0(%rbp), %r8
-	movq	576(%r8), %r9
+	movq	592(%r8), %r9
 	cmpq	$1, %r9
 	jbe	.L630
-	movq	584(%r8), %r10
+	movq	600(%r8), %r10
 	movl	$1, %esi
 	.p2align 4,,10
 	.p2align 3
@@ -2891,7 +2891,7 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	movq	(%r10,%rsi,8), %rcx
 	testq	%rcx, %rcx
 	je	.L639
-	cmpq	576(%r8), %rsi
+	cmpq	592(%r8), %rsi
 	jnb	.L671
 	movq	120(%rcx), %rdi
 	movl	$1, %eax
@@ -2900,7 +2900,7 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	.p2align 3
 .L635:
 	addq	$1, %rax
-	cmpq	576(%r8), %rsi
+	cmpq	592(%r8), %rsi
 	jnb	.L671
 .L637:
 	cmpq	%rdi, %rax
@@ -3245,9 +3245,9 @@ _ZN3wze6engine6assets12UnloadCursorEy:
 	je	.L724
 .L713:
 	movq	0(%rbp), %rax
-	cmpq	%rbx, 560(%rax)
+	cmpq	%rbx, 576(%rax)
 	jne	.L718
-	movq	$0, 560(%rax)
+	movq	$0, 576(%rax)
 .L718:
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -3409,9 +3409,9 @@ _ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE:
 .L735:
 	.cfi_restore_state
 	movq	0(%r13), %rax
-	cmpq	%rbp, 560(%rax)
+	cmpq	%rbp, 576(%rax)
 	jne	.L737
-	movq	$0, 560(%rax)
+	movq	$0, 576(%rax)
 	movq	56(%r13), %rcx
 .L737:
 	cmpq	%rcx, %rbp
@@ -3576,9 +3576,9 @@ _ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE:
 	.p2align 3
 .L776:
 	movq	0(%rbp), %rax
-	cmpq	%rbx, 560(%rax)
+	cmpq	%rbx, 576(%rax)
 	jne	.L778
-	movq	$0, 560(%rax)
+	movq	$0, 576(%rax)
 	movq	56(%rbp), %rdi
 .L778:
 	cmpq	%rdi, %rbx

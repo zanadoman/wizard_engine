@@ -141,8 +141,12 @@ namespace wze
                     double SetMinSpeed(double Speed);
                     double GetMaxSpeed();
                     double SetMaxSpeed(double Speed);
-                    double GetAcceleration();
-                    double SetAcceleration(double Acceleration);
+                    double GetDecelerationRate();
+                    double SetDecelerationRate(double DecelerationRate);
+                    double GetAccelerationRate();
+                    double SetAccelerationRate(double AccelerationRate);
+                    double GetSlowDownRange();
+                    double SetSlowDownRange(double SlowDownRange);
 
                 private:
                     uint64 XActor;
@@ -152,7 +156,9 @@ namespace wze
                     double Zoom;
                     double MinSpeed;
                     double MaxSpeed;
-                    double Acceleration;
+                    double DecelerationRate;
+                    double AccelerationRate;
+                    double SlowDownRange;
                     double CurrentSpeed;
                     camera(engine* Engine);
                     uint8 Update();

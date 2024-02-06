@@ -101,9 +101,9 @@ _ZN3wze6engine5audio4PlayEytd:
 	je	.L15
 	movq	(%rdi), %rax
 	movq	%rdi, %r12
-	cmpq	624(%rax), %rsi
+	cmpq	640(%rax), %rsi
 	jnb	.L16
-	movq	632(%rax), %rax
+	movq	648(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
 	je	.L16
@@ -115,8 +115,8 @@ _ZN3wze6engine5audio4PlayEytd:
 	call	Mix_VolumeChunk@PLT
 	movq	(%r12), %rax
 	movsd	8(%rsp), %xmm0
-	cmpq	624(%rax), %rbx
-	movq	632(%rax), %rdx
+	cmpq	640(%rax), %rbx
+	movq	648(%rax), %rdx
 	jnb	.L24
 	movq	(%rdx,%rbx,8), %rsi
 	movzwl	%bp, %ebp
@@ -218,9 +218,9 @@ _ZN3wze6engine5audio4PlayEytdt:
 	movq	(%rdi), %rax
 	movq	%rdi, %r13
 	movzwl	%cx, %r12d
-	cmpq	624(%rax), %rsi
+	cmpq	640(%rax), %rsi
 	jnb	.L31
-	movq	632(%rax), %rax
+	movq	648(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
 	je	.L31
@@ -232,8 +232,8 @@ _ZN3wze6engine5audio4PlayEytdt:
 	call	Mix_VolumeChunk@PLT
 	movq	0(%r13), %rax
 	movsd	8(%rsp), %xmm0
-	cmpq	624(%rax), %rbx
-	movq	632(%rax), %rdx
+	cmpq	640(%rax), %rbx
+	movq	648(%rax), %rdx
 	jnb	.L39
 	movq	(%rdx,%rbx,8), %rsi
 	movzwl	%bp, %ebp
@@ -359,9 +359,9 @@ _ZN3wze6engine5audio4PlayEytddd:
 	je	.L51
 	movq	(%rdi), %rax
 	movq	%rdi, %r12
-	cmpq	624(%rax), %rsi
+	cmpq	640(%rax), %rsi
 	jnb	.L52
-	movq	632(%rax), %rax
+	movq	648(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
 	je	.L52
@@ -371,8 +371,8 @@ _ZN3wze6engine5audio4PlayEytddd:
 	cvttsd2sil	%xmm0, %esi
 	call	Mix_VolumeChunk@PLT
 	movq	(%r12), %rax
-	movq	632(%rax), %rdx
-	cmpq	624(%rax), %rbx
+	movq	648(%rax), %rdx
+	cmpq	640(%rax), %rbx
 	jnb	.L63
 	movq	(%rdx,%rbx,8), %rsi
 	movzwl	%bp, %ebp
@@ -549,9 +549,9 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	movq	(%rdi), %rax
 	movq	%rdi, %r12
 	movzwl	%cx, %r13d
-	cmpq	624(%rax), %rsi
+	cmpq	640(%rax), %rsi
 	jnb	.L77
-	movq	632(%rax), %rax
+	movq	648(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
 	je	.L77
@@ -561,8 +561,8 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	cvttsd2sil	%xmm0, %esi
 	call	Mix_VolumeChunk@PLT
 	movq	(%r12), %rax
-	movq	632(%rax), %rdx
-	cmpq	624(%rax), %rbx
+	movq	648(%rax), %rdx
+	cmpq	640(%rax), %rbx
 	jnb	.L88
 	movq	(%rdx,%rbx,8), %rsi
 	movzwl	%bp, %ebp

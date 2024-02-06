@@ -1,12 +1,12 @@
 	.file	"main.cpp"
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
-.LC3:
+.LC5:
 	.string	"%d %d %d %d\n"
 	.section	.text.unlikely,"ax",@progbits
-.LCOLDB4:
+.LCOLDB6:
 	.section	.text.startup,"ax",@progbits
-.LHOTB4:
+.LHOTB6:
 	.p2align 4
 	.globl	main
 	.type	main, @function
@@ -18,7 +18,7 @@ main:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movl	$752, %edi
+	movl	$768, %edi
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
@@ -291,7 +291,13 @@ main:
 	call	_ZN3wze6engine6camera11SetMaxSpeedEd@PLT
 	movsd	.LC2(%rip), %xmm0
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6camera15SetAccelerationEd@PLT
+	call	_ZN3wze6engine6camera19SetDecelerationRateEd@PLT
+	movsd	.LC3(%rip), %xmm0
+	movq	%rbp, %rdi
+	call	_ZN3wze6engine6camera19SetAccelerationRateEd@PLT
+	movsd	.LC4(%rip), %xmm0
+	movq	%rbp, %rdi
+	call	_ZN3wze6engine6camera16SetSlowDownRangeEd@PLT
 	movq	%r14, 8(%rsp)
 	movq	%r13, 56(%rsp)
 	jmp	.L2
@@ -299,7 +305,7 @@ main:
 	.p2align 3
 .L3:
 	movq	8(%rsp), %rdi
-	leaq	672(%rbx), %rbp
+	leaq	688(%rbx), %rbp
 	call	_ZN6player6UpdateEv@PLT
 	movq	%r15, %rdi
 	call	_ZN6player6UpdateEv@PLT
@@ -320,7 +326,7 @@ main:
 	movl	%r13d, %ecx
 	movl	%r12d, %edx
 	movl	%eax, %esi
-	leaq	.LC3(%rip), %rdi
+	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 .L2:
@@ -385,7 +391,7 @@ main:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engineD1Ev@PLT
 	movq	%rbx, %rdi
-	movl	$752, %esi
+	movl	$768, %esi
 	call	_ZdlPvm@PLT
 	addq	$72, %rsp
 	.cfi_remember_state
@@ -546,7 +552,7 @@ main.cold:
 	.cfi_offset 14, -24
 	.cfi_offset 15, -16
 	movq	%rbx, %rdi
-	movl	$752, %esi
+	movl	$768, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbp, %rdi
 .LEHB21:
@@ -615,7 +621,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8144-.LLSDACSBC8144
 .LLSDACSBC8144:
-	.uleb128 .LEHB21-.LCOLDB4
+	.uleb128 .LEHB21-.LCOLDB6
 	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
@@ -625,9 +631,9 @@ main.cold:
 	.size	main, .-main
 	.section	.text.unlikely
 	.size	main.cold, .-main.cold
-.LCOLDE4:
+.LCOLDE6:
 	.section	.text.startup
-.LHOTE4:
+.LHOTE6:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:
@@ -639,8 +645,16 @@ main.cold:
 	.long	1071644672
 	.align 8
 .LC2:
+	.long	-755914244
+	.long	1062232653
+	.align 8
+.LC3:
 	.long	-350469331
 	.long	1059731170
+	.align 8
+.LC4:
+	.long	0
+	.long	1079574528
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

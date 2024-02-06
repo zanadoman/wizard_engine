@@ -28,7 +28,9 @@ sint32 main()
     Engine->Camera.Smoothing = true;
     Engine->Camera.SetMinSpeed(0.2);
     Engine->Camera.SetMaxSpeed(0.5);
-    Engine->Camera.SetAcceleration(0.0002);
+    Engine->Camera.SetDecelerationRate(0.001);
+    Engine->Camera.SetAccelerationRate(0.0002);
+    Engine->Camera.SetSlowDownRange(100);
 
     while (Engine->Update())
     {
