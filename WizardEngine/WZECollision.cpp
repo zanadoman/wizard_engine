@@ -338,34 +338,45 @@ namespace wze
 
     uint8 engine::collision::ResolveCollisionLayer(uint64 CollisionLayer)
     {
-        uint64 ForceRequirement;
+        array<actors::actor*> NextBranches(10);
+        uint64 i, ForceRequirement;
         array<actors::actor*>* cache;
 
         cache = &this->CollisionLayers[CollisionLayer];
 
         for (uint64 Root = 0; Root < cache->Length(); Root++)
         {
+            i = 0;
             ForceRequirement = 0;
             for (uint64 NextBranch = 0; NextBranch < cache->Length(); NextBranch++)
             {
                 if (NextBranch != Root && this->GetCollisionDirection((*cache)[Root], (*cache)[NextBranch]) != NONE)
                 {
+                    if (i == NextBranches.Length())
+                    {
+                        NextBranches.Insert(NextBranches.Length(), 11);
+                    }
+
+                    NextBranches[i++] = (*cache)[NextBranch];
                     ForceRequirement += (*cache)[NextBranch]->Resistance;
                 }
             }
 
-            for (uint64 NextBranch = 0; NextBranch < cache->Length(); NextBranch++)
+            if ((*cache)[Root]->Force <= ForceRequirement)
             {
-                if (NextBranch != Root)
+                for (uint64 NextBranch = 0; NextBranch < i; NextBranch++)
                 {
-                    if ((*cache)[Root]->Force <= ForceRequirement)
+                    this->ResolveCollision((*cache)[Root], 0, NextBranches[NextBranch]);
+                }
+            }
+            else
+            {
+                for (uint64 NextBranch = 0; NextBranch < i; NextBranch++)
+                {
+                    if (this->ResolveCollision((*cache)[Root], NextBranches[NextBranch]->Resistance + (*cache)[Root]->Force - ForceRequirement, NextBranches[NextBranch]))
                     {
-                        this->ResolveCollision((*cache)[Root], 0, (*cache)[NextBranch]);
-                    }
-                    else if (this->ResolveCollision((*cache)[Root], (*cache)[NextBranch]->Resistance + (*cache)[Root]->Force - ForceRequirement, (*cache)[NextBranch]))
-                    {
-                        this->NewCollisionBranch(cache, (*cache)[Root], (*cache)[Root]->Force - ForceRequirement, (*cache)[NextBranch]);
-                        this->ResolveCollision((*cache)[Root], 0, (*cache)[NextBranch]);
+                        this->NewCollisionBranch(cache, (*cache)[Root], (*cache)[Root]->Force - ForceRequirement, NextBranches[NextBranch]);
+                        this->ResolveCollision((*cache)[Root], 0, NextBranches[NextBranch]);
                     }
                 }
             }
