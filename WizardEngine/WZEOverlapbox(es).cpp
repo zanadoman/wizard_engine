@@ -331,14 +331,14 @@ namespace wze
         return this->Engine->Collision.CheckOverlap(this, this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID]);
     }
 
-    uint8 engine::actors::actor::overlapboxes::overlapbox::GetOverlapState(array<array<uint64>>* OverlapboxesByActors)
+    uint8 engine::actors::actor::overlapboxes::overlapbox::GetOverlapState(array<array<uint64>>* OverlapboxesByActors, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist)
     {
         OverlapboxesByActors->Clear();
         OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
 
         for (uint64 i = 1; i < this->Engine->Actors.Actors.Length(); i++)
         {
-            if (this->Engine->Actors.Actors[i] == NULL || this->Engine->Actors.Actors[i] == this->Actor)
+            if (this->Engine->Actors.Actors[i] == NULL || this->Engine->Actors.Actors[i] == this->Actor || !initializer_list_Contains(ActorTypeWhitelist, {this->Engine->Actors.Actors[i]->Type}) || initializer_list_Contains(ActorIDBlacklist, {i}))
             {
                 continue;
             }

@@ -546,7 +546,7 @@ namespace wze
                                     uint16 GetActiveWidth();
                                     uint16 GetActiveHeight();
                                     bool IsOverlappingWith(uint64 ActorID, uint64 OverlapboxID);
-                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors);
+                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist);
                                     button GetButtonState();
 
                                 private:
