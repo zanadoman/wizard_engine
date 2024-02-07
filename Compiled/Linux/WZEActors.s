@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
-.LFB8336:
+.LFB8338:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8336:
+.LFE8338:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -771,60 +771,70 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
+	movq	%rdx, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	movq	%rdx, %rbx
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 64
-	movq	8(%rdi), %rcx
-	testq	%rdx, %rdx
+	movq	8(%rdi), %rdx
+	testq	%rbp, %rbp
 	je	.L103
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
 .L106:
-	movq	(%r12,%rax,8), %rdx
-	testq	%rdx, %rdx
+	movq	(%r12,%rax,8), %rcx
+	testq	%rcx, %rcx
 	je	.L104
-	cmpq	%rcx, %rdx
+	cmpq	%rdx, %rcx
 	jnb	.L105
 	movq	16(%r13), %rsi
-	cmpq	$0, (%rsi,%rdx,8)
+	cmpq	$0, (%rsi,%rcx,8)
 	je	.L105
 .L104:
 	addq	$1, %rax
-	cmpq	%rax, %rbx
+	cmpq	%rax, %rbp
 	jne	.L106
 .L103:
-	cmpq	$1, %rcx
+	cmpq	$1, %rdx
 	jbe	.L107
-	movq	16(%r13), %rdx
-	movl	$1, %ebp
+	movq	16(%r13), %rcx
+	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
 .L108:
 	xorl	%eax, %eax
-	testq	%rbx, %rbx
-	jne	.L110
-	jmp	.L111
-	.p2align 4,,10
-	.p2align 3
-.L141:
+	testq	%rbp, %rbp
+	je	.L109
+.L115:
+	cmpq	%rbx, (%r12,%rax,8)
+	je	.L110
 	addq	$1, %rax
-	cmpq	%rax, %rbx
-	je	.L111
-.L110:
-	cmpq	%rbp, (%r12,%rax,8)
-	jne	.L141
-	cmpq	%rax, %rbx
-	je	.L111
+	cmpq	%rax, %rbp
+	jne	.L115
+.L109:
+	movq	(%rcx,%rbx,8), %r14
+	leaq	0(,%rbx,8), %r15
+	testq	%r14, %r14
+	je	.L112
+	movq	%r14, %rdi
+	call	_ZN3wze6engine6actors5actorD1Ev@PLT
+	movl	$320, %esi
+	movq	%r14, %rdi
+	call	_ZdlPvm@PLT
+	movq	8(%r13), %rdx
+	movq	16(%r13), %rcx
 .L112:
-	addq	$1, %rbp
-	cmpq	%rcx, %rbp
+	cmpq	%rdx, %rbx
+	jnb	.L141
+	movq	$0, (%rcx,%r15)
+.L110:
+	addq	$1, %rbx
+	cmpq	%rdx, %rbx
 	jb	.L108
-	cmpq	$0, -8(%rdx,%rcx,8)
-	leaq	-1(%rcx), %r8
+	cmpq	$0, -8(%rcx,%rdx,8)
+	leaq	-1(%rdx), %r8
 	je	.L142
 .L138:
 	addq	$8, %rsp
@@ -844,37 +854,18 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L111:
-	.cfi_restore_state
-	movq	(%rdx,%rbp,8), %r14
-	leaq	0(,%rbp,8), %r15
-	testq	%r14, %r14
-	je	.L113
-	movq	%r14, %rdi
-	call	_ZN3wze6engine6actors5actorD1Ev@PLT
-	movl	$320, %esi
-	movq	%r14, %rdi
-	call	_ZdlPvm@PLT
-	movq	8(%r13), %rcx
-	movq	16(%r13), %rdx
-.L113:
-	cmpq	%rcx, %rbp
-	jnb	.L143
-	movq	$0, (%rdx,%r15)
-	jmp	.L112
 .L142:
-	movq	%rcx, %rax
+	.cfi_restore_state
+	movq	%rdx, %rax
 	jmp	.L116
 	.p2align 4,,10
 	.p2align 3
 .L121:
 	leaq	-1(%rax), %rsi
-	cmpq	%rcx, %rsi
+	cmpq	%rdx, %rsi
 	jnb	.L140
-	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L144
+	cmpq	$0, (%rcx,%rsi,8)
+	jne	.L143
 	movq	%rsi, %rax
 .L116:
 	cmpq	$1, %rax
@@ -886,7 +877,7 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0
 	jmp	.L138
 .L107:
-	testq	%rcx, %rcx
+	testq	%rdx, %rdx
 	jne	.L138
 	orq	$-1, %rsi
 .L140:
@@ -897,19 +888,19 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L144:
-	subq	%rax, %rcx
-	movq	%rcx, %r8
+.L143:
+	subq	%rax, %rdx
+	movq	%rdx, %r8
 	jmp	.L120
 .L105:
 	leaq	.LC15(%rip), %rdi
-	movq	%rbx, %rsi
+	movq	%rbp, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L143:
-	movq	%rbp, %rsi
+.L141:
+	movq	%rbx, %rsi
 	jmp	.L140
 	.cfi_endproc
 .LFE8154:
@@ -943,29 +934,29 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	pushq	%rbx
 	.cfi_def_cfa_offset 48
 	.cfi_offset 3, -48
-	movq	(%rsi), %rdx
+	movq	(%rsi), %rcx
 	movq	8(%rdi), %rdi
-	testq	%rdx, %rdx
-	je	.L146
+	testq	%rcx, %rcx
+	je	.L145
 	movq	8(%rsi), %rsi
 	xorl	%eax, %eax
-	jmp	.L149
+	jmp	.L148
 	.p2align 4,,10
 	.p2align 3
-.L147:
+.L146:
 	addq	$1, %rax
-	cmpq	%rax, %rdx
-	je	.L146
-.L149:
-	movq	(%rsi,%rax,8), %rcx
-	testq	%rcx, %rcx
-	je	.L147
-	cmpq	%rdi, %rcx
-	jnb	.L148
-	movq	16(%r12), %r8
-	cmpq	$0, (%r8,%rcx,8)
-	jne	.L147
+	cmpq	%rax, %rcx
+	je	.L145
 .L148:
+	movq	(%rsi,%rax,8), %rdx
+	testq	%rdx, %rdx
+	je	.L146
+	cmpq	%rdi, %rdx
+	jnb	.L147
+	movq	16(%r12), %r8
+	cmpq	$0, (%r8,%rdx,8)
+	jne	.L146
+.L147:
 	leaq	.LC16(%rip), %rdi
 	movq	%rbp, %rsi
 	xorl	%eax, %eax
@@ -974,44 +965,31 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L146:
+.L145:
 	cmpq	$1, %rdi
-	jbe	.L150
+	jbe	.L149
 	movq	16(%r12), %rsi
 	movl	$1, %ebx
-	testq	%rdx, %rdx
-	je	.L154
 	.p2align 4,,10
 	.p2align 3
-.L159:
-	movq	8(%rbp), %rcx
+.L157:
+	movq	8(%rbp), %rdx
 	xorl	%eax, %eax
-	jmp	.L153
-	.p2align 4,,10
-	.p2align 3
-.L183:
+	testq	%rcx, %rcx
+	je	.L150
+.L151:
+	cmpq	%rbx, (%rdx,%rax,8)
+	je	.L152
 	addq	$1, %rax
-	cmpq	%rax, %rdx
-	je	.L154
-.L153:
-	cmpq	%rbx, (%rcx,%rax,8)
-	jne	.L183
-	cmpq	%rax, %rdx
-	je	.L154
-	addq	$1, %rbx
-	cmpq	%rdi, %rbx
-	jnb	.L158
-.L185:
-	movq	0(%rbp), %rdx
-	testq	%rdx, %rdx
-	jne	.L159
+	cmpq	%rax, %rcx
+	jne	.L151
 	.p2align 4,,10
 	.p2align 3
-.L154:
+.L150:
 	movq	(%rsi,%rbx,8), %r13
 	leaq	0(,%rbx,8), %r14
 	testq	%r13, %r13
-	je	.L156
+	je	.L154
 	movq	%r13, %rdi
 	call	_ZN3wze6engine6actors5actorD1Ev@PLT
 	movl	$320, %esi
@@ -1019,18 +997,23 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	call	_ZdlPvm@PLT
 	movq	8(%r12), %rdi
 	movq	16(%r12), %rsi
-.L156:
+.L154:
 	cmpq	%rdi, %rbx
 	jnb	.L184
-	addq	$1, %rbx
 	movq	$0, (%rsi,%r14)
+.L152:
+	addq	$1, %rbx
 	cmpq	%rdi, %rbx
-	jb	.L185
-.L158:
+	jnb	.L156
+	movq	0(%rbp), %rcx
+	jmp	.L157
+	.p2align 4,,10
+	.p2align 3
+.L156:
 	cmpq	$0, -8(%rsi,%rdi,8)
 	leaq	-1(%rdi), %rdx
-	je	.L186
-.L180:
+	je	.L185
+.L181:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -1044,23 +1027,23 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
-.L186:
+.L185:
 	.cfi_restore_state
 	movq	%rdi, %rcx
-	jmp	.L160
+	jmp	.L158
 	.p2align 4,,10
 	.p2align 3
-.L165:
+.L163:
 	leaq	-1(%rcx), %rax
 	cmpq	%rdi, %rax
-	jnb	.L187
+	jnb	.L186
 	cmpq	$0, (%rsi,%rax,8)
-	jne	.L188
+	jne	.L187
 	movq	%rax, %rcx
-.L160:
+.L158:
 	cmpq	$1, %rcx
-	jne	.L165
-.L164:
+	jne	.L163
+.L162:
 	leaq	8(%r12), %rdi
 	movq	%rcx, %rsi
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0
@@ -1077,29 +1060,29 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
-.L150:
+.L149:
 	.cfi_restore_state
 	testq	%rdi, %rdi
-	jne	.L180
+	jne	.L181
 	orq	$-1, %rsi
-.L182:
+	jmp	.L183
+	.p2align 4,,10
+	.p2align 3
+.L187:
+	subq	%rcx, %rdi
+	movq	%rdi, %rdx
+	jmp	.L162
+.L184:
+	movq	%rbx, %rsi
+.L183:
 	leaq	.LC9(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L188:
-	subq	%rcx, %rdi
-	movq	%rdi, %rdx
-	jmp	.L164
-.L187:
+.L186:
 	movq	%rax, %rsi
-	jmp	.L182
-.L184:
-	movq	%rbx, %rsi
-	jmp	.L182
+	jmp	.L183
 	.cfi_endproc
 .LFE8157:
 	.size	_ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE
@@ -1121,25 +1104,25 @@ _ZN3wze6engine6actorsixEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L194
+	je	.L193
 	cmpq	8(%rdi), %rsi
-	jnb	.L191
+	jnb	.L190
 	movq	16(%rdi), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L191
+	je	.L190
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L191:
+.L190:
 	.cfi_restore_state
 	leaq	.LC18(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L194:
+.L193:
 	leaq	.LC17(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT

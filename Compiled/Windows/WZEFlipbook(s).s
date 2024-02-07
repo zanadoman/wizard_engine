@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0:
-.LFB8653:
+.LFB8657:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -181,7 +181,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0:
 	.def	_ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_
 _ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_:
-.LFB8433:
+.LFB8435:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -223,7 +223,7 @@ _ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_:
 	.def	_ZN3wze6engine6actors5actor9flipbooksD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooksD2Ev
 _ZN3wze6engine6actors5actor9flipbooksD2Ev:
-.LFB8439:
+.LFB8441:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -293,7 +293,7 @@ _ZN3wze6engine6actors5actor9flipbooksD2Ev:
 	.def	_ZN3wze6engine6actors5actor9flipbooks6DeleteEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks6DeleteEy
 _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
-.LFB8445:
+.LFB8447:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -399,7 +399,7 @@ _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
 	.def	_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE
 _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
-.LFB8446:
+.LFB8448:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -415,11 +415,11 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	movq	8(%rdx), %rbx
+	movq	8(%rdx), %rsi
 	movq	(%rdx), %rdi
 	movq	%rcx, %rbp
 	movq	16(%rcx), %rcx
-	testq	%rbx, %rbx
+	testq	%rsi, %rsi
 	je	.L55
 	xorl	%eax, %eax
 	.p2align 4,,10
@@ -435,34 +435,44 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	je	.L57
 .L56:
 	addq	$1, %rax
-	cmpq	%rax, %rbx
+	cmpq	%rax, %rsi
 	jne	.L58
 .L55:
 	cmpq	$1, %rcx
 	jbe	.L59
 	movq	24(%rbp), %rdx
-	movl	$1, %esi
+	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
 .L60:
 	xorl	%eax, %eax
-	testq	%rbx, %rbx
-	jne	.L62
-	jmp	.L63
-	.p2align 4,,10
-	.p2align 3
-.L91:
+	testq	%rsi, %rsi
+	je	.L61
+.L67:
+	cmpq	%rbx, (%rdi,%rax,8)
+	je	.L62
 	addq	$1, %rax
-	cmpq	%rax, %rbx
-	je	.L63
-.L62:
-	cmpq	%rsi, (%rdi,%rax,8)
-	jne	.L91
-	cmpq	%rax, %rbx
-	je	.L63
+	cmpq	%rax, %rsi
+	jne	.L67
+.L61:
+	movq	(%rdx,%rbx,8), %r12
+	leaq	0(,%rbx,8), %r13
+	testq	%r12, %r12
+	je	.L64
+	movq	104(%r12), %rcx
+	call	free
+	movl	$112, %edx
+	movq	%r12, %rcx
+	call	_ZdlPvy
+	movq	16(%rbp), %rcx
+	movq	24(%rbp), %rdx
 .L64:
-	addq	$1, %rsi
-	cmpq	%rcx, %rsi
+	cmpq	%rcx, %rbx
+	jnb	.L91
+	movq	$0, (%rdx,%r13)
+.L62:
+	addq	$1, %rbx
+	cmpq	%rcx, %rbx
 	jb	.L60
 	cmpq	$0, -8(%rdx,%rcx,8)
 	leaq	-1(%rcx), %r8
@@ -477,25 +487,6 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	popq	%r12
 	popq	%r13
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L63:
-	movq	(%rdx,%rsi,8), %r12
-	leaq	0(,%rsi,8), %r13
-	testq	%r12, %r12
-	je	.L65
-	movq	104(%r12), %rcx
-	call	free
-	movl	$112, %edx
-	movq	%r12, %rcx
-	call	_ZdlPvy
-	movq	16(%rbp), %rcx
-	movq	24(%rbp), %rdx
-.L65:
-	cmpq	%rcx, %rsi
-	jnb	.L93
-	movq	$0, (%rdx,%r13)
-	jmp	.L64
 .L92:
 	movq	%rcx, %r9
 	jmp	.L68
@@ -504,9 +495,9 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 .L73:
 	leaq	-1(%r9), %rax
 	cmpq	%rcx, %rax
-	jnb	.L94
+	jnb	.L93
 	cmpq	$0, (%rdx,%rax,8)
-	jne	.L95
+	jne	.L94
 	movq	%rax, %r9
 .L68:
 	cmpq	$1, %r9
@@ -534,25 +525,25 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L95:
+.L94:
 	subq	%r9, %rcx
 	movq	%rcx, %r8
 	jmp	.L72
 .L57:
 	leaq	.LC7(%rip), %rcx
-	movq	%rbx, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L94:
-	leaq	.LC6(%rip), %rcx
-	movq	%rax, %rdx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L93:
 	leaq	.LC6(%rip), %rcx
-	movq	%rsi, %rdx
+	movq	%rax, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L91:
+	leaq	.LC6(%rip), %rcx
+	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -569,7 +560,7 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
-.LFB8447:
+.LFB8449:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -583,31 +574,31 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	subq	$32, %rsp
 	.seh_stackalloc	32
 	.seh_endprologue
-	movq	16(%rcx), %r9
-	movq	%rdx, %rsi
-	movq	(%rdx), %rdx
 	movq	%rcx, %rdi
-	testq	%rdx, %rdx
-	je	.L97
-	movq	8(%rsi), %r8
+	movq	(%rdx), %rcx
+	movq	%rdx, %rsi
+	movq	16(%rdi), %r9
+	testq	%rcx, %rcx
+	je	.L96
+	movq	8(%rdx), %r8
 	xorl	%eax, %eax
-	jmp	.L100
+	jmp	.L99
 	.p2align 4,,10
 	.p2align 3
-.L98:
+.L97:
 	addq	$1, %rax
-	cmpq	%rax, %rdx
-	je	.L97
-.L100:
-	movq	(%r8,%rax,8), %rcx
-	testq	%rcx, %rcx
-	je	.L98
-	cmpq	%r9, %rcx
-	jnb	.L99
-	movq	24(%rdi), %r10
-	cmpq	$0, (%r10,%rcx,8)
-	jne	.L98
+	cmpq	%rax, %rcx
+	je	.L96
 .L99:
+	movq	(%r8,%rax,8), %rdx
+	testq	%rdx, %rdx
+	je	.L97
+	cmpq	%r9, %rdx
+	jnb	.L98
+	movq	24(%rdi), %r10
+	cmpq	$0, (%r10,%rdx,8)
+	jne	.L97
+.L98:
 	leaq	.LC8(%rip), %rcx
 	movq	%rsi, %rdx
 	call	_Z6printfPKcz
@@ -615,44 +606,31 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L97:
+.L96:
 	cmpq	$1, %r9
-	jbe	.L101
+	jbe	.L100
 	movq	24(%rdi), %r10
 	movl	$1, %ebx
-	testq	%rdx, %rdx
-	je	.L105
 	.p2align 4,,10
 	.p2align 3
-.L110:
-	movq	8(%rsi), %rcx
+.L108:
+	movq	8(%rsi), %rdx
 	xorl	%eax, %eax
-	jmp	.L104
-	.p2align 4,,10
-	.p2align 3
-.L132:
+	testq	%rcx, %rcx
+	je	.L101
+.L102:
+	cmpq	%rbx, (%rdx,%rax,8)
+	je	.L103
 	addq	$1, %rax
-	cmpq	%rax, %rdx
-	je	.L105
-.L104:
-	cmpq	%rbx, (%rcx,%rax,8)
-	jne	.L132
-	cmpq	%rax, %rdx
-	je	.L105
-	addq	$1, %rbx
-	cmpq	%r9, %rbx
-	jnb	.L109
-.L134:
-	movq	(%rsi), %rdx
-	testq	%rdx, %rdx
-	jne	.L110
+	cmpq	%rax, %rcx
+	jne	.L102
 	.p2align 4,,10
 	.p2align 3
-.L105:
+.L101:
 	movq	(%r10,%rbx,8), %rbp
 	leaq	0(,%rbx,8), %r12
 	testq	%rbp, %rbp
-	je	.L107
+	je	.L105
 	movq	104(%rbp), %rcx
 	call	free
 	movl	$112, %edx
@@ -660,18 +638,23 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	call	_ZdlPvy
 	movq	16(%rdi), %r9
 	movq	24(%rdi), %r10
-.L107:
+.L105:
 	cmpq	%r9, %rbx
 	jnb	.L133
-	addq	$1, %rbx
 	movq	$0, (%r10,%r12)
+.L103:
+	addq	$1, %rbx
 	cmpq	%r9, %rbx
-	jb	.L134
-.L109:
+	jnb	.L107
+	movq	(%rsi), %rcx
+	jmp	.L108
+	.p2align 4,,10
+	.p2align 3
+.L107:
 	cmpq	$0, -8(%r10,%r9,8)
 	leaq	-1(%r9), %r8
-	je	.L135
-.L131:
+	je	.L134
+.L132:
 	xorl	%eax, %eax
 	addq	$32, %rsp
 	popq	%rbx
@@ -680,22 +663,22 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	popq	%rbp
 	popq	%r12
 	ret
-.L135:
+.L134:
 	movq	%r9, %rax
-	jmp	.L111
+	jmp	.L109
 	.p2align 4,,10
 	.p2align 3
-.L116:
+.L114:
 	leaq	-1(%rax), %rdx
 	cmpq	%r9, %rdx
-	jnb	.L136
+	jnb	.L135
 	cmpq	$0, (%r10,%rdx,8)
-	jne	.L137
+	jne	.L136
 	movq	%rdx, %rax
-.L111:
+.L109:
 	cmpq	$1, %rax
-	jne	.L116
-.L115:
+	jne	.L114
+.L113:
 	movq	%rax, %rdx
 	leaq	16(%rdi), %rcx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0
@@ -707,9 +690,9 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	popq	%rbp
 	popq	%r12
 	ret
-.L101:
+.L100:
 	testq	%r9, %r9
-	jne	.L131
+	jne	.L132
 	leaq	.LC6(%rip), %rcx
 	orq	$-1, %rdx
 	call	_Z6printfPKcz
@@ -717,18 +700,18 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L137:
+.L136:
 	subq	%rax, %r9
 	movq	%r9, %r8
-	jmp	.L115
-.L136:
-	leaq	.LC6(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
+	jmp	.L113
 .L133:
 	leaq	.LC6(%rip), %rcx
 	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L135:
+	leaq	.LC6(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -748,26 +731,26 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6actors5actor9flipbooksixEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooksixEy
 _ZN3wze6engine6actors5actor9flipbooksixEy:
-.LFB8448:
+.LFB8450:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	testq	%rdx, %rdx
-	je	.L142
+	je	.L141
 	cmpq	16(%rcx), %rdx
-	jnb	.L140
+	jnb	.L139
 	movq	24(%rcx), %rax
 	movq	(%rax,%rdx,8), %rax
 	testq	%rax, %rax
-	je	.L140
+	je	.L139
 	addq	$40, %rsp
 	ret
-.L140:
+.L139:
 	leaq	.LC10(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L142:
+.L141:
 	leaq	.LC9(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -785,7 +768,7 @@ _ZN3wze6engine6actors5actor9flipbooksixEy:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE:
-.LFB8450:
+.LFB8452:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -822,8 +805,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	movups	%xmm1, 40(%rcx)
 	movups	%xmm0, 56(%rcx)
 	testq	%rdi, %rdi
-	jne	.L150
-.L144:
+	jne	.L149
+.L143:
 	movq	%rsi, %rcx
 	movq	%rdi, 96(%rbx)
 	movq	%rsi, 104(%rbx)
@@ -836,20 +819,20 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	jmp	free
 	.p2align 4,,10
 	.p2align 3
-.L150:
+.L149:
 	leaq	0(,%rdi,8), %r12
 	movq	%r12, %rcx
 	call	malloc
 	movq	%rax, %rsi
 	testq	%rax, %rax
-	je	.L151
+	je	.L150
 	movq	%r12, %r8
 	movq	%rax, %rdx
 	movq	%rbp, %rcx
 .LEHB0:
 	call	_ZN3neo9memCopyToEPKvPvy
-	jmp	.L144
-.L151:
+	jmp	.L143
+.L150:
 	movq	%rdi, %r8
 	movl	$8, %edx
 	leaq	.LC3(%rip), %rcx
@@ -857,23 +840,23 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 .LEHE0:
 	movl	$1, %ecx
 	call	exit
-.L148:
+.L147:
 	movq	%rax, %rsi
-	jmp	.L146
+	jmp	.L145
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8450:
+.LLSDA8452:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8450-.LLSDACSB8450
-.LLSDACSB8450:
-	.uleb128 .LEHB0-.LFB8450
+	.uleb128 .LLSDACSE8452-.LLSDACSB8452
+.LLSDACSB8452:
+	.uleb128 .LEHB0-.LFB8452
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L148-.LFB8450
+	.uleb128 .L147-.LFB8452
 	.uleb128 0
-.LLSDACSE8450:
+.LLSDACSE8452:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -887,7 +870,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.seh_savereg	%r12, 64
 	.seh_endprologue
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE.cold:
-.L146:
+.L145:
 	movq	104(%rbx), %rcx
 	call	free
 	movq	%rsi, %rcx
@@ -897,17 +880,17 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 .LEHE1:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8450:
+.LLSDAC8452:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8450-.LLSDACSBC8450
-.LLSDACSBC8450:
+	.uleb128 .LLSDACSEC8452-.LLSDACSBC8452
+.LLSDACSBC8452:
 	.uleb128 .LEHB1-.LCOLDB14
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8450:
+.LLSDACSEC8452:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -945,7 +928,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.def	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE
 _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
-.LFB8441:
+.LFB8443:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -966,41 +949,41 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movq	%rcx, %rbp
 	movl	%edx, %r12d
 	testl	%edx, %edx
-	je	.L176
+	je	.L175
 	cmpq	$1, %rsi
-	jbe	.L177
+	jbe	.L176
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L154:
+.L153:
 	movq	(%rdi,%rax,8), %rcx
 	testq	%rcx, %rcx
-	je	.L155
+	je	.L154
 	movq	0(%rbp), %r8
 	cmpq	704(%r8), %rcx
-	jnb	.L156
+	jnb	.L155
 	movq	712(%r8), %r8
 	cmpq	$0, (%r8,%rcx,8)
-	je	.L156
-.L155:
+	je	.L155
+.L154:
 	addq	$1, %rax
 	cmpq	%rax, %rsi
-	jne	.L154
+	jne	.L153
 	movq	16(%rbp), %rax
 	cmpq	$1, %rax
-	jbe	.L157
+	jbe	.L156
 	movq	24(%rbp), %rcx
 	movl	$1, %ebx
-	jmp	.L161
+	jmp	.L160
 	.p2align 4,,10
 	.p2align 3
-.L158:
+.L157:
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	je	.L157
-.L161:
+	je	.L156
+.L160:
 	cmpq	$0, (%rcx,%rbx,8)
-	jne	.L158
+	jne	.L157
 	movl	$112, %ecx
 .LEHB2:
 	call	_Znwy
@@ -1019,7 +1002,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 .LEHE3:
 	movq	24(%rbp), %rax
 	cmpq	16(%rbp), %rbx
-	jnb	.L178
+	jnb	.L177
 	movq	%r13, (%rax,%rbx,8)
 	movq	%rbx, %rax
 	addq	$88, %rsp
@@ -1032,7 +1015,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L157:
+.L156:
 	movl	$112, %ecx
 .LEHB4:
 	call	_Znwy
@@ -1058,7 +1041,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	call	realloc
 	movq	%rax, 24(%rbp)
 	testq	%rax, %rax
-	je	.L179
+	je	.L178
 	movq	16(%rbp), %rdx
 	leaq	72(%rsp), %rcx
 	movl	$8, %r8d
@@ -1069,9 +1052,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax
 	movq	%rax, %rbx
-	jnc	.L180
+	jnc	.L179
 	cmpq	$0, (%rdx,%rax,8)
-	je	.L181
+	je	.L180
 	movq	%rbx, %rax
 	addq	$88, %rsp
 	popq	%rbx
@@ -1081,87 +1064,87 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	popq	%r12
 	popq	%r13
 	ret
-.L156:
+.L155:
 	leaq	.LC17(%rip), %rcx
 	movq	%rsi, %r8
 	movl	%r12d, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L177:
+.L176:
 	leaq	.LC16(%rip), %rcx
 	movq	%rsi, %r8
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L176:
+.L175:
 	leaq	.LC15(%rip), %rcx
 	movq	%rsi, %r8
 	xorl	%edx, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L181:
+.L180:
 	leaq	.LC19(%rip), %rcx
 	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L180:
+.L179:
 	leaq	.LC6(%rip), %rcx
 	orq	$-1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L179:
+.L178:
 	leaq	.LC18(%rip), %rcx
 	movl	$1, %r8d
 	movl	$8, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L178:
+.L177:
 	leaq	.LC6(%rip), %rcx
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 .LEHE6:
 	movl	$1, %ecx
 	call	exit
-.L170:
-	movq	%rax, %rsi
-	jmp	.L167
 .L169:
-	movq	%rax, %rbx
+	movq	%rax, %rsi
 	jmp	.L166
+.L168:
+	movq	%rax, %rbx
+	jmp	.L165
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8441:
+.LLSDA8443:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8441-.LLSDACSB8441
-.LLSDACSB8441:
-	.uleb128 .LEHB2-.LFB8441
+	.uleb128 .LLSDACSE8443-.LLSDACSB8443
+.LLSDACSB8443:
+	.uleb128 .LEHB2-.LFB8443
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8441
+	.uleb128 .LEHB3-.LFB8443
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L169-.LFB8441
+	.uleb128 .L168-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8441
+	.uleb128 .LEHB4-.LFB8443
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8441
+	.uleb128 .LEHB5-.LFB8443
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L170-.LFB8441
+	.uleb128 .L169-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8441
+	.uleb128 .LEHB6-.LFB8443
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8441:
+.LLSDACSE8443:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1176,14 +1159,14 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	.seh_savereg	%r13, 128
 	.seh_endprologue
 _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
-.L167:
+.L166:
 	movq	%rbx, %rcx
 	movl	$112, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB7:
 	call	_Unwind_Resume
-.L166:
+.L165:
 	movq	%r13, %rcx
 	movl	$112, %edx
 	call	_ZdlPvy
@@ -1193,17 +1176,17 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 .LEHE7:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8441:
+.LLSDAC8443:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8441-.LLSDACSBC8441
-.LLSDACSBC8441:
+	.uleb128 .LLSDACSEC8443-.LLSDACSBC8443
+.LLSDACSBC8443:
 	.uleb128 .LEHB7-.LCOLDB20
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8441:
+.LLSDACSEC8443:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1232,7 +1215,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
-.LFB8453:
+.LFB8455:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -1261,15 +1244,15 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	movl	$0, 88(%rcx)
 	movups	%xmm0, 56(%rcx)
 	testq	%rbx, %rbx
-	je	.L194
+	je	.L193
 	cmpq	%rbx, %rax
-	je	.L195
+	je	.L194
 	movq	(%rbx), %rcx
 	xorl	%edx, %edx
 	movq	%rcx, 96(%rsi)
 	leaq	0(,%rcx,8), %r8
 	testq	%rcx, %rcx
-	je	.L186
+	je	.L185
 	movq	%r8, %rcx
 	movq	%r8, 40(%rsp)
 	call	malloc
@@ -1277,10 +1260,10 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	testq	%rax, %rax
 	movq	%rax, 104(%rsi)
 	movq	%rax, %rdx
-	je	.L187
+	je	.L186
 	.p2align 4,,10
 	.p2align 3
-.L186:
+.L185:
 	movq	8(%rbx), %rcx
 .LEHB8:
 	call	_ZN3neo9memCopyToEPKvPvy
@@ -1289,45 +1272,45 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	popq	%rbx
 	popq	%rsi
 	ret
-.L194:
+.L193:
 	movl	$1, %r9d
 	movl	$8, %r8d
 	xorl	%edx, %edx
 	leaq	.LC21(%rip), %rcx
 	call	_Z6printfPKcz
-.L185:
+.L184:
 	movl	$1, %ecx
 	call	exit
-.L195:
+.L194:
 	movl	$1, %r9d
 	movl	$8, %r8d
 	xorl	%edx, %edx
 	leaq	.LC22(%rip), %rcx
 	call	_Z6printfPKcz
-	jmp	.L185
-.L187:
+	jmp	.L184
+.L186:
 	movl	$1, %r8d
 	movl	$8, %edx
 	leaq	.LC23(%rip), %rcx
 	call	_Z6printfPKcz
 .LEHE8:
-	jmp	.L185
-.L191:
+	jmp	.L184
+.L190:
 	movq	%rax, %rbx
-	jmp	.L189
+	jmp	.L188
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8453:
+.LLSDA8455:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8453-.LLSDACSB8453
-.LLSDACSB8453:
-	.uleb128 .LEHB8-.LFB8453
+	.uleb128 .LLSDACSE8455-.LLSDACSB8455
+.LLSDACSB8455:
+	.uleb128 .LEHB8-.LFB8455
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L191-.LFB8453
+	.uleb128 .L190-.LFB8455
 	.uleb128 0
-.LLSDACSE8453:
+.LLSDACSE8455:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1338,7 +1321,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	.seh_savereg	%rsi, 64
 	.seh_endprologue
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
-.L189:
+.L188:
 	movq	104(%rsi), %rcx
 	call	free
 	movq	%rbx, %rcx
@@ -1348,17 +1331,17 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
 .LEHE9:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8453:
+.LLSDAC8455:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8453-.LLSDACSBC8453
-.LLSDACSBC8453:
+	.uleb128 .LLSDACSEC8455-.LLSDACSBC8455
+.LLSDACSBC8455:
 	.uleb128 .LEHB9-.LCOLDB24
 	.uleb128 .LEHE9-.LEHB9
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8453:
+.LLSDACSEC8455:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1393,7 +1376,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
 	.def	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
-.LFB8444:
+.LFB8446:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -1412,29 +1395,29 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	movl	%edx, %ebp
 	movq	%r8, %rdi
 	testl	%edx, %edx
-	je	.L220
+	je	.L219
 	cmpq	$1, %r10
-	jbe	.L221
+	jbe	.L220
 	movq	8(%r8), %r11
 	xorl	%eax, %eax
-	jmp	.L201
+	jmp	.L200
 	.p2align 4,,10
 	.p2align 3
-.L199:
+.L198:
 	addq	$1, %rax
 	cmpq	%r10, %rax
-	je	.L222
-.L201:
+	je	.L221
+.L200:
 	movq	(%r11,%rax,8), %rcx
 	testq	%rcx, %rcx
-	je	.L199
+	je	.L198
 	movq	(%rsi), %rbx
 	cmpq	704(%rbx), %rcx
-	jnb	.L200
+	jnb	.L199
 	movq	712(%rbx), %r8
 	cmpq	$0, (%r8,%rcx,8)
-	jne	.L199
-.L200:
+	jne	.L198
+.L199:
 	leaq	.LC27(%rip), %rcx
 	movq	%r10, %r8
 	movl	%ebp, %edx
@@ -1444,22 +1427,22 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L222:
+.L221:
 	movq	16(%rsi), %rax
 	cmpq	$1, %rax
-	jbe	.L202
+	jbe	.L201
 	movq	24(%rsi), %rdx
 	movl	$1, %ebx
-	jmp	.L206
+	jmp	.L205
 	.p2align 4,,10
 	.p2align 3
-.L203:
+.L202:
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	je	.L202
-.L206:
+	je	.L201
+.L205:
 	cmpq	$0, (%rdx,%rbx,8)
-	jne	.L203
+	jne	.L202
 	movl	$112, %ecx
 	call	_Znwy
 .LEHE10:
@@ -1474,9 +1457,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 .LEHE11:
 	movq	24(%rsi), %rax
 	cmpq	16(%rsi), %rbx
-	jnb	.L223
+	jnb	.L222
 	movq	%r12, (%rax,%rbx,8)
-.L196:
+.L195:
 	movq	%rbx, %rax
 	addq	$64, %rsp
 	popq	%rbx
@@ -1487,7 +1470,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L202:
+.L201:
 	movl	$112, %ecx
 .LEHB12:
 	call	_Znwy
@@ -1510,7 +1493,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	call	realloc
 	movq	%rax, 24(%rsi)
 	testq	%rax, %rax
-	je	.L224
+	je	.L223
 	movq	16(%rsi), %rdx
 	leaq	56(%rsp), %rcx
 	movl	$8, %r8d
@@ -1521,82 +1504,82 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	movq	24(%rsi), %rdx
 	addq	$-1, %rax
 	movq	%rax, %rbx
-	jnc	.L225
+	jnc	.L224
 	cmpq	$0, (%rdx,%rax,8)
-	jne	.L196
+	jne	.L195
 	movq	(%rdi), %rdx
 	leaq	.LC28(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L224:
+.L223:
 	leaq	.LC18(%rip), %rcx
 	movl	$1, %r8d
 	movl	$8, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L225:
+.L224:
 	leaq	.LC6(%rip), %rcx
 	orq	$-1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L221:
+.L220:
 	leaq	.LC26(%rip), %rcx
 	movq	%r10, %r8
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L220:
+.L219:
 	leaq	.LC25(%rip), %rcx
 	movq	%r10, %r8
 	xorl	%edx, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L223:
+.L222:
 	leaq	.LC6(%rip), %rcx
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 .LEHE14:
 	movl	$1, %ecx
 	call	exit
-.L214:
-	movq	%rax, %rsi
-	jmp	.L212
 .L213:
-	movq	%rax, %rbx
+	movq	%rax, %rsi
 	jmp	.L211
+.L212:
+	movq	%rax, %rbx
+	jmp	.L210
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8444:
+.LLSDA8446:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8444-.LLSDACSB8444
-.LLSDACSB8444:
-	.uleb128 .LEHB10-.LFB8444
+	.uleb128 .LLSDACSE8446-.LLSDACSB8446
+.LLSDACSB8446:
+	.uleb128 .LEHB10-.LFB8446
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB11-.LFB8444
+	.uleb128 .LEHB11-.LFB8446
 	.uleb128 .LEHE11-.LEHB11
-	.uleb128 .L213-.LFB8444
+	.uleb128 .L212-.LFB8446
 	.uleb128 0
-	.uleb128 .LEHB12-.LFB8444
+	.uleb128 .LEHB12-.LFB8446
 	.uleb128 .LEHE12-.LEHB12
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB13-.LFB8444
+	.uleb128 .LEHB13-.LFB8446
 	.uleb128 .LEHE13-.LEHB13
-	.uleb128 .L214-.LFB8444
+	.uleb128 .L213-.LFB8446
 	.uleb128 0
-	.uleb128 .LEHB14-.LFB8444
+	.uleb128 .LEHB14-.LFB8446
 	.uleb128 .LEHE14-.LEHB14
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8444:
+.LLSDACSE8446:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1610,14 +1593,14 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	.seh_savereg	%r12, 96
 	.seh_endprologue
 _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
-.L212:
+.L211:
 	movq	%rbx, %rcx
 	movl	$112, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB15:
 	call	_Unwind_Resume
-.L211:
+.L210:
 	movq	%r12, %rcx
 	movl	$112, %edx
 	call	_ZdlPvy
@@ -1627,17 +1610,17 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 .LEHE15:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8444:
+.LLSDAC8446:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8444-.LLSDACSBC8444
-.LLSDACSBC8444:
+	.uleb128 .LLSDACSEC8446-.LLSDACSBC8446
+.LLSDACSBC8446:
 	.uleb128 .LEHB15-.LCOLDB29
 	.uleb128 .LEHE15-.LEHB15
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8444:
+.LLSDACSEC8446:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1651,7 +1634,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv:
-.LFB8455:
+.LFB8457:
 	.seh_endprologue
 	movsd	40(%rcx), %xmm0
 	ret
@@ -1667,7 +1650,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
-.LFB8456:
+.LFB8458:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$64, %rsp
@@ -1678,24 +1661,24 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	ucomisd	%xmm1, %xmm1
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
-	jp	.L244
+	jp	.L243
 	movq	8(%rcx), %rax
 	movsd	48(%rcx), %xmm0
 	movsd	216(%rax), %xmm1
 	movsd	224(%rax), %xmm2
 	ucomisd	%xmm6, %xmm1
-	jp	.L230
-	jne	.L230
+	jp	.L229
+	jne	.L229
 	ucomisd	%xmm0, %xmm2
-	jp	.L230
-	jne	.L230
+	jp	.L229
+	jne	.L229
 	movq	$0x000000000, 56(%rcx)
-.L238:
+.L237:
 	pxor	%xmm0, %xmm0
-	jmp	.L237
+	jmp	.L236
 	.p2align 4,,10
 	.p2align 3
-.L230:
+.L229:
 	movq	(%rbx), %rax
 	movapd	%xmm6, %xmm3
 	movsd	%xmm0, 32(%rsp)
@@ -1708,18 +1691,18 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	movsd	224(%rax), %xmm2
 	movsd	%xmm3, 56(%rbx)
 	ucomisd	%xmm1, %xmm6
-	jp	.L234
-	jne	.L234
+	jp	.L233
+	jne	.L233
 	ucomisd	%xmm0, %xmm2
-	jp	.L234
-	je	.L238
-.L234:
+	jp	.L233
+	je	.L237
+.L233:
 	movq	(%rbx), %rax
 	movapd	%xmm6, %xmm3
 	movsd	%xmm0, 32(%rsp)
 	leaq	688(%rax), %rcx
 	call	_ZN3wze6engine6vector5AngleEdddd
-.L237:
+.L236:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm6, %xmm0
 	movsd	%xmm6, 40(%rbx)
@@ -1727,7 +1710,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	addq	$64, %rsp
 	popq	%rbx
 	ret
-.L244:
+.L243:
 	leaq	.LC30(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
@@ -1741,7 +1724,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv:
-.LFB8457:
+.LFB8459:
 	.seh_endprologue
 	movsd	48(%rcx), %xmm0
 	ret
@@ -1757,7 +1740,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
-.LFB8458:
+.LFB8460:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$64, %rsp
@@ -1768,24 +1751,24 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	ucomisd	%xmm1, %xmm1
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
-	jp	.L263
+	jp	.L262
 	movq	8(%rcx), %rax
 	movsd	40(%rcx), %xmm3
 	movsd	216(%rax), %xmm1
 	movsd	224(%rax), %xmm2
 	ucomisd	%xmm3, %xmm1
-	jp	.L249
-	jne	.L249
+	jp	.L248
+	jne	.L248
 	ucomisd	%xmm2, %xmm6
-	jp	.L249
-	jne	.L249
+	jp	.L248
+	jne	.L248
 	movq	$0x000000000, 56(%rcx)
-.L257:
+.L256:
 	pxor	%xmm0, %xmm0
-	jmp	.L256
+	jmp	.L255
 	.p2align 4,,10
 	.p2align 3
-.L249:
+.L248:
 	movq	(%rbx), %rax
 	movsd	%xmm6, 32(%rsp)
 	leaq	688(%rax), %rcx
@@ -1796,17 +1779,17 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	movsd	224(%rax), %xmm2
 	movsd	%xmm0, 56(%rbx)
 	ucomisd	%xmm3, %xmm1
-	jp	.L253
-	jne	.L253
+	jp	.L252
+	jne	.L252
 	ucomisd	%xmm2, %xmm6
-	jp	.L253
-	je	.L257
-.L253:
+	jp	.L252
+	je	.L256
+.L252:
 	movq	(%rbx), %rax
 	movsd	%xmm6, 32(%rsp)
 	leaq	688(%rax), %rcx
 	call	_ZN3wze6engine6vector5AngleEdddd
-.L256:
+.L255:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm6, %xmm0
 	movsd	%xmm6, 48(%rbx)
@@ -1814,7 +1797,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	addq	$64, %rsp
 	popq	%rbx
 	ret
-.L263:
+.L262:
 	leaq	.LC31(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
@@ -1828,7 +1811,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv:
-.LFB8459:
+.LFB8461:
 	.seh_endprologue
 	movl	72(%rcx), %eax
 	ret
@@ -1844,17 +1827,17 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj
 _ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
-.LFB8460:
+.LFB8462:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	movl	%edx, %eax
 	testl	%edx, %edx
-	je	.L267
+	je	.L266
 	movl	%edx, 72(%rcx)
 	addq	$40, %rsp
 	ret
-.L267:
+.L266:
 	leaq	.LC32(%rip), %rcx
 	xorl	%edx, %edx
 	call	_Z6printfPKcz
@@ -1868,19 +1851,19 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv:
-.LFB8461:
+.LFB8463:
 	.seh_endprologue
 	xorl	%eax, %eax
 	cmpb	$0, 39(%rcx)
-	jne	.L268
+	jne	.L267
 	movzbl	38(%rcx), %eax
 	testb	%al, %al
-	je	.L271
-.L268:
+	je	.L270
+.L267:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L271:
+.L270:
 	movq	96(%rcx), %rax
 	subq	$1, %rax
 	cmpq	80(%rcx), %rax
@@ -1893,7 +1876,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv:
-.LFB8462:
+.LFB8464:
 	.seh_endprologue
 	movq	80(%rcx), %rax
 	ret
@@ -1904,7 +1887,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv:
-.LFB8463:
+.LFB8465:
 	.seh_endprologue
 	xorl	%eax, %eax
 	movq	$0, 80(%rcx)

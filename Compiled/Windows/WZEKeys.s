@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine4keysC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keysC2EPS0_
 _ZN3wze6engine4keysC2EPS0_:
-.LFB8433:
+.LFB8435:
 	.seh_endprologue
 	movq	%rdx, (%rcx)
 	movq	$0, 8(%rcx)
@@ -59,7 +59,7 @@ _ZN3wze6engine4keysC2EPS0_:
 	.def	_ZN3wze6engine4keysixENS_3keyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keysixENS_3keyE
 _ZN3wze6engine4keysixENS_3keyE:
-.LFB8435:
+.LFB8437:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -83,7 +83,7 @@ _ZN3wze6engine4keysixENS_3keyE:
 	.def	_ZN3wze6engine4keys6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keys6UpdateEv
 _ZN3wze6engine4keys6UpdateEv:
-.LFB8436:
+.LFB8438:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp

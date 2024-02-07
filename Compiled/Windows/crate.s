@@ -10,7 +10,7 @@
 	.def	_ZN5crateC2EPN3wze6engineEddtt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN5crateC2EPN3wze6engineEddtt
 _ZN5crateC2EPN3wze6engineEddtt:
-.LFB8433:
+.LFB8435:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -68,6 +68,13 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movsd	.LC2(%rip), %xmm1
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor8SetDepthEd
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rdx
+	leaq	632(%rax), %rcx
+	call	_ZN3wze6engine6actorsixEy
+	movl	$1, %edx
+	movq	%rax, %rcx
+	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh
 	movq	(%rbx), %rcx
 	movq	8(%rbx), %rdx
 	addq	$632, %rcx
@@ -75,13 +82,13 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	nop
 	movaps	64(%rsp), %xmm6
 	movaps	80(%rsp), %xmm7
-	movl	$1, %edx
-	movq	%rax, %rcx
+	xorl	%edx, %edx
+	leaq	136(%rax), %rcx
 	addq	$96, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
-	jmp	_ZN3wze6engine6actors5actor17SetCollisionLayerEh
+	jmp	_ZN3wze6engine6actors5actor12overlapboxes3NewEy
 	.seh_endproc
 	.globl	_ZN5crateC1EPN3wze6engineEddtt
 	.def	_ZN5crateC1EPN3wze6engineEddtt;	.scl	2;	.type	32;	.endef
@@ -92,7 +99,7 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	.def	_ZN5crateD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN5crateD2Ev
 _ZN5crateD2Ev:
-.LFB8436:
+.LFB8438:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -114,13 +121,13 @@ _ZN5crateD2Ev:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8436:
+.LLSDA8438:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8436-.LLSDACSB8436
-.LLSDACSB8436:
-.LLSDACSE8436:
+	.uleb128 .LLSDACSE8438-.LLSDACSB8438
+.LLSDACSB8438:
+.LLSDACSE8438:
 	.text
 	.seh_endproc
 	.globl	_ZN5crateD1Ev
@@ -142,5 +149,6 @@ _ZN5crateD2Ev:
 	.def	_ZN3wze6engine6actors5actor8textures3NewEy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor8SetDepthEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor17SetCollisionLayerEh;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor12overlapboxes3NewEy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6assets13UnloadTextureEy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors6DeleteEy;	.scl	2;	.type	32;	.endef

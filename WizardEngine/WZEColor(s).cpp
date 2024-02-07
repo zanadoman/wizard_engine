@@ -1,3 +1,4 @@
+#include "Includes/NeoTypes++.hpp"
 #include "WizardEngine.hpp"
 
 namespace wze
@@ -73,7 +74,7 @@ namespace wze
 
     uint8 engine::actors::actor::colors::Purge(std::initializer_list<uint64> Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep.size(); i++)
         {
@@ -86,15 +87,7 @@ namespace wze
 
         for (i = 1; i < this->Colors.Length(); i++)
         {
-            for (j = 0; j < Keep.size(); j++)
-            {
-                if (i == Keep.begin()[j])
-                {
-                    break;
-                }
-            }
-
-            if (j == Keep.size())
+            if (!initializer_list_Contains(Keep, {i}))
             {
                 delete this->Colors[i];
                 this->Colors[i] = NULL;
@@ -119,7 +112,7 @@ namespace wze
 
     uint8 engine::actors::actor::colors::Purge(array<uint64>* Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep->Length(); i++)
         {
@@ -132,15 +125,7 @@ namespace wze
 
         for (i = 1; i < this->Colors.Length(); i++)
         {
-            for (j = 0; j < Keep->Length(); j++)
-            {
-                if (i == (*Keep)[j])
-                {
-                    break;
-                }
-            }
-
-            if (j == Keep->Length())
+            if (!Keep->Contains({i}))
             {
                 delete this->Colors[i];
                 this->Colors[i] = NULL;

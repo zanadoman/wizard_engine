@@ -6,7 +6,7 @@
 	.def	_ZN3wze6engine6timingC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timingC2EPS0_
 _ZN3wze6engine6timingC2EPS0_:
-.LFB8433:
+.LFB8435:
 	.seh_endprologue
 	pxor	%xmm0, %xmm0
 	xorl	%eax, %eax
@@ -26,7 +26,7 @@ _ZN3wze6engine6timingC2EPS0_:
 	.def	_ZN3wze6engine6timing11GetPrevTickEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing11GetPrevTickEv
 _ZN3wze6engine6timing11GetPrevTickEv:
-.LFB8435:
+.LFB8437:
 	.seh_endprologue
 	movl	12(%rcx), %eax
 	ret
@@ -37,7 +37,7 @@ _ZN3wze6engine6timing11GetPrevTickEv:
 	.def	_ZN3wze6engine6timing11GetGameTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing11GetGameTimeEv
 _ZN3wze6engine6timing11GetGameTimeEv:
-.LFB8436:
+.LFB8438:
 	.seh_endprologue
 	movl	16(%rcx), %eax
 	ret
@@ -48,7 +48,7 @@ _ZN3wze6engine6timing11GetGameTimeEv:
 	.def	_ZN3wze6engine6timing13GetRenderTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing13GetRenderTimeEv
 _ZN3wze6engine6timing13GetRenderTimeEv:
-.LFB8437:
+.LFB8439:
 	.seh_endprologue
 	movl	20(%rcx), %eax
 	ret
@@ -59,7 +59,7 @@ _ZN3wze6engine6timing13GetRenderTimeEv:
 	.def	_ZN3wze6engine6timing14GetWorkingTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing14GetWorkingTimeEv
 _ZN3wze6engine6timing14GetWorkingTimeEv:
-.LFB8438:
+.LFB8440:
 	.seh_endprologue
 	movl	24(%rcx), %eax
 	ret
@@ -70,7 +70,7 @@ _ZN3wze6engine6timing14GetWorkingTimeEv:
 	.def	_ZN3wze6engine6timing11GetIdleTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing11GetIdleTimeEv
 _ZN3wze6engine6timing11GetIdleTimeEv:
-.LFB8439:
+.LFB8441:
 	.seh_endprologue
 	movzwl	28(%rcx), %eax
 	ret
@@ -81,7 +81,7 @@ _ZN3wze6engine6timing11GetIdleTimeEv:
 	.def	_ZN3wze6engine6timing12GetFrameTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing12GetFrameTimeEv
 _ZN3wze6engine6timing12GetFrameTimeEv:
-.LFB8440:
+.LFB8442:
 	.seh_endprologue
 	movl	32(%rcx), %eax
 	ret
@@ -92,7 +92,7 @@ _ZN3wze6engine6timing12GetFrameTimeEv:
 	.def	_ZN3wze6engine6timing12GetDeltaTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing12GetDeltaTimeEv
 _ZN3wze6engine6timing12GetDeltaTimeEv:
-.LFB8441:
+.LFB8443:
 	.seh_endprologue
 	movl	36(%rcx), %eax
 	ret
@@ -103,7 +103,7 @@ _ZN3wze6engine6timing12GetDeltaTimeEv:
 	.def	_ZN3wze6engine6timing6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing6UpdateEv
 _ZN3wze6engine6timing6UpdateEv:
-.LFB8442:
+.LFB8444:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
