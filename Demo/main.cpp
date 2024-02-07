@@ -13,6 +13,8 @@ sint32 main()
 {
     engine* Engine = new engine(NULL, NULL, 1920, 1080, 1000 / 165);
 
+    button state;
+
     background* Background = new background(Engine);
     player* Player1 = new player(Engine, KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT);
     player* Player2 = new player(Engine, KEY_W, KEY_S, KEY_A, KEY_D);
@@ -42,7 +44,8 @@ sint32 main()
         Player2->Update();
         Flashlight->Update();
 
-        printf("%d\n", Engine->Actors[Player1->Actor].Overlapboxes[Player1->TextOverlapBox].IsCollidingWithCursor());
+        state = Engine->Actors[Player1->Actor].Overlapboxes[Player1->TextOverlapBox].GetButtonState();
+        printf("%d%d %d%d %d%d\n", (state & BTN_PRESSED_LMB) == BTN_PRESSED_LMB, (state & BTN_RELEASED_LMB) == BTN_RELEASED_LMB, (state & BTN_PRESSED_MMB) == BTN_PRESSED_MMB, (state & BTN_RELEASED_MMB) == BTN_RELEASED_MMB, (state & BTN_PRESSED_RMB) == BTN_PRESSED_RMB, (state & BTN_RELEASED_RMB) == BTN_RELEASED_RMB);
         printf("%d %d %d %d\n", Engine->Timing.GetGameTime(), Engine->Timing.GetRenderTime(), Engine->Timing.GetWorkingTime(), Engine->Timing.GetFrameTime());
     }
 

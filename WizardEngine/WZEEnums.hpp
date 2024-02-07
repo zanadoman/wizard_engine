@@ -4,6 +4,18 @@ namespace wze
 {
     typedef enum
     {
+        BTN_NONE = 0,
+        BTN_HOVERED = 1,
+        BTN_PRESSED_LMB = 2,
+        BTN_RELEASED_LMB = 4,
+        BTN_PRESSED_MMB = 8,
+        BTN_RELEASED_MMB = 16,
+        BTN_PRESSED_RMB = 32,
+        BTN_RELEASED_RMB = 64,
+    } button;
+
+    typedef enum
+    {
         KEY_A = 4,
         KEY_B = 5,
         KEY_C = 6,

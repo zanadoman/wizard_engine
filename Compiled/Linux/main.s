@@ -2,7 +2,7 @@
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC5:
-	.string	"%d\n"
+	.string	"%d%d %d%d %d%d\n"
 .LC6:
 	.string	"%d %d %d %d\n"
 	.section	.text.unlikely,"ax",@progbits
@@ -41,7 +41,7 @@ main:
 .LEHB0:
 	call	_Znwm@PLT
 .LEHE0:
-	movl	$6, %r9d
+	movl	$50, %r9d
 	xorl	%edx, %edx
 	xorl	%esi, %esi
 	movl	$1080, %r8d
@@ -340,19 +340,43 @@ main:
 	call	_ZN6player6UpdateEv@PLT
 	movq	8(%rsp), %rdi
 	call	_ZN10flashlight6UpdateEv@PLT
-	movq	8(%r14), %rsi
 	movq	24(%rsp), %rdi
+	movq	8(%r14), %rsi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	16(%r14), %rsi
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
 	movq	%rax, %rdi
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21IsCollidingWithCursorEv@PLT
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 152
 	leaq	.LC5(%rip), %rdi
-	movzbl	%al, %esi
+	movl	%eax, %r9d
+	movl	%eax, %r8d
+	movl	%eax, %ecx
+	movl	%eax, %edx
+	shrl	$5, %r9d
+	movl	%eax, %esi
+	shrl	$6, %eax
+	shrl	$4, %r8d
+	andl	$1, %eax
+	shrl	$3, %ecx
+	andl	$1, %r9d
+	pushq	%rax
+	.cfi_def_cfa_offset 160
+	shrl	$2, %edx
+	shrl	%esi
+	andl	$1, %ecx
+	andl	$1, %esi
+	andl	$1, %r8d
+	andl	$1, %edx
 	xorl	%eax, %eax
 	call	printf@PLT
+	popq	%rax
+	.cfi_def_cfa_offset 152
 	movq	%rbp, %rdi
+	popq	%rdx
+	.cfi_def_cfa_offset 144
 	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
 	movq	%rbp, %rdi
 	movl	%eax, %r15d

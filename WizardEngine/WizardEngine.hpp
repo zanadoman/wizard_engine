@@ -17,7 +17,7 @@
 #include "Includes/SDL_ttf.h"
 #endif
 
-#include "WZEKeys.hpp"
+#include "WZEEnums.hpp"
 
 #define EPSILON 0.0001
 #define PI 3.141592653589793
@@ -546,7 +546,7 @@ namespace wze
                                     uint16 GetActiveWidth();
                                     uint16 GetActiveHeight();
                                     bool IsCollidingWith(uint64 ActorID, uint64 OverlapboxID);
-                                    bool IsCollidingWithCursor();
+                                    button GetButtonState();
 
                                 private:
                                     uint64 Type;
@@ -562,6 +562,7 @@ namespace wze
                                     double ActiveMedianLength;
                                     double ActiveMedian1Angle;
                                     double ActiveMedian2Angle;
+                                    button ButtonState;
                                     overlapbox(engine* Engine, actor* Actor, uint64 Type);
                                     ~overlapbox();
                                     uint8 UpdateOverlapboxScale();

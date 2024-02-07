@@ -1,3 +1,4 @@
+#include "WZEEnums.hpp"
 #include "WizardEngine.hpp"
 
 namespace wze
@@ -393,14 +394,17 @@ namespace wze
         return this->Actor->Overlapboxes.CheckOverlap(this, this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID]);
     }
 
-    bool engine::actors::actor::overlapboxes::overlapbox::IsCollidingWithCursor()
+    button engine::actors::actor::overlapboxes::overlapbox::GetButtonState()
     {
+        uint16 result;
+
         double OverlapboxTopLeftX;
         double OverlapboxTopLeftY;
         double OverlapboxBotRightX;
         double OverlapboxBotRightY;
-
         double CursorX, CursorY;
+
+        result = BTN_NONE;
 
         OverlapboxTopLeftX = this->X - (this->ActiveWidth >> 1);
         OverlapboxTopLeftY = this->Y + (this->ActiveHeight >> 1);
@@ -412,10 +416,35 @@ namespace wze
 
         if (OverlapboxTopLeftX <= CursorX && CursorX <= OverlapboxBotRightX && OverlapboxBotRightY <= CursorY && CursorY <= OverlapboxTopLeftY)
         {
-            return true;
+            result |= BTN_HOVERED;
+
+            if (this->Engine->Keys[KEY_LMB])
+            {
+                result |= BTN_PRESSED_LMB;
+            }
+            else if (this->ButtonState & BTN_PRESSED_LMB)
+            {
+                result |= BTN_RELEASED_LMB;
+            }
+            if (this->Engine->Keys[KEY_MMB])
+            {
+                result |= BTN_PRESSED_MMB;
+            }
+            else if (this->ButtonState & BTN_PRESSED_MMB)
+            {
+                result |= BTN_RELEASED_MMB;
+            }
+            if (this->Engine->Keys[KEY_RMB])
+            {
+                result |= BTN_PRESSED_RMB;
+            }
+            else if (this->ButtonState & BTN_PRESSED_RMB)
+            {
+                result |= BTN_RELEASED_RMB;
+            }
         }
 
-        return false;
+        return this->ButtonState = (button)result;
     }
 
     uint8 engine::actors::actor::overlapboxes::overlapbox::UpdateOverlapboxScale()
