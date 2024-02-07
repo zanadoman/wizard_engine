@@ -280,9 +280,9 @@ _ZN3wze6engine6vector9TerminalYEddd:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB23:
+.LCOLDB24:
 	.text
-.LHOTB23:
+.LHOTB24:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_
@@ -295,12 +295,12 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movl	%esi, %r15d
 	movq	%rdx, %r11
-	movq	%rcx, %rsi
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
+	movl	%esi, %r14d
+	movq	%rcx, %rsi
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
@@ -320,56 +320,46 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movq	(%rdi), %rbx
 	movq	264(%rsp), %rax
 	movq	%r8, 8(%rsp)
-	movzwl	664(%rbx), %r14d
+	movzwl	664(%rbx), %r15d
 	movq	256(%rsp), %r10
-	movw	%r15w, 138(%rsp)
-	movq	%rax, 72(%rsp)
-	movw	%r14w, 16(%rsp)
-	movsd	%xmm0, 24(%rsp)
-	movsd	%xmm1, 32(%rsp)
-	movsd	%xmm2, 40(%rsp)
-	movsd	%xmm3, 48(%rsp)
-	movsd	%xmm4, 56(%rsp)
-	testq	%r14, %r14
-	jne	.L156
+	movw	%r14w, 138(%rsp)
+	movq	%rax, 32(%rsp)
+	movw	%r15w, 16(%rsp)
+	movsd	%xmm4, 24(%rsp)
+	testq	%r15, %r15
+	jne	.L162
 .L68:
-	movsd	24(%rsp), %xmm4
-	ucomisd	%xmm4, %xmm4
-	jp	.L157
-	movsd	32(%rsp), %xmm7
-	ucomisd	%xmm7, %xmm7
-	jp	.L158
-	movsd	40(%rsp), %xmm4
-	ucomisd	%xmm4, %xmm4
-	jp	.L159
-	movsd	48(%rsp), %xmm7
-	ucomisd	%xmm7, %xmm7
-	jp	.L160
-	movsd	56(%rsp), %xmm6
-	ucomisd	%xmm6, %xmm6
-	jp	.L161
-	pxor	%xmm0, %xmm0
-	comisd	56(%rsp), %xmm0
-	jnb	.L162
+	ucomisd	%xmm0, %xmm0
+	jp	.L163
+	ucomisd	%xmm1, %xmm1
+	jp	.L164
+	ucomisd	%xmm2, %xmm2
+	jp	.L165
+	ucomisd	%xmm3, %xmm3
+	jp	.L166
 	movsd	24(%rsp), %xmm6
-	ucomisd	40(%rsp), %xmm6
+	ucomisd	%xmm6, %xmm6
+	jp	.L167
+	pxor	%xmm4, %xmm4
+	comisd	24(%rsp), %xmm4
+	jnb	.L168
+	ucomisd	%xmm2, %xmm0
 	movl	$0, %ecx
-	movsd	32(%rsp), %xmm4
 	setnp	%dl
 	cmovne	%ecx, %edx
-	ucomisd	48(%rsp), %xmm4
+	ucomisd	%xmm3, %xmm1
 	setnp	%al
 	cmovne	%ecx, %eax
 	andb	%al, %dl
-	movb	%dl, 64(%rsp)
+	movb	%dl, 40(%rsp)
 	jne	.L82
 	movq	640(%rbx), %rax
 	cmpq	$1, %rax
-	jbe	.L108
+	jbe	.L111
 	movq	648(%rbx), %rdi
-	movq	%r14, %r8
-	movq	%r13, 80(%rsp)
-	movq	%rax, %r14
+	movq	%r15, %r8
+	movq	%r13, 48(%rsp)
+	movq	%rax, %r15
 	movl	$1, %ebx
 	xorl	%ebp, %ebp
 	movq	%r12, %rax
@@ -378,8 +368,8 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	.p2align 3
 .L84:
 	addq	$1, %rbx
-	cmpq	%rbx, %r14
-	je	.L163
+	cmpq	%rbx, %r15
+	je	.L169
 .L99:
 	movq	(%rdi,%rbx,8), %rcx
 	testq	%rcx, %rcx
@@ -389,48 +379,48 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	testq	%rsi, %rsi
 	je	.L84
 	cmpq	(%r11,%rdx,8), %r12
-	je	.L164
-.L143:
+	je	.L170
+.L148:
 	addq	$1, %rdx
 	cmpq	%rdx, %rsi
 	je	.L84
 	cmpq	(%r11,%rdx,8), %r12
-	jne	.L143
-.L164:
+	jne	.L148
+.L170:
 	movq	8(%rsp), %r12
 	xorl	%edx, %edx
 	testq	%r9, %r9
 	je	.L88
-.L106:
+.L109:
 	cmpq	%rbx, (%r12,%rdx,8)
 	je	.L84
 	addq	$1, %rdx
 	cmpq	%rdx, %r9
-	jne	.L106
+	jne	.L109
 .L88:
 	movq	152(%rcx), %rdx
 	cmpq	$1, %rdx
 	jbe	.L84
-	movq	%r14, 88(%rsp)
+	movq	%r15, 56(%rsp)
 	movl	$1, %r13d
-	movq	%rdx, %r14
+	movq	%rdx, %r15
 	movq	160(%rcx), %r12
-	movq	%r11, 104(%rsp)
-	movq	72(%rsp), %rcx
+	movq	%r11, 72(%rsp)
+	movq	32(%rsp), %rcx
 	movq	%rsi, %r11
-	movq	%r9, 112(%rsp)
-	movl	%r15d, %r9d
-	movq	%r8, %r15
+	movq	%r9, 80(%rsp)
+	movl	%r14d, %r9d
+	movq	%r8, %r14
 	movq	%rdi, %r8
-	movq	%rbx, 96(%rsp)
+	movq	%rbx, 64(%rsp)
 	movq	%rax, %rdi
 	jmp	.L98
 	.p2align 4,,10
 	.p2align 3
 .L90:
 	addq	$1, %r13
-	cmpq	%r13, %r14
-	je	.L165
+	cmpq	%r15, %r13
+	je	.L171
 .L98:
 	movq	(%r12,%r13,8), %rbx
 	testq	%rbx, %rbx
@@ -446,101 +436,102 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	cmpq	%rdx, %rcx
 	jne	.L91
 .L92:
-	cmpq	%rbp, %r15
-	je	.L166
+	cmpq	%rbp, %r14
+	je	.L172
 .L94:
 	leaq	1(%rbp), %rdx
-	cmpq	%r15, %rbp
-	jnb	.L167
+	cmpq	%r14, %rbp
+	jnb	.L173
 	addq	$1, %r13
 	movq	%rbx, (%rdi,%rbp,8)
 	movq	%rdx, %rbp
-	cmpq	%r13, %r14
+	cmpq	%r15, %r13
 	jne	.L98
-.L165:
-	movq	96(%rsp), %rbx
-	movq	88(%rsp), %r14
+.L171:
+	movq	64(%rsp), %rbx
+	movq	56(%rsp), %r15
 	movq	%rdi, %rax
 	movq	%r11, %rsi
 	movq	%r8, %rdi
-	movq	104(%rsp), %r11
-	movq	%r15, %r8
-	movl	%r9d, %r15d
+	movq	72(%rsp), %r11
+	movq	%r14, %r8
+	movl	%r9d, %r14d
 	addq	$1, %rbx
-	movq	112(%rsp), %r9
-	cmpq	%rbx, %r14
+	movq	80(%rsp), %r9
+	cmpq	%rbx, %r15
 	jne	.L99
 	.p2align 4,,10
 	.p2align 3
-.L163:
-	movq	80(%rsp), %r13
-	movq	%r8, %r14
+.L169:
+	movq	48(%rsp), %r13
 	movq	%rax, %r12
+	movq	%r8, %r15
 .L83:
-	shrw	%r15w
+	pxor	%xmm4, %xmm4
+	shrw	%r14w
+	movapd	%xmm0, %xmm6
+	subsd	%xmm0, %xmm2
+	movzwl	%r14w, %eax
+	comisd	%xmm3, %xmm1
+	movapd	%xmm3, %xmm0
+	cvtsi2sdl	%eax, %xmm4
+	subsd	%xmm1, %xmm0
+	mulsd	%xmm0, %xmm0
+	subsd	%xmm4, %xmm6
+	addsd	%xmm1, %xmm4
+	movsd	%xmm4, 16(%rsp)
+	movapd	%xmm2, %xmm4
+	mulsd	%xmm2, %xmm4
+	movsd	%xmm6, 8(%rsp)
+	addsd	%xmm0, %xmm4
+	movapd	%xmm2, %xmm0
+	movapd	%xmm4, %xmm7
+	sqrtsd	%xmm7, %xmm7
+	divsd	%xmm7, %xmm0
+	movsd	%xmm7, 32(%rsp)
+	ja	.L174
+	call	acos@PLT
+	movsd	%xmm0, 48(%rsp)
+.L102:
+	movsd	32(%rsp), %xmm7
 	pxor	%xmm0, %xmm0
-	movq	%r13, %rdi
-	movsd	24(%rsp), %xmm7
-	movzwl	%r15w, %eax
-	movsd	32(%rsp), %xmm6
-	movsd	48(%rsp), %xmm3
-	cvtsi2sdl	%eax, %xmm0
-	movapd	%xmm7, %xmm4
-	movsd	40(%rsp), %xmm2
-	movapd	%xmm6, %xmm1
-	subsd	%xmm0, %xmm4
-	addsd	%xmm6, %xmm0
-	movsd	%xmm0, 16(%rsp)
-	movapd	%xmm7, %xmm0
-	movsd	%xmm4, 8(%rsp)
-.LEHB0:
-	call	_ZN3wze6engine6vector5AngleEdddd
-	movsd	%xmm0, 72(%rsp)
-	movsd	48(%rsp), %xmm3
-	movq	%r13, %rdi
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	_ZN3wze6engine6vector6LengthEdddd
-	movzwl	138(%rsp), %r15d
-	movsd	%xmm0, 24(%rsp)
-	movsd	24(%rsp), %xmm7
-	pxor	%xmm0, %xmm0
+	movzwl	138(%rsp), %r14d
 	comisd	%xmm0, %xmm7
-	jbe	.L146
-.L100:
+	jbe	.L152
+.L105:
 	xorl	%ebx, %ebx
 	testq	%rbp, %rbp
-	jne	.L102
-	jmp	.L104
+	jne	.L104
+	jmp	.L107
 	.p2align 4,,10
 	.p2align 3
-.L169:
+.L176:
 	addq	$1, %rbx
 	cmpq	%rbp, %rbx
-	je	.L104
-.L102:
+	je	.L107
+.L104:
 	movq	0(%r13), %rax
 	leaq	656(%rax), %rdi
-	cmpq	%rbx, %r14
-	je	.L168
+	cmpq	%rbx, %r15
+	je	.L175
 	pxor	%xmm2, %xmm2
 	movsd	16(%rsp), %xmm1
 	movsd	8(%rsp), %xmm5
-	cvtsi2sdl	%r15d, %xmm2
+	cvtsi2sdl	%r14d, %xmm2
 	movq	(%r12,%rbx,8), %rsi
 	movapd	%xmm1, %xmm3
 	movapd	%xmm5, %xmm0
 	subsd	%xmm2, %xmm3
 	addsd	%xmm5, %xmm2
+.LEHB0:
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 .LEHE0:
 	testb	%al, %al
-	je	.L169
+	je	.L176
 .L82:
 	movq	%r12, %rdi
 	call	free@PLT
-	movzbl	64(%rsp), %eax
+	movzbl	40(%rsp), %eax
 	addq	$200, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -557,77 +548,98 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
+.L174:
+	.cfi_restore_state
+	call	acos@PLT
+	movsd	.LC23(%rip), %xmm1
+	subsd	%xmm0, %xmm1
+	movsd	%xmm1, 48(%rsp)
+	jmp	.L102
 	.p2align 4,,10
 	.p2align 3
-.L104:
-	.cfi_restore_state
-	movsd	72(%rsp), %xmm0
-	mulsd	.LC11(%rip), %xmm0
+.L107:
+	movsd	48(%rsp), %xmm0
 	leaq	184(%rsp), %rdi
 	leaq	176(%rsp), %rsi
 	call	sincos@PLT
-	movsd	56(%rsp), %xmm6
+	movsd	24(%rsp), %xmm6
 	movsd	176(%rsp), %xmm0
-	movsd	24(%rsp), %xmm7
+	movsd	32(%rsp), %xmm7
 	mulsd	%xmm6, %xmm0
 	addsd	8(%rsp), %xmm0
 	subsd	%xmm6, %xmm7
 	movsd	%xmm0, 8(%rsp)
 	movsd	184(%rsp), %xmm0
-	movsd	%xmm7, 24(%rsp)
+	movsd	%xmm7, 32(%rsp)
 	mulsd	%xmm6, %xmm0
 	addsd	16(%rsp), %xmm0
 	movsd	%xmm0, 16(%rsp)
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm7
-	ja	.L100
-.L146:
-	movb	$1, 64(%rsp)
+	ja	.L105
+.L152:
+	movb	$1, 40(%rsp)
 	jmp	.L82
-.L166:
+.L172:
 	movzwl	16(%rsp), %edx
 	movq	%rcx, 160(%rsp)
 	movq	%r10, 152(%rsp)
 	leaq	1(%rdx), %rax
 	movq	%r11, 144(%rsp)
-	leaq	(%rax,%r15), %rdx
+	leaq	(%rax,%r14), %rdx
 	movl	%r9d, 140(%rsp)
 	leaq	0(,%rdx,8), %rsi
 	movq	%r8, 128(%rsp)
-	movq	%rdx, 120(%rsp)
+	movq	%rdx, 88(%rsp)
+	movsd	%xmm3, 120(%rsp)
+	movsd	%xmm2, 112(%rsp)
+	movsd	%xmm1, 104(%rsp)
+	movsd	%xmm0, 96(%rsp)
 	movq	%rax, 168(%rsp)
 	call	realloc@PLT
-	movq	120(%rsp), %rdx
-	movq	128(%rsp), %r8
+	movq	88(%rsp), %rdx
+	movsd	96(%rsp), %xmm0
 	testq	%rax, %rax
+	movsd	104(%rsp), %xmm1
+	movsd	112(%rsp), %xmm2
+	movq	%rax, %rdi
+	movsd	120(%rsp), %xmm3
+	movq	128(%rsp), %r8
 	movl	140(%rsp), %r9d
 	movq	144(%rsp), %r11
-	movq	%rax, %rdi
 	movq	152(%rsp), %r10
 	movq	160(%rsp), %rcx
-	je	.L170
+	je	.L177
 	testq	%rdx, %rdx
-	jne	.L111
+	jne	.L114
 .L96:
 	jmp	.L96
 	.p2align 4,,10
 	.p2align 3
-.L156:
-	leaq	0(,%r14,8), %rdi
+.L162:
+	leaq	0(,%r15,8), %rdi
 	movq	%r10, 96(%rsp)
 	movq	%r9, 88(%rsp)
+	movsd	%xmm3, 64(%rsp)
+	movsd	%xmm2, 56(%rsp)
+	movsd	%xmm1, 48(%rsp)
+	movsd	%xmm0, 40(%rsp)
 	movq	%rcx, 80(%rsp)
-	movq	%rdx, 64(%rsp)
+	movq	%rdx, 72(%rsp)
 	call	malloc@PLT
-	movq	64(%rsp), %r11
-	movq	80(%rsp), %rsi
+	movsd	40(%rsp), %xmm0
+	movq	72(%rsp), %r11
 	testq	%rax, %rax
+	movq	80(%rsp), %rsi
 	movq	88(%rsp), %r9
-	movq	96(%rsp), %r10
 	movq	%rax, %r12
+	movsd	48(%rsp), %xmm1
+	movsd	56(%rsp), %xmm2
+	movsd	64(%rsp), %xmm3
+	movq	96(%rsp), %r10
 	jne	.L68
 	leaq	.LC13(%rip), %rdi
-	movq	%r14, %rsi
+	movq	%r15, %rsi
 	xorl	%eax, %eax
 .LEHB1:
 	call	printf@PLT
@@ -636,14 +648,14 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L108:
+.L111:
 	xorl	%ebp, %ebp
 	jmp	.L83
-.L111:
-	movq	%rdx, %r15
+.L114:
+	movq	%rdx, %r14
 	jmp	.L94
-.L168:
-	movq	%r14, %rsi
+.L175:
+	movq	%r15, %rsi
 	leaq	.LC22(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB2:
@@ -651,109 +663,85 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 .L73:
 	movl	$1, %edi
 	call	exit@PLT
-.L159:
-	movzwl	%r15w, %r15d
-	movsd	56(%rsp), %xmm4
-	movq	%rsi, %rdx
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movq	%r9, %rcx
-	movl	%r15d, %esi
-	movsd	24(%rsp), %xmm0
-	leaq	.LC16(%rip), %rdi
-	movl	$5, %eax
-	call	printf@PLT
-	jmp	.L73
-.L158:
-	movzwl	%r15w, %r15d
-	movsd	56(%rsp), %xmm4
+.L164:
+	movzwl	%r14w, %r14d
+	movsd	24(%rsp), %xmm4
 	movq	%rsi, %rdx
 	movq	%r9, %rcx
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movl	%r15d, %esi
-	movapd	%xmm7, %xmm1
-	movsd	24(%rsp), %xmm0
+	movl	%r14d, %esi
 	leaq	.LC15(%rip), %rdi
 	movl	$5, %eax
 	call	printf@PLT
 	jmp	.L73
+.L163:
+	movzwl	%r14w, %r14d
+	movsd	24(%rsp), %xmm4
+	movq	%rsi, %rdx
+	movq	%r9, %rcx
+	movl	%r14d, %esi
+	leaq	.LC14(%rip), %rdi
+	movl	$5, %eax
+	call	printf@PLT
+	jmp	.L73
+.L166:
+	movzwl	%r14w, %r14d
+	movsd	24(%rsp), %xmm4
+	movq	%rsi, %rdx
+	movq	%r9, %rcx
+	movl	%r14d, %esi
+	leaq	.LC17(%rip), %rdi
+	movl	$5, %eax
+	call	printf@PLT
+	jmp	.L73
+.L165:
+	movzwl	%r14w, %r14d
+	movsd	24(%rsp), %xmm4
+	movq	%rsi, %rdx
+	movq	%r9, %rcx
+	movl	%r14d, %esi
+	leaq	.LC16(%rip), %rdi
+	movl	$5, %eax
+	call	printf@PLT
+	jmp	.L73
+.L168:
+	movzwl	%r14w, %r14d
+	movsd	24(%rsp), %xmm4
+	movq	%rsi, %rdx
+	movq	%r9, %rcx
+	movl	%r14d, %esi
+	leaq	.LC20(%rip), %rdi
+	movl	$5, %eax
+	call	printf@PLT
+	jmp	.L73
 .L167:
+	movzwl	%r14w, %r14d
+	movq	%rsi, %rdx
+	movq	%r9, %rcx
+	movl	$5, %eax
+	movapd	%xmm6, %xmm4
+	movl	%r14d, %esi
+	leaq	.LC18(%rip), %rdi
+	call	printf@PLT
+	jmp	.L73
+.L173:
 	movq	%rdi, %r12
 	movq	%rbp, %rsi
 	leaq	.LC22(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	jmp	.L73
-.L170:
+.L177:
 	movq	168(%rsp), %rdx
 	movq	%rax, %r12
 	xorl	%eax, %eax
-	movq	%r15, %rsi
+	movq	%r14, %rsi
 	leaq	.LC21(%rip), %rdi
-	call	printf@PLT
-	jmp	.L73
-.L157:
-	movzwl	%r15w, %r15d
-	movsd	56(%rsp), %xmm4
-	movq	%rsi, %rdx
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movq	%r9, %rcx
-	movl	%r15d, %esi
-	movsd	24(%rsp), %xmm0
-	leaq	.LC14(%rip), %rdi
-	movl	$5, %eax
-	call	printf@PLT
-	jmp	.L73
-.L161:
-	movzwl	%r15w, %r15d
-	movsd	48(%rsp), %xmm3
-	movq	%rsi, %rdx
-	movq	%r9, %rcx
-	movsd	40(%rsp), %xmm2
-	movapd	%xmm6, %xmm4
-	movl	%r15d, %esi
-	movl	$5, %eax
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	leaq	.LC18(%rip), %rdi
-	call	printf@PLT
-	jmp	.L73
-.L160:
-	movzwl	%r15w, %r15d
-	movsd	56(%rsp), %xmm4
-	movq	%rsi, %rdx
-	movq	%r9, %rcx
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movl	%r15d, %esi
-	movapd	%xmm7, %xmm3
-	movsd	24(%rsp), %xmm0
-	leaq	.LC17(%rip), %rdi
-	movl	$5, %eax
-	call	printf@PLT
-	jmp	.L73
-.L162:
-	movzwl	%r15w, %r15d
-	movsd	56(%rsp), %xmm4
-	movq	%rsi, %rdx
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movq	%r9, %rcx
-	movl	%r15d, %esi
-	movsd	24(%rsp), %xmm0
-	leaq	.LC20(%rip), %rdi
-	movl	$5, %eax
 	call	printf@PLT
 .LEHE2:
 	jmp	.L73
-.L115:
+.L118:
 	movq	%rax, %rbx
-	jmp	.L105
+	jmp	.L108
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
 .LLSDA8153:
@@ -764,7 +752,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 .LLSDACSB8153:
 	.uleb128 .LEHB0-.LFB8153
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L115-.LFB8153
+	.uleb128 .L118-.LFB8153
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB8153
 	.uleb128 .LEHE1-.LEHB1
@@ -772,7 +760,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB8153
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L115-.LFB8153
+	.uleb128 .L118-.LFB8153
 	.uleb128 0
 .LLSDACSE8153:
 	.text
@@ -784,7 +772,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	.type	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold, @function
 _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 .LFSB8153:
-.L105:
+.L108:
 	.cfi_def_cfa_offset 256
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -807,7 +795,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8153-.LLSDACSBC8153
 .LLSDACSBC8153:
-	.uleb128 .LEHB3-.LCOLDB23
+	.uleb128 .LEHB3-.LCOLDB24
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
@@ -817,9 +805,9 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold
-.LCOLDE23:
+.LCOLDE24:
 	.text
-.LHOTE23:
+.LHOTE24:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC8:
@@ -833,6 +821,10 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 .LC11:
 	.long	-1571644103
 	.long	1066524486
+	.align 8
+.LC23:
+	.long	1413754136
+	.long	1075388923
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

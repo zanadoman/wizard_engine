@@ -118,7 +118,7 @@ namespace wze
 
     uint8 engine::assets::PurgeTextures(std::initializer_list<uint64> Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep.size(); i++)
         {
@@ -131,48 +131,40 @@ namespace wze
 
         for (i = 1; i < this->Textures.Length(); i++)
         {
-            for (j = 0; j < Keep.size(); j++)
+            if (!initializer_list_Contains(Keep, {i}))
             {
-                if (i == Keep.begin()[j])
+                for (uint64 j = 1; j < this->Engine->Actors.Actors.Length(); j++)
                 {
-                    break;
-                }
-            }
-
-            if (j == Keep.size())
-            {
-                for (uint64 k = 1; k < this->Engine->Actors.Actors.Length(); k++)
-                {
-                    if (this->Engine->Actors.Actors[k] == NULL)
+                    if (this->Engine->Actors.Actors[j] == NULL)
                     {
                         continue;
                     }
 
-                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Textures.Textures.Length(); l++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Textures.Textures.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[k]->Textures.Textures[l] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Textures.Textures[k] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine->Actors.Actors[k]->Textures.Textures[l]->TextureID == i)
+                        if (this->Engine->Actors.Actors[j]->Textures.Textures[k]->TextureID == i)
                         {
-                            this->Engine->Actors.Actors[k]->Textures.Textures[l]->TextureID = 0;
+                            this->Engine->Actors.Actors[j]->Textures.Textures[k]->TextureID = 0;
                         }
                     }
 
-                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks.Length(); l++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k] == NULL)
                         {
                             continue;
                         }
 
-                        for (uint64 m = 0; m < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures.Length(); m++)
+                        for (uint64 l = 0; l < this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures.Length(); l++)
                         {
-                            if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
+                            if (this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures[l] == i)
                             {
-                                this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] = 0;
+                                this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures[l] = 0;
                             }
                         }
                     }
@@ -201,7 +193,7 @@ namespace wze
 
     uint8 engine::assets::PurgeTextures(array<uint64>* Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep->Length(); i++)
         {
@@ -214,48 +206,40 @@ namespace wze
 
         for (i = 1; i < this->Textures.Length(); i++)
         {
-            for (j = 0; j < Keep->Length(); j++)
+            if (!Keep->Contains({i}))
             {
-                if (i == (*Keep)[j])
+                for (uint64 j = 1; j < this->Engine->Actors.Actors.Length(); j++)
                 {
-                    break;
-                }
-            }
-
-            if (j == Keep->Length())
-            {
-                for (uint64 k = 1; k < this->Engine->Actors.Actors.Length(); k++)
-                {
-                    if (this->Engine->Actors.Actors[k] == NULL)
+                    if (this->Engine->Actors.Actors[j] == NULL)
                     {
                         continue;
                     }
 
-                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Textures.Textures.Length(); l++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Textures.Textures.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[k]->Textures.Textures[l] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Textures.Textures[k] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine->Actors.Actors[k]->Textures.Textures[l]->TextureID == i)
+                        if (this->Engine->Actors.Actors[j]->Textures.Textures[k]->TextureID == i)
                         {
-                            this->Engine->Actors.Actors[k]->Textures.Textures[l]->TextureID = 0;
+                            this->Engine->Actors.Actors[j]->Textures.Textures[k]->TextureID = 0;
                         }
                     }
 
-                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks.Length(); l++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k] == NULL)
                         {
                             continue;
                         }
 
-                        for (uint64 m = 0; m < this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures.Length(); m++)
+                        for (uint64 l = 0; l < this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures.Length(); l++)
                         {
-                            if (this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] == i)
+                            if (this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures[l] == i)
                             {
-                                this->Engine->Actors.Actors[k]->Flipbooks.Flipbooks[l]->Textures[m] = 0;
+                                this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures[l] = 0;
                             }
                         }
                     }
@@ -349,7 +333,7 @@ namespace wze
 
     uint8 engine::assets::PurgeSounds(std::initializer_list<uint64> Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep.size(); i++)
         {
@@ -362,15 +346,7 @@ namespace wze
 
         for (i = 1; i < this->Sounds.Length(); i++)
         {
-            for (j = 0; j < Keep.size(); j++)
-            {
-                if (i == Keep.begin()[j])
-                {
-                    break;
-                }
-            }
-
-            if (j == Keep.size())
+            if (!initializer_list_Contains(Keep, {i}))
             {
                 Mix_FreeChunk(this->Sounds[i]);
                 this->Sounds[i] = NULL;
@@ -395,7 +371,7 @@ namespace wze
 
     uint8 engine::assets::PurgeSounds(array<uint64>* Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep->Length(); i++)
         {
@@ -408,15 +384,7 @@ namespace wze
 
         for (i = 1; i < this->Sounds.Length(); i++)
         {
-            for (j = 0; j < Keep->Length(); j++)
-            {
-                if (i == (*Keep)[j])
-                {
-                    break;
-                }
-            }
-
-            if (j == Keep->Length())
+            if (!Keep->Contains({i}))
             {
                 Mix_FreeChunk(this->Sounds[i]);
                 this->Sounds[i] = NULL;
@@ -527,7 +495,7 @@ namespace wze
 
     uint8 engine::assets::PurgeFonts(std::initializer_list<uint64> Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep.size(); i++)
         {
@@ -540,33 +508,27 @@ namespace wze
 
         for (i = 1; i < this->Fonts.Length(); i++)
         {
-            for (j = 0; j < Keep.size(); j++)
+            if (!initializer_list_Contains(Keep, {i}))
             {
-                if (i == Keep.begin()[j])
+                for (uint64 j = 1; j < this->Engine->Actors.Actors.Length(); j++)
                 {
-                    break;
-                }
-            }
-
-            if (j == Keep.size())
-            {
-                for (uint64 k = 1; k < this->Engine->Actors.Actors.Length(); k++)
-                {
-                    if (this->Engine->Actors.Actors[k] == NULL)
+                    if (this->Engine->Actors.Actors[j] == NULL)
                     {
                         continue;
                     }
 
-                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Texts.Texts.Length(); l++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Texts.Texts.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[k]->Texts.Texts[l] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Texts.Texts[k] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine->Actors.Actors[k]->Texts.Texts[l]->FontID == i)
+                        if (this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID == i)
                         {
-                            this->Engine->Actors.Actors[k]->Texts.Texts[l]->FontID = 0;
+                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID = 0;
+                            SDL_DestroyTexture(this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture);
+                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture = NULL;
                         }
                     }
                 }
@@ -594,7 +556,7 @@ namespace wze
 
     uint8 engine::assets::PurgeFonts(array<uint64>* Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep->Length(); i++)
         {
@@ -607,33 +569,27 @@ namespace wze
 
         for (i = 1; i < this->Fonts.Length(); i++)
         {
-            for (j = 0; j < Keep->Length(); j++)
+            if (!Keep->Contains({i}))
             {
-                if (i == (*Keep)[j])
+                for (uint64 j = 1; j < this->Engine->Actors.Actors.Length(); j++)
                 {
-                    break;
-                }
-            }
-
-            if (j == Keep->Length())
-            {
-                for (uint64 k = 1; k < this->Engine->Actors.Actors.Length(); k++)
-                {
-                    if (this->Engine->Actors.Actors[k] == NULL)
+                    if (this->Engine->Actors.Actors[j] == NULL)
                     {
                         continue;
                     }
 
-                    for (uint64 l = 1; l < this->Engine->Actors.Actors[k]->Texts.Texts.Length(); l++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Texts.Texts.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[k]->Texts.Texts[l] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Texts.Texts[k] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine->Actors.Actors[k]->Texts.Texts[l]->FontID == i)
+                        if (this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID == i)
                         {
-                            this->Engine->Actors.Actors[k]->Texts.Texts[l]->FontID = 0;
+                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID = 0;
+                            SDL_DestroyTexture(this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture);
+                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture = NULL;
                         }
                     }
                 }
@@ -752,7 +708,7 @@ namespace wze
 
     uint8 engine::assets::PurgeCursors(std::initializer_list<uint64> Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep.size(); i++)
         {
@@ -765,15 +721,7 @@ namespace wze
 
         for (i = 1; i < this->Cursors.Length(); i++)
         {
-            for (j = 0; j < Keep.size(); j++)
-            {
-                if (i == Keep.begin()[j])
-                {
-                    break;
-                }
-            }
-
-            if (j == Keep.size())
+            if (!initializer_list_Contains(Keep, {i}))
             {
                 if (this->Engine->Mouse.Cursor == i)
                 {
@@ -803,7 +751,7 @@ namespace wze
 
     uint8 engine::assets::PurgeCursors(array<uint64>* Keep)
     {
-        uint64 i, j;
+        uint64 i;
 
         for (i = 0; i < Keep->Length(); i++)
         {
@@ -816,15 +764,7 @@ namespace wze
 
         for (i = 1; i < this->Cursors.Length(); i++)
         {
-            for (j = 0; j < Keep->Length(); j++)
-            {
-                if (i == (*Keep)[j])
-                {
-                    break;
-                }
-            }
-
-            if (j == Keep->Length())
+            if (!Keep->Contains({i}))
             {
                 if (this->Engine->Mouse.Cursor == i)
                 {

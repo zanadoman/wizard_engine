@@ -1,76 +1,74 @@
-#include "Includes/NeoTypes++.hpp"
 #include "WizardEngine.hpp"
-#include <initializer_list>
 
 namespace wze
 {
     engine::vector::vector(engine* Engine) : Engine(Engine) {}
 
-    double engine::vector::Length(double X1, double Y1, double X2, double Y2)
+    double engine::vector::Length(double InitialX, double InitialY, double TerminalX, double TerminalY)
     {
         double x, y;
 
-        if (X1 != X1)
+        if (InitialX != InitialX)
         {
-            printf("wze::engine.vector.Length(): X1 must not be NaN\nParams: X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", X1, Y1, X2, Y2);
+            printf("wze::engine.vector.Length(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
-        if (Y1 != Y1)
+        if (InitialY != InitialY)
         {
-            printf("wze::engine.vector.Length(): Y1 must not be NaN\nParams: X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", X1, Y1, X2, Y2);
+            printf("wze::engine.vector.Length(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
-        if (X2 != X2)
+        if (TerminalX != TerminalX)
         {
-            printf("wze::engine.vector.Length(): X2 must not be NaN\nParams: X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", X1, Y1, X2, Y2);
+            printf("wze::engine.vector.Length(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
-        if (Y2 != Y2)
+        if (TerminalY != TerminalY)
         {
-            printf("wze::engine.vector.Length(): Y2 must not be NaN\nParams: X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", X1, Y1, X2, Y2);
+            printf("wze::engine.vector.Length(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
 
-        x = X2 - X1;
-        y = Y2 - Y1;
+        x = TerminalX - InitialX;
+        y = TerminalY - InitialY;
 
-        return sqrt((x) * (x) + (y) * (y));
+        return sqrt(x * x + y * y);
     }
 
-    double engine::vector::Angle(double X1, double Y1, double X2, double Y2)
+    double engine::vector::Angle(double InitialX, double InitialY, double TerminalX, double TerminalY)
     {
         double x, y;
 
-        if (X1 != X1)
+        if (InitialX != InitialX)
         {
-            printf("wze::engine.vector.Angle(): X1 must not be NaN\nParams: X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", X1, Y1, X2, Y2);
+            printf("wze::engine.vector.Angle(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
-        if (Y1 != Y1)
+        if (InitialY != InitialY)
         {
-            printf("wze::engine.vector.Angle(): Y1 must not be NaN\nParams: X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", X1, Y1, X2, Y2);
+            printf("wze::engine.vector.Angle(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
-        if (X2 != X2)
+        if (TerminalX != TerminalX)
         {
-            printf("wze::engine.vector.Angle(): X2 must not be NaN\nParams: X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", X1, Y1, X2, Y2);
+            printf("wze::engine.vector.Angle(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
-        if (Y2 != Y2)
+        if (TerminalY != TerminalY)
         {
-            printf("wze::engine.vector.Angle(): Y2 must not be NaN\nParams: X1: %lf, Y1: %lf, X2: %lf, Y2: %lf\n", X1, Y1, X2, Y2);
+            printf("wze::engine.vector.Angle(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
 
-        x = X2 - X1;
-        y = Y2 - Y1;
+        x = TerminalX - InitialX;
+        y = TerminalY - InitialY;
 
-        if (Y2 < Y1)
+        if (TerminalY < InitialY)
         {
             return 360 - acos((x) / sqrt((x) * (x) + (y) * (y))) * DEG;
         }
 
-        return acos((x) / sqrt((x) * (x) + (y) * (y))) * DEG;
+        return acos(x / sqrt((x) * (x) + (y) * (y))) * DEG;
     }
 
     double engine::vector::TerminalX(double InitialX, double Length, double Angle)
@@ -99,8 +97,9 @@ namespace wze
     {
         double RayTopLeftX;
         double RayTopLeftY;
-        double RayAngle;
         double RayLength;
+        double RayAngle;
+        double x, y;
         array<actors::actor::overlapboxes::overlapbox*> cache(this->Engine->Collision.BufferSize);
         uint64 i;
 
@@ -166,8 +165,18 @@ namespace wze
 
         RayTopLeftX = InitialX - (RaySize >> 1);
         RayTopLeftY = InitialY + (RaySize >> 1);
-        RayAngle = this->Angle(InitialX, InitialY, TerminalX, TerminalY);
-        RayLength = this->Length(InitialX, InitialY, TerminalX, TerminalY);
+
+        x = TerminalX - InitialX;
+        y = TerminalY - InitialY;
+        RayLength = sqrt(x * x + y * y);
+        if (TerminalY < InitialY)
+        {
+            RayAngle = 6.283185307179586 - acos(x / RayLength);
+        }
+        else
+        {
+            RayAngle = acos(x / RayLength);
+        }
 
         while (0 < RayLength)
         {
@@ -179,8 +188,8 @@ namespace wze
                 }
             }
 
-            RayTopLeftX += SamplingStep * cos(RayAngle * RAD);
-            RayTopLeftY += SamplingStep * sin(RayAngle * RAD);
+            RayTopLeftX += SamplingStep * cos(RayAngle);
+            RayTopLeftY += SamplingStep * sin(RayAngle);
             RayLength -= SamplingStep;
         }
 

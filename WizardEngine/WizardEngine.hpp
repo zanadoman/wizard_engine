@@ -2,7 +2,6 @@
 
 #include "Includes/NeoTypes++.hpp"
 #include <ctime>
-#include <initializer_list>
 
 #ifdef __linux__
 #include <SDL2/SDL.h>
@@ -696,8 +695,8 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    double Length(double X1, double Y1, double X2, double Y2);
-                    double Angle(double X1, double Y1, double X2, double Y2);
+                    double Length(double InitialX, double InitialY, double TerminalX, double TerminalY);
+                    double Angle(double InitialX, double InitialY, double TerminalX, double TerminalY);
                     double TerminalX(double InitialX, double Length, double Angle);
                     double TerminalY(double InitialY, double Length, double Angle);
                     bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
