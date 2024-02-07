@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0:
-.LFB8371:
+.LFB8373:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.i
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8371:
+.LFE8373:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -160,7 +160,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.i
 	.globl	_ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_
 	.type	_ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_, @function
 _ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_:
-.LFB8145:
+.LFB8147:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -205,7 +205,7 @@ _ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8145:
+.LFE8147:
 	.size	_ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_, .-_ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_
 	.globl	_ZN3wze6engine6actors5actor12overlapboxesC1EPS0_PS2_
 	.set	_ZN3wze6engine6actors5actor12overlapboxesC1EPS0_PS2_,_ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_
@@ -214,7 +214,7 @@ _ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxesD2Ev
 	.type	_ZN3wze6engine6actors5actor12overlapboxesD2Ev, @function
 _ZN3wze6engine6actors5actor12overlapboxesD2Ev:
-.LFB8148:
+.LFB8150:
 	.cfi_startproc
 	movq	16(%rdi), %rdx
 	movq	24(%rdi), %rax
@@ -277,7 +277,7 @@ _ZN3wze6engine6actors5actor12overlapboxesD2Ev:
 	movq	%rax, %rdi
 	jmp	free@PLT
 	.cfi_endproc
-.LFE8148:
+.LFE8150:
 	.size	_ZN3wze6engine6actors5actor12overlapboxesD2Ev, .-_ZN3wze6engine6actors5actor12overlapboxesD2Ev
 	.globl	_ZN3wze6engine6actors5actor12overlapboxesD1Ev
 	.set	_ZN3wze6engine6actors5actor12overlapboxesD1Ev,_ZN3wze6engine6actors5actor12overlapboxesD2Ev
@@ -297,7 +297,7 @@ _ZN3wze6engine6actors5actor12overlapboxesD2Ev:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes6DeleteEy
 	.type	_ZN3wze6engine6actors5actor12overlapboxes6DeleteEy, @function
 _ZN3wze6engine6actors5actor12overlapboxes6DeleteEy:
-.LFB8151:
+.LFB8153:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -396,7 +396,7 @@ _ZN3wze6engine6actors5actor12overlapboxes6DeleteEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8151:
+.LFE8153:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes6DeleteEy, .-_ZN3wze6engine6actors5actor12overlapboxes6DeleteEy
 	.section	.rodata.str1.8
 	.align 8
@@ -408,7 +408,7 @@ _ZN3wze6engine6actors5actor12overlapboxes6DeleteEy:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE
 	.type	_ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE, @function
 _ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE:
-.LFB8152:
+.LFB8154:
 	.cfi_startproc
 	pushq	%r14
 	.cfi_def_cfa_offset 16
@@ -569,7 +569,7 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE:
 	movq	%rbp, %rsi
 	jmp	.L100
 	.cfi_endproc
-.LFE8152:
+.LFE8154:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
@@ -581,7 +581,7 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE, @function
 _ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE:
-.LFB8155:
+.LFB8157:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
@@ -755,7 +755,7 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE:
 	movq	%rbx, %rsi
 	jmp	.L142
 	.cfi_endproc
-.LFE8155:
+.LFE8157:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
@@ -770,7 +770,7 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxesixEy
 	.type	_ZN3wze6engine6actors5actor12overlapboxesixEy, @function
 _ZN3wze6engine6actors5actor12overlapboxesixEy:
-.LFB8156:
+.LFB8158:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -800,18 +800,18 @@ _ZN3wze6engine6actors5actor12overlapboxesixEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8156:
+.LFE8158:
 	.size	_ZN3wze6engine6actors5actor12overlapboxesixEy, .-_ZN3wze6engine6actors5actor12overlapboxesixEy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev:
-.LFB8161:
+.LFB8163:
 	.cfi_startproc
 	ret
 	.cfi_endproc
-.LFE8161:
+.LFE8163:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxD1Ev
 	.set	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxD1Ev,_ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev
@@ -820,50 +820,50 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv:
-.LFB8163:
+.LFB8165:
 	.cfi_startproc
 	movq	8(%rdi), %rax
 	movq	200(%rax), %rax
 	ret
 	.cfi_endproc
-.LFE8163:
+.LFE8165:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv:
-.LFB8164:
+.LFB8166:
 	.cfi_startproc
 	movq	8(%rdi), %rax
 	movq	208(%rax), %rax
 	ret
 	.cfi_endproc
-.LFE8164:
+.LFE8166:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv:
-.LFB8165:
+.LFB8167:
 	.cfi_startproc
 	movq	24(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE8165:
+.LFE8167:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv:
-.LFB8166:
+.LFB8168:
 	.cfi_startproc
 	movsd	32(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8166:
+.LFE8168:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv
 	.section	.rodata.str1.8
 	.align 8
@@ -875,7 +875,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
-.LFB8167:
+.LFB8169:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -944,19 +944,19 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8167:
+.LFE8169:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv:
-.LFB8168:
+.LFB8170:
 	.cfi_startproc
 	movsd	40(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8168:
+.LFE8170:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv
 	.section	.rodata.str1.8
 	.align 8
@@ -968,7 +968,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
-.LFB8169:
+.LFB8171:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1037,82 +1037,82 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8169:
+.LFE8171:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv:
-.LFB8170:
+.LFB8172:
 	.cfi_startproc
 	movzwl	48(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8170:
+.LFE8172:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv:
-.LFB8172:
+.LFB8174:
 	.cfi_startproc
 	movzwl	50(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8172:
+.LFE8174:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv:
-.LFB8174:
+.LFB8176:
 	.cfi_startproc
 	movsd	56(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8174:
+.LFE8176:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv:
-.LFB8176:
+.LFB8178:
 	.cfi_startproc
 	movzwl	80(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8176:
+.LFE8178:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv:
-.LFB8177:
+.LFB8179:
 	.cfi_startproc
 	movzwl	82(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8177:
+.LFE8179:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv
 	.section	.rodata.str1.8
 	.align 8
 .LC14:
-	.string	"wze::engine.actors[].overlapboxes[].IsCollidingWith(): Actor does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n"
+	.string	"wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Actor does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n"
 	.align 8
 .LC15:
-	.string	"wze::engine.actors[].overlapboxes[].IsCollidingWith(): Overlapbox does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n"
+	.string	"wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Overlapbox does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15IsCollidingWithEyy
-	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15IsCollidingWithEyy, @function
-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15IsCollidingWithEyy:
-.LFB8178:
+	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy
+	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy, @function
+_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy:
+.LFB8180:
 	.cfi_startproc
 	testq	%rsi, %rsi
 	je	.L217
@@ -1168,8 +1168,8 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15IsCollidingWithEyy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8178:
-	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15IsCollidingWithEyy, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15IsCollidingWithEyy
+.LFE8180:
+	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy
 	.section	.rodata.str1.8
 	.align 8
 .LC16:
@@ -1180,10 +1180,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15IsCollidingWithEyy:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOverlapInfoEPN3neo5arrayINS6_IyEEEE
-	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOverlapInfoEPN3neo5arrayINS6_IyEEEE, @function
-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOverlapInfoEPN3neo5arrayINS6_IyEEEE:
-.LFB8179:
+	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEE
+	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEE, @function
+_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEE:
+.LFB8181:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -1394,14 +1394,14 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOverlapInfoEPN3neo5arr
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8179:
-	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOverlapInfoEPN3neo5arrayINS6_IyEEEE, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOverlapInfoEPN3neo5arrayINS6_IyEEEE
+.LFE8181:
+	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEE, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEE
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv:
-.LFB8180:
+.LFB8182:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
@@ -1541,14 +1541,14 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv:
 	cmove	%edx, %eax
 	jmp	.L267
 	.cfi_endproc
-.LFE8180:
+.LFE8182:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv:
-.LFB8181:
+.LFB8183:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -1700,14 +1700,14 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8181:
+.LFE8183:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
-.LFB8158:
+.LFB8160:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1792,7 +1792,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
 	.cfi_endproc
-.LFE8158:
+.LFE8160:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC1EPS0_PS2_y
 	.set	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC1EPS0_PS2_y,_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y
@@ -1810,10 +1810,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes3NewEy
 	.type	_ZN3wze6engine6actors5actor12overlapboxes3NewEy, @function
 _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
-.LFB8150:
+.LFB8152:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8150
+	.cfi_lsda 0x1b,.LLSDA8152
 	pushq	%r13
 	.cfi_def_cfa_offset 16
 	.cfi_offset 13, -16
@@ -1954,42 +1954,42 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	jmp	.L314
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8150:
+.LLSDA8152:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8150-.LLSDACSB8150
-.LLSDACSB8150:
-	.uleb128 .LEHB0-.LFB8150
+	.uleb128 .LLSDACSE8152-.LLSDACSB8152
+.LLSDACSB8152:
+	.uleb128 .LEHB0-.LFB8152
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8150
+	.uleb128 .LEHB1-.LFB8152
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L320-.LFB8150
+	.uleb128 .L320-.LFB8152
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8150
+	.uleb128 .LEHB2-.LFB8152
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8150
+	.uleb128 .LEHB3-.LFB8152
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L319-.LFB8150
+	.uleb128 .L319-.LFB8152
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8150
+	.uleb128 .LEHB4-.LFB8152
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8150:
+.LLSDACSE8152:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8150
+	.cfi_lsda 0x1b,.LLSDAC8152
 	.type	_ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold, @function
 _ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold:
-.LFSB8150:
+.LFSB8152:
 .L316:
 	.cfi_def_cfa_offset 64
 	.cfi_offset 3, -40
@@ -2018,19 +2018,19 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold:
 .L324:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8150:
+.LFE8152:
 	.section	.gcc_except_table
-.LLSDAC8150:
+.LLSDAC8152:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8150-.LLSDACSBC8150
-.LLSDACSBC8150:
+	.uleb128 .LLSDACSEC8152-.LLSDACSBC8152
+.LLSDACSBC8152:
 	.uleb128 .LEHB5-.LCOLDB22
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8150:
+.LLSDACSEC8152:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6actors5actor12overlapboxes3NewEy, .-_ZN3wze6engine6actors5actor12overlapboxes3NewEy
@@ -2044,7 +2044,7 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
-.LFB8171:
+.LFB8173:
 	.cfi_startproc
 	pushq	%r14
 	.cfi_def_cfa_offset 16
@@ -2121,14 +2121,14 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	jmp	.L336
 	.cfi_endproc
-.LFE8171:
+.LFE8173:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
-.LFB8173:
+.LFB8175:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -2201,7 +2201,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	jmp	.L345
 	.cfi_endproc
-.LFE8173:
+.LFE8175:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt
 	.section	.rodata.str1.8
 	.align 8
@@ -2213,7 +2213,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd:
-.LFB8175:
+.LFB8177:
 	.cfi_startproc
 	ucomisd	%xmm0, %xmm0
 	pushq	%rbx
@@ -2236,7 +2236,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8175:
+.LFE8177:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

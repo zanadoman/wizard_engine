@@ -1,4 +1,3 @@
-#include "WZEEnums.hpp"
 #include "WizardEngine.hpp"
 
 namespace wze
@@ -323,7 +322,7 @@ namespace wze
         return this->ActiveHeight;
     }
 
-    bool engine::actors::actor::overlapboxes::overlapbox::IsCollidingWith(uint64 ActorID, uint64 OverlapboxID)
+    bool engine::actors::actor::overlapboxes::overlapbox::IsOverlappingWith(uint64 ActorID, uint64 OverlapboxID)
     {
         if (ActorID == 0)
         {
@@ -331,7 +330,7 @@ namespace wze
         }
         if (this->Engine->Actors.Actors.Length() <= ActorID || this->Engine->Actors.Actors[ActorID] == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes[].IsCollidingWith(): Actor does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n", ActorID, OverlapboxID);
+            printf("wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Actor does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n", ActorID, OverlapboxID);
             exit(1);
         }
         if (OverlapboxID == 0)
@@ -340,14 +339,14 @@ namespace wze
         }
         if (this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes.Length() <= OverlapboxID || this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID] == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes[].IsCollidingWith(): Overlapbox does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n", ActorID, OverlapboxID);
+            printf("wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Overlapbox does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n", ActorID, OverlapboxID);
             exit(1);
         }
 
         return this->Engine->Collision.CheckOverlap(this, this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID]);
     }
 
-    uint8 engine::actors::actor::overlapboxes::overlapbox::GetOverlapInfo(array<array<uint64>>* OverlapboxesByActors)
+    uint8 engine::actors::actor::overlapboxes::overlapbox::GetOverlapState(array<array<uint64>>* OverlapboxesByActors)
     {
         OverlapboxesByActors->Clear();
         OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());

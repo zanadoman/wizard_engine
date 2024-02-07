@@ -9,7 +9,7 @@
 	.globl	_ZN5crateC2EPN3wze6engineEddtt
 	.type	_ZN5crateC2EPN3wze6engineEddtt, @function
 _ZN5crateC2EPN3wze6engineEddtt:
-.LFB8145:
+.LFB8147:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -63,23 +63,30 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movsd	.LC2(%rip), %xmm0
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	632(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
+	movl	$1, %esi
+	movq	%rax, %rdi
+	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi
 	addq	$632, %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	addq	$16, %rsp
 	.cfi_def_cfa_offset 32
-	movl	$1, %esi
+	xorl	%esi, %esi
 	popq	%rbx
 	.cfi_def_cfa_offset 24
-	movq	%rax, %rdi
+	leaq	136(%rax), %rdi
 	popq	%rbp
 	.cfi_def_cfa_offset 16
 	popq	%r12
 	.cfi_def_cfa_offset 8
-	jmp	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
+	jmp	_ZN3wze6engine6actors5actor12overlapboxes3NewEy@PLT
 	.cfi_endproc
-.LFE8145:
+.LFE8147:
 	.size	_ZN5crateC2EPN3wze6engineEddtt, .-_ZN5crateC2EPN3wze6engineEddtt
 	.globl	_ZN5crateC1EPN3wze6engineEddtt
 	.set	_ZN5crateC1EPN3wze6engineEddtt,_ZN5crateC2EPN3wze6engineEddtt
@@ -88,10 +95,10 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	.globl	_ZN5crateD2Ev
 	.type	_ZN5crateD2Ev, @function
 _ZN5crateD2Ev:
-.LFB8148:
+.LFB8150:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8148
+	.cfi_lsda 0x1b,.LLSDA8150
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -108,16 +115,16 @@ _ZN5crateD2Ev:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8148:
+.LFE8150:
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8148:
+.LLSDA8150:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8148-.LLSDACSB8148
-.LLSDACSB8148:
-.LLSDACSE8148:
+	.uleb128 .LLSDACSE8150-.LLSDACSB8150
+.LLSDACSB8150:
+.LLSDACSE8150:
 	.text
 	.size	_ZN5crateD2Ev, .-_ZN5crateD2Ev
 	.globl	_ZN5crateD1Ev

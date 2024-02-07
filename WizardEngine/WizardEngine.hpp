@@ -2,6 +2,7 @@
 
 #include "Includes/NeoTypes++.hpp"
 #include <ctime>
+#include <initializer_list>
 
 #ifdef __linux__
 #include <SDL2/SDL.h>
@@ -545,8 +546,8 @@ namespace wze
                                     double SetAngle(double Angle);
                                     uint16 GetActiveWidth();
                                     uint16 GetActiveHeight();
-                                    bool IsCollidingWith(uint64 ActorID, uint64 OverlapboxID);
-                                    uint8 GetOverlapInfo(array<array<uint64>>* OverlapboxesByActors);
+                                    bool IsOverlappingWith(uint64 ActorID, uint64 OverlapboxID);
+                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors);
                                     button GetButtonState();
 
                                 private:
@@ -679,6 +680,7 @@ namespace wze
                     array<array<actors::actor*>> CollisionLayers;
                     collision(engine* Engine);
                     bool CheckOverlap(actors::actor::overlapboxes::overlapbox* Overlapbox1, actors::actor::overlapboxes::overlapbox* Overlapbox2);
+                    bool CheckOverlap(double Overlapbox1TopLeftX, double Overlapbox1TopLeftY, double Overlapbox1BotRightX, double Overlapbox1BotRightY, actors::actor::overlapboxes::overlapbox* Overlapbox2);
                     bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
                     direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
                     bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
@@ -698,6 +700,7 @@ namespace wze
                     double Angle(double X1, double Y1, double X2, double Y2);
                     double TerminalX(double InitialX, double Length, double Angle);
                     double TerminalY(double InitialY, double Length, double Angle);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
 
                 private:
                     vector(engine* Engine);

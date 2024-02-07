@@ -5,7 +5,7 @@
 	.globl	_ZN3wze6engine6cameraC2EPS0_
 	.type	_ZN3wze6engine6cameraC2EPS0_, @function
 _ZN3wze6engine6cameraC2EPS0_:
-.LFB8145:
+.LFB8147:
 	.cfi_startproc
 	pxor	%xmm1, %xmm1
 	pxor	%xmm0, %xmm0
@@ -29,7 +29,7 @@ _ZN3wze6engine6cameraC2EPS0_:
 	movups	%xmm0, 152(%rdi)
 	ret
 	.cfi_endproc
-.LFE8145:
+.LFE8147:
 	.size	_ZN3wze6engine6cameraC2EPS0_, .-_ZN3wze6engine6cameraC2EPS0_
 	.globl	_ZN3wze6engine6cameraC1EPS0_
 	.set	_ZN3wze6engine6cameraC1EPS0_,_ZN3wze6engine6cameraC2EPS0_
@@ -38,12 +38,12 @@ _ZN3wze6engine6cameraC2EPS0_:
 	.globl	_ZN3wze6engine6camera7GetZoomEv
 	.type	_ZN3wze6engine6camera7GetZoomEv, @function
 _ZN3wze6engine6camera7GetZoomEv:
-.LFB8147:
+.LFB8149:
 	.cfi_startproc
 	movsd	64(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8147:
+.LFE8149:
 	.size	_ZN3wze6engine6camera7GetZoomEv, .-_ZN3wze6engine6camera7GetZoomEv
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
@@ -58,7 +58,7 @@ _ZN3wze6engine6camera7GetZoomEv:
 	.globl	_ZN3wze6engine6camera7SetZoomEd
 	.type	_ZN3wze6engine6camera7SetZoomEd, @function
 _ZN3wze6engine6camera7SetZoomEd:
-.LFB8148:
+.LFB8150:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -86,31 +86,31 @@ _ZN3wze6engine6camera7SetZoomEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8148:
+.LFE8150:
 	.size	_ZN3wze6engine6camera7SetZoomEd, .-_ZN3wze6engine6camera7SetZoomEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera9GetXActorEv
 	.type	_ZN3wze6engine6camera9GetXActorEv, @function
 _ZN3wze6engine6camera9GetXActorEv:
-.LFB8149:
+.LFB8151:
 	.cfi_startproc
 	movq	32(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE8149:
+.LFE8151:
 	.size	_ZN3wze6engine6camera9GetXActorEv, .-_ZN3wze6engine6camera9GetXActorEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera9GetYActorEv
 	.type	_ZN3wze6engine6camera9GetYActorEv, @function
 _ZN3wze6engine6camera9GetYActorEv:
-.LFB8150:
+.LFB8152:
 	.cfi_startproc
 	movq	40(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE8150:
+.LFE8152:
 	.size	_ZN3wze6engine6camera9GetYActorEv, .-_ZN3wze6engine6camera9GetYActorEv
 	.section	.rodata.str1.8
 	.align 8
@@ -128,7 +128,7 @@ _ZN3wze6engine6camera9GetYActorEv:
 	.globl	_ZN3wze6engine6camera4BindEy
 	.type	_ZN3wze6engine6camera4BindEy, @function
 _ZN3wze6engine6camera4BindEy:
-.LFB8151:
+.LFB8153:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -174,7 +174,7 @@ _ZN3wze6engine6camera4BindEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8151:
+.LFE8153:
 	.size	_ZN3wze6engine6camera4BindEy, .-_ZN3wze6engine6camera4BindEy
 	.section	.rodata.str1.8
 	.align 8
@@ -192,7 +192,7 @@ _ZN3wze6engine6camera4BindEy:
 	.globl	_ZN3wze6engine6camera5BindXEy
 	.type	_ZN3wze6engine6camera5BindXEy, @function
 _ZN3wze6engine6camera5BindXEy:
-.LFB8152:
+.LFB8154:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -236,7 +236,7 @@ _ZN3wze6engine6camera5BindXEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8152:
+.LFE8154:
 	.size	_ZN3wze6engine6camera5BindXEy, .-_ZN3wze6engine6camera5BindXEy
 	.section	.rodata.str1.8
 	.align 8
@@ -254,7 +254,7 @@ _ZN3wze6engine6camera5BindXEy:
 	.globl	_ZN3wze6engine6camera5BindYEy
 	.type	_ZN3wze6engine6camera5BindYEy, @function
 _ZN3wze6engine6camera5BindYEy:
-.LFB8153:
+.LFB8155:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -298,59 +298,59 @@ _ZN3wze6engine6camera5BindYEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8153:
+.LFE8155:
 	.size	_ZN3wze6engine6camera5BindYEy, .-_ZN3wze6engine6camera5BindYEy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera6UnbindEv
 	.type	_ZN3wze6engine6camera6UnbindEv, @function
 _ZN3wze6engine6camera6UnbindEv:
-.LFB8154:
+.LFB8156:
 	.cfi_startproc
 	pxor	%xmm0, %xmm0
 	xorl	%eax, %eax
 	movups	%xmm0, 32(%rdi)
 	ret
 	.cfi_endproc
-.LFE8154:
+.LFE8156:
 	.size	_ZN3wze6engine6camera6UnbindEv, .-_ZN3wze6engine6camera6UnbindEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera7UnbindXEv
 	.type	_ZN3wze6engine6camera7UnbindXEv, @function
 _ZN3wze6engine6camera7UnbindXEv:
-.LFB8155:
+.LFB8157:
 	.cfi_startproc
 	movq	$0, 32(%rdi)
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-.LFE8155:
+.LFE8157:
 	.size	_ZN3wze6engine6camera7UnbindXEv, .-_ZN3wze6engine6camera7UnbindXEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera7UnbindYEv
 	.type	_ZN3wze6engine6camera7UnbindYEv, @function
 _ZN3wze6engine6camera7UnbindYEv:
-.LFB8156:
+.LFB8158:
 	.cfi_startproc
 	movq	$0, 40(%rdi)
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-.LFE8156:
+.LFE8158:
 	.size	_ZN3wze6engine6camera7UnbindYEv, .-_ZN3wze6engine6camera7UnbindYEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera12GetMinSpeedXEv
 	.type	_ZN3wze6engine6camera12GetMinSpeedXEv, @function
 _ZN3wze6engine6camera12GetMinSpeedXEv:
-.LFB8157:
+.LFB8159:
 	.cfi_startproc
 	movsd	72(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8157:
+.LFE8159:
 	.size	_ZN3wze6engine6camera12GetMinSpeedXEv, .-_ZN3wze6engine6camera12GetMinSpeedXEv
 	.section	.rodata.str1.8
 	.align 8
@@ -368,7 +368,7 @@ _ZN3wze6engine6camera12GetMinSpeedXEv:
 	.globl	_ZN3wze6engine6camera12SetMinSpeedXEd
 	.type	_ZN3wze6engine6camera12SetMinSpeedXEd, @function
 _ZN3wze6engine6camera12SetMinSpeedXEd:
-.LFB8158:
+.LFB8160:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -410,19 +410,19 @@ _ZN3wze6engine6camera12SetMinSpeedXEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8158:
+.LFE8160:
 	.size	_ZN3wze6engine6camera12SetMinSpeedXEd, .-_ZN3wze6engine6camera12SetMinSpeedXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera12GetMinSpeedYEv
 	.type	_ZN3wze6engine6camera12GetMinSpeedYEv, @function
 _ZN3wze6engine6camera12GetMinSpeedYEv:
-.LFB8159:
+.LFB8161:
 	.cfi_startproc
 	movsd	80(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8159:
+.LFE8161:
 	.size	_ZN3wze6engine6camera12GetMinSpeedYEv, .-_ZN3wze6engine6camera12GetMinSpeedYEv
 	.section	.rodata.str1.8
 	.align 8
@@ -440,7 +440,7 @@ _ZN3wze6engine6camera12GetMinSpeedYEv:
 	.globl	_ZN3wze6engine6camera12SetMinSpeedYEd
 	.type	_ZN3wze6engine6camera12SetMinSpeedYEd, @function
 _ZN3wze6engine6camera12SetMinSpeedYEd:
-.LFB8160:
+.LFB8162:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -482,19 +482,19 @@ _ZN3wze6engine6camera12SetMinSpeedYEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8160:
+.LFE8162:
 	.size	_ZN3wze6engine6camera12SetMinSpeedYEd, .-_ZN3wze6engine6camera12SetMinSpeedYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera12GetMaxSpeedXEv
 	.type	_ZN3wze6engine6camera12GetMaxSpeedXEv, @function
 _ZN3wze6engine6camera12GetMaxSpeedXEv:
-.LFB8161:
+.LFB8163:
 	.cfi_startproc
 	movsd	88(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8161:
+.LFE8163:
 	.size	_ZN3wze6engine6camera12GetMaxSpeedXEv, .-_ZN3wze6engine6camera12GetMaxSpeedXEv
 	.section	.rodata.str1.8
 	.align 8
@@ -512,7 +512,7 @@ _ZN3wze6engine6camera12GetMaxSpeedXEv:
 	.globl	_ZN3wze6engine6camera12SetMaxSpeedXEd
 	.type	_ZN3wze6engine6camera12SetMaxSpeedXEd, @function
 _ZN3wze6engine6camera12SetMaxSpeedXEd:
-.LFB8162:
+.LFB8164:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -554,19 +554,19 @@ _ZN3wze6engine6camera12SetMaxSpeedXEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8162:
+.LFE8164:
 	.size	_ZN3wze6engine6camera12SetMaxSpeedXEd, .-_ZN3wze6engine6camera12SetMaxSpeedXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera12GetMaxSpeedYEv
 	.type	_ZN3wze6engine6camera12GetMaxSpeedYEv, @function
 _ZN3wze6engine6camera12GetMaxSpeedYEv:
-.LFB8163:
+.LFB8165:
 	.cfi_startproc
 	movsd	96(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8163:
+.LFE8165:
 	.size	_ZN3wze6engine6camera12GetMaxSpeedYEv, .-_ZN3wze6engine6camera12GetMaxSpeedYEv
 	.section	.rodata.str1.8
 	.align 8
@@ -584,7 +584,7 @@ _ZN3wze6engine6camera12GetMaxSpeedYEv:
 	.globl	_ZN3wze6engine6camera12SetMaxSpeedYEd
 	.type	_ZN3wze6engine6camera12SetMaxSpeedYEd, @function
 _ZN3wze6engine6camera12SetMaxSpeedYEd:
-.LFB8164:
+.LFB8166:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -626,19 +626,19 @@ _ZN3wze6engine6camera12SetMaxSpeedYEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8164:
+.LFE8166:
 	.size	_ZN3wze6engine6camera12SetMaxSpeedYEd, .-_ZN3wze6engine6camera12SetMaxSpeedYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera20GetDecelerationRateXEv
 	.type	_ZN3wze6engine6camera20GetDecelerationRateXEv, @function
 _ZN3wze6engine6camera20GetDecelerationRateXEv:
-.LFB8165:
+.LFB8167:
 	.cfi_startproc
 	movsd	104(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8165:
+.LFE8167:
 	.size	_ZN3wze6engine6camera20GetDecelerationRateXEv, .-_ZN3wze6engine6camera20GetDecelerationRateXEv
 	.section	.rodata.str1.8
 	.align 8
@@ -653,7 +653,7 @@ _ZN3wze6engine6camera20GetDecelerationRateXEv:
 	.globl	_ZN3wze6engine6camera20SetDecelerationRateXEd
 	.type	_ZN3wze6engine6camera20SetDecelerationRateXEd, @function
 _ZN3wze6engine6camera20SetDecelerationRateXEd:
-.LFB8166:
+.LFB8168:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -681,19 +681,19 @@ _ZN3wze6engine6camera20SetDecelerationRateXEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8166:
+.LFE8168:
 	.size	_ZN3wze6engine6camera20SetDecelerationRateXEd, .-_ZN3wze6engine6camera20SetDecelerationRateXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera20GetDecelerationRateYEv
 	.type	_ZN3wze6engine6camera20GetDecelerationRateYEv, @function
 _ZN3wze6engine6camera20GetDecelerationRateYEv:
-.LFB8167:
+.LFB8169:
 	.cfi_startproc
 	movsd	112(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8167:
+.LFE8169:
 	.size	_ZN3wze6engine6camera20GetDecelerationRateYEv, .-_ZN3wze6engine6camera20GetDecelerationRateYEv
 	.section	.rodata.str1.8
 	.align 8
@@ -708,7 +708,7 @@ _ZN3wze6engine6camera20GetDecelerationRateYEv:
 	.globl	_ZN3wze6engine6camera20SetDecelerationRateYEd
 	.type	_ZN3wze6engine6camera20SetDecelerationRateYEd, @function
 _ZN3wze6engine6camera20SetDecelerationRateYEd:
-.LFB8168:
+.LFB8170:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -736,19 +736,19 @@ _ZN3wze6engine6camera20SetDecelerationRateYEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8168:
+.LFE8170:
 	.size	_ZN3wze6engine6camera20SetDecelerationRateYEd, .-_ZN3wze6engine6camera20SetDecelerationRateYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera20GetAccelerationRateXEv
 	.type	_ZN3wze6engine6camera20GetAccelerationRateXEv, @function
 _ZN3wze6engine6camera20GetAccelerationRateXEv:
-.LFB8169:
+.LFB8171:
 	.cfi_startproc
 	movsd	120(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8169:
+.LFE8171:
 	.size	_ZN3wze6engine6camera20GetAccelerationRateXEv, .-_ZN3wze6engine6camera20GetAccelerationRateXEv
 	.section	.rodata.str1.8
 	.align 8
@@ -763,7 +763,7 @@ _ZN3wze6engine6camera20GetAccelerationRateXEv:
 	.globl	_ZN3wze6engine6camera20SetAccelerationRateXEd
 	.type	_ZN3wze6engine6camera20SetAccelerationRateXEd, @function
 _ZN3wze6engine6camera20SetAccelerationRateXEd:
-.LFB8170:
+.LFB8172:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -791,19 +791,19 @@ _ZN3wze6engine6camera20SetAccelerationRateXEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8170:
+.LFE8172:
 	.size	_ZN3wze6engine6camera20SetAccelerationRateXEd, .-_ZN3wze6engine6camera20SetAccelerationRateXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera20GetAccelerationRateYEv
 	.type	_ZN3wze6engine6camera20GetAccelerationRateYEv, @function
 _ZN3wze6engine6camera20GetAccelerationRateYEv:
-.LFB8171:
+.LFB8173:
 	.cfi_startproc
 	movsd	128(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8171:
+.LFE8173:
 	.size	_ZN3wze6engine6camera20GetAccelerationRateYEv, .-_ZN3wze6engine6camera20GetAccelerationRateYEv
 	.section	.rodata.str1.8
 	.align 8
@@ -818,7 +818,7 @@ _ZN3wze6engine6camera20GetAccelerationRateYEv:
 	.globl	_ZN3wze6engine6camera20SetAccelerationRateYEd
 	.type	_ZN3wze6engine6camera20SetAccelerationRateYEd, @function
 _ZN3wze6engine6camera20SetAccelerationRateYEd:
-.LFB8172:
+.LFB8174:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -846,19 +846,19 @@ _ZN3wze6engine6camera20SetAccelerationRateYEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8172:
+.LFE8174:
 	.size	_ZN3wze6engine6camera20SetAccelerationRateYEd, .-_ZN3wze6engine6camera20SetAccelerationRateYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera17GetSlowDownRangeXEv
 	.type	_ZN3wze6engine6camera17GetSlowDownRangeXEv, @function
 _ZN3wze6engine6camera17GetSlowDownRangeXEv:
-.LFB8173:
+.LFB8175:
 	.cfi_startproc
 	movsd	136(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8173:
+.LFE8175:
 	.size	_ZN3wze6engine6camera17GetSlowDownRangeXEv, .-_ZN3wze6engine6camera17GetSlowDownRangeXEv
 	.section	.rodata.str1.8
 	.align 8
@@ -873,7 +873,7 @@ _ZN3wze6engine6camera17GetSlowDownRangeXEv:
 	.globl	_ZN3wze6engine6camera17SetSlowDownRangeXEd
 	.type	_ZN3wze6engine6camera17SetSlowDownRangeXEd, @function
 _ZN3wze6engine6camera17SetSlowDownRangeXEd:
-.LFB8174:
+.LFB8176:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -901,19 +901,19 @@ _ZN3wze6engine6camera17SetSlowDownRangeXEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8174:
+.LFE8176:
 	.size	_ZN3wze6engine6camera17SetSlowDownRangeXEd, .-_ZN3wze6engine6camera17SetSlowDownRangeXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera17GetSlowDownRangeYEv
 	.type	_ZN3wze6engine6camera17GetSlowDownRangeYEv, @function
 _ZN3wze6engine6camera17GetSlowDownRangeYEv:
-.LFB8175:
+.LFB8177:
 	.cfi_startproc
 	movsd	144(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8175:
+.LFE8177:
 	.size	_ZN3wze6engine6camera17GetSlowDownRangeYEv, .-_ZN3wze6engine6camera17GetSlowDownRangeYEv
 	.section	.rodata.str1.8
 	.align 8
@@ -928,7 +928,7 @@ _ZN3wze6engine6camera17GetSlowDownRangeYEv:
 	.globl	_ZN3wze6engine6camera17SetSlowDownRangeYEd
 	.type	_ZN3wze6engine6camera17SetSlowDownRangeYEd, @function
 _ZN3wze6engine6camera17SetSlowDownRangeYEd:
-.LFB8176:
+.LFB8178:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -956,7 +956,7 @@ _ZN3wze6engine6camera17SetSlowDownRangeYEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8176:
+.LFE8178:
 	.size	_ZN3wze6engine6camera17SetSlowDownRangeYEd, .-_ZN3wze6engine6camera17SetSlowDownRangeYEd
 	.section	.rodata.str1.8
 	.align 8
@@ -968,7 +968,7 @@ _ZN3wze6engine6camera17SetSlowDownRangeYEd:
 	.globl	_ZN3wze6engine6camera6UpdateEv
 	.type	_ZN3wze6engine6camera6UpdateEv, @function
 _ZN3wze6engine6camera6UpdateEv:
-.LFB8177:
+.LFB8179:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -1341,14 +1341,14 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	%xmm1, 48(%rbx)
 	jmp	.L334
 	.cfi_endproc
-.LFE8177:
+.LFE8179:
 	.size	_ZN3wze6engine6camera6UpdateEv, .-_ZN3wze6engine6camera6UpdateEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera9TransformEddttd
 	.type	_ZN3wze6engine6camera9TransformEddttd, @function
 _ZN3wze6engine6camera9TransformEddttd:
-.LFB8178:
+.LFB8180:
 	.cfi_startproc
 	movapd	%xmm0, %xmm3
 	pxor	%xmm0, %xmm0
@@ -1542,7 +1542,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	orpd	%xmm4, %xmm3
 	jmp	.L344
 	.cfi_endproc
-.LFE8178:
+.LFE8180:
 	.size	_ZN3wze6engine6camera9TransformEddttd, .-_ZN3wze6engine6camera9TransformEddttd
 	.section	.rodata.cst16,"aM",@progbits,16
 	.align 16

@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
-.LFB8351:
+.LFB8353:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8351:
+.LFE8353:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
@@ -160,10 +160,10 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
 	.globl	_ZN3wze6engine6actors5actorC2EPS0_Pvyddttd
 	.type	_ZN3wze6engine6actors5actorC2EPS0_Pvyddttd, @function
 _ZN3wze6engine6actors5actorC2EPS0_Pvyddttd:
-.LFB8145:
+.LFB8147:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8145
+	.cfi_lsda 0x1b,.LLSDA8147
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -349,46 +349,46 @@ _ZN3wze6engine6actors5actorC2EPS0_Pvyddttd:
 	jmp	.L40
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8145:
+.LLSDA8147:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8145-.LLSDACSB8145
-.LLSDACSB8145:
-	.uleb128 .LEHB0-.LFB8145
+	.uleb128 .LLSDACSE8147-.LLSDACSB8147
+.LLSDACSB8147:
+	.uleb128 .LEHB0-.LFB8147
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8145
+	.uleb128 .LEHB1-.LFB8147
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L41-.LFB8145
+	.uleb128 .L41-.LFB8147
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8145
+	.uleb128 .LEHB2-.LFB8147
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L42-.LFB8145
+	.uleb128 .L42-.LFB8147
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8145
+	.uleb128 .LEHB3-.LFB8147
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L43-.LFB8145
+	.uleb128 .L43-.LFB8147
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8145
+	.uleb128 .LEHB4-.LFB8147
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L44-.LFB8145
+	.uleb128 .L44-.LFB8147
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8145
+	.uleb128 .LEHB5-.LFB8147
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L45-.LFB8145
+	.uleb128 .L45-.LFB8147
 	.uleb128 0
-.LLSDACSE8145:
+.LLSDACSE8147:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8145
+	.cfi_lsda 0x1b,.LLSDAC8147
 	.type	_ZN3wze6engine6actors5actorC2EPS0_Pvyddttd.cold, @function
 _ZN3wze6engine6actors5actorC2EPS0_Pvyddttd.cold:
-.LFSB8145:
+.LFSB8147:
 .L36:
 	.cfi_def_cfa_offset 144
 	.cfi_offset 3, -56
@@ -416,19 +416,19 @@ _ZN3wze6engine6actors5actorC2EPS0_Pvyddttd.cold:
 	call	_Unwind_Resume@PLT
 .LEHE6:
 	.cfi_endproc
-.LFE8145:
+.LFE8147:
 	.section	.gcc_except_table
-.LLSDAC8145:
+.LLSDAC8147:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8145-.LLSDACSBC8145
-.LLSDACSBC8145:
+	.uleb128 .LLSDACSEC8147-.LLSDACSBC8147
+.LLSDACSBC8147:
 	.uleb128 .LEHB6-.LCOLDB6
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8145:
+.LLSDACSEC8147:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6actors5actorC2EPS0_Pvyddttd, .-_ZN3wze6engine6actors5actorC2EPS0_Pvyddttd
@@ -449,10 +449,10 @@ _ZN3wze6engine6actors5actorC2EPS0_Pvyddttd.cold:
 	.globl	_ZN3wze6engine6actors5actorD2Ev
 	.type	_ZN3wze6engine6actors5actorD2Ev, @function
 _ZN3wze6engine6actors5actorD2Ev:
-.LFB8148:
+.LFB8150:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8148
+	.cfi_lsda 0x1b,.LLSDA8150
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -530,15 +530,15 @@ _ZN3wze6engine6actors5actorD2Ev:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8148:
+.LFE8150:
 	.section	.gcc_except_table
-.LLSDA8148:
+.LLSDA8150:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8148-.LLSDACSB8148
-.LLSDACSB8148:
-.LLSDACSE8148:
+	.uleb128 .LLSDACSE8150-.LLSDACSB8150
+.LLSDACSB8150:
+.LLSDACSE8150:
 	.text
 	.size	_ZN3wze6engine6actors5actorD2Ev, .-_ZN3wze6engine6actors5actorD2Ev
 	.globl	_ZN3wze6engine6actors5actorD1Ev
@@ -548,24 +548,24 @@ _ZN3wze6engine6actors5actorD2Ev:
 	.globl	_ZN3wze6engine6actors5actor7GetTypeEv
 	.type	_ZN3wze6engine6actors5actor7GetTypeEv, @function
 _ZN3wze6engine6actors5actor7GetTypeEv:
-.LFB8150:
+.LFB8152:
 	.cfi_startproc
 	movq	208(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE8150:
+.LFE8152:
 	.size	_ZN3wze6engine6actors5actor7GetTypeEv, .-_ZN3wze6engine6actors5actor7GetTypeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor4GetXEv
 	.type	_ZN3wze6engine6actors5actor4GetXEv, @function
 _ZN3wze6engine6actors5actor4GetXEv:
-.LFB8151:
+.LFB8153:
 	.cfi_startproc
 	movsd	216(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8151:
+.LFE8153:
 	.size	_ZN3wze6engine6actors5actor4GetXEv, .-_ZN3wze6engine6actors5actor4GetXEv
 	.section	.rodata.str1.8
 	.align 8
@@ -577,7 +577,7 @@ _ZN3wze6engine6actors5actor4GetXEv:
 	.globl	_ZN3wze6engine6actors5actor4SetXEd
 	.type	_ZN3wze6engine6actors5actor4SetXEd, @function
 _ZN3wze6engine6actors5actor4SetXEd:
-.LFB8152:
+.LFB8154:
 	.cfi_startproc
 	ucomisd	%xmm0, %xmm0
 	pushq	%rbx
@@ -604,19 +604,19 @@ _ZN3wze6engine6actors5actor4SetXEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8152:
+.LFE8154:
 	.size	_ZN3wze6engine6actors5actor4SetXEd, .-_ZN3wze6engine6actors5actor4SetXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor4GetYEv
 	.type	_ZN3wze6engine6actors5actor4GetYEv, @function
 _ZN3wze6engine6actors5actor4GetYEv:
-.LFB8153:
+.LFB8155:
 	.cfi_startproc
 	movsd	224(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8153:
+.LFE8155:
 	.size	_ZN3wze6engine6actors5actor4GetYEv, .-_ZN3wze6engine6actors5actor4GetYEv
 	.section	.rodata.str1.8
 	.align 8
@@ -628,7 +628,7 @@ _ZN3wze6engine6actors5actor4GetYEv:
 	.globl	_ZN3wze6engine6actors5actor4SetYEd
 	.type	_ZN3wze6engine6actors5actor4SetYEd, @function
 _ZN3wze6engine6actors5actor4SetYEd:
-.LFB8154:
+.LFB8156:
 	.cfi_startproc
 	ucomisd	%xmm0, %xmm0
 	pushq	%rbx
@@ -655,55 +655,55 @@ _ZN3wze6engine6actors5actor4SetYEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8154:
+.LFE8156:
 	.size	_ZN3wze6engine6actors5actor4SetYEd, .-_ZN3wze6engine6actors5actor4SetYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8GetWidthEv
 	.type	_ZN3wze6engine6actors5actor8GetWidthEv, @function
 _ZN3wze6engine6actors5actor8GetWidthEv:
-.LFB8155:
+.LFB8157:
 	.cfi_startproc
 	movzwl	248(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8155:
+.LFE8157:
 	.size	_ZN3wze6engine6actors5actor8GetWidthEv, .-_ZN3wze6engine6actors5actor8GetWidthEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9GetHeightEv
 	.type	_ZN3wze6engine6actors5actor9GetHeightEv, @function
 _ZN3wze6engine6actors5actor9GetHeightEv:
-.LFB8157:
+.LFB8159:
 	.cfi_startproc
 	movzwl	250(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8157:
+.LFE8159:
 	.size	_ZN3wze6engine6actors5actor9GetHeightEv, .-_ZN3wze6engine6actors5actor9GetHeightEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8GetAngleEv
 	.type	_ZN3wze6engine6actors5actor8GetAngleEv, @function
 _ZN3wze6engine6actors5actor8GetAngleEv:
-.LFB8159:
+.LFB8161:
 	.cfi_startproc
 	movsd	256(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8159:
+.LFE8161:
 	.size	_ZN3wze6engine6actors5actor8GetAngleEv, .-_ZN3wze6engine6actors5actor8GetAngleEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8GetLayerEv
 	.type	_ZN3wze6engine6actors5actor8GetLayerEv, @function
 _ZN3wze6engine6actors5actor8GetLayerEv:
-.LFB8161:
+.LFB8163:
 	.cfi_startproc
 	movsd	264(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8161:
+.LFE8163:
 	.size	_ZN3wze6engine6actors5actor8GetLayerEv, .-_ZN3wze6engine6actors5actor8GetLayerEv
 	.section	.rodata.str1.8
 	.align 8
@@ -718,7 +718,7 @@ _ZN3wze6engine6actors5actor8GetLayerEv:
 	.globl	_ZN3wze6engine6actors5actor8SetLayerEd
 	.type	_ZN3wze6engine6actors5actor8SetLayerEd, @function
 _ZN3wze6engine6actors5actor8SetLayerEd:
-.LFB8162:
+.LFB8164:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -781,19 +781,19 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8162:
+.LFE8164:
 	.size	_ZN3wze6engine6actors5actor8SetLayerEd, .-_ZN3wze6engine6actors5actor8SetLayerEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8GetDepthEv
 	.type	_ZN3wze6engine6actors5actor8GetDepthEv, @function
 _ZN3wze6engine6actors5actor8GetDepthEv:
-.LFB8163:
+.LFB8165:
 	.cfi_startproc
 	movsd	272(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8163:
+.LFE8165:
 	.size	_ZN3wze6engine6actors5actor8GetDepthEv, .-_ZN3wze6engine6actors5actor8GetDepthEv
 	.section	.rodata.str1.8
 	.align 8
@@ -811,7 +811,7 @@ _ZN3wze6engine6actors5actor8GetDepthEv:
 	.globl	_ZN3wze6engine6actors5actor8SetDepthEd
 	.type	_ZN3wze6engine6actors5actor8SetDepthEd, @function
 _ZN3wze6engine6actors5actor8SetDepthEd:
-.LFB8164:
+.LFB8166:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -850,19 +850,19 @@ _ZN3wze6engine6actors5actor8SetDepthEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8164:
+.LFE8166:
 	.size	_ZN3wze6engine6actors5actor8SetDepthEd, .-_ZN3wze6engine6actors5actor8SetDepthEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor17GetCollisionLayerEv
 	.type	_ZN3wze6engine6actors5actor17GetCollisionLayerEv, @function
 _ZN3wze6engine6actors5actor17GetCollisionLayerEv:
-.LFB8165:
+.LFB8167:
 	.cfi_startproc
 	movzbl	280(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8165:
+.LFE8167:
 	.size	_ZN3wze6engine6actors5actor17GetCollisionLayerEv, .-_ZN3wze6engine6actors5actor17GetCollisionLayerEv
 	.section	.rodata.str1.8
 	.align 8
@@ -874,7 +874,7 @@ _ZN3wze6engine6actors5actor17GetCollisionLayerEv:
 	.globl	_ZN3wze6engine6actors5actor17SetCollisionLayerEh
 	.type	_ZN3wze6engine6actors5actor17SetCollisionLayerEh, @function
 _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
-.LFB8166:
+.LFB8168:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
@@ -983,38 +983,38 @@ _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8166:
+.LFE8168:
 	.size	_ZN3wze6engine6actors5actor17SetCollisionLayerEh, .-_ZN3wze6engine6actors5actor17SetCollisionLayerEh
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor14GetHitboxWidthEv
 	.type	_ZN3wze6engine6actors5actor14GetHitboxWidthEv, @function
 _ZN3wze6engine6actors5actor14GetHitboxWidthEv:
-.LFB8167:
+.LFB8169:
 	.cfi_startproc
 	movzwl	282(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8167:
+.LFE8169:
 	.size	_ZN3wze6engine6actors5actor14GetHitboxWidthEv, .-_ZN3wze6engine6actors5actor14GetHitboxWidthEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor15GetHitboxHeightEv
 	.type	_ZN3wze6engine6actors5actor15GetHitboxHeightEv, @function
 _ZN3wze6engine6actors5actor15GetHitboxHeightEv:
-.LFB8168:
+.LFB8170:
 	.cfi_startproc
 	movzwl	284(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8168:
+.LFE8170:
 	.size	_ZN3wze6engine6actors5actor15GetHitboxHeightEv, .-_ZN3wze6engine6actors5actor15GetHitboxHeightEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
 	.type	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv, @function
 _ZN3wze6engine6actors5actor17UpdateHitboxScaleEv:
-.LFB8169:
+.LFB8171:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -1166,14 +1166,14 @@ _ZN3wze6engine6actors5actor17UpdateHitboxScaleEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8169:
+.LFE8171:
 	.size	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv, .-_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8SetWidthEt
 	.type	_ZN3wze6engine6actors5actor8SetWidthEt, @function
 _ZN3wze6engine6actors5actor8SetWidthEt:
-.LFB8156:
+.LFB8158:
 	.cfi_startproc
 	pushq	%r14
 	.cfi_def_cfa_offset 16
@@ -1255,14 +1255,14 @@ _ZN3wze6engine6actors5actor8SetWidthEt:
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	jmp	.L153
 	.cfi_endproc
-.LFE8156:
+.LFE8158:
 	.size	_ZN3wze6engine6actors5actor8SetWidthEt, .-_ZN3wze6engine6actors5actor8SetWidthEt
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9SetHeightEt
 	.type	_ZN3wze6engine6actors5actor9SetHeightEt, @function
 _ZN3wze6engine6actors5actor9SetHeightEt:
-.LFB8158:
+.LFB8160:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1340,7 +1340,7 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	jmp	.L162
 	.cfi_endproc
-.LFE8158:
+.LFE8160:
 	.size	_ZN3wze6engine6actors5actor9SetHeightEt, .-_ZN3wze6engine6actors5actor9SetHeightEt
 	.section	.rodata.str1.8
 	.align 8
@@ -1352,7 +1352,7 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	.globl	_ZN3wze6engine6actors5actor8SetAngleEd
 	.type	_ZN3wze6engine6actors5actor8SetAngleEd, @function
 _ZN3wze6engine6actors5actor8SetAngleEd:
-.LFB8160:
+.LFB8162:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -1579,14 +1579,14 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8160:
+.LFE8162:
 	.size	_ZN3wze6engine6actors5actor8SetAngleEd, .-_ZN3wze6engine6actors5actor8SetAngleEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
 	.type	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv, @function
 _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
-.LFB8170:
+.LFB8172:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -1816,7 +1816,7 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8170:
+.LFE8172:
 	.size	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv, .-_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

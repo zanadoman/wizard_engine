@@ -9,7 +9,7 @@
 	.globl	_ZN10flashlightC2EPN3wze6engineE
 	.type	_ZN10flashlightC2EPN3wze6engineE, @function
 _ZN10flashlightC2EPN3wze6engineE:
-.LFB8145:
+.LFB8147:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -69,7 +69,7 @@ _ZN10flashlightC2EPN3wze6engineE:
 	cvtsi2sdl	%eax, %xmm0
 	jmp	_ZN3wze6engine6actors5actor4SetYEd@PLT
 	.cfi_endproc
-.LFE8145:
+.LFE8147:
 	.size	_ZN10flashlightC2EPN3wze6engineE, .-_ZN10flashlightC2EPN3wze6engineE
 	.globl	_ZN10flashlightC1EPN3wze6engineE
 	.set	_ZN10flashlightC1EPN3wze6engineE,_ZN10flashlightC2EPN3wze6engineE
@@ -78,10 +78,10 @@ _ZN10flashlightC2EPN3wze6engineE:
 	.globl	_ZN10flashlightD2Ev
 	.type	_ZN10flashlightD2Ev, @function
 _ZN10flashlightD2Ev:
-.LFB8148:
+.LFB8150:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8148
+	.cfi_lsda 0x1b,.LLSDA8150
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -98,16 +98,16 @@ _ZN10flashlightD2Ev:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8148:
+.LFE8150:
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8148:
+.LLSDA8150:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8148-.LLSDACSB8148
-.LLSDACSB8148:
-.LLSDACSE8148:
+	.uleb128 .LLSDACSE8150-.LLSDACSB8150
+.LLSDACSB8150:
+.LLSDACSE8150:
 	.text
 	.size	_ZN10flashlightD2Ev, .-_ZN10flashlightD2Ev
 	.globl	_ZN10flashlightD1Ev
@@ -117,7 +117,7 @@ _ZN10flashlightD2Ev:
 	.globl	_ZN10flashlight6UpdateEv
 	.type	_ZN10flashlight6UpdateEv, @function
 _ZN10flashlight6UpdateEv:
-.LFB8150:
+.LFB8152:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -188,7 +188,7 @@ _ZN10flashlight6UpdateEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8150:
+.LFE8152:
 	.size	_ZN10flashlight6UpdateEv, .-_ZN10flashlight6UpdateEv
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

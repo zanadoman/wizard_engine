@@ -32,10 +32,10 @@
 	.globl	_ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_
 	.type	_ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_, @function
 _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
-.LFB8145:
+.LFB8147:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8145
+	.cfi_lsda 0x1b,.LLSDA8147
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -340,26 +340,26 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	jmp	.L5
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8145:
+.LLSDA8147:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8145-.LLSDACSB8145
-.LLSDACSB8145:
-	.uleb128 .LEHB0-.LFB8145
+	.uleb128 .LLSDACSE8147-.LLSDACSB8147
+.LLSDACSB8147:
+	.uleb128 .LEHB0-.LFB8147
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L8-.LFB8145
+	.uleb128 .L8-.LFB8147
 	.uleb128 0
-.LLSDACSE8145:
+.LLSDACSE8147:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8145
+	.cfi_lsda 0x1b,.LLSDAC8147
 	.type	_ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_.cold, @function
 _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_.cold:
-.LFSB8145:
+.LFSB8147:
 .L5:
 	.cfi_def_cfa_offset 96
 	.cfi_offset 3, -24
@@ -376,19 +376,19 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_.cold:
 .L14:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8145:
+.LFE8147:
 	.section	.gcc_except_table
-.LLSDAC8145:
+.LLSDAC8147:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8145-.LLSDACSBC8145
-.LLSDACSBC8145:
+	.uleb128 .LLSDACSEC8147-.LLSDACSBC8147
+.LLSDACSBC8147:
 	.uleb128 .LEHB1-.LCOLDB14
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8145:
+.LLSDACSEC8147:
 	.section	.text.unlikely
 	.text
 	.size	_ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_, .-_ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_
@@ -404,10 +404,10 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_.cold:
 	.globl	_ZN6playerD2Ev
 	.type	_ZN6playerD2Ev, @function
 _ZN6playerD2Ev:
-.LFB8148:
+.LFB8150:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8148
+	.cfi_lsda 0x1b,.LLSDA8150
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -451,15 +451,15 @@ _ZN6playerD2Ev:
 	.cfi_def_cfa_offset 8
 	jmp	free@PLT
 	.cfi_endproc
-.LFE8148:
+.LFE8150:
 	.section	.gcc_except_table
-.LLSDA8148:
+.LLSDA8150:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8148-.LLSDACSB8148
-.LLSDACSB8148:
-.LLSDACSE8148:
+	.uleb128 .LLSDACSE8150-.LLSDACSB8150
+.LLSDACSB8150:
+.LLSDACSE8150:
 	.text
 	.size	_ZN6playerD2Ev, .-_ZN6playerD2Ev
 	.globl	_ZN6playerD1Ev
@@ -469,7 +469,7 @@ _ZN6playerD2Ev:
 	.globl	_ZN6player6UpdateEv
 	.type	_ZN6player6UpdateEv, @function
 _ZN6player6UpdateEv:
-.LFB8150:
+.LFB8152:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -868,7 +868,7 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4SetYEd@PLT
 	jmp	.L29
 	.cfi_endproc
-.LFE8150:
+.LFE8152:
 	.size	_ZN6player6UpdateEv, .-_ZN6player6UpdateEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

@@ -9,7 +9,7 @@
 	.globl	_ZN10backgroundC2EPN3wze6engineE
 	.type	_ZN10backgroundC2EPN3wze6engineE, @function
 _ZN10backgroundC2EPN3wze6engineE:
-.LFB8145:
+.LFB8147:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -43,7 +43,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8145:
+.LFE8147:
 	.size	_ZN10backgroundC2EPN3wze6engineE, .-_ZN10backgroundC2EPN3wze6engineE
 	.globl	_ZN10backgroundC1EPN3wze6engineE
 	.set	_ZN10backgroundC1EPN3wze6engineE,_ZN10backgroundC2EPN3wze6engineE
@@ -52,10 +52,10 @@ _ZN10backgroundC2EPN3wze6engineE:
 	.globl	_ZN10backgroundD2Ev
 	.type	_ZN10backgroundD2Ev, @function
 _ZN10backgroundD2Ev:
-.LFB8148:
+.LFB8150:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8148
+	.cfi_lsda 0x1b,.LLSDA8150
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -72,16 +72,16 @@ _ZN10backgroundD2Ev:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8148:
+.LFE8150:
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8148:
+.LLSDA8150:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8148-.LLSDACSB8148
-.LLSDACSB8148:
-.LLSDACSE8148:
+	.uleb128 .LLSDACSE8150-.LLSDACSB8150
+.LLSDACSB8150:
+.LLSDACSE8150:
 	.text
 	.size	_ZN10backgroundD2Ev, .-_ZN10backgroundD2Ev
 	.globl	_ZN10backgroundD1Ev

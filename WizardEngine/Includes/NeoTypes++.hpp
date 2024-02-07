@@ -170,6 +170,11 @@ namespace neo
     uint8 memLoadTo(const char* FilePath, void* Destination, uint64 Size);
     uint8 memSave(const void* Source, uint64 Size, const char* FilePath);
 
+    //______________________________________STD_INITIALIZER_LIST.hpp_______________________________________//
+
+    template <typename type> bool initializer_list_Contains(std::initializer_list<type> initializer_list, std::initializer_list<type> elements);
+    template <typename type> bool initializer_list_Contains(std::initializer_list<type> initializer_list, array<type>* elements);
+
     //_____________________________________________NeoArray.cpp____________________________________________//
 
     template <typename type> array<type>::array()
@@ -931,5 +936,45 @@ namespace neo
         this->elements = NULL;
 
         return *this;
+    }
+
+    //______________________________________STD_INITIALIZER_LIST.cpp_______________________________________//
+
+    template <typename type> bool initializer_list_Contains(std::initializer_list<type> initializer_list, std::initializer_list<type> elements)
+    {
+        for (uint64 i = 0; i < initializer_list.size(); i++)
+        {
+            for (uint64 j = 0; j < elements.size(); j++)
+            {
+                if (initializer_list.begin()[i] == elements.begin()[j])
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    template <typename type> bool initializer_list_Contains(std::initializer_list<type> initializer_list, array<type>* elements)
+    {
+        if (elements == NULL)
+        {
+            printf("neo::initializer_list_Contains(): elements must not be NULL\nParams: initializer_list(length): %ld, elements: %p\n", initializer_list.size(), elements);
+            exit(1);
+        }
+
+        for (uint64 i = 0; i < initializer_list.size(); i++)
+        {
+            for (uint64 j = 0; j < elements->Length(); j++)
+            {
+                if (initializer_list.begin()[i] == (*elements)[j])
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
