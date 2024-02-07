@@ -546,6 +546,7 @@ namespace wze
                                     uint16 GetActiveWidth();
                                     uint16 GetActiveHeight();
                                     bool IsCollidingWith(uint64 ActorID, uint64 OverlapboxID);
+                                    bool IsCollidingWithCursor();
 
                                 private:
                                     uint64 Type;

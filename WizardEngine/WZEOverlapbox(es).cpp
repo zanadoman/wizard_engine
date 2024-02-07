@@ -393,6 +393,31 @@ namespace wze
         return this->Actor->Overlapboxes.CheckOverlap(this, this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID]);
     }
 
+    bool engine::actors::actor::overlapboxes::overlapbox::IsCollidingWithCursor()
+    {
+        double OverlapboxTopLeftX;
+        double OverlapboxTopLeftY;
+        double OverlapboxBotRightX;
+        double OverlapboxBotRightY;
+
+        double CursorX, CursorY;
+
+        OverlapboxTopLeftX = this->X - (this->ActiveWidth >> 1);
+        OverlapboxTopLeftY = this->Y + (this->ActiveHeight >> 1);
+        OverlapboxBotRightX = OverlapboxTopLeftX + this->ActiveWidth;
+        OverlapboxBotRightY = OverlapboxTopLeftY - this->ActiveHeight;
+
+        CursorX = this->Engine->Mouse.GetX(this->Actor->Layer);
+        CursorY = this->Engine->Mouse.GetY(this->Actor->Layer);
+
+        if (OverlapboxTopLeftX <= CursorX && CursorX <= OverlapboxBotRightX && OverlapboxBotRightY <= CursorY && CursorY <= OverlapboxTopLeftY)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     uint8 engine::actors::actor::overlapboxes::overlapbox::UpdateOverlapboxScale()
     {
         double MedAngle1, MedAngle2, MedAngle1_180, MedAngle2_180;
