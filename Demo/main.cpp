@@ -42,7 +42,7 @@ sint32 main()
         Player2->Update();
         Flashlight->Update();
 
-        printf("%d\n", Engine->Actors[Player1->Actor].Overlapboxes[Player1->TextOverlapBox].IsCollidingWith(Player2->TextOverlapBox));
+        printf("%d\n", Engine->Actors[Player1->Actor].Overlapboxes[Player1->TextOverlapBox].IsCollidingWith(Player2->Actor, Player2->TextOverlapBox));
         printf("%d %d %d %d\n", Engine->Timing.GetGameTime(), Engine->Timing.GetRenderTime(), Engine->Timing.GetWorkingTime(), Engine->Timing.GetFrameTime());
     }
 

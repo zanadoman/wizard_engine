@@ -240,7 +240,7 @@ _ZN3wze6engine6actorsD2Ev:
 	addq	$1, %rbx
 	call	_ZN3wze6engine6actors5actorD1Ev@PLT
 	movq	%rbp, %rdi
-	movl	$312, %esi
+	movl	$320, %esi
 	call	_ZdlPvm@PLT
 	movq	8(%r12), %rax
 	movq	16(%r12), %rdi
@@ -303,9 +303,9 @@ _ZN3wze6engine6actorsD2Ev:
 .LHOTB12:
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors3NewEyddttd
-	.type	_ZN3wze6engine6actors3NewEyddttd, @function
-_ZN3wze6engine6actors3NewEyddttd:
+	.globl	_ZN3wze6engine6actors3NewEPvyddttd
+	.type	_ZN3wze6engine6actors3NewEPvyddttd, @function
+_ZN3wze6engine6actors3NewEPvyddttd:
 .LFB8150:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
@@ -316,15 +316,15 @@ _ZN3wze6engine6actors3NewEyddttd:
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
-	movzwl	%cx, %r14d
+	movzwl	%r8w, %r14d
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movzwl	%dx, %r13d
+	movzwl	%cx, %r13d
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	movq	%rsi, %r12
+	movq	%rdx, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
@@ -333,9 +333,9 @@ _ZN3wze6engine6actors3NewEyddttd:
 	.cfi_offset 3, -56
 	subq	$56, %rsp
 	.cfi_def_cfa_offset 112
-	movsd	%xmm0, 24(%rsp)
-	movsd	%xmm1, 16(%rsp)
-	movsd	%xmm2, 8(%rsp)
+	movsd	%xmm0, 16(%rsp)
+	movsd	%xmm1, 8(%rsp)
+	movsd	%xmm2, (%rsp)
 	movq	%fs:40, %rax
 	movq	%rax, 40(%rsp)
 	xorl	%eax, %eax
@@ -346,10 +346,11 @@ _ZN3wze6engine6actors3NewEyddttd:
 	ucomisd	%xmm2, %xmm2
 	jp	.L79
 	pxor	%xmm0, %xmm0
-	comisd	8(%rsp), %xmm0
+	comisd	(%rsp), %xmm0
 	ja	.L49
 	movq	8(%rdi), %rax
 	movq	%rdi, %rbp
+	movq	%rsi, %r15
 	cmpq	$1, %rax
 	jbe	.L51
 	movq	16(%rdi), %rdx
@@ -364,45 +365,48 @@ _ZN3wze6engine6actors3NewEyddttd:
 .L55:
 	cmpq	$0, (%rdx,%rbx,8)
 	jne	.L52
-	movl	$312, %edi
+	movl	$320, %edi
 .LEHB0:
 	call	_Znwm@PLT
 .LEHE0:
 	movq	0(%rbp), %rsi
-	movl	%r14d, %r8d
-	movl	%r13d, %ecx
-	movsd	8(%rsp), %xmm2
-	movq	%r12, %rdx
+	movl	%r14d, %r9d
+	movl	%r13d, %r8d
+	movsd	(%rsp), %xmm2
+	movq	%r12, %rcx
+	movq	%r15, %rdx
 	movq	%rax, %rdi
-	movq	%rax, %r15
-	movsd	16(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
+	movsd	8(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
+	movq	%rax, 24(%rsp)
 .LEHB1:
-	call	_ZN3wze6engine6actors5actorC1EPS0_yddttd@PLT
+	call	_ZN3wze6engine6actors5actorC1EPS0_Pvyddttd@PLT
 .LEHE1:
 	movq	16(%rbp), %rax
 	cmpq	8(%rbp), %rbx
 	jnb	.L80
-	movq	%r15, (%rax,%rbx,8)
+	movq	24(%rsp), %rcx
+	movq	%rcx, (%rax,%rbx,8)
 	jmp	.L42
 	.p2align 4,,10
 	.p2align 3
 .L51:
-	movl	$312, %edi
+	movl	$320, %edi
 .LEHB2:
 	call	_Znwm@PLT
 .LEHE2:
 	movq	0(%rbp), %rsi
-	movl	%r14d, %r8d
-	movl	%r13d, %ecx
-	movsd	8(%rsp), %xmm2
-	movq	%r12, %rdx
+	movl	%r14d, %r9d
+	movl	%r13d, %r8d
+	movsd	(%rsp), %xmm2
+	movq	%r12, %rcx
+	movq	%r15, %rdx
 	movq	%rax, %rdi
+	movsd	8(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
 	movq	%rax, %rbx
-	movsd	16(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
 .LEHB3:
-	call	_ZN3wze6engine6actors5actorC1EPS0_yddttd@PLT
+	call	_ZN3wze6engine6actors5actorC1EPS0_Pvyddttd@PLT
 .LEHE3:
 	movq	8(%rbp), %rax
 	movq	16(%rbp), %rdi
@@ -458,31 +462,34 @@ _ZN3wze6engine6actors3NewEyddttd:
 	movl	$1, %edi
 	call	exit@PLT
 .L49:
-	movsd	8(%rsp), %xmm2
-	movsd	16(%rsp), %xmm1
+	movsd	(%rsp), %xmm2
 	movl	%r14d, %ecx
 	movl	%r13d, %edx
-	movsd	24(%rsp), %xmm0
-	leaq	.LC8(%rip), %rdi
+	movq	%r12, %rsi
+	movsd	8(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
 	movl	$3, %eax
+	leaq	.LC8(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L79:
-	movsd	16(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
+	movsd	8(%rsp), %xmm1
 	movl	%r14d, %ecx
 	movl	%r13d, %edx
+	movq	%r12, %rsi
+	movsd	16(%rsp), %xmm0
 	leaq	.LC6(%rip), %rdi
 	movl	$3, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L78:
-	movsd	8(%rsp), %xmm2
-	movsd	24(%rsp), %xmm0
+	movsd	(%rsp), %xmm2
 	movl	%r14d, %ecx
 	movl	%r13d, %edx
+	movq	%r12, %rsi
+	movsd	16(%rsp), %xmm0
 	leaq	.LC5(%rip), %rdi
 	movl	$3, %eax
 	call	printf@PLT
@@ -492,6 +499,7 @@ _ZN3wze6engine6actors3NewEyddttd:
 	leaq	.LC4(%rip), %rdi
 	movl	%r14d, %ecx
 	movl	%r13d, %edx
+	movq	%r12, %rsi
 	movl	$3, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -499,12 +507,12 @@ _ZN3wze6engine6actors3NewEyddttd:
 .L84:
 	call	__stack_chk_fail@PLT
 .L83:
-	movsd	8(%rsp), %xmm2
+	movsd	(%rsp), %xmm2
 	movl	%r14d, %ecx
 	movl	%r13d, %edx
 	movq	%r12, %rsi
-	movsd	16(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
+	movsd	8(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
 	movl	$3, %eax
 	leaq	.LC11(%rip), %rdi
 	call	printf@PLT
@@ -562,8 +570,8 @@ _ZN3wze6engine6actors3NewEyddttd:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDAC8150
-	.type	_ZN3wze6engine6actors3NewEyddttd.cold, @function
-_ZN3wze6engine6actors3NewEyddttd.cold:
+	.type	_ZN3wze6engine6actors3NewEPvyddttd.cold, @function
+_ZN3wze6engine6actors3NewEPvyddttd.cold:
 .LFSB8150:
 .L62:
 	.cfi_def_cfa_offset 112
@@ -573,7 +581,7 @@ _ZN3wze6engine6actors3NewEyddttd.cold:
 	.cfi_offset 13, -32
 	.cfi_offset 14, -24
 	.cfi_offset 15, -16
-	movl	$312, %esi
+	movl	$320, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 	movq	40(%rsp), %rax
@@ -583,8 +591,8 @@ _ZN3wze6engine6actors3NewEyddttd.cold:
 .LEHB5:
 	call	_Unwind_Resume@PLT
 .L60:
-	movl	$312, %esi
-	movq	%r15, %rdi
+	movq	24(%rsp), %rdi
+	movl	$320, %esi
 	call	_ZdlPvm@PLT
 	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
@@ -610,9 +618,9 @@ _ZN3wze6engine6actors3NewEyddttd.cold:
 .LLSDACSEC8150:
 	.section	.text.unlikely
 	.text
-	.size	_ZN3wze6engine6actors3NewEyddttd, .-_ZN3wze6engine6actors3NewEyddttd
+	.size	_ZN3wze6engine6actors3NewEPvyddttd, .-_ZN3wze6engine6actors3NewEPvyddttd
 	.section	.text.unlikely
-	.size	_ZN3wze6engine6actors3NewEyddttd.cold, .-_ZN3wze6engine6actors3NewEyddttd.cold
+	.size	_ZN3wze6engine6actors3NewEPvyddttd.cold, .-_ZN3wze6engine6actors3NewEPvyddttd.cold
 .LCOLDE12:
 	.text
 .LHOTE12:
@@ -652,7 +660,7 @@ _ZN3wze6engine6actors6DeleteEy:
 	je	.L87
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actorD1Ev@PLT
-	movl	$312, %esi
+	movl	$320, %esi
 	movq	%r12, %rdi
 	call	_ZdlPvm@PLT
 	movq	8(%rbp), %rax
@@ -846,7 +854,7 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	je	.L113
 	movq	%r14, %rdi
 	call	_ZN3wze6engine6actors5actorD1Ev@PLT
-	movl	$312, %esi
+	movl	$320, %esi
 	movq	%r14, %rdi
 	call	_ZdlPvm@PLT
 	movq	8(%r13), %rcx
@@ -1006,7 +1014,7 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	je	.L156
 	movq	%r13, %rdi
 	call	_ZN3wze6engine6actors5actorD1Ev@PLT
-	movl	$312, %esi
+	movl	$320, %esi
 	movq	%r13, %rdi
 	call	_ZdlPvm@PLT
 	movq	8(%r12), %rdi

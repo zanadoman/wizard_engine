@@ -530,6 +530,8 @@ namespace wze
                                     bool AngleLocked;
                                     bool OffsetAngleLocked;
                                     bool Visible;
+                                    void* GetActorData();
+                                    uint64 GetActorType();
                                     uint64 GetType();
                                     double GetX();
                                     double SetX(double X);
@@ -543,7 +545,7 @@ namespace wze
                                     double SetAngle(double Angle);
                                     uint16 GetActiveWidth();
                                     uint16 GetActiveHeight();
-                                    bool IsCollidingWith(uint64 ID);
+                                    bool IsCollidingWith(uint64 ActorID, uint64 OverlapboxID);
 
                                 private:
                                     uint64 Type;
@@ -606,6 +608,7 @@ namespace wze
                         uint16 GetHitboxHeight();
 
                     private:
+                        void* Data;
                         uint64 Type;
                         double X;
                         double Y;
@@ -624,7 +627,7 @@ namespace wze
                         double HitboxMedianLength;
                         double HitboxMedian1Angle;
                         double HitboxMedian2Angle;
-                        actor(engine* Engine, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
+                        actor(engine* Engine, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
                         ~actor();
                         uint8 UpdateHitboxScale();
                         uint8 UpdateMembersPosition();
@@ -633,7 +636,7 @@ namespace wze
                 //__________Actors_____________________________________________________________________________________
 
                 public:
-                    uint64 New(uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
+                    uint64 New(void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
                     uint8 Delete(uint64 ID);
                     uint8 Purge(std::initializer_list<uint64> Keep);
                     uint8 Purge(array<uint64>* Keep);

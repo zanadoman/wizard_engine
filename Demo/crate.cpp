@@ -4,7 +4,7 @@ crate::crate(engine* Engine, double X, double Y, uint16 Width, uint16 Height) : 
 {
     this->TextureAsset = this->Engine->Assets.LoadTexture("assets/crate.png");
 
-    this->Actor = this->Engine->Actors.New(CRATE, X, Y, Width, Height, 1);
+    this->Actor = this->Engine->Actors.New(this, CRATE, X, Y, Width, Height, 1);
     this->Texture = this->Engine->Actors[this->Actor].Textures.New(this->TextureAsset);
 
     this->Engine->Actors[this->Actor].Resistance = 50;

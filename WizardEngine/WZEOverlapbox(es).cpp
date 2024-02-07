@@ -250,6 +250,16 @@ namespace wze
 
     engine::actors::actor::overlapboxes::overlapbox::~overlapbox() {}
 
+    void* engine::actors::actor::overlapboxes::overlapbox::GetActorData()
+    {
+        return this->Actor->Data;
+    }
+
+    uint64 engine::actors::actor::overlapboxes::overlapbox::GetActorType()
+    {
+        return this->Actor->Type;
+    }
+
     uint64 engine::actors::actor::overlapboxes::overlapbox::GetType()
     {
         return this->Type;
@@ -359,19 +369,28 @@ namespace wze
         return this->ActiveHeight;
     }
 
-    bool engine::actors::actor::overlapboxes::overlapbox::IsCollidingWith(uint64 ID)
+    bool engine::actors::actor::overlapboxes::overlapbox::IsCollidingWith(uint64 ActorID, uint64 OverlapboxID)
     {
-        if (ID == 0)
+        if (ActorID == 0)
         {
             return false;
         }
-        if (this->Actor->Overlapboxes.Overlapboxes.Length() <= ID || this->Actor->Overlapboxes.Overlapboxes[ID] == NULL)
+        if (this->Engine->Actors.Actors.Length() <= ActorID || this->Engine->Actors.Actors[ActorID] == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes[].IsCollidingWith(): Overlapbox does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].overlapboxes[].IsCollidingWith(): Actor does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n", ActorID, OverlapboxID);
+            exit(1);
+        }
+        if (OverlapboxID == 0)
+        {
+            return false;
+        }
+        if (this->Actor->Overlapboxes.Overlapboxes.Length() <= OverlapboxID || this->Actor->Overlapboxes.Overlapboxes[OverlapboxID] == NULL)
+        {
+            printf("wze::engine.actors[].overlapboxes[].IsCollidingWith(): Overlapbox does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n", ActorID, OverlapboxID);
             exit(1);
         }
 
-        return this->Actor->Overlapboxes.CheckOverlap(this, this->Actor->Overlapboxes.Overlapboxes[ID]);
+        return this->Actor->Overlapboxes.CheckOverlap(this, this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID]);
     }
 
     uint8 engine::actors::actor::overlapboxes::overlapbox::UpdateOverlapboxScale()

@@ -32,15 +32,16 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movsd	%xmm1, (%rsp)
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	movsd	(%rsp), %xmm1
-	movzwl	%r12w, %ecx
-	movzwl	%bp, %edx
+	movzwl	%bp, %ecx
+	movq	%rbx, %rsi
 	movq	%rax, 24(%rbx)
 	movq	(%rbx), %rax
-	movl	$2, %esi
+	movzwl	%r12w, %r8d
+	movl	$2, %edx
 	movsd	.LC1(%rip), %xmm2
 	movsd	8(%rsp), %xmm0
 	leaq	632(%rax), %rdi
-	call	_ZN3wze6engine6actors3NewEyddttd@PLT
+	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rsi
 	movq	(%rbx), %rax

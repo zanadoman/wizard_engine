@@ -541,7 +541,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	leaq	80(%rdx), %rax
 	movsd	40(%rdi), %xmm1
 	movl	%r8d, %edx
-	movsd	256(%rcx), %xmm2
+	movsd	264(%rcx), %xmm2
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6camera9TransformEddttd@PLT
 	movq	%rax, 16(%rsp)
@@ -570,17 +570,17 @@ _ZN3wze6engine6render14SelectionStageEv:
 .L305:
 	cmpb	$0, 192(%rcx)
 	je	.L55
-	movzwl	274(%rcx), %esi
+	movzwl	282(%rcx), %esi
 	testw	%si, %si
 	je	.L55
-	movzwl	276(%rcx), %edi
+	movzwl	284(%rcx), %edi
 	testw	%di, %di
 	je	.L55
 	leaq	80(%rdx), %rax
-	movsd	208(%rcx), %xmm0
+	movsd	216(%rcx), %xmm0
 	movl	%edi, %edx
-	movsd	256(%rcx), %xmm2
-	movsd	216(%rcx), %xmm1
+	movsd	264(%rcx), %xmm2
+	movsd	224(%rcx), %xmm1
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6camera9TransformEddttd@PLT
 	movq	%rax, 16(%rsp)
@@ -661,8 +661,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	.p2align 3
 .L304:
 	movsd	.LC9(%rip), %xmm0
-	mulsd	264(%rdi), %xmm0
-	movsd	256(%rdi), %xmm1
+	mulsd	272(%rdi), %xmm0
+	movsd	264(%rdi), %xmm1
 	movapd	%xmm1, %xmm2
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm1
@@ -790,8 +790,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	.p2align 3
 .L297:
 	movsd	.LC9(%rip), %xmm0
-	mulsd	264(%rdi), %xmm0
-	movsd	256(%rdi), %xmm1
+	mulsd	272(%rdi), %xmm0
+	movsd	264(%rdi), %xmm1
 	movapd	%xmm1, %xmm2
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm1
@@ -990,8 +990,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	.p2align 3
 .L299:
 	movsd	.LC9(%rip), %xmm0
-	mulsd	264(%rdi), %xmm0
-	movsd	256(%rdi), %xmm1
+	mulsd	272(%rdi), %xmm0
+	movsd	264(%rdi), %xmm1
 	movapd	%xmm1, %xmm2
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm1
@@ -1097,8 +1097,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jmp	.L96
 .L302:
 	movsd	.LC9(%rip), %xmm0
-	mulsd	264(%rdi), %xmm0
-	movsd	256(%rdi), %xmm1
+	mulsd	272(%rdi), %xmm0
+	movsd	264(%rdi), %xmm1
 	movapd	%xmm1, %xmm2
 	subsd	%xmm0, %xmm2
 	addsd	%xmm0, %xmm1

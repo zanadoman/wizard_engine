@@ -25,15 +25,16 @@ _ZN10flashlightC2EPN3wze6engineE:
 	leaq	.LC0(%rip), %rsi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	pxor	%xmm2, %xmm2
-	movl	$3000, %ecx
-	movl	$3000, %edx
+	movl	$3000, %r8d
+	movq	%rbx, %rsi
 	movq	%rax, 32(%rbx)
 	movq	(%rbx), %rax
 	movapd	%xmm2, %xmm0
+	movl	$3000, %ecx
 	movapd	%xmm2, %xmm1
-	movl	$3, %esi
+	movl	$3, %edx
 	leaq	632(%rax), %rdi
-	call	_ZN3wze6engine6actors3NewEyddttd@PLT
+	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	%rax, %rsi
 	movq	%rax, 16(%rbx)
 	movq	(%rbx), %rax

@@ -18,7 +18,7 @@ player::player(engine* Engine, key Forward, key Backward, key Left, key Right) :
     };
     this->NameTextFont = this->Engine->Assets.LoadFont("engine/FreeSans.ttf", 48);
 
-    this->Actor = this->Engine->Actors.New(PLAYER, 0, 0, 46, 70, 1);
+    this->Actor = this->Engine->Actors.New(this, PLAYER, 0, 0, 46, 70, 1);
     this->MainFlipbook = this->Engine->Actors[this->Actor].Flipbooks.New(100, &this->MainFlipbookTextures);
     this->NameText = this->Engine->Actors[this->Actor].Texts.New("Player", this->NameTextFont);
     this->TextOverlapBox = this->Engine->Actors[this->Actor].Overlapboxes.New(PLAYERTEXT);

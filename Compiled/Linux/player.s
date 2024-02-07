@@ -106,13 +106,14 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	%rax, 72(%rbx)
 	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
-	movl	$70, %ecx
-	movl	$46, %edx
-	movapd	%xmm1, %xmm0
-	movl	$1, %esi
+	movl	$46, %ecx
 	movsd	.LC8(%rip), %xmm2
+	movl	$70, %r8d
+	movapd	%xmm1, %xmm0
+	movq	%rbx, %rsi
 	leaq	632(%rax), %rdi
-	call	_ZN3wze6engine6actors3NewEyddttd@PLT
+	movl	$1, %edx
+	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rsi
 	movq	(%rbx), %rax
