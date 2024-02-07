@@ -180,53 +180,6 @@ namespace wze
         return *this->Overlapboxes[ID];
     }
 
-    bool engine::actors::actor::overlapboxes::CheckOverlap(overlapbox* Overlapbox1, overlapbox* Overlapbox2)
-    {
-        double Overlapbox1TopLeftX;
-        double Overlapbox1TopLeftY;
-        double Overlapbox1BotRightX;
-        double Overlapbox1BotRightY;
-
-        double Overlapbox2TopLeftX;
-        double Overlapbox2TopLeftY;
-        double Overlapbox2BotRightX;
-        double Overlapbox2BotRightY;
-
-        Overlapbox1TopLeftX = Overlapbox1->X - (Overlapbox1->ActiveWidth >> 1);
-        Overlapbox1TopLeftY = Overlapbox1->Y + (Overlapbox1->ActiveHeight >> 1);
-        Overlapbox1BotRightX = Overlapbox1TopLeftX + Overlapbox1->ActiveWidth;
-        Overlapbox1BotRightY = Overlapbox1TopLeftY - Overlapbox1->ActiveHeight;
-
-        Overlapbox2TopLeftX = Overlapbox2->X - (Overlapbox2->ActiveWidth >> 1);
-        Overlapbox2TopLeftY = Overlapbox2->Y + (Overlapbox2->ActiveHeight >> 1);
-        Overlapbox2BotRightX = Overlapbox2TopLeftX + Overlapbox2->ActiveWidth;
-        Overlapbox2BotRightY = Overlapbox2TopLeftY - Overlapbox2->ActiveHeight;
-
-        if (Overlapbox1BotRightX < Overlapbox2TopLeftX || Overlapbox2BotRightX < Overlapbox1TopLeftX || Overlapbox1TopLeftY < Overlapbox2BotRightY || Overlapbox2TopLeftY < Overlapbox1BotRightY)
-        {
-            return false;
-        }
-
-        if (((Overlapbox1TopLeftX <= Overlapbox2BotRightX && Overlapbox2BotRightX <= Overlapbox1BotRightX) && (Overlapbox1BotRightY <= Overlapbox2BotRightY && Overlapbox2BotRightY <= Overlapbox1TopLeftY)) || ((Overlapbox2TopLeftX <= Overlapbox1TopLeftX && Overlapbox1TopLeftX <= Overlapbox2BotRightX) && (Overlapbox2BotRightY <= Overlapbox1TopLeftY && Overlapbox1TopLeftY <= Overlapbox2TopLeftY)))
-        {
-            return true;
-        }
-        if (((Overlapbox1TopLeftX <= Overlapbox2TopLeftX && Overlapbox2TopLeftX <= Overlapbox1BotRightX) && (Overlapbox1BotRightY <= Overlapbox2BotRightY && Overlapbox2BotRightY <= Overlapbox1TopLeftY)) || ((Overlapbox2TopLeftX <= Overlapbox1BotRightX && Overlapbox1BotRightX <= Overlapbox2BotRightX) && (Overlapbox2BotRightY <= Overlapbox1TopLeftY && Overlapbox1TopLeftY <= Overlapbox2TopLeftY)))
-        {
-            return true;
-        }
-        if (((Overlapbox1TopLeftX <= Overlapbox2BotRightX && Overlapbox2BotRightX <= Overlapbox1BotRightX) && (Overlapbox1BotRightY <= Overlapbox2TopLeftY && Overlapbox2TopLeftY <= Overlapbox1TopLeftY)) || ((Overlapbox2TopLeftX <= Overlapbox1TopLeftX && Overlapbox1TopLeftX <= Overlapbox2BotRightX) && (Overlapbox2BotRightY <= Overlapbox1BotRightY && Overlapbox1BotRightY <= Overlapbox2TopLeftY)))
-        {
-            return true;
-        }
-        if (((Overlapbox1TopLeftX <= Overlapbox2TopLeftX && Overlapbox2TopLeftX <= Overlapbox1BotRightX) && (Overlapbox1BotRightY <= Overlapbox2TopLeftY && Overlapbox2TopLeftY <= Overlapbox1TopLeftY)) || ((Overlapbox2TopLeftX <= Overlapbox1BotRightX && Overlapbox1BotRightX <= Overlapbox2BotRightX) && (Overlapbox2BotRightY <= Overlapbox1BotRightY && Overlapbox1BotRightY <= Overlapbox2TopLeftY)))
-        {
-            return true;
-        }
-
-        return false;
-    }
-
     engine::actors::actor::overlapboxes::overlapbox::overlapbox(engine* Engine, actor* Actor, uint64 Type) : Engine(Engine), Actor(Actor)
     {
         this->AngleLocked = true;
@@ -385,13 +338,42 @@ namespace wze
         {
             return false;
         }
-        if (this->Actor->Overlapboxes.Overlapboxes.Length() <= OverlapboxID || this->Actor->Overlapboxes.Overlapboxes[OverlapboxID] == NULL)
+        if (this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes.Length() <= OverlapboxID || this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID] == NULL)
         {
             printf("wze::engine.actors[].overlapboxes[].IsCollidingWith(): Overlapbox does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n", ActorID, OverlapboxID);
             exit(1);
         }
 
-        return this->Actor->Overlapboxes.CheckOverlap(this, this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID]);
+        return this->Engine->Collision.CheckOverlap(this, this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID]);
+    }
+
+    uint8 engine::actors::actor::overlapboxes::overlapbox::GetOverlapInfo(array<array<uint64>>* OverlapboxesByActors)
+    {
+        OverlapboxesByActors->Clear();
+        OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
+
+        for (uint64 i = 1; i < this->Engine->Actors.Actors.Length(); i++)
+        {
+            if (this->Engine->Actors.Actors[i] == NULL || this->Engine->Actors.Actors[i] == this->Actor)
+            {
+                continue;
+            }
+
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length(); j++)
+            {
+                if (this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j] == NULL)
+                {
+                    continue;
+                }
+
+                if (this->Engine->Collision.CheckOverlap(this, this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]))
+                {
+                    (*OverlapboxesByActors)[i] += {j};
+                }
+            }
+        }
+
+        return 0;
     }
 
     button engine::actors::actor::overlapboxes::overlapbox::GetButtonState()

@@ -546,6 +546,7 @@ namespace wze
                                     uint16 GetActiveWidth();
                                     uint16 GetActiveHeight();
                                     bool IsCollidingWith(uint64 ActorID, uint64 OverlapboxID);
+                                    uint8 GetOverlapInfo(array<array<uint64>>* OverlapboxesByActors);
                                     button GetButtonState();
 
                                 private:
@@ -579,7 +580,6 @@ namespace wze
                                 array<overlapbox*> Overlapboxes;
                                 overlapboxes(engine* Engine, actor* Actor);
                                 ~overlapboxes();
-                                bool CheckOverlap(overlapbox* Overlapbox1, overlapbox* Overlapbox2);
 
                         } Overlapboxes;
 
@@ -678,6 +678,7 @@ namespace wze
                     uint16 BufferSize;
                     array<array<actors::actor*>> CollisionLayers;
                     collision(engine* Engine);
+                    bool CheckOverlap(actors::actor::overlapboxes::overlapbox* Overlapbox1, actors::actor::overlapboxes::overlapbox* Overlapbox2);
                     bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
                     direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
                     bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);

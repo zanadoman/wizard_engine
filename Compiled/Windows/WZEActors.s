@@ -248,7 +248,7 @@ _ZN3wze6engine6actorsD2Ev:
 	addq	$1, %rbx
 	call	_ZN3wze6engine6actors5actorD1Ev
 	movq	%rsi, %rcx
-	movl	$312, %edx
+	movl	$320, %edx
 	call	_ZdlPvy
 	movq	8(%rdi), %rax
 	movq	16(%rdi), %rcx
@@ -304,11 +304,13 @@ _ZN3wze6engine6actorsD2Ev:
 .LHOTB12:
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors3NewEyddttd
-	.def	_ZN3wze6engine6actors3NewEyddttd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors3NewEyddttd
-_ZN3wze6engine6actors3NewEyddttd:
+	.globl	_ZN3wze6engine6actors3NewEPvyddttd
+	.def	_ZN3wze6engine6actors3NewEPvyddttd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors3NewEPvyddttd
+_ZN3wze6engine6actors3NewEPvyddttd:
 .LFB8438:
+	pushq	%r14
+	.seh_pushreg	%r14
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -321,30 +323,31 @@ _ZN3wze6engine6actors3NewEyddttd:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$136, %rsp
-	.seh_stackalloc	136
-	movaps	%xmm6, 80(%rsp)
-	.seh_savexmm	%xmm6, 80
-	movaps	%xmm7, 96(%rsp)
-	.seh_savexmm	%xmm7, 96
-	movaps	%xmm8, 112(%rsp)
-	.seh_savexmm	%xmm8, 112
+	subq	$144, %rsp
+	.seh_stackalloc	144
+	movaps	%xmm6, 96(%rsp)
+	.seh_savexmm	%xmm6, 96
+	movaps	%xmm7, 112(%rsp)
+	.seh_savexmm	%xmm7, 112
+	movaps	%xmm8, 128(%rsp)
+	.seh_savexmm	%xmm8, 128
 	.seh_endprologue
 	movsd	240(%rsp), %xmm8
-	movzwl	224(%rsp), %ebp
-	movzwl	232(%rsp), %r12d
-	ucomisd	%xmm2, %xmm2
-	movq	%rcx, %rsi
-	movapd	%xmm2, %xmm6
-	movq	%rdx, %rdi
-	movapd	%xmm3, %xmm7
-	jp	.L67
+	movsd	264(%rsp), %xmm7
+	movzwl	256(%rsp), %r13d
+	movzwl	248(%rsp), %r12d
 	ucomisd	%xmm3, %xmm3
-	jp	.L68
+	movq	%rcx, %rsi
+	movq	%rdx, %rbp
+	movq	%r8, %rdi
+	movapd	%xmm3, %xmm6
+	jp	.L67
 	ucomisd	%xmm8, %xmm8
+	jp	.L68
+	ucomisd	%xmm7, %xmm7
 	jp	.L69
 	pxor	%xmm0, %xmm0
-	comisd	%xmm8, %xmm0
+	comisd	%xmm7, %xmm0
 	ja	.L45
 	movq	8(%rcx), %rax
 	cmpq	$1, %rax
@@ -361,49 +364,51 @@ _ZN3wze6engine6actors3NewEyddttd:
 .L51:
 	cmpq	$0, (%rcx,%rbx,8)
 	jne	.L48
-	movl	$312, %ecx
+	movl	$320, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
 	movq	(%rsi), %rdx
+	movl	%r13d, 56(%rsp)
+	movq	%rdi, %r9
 	movl	%r12d, 48(%rsp)
-	movq	%rdi, %r8
-	movl	%ebp, 40(%rsp)
-	movapd	%xmm6, %xmm3
+	movq	%rbp, %r8
 	movq	%rax, %rcx
-	movq	%rax, %r13
-	movsd	%xmm8, 56(%rsp)
-	movsd	%xmm7, 32(%rsp)
+	movq	%rax, %r14
+	movsd	%xmm7, 64(%rsp)
+	movsd	%xmm8, 40(%rsp)
+	movsd	%xmm6, 32(%rsp)
 .LEHB1:
-	call	_ZN3wze6engine6actors5actorC1EPS0_yddttd
+	call	_ZN3wze6engine6actors5actorC1EPS0_Pvyddttd
 .LEHE1:
 	movq	16(%rsi), %rax
 	cmpq	8(%rsi), %rbx
 	jnb	.L70
-	movq	%r13, (%rax,%rbx,8)
+	movq	%r14, (%rax,%rbx,8)
 	jmp	.L38
 	.p2align 4,,10
 	.p2align 3
 .L47:
-	movl	$312, %ecx
+	movl	$320, %ecx
 .LEHB2:
 	call	_Znwy
 .LEHE2:
 	movq	(%rsi), %rdx
+	movl	%r13d, 56(%rsp)
+	movq	%rdi, %r9
 	movl	%r12d, 48(%rsp)
-	movq	%rdi, %r8
-	movl	%ebp, 40(%rsp)
-	movapd	%xmm6, %xmm3
+	movq	%rbp, %r8
 	movq	%rax, %rcx
 	movq	%rax, %rbx
-	movsd	%xmm8, 56(%rsp)
-	movsd	%xmm7, 32(%rsp)
+	movsd	%xmm7, 64(%rsp)
+	movsd	%xmm8, 40(%rsp)
+	movsd	%xmm6, 32(%rsp)
 .LEHB3:
-	call	_ZN3wze6engine6actors5actorC1EPS0_yddttd
+	call	_ZN3wze6engine6actors5actorC1EPS0_Pvyddttd
 .LEHE3:
 	movq	8(%rsi), %rax
 	movq	16(%rsi), %rcx
-	movq	%rbx, 72(%rsp)
+	movq	%rbx, 88(%rsp)
 	leaq	1(%rax), %rdx
 	movq	%rdx, 8(%rsi)
 	salq	$3, %rdx
@@ -412,7 +417,7 @@ _ZN3wze6engine6actors3NewEyddttd:
 	testq	%rax, %rax
 	je	.L71
 	movq	8(%rsi), %rdx
-	leaq	72(%rsp), %rcx
+	leaq	88(%rsp), %rcx
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
 .LEHB4:
@@ -425,17 +430,18 @@ _ZN3wze6engine6actors3NewEyddttd:
 	cmpq	$0, (%rdx,%rax,8)
 	je	.L73
 .L38:
-	movaps	80(%rsp), %xmm6
-	movaps	96(%rsp), %xmm7
+	movaps	96(%rsp), %xmm6
+	movaps	112(%rsp), %xmm7
 	movq	%rbx, %rax
-	movaps	112(%rsp), %xmm8
-	addq	$136, %rsp
+	movaps	128(%rsp), %xmm8
+	addq	$144, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	popq	%rbp
 	popq	%r12
 	popq	%r13
+	popq	%r14
 	ret
 .L70:
 	leaq	.LC9(%rip), %rcx
@@ -444,55 +450,67 @@ _ZN3wze6engine6actors3NewEyddttd:
 	movl	$1, %ecx
 	call	exit
 .L45:
-	movl	%r12d, 40(%rsp)
+	movl	%r13d, 40(%rsp)
 	leaq	.LC8(%rip), %rcx
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movl	%ebp, 32(%rsp)
-	movsd	%xmm8, 48(%rsp)
+	movapd	%xmm8, %xmm3
+	movq	%xmm8, %r9
+	movl	%r12d, 32(%rsp)
+	movapd	%xmm6, %xmm2
+	movq	%xmm6, %r8
+	movq	%rdi, %rdx
+	movsd	%xmm7, 48(%rsp)
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L69:
-	movl	%r12d, 40(%rsp)
+	movl	%r13d, 40(%rsp)
 	leaq	.LC6(%rip), %rcx
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movl	%ebp, 32(%rsp)
-	movsd	%xmm8, 48(%rsp)
+	movapd	%xmm8, %xmm3
+	movq	%xmm8, %r9
+	movl	%r12d, 32(%rsp)
+	movapd	%xmm6, %xmm2
+	movq	%xmm6, %r8
+	movq	%rdi, %rdx
+	movsd	%xmm7, 48(%rsp)
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L68:
-	movl	%r12d, 40(%rsp)
+	movl	%r13d, 40(%rsp)
 	leaq	.LC5(%rip), %rcx
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movl	%ebp, 32(%rsp)
-	movsd	%xmm8, 48(%rsp)
+	movapd	%xmm8, %xmm3
+	movq	%xmm8, %r9
+	movl	%r12d, 32(%rsp)
+	movapd	%xmm6, %xmm2
+	movq	%xmm6, %r8
+	movq	%rdi, %rdx
+	movsd	%xmm7, 48(%rsp)
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L67:
-	movl	%r12d, 40(%rsp)
+	movl	%r13d, 40(%rsp)
 	leaq	.LC4(%rip), %rcx
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movl	%ebp, 32(%rsp)
-	movsd	%xmm8, 48(%rsp)
+	movapd	%xmm8, %xmm3
+	movq	%xmm8, %r9
+	movl	%r12d, 32(%rsp)
+	movapd	%xmm6, %xmm2
+	movq	%xmm6, %r8
+	movq	%rdi, %rdx
+	movsd	%xmm7, 48(%rsp)
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L73:
-	movl	%r12d, 40(%rsp)
-	movapd	%xmm7, %xmm3
-	movapd	%xmm6, %xmm2
-	movq	%rdi, %rdx
-	movl	%ebp, 32(%rsp)
-	movq	%xmm7, %r9
-	movq	%xmm6, %r8
+	movl	%r13d, 40(%rsp)
 	leaq	.LC11(%rip), %rcx
-	movsd	%xmm8, 48(%rsp)
+	movapd	%xmm8, %xmm3
+	movq	%xmm8, %r9
+	movl	%r12d, 32(%rsp)
+	movapd	%xmm6, %xmm2
+	movq	%xmm6, %r8
+	movq	%rdi, %rdx
+	movsd	%xmm7, 48(%rsp)
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -549,30 +567,31 @@ _ZN3wze6engine6actors3NewEyddttd:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
-	.def	_ZN3wze6engine6actors3NewEyddttd.cold;	.scl	3;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors3NewEyddttd.cold
-	.seh_stackalloc	184
-	.seh_savereg	%rbx, 136
-	.seh_savereg	%rsi, 144
-	.seh_savereg	%rdi, 152
-	.seh_savereg	%rbp, 160
-	.seh_savexmm	%xmm6, 80
-	.seh_savexmm	%xmm7, 96
-	.seh_savereg	%r12, 168
-	.seh_savereg	%r13, 176
-	.seh_savexmm	%xmm8, 112
+	.def	_ZN3wze6engine6actors3NewEPvyddttd.cold;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors3NewEPvyddttd.cold
+	.seh_stackalloc	200
+	.seh_savereg	%rbx, 144
+	.seh_savereg	%rsi, 152
+	.seh_savereg	%rdi, 160
+	.seh_savereg	%rbp, 168
+	.seh_savexmm	%xmm6, 96
+	.seh_savexmm	%xmm7, 112
+	.seh_savereg	%r12, 176
+	.seh_savereg	%r13, 184
+	.seh_savereg	%r14, 192
+	.seh_savexmm	%xmm8, 128
 	.seh_endprologue
-_ZN3wze6engine6actors3NewEyddttd.cold:
+_ZN3wze6engine6actors3NewEPvyddttd.cold:
 .L57:
 	movq	%rbx, %rcx
-	movl	$312, %edx
+	movl	$320, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB5:
 	call	_Unwind_Resume
 .L56:
-	movq	%r13, %rcx
-	movl	$312, %edx
+	movq	%r14, %rcx
+	movl	$320, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
@@ -635,7 +654,7 @@ _ZN3wze6engine6actors6DeleteEy:
 	movq	%rdi, %rcx
 	call	_ZN3wze6engine6actors5actorD1Ev
 	movq	%rdi, %rcx
-	movl	$312, %edx
+	movl	$320, %edx
 	call	_ZdlPvy
 	movq	8(%rsi), %rax
 	movq	16(%rsi), %rcx
@@ -805,7 +824,7 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	je	.L101
 	movq	%r12, %rcx
 	call	_ZN3wze6engine6actors5actorD1Ev
-	movl	$312, %edx
+	movl	$320, %edx
 	movq	%r12, %rcx
 	call	_ZdlPvy
 	movq	8(%rbp), %rcx
@@ -974,7 +993,7 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	je	.L143
 	movq	%rbp, %rcx
 	call	_ZN3wze6engine6actors5actorD1Ev
-	movl	$312, %edx
+	movl	$320, %edx
 	movq	%rbp, %rcx
 	call	_ZdlPvy
 	movq	8(%rdi), %r9
@@ -1103,5 +1122,5 @@ _ZN3wze6engine6actorsixEy:
 	.def	_ZN3wze6engine6actors5actorD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actorC1EPS0_yddttd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actorC1EPS0_Pvyddttd;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef

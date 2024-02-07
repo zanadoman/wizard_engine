@@ -17,31 +17,36 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$80, %rsp
-	.seh_stackalloc	80
+	subq	$96, %rsp
+	.seh_stackalloc	96
+	movaps	%xmm6, 64(%rsp)
+	.seh_savexmm	%xmm6, 64
+	movaps	%xmm7, 80(%rsp)
+	.seh_savexmm	%xmm7, 80
 	.seh_endprologue
-	movl	144(%rsp), %esi
-	movl	152(%rsp), %edi
+	movl	160(%rsp), %esi
+	movl	168(%rsp), %edi
 	movzwl	%si, %esi
 	movzwl	%di, %edi
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
+	movapd	%xmm2, %xmm6
+	movapd	%xmm3, %xmm7
 	leaq	696(%rdx), %rcx
 	leaq	.LC0(%rip), %rdx
-	movsd	%xmm2, 72(%rsp)
-	movsd	%xmm3, 64(%rsp)
 	call	_ZN3wze6engine6assets11LoadTextureEPKc
-	movsd	64(%rsp), %xmm3
-	movsd	72(%rsp), %xmm2
-	movl	$2, %edx
+	movapd	%xmm6, %xmm3
+	movl	$2, %r8d
+	movq	%rbx, %rdx
 	movq	%rax, 24(%rbx)
 	movq	(%rbx), %rax
-	movl	%edi, 40(%rsp)
+	movl	%edi, 48(%rsp)
 	leaq	632(%rax), %rcx
 	movq	.LC1(%rip), %rax
-	movl	%esi, 32(%rsp)
-	movq	%rax, 48(%rsp)
-	call	_ZN3wze6engine6actors3NewEyddttd
+	movl	%esi, 40(%rsp)
+	movsd	%xmm7, 32(%rsp)
+	movq	%rax, 56(%rsp)
+	call	_ZN3wze6engine6actors3NewEPvyddttd
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rdx
 	movq	(%rbx), %rax
@@ -67,9 +72,12 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movq	8(%rbx), %rdx
 	addq	$632, %rcx
 	call	_ZN3wze6engine6actorsixEy
+	nop
+	movaps	64(%rsp), %xmm6
+	movaps	80(%rsp), %xmm7
 	movl	$1, %edx
 	movq	%rax, %rcx
-	addq	$80, %rsp
+	addq	$96, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
@@ -129,7 +137,7 @@ _ZN5crateD2Ev:
 	.long	1068079513
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	_ZN3wze6engine6assets11LoadTextureEPKc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors3NewEyddttd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors3NewEPvyddttd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actorsixEy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor8textures3NewEy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor8SetDepthEd;	.scl	2;	.type	32;	.endef

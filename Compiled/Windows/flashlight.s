@@ -24,15 +24,16 @@ _ZN10flashlightC2EPN3wze6engineE:
 	leaq	.LC0(%rip), %rdx
 	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	pxor	%xmm3, %xmm3
-	movl	$3, %edx
+	movl	$3, %r8d
+	movq	%rbx, %rdx
 	movq	%rax, 32(%rbx)
 	movq	(%rbx), %rax
-	movapd	%xmm3, %xmm2
-	movq	$0x000000000, 48(%rsp)
-	movl	$3000, 40(%rsp)
+	movq	$0x000000000, 56(%rsp)
+	movl	$3000, 48(%rsp)
 	leaq	632(%rax), %rcx
-	movl	$3000, 32(%rsp)
-	call	_ZN3wze6engine6actors3NewEyddttd
+	movl	$3000, 40(%rsp)
+	movq	$0x000000000, 32(%rsp)
+	call	_ZN3wze6engine6actors3NewEPvyddttd
 	movq	%rax, %rdx
 	movq	%rax, 16(%rbx)
 	movq	(%rbx), %rax
@@ -182,7 +183,7 @@ _ZN10flashlight6UpdateEv:
 	.seh_endproc
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	_ZN3wze6engine6assets11LoadTextureEPKc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors3NewEyddttd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors3NewEPvyddttd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actorsixEy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6window8GetWidthEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor4SetXEd;	.scl	2;	.type	32;	.endef

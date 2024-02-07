@@ -41,7 +41,7 @@ main:
 .LEHB0:
 	call	_Znwm@PLT
 .LEHE0:
-	movl	$50, %r9d
+	movl	$6, %r9d
 	xorl	%edx, %edx
 	xorl	%esi, %esi
 	movl	$1080, %r8d

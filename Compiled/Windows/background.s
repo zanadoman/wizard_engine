@@ -22,16 +22,17 @@ _ZN10backgroundC2EPN3wze6engineE:
 	leaq	.LC0(%rip), %rdx
 	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	pxor	%xmm3, %xmm3
-	xorl	%edx, %edx
+	xorl	%r8d, %r8d
+	movq	%rbx, %rdx
 	movq	%rax, 24(%rbx)
 	movq	(%rbx), %rax
-	movapd	%xmm3, %xmm2
-	movl	$1080, 40(%rsp)
+	movl	$1080, 48(%rsp)
 	leaq	632(%rax), %rcx
 	movq	.LC1(%rip), %rax
-	movl	$1920, 32(%rsp)
-	movq	%rax, 48(%rsp)
-	call	_ZN3wze6engine6actors3NewEyddttd
+	movl	$1920, 40(%rsp)
+	movq	$0x000000000, 32(%rsp)
+	movq	%rax, 56(%rsp)
+	call	_ZN3wze6engine6actors3NewEPvyddttd
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rdx
 	movq	(%rbx), %rax
@@ -95,7 +96,7 @@ _ZN10backgroundD2Ev:
 	.long	1072273817
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	_ZN3wze6engine6assets11LoadTextureEPKc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors3NewEyddttd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors3NewEPvyddttd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actorsixEy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor8textures3NewEy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6assets13UnloadTextureEy;	.scl	2;	.type	32;	.endef

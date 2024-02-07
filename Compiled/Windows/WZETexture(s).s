@@ -334,8 +334,8 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	movl	$384, %r8d
 	pxor	%xmm0, %xmm0
 	movw	%r8w, 36(%rax)
-	movl	240(%rdx), %ecx
-	movupd	208(%rdx), %xmm4
+	movl	248(%rdx), %ecx
+	movupd	216(%rdx), %xmm4
 	movq	%rdi, 72(%rax)
 	movq	24(%rsi), %rdx
 	movups	%xmm3, (%rax)
@@ -364,8 +364,8 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	movdqu	(%rsi), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rdi, 72(%rax)
-	movl	240(%rdx), %ecx
-	movupd	208(%rdx), %xmm2
+	movl	248(%rdx), %ecx
+	movupd	216(%rdx), %xmm2
 	movq	%rax, 40(%rsp)
 	movups	%xmm1, (%rax)
 	movl	%ecx, 16(%rax)
@@ -920,8 +920,8 @@ _ZN3wze6engine6actors5actor8texturesixEy:
 _ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_y:
 .LFB8446:
 	.seh_endprologue
-	movupd	208(%r8), %xmm0
-	movl	240(%r8), %eax
+	movupd	216(%r8), %xmm0
+	movl	248(%r8), %eax
 	movl	%eax, 16(%rcx)
 	movl	$4294967295, %eax
 	movq	%rax, 20(%rcx)
@@ -976,8 +976,8 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	jp	.L181
 	movq	8(%rcx), %rax
 	movsd	48(%rcx), %xmm0
-	movsd	208(%rax), %xmm1
-	movsd	216(%rax), %xmm2
+	movsd	216(%rax), %xmm1
+	movsd	224(%rax), %xmm2
 	ucomisd	%xmm6, %xmm1
 	jp	.L167
 	jne	.L167
@@ -999,8 +999,8 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	movq	8(%rbx), %rax
 	movapd	%xmm0, %xmm3
 	movsd	48(%rbx), %xmm0
-	movsd	208(%rax), %xmm1
-	movsd	216(%rax), %xmm2
+	movsd	216(%rax), %xmm1
+	movsd	224(%rax), %xmm2
 	movsd	%xmm3, 56(%rbx)
 	ucomisd	%xmm1, %xmm6
 	jp	.L171
@@ -1066,8 +1066,8 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	jp	.L200
 	movq	8(%rcx), %rax
 	movsd	40(%rcx), %xmm3
-	movsd	208(%rax), %xmm1
-	movsd	216(%rax), %xmm2
+	movsd	216(%rax), %xmm1
+	movsd	224(%rax), %xmm2
 	ucomisd	%xmm3, %xmm1
 	jp	.L186
 	jne	.L186
@@ -1087,8 +1087,8 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
 	movsd	40(%rbx), %xmm3
-	movsd	208(%rax), %xmm1
-	movsd	216(%rax), %xmm2
+	movsd	216(%rax), %xmm1
+	movsd	224(%rax), %xmm2
 	movsd	%xmm0, 56(%rbx)
 	ucomisd	%xmm3, %xmm1
 	jp	.L190
