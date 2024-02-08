@@ -1,5 +1,7 @@
 #include "WizardEngine.hpp"
 
+using namespace neo;
+
 namespace wze
 {
     engine::assets::assets(engine* Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Sounds({(Mix_Chunk*)NULL}), Fonts({(TTF_Font*)NULL}), Cursors({(SDL_Cursor*)NULL}) {}

@@ -1,5 +1,7 @@
 #include "WizardEngine.hpp"
-#include <SDL2/SDL.h>
+#include <ctime>
+
+using namespace neo;
 
 namespace wze
 {

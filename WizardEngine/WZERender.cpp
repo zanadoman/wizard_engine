@@ -1,5 +1,7 @@
 #include "WizardEngine.hpp"
 
+using namespace neo;
+
 namespace wze
 {
     engine::render::render(engine* Engine) : Engine(Engine)

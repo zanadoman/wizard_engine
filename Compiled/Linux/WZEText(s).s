@@ -970,7 +970,7 @@ _ZN3wze6engine6actors5actor5texts4textC2EPS0_PS2_PKcy:
 	jnb	.L167
 	movq	(%rcx,%rax,8), %rdi
 	movl	$-1, %edx
-	call	TTF_RenderText_Blended@PLT
+	call	TTF_RenderUTF8_Blended@PLT
 	movq	%rax, %r12
 	testq	%rax, %rax
 	je	.L168
@@ -1712,7 +1712,7 @@ _ZN3wze6engine6actors5actor5texts4text9SetHeightEt:
 	jnb	.L256
 	movq	(%rcx,%rax,8), %rdi
 	movl	$-1, %edx
-	call	TTF_RenderText_Blended@PLT
+	call	TTF_RenderUTF8_Blended@PLT
 	movq	%rax, %r13
 	testq	%rax, %rax
 	je	.L257
@@ -1864,7 +1864,7 @@ _ZN3wze6engine6actors5actor5texts4text9SetStringEPKc:
 	jnb	.L276
 	movq	(%rcx,%rax,8), %rdi
 	movl	$-1, %edx
-	call	TTF_RenderText_Blended@PLT
+	call	TTF_RenderUTF8_Blended@PLT
 	movq	%rax, %r13
 	testq	%rax, %rax
 	je	.L277
@@ -2023,7 +2023,7 @@ _ZN3wze6engine6actors5actor5texts4text7SetFontEy:
 	jnb	.L302
 	movq	(%rdx,%rbp,8), %rdi
 	movl	$-1, %edx
-	call	TTF_RenderText_Blended@PLT
+	call	TTF_RenderUTF8_Blended@PLT
 	movq	%rax, %r12
 	testq	%rax, %rax
 	je	.L303

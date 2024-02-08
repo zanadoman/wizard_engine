@@ -2,7 +2,7 @@
 
 #include <cstdio>
 #include <cstdlib>
-#include <cmath>
+#include <type_traits>
 #include <initializer_list>
 
 namespace neo

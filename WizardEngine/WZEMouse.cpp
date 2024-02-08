@@ -1,5 +1,7 @@
 #include "WizardEngine.hpp"
 
+using namespace neo;
+
 namespace wze
 {
     engine::mouse::mouse(engine* Engine) : Engine(Engine)

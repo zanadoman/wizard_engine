@@ -1,5 +1,7 @@
 #include "WizardEngine.hpp"
 
+using namespace neo;
+
 namespace wze
 {
     engine::collision::collision(engine* Engine) : Engine(Engine), CollisionLayers(256)

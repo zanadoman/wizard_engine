@@ -1,5 +1,6 @@
-#include "Includes/NeoTypes++.hpp"
 #include "WizardEngine.hpp"
+
+using namespace neo;
 
 namespace wze
 {

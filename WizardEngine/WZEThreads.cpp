@@ -1,5 +1,7 @@
 #include "WizardEngine.hpp"
 
+using namespace neo;
+
 namespace wze
 {
     engine::threads::threads(engine* Engine) : Engine(Engine), Threads({(SDL_Thread*)NULL}) {}

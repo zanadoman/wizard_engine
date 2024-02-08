@@ -1,5 +1,7 @@
 #include "WizardEngine.hpp"
 
+using namespace neo;
+
 namespace wze
 {
     engine::actors::actor::colors::colors(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Colors({(color*)NULL}) {}

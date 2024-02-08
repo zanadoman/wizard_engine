@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Includes/NeoTypes++.hpp"
-#include <ctime>
-#include <initializer_list>
 
 #ifdef __linux__
 #include <SDL2/SDL.h>
@@ -27,8 +25,6 @@
 #define DEG_MAX 360
 #define RAD_MAX 6.283185307179586
 
-using namespace neo;
-
 namespace wze
 {
     //__________Engine_________________________________________________________________________________________________
@@ -45,20 +41,20 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    uint16 GetWidth();
-                    uint16 GetHeight();
+                    neo::uint16 GetWidth();
+                    neo::uint16 GetHeight();
                     bool IsShown();
                     bool HasFocus();
 
                 private:
                     SDL_Window* Window;
                     SDL_Renderer* Renderer;
-                    uint16 Width;
-                    uint16 Height;
-                    uint32 State;
+                    neo::uint16 Width;
+                    neo::uint16 Height;
+                    neo::uint32 State;
                     window(engine* Engine);
-                    uint8 Open(const char* Title, const char* IconPath, uint16 Width, uint16 Height);
-                    uint8 Close();
+                    neo::uint8 Open(const char* Title, const char* IconPath, neo::uint16 Width, neo::uint16 Height);
+                    neo::uint8 Close();
             } Window;
 
             //__________Render_________________________________________________________________________________________
@@ -81,44 +77,44 @@ namespace wze
                 class token
                 {
                     friend class render;
-                    friend class array<token>;
+                    friend class neo::array<token>;
 
                     void* Data;
                     type Type;
                     double Layer;
-                    uint8 Priority;
+                    neo::uint8 Priority;
                     SDL_Rect Area;
                     token();
-                    token(void* Data, type Type, double Layer, uint8 Priority, SDL_Rect Area);
+                    token(void* Data, type Type, double Layer, neo::uint8 Priority, SDL_Rect Area);
                 };
 
                 public:
                     double GetSamplingStep();
                     double SetSamplingStep(double SamplingStep);
-                    uint16 GetBufferSizeKB();
-                    uint16 SetBufferSizeKB(uint16 KiloBytes);
+                    neo::uint16 GetBufferSizeKB();
+                    neo::uint16 SetBufferSizeKB(neo::uint16 KiloBytes);
 
                 private:
-                    uint16 RenderWidth;
-                    uint16 RenderHeight;
+                    neo::uint16 RenderWidth;
+                    neo::uint16 RenderHeight;
                     double SamplingStep;
-                    uint16 BufferSize;
-                    array<token*> RenderQueue;
+                    neo::uint16 BufferSize;
+                    neo::array<token*> RenderQueue;
                     render(engine* Engine);
-                    uint8 Update();
-                    uint8 SelectionStage();
-                    uint8 OrderingStage();
-                    uint8 OrderByLayer(uint64 From, uint64 Until);
-                    uint8 OrderByLayerMerge(uint64 Left, uint64 Mid, uint64 Right);
-                    uint8 OrderByPriority(uint64 From, uint64 Until);
-                    uint8 OrderByPriorityMerge(uint64 Left, uint64 Mid, uint64 Right);
-                    uint8 RenderingStage();
-                    uint8 RenderColor(token* Token);
-                    uint8 RenderTexture(token* Token);
-                    uint8 RenderFlipbook(token* Token);
-                    uint8 RenderText(token* Token);
-                    uint8 RenderOverlapbox(token* Token);
-                    uint8 RenderHitbox(token* Token);
+                    neo::uint8 Update();
+                    neo::uint8 SelectionStage();
+                    neo::uint8 OrderingStage();
+                    neo::uint8 OrderByLayer(neo::uint64 From, neo::uint64 Until);
+                    neo::uint8 OrderByLayerMerge(neo::uint64 Left, neo::uint64 Mid, neo::uint64 Right);
+                    neo::uint8 OrderByPriority(neo::uint64 From, neo::uint64 Until);
+                    neo::uint8 OrderByPriorityMerge(neo::uint64 Left, neo::uint64 Mid, neo::uint64 Right);
+                    neo::uint8 RenderingStage();
+                    neo::uint8 RenderColor(token* Token);
+                    neo::uint8 RenderTexture(token* Token);
+                    neo::uint8 RenderFlipbook(token* Token);
+                    neo::uint8 RenderText(token* Token);
+                    neo::uint8 RenderOverlapbox(token* Token);
+                    neo::uint8 RenderHitbox(token* Token);
             } Render;
 
             //__________Camera_________________________________________________________________________________________
@@ -134,14 +130,14 @@ namespace wze
                     bool Smoothing;
                     double GetZoom();
                     double SetZoom(double Zoom);
-                    uint64 GetXActor();
-                    uint64 GetYActor();
-                    uint8 Bind(uint64 Actor);
-                    uint8 BindX(uint64 Actor);
-                    uint8 BindY(uint64 Actor);
-                    uint8 Unbind();
-                    uint8 UnbindX();
-                    uint8 UnbindY();
+                    neo::uint64 GetXActor();
+                    neo::uint64 GetYActor();
+                    neo::uint8 Bind(neo::uint64 Actor);
+                    neo::uint8 BindX(neo::uint64 Actor);
+                    neo::uint8 BindY(neo::uint64 Actor);
+                    neo::uint8 Unbind();
+                    neo::uint8 UnbindX();
+                    neo::uint8 UnbindY();
                     double GetMinSpeedX();
                     double SetMinSpeedX(double MinSpeedX);
                     double GetMinSpeedY();
@@ -164,8 +160,8 @@ namespace wze
                     double SetSlowDownRangeY(double SlowDownRangeY);
 
                 private:
-                    uint64 XActor;
-                    uint64 YActor;
+                    neo::uint64 XActor;
+                    neo::uint64 YActor;
                     double CameraX;
                     double CameraY;
                     double Zoom;
@@ -182,8 +178,8 @@ namespace wze
                     double CurrentSpeedX;
                     double CurrentSpeedY;
                     camera(engine* Engine);
-                    uint8 Update();
-                    SDL_Rect Transform(double X, double Y, uint16 Width, uint16 Height, double Layer);
+                    neo::uint8 Update();
+                    SDL_Rect Transform(double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
             } Camera;
 
             //__________Audio__________________________________________________________________________________________
@@ -196,16 +192,16 @@ namespace wze
                 public:
                     double GetGlobalVolume();
                     double SetGlobalVolume(double GlobalVolume);
-                    uint8 Play(uint64 ID, uint16 Channel, double Volume);
-                    uint8 Play(uint64 ID, uint16 Channel, double Volume, uint16 Loops);
-                    uint8 Play(uint64 ID, uint16 Channel, double Volume, double Left, double Right);
-                    uint8 Play(uint64 ID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops);
-                    bool IsPaused(uint16 Channel);
-                    uint8 Pause(uint16 Channel);
-                    uint8 Resume(uint16 Channel);
-                    uint8 PauseAll();
-                    uint8 ResumeAll();
-                    uint8 Stop(uint16 Channel);
+                    neo::uint8 Play(neo::uint64 ID, neo::uint16 Channel, double Volume);
+                    neo::uint8 Play(neo::uint64 ID, neo::uint16 Channel, double Volume, neo::uint16 Loops);
+                    neo::uint8 Play(neo::uint64 ID, neo::uint16 Channel, double Volume, double Left, double Right);
+                    neo::uint8 Play(neo::uint64 ID, neo::uint16 Channel, double Volume, double Left, double Right, neo::uint16 Loops);
+                    bool IsPaused(neo::uint16 Channel);
+                    neo::uint8 Pause(neo::uint16 Channel);
+                    neo::uint8 Resume(neo::uint16 Channel);
+                    neo::uint8 PauseAll();
+                    neo::uint8 ResumeAll();
+                    neo::uint8 Stop(neo::uint16 Channel);
 
                 private:
                     double GlobalVolume;
@@ -223,10 +219,10 @@ namespace wze
                     bool operator [] (key Key);
 
                 private:
-                    const uint8* SDL_KeyStates;
-                    uint8 KeyStates[KEY_COUNT];
+                    const neo::uint8* SDL_KeyStates;
+                    neo::uint8 KeyStates[KEY_COUNT];
                     keys(engine* Engine);
-                    uint8 Update();
+                    neo::uint8 Update();
             } Keys;
 
             //__________Mouse__________________________________________________________________________________________
@@ -246,18 +242,18 @@ namespace wze
                     bool SetAbsolute();
                     bool IsRelative();
                     bool SetRelative();
-                    uint64 GetCursor();
-                    uint64 SetCursor(uint64 ID);
+                    neo::uint64 GetCursor();
+                    neo::uint64 SetCursor(neo::uint64 ID);
 
                 private:
-                    sint32 X;
-                    sint32 Y;
+                    neo::sint32 X;
+                    neo::sint32 Y;
                     double MotionX;
                     double MotionY;
                     bool Mode;
-                    uint64 Cursor;
+                    neo::uint64 Cursor;
                     mouse(engine* Engine);
-                    uint8 Update();
+                    neo::uint8 Update();
             } Mouse;
 
             //__________Actors_________________________________________________________________________________________
@@ -291,14 +287,14 @@ namespace wze
                                 actor* Actor;
 
                                 public:
-                                    uint16 Width;
-                                    uint16 Height;
-                                    uint8 ColorR;
-                                    uint8 ColorG;
-                                    uint8 ColorB;
-                                    uint8 ColorA;
+                                    neo::uint16 Width;
+                                    neo::uint16 Height;
+                                    neo::uint8 ColorR;
+                                    neo::uint8 ColorG;
+                                    neo::uint8 ColorB;
+                                    neo::uint8 ColorA;
                                     bool OffsetAngleLocked;
-                                    uint8 Priority;
+                                    neo::uint8 Priority;
                                     bool Visible;
                                     double GetX();
                                     double SetX(double X);
@@ -314,14 +310,14 @@ namespace wze
                             };
 
                             public:
-                                uint64 New();
-                                uint8 Delete(uint64);
-                                uint8 Purge(std::initializer_list<uint64> Keep);
-                                uint8 Purge(array<uint64>* Keep);
-                                color& operator [] (uint64 ID);
+                                neo::uint64 New();
+                                neo::uint8 Delete(neo::uint64);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
+                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                color& operator [] (neo::uint64 ID);
 
                             private:
-                                array<color*> Colors;
+                                neo::array<color*> Colors;
                                 colors(engine* Engine, actor* Actor);
                                 ~colors();
                         } Colors;
@@ -341,44 +337,44 @@ namespace wze
                                 actor* Actor;
 
                                 public:
-                                    uint16 Width;
-                                    uint16 Height;
-                                    uint8 ColorR;
-                                    uint8 ColorG;
-                                    uint8 ColorB;
-                                    uint8 ColorA;
+                                    neo::uint16 Width;
+                                    neo::uint16 Height;
+                                    neo::uint8 ColorR;
+                                    neo::uint8 ColorG;
+                                    neo::uint8 ColorB;
+                                    neo::uint8 ColorA;
                                     double Angle;
                                     bool FlipHorizontal;
                                     bool FlipVertical;
                                     bool AngleLocked;
                                     bool OffsetAngleLocked;
-                                    uint8 Priority;
+                                    neo::uint8 Priority;
                                     bool Visible;
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
                                     double GetY(double Y);
-                                    uint64 GetTextureID();
-                                    uint64 SetTextureID(uint64 ID);
+                                    neo::uint64 GetTextureID();
+                                    neo::uint64 SetTextureID(neo::uint64 ID);
 
                                 private:
                                     double X;
                                     double Y;
                                     double OffsetLength;
                                     double OffsetAngle;
-                                    uint64 TextureID;
-                                    texture(engine* Engine, actor* Actor, uint64 TextureID);
+                                    neo::uint64 TextureID;
+                                    texture(engine* Engine, actor* Actor, neo::uint64 TextureID);
                             };
 
                             public:
-                                uint64 New(uint64 TextureID);
-                                uint8 Delete(uint64 ID);
-                                uint8 Purge(std::initializer_list<uint64> Keep);
-                                uint8 Purge(array<uint64>* Keep);
-                                texture& operator [] (uint64 ID);
+                                neo::uint64 New(neo::uint64 TextureID);
+                                neo::uint8 Delete(neo::uint64 ID);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
+                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                texture& operator [] (neo::uint64 ID);
 
                             private:
-                                array<texture*> Textures;
+                                neo::array<texture*> Textures;
                                 textures(engine* Engine, actor* Actor);
                                 ~textures();
                         } Textures;
@@ -398,18 +394,18 @@ namespace wze
                                 actor* Actor;
 
                                 public:
-                                    uint16 Width;
-                                    uint16 Height;
-                                    uint8 ColorR;
-                                    uint8 ColorG;
-                                    uint8 ColorB;
-                                    uint8 ColorA;
+                                    neo::uint16 Width;
+                                    neo::uint16 Height;
+                                    neo::uint8 ColorR;
+                                    neo::uint8 ColorG;
+                                    neo::uint8 ColorB;
+                                    neo::uint8 ColorA;
                                     double Angle;
                                     bool FlipHorizontal;
                                     bool FlipVertical;
                                     bool AngleLocked;
                                     bool OffsetAngleLocked;
-                                    uint8 Priority;
+                                    neo::uint8 Priority;
                                     bool Visible;
                                     bool Loop;
                                     bool Paused;
@@ -417,35 +413,35 @@ namespace wze
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
-                                    uint32 GetDelay();
-                                    uint32 SetDelay(uint32 Delay);
+                                    neo::uint32 GetDelay();
+                                    neo::uint32 SetDelay(neo::uint32 Delay);
                                     bool IsPlaying();
-                                    uint64 GetCurrentFrame();
-                                    uint8 Reset();
+                                    neo::uint64 GetCurrentFrame();
+                                    neo::uint8 Reset();
 
                                 private:
                                     double X;
                                     double Y;
                                     double OffsetLength;
                                     double OffsetAngle;
-                                    uint32 Delay;
-                                    uint64 CurrentFrame;
-                                    uint32 Remainder;
-                                    array<uint64> Textures;
-                                    flipbook(engine* Engine, actor* Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs);
-                                    flipbook(engine* Engine, actor* Actor, uint32 Delay, array<uint64>* TextureIDs);
+                                    neo::uint32 Delay;
+                                    neo::uint64 CurrentFrame;
+                                    neo::uint32 Remainder;
+                                    neo::array<neo::uint64> Textures;
+                                    flipbook(engine* Engine, actor* Actor, neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
+                                    flipbook(engine* Engine, actor* Actor, neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
                             };
 
                             public:
-                                uint64 New(uint32 Delay, std::initializer_list<uint64> TextureIDs);
-                                uint64 New(uint32 Delay, array<uint64>* TextureIDs);
-                                uint8 Delete(uint64 ID);
-                                uint8 Purge(std::initializer_list<uint64> Keep);
-                                uint8 Purge(array<uint64>* Keep);
-                                flipbook& operator [] (uint64 ID);
+                                neo::uint64 New(neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
+                                neo::uint64 New(neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
+                                neo::uint8 Delete(neo::uint64 ID);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
+                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                flipbook& operator [] (neo::uint64 ID);
 
                             private:
-                                array<flipbook*> Flipbooks;
+                                neo::array<flipbook*> Flipbooks;
                                 flipbooks(engine* Engine, actor* Actor);
                                 ~flipbooks();
                         } Flipbooks;
@@ -465,52 +461,52 @@ namespace wze
                                 actor* Actor;
 
                                 public:
-                                    uint8 ColorR;
-                                    uint8 ColorG;
-                                    uint8 ColorB;
-                                    uint8 ColorA;
+                                    neo::uint8 ColorR;
+                                    neo::uint8 ColorG;
+                                    neo::uint8 ColorB;
+                                    neo::uint8 ColorA;
                                     double Angle;
                                     bool FlipHorizontal;
                                     bool FlipVertical;
                                     bool AngleLocked;
                                     bool OffsetAngleLocked;
-                                    uint8 Priority;
+                                    neo::uint8 Priority;
                                     bool Visible;
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
-                                    uint16 GetWidth();
-                                    uint16 GetHeight();
-                                    uint16 SetHeight(uint16);
+                                    neo::uint16 GetWidth();
+                                    neo::uint16 GetHeight();
+                                    neo::uint16 SetHeight(neo::uint16);
                                     const char* GetString();
                                     const char* SetString(const char* String);
-                                    uint64 GetFont();
-                                    uint64 SetFont(uint64 ID);
+                                    neo::uint64 GetFont();
+                                    neo::uint64 SetFont(neo::uint64 ID);
 
                                 private:
                                     double X;
                                     double Y;
-                                    uint16 Width;
-                                    uint64 Height;
+                                    neo::uint16 Width;
+                                    neo::uint64 Height;
                                     double OffsetLength;
                                     double OffsetAngle;
-                                    string String;
-                                    uint64 FontID;
+                                    neo::string String;
+                                    neo::uint64 FontID;
                                     SDL_Texture* Texture;
-                                    text(engine* Engine, actor* Actor, const char* String, uint64 FontID);
+                                    text(engine* Engine, actor* Actor, const char* String, neo::uint64 FontID);
                                     ~text();
                             };
 
                             public:
-                                uint64 New(const char* String, uint64 FontID);
-                                uint8 Delete(uint64 ID);
-                                uint8 Purge(std::initializer_list<uint64> Keep);
-                                uint8 Purge(array<uint64>* Keep);
-                                text& operator [] (uint64 ID);
+                                neo::uint64 New(const char* String, neo::uint64 FontID);
+                                neo::uint8 Delete(neo::uint64 ID);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
+                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                text& operator [] (neo::uint64 ID);
 
                             private:
-                                array<text*> Texts;
+                                neo::array<text*> Texts;
                                 texts(engine* Engine, actor* Actor);
                                 ~texts();
                         } Texts;
@@ -534,56 +530,56 @@ namespace wze
                                     bool OffsetAngleLocked;
                                     bool Visible;
                                     void* GetActorData();
-                                    uint64 GetActorType();
-                                    uint64 GetType();
+                                    neo::uint64 GetActorType();
+                                    neo::uint64 GetType();
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
-                                    uint16 GetWidth();
-                                    uint16 SetWidth(uint16 Width);
-                                    uint16 GetHeight();
-                                    uint16 SetHeight(uint16 Height);
+                                    neo::uint16 GetWidth();
+                                    neo::uint16 SetWidth(neo::uint16 Width);
+                                    neo::uint16 GetHeight();
+                                    neo::uint16 SetHeight(neo::uint16 Height);
                                     double GetAngle();
                                     double SetAngle(double Angle);
-                                    uint16 GetActiveWidth();
-                                    uint16 GetActiveHeight();
-                                    bool IsOverlappingWith(uint64 ActorID, uint64 OverlapboxID);
-                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist);
-                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors, array<uint64>* ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist);
-                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors, std::initializer_list<uint64> ActorTypeWhitelist, array<uint64>* ActorIDBlacklist);
-                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors, array<uint64>* ActorTypeWhitelist, array<uint64>* ActorIDBlacklist);
+                                    neo::uint16 GetActiveWidth();
+                                    neo::uint16 GetActiveHeight();
+                                    bool IsOverlappingWith(neo::uint64 ActorID, neo::uint64 OverlapboxID);
+                                    neo::uint8 GetOverlapState(neo::array<neo::array<neo::uint64>>* OverlapboxesByActors, std::initializer_list<neo::uint64> ActorTypeWhitelist, std::initializer_list<neo::uint64> ActorIDBlacklist);
+                                    neo::uint8 GetOverlapState(neo::array<neo::array<neo::uint64>>* OverlapboxesByActors, neo::array<neo::uint64>* ActorTypeWhitelist, std::initializer_list<neo::uint64> ActorIDBlacklist);
+                                    neo::uint8 GetOverlapState(neo::array<neo::array<neo::uint64>>* OverlapboxesByActors, std::initializer_list<neo::uint64> ActorTypeWhitelist, neo::array<neo::uint64>* ActorIDBlacklist);
+                                    neo::uint8 GetOverlapState(neo::array<neo::array<neo::uint64>>* OverlapboxesByActors, neo::array<neo::uint64>* ActorTypeWhitelist, neo::array<neo::uint64>* ActorIDBlacklist);
                                     button GetButtonState();
 
                                 private:
-                                    uint64 Type;
+                                    neo::uint64 Type;
                                     double X;
                                     double Y;
-                                    uint16 Width;
-                                    uint16 Height;
+                                    neo::uint16 Width;
+                                    neo::uint16 Height;
                                     double Angle;
                                     double OffsetLength;
                                     double OffsetAngle;
-                                    uint16 ActiveWidth;
-                                    uint16 ActiveHeight;
+                                    neo::uint16 ActiveWidth;
+                                    neo::uint16 ActiveHeight;
                                     double ActiveMedianLength;
                                     double ActiveMedian1Angle;
                                     double ActiveMedian2Angle;
                                     button ButtonState;
-                                    overlapbox(engine* Engine, actor* Actor, uint64 Type);
+                                    overlapbox(engine* Engine, actor* Actor, neo::uint64 Type);
                                     ~overlapbox();
-                                    uint8 UpdateOverlapboxScale();
+                                    neo::uint8 UpdateOverlapboxScale();
                             };
 
                             public:
-                                uint64 New(uint64 Type);
-                                uint8 Delete(uint64 ID);
-                                uint8 Purge(std::initializer_list<uint64> Keep);
-                                uint8 Purge(array<uint64>* Keep);
-                                overlapbox& operator [] (uint64 ID);
+                                neo::uint64 New(neo::uint64 Type);
+                                neo::uint8 Delete(neo::uint64 ID);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
+                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                overlapbox& operator [] (neo::uint64 ID);
 
                             private:
-                                array<overlapbox*> Overlapboxes;
+                                neo::array<overlapbox*> Overlapboxes;
                                 overlapboxes(engine* Engine, actor* Actor);
                                 ~overlapboxes();
 
@@ -592,66 +588,66 @@ namespace wze
                     //__________Actor______________________________________________________________________________
 
                         bool Visible;
-                        uint64 Force;
-                        uint64 Resistance;
+                        neo::uint64 Force;
+                        neo::uint64 Resistance;
                         bool HitboxVisible;
-                        uint64 GetType();
+                        neo::uint64 GetType();
                         double GetX();
                         double SetX(double X);
                         double GetY();
                         double SetY(double Y);
-                        uint16 GetWidth();
-                        uint16 SetWidth(uint16 Width);
-                        uint16 GetHeight();
-                        uint16 SetHeight(uint16 Height);
+                        neo::uint16 GetWidth();
+                        neo::uint16 SetWidth(neo::uint16 Width);
+                        neo::uint16 GetHeight();
+                        neo::uint16 SetHeight(neo::uint16 Height);
                         double GetAngle();
                         double SetAngle(double Angle);
                         double GetLayer();
                         double SetLayer(double Layer);
                         double GetDepth();
                         double SetDepth(double Depth);
-                        uint8 GetCollisionLayer();
-                        uint8 SetCollisionLayer(uint8 Layer);
-                        uint16 GetHitboxWidth();
-                        uint16 GetHitboxHeight();
+                        neo::uint8 GetCollisionLayer();
+                        neo::uint8 SetCollisionLayer(neo::uint8 Layer);
+                        neo::uint16 GetHitboxWidth();
+                        neo::uint16 GetHitboxHeight();
 
                     private:
                         void* Data;
-                        uint64 Type;
+                        neo::uint64 Type;
                         double X;
                         double Y;
                         double PrevX;
                         double PrevY;
-                        uint16 Width;
-                        uint16 Height;
+                        neo::uint16 Width;
+                        neo::uint16 Height;
                         double Angle;
                         double Layer;
                         double Depth;
-                        uint8 CollisionLayer;
-                        uint16 HitboxWidth;
-                        uint16 HitboxHeight;
-                        uint16 PrevHitboxWidth;
-                        uint16 PrevHitboxHeight;
+                        neo::uint8 CollisionLayer;
+                        neo::uint16 HitboxWidth;
+                        neo::uint16 HitboxHeight;
+                        neo::uint16 PrevHitboxWidth;
+                        neo::uint16 PrevHitboxHeight;
                         double HitboxMedianLength;
                         double HitboxMedian1Angle;
                         double HitboxMedian2Angle;
-                        actor(engine* Engine, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
+                        actor(engine* Engine, void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
                         ~actor();
-                        uint8 UpdateHitboxScale();
-                        uint8 UpdateMembersPosition();
+                        neo::uint8 UpdateHitboxScale();
+                        neo::uint8 UpdateMembersPosition();
                 };
 
                 //__________Actors_____________________________________________________________________________________
 
                 public:
-                    uint64 New(void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer);
-                    uint8 Delete(uint64 ID);
-                    uint8 Purge(std::initializer_list<uint64> Keep);
-                    uint8 Purge(array<uint64>* Keep);
-                    actor& operator [] (uint64 ID);
+                    neo::uint64 New(void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
+                    neo::uint8 Delete(neo::uint64 ID);
+                    neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
+                    neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                    actor& operator [] (neo::uint64 ID);
 
                 private:
-                    array<actor*> Actors;
+                    neo::array<actor*> Actors;
                     actors(engine* Engine);
                     ~actors();
             } Actors;
@@ -677,19 +673,19 @@ namespace wze
                 };
 
                 public:
-                    uint8 GetBufferSizeB();
-                    uint8 SetBufferSizeB(uint8 Bytes);
+                    neo::uint8 GetBufferSizeB();
+                    neo::uint8 SetBufferSizeB(neo::uint8 Bytes);
 
                 private:
-                    uint16 BufferSize;
-                    array<array<actors::actor*>> CollisionLayers;
+                    neo::uint16 BufferSize;
+                    neo::array<neo::array<actors::actor*>> CollisionLayers;
                     collision(engine* Engine);
                     bool CheckOverlap(double Overlapbox1TopLeftX, double Overlapbox1TopLeftY, double Overlapbox1BotRightX, double Overlapbox1BotRightY, actors::actor::overlapboxes::overlapbox* Overlapbox2);
                     bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
                     direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
-                    bool ResolveCollision(actors::actor* Actor1, uint64 Actor1Force, actors::actor* Actor2);
-                    uint8 ResolveCollisionLayer(uint64 CollisionLayer, actors::actor* Caller);
-                    uint8 NewCollisionBranch(array<actors::actor*>* Cache, actors::actor* Root, uint64 RootForce, actors::actor* CurrentBranch);
+                    bool ResolveCollision(actors::actor* Actor1, neo::uint64 Actor1Force, actors::actor* Actor2);
+                    neo::uint8 ResolveCollisionLayer(neo::uint64 CollisionLayer, actors::actor* Caller);
+                    neo::uint8 NewCollisionBranch(neo::array<actors::actor*>* Cache, actors::actor* Root, neo::uint64 RootForce, actors::actor* CurrentBranch);
             } Collision;
 
             //__________Vector_________________________________________________________________________________________
@@ -704,14 +700,14 @@ namespace wze
                     double Angle(double InitialX, double InitialY, double TerminalX, double TerminalY);
                     double TerminalX(double InitialX, double Length, double Angle);
                     double TerminalY(double InitialY, double Length, double Angle);
-                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
-                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, array<uint64>* ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
-                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, array<uint64>* ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
-                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, array<uint64>* OverlapboxTypeBlacklist);
-                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, array<uint64>* ActorTypeWhitelist, array<uint64>* ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
-                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, array<uint64>* ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, array<uint64>* OverlapboxTypeBlacklist);
-                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, array<uint64>* ActorIDBlacklist, array<uint64>* OverlapboxTypeBlacklist);
-                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, array<uint64>* ActorTypeWhitelist, array<uint64>* ActorIDBlacklist, array<uint64>* OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, std::initializer_list<neo::uint64> ActorTypeWhitelist, std::initializer_list<neo::uint64> ActorIDBlacklist, std::initializer_list<neo::uint64> OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, neo::array<neo::uint64>* ActorTypeWhitelist, std::initializer_list<neo::uint64> ActorIDBlacklist, std::initializer_list<neo::uint64> OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, std::initializer_list<neo::uint64> ActorTypeWhitelist, neo::array<neo::uint64>* ActorIDBlacklist, std::initializer_list<neo::uint64> OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, std::initializer_list<neo::uint64> ActorTypeWhitelist, std::initializer_list<neo::uint64> ActorIDBlacklist, neo::array<neo::uint64>* OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, neo::array<neo::uint64>* ActorTypeWhitelist, neo::array<neo::uint64>* ActorIDBlacklist, std::initializer_list<neo::uint64> OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, neo::array<neo::uint64>* ActorTypeWhitelist, std::initializer_list<neo::uint64> ActorIDBlacklist, neo::array<neo::uint64>* OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, std::initializer_list<neo::uint64> ActorTypeWhitelist, neo::array<neo::uint64>* ActorIDBlacklist, neo::array<neo::uint64>* OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, neo::array<neo::uint64>* ActorTypeWhitelist, neo::array<neo::uint64>* ActorIDBlacklist, neo::array<neo::uint64>* OverlapboxTypeBlacklist);
 
                 private:
                     vector(engine* Engine);
@@ -725,13 +721,13 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    uint64 Start(sint32(*Function)(void*), void* Parameter);
-                    sint32 Wait(uint64 ID);
-                    uint8 Purge(std::initializer_list<uint64> Keep);
-                    uint8 Purge(array<uint64>* Keep);
+                    neo::uint64 Start(neo::sint32(*Function)(void*), void* Parameter);
+                    neo::sint32 Wait(neo::uint64 ID);
+                    neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
+                    neo::uint8 Purge(neo::array<neo::uint64>* Keep);
 
                 private:
-                    array<SDL_Thread*> Threads;
+                    neo::array<SDL_Thread*> Threads;
                     threads(engine* Engine);
             } Threads;
 
@@ -743,28 +739,28 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    uint64 LoadTexture(const char* Path);
-                    uint8 UnloadTexture(uint64 ID);
-                    uint8 PurgeTextures(std::initializer_list<uint64> Keep);
-                    uint8 PurgeTextures(array<uint64>* Keep);
-                    uint64 LoadSound(const char* Path);
-                    uint8 UnloadSound(uint64 ID);
-                    uint8 PurgeSounds(std::initializer_list<uint64> Keep);
-                    uint8 PurgeSounds(array<uint64>* Keep);
-                    uint64 LoadFont(const char* Path, uint8 Size);
-                    uint8 UnloadFont(uint64 ID);
-                    uint8 PurgeFonts(std::initializer_list<uint64> Keep);
-                    uint8 PurgeFonts(array<uint64>* Keep);
-                    uint64 LoadCursor(const char* Path, uint16 HotSpotX, uint16 HotSpotY);
-                    uint8 UnloadCursor(uint64 ID);
-                    uint8 PurgeCursors(std::initializer_list<uint64> Keep);
-                    uint8 PurgeCursors(array<uint64>* Keep);
+                    neo::uint64 LoadTexture(const char* Path);
+                    neo::uint8 UnloadTexture(neo::uint64 ID);
+                    neo::uint8 PurgeTextures(std::initializer_list<neo::uint64> Keep);
+                    neo::uint8 PurgeTextures(neo::array<neo::uint64>* Keep);
+                    neo::uint64 LoadSound(const char* Path);
+                    neo::uint8 UnloadSound(neo::uint64 ID);
+                    neo::uint8 PurgeSounds(std::initializer_list<neo::uint64> Keep);
+                    neo::uint8 PurgeSounds(neo::array<neo::uint64>* Keep);
+                    neo::uint64 LoadFont(const char* Path, neo::uint8 Size);
+                    neo::uint8 UnloadFont(neo::uint64 ID);
+                    neo::uint8 PurgeFonts(std::initializer_list<neo::uint64> Keep);
+                    neo::uint8 PurgeFonts(neo::array<neo::uint64>* Keep);
+                    neo::uint64 LoadCursor(const char* Path, neo::uint16 HotSpotX, neo::uint16 HotSpotY);
+                    neo::uint8 UnloadCursor(neo::uint64 ID);
+                    neo::uint8 PurgeCursors(std::initializer_list<neo::uint64> Keep);
+                    neo::uint8 PurgeCursors(neo::array<neo::uint64>* Keep);
 
                 private:
-                    array<SDL_Texture*> Textures;
-                    array<Mix_Chunk*> Sounds;
-                    array<TTF_Font*> Fonts;
-                    array<SDL_Cursor*> Cursors;
+                    neo::array<SDL_Texture*> Textures;
+                    neo::array<Mix_Chunk*> Sounds;
+                    neo::array<TTF_Font*> Fonts;
+                    neo::array<SDL_Cursor*> Cursors;
                     assets(engine* Engine);
             } Assets;
 
@@ -776,40 +772,40 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    uint8 TargetFrameTime;
-                    uint32 GetPrevTick();
-                    uint32 GetGameTime();
-                    uint32 GetRenderTime();
-                    uint32 GetWorkingTime();
-                    sint16 GetIdleTime();
-                    uint32 GetFrameTime();
-                    uint32 GetDeltaTime();
+                    neo::uint8 TargetFrameTime;
+                    neo::uint32 GetPrevTick();
+                    neo::uint32 GetGameTime();
+                    neo::uint32 GetRenderTime();
+                    neo::uint32 GetWorkingTime();
+                    neo::sint16 GetIdleTime();
+                    neo::uint32 GetFrameTime();
+                    neo::uint32 GetDeltaTime();
 
                 private:
-                    uint32 PrevTick;
-                    uint32 GameTime;
-                    uint32 RenderTime;
-                    uint32 WorkingTime;
-                    sint16 IdleTime;
-                    uint32 FrameTime;
-                    uint32 DeltaTime;
+                    neo::uint32 PrevTick;
+                    neo::uint32 GameTime;
+                    neo::uint32 RenderTime;
+                    neo::uint32 WorkingTime;
+                    neo::sint16 IdleTime;
+                    neo::uint32 FrameTime;
+                    neo::uint32 DeltaTime;
                     timing(engine* Engine);
-                    uint8 Update();
+                    neo::uint8 Update();
             } Timing;
 
             //__________Engine_________________________________________________________________________________________
 
-            engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime);
+            engine(const char* Title, const char* IconPath, neo::uint16 Width, neo::uint16 Height, neo::uint8 TargetFrameTime);
             ~engine();
             bool Update();
-            sint32 Random(sint32 Min, sint32 Max);
+            neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
 
         private:
 
             //__________Engine_________________________________________________________________________________________
 
-            array<SDL_Event> EventQueue;
-            uint8 UpdateFlipbooks();
-            uint8 UpdateOverlapboxes();
+            neo::array<SDL_Event> EventQueue;
+            neo::uint8 UpdateFlipbooks();
+            neo::uint8 UpdateOverlapboxes();
     };
 }
