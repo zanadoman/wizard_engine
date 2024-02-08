@@ -23,7 +23,7 @@ _ZN3wze6engine5mouseC2EPS0_:
 	.set	_ZN3wze6engine5mouseC1EPS0_,_ZN3wze6engine5mouseC2EPS0_
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
-.LC2:
+.LC3:
 	.string	"engine.mouse.GetX(): Layer must not be NaN\nParams: Layer: %lf\n"
 	.align 8
 .LC4:
@@ -39,16 +39,19 @@ _ZN3wze6engine5mouse4GetXEd:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	ucomisd	%xmm0, %xmm0
-	jp	.L16
+	jp	.L17
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L17
+	ja	.L18
+	cmpb	$0, 40(%rdi)
+	pxor	%xmm2, %xmm2
+	jne	.L3
 	ucomisd	%xmm1, %xmm0
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	16(%rdi), %xmm2
-	jp	.L12
+	jp	.L13
 	je	.L3
-.L12:
+.L13:
 	movq	(%rdi), %rax
 	movsd	144(%rax), %xmm1
 	mulsd	%xmm0, %xmm1
@@ -63,15 +66,15 @@ _ZN3wze6engine5mouse4GetXEd:
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L16:
+.L18:
 	.cfi_restore_state
-	leaq	.LC2(%rip), %rdi
+	leaq	.LC4(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L17:
-	leaq	.LC4(%rip), %rdi
+	leaq	.LC3(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -97,16 +100,19 @@ _ZN3wze6engine5mouse4GetYEd:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	ucomisd	%xmm0, %xmm0
-	jp	.L31
+	jp	.L33
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L32
+	ja	.L34
+	cmpb	$0, 40(%rdi)
+	pxor	%xmm2, %xmm2
+	jne	.L19
 	ucomisd	%xmm1, %xmm0
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	20(%rdi), %xmm2
-	jp	.L27
-	je	.L18
-.L27:
+	jp	.L29
+	je	.L19
+.L29:
 	movq	(%rdi), %rax
 	movsd	144(%rax), %xmm1
 	mulsd	%xmm0, %xmm1
@@ -115,21 +121,21 @@ _ZN3wze6engine5mouse4GetYEd:
 	divsd	%xmm1, %xmm2
 	addsd	136(%rax), %xmm2
 	addsd	%xmm0, %xmm2
-.L18:
+.L19:
 	movapd	%xmm2, %xmm0
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L31:
+.L34:
 	.cfi_restore_state
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC6(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L32:
-	leaq	.LC6(%rip), %rdi
+.L33:
+	leaq	.LC5(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -264,16 +270,16 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
 	testq	%rsi, %rsi
-	je	.L47
+	je	.L49
 	movq	(%rdi), %rax
 	movq	%rdi, %rbp
 	movq	%rsi, %rbx
 	cmpq	720(%rax), %rsi
-	jnb	.L44
+	jnb	.L46
 	movq	728(%rax), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
-	je	.L44
+	je	.L46
 	call	SDL_SetCursor@PLT
 	movq	%rbx, 48(%rbp)
 	addq	$8, %rsp
@@ -285,7 +291,7 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
-.L44:
+.L46:
 	.cfi_restore_state
 	leaq	.LC8(%rip), %rdi
 	movq	%rbx, %rsi
@@ -293,7 +299,7 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L47:
+.L49:
 	leaq	.LC7(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
@@ -335,48 +341,48 @@ _ZN3wze6engine5mouse6UpdateEv:
 	unpcklpd	%xmm1, %xmm0
 	movups	%xmm0, 24(%rbx)
 	testq	%rdx, %rdx
-	je	.L49
+	je	.L51
 	movq	784(%rsi), %rax
 	leaq	0(,%rdx,8), %rcx
 	subq	%rdx, %rcx
 	leaq	(%rax,%rcx,8), %rcx
-	jmp	.L56
+	jmp	.L58
 	.p2align 4,,10
 	.p2align 3
-.L51:
+.L53:
 	addq	$56, %rax
 	cmpq	%rax, %rcx
-	je	.L49
-.L56:
+	je	.L51
+.L58:
 	cmpl	$1024, (%rax)
-	jne	.L51
+	jne	.L53
 	movl	20(%rax), %edx
 	movl	%edx, 16(%rbx)
 	testl	%edx, %edx
-	js	.L63
+	js	.L65
 	movzwl	24(%rsi), %edi
 	cmpl	%edi, %edx
-	jge	.L64
-.L53:
+	jge	.L66
+.L55:
 	movzwl	42(%rsi), %edx
 	subl	24(%rax), %edx
 	movl	%edx, 20(%rbx)
-	js	.L65
-.L54:
+	js	.L67
+.L56:
 	movzwl	26(%rsi), %edi
 	cmpl	%edi, %edx
-	jl	.L51
+	jl	.L53
 	subl	$1, %edi
 	addq	$56, %rax
 	movl	%edi, 20(%rbx)
 	cmpq	%rax, %rcx
-	jne	.L56
+	jne	.L58
 	.p2align 4,,10
 	.p2align 3
-.L49:
+.L51:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L66
+	jne	.L68
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 16
@@ -386,23 +392,23 @@ _ZN3wze6engine5mouse6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L63:
+.L65:
 	.cfi_restore_state
 	movzwl	42(%rsi), %edx
 	movl	$0, 16(%rbx)
 	subl	24(%rax), %edx
 	movl	%edx, 20(%rbx)
-	jns	.L54
-.L65:
+	jns	.L56
+.L67:
 	movl	$0, 20(%rbx)
-	jmp	.L51
+	jmp	.L53
 	.p2align 4,,10
 	.p2align 3
-.L64:
+.L66:
 	subl	$1, %edi
 	movl	%edi, 16(%rbx)
-	jmp	.L53
-.L66:
+	jmp	.L55
+.L68:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8159:
