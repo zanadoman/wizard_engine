@@ -30,6 +30,11 @@ namespace wze
             exit(1);
         }
 
+        if (this->Mode)
+        {
+            return 0;
+        }
+
         if (Layer == 0)
         {
             return this->X;
@@ -52,6 +57,11 @@ namespace wze
         {
             printf("engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
+        }
+
+        if (this->Mode)
+        {
+            return 0;
         }
 
         if (Layer == 0)

@@ -1,1 +1,28 @@
-Vector class RayCasts overloadjainak megírása
+Roadmap:
+    Particle System
+    Bloom
+    Networking
+
+Test/supervising sequence:
+    Easy:
+        Engine
+        Window
+        Timing
+        Keys
+        Mouse
+        Camera
+        Threads
+        Audio
+    Slightly nested:
+        Camera
+        Vector
+        Assets
+        Actors
+    Heavily nested:
+        Actor
+        Colors
+        Textures
+        Flipbooks
+        Texts
+        Overlaps
+        Collisions
