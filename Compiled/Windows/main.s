@@ -8,7 +8,7 @@
 	.def	_Z6printfPKcz.constprop.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_Z6printfPKcz.constprop.0
 _Z6printfPKcz.constprop.0:
-.LFB8596:
+.LFB6880:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -30,16 +30,19 @@ _Z6printfPKcz.constprop.0:
 	ret
 	.seh_endproc
 	.def	__main;	.scl	2;	.type	32;	.endef
+	.section .rdata,"dr"
+.LC6:
+	.ascii "assets/ara_ara.mp3\0"
 	.section	.text.unlikely,"x"
-.LCOLDB7:
+.LCOLDB8:
 	.section	.text.startup,"x"
-.LHOTB7:
+.LHOTB8:
 	.p2align 4
 	.globl	main
 	.def	main;	.scl	2;	.type	32;	.endef
 	.seh_proc	main
 main:
-.LFB8434:
+.LFB6879:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -139,18 +142,19 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, %rsi
+	movq	%rax, 104(%rsp)
+	movq	%rax, %r14
 .LEHB11:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r14d
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %esi
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -159,12 +163,12 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r14d, 40(%rsp)
+	movl	%r13d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%r13d, 32(%rsp)
-	movq	%rsi, %rcx
+	movl	%esi, 32(%rsp)
+	movq	%r14, %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE11:
 	movl	$32, %ecx
@@ -174,18 +178,19 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, 104(%rsp)
+	movq	%rax, 112(%rsp)
+	movq	%rax, %r14
 .LEHB13:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r14d
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %esi
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -194,12 +199,12 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r14d, 40(%rsp)
+	movl	%r13d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%r13d, 32(%rsp)
-	movq	104(%rsp), %rcx
+	movl	%esi, 32(%rsp)
+	movq	%r14, %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE13:
 	movl	$32, %ecx
@@ -209,18 +214,19 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, 112(%rsp)
+	movq	%rax, 120(%rsp)
+	movq	%rax, %r14
 .LEHB15:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r14d
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %esi
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -229,12 +235,12 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r14d, 40(%rsp)
+	movl	%r13d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%r13d, 32(%rsp)
-	movq	112(%rsp), %rcx
+	movl	%esi, 32(%rsp)
+	movq	%r14, %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE15:
 	movl	$32, %ecx
@@ -244,18 +250,19 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, 120(%rsp)
+	movq	%rax, 128(%rsp)
+	movq	%rax, %r14
 .LEHB17:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r14d
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %esi
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -264,12 +271,12 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r14d, 40(%rsp)
+	movl	%r13d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%r13d, 32(%rsp)
-	movq	120(%rsp), %rcx
+	movl	%esi, 32(%rsp)
+	movq	%r14, %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE17:
 	movl	$32, %ecx
@@ -279,18 +286,19 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, 128(%rsp)
+	movq	%rax, 136(%rsp)
+	movq	%rax, %r14
 .LEHB19:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r14d
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %esi
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -299,90 +307,97 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r14d, 40(%rsp)
+	movl	%r13d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%r13d, 32(%rsp)
-	movq	128(%rsp), %rcx
+	movl	%esi, 32(%rsp)
+	movq	%r14, %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE19:
-	leaq	80(%rbx), %r13
 	movq	8(%rdi), %rdx
+	leaq	80(%rbx), %rsi
 	leaq	200(%rsp), %r14
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
+	leaq	.LC0(%rip), %r13
 .LEHB20:
 	call	_ZN3wze6engine6camera4BindEy
 	movb	$1, 104(%rbx)
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
 	movsd	.LC1(%rip), %xmm10
 	movapd	%xmm10, %xmm1
 	call	_ZN3wze6engine6camera12SetMinSpeedXEd
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
 	movsd	.LC2(%rip), %xmm9
 	movapd	%xmm9, %xmm1
 	call	_ZN3wze6engine6camera12SetMaxSpeedXEd
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
 	movsd	.LC3(%rip), %xmm8
 	movapd	%xmm8, %xmm1
 	call	_ZN3wze6engine6camera20SetDecelerationRateXEd
 	movsd	.LC4(%rip), %xmm7
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm7, %xmm1
 	call	_ZN3wze6engine6camera20SetAccelerationRateXEd
 	movsd	.LC5(%rip), %xmm6
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm6, %xmm1
 	call	_ZN3wze6engine6camera17SetSlowDownRangeXEd
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm10, %xmm1
 	call	_ZN3wze6engine6camera12SetMinSpeedYEd
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm9, %xmm1
 	call	_ZN3wze6engine6camera12SetMaxSpeedYEd
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm8, %xmm1
 	call	_ZN3wze6engine6camera20SetDecelerationRateYEd
 	movapd	%xmm7, %xmm1
-	movq	%r13, %rcx
+	movq	%rsi, %rcx
 	call	_ZN3wze6engine6camera20SetAccelerationRateYEd
-	movq	%r13, %rcx
 	movapd	%xmm6, %xmm1
-	leaq	.LC0(%rip), %r13
+	movq	%rsi, %rcx
+	leaq	632(%rbx), %rsi
 	call	_ZN3wze6engine6camera17SetSlowDownRangeYEd
-	movq	%r15, 136(%rsp)
-	movsd	.LC6(%rip), %xmm7
+	leaq	720(%rbx), %rcx
+	leaq	.LC6(%rip), %rdx
+	call	_ZN3wze6engine6assets9LoadSoundEPKc
+	movsd	.LC7(%rip), %xmm7
+	leaq	248(%rbx), %rcx
+	movl	$1, %r8d
+	movq	%rax, %rdx
+	movapd	%xmm7, %xmm3
+	call	_ZN3wze6engine5audio4PlayEytd
 	jmp	.L4
 	.p2align 4,,10
 	.p2align 3
 .L5:
 	movq	%rdi, %rcx
-	leaq	632(%rbx), %r15
 	call	_ZN6player6UpdateEv
 	movq	%rbp, %rcx
 	call	_ZN6player6UpdateEv
 	movq	%r12, %rcx
 	call	_ZN10flashlight6UpdateEv
 	movq	8(%rbp), %rdx
-	movq	%r15, %rcx
+	movq	%rsi, %rcx
 	movq	$2, 200(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetYEv
 	movq	8(%rbp), %rdx
-	movq	%r15, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm0, %xmm6
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetXEv
 	movq	8(%rdi), %rdx
-	movq	%r15, %rcx
+	movq	%rsi, %rcx
 	movsd	%xmm0, 96(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetYEv
 	movq	8(%rdi), %rdx
-	movq	%r15, %rcx
+	movq	%rsi, %rcx
 	movsd	%xmm0, 88(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
@@ -416,31 +431,31 @@ main:
 .LEHE20:
 	testb	%al, %al
 	jne	.L5
-	movq	128(%rsp), %r14
-	movq	136(%rsp), %r15
-	movq	%r14, %rcx
+	movq	136(%rsp), %rsi
+	movq	%rsi, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
-	movq	%r14, %rcx
+	movq	%rsi, %rcx
 	call	_ZdlPvy
-	movq	120(%rsp), %r14
-	movq	%r14, %rcx
+	movq	128(%rsp), %rsi
+	movq	%rsi, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
-	movq	%r14, %rcx
+	movq	%rsi, %rcx
 	call	_ZdlPvy
-	movq	112(%rsp), %r14
-	movq	%r14, %rcx
+	movq	120(%rsp), %rsi
+	movq	%rsi, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
-	movq	%r14, %rcx
+	movq	%rsi, %rcx
 	call	_ZdlPvy
-	movq	104(%rsp), %r14
-	movq	%r14, %rcx
+	movq	112(%rsp), %rsi
+	movq	%rsi, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
-	movq	%r14, %rcx
+	movq	%rsi, %rcx
 	call	_ZdlPvy
+	movq	104(%rsp), %rsi
 	movq	%rsi, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
@@ -521,97 +536,97 @@ main:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8434:
+.LLSDA6879:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8434-.LLSDACSB8434
-.LLSDACSB8434:
-	.uleb128 .LEHB0-.LFB8434
+	.uleb128 .LLSDACSE6879-.LLSDACSB6879
+.LLSDACSB6879:
+	.uleb128 .LEHB0-.LFB6879
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8434
+	.uleb128 .LEHB1-.LFB6879
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L16-.LFB8434
+	.uleb128 .L16-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8434
+	.uleb128 .LEHB2-.LFB6879
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8434
+	.uleb128 .LEHB3-.LFB6879
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L17-.LFB8434
+	.uleb128 .L17-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8434
+	.uleb128 .LEHB4-.LFB6879
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8434
+	.uleb128 .LEHB5-.LFB6879
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L18-.LFB8434
+	.uleb128 .L18-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8434
+	.uleb128 .LEHB6-.LFB6879
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB8434
+	.uleb128 .LEHB7-.LFB6879
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L19-.LFB8434
+	.uleb128 .L19-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB8434
+	.uleb128 .LEHB8-.LFB6879
 	.uleb128 .LEHE8-.LEHB8
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB8434
+	.uleb128 .LEHB9-.LFB6879
 	.uleb128 .LEHE9-.LEHB9
-	.uleb128 .L20-.LFB8434
+	.uleb128 .L20-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB10-.LFB8434
+	.uleb128 .LEHB10-.LFB6879
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB11-.LFB8434
+	.uleb128 .LEHB11-.LFB6879
 	.uleb128 .LEHE11-.LEHB11
-	.uleb128 .L21-.LFB8434
+	.uleb128 .L21-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB12-.LFB8434
+	.uleb128 .LEHB12-.LFB6879
 	.uleb128 .LEHE12-.LEHB12
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB13-.LFB8434
+	.uleb128 .LEHB13-.LFB6879
 	.uleb128 .LEHE13-.LEHB13
-	.uleb128 .L22-.LFB8434
+	.uleb128 .L22-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB14-.LFB8434
+	.uleb128 .LEHB14-.LFB6879
 	.uleb128 .LEHE14-.LEHB14
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB15-.LFB8434
+	.uleb128 .LEHB15-.LFB6879
 	.uleb128 .LEHE15-.LEHB15
-	.uleb128 .L23-.LFB8434
+	.uleb128 .L23-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB16-.LFB8434
+	.uleb128 .LEHB16-.LFB6879
 	.uleb128 .LEHE16-.LEHB16
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB17-.LFB8434
+	.uleb128 .LEHB17-.LFB6879
 	.uleb128 .LEHE17-.LEHB17
-	.uleb128 .L24-.LFB8434
+	.uleb128 .L24-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB18-.LFB8434
+	.uleb128 .LEHB18-.LFB6879
 	.uleb128 .LEHE18-.LEHB18
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB19-.LFB8434
+	.uleb128 .LEHB19-.LFB6879
 	.uleb128 .LEHE19-.LEHB19
-	.uleb128 .L25-.LFB8434
+	.uleb128 .L25-.LFB6879
 	.uleb128 0
-	.uleb128 .LEHB20-.LFB8434
+	.uleb128 .LEHB20-.LFB6879
 	.uleb128 .LEHE20-.LEHB20
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8434:
+.LLSDACSE6879:
 	.section	.text.startup,"x"
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -641,31 +656,31 @@ main.cold:
 .LEHB21:
 	call	_Unwind_Resume
 .L15:
-	movq	128(%rsp), %rcx
+	movq	136(%rsp), %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
 .L14:
-	movq	120(%rsp), %rcx
+	movq	128(%rsp), %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
 .L13:
-	movq	112(%rsp), %rcx
+	movq	120(%rsp), %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
 .L12:
-	movq	104(%rsp), %rcx
+	movq	112(%rsp), %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
 .L11:
-	movq	%rsi, %rcx
+	movq	104(%rsp), %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
@@ -698,24 +713,24 @@ main.cold:
 .LEHE21:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8434:
+.LLSDAC6879:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8434-.LLSDACSBC8434
-.LLSDACSBC8434:
-	.uleb128 .LEHB21-.LCOLDB7
+	.uleb128 .LLSDACSEC6879-.LLSDACSBC6879
+.LLSDACSBC6879:
+	.uleb128 .LEHB21-.LCOLDB8
 	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8434:
+.LLSDACSEC6879:
 	.section	.text.unlikely,"x"
 	.section	.text.startup,"x"
 	.section	.text.unlikely,"x"
 	.seh_endproc
-.LCOLDE7:
+.LCOLDE8:
 	.section	.text.startup,"x"
-.LHOTE7:
+.LHOTE8:
 	.section .rdata,"dr"
 	.align 8
 .LC1:
@@ -738,7 +753,7 @@ main.cold:
 	.long	0
 	.long	1079574528
 	.align 8
-.LC6:
+.LC7:
 	.long	0
 	.long	1072693248
 	.ident	"GCC: (GNU) 13.1.0"
@@ -761,6 +776,8 @@ main.cold:
 	.def	_ZN3wze6engine6camera20SetDecelerationRateYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera20SetAccelerationRateYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera17SetSlowDownRangeYEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6assets9LoadSoundEPKc;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine5audio4PlayEytd;	.scl	2;	.type	32;	.endef
 	.def	_ZN6player6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN10flashlight6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actorsixEy;	.scl	2;	.type	32;	.endef

@@ -63,7 +63,7 @@ _Z6printfPKcz:
 	.def	_ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_
 _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
-.LFB8435:
+.LFB6880:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -358,17 +358,17 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8435:
+.LLSDA6880:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8435-.LLSDACSB8435
-.LLSDACSB8435:
-	.uleb128 .LEHB0-.LFB8435
+	.uleb128 .LLSDACSE6880-.LLSDACSB6880
+.LLSDACSB6880:
+	.uleb128 .LEHB0-.LFB6880
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L8-.LFB8435
+	.uleb128 .L8-.LFB6880
 	.uleb128 0
-.LLSDACSE8435:
+.LLSDACSE6880:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -389,17 +389,17 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_.cold:
 .LEHE1:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8435:
+.LLSDAC6880:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8435-.LLSDACSBC8435
-.LLSDACSBC8435:
+	.uleb128 .LLSDACSEC6880-.LLSDACSBC6880
+.LLSDACSBC6880:
 	.uleb128 .LEHB1-.LCOLDB14
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8435:
+.LLSDACSEC6880:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -416,7 +416,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_.cold:
 	.def	_ZN6playerD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6playerD2Ev
 _ZN6playerD2Ev:
-.LFB8438:
+.LFB6883:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -457,13 +457,13 @@ _ZN6playerD2Ev:
 	jmp	free
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8438:
+.LLSDA6883:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8438-.LLSDACSB8438
-.LLSDACSB8438:
-.LLSDACSE8438:
+	.uleb128 .LLSDACSE6883-.LLSDACSB6883
+.LLSDACSB6883:
+.LLSDACSE6883:
 	.text
 	.seh_endproc
 	.globl	_ZN6playerD1Ev
@@ -475,7 +475,7 @@ _ZN6playerD2Ev:
 	.def	_ZN6player6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6player6UpdateEv
 _ZN6player6UpdateEv:
-.LFB8440:
+.LFB6885:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi

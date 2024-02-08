@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
-.LFB8631:
+.LFB6915:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -181,7 +181,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
 	.def	_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_
 _ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_:
-.LFB8435:
+.LFB6880:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -223,7 +223,7 @@ _ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_:
 	.def	_ZN3wze6engine6actors5actor6colorsD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colorsD2Ev
 _ZN3wze6engine6actors5actor6colorsD2Ev:
-.LFB8438:
+.LFB6883:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -288,7 +288,7 @@ _ZN3wze6engine6actors5actor6colorsD2Ev:
 	.def	_ZN3wze6engine6actors5actor6colors3NewEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colors3NewEv
 _ZN3wze6engine6actors5actor6colors3NewEv:
-.LFB8440:
+.LFB6885:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -421,7 +421,7 @@ _ZN3wze6engine6actors5actor6colors3NewEv:
 	.def	_ZN3wze6engine6actors5actor6colors6DeleteEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colors6DeleteEy
 _ZN3wze6engine6actors5actor6colors6DeleteEy:
-.LFB8441:
+.LFB6886:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -520,7 +520,7 @@ _ZN3wze6engine6actors5actor6colors6DeleteEy:
 	.def	_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE
 _ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
-.LFB8442:
+.LFB6887:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -675,7 +675,7 @@ _ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
-.LFB8445:
+.LFB6890:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -839,7 +839,7 @@ _ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6actors5actor6colorsixEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colorsixEy
 _ZN3wze6engine6actors5actor6colorsixEy:
-.LFB8446:
+.LFB6891:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -871,7 +871,7 @@ _ZN3wze6engine6actors5actor6colorsixEy:
 	.def	_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_
 _ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_:
-.LFB8448:
+.LFB6893:
 	.seh_endprologue
 	movupd	216(%r8), %xmm0
 	movl	248(%r8), %eax
@@ -896,7 +896,7 @@ _ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_:
 	.def	_ZN3wze6engine6actors5actor6colors5color4GetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colors5color4GetXEv
 _ZN3wze6engine6actors5actor6colors5color4GetXEv:
-.LFB8450:
+.LFB6895:
 	.seh_endprologue
 	movsd	32(%rcx), %xmm0
 	ret
@@ -912,7 +912,7 @@ _ZN3wze6engine6actors5actor6colors5color4GetXEv:
 	.def	_ZN3wze6engine6actors5actor6colors5color4SetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colors5color4SetXEd
 _ZN3wze6engine6actors5actor6colors5color4SetXEd:
-.LFB8451:
+.LFB6896:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$64, %rsp
@@ -986,7 +986,7 @@ _ZN3wze6engine6actors5actor6colors5color4SetXEd:
 	.def	_ZN3wze6engine6actors5actor6colors5color4GetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colors5color4GetYEv
 _ZN3wze6engine6actors5actor6colors5color4GetYEv:
-.LFB8452:
+.LFB6897:
 	.seh_endprologue
 	movsd	40(%rcx), %xmm0
 	ret
@@ -1002,7 +1002,7 @@ _ZN3wze6engine6actors5actor6colors5color4GetYEv:
 	.def	_ZN3wze6engine6actors5actor6colors5color4SetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor6colors5color4SetYEd
 _ZN3wze6engine6actors5actor6colors5color4SetYEd:
-.LFB8453:
+.LFB6898:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$64, %rsp

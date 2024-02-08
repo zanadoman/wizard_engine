@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0
 _ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0:
-.LFB8620:
+.LFB6904:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -181,7 +181,7 @@ _ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0:
 	.def	_ZN3wze6engine7threadsC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine7threadsC2EPS0_
 _ZN3wze6engine7threadsC2EPS0_:
-.LFB8435:
+.LFB6880:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -236,7 +236,7 @@ _ZN3wze6engine7threadsC2EPS0_:
 	.def	_ZN3wze6engine7threads5StartEPFiPvES2_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine7threads5StartEPFiPvES2_
 _ZN3wze6engine7threads5StartEPFiPvES2_:
-.LFB8437:
+.LFB6882:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -368,7 +368,7 @@ _ZN3wze6engine7threads5StartEPFiPvES2_:
 	.def	_ZN3wze6engine7threads4WaitEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine7threads4WaitEy
 _ZN3wze6engine7threads4WaitEy:
-.LFB8438:
+.LFB6883:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -467,7 +467,7 @@ _ZN3wze6engine7threads4WaitEy:
 	.def	_ZN3wze6engine7threads5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine7threads5PurgeESt16initializer_listIyE
 _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
-.LFB8439:
+.LFB6884:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -623,7 +623,7 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE:
-.LFB8442:
+.LFB6887:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi

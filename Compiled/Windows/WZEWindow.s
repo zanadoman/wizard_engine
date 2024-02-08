@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine6windowC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6windowC2EPS0_
 _ZN3wze6engine6windowC2EPS0_:
-.LFB8435:
+.LFB6880:
 	.seh_endprologue
 	movq	%rdx, (%rcx)
 	movq	$0, 8(%rcx)
@@ -56,7 +56,7 @@ _ZN3wze6engine6windowC2EPS0_:
 	.def	_ZN3wze6engine6window8GetWidthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6window8GetWidthEv
 _ZN3wze6engine6window8GetWidthEv:
-.LFB8437:
+.LFB6882:
 	.seh_endprologue
 	movzwl	24(%rcx), %eax
 	ret
@@ -67,7 +67,7 @@ _ZN3wze6engine6window8GetWidthEv:
 	.def	_ZN3wze6engine6window9GetHeightEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6window9GetHeightEv
 _ZN3wze6engine6window9GetHeightEv:
-.LFB8438:
+.LFB6883:
 	.seh_endprologue
 	movzwl	26(%rcx), %eax
 	ret
@@ -78,7 +78,7 @@ _ZN3wze6engine6window9GetHeightEv:
 	.def	_ZN3wze6engine6window7IsShownEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6window7IsShownEv
 _ZN3wze6engine6window7IsShownEv:
-.LFB8439:
+.LFB6884:
 	.seh_endprologue
 	movl	28(%rcx), %eax
 	shrl	$2, %eax
@@ -91,7 +91,7 @@ _ZN3wze6engine6window7IsShownEv:
 	.def	_ZN3wze6engine6window8HasFocusEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6window8HasFocusEv
 _ZN3wze6engine6window8HasFocusEv:
-.LFB8440:
+.LFB6885:
 	.seh_endprologue
 	movl	$1, %eax
 	ret
@@ -121,7 +121,7 @@ _ZN3wze6engine6window8HasFocusEv:
 	.def	_ZN3wze6engine6window4OpenEPKcS3_tt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6window4OpenEPKcS3_tt
 _ZN3wze6engine6window4OpenEPKcS3_tt:
-.LFB8441:
+.LFB6886:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -151,7 +151,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	movq	%rbp, %rcx
 	movl	%r9d, %esi
 	movl	$536805376, %r8d
-	movl	$4385, 40(%rsp)
+	movl	$4129, 40(%rsp)
 	movl	%r12d, %r9d
 	movl	$536805376, %edx
 	call	SDL_CreateWindow
@@ -260,7 +260,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	.def	_ZN3wze6engine6window5CloseEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6window5CloseEv
 _ZN3wze6engine6window5CloseEv:
-.LFB8442:
+.LFB6887:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp

@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0:
-.LFB8635:
+.LFB6919:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -181,7 +181,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0:
 	.def	_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_
 _ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_:
-.LFB8435:
+.LFB6880:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -223,7 +223,7 @@ _ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_:
 	.def	_ZN3wze6engine6actors5actor8texturesD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8texturesD2Ev
 _ZN3wze6engine6actors5actor8texturesD2Ev:
-.LFB8438:
+.LFB6883:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -291,7 +291,7 @@ _ZN3wze6engine6actors5actor8texturesD2Ev:
 	.def	_ZN3wze6engine6actors5actor8textures3NewEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures3NewEy
 _ZN3wze6engine6actors5actor8textures3NewEy:
-.LFB8440:
+.LFB6885:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -451,7 +451,7 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	.def	_ZN3wze6engine6actors5actor8textures6DeleteEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures6DeleteEy
 _ZN3wze6engine6actors5actor8textures6DeleteEy:
-.LFB8441:
+.LFB6886:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -550,7 +550,7 @@ _ZN3wze6engine6actors5actor8textures6DeleteEy:
 	.def	_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE
 _ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
-.LFB8442:
+.LFB6887:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -705,7 +705,7 @@ _ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
-.LFB8445:
+.LFB6890:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -869,7 +869,7 @@ _ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6actors5actor8texturesixEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8texturesixEy
 _ZN3wze6engine6actors5actor8texturesixEy:
-.LFB8446:
+.LFB6891:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -901,7 +901,7 @@ _ZN3wze6engine6actors5actor8texturesixEy:
 	.def	_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_y;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_y
 _ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_y:
-.LFB8448:
+.LFB6893:
 	.seh_endprologue
 	movupd	216(%r8), %xmm0
 	movl	248(%r8), %eax
@@ -929,7 +929,7 @@ _ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_y:
 	.def	_ZN3wze6engine6actors5actor8textures7texture4GetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4GetXEv
 _ZN3wze6engine6actors5actor8textures7texture4GetXEv:
-.LFB8450:
+.LFB6895:
 	.seh_endprologue
 	movsd	40(%rcx), %xmm0
 	ret
@@ -945,7 +945,7 @@ _ZN3wze6engine6actors5actor8textures7texture4GetXEv:
 	.def	_ZN3wze6engine6actors5actor8textures7texture4SetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4SetXEd
 _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
-.LFB8451:
+.LFB6896:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$64, %rsp
@@ -1019,7 +1019,7 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	.def	_ZN3wze6engine6actors5actor8textures7texture4GetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4GetYEv
 _ZN3wze6engine6actors5actor8textures7texture4GetYEv:
-.LFB8452:
+.LFB6897:
 	.seh_endprologue
 	movsd	48(%rcx), %xmm0
 	ret
@@ -1035,7 +1035,7 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEv:
 	.def	_ZN3wze6engine6actors5actor8textures7texture4GetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4GetYEd
 _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
-.LFB8453:
+.LFB6898:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$64, %rsp
@@ -1106,7 +1106,7 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	.def	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv
 _ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv:
-.LFB8454:
+.LFB6899:
 	.seh_endprologue
 	movq	72(%rcx), %rax
 	ret
@@ -1122,7 +1122,7 @@ _ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv:
 	.def	_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy
 _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
-.LFB8455:
+.LFB6900:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue

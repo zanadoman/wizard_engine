@@ -10,7 +10,7 @@
 	.def	_ZN10flashlightC2EPN3wze6engineE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN10flashlightC2EPN3wze6engineE
 _ZN10flashlightC2EPN3wze6engineE:
-.LFB8435:
+.LFB6880:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -74,7 +74,7 @@ _ZN10flashlightC2EPN3wze6engineE:
 	.def	_ZN10flashlightD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN10flashlightD2Ev
 _ZN10flashlightD2Ev:
-.LFB8438:
+.LFB6883:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -96,13 +96,13 @@ _ZN10flashlightD2Ev:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8438:
+.LLSDA6883:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8438-.LLSDACSB8438
-.LLSDACSB8438:
-.LLSDACSE8438:
+	.uleb128 .LLSDACSE6883-.LLSDACSB6883
+.LLSDACSB6883:
+.LLSDACSE6883:
 	.text
 	.seh_endproc
 	.globl	_ZN10flashlightD1Ev
@@ -114,7 +114,7 @@ _ZN10flashlightD2Ev:
 	.def	_ZN10flashlight6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN10flashlight6UpdateEv
 _ZN10flashlight6UpdateEv:
-.LFB8440:
+.LFB6885:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx

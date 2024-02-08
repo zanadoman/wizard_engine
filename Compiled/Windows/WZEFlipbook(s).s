@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0:
-.LFB8657:
+.LFB6941:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -181,7 +181,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0:
 	.def	_ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_
 _ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_:
-.LFB8435:
+.LFB6880:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -223,7 +223,7 @@ _ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_:
 	.def	_ZN3wze6engine6actors5actor9flipbooksD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooksD2Ev
 _ZN3wze6engine6actors5actor9flipbooksD2Ev:
-.LFB8441:
+.LFB6886:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -293,7 +293,7 @@ _ZN3wze6engine6actors5actor9flipbooksD2Ev:
 	.def	_ZN3wze6engine6actors5actor9flipbooks6DeleteEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks6DeleteEy
 _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
-.LFB8447:
+.LFB6892:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -399,7 +399,7 @@ _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
 	.def	_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE
 _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
-.LFB8448:
+.LFB6893:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -560,7 +560,7 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
-.LFB8449:
+.LFB6894:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -731,7 +731,7 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6actors5actor9flipbooksixEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooksixEy
 _ZN3wze6engine6actors5actor9flipbooksixEy:
-.LFB8450:
+.LFB6895:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -768,7 +768,7 @@ _ZN3wze6engine6actors5actor9flipbooksixEy:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE:
-.LFB8452:
+.LFB6897:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -846,17 +846,17 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8452:
+.LLSDA6897:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8452-.LLSDACSB8452
-.LLSDACSB8452:
-	.uleb128 .LEHB0-.LFB8452
+	.uleb128 .LLSDACSE6897-.LLSDACSB6897
+.LLSDACSB6897:
+	.uleb128 .LEHB0-.LFB6897
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L147-.LFB8452
+	.uleb128 .L147-.LFB6897
 	.uleb128 0
-.LLSDACSE8452:
+.LLSDACSE6897:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -880,17 +880,17 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 .LEHE1:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8452:
+.LLSDAC6897:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8452-.LLSDACSBC8452
-.LLSDACSBC8452:
+	.uleb128 .LLSDACSEC6897-.LLSDACSBC6897
+.LLSDACSBC6897:
 	.uleb128 .LEHB1-.LCOLDB14
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8452:
+.LLSDACSEC6897:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -928,7 +928,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.def	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE
 _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
-.LFB8443:
+.LFB6888:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -1118,33 +1118,33 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	jmp	.L165
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8443:
+.LLSDA6888:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8443-.LLSDACSB8443
-.LLSDACSB8443:
-	.uleb128 .LEHB2-.LFB8443
+	.uleb128 .LLSDACSE6888-.LLSDACSB6888
+.LLSDACSB6888:
+	.uleb128 .LEHB2-.LFB6888
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8443
+	.uleb128 .LEHB3-.LFB6888
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L168-.LFB8443
+	.uleb128 .L168-.LFB6888
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8443
+	.uleb128 .LEHB4-.LFB6888
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8443
+	.uleb128 .LEHB5-.LFB6888
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L169-.LFB8443
+	.uleb128 .L169-.LFB6888
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8443
+	.uleb128 .LEHB6-.LFB6888
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8443:
+.LLSDACSE6888:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1176,17 +1176,17 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 .LEHE7:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8443:
+.LLSDAC6888:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8443-.LLSDACSBC8443
-.LLSDACSBC8443:
+	.uleb128 .LLSDACSEC6888-.LLSDACSBC6888
+.LLSDACSBC6888:
 	.uleb128 .LEHB7-.LCOLDB20
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8443:
+.LLSDACSEC6888:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1215,7 +1215,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
-.LFB8455:
+.LFB6900:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -1300,17 +1300,17 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	jmp	.L188
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8455:
+.LLSDA6900:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8455-.LLSDACSB8455
-.LLSDACSB8455:
-	.uleb128 .LEHB8-.LFB8455
+	.uleb128 .LLSDACSE6900-.LLSDACSB6900
+.LLSDACSB6900:
+	.uleb128 .LEHB8-.LFB6900
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L190-.LFB8455
+	.uleb128 .L190-.LFB6900
 	.uleb128 0
-.LLSDACSE8455:
+.LLSDACSE6900:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1331,17 +1331,17 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
 .LEHE9:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8455:
+.LLSDAC6900:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8455-.LLSDACSBC8455
-.LLSDACSBC8455:
+	.uleb128 .LLSDACSEC6900-.LLSDACSBC6900
+.LLSDACSBC6900:
 	.uleb128 .LEHB9-.LCOLDB24
 	.uleb128 .LEHE9-.LEHB9
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8455:
+.LLSDACSEC6900:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1376,7 +1376,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
 	.def	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
-.LFB8446:
+.LFB6891:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -1553,33 +1553,33 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	jmp	.L210
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8446:
+.LLSDA6891:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8446-.LLSDACSB8446
-.LLSDACSB8446:
-	.uleb128 .LEHB10-.LFB8446
+	.uleb128 .LLSDACSE6891-.LLSDACSB6891
+.LLSDACSB6891:
+	.uleb128 .LEHB10-.LFB6891
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB11-.LFB8446
+	.uleb128 .LEHB11-.LFB6891
 	.uleb128 .LEHE11-.LEHB11
-	.uleb128 .L212-.LFB8446
+	.uleb128 .L212-.LFB6891
 	.uleb128 0
-	.uleb128 .LEHB12-.LFB8446
+	.uleb128 .LEHB12-.LFB6891
 	.uleb128 .LEHE12-.LEHB12
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB13-.LFB8446
+	.uleb128 .LEHB13-.LFB6891
 	.uleb128 .LEHE13-.LEHB13
-	.uleb128 .L213-.LFB8446
+	.uleb128 .L213-.LFB6891
 	.uleb128 0
-	.uleb128 .LEHB14-.LFB8446
+	.uleb128 .LEHB14-.LFB6891
 	.uleb128 .LEHE14-.LEHB14
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8446:
+.LLSDACSE6891:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1610,17 +1610,17 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 .LEHE15:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8446:
+.LLSDAC6891:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8446-.LLSDACSBC8446
-.LLSDACSBC8446:
+	.uleb128 .LLSDACSEC6891-.LLSDACSBC6891
+.LLSDACSBC6891:
 	.uleb128 .LEHB15-.LCOLDB29
 	.uleb128 .LEHE15-.LEHB15
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8446:
+.LLSDACSEC6891:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1634,7 +1634,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv:
-.LFB8457:
+.LFB6902:
 	.seh_endprologue
 	movsd	40(%rcx), %xmm0
 	ret
@@ -1650,7 +1650,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
-.LFB8458:
+.LFB6903:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$64, %rsp
@@ -1724,7 +1724,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv:
-.LFB8459:
+.LFB6904:
 	.seh_endprologue
 	movsd	48(%rcx), %xmm0
 	ret
@@ -1740,7 +1740,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd
 _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
-.LFB8460:
+.LFB6905:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$64, %rsp
@@ -1811,7 +1811,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv:
-.LFB8461:
+.LFB6906:
 	.seh_endprologue
 	movl	72(%rcx), %eax
 	ret
@@ -1827,7 +1827,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj
 _ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
-.LFB8462:
+.LFB6907:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -1851,7 +1851,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv:
-.LFB8463:
+.LFB6908:
 	.seh_endprologue
 	xorl	%eax, %eax
 	cmpb	$0, 39(%rcx)
@@ -1876,7 +1876,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv:
-.LFB8464:
+.LFB6909:
 	.seh_endprologue
 	movq	80(%rcx), %rax
 	ret
@@ -1887,7 +1887,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv:
 	.def	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv
 _ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv:
-.LFB8465:
+.LFB6910:
 	.seh_endprologue
 	xorl	%eax, %eax
 	movq	$0, 80(%rcx)

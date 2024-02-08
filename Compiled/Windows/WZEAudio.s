@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine5audioC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audioC2EPS0_
 _ZN3wze6engine5audioC2EPS0_:
-.LFB8435:
+.LFB6880:
 	.seh_endprologue
 	movq	.LC0(%rip), %rax
 	movq	%rdx, (%rcx)
@@ -55,7 +55,7 @@ _ZN3wze6engine5audioC2EPS0_:
 	.def	_ZN3wze6engine5audio15GetGlobalVolumeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15GetGlobalVolumeEv
 _ZN3wze6engine5audio15GetGlobalVolumeEv:
-.LFB8437:
+.LFB6882:
 	.seh_endprologue
 	movsd	8(%rcx), %xmm0
 	ret
@@ -74,7 +74,7 @@ _ZN3wze6engine5audio15GetGlobalVolumeEv:
 	.def	_ZN3wze6engine5audio15SetGlobalVolumeEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15SetGlobalVolumeEd
 _ZN3wze6engine5audio15SetGlobalVolumeEd:
-.LFB8438:
+.LFB6883:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -126,7 +126,7 @@ _ZN3wze6engine5audio15SetGlobalVolumeEd:
 	.def	_ZN3wze6engine5audio4PlayEytd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio4PlayEytd
 _ZN3wze6engine5audio4PlayEytd:
-.LFB8439:
+.LFB6884:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -244,7 +244,7 @@ _ZN3wze6engine5audio4PlayEytd:
 	.def	_ZN3wze6engine5audio4PlayEytdt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio4PlayEytdt
 _ZN3wze6engine5audio4PlayEytdt:
-.LFB8440:
+.LFB6885:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -388,7 +388,7 @@ _ZN3wze6engine5audio4PlayEytdt:
 	.def	_ZN3wze6engine5audio4PlayEytddd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio4PlayEytddd
 _ZN3wze6engine5audio4PlayEytddd:
-.LFB8441:
+.LFB6886:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -613,7 +613,7 @@ _ZN3wze6engine5audio4PlayEytddd:
 	.def	_ZN3wze6engine5audio4PlayEytdddt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio4PlayEytdddt
 _ZN3wze6engine5audio4PlayEytdddt:
-.LFB8442:
+.LFB6887:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -829,7 +829,7 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	.def	_ZN3wze6engine5audio8IsPausedEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio8IsPausedEt
 _ZN3wze6engine5audio8IsPausedEt:
-.LFB8443:
+.LFB6888:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -846,7 +846,7 @@ _ZN3wze6engine5audio8IsPausedEt:
 	.def	_ZN3wze6engine5audio5PauseEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio5PauseEt
 _ZN3wze6engine5audio5PauseEt:
-.LFB8444:
+.LFB6889:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -862,7 +862,7 @@ _ZN3wze6engine5audio5PauseEt:
 	.def	_ZN3wze6engine5audio6ResumeEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio6ResumeEt
 _ZN3wze6engine5audio6ResumeEt:
-.LFB8445:
+.LFB6890:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -878,7 +878,7 @@ _ZN3wze6engine5audio6ResumeEt:
 	.def	_ZN3wze6engine5audio8PauseAllEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio8PauseAllEv
 _ZN3wze6engine5audio8PauseAllEv:
-.LFB8446:
+.LFB6891:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -894,7 +894,7 @@ _ZN3wze6engine5audio8PauseAllEv:
 	.def	_ZN3wze6engine5audio9ResumeAllEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio9ResumeAllEv
 _ZN3wze6engine5audio9ResumeAllEv:
-.LFB8447:
+.LFB6892:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -910,7 +910,7 @@ _ZN3wze6engine5audio9ResumeAllEv:
 	.def	_ZN3wze6engine5audio4StopEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio4StopEt
 _ZN3wze6engine5audio4StopEt:
-.LFB8448:
+.LFB6893:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue

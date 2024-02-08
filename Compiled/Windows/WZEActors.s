@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
-.LFB8624:
+.LFB6908:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -181,7 +181,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
 	.def	_ZN3wze6engine6actorsC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actorsC2EPS0_
 _ZN3wze6engine6actorsC2EPS0_:
-.LFB8435:
+.LFB6880:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -222,7 +222,7 @@ _ZN3wze6engine6actorsC2EPS0_:
 	.def	_ZN3wze6engine6actorsD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actorsD2Ev
 _ZN3wze6engine6actorsD2Ev:
-.LFB8438:
+.LFB6883:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -308,7 +308,7 @@ _ZN3wze6engine6actorsD2Ev:
 	.def	_ZN3wze6engine6actors3NewEPvyddttd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors3NewEPvyddttd
 _ZN3wze6engine6actors3NewEPvyddttd:
-.LFB8440:
+.LFB6885:
 	pushq	%r14
 	.seh_pushreg	%r14
 	pushq	%r13
@@ -537,33 +537,33 @@ _ZN3wze6engine6actors3NewEPvyddttd:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8440:
+.LLSDA6885:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8440-.LLSDACSB8440
-.LLSDACSB8440:
-	.uleb128 .LEHB0-.LFB8440
+	.uleb128 .LLSDACSE6885-.LLSDACSB6885
+.LLSDACSB6885:
+	.uleb128 .LEHB0-.LFB6885
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8440
+	.uleb128 .LEHB1-.LFB6885
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L59-.LFB8440
+	.uleb128 .L59-.LFB6885
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8440
+	.uleb128 .LEHB2-.LFB6885
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8440
+	.uleb128 .LEHB3-.LFB6885
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L58-.LFB8440
+	.uleb128 .L58-.LFB6885
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8440
+	.uleb128 .LEHB4-.LFB6885
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8440:
+.LLSDACSE6885:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -599,17 +599,17 @@ _ZN3wze6engine6actors3NewEPvyddttd.cold:
 .LEHE5:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8440:
+.LLSDAC6885:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8440-.LLSDACSBC8440
-.LLSDACSBC8440:
+	.uleb128 .LLSDACSEC6885-.LLSDACSBC6885
+.LLSDACSBC6885:
 	.uleb128 .LEHB5-.LCOLDB12
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8440:
+.LLSDACSEC6885:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -631,7 +631,7 @@ _ZN3wze6engine6actors3NewEPvyddttd.cold:
 	.def	_ZN3wze6engine6actors6DeleteEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors6DeleteEy
 _ZN3wze6engine6actors6DeleteEy:
-.LFB8441:
+.LFB6886:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -737,7 +737,7 @@ _ZN3wze6engine6actors6DeleteEy:
 	.def	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE
 _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
-.LFB8442:
+.LFB6887:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -898,7 +898,7 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
-.LFB8445:
+.LFB6890:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -1069,7 +1069,7 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6actorsixEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actorsixEy
 _ZN3wze6engine6actorsixEy:
-.LFB8446:
+.LFB6891:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue

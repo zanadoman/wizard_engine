@@ -10,7 +10,7 @@
 	.def	_ZN10backgroundC2EPN3wze6engineE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN10backgroundC2EPN3wze6engineE
 _ZN10backgroundC2EPN3wze6engineE:
-.LFB8435:
+.LFB6880:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$64, %rsp
@@ -55,7 +55,7 @@ _ZN10backgroundC2EPN3wze6engineE:
 	.def	_ZN10backgroundD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN10backgroundD2Ev
 _ZN10backgroundD2Ev:
-.LFB8438:
+.LFB6883:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -77,13 +77,13 @@ _ZN10backgroundD2Ev:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8438:
+.LLSDA6883:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8438-.LLSDACSB8438
-.LLSDACSB8438:
-.LLSDACSE8438:
+	.uleb128 .LLSDACSE6883-.LLSDACSB6883
+.LLSDACSB6883:
+.LLSDACSE6883:
 	.text
 	.seh_endproc
 	.globl	_ZN10backgroundD1Ev

@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine5mouseC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouseC2EPS0_
 _ZN3wze6engine5mouseC2EPS0_:
-.LFB8435:
+.LFB6880:
 	.seh_endprologue
 	movq	.LC0(%rip), %rax
 	pxor	%xmm0, %xmm0
@@ -68,7 +68,7 @@ _ZN3wze6engine5mouseC2EPS0_:
 	.def	_ZN3wze6engine5mouse4GetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse4GetXEd
 _ZN3wze6engine5mouse4GetXEd:
-.LFB8437:
+.LFB6882:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -121,7 +121,7 @@ _ZN3wze6engine5mouse4GetXEd:
 	.def	_ZN3wze6engine5mouse4GetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse4GetYEd
 _ZN3wze6engine5mouse4GetYEd:
-.LFB8438:
+.LFB6883:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -166,7 +166,7 @@ _ZN3wze6engine5mouse4GetYEd:
 	.def	_ZN3wze6engine5mouse10GetMotionXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10GetMotionXEv
 _ZN3wze6engine5mouse10GetMotionXEv:
-.LFB8439:
+.LFB6884:
 	.seh_endprologue
 	movsd	24(%rcx), %xmm0
 	ret
@@ -177,7 +177,7 @@ _ZN3wze6engine5mouse10GetMotionXEv:
 	.def	_ZN3wze6engine5mouse10GetMotionYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10GetMotionYEv
 _ZN3wze6engine5mouse10GetMotionYEv:
-.LFB8440:
+.LFB6885:
 	.seh_endprologue
 	movsd	32(%rcx), %xmm0
 	ret
@@ -188,7 +188,7 @@ _ZN3wze6engine5mouse10GetMotionYEv:
 	.def	_ZN3wze6engine5mouse10IsAbsoluteEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10IsAbsoluteEv
 _ZN3wze6engine5mouse10IsAbsoluteEv:
-.LFB8441:
+.LFB6886:
 	.seh_endprologue
 	movzbl	40(%rcx), %eax
 	xorl	$1, %eax
@@ -200,7 +200,7 @@ _ZN3wze6engine5mouse10IsAbsoluteEv:
 	.def	_ZN3wze6engine5mouse11SetAbsoluteEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse11SetAbsoluteEv
 _ZN3wze6engine5mouse11SetAbsoluteEv:
-.LFB8442:
+.LFB6887:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -221,7 +221,7 @@ _ZN3wze6engine5mouse11SetAbsoluteEv:
 	.def	_ZN3wze6engine5mouse10IsRelativeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10IsRelativeEv
 _ZN3wze6engine5mouse10IsRelativeEv:
-.LFB8443:
+.LFB6888:
 	.seh_endprologue
 	movzbl	40(%rcx), %eax
 	ret
@@ -232,7 +232,7 @@ _ZN3wze6engine5mouse10IsRelativeEv:
 	.def	_ZN3wze6engine5mouse11SetRelativeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse11SetRelativeEv
 _ZN3wze6engine5mouse11SetRelativeEv:
-.LFB8444:
+.LFB6889:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -253,7 +253,7 @@ _ZN3wze6engine5mouse11SetRelativeEv:
 	.def	_ZN3wze6engine5mouse9GetCursorEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse9GetCursorEv
 _ZN3wze6engine5mouse9GetCursorEv:
-.LFB8445:
+.LFB6890:
 	.seh_endprologue
 	movq	48(%rcx), %rax
 	ret
@@ -272,7 +272,7 @@ _ZN3wze6engine5mouse9GetCursorEv:
 	.def	_ZN3wze6engine5mouse9SetCursorEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse9SetCursorEy
 _ZN3wze6engine5mouse9SetCursorEy:
-.LFB8446:
+.LFB6891:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -318,7 +318,7 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	.def	_ZN3wze6engine5mouse6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse6UpdateEv
 _ZN3wze6engine5mouse6UpdateEv:
-.LFB8447:
+.LFB6892:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
