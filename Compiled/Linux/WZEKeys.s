@@ -27,7 +27,7 @@ _ZN3wze6engine4keysC2EPS0_:
 _ZN3wze6engine4keysixENS_3keyE:
 .LFB8149:
 	.cfi_startproc
-	cmpl	$295, %esi
+	cmpl	$236, %esi
 	jg	.L8
 	movslq	%esi, %rsi
 	cmpb	$0, 16(%rdi,%rsi)
@@ -57,7 +57,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	leaq	16(%rdi), %rsi
 	movq	%rdi, %rbx
 	movq	8(%rdi), %rdi
-	movl	$296, %edx
+	movl	$237, %edx
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
 	xorl	%esi, %esi
 	xorl	%edi, %edi
@@ -65,15 +65,15 @@ _ZN3wze6engine4keys6UpdateEv:
 	movq	(%rbx), %rsi
 	movl	%eax, %edx
 	andl	$1, %edx
-	movb	%dl, 307(%rbx)
+	movb	%dl, 248(%rbx)
 	movl	%eax, %edx
 	shrl	$2, %eax
 	shrl	%edx
 	andl	$1, %eax
 	andl	$1, %edx
-	movb	%al, 309(%rbx)
-	movb	%dl, 308(%rbx)
-	movq	832(%rsi), %rdi
+	movb	%al, 250(%rbx)
+	movb	%dl, 249(%rbx)
+	movq	776(%rsi), %rdi
 	testq	%rdi, %rdi
 	je	.L18
 	xorl	%eax, %eax
@@ -87,7 +87,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	cmpq	%rdi, %rdx
 	jnb	.L18
 .L10:
-	movq	840(%rsi), %rcx
+	movq	784(%rsi), %rcx
 	addq	%rax, %rcx
 	cmpl	$1027, (%rcx)
 	jne	.L11
@@ -97,8 +97,8 @@ _ZN3wze6engine4keys6UpdateEv:
 	movzwl	.LC1(%rip), %edi
 	addq	$1, %rdx
 	addq	$56, %rax
-	movw	%di, 310(%rbx)
-	movq	832(%rsi), %rdi
+	movw	%di, 251(%rbx)
+	movq	776(%rsi), %rdi
 	cmpq	%rdi, %rdx
 	jb	.L10
 .L18:
@@ -113,15 +113,15 @@ _ZN3wze6engine4keys6UpdateEv:
 	.cfi_restore_state
 	je	.L13
 	movl	$256, %edi
-	movw	%di, 310(%rbx)
-	movq	832(%rsi), %rdi
+	movw	%di, 251(%rbx)
+	movq	776(%rsi), %rdi
 	jmp	.L11
 	.p2align 4,,10
 	.p2align 3
 .L13:
 	xorl	%ecx, %ecx
-	movw	%cx, 310(%rbx)
-	movq	832(%rsi), %rdi
+	movw	%cx, 251(%rbx)
+	movq	776(%rsi), %rdi
 	jmp	.L11
 	.cfi_endproc
 .LFE8150:

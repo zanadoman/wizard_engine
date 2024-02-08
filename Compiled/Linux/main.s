@@ -20,7 +20,7 @@ main:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movl	$848, %edi
+	movl	$792, %edi
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
@@ -328,7 +328,7 @@ main:
 	movq	%rbp, %rdi
 	movq	%rax, %xmm0
 	call	_ZN3wze6engine6camera17SetSlowDownRangeYEd@PLT
-	leaq	720(%rbx), %rdi
+	leaq	664(%rbx), %rdi
 	leaq	.LC5(%rip), %rsi
 	call	_ZN3wze6engine6assets9LoadSoundEPKc@PLT
 	leaq	248(%rbx), %rdi
@@ -342,7 +342,7 @@ main:
 	.p2align 3
 .L3:
 	movq	%r12, %rdi
-	leaq	632(%rbx), %rbp
+	leaq	576(%rbx), %rbp
 	leaq	96(%rsp), %r13
 	call	_ZN6player6UpdateEv@PLT
 	movq	%r14, %rdi
@@ -381,7 +381,7 @@ main:
 	xorl	%r8d, %r8d
 	pushq	8(%rsp)
 	.cfi_def_cfa_offset 192
-	leaq	688(%rbx), %rdi
+	leaq	632(%rbx), %rdi
 	movl	$1, %ecx
 	xorl	%r9d, %r9d
 	movq	.LC6(%rip), %rax
@@ -458,7 +458,7 @@ main:
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_ZN3wze6engineD1Ev@PLT
-	movl	$848, %esi
+	movl	$792, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 	movq	104(%rsp), %rax
@@ -716,7 +716,7 @@ main.cold:
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L4:
-	movl	$848, %esi
+	movl	$792, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 	movq	104(%rsp), %rax

@@ -326,7 +326,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movq	(%rdi), %rbx
 	movq	256(%rsp), %rax
 	movq	%r8, 8(%rsp)
-	movzwl	664(%rbx), %r15d
+	movzwl	608(%rbx), %r15d
 	movq	264(%rsp), %r10
 	movw	%r14w, 138(%rsp)
 	movq	%rax, 32(%rsp)
@@ -359,10 +359,10 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	andb	%al, %dl
 	movb	%dl, 40(%rsp)
 	jne	.L82
-	movq	640(%rbx), %rax
+	movq	584(%rbx), %rax
 	cmpq	$1, %rax
 	jbe	.L111
-	movq	648(%rbx), %rdi
+	movq	592(%rbx), %rdi
 	movq	%r15, %r8
 	movq	%r13, 48(%rsp)
 	movq	%rax, %r15
@@ -517,7 +517,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	je	.L107
 .L104:
 	movq	0(%r13), %rax
-	leaq	656(%rax), %rdi
+	leaq	600(%rax), %rdi
 	cmpq	%rbx, %r15
 	je	.L175
 	pxor	%xmm2, %xmm2

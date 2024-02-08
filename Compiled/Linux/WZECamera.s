@@ -135,9 +135,9 @@ _ZN3wze6engine6camera4BindEy:
 	testq	%rsi, %rsi
 	je	.L26
 	movq	(%rdi), %rax
-	cmpq	640(%rax), %rsi
+	cmpq	584(%rax), %rsi
 	jnb	.L20
-	movq	648(%rax), %rax
+	movq	592(%rax), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
 	je	.L20
@@ -199,9 +199,9 @@ _ZN3wze6engine6camera5BindXEy:
 	testq	%rsi, %rsi
 	je	.L36
 	movq	(%rdi), %rax
-	cmpq	640(%rax), %rsi
+	cmpq	584(%rax), %rsi
 	jnb	.L30
-	movq	648(%rax), %rax
+	movq	592(%rax), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
 	je	.L30
@@ -261,9 +261,9 @@ _ZN3wze6engine6camera5BindYEy:
 	testq	%rsi, %rsi
 	je	.L46
 	movq	(%rdi), %rax
-	cmpq	640(%rax), %rsi
+	cmpq	584(%rax), %rsi
 	jnb	.L40
-	movq	648(%rax), %rax
+	movq	592(%rax), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
 	je	.L40
@@ -990,8 +990,8 @@ _ZN3wze6engine6camera6UpdateEv:
 	je	.L324
 	movq	(%rdi), %rbp
 .L215:
-	movq	640(%rbp), %rcx
-	movq	648(%rbp), %rdx
+	movq	584(%rbp), %rcx
+	movq	592(%rbp), %rdx
 	cmpq	%rcx, %rax
 	jnb	.L337
 	movq	(%rdx,%rax,8), %rax
@@ -1020,7 +1020,7 @@ _ZN3wze6engine6camera6UpdateEv:
 	jbe	.L275
 	movq	(%rbx), %rax
 	pxor	%xmm2, %xmm2
-	movl	828(%rax), %eax
+	movl	772(%rax), %eax
 	cvtsi2sdq	%rax, %xmm2
 	mulsd	120(%rbx), %xmm2
 	addsd	%xmm2, %xmm0
@@ -1036,7 +1036,7 @@ _ZN3wze6engine6camera6UpdateEv:
 	jbe	.L307
 	movq	(%rbx), %rax
 	pxor	%xmm2, %xmm2
-	movl	828(%rax), %eax
+	movl	772(%rax), %eax
 	cvtsi2sdq	%rax, %xmm2
 	mulsd	128(%rbx), %xmm2
 	addsd	%xmm2, %xmm0
@@ -1062,16 +1062,16 @@ _ZN3wze6engine6camera6UpdateEv:
 	testq	%rsi, %rsi
 	je	.L307
 	movq	(%rdi), %rbp
-	movq	640(%rbp), %rcx
-	movq	648(%rbp), %rdx
+	movq	584(%rbp), %rcx
+	movq	592(%rbp), %rdx
 	jmp	.L232
 	.p2align 4,,10
 	.p2align 3
 .L214:
 	movq	(%rdi), %rbp
 	movsd	48(%rdi), %xmm0
-	movq	640(%rbp), %rcx
-	movq	648(%rbp), %rdx
+	movq	584(%rbp), %rcx
+	movq	592(%rbp), %rdx
 	cmpq	%rcx, %rax
 	jnb	.L337
 	movq	(%rdx,%rax,8), %rsi
@@ -1104,8 +1104,8 @@ _ZN3wze6engine6camera6UpdateEv:
 	je	.L307
 	ucomisd	%xmm2, %xmm2
 	movq	(%rbx), %rbp
-	movq	640(%rbp), %rcx
-	movq	648(%rbp), %rdx
+	movq	584(%rbp), %rcx
+	movq	592(%rbp), %rdx
 	setnp	%r12b
 	andb	24(%rbx), %r12b
 	je	.L232
@@ -1119,17 +1119,17 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	224(%rax), %xmm1
 	comisd	%xmm0, %xmm1
 	jbe	.L327
-	movl	828(%rbp), %eax
+	movl	772(%rbp), %eax
 	pxor	%xmm1, %xmm1
-	leaq	688(%rbp), %rdi
+	leaq	632(%rbp), %rdi
 	cvtsi2sdq	%rax, %xmm1
 	mulsd	160(%rbx), %xmm1
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	movq	(%rbx), %rbp
 	movq	40(%rbx), %rsi
 	movsd	%xmm0, 56(%rbx)
-	movq	648(%rbp), %rax
-	cmpq	640(%rbp), %rsi
+	movq	592(%rbp), %rax
+	cmpq	584(%rbp), %rsi
 	jnb	.L332
 	movq	(%rax,%rsi,8), %rax
 	movsd	224(%rax), %xmm1
@@ -1141,7 +1141,7 @@ _ZN3wze6engine6camera6UpdateEv:
 	.p2align 4,,10
 	.p2align 3
 .L225:
-	leaq	688(%rbp), %rdi
+	leaq	632(%rbp), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movq	32(%rbx), %rax
 	movapd	%xmm0, %xmm2
@@ -1149,8 +1149,8 @@ _ZN3wze6engine6camera6UpdateEv:
 	je	.L340
 	movq	(%rbx), %rbp
 	cmpb	$0, 24(%rbx)
-	movq	640(%rbp), %rcx
-	movq	648(%rbp), %rdx
+	movq	584(%rbp), %rcx
+	movq	592(%rbp), %rdx
 	je	.L215
 	ucomisd	%xmm0, %xmm0
 	jp	.L215
@@ -1175,20 +1175,20 @@ _ZN3wze6engine6camera6UpdateEv:
 .L339:
 	movq	(%rbx), %rbp
 	movq	40(%rbx), %rsi
-	leaq	632(%rbp), %rdi
+	leaq	576(%rbp), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	movq	(%rbx), %rax
 	movq	32(%rbx), %rsi
 	movsd	%xmm0, 8(%rsp)
-	leaq	632(%rax), %rdi
+	leaq	576(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	56(%rbx), %xmm1
 	movsd	8(%rsp), %xmm3
-	leaq	688(%rbp), %rdi
+	leaq	632(%rbp), %rdi
 	movapd	%xmm0, %xmm2
 	movsd	48(%rbx), %xmm0
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
@@ -1200,20 +1200,20 @@ _ZN3wze6engine6camera6UpdateEv:
 	.p2align 4,,10
 	.p2align 3
 .L338:
-	leaq	632(%rbp), %rdi
+	leaq	576(%rbp), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	movq	(%rbx), %rax
 	movq	32(%rbx), %rsi
 	movsd	%xmm0, 8(%rsp)
-	leaq	632(%rax), %rdi
+	leaq	576(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	56(%rbx), %xmm1
 	movsd	8(%rsp), %xmm3
-	leaq	688(%rbp), %rdi
+	leaq	632(%rbp), %rdi
 	movapd	%xmm0, %xmm2
 	movsd	48(%rbx), %xmm0
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
@@ -1229,9 +1229,9 @@ _ZN3wze6engine6camera6UpdateEv:
 	movsd	216(%rax), %xmm1
 	comisd	%xmm0, %xmm1
 	jbe	.L326
-	movl	828(%rbp), %eax
+	movl	772(%rbp), %eax
 	pxor	%xmm1, %xmm1
-	leaq	688(%rbp), %rdi
+	leaq	632(%rbp), %rdi
 	movsd	%xmm2, 8(%rsp)
 	cvtsi2sdq	%rax, %xmm1
 	mulsd	152(%rbx), %xmm1
@@ -1240,8 +1240,8 @@ _ZN3wze6engine6camera6UpdateEv:
 	movq	32(%rbx), %rsi
 	movsd	8(%rsp), %xmm2
 	movsd	%xmm0, 48(%rbx)
-	movq	640(%rbp), %rcx
-	movq	648(%rbp), %rdx
+	movq	584(%rbp), %rcx
+	movq	592(%rbp), %rdx
 	cmpq	%rcx, %rsi
 	jnb	.L332
 	movq	(%rdx,%rsi,8), %rax
@@ -1261,7 +1261,7 @@ _ZN3wze6engine6camera6UpdateEv:
 	movq	(%rbx), %rax
 	pxor	%xmm0, %xmm0
 	movsd	160(%rbx), %xmm1
-	movl	828(%rax), %eax
+	movl	772(%rax), %eax
 	cvtsi2sdq	%rax, %xmm0
 	mulsd	112(%rbx), %xmm0
 	subsd	%xmm0, %xmm1
@@ -1275,7 +1275,7 @@ _ZN3wze6engine6camera6UpdateEv:
 	movq	(%rbx), %rax
 	pxor	%xmm0, %xmm0
 	movsd	152(%rbx), %xmm1
-	movl	828(%rax), %eax
+	movl	772(%rax), %eax
 	cvtsi2sdq	%rax, %xmm0
 	mulsd	104(%rbx), %xmm0
 	subsd	%xmm0, %xmm1
@@ -1288,17 +1288,17 @@ _ZN3wze6engine6camera6UpdateEv:
 .L327:
 	comisd	%xmm1, %xmm0
 	jbe	.L262
-	movl	828(%rbp), %eax
+	movl	772(%rbp), %eax
 	pxor	%xmm1, %xmm1
-	leaq	688(%rbp), %rdi
+	leaq	632(%rbp), %rdi
 	cvtsi2sdq	%rax, %xmm1
 	mulsd	160(%rbx), %xmm1
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	movq	(%rbx), %rbp
 	movq	40(%rbx), %rsi
 	movsd	%xmm0, 56(%rbx)
-	movq	648(%rbp), %rax
-	cmpq	640(%rbp), %rsi
+	movq	592(%rbp), %rax
+	cmpq	584(%rbp), %rsi
 	jnb	.L332
 	movq	(%rax,%rsi,8), %rax
 	movsd	224(%rax), %xmm1
@@ -1317,9 +1317,9 @@ _ZN3wze6engine6camera6UpdateEv:
 	.p2align 4,,10
 	.p2align 3
 .L246:
-	movl	828(%rbp), %eax
+	movl	772(%rbp), %eax
 	pxor	%xmm1, %xmm1
-	leaq	688(%rbp), %rdi
+	leaq	632(%rbp), %rdi
 	movsd	%xmm2, 8(%rsp)
 	cvtsi2sdq	%rax, %xmm1
 	mulsd	152(%rbx), %xmm1
@@ -1328,8 +1328,8 @@ _ZN3wze6engine6camera6UpdateEv:
 	movq	32(%rbx), %rsi
 	movsd	8(%rsp), %xmm2
 	movsd	%xmm0, 48(%rbx)
-	movq	640(%rbp), %rcx
-	movq	648(%rbp), %rdx
+	movq	584(%rbp), %rcx
+	movq	592(%rbp), %rdx
 	cmpq	%rcx, %rsi
 	jnb	.L332
 	movq	(%rdx,%rsi,8), %rax
