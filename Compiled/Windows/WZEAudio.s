@@ -152,9 +152,9 @@ _ZN3wze6engine5audio4PlayEytd:
 	testq	%rdx, %rdx
 	je	.L21
 	movq	(%rcx), %rax
-	cmpq	720(%rax), %rdx
+	cmpq	744(%rax), %rdx
 	jnb	.L22
-	movq	728(%rax), %rax
+	movq	752(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L22
@@ -164,8 +164,8 @@ _ZN3wze6engine5audio4PlayEytd:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	(%rdi), %rax
-	movq	728(%rax), %rdx
-	cmpq	720(%rax), %rbx
+	movq	752(%rax), %rdx
+	cmpq	744(%rax), %rbx
 	jnb	.L32
 	movzwl	%si, %esi
 	movq	(%rdx,%rbx,8), %rdx
@@ -274,9 +274,9 @@ _ZN3wze6engine5audio4PlayEytdt:
 	je	.L40
 	movq	(%rcx), %rax
 	movzwl	%bp, %ebp
-	cmpq	720(%rax), %rdx
+	cmpq	744(%rax), %rdx
 	jnb	.L41
-	movq	728(%rax), %rax
+	movq	752(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L41
@@ -286,8 +286,8 @@ _ZN3wze6engine5audio4PlayEytdt:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	(%rdi), %rax
-	movq	728(%rax), %rdx
-	cmpq	720(%rax), %rbx
+	movq	752(%rax), %rdx
+	cmpq	744(%rax), %rbx
 	jnb	.L51
 	movzwl	%si, %esi
 	movq	(%rdx,%rbx,8), %rdx
@@ -433,9 +433,9 @@ _ZN3wze6engine5audio4PlayEytddd:
 	testq	%rdx, %rdx
 	je	.L69
 	movq	(%rcx), %rax
-	cmpq	720(%rax), %rdx
+	cmpq	744(%rax), %rdx
 	jnb	.L70
-	movq	728(%rax), %rax
+	movq	752(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L70
@@ -445,8 +445,8 @@ _ZN3wze6engine5audio4PlayEytddd:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	(%rdi), %rax
-	movq	728(%rax), %rdx
-	cmpq	720(%rax), %rbx
+	movq	752(%rax), %rdx
+	cmpq	744(%rax), %rbx
 	jnb	.L89
 	movzwl	%si, %esi
 	movq	(%rdx,%rbx,8), %rdx
@@ -662,9 +662,9 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	je	.L108
 	movq	(%rcx), %rax
 	movzwl	%si, %esi
-	cmpq	720(%rax), %rdx
+	cmpq	744(%rax), %rdx
 	jnb	.L109
-	movq	728(%rax), %rax
+	movq	752(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L109
@@ -674,8 +674,8 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	0(%rbp), %rax
-	movq	728(%rax), %rdx
-	cmpq	720(%rax), %rbx
+	movq	752(%rax), %rdx
+	cmpq	744(%rax), %rbx
 	jnb	.L128
 	movzwl	%di, %edi
 	movq	(%rdx,%rbx,8), %rdx

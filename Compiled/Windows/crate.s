@@ -32,7 +32,7 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movq	%rcx, %rbx
 	movapd	%xmm2, %xmm6
 	movapd	%xmm3, %xmm7
-	leaq	696(%rdx), %rcx
+	leaq	720(%rdx), %rcx
 	leaq	.LC0(%rip), %rdx
 	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	movapd	%xmm6, %xmm3
@@ -108,7 +108,7 @@ _ZN5crateD2Ev:
 	movq	(%rcx), %rax
 	movq	24(%rcx), %rdx
 	movq	%rcx, %rbx
-	leaq	696(%rax), %rcx
+	leaq	720(%rax), %rcx
 	call	_ZN3wze6engine6assets13UnloadTextureEy
 	movq	(%rbx), %rcx
 	movq	8(%rbx), %rdx

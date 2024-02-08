@@ -313,22 +313,22 @@ _ZN3wze6engine6vector9TerminalYEddd:
 	.ascii "neo::array(): Memory allocation failed\12Params: Length: %lld\12\0"
 	.align 8
 .LC14:
-	.ascii "whe::engine.vector.RayCast(): InitialX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\12\0"
+	.ascii "whe::engine.vector.RayCast(): InitialX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\12\0"
 	.align 8
 .LC15:
-	.ascii "whe::engine.vector.RayCast(): InitialY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\12\0"
+	.ascii "whe::engine.vector.RayCast(): InitialY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\12\0"
 	.align 8
 .LC16:
-	.ascii "whe::engine.vector.RayCast(): TerminalX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\12\0"
+	.ascii "whe::engine.vector.RayCast(): TerminalX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\12\0"
 	.align 8
 .LC17:
-	.ascii "whe::engine.vector.RayCast(): TerminalY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\12\0"
+	.ascii "whe::engine.vector.RayCast(): TerminalY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\12\0"
 	.align 8
 .LC18:
-	.ascii "whe::engine.vector.RayCast(): SamplingStep must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\12\0"
+	.ascii "whe::engine.vector.RayCast(): SamplingStep must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\12\0"
 	.align 8
 .LC20:
-	.ascii "whe::engine.vector.RayCast(): SamplingStep must not be less than or equal to 0\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\12\0"
+	.ascii "whe::engine.vector.RayCast(): SamplingStep must not be less than or equal to 0\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\12\0"
 	.align 8
 .LC21:
 	.ascii "neo::array.Insert(): Memory allocation failed\12Params: Index: %lld, Length: %lld\12\0"
@@ -400,10 +400,10 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movq	%rax, 80(%rsp)
 	movq	456(%rsp), %rax
 	movq	%rdi, 104(%rsp)
+	movq	(%rax), %rdi
+	movq	8(%rax), %r11
+	movq	%rdi, 112(%rsp)
 	xorl	%edi, %edi
-	movq	(%rax), %r11
-	movq	8(%rax), %rax
-	movq	%rax, 112(%rsp)
 	testq	%rbp, %rbp
 	jne	.L157
 .L65:
@@ -483,14 +483,14 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movq	160(%r9), %r9
 	movq	%r15, 104(%rsp)
 	movl	$1, %r12d
-	movq	%r10, %r15
-	movq	%r14, 136(%rsp)
-	movq	112(%rsp), %r8
 	movq	%rax, %r11
+	movq	%r14, 136(%rsp)
+	movq	112(%rsp), %r15
+	movq	%r10, %r14
 	movq	%rbp, %r10
 	movq	%r13, 384(%rsp)
-	movq	%r9, %r14
-	movq	96(%rsp), %r13
+	movq	96(%rsp), %rbp
+	movq	%r9, %r13
 	movq	%rdx, %r9
 	movq	%rbx, 128(%rsp)
 	jmp	.L95
@@ -501,25 +501,25 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	cmpq	%rdi, %r12
 	je	.L166
 .L95:
-	movq	(%r14,%r12,8), %rbx
+	movq	0(%r13,%r12,8), %rbx
 	testq	%rbx, %rbx
 	je	.L87
 	movq	24(%rbx), %rdx
 	xorl	%eax, %eax
-	testq	%r8, %r8
+	testq	%r14, %r14
 	je	.L89
 .L88:
 	cmpq	(%r15,%rax,8), %rdx
 	je	.L87
 	addq	$1, %rax
-	cmpq	%rax, %r8
+	cmpq	%rax, %r14
 	jne	.L88
 .L89:
-	cmpq	%rsi, %r13
+	cmpq	%rsi, %rbp
 	je	.L167
 .L91:
 	leaq	1(%rsi), %rax
-	cmpq	%r13, %rsi
+	cmpq	%rbp, %rsi
 	jnb	.L168
 	addq	$1, %r12
 	movq	%rbx, (%rcx,%rsi,8)
@@ -527,15 +527,15 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	cmpq	%rdi, %r12
 	jne	.L95
 .L166:
-	movq	%r10, %rbp
-	movq	%r15, %r10
 	movq	104(%rsp), %r15
-	movq	%r13, 96(%rsp)
-	movq	128(%rsp), %rbx
-	movq	136(%rsp), %r14
+	movq	%rbp, 96(%rsp)
 	movq	%r9, %rdx
-	movq	%r11, %rax
+	movq	%r10, %rbp
+	movq	128(%rsp), %rbx
+	movq	%r14, %r10
 	movq	384(%rsp), %r13
+	movq	%r11, %rax
+	movq	136(%rsp), %r14
 	addq	$1, %rbx
 	cmpq	%rbx, %r15
 	jne	.L96
@@ -651,23 +651,23 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	jmp	.L79
 .L167:
 	movzwl	122(%rsp), %eax
-	movq	%r8, 160(%rsp)
-	movq	%r11, 152(%rsp)
+	movq	%r11, 160(%rsp)
+	movq	%r10, 152(%rsp)
 	addq	$1, %rax
-	movq	%r10, 144(%rsp)
-	leaq	(%rax,%r13), %rbp
-	movq	%r9, 96(%rsp)
-	leaq	0(,%rbp,8), %rdx
+	movq	%r9, 144(%rsp)
+	leaq	(%rax,%rbp), %r8
 	movq	%rax, 168(%rsp)
+	leaq	0(,%r8,8), %rdx
+	movq	%r8, 96(%rsp)
 	call	realloc
-	movq	96(%rsp), %r9
-	movq	144(%rsp), %r10
+	movq	96(%rsp), %r8
+	movq	144(%rsp), %r9
 	testq	%rax, %rax
-	movq	152(%rsp), %r11
-	movq	160(%rsp), %r8
+	movq	152(%rsp), %r10
+	movq	160(%rsp), %r11
 	movq	%rax, %rcx
 	je	.L172
-	testq	%rbp, %rbp
+	testq	%r8, %r8
 	jne	.L111
 .L93:
 	jmp	.L93
@@ -696,7 +696,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	xorl	%esi, %esi
 	jmp	.L80
 .L111:
-	movq	%rbp, %r13
+	movq	%r8, %rbp
 	jmp	.L91
 .L170:
 	movq	%rbp, %rdx
@@ -708,103 +708,109 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	call	exit
 .L159:
 	movq	80(%rsp), %rax
-	movq	%r14, 56(%rsp)
+	movq	%r11, 72(%rsp)
 	movapd	%xmm8, %xmm3
 	movq	%xmm8, %r9
+	movq	%r14, 56(%rsp)
 	movapd	%xmm9, %xmm2
 	movq	%xmm9, %r8
 	movapd	%xmm11, %xmm1
-	movsd	%xmm10, 48(%rsp)
 	movq	%rax, 64(%rsp)
 	movzwl	%r12w, %eax
 	movq	%xmm11, %rdx
 	leaq	.LC15(%rip), %rcx
 	movl	%eax, 40(%rsp)
+	movsd	%xmm10, 48(%rsp)
 	movsd	%xmm12, 32(%rsp)
 	call	_Z6printfPKcz
 	jmp	.L70
 .L158:
 	movq	80(%rsp), %rax
-	movq	%r14, 56(%rsp)
+	movq	%r11, 72(%rsp)
 	movapd	%xmm8, %xmm3
 	movq	%xmm8, %r9
+	movq	%r14, 56(%rsp)
 	movapd	%xmm9, %xmm2
 	movq	%xmm9, %r8
 	movapd	%xmm11, %xmm1
-	movsd	%xmm10, 48(%rsp)
 	movq	%rax, 64(%rsp)
 	movzwl	%r12w, %eax
 	movq	%xmm11, %rdx
 	leaq	.LC14(%rip), %rcx
 	movl	%eax, 40(%rsp)
+	movsd	%xmm10, 48(%rsp)
 	movsd	%xmm12, 32(%rsp)
 	call	_Z6printfPKcz
 	jmp	.L70
 .L161:
 	movq	80(%rsp), %rax
-	movq	%r14, 56(%rsp)
+	movq	%r11, 72(%rsp)
 	movapd	%xmm8, %xmm3
 	movq	%xmm8, %r9
+	movq	%r14, 56(%rsp)
 	movapd	%xmm9, %xmm2
 	movq	%xmm9, %r8
 	movapd	%xmm11, %xmm1
-	movsd	%xmm10, 48(%rsp)
 	movq	%rax, 64(%rsp)
 	movzwl	%r12w, %eax
 	movq	%xmm11, %rdx
 	leaq	.LC17(%rip), %rcx
 	movl	%eax, 40(%rsp)
+	movsd	%xmm10, 48(%rsp)
 	movsd	%xmm12, 32(%rsp)
 	call	_Z6printfPKcz
 	jmp	.L70
 .L160:
 	movq	80(%rsp), %rax
-	movq	%r14, 56(%rsp)
+	movq	%r11, 72(%rsp)
 	movapd	%xmm8, %xmm3
 	movq	%xmm8, %r9
+	movq	%r14, 56(%rsp)
 	movapd	%xmm9, %xmm2
 	movq	%xmm9, %r8
 	movapd	%xmm11, %xmm1
-	movsd	%xmm10, 48(%rsp)
 	movq	%rax, 64(%rsp)
 	movzwl	%r12w, %eax
 	movq	%xmm11, %rdx
 	leaq	.LC16(%rip), %rcx
 	movl	%eax, 40(%rsp)
+	movsd	%xmm10, 48(%rsp)
 	movsd	%xmm12, 32(%rsp)
 	call	_Z6printfPKcz
 	jmp	.L70
 .L163:
 	movq	80(%rsp), %rax
-	movq	%r14, 56(%rsp)
+	movq	%r11, 72(%rsp)
 	movapd	%xmm8, %xmm3
 	movq	%xmm8, %r9
+	movq	%r14, 56(%rsp)
 	movapd	%xmm9, %xmm2
 	movq	%xmm9, %r8
 	movapd	%xmm11, %xmm1
-	movsd	%xmm10, 48(%rsp)
 	movq	%rax, 64(%rsp)
 	movzwl	%r12w, %eax
 	movq	%xmm11, %rdx
 	leaq	.LC20(%rip), %rcx
 	movl	%eax, 40(%rsp)
+	movsd	%xmm10, 48(%rsp)
 	movsd	%xmm12, 32(%rsp)
 	call	_Z6printfPKcz
 	jmp	.L70
 .L162:
 	movq	80(%rsp), %rax
-	movq	%r14, 56(%rsp)
+	movq	%r11, 72(%rsp)
 	movapd	%xmm8, %xmm3
 	movq	%xmm8, %r9
+	movq	%r14, 56(%rsp)
 	movapd	%xmm9, %xmm2
 	movq	%xmm9, %r8
 	movapd	%xmm11, %xmm1
-	movsd	%xmm10, 48(%rsp)
 	movq	%rax, 64(%rsp)
 	movzwl	%r12w, %eax
 	movq	%xmm11, %rdx
 	leaq	.LC18(%rip), %rcx
 	movl	%eax, 40(%rsp)
+	movsd	%xmm10, 48(%rsp)
 	movsd	%xmm12, 32(%rsp)
 	call	_Z6printfPKcz
 	jmp	.L70
@@ -816,7 +822,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	jmp	.L70
 .L172:
 	movq	168(%rsp), %r8
-	movq	%r13, %rdx
+	movq	%rbp, %rdx
 	leaq	.LC21(%rip), %rcx
 	movq	%rax, %rdi
 	call	_Z6printfPKcz

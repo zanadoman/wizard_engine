@@ -309,6 +309,11 @@ namespace wze
 
     bool engine::actors::actor::overlapboxes::overlapbox::IsOverlappingWith(uint64 ActorID, uint64 OverlapboxID)
     {
+        double ActiveTopLeftX;
+        double ActiveTopLeftY;
+        double ActiveBotRightX;
+        double ActiveBotRightY;
+
         if (ActorID == 0)
         {
             return false;
@@ -328,13 +333,28 @@ namespace wze
             exit(1);
         }
 
-        return this->Engine->Collision.CheckOverlap(this, this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID]);
+        ActiveTopLeftX = this->X - (this->ActiveWidth >> 1);
+        ActiveTopLeftY = this->Y + (this->ActiveHeight >> 1);
+        ActiveBotRightX = ActiveTopLeftX + this->ActiveWidth;
+        ActiveBotRightY = ActiveTopLeftY - this->ActiveHeight;
+
+        return this->Engine->Collision.CheckOverlap(ActiveTopLeftX, ActiveTopLeftY, ActiveBotRightX, ActiveBotRightY, this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID]);
     }
 
     uint8 engine::actors::actor::overlapboxes::overlapbox::GetOverlapState(array<array<uint64>>* OverlapboxesByActors, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist)
     {
+        double ActiveTopLeftX;
+        double ActiveTopLeftY;
+        double ActiveBotRightX;
+        double ActiveBotRightY;
+
         OverlapboxesByActors->Clear();
         OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
+
+        ActiveTopLeftX = this->X - (this->ActiveWidth >> 1);
+        ActiveTopLeftY = this->Y + (this->ActiveHeight >> 1);
+        ActiveBotRightX = ActiveTopLeftX + this->ActiveWidth;
+        ActiveBotRightY = ActiveTopLeftY - this->ActiveHeight;
 
         for (uint64 i = 1; i < this->Engine->Actors.Actors.Length(); i++)
         {
@@ -350,7 +370,124 @@ namespace wze
                     continue;
                 }
 
-                if (this->Engine->Collision.CheckOverlap(this, this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]))
+                if (this->Engine->Collision.CheckOverlap(ActiveTopLeftX, ActiveTopLeftY, ActiveBotRightX, ActiveBotRightY, this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]))
+                {
+                    (*OverlapboxesByActors)[i] += {j};
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::overlapboxes::overlapbox::GetOverlapState(array<array<uint64>>* OverlapboxesByActors, array<uint64>* ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist)
+    {
+        double ActiveTopLeftX;
+        double ActiveTopLeftY;
+        double ActiveBotRightX;
+        double ActiveBotRightY;
+
+        OverlapboxesByActors->Clear();
+        OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
+
+        ActiveTopLeftX = this->X - (this->ActiveWidth >> 1);
+        ActiveTopLeftY = this->Y + (this->ActiveHeight >> 1);
+        ActiveBotRightX = ActiveTopLeftX + this->ActiveWidth;
+        ActiveBotRightY = ActiveTopLeftY - this->ActiveHeight;
+
+        for (uint64 i = 1; i < this->Engine->Actors.Actors.Length(); i++)
+        {
+            if (this->Engine->Actors.Actors[i] == NULL || this->Engine->Actors.Actors[i] == this->Actor || !ActorTypeWhitelist->Contains({this->Engine->Actors.Actors[i]->Type}) || initializer_list_Contains(ActorIDBlacklist, {i}))
+            {
+                continue;
+            }
+
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length(); j++)
+            {
+                if (this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j] == NULL)
+                {
+                    continue;
+                }
+
+                if (this->Engine->Collision.CheckOverlap(ActiveTopLeftX, ActiveTopLeftY, ActiveBotRightX, ActiveBotRightY, this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]))
+                {
+                    (*OverlapboxesByActors)[i] += {j};
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::overlapboxes::overlapbox::GetOverlapState(array<array<uint64>>* OverlapboxesByActors, std::initializer_list<uint64> ActorTypeWhitelist, array<uint64>* ActorIDBlacklist)
+    {
+        double ActiveTopLeftX;
+        double ActiveTopLeftY;
+        double ActiveBotRightX;
+        double ActiveBotRightY;
+
+        OverlapboxesByActors->Clear();
+        OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
+
+        ActiveTopLeftX = this->X - (this->ActiveWidth >> 1);
+        ActiveTopLeftY = this->Y + (this->ActiveHeight >> 1);
+        ActiveBotRightX = ActiveTopLeftX + this->ActiveWidth;
+        ActiveBotRightY = ActiveTopLeftY - this->ActiveHeight;
+
+        for (uint64 i = 1; i < this->Engine->Actors.Actors.Length(); i++)
+        {
+            if (this->Engine->Actors.Actors[i] == NULL || this->Engine->Actors.Actors[i] == this->Actor || !initializer_list_Contains(ActorTypeWhitelist, {this->Engine->Actors.Actors[i]->Type}) || ActorIDBlacklist->Contains({i}))
+            {
+                continue;
+            }
+
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length(); j++)
+            {
+                if (this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j] == NULL)
+                {
+                    continue;
+                }
+
+                if (this->Engine->Collision.CheckOverlap(ActiveTopLeftX, ActiveTopLeftY, ActiveBotRightX, ActiveBotRightY, this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]))
+                {
+                    (*OverlapboxesByActors)[i] += {j};
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    uint8 engine::actors::actor::overlapboxes::overlapbox::GetOverlapState(array<array<uint64>>* OverlapboxesByActors, array<uint64>* ActorTypeWhitelist, array<uint64>* ActorIDBlacklist)
+    {
+        double ActiveTopLeftX;
+        double ActiveTopLeftY;
+        double ActiveBotRightX;
+        double ActiveBotRightY;
+
+        OverlapboxesByActors->Clear();
+        OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
+
+        ActiveTopLeftX = this->X - (this->ActiveWidth >> 1);
+        ActiveTopLeftY = this->Y + (this->ActiveHeight >> 1);
+        ActiveBotRightX = ActiveTopLeftX + this->ActiveWidth;
+        ActiveBotRightY = ActiveTopLeftY - this->ActiveHeight;
+
+        for (uint64 i = 1; i < this->Engine->Actors.Actors.Length(); i++)
+        {
+            if (this->Engine->Actors.Actors[i] == NULL || this->Engine->Actors.Actors[i] == this->Actor || !ActorTypeWhitelist->Contains({this->Engine->Actors.Actors[i]->Type}) || ActorIDBlacklist->Contains({i}))
+            {
+                continue;
+            }
+
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length(); j++)
+            {
+                if (this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j] == NULL)
+                {
+                    continue;
+                }
+
+                if (this->Engine->Collision.CheckOverlap(ActiveTopLeftX, ActiveTopLeftY, ActiveBotRightX, ActiveBotRightY, this->Engine->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]))
                 {
                     (*OverlapboxesByActors)[i] += {j};
                 }
@@ -364,23 +501,23 @@ namespace wze
     {
         uint16 result;
 
-        double OverlapboxTopLeftX;
-        double OverlapboxTopLeftY;
-        double OverlapboxBotRightX;
-        double OverlapboxBotRightY;
+        double ActiveTopLeftX;
+        double ActiveTopLeftY;
+        double ActiveBotRightX;
+        double ActiveBotRightY;
         double CursorX, CursorY;
 
         result = BTN_NONE;
 
-        OverlapboxTopLeftX = this->X - (this->ActiveWidth >> 1);
-        OverlapboxTopLeftY = this->Y + (this->ActiveHeight >> 1);
-        OverlapboxBotRightX = OverlapboxTopLeftX + this->ActiveWidth;
-        OverlapboxBotRightY = OverlapboxTopLeftY - this->ActiveHeight;
+        ActiveTopLeftX = this->X - (this->ActiveWidth >> 1);
+        ActiveTopLeftY = this->Y + (this->ActiveHeight >> 1);
+        ActiveBotRightX = ActiveTopLeftX + this->ActiveWidth;
+        ActiveBotRightY = ActiveTopLeftY - this->ActiveHeight;
 
         CursorX = this->Engine->Mouse.GetX(this->Actor->Layer);
         CursorY = this->Engine->Mouse.GetY(this->Actor->Layer);
 
-        if (OverlapboxTopLeftX <= CursorX && CursorX <= OverlapboxBotRightX && OverlapboxBotRightY <= CursorY && CursorY <= OverlapboxTopLeftY)
+        if (ActiveTopLeftX <= CursorX && CursorX <= ActiveBotRightX && ActiveBotRightY <= CursorY && CursorY <= ActiveTopLeftY)
         {
             result |= BTN_HOVERED;
 

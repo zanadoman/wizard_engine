@@ -2,6 +2,7 @@
 
 #include "Includes/NeoTypes++.hpp"
 #include <ctime>
+#include <initializer_list>
 
 #ifdef __linux__
 #include <SDL2/SDL.h>
@@ -23,6 +24,8 @@
 #define PI 3.141592653589793
 #define DEG 57.29577951308232
 #define RAD 0.017453292519943295
+#define DEG_MAX 360
+#define RAD_MAX 6.283185307179586
 
 using namespace neo;
 
@@ -547,6 +550,9 @@ namespace wze
                                     uint16 GetActiveHeight();
                                     bool IsOverlappingWith(uint64 ActorID, uint64 OverlapboxID);
                                     uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist);
+                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors, array<uint64>* ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist);
+                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors, std::initializer_list<uint64> ActorTypeWhitelist, array<uint64>* ActorIDBlacklist);
+                                    uint8 GetOverlapState(array<array<uint64>>* OverlapboxesByActors, array<uint64>* ActorTypeWhitelist, array<uint64>* ActorIDBlacklist);
                                     button GetButtonState();
 
                                 private:
@@ -678,7 +684,6 @@ namespace wze
                     uint16 BufferSize;
                     array<array<actors::actor*>> CollisionLayers;
                     collision(engine* Engine);
-                    bool CheckOverlap(actors::actor::overlapboxes::overlapbox* Overlapbox1, actors::actor::overlapboxes::overlapbox* Overlapbox2);
                     bool CheckOverlap(double Overlapbox1TopLeftX, double Overlapbox1TopLeftY, double Overlapbox1BotRightX, double Overlapbox1BotRightY, actors::actor::overlapboxes::overlapbox* Overlapbox2);
                     bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
                     direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
@@ -700,10 +705,35 @@ namespace wze
                     double TerminalX(double InitialX, double Length, double Angle);
                     double TerminalY(double InitialY, double Length, double Angle);
                     bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, array<uint64>* ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, array<uint64>* ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, array<uint64>* OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, array<uint64>* ActorTypeWhitelist, array<uint64>* ActorIDBlacklist, std::initializer_list<uint64> OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, array<uint64>* ActorTypeWhitelist, std::initializer_list<uint64> ActorIDBlacklist, array<uint64>* OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, std::initializer_list<uint64> ActorTypeWhitelist, array<uint64>* ActorIDBlacklist, array<uint64>* OverlapboxTypeBlacklist);
+                    bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, uint16 RaySize, double SamplingStep, array<uint64>* ActorTypeWhitelist, array<uint64>* ActorIDBlacklist, array<uint64>* OverlapboxTypeBlacklist);
 
                 private:
                     vector(engine* Engine);
             } Vector;
+
+            //__________Threads________________________________________________________________________________________
+
+            class threads
+            {
+                friend class engine;
+                engine* Engine;
+
+                public:
+                    uint64 Start(sint32(*Function)(void*), void* Parameter);
+                    sint32 Wait(uint64 ID);
+                    uint8 Purge(std::initializer_list<uint64> Keep);
+                    uint8 Purge(array<uint64>* Keep);
+
+                private:
+                    array<SDL_Thread*> Threads;
+                    threads(engine* Engine);
+            } Threads;
 
             //__________Assets_________________________________________________________________________________________
 

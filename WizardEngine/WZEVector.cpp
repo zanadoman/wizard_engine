@@ -65,7 +65,7 @@ namespace wze
 
         if (TerminalY < InitialY)
         {
-            return 360 - acos((x) / sqrt((x) * (x) + (y) * (y))) * DEG;
+            return DEG_MAX - acos((x) / sqrt((x) * (x) + (y) * (y))) * DEG;
         }
 
         return acos(x / sqrt((x) * (x) + (y) * (y))) * DEG;
@@ -105,32 +105,32 @@ namespace wze
 
         if (InitialX != InitialX)
         {
-            printf("whe::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size());
+            printf("whe::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size(), OverlapboxTypeBlacklist.size());
             exit(1);
         }
         if (InitialY != InitialY)
         {
-            printf("whe::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size());
+            printf("whe::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size(), OverlapboxTypeBlacklist.size());
             exit(1);
         }
         if (TerminalX != TerminalX)
         {
-            printf("whe::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size());
+            printf("whe::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size(), OverlapboxTypeBlacklist.size());
             exit(1);
         }
         if (TerminalY != TerminalY)
         {
-            printf("whe::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size());
+            printf("whe::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size(), OverlapboxTypeBlacklist.size());
             exit(1);
         }
         if (SamplingStep != SamplingStep)
         {
-            printf("whe::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size());
+            printf("whe::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size(), OverlapboxTypeBlacklist.size());
             exit(1);
         }
         if (SamplingStep <= 0)
         {
-            printf("whe::engine.vector.RayCast(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size());
+            printf("whe::engine.vector.RayCast(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist.size(), OverlapboxTypeBlacklist.size());
             exit(1);
         }
 
@@ -171,7 +171,7 @@ namespace wze
         RayLength = sqrt(x * x + y * y);
         if (TerminalY < InitialY)
         {
-            RayAngle = 6.283185307179586 - acos(x / RayLength);
+            RayAngle = RAD_MAX - acos(x / RayLength);
         }
         else
         {

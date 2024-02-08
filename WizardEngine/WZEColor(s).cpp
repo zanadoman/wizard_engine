@@ -1,4 +1,3 @@
-#include "Includes/NeoTypes++.hpp"
 #include "WizardEngine.hpp"
 
 namespace wze

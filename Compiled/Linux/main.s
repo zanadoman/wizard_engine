@@ -18,7 +18,7 @@ main:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movl	$824, %edi
+	movl	$848, %edi
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
@@ -454,7 +454,7 @@ main:
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_ZN3wze6engineD1Ev@PLT
-	movl	$824, %esi
+	movl	$848, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 	movq	104(%rsp), %rax
@@ -712,7 +712,7 @@ main.cold:
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L4:
-	movl	$824, %esi
+	movl	$848, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 	movq	104(%rsp), %rax

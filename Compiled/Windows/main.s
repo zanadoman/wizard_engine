@@ -70,7 +70,7 @@ main:
 	.seh_savexmm	%xmm10, 272
 	.seh_endprologue
 	call	__main
-	movl	$824, %ecx
+	movl	$848, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
@@ -468,7 +468,7 @@ main:
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_ZN3wze6engineD1Ev
-	movl	$824, %edx
+	movl	$848, %edx
 	movq	%rbx, %rcx
 	call	_ZdlPvy
 	nop
@@ -635,7 +635,7 @@ main:
 main.cold:
 .L6:
 	movq	%rbx, %rcx
-	movl	$824, %edx
+	movl	$848, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB21:

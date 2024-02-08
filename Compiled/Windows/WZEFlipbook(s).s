@@ -960,9 +960,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	testq	%rcx, %rcx
 	je	.L154
 	movq	0(%rbp), %r8
-	cmpq	704(%r8), %rcx
+	cmpq	728(%r8), %rcx
 	jnb	.L155
-	movq	712(%r8), %r8
+	movq	736(%r8), %r8
 	cmpq	$0, (%r8,%rcx,8)
 	je	.L155
 .L154:
@@ -1412,9 +1412,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	testq	%rcx, %rcx
 	je	.L198
 	movq	(%rsi), %rbx
-	cmpq	704(%rbx), %rcx
+	cmpq	728(%rbx), %rcx
 	jnb	.L199
-	movq	712(%rbx), %r8
+	movq	736(%rbx), %r8
 	cmpq	$0, (%r8,%rcx,8)
 	jne	.L198
 .L199:

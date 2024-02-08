@@ -917,8 +917,8 @@ _ZN3wze6engine6actors5actor5texts4textC2EPS0_PS2_PKcy:
 	movq	(%rbx), %rcx
 	movq	%rax, %rdx
 	movq	104(%rbx), %rax
-	movq	744(%rcx), %r8
-	cmpq	736(%rcx), %rax
+	movq	768(%rcx), %r8
+	cmpq	760(%rcx), %rax
 	jnb	.L154
 	movq	(%r8,%rax,8), %rcx
 	movl	$-1, %r8d
@@ -1180,9 +1180,9 @@ _ZN3wze6engine6actors5actor5texts3NewEPKcy:
 	.p2align 3
 .L159:
 	movq	(%rcx), %rax
-	cmpq	736(%rax), %r8
+	cmpq	760(%rax), %r8
 	jnb	.L162
-	movq	744(%rax), %rax
+	movq	768(%rax), %rax
 	cmpq	$0, (%rax,%r8,8)
 	jne	.L163
 .L162:
@@ -1601,8 +1601,8 @@ _ZN3wze6engine6actors5actor5texts4text9SetHeightEt:
 	movq	(%rsi), %rcx
 	movq	%rax, %rdx
 	movq	104(%rsi), %rax
-	movq	744(%rcx), %r8
-	cmpq	736(%rcx), %rax
+	movq	768(%rcx), %r8
+	cmpq	760(%rcx), %rax
 	jnb	.L231
 	movq	(%r8,%rax,8), %rcx
 	movl	$-1, %r8d
@@ -1733,8 +1733,8 @@ _ZN3wze6engine6actors5actor5texts4text9SetStringEPKc:
 	movq	(%rbx), %rcx
 	movq	%rax, %rdx
 	movq	104(%rbx), %rax
-	movq	744(%rcx), %r8
-	cmpq	736(%rcx), %rax
+	movq	768(%rcx), %r8
+	cmpq	760(%rcx), %rax
 	jnb	.L247
 	movq	(%r8,%rax,8), %rcx
 	movl	$-1, %r8d
@@ -1847,9 +1847,9 @@ _ZN3wze6engine6actors5actor5texts4text7SetFontEy:
 	testq	%rdx, %rdx
 	je	.L252
 	movq	(%rcx), %rax
-	cmpq	736(%rax), %rdx
+	cmpq	760(%rax), %rdx
 	jnb	.L253
-	movq	744(%rax), %rax
+	movq	768(%rax), %rax
 	cmpq	$0, (%rax,%rdx,8)
 	je	.L253
 .L252:
@@ -1882,8 +1882,8 @@ _ZN3wze6engine6actors5actor5texts4text7SetFontEy:
 	call	_ZN3neo6stringclEv
 	movq	%rax, %rdx
 	movq	(%rbx), %rax
-	movq	744(%rax), %rcx
-	cmpq	736(%rax), %rsi
+	movq	768(%rax), %rcx
+	cmpq	760(%rax), %rsi
 	jnb	.L272
 	movq	(%rcx,%rsi,8), %rcx
 	movl	$-1, %r8d

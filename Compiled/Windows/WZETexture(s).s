@@ -306,9 +306,9 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	testq	%rdx, %rdx
 	je	.L43
 	movq	(%rcx), %rax
-	cmpq	704(%rax), %rdx
+	cmpq	728(%rax), %rdx
 	jnb	.L42
-	movq	712(%rax), %rax
+	movq	736(%rax), %rax
 	cmpq	$0, (%rax,%rdx,8)
 	je	.L42
 .L43:
@@ -1130,9 +1130,9 @@ _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
 	testq	%rdx, %rdx
 	je	.L202
 	movq	(%rcx), %rdx
-	cmpq	704(%rdx), %rax
+	cmpq	728(%rdx), %rax
 	jnb	.L203
-	movq	712(%rdx), %rdx
+	movq	736(%rdx), %rdx
 	cmpq	$0, (%rdx,%rax,8)
 	je	.L203
 .L202:

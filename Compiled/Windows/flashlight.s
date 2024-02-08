@@ -20,7 +20,7 @@ _ZN10flashlightC2EPN3wze6engineE:
 	.seh_endprologue
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
-	leaq	696(%rdx), %rcx
+	leaq	720(%rdx), %rcx
 	leaq	.LC0(%rip), %rdx
 	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	pxor	%xmm3, %xmm3
@@ -83,7 +83,7 @@ _ZN10flashlightD2Ev:
 	movq	(%rcx), %rax
 	movq	32(%rcx), %rdx
 	movq	%rcx, %rbx
-	leaq	696(%rax), %rcx
+	leaq	720(%rax), %rcx
 	call	_ZN3wze6engine6assets13UnloadTextureEy
 	movq	(%rbx), %rcx
 	movq	16(%rbx), %rdx
