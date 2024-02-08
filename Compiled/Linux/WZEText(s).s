@@ -865,7 +865,7 @@ _ZN3wze6engine6actors5actor5textsixEy:
 	.section	.rodata.str1.8
 	.align 8
 .LC14:
-	.string	"wze::engine.actors[].texts[].text(): TTF_RenderText_Blended failed\nParams: String: %s\n"
+	.string	"wze::engine.actors[].texts[].text(): TTF_RenderUTF8_Blended failed\nParams: String: %s\n"
 	.align 8
 .LC15:
 	.string	"wze::engine.actors[].texts[].text(): SDL_CreateTextureFromSurface failed\nParams: String: %s\n"
@@ -1639,7 +1639,7 @@ _ZN3wze6engine6actors5actor5texts4text9GetHeightEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC25:
-	.string	"wze::engine.actors[].texts[].SetHeight(): TTF_RenderText_Blended failed\nParams: Height: %d\n"
+	.string	"wze::engine.actors[].texts[].SetHeight(): TTF_RenderUTF8_Blended failed\nParams: Height: %d\n"
 	.align 8
 .LC26:
 	.string	"wze::engine.actors[].texts[].SetHeight(): SDL_CreateTextureFromSurface failed\nParams: Height: %d\n"
@@ -1779,7 +1779,7 @@ _ZN3wze6engine6actors5actor5texts4text9GetStringEv:
 	.string	"wze::engine.actors[].texts[].SetString(): String must not be NULL\nParams: String: %p\n"
 	.align 8
 .LC28:
-	.string	"wze::engine.actors[].texts[].SetString(): TTF_RenderText_Blended failed\nParams: String: %s\n"
+	.string	"wze::engine.actors[].texts[].SetString(): TTF_RenderUTF8_Blended failed\nParams: String: %s\n"
 	.align 8
 .LC29:
 	.string	"wze::engine.actors[].texts[].SetString(): SDL_CreateTextureFromSurface failed\nParams: String: %s\n"
@@ -1953,7 +1953,7 @@ _ZN3wze6engine6actors5actor5texts4text7GetFontEv:
 	.string	"wze::engine.actors[].texts[].SetFont(): Font does not exist\nParams: ID: %lld\n"
 	.align 8
 .LC31:
-	.string	"wze::engine.actors[].texts[].SetFont(): TTF_RenderText_Blended failed\nParams: ID: %lld\n"
+	.string	"wze::engine.actors[].texts[].SetFont(): TTF_RenderUTF8_Blended failed\nParams: ID: %lld\n"
 	.align 8
 .LC32:
 	.string	"wze::engine.actors[].texts[].SetFont(): SDL_CreateTextureFromSurface failed\nParams: ID: %lld\n"
