@@ -136,7 +136,7 @@ namespace wze
 
     uint8 engine::UpdateOverlapboxes()
     {
-        uint16 state;
+        uint8 state;
         double CursorX, CursorY;
         double ActiveTopLeftX;
         double ActiveTopLeftY;

@@ -2692,7 +2692,7 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	jnb	.L624
 	cmpq	120(%rax), %rbx
 	jnb	.L625
-	movq	112(%rdx), %rdi
+	movq	120(%rdx), %rdi
 	movq	%r8, 8(%rsp)
 	movq	%r9, (%rsp)
 	call	SDL_DestroyTexture@PLT
@@ -2709,7 +2709,7 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	jnb	.L625
 	movq	(%rdi,%r9), %rdx
 	addq	$1, %rbx
-	movq	$0, 112(%rdx)
+	movq	$0, 120(%rdx)
 	jmp	.L576
 .L628:
 	addq	$1, %r13
@@ -2924,7 +2924,7 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	jnb	.L686
 	cmpq	120(%rax), %rbx
 	jnb	.L687
-	movq	112(%rdx), %rdi
+	movq	120(%rdx), %rdi
 	call	SDL_DestroyTexture@PLT
 	movq	(%r15), %rcx
 	movq	584(%rcx), %rsi
@@ -2937,7 +2937,7 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	jnb	.L687
 	movq	(%rdi,%r12), %rdx
 	addq	$1, %rbx
-	movq	$0, 112(%rdx)
+	movq	$0, 120(%rdx)
 	jmp	.L643
 .L657:
 	movq	48(%r15), %rdx

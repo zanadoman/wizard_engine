@@ -236,6 +236,16 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 	movq	8(%rbx), %rsi
 	leaq	576(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
+	movq	64(%rbx), %rsi
+	leaq	104(%rax), %rdi
+	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
+	movq	%rax, %rdi
+	movl	$15, %esi
+	call	_ZN3wze6engine6actors5actor5texts4text12SetFontStyleENS_5styleE@PLT
+	movq	(%rbx), %rax
+	movq	8(%rbx), %rsi
+	leaq	576(%rax), %rdi
+	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	16(%rbx), %rsi
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT

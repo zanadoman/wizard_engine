@@ -35,6 +35,7 @@ player::player(engine* Engine, key Forward, key Backward, key Left, key Right) :
 
     this->Engine->Actors[this->Actor].Texts[this->NameText].SetHeight(20);
     this->Engine->Actors[this->Actor].Texts[this->NameText].SetY(this->Engine->Actors[this->Actor].GetY() + 56);
+    this->Engine->Actors[this->Actor].Texts[this->NameText].SetFontStyle((style)(STYLE_BOLD | STYLE_ITALIC | STYLE_STRIKETHROUGH | STYLE_UNDERLINE));
 
     this->Engine->Actors[this->Actor].Overlapboxes[this->TextOverlapBox].SetWidth(this->Engine->Actors[this->Actor].Texts[this->NameText].GetWidth());
     this->Engine->Actors[this->Actor].Overlapboxes[this->TextOverlapBox].SetHeight(this->Engine->Actors[this->Actor].Texts[this->NameText].GetHeight());

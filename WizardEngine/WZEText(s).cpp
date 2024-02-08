@@ -201,9 +201,10 @@ namespace wze
         this->OffsetAngle = 0;
         this->String = {String};
         this->FontID = FontID;
+        this->FontStyle = STYLE_NORMAL;
         this->Texture = NULL;
 
-        if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
+        if (this->Height != 0 && this->FontID != 0 && 1 < this->String.Length())
         {
             color.r = color.g = color.b = color.a = 255;
 
@@ -281,13 +282,13 @@ namespace wze
         SDL_Surface* surface;
         SDL_Color color;
 
-        this->Width = 0;
-
-        SDL_DestroyTexture(this->Texture);
-        this->Texture = NULL;
-
-        if (Height != 0 && 1 < this->String.Length() && this->FontID != 0)
+        if (this->Height != Height && this->FontID != 0 && Height != 0 && 1 < this->String.Length())
         {
+            if (this->FontStyle != STYLE_NORMAL)
+            {
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], this->FontStyle);
+            }
+
             color.r = color.g = color.b = color.a = 255;
 
             if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
@@ -303,6 +304,17 @@ namespace wze
 
             this->Width = round(surface->w * double(Height) / surface->h);
             SDL_FreeSurface(surface);
+
+            if (this->FontStyle != STYLE_NORMAL)
+            {
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
+            }
+        }
+        else
+        {
+            this->Width = 0;
+            SDL_DestroyTexture(this->Texture);
+            this->Texture = NULL;
         }
 
         return this->Height = Height;
@@ -324,15 +336,13 @@ namespace wze
             exit(1);
         }
 
-        this->String = {String};
-
-        this->Width = 0;
-
-        SDL_DestroyTexture(this->Texture);
-        this->Texture = NULL;
-
-        if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
+        if (this->String != String && this->FontID != 0 && this->Height != 0 && 1 < strLength(String))
         {
+            if (this->FontStyle != STYLE_NORMAL)
+            {
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], this->FontStyle);
+            }
+
             color.r = color.g = color.b = color.a = 255;
 
             if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
@@ -348,9 +358,20 @@ namespace wze
 
             this->Width = round(surface->w * double(this->Height) / surface->h);
             SDL_FreeSurface(surface);
+
+            if (this->FontStyle != STYLE_NORMAL)
+            {
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
+            }
+        }
+        else
+        {
+            this->Width = 0;
+            SDL_DestroyTexture(this->Texture);
+            this->Texture = NULL;
         }
 
-        return this->String();
+        return (this->String = {String})();
     }
 
     uint64 engine::actors::actor::texts::text::GetFont()
@@ -369,13 +390,13 @@ namespace wze
             exit(1);
         }
 
-        this->Width = 0;
-
-        SDL_DestroyTexture(this->Texture);
-        this->Texture = NULL;
-
-        if (this->Height != 0 && 1 < this->String.Length() && ID != 0)
+        if (this->FontID != ID && ID != 0 && this->Height != 0 && 1 < this->String.Length())
         {
+            if (this->FontStyle != STYLE_NORMAL)
+            {
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[ID], this->FontStyle);
+            }
+
             color.r = color.g = color.b = color.a = 255;
 
             if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[ID], this->String(), color)) == NULL)
@@ -391,8 +412,67 @@ namespace wze
 
             this->Width = round(surface->w * double(this->Height) / surface->h);
             SDL_FreeSurface(surface);
+
+            if (this->FontStyle != STYLE_NORMAL)
+            {
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[ID], STYLE_NORMAL);
+            }
+        }
+        else
+        {
+            this->Width = 0;
+            SDL_DestroyTexture(this->Texture);
+            this->Texture = NULL;
         }
 
         return this->FontID = ID;
+    }
+
+    style engine::actors::actor::texts::text::GetFontStyle()
+    {
+        return this->FontStyle;
+    }
+
+    style engine::actors::actor::texts::text::SetFontStyle(style FontStyle)
+    {
+        SDL_Surface* surface;
+        SDL_Color color;
+
+        if (this->FontStyle != FontStyle && this->FontID != 0 && this->Height != 0 && 1 < this->String.Length())
+        {
+            if (FontStyle != STYLE_NORMAL)
+            {
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], FontStyle);
+            }
+
+            color.r = color.g = color.b = color.a = 255;
+
+            if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].SetFont(): TTF_RenderUTF8_Blended failed\nParams: FontStyle: %d\n", FontStyle);
+                exit(1);
+            }
+            if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
+            {
+                printf("wze::engine.actors[].texts[].SetFont(): SDL_CreateTextureFromSurface failed\nParams: FontStyle: %d\n", FontStyle);
+                exit(1);
+            }
+
+            this->Width = round(surface->w * double(this->Height) / surface->h);
+            SDL_FreeSurface(surface);
+
+            if (this->FontStyle != STYLE_NORMAL)
+            {
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
+            }
+        }
+        else
+        {
+            this->Width = 0;
+            SDL_DestroyTexture(this->Texture);
+            this->Texture = NULL;
+        }
+
+        return this->FontStyle = FontStyle;
     }
 }

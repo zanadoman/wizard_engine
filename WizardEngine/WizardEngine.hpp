@@ -483,6 +483,8 @@ namespace wze
                                     const char* SetString(const char* String);
                                     neo::uint64 GetFont();
                                     neo::uint64 SetFont(neo::uint64 ID);
+                                    style GetFontStyle();
+                                    style SetFontStyle(style FontStyle);
 
                                 private:
                                     double X;
@@ -493,6 +495,7 @@ namespace wze
                                     double OffsetAngle;
                                     neo::string String;
                                     neo::uint64 FontID;
+                                    style FontStyle;
                                     SDL_Texture* Texture;
                                     text(engine* Engine, actor* Actor, const char* String, neo::uint64 FontID);
                                     ~text();

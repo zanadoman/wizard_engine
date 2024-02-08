@@ -503,7 +503,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	je	.L140
 	cmpb	$0, 37(%rsi)
 	je	.L140
-	cmpq	$0, 112(%rsi)
+	cmpq	$0, 120(%rsi)
 	jne	.L304
 	.p2align 4,,10
 	.p2align 3
@@ -2930,7 +2930,7 @@ _ZN3wze6engine6render10RenderTextEPNS1_5tokenE:
 	movzbl	17(%rax), %edx
 	movzbl	16(%rax), %esi
 	negl	%r9d
-	movq	112(%rax), %rdi
+	movq	120(%rax), %rdi
 	andl	$2, %r9d
 	orb	32(%rax), %r9b
 	movl	%r9d, %ebp
@@ -2939,7 +2939,7 @@ _ZN3wze6engine6render10RenderTextEPNS1_5tokenE:
 	jne	.L538
 	movq	(%rbx), %rax
 	movzbl	19(%rax), %esi
-	movq	112(%rax), %rdi
+	movq	120(%rax), %rdi
 	call	SDL_SetTextureAlphaMod@PLT
 	testl	%eax, %eax
 	jne	.L539
@@ -2949,7 +2949,7 @@ _ZN3wze6engine6render10RenderTextEPNS1_5tokenE:
 	leaq	28(%rbx), %rcx
 	movzbl	%bpl, %r9d
 	movsd	24(%rax), %xmm0
-	movq	112(%rax), %rsi
+	movq	120(%rax), %rsi
 	movq	(%r12), %rax
 	xorpd	.LC18(%rip), %xmm0
 	movq	16(%rax), %rdi
