@@ -1,4 +1,5 @@
 #include "WizardEngine.hpp"
+#include <SDL2/SDL.h>
 
 namespace wze
 {
@@ -9,19 +10,19 @@ namespace wze
             Title = "Wizard Engine";
         }
 
-        if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
+        if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         {
             printf("wze::engine.engine(): SDL_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
-            exit(1);
-        }
-        if (TTF_Init() != 0)
-        {
-            printf("wze::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
             exit(1);
         }
         if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) != 0)
         {
             printf("wze::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
+            exit(1);
+        }
+        if (TTF_Init() != 0)
+        {
+            printf("wze::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
             exit(1);
         }
 
@@ -89,6 +90,11 @@ namespace wze
         this->UpdateOverlapboxes();
 
         return true;
+    }
+
+    sint32 engine::Random(sint32 Min, sint32 Max)
+    {
+        return rand() % (Max - Min) + Min;
     }
 
     uint8 engine::UpdateFlipbooks()
@@ -191,10 +197,5 @@ namespace wze
         }
 
         return 0;
-    }
-
-    sint32 engine::Random(sint32 Min, sint32 Max)
-    {
-        return rand() % (Max - Min) + Min;
     }
 }

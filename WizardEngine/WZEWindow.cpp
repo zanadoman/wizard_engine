@@ -35,7 +35,7 @@ namespace wze
     {
         SDL_Surface* icon;
 
-        if ((this->Window = SDL_CreateWindow(Title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Width, Height, SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_RESIZABLE | SDL_WINDOW_INPUT_GRABBED)) == NULL)
+        if ((this->Window = SDL_CreateWindow(Title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Width, Height, SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_RESIZABLE)) == NULL)
         {
             printf("wze::engine.window.New(): SDL_CreateWindow() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d\n", Title, IconPath, Width, Height);
             exit(1);

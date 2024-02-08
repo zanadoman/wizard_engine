@@ -99,7 +99,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
 	movzwl	%r8w, %r15d
-	movl	$4385, %r9d
+	movl	$4129, %r9d
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
