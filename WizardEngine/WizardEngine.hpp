@@ -810,5 +810,6 @@ namespace wze
 
             array<SDL_Event> EventQueue;
             uint8 UpdateFlipbooks();
+            uint8 UpdateOverlapboxes();
     };
 }

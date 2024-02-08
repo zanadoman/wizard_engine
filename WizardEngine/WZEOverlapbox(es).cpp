@@ -348,6 +348,12 @@ namespace wze
         double ActiveBotRightX;
         double ActiveBotRightY;
 
+        if (OverlapboxesByActors == NULL)
+        {
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %ld, ActorIDBlacklist(length): %ld\n", OverlapboxesByActors, ActorTypeWhitelist.size(), ActorIDBlacklist.size());
+            exit(1);
+        }
+
         OverlapboxesByActors->Clear();
         OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
 
@@ -386,6 +392,17 @@ namespace wze
         double ActiveTopLeftY;
         double ActiveBotRightX;
         double ActiveBotRightY;
+
+        if (OverlapboxesByActors == NULL)
+        {
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist(length): %ld\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist.size());
+            exit(1);
+        }
+        if (ActorTypeWhitelist == NULL)
+        {
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorTypeWhitelist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist(length): %ld\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist.size());
+            exit(1);
+        }
 
         OverlapboxesByActors->Clear();
         OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
@@ -426,6 +443,17 @@ namespace wze
         double ActiveBotRightX;
         double ActiveBotRightY;
 
+        if (OverlapboxesByActors == NULL)
+        {
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %ld, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist.size(), ActorIDBlacklist);
+            exit(1);
+        }
+        if (ActorIDBlacklist == NULL)
+        {
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): AActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %ld, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist.size(), ActorIDBlacklist);
+            exit(1);
+        }
+
         OverlapboxesByActors->Clear();
         OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
 
@@ -465,6 +493,22 @@ namespace wze
         double ActiveBotRightX;
         double ActiveBotRightY;
 
+        if (OverlapboxesByActors == NULL)
+        {
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %p, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist);
+            exit(1);
+        }
+        if (ActorTypeWhitelist == NULL)
+        {
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorTypeWhitelist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %p, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist);
+            exit(1);
+        }
+        if (ActorIDBlacklist == NULL)
+        {
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): AActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %p, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist);
+            exit(1);
+        }
+
         OverlapboxesByActors->Clear();
         OverlapboxesByActors->Insert(0, this->Engine->Actors.Actors.Length());
 
@@ -499,55 +543,7 @@ namespace wze
 
     button engine::actors::actor::overlapboxes::overlapbox::GetButtonState()
     {
-        uint16 result;
-
-        double ActiveTopLeftX;
-        double ActiveTopLeftY;
-        double ActiveBotRightX;
-        double ActiveBotRightY;
-        double CursorX, CursorY;
-
-        result = BTN_NONE;
-
-        ActiveTopLeftX = this->X - (this->ActiveWidth >> 1);
-        ActiveTopLeftY = this->Y + (this->ActiveHeight >> 1);
-        ActiveBotRightX = ActiveTopLeftX + this->ActiveWidth;
-        ActiveBotRightY = ActiveTopLeftY - this->ActiveHeight;
-
-        CursorX = this->Engine->Mouse.GetX(this->Actor->Layer);
-        CursorY = this->Engine->Mouse.GetY(this->Actor->Layer);
-
-        if (ActiveTopLeftX <= CursorX && CursorX <= ActiveBotRightX && ActiveBotRightY <= CursorY && CursorY <= ActiveTopLeftY)
-        {
-            result |= BTN_HOVERED;
-
-            if (this->Engine->Keys[KEY_LMB])
-            {
-                result |= BTN_PRESSED_LMB;
-            }
-            else if (this->ButtonState & BTN_PRESSED_LMB)
-            {
-                result |= BTN_RELEASED_LMB;
-            }
-            if (this->Engine->Keys[KEY_MMB])
-            {
-                result |= BTN_PRESSED_MMB;
-            }
-            else if (this->ButtonState & BTN_PRESSED_MMB)
-            {
-                result |= BTN_RELEASED_MMB;
-            }
-            if (this->Engine->Keys[KEY_RMB])
-            {
-                result |= BTN_PRESSED_RMB;
-            }
-            else if (this->ButtonState & BTN_PRESSED_RMB)
-            {
-                result |= BTN_RELEASED_RMB;
-            }
-        }
-
-        return this->ButtonState = (button)result;
+        return this->ButtonState;
     }
 
     uint8 engine::actors::actor::overlapboxes::overlapbox::UpdateOverlapboxScale()

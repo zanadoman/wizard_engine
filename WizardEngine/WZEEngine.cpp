@@ -86,6 +86,7 @@ namespace wze
 
         this->Keys.Update();
         this->Mouse.Update();
+        this->UpdateOverlapboxes();
 
         return true;
     }
@@ -113,6 +114,79 @@ namespace wze
                 {
                     this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Loop ? this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() : this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() - 1;
                 }
+            }
+        }
+
+        return 0;
+    }
+
+    uint8 engine::UpdateOverlapboxes()
+    {
+        uint16 state;
+        double CursorX, CursorY;
+        double ActiveTopLeftX;
+        double ActiveTopLeftY;
+        double ActiveBotRightX;
+        double ActiveBotRightY;
+
+        for (uint64 i = 1; i < this->Actors.Actors.Length(); i++)
+        {
+            if (this->Actors.Actors[i] == NULL)
+            {
+                continue;
+            }
+
+            if (1 < this->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length())
+            {
+                CursorX = this->Mouse.GetX(this->Actors.Actors[i]->Layer);
+                CursorY = this->Mouse.GetY(this->Actors.Actors[i]->Layer);
+            }
+
+            for (uint64 j = 1; j < this->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length(); j++)
+            {
+                if (this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j] == NULL)
+                {
+                    continue;
+                }
+
+                state = BTN_NONE;
+
+                ActiveTopLeftX = this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->X - (this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveWidth >> 1);
+                ActiveTopLeftY = this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->Y + (this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveHeight >> 1);
+                ActiveBotRightX = ActiveTopLeftX + this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveWidth;
+                ActiveBotRightY = ActiveTopLeftY - this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveHeight;
+
+                if (ActiveTopLeftX <= CursorX && CursorX <= ActiveBotRightX && ActiveBotRightY <= CursorY && CursorY <= ActiveTopLeftY)
+                {
+                    state |= BTN_HOVERED;
+
+                    if (this->Keys[KEY_LMB])
+                    {
+                        state |= BTN_PRESSED_LMB;
+                    }
+                    else if (this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ButtonState & BTN_PRESSED_LMB)
+                    {
+                        state |= BTN_RELEASED_LMB;
+                    }
+                    if (this->Keys[KEY_MMB])
+                    {
+                        state |= BTN_PRESSED_MMB;
+                    }
+                    else if (this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ButtonState & BTN_PRESSED_MMB)
+                    {
+                        state |= BTN_RELEASED_MMB;
+                    }
+                    if (this->Keys[KEY_RMB])
+                    {
+                        state |= BTN_PRESSED_RMB;
+                    }
+                    else if (this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ButtonState & BTN_PRESSED_RMB)
+                    {
+                        state |= BTN_RELEASED_RMB;
+                    }
+                }
+
+                this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ButtonState = (button)state;
             }
         }
 
