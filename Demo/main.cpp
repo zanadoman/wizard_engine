@@ -1,10 +1,3 @@
-/*
-**  Overlap system
-**  Particle system
-**  Bloom
-**  Networking
-*/
-
 #include "demo.hpp"
 
 #undef main
