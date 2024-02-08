@@ -3,17 +3,17 @@
 #include "Includes/NeoTypes++.hpp"
 
 #ifdef __linux__
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_ttf.h>
+    #include <SDL2/SDL.h>
+    #include <SDL2/SDL_image.h>
+    #include <SDL2/SDL_mixer.h>
+    #include <SDL2/SDL_ttf.h>
 #endif
 
 #ifdef _WIN64
-#include "Includes/SDL.h"
-#include "Includes/SDL_image.h"
-#include "Includes/SDL_mixer.h"
-#include "Includes/SDL_ttf.h"
+    #include "Includes/SDL.h"
+    #include "Includes/SDL_image.h"
+    #include "Includes/SDL_mixer.h"
+    #include "Includes/SDL_ttf.h"
 #endif
 
 #include "WZEEnums.hpp"

@@ -1,13 +1,13 @@
 #pragma once
 
 #ifdef __linux__
-#include <SDL2/SDL_scancode.h>
-#include <SDL2/SDL_ttf.h>
+    #include <SDL2/SDL_scancode.h>
+    #include <SDL2/SDL_ttf.h>
 #endif
 
 #ifdef _WIN64
-#include "Includes/SDL_scancode.h"
-#include "Includes/SDL_ttf.h"
+    #include "Includes/SDL_scancode.h"
+    #include "Includes/SDL_ttf.h"
 #endif
 
 namespace wze
