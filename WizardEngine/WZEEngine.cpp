@@ -16,25 +16,29 @@ namespace wze
         {
             Title = "Wizard Engine";
         }
+        if (IconPath == NULL)
+        {
+            IconPath = "engine/wizard.png";
+        }
 
         if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         {
-            printf("wze::engine.engine(): SDL_Init() failed\nParams: Title: %s, IconPath: %p, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
+            printf("wze::engine.engine(): SDL_Init() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
             exit(1);
         }
         if (Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS | MIX_INIT_WAVPACK) == 0)
         {
-            printf("wze::engine.engine(): Mix_Init() failed\nParams: Title: %s, IconPath: %p, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
+            printf("wze::engine.engine(): Mix_Init() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
             exit(1);
         }
         if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) != 0)
         {
-            printf("wze::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, IconPath: %p, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
+            printf("wze::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
             exit(1);
         }
         if (TTF_Init() != 0)
         {
-            printf("wze::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %p, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
+            printf("wze::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
             exit(1);
         }
 
