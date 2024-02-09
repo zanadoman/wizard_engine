@@ -11,7 +11,7 @@ Test/supervising sequence:
         Keys OK
         Mouse OK
         Threads OK
-        Audio
+        Audio OK
     Slightly nested:
         Render
         Camera
