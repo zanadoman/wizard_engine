@@ -6,17 +6,24 @@ Demo assets made by ansimuz (https://ansimuz.itch.io/sunny-land-pixel-game-art)
 
 # Wiki
 
-## How to load assets?
+## How to load Assets?
 
-Use Assets inner class of your Engine instance\
-The load functions will return the id of the loaded stuff,\
-and it is your responsibility to store them in integer variables
+Use Assets inner class of your Engine instance.\
+The load functions will return the ID of the loaded stuff,\
+and it is your responsibility to store them in integer variables.
 
-## How to get actors?
+## How to get Actors?
 
-You can request new Actors from the Actors subclass\
-and you should store the new Actor's ID in an integer variable\
-as before
+You can request new Actors from the Actors subclass.\
+You should store the new Actor's ID in an integer variable\
+as before.
+
+## How to use Actors?
+
+You can set the properties of an Actor by using the [] operator\
+overload of the Actors subclass.\
+Also with this method you can request Colors, Textures, Flipbooks,\
+Texts and Overlapboxes for your new actor. (Remember to store their ID as well!)
 
 ## Example main function
 
