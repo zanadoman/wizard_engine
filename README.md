@@ -1,8 +1,8 @@
 # Wizard Engine ![Wizard Engine](https://github.com/zanadoman/Wizard-Engine/blob/main/Build/engine/wizard.png)
 
-2D game engine for Linux and Windows, written in C/C++ over SDL2\
-Relies on NeoTypes++ (https://github.com/zanadoman/NeoTypesPP) library\
-Demo assets made by ansimuz (https://ansimuz.itch.io/sunny-land-pixel-game-art)
+2D game engine for Linux and Windows, written in C/C++ over SDL2.\
+Relies on NeoTypes++ library. (https://github.com/zanadoman/NeoTypesPP)\
+Demo assets made by ansimuz. (https://ansimuz.itch.io/sunny-land-pixel-game-art)
 
 # Wiki
 
