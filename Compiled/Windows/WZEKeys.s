@@ -63,7 +63,7 @@ _ZN3wze6engine4keysixENS_3keyE:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	cmpl	$295, %edx
+	cmpl	$236, %edx
 	jg	.L6
 	movslq	%edx, %rdx
 	cmpb	$0, 16(%rcx,%rdx)
@@ -89,7 +89,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	subq	$32, %rsp
 	.seh_stackalloc	32
 	.seh_endprologue
-	movl	$296, %r8d
+	movl	$237, %r8d
 	movq	%rcx, %rbx
 	leaq	16(%rcx), %rdx
 	movq	8(%rcx), %rcx
@@ -100,16 +100,16 @@ _ZN3wze6engine4keys6UpdateEv:
 	movq	(%rbx), %r8
 	movl	%eax, %edx
 	andl	$1, %edx
-	movb	%dl, 307(%rbx)
+	movb	%dl, 248(%rbx)
 	movl	%eax, %edx
 	shrl	$2, %eax
 	shrl	%edx
 	andl	$1, %eax
 	andl	$1, %edx
-	movb	%al, 309(%rbx)
+	movb	%al, 250(%rbx)
 	xorl	%eax, %eax
-	movb	%dl, 308(%rbx)
-	movq	832(%r8), %r9
+	movb	%dl, 249(%rbx)
+	movq	776(%r8), %r9
 	xorl	%edx, %edx
 	testq	%r9, %r9
 	jne	.L8
@@ -122,7 +122,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	cmpq	%r9, %rdx
 	jnb	.L16
 .L8:
-	movq	840(%r8), %rcx
+	movq	784(%r8), %rcx
 	addq	%rax, %rcx
 	cmpl	$1027, (%rcx)
 	jne	.L9
@@ -132,8 +132,8 @@ _ZN3wze6engine4keys6UpdateEv:
 	movzwl	.LC1(%rip), %ecx
 	addq	$1, %rdx
 	addq	$56, %rax
-	movw	%cx, 310(%rbx)
-	movq	832(%r8), %r9
+	movw	%cx, 251(%rbx)
+	movq	776(%r8), %r9
 	cmpq	%r9, %rdx
 	jb	.L8
 .L16:
@@ -146,15 +146,15 @@ _ZN3wze6engine4keys6UpdateEv:
 .L10:
 	je	.L11
 	movl	$256, %r9d
-	movw	%r9w, 310(%rbx)
-	movq	832(%r8), %r9
+	movw	%r9w, 251(%rbx)
+	movq	776(%r8), %r9
 	jmp	.L9
 	.p2align 4,,10
 	.p2align 3
 .L11:
 	xorl	%ecx, %ecx
-	movw	%cx, 310(%rbx)
-	movq	832(%r8), %r9
+	movw	%cx, 251(%rbx)
+	movq	776(%r8), %r9
 	jmp	.L9
 	.seh_endproc
 	.section .rdata,"dr"

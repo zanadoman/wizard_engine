@@ -73,7 +73,7 @@ main:
 	.seh_savexmm	%xmm10, 272
 	.seh_endprologue
 	call	__main
-	movl	$848, %ecx
+	movl	$792, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
@@ -357,9 +357,9 @@ main:
 	call	_ZN3wze6engine6camera20SetAccelerationRateYEd
 	movapd	%xmm6, %xmm1
 	movq	%rsi, %rcx
-	leaq	632(%rbx), %rsi
+	leaq	576(%rbx), %rsi
 	call	_ZN3wze6engine6camera17SetSlowDownRangeYEd
-	leaq	720(%rbx), %rcx
+	leaq	664(%rbx), %rcx
 	leaq	.LC6(%rip), %rdx
 	call	_ZN3wze6engine6assets9LoadSoundEPKc
 	movsd	.LC7(%rip), %xmm7
@@ -411,7 +411,7 @@ main:
 	movapd	%xmm0, %xmm1
 	movq	%rax, 64(%rsp)
 	leaq	176(%rsp), %rax
-	leaq	688(%rbx), %rcx
+	leaq	632(%rbx), %rcx
 	movq	%rax, 56(%rsp)
 	movsd	%xmm7, 48(%rsp)
 	movsd	%xmm6, 32(%rsp)
@@ -483,7 +483,7 @@ main:
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_ZN3wze6engineD1Ev
-	movl	$848, %edx
+	movl	$792, %edx
 	movq	%rbx, %rcx
 	call	_ZdlPvy
 	nop
@@ -650,7 +650,7 @@ main:
 main.cold:
 .L6:
 	movq	%rbx, %rcx
-	movl	$848, %edx
+	movl	$792, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB21:

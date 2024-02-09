@@ -56,7 +56,7 @@ _ZN3wze6engine5mouseC2EPS0_:
 	.set	_ZN3wze6engine5mouseC1EPS0_,_ZN3wze6engine5mouseC2EPS0_
 	.section .rdata,"dr"
 	.align 8
-.LC2:
+.LC3:
 	.ascii "engine.mouse.GetX(): Layer must not be NaN\12Params: Layer: %lf\12\0"
 	.align 8
 .LC4:
@@ -73,16 +73,19 @@ _ZN3wze6engine5mouse4GetXEd:
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
-	jp	.L16
+	jp	.L17
 	pxor	%xmm2, %xmm2
 	comisd	%xmm1, %xmm2
-	ja	.L17
+	ja	.L18
+	cmpb	$0, 40(%rcx)
+	pxor	%xmm0, %xmm0
+	jne	.L4
 	ucomisd	%xmm2, %xmm1
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	16(%rcx), %xmm0
-	jp	.L13
+	jp	.L14
 	je	.L4
-.L13:
+.L14:
 	movq	(%rcx), %rax
 	mulsd	144(%rax), %xmm1
 	movsd	88(%rax), %xmm2
@@ -93,14 +96,14 @@ _ZN3wze6engine5mouse4GetXEd:
 .L4:
 	addq	$40, %rsp
 	ret
-.L16:
-	leaq	.LC2(%rip), %rcx
+.L18:
+	leaq	.LC4(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L17:
-	leaq	.LC4(%rip), %rcx
+	leaq	.LC3(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -126,16 +129,19 @@ _ZN3wze6engine5mouse4GetYEd:
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
-	jp	.L30
+	jp	.L32
 	pxor	%xmm2, %xmm2
 	comisd	%xmm1, %xmm2
-	ja	.L31
+	ja	.L33
+	cmpb	$0, 40(%rcx)
+	pxor	%xmm0, %xmm0
+	jne	.L19
 	ucomisd	%xmm2, %xmm1
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	20(%rcx), %xmm0
-	jp	.L27
-	je	.L18
-.L27:
+	jp	.L29
+	je	.L19
+.L29:
 	movq	(%rcx), %rax
 	mulsd	144(%rax), %xmm1
 	movsd	96(%rax), %xmm2
@@ -143,17 +149,17 @@ _ZN3wze6engine5mouse4GetYEd:
 	divsd	%xmm1, %xmm0
 	addsd	136(%rax), %xmm0
 	addsd	%xmm2, %xmm0
-.L18:
+.L19:
 	addq	$40, %rsp
 	ret
-.L30:
-	leaq	.LC5(%rip), %rcx
+.L33:
+	leaq	.LC6(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L31:
-	leaq	.LC6(%rip), %rcx
+.L32:
+	leaq	.LC5(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -283,14 +289,14 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	movq	%rcx, %rsi
 	movq	%rdx, %rbx
 	testq	%rdx, %rdx
-	je	.L43
+	je	.L45
 	movq	(%rcx), %rax
-	cmpq	776(%rax), %rdx
-	jnb	.L41
-	movq	784(%rax), %rax
+	cmpq	720(%rax), %rdx
+	jnb	.L43
+	movq	728(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
-	je	.L41
+	je	.L43
 	call	SDL_SetCursor
 	movq	%rbx, %rax
 	movq	%rbx, 48(%rsi)
@@ -298,13 +304,13 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	popq	%rbx
 	popq	%rsi
 	ret
-.L41:
+.L43:
 	leaq	.LC8(%rip), %rcx
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L43:
+.L45:
 	leaq	.LC7(%rip), %rcx
 	xorl	%edx, %edx
 	call	_Z6printfPKcz
@@ -334,71 +340,71 @@ _ZN3wze6engine5mouse6UpdateEv:
 	cvtsi2sdl	40(%rsp), %xmm0
 	movsd	8(%rbx), %xmm2
 	cvtsi2sdl	44(%rsp), %xmm1
-	movq	832(%r8), %rdx
+	movq	776(%r8), %rdx
 	mulsd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm1
 	xorpd	.LC9(%rip), %xmm1
 	unpcklpd	%xmm1, %xmm0
 	movups	%xmm0, 24(%rbx)
 	testq	%rdx, %rdx
-	je	.L45
-	movq	840(%r8), %rax
+	je	.L47
+	movq	784(%r8), %rax
 	leaq	0(,%rdx,8), %rcx
 	subq	%rdx, %rcx
 	leaq	(%rax,%rcx,8), %rcx
-	jmp	.L52
+	jmp	.L54
 	.p2align 4,,10
 	.p2align 3
-.L47:
+.L49:
 	addq	$56, %rax
 	cmpq	%rax, %rcx
-	je	.L45
-.L52:
+	je	.L47
+.L54:
 	cmpl	$1024, (%rax)
-	jne	.L47
+	jne	.L49
 	movl	20(%rax), %edx
 	movl	%edx, 16(%rbx)
 	testl	%edx, %edx
-	js	.L57
+	js	.L59
 	movzwl	24(%r8), %r9d
 	cmpl	%r9d, %edx
-	jge	.L58
-.L49:
+	jge	.L60
+.L51:
 	movzwl	42(%r8), %edx
 	subl	24(%rax), %edx
 	movl	%edx, 20(%rbx)
-	js	.L59
-.L50:
+	js	.L61
+.L52:
 	movzwl	26(%r8), %r9d
 	cmpl	%r9d, %edx
-	jl	.L47
+	jl	.L49
 	subl	$1, %r9d
 	addq	$56, %rax
 	movl	%r9d, 20(%rbx)
 	cmpq	%rax, %rcx
-	jne	.L52
-.L45:
+	jne	.L54
+.L47:
 	xorl	%eax, %eax
 	addq	$48, %rsp
 	popq	%rbx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L57:
+.L59:
 	movzwl	42(%r8), %edx
 	movl	$0, 16(%rbx)
 	subl	24(%rax), %edx
 	movl	%edx, 20(%rbx)
-	jns	.L50
-.L59:
+	jns	.L52
+.L61:
 	movl	$0, 20(%rbx)
-	jmp	.L47
+	jmp	.L49
 	.p2align 4,,10
 	.p2align 3
-.L58:
+.L60:
 	subl	$1, %r9d
 	movl	%r9d, 16(%rbx)
-	jmp	.L49
+	jmp	.L51
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8

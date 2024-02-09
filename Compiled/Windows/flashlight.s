@@ -20,7 +20,7 @@ _ZN10flashlightC2EPN3wze6engineE:
 	.seh_endprologue
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
-	leaq	720(%rdx), %rcx
+	leaq	664(%rdx), %rcx
 	leaq	.LC0(%rip), %rdx
 	call	_ZN3wze6engine6assets11LoadTextureEPKc
 	pxor	%xmm3, %xmm3
@@ -30,14 +30,14 @@ _ZN10flashlightC2EPN3wze6engineE:
 	movq	(%rbx), %rax
 	movq	$0x000000000, 56(%rsp)
 	movl	$3000, 48(%rsp)
-	leaq	632(%rax), %rcx
+	leaq	576(%rax), %rcx
 	movl	$3000, 40(%rsp)
 	movq	$0x000000000, 32(%rsp)
 	call	_ZN3wze6engine6actors3NewEPvyddttd
 	movq	%rax, %rdx
 	movq	%rax, 16(%rbx)
 	movq	(%rbx), %rax
-	leaq	632(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	(%rbx), %rcx
 	movq	%rax, %rsi
@@ -50,7 +50,7 @@ _ZN10flashlightC2EPN3wze6engineE:
 	call	_ZN3wze6engine6actors5actor4SetXEd
 	movq	(%rbx), %rax
 	movq	16(%rbx), %rdx
-	leaq	632(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	(%rbx), %rcx
 	movq	%rax, %rsi
@@ -83,11 +83,11 @@ _ZN10flashlightD2Ev:
 	movq	(%rcx), %rax
 	movq	32(%rcx), %rdx
 	movq	%rcx, %rbx
-	leaq	720(%rax), %rcx
+	leaq	664(%rax), %rcx
 	call	_ZN3wze6engine6assets13UnloadTextureEy
 	movq	(%rbx), %rcx
 	movq	16(%rbx), %rdx
-	addq	$632, %rcx
+	addq	$576, %rcx
 	call	_ZN3wze6engine6actors6DeleteEy
 	nop
 	addq	$32, %rsp
@@ -127,24 +127,24 @@ _ZN10flashlight6UpdateEv:
 	pxor	%xmm1, %xmm1
 	movq	(%rcx), %rsi
 	movq	%rcx, %rbx
-	leaq	576(%rsi), %rcx
+	leaq	520(%rsi), %rcx
 	call	_ZN3wze6engine5mouse4GetYEd
 	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
 	movapd	%xmm0, %xmm6
-	leaq	576(%rax), %rcx
+	leaq	520(%rax), %rcx
 	call	_ZN3wze6engine5mouse4GetXEd
 	movq	(%rbx), %rax
 	movq	16(%rbx), %rdx
 	movsd	%xmm0, 56(%rsp)
-	leaq	632(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetYEv
 	movq	(%rbx), %rax
 	movq	16(%rbx), %rdx
 	movsd	%xmm0, 48(%rsp)
-	leaq	632(%rax), %rcx
+	leaq	576(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetXEv
@@ -152,7 +152,7 @@ _ZN10flashlight6UpdateEv:
 	movsd	48(%rsp), %xmm2
 	movsd	%xmm6, 32(%rsp)
 	movapd	%xmm0, %xmm1
-	leaq	688(%rsi), %rcx
+	leaq	632(%rsi), %rcx
 	call	_ZN3wze6engine6vector5AngleEdddd
 	ucomisd	%xmm0, %xmm0
 	movapd	%xmm0, %xmm6
@@ -168,7 +168,7 @@ _ZN10flashlight6UpdateEv:
 .L8:
 	movq	(%rbx), %rcx
 	movq	16(%rbx), %rdx
-	addq	$632, %rcx
+	addq	$576, %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movapd	%xmm6, %xmm1
 	movq	%rax, %rcx
