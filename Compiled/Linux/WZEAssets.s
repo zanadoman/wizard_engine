@@ -802,16 +802,16 @@ _ZN3wze6engine6assetsC2EPS0_.cold:
 	.section	.rodata.str1.8
 	.align 8
 .LC5:
-	.string	"wze::engine.assets.LoadTexture(): Path must not be NULL\nParams: Path: %p\n"
+	.string	"wze::engine.assets.LoadTexture(): TexturePath must not be NULL\nParams: TexturePath: %p\n"
 	.align 8
 .LC6:
-	.string	"wze::engine.assets.LoadTexture(): IMG_Load() failed\nParams: Path: %s\n"
+	.string	"wze::engine.assets.LoadTexture(): IMG_Load() failed\nParams: TexturePath: %s\n"
 	.align 8
 .LC7:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.align 8
 .LC8:
-	.string	"wze::engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: Path: %s\n"
+	.string	"wze::engine.assets.LoadTexture(): SDL_CreateTextureFromSurface() failed\nParams: TexturePath: %s\n"
 	.align 8
 .LC9:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
@@ -973,14 +973,6 @@ _ZN3wze6engine6assets11LoadTextureEPKc:
 	.cfi_endproc
 .LFE8149:
 	.size	_ZN3wze6engine6assets11LoadTextureEPKc, .-_ZN3wze6engine6assets11LoadTextureEPKc
-	.section	.rodata.str1.8
-	.align 8
-.LC10:
-	.string	"wze::engine.assets.UnloadTexture(): Illegal deletion of NULL Texture\nParams: ID: %lld\n"
-	.align 8
-.LC11:
-	.string	"wze::engine.assets.UnloadTexture(): Texture does not exist\nParams: ID: %lld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets13UnloadTextureEy
@@ -988,76 +980,98 @@ _ZN3wze6engine6assets11LoadTextureEPKc:
 _ZN3wze6engine6assets13UnloadTextureEy:
 .LFB8150:
 	.cfi_startproc
+	cmpq	8(%rdi), %rsi
+	jb	.L214
+	xorl	%eax, %eax
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L214:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
+	movq	%rdi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 24
 	.cfi_offset 3, -24
+	movq	%rsi, %rbx
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
-	testq	%rsi, %rsi
-	je	.L207
-	movq	%rdi, %rbp
-	movq	%rsi, %rbx
-	cmpq	8(%rdi), %rsi
-	jnb	.L164
 	movq	16(%rdi), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
-	je	.L164
+	je	.L195
 	call	SDL_DestroyTexture@PLT
 	movq	8(%rbp), %rax
 	movq	16(%rbp), %rdx
 	cmpq	%rax, %rbx
-	jnb	.L208
+	jnb	.L215
 	movq	$0, (%rdx,%rbx,8)
 	cmpq	$0, -8(%rdx,%rax,8)
 	leaq	-1(%rax), %rdi
-	je	.L209
-.L167:
+	jne	.L166
+	cmpq	$1, %rax
+	je	.L166
+	movq	%rax, %rsi
+	.p2align 4,,10
+	.p2align 3
+.L170:
+	movq	%rsi, %rcx
+	subq	$1, %rsi
+	cmpq	%rax, %rsi
+	jnb	.L216
+	cmpq	$0, (%rdx,%rsi,8)
+	jne	.L217
+	cmpq	$1, %rsi
+	jne	.L170
+.L169:
+	leaq	8(%rbp), %rax
+	movq	%rdi, %rdx
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0
+.L166:
 	movq	0(%rbp), %r10
 	movq	352(%r10), %rsi
 	cmpq	$1, %rsi
-	jbe	.L203
+	jbe	.L195
 	movq	360(%r10), %r11
 	movl	$1, %r8d
 	.p2align 4,,10
 	.p2align 3
-.L190:
+.L188:
 	movq	(%r11,%r8,8), %r9
 	testq	%r9, %r9
-	je	.L173
+	je	.L171
 	cmpq	%rsi, %r8
-	jnb	.L181
+	jnb	.L174
 	movq	56(%r9), %rcx
 	movl	$1, %eax
-	jmp	.L177
-	.p2align 4,,10
-	.p2align 3
-.L175:
-	addq	$1, %rax
-	cmpq	%rsi, %r8
-	jnb	.L181
-.L177:
-	cmpq	%rcx, %rax
-	jnb	.L210
-	movq	64(%r9), %rdx
-	movq	(%rdx,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L175
-	cmpq	%rbx, 72(%rdx)
-	jne	.L175
-	movq	$0, 72(%rdx)
-	movq	352(%r10), %rsi
 	jmp	.L175
 	.p2align 4,,10
 	.p2align 3
 .L173:
+	addq	$1, %rax
+	cmpq	%rsi, %r8
+	jnb	.L174
+.L175:
+	cmpq	%rcx, %rax
+	jnb	.L218
+	movq	64(%r9), %rdx
+	movq	(%rdx,%rax,8), %rdx
+	testq	%rdx, %rdx
+	je	.L173
+	cmpq	%rbx, 72(%rdx)
+	jne	.L173
+	movq	$0, 72(%rdx)
+	movq	352(%r10), %rsi
+	jmp	.L173
+	.p2align 4,,10
+	.p2align 3
+.L171:
 	addq	$1, %r8
 	cmpq	%rsi, %r8
-	jb	.L190
-.L203:
+	jb	.L188
+.L195:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -1069,103 +1083,94 @@ _ZN3wze6engine6assets13UnloadTextureEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L210:
+.L218:
 	.cfi_restore_state
 	cmpq	%rsi, %r8
-	jnb	.L181
+	jnb	.L185
 	movq	88(%r9), %rcx
 	movl	$1, %edi
 	.p2align 4,,10
 	.p2align 3
-.L188:
+.L186:
 	cmpq	%rcx, %rdi
-	jnb	.L173
+	jnb	.L171
 	movq	96(%r9), %rax
 	movq	(%rax,%rdi,8), %rdx
 	testq	%rdx, %rdx
-	je	.L180
+	je	.L178
 	cmpq	%rsi, %r8
-	jnb	.L181
+	jnb	.L179
 	xorl	%eax, %eax
-	jmp	.L182
+	jmp	.L180
 	.p2align 4,,10
 	.p2align 3
-.L183:
+.L181:
 	addq	$1, %rax
 	cmpq	%rsi, %r8
-	jnb	.L181
-.L184:
+	jnb	.L179
+.L182:
 	movq	88(%r9), %rcx
 	cmpq	%rcx, %rdi
-	jnb	.L211
-.L182:
+	jnb	.L219
+.L180:
 	cmpq	96(%rdx), %rax
-	jnb	.L180
+	jnb	.L178
 	movq	104(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
-	jne	.L183
+	jne	.L181
 	movq	$0, (%rcx)
 	movq	352(%r10), %rsi
 	addq	$1, %rax
 	cmpq	%rsi, %r8
-	jb	.L184
-.L181:
+	jb	.L182
+.L179:
+	leaq	.LC7(%rip), %rdi
 	movq	%r8, %rsi
-.L206:
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.p2align 4,,10
+	.p2align 3
+.L178:
+	addq	$1, %rdi
+	cmpq	%rsi, %r8
+	jb	.L186
+.L185:
+	leaq	.LC7(%rip), %rdi
+	movq	%r8, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L217:
+	subq	%rcx, %rax
+	movq	%rcx, %rsi
+	movq	%rax, %rdi
+	jmp	.L169
+.L219:
+	movq	%rdi, %rsi
+	xorl	%eax, %eax
+	leaq	.LC7(%rip), %rdi
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L174:
+	leaq	.LC7(%rip), %rdi
+	movq	%r8, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L216:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L180:
-	addq	$1, %rdi
-	cmpq	%rsi, %r8
-	jb	.L188
-	jmp	.L181
-	.p2align 4,,10
-	.p2align 3
-.L209:
-	movq	%rax, %rsi
-	.p2align 4,,10
-	.p2align 3
-.L171:
-	movq	%rsi, %rcx
-	subq	$1, %rsi
-	cmpq	%rax, %rsi
-	jnb	.L206
-	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L212
-	cmpq	$1, %rsi
-	jne	.L171
-.L170:
-	leaq	8(%rbp), %rax
-	movq	%rdi, %rdx
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0
-	jmp	.L167
-.L212:
-	subq	%rcx, %rax
-	movq	%rcx, %rsi
-	movq	%rax, %rdi
-	jmp	.L170
-.L211:
-	movq	%rdi, %rsi
-	jmp	.L206
-.L207:
-	leaq	.LC10(%rip), %rdi
-	xorl	%esi, %esi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L208:
-	movq	%rbx, %rsi
-	jmp	.L206
-.L164:
-	leaq	.LC11(%rip), %rdi
+.L215:
+	leaq	.LC7(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -1174,11 +1179,6 @@ _ZN3wze6engine6assets13UnloadTextureEy:
 	.cfi_endproc
 .LFE8150:
 	.size	_ZN3wze6engine6assets13UnloadTextureEy, .-_ZN3wze6engine6assets13UnloadTextureEy
-	.section	.rodata.str1.8
-	.align 8
-.LC12:
-	.string	"wze::engine.assets.PurgeTextures(): Texture does not exist\nParams: Keep(length): %ld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE
@@ -1189,116 +1189,97 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	pushq	%r13
 	.cfi_def_cfa_offset 16
 	.cfi_offset 13, -16
-	movq	%rsi, %r13
+	movq	%rdx, %r13
 	pushq	%r12
 	.cfi_def_cfa_offset 24
 	.cfi_offset 12, -24
-	movq	%rdi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 32
 	.cfi_offset 6, -32
-	movq	%rdx, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 40
 	.cfi_offset 3, -40
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 48
-	movq	8(%rdi), %rdi
-	testq	%rdx, %rdx
-	je	.L214
-	xorl	%eax, %eax
-	.p2align 4,,10
-	.p2align 3
-.L217:
-	movq	0(%r13,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L215
-	cmpq	%rdi, %rdx
-	jnb	.L216
-	movq	16(%r12), %rcx
-	cmpq	$0, (%rcx,%rdx,8)
-	je	.L216
-.L215:
-	addq	$1, %rax
-	cmpq	%rax, %rbp
-	jne	.L217
-.L214:
+	movq	8(%rdi), %rdx
+	cmpq	$1, %rdx
+	jbe	.L221
+	movq	%rdi, %rbp
+	movq	%rsi, %r12
 	movl	$1, %ebx
-	cmpq	$1, %rdi
-	jbe	.L285
-.L218:
-	testq	%rbp, %rbp
-	je	.L220
-.L253:
+.L247:
+	testq	%r13, %r13
+	je	.L222
+.L255:
 	xorl	%eax, %eax
-.L245:
-	cmpq	%rbx, 0(%r13,%rax,8)
-	je	.L286
+.L223:
+	cmpq	%rbx, (%r12,%rax,8)
+	je	.L279
 	addq	$1, %rax
-	cmpq	%rax, %rbp
-	jne	.L245
-.L220:
-	movq	(%r12), %r10
+	cmpq	%r13, %rax
+	jne	.L223
+.L222:
+	movq	0(%rbp), %r10
 	movq	352(%r10), %rsi
 	cmpq	$1, %rsi
-	jbe	.L223
+	jbe	.L226
 	movq	360(%r10), %r11
 	movl	$1, %r8d
 	.p2align 4,,10
 	.p2align 3
-.L241:
+.L244:
 	movq	(%r11,%r8,8), %r9
 	testq	%r9, %r9
-	je	.L224
+	je	.L227
 	cmpq	%rsi, %r8
-	jnb	.L232
+	jnb	.L235
 	movq	56(%r9), %rcx
 	movl	$1, %eax
-	jmp	.L228
+	jmp	.L231
 	.p2align 4,,10
 	.p2align 3
-.L226:
+.L229:
 	addq	$1, %rax
 	cmpq	%rsi, %r8
-	jnb	.L232
-.L228:
+	jnb	.L235
+.L231:
 	cmpq	%rcx, %rax
-	jnb	.L287
+	jnb	.L280
 	movq	64(%r9), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L226
+	je	.L229
 	cmpq	%rbx, 72(%rdx)
-	jne	.L226
+	jne	.L229
 	movq	$0, 72(%rdx)
 	movq	352(%r10), %rsi
-	jmp	.L226
+	jmp	.L229
 	.p2align 4,,10
 	.p2align 3
-.L224:
+.L227:
 	addq	$1, %r8
 	cmpq	%rsi, %r8
-	jb	.L241
-	movq	8(%r12), %rdi
-.L223:
-	movq	16(%r12), %rax
-	cmpq	%rdi, %rbx
-	jnb	.L284
+	jb	.L244
+	movq	8(%rbp), %rdx
+.L226:
+	movq	16(%rbp), %rax
+	cmpq	%rdx, %rbx
+	jnb	.L278
 	movq	(%rax,%rbx,8), %rdi
 	call	SDL_DestroyTexture@PLT
-	movq	8(%r12), %rdi
-	movq	16(%r12), %rcx
-	cmpq	%rdi, %rbx
-	jnb	.L284
-	movq	$0, (%rcx,%rbx,8)
+	movq	8(%rbp), %rdx
+	movq	16(%rbp), %rax
+	cmpq	%rdx, %rbx
+	jnb	.L278
+	movq	$0, (%rax,%rbx,8)
 	addq	$1, %rbx
-	cmpq	%rdi, %rbx
-	jb	.L218
-.L244:
-	cmpq	$0, -8(%rcx,%rdi,8)
-	leaq	-1(%rdi), %rdx
-	je	.L288
-.L281:
+	cmpq	%rdx, %rbx
+	jb	.L247
+.L256:
+	cmpq	$0, -8(%rax,%rdx,8)
+	leaq	-1(%rdx), %rdi
+	je	.L281
+.L275:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -1314,50 +1295,50 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L287:
+.L280:
 	.cfi_restore_state
 	cmpq	%rsi, %r8
-	jnb	.L232
+	jnb	.L235
 	movq	88(%r9), %rcx
 	movl	$1, %edi
 	.p2align 4,,10
 	.p2align 3
-.L239:
+.L242:
 	cmpq	%rcx, %rdi
-	jnb	.L224
+	jnb	.L227
 	movq	96(%r9), %rax
 	movq	(%rax,%rdi,8), %rdx
 	testq	%rdx, %rdx
-	je	.L231
+	je	.L234
 	cmpq	%rsi, %r8
-	jnb	.L232
+	jnb	.L235
 	xorl	%eax, %eax
-	jmp	.L233
+	jmp	.L236
 	.p2align 4,,10
 	.p2align 3
-.L234:
+.L237:
 	addq	$1, %rax
 	cmpq	%rsi, %r8
-	jnb	.L232
-.L235:
+	jnb	.L235
+.L238:
 	movq	88(%r9), %rcx
 	cmpq	%rcx, %rdi
-	jnb	.L289
-.L233:
+	jnb	.L282
+.L236:
 	cmpq	96(%rdx), %rax
-	jnb	.L231
+	jnb	.L234
 	movq	104(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
-	jne	.L234
+	jne	.L237
 	movq	$0, (%rcx)
 	movq	352(%r10), %rsi
 	addq	$1, %rax
 	cmpq	%rsi, %r8
-	jb	.L235
-.L232:
+	jb	.L238
+.L235:
 	movq	%r8, %rsi
-.L283:
+.L277:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -1365,258 +1346,163 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L231:
+.L234:
 	addq	$1, %rdi
 	cmpq	%rsi, %r8
-	jb	.L239
-	jmp	.L232
+	jb	.L242
+	jmp	.L235
 	.p2align 4,,10
 	.p2align 3
-.L286:
+.L279:
 	addq	$1, %rbx
-	cmpq	%rdi, %rbx
-	jb	.L253
-	movq	16(%r12), %rcx
-	jmp	.L244
-.L285:
-	testq	%rdi, %rdi
-	jne	.L281
+	cmpq	%rdx, %rbx
+	jb	.L255
+	movq	16(%rbp), %rax
+	jmp	.L256
+.L221:
+	testq	%rdx, %rdx
+	jne	.L275
 	orq	$-1, %rsi
-	jmp	.L283
+	jmp	.L277
 	.p2align 4,,10
 	.p2align 3
-.L288:
-	movq	%rdi, %rax
-	jmp	.L246
-.L251:
-	leaq	-1(%rax), %rsi
-	cmpq	%rdi, %rsi
-	jnb	.L283
-	cmpq	$0, (%rcx,%rsi,8)
-	jne	.L290
-	movq	%rsi, %rax
-.L246:
-	cmpq	$1, %rax
-	jne	.L251
-.L250:
-	leaq	8(%r12), %rdi
-	movq	%rax, %rsi
-	call	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0
-	jmp	.L281
-.L289:
-	movq	%rdi, %rsi
-	jmp	.L283
-.L290:
-	subq	%rax, %rdi
+.L281:
+	movq	%rdx, %rcx
+	jmp	.L248
+.L253:
+	leaq	-1(%rcx), %rsi
+	cmpq	%rdx, %rsi
+	jnb	.L277
+	cmpq	$0, (%rax,%rsi,8)
+	jne	.L283
+	movq	%rsi, %rcx
+.L248:
+	cmpq	$1, %rcx
+	jne	.L253
+.L252:
+	addq	$8, %rbp
 	movq	%rdi, %rdx
-	jmp	.L250
-.L216:
-	leaq	.LC12(%rip), %rdi
-	movq	%rbp, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L284:
+	movq	%rcx, %rsi
+	movq	%rbp, %rdi
+	call	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0
+	jmp	.L275
+.L282:
+	movq	%rdi, %rsi
+	jmp	.L277
+.L283:
+	movq	%rdx, %rdi
+	subq	%rcx, %rdi
+	jmp	.L252
+.L278:
 	movq	%rbx, %rsi
-	jmp	.L283
+	jmp	.L277
 	.cfi_endproc
 .LFE8151:
 	.size	_ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE, .-_ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC13:
-	.string	"wze::engine.assets.PurgeTextures(): Texture does not exist\nParams: Keep: %p\n"
+.LC10:
+	.string	"wze::engine.assets.PurgeTextures(): Keep must not be NULL\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE, @function
 _ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
-.LFB8154:
+.LFB8152:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
 	.cfi_offset 12, -16
-	movq	%rsi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 24
 	.cfi_offset 6, -24
-	movq	%rdi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	movq	(%rsi), %rcx
-	movq	8(%rdi), %rdi
-	testq	%rcx, %rcx
-	je	.L292
-	movq	8(%rsi), %rsi
+	testq	%rsi, %rsi
+	je	.L285
+	movq	8(%rdi), %rcx
+	movq	%rdi, %rbp
+	movq	%rsi, %r12
+	movl	$1, %ebx
+	cmpq	$1, %rcx
+	jbe	.L344
+	.p2align 4,,10
+	.p2align 3
+.L286:
+	movq	(%r12), %rdx
+	movq	8(%r12), %rsi
 	xorl	%eax, %eax
+	testq	%rdx, %rdx
+	je	.L288
+.L289:
+	cmpq	(%rsi,%rax,8), %rbx
+	je	.L290
+	addq	$1, %rax
+	cmpq	%rax, %rdx
+	jne	.L289
+.L288:
+	movq	0(%rbp), %r10
+	movq	352(%r10), %rsi
+	cmpq	$1, %rsi
+	jbe	.L292
+	movq	360(%r10), %r11
+	movl	$1, %r8d
+.L310:
+	movq	(%r11,%r8,8), %r9
+	testq	%r9, %r9
+	je	.L293
+	cmpq	%rsi, %r8
+	jnb	.L301
+	movq	56(%r9), %rcx
+	movl	$1, %eax
+	jmp	.L297
+	.p2align 4,,10
+	.p2align 3
+.L295:
+	addq	$1, %rax
+	cmpq	%rsi, %r8
+	jnb	.L301
+.L297:
+	cmpq	%rcx, %rax
+	jnb	.L345
+	movq	64(%r9), %rdx
+	movq	(%rdx,%rax,8), %rdx
+	testq	%rdx, %rdx
+	je	.L295
+	cmpq	%rbx, 72(%rdx)
+	jne	.L295
+	movq	$0, 72(%rdx)
+	movq	352(%r10), %rsi
 	jmp	.L295
 	.p2align 4,,10
 	.p2align 3
 .L293:
-	addq	$1, %rax
-	cmpq	%rcx, %rax
-	je	.L292
-.L295:
-	movq	(%rsi,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L293
-	cmpq	%rdi, %rdx
-	jnb	.L294
-	movq	16(%rbp), %r8
-	cmpq	$0, (%r8,%rdx,8)
-	jne	.L293
-.L294:
-	leaq	.LC13(%rip), %rdi
-	movq	%r12, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L292:
-	cmpq	$1, %rdi
-	jbe	.L296
-	movl	$1, %ebx
-	.p2align 4,,10
-	.p2align 3
-.L323:
-	movq	8(%r12), %rdx
-	xorl	%eax, %eax
-	testq	%rcx, %rcx
-	je	.L297
-.L298:
-	cmpq	%rbx, (%rdx,%rax,8)
-	je	.L299
-	addq	$1, %rax
-	cmpq	%rcx, %rax
-	jne	.L298
-.L297:
-	movq	0(%rbp), %r10
-	movq	352(%r10), %rsi
-	cmpq	$1, %rsi
-	jbe	.L301
-	movq	360(%r10), %r11
-	movl	$1, %r8d
-.L319:
-	movq	(%r11,%r8,8), %r9
-	testq	%r9, %r9
-	je	.L302
-	cmpq	%rsi, %r8
-	jnb	.L310
-	movq	56(%r9), %rcx
-	movl	$1, %eax
-	jmp	.L306
-	.p2align 4,,10
-	.p2align 3
-.L304:
-	addq	$1, %rax
-	cmpq	%rsi, %r8
-	jnb	.L310
-.L306:
-	cmpq	%rcx, %rax
-	jnb	.L358
-	movq	64(%r9), %rdx
-	movq	(%rdx,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L304
-	cmpq	%rbx, 72(%rdx)
-	jne	.L304
-	movq	$0, 72(%rdx)
-	movq	352(%r10), %rsi
-	jmp	.L304
-	.p2align 4,,10
-	.p2align 3
-.L302:
 	addq	$1, %r8
 	cmpq	%rsi, %r8
-	jb	.L319
-	movq	8(%rbp), %rdi
-.L301:
+	jb	.L310
+	movq	8(%rbp), %rcx
+.L292:
 	movq	16(%rbp), %rax
-	cmpq	%rdi, %rbx
-	jnb	.L357
+	cmpq	%rcx, %rbx
+	jnb	.L343
 	movq	(%rax,%rbx,8), %rdi
 	call	SDL_DestroyTexture@PLT
-	movq	8(%rbp), %rdi
+	movq	8(%rbp), %rcx
 	movq	16(%rbp), %rax
-	cmpq	%rdi, %rbx
-	jnb	.L357
+	cmpq	%rcx, %rbx
+	jnb	.L343
 	movq	$0, (%rax,%rbx,8)
-.L299:
+.L290:
 	addq	$1, %rbx
-	cmpq	%rdi, %rbx
-	jnb	.L322
-	movq	(%r12), %rcx
-	jmp	.L323
-	.p2align 4,,10
-	.p2align 3
-.L358:
-	cmpq	%rsi, %r8
-	jnb	.L310
-	movq	88(%r9), %rcx
-	movl	$1, %edi
-	.p2align 4,,10
-	.p2align 3
-.L317:
-	cmpq	%rcx, %rdi
-	jnb	.L302
-	movq	96(%r9), %rax
-	movq	(%rax,%rdi,8), %rdx
-	testq	%rdx, %rdx
-	je	.L309
-	cmpq	%rsi, %r8
-	jnb	.L310
-	xorl	%eax, %eax
-	jmp	.L311
-	.p2align 4,,10
-	.p2align 3
-.L312:
-	addq	$1, %rax
-	cmpq	%rsi, %r8
-	jnb	.L310
-.L313:
-	movq	88(%r9), %rcx
-	cmpq	%rcx, %rdi
-	jnb	.L359
-.L311:
-	cmpq	96(%rdx), %rax
-	jnb	.L309
-	movq	104(%rdx), %rcx
-	leaq	(%rcx,%rax,8), %rcx
-	cmpq	%rbx, (%rcx)
-	jne	.L312
-	movq	$0, (%rcx)
-	movq	352(%r10), %rsi
-	addq	$1, %rax
-	cmpq	%rsi, %r8
-	jb	.L313
-.L310:
-	movq	%r8, %rsi
-.L356:
-	leaq	.LC7(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L309:
-	addq	$1, %rdi
-	cmpq	%rsi, %r8
-	jb	.L317
-	jmp	.L310
-	.p2align 4,,10
-	.p2align 3
-.L322:
+	cmpq	%rcx, %rbx
+	jb	.L286
 	movq	16(%rbp), %rdx
-	leaq	-1(%rdi), %rcx
-	cmpq	$0, -8(%rdx,%rdi,8)
-	je	.L360
-.L354:
+	leaq	-1(%rcx), %r8
+	cmpq	$0, -8(%rdx,%rcx,8)
+	je	.L346
+.L340:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -1626,60 +1512,124 @@ _ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L296:
-	.cfi_restore_state
-	testq	%rdi, %rdi
-	jne	.L354
-	orq	$-1, %rsi
-	jmp	.L356
 	.p2align 4,,10
 	.p2align 3
-.L360:
-	movq	%rdi, %rax
-	jmp	.L324
-.L329:
+.L345:
+	.cfi_restore_state
+	cmpq	%rsi, %r8
+	jnb	.L301
+	movq	88(%r9), %rcx
+	movl	$1, %edi
+	.p2align 4,,10
+	.p2align 3
+.L308:
+	cmpq	%rcx, %rdi
+	jnb	.L293
+	movq	96(%r9), %rax
+	movq	(%rax,%rdi,8), %rdx
+	testq	%rdx, %rdx
+	je	.L300
+	cmpq	%rsi, %r8
+	jnb	.L301
+	xorl	%eax, %eax
+	jmp	.L302
+	.p2align 4,,10
+	.p2align 3
+.L303:
+	addq	$1, %rax
+	cmpq	%rsi, %r8
+	jnb	.L301
+.L304:
+	movq	88(%r9), %rcx
+	cmpq	%rcx, %rdi
+	jnb	.L347
+.L302:
+	cmpq	96(%rdx), %rax
+	jnb	.L300
+	movq	104(%rdx), %rcx
+	leaq	(%rcx,%rax,8), %rcx
+	cmpq	%rbx, (%rcx)
+	jne	.L303
+	movq	$0, (%rcx)
+	movq	352(%r10), %rsi
+	addq	$1, %rax
+	cmpq	%rsi, %r8
+	jb	.L304
+.L301:
+	movq	%r8, %rsi
+.L342:
+	leaq	.LC7(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.p2align 4,,10
+	.p2align 3
+.L300:
+	addq	$1, %rdi
+	cmpq	%rsi, %r8
+	jb	.L308
+	jmp	.L301
+.L344:
+	testq	%rcx, %rcx
+	jne	.L340
+	orq	$-1, %rsi
+	jmp	.L342
+	.p2align 4,,10
+	.p2align 3
+.L346:
+	movq	%rcx, %rax
+	jmp	.L313
+.L318:
 	leaq	-1(%rax), %rsi
-	cmpq	%rdi, %rsi
-	jnb	.L356
+	cmpq	%rcx, %rsi
+	jnb	.L342
 	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L361
+	jne	.L348
 	movq	%rsi, %rax
-.L324:
+.L313:
 	cmpq	$1, %rax
-	jne	.L329
-.L328:
+	jne	.L318
+.L317:
 	leaq	8(%rbp), %rdi
-	movq	%rcx, %rdx
+	movq	%r8, %rdx
 	movq	%rax, %rsi
 	call	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0
-	jmp	.L354
-.L359:
+	jmp	.L340
+.L347:
 	movq	%rdi, %rsi
-	jmp	.L356
-.L361:
-	subq	%rax, %rdi
-	movq	%rdi, %rcx
-	jmp	.L328
-.L357:
+	jmp	.L342
+.L348:
+	subq	%rax, %rcx
+	movq	%rcx, %r8
+	jmp	.L317
+.L343:
 	movq	%rbx, %rsi
-	jmp	.L356
+	jmp	.L342
+.L285:
+	leaq	.LC10(%rip), %rdi
+	xorl	%esi, %esi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
-.LFE8154:
+.LFE8152:
 	.size	_ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE, .-_ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
-.LC14:
-	.string	"wze::engine.assets.LoadSound(): Path must not be NULL\nParams: Path: %p\n"
+.LC11:
+	.string	"wze::engine.assets.LoadSound(): SoundPath must not be NULL\nParams: SoundPath: %p\n"
 	.align 8
-.LC15:
-	.string	"wze::engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: Path: %s\n"
+.LC12:
+	.string	"wze::engine.assets.LoadSound(): Mix_LoadWAV() failed\nParams: SoundPath: %s\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets9LoadSoundEPKc
 	.type	_ZN3wze6engine6assets9LoadSoundEPKc, @function
 _ZN3wze6engine6assets9LoadSoundEPKc:
-.LFB8155:
+.LFB8153:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -1696,34 +1646,34 @@ _ZN3wze6engine6assets9LoadSoundEPKc:
 	movq	%rax, 8(%rsp)
 	xorl	%eax, %eax
 	testq	%rsi, %rsi
-	je	.L363
+	je	.L350
 	movq	24(%rdi), %rax
 	movq	%rdi, %rbp
 	movq	%rsi, %r12
 	cmpq	$1, %rax
-	jbe	.L365
+	jbe	.L352
 	movq	32(%rdi), %rdx
 	movl	$1, %ebx
-	jmp	.L369
+	jmp	.L356
 	.p2align 4,,10
 	.p2align 3
-.L366:
+.L353:
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	je	.L365
-.L369:
+	je	.L352
+.L356:
 	cmpq	$0, (%rdx,%rbx,8)
-	jne	.L366
+	jne	.L353
 	movq	%r12, %rdi
 	call	Mix_LoadWAV@PLT
 	movq	32(%rbp), %rdx
 	cmpq	24(%rbp), %rbx
-	jnb	.L382
+	jnb	.L369
 	movq	%rax, (%rdx,%rbx,8)
 	testq	%rax, %rax
-	jne	.L362
-.L374:
-	leaq	.LC15(%rip), %rdi
+	jne	.L349
+.L361:
+	leaq	.LC12(%rip), %rdi
 	movq	%r12, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -1731,7 +1681,7 @@ _ZN3wze6engine6assets9LoadSoundEPKc:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L365:
+.L352:
 	movq	%r12, %rdi
 	call	Mix_LoadWAV@PLT
 	movq	32(%rbp), %rdi
@@ -1743,7 +1693,7 @@ _ZN3wze6engine6assets9LoadSoundEPKc:
 	call	realloc@PLT
 	movq	%rax, 32(%rbp)
 	testq	%rax, %rax
-	je	.L383
+	je	.L370
 	movq	24(%rbp), %rdx
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
@@ -1752,13 +1702,13 @@ _ZN3wze6engine6assets9LoadSoundEPKc:
 	movq	24(%rbp), %rbx
 	movq	32(%rbp), %rax
 	addq	$-1, %rbx
-	jnc	.L384
+	jnc	.L371
 	cmpq	$0, (%rax,%rbx,8)
-	je	.L374
-.L362:
+	je	.L361
+.L349:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L385
+	jne	.L372
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
@@ -1770,28 +1720,28 @@ _ZN3wze6engine6assets9LoadSoundEPKc:
 	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L382:
+.L369:
 	.cfi_restore_state
 	movq	%rbx, %rsi
-.L381:
+.L368:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L363:
-	leaq	.LC14(%rip), %rdi
+.L350:
+	leaq	.LC11(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L385:
+.L372:
 	call	__stack_chk_fail@PLT
-.L384:
+.L371:
 	orq	$-1, %rsi
-	jmp	.L381
-.L383:
+	jmp	.L368
+.L370:
 	leaq	.LC9(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
@@ -1799,79 +1749,64 @@ _ZN3wze6engine6assets9LoadSoundEPKc:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8155:
+.LFE8153:
 	.size	_ZN3wze6engine6assets9LoadSoundEPKc, .-_ZN3wze6engine6assets9LoadSoundEPKc
-	.section	.rodata.str1.8
-	.align 8
-.LC16:
-	.string	"wze::engine.assets.UnloadSound(): Illegal deletion of NULL Sound\nParams: ID: %lld\n"
-	.align 8
-.LC17:
-	.string	"wze::engine.assets.UnloadSound(): Sound does not exist\nParams: ID: %lld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets11UnloadSoundEy
 	.type	_ZN3wze6engine6assets11UnloadSoundEy, @function
 _ZN3wze6engine6assets11UnloadSoundEy:
-.LFB8156:
+.LFB8154:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	pushq	%rbx
-	.cfi_def_cfa_offset 24
-	.cfi_offset 3, -24
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 32
-	testq	%rsi, %rsi
-	je	.L399
-	movq	%rdi, %rbp
-	movq	%rsi, %rbx
 	cmpq	24(%rdi), %rsi
-	jnb	.L388
-	movq	32(%rdi), %rax
-	movq	(%rax,%rsi,8), %rdi
-	testq	%rdi, %rdi
-	je	.L388
-	call	Mix_FreeChunk@PLT
-	movq	24(%rbp), %rax
-	movq	32(%rbp), %rdx
-	cmpq	%rax, %rbx
-	jnb	.L400
-	movq	$0, (%rdx,%rbx,8)
-	cmpq	$0, -8(%rdx,%rax,8)
-	leaq	-1(%rax), %r8
-	je	.L401
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
+	jb	.L396
 	xorl	%eax, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 16
-	popq	%rbp
-	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L401:
-	.cfi_restore_state
+.L396:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsi, %rbp
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+	movq	%rdi, %rbx
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 32
+	movq	32(%rdi), %rax
+	movq	(%rax,%rsi,8), %rdi
+	testq	%rdi, %rdi
+	je	.L375
+	call	Mix_FreeChunk@PLT
+	movq	24(%rbx), %rax
+	movq	32(%rbx), %rdx
+	cmpq	%rax, %rbp
+	jnb	.L397
+	movq	$0, (%rdx,%rbp,8)
+	cmpq	$0, -8(%rdx,%rax,8)
+	leaq	-1(%rax), %r8
+	jne	.L375
+	cmpq	$1, %rax
+	je	.L375
 	movq	%rax, %rsi
 	.p2align 4,,10
 	.p2align 3
-.L395:
+.L381:
 	movq	%rsi, %rcx
 	subq	$1, %rsi
 	cmpq	%rax, %rsi
 	jnb	.L398
 	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L402
+	jne	.L399
 	cmpq	$1, %rsi
-	jne	.L395
-.L394:
-	leaq	24(%rbp), %rdi
+	jne	.L381
+.L380:
+	leaq	24(%rbx), %rdi
 	movq	%r8, %rdx
 	call	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy.isra.0
+.L375:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -1883,29 +1818,294 @@ _ZN3wze6engine6assets11UnloadSoundEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L402:
+.L399:
 	.cfi_restore_state
 	subq	%rcx, %rax
 	movq	%rcx, %rsi
 	movq	%rax, %r8
-	jmp	.L394
-.L400:
-	movq	%rbx, %rsi
+	jmp	.L380
 .L398:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L388:
-	leaq	.LC17(%rip), %rdi
-	movq	%rbx, %rsi
+.L397:
+	leaq	.LC7(%rip), %rdi
+	movq	%rbp, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L399:
-	leaq	.LC16(%rip), %rdi
+	.cfi_endproc
+.LFE8154:
+	.size	_ZN3wze6engine6assets11UnloadSoundEy, .-_ZN3wze6engine6assets11UnloadSoundEy
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE
+	.type	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE, @function
+_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE:
+.LFB8155:
+	.cfi_startproc
+	pushq	%r13
+	.cfi_def_cfa_offset 16
+	.cfi_offset 13, -16
+	pushq	%r12
+	.cfi_def_cfa_offset 24
+	.cfi_offset 12, -24
+	pushq	%rbp
+	.cfi_def_cfa_offset 32
+	.cfi_offset 6, -32
+	pushq	%rbx
+	.cfi_def_cfa_offset 40
+	.cfi_offset 3, -40
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 48
+	movq	24(%rdi), %rax
+	cmpq	$1, %rax
+	jbe	.L401
+	movq	32(%rdi), %rcx
+	movq	%rdi, %r12
+	movq	%rsi, %rbp
+	movq	%rdx, %r13
+	movl	$1, %ebx
+.L407:
+	testq	%r13, %r13
+	je	.L402
+.L419:
+	xorl	%eax, %eax
+.L403:
+	cmpq	%rbx, 0(%rbp,%rax,8)
+	je	.L438
+	addq	$1, %rax
+	cmpq	%r13, %rax
+	jne	.L403
+.L402:
+	movq	(%rcx,%rbx,8), %rdi
+	call	Mix_FreeChunk@PLT
+	movq	24(%r12), %rax
+	movq	32(%r12), %rcx
+	cmpq	%rax, %rbx
+	jnb	.L439
+	movq	$0, (%rcx,%rbx,8)
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	jb	.L407
+.L420:
+	movq	%rax, %rdx
+	addq	$-1, %rdx
+	jnc	.L417
+	cmpq	$0, (%rcx,%rdx,8)
+	jne	.L425
+	cmpq	$1, %rax
+	jne	.L440
+.L425:
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 40
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 32
+	popq	%rbp
+	.cfi_def_cfa_offset 24
+	popq	%r12
+	.cfi_def_cfa_offset 16
+	popq	%r13
+	.cfi_def_cfa_offset 8
+	ret
+.L438:
+	.cfi_restore_state
+	movq	24(%r12), %rax
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	jb	.L419
+	jmp	.L420
+.L440:
+	movq	%rax, %rsi
+	.p2align 4,,10
+	.p2align 3
+.L411:
+	movq	%rsi, %rdi
+	subq	$1, %rsi
+	cmpq	%rax, %rsi
+	jnb	.L437
+	cmpq	$0, (%rcx,%rsi,8)
+	jne	.L441
+	cmpq	$1, %rsi
+	jne	.L411
+.L416:
+	leaq	24(%r12), %rdi
+	call	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy.isra.0
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 40
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 32
+	popq	%rbp
+	.cfi_def_cfa_offset 24
+	popq	%r12
+	.cfi_def_cfa_offset 16
+	popq	%r13
+	.cfi_def_cfa_offset 8
+	ret
+.L401:
+	.cfi_restore_state
+	testq	%rax, %rax
+	jne	.L425
+.L417:
+	orq	$-1, %rsi
+.L437:
+	leaq	.LC7(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.p2align 4,,10
+	.p2align 3
+.L441:
+	subq	%rdi, %rax
+	movq	%rdi, %rsi
+	movq	%rax, %rdx
+	jmp	.L416
+.L439:
+	movq	%rbx, %rsi
+	jmp	.L437
+	.cfi_endproc
+.LFE8155:
+	.size	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE, .-_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE
+	.section	.rodata.str1.8
+	.align 8
+.LC13:
+	.string	"wze::engine.assets.PurgeSounds(): Keep must not be NULL\nParams: Keep: %p\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE
+	.type	_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE, @function
+_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE:
+.LFB8156:
+	.cfi_startproc
+	pushq	%r12
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
+	pushq	%rbp
+	.cfi_def_cfa_offset 24
+	.cfi_offset 6, -24
+	pushq	%rbx
+	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
+	testq	%rsi, %rsi
+	je	.L443
+	movq	24(%rdi), %rax
+	movq	%rdi, %r12
+	cmpq	$1, %rax
+	jbe	.L481
+	movq	%rsi, %rbp
+	movq	32(%rdi), %rsi
+	movl	$1, %ebx
+	.p2align 4,,10
+	.p2align 3
+.L451:
+	movq	0(%rbp), %rdx
+	movq	8(%rbp), %rcx
+	xorl	%eax, %eax
+	testq	%rdx, %rdx
+	je	.L446
+.L447:
+	cmpq	(%rcx,%rax,8), %rbx
+	je	.L482
+	addq	$1, %rax
+	cmpq	%rax, %rdx
+	jne	.L447
+	.p2align 4,,10
+	.p2align 3
+.L446:
+	movq	(%rsi,%rbx,8), %rdi
+	call	Mix_FreeChunk@PLT
+	movq	24(%r12), %rax
+	movq	32(%r12), %rsi
+	cmpq	%rax, %rbx
+	jnb	.L483
+	movq	$0, (%rsi,%rbx,8)
+.L463:
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	jb	.L451
+	movq	%rax, %rdx
+	addq	$-1, %rdx
+	jnc	.L461
+	cmpq	$0, (%rsi,%rdx,8)
+	jne	.L468
+	cmpq	$1, %rax
+	jne	.L484
+.L468:
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	xorl	%eax, %eax
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
+	.cfi_def_cfa_offset 8
+	ret
+.L482:
+	.cfi_restore_state
+	movq	24(%r12), %rax
+	jmp	.L463
+.L484:
+	movq	%rax, %rcx
+	.p2align 4,,10
+	.p2align 3
+.L455:
+	movq	%rcx, %rdi
+	subq	$1, %rcx
+	cmpq	%rax, %rcx
+	jnb	.L485
+	cmpq	$0, (%rsi,%rcx,8)
+	jne	.L486
+	cmpq	$1, %rcx
+	jne	.L455
+.L460:
+	leaq	24(%r12), %rdi
+	movq	%rcx, %rsi
+	call	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy.isra.0
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	xorl	%eax, %eax
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
+	.cfi_def_cfa_offset 8
+	ret
+.L481:
+	.cfi_restore_state
+	testq	%rax, %rax
+	jne	.L468
+.L461:
+	orq	$-1, %rsi
+	jmp	.L480
+	.p2align 4,,10
+	.p2align 3
+.L486:
+	subq	%rdi, %rax
+	movq	%rdi, %rcx
+	movq	%rax, %rdx
+	jmp	.L460
+.L485:
+	movq	%rcx, %rsi
+.L480:
+	leaq	.LC7(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L483:
+	movq	%rbx, %rsi
+	jmp	.L480
+.L443:
+	leaq	.LC13(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -1913,352 +2113,21 @@ _ZN3wze6engine6assets11UnloadSoundEy:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8156:
-	.size	_ZN3wze6engine6assets11UnloadSoundEy, .-_ZN3wze6engine6assets11UnloadSoundEy
-	.section	.rodata.str1.8
-	.align 8
-.LC18:
-	.string	"wze::assets.PurgeSounds(): Sound does not exist\nParams: Keep(length): %ld\n"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE
-	.type	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE, @function
-_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE:
-.LFB8157:
-	.cfi_startproc
-	pushq	%r13
-	.cfi_def_cfa_offset 16
-	.cfi_offset 13, -16
-	movq	%rdi, %r13
-	pushq	%r12
-	.cfi_def_cfa_offset 24
-	.cfi_offset 12, -24
-	movq	%rdx, %r12
-	pushq	%rbp
-	.cfi_def_cfa_offset 32
-	.cfi_offset 6, -32
-	movq	%rsi, %rbp
-	pushq	%rbx
-	.cfi_def_cfa_offset 40
-	.cfi_offset 3, -40
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 48
-	movq	24(%rdi), %rsi
-	testq	%rdx, %rdx
-	je	.L404
-	xorl	%eax, %eax
-	.p2align 4,,10
-	.p2align 3
-.L407:
-	movq	0(%rbp,%rax,8), %rcx
-	testq	%rcx, %rcx
-	je	.L405
-	cmpq	%rsi, %rcx
-	jnb	.L406
-	movq	32(%r13), %rdx
-	cmpq	$0, (%rdx,%rcx,8)
-	je	.L406
-.L405:
-	addq	$1, %rax
-	cmpq	%rax, %r12
-	jne	.L407
-.L404:
-	cmpq	$1, %rsi
-	jbe	.L408
-	movq	32(%r13), %rcx
-	movl	$1, %ebx
-.L409:
-	testq	%r12, %r12
-	je	.L410
-.L427:
-	xorl	%eax, %eax
-.L415:
-	cmpq	%rbx, 0(%rbp,%rax,8)
-	je	.L451
-	addq	$1, %rax
-	cmpq	%rax, %r12
-	jne	.L415
-.L410:
-	movq	(%rcx,%rbx,8), %rdi
-	call	Mix_FreeChunk@PLT
-	movq	24(%r13), %rax
-	movq	32(%r13), %rcx
-	cmpq	%rax, %rbx
-	jnb	.L452
-	movq	$0, (%rcx,%rbx,8)
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jb	.L409
-.L414:
-	movq	%rax, %rdx
-	addq	$-1, %rdx
-	jnc	.L425
-	cmpq	$0, (%rcx,%rdx,8)
-	jne	.L434
-	cmpq	$1, %rax
-	jne	.L453
-.L434:
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 40
-	xorl	%eax, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 32
-	popq	%rbp
-	.cfi_def_cfa_offset 24
-	popq	%r12
-	.cfi_def_cfa_offset 16
-	popq	%r13
-	.cfi_def_cfa_offset 8
-	ret
-.L451:
-	.cfi_restore_state
-	movq	24(%r13), %rax
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jb	.L427
-	jmp	.L414
-.L453:
-	movq	%rax, %rsi
-	.p2align 4,,10
-	.p2align 3
-.L419:
-	movq	%rsi, %rdi
-	subq	$1, %rsi
-	cmpq	%rax, %rsi
-	jnb	.L450
-	cmpq	$0, (%rcx,%rsi,8)
-	jne	.L454
-	cmpq	$1, %rsi
-	jne	.L419
-.L424:
-	leaq	24(%r13), %rdi
-	call	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy.isra.0
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 40
-	xorl	%eax, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 32
-	popq	%rbp
-	.cfi_def_cfa_offset 24
-	popq	%r12
-	.cfi_def_cfa_offset 16
-	popq	%r13
-	.cfi_def_cfa_offset 8
-	ret
-.L408:
-	.cfi_restore_state
-	testq	%rsi, %rsi
-	jne	.L434
-.L425:
-	orq	$-1, %rsi
-.L450:
-	leaq	.LC7(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L454:
-	subq	%rdi, %rax
-	movq	%rdi, %rsi
-	movq	%rax, %rdx
-	jmp	.L424
-.L406:
-	leaq	.LC18(%rip), %rdi
-	movq	%r12, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L452:
-	movq	%rbx, %rsi
-	jmp	.L450
-	.cfi_endproc
-.LFE8157:
-	.size	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE, .-_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE
-	.section	.rodata.str1.8
-	.align 8
-.LC19:
-	.string	"wze::assets.PurgeSounds(): Sound does not exist\nParams: Keep: %p\n"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE
-	.type	_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE, @function
-_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE:
-.LFB8158:
-	.cfi_startproc
-	pushq	%r12
-	.cfi_def_cfa_offset 16
-	.cfi_offset 12, -16
-	movq	%rsi, %r12
-	pushq	%rbp
-	.cfi_def_cfa_offset 24
-	.cfi_offset 6, -24
-	movq	%rdi, %rbp
-	pushq	%rbx
-	.cfi_def_cfa_offset 32
-	.cfi_offset 3, -32
-	movq	(%rsi), %rcx
-	movq	24(%rdi), %r8
-	testq	%rcx, %rcx
-	je	.L456
-	movq	8(%rsi), %rdi
-	xorl	%eax, %eax
-	jmp	.L459
-	.p2align 4,,10
-	.p2align 3
-.L457:
-	addq	$1, %rax
-	cmpq	%rax, %rcx
-	je	.L456
-.L459:
-	movq	(%rdi,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L457
-	cmpq	%r8, %rdx
-	jnb	.L458
-	movq	32(%rbp), %rsi
-	cmpq	$0, (%rsi,%rdx,8)
-	jne	.L457
-.L458:
-	leaq	.LC19(%rip), %rdi
-	movq	%r12, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L456:
-	cmpq	$1, %r8
-	jbe	.L460
-	movq	32(%rbp), %rsi
-	movl	$1, %ebx
-	.p2align 4,,10
-	.p2align 3
-.L467:
-	movq	8(%r12), %rdx
-	xorl	%eax, %eax
-	testq	%rcx, %rcx
-	je	.L461
-.L462:
-	cmpq	%rbx, (%rdx,%rax,8)
-	je	.L502
-	addq	$1, %rax
-	cmpq	%rax, %rcx
-	jne	.L462
-	.p2align 4,,10
-	.p2align 3
-.L461:
-	movq	(%rsi,%rbx,8), %rdi
-	call	Mix_FreeChunk@PLT
-	movq	24(%rbp), %rax
-	movq	32(%rbp), %rsi
-	cmpq	%rax, %rbx
-	jnb	.L503
-	movq	$0, (%rsi,%rbx,8)
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jnb	.L466
-.L504:
-	movq	(%r12), %rcx
-	jmp	.L467
-.L502:
-	movq	24(%rbp), %rax
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jb	.L504
-.L466:
-	movq	%rax, %rdx
-	addq	$-1, %rdx
-	jnc	.L477
-	cmpq	$0, (%rsi,%rdx,8)
-	jne	.L486
-	cmpq	$1, %rax
-	jne	.L505
-.L486:
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbp
-	.cfi_def_cfa_offset 16
-	popq	%r12
-	.cfi_def_cfa_offset 8
-	ret
-.L505:
-	.cfi_restore_state
-	movq	%rax, %rcx
-	.p2align 4,,10
-	.p2align 3
-.L471:
-	movq	%rcx, %rdi
-	subq	$1, %rcx
-	cmpq	%rax, %rcx
-	jnb	.L506
-	cmpq	$0, (%rsi,%rcx,8)
-	jne	.L507
-	cmpq	$1, %rcx
-	jne	.L471
-.L476:
-	leaq	24(%rbp), %rdi
-	movq	%rcx, %rsi
-	call	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy.isra.0
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbp
-	.cfi_def_cfa_offset 16
-	popq	%r12
-	.cfi_def_cfa_offset 8
-	ret
-.L460:
-	.cfi_restore_state
-	testq	%r8, %r8
-	jne	.L486
-.L477:
-	orq	$-1, %rsi
-	jmp	.L501
-	.p2align 4,,10
-	.p2align 3
-.L507:
-	subq	%rdi, %rax
-	movq	%rdi, %rcx
-	movq	%rax, %rdx
-	jmp	.L476
-.L506:
-	movq	%rcx, %rsi
-.L501:
-	leaq	.LC7(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L503:
-	movq	%rbx, %rsi
-	jmp	.L501
-	.cfi_endproc
-.LFE8158:
 	.size	_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE, .-_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
-.LC20:
-	.string	"wze::engine.assets.LoadFont(): Path must not be NULL\nParams: Path: %p\n"
+.LC14:
+	.string	"wze::engine.assets.LoadFont(): FontPath must not be NULL\nParams: FontPath: %p\n"
 	.align 8
-.LC21:
-	.string	"wze::engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: Path: %s\n"
+.LC15:
+	.string	"wze::engine.assets.LoadFont(): TTF_OpenFont() failed\nParams: FontPath: %s\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets8LoadFontEPKch
 	.type	_ZN3wze6engine6assets8LoadFontEPKch, @function
 _ZN3wze6engine6assets8LoadFontEPKch:
-.LFB8159:
+.LFB8157:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -2275,35 +2144,35 @@ _ZN3wze6engine6assets8LoadFontEPKch:
 	movq	%rax, 8(%rsp)
 	xorl	%eax, %eax
 	testq	%rsi, %rsi
-	je	.L509
+	je	.L488
 	movq	40(%rdi), %rax
 	movq	%rdi, %rbp
 	movq	%rsi, %r12
 	cmpq	$1, %rax
-	jbe	.L511
+	jbe	.L490
 	movq	48(%rdi), %rcx
 	movl	$1, %ebx
-	jmp	.L515
+	jmp	.L494
 	.p2align 4,,10
 	.p2align 3
-.L512:
+.L491:
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	je	.L511
-.L515:
+	je	.L490
+.L494:
 	cmpq	$0, (%rcx,%rbx,8)
-	jne	.L512
+	jne	.L491
 	movzbl	%dl, %esi
 	movq	%r12, %rdi
 	call	TTF_OpenFont@PLT
 	movq	48(%rbp), %rdx
 	cmpq	40(%rbp), %rbx
-	jnb	.L528
+	jnb	.L507
 	movq	%rax, (%rdx,%rbx,8)
 	testq	%rax, %rax
-	jne	.L508
-.L520:
-	leaq	.LC21(%rip), %rdi
+	jne	.L487
+.L499:
+	leaq	.LC15(%rip), %rdi
 	movq	%r12, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -2311,7 +2180,7 @@ _ZN3wze6engine6assets8LoadFontEPKch:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L511:
+.L490:
 	movzbl	%dl, %esi
 	movq	%r12, %rdi
 	call	TTF_OpenFont@PLT
@@ -2324,7 +2193,7 @@ _ZN3wze6engine6assets8LoadFontEPKch:
 	call	realloc@PLT
 	movq	%rax, 48(%rbp)
 	testq	%rax, %rax
-	je	.L529
+	je	.L508
 	movq	40(%rbp), %rdx
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
@@ -2333,13 +2202,13 @@ _ZN3wze6engine6assets8LoadFontEPKch:
 	movq	40(%rbp), %rbx
 	movq	48(%rbp), %rax
 	addq	$-1, %rbx
-	jnc	.L530
+	jnc	.L509
 	cmpq	$0, (%rax,%rbx,8)
-	je	.L520
-.L508:
+	je	.L499
+.L487:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L531
+	jne	.L510
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
@@ -2351,28 +2220,28 @@ _ZN3wze6engine6assets8LoadFontEPKch:
 	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L528:
+.L507:
 	.cfi_restore_state
 	movq	%rbx, %rsi
-.L527:
+.L506:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L509:
-	leaq	.LC20(%rip), %rdi
+.L488:
+	leaq	.LC14(%rip), %rdi
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L531:
+.L510:
 	call	__stack_chk_fail@PLT
-.L530:
+.L509:
 	orq	$-1, %rsi
-	jmp	.L527
-.L529:
+	jmp	.L506
+.L508:
 	leaq	.LC9(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
@@ -2380,172 +2249,231 @@ _ZN3wze6engine6assets8LoadFontEPKch:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8159:
+.LFE8157:
 	.size	_ZN3wze6engine6assets8LoadFontEPKch, .-_ZN3wze6engine6assets8LoadFontEPKch
-	.section	.rodata.str1.8
-	.align 8
-.LC22:
-	.string	"wze::engine.assets.UnloadFont(): Illegal deletion of NULL Font\nParams: ID: %lld\n"
-	.align 8
-.LC23:
-	.string	"wze::engine.assets.UnloadFont(): Font does not exist\nParams: ID: %lld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets10UnloadFontEy
 	.type	_ZN3wze6engine6assets10UnloadFontEy, @function
 _ZN3wze6engine6assets10UnloadFontEy:
-.LFB8160:
+.LFB8158:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	pushq	%rbx
-	.cfi_def_cfa_offset 24
-	.cfi_offset 3, -24
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 32
-	testq	%rsi, %rsi
-	je	.L560
-	movq	%rdi, %rbp
-	movq	%rsi, %rbx
 	cmpq	40(%rdi), %rsi
-	jnb	.L534
-	movq	48(%rdi), %rax
-	movq	(%rax,%rsi,8), %rdi
-	testq	%rdi, %rdi
-	je	.L534
-	call	TTF_CloseFont@PLT
-	movq	40(%rbp), %rax
-	movq	48(%rbp), %rdx
-	cmpq	%rax, %rbx
-	jnb	.L561
-	movq	$0, (%rdx,%rbx,8)
-	cmpq	$0, -8(%rdx,%rax,8)
-	leaq	-1(%rax), %rdi
-	je	.L562
-.L537:
-	movq	0(%rbp), %r8
-	movq	352(%r8), %r9
-	cmpq	$1, %r9
-	jbe	.L557
-	movq	360(%r8), %r10
-	movl	$1, %esi
-	.p2align 4,,10
-	.p2align 3
-.L544:
-	movq	(%r10,%rsi,8), %rcx
-	testq	%rcx, %rcx
-	je	.L551
-	cmpq	352(%r8), %rsi
-	jnb	.L548
-	movq	120(%rcx), %rdi
-	movl	$1, %eax
-	jmp	.L549
-	.p2align 4,,10
-	.p2align 3
-.L547:
-	addq	$1, %rax
-	cmpq	352(%r8), %rsi
-	jnb	.L548
-.L549:
-	cmpq	%rdi, %rax
-	jnb	.L551
-	movq	128(%rcx), %rdx
-	movq	(%rdx,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L547
-	cmpq	%rbx, 104(%rdx)
-	jne	.L547
-	movq	$0, 104(%rdx)
-	jmp	.L547
+	jb	.L551
+	xorl	%eax, %eax
+	ret
 	.p2align 4,,10
 	.p2align 3
 .L551:
-	addq	$1, %rsi
-	cmpq	%rsi, %r9
-	jne	.L544
-.L557:
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbx
+	pushq	%r15
 	.cfi_def_cfa_offset 16
-	popq	%rbp
-	.cfi_def_cfa_offset 8
-	ret
-.L562:
-	.cfi_restore_state
+	.cfi_offset 15, -16
+	movq	%rdi, %r15
+	pushq	%r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
+	movq	%rsi, %r14
+	pushq	%r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
+	pushq	%r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 64
+	movq	48(%rdi), %rax
+	movq	(%rax,%rsi,8), %rdi
+	testq	%rdi, %rdi
+	je	.L537
+	call	TTF_CloseFont@PLT
+	movq	40(%r15), %rax
+	movq	48(%r15), %rdx
+	cmpq	%rax, %r14
+	jnb	.L552
+	movq	$0, (%rdx,%r14,8)
+	cmpq	$0, -8(%rdx,%rax,8)
+	leaq	-1(%rax), %rdi
+	jne	.L515
+	cmpq	$1, %rax
+	je	.L515
 	movq	%rax, %rsi
 	.p2align 4,,10
 	.p2align 3
-.L541:
+.L519:
 	movq	%rsi, %rcx
 	subq	$1, %rsi
 	cmpq	%rax, %rsi
-	jnb	.L548
+	jnb	.L553
 	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L563
+	jne	.L554
 	cmpq	$1, %rsi
-	jne	.L541
-.L540:
-	leaq	40(%rbp), %rax
+	jne	.L519
+.L518:
+	leaq	40(%r15), %rax
 	movq	%rdi, %rdx
 	movq	%rax, %rdi
 	call	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy.isra.0
-	jmp	.L537
-.L563:
+	.p2align 4,,10
+	.p2align 3
+.L515:
+	movq	(%r15), %rcx
+	movq	352(%rcx), %rsi
+	cmpq	$1, %rsi
+	jbe	.L537
+	movl	$1, %ebp
+	.p2align 4,,10
+	.p2align 3
+.L532:
+	movq	360(%rcx), %rax
+	leaq	0(,%rbp,8), %r12
+	cmpq	$0, (%rax,%rbp,8)
+	je	.L520
+	cmpq	%rsi, %rbp
+	jnb	.L530
+	movl	$1, %ebx
+	.p2align 4,,10
+	.p2align 3
+.L521:
+	movq	(%rax,%r12), %rax
+	cmpq	120(%rax), %rbx
+	jnb	.L520
+	movq	128(%rax), %rdx
+	leaq	0(,%rbx,8), %r13
+	movq	(%rdx,%rbx,8), %rdx
+	testq	%rdx, %rdx
+	je	.L550
+	cmpq	%r14, 104(%rdx)
+	je	.L524
+.L550:
+	movq	360(%rcx), %rax
+	addq	$1, %rbx
+	cmpq	%rsi, %rbp
+	jb	.L521
+.L530:
+	leaq	.LC7(%rip), %rdi
+	movq	%rbp, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.p2align 4,,10
+	.p2align 3
+.L520:
+	addq	$1, %rbp
+	cmpq	%rsi, %rbp
+	jb	.L532
+.L537:
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 56
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 48
+	popq	%rbp
+	.cfi_def_cfa_offset 40
+	popq	%r12
+	.cfi_def_cfa_offset 32
+	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L524:
+	.cfi_restore_state
+	xorl	%esi, %esi
+	movq	$0, 104(%rdx)
+	movw	%si, 56(%rdx)
+	cmpq	352(%rcx), %rbp
+	jnb	.L555
+	cmpq	120(%rax), %rbx
+	jnb	.L556
+	movq	120(%rdx), %rdi
+	call	SDL_DestroyTexture@PLT
+	movq	(%r15), %rcx
+	movq	352(%rcx), %rsi
+	movq	360(%rcx), %rax
+	cmpq	%rsi, %rbp
+	jnb	.L557
+	movq	(%rax,%r12), %rdx
+	movq	128(%rdx), %rdi
+	cmpq	120(%rdx), %rbx
+	jnb	.L558
+	movq	(%rdi,%r13), %rdx
+	addq	$1, %rbx
+	movq	$0, 120(%rdx)
+	jmp	.L521
+.L554:
 	subq	%rcx, %rax
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	jmp	.L540
-.L561:
+	jmp	.L518
+.L556:
+	leaq	.LC7(%rip), %rdi
 	movq	%rbx, %rsi
-.L548:
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L557:
+	leaq	.LC7(%rip), %rdi
+	movq	%rbp, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L558:
+	leaq	.LC7(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L555:
+	leaq	.LC7(%rip), %rdi
+	movq	%rbp, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L553:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L534:
-	leaq	.LC23(%rip), %rdi
-	movq	%rbx, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L560:
-	leaq	.LC22(%rip), %rdi
-	xorl	%esi, %esi
+.L552:
+	leaq	.LC7(%rip), %rdi
+	movq	%r14, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8160:
+.LFE8158:
 	.size	_ZN3wze6engine6assets10UnloadFontEy, .-_ZN3wze6engine6assets10UnloadFontEy
-	.section	.rodata.str1.8
-	.align 8
-.LC24:
-	.string	"wze::engine.assets.PurgeFonts(): Font does not exist\nParams: Keep(length): %ld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE
 	.type	_ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE, @function
 _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
-.LFB8161:
+.LFB8159:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movq	%rdx, %r8
-	movq	%rsi, %r15
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
-	movq	%rdi, %r14
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
@@ -2560,79 +2488,64 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	.cfi_offset 3, -56
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 80
-	movq	40(%rdi), %rdi
-	testq	%rdx, %rdx
-	je	.L565
-	xorl	%eax, %eax
+	movq	%rdx, (%rsp)
+	movq	40(%rdi), %rdx
+	movq	%rsi, 8(%rsp)
+	cmpq	$1, %rdx
+	jbe	.L560
+	movq	%rdi, %rbp
+	movl	$1, %r12d
 	.p2align 4,,10
 	.p2align 3
-.L568:
-	movq	(%r15,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L566
-	cmpq	%rdi, %rdx
-	jnb	.L567
-	movq	48(%r14), %rcx
-	cmpq	$0, (%rcx,%rdx,8)
-	je	.L567
-.L566:
-	addq	$1, %rax
-	cmpq	%rax, %r8
-	jne	.L568
-.L565:
-	movl	$1, %r13d
-	cmpq	$1, %rdi
-	jbe	.L627
-	.p2align 4,,10
-	.p2align 3
-.L569:
-	testq	%r8, %r8
-	je	.L571
-.L599:
+.L581:
+	cmpq	$0, (%rsp)
+	je	.L561
+.L589:
 	xorl	%eax, %eax
-.L591:
-	cmpq	%r13, (%r15,%rax,8)
-	je	.L628
+.L562:
+	movq	8(%rsp), %rdi
+	cmpq	%r12, (%rdi,%rax,8)
+	je	.L609
 	addq	$1, %rax
-	cmpq	%rax, %r8
-	jne	.L591
-.L571:
-	movq	(%r14), %rcx
+	cmpq	%rax, (%rsp)
+	jne	.L562
+.L561:
+	movq	0(%rbp), %rcx
 	movq	352(%rcx), %rsi
 	cmpq	$1, %rsi
-	jbe	.L574
-	movl	$1, %ebp
+	jbe	.L565
+	movl	$1, %r14d
 	.p2align 4,,10
 	.p2align 3
-.L587:
+.L578:
 	movq	360(%rcx), %rax
-	leaq	0(,%rbp,8), %r12
-	cmpq	$0, (%rax,%rbp,8)
-	je	.L575
-	cmpq	%rsi, %rbp
-	jnb	.L624
+	leaq	0(,%r14,8), %r15
+	cmpq	$0, (%rax,%r14,8)
+	je	.L566
+	cmpq	%rsi, %r14
+	jnb	.L606
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L576:
-	movq	(%rax,%r12), %rax
+.L567:
+	movq	(%rax,%r15), %rax
 	cmpq	120(%rax), %rbx
-	jnb	.L575
+	jnb	.L566
 	movq	128(%rax), %rdx
-	leaq	0(,%rbx,8), %r9
+	leaq	0(,%rbx,8), %r13
 	movq	(%rdx,%rbx,8), %rdx
 	testq	%rdx, %rdx
-	je	.L621
-	cmpq	%r13, 104(%rdx)
-	je	.L579
-.L621:
+	je	.L603
+	cmpq	%r12, 104(%rdx)
+	je	.L570
+.L603:
 	movq	360(%rcx), %rax
 	addq	$1, %rbx
-	cmpq	%rsi, %rbp
-	jb	.L576
-.L624:
-	movq	%rbp, %rsi
-.L623:
+	cmpq	%rsi, %r14
+	jb	.L567
+.L606:
+	movq	%r14, %rsi
+.L605:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -2640,32 +2553,30 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L575:
-	addq	$1, %rbp
-	cmpq	%rsi, %rbp
-	jb	.L587
-	movq	40(%r14), %rdi
-.L574:
-	movq	48(%r14), %rax
-	cmpq	%rdi, %r13
-	jnb	.L626
-	movq	(%rax,%r13,8), %rdi
-	movq	%r8, (%rsp)
+.L566:
+	addq	$1, %r14
+	cmpq	%rsi, %r14
+	jb	.L578
+	movq	40(%rbp), %rdx
+.L565:
+	movq	48(%rbp), %rax
+	cmpq	%rdx, %r12
+	jnb	.L608
+	movq	(%rax,%r12,8), %rdi
 	call	TTF_CloseFont@PLT
-	movq	40(%r14), %rdi
-	movq	48(%r14), %rcx
-	movq	(%rsp), %r8
-	cmpq	%rdi, %r13
-	jnb	.L626
-	movq	$0, (%rcx,%r13,8)
-	addq	$1, %r13
-	cmpq	%rdi, %r13
-	jb	.L569
+	movq	40(%rbp), %rdx
+	movq	48(%rbp), %rax
+	cmpq	%rdx, %r12
+	jnb	.L608
+	movq	$0, (%rax,%r12,8)
+	addq	$1, %r12
+	cmpq	%rdx, %r12
+	jb	.L581
 .L590:
-	cmpq	$0, -8(%rcx,%rdi,8)
-	leaq	-1(%rdi), %rdx
-	je	.L629
-.L619:
+	cmpq	$0, -8(%rax,%rdx,8)
+	leaq	-1(%rdx), %rdi
+	je	.L610
+.L601:
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -2685,101 +2596,93 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L579:
+.L570:
 	.cfi_restore_state
+	xorl	%esi, %esi
 	movq	$0, 104(%rdx)
-	cmpq	352(%rcx), %rbp
-	jnb	.L624
+	movw	%si, 56(%rdx)
+	cmpq	352(%rcx), %r14
+	jnb	.L606
 	cmpq	120(%rax), %rbx
-	jnb	.L625
+	jnb	.L607
 	movq	120(%rdx), %rdi
-	movq	%r8, 8(%rsp)
-	movq	%r9, (%rsp)
 	call	SDL_DestroyTexture@PLT
-	movq	(%r14), %rcx
-	movq	(%rsp), %r9
-	movq	8(%rsp), %r8
+	movq	0(%rbp), %rcx
 	movq	352(%rcx), %rsi
 	movq	360(%rcx), %rax
-	cmpq	%rsi, %rbp
-	jnb	.L624
-	movq	(%rax,%r12), %rdx
+	cmpq	%rsi, %r14
+	jnb	.L606
+	movq	(%rax,%r15), %rdx
 	movq	128(%rdx), %rdi
 	cmpq	120(%rdx), %rbx
-	jnb	.L625
-	movq	(%rdi,%r9), %rdx
+	jnb	.L607
+	movq	(%rdi,%r13), %rdx
 	addq	$1, %rbx
 	movq	$0, 120(%rdx)
-	jmp	.L576
-.L628:
-	addq	$1, %r13
-	cmpq	%rdi, %r13
-	jb	.L599
-	movq	48(%r14), %rcx
+	jmp	.L567
+.L609:
+	addq	$1, %r12
+	cmpq	%rdx, %r12
+	jb	.L589
+	movq	48(%rbp), %rax
 	jmp	.L590
-.L629:
-	movq	%rdi, %rax
-	jmp	.L592
+.L610:
+	movq	%rdx, %rcx
+	jmp	.L582
 	.p2align 4,,10
 	.p2align 3
-.L597:
-	leaq	-1(%rax), %rsi
-	cmpq	%rdi, %rsi
-	jnb	.L623
-	cmpq	$0, (%rcx,%rsi,8)
-	jne	.L630
-	movq	%rsi, %rax
-.L592:
-	cmpq	$1, %rax
-	jne	.L597
-.L596:
-	leaq	40(%r14), %rdi
-	movq	%rax, %rsi
-	call	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy.isra.0
-	jmp	.L619
-.L627:
-	testq	%rdi, %rdi
-	jne	.L619
-	orq	$-1, %rsi
-	jmp	.L623
-	.p2align 4,,10
-	.p2align 3
-.L630:
-	subq	%rax, %rdi
+.L587:
+	leaq	-1(%rcx), %rsi
+	cmpq	%rdx, %rsi
+	jnb	.L605
+	cmpq	$0, (%rax,%rsi,8)
+	jne	.L611
+	movq	%rsi, %rcx
+.L582:
+	cmpq	$1, %rcx
+	jne	.L587
+.L586:
+	addq	$40, %rbp
 	movq	%rdi, %rdx
-	jmp	.L596
-.L625:
+	movq	%rcx, %rsi
+	movq	%rbp, %rdi
+	call	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy.isra.0
+	jmp	.L601
+.L560:
+	testq	%rdx, %rdx
+	jne	.L601
+	orq	$-1, %rsi
+	jmp	.L605
+	.p2align 4,,10
+	.p2align 3
+.L611:
+	movq	%rdx, %rdi
+	subq	%rcx, %rdi
+	jmp	.L586
+.L607:
 	movq	%rbx, %rsi
-	jmp	.L623
-.L567:
-	leaq	.LC24(%rip), %rdi
-	movq	%r8, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L626:
-	movq	%r13, %rsi
-	jmp	.L623
+	jmp	.L605
+.L608:
+	movq	%r12, %rsi
+	jmp	.L605
 	.cfi_endproc
-.LFE8161:
+.LFE8159:
 	.size	_ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE, .-_ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC25:
-	.string	"wze::engine.assets.PurgeFonts(): Font does not exist\nParams: Keep: %p\n"
+.LC16:
+	.string	"wze::engine.assets.PurgeFonts(): Keep must not be NULL\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE, @function
 _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
-.LFB8162:
+.LFB8160:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movq	%rdi, %r15
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
@@ -2797,95 +2700,68 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	.cfi_offset 3, -56
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 80
-	movq	(%rsi), %rcx
-	movq	40(%rdi), %rdi
 	movq	%rsi, 8(%rsp)
-	testq	%rcx, %rcx
-	je	.L632
-	movq	8(%rsi), %rsi
+	testq	%rsi, %rsi
+	je	.L613
+	movq	40(%rdi), %rdx
+	movq	%rdi, %rbp
+	movl	$1, %r15d
+	cmpq	$1, %rdx
+	jbe	.L663
+	.p2align 4,,10
+	.p2align 3
+.L614:
+	movq	8(%rsp), %rax
+	movq	(%rax), %rcx
+	movq	8(%rax), %rsi
 	xorl	%eax, %eax
-	jmp	.L635
+	testq	%rcx, %rcx
+	je	.L616
+.L617:
+	cmpq	(%rsi,%rax,8), %r15
+	je	.L618
+	addq	$1, %rax
+	cmpq	%rax, %rcx
+	jne	.L617
+	.p2align 4,,10
+	.p2align 3
+.L616:
+	movq	0(%rbp), %rcx
+	movq	352(%rcx), %rsi
+	cmpq	$1, %rsi
+	jbe	.L620
+	movl	$1, %r13d
 	.p2align 4,,10
 	.p2align 3
 .L633:
-	addq	$1, %rax
-	cmpq	%rcx, %rax
-	je	.L632
-.L635:
-	movq	(%rsi,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L633
-	cmpq	%rdi, %rdx
-	jnb	.L634
-	movq	48(%r15), %r8
-	cmpq	$0, (%r8,%rdx,8)
-	jne	.L633
-.L634:
-	movq	8(%rsp), %rsi
-	leaq	.LC25(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L632:
-	cmpq	$1, %rdi
-	jbe	.L636
-	movq	8(%rsp), %rax
-	movl	$1, %r14d
-	.p2align 4,,10
-	.p2align 3
-.L658:
-	movq	8(%rax), %rdx
-	xorl	%eax, %eax
-	testq	%rcx, %rcx
-	je	.L637
-.L638:
-	cmpq	%r14, (%rdx,%rax,8)
-	je	.L639
-	addq	$1, %rax
-	cmpq	%rax, %rcx
-	jne	.L638
-	.p2align 4,,10
-	.p2align 3
-.L637:
-	movq	(%r15), %rcx
-	movq	352(%rcx), %rsi
-	cmpq	$1, %rsi
-	jbe	.L641
-	movl	$1, %ebp
-	.p2align 4,,10
-	.p2align 3
-.L654:
 	movq	360(%rcx), %rax
-	leaq	0(,%rbp,8), %r13
-	cmpq	$0, (%rax,%rbp,8)
-	je	.L642
-	cmpq	%rsi, %rbp
-	jnb	.L686
+	leaq	0(,%r13,8), %r14
+	cmpq	$0, (%rax,%r13,8)
+	je	.L621
+	cmpq	%rsi, %r13
+	jnb	.L660
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L643:
-	movq	(%rax,%r13), %rax
+.L622:
+	movq	(%rax,%r14), %rax
 	cmpq	120(%rax), %rbx
-	jnb	.L642
+	jnb	.L621
 	movq	128(%rax), %rdx
 	leaq	0(,%rbx,8), %r12
 	movq	(%rdx,%rbx,8), %rdx
 	testq	%rdx, %rdx
-	je	.L683
-	cmpq	%r14, 104(%rdx)
-	je	.L646
-.L683:
+	je	.L657
+	cmpq	%r15, 104(%rdx)
+	je	.L625
+.L657:
 	movq	360(%rcx), %rax
 	addq	$1, %rbx
-	cmpq	%rsi, %rbp
-	jb	.L643
-.L686:
-	movq	%rbp, %rsi
-.L685:
+	cmpq	%rsi, %r13
+	jb	.L622
+.L660:
+	movq	%r13, %rsi
+.L659:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -2893,62 +2769,253 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L642:
-	addq	$1, %rbp
-	cmpq	%rsi, %rbp
-	jb	.L654
-	movq	40(%r15), %rdi
-.L641:
-	movq	48(%r15), %rax
-	cmpq	%rdi, %r14
-	jnb	.L688
-	movq	(%rax,%r14,8), %rdi
+.L621:
+	addq	$1, %r13
+	cmpq	%rsi, %r13
+	jb	.L633
+	movq	40(%rbp), %rdx
+.L620:
+	movq	48(%rbp), %rax
+	cmpq	%rdx, %r15
+	jnb	.L662
+	movq	(%rax,%r15,8), %rdi
 	call	TTF_CloseFont@PLT
-	movq	40(%r15), %rdi
-	movq	48(%r15), %rax
-	cmpq	%rdi, %r14
-	jnb	.L688
-	movq	$0, (%rax,%r14,8)
-.L639:
-	addq	$1, %r14
-	cmpq	%rdi, %r14
-	jnb	.L657
-	movq	8(%rsp), %rax
-	movq	(%rax), %rcx
-	jmp	.L658
-	.p2align 4,,10
-	.p2align 3
-.L646:
-	movq	$0, 104(%rdx)
-	cmpq	352(%rcx), %rbp
-	jnb	.L686
-	cmpq	120(%rax), %rbx
-	jnb	.L687
-	movq	120(%rdx), %rdi
-	call	SDL_DestroyTexture@PLT
-	movq	(%r15), %rcx
-	movq	352(%rcx), %rsi
-	movq	360(%rcx), %rax
-	cmpq	%rsi, %rbp
-	jnb	.L686
-	movq	(%rax,%r13), %rdx
-	movq	128(%rdx), %rdi
-	cmpq	120(%rdx), %rbx
-	jnb	.L687
-	movq	(%rdi,%r12), %rdx
-	addq	$1, %rbx
-	movq	$0, 120(%rdx)
-	jmp	.L643
-.L657:
-	movq	48(%r15), %rdx
-	leaq	-1(%rdi), %rcx
-	cmpq	$0, -8(%rdx,%rdi,8)
-	je	.L689
-.L681:
+	movq	40(%rbp), %rdx
+	movq	48(%rbp), %rax
+	cmpq	%rdx, %r15
+	jnb	.L662
+	movq	$0, (%rax,%r15,8)
+.L618:
+	addq	$1, %r15
+	cmpq	%rdx, %r15
+	jb	.L614
+	movq	48(%rbp), %rcx
+	leaq	-1(%rdx), %r8
+	cmpq	$0, -8(%rcx,%rdx,8)
+	je	.L664
+.L655:
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 48
+	popq	%rbp
+	.cfi_def_cfa_offset 40
+	popq	%r12
+	.cfi_def_cfa_offset 32
+	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L625:
+	.cfi_restore_state
+	xorl	%esi, %esi
+	movq	$0, 104(%rdx)
+	movw	%si, 56(%rdx)
+	cmpq	352(%rcx), %r13
+	jnb	.L660
+	cmpq	120(%rax), %rbx
+	jnb	.L661
+	movq	120(%rdx), %rdi
+	call	SDL_DestroyTexture@PLT
+	movq	0(%rbp), %rcx
+	movq	352(%rcx), %rsi
+	movq	360(%rcx), %rax
+	cmpq	%rsi, %r13
+	jnb	.L660
+	movq	(%rax,%r14), %rdx
+	movq	128(%rdx), %rdi
+	cmpq	120(%rdx), %rbx
+	jnb	.L661
+	movq	(%rdi,%r12), %rdx
+	addq	$1, %rbx
+	movq	$0, 120(%rdx)
+	jmp	.L622
+.L664:
+	movq	%rdx, %rax
+	jmp	.L636
+	.p2align 4,,10
+	.p2align 3
+.L641:
+	leaq	-1(%rax), %rsi
+	cmpq	%rdx, %rsi
+	jnb	.L659
+	cmpq	$0, (%rcx,%rsi,8)
+	jne	.L665
+	movq	%rsi, %rax
+.L636:
+	cmpq	$1, %rax
+	jne	.L641
+.L640:
+	leaq	40(%rbp), %rdi
+	movq	%r8, %rdx
+	movq	%rax, %rsi
+	call	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy.isra.0
+	jmp	.L655
+.L663:
+	testq	%rdx, %rdx
+	jne	.L655
+	orq	$-1, %rsi
+	jmp	.L659
+	.p2align 4,,10
+	.p2align 3
+.L665:
+	subq	%rax, %rdx
+	movq	%rdx, %r8
+	jmp	.L640
+.L661:
+	movq	%rbx, %rsi
+	jmp	.L659
+.L613:
+	leaq	.LC16(%rip), %rdi
+	xorl	%esi, %esi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L662:
+	movq	%r15, %rsi
+	jmp	.L659
+	.cfi_endproc
+.LFE8160:
+	.size	_ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE, .-_ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE
+	.section	.rodata.str1.8
+	.align 8
+.LC17:
+	.string	"wze::engine.assets.LoadCursor(): CursorPath must not be NULL\nParams: CursorPath: %p, HotSpotX: %d, HotSpotY: %d\n"
+	.align 8
+.LC18:
+	.string	"wze::engine.assets.LoadCursor(): IMG_Load() failed\nParams: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\n"
+	.align 8
+.LC19:
+	.string	"wze::engine.assets.LoadCursor(): HotSpotX out of range\nParams: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\n"
+	.align 8
+.LC20:
+	.string	"wze::engine.assets.LoadCursor(): HotSpotY out of range\nParams: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\n"
+	.align 8
+.LC21:
+	.string	"wze::engine.assets.LoadCursor(): SDL_CreateColorCursor() failed\nParams: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6assets10LoadCursorEPKctt
+	.type	_ZN3wze6engine6assets10LoadCursorEPKctt, @function
+_ZN3wze6engine6assets10LoadCursorEPKctt:
+.LFB8161:
+	.cfi_startproc
+	pushq	%r15
+	.cfi_def_cfa_offset 16
+	.cfi_offset 15, -16
+	pushq	%r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
+	pushq	%r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
+	movzwl	%cx, %r13d
+	pushq	%r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	movzwl	%dx, %r12d
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 80
+	movq	%fs:40, %rax
+	movq	%rax, 8(%rsp)
+	xorl	%eax, %eax
+	testq	%rsi, %rsi
+	je	.L686
+	movq	%rdi, %rbp
+	movq	%rsi, %rdi
+	movq	%rsi, %r14
+	call	IMG_Load@PLT
+	movq	%rax, %r15
+	testq	%rax, %rax
+	je	.L687
+	cmpl	%r12d, 16(%rax)
+	jle	.L688
+	cmpl	%r13d, 20(%rax)
+	jle	.L670
+	movq	56(%rbp), %rax
+	cmpq	$1, %rax
+	jbe	.L672
+	movq	64(%rbp), %rdx
+	movl	$1, %ebx
+	jmp	.L677
+	.p2align 4,,10
+	.p2align 3
+.L673:
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	je	.L672
+.L677:
+	cmpq	$0, (%rdx,%rbx,8)
+	jne	.L673
+	movl	%r13d, %edx
+	movl	%r12d, %esi
+	movq	%r15, %rdi
+	call	SDL_CreateColorCursor@PLT
+	movq	64(%rbp), %rdx
+	cmpq	56(%rbp), %rbx
+	jnb	.L689
+	movq	%rax, (%rdx,%rbx,8)
+	testq	%rax, %rax
+	je	.L690
+	movq	%r15, %rdi
+	call	SDL_FreeSurface@PLT
+	jmp	.L666
+	.p2align 4,,10
+	.p2align 3
+.L672:
+	movl	%r13d, %edx
+	movl	%r12d, %esi
+	movq	%r15, %rdi
+	call	SDL_CreateColorCursor@PLT
+	movq	64(%rbp), %rdi
+	movq	%rax, (%rsp)
+	movq	56(%rbp), %rax
+	leaq	1(%rax), %rsi
+	movq	%rsi, 56(%rbp)
+	salq	$3, %rsi
+	call	realloc@PLT
+	movq	%rax, 64(%rbp)
+	testq	%rax, %rax
+	je	.L691
+	movq	56(%rbp), %rdx
+	movq	%rsp, %rdi
+	leaq	-8(%rax,%rdx,8), %rsi
+	movl	$8, %edx
+	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	movq	56(%rbp), %rax
+	movq	64(%rbp), %rdx
+	leaq	-1(%rax), %rcx
+	testq	%rax, %rax
+	je	.L692
+	cmpq	$0, (%rdx,%rcx,8)
+	je	.L693
+	movq	%r15, %rdi
+	call	SDL_FreeSurface@PLT
+	movq	56(%rbp), %rbx
+	subq	$1, %rbx
+.L666:
+	movq	8(%rsp), %rax
+	subq	%fs:40, %rax
+	jne	.L694
+	addq	$24, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 56
+	movq	%rbx, %rax
 	popq	%rbx
 	.cfi_def_cfa_offset 48
 	popq	%rbp
@@ -2964,236 +3031,73 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	ret
 .L689:
 	.cfi_restore_state
-	movq	%rdi, %rax
-	jmp	.L659
-	.p2align 4,,10
-	.p2align 3
-.L664:
-	leaq	-1(%rax), %rsi
-	cmpq	%rdi, %rsi
-	jnb	.L685
-	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L690
-	movq	%rsi, %rax
-.L659:
-	cmpq	$1, %rax
-	jne	.L664
-.L663:
-	leaq	40(%r15), %rdi
-	movq	%rcx, %rdx
-	movq	%rax, %rsi
-	call	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy.isra.0
-	jmp	.L681
-.L636:
-	testq	%rdi, %rdi
-	jne	.L681
-	orq	$-1, %rsi
-	jmp	.L685
-	.p2align 4,,10
-	.p2align 3
-.L690:
-	subq	%rax, %rdi
-	movq	%rdi, %rcx
-	jmp	.L663
-.L687:
-	movq	%rbx, %rsi
-	jmp	.L685
-.L688:
-	movq	%r14, %rsi
-	jmp	.L685
-	.cfi_endproc
-.LFE8162:
-	.size	_ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE, .-_ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE
-	.section	.rodata.str1.8
-	.align 8
-.LC26:
-	.string	"wze::engine.assets.LoadCursor(): Path must not be NULL\nParams: Path: %p\n"
-	.align 8
-.LC27:
-	.string	"wze::engine.assets.LoadCursor(): IMG_Load() failed\nParams: Path: %s\n"
-	.align 8
-.LC28:
-	.string	"wze::engine.assets.LoadCursor(): HotSpotX out of range\nParams: Path: %s\n"
-	.align 8
-.LC29:
-	.string	"wze::engine.assets.LoadCursor(): HotSpotY out of range\nParams: Path: %s\n"
-	.align 8
-.LC30:
-	.string	"wze::engine.assets.LoadCursor(): SDL_CreateColorCursor() failed\nParams: Path: %s\n"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6assets10LoadCursorEPKctt
-	.type	_ZN3wze6engine6assets10LoadCursorEPKctt, @function
-_ZN3wze6engine6assets10LoadCursorEPKctt:
-.LFB8163:
-	.cfi_startproc
-	pushq	%r14
-	.cfi_def_cfa_offset 16
-	.cfi_offset 14, -16
-	pushq	%r13
-	.cfi_def_cfa_offset 24
-	.cfi_offset 13, -24
-	pushq	%r12
-	.cfi_def_cfa_offset 32
-	.cfi_offset 12, -32
-	pushq	%rbp
-	.cfi_def_cfa_offset 40
-	.cfi_offset 6, -40
-	pushq	%rbx
-	.cfi_def_cfa_offset 48
-	.cfi_offset 3, -48
-	subq	$16, %rsp
-	.cfi_def_cfa_offset 64
-	movq	%fs:40, %rax
-	movq	%rax, 8(%rsp)
-	xorl	%eax, %eax
-	testq	%rsi, %rsi
-	je	.L714
-	movq	%rdi, %rbp
-	movq	%rsi, %rdi
-	movq	%rsi, %r13
-	movl	%edx, %ebx
-	movl	%ecx, %r14d
-	call	IMG_Load@PLT
-	movq	%rax, %r12
-	testq	%rax, %rax
-	je	.L715
-	movzwl	%bx, %esi
-	cmpl	%esi, 16(%rax)
-	jle	.L716
-	movzwl	%r14w, %r14d
-	cmpl	%r14d, 20(%rax)
-	jle	.L695
-	movq	56(%rbp), %rax
-	cmpq	$1, %rax
-	jbe	.L697
-	movq	64(%rbp), %rdx
-	movl	$1, %ebx
-	jmp	.L702
-	.p2align 4,,10
-	.p2align 3
-.L698:
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	je	.L697
-.L702:
-	cmpq	$0, (%rdx,%rbx,8)
-	jne	.L698
-	movl	%r14d, %edx
-	movq	%r12, %rdi
-	call	SDL_CreateColorCursor@PLT
-	movq	64(%rbp), %rdx
-	cmpq	56(%rbp), %rbx
-	jnb	.L717
-	movq	%rax, (%rdx,%rbx,8)
-	testq	%rax, %rax
-	je	.L707
-	movq	%r12, %rdi
-	call	SDL_FreeSurface@PLT
-	jmp	.L691
-	.p2align 4,,10
-	.p2align 3
-.L697:
-	movl	%r14d, %edx
-	movq	%r12, %rdi
-	call	SDL_CreateColorCursor@PLT
-	movq	64(%rbp), %rdi
-	movq	%rax, (%rsp)
-	movq	56(%rbp), %rax
-	leaq	1(%rax), %rsi
-	movq	%rsi, 56(%rbp)
-	salq	$3, %rsi
-	call	realloc@PLT
-	movq	%rax, 64(%rbp)
-	testq	%rax, %rax
-	je	.L718
-	movq	56(%rbp), %rdx
-	movq	%rsp, %rdi
-	leaq	-8(%rax,%rdx,8), %rsi
-	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
-	movq	56(%rbp), %rax
-	movq	64(%rbp), %rdx
-	leaq	-1(%rax), %rcx
-	testq	%rax, %rax
-	je	.L719
-	cmpq	$0, (%rdx,%rcx,8)
-	je	.L707
-	movq	%r12, %rdi
-	call	SDL_FreeSurface@PLT
-	movq	56(%rbp), %rbx
-	subq	$1, %rbx
-.L691:
-	movq	8(%rsp), %rax
-	subq	%fs:40, %rax
-	jne	.L720
-	addq	$16, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 48
-	movq	%rbx, %rax
-	popq	%rbx
-	.cfi_def_cfa_offset 40
-	popq	%rbp
-	.cfi_def_cfa_offset 32
-	popq	%r12
-	.cfi_def_cfa_offset 24
-	popq	%r13
-	.cfi_def_cfa_offset 16
-	popq	%r14
-	.cfi_def_cfa_offset 8
-	ret
-.L717:
-	.cfi_restore_state
 	leaq	.LC7(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L695:
-	leaq	.LC29(%rip), %rdi
-	movq	%r13, %rsi
+.L690:
+	leaq	.LC21(%rip), %rdi
+	movl	%r13d, %ecx
+	movl	%r12d, %edx
+	movq	%r14, %rsi
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L670:
+	leaq	.LC20(%rip), %rdi
+	movl	%r13d, %ecx
+	movl	%r12d, %edx
+	movq	%r14, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L716:
-	leaq	.LC28(%rip), %rdi
-	movq	%r13, %rsi
+.L688:
+	leaq	.LC19(%rip), %rdi
+	movl	%r13d, %ecx
+	movl	%r12d, %edx
+	movq	%r14, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L715:
-	leaq	.LC27(%rip), %rdi
-	movq	%r13, %rsi
+.L687:
+	leaq	.LC18(%rip), %rdi
+	movl	%r13d, %ecx
+	movl	%r12d, %edx
+	movq	%r14, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L714:
-	leaq	.LC26(%rip), %rdi
+.L686:
+	leaq	.LC17(%rip), %rdi
+	movl	%r13d, %ecx
+	movl	%r12d, %edx
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L720:
+.L694:
 	call	__stack_chk_fail@PLT
-.L707:
-	leaq	.LC30(%rip), %rdi
-	movq	%r13, %rsi
+.L693:
+	leaq	.LC21(%rip), %rdi
+	movl	%r13d, %ecx
+	movl	%r12d, %edx
+	movq	%r14, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L719:
+.L692:
 	leaq	.LC7(%rip), %rdi
 	orq	$-1, %rsi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L718:
+.L691:
 	leaq	.LC9(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
@@ -3201,56 +3105,72 @@ _ZN3wze6engine6assets10LoadCursorEPKctt:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8163:
+.LFE8161:
 	.size	_ZN3wze6engine6assets10LoadCursorEPKctt, .-_ZN3wze6engine6assets10LoadCursorEPKctt
-	.section	.rodata.str1.8
-	.align 8
-.LC31:
-	.string	"wze::engine.assets.UnloadCursor(): Illegal deletion of NULL cursor\nParams: ID: %lld\n"
-	.align 8
-.LC32:
-	.string	"wze::engine.assets.UnloadCursor(): Cursor does not exist\nParams: ID: %lld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets12UnloadCursorEy
 	.type	_ZN3wze6engine6assets12UnloadCursorEy, @function
 _ZN3wze6engine6assets12UnloadCursorEy:
-.LFB8164:
+.LFB8162:
 	.cfi_startproc
+	cmpq	56(%rdi), %rsi
+	jb	.L719
+	xorl	%eax, %eax
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L719:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
+	movq	%rsi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 24
 	.cfi_offset 3, -24
+	movq	%rdi, %rbx
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
-	testq	%rsi, %rsi
-	je	.L735
-	movq	%rdi, %rbp
-	movq	%rsi, %rbx
-	cmpq	56(%rdi), %rsi
-	jnb	.L723
 	movq	64(%rdi), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
-	je	.L723
+	je	.L697
 	call	SDL_FreeCursor@PLT
-	movq	56(%rbp), %rax
-	movq	64(%rbp), %rdx
-	cmpq	%rax, %rbx
-	jnb	.L736
-	movq	$0, (%rdx,%rbx,8)
+	movq	56(%rbx), %rax
+	movq	64(%rbx), %rdx
+	cmpq	%rax, %rbp
+	jnb	.L720
+	movq	$0, (%rdx,%rbp,8)
 	cmpq	$0, -8(%rdx,%rax,8)
 	leaq	-1(%rax), %rdi
-	je	.L737
-.L726:
-	movq	0(%rbp), %rax
-	cmpq	%rbx, 336(%rax)
-	jne	.L731
+	jne	.L700
+	cmpq	$1, %rax
+	je	.L700
+	movq	%rax, %rsi
+	.p2align 4,,10
+	.p2align 3
+.L704:
+	movq	%rsi, %rcx
+	subq	$1, %rsi
+	cmpq	%rax, %rsi
+	jnb	.L721
+	cmpq	$0, (%rdx,%rsi,8)
+	jne	.L722
+	cmpq	$1, %rsi
+	jne	.L704
+.L703:
+	leaq	56(%rbx), %rax
+	movq	%rdi, %rdx
+	movq	%rax, %rdi
+	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0
+	.p2align 4,,10
+	.p2align 3
+.L700:
+	movq	(%rbx), %rax
+	cmpq	%rbp, 336(%rax)
+	jne	.L697
 	movq	$0, 336(%rax)
-.L731:
+.L697:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -3262,147 +3182,93 @@ _ZN3wze6engine6assets12UnloadCursorEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L737:
+.L722:
 	.cfi_restore_state
-	movq	%rax, %rsi
-	.p2align 4,,10
-	.p2align 3
-.L730:
-	movq	%rsi, %rcx
-	subq	$1, %rsi
-	cmpq	%rax, %rsi
-	jnb	.L734
-	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L738
-	cmpq	$1, %rsi
-	jne	.L730
-.L729:
-	leaq	56(%rbp), %rax
-	movq	%rdi, %rdx
-	movq	%rax, %rdi
-	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0
-	jmp	.L726
-	.p2align 4,,10
-	.p2align 3
-.L738:
 	subq	%rcx, %rax
 	movq	%rcx, %rsi
 	movq	%rax, %rdi
-	jmp	.L729
-.L736:
-	movq	%rbx, %rsi
-.L734:
+	jmp	.L703
+.L721:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L723:
-	leaq	.LC32(%rip), %rdi
-	movq	%rbx, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L735:
-	leaq	.LC31(%rip), %rdi
-	xorl	%esi, %esi
+.L720:
+	leaq	.LC7(%rip), %rdi
+	movq	%rbp, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8164:
+.LFE8162:
 	.size	_ZN3wze6engine6assets12UnloadCursorEy, .-_ZN3wze6engine6assets12UnloadCursorEy
-	.section	.rodata.str1.8
-	.align 8
-.LC33:
-	.string	"wze::engine.assets.PurgeCursors(): Cursor does not exist\nParams: Keep(length): %ld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE
 	.type	_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE, @function
 _ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE:
-.LFB8165:
+.LFB8163:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
 	.cfi_offset 13, -16
-	movq	%rdi, %r13
 	pushq	%r12
 	.cfi_def_cfa_offset 24
 	.cfi_offset 12, -24
-	movq	%rsi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 32
 	.cfi_offset 6, -32
-	movq	%rdx, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 40
 	.cfi_offset 3, -40
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 48
-	movq	56(%rdi), %rdx
-	testq	%rbp, %rbp
-	je	.L740
-	xorl	%eax, %eax
-	.p2align 4,,10
-	.p2align 3
-.L743:
-	movq	(%r12,%rax,8), %rcx
-	testq	%rcx, %rcx
-	je	.L741
-	cmpq	%rdx, %rcx
-	jnb	.L742
-	movq	64(%r13), %rsi
-	cmpq	$0, (%rsi,%rcx,8)
-	je	.L742
-.L741:
-	addq	$1, %rax
-	cmpq	%rax, %rbp
-	jne	.L743
-.L740:
-	cmpq	$1, %rdx
-	jbe	.L744
-	movq	64(%r13), %rcx
+	movq	56(%rdi), %rcx
+	cmpq	$1, %rcx
+	jbe	.L724
+	movq	%rdx, %rbp
+	movq	64(%rdi), %rdx
+	movq	%rdi, %r12
+	movq	%rsi, %r13
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L745:
+.L732:
 	xorl	%eax, %eax
 	testq	%rbp, %rbp
-	je	.L746
-.L753:
-	cmpq	%rbx, (%r12,%rax,8)
-	je	.L747
+	je	.L726
+.L725:
+	cmpq	0(%r13,%rax,8), %rbx
+	je	.L727
 	addq	$1, %rax
 	cmpq	%rax, %rbp
-	jne	.L753
-.L746:
-	movq	0(%r13), %rax
+	jne	.L725
+.L726:
+	movq	(%r12), %rax
 	cmpq	%rbx, 336(%rax)
-	jne	.L749
+	jne	.L729
 	movq	$0, 336(%rax)
-	movq	56(%r13), %rdx
-.L749:
-	cmpq	%rdx, %rbx
-	jnb	.L775
-	movq	(%rcx,%rbx,8), %rdi
+	movq	56(%r12), %rcx
+.L729:
+	cmpq	%rcx, %rbx
+	jnb	.L748
+	movq	(%rdx,%rbx,8), %rdi
 	call	SDL_FreeCursor@PLT
-	movq	56(%r13), %rdx
-	movq	64(%r13), %rcx
-	cmpq	%rdx, %rbx
-	jnb	.L775
-	movq	$0, (%rcx,%rbx,8)
-.L747:
+	movq	56(%r12), %rcx
+	movq	64(%r12), %rdx
+	cmpq	%rcx, %rbx
+	jnb	.L748
+	movq	$0, (%rdx,%rbx,8)
+.L727:
 	addq	$1, %rbx
-	cmpq	%rdx, %rbx
-	jb	.L745
-	cmpq	$0, -8(%rcx,%rdx,8)
-	leaq	-1(%rdx), %r8
-	je	.L777
-.L773:
+	cmpq	%rcx, %rbx
+	jb	.L732
+	cmpq	$0, -8(%rdx,%rcx,8)
+	leaq	-1(%rcx), %r8
+	je	.L750
+.L746:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -3416,24 +3282,24 @@ _ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L777:
+.L750:
 	.cfi_restore_state
-	movq	%rdx, %rax
-	jmp	.L754
+	movq	%rcx, %rax
+	jmp	.L733
 	.p2align 4,,10
 	.p2align 3
-.L759:
+.L738:
 	leaq	-1(%rax), %rsi
-	cmpq	%rdx, %rsi
-	jnb	.L776
-	cmpq	$0, (%rcx,%rsi,8)
-	jne	.L778
+	cmpq	%rcx, %rsi
+	jnb	.L749
+	cmpq	$0, (%rdx,%rsi,8)
+	jne	.L751
 	movq	%rsi, %rax
-.L754:
+.L733:
 	cmpq	$1, %rax
-	jne	.L759
-.L758:
-	leaq	56(%r13), %rdi
+	jne	.L738
+.L737:
+	leaq	56(%r12), %rdi
 	movq	%rax, %rsi
 	movq	%r8, %rdx
 	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0
@@ -3450,12 +3316,12 @@ _ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L744:
+.L724:
 	.cfi_restore_state
-	testq	%rdx, %rdx
-	jne	.L773
+	testq	%rcx, %rcx
+	jne	.L746
 	orq	$-1, %rsi
-.L776:
+.L749:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -3463,156 +3329,86 @@ _ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L778:
-	subq	%rax, %rdx
-	movq	%rdx, %r8
-	jmp	.L758
-.L742:
-	leaq	.LC33(%rip), %rdi
-	movq	%rbp, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L775:
+.L751:
+	subq	%rax, %rcx
+	movq	%rcx, %r8
+	jmp	.L737
+.L748:
 	movq	%rbx, %rsi
-	jmp	.L776
+	jmp	.L749
 	.cfi_endproc
-.LFE8165:
+.LFE8163:
 	.size	_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE, .-_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC34:
-	.string	"wze::engine.assets.PurgeCursors(): Cursor does not exist\nParams: Keep: %p\n"
+.LC22:
+	.string	"wze::engine.assets.PurgeCursors(): Keep must not be NULL\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE, @function
 _ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE:
-.LFB8166:
+.LFB8164:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
 	.cfi_offset 12, -16
-	movq	%rsi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 24
 	.cfi_offset 6, -24
-	movq	%rdi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	movq	(%rsi), %rcx
-	movq	56(%rdi), %rdi
-	testq	%rcx, %rcx
-	je	.L780
-	movq	8(%rsi), %r8
-	xorl	%eax, %eax
-	jmp	.L783
-	.p2align 4,,10
-	.p2align 3
-.L781:
-	addq	$1, %rax
-	cmpq	%rax, %rcx
-	je	.L780
-.L783:
-	movq	(%r8,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L781
-	cmpq	%rdi, %rdx
-	jnb	.L782
-	movq	64(%rbp), %rsi
-	cmpq	$0, (%rsi,%rdx,8)
-	jne	.L781
-.L782:
-	leaq	.LC34(%rip), %rdi
-	movq	%r12, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L780:
-	cmpq	$1, %rdi
-	jbe	.L784
-	movq	64(%rbp), %rdx
+	testq	%rsi, %rsi
+	je	.L753
+	movq	56(%rdi), %rax
+	movq	%rdi, %r12
+	cmpq	$1, %rax
+	jbe	.L783
+	movq	%rsi, %rbp
+	movq	64(%rdi), %rsi
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L793:
-	movq	8(%r12), %rsi
-	xorl	%eax, %eax
+.L763:
+	movq	0(%rbp), %rcx
+	movq	8(%rbp), %rdi
+	xorl	%edx, %edx
 	testq	%rcx, %rcx
-	je	.L785
-.L786:
-	cmpq	(%rsi,%rax,8), %rbx
-	je	.L787
-	addq	$1, %rax
-	cmpq	%rcx, %rax
-	jne	.L786
+	je	.L756
+.L757:
+	cmpq	(%rdi,%rdx,8), %rbx
+	je	.L758
+	addq	$1, %rdx
+	cmpq	%rdx, %rcx
+	jne	.L757
 	.p2align 4,,10
 	.p2align 3
-.L785:
-	movq	0(%rbp), %rax
-	cmpq	%rbx, 336(%rax)
-	jne	.L789
-	movq	$0, 336(%rax)
-	movq	56(%rbp), %rdi
-.L789:
-	cmpq	%rdi, %rbx
-	jnb	.L816
-	movq	(%rdx,%rbx,8), %rdi
+.L756:
+	movq	(%r12), %rdx
+	cmpq	%rbx, 336(%rdx)
+	jne	.L760
+	movq	$0, 336(%rdx)
+	movq	56(%r12), %rax
+.L760:
+	cmpq	%rax, %rbx
+	jnb	.L781
+	movq	(%rsi,%rbx,8), %rdi
 	call	SDL_FreeCursor@PLT
-	movq	56(%rbp), %rdi
-	movq	64(%rbp), %rdx
-	cmpq	%rdi, %rbx
-	jnb	.L816
-	movq	$0, (%rdx,%rbx,8)
-.L787:
+	movq	56(%r12), %rax
+	movq	64(%r12), %rsi
+	cmpq	%rax, %rbx
+	jnb	.L781
+	movq	$0, (%rsi,%rbx,8)
+.L758:
 	addq	$1, %rbx
-	cmpq	%rdi, %rbx
-	jnb	.L792
-	movq	(%r12), %rcx
-	jmp	.L793
-	.p2align 4,,10
-	.p2align 3
-.L792:
-	cmpq	$0, -8(%rdx,%rdi,8)
-	leaq	-1(%rdi), %rcx
-	je	.L818
-.L814:
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbp
-	.cfi_def_cfa_offset 16
-	popq	%r12
-	.cfi_def_cfa_offset 8
-	ret
-.L818:
-	.cfi_restore_state
-	movq	%rdi, %rax
-	jmp	.L794
-	.p2align 4,,10
-	.p2align 3
-.L799:
-	leaq	-1(%rax), %rsi
-	cmpq	%rdi, %rsi
-	jnb	.L817
-	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L819
-	movq	%rsi, %rax
-.L794:
-	cmpq	$1, %rax
-	jne	.L799
-.L798:
-	leaq	56(%rbp), %rdi
-	movq	%rax, %rsi
-	movq	%rcx, %rdx
-	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0
+	cmpq	%rax, %rbx
+	jb	.L763
+	cmpq	$0, -8(%rsi,%rax,8)
+	leaq	-1(%rax), %r8
+	je	.L784
+.L779:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -3624,26 +3420,66 @@ _ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE:
 	ret
 .L784:
 	.cfi_restore_state
-	testq	%rdi, %rdi
-	jne	.L814
-	orq	$-1, %rsi
-	jmp	.L817
+	movq	%rax, %rcx
+	jmp	.L764
 	.p2align 4,,10
 	.p2align 3
-.L819:
-	movq	%rdi, %rcx
-	subq	%rax, %rcx
-	jmp	.L798
-.L816:
+.L769:
+	leaq	-1(%rcx), %rdx
+	cmpq	%rax, %rdx
+	jnb	.L785
+	cmpq	$0, (%rsi,%rdx,8)
+	jne	.L786
+	movq	%rdx, %rcx
+.L764:
+	cmpq	$1, %rcx
+	jne	.L769
+.L768:
+	leaq	56(%r12), %rdi
+	movq	%r8, %rdx
+	movq	%rcx, %rsi
+	call	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	xorl	%eax, %eax
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
+	.cfi_def_cfa_offset 8
+	ret
+.L783:
+	.cfi_restore_state
+	testq	%rax, %rax
+	jne	.L779
+	orq	$-1, %rsi
+	jmp	.L782
+	.p2align 4,,10
+	.p2align 3
+.L786:
+	subq	%rcx, %rax
+	movq	%rax, %r8
+	jmp	.L768
+.L781:
 	movq	%rbx, %rsi
-.L817:
+.L782:
 	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
+.L785:
+	movq	%rdx, %rsi
+	jmp	.L782
+.L753:
+	leaq	.LC22(%rip), %rdi
+	xorl	%esi, %esi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
-.LFE8166:
+.LFE8164:
 	.size	_ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE, .-_ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
