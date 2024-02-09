@@ -23,7 +23,7 @@ namespace wze
             {
                 if ((this->Overlapboxes[i] = new overlapbox(this->Engine, this->Actor, Type)) == NULL)
                 {
-                    printf("wze::engine.actors[].overlapboxes.New(): Memory allocation failed\n");
+                    printf("wze::engine.actors[].overlapboxes.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
                     exit(1);
                 }
 
@@ -33,24 +33,24 @@ namespace wze
 
         if ((this->Overlapboxes += {new overlapbox(this->Engine, this->Actor, Type)})[this->Overlapboxes.Length() - 1] == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes.New(): Memory allocation failed\n");
+            printf("wze::engine.actors[].overlapboxes.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
             exit(1);
         }
 
         return this->Overlapboxes.Length() - 1;
     }
 
-    uint8 engine::actors::actor::overlapboxes::Delete(uint64 ID)
+    uint8 engine::actors::actor::overlapboxes::Delete(uint64 OverlapboxID)
     {
         uint64 i;
 
-        if (this->Overlapboxes.Length() <= ID || this->Overlapboxes[ID] == NULL)
+        if (this->Overlapboxes.Length() <= OverlapboxID || this->Overlapboxes[OverlapboxID] == NULL)
         {
             return 0;
         }
 
-        delete this->Overlapboxes[ID];
-        this->Overlapboxes[ID] = NULL;
+        delete this->Overlapboxes[OverlapboxID];
+        this->Overlapboxes[OverlapboxID] = NULL;
 
         if (this->Overlapboxes[this->Overlapboxes.Length() -  1] == NULL && 1 < this->Overlapboxes.Length())
         {
@@ -132,20 +132,20 @@ namespace wze
         return 0;
     }
 
-    engine::actors::actor::overlapboxes::overlapbox& engine::actors::actor::overlapboxes::operator [] (uint64 ID)
+    engine::actors::actor::overlapboxes::overlapbox& engine::actors::actor::overlapboxes::operator [] (uint64 OverlapboxID)
     {
-        if (ID == 0)
+        if (OverlapboxID == 0)
         {
-            printf("wze::engine.actors[].overlapboxes[]: Illegal access to NULL Overlapbox\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].overlapboxes[]: Illegal access to NULL Overlapbox\nParams: OverlapboxID: %lld\n", OverlapboxID);
             exit(1);
         }
-        if (this->Overlapboxes.Length() <= ID || this->Overlapboxes[ID] == NULL)
+        if (this->Overlapboxes.Length() <= OverlapboxID || this->Overlapboxes[OverlapboxID] == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes[]: Overlapbox does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].overlapboxes[]: Overlapbox does not exist\nParams: OverlapboxID: %lld\n", OverlapboxID);
             exit(1);
         }
 
-        return *this->Overlapboxes[ID];
+        return *this->Overlapboxes[OverlapboxID];
     }
 
     engine::actors::actor::overlapboxes::overlapbox::overlapbox(engine* Engine, actor* Actor, uint64 Type) : Engine(Engine), Actor(Actor)
@@ -170,6 +170,11 @@ namespace wze
         this->UpdateOverlapboxActiveScale();
     }
 
+    uint64 engine::actors::actor::overlapboxes::overlapbox::GetType()
+    {
+        return this->Type;
+    }
+
     void* engine::actors::actor::overlapboxes::overlapbox::GetActorData()
     {
         return this->Actor->Data;
@@ -178,11 +183,6 @@ namespace wze
     uint64 engine::actors::actor::overlapboxes::overlapbox::GetActorType()
     {
         return this->Actor->Type;
-    }
-
-    uint64 engine::actors::actor::overlapboxes::overlapbox::GetType()
-    {
-        return this->Type;
     }
 
     double engine::actors::actor::overlapboxes::overlapbox::GetX()
@@ -230,12 +230,11 @@ namespace wze
 
     uint16 engine::actors::actor::overlapboxes::overlapbox::SetWidth(uint16 Width)
     {
-        this->Width = Width;
-
         this->ActiveMedianLength = this->Engine->Vector.Length(0, 0, Width, this->Height) / 2;
         this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, Width, this->Height) : 0;
         this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(Width, 0, 0, this->Height) : 0;
 
+        this->Width = Width;
         this->UpdateOverlapboxActiveScale();
 
         return this->Width;
@@ -248,12 +247,11 @@ namespace wze
 
     uint16 engine::actors::actor::overlapboxes::overlapbox::SetHeight(uint16 Height)
     {
-        this->Height = Height;
-
         this->ActiveMedianLength = this->Engine->Vector.Length(0, 0, this->Width, Height) / 2;
         this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, this->Width, Height) : 0;
         this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(this->Width, 0, 0, Height) : 0;
 
+        this->Height = Height;
         this->UpdateOverlapboxActiveScale();
 
         return this->Height;
@@ -273,7 +271,6 @@ namespace wze
         }
 
         this->Angle = Angle;
-
         this->UpdateOverlapboxActiveScale();
 
         return this->Angle;
@@ -298,7 +295,8 @@ namespace wze
 
         if (ActorID == 0)
         {
-            return false;
+            printf("wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Illegal use of NULL Actor\nParams: ActorID: %lld, OverlapboxID: %lld\n", ActorID, OverlapboxID);
+            exit(1);
         }
         if (this->Engine->Actors.Actors.Length() <= ActorID || this->Engine->Actors.Actors[ActorID] == NULL)
         {
@@ -307,7 +305,8 @@ namespace wze
         }
         if (OverlapboxID == 0)
         {
-            return false;
+            printf("wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Illegal use of NULL Overlapbox\nParams: ActorID: %lld, OverlapboxID: %lld\n", ActorID, OverlapboxID);
+            exit(1);
         }
         if (this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes.Length() <= OverlapboxID || this->Engine->Actors.Actors[ActorID]->Overlapboxes.Overlapboxes[OverlapboxID] == NULL)
         {

@@ -541,9 +541,9 @@ namespace wze
                                     bool AngleLocked;
                                     bool OffsetAngleLocked;
                                     bool Visible;
+                                    neo::uint64 GetType();
                                     void* GetActorData();
                                     neo::uint64 GetActorType();
-                                    neo::uint64 GetType();
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
@@ -584,10 +584,10 @@ namespace wze
 
                             public:
                                 neo::uint64 New(neo::uint64 Type);
-                                neo::uint8 Delete(neo::uint64 ID);
+                                neo::uint8 Delete(neo::uint64 OverlapboxID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
                                 neo::uint8 Purge(neo::array<neo::uint64>* Keep);
-                                overlapbox& operator [] (neo::uint64 ID);
+                                overlapbox& operator [] (neo::uint64 OverlapboxID);
 
                             private:
                                 neo::array<overlapbox*> Overlapboxes;
