@@ -9,8 +9,8 @@ Demo assets made by ansimuz. (https://ansimuz.itch.io/sunny-land-pixel-game-art)
 ## How to use the Keys subclass?
 
 The keys subclass appears to be empty, but hold on \
-it has an [] operator overload and you can get the \
-state of every key that is present in the key enum.
+it has a [] operator overload and you can get the \
+state of every key that is present in the "key" enum.
 
 ## How to load Assets?
 
@@ -43,7 +43,7 @@ it can not be deleted or accessed, but you can use it in some cases, \
 for example to give an Actor's Texture object and empty TextureID. \
 (In this case the renderer will skip the Texture object.) \
 Just to mention another useful example of using ID 0, if you don't want \
-your Actor to have collision, you need to set it's CollisionLayer to 0. \
+your Actor to have collision, you need to set its CollisionLayer to 0. \
 (No collisions occur in CollisionLayer 0)
 
 ## Example main function
