@@ -1,9 +1,22 @@
 # Wizard Engine ![Wizard Engine](https://github.com/zanadoman/Wizard-Engine/blob/main/Build/engine/wizard.png)
+
 2D game engine for Linux and Windows, written in C/C++ over SDL2\
 Relies on NeoTypes++ (https://github.com/zanadoman/NeoTypesPP) library\
 Demo assets made by ansimuz (https://ansimuz.itch.io/sunny-land-pixel-game-art)
 
 # Wiki
+
+## How to load assets?
+
+Use Assets inner class of your Engine instance\
+The load functions will return the id of the loaded stuff,\
+and it is your responsibility to store them in integer variables
+
+## How to get actors?
+
+You can request new Actors from the Actors subclass\
+and you should store the new Actor's ID in an integer variable\
+as before
 
 ## Example main function
 
