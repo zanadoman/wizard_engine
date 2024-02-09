@@ -132,9 +132,9 @@ namespace wze
                     double SetOffsetY(double OffsetY);
                     double GetZoom();
                     double SetZoom(double Zoom);
-                    neo::uint8 Bind(neo::uint64 Actor);
-                    neo::uint8 BindX(neo::uint64 Actor);
-                    neo::uint8 BindY(neo::uint64 Actor);
+                    neo::uint64 Bind(neo::uint64 ActorID);
+                    neo::uint64 BindX(neo::uint64 ActorID);
+                    neo::uint64 BindY(neo::uint64 ActorID);
                     neo::uint8 Unbind();
                     neo::uint8 UnbindX();
                     neo::uint8 UnbindY();

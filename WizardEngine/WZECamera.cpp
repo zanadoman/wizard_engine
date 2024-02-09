@@ -19,8 +19,8 @@ namespace wze
         this->MinSpeedY = 0.25;
         this->MaxSpeedX = 0.75;
         this->MaxSpeedY = 0.75;
-        this->AccelerationRateX = 0.001;
-        this->AccelerationRateY = 0.001;
+        this->DecelerationRateX = 0.001;
+        this->DecelerationRateY = 0.001;
         this->AccelerationRateX = 0.001;
         this->AccelerationRateY = 0.001;
         this->SlowDownRangeX = 0;
@@ -82,84 +82,70 @@ namespace wze
         return this->Zoom = Zoom;
     }
 
-    uint64 engine::camera::GetXActor()
+    uint64 engine::camera::Bind(uint64 ActorID)
     {
-        return this->XActor;
+        if (ActorID == 0)
+        {
+            this->X = ActorID;
+            this->Y = ActorID;
+
+            return ActorID;
+        }
+        if (this->Engine->Actors.Actors.Length() <= ActorID || this->Engine->Actors.Actors[ActorID] == NULL)
+        {
+            printf("wze::engine.camera.Bind(): Actor does not exist\nParams: ActorID: %lld\n", ActorID);
+            exit(1);
+        }
+        if (this->Engine->Actors.Actors[ActorID]->Layer == 0)
+        {
+            printf("wze::engine.camera.Bind(): Actor must not be in Layer 0\nParams: ActorID: %lld\n", ActorID);
+            exit(1);
+        }
+
+        this->XActor = ActorID;
+        this->YActor = ActorID;
+
+        return ActorID;
     }
 
-    uint64 engine::camera::GetYActor()
+    uint64 engine::camera::BindX(uint64 ActorID)
     {
-        return this->YActor;
+        if (ActorID == 0)
+        {
+            return this->XActor = ActorID;
+        }
+        if (this->Engine->Actors.Actors.Length() <= ActorID || this->Engine->Actors.Actors[ActorID] == NULL)
+        {
+            printf("wze::engine.camera.BindX(): Actor does not exist\nParams: ActorID: %lld\n", ActorID);
+            exit(1);
+        }
+        if (this->Engine->Actors.Actors[ActorID]->Layer == 0)
+        {
+            printf("wze::engine.camera.BindX(): Actor must not be in Layer 0\nParams: ActorID: %lld\n", ActorID);
+            exit(1);
+        }
+
+        return this->XActor = ActorID;
     }
 
-    uint8 engine::camera::Bind(uint64 Actor)
+    uint64 engine::camera::BindY(uint64 ActorID)
     {
-        if (Actor == 0)
+        if (ActorID == 0)
         {
-            printf("wze::engine.camera.Bind(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
+            return this->YActor = ActorID;
+        }
+        if (this->Engine->Actors.Actors.Length() <= ActorID || this->Engine->Actors.Actors[ActorID] == NULL)
+        {
+            printf("wze::engine.camera.BindY(): Actor does not exist\nParams: ActorID: %lld\n", ActorID);
             exit(1);
         }
-        if (this->Engine->Actors.Actors.Length() <= Actor || this->Engine->Actors.Actors[Actor] == NULL)
+        if (this->Engine->Actors.Actors[ActorID]->Layer == 0)
         {
-            printf("wze::engine.camera.Bind(): Actor does not exist\nParams: Actor: %lld\n", Actor);
-            exit(1);
-        }
-        if (this->Engine->Actors.Actors[Actor]->Layer == 0)
-        {
-            printf("wze::engine.camera.Bind(): Actor must not be in Layer 0\nParams: Actor: %lld\n", Actor);
-            exit(1);
-        }
-
-        this->XActor = Actor;
-        this->YActor = Actor;
-
-        return 0;
-    }
-
-    uint8 engine::camera::BindX(uint64 Actor)
-    {
-        if (Actor == 0)
-        {
-            printf("wze::engine.camera.BindX(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
-            exit(1);
-        }
-        if (this->Engine->Actors.Actors.Length() <= Actor || this->Engine->Actors.Actors[Actor] == NULL)
-        {
-            printf("wze::engine.camera.BindX(): Actor does not exist\nParams: Actor: %lld\n", Actor);
-            exit(1);
-        }
-        if (this->Engine->Actors.Actors[Actor]->Layer == 0)
-        {
-            printf("wze::engine.camera.BindX(): Actor must not be in Layer 0\nParams: Actor: %lld\n", Actor);
+            printf("wze::engine.camera.BindY(): Actor must not be in Layer 0\nParams: ActorID: %lld\n", ActorID);
             exit(1);
         }
 
-        this->XActor = Actor;
-
-        return 0;
-    }
-
-    uint8 engine::camera::BindY(uint64 Actor)
-    {
-        if (Actor == 0)
-        {
-            printf("wze::engine.camera.BindY(): Illegal to bind to NULL Actor\nParams: Actor: %lld\n", Actor);
-            exit(1);
-        }
-        if (this->Engine->Actors.Actors.Length() <= Actor || this->Engine->Actors.Actors[Actor] == NULL)
-        {
-            printf("wze::engine.camera.BindY(): Actor does not exist\nParams: Actor: %lld\n", Actor);
-            exit(1);
-        }
-        if (this->Engine->Actors.Actors[Actor]->Layer == 0)
-        {
-            printf("wze::engine.camera.BindY(): Actor must not be in Layer 0\nParams: Actor: %lld\n", Actor);
-            exit(1);
-        }
-
-        this->YActor = Actor;
-
-        return 0;
+        return this->YActor = ActorID;
     }
 
     uint8 engine::camera::Unbind()
@@ -182,6 +168,16 @@ namespace wze
         this->YActor = 0;
 
         return 0;
+    }
+
+    uint64 engine::camera::GetXActor()
+    {
+        return this->XActor;
+    }
+
+    uint64 engine::camera::GetYActor()
+    {
+        return this->YActor;
     }
 
     double engine::camera::GetX()

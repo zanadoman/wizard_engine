@@ -53,6 +53,8 @@ namespace wze
         this->Render.RenderHeight = WindowHeight - 1;
         this->Camera.OffsetX = -(WindowWidth >> 1);
         this->Camera.OffsetY = -(WindowHeight >> 1);
+        this->Camera.SlowDownRangeX = WindowWidth >> 3;
+        this->Camera.SlowDownRangeY = WindowWidth >> 3;
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
         srand(time(NULL));
