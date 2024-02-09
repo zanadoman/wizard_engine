@@ -7,14 +7,14 @@ namespace wze
 {
     engine::camera::camera(engine* Engine) : Engine(Engine)
     {
+        this->Smoothing = false;
         this->OffsetX = 0;
         this->OffsetY = 0;
-        this->Smoothing = false;
+        this->Zoom = 1;
         this->XActor = 0;
         this->YActor = 0;
-        this->CameraX = 0;
-        this->CameraY = 0;
-        this->Zoom = 1;
+        this->X = 0;
+        this->Y = 0;
         this->MinSpeedX = 0.25;
         this->MinSpeedY = 0.25;
         this->MaxSpeedX = 0.75;
@@ -27,6 +27,38 @@ namespace wze
         this->SlowDownRangeY = 0;
         this->CurrentSpeedX = 0.25;
         this->CurrentSpeedY = 0.25;
+    }
+
+    double engine::camera::GetOffsetX()
+    {
+        return this->OffsetX;
+    }
+
+    double engine::camera::SetOffsetX(double OffsetX)
+    {
+        if (OffsetX != OffsetX)
+        {
+            printf("wze::engine.camera.SetOffsetX(): OffsetX must not be NaN\nParams: OffsetX: %lf\n", OffsetX);
+            exit(1);
+        }
+
+        return this->OffsetX = OffsetX;
+    }
+
+    double engine::camera::GetOffsetY()
+    {
+        return this->OffsetY;
+    }
+
+    double engine::camera::SetOffsetY(double OffsetY)
+    {
+        if (OffsetY != OffsetY)
+        {
+            printf("wze::engine.camera.SetOffsetY(): OffsetY must not be NaN\nParams: OffsetY: %lf\n", OffsetY);
+            exit(1);
+        }
+
+        return this->OffsetY = OffsetY;
     }
 
     double engine::camera::GetZoom()
@@ -150,6 +182,16 @@ namespace wze
         this->YActor = 0;
 
         return 0;
+    }
+
+    double engine::camera::GetX()
+    {
+        return this->X;
+    }
+
+    double engine::camera::GetY()
+    {
+        return this->Y;
     }
 
     double engine::camera::GetMinSpeedX()
@@ -412,17 +454,17 @@ namespace wze
 
         if (this->Smoothing)
         {
-            if (this->CameraX == this->Engine->Actors.Actors[this->XActor]->X)
+            if (this->X == this->Engine->Actors.Actors[this->XActor]->X)
             {
                 this->CurrentSpeedX = this->MinSpeedX;
             }
-            if (this->CameraY == this->Engine->Actors.Actors[this->YActor]->Y)
+            if (this->Y == this->Engine->Actors.Actors[this->YActor]->Y)
             {
                 this->CurrentSpeedY = this->MinSpeedY;
             }
-            if (this->CameraX != this->Engine->Actors.Actors[this->XActor]->X || this->CameraY != this->Engine->Actors.Actors[this->YActor]->Y)
+            if (this->X != this->Engine->Actors.Actors[this->XActor]->X || this->Y != this->Engine->Actors.Actors[this->YActor]->Y)
             {
-                angle = this->Engine->Vector.Angle(this->CameraX, this->CameraY, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y);
+                angle = this->Engine->Vector.Angle(this->X, this->Y, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y);
             }
         }
 
@@ -430,24 +472,24 @@ namespace wze
         {
             if (this->Smoothing && angle == angle)
             {
-                if (this->CameraX < this->Engine->Actors.Actors[this->XActor]->X)
+                if (this->X < this->Engine->Actors.Actors[this->XActor]->X)
                 {
-                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeedX * this->Engine->Timing.DeltaTime, angle);
+                    this->X = this->Engine->Vector.TerminalX(this->X, this->CurrentSpeedX * this->Engine->Timing.DeltaTime, angle);
 
-                    if (this->Engine->Actors.Actors[this->XActor]->X < this->CameraX)
+                    if (this->Engine->Actors.Actors[this->XActor]->X < this->X)
                     {
-                        this->CameraX = this->Engine->Actors.Actors[this->XActor]->X;
+                        this->X = this->Engine->Actors.Actors[this->XActor]->X;
                     }
 
                     moved = true;
                 }
-                else if (this->Engine->Actors.Actors[this->XActor]->X < this->CameraX)
+                else if (this->Engine->Actors.Actors[this->XActor]->X < this->X)
                 {
-                    this->CameraX = this->Engine->Vector.TerminalX(this->CameraX, this->CurrentSpeedX * this->Engine->Timing.DeltaTime, angle);
+                    this->X = this->Engine->Vector.TerminalX(this->X, this->CurrentSpeedX * this->Engine->Timing.DeltaTime, angle);
 
-                    if (this->CameraX < this->Engine->Actors.Actors[this->XActor]->X)
+                    if (this->X < this->Engine->Actors.Actors[this->XActor]->X)
                     {
-                        this->CameraX = this->Engine->Actors.Actors[this->XActor]->X;
+                        this->X = this->Engine->Actors.Actors[this->XActor]->X;
                     }
 
                     moved = true;
@@ -455,7 +497,7 @@ namespace wze
             }
             else
             {
-                this->CameraX = this->Engine->Actors.Actors[this->XActor]->X;
+                this->X = this->Engine->Actors.Actors[this->XActor]->X;
             }
         }
         
@@ -463,24 +505,24 @@ namespace wze
         {
             if (this->Smoothing && angle == angle)
             {
-                if (this->CameraY < this->Engine->Actors.Actors[this->YActor]->Y)
+                if (this->Y < this->Engine->Actors.Actors[this->YActor]->Y)
                 {
-                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeedY * this->Engine->Timing.DeltaTime, angle);
+                    this->Y = this->Engine->Vector.TerminalY(this->Y, this->CurrentSpeedY * this->Engine->Timing.DeltaTime, angle);
 
-                    if (this->Engine->Actors.Actors[this->YActor]->Y < this->CameraY)
+                    if (this->Engine->Actors.Actors[this->YActor]->Y < this->Y)
                     {
-                        this->CameraY = this->Engine->Actors.Actors[this->YActor]->Y;
+                        this->Y = this->Engine->Actors.Actors[this->YActor]->Y;
                     }
 
                     moved = true;
                 }
-                else if (this->Engine->Actors.Actors[this->YActor]->Y < this->CameraY)
+                else if (this->Engine->Actors.Actors[this->YActor]->Y < this->Y)
                 {
-                    this->CameraY = this->Engine->Vector.TerminalY(this->CameraY, this->CurrentSpeedY * this->Engine->Timing.DeltaTime, angle);
+                    this->Y = this->Engine->Vector.TerminalY(this->Y, this->CurrentSpeedY * this->Engine->Timing.DeltaTime, angle);
 
-                    if (this->CameraY < this->Engine->Actors.Actors[this->YActor]->Y)
+                    if (this->Y < this->Engine->Actors.Actors[this->YActor]->Y)
                     {
-                        this->CameraY = this->Engine->Actors.Actors[this->YActor]->Y;
+                        this->Y = this->Engine->Actors.Actors[this->YActor]->Y;
                     }
 
                     moved = true;
@@ -488,11 +530,11 @@ namespace wze
             }
             else
             {
-                this->CameraY = this->Engine->Actors.Actors[this->YActor]->Y;
+                this->Y = this->Engine->Actors.Actors[this->YActor]->Y;
             }
         }
 
-        if (moved && this->MinSpeedX < this->CurrentSpeedX && this->Engine->Vector.Length(this->CameraX, this->CameraY, this->Engine->Actors[this->XActor].GetX(), this->Engine->Actors[this->YActor].GetY()) <= this->SlowDownRangeX)
+        if (moved && this->MinSpeedX < this->CurrentSpeedX && this->Engine->Vector.Length(this->X, this->Y, this->Engine->Actors[this->XActor].GetX(), this->Engine->Actors[this->YActor].GetY()) <= this->SlowDownRangeX)
         {
             this->CurrentSpeedX -= this->DecelerationRateX * this->Engine->Timing.DeltaTime;
 
@@ -510,7 +552,7 @@ namespace wze
                 this->CurrentSpeedX = this->MaxSpeedX;
             }
         }
-        if (moved && this->MinSpeedY < this->CurrentSpeedY && this->Engine->Vector.Length(this->CameraX, this->CameraY, this->Engine->Actors[this->XActor].GetX(), this->Engine->Actors[this->YActor].GetY()) <= this->SlowDownRangeY)
+        if (moved && this->MinSpeedY < this->CurrentSpeedY && this->Engine->Vector.Length(this->X, this->Y, this->Engine->Actors[this->XActor].GetX(), this->Engine->Actors[this->YActor].GetY()) <= this->SlowDownRangeY)
         {
             this->CurrentSpeedY -= this->DecelerationRateY * this->Engine->Timing.DeltaTime;
 
@@ -550,8 +592,8 @@ namespace wze
             cache = this->Zoom * Layer;
             result.w = floor(Width * cache);
             result.h = floor(Height * cache);
-            result.x = (sint32)floor((X - (this->CameraX + this->OffsetX / cache)) * cache) - (result.w >> 1);
-            result.y = -((sint32)floor((Y - (this->CameraY + this->OffsetY / cache)) * cache) - this->Engine->Render.RenderHeight) - (result.h >> 1);
+            result.x = (sint32)floor((X - (this->X + this->OffsetX / cache)) * cache) - (result.w >> 1);
+            result.y = -((sint32)floor((Y - (this->Y + this->OffsetY / cache)) * cache) - this->Engine->Render.RenderHeight) - (result.h >> 1);
         }
 
         return result;

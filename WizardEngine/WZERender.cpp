@@ -79,7 +79,7 @@ namespace wze
 
             for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Colors.Colors.Length(); j++)
             {
-                if (this->Engine->Actors.Actors[i]->Colors.Colors[j] == NULL || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Width == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Height == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Visible == false)
+                if (this->Engine->Actors.Actors[i]->Colors.Colors[j] == NULL || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Width == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Height == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->ColorA == 0 || !this->Engine->Actors.Actors[i]->Colors.Colors[j]->Visible)
                 {
                     continue;
                 }
@@ -126,7 +126,7 @@ namespace wze
 
             for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Textures.Textures.Length(); j++)
             {
-                if (this->Engine->Actors.Actors[i]->Textures.Textures[j] == NULL || this->Engine->Actors.Actors[i]->Textures.Textures[j]->Width == 0 || this->Engine->Actors.Actors[i]->Textures.Textures[j]->Height == 0 || this->Engine->Actors.Actors[i]->Textures.Textures[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Textures.Textures[j]->Visible == false || this->Engine->Actors.Actors[i]->Textures.Textures[j]->TextureID == 0)
+                if (this->Engine->Actors.Actors[i]->Textures.Textures[j] == NULL || this->Engine->Actors.Actors[i]->Textures.Textures[j]->Width == 0 || this->Engine->Actors.Actors[i]->Textures.Textures[j]->Height == 0 || this->Engine->Actors.Actors[i]->Textures.Textures[j]->ColorA == 0 || !this->Engine->Actors.Actors[i]->Textures.Textures[j]->Visible || this->Engine->Actors.Actors[i]->Textures.Textures[j]->TextureID == 0)
                 {
                     continue;
                 }
@@ -173,7 +173,7 @@ namespace wze
 
             for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks.Length(); j++)
             {
-                if (this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Visible == false || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame] == 0)
+                if (this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j] == NULL || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Width == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Height == 0 || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->ColorA == 0 || !this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Visible || this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame] == 0)
                 {
                     continue;
                 }
@@ -220,7 +220,7 @@ namespace wze
 
             for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Texts.Texts.Length(); j++)
             {
-                if (this->Engine->Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Visible == false || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture == NULL)
+                if (this->Engine->Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || !this->Engine->Actors.Actors[i]->Texts.Texts[j]->Visible || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture == NULL)
                 {
                     continue;
                 }
@@ -511,12 +511,12 @@ namespace wze
 
         if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, 0, 0, 0, 255) != 0)
         {
-            printf("wze::engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed\n");
+            printf("wze::engine.render.RenderingStage(): SDL_SetRenderDrawColor() failed\n");
             exit(1);
         }
         if (SDL_RenderClear(this->Engine->Window.Renderer) != 0)
         {
-            printf("wze::engine.render.OpenFrame(): SDL_RenderClear() failed\n");
+            printf("wze::engine.render.RenderingStage(): SDL_RenderClear() failed\n");
             exit(1);
         }
 

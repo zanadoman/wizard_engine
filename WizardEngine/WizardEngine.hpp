@@ -125,19 +125,23 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    double OffsetX;
-                    double OffsetY;
                     bool Smoothing;
+                    double GetOffsetX();
+                    double SetOffsetX(double OffsetX);
+                    double GetOffsetY();
+                    double SetOffsetY(double OffsetY);
                     double GetZoom();
                     double SetZoom(double Zoom);
-                    neo::uint64 GetXActor();
-                    neo::uint64 GetYActor();
                     neo::uint8 Bind(neo::uint64 Actor);
                     neo::uint8 BindX(neo::uint64 Actor);
                     neo::uint8 BindY(neo::uint64 Actor);
                     neo::uint8 Unbind();
                     neo::uint8 UnbindX();
                     neo::uint8 UnbindY();
+                    neo::uint64 GetXActor();
+                    neo::uint64 GetYActor();
+                    double GetX();
+                    double GetY();
                     double GetMinSpeedX();
                     double SetMinSpeedX(double MinSpeedX);
                     double GetMinSpeedY();
@@ -160,11 +164,13 @@ namespace wze
                     double SetSlowDownRangeY(double SlowDownRangeY);
 
                 private:
+                    double OffsetX;
+                    double OffsetY;
+                    double Zoom;
                     neo::uint64 XActor;
                     neo::uint64 YActor;
-                    double CameraX;
-                    double CameraY;
-                    double Zoom;
+                    double X;
+                    double Y;
                     double MinSpeedX;
                     double MinSpeedY;
                     double MaxSpeedX;

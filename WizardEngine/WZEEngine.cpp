@@ -6,7 +6,7 @@ using namespace neo;
 
 namespace wze
 {
-    engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Threads(this), Assets(this), Timing(this), EventQueue(10)
+    engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Threads(this), Assets(this), Timing(this)
     {
         uint8 LogoAsset;
         uint8 LogoActor;
@@ -229,7 +229,7 @@ namespace wze
 
                 if (ActiveTopLeftX <= CursorX && CursorX <= ActiveBotRightX && ActiveBotRightY <= CursorY && CursorY <= ActiveTopLeftY)
                 {
-                    state |= BTN_HOVERED;
+                    state = BTN_HOVERED;
 
                     if (this->Keys[KEY_LMB])
                     {

@@ -882,27 +882,24 @@ _ZN3wze6engine6UpdateEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC6:
-	.string	"neo::array(): Memory allocation failed\nParams: Length: %lld\n"
-	.align 8
-.LC7:
 	.string	"wze::engine.engine(): TargetFrameTime must not be equal to 0\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n"
 	.align 8
-.LC8:
+.LC7:
 	.string	"wze::engine.engine(): SDL_Init() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n"
 	.align 8
-.LC9:
+.LC8:
 	.string	"wze::engine.engine(): Mix_Init() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n"
 	.align 8
-.LC10:
+.LC9:
 	.string	"wze::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n"
 	.align 8
-.LC11:
+.LC10:
 	.string	"wze::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB14:
+.LCOLDB13:
 	.text
-.LHOTB14:
+.LHOTB13:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engineC2EPKcS2_tth
@@ -995,41 +992,37 @@ _ZN3wze6engineC2EPKcS2_tth:
 .LEHB7:
 	call	_ZN3wze6engine6timingC1EPS0_@PLT
 .LEHE7:
-	movq	$10, 544(%rbx)
-	movl	$560, %edi
-	call	malloc@PLT
-	movq	%rax, 552(%rbx)
-	testq	%rax, %rax
-	je	.L185
 	testq	%r14, %r14
 	leaq	.LC3(%rip), %rax
+	movq	$0, 544(%rbx)
+	movq	$0, 552(%rbx)
 	cmove	%rax, %r14
 	testq	%r15, %r15
 	leaq	.LC4(%rip), %rax
 	cmove	%rax, %r15
 	cmpb	$0, 8(%rsp)
-	je	.L186
+	je	.L184
 	movl	$62001, %edi
 .LEHB8:
 	call	SDL_Init@PLT
 	testl	%eax, %eax
-	jne	.L187
+	jne	.L185
 	movl	$251, %edi
 	call	Mix_Init@PLT
 	testl	%eax, %eax
-	je	.L188
+	je	.L186
 	movl	$2048, %ecx
 	movl	$2, %edx
 	movl	$32784, %esi
 	movl	$44100, %edi
 	call	Mix_OpenAudio@PLT
 	testl	%eax, %eax
-	jne	.L189
+	jne	.L187
 	call	TTF_Init@PLT
 	movzwl	(%rsp), %ecx
 	movzwl	%r13w, %r8d
 	testl	%eax, %eax
-	jne	.L190
+	jne	.L188
 	movq	%r15, %rdx
 	movq	%r14, %rsi
 	movq	%rbx, %rdi
@@ -1094,14 +1087,14 @@ _ZN3wze6engineC2EPKcS2_tth:
 	call	_ZN3wze6engine6actors5actor8texturesixEy@PLT
 	movb	$0, 23(%rax)
 	movq	$0x000000000, (%rsp)
-	jmp	.L141
+	jmp	.L140
 	.p2align 4,,10
 	.p2align 3
-.L146:
+.L145:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6UpdateEv
 	testb	%al, %al
-	je	.L183
+	je	.L182
 	movsd	(%rsp), %xmm0
 	call	round@PLT
 	movq	%r13, %rsi
@@ -1112,26 +1105,26 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	%r15, %rsi
 	call	_ZN3wze6engine6actors5actor8texturesixEy@PLT
 	movb	%r14b, 23(%rax)
-.L141:
+.L140:
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
 	pxor	%xmm0, %xmm0
-	movsd	.LC13(%rip), %xmm5
+	movsd	.LC12(%rip), %xmm5
 	cvtsi2sdq	%rax, %xmm0
-	mulsd	.LC12(%rip), %xmm0
+	mulsd	.LC11(%rip), %xmm0
 	addsd	(%rsp), %xmm0
 	comisd	%xmm0, %xmm5
 	movsd	%xmm0, (%rsp)
-	jnb	.L146
-	jmp	.L147
+	jnb	.L145
+	jmp	.L146
 	.p2align 4,,10
 	.p2align 3
-.L151:
+.L150:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6UpdateEv
 	testb	%al, %al
-	je	.L183
+	je	.L182
 	movsd	(%rsp), %xmm0
 	call	round@PLT
 	movq	%r13, %rsi
@@ -1142,7 +1135,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	%r15, %rsi
 	call	_ZN3wze6engine6actors5actor8texturesixEy@PLT
 	movb	%r14b, 23(%rax)
-.L147:
+.L146:
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
@@ -1150,12 +1143,12 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movsd	(%rsp), %xmm3
 	pxor	%xmm6, %xmm6
 	cvtsi2sdq	%rax, %xmm0
-	mulsd	.LC12(%rip), %xmm0
+	mulsd	.LC11(%rip), %xmm0
 	subsd	%xmm0, %xmm3
 	comisd	%xmm6, %xmm3
 	movsd	%xmm3, (%rsp)
-	jnb	.L151
-.L183:
+	jnb	.L150
+.L182:
 	movq	%r13, %rsi
 	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
@@ -1168,7 +1161,6 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	8(%rsp), %rsi
 	movq	16(%rsp), %rdi
 	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
-.LEHE8:
 	addq	$40, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -1185,42 +1177,25 @@ _ZN3wze6engineC2EPKcS2_tth:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L185:
+.L184:
 	.cfi_restore_state
-	movl	$10, %esi
+	movzwl	(%rsp), %ecx
+	xorl	%r9d, %r9d
+	movzwl	%r13w, %r8d
+	movq	%r15, %rdx
+	movq	%r14, %rsi
 	leaq	.LC6(%rip), %rdi
-.LEHB9:
+	xorl	%eax, %eax
 	call	printf@PLT
-.LEHE9:
 .L136:
 	movl	$1, %edi
 	call	exit@PLT
-.L190:
-	movzbl	8(%rsp), %r9d
-	movq	%r15, %rdx
-	movq	%r14, %rsi
-	xorl	%eax, %eax
-	leaq	.LC11(%rip), %rdi
-.LEHB10:
-	call	printf@PLT
-	jmp	.L136
-.L189:
-	movzwl	(%rsp), %ecx
-	movzbl	8(%rsp), %r9d
-	movzwl	%r13w, %r8d
-	xorl	%eax, %eax
-	movq	%r15, %rdx
-	movq	%r14, %rsi
-	leaq	.LC10(%rip), %rdi
-	call	printf@PLT
-	jmp	.L136
 .L188:
-	movzwl	(%rsp), %ecx
 	movzbl	8(%rsp), %r9d
 	movq	%r15, %rdx
 	movq	%r14, %rsi
-	movzwl	%r13w, %r8d
-	leaq	.LC9(%rip), %rdi
+	xorl	%eax, %eax
+	leaq	.LC10(%rip), %rdi
 	call	printf@PLT
 	jmp	.L136
 .L187:
@@ -1230,44 +1205,53 @@ _ZN3wze6engineC2EPKcS2_tth:
 	xorl	%eax, %eax
 	movq	%r15, %rdx
 	movq	%r14, %rsi
-	leaq	.LC8(%rip), %rdi
+	leaq	.LC9(%rip), %rdi
 	call	printf@PLT
 	jmp	.L136
 .L186:
 	movzwl	(%rsp), %ecx
-	xorl	%r9d, %r9d
+	movzbl	8(%rsp), %r9d
+	movq	%r15, %rdx
+	movq	%r14, %rsi
 	movzwl	%r13w, %r8d
+	leaq	.LC8(%rip), %rdi
+	call	printf@PLT
+	jmp	.L136
+.L185:
+	movzwl	(%rsp), %ecx
+	movzbl	8(%rsp), %r9d
+	movzwl	%r13w, %r8d
+	xorl	%eax, %eax
 	movq	%r15, %rdx
 	movq	%r14, %rsi
 	leaq	.LC7(%rip), %rdi
-	xorl	%eax, %eax
 	call	printf@PLT
-.LEHE10:
+.LEHE8:
 	jmp	.L136
-.L164:
+.L162:
 	movq	%rax, %rbp
 	jmp	.L159
 .L167:
 	movq	%rax, %rbp
-	jmp	.L153
-.L165:
+	jmp	.L151
+.L164:
 	movq	%rax, %rbp
-	jmp	.L158
+	jmp	.L157
 .L163:
 	movq	%rax, %rbp
-	jmp	.L160
-.L168:
-	movq	%rax, %rbp
-	jmp	.L152
-.L169:
-	movq	%rax, %rbp
-	jmp	.L156
+	jmp	.L158
 .L166:
 	movq	%rax, %rbp
-	jmp	.L154
-.L170:
+	jmp	.L152
+.L165:
 	movq	%rax, %rbp
-	jmp	.L156
+	jmp	.L153
+.L169:
+	movq	%rax, %rbp
+	jmp	.L155
+.L168:
+	movq	%rax, %rbp
+	jmp	.L155
 	.section	.gcc_except_table
 .LLSDA8162:
 	.byte	0xff
@@ -1281,43 +1265,35 @@ _ZN3wze6engineC2EPKcS2_tth:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB8162
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L163-.LFB8162
+	.uleb128 .L162-.LFB8162
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB8162
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L164-.LFB8162
+	.uleb128 .L163-.LFB8162
 	.uleb128 0
 	.uleb128 .LEHB3-.LFB8162
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L165-.LFB8162
+	.uleb128 .L164-.LFB8162
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB8162
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L169-.LFB8162
+	.uleb128 .L168-.LFB8162
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB8162
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L170-.LFB8162
+	.uleb128 .L169-.LFB8162
 	.uleb128 0
 	.uleb128 .LEHB6-.LFB8162
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L166-.LFB8162
+	.uleb128 .L165-.LFB8162
 	.uleb128 0
 	.uleb128 .LEHB7-.LFB8162
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L167-.LFB8162
+	.uleb128 .L166-.LFB8162
 	.uleb128 0
 	.uleb128 .LEHB8-.LFB8162
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L168-.LFB8162
-	.uleb128 0
-	.uleb128 .LEHB9-.LFB8162
-	.uleb128 .LEHE9-.LEHB9
 	.uleb128 .L167-.LFB8162
-	.uleb128 0
-	.uleb128 .LEHB10-.LFB8162
-	.uleb128 .LEHE10-.LEHB10
-	.uleb128 .L168-.LFB8162
 	.uleb128 0
 .LLSDACSE8162:
 	.text
@@ -1329,7 +1305,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	.type	_ZN3wze6engineC2EPKcS2_tth.cold, @function
 _ZN3wze6engineC2EPKcS2_tth.cold:
 .LFSB8162:
-.L152:
+.L151:
 	.cfi_def_cfa_offset 96
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -1339,7 +1315,7 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	.cfi_offset 15, -16
 	movq	552(%rbx), %rdi
 	call	free@PLT
-.L153:
+.L152:
 	movq	496(%rbx), %rdi
 	call	free@PLT
 	movq	480(%rbx), %rdi
@@ -1348,38 +1324,38 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	call	free@PLT
 	movq	448(%rbx), %rdi
 	call	free@PLT
-.L154:
+.L153:
 	movq	424(%rbx), %rdi
 	xorl	%r12d, %r12d
 	call	free@PLT
-.L155:
+.L154:
 	movq	392(%rbx), %rdi
 	cmpq	384(%rbx), %r12
-	jb	.L157
+	jb	.L156
 	call	free@PLT
-.L158:
+.L157:
 	movq	360(%rbx), %rdi
 	call	free@PLT
-.L159:
+.L158:
 	movq	24(%rsp), %rdi
 	call	_ZN3wze6engine4keysD1Ev@PLT
-.L160:
+.L159:
 	movq	72(%rbx), %rdi
 	call	free@PLT
 	movq	%rbp, %rdi
-.LEHB11:
+.LEHB9:
 	call	_Unwind_Resume@PLT
-.LEHE11:
-.L157:
+.LEHE9:
+.L156:
 	movq	%r12, %rax
 	addq	$1, %r12
 	salq	$4, %rax
 	movq	8(%rdi,%rax), %rdi
 	call	free@PLT
-	jmp	.L155
-.L156:
+	jmp	.L154
+.L155:
 	xorl	%r12d, %r12d
-	jmp	.L155
+	jmp	.L154
 	.cfi_endproc
 .LFE8162:
 	.section	.gcc_except_table
@@ -1389,8 +1365,8 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8162-.LLSDACSBC8162
 .LLSDACSBC8162:
-	.uleb128 .LEHB11-.LCOLDB14
-	.uleb128 .LEHE11-.LEHB11
+	.uleb128 .LEHB9-.LCOLDB13
+	.uleb128 .LEHE9-.LEHB9
 	.uleb128 0
 	.uleb128 0
 .LLSDACSEC8162:
@@ -1399,18 +1375,18 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	.size	_ZN3wze6engineC2EPKcS2_tth, .-_ZN3wze6engineC2EPKcS2_tth
 	.section	.text.unlikely
 	.size	_ZN3wze6engineC2EPKcS2_tth.cold, .-_ZN3wze6engineC2EPKcS2_tth.cold
-.LCOLDE14:
+.LCOLDE13:
 	.text
-.LHOTE14:
+.LHOTE13:
 	.globl	_ZN3wze6engineC1EPKcS2_tth
 	.set	_ZN3wze6engineC1EPKcS2_tth,_ZN3wze6engineC2EPKcS2_tth
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
-.LC12:
+.LC11:
 	.long	-1717986918
 	.long	1069128089
 	.align 8
-.LC13:
+.LC12:
 	.long	0
 	.long	1081073664
 	.hidden	DW.ref.__gxx_personality_v0
