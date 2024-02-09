@@ -652,10 +652,10 @@ namespace wze
 
                 public:
                     neo::uint64 New(void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
-                    neo::uint8 Delete(neo::uint64 ID);
+                    neo::uint8 Delete(neo::uint64 ActorID);
                     neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
                     neo::uint8 Purge(neo::array<neo::uint64>* Keep);
-                    actor& operator [] (neo::uint64 ID);
+                    actor& operator [] (neo::uint64 ActorID);
 
                 private:
                     neo::array<actor*> Actors;

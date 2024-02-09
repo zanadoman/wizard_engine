@@ -52,17 +52,17 @@ namespace wze
         return this->Actors.Length() - 1;
     }
 
-    uint8 engine::actors::Delete(uint64 ID)
+    uint8 engine::actors::Delete(uint64 ActorID)
     {
         uint64 i;
 
-        if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
+        if (this->Actors.Length() <= ActorID || this->Actors[ActorID] == NULL)
         {
             return 0;
         }
 
-        delete this->Actors[ID];
-        this->Actors[ID] = NULL;
+        delete this->Actors[ActorID];
+        this->Actors[ActorID] = NULL;
 
         if (this->Actors[this->Actors.Length() - 1] == NULL && 1 < this->Actors.Length())
         {
@@ -144,19 +144,19 @@ namespace wze
         return 0;
     }
 
-    engine::actors::actor& engine::actors::operator [] (uint64 ID)
+    engine::actors::actor& engine::actors::operator [] (uint64 ActorID)
     {
-        if (ID == 0)
+        if (ActorID == 0)
         {
-            printf("wze::engine.actors[]: Illegal access to NULL Actor\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[]: Illegal access to NULL Actor\nParams: ActorID: %lld\n", ActorID);
             exit(1);
         }
-        if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
+        if (this->Actors.Length() <= ActorID || this->Actors[ActorID] == NULL)
         {
-            printf("wze::engine.actors[]: Actor does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[]: Actor does not exist\nParams: ActorID: %lld\n", ActorID);
             exit(1);
         }
 
-        return *this->Actors[ID];
+        return *this->Actors[ActorID];
     }
 }
