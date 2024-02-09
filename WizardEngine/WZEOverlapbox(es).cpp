@@ -431,7 +431,7 @@ namespace wze
         }
         if (ActorIDBlacklist == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): AActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %ld, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist.size(), ActorIDBlacklist);
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %ld, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist.size(), ActorIDBlacklist);
             exit(1);
         }
 
@@ -476,17 +476,17 @@ namespace wze
 
         if (OverlapboxesByActors == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %p, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist);
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist);
             exit(1);
         }
         if (ActorTypeWhitelist == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorTypeWhitelist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %p, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist);
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorTypeWhitelist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist);
             exit(1);
         }
         if (ActorIDBlacklist == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): AActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %p, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist);
+            printf("wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist: %p\n", OverlapboxesByActors, ActorTypeWhitelist, ActorIDBlacklist);
             exit(1);
         }
 
