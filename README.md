@@ -13,14 +13,14 @@ Demo assets made by ansimuz (https://ansimuz.itch.io/sunny-land-pixel-game-art)
 \
 int main(int argc, char* *argv)\
 {\
-&emsp;wze::engine* Engine = new wze::engine(NULL, NULL, 1920, 1080, 1000 / 60);\
+&emsp;&emsp;wze::engine* Engine = new wze::engine(NULL, NULL, 1920, 1080, 1000 / 60);\
 \
-&emsp;while (Engine->Update())\
-&emsp;{\
-&emsp;&emsp;//Do\
-&emsp;&emsp;//Some\
-&emsp;&emsp;//Work\
-&emsp;}\
+&emsp;&emsp;while (Engine->Update())\
+&emsp;&emsp;{\
+&emsp;&emsp;&emsp;&emsp;//Do\
+&emsp;&emsp;&emsp;&emsp;//Some\
+&emsp;&emsp;&emsp;&emsp;//Work\
+&emsp;&emsp;}\
 \
 &emsp;return 0;\
 }
