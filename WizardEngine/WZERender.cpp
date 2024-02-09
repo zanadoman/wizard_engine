@@ -367,12 +367,12 @@ namespace wze
         token* *left;
         token* *right;
 
-        if ((left = (token* *)malloc(sizeof(token*) * (n1 = Middle - Left + 1))) == NULL)
+        if ((left = new token*[n1 = Middle - Left + 1]) == NULL)
         {
             printf("wze::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
         }
-        if ((right = (token* *)malloc(sizeof(token*) * (n2 = Right - Middle))) == NULL)
+        if ((right = new token*[n2 = Right - Middle]) == NULL)
         {
             printf("wze::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
@@ -414,8 +414,8 @@ namespace wze
             k++;
         }
 
-        free(left);
-        free(right);
+        delete[] left;
+        delete[] right;
 
         return 0;
     }
@@ -452,12 +452,12 @@ namespace wze
         token* *left;
         token* *right;
 
-        if ((left = (token* *)malloc(sizeof(token*) * (n1 = Middle - Left + 1))) == NULL)
+        if ((left = new token*[n1 = Middle - Left + 1]) == NULL)
         {
             printf("wze::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
         }
-        if ((right = (token* *)malloc(sizeof(token*) * (n2 = Right - Middle))) == NULL)
+        if ((right = new token*[n2 = Right - Middle]) == NULL)
         {
             printf("wze::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
@@ -499,8 +499,8 @@ namespace wze
             k++;
         }
 
-        free(left);
-        free(right);
+        delete[] left;
+        delete[] right;
 
         return 0;
     }

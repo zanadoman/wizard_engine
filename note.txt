@@ -14,6 +14,7 @@ Test/supervising sequence:
         Threads
         Audio
     Slightly nested:
+        Render
         Camera
         Vector
         Assets

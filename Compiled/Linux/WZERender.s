@@ -1813,11 +1813,11 @@ _ZN3wze6engine6render14SelectionStageEv.cold:
 .LCOLDE11:
 	.text
 .LHOTE11:
-	.section	.rodata.str1.8
-	.align 8
-.LC12:
-	.string	"wze::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld"
+	.section	.text.unlikely
+	.align 2
+.LCOLDB12:
 	.text
+.LHOTB12:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render17OrderByLayerMergeEyyy
@@ -1833,11 +1833,11 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy:
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
 	subq	%rsi, %r15
-	movq	%rdx, %r14
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
 	addq	$1, %r15
+	movabsq	$1152921504606846975, %r13
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
@@ -1847,28 +1847,29 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy:
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	movq	%rsi, %rbx
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 80
 	movq	%rdi, 8(%rsp)
-	leaq	0(,%r15,8), %rdi
 	movq	%rcx, (%rsp)
-	call	malloc@PLT
+	cmpq	%r15, %r13
+	jb	.L341
+	leaq	0(,%r15,8), %rdi
+	movq	%rdx, %r14
+	movq	%rsi, %rbx
+	call	_Znam@PLT
 	movq	(%rsp), %r9
-	testq	%rax, %rax
-	je	.L342
-	movq	%r9, %rbp
-	movq	%r9, (%rsp)
 	movq	%rax, %r12
+	movq	%r9, %rbp
 	subq	%r14, %rbp
+	cmpq	%rbp, %r13
+	jb	.L341
 	leaq	0(,%rbp,8), %rdi
-	call	malloc@PLT
-	movq	(%rsp), %r9
-	testq	%rax, %rax
-	movq	%rax, %r13
-	je	.L342
+	movq	%r9, (%rsp)
+	call	_Znam@PLT
 	testq	%r15, %r15
-	je	.L390
+	movq	(%rsp), %r9
+	movq	%rax, %r13
+	je	.L384
 	movq	8(%rsp), %rax
 	movq	%rbx, %rsi
 	movq	32(%rax), %rdx
@@ -1883,7 +1884,7 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy:
 	movq	%rax, %rsi
 .L348:
 	cmpq	%rdx, %rsi
-	jnb	.L388
+	jnb	.L385
 	movq	(%rcx,%rsi,8), %rax
 	movq	%rax, (%rdi,%rsi,8)
 	leaq	1(%rsi), %rax
@@ -1904,7 +1905,7 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy:
 	movq	%rax, %rsi
 .L351:
 	cmpq	%rdx, %rsi
-	jnb	.L388
+	jnb	.L386
 	movq	(%rcx,%rsi,8), %rax
 	movq	%rax, -8(%rdi,%rsi,8)
 	leaq	1(%rsi), %rax
@@ -1917,23 +1918,23 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy:
 	jmp	.L359
 	.p2align 4,,10
 	.p2align 3
-.L391:
+.L388:
 	cmpq	%rdx, %rbx
-	jnb	.L389
+	jnb	.L387
 	movq	%rdi, (%rcx,%rbx,8)
 	addq	$1, %rsi
 	addq	$1, %rbx
 	cmpq	%r15, %rax
 	jnb	.L361
-.L392:
+.L390:
 	cmpq	%rbp, %rsi
-	jnb	.L386
+	jnb	.L383
 .L359:
 	movq	0(%r13,%rsi,8), %rdi
 	movq	(%r12,%rax,8), %r8
 	movsd	16(%r8), %xmm0
 	comisd	16(%rdi), %xmm0
-	ja	.L391
+	ja	.L388
 	cmpq	%rdx, %rbx
 	jnb	.L389
 	movq	%r8, %rdi
@@ -1941,7 +1942,7 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy:
 	movq	%rdi, (%rcx,%rbx,8)
 	addq	$1, %rbx
 	cmpq	%r15, %rax
-	jb	.L392
+	jb	.L390
 	.p2align 4,,10
 	.p2align 3
 .L361:
@@ -1957,16 +1958,16 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy:
 .L365:
 	movq	(%rsi,%rbx,8), %rax
 	cmpq	%rdx, %rbx
-	jnb	.L389
+	jnb	.L391
 	movq	%rax, (%rcx,%rbx,8)
 	addq	$1, %rbx
 	cmpq	%rbp, %rbx
 	jne	.L365
 .L345:
 	movq	%r12, %rdi
-	call	free@PLT
+	call	_ZdaPv@PLT
 	movq	%r13, %rdi
-	call	free@PLT
+	call	_ZdaPv@PLT
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -1990,43 +1991,87 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy:
 	.cfi_restore_state
 	movq	(%r12,%rax,8), %rdi
 	cmpq	%rdx, %rbx
-	jnb	.L389
+	jnb	.L392
 	movq	%rdi, (%rcx,%rbx,8)
 	addq	$1, %rax
 	addq	$1, %rbx
-.L386:
+.L383:
 	cmpq	%r15, %rax
 	jb	.L363
 	jmp	.L361
 	.p2align 4,,10
 	.p2align 3
-.L390:
+.L384:
 	testq	%rbp, %rbp
 	je	.L345
 	movq	8(%rsp), %rax
 	movq	32(%rax), %rdx
 	movq	40(%rax), %rcx
 	jmp	.L344
-.L389:
-	movq	%rbx, %rsi
-.L388:
+.L385:
 	leaq	.LC2(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L342:
-	leaq	.LC12(%rip), %rdi
-	movq	%r9, %rcx
-	movq	%r14, %rdx
+.L391:
+	leaq	.LC2(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L392:
+	leaq	.LC2(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L386:
+	leaq	.LC2(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L387:
+	leaq	.LC2(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L389:
+	leaq	.LC2(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
+	.section	.text.unlikely
+	.cfi_startproc
+	.type	_ZN3wze6engine6render17OrderByLayerMergeEyyy.cold, @function
+_ZN3wze6engine6render17OrderByLayerMergeEyyy.cold:
+.LFSB8163:
+.L341:
+	.cfi_def_cfa_offset 80
+	.cfi_offset 3, -56
+	.cfi_offset 6, -48
+	.cfi_offset 12, -40
+	.cfi_offset 13, -32
+	.cfi_offset 14, -24
+	.cfi_offset 15, -16
+	call	__cxa_throw_bad_array_new_length@PLT
+	.cfi_endproc
 .LFE8163:
+	.text
 	.size	_ZN3wze6engine6render17OrderByLayerMergeEyyy, .-_ZN3wze6engine6render17OrderByLayerMergeEyyy
+	.section	.text.unlikely
+	.size	_ZN3wze6engine6render17OrderByLayerMergeEyyy.cold, .-_ZN3wze6engine6render17OrderByLayerMergeEyyy.cold
+.LCOLDE12:
+	.text
+.LHOTE12:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render12OrderByLayerEyy
@@ -2107,11 +2152,11 @@ _ZN3wze6engine6render12OrderByLayerEyy:
 	.cfi_endproc
 .LFE8162:
 	.size	_ZN3wze6engine6render12OrderByLayerEyy, .-_ZN3wze6engine6render12OrderByLayerEyy
-	.section	.rodata.str1.8
-	.align 8
-.LC13:
-	.string	"wze::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld"
+	.section	.text.unlikely
+	.align 2
+.LCOLDB13:
 	.text
+.LHOTB13:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render20OrderByPriorityMergeEyyy
@@ -2127,11 +2172,11 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
 	subq	%rsi, %r15
-	movq	%rdx, %r14
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
 	addq	$1, %r15
+	movabsq	$1152921504606846975, %r13
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
@@ -2141,28 +2186,29 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	movq	%rsi, %rbx
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 80
 	movq	%rdi, 8(%rsp)
-	leaq	0(,%r15,8), %rdi
 	movq	%rcx, (%rsp)
-	call	malloc@PLT
+	cmpq	%r15, %r13
+	jb	.L404
+	leaq	0(,%r15,8), %rdi
+	movq	%rdx, %r14
+	movq	%rsi, %rbx
+	call	_Znam@PLT
 	movq	(%rsp), %r9
-	testq	%rax, %rax
-	je	.L405
-	movq	%r9, %rbp
-	movq	%r9, (%rsp)
 	movq	%rax, %r12
+	movq	%r9, %rbp
 	subq	%r14, %rbp
+	cmpq	%rbp, %r13
+	jb	.L404
 	leaq	0(,%rbp,8), %rdi
-	call	malloc@PLT
-	movq	(%rsp), %r9
-	testq	%rax, %rax
-	movq	%rax, %r13
-	je	.L405
+	movq	%r9, (%rsp)
+	call	_Znam@PLT
 	testq	%r15, %r15
-	je	.L450
+	movq	(%rsp), %r9
+	movq	%rax, %r13
+	je	.L444
 	movq	8(%rsp), %rax
 	movq	%rbx, %rsi
 	movq	32(%rax), %rdx
@@ -2177,7 +2223,7 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
 	movq	%rax, %rsi
 .L411:
 	cmpq	%rdx, %rsi
-	jnb	.L448
+	jnb	.L445
 	movq	(%rcx,%rsi,8), %rax
 	movq	%rax, (%rdi,%rsi,8)
 	leaq	1(%rsi), %rax
@@ -2198,7 +2244,7 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
 	movq	%rax, %rsi
 .L414:
 	cmpq	%rdx, %rsi
-	jnb	.L448
+	jnb	.L446
 	movq	(%rcx,%rsi,8), %rax
 	movq	%rax, -8(%rdi,%rsi,8)
 	leaq	1(%rsi), %rax
@@ -2211,23 +2257,23 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
 	jmp	.L421
 	.p2align 4,,10
 	.p2align 3
-.L451:
+.L448:
 	cmpq	%rdx, %rbx
-	jnb	.L449
+	jnb	.L447
 	movq	%rdi, (%rcx,%rbx,8)
 	addq	$1, %rsi
 	addq	$1, %rbx
 	cmpq	%r15, %rax
 	jnb	.L423
-.L452:
+.L450:
 	cmpq	%rbp, %rsi
-	jnb	.L446
+	jnb	.L443
 .L421:
 	movq	(%r12,%rax,8), %r8
 	movq	0(%r13,%rsi,8), %rdi
 	movzbl	24(%r8), %r10d
 	cmpb	%r10b, 24(%rdi)
-	jb	.L451
+	jb	.L448
 	cmpq	%rdx, %rbx
 	jnb	.L449
 	movq	%r8, %rdi
@@ -2235,7 +2281,7 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
 	movq	%rdi, (%rcx,%rbx,8)
 	addq	$1, %rbx
 	cmpq	%r15, %rax
-	jb	.L452
+	jb	.L450
 	.p2align 4,,10
 	.p2align 3
 .L423:
@@ -2251,16 +2297,16 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
 .L427:
 	movq	(%rsi,%rbx,8), %rax
 	cmpq	%rdx, %rbx
-	jnb	.L449
+	jnb	.L451
 	movq	%rax, (%rcx,%rbx,8)
 	addq	$1, %rbx
 	cmpq	%rbp, %rbx
 	jne	.L427
 .L408:
 	movq	%r12, %rdi
-	call	free@PLT
+	call	_ZdaPv@PLT
 	movq	%r13, %rdi
-	call	free@PLT
+	call	_ZdaPv@PLT
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -2284,43 +2330,87 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
 	.cfi_restore_state
 	movq	(%r12,%rax,8), %rdi
 	cmpq	%rdx, %rbx
-	jnb	.L449
+	jnb	.L452
 	movq	%rdi, (%rcx,%rbx,8)
 	addq	$1, %rax
 	addq	$1, %rbx
-.L446:
+.L443:
 	cmpq	%r15, %rax
 	jb	.L425
 	jmp	.L423
 	.p2align 4,,10
 	.p2align 3
-.L450:
+.L444:
 	testq	%rbp, %rbp
 	je	.L408
 	movq	8(%rsp), %rax
 	movq	32(%rax), %rdx
 	movq	40(%rax), %rcx
 	jmp	.L407
-.L449:
-	movq	%rbx, %rsi
-.L448:
+.L445:
 	leaq	.LC2(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L405:
-	leaq	.LC13(%rip), %rdi
-	movq	%r9, %rcx
-	movq	%r14, %rdx
+.L451:
+	leaq	.LC2(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L452:
+	leaq	.LC2(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L446:
+	leaq	.LC2(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L447:
+	leaq	.LC2(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L449:
+	leaq	.LC2(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
+	.section	.text.unlikely
+	.cfi_startproc
+	.type	_ZN3wze6engine6render20OrderByPriorityMergeEyyy.cold, @function
+_ZN3wze6engine6render20OrderByPriorityMergeEyyy.cold:
+.LFSB8165:
+.L404:
+	.cfi_def_cfa_offset 80
+	.cfi_offset 3, -56
+	.cfi_offset 6, -48
+	.cfi_offset 12, -40
+	.cfi_offset 13, -32
+	.cfi_offset 14, -24
+	.cfi_offset 15, -16
+	call	__cxa_throw_bad_array_new_length@PLT
+	.cfi_endproc
 .LFE8165:
+	.text
 	.size	_ZN3wze6engine6render20OrderByPriorityMergeEyyy, .-_ZN3wze6engine6render20OrderByPriorityMergeEyyy
+	.section	.text.unlikely
+	.size	_ZN3wze6engine6render20OrderByPriorityMergeEyyy.cold, .-_ZN3wze6engine6render20OrderByPriorityMergeEyyy.cold
+.LCOLDE13:
+	.text
+.LHOTE13:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6render15OrderByPriorityEyy
