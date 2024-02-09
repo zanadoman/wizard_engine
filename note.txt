@@ -17,7 +17,7 @@ Test/supervising sequence:
         Camera OK
         Vector
         Assets
-        Actors
+        Actors OK
     Heavily nested:
         Actor
         Colors

@@ -10,22 +10,22 @@ namespace wze
     {
         if (X != X)
         {
-            printf("wze::engine.actors.New(): X must not be NaN\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
+            printf("wze::engine.actors.New(): X must not be NaN\nParams: Data: %p, Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Data, Type, X, Y, Width, Height, Layer);
             exit(1);
         }
         if (Y != Y)
         {
-            printf("wze::engine.actors.New(): Y must not be NaN\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
+            printf("wze::engine.actors.New(): Y must not be NaN\nParams: Data: %p, Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Data, Type, X, Y, Width, Height, Layer);
             exit(1);
         }
         if (Layer != Layer)
         {
-            printf("wze::engine.actors.New(): Layer must not be NaN\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
+            printf("wze::engine.actors.New(): Layer must not be NaN\nParams: Data: %p, Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Data, Type, X, Y, Width, Height, Layer);
             exit(1);
         }
         if (Layer < 0)
         {
-            printf("wze::engine.actors.New(): Layer must not be less than 0\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
+            printf("wze::engine.actors.New(): Layer must not be less than 0\nParams: Data: %p, Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Data, Type, X, Y, Width, Height, Layer);
             exit(1);
         }
 
@@ -35,7 +35,7 @@ namespace wze
             {
                 if ((this->Actors[i] = new actor(this->Engine, Data, Type, X, Y, Width, Height, Layer)) == NULL)
                 {
-                    printf("wze::engine.actors.New(): Memory allocation failed\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
+                    printf("wze::engine.actors.New(): Memory allocation failed\nParams: Data: %p, Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Data, Type, X, Y, Width, Height, Layer);
                     exit(1);
                 }
 
@@ -45,7 +45,7 @@ namespace wze
 
         if ((this->Actors += {new actor(this->Engine, Data, Type, X, Y, Width, Height, Layer)})[this->Actors.Length() - 1] == NULL)
         {
-            printf("wze::engine.actors.New(): Memory allocation failed\nParams: Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Type, X, Y, Width, Height, Layer);
+            printf("wze::engine.actors.New(): Memory allocation failed\nParams: Data: %p, Type: %lld, X: %lf, Y: %lf, Width: %d, Height: %d, Layer: %lf\n", Data, Type, X, Y, Width, Height, Layer);
             exit(1);
         }
 
@@ -56,15 +56,9 @@ namespace wze
     {
         uint64 i;
 
-        if (ID == 0)
-        {
-            printf("wze::engine.actors.Delete(): Illegal deletion of NULL Actor\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
         if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
         {
-            printf("wze::engine.actors.Delete(): Actor does not exist\nParams: ID: %lld\n", ID);
-            exit(1);
+            return 0;
         }
 
         delete this->Actors[ID];
@@ -89,15 +83,6 @@ namespace wze
     uint8 engine::actors::Purge(std::initializer_list<uint64> Keep)
     {
         uint64 i;
-
-        for (i = 0; i < Keep.size(); i++)
-        {
-            if (Keep.begin()[i] != 0 && (this->Actors.Length() <= Keep.begin()[i] || this->Actors[Keep.begin()[i]] == NULL))
-            {
-                printf("wze::engine.actors.Purge(): Actor does not exist\nParams: Keep(length): %ld\n", Keep.size());
-                exit(1);
-            }
-        }
 
         for (i = 1; i < this->Actors.Length(); i++)
         {
@@ -128,13 +113,10 @@ namespace wze
     {
         uint64 i;
 
-        for (i = 0; i < Keep->Length(); i++)
+        if (Keep == NULL)
         {
-            if ((*Keep)[i] != 0 && (this->Actors.Length() <= (*Keep)[i] || this->Actors[(*Keep)[i]] == NULL))
-            {
-                printf("wze::engine.actors.Purge(): Actor does not exist\nParams: Keep: %p\n", Keep);
-                exit(1);
-            }
+            printf("wze::engine.actors.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            exit(1);
         }
 
         for (i = 1; i < this->Actors.Length(); i++)
@@ -166,7 +148,7 @@ namespace wze
     {
         if (ID == 0)
         {
-            printf("wze::engine.actors[]: Illegal access to NULL Actor");
+            printf("wze::engine.actors[]: Illegal access to NULL Actor\nParams: ID: %lld\n", ID);
             exit(1);
         }
         if (this->Actors.Length() <= ID || this->Actors[ID] == NULL)
