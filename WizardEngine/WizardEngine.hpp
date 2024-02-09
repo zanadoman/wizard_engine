@@ -618,7 +618,7 @@ namespace wze
                         double GetDepth();
                         double SetDepth(double Depth);
                         neo::uint8 GetCollisionLayer();
-                        neo::uint8 SetCollisionLayer(neo::uint8 Layer);
+                        neo::uint8 SetCollisionLayer(neo::uint8 CollisionLayer);
                         neo::uint16 GetHitboxWidth();
                         neo::uint16 GetHitboxHeight();
 
