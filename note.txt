@@ -22,7 +22,7 @@ Test/supervising sequence:
         Actor OK
         Colors OK
         Textures OK
-        Flipbooks
+        Flipbooks OK
         Texts
         Overlaps
         Collisions OK

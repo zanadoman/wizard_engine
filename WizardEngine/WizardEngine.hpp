@@ -444,10 +444,10 @@ namespace wze
                             public:
                                 neo::uint64 New(neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
                                 neo::uint64 New(neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
-                                neo::uint8 Delete(neo::uint64 ID);
+                                neo::uint8 Delete(neo::uint64 FlipbookID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
                                 neo::uint8 Purge(neo::array<neo::uint64>* Keep);
-                                flipbook& operator [] (neo::uint64 ID);
+                                flipbook& operator [] (neo::uint64 FlipbookID);
 
                             private:
                                 neo::array<flipbook*> Flipbooks;

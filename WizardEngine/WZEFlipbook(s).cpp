@@ -63,12 +63,12 @@ namespace wze
     {
         if (Delay == 0)
         {
-            printf("wze::engine.actors[].flipbooks.New(): Delay must not be 0\nParams: Delay: %d, TextureIDs(length): %lld\n", Delay, TextureIDs->Length());
+            printf("wze::engine.actors[].flipbooks.New(): Delay must not be 0\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
             exit(1);
         }
         if (TextureIDs->Length() < 2)
         {
-            printf("wze::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: Delay: %d, TextureIDs(length): %lld\n", Delay, TextureIDs->Length());
+            printf("wze::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
             exit(1);
         }
 
@@ -76,7 +76,7 @@ namespace wze
         {
             if ((*TextureIDs)[i] != 0 && (this->Engine->Assets.Textures.Length() <= (*TextureIDs)[i] || this->Engine->Assets.Textures[(*TextureIDs)[i]] == NULL))
             {
-                printf("wze::engine.actors[].flipbooks.New(): Texture does not exist\nParams: Delay: %d, TextureIDs(length): %lld\n", Delay, TextureIDs->Length());
+                printf("wze::engine.actors[].flipbooks.New(): Texture does not exist\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
                 exit(1);
             }
         }
@@ -87,7 +87,7 @@ namespace wze
             {
                 if ((this->Flipbooks[i] = new flipbook(this->Engine, this->Actor, Delay, TextureIDs)) == NULL)
                 {
-                    printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: Delay: %d, TextureIDs(length): %lld\n", Delay, TextureIDs->Length());
+                    printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
                     exit(1);
                 }
 
@@ -97,24 +97,24 @@ namespace wze
 
         if ((this->Flipbooks += {new flipbook(this->Engine, this->Actor, Delay, TextureIDs)})[this->Flipbooks.Length() - 1] == NULL)
         {
-            printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: TextureIDs(length): %lld\n", TextureIDs->Length());
+            printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
             exit(1);
         }
 
         return this->Flipbooks.Length() - 1;
     }
 
-    uint8 engine::actors::actor::flipbooks::Delete(uint64 ID)
+    uint8 engine::actors::actor::flipbooks::Delete(uint64 FlipbookID)
     {
         uint64 i;
 
-        if (this->Flipbooks.Length() <= ID || this->Flipbooks[ID] == NULL)
+        if (this->Flipbooks.Length() <= FlipbookID || this->Flipbooks[FlipbookID] == NULL)
         {
             return 0;
         }
 
-        delete this->Flipbooks[ID];
-        this->Flipbooks[ID] = NULL;
+        delete this->Flipbooks[FlipbookID];
+        this->Flipbooks[FlipbookID] = NULL;
 
         if (this->Flipbooks[this->Flipbooks.Length() - 1] == NULL && 1 < this->Flipbooks.Length())
         {
@@ -196,20 +196,20 @@ namespace wze
         return 0;
     }
 
-    engine::actors::actor::flipbooks::flipbook& engine::actors::actor::flipbooks::operator [] (uint64 ID)
+    engine::actors::actor::flipbooks::flipbook& engine::actors::actor::flipbooks::operator [] (uint64 FlipbookID)
     {
-        if (ID == 0)
+        if (FlipbookID == 0)
         {
-            printf("wze::engine.actors[].flipbooks[]: Illegal access to NULL Flipbook\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].flipbooks[]: Illegal access to NULL Flipbook\nParams: FlipbookID: %lld\n", FlipbookID);
             exit(1);
         }
-        if (this->Flipbooks.Length() <= ID || this->Flipbooks[ID] == NULL)
+        if (this->Flipbooks.Length() <= FlipbookID || this->Flipbooks[FlipbookID] == NULL)
         {
-            printf("wze::engine.actors[].flipbooks[]: Flipbook does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].flipbooks[]: Flipbook does not exist\nParams: FlipbookID: %lld\n", FlipbookID);
             exit(1);
         }
 
-        return *this->Flipbooks[ID];
+        return *this->Flipbooks[FlipbookID];
     }
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine* Engine, actor* Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs) : Engine(Engine), Actor(Actor)
