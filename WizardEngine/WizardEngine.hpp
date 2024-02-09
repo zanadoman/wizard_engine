@@ -749,20 +749,20 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    neo::uint64 LoadTexture(const char* Path);
-                    neo::uint8 UnloadTexture(neo::uint64 ID);
+                    neo::uint64 LoadTexture(const char* TexturePath);
+                    neo::uint8 UnloadTexture(neo::uint64 TextureID);
                     neo::uint8 PurgeTextures(std::initializer_list<neo::uint64> Keep);
                     neo::uint8 PurgeTextures(neo::array<neo::uint64>* Keep);
-                    neo::uint64 LoadSound(const char* Path);
-                    neo::uint8 UnloadSound(neo::uint64 ID);
+                    neo::uint64 LoadSound(const char* SoundPath);
+                    neo::uint8 UnloadSound(neo::uint64 SoundID);
                     neo::uint8 PurgeSounds(std::initializer_list<neo::uint64> Keep);
                     neo::uint8 PurgeSounds(neo::array<neo::uint64>* Keep);
-                    neo::uint64 LoadFont(const char* Path, neo::uint8 Size);
-                    neo::uint8 UnloadFont(neo::uint64 ID);
+                    neo::uint64 LoadFont(const char* FontPath, neo::uint8 Size);
+                    neo::uint8 UnloadFont(neo::uint64 FontID);
                     neo::uint8 PurgeFonts(std::initializer_list<neo::uint64> Keep);
                     neo::uint8 PurgeFonts(neo::array<neo::uint64>* Keep);
-                    neo::uint64 LoadCursor(const char* Path, neo::uint16 HotSpotX, neo::uint16 HotSpotY);
-                    neo::uint8 UnloadCursor(neo::uint64 ID);
+                    neo::uint64 LoadCursor(const char* CursorPath, neo::uint16 HotSpotX, neo::uint16 HotSpotY);
+                    neo::uint8 UnloadCursor(neo::uint64 CursorID);
                     neo::uint8 PurgeCursors(std::initializer_list<neo::uint64> Keep);
                     neo::uint8 PurgeCursors(neo::array<neo::uint64>* Keep);
 
