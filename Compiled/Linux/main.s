@@ -291,7 +291,7 @@ main:
 .LEHB20:
 	call	_ZN3wze6engine6camera4BindEy@PLT
 	movq	.LC0(%rip), %rax
-	movb	$1, 104(%rbx)
+	movb	$1, 88(%rbx)
 	movq	%rbp, %rdi
 	movq	%rax, %xmm0
 	call	_ZN3wze6engine6camera12SetMinSpeedXEd@PLT

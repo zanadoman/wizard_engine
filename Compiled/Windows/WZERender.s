@@ -2955,10 +2955,10 @@ _ZN3wze6engine6render10RenderTextEPNS1_5tokenE:
 	.section .rdata,"dr"
 	.align 8
 .LC26:
-	.ascii "wze::engine.render.OpenFrame(): SDL_SetRenderDrawColor() failed\12\0"
+	.ascii "wze::engine.render.RenderingStage(): SDL_SetRenderDrawColor() failed\12\0"
 	.align 8
 .LC27:
-	.ascii "wze::engine.render.OpenFrame(): SDL_RenderClear() failed\12\0"
+	.ascii "wze::engine.render.RenderingStage(): SDL_RenderClear() failed\12\0"
 	.align 8
 .LC28:
 	.ascii "wze::engine.render.RenderOverlapbox(): SDL_SetRenderDrawColor failed\12\0"

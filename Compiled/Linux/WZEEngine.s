@@ -921,7 +921,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movl	%r8d, %r13d
+	movl	%ecx, %r13d
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
@@ -934,7 +934,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	%rdi, %rbx
 	subq	$40, %rsp
 	.cfi_def_cfa_offset 96
-	movl	%ecx, (%rsp)
+	movl	%r8d, (%rsp)
 	movl	%r9d, 8(%rsp)
 .LEHB0:
 	call	_ZN3wze6engine6windowC1EPS0_@PLT
@@ -1019,8 +1019,8 @@ _ZN3wze6engineC2EPKcS2_tth:
 	testl	%eax, %eax
 	jne	.L187
 	call	TTF_Init@PLT
-	movzwl	(%rsp), %ecx
-	movzwl	%r13w, %r8d
+	movzwl	(%rsp), %r8d
+	movzwl	%r13w, %ecx
 	testl	%eax, %eax
 	jne	.L188
 	movq	%r15, %rdx
@@ -1028,24 +1028,31 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6window4OpenEPKcS3_tt@PLT
 	movl	(%rsp), %edx
+	leal	-1(%r13), %eax
 	pxor	%xmm0, %xmm0
 	xorl	%edi, %edi
-	movl	%edx, %eax
-	subl	$1, %eax
 	movw	%ax, 40(%rbx)
-	leal	-1(%r13), %eax
-	shrw	%r13w
-	movw	%ax, 42(%rbx)
 	movl	%edx, %eax
-	movzwl	%r13w, %r13d
+	movl	%edx, %r14d
+	subl	$1, %eax
+	shrw	%r14w
+	movw	%ax, 42(%rbx)
+	movl	%r13d, %eax
+	movzwl	%r14w, %r14d
+	shrw	$3, %r13w
 	shrw	%ax
-	movd	%r13d, %xmm7
-	movzwl	%ax, %r14d
-	movd	%r14d, %xmm1
+	movd	%r14d, %xmm7
+	movzwl	%r13w, %r13d
+	movzwl	%ax, %r15d
+	movd	%r15d, %xmm1
 	punpckldq	%xmm7, %xmm1
 	psubd	%xmm1, %xmm0
 	cvtdq2pd	%xmm0, %xmm0
-	movups	%xmm0, 88(%rbx)
+	movups	%xmm0, 96(%rbx)
+	pxor	%xmm0, %xmm0
+	cvtsi2sdl	%r13d, %xmm0
+	unpcklpd	%xmm0, %xmm0
+	movups	%xmm0, 216(%rbx)
 	call	SDL_GetKeyboardState@PLT
 	movq	%rax, 272(%rbx)
 	movzbl	8(%rsp), %eax
@@ -1060,20 +1067,20 @@ _ZN3wze6engineC2EPKcS2_tth:
 	pxor	%xmm0, %xmm0
 	pxor	%xmm1, %xmm1
 	pxor	%xmm2, %xmm2
-	movl	%r13d, %r8d
-	cvtsi2sdl	%r14d, %xmm0
-	movl	%r13d, %ecx
+	movl	%r14d, %r8d
+	cvtsi2sdl	%r15d, %xmm0
+	movl	%r14d, %ecx
 	xorl	%edx, %edx
 	xorl	%esi, %esi
-	cvtsi2sdl	%r13d, %xmm1
+	cvtsi2sdl	%r14d, %xmm1
 	movq	%rbp, %rdi
-	movq	%rax, %r15
+	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movzbl	%al, %r13d
 	movq	%rbp, %rdi
 	movq	%r13, %rsi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movzbl	%r15b, %esi
+	movzbl	(%rsp), %esi
 	leaq	40(%rax), %rdi
 	movq	%rsi, 8(%rsp)
 	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
@@ -1179,9 +1186,9 @@ _ZN3wze6engineC2EPKcS2_tth:
 	ret
 .L184:
 	.cfi_restore_state
-	movzwl	(%rsp), %ecx
+	movzwl	(%rsp), %r8d
+	movzwl	%r13w, %ecx
 	xorl	%r9d, %r9d
-	movzwl	%r13w, %r8d
 	movq	%r15, %rdx
 	movq	%r14, %rsi
 	leaq	.LC6(%rip), %rdi
@@ -1199,30 +1206,30 @@ _ZN3wze6engineC2EPKcS2_tth:
 	call	printf@PLT
 	jmp	.L136
 .L187:
-	movzwl	(%rsp), %ecx
 	movzbl	8(%rsp), %r9d
-	movzwl	%r13w, %r8d
-	xorl	%eax, %eax
+	movzwl	(%rsp), %r8d
 	movq	%r15, %rdx
+	xorl	%eax, %eax
+	movzwl	%r13w, %ecx
 	movq	%r14, %rsi
 	leaq	.LC9(%rip), %rdi
 	call	printf@PLT
 	jmp	.L136
 .L186:
-	movzwl	(%rsp), %ecx
 	movzbl	8(%rsp), %r9d
+	movzwl	%r13w, %ecx
 	movq	%r15, %rdx
 	movq	%r14, %rsi
-	movzwl	%r13w, %r8d
+	movzwl	(%rsp), %r8d
 	leaq	.LC8(%rip), %rdi
 	call	printf@PLT
 	jmp	.L136
 .L185:
-	movzwl	(%rsp), %ecx
 	movzbl	8(%rsp), %r9d
-	movzwl	%r13w, %r8d
-	xorl	%eax, %eax
+	movzwl	(%rsp), %r8d
 	movq	%r15, %rdx
+	xorl	%eax, %eax
+	movzwl	%r13w, %ecx
 	movq	%r14, %rsi
 	leaq	.LC7(%rip), %rdi
 	call	printf@PLT

@@ -478,7 +478,7 @@ _ZN3wze6engine6actors5actorD2Ev:
 	cmpq	%rsi, %rdx
 	jne	.L55
 .L54:
-	movq	112(%rcx), %rsi
+	movq	120(%rcx), %rsi
 	movq	352(%rcx), %rdx
 	movq	360(%rcx), %rax
 	cmpq	%rdx, %rsi
@@ -486,7 +486,7 @@ _ZN3wze6engine6actors5actorD2Ev:
 	cmpq	%rbx, (%rax,%rsi,8)
 	je	.L64
 .L57:
-	movq	120(%rcx), %rsi
+	movq	128(%rcx), %rsi
 	cmpq	%rdx, %rsi
 	jnb	.L62
 	cmpq	%rbx, (%rax,%rsi,8)
@@ -516,12 +516,12 @@ _ZN3wze6engine6actors5actorD2Ev:
 	.p2align 4,,10
 	.p2align 3
 .L65:
-	movq	$0, 120(%rcx)
+	movq	$0, 128(%rcx)
 	jmp	.L59
 	.p2align 4,,10
 	.p2align 3
 .L64:
-	movq	$0, 112(%rcx)
+	movq	$0, 120(%rcx)
 	jmp	.L57
 .L62:
 	leaq	.LC7(%rip), %rdi
@@ -742,7 +742,7 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 	.cfi_restore_state
 	movq	$0x000000000, 272(%rdi)
 	movq	(%rdi), %rax
-	movq	112(%rax), %rsi
+	movq	120(%rax), %rsi
 	movq	352(%rax), %rcx
 	movq	360(%rax), %rdx
 	cmpq	%rcx, %rsi
@@ -750,17 +750,17 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 	cmpq	%rdi, (%rdx,%rsi,8)
 	je	.L108
 .L96:
-	movq	120(%rax), %rsi
+	movq	128(%rax), %rsi
 	cmpq	%rcx, %rsi
 	jnb	.L104
 	cmpq	%rdi, (%rdx,%rsi,8)
 	jne	.L94
-	movq	$0, 120(%rax)
+	movq	$0, 128(%rax)
 	jmp	.L94
 	.p2align 4,,10
 	.p2align 3
 .L108:
-	movq	$0, 112(%rax)
+	movq	$0, 120(%rax)
 	jmp	.L96
 .L105:
 	leaq	.LC10(%rip), %rdi

@@ -313,7 +313,7 @@ main:
 	movq	%r13, %rcx
 .LEHB20:
 	call	_ZN3wze6engine6camera4BindEy
-	movb	$1, 104(%rbx)
+	movb	$1, 88(%rbx)
 	movq	%r13, %rcx
 	movsd	.LC1(%rip), %xmm10
 	movapd	%xmm10, %xmm1

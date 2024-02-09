@@ -904,7 +904,7 @@ _ZN3wze6engine6actors5actor6colors5color4GetXEv:
 	.section .rdata,"dr"
 	.align 8
 .LC16:
-	.ascii "engine.actors[].colors[].SetX(): X must not be NaN\12Params: X: %lf\12\0"
+	.ascii "wze::engine.actors[].colors[].SetX(): X must not be NaN\12Params: X: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -994,7 +994,7 @@ _ZN3wze6engine6actors5actor6colors5color4GetYEv:
 	.section .rdata,"dr"
 	.align 8
 .LC17:
-	.ascii "engine.actors[].colors[].SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
+	.ascii "wze::engine.actors[].colors[].SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4

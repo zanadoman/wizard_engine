@@ -490,7 +490,7 @@ _ZN3wze6engine6actors5actorD2Ev:
 	cmpq	%rdx, %r8
 	jne	.L54
 .L53:
-	movq	112(%r9), %rdx
+	movq	120(%r9), %rdx
 	movq	352(%r9), %rcx
 	movq	360(%r9), %rax
 	cmpq	%rcx, %rdx
@@ -498,7 +498,7 @@ _ZN3wze6engine6actors5actorD2Ev:
 	cmpq	%rbx, (%rax,%rdx,8)
 	je	.L62
 .L56:
-	movq	120(%r9), %rdx
+	movq	128(%r9), %rdx
 	cmpq	%rcx, %rdx
 	jnb	.L60
 	cmpq	%rbx, (%rax,%rdx,8)
@@ -526,12 +526,12 @@ _ZN3wze6engine6actors5actorD2Ev:
 	.p2align 4,,10
 	.p2align 3
 .L63:
-	movq	$0, 120(%r9)
+	movq	$0, 128(%r9)
 	jmp	.L58
 	.p2align 4,,10
 	.p2align 3
 .L62:
-	movq	$0, 112(%r9)
+	movq	$0, 120(%r9)
 	jmp	.L56
 .L60:
 	leaq	.LC7(%rip), %rcx
@@ -578,7 +578,7 @@ _ZN3wze6engine6actors5actor4GetXEv:
 	.section .rdata,"dr"
 	.align 8
 .LC8:
-	.ascii "engine.actors[].SetX(): X must not be NaN\12Params: X: %lf\12\0"
+	.ascii "wze::engine.actors[].SetX(): X must not be NaN\12Params: X: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -627,7 +627,7 @@ _ZN3wze6engine6actors5actor4GetYEv:
 	.section .rdata,"dr"
 	.align 8
 .LC9:
-	.ascii "engine.actors[].SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
+	.ascii "wze??engine.actors[].SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -742,7 +742,7 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 .L102:
 	movq	$0x000000000, 272(%rcx)
 	movq	(%rcx), %rax
-	movq	112(%rax), %rdx
+	movq	120(%rax), %rdx
 	movq	352(%rax), %r9
 	movq	360(%rax), %r8
 	cmpq	%r9, %rdx
@@ -750,17 +750,17 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 	cmpq	%rcx, (%r8,%rdx,8)
 	je	.L103
 .L92:
-	movq	120(%rax), %rdx
+	movq	128(%rax), %rdx
 	cmpq	%r9, %rdx
 	jnb	.L99
 	cmpq	%rcx, (%r8,%rdx,8)
 	jne	.L90
-	movq	$0, 120(%rax)
+	movq	$0, 128(%rax)
 	jmp	.L90
 	.p2align 4,,10
 	.p2align 3
 .L103:
-	movq	$0, 112(%rax)
+	movq	$0, 120(%rax)
 	jmp	.L92
 .L100:
 	leaq	.LC10(%rip), %rcx
@@ -1303,7 +1303,7 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	.section .rdata,"dr"
 	.align 8
 .LC17:
-	.ascii "engine.actors[].SetAngle(): Angle must not be NaN\12Params: Angle: %lf\12\0"
+	.ascii "wze::engine.actors[].SetAngle(): Angle must not be NaN\12Params: Angle: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4

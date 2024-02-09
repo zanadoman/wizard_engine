@@ -346,8 +346,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	subq	$136, %rsp
-	.cfi_def_cfa_offset 192
+	subq	$120, %rsp
+	.cfi_def_cfa_offset 176
 	movq	(%rdi), %rdx
 	movq	352(%rdx), %rax
 	cmpq	$1, %rax
@@ -529,13 +529,13 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	(%rsi,%r12,8), %rdi
 	testq	%rdi, %rdi
 	je	.L167
+	cmpb	$0, 18(%rdi)
+	je	.L167
 	movzwl	80(%rdi), %esi
 	testw	%si, %si
 	je	.L167
 	movzwl	82(%rdi), %r8d
 	testw	%r8w, %r8w
-	je	.L167
-	cmpb	$0, 18(%rdi)
 	je	.L167
 	movsd	32(%rdi), %xmm0
 	leaq	80(%rdx), %rax
@@ -568,13 +568,13 @@ _ZN3wze6engine6render14SelectionStageEv:
 	cmpq	152(%rcx), %r12
 	jb	.L174
 .L305:
+	cmpb	$0, 192(%rcx)
+	je	.L55
 	movzwl	282(%rcx), %esi
 	testw	%si, %si
 	je	.L55
 	movzwl	284(%rcx), %edi
 	testw	%di, %di
-	je	.L55
-	cmpb	$0, 192(%rcx)
 	je	.L55
 	leaq	80(%rdx), %rax
 	movsd	216(%rcx), %xmm0
@@ -604,7 +604,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	cmpq	%rbx, (%rsp)
 	jb	.L306
 .L233:
-	addq	$136, %rsp
+	addq	$120, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
@@ -706,13 +706,13 @@ _ZN3wze6engine6render14SelectionStageEv:
 	je	.L311
 .L159:
 	movl	$48, %edi
-	movaps	%xmm0, 16(%rsp)
-	movsd	%xmm2, (%rsp)
+	movsd	%xmm2, 16(%rsp)
+	movaps	%xmm0, (%rsp)
 	call	_Znwm@PLT
 	movq	(%r14), %rdx
-	movsd	(%rsp), %xmm2
+	movdqa	(%rsp), %xmm0
 	movq	%rax, %rcx
-	movdqa	16(%rsp), %xmm0
+	movsd	16(%rsp), %xmm2
 	movq	352(%rdx), %rax
 	movq	360(%rdx), %rsi
 	cmpq	%rax, %rbx
@@ -941,23 +941,23 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jne	.L75
 	movq	16(%rsp), %rdi
 	movq	%r10, %rdx
-	movl	%ecx, 80(%rsp)
-	movl	%r8d, 96(%rsp)
+	movl	%r8d, 80(%rsp)
+	movl	%ecx, 64(%rsp)
 	movq	%r10, (%rsp)
-	movd	%xmm0, 112(%rsp)
-	movaps	%xmm0, 64(%rsp)
+	movaps	%xmm0, 96(%rsp)
+	movd	%xmm0, 92(%rsp)
 	movsd	%xmm2, 48(%rsp)
-	movd	%xmm3, 108(%rsp)
+	movd	%xmm3, 88(%rsp)
 	call	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
-	movl	96(%rsp), %r8d
+	movl	80(%rsp), %r8d
 	movq	(%rsp), %r10
 	movq	(%rax), %rax
+	movl	88(%rsp), %r9d
 	movsd	48(%rsp), %xmm2
-	movdqa	64(%rsp), %xmm0
-	movl	80(%rsp), %ecx
+	movl	64(%rsp), %ecx
 	cmpl	%r8d, 40(%rax)
-	movl	108(%rsp), %r9d
-	movl	112(%rsp), %r11d
+	movl	92(%rsp), %r11d
+	movdqa	96(%rsp), %xmm0
 	jne	.L75
 	movq	40(%r14), %rsi
 	movq	32(%r14), %rdi
@@ -998,7 +998,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	pxor	%xmm0, %xmm0
 	comisd	%xmm2, %xmm0
 	ja	.L323
-	ucomisd	%xmm2, %xmm1
+	ucomisd	%xmm1, %xmm2
 	jp	.L90
 	jne	.L90
 	addsd	.LC8(%rip), %xmm1
@@ -1016,19 +1016,19 @@ _ZN3wze6engine6render14SelectionStageEv:
 	testl	%eax, %eax
 	je	.L280
 	pshufd	$255, %xmm0, %xmm3
-	movd	%xmm0, %r10d
-	movd	%xmm3, %r9d
+	movd	%xmm0, %r11d
+	movd	%xmm3, %r8d
 	movdqa	%xmm0, %xmm3
 	punpckhdq	%xmm0, %xmm3
 	movd	%xmm3, %ecx
 	pshufd	$85, %xmm0, %xmm3
-	movd	%xmm3, %r11d
+	movd	%xmm3, %r9d
 	testq	%r13, %r13
 	jne	.L97
 .L103:
 	sarl	%ecx
 	movl	%ecx, %eax
-	addl	%r10d, %eax
+	addl	%r11d, %eax
 	js	.L324
 .L98:
 	cmpq	%r13, 32(%r14)
@@ -1105,7 +1105,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	pxor	%xmm0, %xmm0
 	comisd	%xmm2, %xmm0
 	ja	.L330
-	ucomisd	%xmm1, %xmm2
+	ucomisd	%xmm2, %xmm1
 	jp	.L118
 	jne	.L118
 	addsd	.LC8(%rip), %xmm1
@@ -1123,19 +1123,19 @@ _ZN3wze6engine6render14SelectionStageEv:
 	testl	%eax, %eax
 	je	.L281
 	pshufd	$255, %xmm0, %xmm3
-	movd	%xmm0, %r11d
-	movd	%xmm3, %r8d
+	movd	%xmm0, %r10d
+	movd	%xmm3, %r9d
 	movdqa	%xmm0, %xmm3
 	punpckhdq	%xmm0, %xmm3
 	movd	%xmm3, %ecx
 	pshufd	$85, %xmm0, %xmm3
-	movd	%xmm3, %r9d
+	movd	%xmm3, %r11d
 	testq	%r13, %r13
 	jne	.L125
 .L131:
 	sarl	%ecx
 	movl	%ecx, %eax
-	addl	%r11d, %eax
+	addl	%r10d, %eax
 	js	.L331
 .L126:
 	cmpq	%r13, 32(%r14)
@@ -1275,23 +1275,23 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jne	.L158
 	movq	16(%rsp), %rdi
 	movq	%r10, %rdx
-	movl	%ecx, 80(%rsp)
-	movl	%r8d, 64(%rsp)
+	movl	%ecx, 64(%rsp)
+	movl	%r8d, 88(%rsp)
 	movq	%r10, (%rsp)
-	movaps	%xmm0, 112(%rsp)
-	movd	%xmm0, 108(%rsp)
-	movsd	%xmm2, 48(%rsp)
-	movd	%xmm3, 96(%rsp)
+	movd	%xmm0, 96(%rsp)
+	movsd	%xmm2, 80(%rsp)
+	movaps	%xmm0, 48(%rsp)
+	movd	%xmm3, 92(%rsp)
 	call	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
-	movl	64(%rsp), %r8d
+	movl	88(%rsp), %r8d
 	movq	(%rsp), %r10
 	movq	(%rax), %rax
-	movl	96(%rsp), %r9d
-	movsd	48(%rsp), %xmm2
-	movl	80(%rsp), %ecx
-	cmpl	%r8d, 40(%rax)
-	movl	108(%rsp), %r11d
-	movdqa	112(%rsp), %xmm0
+	movdqa	48(%rsp), %xmm0
+	movl	64(%rsp), %ecx
+	movsd	80(%rsp), %xmm2
+	cmpl	40(%rax), %r8d
+	movl	92(%rsp), %r9d
+	movl	96(%rsp), %r11d
 	jne	.L158
 	movq	40(%r14), %rsi
 	movq	32(%r14), %rdi
@@ -1306,15 +1306,15 @@ _ZN3wze6engine6render14SelectionStageEv:
 	.p2align 3
 .L324:
 	movzwl	10(%r14), %eax
-	subl	%ecx, %r10d
-	cmpl	%eax, %r10d
+	subl	%ecx, %r11d
+	cmpl	%eax, %r11d
 	jle	.L98
-	sarl	%r9d
-	movl	%r9d, %edx
-	addl	%r11d, %edx
+	sarl	%r8d
+	movl	%r8d, %edx
+	addl	%r9d, %edx
 	jns	.L98
-	subl	%r9d, %r11d
-	cmpl	%r11d, %eax
+	subl	%r8d, %r9d
+	cmpl	%r9d, %eax
 	jge	.L98
 	jmp	.L280
 	.p2align 4,,10
@@ -1329,77 +1329,20 @@ _ZN3wze6engine6render14SelectionStageEv:
 	.p2align 3
 .L331:
 	movzwl	10(%r14), %eax
-	subl	%ecx, %r11d
-	cmpl	%eax, %r11d
+	subl	%ecx, %r10d
+	cmpl	%eax, %r10d
 	jle	.L126
-	sarl	%r8d
-	movl	%r8d, %edx
-	addl	%r9d, %edx
+	sarl	%r9d
+	movl	%r9d, %edx
+	addl	%r11d, %edx
 	jns	.L126
-	subl	%r8d, %r9d
-	cmpl	%r9d, %eax
+	subl	%r9d, %r11d
+	cmpl	%r11d, %eax
 	jge	.L126
 	jmp	.L281
 	.p2align 4,,10
 	.p2align 3
 .L97:
-	movq	40(%r14), %rax
-	movq	32(%r14), %r8
-	leaq	-1(%r13), %rdx
-	movq	%rax, (%rsp)
-	cmpq	%r8, %rdx
-	jnb	.L337
-	movq	(%rax,%rdx,8), %rsi
-	movq	(%rsi), %rax
-	movq	%rax, 16(%rsp)
-	movq	(%r14), %rax
-	movq	360(%rax), %rdi
-	cmpq	352(%rax), %rbx
-	jnb	.L173
-	movq	(%rdi,%rbp), %rax
-	movq	64(%rax), %rdi
-	cmpq	56(%rax), %r12
-	jnb	.L287
-	movq	16(%rsp), %rax
-	cmpq	(%rdi,%r15), %rax
-	jne	.L103
-	cmpl	%r10d, 28(%rsi)
-	jne	.L103
-	cmpl	%r11d, 32(%rsi)
-	jne	.L103
-	cmpl	%ecx, 36(%rsi)
-	jne	.L103
-	movq	(%rsp), %rsi
-	movq	%r8, %rdi
-	movl	%ecx, 48(%rsp)
-	movl	%r9d, 96(%rsp)
-	movq	%rdx, 16(%rsp)
-	movsd	%xmm2, 112(%rsp)
-	movd	%xmm0, 108(%rsp)
-	movaps	%xmm0, 80(%rsp)
-	movd	%xmm3, 64(%rsp)
-	call	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
-	movl	96(%rsp), %r9d
-	movq	16(%rsp), %rdx
-	movq	(%rax), %rax
-	movl	48(%rsp), %ecx
-	movl	64(%rsp), %r11d
-	movdqa	80(%rsp), %xmm0
-	cmpl	%r9d, 40(%rax)
-	movl	108(%rsp), %r10d
-	movsd	112(%rsp), %xmm2
-	jne	.L103
-	movq	40(%r14), %rsi
-	movq	32(%r14), %rdi
-	movsd	%xmm2, (%rsp)
-	call	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
-	movsd	(%rsp), %xmm2
-	movq	(%rax), %rax
-	movsd	%xmm2, 16(%rax)
-	jmp	.L280
-	.p2align 4,,10
-	.p2align 3
-.L125:
 	movq	32(%r14), %rax
 	leaq	-1(%r13), %r10
 	movq	40(%r14), %rsi
@@ -1414,41 +1357,98 @@ _ZN3wze6engine6render14SelectionStageEv:
 	cmpq	352(%rax), %rbx
 	jnb	.L173
 	movq	(%rdi,%rbp), %rax
-	movq	96(%rax), %rdi
-	cmpq	88(%rax), %r12
+	movq	64(%rax), %rdi
+	cmpq	56(%rax), %r12
 	jnb	.L287
 	movq	(%rsp), %rax
 	cmpq	(%rdi,%r15), %rax
-	jne	.L131
+	jne	.L103
 	cmpl	%r11d, 28(%rdx)
-	jne	.L131
+	jne	.L103
 	cmpl	%r9d, 32(%rdx)
-	jne	.L131
+	jne	.L103
 	cmpl	%ecx, 36(%rdx)
-	jne	.L131
+	jne	.L103
 	movq	16(%rsp), %rdi
 	movq	%r10, %rdx
-	movl	%ecx, 112(%rsp)
-	movl	%r8d, 108(%rsp)
+	movl	%r8d, 92(%rsp)
+	movl	%ecx, 80(%rsp)
 	movq	%r10, (%rsp)
-	movd	%xmm0, 64(%rsp)
-	movaps	%xmm0, 48(%rsp)
 	movsd	%xmm2, 96(%rsp)
-	movd	%xmm3, 80(%rsp)
+	movaps	%xmm0, 64(%rsp)
+	movd	%xmm0, 48(%rsp)
+	movd	%xmm3, 88(%rsp)
 	call	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
-	movl	108(%rsp), %r8d
+	movl	92(%rsp), %r8d
 	movq	(%rsp), %r10
 	movq	(%rax), %rax
-	movsd	96(%rsp), %xmm2
-	movdqa	48(%rsp), %xmm0
-	movl	64(%rsp), %r11d
+	movl	88(%rsp), %r9d
+	movl	48(%rsp), %r11d
+	movdqa	64(%rsp), %xmm0
 	cmpl	%r8d, 40(%rax)
-	movl	80(%rsp), %r9d
-	movl	112(%rsp), %ecx
-	jne	.L131
+	movl	80(%rsp), %ecx
+	movsd	96(%rsp), %xmm2
+	jne	.L103
 	movq	40(%r14), %rsi
 	movq	32(%r14), %rdi
 	movq	%r10, %rdx
+	movsd	%xmm2, (%rsp)
+	call	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
+	movsd	(%rsp), %xmm2
+	movq	(%rax), %rax
+	movsd	%xmm2, 16(%rax)
+	jmp	.L280
+	.p2align 4,,10
+	.p2align 3
+.L125:
+	movq	40(%r14), %rax
+	movq	32(%r14), %r8
+	leaq	-1(%r13), %rdx
+	movq	%rax, (%rsp)
+	cmpq	%r8, %rdx
+	jnb	.L337
+	movq	(%rax,%rdx,8), %rsi
+	movq	(%rsi), %rax
+	movq	%rax, 16(%rsp)
+	movq	(%r14), %rax
+	movq	360(%rax), %rdi
+	cmpq	352(%rax), %rbx
+	jnb	.L173
+	movq	(%rdi,%rbp), %rax
+	movq	96(%rax), %rdi
+	cmpq	88(%rax), %r12
+	jnb	.L287
+	movq	16(%rsp), %rax
+	cmpq	(%rdi,%r15), %rax
+	jne	.L131
+	cmpl	%r10d, 28(%rsi)
+	jne	.L131
+	cmpl	%r11d, 32(%rsi)
+	jne	.L131
+	cmpl	%ecx, 36(%rsi)
+	jne	.L131
+	movq	(%rsp), %rsi
+	movq	%r8, %rdi
+	movl	%ecx, 80(%rsp)
+	movl	%r9d, 88(%rsp)
+	movq	%rdx, 16(%rsp)
+	movd	%xmm0, 96(%rsp)
+	movaps	%xmm0, 64(%rsp)
+	movsd	%xmm2, 48(%rsp)
+	movd	%xmm3, 92(%rsp)
+	call	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
+	movl	88(%rsp), %r9d
+	movq	16(%rsp), %rdx
+	movq	(%rax), %rax
+	movsd	48(%rsp), %xmm2
+	movdqa	64(%rsp), %xmm0
+	movl	80(%rsp), %ecx
+	cmpl	%r9d, 40(%rax)
+	movl	92(%rsp), %r11d
+	movl	96(%rsp), %r10d
+	jne	.L131
+	movq	40(%r14), %rsi
+	movq	32(%r14), %rdi
 	movsd	%xmm2, (%rsp)
 	call	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
 	movsd	(%rsp), %xmm2
@@ -1461,12 +1461,12 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movzwl	24(%r14), %eax
 	leaq	32(%r14), %rdi
 	movq	%r12, %rsi
-	movaps	%xmm0, 16(%rsp)
-	movsd	%xmm2, (%rsp)
+	movaps	%xmm0, (%rsp)
+	movsd	%xmm2, 16(%rsp)
 	leaq	1(%rax), %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0
-	movdqa	16(%rsp), %xmm0
-	movsd	(%rsp), %xmm2
+	movsd	16(%rsp), %xmm2
+	movdqa	(%rsp), %xmm0
 	jmp	.L159
 .L328:
 	movq	%r13, (%rsp)
@@ -1672,9 +1672,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 .LEHE5:
 	jmp	.L288
 .L337:
-	movq	%rdx, %r10
-.L290:
-	movq	%r10, %rsi
+	movq	%rdx, %rsi
 	jmp	.L286
 .L313:
 	movq	%r13, %rsi
@@ -1687,6 +1685,9 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jmp	.L288
 .L301:
 	movq	%r8, %rsi
+	jmp	.L286
+.L290:
+	movq	%r10, %rsi
 	jmp	.L286
 .L292:
 	movq	%rdi, %rsi
@@ -1770,7 +1771,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 _ZN3wze6engine6render14SelectionStageEv.cold:
 .LFSB8160:
 .L189:
-	.cfi_def_cfa_offset 192
+	.cfi_def_cfa_offset 176
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
 	.cfi_offset 12, -40

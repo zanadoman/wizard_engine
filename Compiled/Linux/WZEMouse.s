@@ -92,12 +92,12 @@ _ZN3wze6engine5mouse4GetXEd:
 	je	.L13
 .L23:
 	movq	(%rdi), %rax
-	movsd	144(%rax), %xmm1
+	movsd	112(%rax), %xmm1
 	mulsd	%xmm0, %xmm1
-	movsd	88(%rax), %xmm0
+	movsd	96(%rax), %xmm0
 	divsd	%xmm1, %xmm0
 	divsd	%xmm1, %xmm2
-	addsd	128(%rax), %xmm2
+	addsd	136(%rax), %xmm2
 	addsd	%xmm0, %xmm2
 .L13:
 	movapd	%xmm2, %xmm0
@@ -153,12 +153,12 @@ _ZN3wze6engine5mouse4GetYEd:
 	je	.L29
 .L39:
 	movq	(%rdi), %rax
-	movsd	144(%rax), %xmm1
+	movsd	112(%rax), %xmm1
 	mulsd	%xmm0, %xmm1
-	movsd	96(%rax), %xmm0
+	movsd	104(%rax), %xmm0
 	divsd	%xmm1, %xmm0
 	divsd	%xmm1, %xmm2
-	addsd	136(%rax), %xmm2
+	addsd	144(%rax), %xmm2
 	addsd	%xmm0, %xmm2
 .L29:
 	movapd	%xmm2, %xmm0

@@ -54,56 +54,40 @@ _ZN3wze6engine5mouseC2EPS0_:
 	.globl	_ZN3wze6engine5mouseC1EPS0_
 	.def	_ZN3wze6engine5mouseC1EPS0_;	.scl	2;	.type	32;	.endef
 	.set	_ZN3wze6engine5mouseC1EPS0_,_ZN3wze6engine5mouseC2EPS0_
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5mouse14GetSensitivityEv
+	.def	_ZN3wze6engine5mouse14GetSensitivityEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5mouse14GetSensitivityEv
+_ZN3wze6engine5mouse14GetSensitivityEv:
+.LFB6882:
+	.seh_endprologue
+	movsd	8(%rcx), %xmm0
+	ret
+	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC3:
-	.ascii "engine.mouse.GetX(): Layer must not be NaN\12Params: Layer: %lf\12\0"
-	.align 8
-.LC4:
-	.ascii "engine.mouse.GetX(): Layer must not be less than 0\12Params: Layer: %lf\12\0"
+.LC2:
+	.ascii "wze::engine.mouse.SetSensitivity(): Sensitivity must not be NaN\12Params: Sensitivity: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine5mouse4GetXEd
-	.def	_ZN3wze6engine5mouse4GetXEd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5mouse4GetXEd
-_ZN3wze6engine5mouse4GetXEd:
-.LFB6882:
+	.globl	_ZN3wze6engine5mouse14SetSensitivityEd
+	.def	_ZN3wze6engine5mouse14SetSensitivityEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5mouse14SetSensitivityEd
+_ZN3wze6engine5mouse14SetSensitivityEd:
+.LFB6883:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
-	jp	.L17
-	pxor	%xmm2, %xmm2
-	comisd	%xmm1, %xmm2
-	ja	.L18
-	cmpb	$0, 40(%rcx)
-	pxor	%xmm0, %xmm0
-	jne	.L4
-	ucomisd	%xmm2, %xmm1
-	pxor	%xmm0, %xmm0
-	cvtsi2sdl	16(%rcx), %xmm0
-	jp	.L14
-	je	.L4
-.L14:
-	movq	(%rcx), %rax
-	mulsd	144(%rax), %xmm1
-	movsd	88(%rax), %xmm2
-	divsd	%xmm1, %xmm2
-	divsd	%xmm1, %xmm0
-	addsd	128(%rax), %xmm0
-	addsd	%xmm2, %xmm0
-.L4:
+	movapd	%xmm1, %xmm0
+	jp	.L10
+	movsd	%xmm1, 8(%rcx)
 	addq	$40, %rsp
 	ret
-.L18:
-	leaq	.LC4(%rip), %rcx
-	movq	%xmm1, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L17:
-	leaq	.LC3(%rip), %rcx
+.L10:
+	leaq	.LC2(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -112,11 +96,67 @@ _ZN3wze6engine5mouse4GetXEd:
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
+.LC4:
+	.ascii "wze::engine.mouse.GetX(): Layer must not be NaN\12Params: Layer: %lf\12\0"
+	.align 8
 .LC5:
-	.ascii "engine.mouse.GetY(): Layer must not be NaN\12Params: Layer: %lf\12\0"
+	.ascii "wze::engine.mouse.GetX(): Layer must not be less than 0\12Params: Layer: %lf\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5mouse4GetXEd
+	.def	_ZN3wze6engine5mouse4GetXEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5mouse4GetXEd
+_ZN3wze6engine5mouse4GetXEd:
+.LFB6884:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	ucomisd	%xmm1, %xmm1
+	jp	.L24
+	pxor	%xmm2, %xmm2
+	comisd	%xmm1, %xmm2
+	ja	.L25
+	cmpb	$0, 40(%rcx)
+	pxor	%xmm0, %xmm0
+	jne	.L11
+	ucomisd	%xmm2, %xmm1
+	pxor	%xmm0, %xmm0
+	cvtsi2sdl	16(%rcx), %xmm0
+	jp	.L21
+	je	.L11
+.L21:
+	movq	(%rcx), %rax
+	mulsd	112(%rax), %xmm1
+	movsd	96(%rax), %xmm2
+	divsd	%xmm1, %xmm2
+	divsd	%xmm1, %xmm0
+	addsd	136(%rax), %xmm0
+	addsd	%xmm2, %xmm0
+.L11:
+	addq	$40, %rsp
+	ret
+.L25:
+	leaq	.LC5(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L24:
+	leaq	.LC4(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.section .rdata,"dr"
 	.align 8
 .LC6:
-	.ascii "engine.mouse.GetY(): Layer must not be less than 0\12Params: Layer: %lf\12\0"
+	.ascii "wze::engine.mouse.GetY(): Layer must not be NaN\12Params: Layer: %lf\12\0"
+	.align 8
+.LC7:
+	.ascii "wze::engine.mouse.GetY(): Layer must not be less than 0\12Params: Layer: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -124,42 +164,42 @@ _ZN3wze6engine5mouse4GetXEd:
 	.def	_ZN3wze6engine5mouse4GetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse4GetYEd
 _ZN3wze6engine5mouse4GetYEd:
-.LFB6883:
+.LFB6885:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
-	jp	.L32
+	jp	.L39
 	pxor	%xmm2, %xmm2
 	comisd	%xmm1, %xmm2
-	ja	.L33
+	ja	.L40
 	cmpb	$0, 40(%rcx)
 	pxor	%xmm0, %xmm0
-	jne	.L19
+	jne	.L26
 	ucomisd	%xmm2, %xmm1
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	20(%rcx), %xmm0
-	jp	.L29
-	je	.L19
-.L29:
+	jp	.L36
+	je	.L26
+.L36:
 	movq	(%rcx), %rax
-	mulsd	144(%rax), %xmm1
-	movsd	96(%rax), %xmm2
+	mulsd	112(%rax), %xmm1
+	movsd	104(%rax), %xmm2
 	divsd	%xmm1, %xmm2
 	divsd	%xmm1, %xmm0
-	addsd	136(%rax), %xmm0
+	addsd	144(%rax), %xmm0
 	addsd	%xmm2, %xmm0
-.L19:
+.L26:
 	addq	$40, %rsp
 	ret
-.L33:
-	leaq	.LC6(%rip), %rcx
+.L40:
+	leaq	.LC7(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L32:
-	leaq	.LC5(%rip), %rcx
+.L39:
+	leaq	.LC6(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -172,7 +212,7 @@ _ZN3wze6engine5mouse4GetYEd:
 	.def	_ZN3wze6engine5mouse10GetMotionXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10GetMotionXEv
 _ZN3wze6engine5mouse10GetMotionXEv:
-.LFB6884:
+.LFB6886:
 	.seh_endprologue
 	movsd	24(%rcx), %xmm0
 	ret
@@ -183,7 +223,7 @@ _ZN3wze6engine5mouse10GetMotionXEv:
 	.def	_ZN3wze6engine5mouse10GetMotionYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10GetMotionYEv
 _ZN3wze6engine5mouse10GetMotionYEv:
-.LFB6885:
+.LFB6887:
 	.seh_endprologue
 	movsd	32(%rcx), %xmm0
 	ret
@@ -194,7 +234,7 @@ _ZN3wze6engine5mouse10GetMotionYEv:
 	.def	_ZN3wze6engine5mouse10IsAbsoluteEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10IsAbsoluteEv
 _ZN3wze6engine5mouse10IsAbsoluteEv:
-.LFB6886:
+.LFB6888:
 	.seh_endprologue
 	movzbl	40(%rcx), %eax
 	xorl	$1, %eax
@@ -206,7 +246,7 @@ _ZN3wze6engine5mouse10IsAbsoluteEv:
 	.def	_ZN3wze6engine5mouse11SetAbsoluteEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse11SetAbsoluteEv
 _ZN3wze6engine5mouse11SetAbsoluteEv:
-.LFB6887:
+.LFB6889:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -227,7 +267,7 @@ _ZN3wze6engine5mouse11SetAbsoluteEv:
 	.def	_ZN3wze6engine5mouse10IsRelativeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10IsRelativeEv
 _ZN3wze6engine5mouse10IsRelativeEv:
-.LFB6888:
+.LFB6890:
 	.seh_endprologue
 	movzbl	40(%rcx), %eax
 	ret
@@ -238,7 +278,7 @@ _ZN3wze6engine5mouse10IsRelativeEv:
 	.def	_ZN3wze6engine5mouse11SetRelativeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse11SetRelativeEv
 _ZN3wze6engine5mouse11SetRelativeEv:
-.LFB6889:
+.LFB6891:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -259,17 +299,17 @@ _ZN3wze6engine5mouse11SetRelativeEv:
 	.def	_ZN3wze6engine5mouse9GetCursorEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse9GetCursorEv
 _ZN3wze6engine5mouse9GetCursorEv:
-.LFB6890:
+.LFB6892:
 	.seh_endprologue
 	movq	48(%rcx), %rax
 	ret
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC7:
+.LC8:
 	.ascii "wze::engine.mouse.SetCursor(): Illegal use of NULL Cursor\12Params: CursorID: %lld\12\0"
 	.align 8
-.LC8:
+.LC9:
 	.ascii "wze::engine.mouse.SetCursor(): Cursor does not exist\12Params: CursorID: %lld\12\0"
 	.text
 	.align 2
@@ -278,7 +318,7 @@ _ZN3wze6engine5mouse9GetCursorEv:
 	.def	_ZN3wze6engine5mouse9SetCursorEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse9SetCursorEy
 _ZN3wze6engine5mouse9SetCursorEy:
-.LFB6891:
+.LFB6893:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -289,14 +329,14 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	movq	%rcx, %rsi
 	movq	%rdx, %rbx
 	testq	%rdx, %rdx
-	je	.L45
+	je	.L52
 	movq	(%rcx), %rax
 	cmpq	488(%rax), %rdx
-	jnb	.L43
+	jnb	.L50
 	movq	496(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
-	je	.L43
+	je	.L50
 	call	SDL_SetCursor
 	movq	%rbx, %rax
 	movq	%rbx, 48(%rsi)
@@ -304,14 +344,14 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	popq	%rbx
 	popq	%rsi
 	ret
-.L43:
-	leaq	.LC8(%rip), %rcx
+.L50:
+	leaq	.LC9(%rip), %rcx
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L45:
-	leaq	.LC7(%rip), %rcx
+.L52:
+	leaq	.LC8(%rip), %rcx
 	xorl	%edx, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -324,7 +364,7 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	.def	_ZN3wze6engine5mouse6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse6UpdateEv
 _ZN3wze6engine5mouse6UpdateEv:
-.LFB6892:
+.LFB6894:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -343,68 +383,68 @@ _ZN3wze6engine5mouse6UpdateEv:
 	movq	544(%r8), %rdx
 	mulsd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm1
-	xorpd	.LC9(%rip), %xmm1
+	xorpd	.LC10(%rip), %xmm1
 	unpcklpd	%xmm1, %xmm0
 	movups	%xmm0, 24(%rbx)
 	testq	%rdx, %rdx
-	je	.L47
+	je	.L54
 	movq	552(%r8), %rax
 	leaq	0(,%rdx,8), %rcx
 	subq	%rdx, %rcx
 	leaq	(%rax,%rcx,8), %rcx
-	jmp	.L54
+	jmp	.L61
 	.p2align 4,,10
 	.p2align 3
-.L49:
+.L56:
 	addq	$56, %rax
 	cmpq	%rax, %rcx
-	je	.L47
-.L54:
+	je	.L54
+.L61:
 	cmpl	$1024, (%rax)
-	jne	.L49
+	jne	.L56
 	movl	20(%rax), %edx
 	movl	%edx, 16(%rbx)
 	testl	%edx, %edx
-	js	.L59
+	js	.L66
 	movzwl	24(%r8), %r9d
 	cmpl	%r9d, %edx
-	jge	.L60
-.L51:
+	jge	.L67
+.L58:
 	movzwl	42(%r8), %edx
 	subl	24(%rax), %edx
 	movl	%edx, 20(%rbx)
-	js	.L61
-.L52:
+	js	.L68
+.L59:
 	movzwl	26(%r8), %r9d
 	cmpl	%r9d, %edx
-	jl	.L49
+	jl	.L56
 	subl	$1, %r9d
 	addq	$56, %rax
 	movl	%r9d, 20(%rbx)
 	cmpq	%rax, %rcx
-	jne	.L54
-.L47:
+	jne	.L61
+.L54:
 	xorl	%eax, %eax
 	addq	$48, %rsp
 	popq	%rbx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L59:
+.L66:
 	movzwl	42(%r8), %edx
 	movl	$0, 16(%rbx)
 	subl	24(%rax), %edx
 	movl	%edx, 20(%rbx)
-	jns	.L52
-.L61:
+	jns	.L59
+.L68:
 	movl	$0, 20(%rbx)
-	jmp	.L49
+	jmp	.L56
 	.p2align 4,,10
 	.p2align 3
-.L60:
+.L67:
 	subl	$1, %r9d
 	movl	%r9d, 16(%rbx)
-	jmp	.L51
+	jmp	.L58
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
@@ -412,7 +452,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	.long	0
 	.long	1072693248
 	.align 16
-.LC9:
+.LC10:
 	.long	0
 	.long	-2147483648
 	.long	0

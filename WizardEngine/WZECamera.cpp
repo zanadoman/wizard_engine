@@ -446,7 +446,6 @@ namespace wze
         bool moved;
 
         angle = 0;
-        moved = false;
 
         if (this->Smoothing)
         {
@@ -466,6 +465,8 @@ namespace wze
 
         if (this->XActor != 0)
         {
+            moved = false;
+
             if (this->Smoothing && angle == angle)
             {
                 if (this->X < this->Engine->Actors.Actors[this->XActor]->X)
@@ -495,10 +496,34 @@ namespace wze
             {
                 this->X = this->Engine->Actors.Actors[this->XActor]->X;
             }
+
+            if (moved)
+            {
+                if (this->MinSpeedX < this->CurrentSpeedX && this->Engine->Vector.Length(this->X, this->Y, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y) <= this->SlowDownRangeX)
+                {
+                    this->CurrentSpeedX -= this->DecelerationRateX * this->Engine->Timing.DeltaTime;
+
+                    if (this->CurrentSpeedX < this->MinSpeedX)
+                    {
+                        this->CurrentSpeedX = this->MinSpeedX;
+                    }
+                }
+                else if (this->CurrentSpeedX < this->MaxSpeedX)
+                {
+                    this->CurrentSpeedX += this->AccelerationRateX * this->Engine->Timing.DeltaTime;
+
+                    if (this->MaxSpeedX < this->CurrentSpeedX)
+                    {
+                        this->CurrentSpeedX = this->MaxSpeedX;
+                    }
+                }
+            }
         }
         
         if (this->YActor != 0)
         {
+            moved = false;
+
             if (this->Smoothing && angle == angle)
             {
                 if (this->Y < this->Engine->Actors.Actors[this->YActor]->Y)
@@ -528,42 +553,27 @@ namespace wze
             {
                 this->Y = this->Engine->Actors.Actors[this->YActor]->Y;
             }
-        }
 
-        if (moved && this->MinSpeedX < this->CurrentSpeedX && this->Engine->Vector.Length(this->X, this->Y, this->Engine->Actors[this->XActor].GetX(), this->Engine->Actors[this->YActor].GetY()) <= this->SlowDownRangeX)
-        {
-            this->CurrentSpeedX -= this->DecelerationRateX * this->Engine->Timing.DeltaTime;
-
-            if (this->CurrentSpeedX < this->MinSpeedX)
+            if (moved)
             {
-                this->CurrentSpeedX = this->MinSpeedX;
-            }
-        }
-        else if (moved && this->CurrentSpeedX < this->MaxSpeedX)
-        {
-            this->CurrentSpeedX += this->AccelerationRateX * this->Engine->Timing.DeltaTime;
+                if (this->MinSpeedY < this->CurrentSpeedY && this->Engine->Vector.Length(this->X, this->Y, this->Engine->Actors.Actors[this->XActor]->X, this->Engine->Actors.Actors[this->YActor]->Y) <= this->SlowDownRangeY)
+                {
+                    this->CurrentSpeedY -= this->DecelerationRateY * this->Engine->Timing.DeltaTime;
 
-            if (this->MaxSpeedX < this->CurrentSpeedX)
-            {
-                this->CurrentSpeedX = this->MaxSpeedX;
-            }
-        }
-        if (moved && this->MinSpeedY < this->CurrentSpeedY && this->Engine->Vector.Length(this->X, this->Y, this->Engine->Actors[this->XActor].GetX(), this->Engine->Actors[this->YActor].GetY()) <= this->SlowDownRangeY)
-        {
-            this->CurrentSpeedY -= this->DecelerationRateY * this->Engine->Timing.DeltaTime;
+                    if (this->CurrentSpeedY < this->MinSpeedY)
+                    {
+                        this->CurrentSpeedY = this->MinSpeedY;
+                    }
+                }
+                else if (this->CurrentSpeedY < this->MaxSpeedY)
+                {
+                    this->CurrentSpeedY += this->AccelerationRateY * this->Engine->Timing.DeltaTime;
 
-            if (this->CurrentSpeedY < this->MinSpeedY)
-            {
-                this->CurrentSpeedY = this->MinSpeedY;
-            }
-        }
-        else if (moved && this->CurrentSpeedY < this->MaxSpeedY)
-        {
-            this->CurrentSpeedY += this->AccelerationRateY * this->Engine->Timing.DeltaTime;
-
-            if (this->MaxSpeedY < this->CurrentSpeedY)
-            {
-                this->CurrentSpeedY = this->MaxSpeedY;
+                    if (this->MaxSpeedY < this->CurrentSpeedY)
+                    {
+                        this->CurrentSpeedY = this->MaxSpeedY;
+                    }
+                }
             }
         }
 
