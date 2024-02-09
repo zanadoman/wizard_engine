@@ -445,7 +445,10 @@ namespace wze
 
                 if (this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID == FontID)
                 {
+                    this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width = 0;
                     this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
+                    SDL_DestroyTexture(this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture);
+                    this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture = NULL;
                 }
             }
         }
@@ -477,6 +480,7 @@ namespace wze
 
                         if (this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID == i)
                         {
+                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->Width = 0;
                             this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID = 0;
                             SDL_DestroyTexture(this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture);
                             this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture = NULL;
@@ -535,6 +539,7 @@ namespace wze
 
                         if (this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID == i)
                         {
+                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->Width = 0;
                             this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID = 0;
                             SDL_DestroyTexture(this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture);
                             this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture = NULL;
