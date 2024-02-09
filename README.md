@@ -40,7 +40,7 @@ Layer 0 means the screen, in every other case (when Layer is more than 0) it mea
 
 In every case ID 0 means an empty object which should not be used, \
 it can not be deleted or accessed, but you can use it in some cases, \
-for example to give an Actor's Texture object and empty TextureID. \
+for example to give an empty TextureID to a Texture object of an Actor. \
 (In this case the renderer will skip the Texture object.) \
 Just to mention another useful example of using ID 0, if you don't want \
 your Actor to have collision, you need to set its CollisionLayer to 0. \
@@ -50,7 +50,7 @@ your Actor to have collision, you need to set its CollisionLayer to 0. \
 
 #include \<WizardEngine.hpp\> \
 \
-int main(int argc, char\* \*argv) \
+int main() \
 {\
 &emsp;&emsp;wze::engine\* Engine = new wze::engine(NULL, NULL, 1920, 1080, 1000 / 60); \
 \
