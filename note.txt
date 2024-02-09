@@ -21,7 +21,7 @@ Test/supervising sequence:
     Heavily nested:
         Actor OK
         Colors OK
-        Textures
+        Textures OK
         Flipbooks
         Texts
         Overlaps

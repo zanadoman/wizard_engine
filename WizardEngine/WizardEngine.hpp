@@ -364,7 +364,7 @@ namespace wze
                                     double GetY();
                                     double GetY(double Y);
                                     neo::uint64 GetTextureID();
-                                    neo::uint64 SetTextureID(neo::uint64 ID);
+                                    neo::uint64 SetTextureID(neo::uint64 TextureID);
 
                                 private:
                                     double X;
@@ -377,10 +377,10 @@ namespace wze
 
                             public:
                                 neo::uint64 New(neo::uint64 TextureID);
-                                neo::uint8 Delete(neo::uint64 ID);
+                                neo::uint8 Delete(neo::uint64 TextureID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
                                 neo::uint8 Purge(neo::array<neo::uint64>* Keep);
-                                texture& operator [] (neo::uint64 ID);
+                                texture& operator [] (neo::uint64 TextureID);
 
                             private:
                                 neo::array<texture*> Textures;

@@ -45,17 +45,17 @@ namespace wze
         return this->Textures.Length() - 1;
     }
 
-    uint8 engine::actors::actor::textures::Delete(uint64 ID)
+    uint8 engine::actors::actor::textures::Delete(uint64 TextureID)
     {
         uint64 i;
 
-        if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
+        if (this->Textures.Length() <= TextureID || this->Textures[TextureID] == NULL)
         {
             return 0;
         }
 
-        delete this->Textures[ID];
-        this->Textures[ID] = NULL;
+        delete this->Textures[TextureID];
+        this->Textures[TextureID] = NULL;
 
         if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
         {
@@ -137,20 +137,20 @@ namespace wze
         return 0;
     }
 
-    engine::actors::actor::textures::texture& engine::actors::actor::textures::operator [] (uint64 ID)
+    engine::actors::actor::textures::texture& engine::actors::actor::textures::operator [] (uint64 TextureID)
     {
-        if (ID == 0)
+        if (TextureID == 0)
         {
-            printf("wze::engine.actors[].textures[]: Illegal access to NULL Texture\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].textures[]: Illegal access to NULL Texture\nParams: TextureID: %lld\n", TextureID);
             exit(1);
         }
-        if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
+        if (this->Textures.Length() <= TextureID || this->Textures[TextureID] == NULL)
         {
-            printf("wze::engine.actors[].textures[]: Texture does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].textures[]: Texture does not exist\nParams: TextureID: %lld\n", TextureID);
             exit(1);
         }
 
-        return *this->Textures[ID];
+        return *this->Textures[TextureID];
     }
 
     engine::actors::actor::textures::texture::texture(engine* Engine, actor* Actor, uint64 TextureID) : Engine(Engine), Actor(Actor)
@@ -218,14 +218,14 @@ namespace wze
         return this->TextureID;
     }
 
-    uint64 engine::actors::actor::textures::texture::SetTextureID(uint64 ID)
+    uint64 engine::actors::actor::textures::texture::SetTextureID(uint64 TextureID)
     {
-        if (ID != 0 && (this->Engine->Assets.Textures.Length() <= ID || this->Engine->Assets.Textures[ID] == NULL))
+        if (TextureID != 0 && (this->Engine->Assets.Textures.Length() <= TextureID || this->Engine->Assets.Textures[TextureID] == NULL))
         {
-            printf("wze::engine.actors[].textures[].SetTextureID(): Texture does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].textures[].SetTextureID(): Texture does not exist\nParams: TextureID: %lld\n", TextureID);
             exit(1);
         }
 
-        return this->TextureID = ID;
+        return this->TextureID = TextureID;
     }
 }
