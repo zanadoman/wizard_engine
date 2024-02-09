@@ -1,1 +1,2 @@
-*.s linguist-vendored
+* linguist-vendored
+WizardEngine/* linguist-detectable
