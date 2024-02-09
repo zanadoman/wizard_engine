@@ -7,6 +7,11 @@ namespace wze
 {
     engine::engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Threads(this), Assets(this), Timing(this)
     {
+        uint64 LogoAsset;
+        uint64 LogoActor;
+        uint64 LogoTexture;
+        double cache;
+
         if (Title == NULL)
         {
             Title = "Wizard Engine";
@@ -41,6 +46,26 @@ namespace wze
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
         srand(time(NULL));
+
+        LogoAsset = this->Assets.LoadTexture("engine/icon.png");
+        LogoActor = this->Actors.New(NULL, 0, Width >> 1, Height >> 1, 500, 500, 0);
+        LogoTexture = this->Actors[LogoActor].Textures.New(LogoAsset);
+        
+        this->Actors[LogoActor].Textures[LogoTexture].ColorA = 0;
+        cache = 0;
+
+        while (this->Update() && (cache += 0.1 * this->Timing.DeltaTime) < 255)
+        {
+            this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(cache);
+        }
+        while (this->Update() && 0 < (cache -= 0.1 * this->Timing.DeltaTime))
+        {
+            this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(cache);
+        }
+
+        this->Actors[LogoActor].Textures.Delete(LogoTexture);
+        this->Actors.Delete(LogoActor);
+        this->Assets.UnloadTexture(LogoAsset);
     }
 
     engine::~engine()
