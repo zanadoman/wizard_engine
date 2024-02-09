@@ -27,7 +27,7 @@ as well.
 ## How to use Actors?
 
 You can set the properties of an Actor by using the [] operator \
-overload of the Actors subclass. 
+overload of the Actors subclass. \
 Also with this method you can request Colors, Textures, Flipbooks, \
 Texts and Overlapboxes for your new actor. (Remember to store their IDs as well!)
 
