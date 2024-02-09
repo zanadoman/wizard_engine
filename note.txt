@@ -8,9 +8,8 @@ Test/supervising sequence:
         Engine OK
         Window OK
         Timing OK
-        Keys
-        Mouse
-        Camera
+        Keys OK
+        Mouse OK
         Threads
         Audio
     Slightly nested:

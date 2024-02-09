@@ -26,7 +26,7 @@ namespace wze
         }
         if (Layer < 0)
         {
-            printf("engine.mouse.GetY(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
+            printf("engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
 
@@ -55,7 +55,7 @@ namespace wze
         }
         if (Layer < 0)
         {
-            printf("engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
+            printf("engine.mouse.GetY(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
 
@@ -92,7 +92,7 @@ namespace wze
     {
         SDL_SetRelativeMouseMode(SDL_FALSE);
 
-        return this->Mode = false;
+        return !(this->Mode = false);
     }
 
     bool engine::mouse::IsRelative()
@@ -112,22 +112,22 @@ namespace wze
         return this->Cursor;
     }
 
-    uint64 engine::mouse::SetCursor(uint64 ID)
+    uint64 engine::mouse::SetCursor(uint64 CursorID)
     {
-        if (ID == 0)
+        if (CursorID == 0)
         {
-            printf("wze::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: ID: %lld\n", ID);
+            printf("wze::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: CursorID: %lld\n", CursorID);
             exit(1);
         }
-        if (this->Engine->Assets.Cursors.Length() <= ID || this->Engine->Assets.Cursors[ID] == NULL)
+        if (this->Engine->Assets.Cursors.Length() <= CursorID || this->Engine->Assets.Cursors[CursorID] == NULL)
         {
-            printf("wze::engine.mouse.SetCursor(): Cursor does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.mouse.SetCursor(): Cursor does not exist\nParams: CursorID: %lld\n", CursorID);
             exit(1);
         }
 
-        SDL_SetCursor(this->Engine->Assets.Cursors[ID]);
+        SDL_SetCursor(this->Engine->Assets.Cursors[CursorID]);
 
-        return this->Cursor = ID;
+        return this->Cursor = CursorID;
     }
 
     uint8 engine::mouse::Update()

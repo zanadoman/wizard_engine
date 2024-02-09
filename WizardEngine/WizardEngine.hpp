@@ -244,7 +244,7 @@ namespace wze
                     bool IsRelative();
                     bool SetRelative();
                     neo::uint64 GetCursor();
-                    neo::uint64 SetCursor(neo::uint64 ID);
+                    neo::uint64 SetCursor(neo::uint64 CursorID);
 
                 private:
                     neo::sint32 X;
