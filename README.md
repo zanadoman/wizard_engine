@@ -11,9 +11,9 @@ Demo assets made by ansimuz (https://ansimuz.itch.io/sunny-land-pixel-game-art)
 \
 #undef main\
 \
-int main(int argc, char* *argv)\
+int main(int argc, char\* \*argv)\
 {\
-&emsp;&emsp;wze::engine* Engine = new wze::engine(NULL, NULL, 1920, 1080, 1000 / 60);\
+&emsp;&emsp;wze::engine\* Engine = new wze::engine(NULL, NULL, 1920, 1080, 1000 / 60);\
 \
 &emsp;&emsp;while (Engine->Update())\
 &emsp;&emsp;{\
