@@ -896,7 +896,7 @@ _ZN3wze6engine6UpdateEv:
 	.string	"wze::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n"
 	.section	.rodata.str1.1
 .LC9:
-	.string	"engine/icon.png"
+	.string	"engine/wizard.png"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
 .LCOLDB12:

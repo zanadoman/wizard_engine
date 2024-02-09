@@ -60,7 +60,7 @@ namespace wze
 
         if (IconPath == NULL)
         {
-            if ((icon = IMG_Load("engine/icon.png")) == NULL)
+            if ((icon = IMG_Load("engine/wizard.png")) == NULL)
             {
                 printf("wze::engine.window.New(): IMG_Load() failed\nParams: Title: %s, IconPath: %s, Width: %d, Height: %d\n", Title, "engine/icon.png", Width, Height);
                 exit(1);

@@ -82,10 +82,12 @@ _ZN3wze6engine6window8HasFocusEv:
 	.string	"wze::engine.window.New(): SDL_SetRenderDrawBlendMode() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d\n"
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC4:
+	.string	"engine/wizard.png"
+.LC5:
 	.string	"engine/icon.png"
 	.section	.rodata.str1.8
 	.align 8
-.LC5:
+.LC6:
 	.string	"wze::engine.window.New(): IMG_Load() failed\nParams: Title: %s, IconPath: %s, Width: %d, Height: %d\n"
 	.text
 	.align 2
@@ -155,7 +157,7 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	movq	%r13, %rdi
 	call	IMG_Load@PLT
 	testq	%rax, %rax
-	je	.L15
+	je	.L21
 .L13:
 	movq	8(%rbx), %rdi
 	movq	%rax, %rsi
@@ -186,17 +188,16 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	.p2align 3
 .L20:
 	.cfi_restore_state
-	leaq	.LC4(%rip), %r13
-	movq	%r13, %rdi
+	leaq	.LC4(%rip), %rdi
 	call	IMG_Load@PLT
 	testq	%rax, %rax
 	jne	.L13
-.L15:
-	movq	8(%rsp), %rsi
 	movl	%r15d, %r8d
 	movl	%r14d, %ecx
-	movq	%r13, %rdx
-	leaq	.LC5(%rip), %rdi
+	leaq	.LC5(%rip), %rdx
+.L15:
+	movq	8(%rsp), %rsi
+	leaq	.LC6(%rip), %rdi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -220,16 +221,6 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L16:
-	movq	8(%rsp), %rsi
-	movl	%r15d, %r8d
-	movl	%r14d, %ecx
-	movq	%r13, %rdx
-	leaq	.LC0(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
 .L17:
 	movq	8(%rsp), %rsi
 	movl	%r15d, %r8d
@@ -240,6 +231,21 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
+.L16:
+	movq	8(%rsp), %rsi
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
+	leaq	.LC0(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L21:
+	movl	%r15d, %r8d
+	movl	%r14d, %ecx
+	movq	%r13, %rdx
+	jmp	.L15
 	.cfi_endproc
 .LFE8153:
 	.size	_ZN3wze6engine6window4OpenEPKcS3_tt, .-_ZN3wze6engine6window4OpenEPKcS3_tt

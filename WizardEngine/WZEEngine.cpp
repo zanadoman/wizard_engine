@@ -47,7 +47,7 @@ namespace wze
         this->Timing.TargetFrameTime = TargetFrameTime;
         srand(time(NULL));
 
-        LogoAsset = this->Assets.LoadTexture("engine/icon.png");
+        LogoAsset = this->Assets.LoadTexture("engine/wizard.png");
         LogoActor = this->Actors.New(NULL, 0, Width >> 1, Height >> 1, Height >> 1, Height >> 1, 0);
         LogoTexture = this->Actors[LogoActor].Textures.New(LogoAsset);
         
