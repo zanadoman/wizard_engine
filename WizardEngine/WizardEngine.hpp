@@ -798,7 +798,7 @@ namespace wze
 
             //__________Engine_________________________________________________________________________________________
 
-            engine(const char* Title, const char* IconPath, neo::uint16 Width, neo::uint16 Height, neo::uint8 TargetFrameTime);
+            engine(const char* Title, const char* IconPath, neo::uint16 WindowWidth, neo::uint16 WindowHeight, neo::uint8 TargetFrameTime);
             ~engine();
             bool Update();
             neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);

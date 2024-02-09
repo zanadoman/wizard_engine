@@ -5,7 +5,7 @@ using namespace neo;
 
 namespace wze
 {
-    engine::engine(const char* Title, const char* IconPath, uint16 Width, uint16 Height, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Threads(this), Assets(this), Timing(this)
+    engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Threads(this), Assets(this), Timing(this), EventQueue(10)
     {
         uint8 LogoAsset;
         uint8 LogoActor;
@@ -19,36 +19,36 @@ namespace wze
 
         if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         {
-            printf("wze::engine.engine(): SDL_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
+            printf("wze::engine.engine(): SDL_Init() failed\nParams: Title: %s, IconPath: %p, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
             exit(1);
         }
         if (Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS | MIX_INIT_WAVPACK) == 0)
         {
-            printf("wze::engine.engine(): Mix_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
+            printf("wze::engine.engine(): Mix_Init() failed\nParams: Title: %s, IconPath: %p, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
             exit(1);
         }
         if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) != 0)
         {
-            printf("wze::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
+            printf("wze::engine.engine(): Mix_OpenAudio() failed\nParams: Title: %s, IconPath: %p, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
             exit(1);
         }
         if (TTF_Init() != 0)
         {
-            printf("wze::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %p, Width: %d, Height: %d, TargetFrameTime: %d\n", Title, IconPath, Width, Height, TargetFrameTime);
+            printf("wze::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %p, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
             exit(1);
         }
 
-        this->Window.Open(Title, IconPath, Width, Height);
-        this->Render.RenderWidth = Width - 1;
-        this->Render.RenderHeight = Height - 1;
-        this->Camera.OffsetX = -(Width >> 1);
-        this->Camera.OffsetY = -(Height >> 1);
+        this->Window.Open(Title, IconPath, WindowWidth, WindowHeight);
+        this->Render.RenderWidth = WindowWidth - 1;
+        this->Render.RenderHeight = WindowHeight - 1;
+        this->Camera.OffsetX = -(WindowWidth >> 1);
+        this->Camera.OffsetY = -(WindowHeight >> 1);
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
         srand(time(NULL));
 
         LogoAsset = this->Assets.LoadTexture("engine/wizard.png");
-        LogoActor = this->Actors.New(NULL, 0, Width >> 1, Height >> 1, Height >> 1, Height >> 1, 0);
+        LogoActor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
         LogoTexture = this->Actors[LogoActor].Textures.New(LogoAsset);
         
         this->Actors[LogoActor].Textures[LogoTexture].ColorA = opacity = 0;
@@ -94,11 +94,9 @@ namespace wze
         this->Timing.RenderTime = SDL_GetTicks() - this->Timing.PrevTick - this->Timing.GameTime;
 
         this->Timing.Update();
-
         this->UpdateFlipbooks();
 
         this->Window.State = SDL_GetWindowFlags(this->Window.Window);
-
         for (i = 0; SDL_PollEvent(&event); i++)
         {
             if (event.type == SDL_QUIT)
@@ -178,6 +176,10 @@ namespace wze
             {
                 CursorX = this->Mouse.GetX(this->Actors.Actors[i]->Layer);
                 CursorY = this->Mouse.GetY(this->Actors.Actors[i]->Layer);
+            }
+            else
+            {
+                continue;
             }
 
             for (uint64 j = 1; j < this->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length(); j++)
