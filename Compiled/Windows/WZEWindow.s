@@ -93,26 +93,24 @@ _ZN3wze6engine6window7IsShownEv:
 _ZN3wze6engine6window8HasFocusEv:
 .LFB6885:
 	.seh_endprologue
-	movl	$1, %eax
+	xorl	%eax, %eax
 	ret
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
 .LC0:
-	.ascii "wze::engine.window.New(): SDL_CreateWindow() failed\12Params: Title: %s, IconPath: %p, Width: %d, Height: %d\12\0"
+	.ascii "wze::engine.window.New(): SDL_CreateWindow() failed\12Params: Title: %s, IconPath: %s, Width: %d, Height: %d\12\0"
 	.align 8
 .LC1:
-	.ascii "wze::engine.window.New(): SDL_CreateRenderer() failed\12Params: Title: %s, IconPath: %p, Width: %d, Height: %d\12\0"
+	.ascii "wze::engine.window.New(): SDL_CreateRenderer() failed\12Params: Title: %s, IconPath: %s, Width: %d, Height: %d\12\0"
 	.align 8
 .LC2:
-	.ascii "wze::engine.window.New(): SDL_RenderSetLogicalSize() failed\12Params: Title: %s, IconPath: %p, Width: %d, Height: %d\12\0"
+	.ascii "wze::engine.window.New(): SDL_RenderSetLogicalSize() failed\12Params: Title: %s, IconPath: %s, Width: %d, Height: %d\12\0"
 	.align 8
 .LC3:
-	.ascii "wze::engine.window.New(): SDL_SetRenderDrawBlendMode() failed\12Params: Title: %s, IconPath: %p, Width: %d, Height: %d\12\0"
-.LC4:
-	.ascii "engine/icon.png\0"
+	.ascii "wze::engine.window.New(): SDL_SetRenderDrawBlendMode() failed\12Params: Title: %s, IconPath: %s, Width: %d, Height: %d\12\0"
 	.align 8
-.LC5:
+.LC4:
 	.ascii "wze::engine.window.New(): IMG_Load() failed\12Params: Title: %s, IconPath: %s, Width: %d, Height: %d\12\0"
 	.text
 	.align 2
@@ -144,11 +142,11 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	movl	160(%rsp), %r14d
 	movzwl	%r14w, %r13d
 	movl	%r13d, 32(%rsp)
-	movq	%rdx, %rbp
+	movq	%rdx, %rdi
 	movzwl	%r9w, %r12d
 	movq	%rcx, %rbx
-	movq	%r8, %rdi
-	movq	%rbp, %rcx
+	movq	%r8, %rbp
+	movq	%rdi, %rcx
 	movl	%r9d, %esi
 	movl	$536805376, %r8d
 	movl	$4129, 40(%rsp)
@@ -158,32 +156,29 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rcx
 	testq	%rax, %rax
-	je	.L17
+	je	.L14
 	movl	$2, %r8d
 	movl	$-1, %edx
 	call	SDL_CreateRenderer
 	movq	%rax, 16(%rbx)
 	movq	%rax, %rcx
 	testq	%rax, %rax
-	je	.L18
+	je	.L15
 	movl	%r13d, %r8d
 	movl	%r12d, %edx
 	call	SDL_RenderSetLogicalSize
 	testl	%eax, %eax
-	jne	.L19
+	jne	.L16
 	movq	16(%rbx), %rcx
 	movl	$1, %edx
 	call	SDL_SetRenderDrawBlendMode
 	testl	%eax, %eax
-	jne	.L20
-	testq	%rdi, %rdi
-	je	.L21
-.L13:
-	movq	%rdi, %rcx
+	jne	.L17
+	movq	%rbp, %rcx
 	call	IMG_Load
 	movq	%rax, %r15
 	testq	%rax, %rax
-	je	.L22
+	je	.L18
 	movq	8(%rbx), %rcx
 	movq	%rax, %rdx
 	call	SDL_SetWindowIcon
@@ -202,53 +197,48 @@ _ZN3wze6engine6window4OpenEPKcS3_tt:
 	popq	%r14
 	popq	%r15
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L21:
-	leaq	.LC4(%rip), %rdi
-	jmp	.L13
-.L20:
+.L14:
 	movl	%r13d, 32(%rsp)
 	movl	%r12d, %r9d
-	movq	%rdi, %r8
-	movq	%rbp, %rdx
-	leaq	.LC3(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L19:
-	movl	%r13d, 32(%rsp)
-	movl	%r12d, %r9d
-	movq	%rdi, %r8
-	movq	%rbp, %rdx
-	leaq	.LC2(%rip), %rcx
+	movq	%rbp, %r8
+	movq	%rdi, %rdx
+	leaq	.LC0(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L18:
 	movl	%r13d, 32(%rsp)
 	movl	%r12d, %r9d
-	movq	%rdi, %r8
-	movq	%rbp, %rdx
-	leaq	.LC1(%rip), %rcx
+	movq	%rbp, %r8
+	movq	%rdi, %rdx
+	leaq	.LC4(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L17:
 	movl	%r13d, 32(%rsp)
 	movl	%r12d, %r9d
-	movq	%rdi, %r8
-	movq	%rbp, %rdx
-	leaq	.LC0(%rip), %rcx
+	movq	%rbp, %r8
+	movq	%rdi, %rdx
+	leaq	.LC3(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L22:
+.L16:
 	movl	%r13d, 32(%rsp)
 	movl	%r12d, %r9d
-	movq	%rdi, %r8
-	movq	%rbp, %rdx
-	leaq	.LC5(%rip), %rcx
+	movq	%rbp, %r8
+	movq	%rdi, %rdx
+	leaq	.LC2(%rip), %rcx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L15:
+	movl	%r13d, 32(%rsp)
+	movl	%r12d, %r9d
+	movq	%rbp, %r8
+	movq	%rdi, %rdx
+	leaq	.LC1(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit

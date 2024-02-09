@@ -60,7 +60,7 @@ _ZN3wze6engine5mouseC2EPS0_:
 	.ascii "engine.mouse.GetX(): Layer must not be NaN\12Params: Layer: %lf\12\0"
 	.align 8
 .LC4:
-	.ascii "engine.mouse.GetY(): Layer must not be less than 0\12Params: Layer: %lf\12\0"
+	.ascii "engine.mouse.GetX(): Layer must not be less than 0\12Params: Layer: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -116,7 +116,7 @@ _ZN3wze6engine5mouse4GetXEd:
 	.ascii "engine.mouse.GetY(): Layer must not be NaN\12Params: Layer: %lf\12\0"
 	.align 8
 .LC6:
-	.ascii "engine.mouse.GetX(): Layer must not be less than 0\12Params: Layer: %lf\12\0"
+	.ascii "engine.mouse.GetY(): Layer must not be less than 0\12Params: Layer: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -215,7 +215,7 @@ _ZN3wze6engine5mouse11SetAbsoluteEv:
 	movq	%rcx, %rbx
 	xorl	%ecx, %ecx
 	call	SDL_SetRelativeMouseMode
-	xorl	%eax, %eax
+	movl	$1, %eax
 	movb	$0, 40(%rbx)
 	addq	$32, %rsp
 	popq	%rbx
@@ -267,10 +267,10 @@ _ZN3wze6engine5mouse9GetCursorEv:
 	.section .rdata,"dr"
 	.align 8
 .LC7:
-	.ascii "wze::engine.mouse.SetCursor(): Illegal use of NULL cursor\12Params: ID: %lld\12\0"
+	.ascii "wze::engine.mouse.SetCursor(): Illegal use of NULL Cursor\12Params: CursorID: %lld\12\0"
 	.align 8
 .LC8:
-	.ascii "wze::engine.mouse.SetCursor(): Cursor does not exist\12Params: ID: %lld\12\0"
+	.ascii "wze::engine.mouse.SetCursor(): Cursor does not exist\12Params: CursorID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -291,9 +291,9 @@ _ZN3wze6engine5mouse9SetCursorEy:
 	testq	%rdx, %rdx
 	je	.L45
 	movq	(%rcx), %rax
-	cmpq	720(%rax), %rdx
+	cmpq	488(%rax), %rdx
 	jnb	.L43
-	movq	728(%rax), %rax
+	movq	496(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L43
@@ -340,7 +340,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	cvtsi2sdl	40(%rsp), %xmm0
 	movsd	8(%rbx), %xmm2
 	cvtsi2sdl	44(%rsp), %xmm1
-	movq	776(%r8), %rdx
+	movq	544(%r8), %rdx
 	mulsd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm1
 	xorpd	.LC9(%rip), %xmm1
@@ -348,7 +348,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	movups	%xmm0, 24(%rbx)
 	testq	%rdx, %rdx
 	je	.L47
-	movq	784(%r8), %rax
+	movq	552(%r8), %rax
 	leaq	0(,%rdx,8), %rcx
 	subq	%rdx, %rcx
 	leaq	(%rax,%rcx,8), %rcx

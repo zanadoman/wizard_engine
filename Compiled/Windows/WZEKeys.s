@@ -40,14 +40,44 @@ _Z6printfPKcz:
 	.seh_proc	_ZN3wze6engine4keysC2EPS0_
 _ZN3wze6engine4keysC2EPS0_:
 .LFB6880:
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
 	.seh_endprologue
 	movq	%rdx, (%rcx)
+	movq	%rcx, %rbx
 	movq	$0, 8(%rcx)
+	movl	$237, %ecx
+	call	_Znay
+	movq	%rax, 16(%rbx)
+	addq	$32, %rsp
+	popq	%rbx
 	ret
 	.seh_endproc
 	.globl	_ZN3wze6engine4keysC1EPS0_
 	.def	_ZN3wze6engine4keysC1EPS0_;	.scl	2;	.type	32;	.endef
 	.set	_ZN3wze6engine4keysC1EPS0_,_ZN3wze6engine4keysC2EPS0_
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine4keysD2Ev
+	.def	_ZN3wze6engine4keysD2Ev;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine4keysD2Ev
+_ZN3wze6engine4keysD2Ev:
+.LFB6883:
+	.seh_endprologue
+	movq	16(%rcx), %rcx
+	testq	%rcx, %rcx
+	je	.L4
+	jmp	_ZdaPv
+	.p2align 4,,10
+	.p2align 3
+.L4:
+	ret
+	.seh_endproc
+	.globl	_ZN3wze6engine4keysD1Ev
+	.def	_ZN3wze6engine4keysD1Ev;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine4keysD1Ev,_ZN3wze6engine4keysD2Ev
 	.section .rdata,"dr"
 	.align 8
 .LC0:
@@ -59,18 +89,19 @@ _ZN3wze6engine4keysC2EPS0_:
 	.def	_ZN3wze6engine4keysixENS_3keyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keysixENS_3keyE
 _ZN3wze6engine4keysixENS_3keyE:
-.LFB6882:
+.LFB6885:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	cmpl	$236, %edx
-	jg	.L6
+	jg	.L8
+	movq	16(%rcx), %rax
 	movslq	%edx, %rdx
-	cmpb	$0, 16(%rcx,%rdx)
+	cmpb	$0, (%rax,%rdx)
 	setne	%al
 	addq	$40, %rsp
 	ret
-.L6:
+.L8:
 	leaq	.LC0(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -83,87 +114,98 @@ _ZN3wze6engine4keysixENS_3keyE:
 	.def	_ZN3wze6engine4keys6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keys6UpdateEv
 _ZN3wze6engine4keys6UpdateEv:
-.LFB6883:
+.LFB6886:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
 	.seh_stackalloc	32
 	.seh_endprologue
 	movl	$237, %r8d
+	movq	16(%rcx), %rdx
 	movq	%rcx, %rbx
-	leaq	16(%rcx), %rdx
 	movq	8(%rcx), %rcx
 	call	_ZN3neo9memCopyToEPKvPvy
 	xorl	%edx, %edx
 	xorl	%ecx, %ecx
 	call	SDL_GetMouseState
-	movq	(%rbx), %r8
+	movq	16(%rbx), %rdx
+	testb	$1, %al
+	je	.L10
+	movb	$1, 232(%rdx)
+.L11:
 	movl	%eax, %edx
-	andl	$1, %edx
-	movb	%dl, 248(%rbx)
-	movl	%eax, %edx
+	movq	16(%rbx), %rcx
 	shrl	$2, %eax
 	shrl	%edx
 	andl	$1, %eax
 	andl	$1, %edx
-	movb	%al, 250(%rbx)
+	movb	%dl, 233(%rcx)
+	movq	16(%rbx), %rdx
+	movb	%al, 234(%rdx)
+	movq	(%rbx), %r8
 	xorl	%eax, %eax
-	movb	%dl, 249(%rbx)
-	movq	776(%r8), %r9
 	xorl	%edx, %edx
+	movq	544(%r8), %r9
 	testq	%r9, %r9
-	jne	.L8
-	jmp	.L16
+	jne	.L12
+	jmp	.L20
 	.p2align 4,,10
 	.p2align 3
-.L9:
+.L13:
 	addq	$1, %rdx
 	addq	$56, %rax
 	cmpq	%r9, %rdx
-	jnb	.L16
-.L8:
-	movq	784(%r8), %rcx
+	jnb	.L20
+.L12:
+	movq	552(%r8), %rcx
 	addq	%rax, %rcx
 	cmpl	$1027, (%rcx)
-	jne	.L9
-	movl	20(%rcx), %r10d
-	testl	%r10d, %r10d
-	jns	.L10
-	movzwl	.LC1(%rip), %ecx
+	jne	.L13
+	movl	20(%rcx), %ecx
+	movq	16(%rbx), %r8
+	testl	%ecx, %ecx
+	jns	.L14
+	movb	$1, 235(%r8)
+	movq	16(%rbx), %rcx
 	addq	$1, %rdx
 	addq	$56, %rax
-	movw	%cx, 251(%rbx)
-	movq	776(%r8), %r9
+	movb	$0, 236(%rcx)
+	movq	(%rbx), %r8
+	movq	544(%r8), %r9
 	cmpq	%r9, %rdx
-	jb	.L8
-.L16:
+	jb	.L12
+.L20:
 	xorl	%eax, %eax
 	addq	$32, %rsp
 	popq	%rbx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L10:
-	je	.L11
-	movl	$256, %r9d
-	movw	%r9w, 251(%rbx)
-	movq	776(%r8), %r9
-	jmp	.L9
+.L14:
+	movb	$0, 235(%r8)
+	movq	16(%rbx), %rcx
+	je	.L15
+	movb	$1, 236(%rcx)
+	movq	(%rbx), %r8
+	movq	544(%r8), %r9
+	jmp	.L13
 	.p2align 4,,10
 	.p2align 3
-.L11:
-	xorl	%ecx, %ecx
-	movw	%cx, 251(%rbx)
-	movq	776(%r8), %r9
-	jmp	.L9
+.L10:
+	movb	$0, 232(%rdx)
+	jmp	.L11
+	.p2align 4,,10
+	.p2align 3
+.L15:
+	movb	$0, 236(%rcx)
+	movq	(%rbx), %r8
+	movq	544(%r8), %r9
+	jmp	.L13
 	.seh_endproc
-	.section .rdata,"dr"
-	.align 2
-.LC1:
-	.byte	1
-	.byte	0
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
+	.def	_Znay;	.scl	2;	.type	32;	.endef
+	.def	_ZdaPv;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	SDL_GetMouseState;	.scl	2;	.type	32;	.endef

@@ -106,19 +106,19 @@ _ZN3wze6engine5audio15SetGlobalVolumeEd:
 	.section .rdata,"dr"
 	.align 8
 .LC4:
-	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: ID: %lld, Channel: %d, Volume: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf\12\0"
 	.align 8
 .LC5:
-	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf\12\0"
 	.align 8
 .LC6:
-	.ascii "wze::engine.audio.Play(): WAV does not exist\12Params: ID: %lld, Channel: %d, Volume: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Sound does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf\12\0"
 	.align 8
 .LC8:
 	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"
 	.align 8
 .LC9:
-	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: ID: %lld, Channel: %d, Volume: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -152,9 +152,9 @@ _ZN3wze6engine5audio4PlayEytd:
 	testq	%rdx, %rdx
 	je	.L21
 	movq	(%rcx), %rax
-	cmpq	688(%rax), %rdx
+	cmpq	456(%rax), %rdx
 	jnb	.L22
-	movq	696(%rax), %rax
+	movq	464(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L22
@@ -164,8 +164,8 @@ _ZN3wze6engine5audio4PlayEytd:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	(%rdi), %rax
-	movq	696(%rax), %rdx
-	cmpq	688(%rax), %rbx
+	movq	464(%rax), %rdx
+	cmpq	456(%rax), %rbx
 	jnb	.L32
 	movzwl	%si, %esi
 	movq	(%rdx,%rbx,8), %rdx
@@ -227,16 +227,16 @@ _ZN3wze6engine5audio4PlayEytd:
 	.section .rdata,"dr"
 	.align 8
 .LC10:
-	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
 	.align 8
 .LC11:
-	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
 	.align 8
 .LC12:
-	.ascii "wze::engine.audio.Play(): WAV does not exist\12Params: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Sound does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
 	.align 8
 .LC13:
-	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: ID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -274,9 +274,9 @@ _ZN3wze6engine5audio4PlayEytdt:
 	je	.L40
 	movq	(%rcx), %rax
 	movzwl	%bp, %ebp
-	cmpq	688(%rax), %rdx
+	cmpq	456(%rax), %rdx
 	jnb	.L41
-	movq	696(%rax), %rax
+	movq	464(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L41
@@ -286,8 +286,8 @@ _ZN3wze6engine5audio4PlayEytdt:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	(%rdi), %rax
-	movq	696(%rax), %rdx
-	cmpq	688(%rax), %rbx
+	movq	464(%rax), %rdx
+	cmpq	456(%rax), %rbx
 	jnb	.L51
 	movzwl	%si, %esi
 	movq	(%rdx,%rbx,8), %rdx
@@ -356,31 +356,31 @@ _ZN3wze6engine5audio4PlayEytdt:
 	.section .rdata,"dr"
 	.align 8
 .LC14:
-	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC15:
-	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC16:
-	.ascii "wze::engine.audio.Play(): Left must not be NaN\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Left must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC17:
-	.ascii "wze::engine.audio.Play(): Left must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Left must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC18:
-	.ascii "wze::engine.audio.Play(): Right must not be NaN\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Right must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC19:
-	.ascii "wze::engine.audio.Play(): Right must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Right must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC20:
-	.ascii "wze::engine.audio.Play(): WAV does not exist\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Sound does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC21:
-	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.align 8
 .LC23:
-	.ascii "wze::engine.audio.Play(): Mix_SetPanning() failed\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
+	.ascii "wze::engine.audio.Play(): Mix_SetPanning() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -433,9 +433,9 @@ _ZN3wze6engine5audio4PlayEytddd:
 	testq	%rdx, %rdx
 	je	.L69
 	movq	(%rcx), %rax
-	cmpq	688(%rax), %rdx
+	cmpq	456(%rax), %rdx
 	jnb	.L70
-	movq	696(%rax), %rax
+	movq	464(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L70
@@ -445,8 +445,8 @@ _ZN3wze6engine5audio4PlayEytddd:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	(%rdi), %rax
-	movq	696(%rax), %rdx
-	cmpq	688(%rax), %rbx
+	movq	464(%rax), %rdx
+	cmpq	456(%rax), %rbx
 	jnb	.L89
 	movzwl	%si, %esi
 	movq	(%rdx,%rbx,8), %rdx
@@ -581,31 +581,31 @@ _ZN3wze6engine5audio4PlayEytddd:
 	.section .rdata,"dr"
 	.align 8
 .LC24:
-	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC25:
-	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC26:
-	.ascii "wze::engine.audio.Play(): Left must not be NaN\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Left must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC27:
-	.ascii "wze::engine.audio.Play(): Left must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Left must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC28:
-	.ascii "wze::engine.audio.Play(): Right must not be NaN\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Right must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC29:
-	.ascii "wze::engine.audio.Play(): Right must be in range [0, 1]\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Right must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC30:
-	.ascii "wze::engine.audio.Play(): WAV does not exist\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Sound does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC31:
-	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.align 8
 .LC32:
-	.ascii "wze::engine.audio.Play(): Mix_SetPanning() failed\12Params: ID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
+	.ascii "wze::engine.audio.Play(): Mix_SetPanning() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -662,9 +662,9 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	je	.L108
 	movq	(%rcx), %rax
 	movzwl	%si, %esi
-	cmpq	688(%rax), %rdx
+	cmpq	456(%rax), %rdx
 	jnb	.L109
-	movq	696(%rax), %rax
+	movq	464(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L109
@@ -674,8 +674,8 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_VolumeChunk
 	movq	0(%rbp), %rax
-	movq	696(%rax), %rdx
-	cmpq	688(%rax), %rbx
+	movq	464(%rax), %rdx
+	cmpq	456(%rax), %rbx
 	jnb	.L128
 	movzwl	%di, %edi
 	movq	(%rdx,%rbx,8), %rdx
@@ -904,6 +904,11 @@ _ZN3wze6engine5audio9ResumeAllEv:
 	addq	$40, %rsp
 	ret
 	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC33:
+	.ascii "wze::engine.audio.Stop(): Mix_HaltChannel() failed\12Params: Channel: %d\12\0"
+	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5audio4StopEt
@@ -911,14 +916,27 @@ _ZN3wze6engine5audio9ResumeAllEv:
 	.seh_proc	_ZN3wze6engine5audio4StopEt
 _ZN3wze6engine5audio4StopEt:
 .LFB6893:
-	subq	$40, %rsp
-	.seh_stackalloc	40
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
 	.seh_endprologue
-	movzwl	%dx, %ecx
+	movzwl	%dx, %ebx
+	movl	%ebx, %ecx
 	call	Mix_HaltChannel
+	testl	%eax, %eax
+	jne	.L138
 	xorl	%eax, %eax
-	addq	$40, %rsp
+	addq	$32, %rsp
+	popq	%rbx
 	ret
+.L138:
+	leaq	.LC33(%rip), %rcx
+	movl	%ebx, %edx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8

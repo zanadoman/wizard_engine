@@ -30,13 +30,10 @@ _Z6printfPKcz.constprop.0:
 	ret
 	.seh_endproc
 	.def	__main;	.scl	2;	.type	32;	.endef
-	.section .rdata,"dr"
-.LC6:
-	.ascii "assets/ara_ara.mp3\0"
 	.section	.text.unlikely,"x"
-.LCOLDB8:
+.LCOLDB7:
 	.section	.text.startup,"x"
-.LHOTB8:
+.LHOTB7:
 	.p2align 4
 	.globl	main
 	.def	main;	.scl	2;	.type	32;	.endef
@@ -73,7 +70,7 @@ main:
 	.seh_savexmm	%xmm10, 272
 	.seh_endprologue
 	call	__main
-	movl	$792, %ecx
+	movl	$560, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
@@ -142,19 +139,18 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, 104(%rsp)
-	movq	%rax, %r14
+	movq	%rax, %rsi
 .LEHB11:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %r14d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %esi
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -163,12 +159,12 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r13d, 40(%rsp)
+	movl	%r14d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%esi, 32(%rsp)
-	movq	%r14, %rcx
+	movl	%r13d, 32(%rsp)
+	movq	%rsi, %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE11:
 	movl	$32, %ecx
@@ -178,19 +174,18 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, 112(%rsp)
-	movq	%rax, %r14
+	movq	%rax, 104(%rsp)
 .LEHB13:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %r14d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %esi
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -199,12 +194,12 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r13d, 40(%rsp)
+	movl	%r14d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%esi, 32(%rsp)
-	movq	%r14, %rcx
+	movl	%r13d, 32(%rsp)
+	movq	104(%rsp), %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE13:
 	movl	$32, %ecx
@@ -214,19 +209,18 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, 120(%rsp)
-	movq	%rax, %r14
+	movq	%rax, 112(%rsp)
 .LEHB15:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %r14d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %esi
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -235,12 +229,12 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r13d, 40(%rsp)
+	movl	%r14d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%esi, 32(%rsp)
-	movq	%r14, %rcx
+	movl	%r13d, 32(%rsp)
+	movq	112(%rsp), %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE15:
 	movl	$32, %ecx
@@ -250,19 +244,18 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, 128(%rsp)
-	movq	%rax, %r14
+	movq	%rax, 120(%rsp)
 .LEHB17:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %r14d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %esi
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -271,12 +264,12 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r13d, 40(%rsp)
+	movl	%r14d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%esi, 32(%rsp)
-	movq	%r14, %rcx
+	movl	%r13d, 32(%rsp)
+	movq	120(%rsp), %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE17:
 	movl	$32, %ecx
@@ -286,19 +279,18 @@ main:
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movq	%rax, 136(%rsp)
-	movq	%rax, %r14
+	movq	%rax, 128(%rsp)
 .LEHB19:
 	call	_ZN3wze6engine6RandomEii
 	movl	$150, %r8d
 	movl	$50, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %r13d
+	movzwl	%ax, %r14d
 	call	_ZN3wze6engine6RandomEii
 	movl	$500, %r8d
 	movl	$-500, %edx
 	movq	%rbx, %rcx
-	movzwl	%ax, %esi
+	movzwl	%ax, %r13d
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm6, %xmm6
 	movl	$500, %r8d
@@ -307,97 +299,90 @@ main:
 	cvtsi2sdl	%eax, %xmm6
 	call	_ZN3wze6engine6RandomEii
 	pxor	%xmm2, %xmm2
-	movl	%r13d, 40(%rsp)
+	movl	%r14d, 40(%rsp)
 	movapd	%xmm6, %xmm3
 	movq	%rbx, %rdx
 	cvtsi2sdl	%eax, %xmm2
-	movl	%esi, 32(%rsp)
-	movq	%r14, %rcx
+	movl	%r13d, 32(%rsp)
+	movq	128(%rsp), %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE19:
+	leaq	80(%rbx), %r13
 	movq	8(%rdi), %rdx
-	leaq	80(%rbx), %rsi
 	leaq	200(%rsp), %r14
-	movq	%rsi, %rcx
-	leaq	.LC0(%rip), %r13
+	movq	%r13, %rcx
 .LEHB20:
 	call	_ZN3wze6engine6camera4BindEy
 	movb	$1, 104(%rbx)
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	movsd	.LC1(%rip), %xmm10
 	movapd	%xmm10, %xmm1
 	call	_ZN3wze6engine6camera12SetMinSpeedXEd
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	movsd	.LC2(%rip), %xmm9
 	movapd	%xmm9, %xmm1
 	call	_ZN3wze6engine6camera12SetMaxSpeedXEd
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	movsd	.LC3(%rip), %xmm8
 	movapd	%xmm8, %xmm1
 	call	_ZN3wze6engine6camera20SetDecelerationRateXEd
 	movsd	.LC4(%rip), %xmm7
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	movapd	%xmm7, %xmm1
 	call	_ZN3wze6engine6camera20SetAccelerationRateXEd
 	movsd	.LC5(%rip), %xmm6
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	movapd	%xmm6, %xmm1
 	call	_ZN3wze6engine6camera17SetSlowDownRangeXEd
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	movapd	%xmm10, %xmm1
 	call	_ZN3wze6engine6camera12SetMinSpeedYEd
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	movapd	%xmm9, %xmm1
 	call	_ZN3wze6engine6camera12SetMaxSpeedYEd
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	movapd	%xmm8, %xmm1
 	call	_ZN3wze6engine6camera20SetDecelerationRateYEd
 	movapd	%xmm7, %xmm1
-	movq	%rsi, %rcx
+	movq	%r13, %rcx
 	call	_ZN3wze6engine6camera20SetAccelerationRateYEd
+	movq	%r13, %rcx
 	movapd	%xmm6, %xmm1
-	movq	%rsi, %rcx
-	leaq	576(%rbx), %rsi
+	leaq	.LC0(%rip), %r13
 	call	_ZN3wze6engine6camera17SetSlowDownRangeYEd
-	leaq	664(%rbx), %rcx
-	leaq	.LC6(%rip), %rdx
-	call	_ZN3wze6engine6assets9LoadSoundEPKc
-	movsd	.LC7(%rip), %xmm7
-	leaq	248(%rbx), %rcx
-	movl	$1, %r8d
-	movq	%rax, %rdx
-	movapd	%xmm7, %xmm3
-	call	_ZN3wze6engine5audio4PlayEytd
+	movq	%r15, 136(%rsp)
+	movsd	.LC6(%rip), %xmm7
 	jmp	.L4
 	.p2align 4,,10
 	.p2align 3
 .L5:
 	movq	%rdi, %rcx
+	leaq	344(%rbx), %r15
 	call	_ZN6player6UpdateEv
 	movq	%rbp, %rcx
 	call	_ZN6player6UpdateEv
 	movq	%r12, %rcx
 	call	_ZN10flashlight6UpdateEv
 	movq	8(%rbp), %rdx
-	movq	%rsi, %rcx
+	movq	%r15, %rcx
 	movq	$2, 200(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetYEv
 	movq	8(%rbp), %rdx
-	movq	%rsi, %rcx
+	movq	%r15, %rcx
 	movapd	%xmm0, %xmm6
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetXEv
 	movq	8(%rdi), %rdx
-	movq	%rsi, %rcx
+	movq	%r15, %rcx
 	movsd	%xmm0, 96(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetYEv
 	movq	8(%rdi), %rdx
-	movq	%rsi, %rcx
+	movq	%r15, %rcx
 	movsd	%xmm0, 88(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
@@ -411,7 +396,7 @@ main:
 	movapd	%xmm0, %xmm1
 	movq	%rax, 64(%rsp)
 	leaq	176(%rsp), %rax
-	leaq	632(%rbx), %rcx
+	leaq	400(%rbx), %rcx
 	movq	%rax, 56(%rsp)
 	movsd	%xmm7, 48(%rsp)
 	movsd	%xmm6, 32(%rsp)
@@ -431,31 +416,31 @@ main:
 .LEHE20:
 	testb	%al, %al
 	jne	.L5
-	movq	136(%rsp), %rsi
-	movq	%rsi, %rcx
+	movq	128(%rsp), %r14
+	movq	136(%rsp), %r15
+	movq	%r14, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
-	movq	%rsi, %rcx
+	movq	%r14, %rcx
 	call	_ZdlPvy
-	movq	128(%rsp), %rsi
-	movq	%rsi, %rcx
+	movq	120(%rsp), %r14
+	movq	%r14, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
-	movq	%rsi, %rcx
+	movq	%r14, %rcx
 	call	_ZdlPvy
-	movq	120(%rsp), %rsi
-	movq	%rsi, %rcx
+	movq	112(%rsp), %r14
+	movq	%r14, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
-	movq	%rsi, %rcx
+	movq	%r14, %rcx
 	call	_ZdlPvy
-	movq	112(%rsp), %rsi
-	movq	%rsi, %rcx
+	movq	104(%rsp), %r14
+	movq	%r14, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
-	movq	%rsi, %rcx
+	movq	%r14, %rcx
 	call	_ZdlPvy
-	movq	104(%rsp), %rsi
 	movq	%rsi, %rcx
 	call	_ZN5crateD1Ev
 	movl	$32, %edx
@@ -483,7 +468,7 @@ main:
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_ZN3wze6engineD1Ev
-	movl	$792, %edx
+	movl	$560, %edx
 	movq	%rbx, %rcx
 	call	_ZdlPvy
 	nop
@@ -650,37 +635,37 @@ main:
 main.cold:
 .L6:
 	movq	%rbx, %rcx
-	movl	$792, %edx
+	movl	$560, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB21:
 	call	_Unwind_Resume
 .L15:
-	movq	136(%rsp), %rcx
-	movl	$32, %edx
-	call	_ZdlPvy
-	movq	%rbx, %rcx
-	call	_Unwind_Resume
-.L14:
 	movq	128(%rsp), %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
-.L13:
+.L14:
 	movq	120(%rsp), %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
-.L12:
+.L13:
 	movq	112(%rsp), %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
-.L11:
+.L12:
 	movq	104(%rsp), %rcx
+	movl	$32, %edx
+	call	_ZdlPvy
+	movq	%rbx, %rcx
+	call	_Unwind_Resume
+.L11:
+	movq	%rsi, %rcx
 	movl	$32, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
@@ -719,7 +704,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC6879-.LLSDACSBC6879
 .LLSDACSBC6879:
-	.uleb128 .LEHB21-.LCOLDB8
+	.uleb128 .LEHB21-.LCOLDB7
 	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
@@ -728,9 +713,9 @@ main.cold:
 	.section	.text.startup,"x"
 	.section	.text.unlikely,"x"
 	.seh_endproc
-.LCOLDE8:
+.LCOLDE7:
 	.section	.text.startup,"x"
-.LHOTE8:
+.LHOTE7:
 	.section .rdata,"dr"
 	.align 8
 .LC1:
@@ -753,7 +738,7 @@ main.cold:
 	.long	0
 	.long	1079574528
 	.align 8
-.LC7:
+.LC6:
 	.long	0
 	.long	1072693248
 	.ident	"GCC: (GNU) 13.1.0"
@@ -776,8 +761,6 @@ main.cold:
 	.def	_ZN3wze6engine6camera20SetDecelerationRateYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera20SetAccelerationRateYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera17SetSlowDownRangeYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6assets9LoadSoundEPKc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine5audio4PlayEytd;	.scl	2;	.type	32;	.endef
 	.def	_ZN6player6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN10flashlight6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actorsixEy;	.scl	2;	.type	32;	.endef

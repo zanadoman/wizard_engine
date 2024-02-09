@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0
 _ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0:
-.LFB6904:
+.LFB6902:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -357,10 +357,10 @@ _ZN3wze6engine7threads5StartEPFiPvES2_:
 	.section .rdata,"dr"
 	.align 8
 .LC8:
-	.ascii "wze::engine.threads.Wait(): Illegal use of NULL thread\12Params: ID: %lld\12\0"
+	.ascii "wze::engine.threads.Wait(): Illegal use of NULL Thread\12Params: ThreadID: %lld\12\0"
 	.align 8
 .LC9:
-	.ascii "wze::engine.threads.Wait(): Thread does not exist\12Params: ID: %lld\12\0"
+	.ascii "wze::engine.threads.Wait(): Thread does not exist\12Params: ThreadID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -456,11 +456,6 @@ _ZN3wze6engine7threads4WaitEy:
 	call	exit
 	nop
 	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC10:
-	.ascii "wze::engine.threads.Purge(): Thread does not exist\12Params: Keep(length): %ld\12\0"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine7threads5PurgeESt16initializer_listIyE
@@ -479,65 +474,46 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	movq	8(%rdx), %rdi
-	movq	(%rdx), %rsi
-	movq	8(%rcx), %r8
-	movq	%rcx, %rbp
-	testq	%rdi, %rdi
-	je	.L70
-	xorl	%eax, %eax
-	.p2align 4,,10
-	.p2align 3
-.L73:
-	movq	(%rsi,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L71
-	cmpq	%r8, %rdx
-	jnb	.L72
-	movq	16(%rbp), %rcx
-	cmpq	$0, (%rcx,%rdx,8)
-	je	.L72
-.L71:
-	addq	$1, %rax
-	cmpq	%rax, %rdi
-	jne	.L73
-.L70:
-	cmpq	$1, %r8
-	jbe	.L74
-	movq	16(%rbp), %rdx
+	movq	8(%rcx), %rax
+	movq	(%rdx), %rdi
+	movq	8(%rdx), %rbp
+	movq	%rcx, %rsi
+	cmpq	$1, %rax
+	jbe	.L70
+	movq	16(%rcx), %rdx
 	movl	$1, %ebx
-.L75:
-	testq	%rdi, %rdi
-	je	.L76
-.L93:
-	xorl	%eax, %eax
-.L81:
-	cmpq	%rbx, (%rsi,%rax,8)
-	je	.L115
-	addq	$1, %rax
-	cmpq	%rax, %rdi
-	jne	.L81
 .L76:
+	testq	%rbp, %rbp
+	je	.L71
+.L88:
+	xorl	%eax, %eax
+.L72:
+	cmpq	%rbx, (%rdi,%rax,8)
+	je	.L105
+	addq	$1, %rax
+	cmpq	%rbp, %rax
+	jne	.L72
+.L71:
 	movq	(%rdx,%rbx,8), %rcx
 	xorl	%edx, %edx
 	call	SDL_WaitThread
-	movq	8(%rbp), %rax
-	movq	16(%rbp), %rdx
+	movq	8(%rsi), %rax
+	movq	16(%rsi), %rdx
 	cmpq	%rax, %rbx
-	jnb	.L116
+	jnb	.L106
 	movq	$0, (%rdx,%rbx,8)
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	jb	.L75
-.L80:
+	jb	.L76
+.L89:
 	movq	%rax, %r8
 	addq	$-1, %r8
-	jnc	.L91
+	jnc	.L86
 	cmpq	$0, (%rdx,%r8,8)
-	jne	.L100
+	jne	.L94
 	cmpq	$1, %rax
-	jne	.L117
-.L100:
+	jne	.L107
+.L94:
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	popq	%rbx
@@ -545,29 +521,29 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	popq	%rdi
 	popq	%rbp
 	ret
-.L115:
-	movq	8(%rbp), %rax
+.L105:
+	movq	8(%rsi), %rax
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	jb	.L93
-	jmp	.L80
-.L117:
+	jb	.L88
+	jmp	.L89
+.L107:
 	movq	%rax, %rcx
 	.p2align 4,,10
 	.p2align 3
-.L85:
+.L80:
 	movq	%rcx, %r9
 	subq	$1, %rcx
 	cmpq	%rax, %rcx
-	jnb	.L118
+	jnb	.L108
 	cmpq	$0, (%rdx,%rcx,8)
-	jne	.L119
+	jne	.L109
 	cmpq	$1, %rcx
-	jne	.L85
-.L90:
-	addq	$8, %rbp
+	jne	.L80
+.L85:
+	addq	$8, %rsi
 	movq	%rcx, %rdx
-	movq	%rbp, %rcx
+	movq	%rsi, %rcx
 	call	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$40, %rsp
@@ -576,10 +552,10 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	popq	%rdi
 	popq	%rbp
 	ret
-.L74:
-	testq	%r8, %r8
-	jne	.L100
-.L91:
+.L70:
+	testq	%rax, %rax
+	jne	.L94
+.L86:
 	leaq	.LC5(%rip), %rcx
 	orq	$-1, %rdx
 	call	_Z6printfPKcz
@@ -587,24 +563,18 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L119:
+.L109:
 	subq	%r9, %rax
 	movq	%r9, %rcx
 	movq	%rax, %r8
-	jmp	.L90
-.L72:
-	leaq	.LC10(%rip), %rcx
-	movq	%rdi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L118:
+	jmp	.L85
+.L108:
 	movq	%rcx, %rdx
 	leaq	.LC5(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L116:
+.L106:
 	leaq	.LC5(%rip), %rcx
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
@@ -614,8 +584,8 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC11:
-	.ascii "wze::engine.threads.Purge(): Thread does not exist\12Params: Keep: %p\12\0"
+.LC10:
+	.ascii "wze::engine.threads.Purge(): Keep must not be NULL\12Params: Keep: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -623,7 +593,7 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE:
-.LFB6887:
+.LFB6885:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -633,108 +603,76 @@ _ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE:
 	subq	$32, %rsp
 	.seh_stackalloc	32
 	.seh_endprologue
-	movq	%rcx, %rsi
-	movq	(%rdx), %rcx
-	movq	%rdx, %rdi
-	movq	8(%rsi), %r10
-	testq	%rcx, %rcx
-	je	.L121
-	movq	8(%rdx), %r8
-	xorl	%eax, %eax
-	jmp	.L124
-	.p2align 4,,10
-	.p2align 3
-.L122:
-	addq	$1, %rax
-	cmpq	%rax, %rcx
-	je	.L121
-.L124:
-	movq	(%r8,%rax,8), %rdx
+	movq	%rcx, %rdi
+	movq	%rdx, %rsi
 	testq	%rdx, %rdx
-	je	.L122
-	cmpq	%r10, %rdx
-	jnb	.L123
-	movq	16(%rsi), %r9
-	cmpq	$0, (%r9,%rdx,8)
-	jne	.L122
-.L123:
-	leaq	.LC11(%rip), %rcx
-	movq	%rdi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	.p2align 4,,10
-	.p2align 3
-.L121:
-	cmpq	$1, %r10
-	jbe	.L125
-	movq	16(%rsi), %r9
+	je	.L111
+	movq	8(%rcx), %rax
+	cmpq	$1, %rax
+	jbe	.L147
+	movq	16(%rcx), %r9
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L132:
-	movq	8(%rdi), %rdx
+.L119:
+	movq	(%rsi), %rdx
+	movq	8(%rsi), %rcx
 	xorl	%eax, %eax
-	testq	%rcx, %rcx
-	je	.L126
-.L127:
-	cmpq	%rbx, (%rdx,%rax,8)
-	je	.L165
+	testq	%rdx, %rdx
+	je	.L114
+.L115:
+	cmpq	(%rcx,%rax,8), %rbx
+	je	.L148
 	addq	$1, %rax
-	cmpq	%rax, %rcx
-	jne	.L127
+	cmpq	%rax, %rdx
+	jne	.L115
 	.p2align 4,,10
 	.p2align 3
-.L126:
+.L114:
 	movq	(%r9,%rbx,8), %rcx
 	xorl	%edx, %edx
 	call	SDL_WaitThread
-	movq	8(%rsi), %rax
-	movq	16(%rsi), %r9
+	movq	8(%rdi), %rax
+	movq	16(%rdi), %r9
 	cmpq	%rax, %rbx
-	jnb	.L166
+	jnb	.L149
 	movq	$0, (%r9,%rbx,8)
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jnb	.L131
-.L167:
-	movq	(%rdi), %rcx
-	jmp	.L132
-.L165:
-	movq	8(%rsi), %rax
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jb	.L167
 .L131:
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	jb	.L119
 	movq	%rax, %r8
 	addq	$-1, %r8
-	jnc	.L142
+	jnc	.L129
 	cmpq	$0, (%r9,%r8,8)
-	jne	.L151
+	jne	.L136
 	cmpq	$1, %rax
-	jne	.L168
-.L151:
+	jne	.L150
+.L136:
 	xorl	%eax, %eax
 	addq	$32, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	ret
-.L168:
+.L148:
+	movq	8(%rdi), %rax
+	jmp	.L131
+.L150:
 	movq	%rax, %rdx
 	.p2align 4,,10
 	.p2align 3
-.L136:
+.L123:
 	movq	%rdx, %rcx
 	subq	$1, %rdx
 	cmpq	%rax, %rdx
-	jnb	.L169
+	jnb	.L151
 	cmpq	$0, (%r9,%rdx,8)
-	jne	.L170
+	jne	.L152
 	cmpq	$1, %rdx
-	jne	.L136
-.L141:
-	leaq	8(%rsi), %rcx
+	jne	.L123
+.L128:
+	leaq	8(%rdi), %rcx
 	call	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$32, %rsp
@@ -742,10 +680,10 @@ _ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE:
 	popq	%rsi
 	popq	%rdi
 	ret
-.L125:
-	testq	%r10, %r10
-	jne	.L151
-.L142:
+.L147:
+	testq	%rax, %rax
+	jne	.L136
+.L129:
 	leaq	.LC5(%rip), %rcx
 	orq	$-1, %rdx
 	call	_Z6printfPKcz
@@ -753,19 +691,25 @@ _ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE:
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L170:
+.L152:
 	subq	%rcx, %rax
 	movq	%rcx, %rdx
 	movq	%rax, %r8
-	jmp	.L141
-.L169:
+	jmp	.L128
+.L151:
 	leaq	.LC5(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L166:
+.L149:
 	leaq	.LC5(%rip), %rcx
 	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L111:
+	leaq	.LC10(%rip), %rcx
+	xorl	%edx, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
