@@ -53,11 +53,11 @@ namespace wze
         
         this->Actors[LogoActor].Textures[LogoTexture].ColorA = opacity = 0;
 
-        while (this->Update() && (opacity += 0.1 * this->Timing.DeltaTime) <= 255)
+        while (this->Update() && (opacity += 0.1 * this->Timing.GetDeltaTime()) <= 255)
         {
             this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(opacity);
         }
-        while (this->Update() && 0 <= (opacity -= 0.1 * this->Timing.DeltaTime))
+        while (this->Update() && 0 <= (opacity -= 0.1 * this->Timing.GetDeltaTime()))
         {
             this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(opacity);
         }
