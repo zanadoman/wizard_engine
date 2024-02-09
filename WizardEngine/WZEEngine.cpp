@@ -20,6 +20,11 @@ namespace wze
         {
             IconPath = "engine/wizard.png";
         }
+        if (TargetFrameTime == 0)
+        {
+            printf("wze::engine.engine(): TargetFrameTime must not be equal to 0\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
+            exit(1);
+        }
 
         if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         {

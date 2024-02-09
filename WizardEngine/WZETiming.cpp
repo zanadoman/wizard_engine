@@ -16,6 +16,22 @@ namespace wze
         this->DeltaTime = 0;
     }
 
+    uint8 engine::timing::GetTargetFrameTime()
+    {
+        return this->TargetFrameTime;
+    }
+
+    uint8 engine::timing::SetTargetFrameTime(uint8 TargetFrameTime)
+    {
+        if (TargetFrameTime == 0)
+        {
+            printf("wze::engine.timing.SetTargetFrameTime(): TargetFrameTime must not be equal to 0\nParams: TargetFrameTime: %d\n", TargetFrameTime);
+            exit(1);
+        }
+
+        return this->TargetFrameTime = TargetFrameTime;
+    }
+
     uint32 engine::timing::GetPrevTick()
     {
         return this->PrevTick;

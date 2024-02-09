@@ -773,7 +773,8 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    neo::uint8 TargetFrameTime;
+                    neo::uint8 GetTargetFrameTime();
+                    neo::uint8 SetTargetFrameTime(neo::uint8 TargetFrameTime);
                     neo::uint32 GetPrevTick();
                     neo::uint32 GetGameTime();
                     neo::uint32 GetRenderTime();
@@ -783,6 +784,7 @@ namespace wze
                     neo::uint32 GetDeltaTime();
 
                 private:
+                    neo::uint8 TargetFrameTime;
                     neo::uint32 PrevTick;
                     neo::uint32 GameTime;
                     neo::uint32 RenderTime;
