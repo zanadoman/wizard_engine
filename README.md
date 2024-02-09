@@ -31,6 +31,19 @@ overload of the Actors subclass.\
 Also with this method you can request Colors, Textures, Flipbooks,\
 Texts and Overlapboxes for your new actor. (Remember to store their IDs as well!)
 
+## Actors and Layers
+
+Layer 0 means the screen, in every other case (when Layer is more than 0) it means an\
+"in-game" parallax layer. (Less: further, More: hither)
+
+## More about the ID system
+
+In every case the 0 ID means an empty object which should not be used,\
+it can not be deleted or accessed, but you can use it for example to give an\
+Actor's Texture object and empty TextureID. (In this case the renderer will skip the Texture object.)\
+Just to mention another useful example of 0 ID, if you don't want your Actor to have collision,\
+you need to set it's CollisionLayerID to 0. (No collisions occur in CollisionLayer 0)
+
 ## Example main function
 
 #include \<WizardEngine.hpp\>\
