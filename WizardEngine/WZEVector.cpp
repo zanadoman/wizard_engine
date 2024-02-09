@@ -781,7 +781,7 @@ namespace wze
 
         if (InitialX != InitialX)
         {
-            printf("wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist): %p, OverlapboxTypeBlacklist: %p\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist, OverlapboxTypeBlacklist);
+            printf("wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n", InitialX, InitialY, TerminalX, TerminalY, RaySize, SamplingStep, ActorTypeWhitelist.size(), ActorIDBlacklist, OverlapboxTypeBlacklist);
             exit(1);
         }
         if (InitialY != InitialY)
