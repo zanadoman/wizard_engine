@@ -1,4 +1,1 @@
-*.h linguist-vendored
-*.hpp linguist-vendored
-*.sh linguist-vendored
 *.s linguist-vendored
