@@ -26,7 +26,7 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 48
 	movq	%rsi, (%rdi)
-	leaq	664(%rsi), %rdi
+	leaq	432(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
 	movsd	%xmm0, 8(%rsp)
 	movsd	%xmm1, (%rsp)
@@ -40,12 +40,12 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movl	$2, %edx
 	movsd	.LC1(%rip), %xmm2
 	movsd	8(%rsp), %xmm0
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	%rax, 8(%rbx)
 	movq	%rax, %rsi
 	movq	(%rbx), %rax
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	24(%rbx), %rsi
 	leaq	40(%rax), %rdi
@@ -53,26 +53,26 @@ _ZN5crateC2EPN3wze6engineEddtt:
 	movq	8(%rbx), %rsi
 	movq	%rax, 16(%rbx)
 	movq	(%rbx), %rax
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	8(%rbx), %rsi
 	movq	$50, 184(%rax)
 	movq	(%rbx), %rax
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movsd	.LC2(%rip), %xmm0
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movl	$1, %esi
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi
-	addq	$576, %rdi
+	addq	$344, %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	addq	$16, %rsp
 	.cfi_def_cfa_offset 32
@@ -105,11 +105,11 @@ _ZN5crateD2Ev:
 	movq	(%rdi), %rax
 	movq	%rdi, %rbx
 	movq	24(%rdi), %rsi
-	leaq	664(%rax), %rdi
+	leaq	432(%rax), %rdi
 	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %rsi
-	addq	$576, %rdi
+	addq	$344, %rdi
 	call	_ZN3wze6engine6actors6DeleteEy@PLT
 	popq	%rbx
 	.cfi_def_cfa_offset 8

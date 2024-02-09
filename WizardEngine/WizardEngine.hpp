@@ -220,8 +220,9 @@ namespace wze
 
                 private:
                     const neo::uint8* SDL_KeyStates;
-                    neo::uint8 KeyStates[KEY_COUNT];
+                    neo::uint8* KeyStates;
                     keys(engine* Engine);
+                    ~keys();
                     neo::uint8 Update();
             } Keys;
 

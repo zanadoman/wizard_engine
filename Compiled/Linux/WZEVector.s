@@ -465,7 +465,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movq	208(%rsp), %rax
 	movl	%esi, 88(%rsp)
 	movq	%rdx, 56(%rsp)
-	movzwl	608(%rcx), %ebx
+	movzwl	376(%rcx), %ebx
 	movq	%rax, 72(%rsp)
 	movq	216(%rsp), %rax
 	movq	%r8, 80(%rsp)
@@ -516,7 +516,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	andb	%al, %dl
 	movb	%dl, 93(%rsp)
 	jne	.L110
-	movq	584(%rcx), %rsi
+	movq	352(%rcx), %rsi
 	cmpq	$1, %rsi
 	jbe	.L146
 	movl	$1, %ebx
@@ -529,7 +529,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	cmpq	%rsi, %rbx
 	jnb	.L197
 .L132:
-	movq	592(%rcx), %rax
+	movq	360(%rcx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rdx
 	testq	%rdx, %rdx
@@ -575,7 +575,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	testq	%rax, %rax
 	jne	.L119
 .L123:
-	movq	592(%rcx), %rax
+	movq	360(%rcx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
 	jb	.L118
@@ -639,7 +639,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	je	.L141
 .L137:
 	movq	0(%rbp), %rax
-	leaq	600(%rax), %rdi
+	leaq	368(%rax), %rdi
 	cmpq	%rbx, %r13
 	je	.L200
 	pxor	%xmm2, %xmm2
@@ -702,7 +702,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	cmpq	%r15, 112(%rsp)
 	je	.L203
 .L125:
-	movq	592(%rcx), %rax
+	movq	360(%rcx), %rax
 	cmpq	%rsi, %rbx
 	jnb	.L190
 	movq	(%rax,%r13), %rdx
@@ -745,14 +745,14 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movb	$1, 93(%rsp)
 	jmp	.L110
 .L203:
-	movzwl	608(%rcx), %eax
+	movzwl	376(%rcx), %eax
 	leaq	112(%rsp), %rdi
 	movq	%r15, %rsi
 	leaq	1(%rax), %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0
 .LEHE0:
 	movq	0(%rbp), %rcx
-	movq	584(%rcx), %rsi
+	movq	352(%rcx), %rsi
 	jmp	.L125
 .L95:
 	leaq	0(,%rbx,8), %rdi
@@ -1022,7 +1022,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	movq	208(%rsp), %rax
 	movl	%esi, 88(%rsp)
 	movq	%rcx, 80(%rsp)
-	movzwl	608(%rdx), %ebx
+	movzwl	376(%rdx), %ebx
 	movq	%rax, 72(%rsp)
 	movq	216(%rsp), %rax
 	movq	%r8, 64(%rsp)
@@ -1074,7 +1074,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	andb	%al, %cl
 	movb	%cl, 93(%rsp)
 	jne	.L224
-	movq	584(%rdx), %rsi
+	movq	352(%rdx), %rsi
 	cmpq	$1, %rsi
 	jbe	.L260
 	movl	$1, %ebx
@@ -1082,7 +1082,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	.p2align 4,,10
 	.p2align 3
 .L246:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
@@ -1155,7 +1155,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	je	.L255
 .L251:
 	movq	0(%rbp), %rax
-	leaq	600(%rax), %rdi
+	leaq	368(%rax), %rdi
 	cmpq	%rbx, %r13
 	je	.L314
 	pxor	%xmm2, %xmm2
@@ -1223,7 +1223,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	testq	%rax, %rax
 	jne	.L233
 .L237:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
 	jb	.L232
@@ -1253,7 +1253,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	cmpq	%r15, 112(%rsp)
 	je	.L317
 .L239:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	cmpq	%rsi, %rbx
 	jnb	.L304
 	movq	(%rax,%r13), %rcx
@@ -1273,14 +1273,14 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	.p2align 4,,10
 	.p2align 3
 .L317:
-	movzwl	608(%rdx), %eax
+	movzwl	376(%rdx), %eax
 	leaq	112(%rsp), %rdi
 	movq	%r15, %rsi
 	leaq	1(%rax), %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0
 .LEHE4:
 	movq	0(%rbp), %rdx
-	movq	584(%rdx), %rsi
+	movq	352(%rdx), %rsi
 	jmp	.L239
 .L313:
 	call	acos@PLT
@@ -1593,7 +1593,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	movq	%rax, 64(%rsp)
 	movq	216(%rsp), %rax
 	movq	%rcx, 8(%rsp)
-	movzwl	608(%rdx), %ebx
+	movzwl	376(%rdx), %ebx
 	movq	%r8, 56(%rsp)
 	movq	%rax, (%rsp)
 	movw	%si, 94(%rsp)
@@ -1642,7 +1642,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	andb	%al, %cl
 	movb	%cl, 80(%rsp)
 	jne	.L338
-	movq	584(%rdx), %rsi
+	movq	352(%rdx), %rsi
 	cmpq	$1, %rsi
 	jbe	.L374
 	movl	$1, %ebx
@@ -1655,7 +1655,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	cmpq	%rsi, %rbx
 	jnb	.L428
 .L360:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
@@ -1704,7 +1704,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	testq	%rax, %rax
 	jne	.L347
 .L351:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
 	jb	.L346
@@ -1735,7 +1735,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	cmpq	%r15, 112(%rsp)
 	je	.L430
 .L353:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	cmpq	%rsi, %rbx
 	jnb	.L420
 	movq	(%rax,%r13), %rcx
@@ -1804,7 +1804,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	je	.L369
 .L365:
 	movq	0(%rbp), %rax
-	leaq	600(%rax), %rdi
+	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
 	je	.L420
 	pxor	%xmm2, %xmm2
@@ -1846,14 +1846,14 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	.p2align 3
 .L430:
 	.cfi_restore_state
-	movzwl	608(%rdx), %eax
+	movzwl	376(%rdx), %eax
 	leaq	112(%rsp), %rdi
 	movq	%r15, %rsi
 	leaq	1(%rax), %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0
 .LEHE8:
 	movq	0(%rbp), %rdx
-	movq	584(%rdx), %rsi
+	movq	352(%rdx), %rsi
 	jmp	.L353
 .L433:
 	call	acos@PLT
@@ -2158,7 +2158,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	movl	%esi, 80(%rsp)
 	movq	208(%rsp), %r14
 	movq	%rdx, 56(%rsp)
-	movzwl	608(%rcx), %ebx
+	movzwl	376(%rcx), %ebx
 	movq	%r8, 72(%rsp)
 	movq	%r9, 64(%rsp)
 	movw	%si, 86(%rsp)
@@ -2207,7 +2207,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	andb	%al, %dl
 	movb	%dl, 85(%rsp)
 	jne	.L454
-	movq	584(%rcx), %rsi
+	movq	352(%rcx), %rsi
 	cmpq	$1, %rsi
 	jbe	.L490
 	movl	$1, %ebx
@@ -2220,7 +2220,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	cmpq	%rsi, %rbx
 	jnb	.L544
 .L476:
-	movq	592(%rcx), %rax
+	movq	360(%rcx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rdx
 	testq	%rdx, %rdx
@@ -2285,7 +2285,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	cmpq	%r15, 112(%rsp)
 	je	.L546
 .L469:
-	movq	592(%rcx), %rax
+	movq	360(%rcx), %rax
 	cmpq	%rsi, %rbx
 	jnb	.L536
 	movq	(%rax,%r13), %rdx
@@ -2355,7 +2355,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	je	.L485
 .L481:
 	movq	0(%rbp), %rax
-	leaq	600(%rax), %rdi
+	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
 	je	.L536
 	pxor	%xmm2, %xmm2
@@ -2404,7 +2404,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	.p2align 4,,10
 	.p2align 3
 .L467:
-	movq	592(%rcx), %rax
+	movq	360(%rcx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
 	jb	.L462
@@ -2444,14 +2444,14 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	.p2align 4,,10
 	.p2align 3
 .L546:
-	movzwl	608(%rcx), %eax
+	movzwl	376(%rcx), %eax
 	movq	88(%rsp), %rdi
 	movq	%r15, %rsi
 	leaq	1(%rax), %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0
 .LEHE12:
 	movq	0(%rbp), %rcx
-	movq	584(%rcx), %rsi
+	movq	352(%rcx), %rsi
 	jmp	.L469
 .L438:
 	leaq	0(,%rbx,8), %rdi
@@ -2726,7 +2726,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	movq	(%rdi), %rdx
 	movl	%esi, 80(%rsp)
 	movq	%rcx, 56(%rsp)
-	movzwl	608(%rdx), %ebx
+	movzwl	376(%rdx), %ebx
 	movq	%r8, 64(%rsp)
 	movq	%r9, (%rsp)
 	movw	%si, 86(%rsp)
@@ -2778,7 +2778,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	andb	%al, %cl
 	movb	%cl, 72(%rsp)
 	jne	.L571
-	movq	584(%rdx), %rcx
+	movq	352(%rdx), %rcx
 	cmpq	$1, %rcx
 	jbe	.L607
 	leaq	112(%rsp), %rax
@@ -2788,7 +2788,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	.p2align 4,,10
 	.p2align 3
 .L593:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	leaq	0(,%r12,8), %r13
 	movq	(%rax,%r12,8), %rsi
 	testq	%rsi, %rsi
@@ -2862,7 +2862,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	je	.L602
 .L598:
 	movq	(%r15), %rax
-	leaq	600(%rax), %rdi
+	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
 	je	.L653
 	pxor	%xmm2, %xmm2
@@ -2933,7 +2933,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	testq	%rax, %rax
 	jne	.L580
 .L584:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	addq	$1, %rbx
 	cmpq	%rcx, %r12
 	jb	.L579
@@ -2963,7 +2963,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	cmpq	112(%rsp), %rbp
 	je	.L666
 .L586:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	cmpq	%rcx, %r12
 	jnb	.L651
 	movq	(%rax,%r13), %rsi
@@ -2982,14 +2982,14 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	.p2align 4,,10
 	.p2align 3
 .L666:
-	movzwl	608(%rdx), %eax
+	movzwl	376(%rdx), %eax
 	movq	88(%rsp), %rdi
 	movq	%rbp, %rsi
 	leaq	1(%rax), %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0
 .LEHE16:
 	movq	(%r15), %rdx
-	movq	584(%rdx), %rcx
+	movq	352(%rdx), %rcx
 	jmp	.L586
 .L663:
 	call	acos@PLT
@@ -3308,7 +3308,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	movq	(%rdi), %rdx
 	movl	%esi, 80(%rsp)
 	movq	%rcx, 72(%rsp)
-	movzwl	608(%rdx), %ebx
+	movzwl	376(%rdx), %ebx
 	movq	%r8, 64(%rsp)
 	movw	%si, 86(%rsp)
 	movsd	%xmm0, 24(%rsp)
@@ -3359,7 +3359,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	andb	%al, %cl
 	movb	%cl, 85(%rsp)
 	jne	.L687
-	movq	584(%rdx), %rsi
+	movq	352(%rdx), %rsi
 	cmpq	$1, %rsi
 	jbe	.L723
 	leaq	112(%rsp), %rax
@@ -3369,7 +3369,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	.p2align 4,,10
 	.p2align 3
 .L709:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
@@ -3443,7 +3443,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	je	.L718
 .L714:
 	movq	(%r15), %rax
-	leaq	600(%rax), %rdi
+	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
 	je	.L769
 	pxor	%xmm2, %xmm2
@@ -3528,7 +3528,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	cmpq	%rbp, 112(%rsp)
 	je	.L782
 .L702:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	cmpq	%rsi, %rbx
 	jnb	.L769
 	movq	(%rax,%r13), %rcx
@@ -3548,7 +3548,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	.p2align 4,,10
 	.p2align 3
 .L700:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
 	jb	.L695
@@ -3563,14 +3563,14 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	.p2align 4,,10
 	.p2align 3
 .L782:
-	movzwl	608(%rdx), %eax
+	movzwl	376(%rdx), %eax
 	movq	88(%rsp), %rdi
 	movq	%rbp, %rsi
 	leaq	1(%rax), %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0
 .LEHE20:
 	movq	(%r15), %rdx
-	movq	584(%rdx), %rsi
+	movq	352(%rdx), %rsi
 	jmp	.L702
 	.p2align 4,,10
 	.p2align 3
@@ -3895,7 +3895,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	movq	(%rdi), %rdx
 	movl	%esi, 80(%rsp)
 	movq	%rcx, 16(%rsp)
-	movzwl	608(%rdx), %ebx
+	movzwl	376(%rdx), %ebx
 	movq	%r8, 64(%rsp)
 	movw	%si, 86(%rsp)
 	movsd	%xmm0, 24(%rsp)
@@ -3946,7 +3946,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	andb	%al, %cl
 	movb	%cl, 85(%rsp)
 	jne	.L804
-	movq	584(%rdx), %rsi
+	movq	352(%rdx), %rsi
 	cmpq	$1, %rsi
 	jbe	.L840
 	leaq	112(%rsp), %rax
@@ -3961,7 +3961,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	cmpq	%rsi, %rbx
 	jnb	.L895
 .L826:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
@@ -4028,7 +4028,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	cmpq	%rbp, 112(%rsp)
 	je	.L897
 .L819:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	cmpq	%rsi, %rbx
 	jnb	.L886
 	movq	(%rax,%r13), %rcx
@@ -4048,7 +4048,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	.p2align 4,,10
 	.p2align 3
 .L817:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
 	jb	.L812
@@ -4114,7 +4114,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	je	.L835
 .L831:
 	movq	(%r15), %rax
-	leaq	600(%rax), %rdi
+	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
 	je	.L886
 	pxor	%xmm2, %xmm2
@@ -4156,14 +4156,14 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	.p2align 3
 .L897:
 	.cfi_restore_state
-	movzwl	608(%rdx), %eax
+	movzwl	376(%rdx), %eax
 	movq	88(%rsp), %rdi
 	movq	%rbp, %rsi
 	leaq	1(%rax), %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0
 .LEHE24:
 	movq	(%r15), %rdx
-	movq	584(%rdx), %rsi
+	movq	352(%rdx), %rsi
 	jmp	.L819
 .L900:
 	call	acos@PLT
@@ -4486,7 +4486,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	movq	(%rdi), %rdx
 	movl	%esi, 72(%rsp)
 	movq	%rcx, 56(%rsp)
-	movzwl	608(%rdx), %ebx
+	movzwl	376(%rdx), %ebx
 	movw	%si, 78(%rsp)
 	movsd	%xmm0, 16(%rsp)
 	movsd	%xmm1, 24(%rsp)
@@ -4538,7 +4538,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	andb	%al, %cl
 	movb	%cl, 77(%rsp)
 	jne	.L923
-	movq	584(%rdx), %rcx
+	movq	352(%rdx), %rcx
 	cmpq	$1, %rcx
 	jbe	.L959
 	leaq	96(%rsp), %rax
@@ -4548,7 +4548,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	.p2align 4,,10
 	.p2align 3
 .L945:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	leaq	0(,%r12,8), %r13
 	movq	(%rax,%r12,8), %rsi
 	testq	%rsi, %rsi
@@ -4622,7 +4622,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	je	.L954
 .L950:
 	movq	(%r15), %rax
-	leaq	600(%rax), %rdi
+	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
 	je	.L1005
 	pxor	%xmm2, %xmm2
@@ -4711,7 +4711,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	cmpq	%rbp, 96(%rsp)
 	je	.L1019
 .L938:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	cmpq	%rcx, %r12
 	jnb	.L1003
 	movq	(%rax,%r13), %rsi
@@ -4731,7 +4731,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	.p2align 4,,10
 	.p2align 3
 .L936:
-	movq	592(%rdx), %rax
+	movq	360(%rdx), %rax
 	addq	$1, %rbx
 	cmpq	%rcx, %r12
 	jb	.L931
@@ -4746,14 +4746,14 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	.p2align 4,,10
 	.p2align 3
 .L1019:
-	movzwl	608(%rdx), %eax
+	movzwl	376(%rdx), %eax
 	movq	64(%rsp), %rdi
 	movq	%rbp, %rsi
 	leaq	1(%rax), %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0
 .LEHE28:
 	movq	(%r15), %rdx
-	movq	584(%rdx), %rcx
+	movq	352(%rdx), %rcx
 	jmp	.L938
 .L1016:
 	call	acos@PLT

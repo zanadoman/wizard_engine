@@ -7,14 +7,43 @@
 _ZN3wze6engine4keysC2EPS0_:
 .LFB8147:
 	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movq	%rdi, %rbx
 	movq	%rsi, (%rdi)
 	movq	$0, 8(%rdi)
+	movl	$237, %edi
+	call	_Znam@PLT
+	movq	%rax, 16(%rbx)
+	popq	%rbx
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE8147:
 	.size	_ZN3wze6engine4keysC2EPS0_, .-_ZN3wze6engine4keysC2EPS0_
 	.globl	_ZN3wze6engine4keysC1EPS0_
 	.set	_ZN3wze6engine4keysC1EPS0_,_ZN3wze6engine4keysC2EPS0_
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine4keysD2Ev
+	.type	_ZN3wze6engine4keysD2Ev, @function
+_ZN3wze6engine4keysD2Ev:
+.LFB8150:
+	.cfi_startproc
+	movq	16(%rdi), %rdi
+	testq	%rdi, %rdi
+	je	.L4
+	jmp	_ZdaPv@PLT
+	.p2align 4,,10
+	.p2align 3
+.L4:
+	ret
+	.cfi_endproc
+.LFE8150:
+	.size	_ZN3wze6engine4keysD2Ev, .-_ZN3wze6engine4keysD2Ev
+	.globl	_ZN3wze6engine4keysD1Ev
+	.set	_ZN3wze6engine4keysD1Ev,_ZN3wze6engine4keysD2Ev
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
 .LC0:
@@ -25,15 +54,16 @@ _ZN3wze6engine4keysC2EPS0_:
 	.globl	_ZN3wze6engine4keysixENS_3keyE
 	.type	_ZN3wze6engine4keysixENS_3keyE, @function
 _ZN3wze6engine4keysixENS_3keyE:
-.LFB8149:
+.LFB8152:
 	.cfi_startproc
 	cmpl	$236, %esi
-	jg	.L8
+	jg	.L11
+	movq	16(%rdi), %rax
 	movslq	%esi, %rsi
-	cmpb	$0, 16(%rdi,%rsi)
+	cmpb	$0, (%rax,%rsi)
 	setne	%al
 	ret
-.L8:
+.L11:
 	pushq	%rax
 	.cfi_def_cfa_offset 16
 	leaq	.LC0(%rip), %rdi
@@ -42,66 +72,73 @@ _ZN3wze6engine4keysixENS_3keyE:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8149:
+.LFE8152:
 	.size	_ZN3wze6engine4keysixENS_3keyE, .-_ZN3wze6engine4keysixENS_3keyE
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine4keys6UpdateEv
 	.type	_ZN3wze6engine4keys6UpdateEv, @function
 _ZN3wze6engine4keys6UpdateEv:
-.LFB8150:
+.LFB8153:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	leaq	16(%rdi), %rsi
 	movq	%rdi, %rbx
-	movq	8(%rdi), %rdi
+	movq	16(%rdi), %rsi
 	movl	$237, %edx
+	movq	8(%rdi), %rdi
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
 	xorl	%esi, %esi
 	xorl	%edi, %edi
 	call	SDL_GetMouseState@PLT
-	movq	(%rbx), %rsi
+	movq	16(%rbx), %rdx
+	testb	$1, %al
+	je	.L13
+	movb	$1, 232(%rdx)
+.L14:
 	movl	%eax, %edx
-	andl	$1, %edx
-	movb	%dl, 248(%rbx)
-	movl	%eax, %edx
+	movq	16(%rbx), %rcx
 	shrl	$2, %eax
 	shrl	%edx
 	andl	$1, %eax
 	andl	$1, %edx
-	movb	%al, 250(%rbx)
-	movb	%dl, 249(%rbx)
-	movq	776(%rsi), %rdi
-	testq	%rdi, %rdi
-	je	.L18
+	movb	%dl, 233(%rcx)
+	movq	16(%rbx), %rdx
+	movb	%al, 234(%rdx)
+	movq	(%rbx), %rsi
 	xorl	%eax, %eax
 	xorl	%edx, %edx
-	jmp	.L10
+	movq	544(%rsi), %rdi
+	testq	%rdi, %rdi
+	jne	.L15
+	jmp	.L23
 	.p2align 4,,10
 	.p2align 3
-.L11:
+.L16:
 	addq	$1, %rdx
 	addq	$56, %rax
 	cmpq	%rdi, %rdx
-	jnb	.L18
-.L10:
-	movq	784(%rsi), %rcx
+	jnb	.L23
+.L15:
+	movq	552(%rsi), %rcx
 	addq	%rax, %rcx
 	cmpl	$1027, (%rcx)
-	jne	.L11
-	movl	20(%rcx), %r8d
-	testl	%r8d, %r8d
-	jns	.L12
-	movzwl	.LC1(%rip), %edi
+	jne	.L16
+	movl	20(%rcx), %ecx
+	movq	16(%rbx), %rsi
+	testl	%ecx, %ecx
+	jns	.L17
+	movb	$1, 235(%rsi)
+	movq	16(%rbx), %rcx
 	addq	$1, %rdx
 	addq	$56, %rax
-	movw	%di, 251(%rbx)
-	movq	776(%rsi), %rdi
+	movb	$0, 236(%rcx)
+	movq	(%rbx), %rsi
+	movq	544(%rsi), %rdi
 	cmpq	%rdi, %rdx
-	jb	.L10
-.L18:
+	jb	.L15
+.L23:
 	xorl	%eax, %eax
 	popq	%rbx
 	.cfi_remember_state
@@ -109,27 +146,29 @@ _ZN3wze6engine4keys6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L12:
+.L17:
 	.cfi_restore_state
-	je	.L13
-	movl	$256, %edi
-	movw	%di, 251(%rbx)
-	movq	776(%rsi), %rdi
-	jmp	.L11
+	movb	$0, 235(%rsi)
+	movq	16(%rbx), %rcx
+	je	.L18
+	movb	$1, 236(%rcx)
+	movq	(%rbx), %rsi
+	movq	544(%rsi), %rdi
+	jmp	.L16
 	.p2align 4,,10
 	.p2align 3
 .L13:
-	xorl	%ecx, %ecx
-	movw	%cx, 251(%rbx)
-	movq	776(%rsi), %rdi
-	jmp	.L11
+	movb	$0, 232(%rdx)
+	jmp	.L14
+	.p2align 4,,10
+	.p2align 3
+.L18:
+	movb	$0, 236(%rcx)
+	movq	(%rbx), %rsi
+	movq	544(%rsi), %rdi
+	jmp	.L16
 	.cfi_endproc
-.LFE8150:
+.LFE8153:
 	.size	_ZN3wze6engine4keys6UpdateEv, .-_ZN3wze6engine4keys6UpdateEv
-	.section	.rodata.cst2,"aM",@progbits,2
-	.align 2
-.LC1:
-	.byte	1
-	.byte	0
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

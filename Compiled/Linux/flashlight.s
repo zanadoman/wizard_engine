@@ -21,7 +21,7 @@ _ZN10flashlightC2EPN3wze6engineE:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
 	movq	%rsi, (%rdi)
-	leaq	664(%rsi), %rdi
+	leaq	432(%rsi), %rdi
 	leaq	.LC0(%rip), %rsi
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	pxor	%xmm2, %xmm2
@@ -33,12 +33,12 @@ _ZN10flashlightC2EPN3wze6engineE:
 	movl	$3000, %ecx
 	movapd	%xmm2, %xmm1
 	movl	$3, %edx
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	%rax, %rsi
 	movq	%rax, 16(%rbx)
 	movq	(%rbx), %rax
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	(%rbx), %rdi
 	movq	%rax, %rbp
@@ -51,7 +51,7 @@ _ZN10flashlightC2EPN3wze6engineE:
 	call	_ZN3wze6engine6actors5actor4SetXEd@PLT
 	movq	(%rbx), %rax
 	movq	16(%rbx), %rsi
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	(%rbx), %rdi
 	movq	%rax, %rbp
@@ -88,11 +88,11 @@ _ZN10flashlightD2Ev:
 	movq	(%rdi), %rax
 	movq	%rdi, %rbx
 	movq	32(%rdi), %rsi
-	leaq	664(%rax), %rdi
+	leaq	432(%rax), %rdi
 	call	_ZN3wze6engine6assets13UnloadTextureEy@PLT
 	movq	(%rbx), %rdi
 	movq	16(%rbx), %rsi
-	addq	$576, %rdi
+	addq	$344, %rdi
 	call	_ZN3wze6engine6actors6DeleteEy@PLT
 	popq	%rbx
 	.cfi_def_cfa_offset 8
@@ -130,30 +130,30 @@ _ZN10flashlight6UpdateEv:
 	subq	$40, %rsp
 	.cfi_def_cfa_offset 64
 	movq	(%rdi), %rbp
-	leaq	520(%rbp), %rdi
+	leaq	288(%rbp), %rdi
 	call	_ZN3wze6engine5mouse4GetYEd@PLT
 	movq	(%rbx), %rax
 	movsd	%xmm0, 24(%rsp)
 	pxor	%xmm0, %xmm0
-	leaq	520(%rax), %rdi
+	leaq	288(%rax), %rdi
 	call	_ZN3wze6engine5mouse4GetXEd@PLT
 	movq	(%rbx), %rax
 	movq	16(%rbx), %rsi
 	movsd	%xmm0, 16(%rsp)
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	movq	(%rbx), %rax
 	movq	16(%rbx), %rsi
 	movsd	%xmm0, 8(%rsp)
-	leaq	576(%rax), %rdi
+	leaq	344(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	24(%rsp), %xmm3
 	movsd	16(%rsp), %xmm2
-	leaq	632(%rbp), %rdi
+	leaq	400(%rbp), %rdi
 	movsd	8(%rsp), %xmm1
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	ucomisd	%xmm0, %xmm0
@@ -174,7 +174,7 @@ _ZN10flashlight6UpdateEv:
 	movq	(%rbx), %rdi
 	movq	16(%rbx), %rsi
 	movsd	%xmm0, 8(%rsp)
-	addq	$576, %rdi
+	addq	$344, %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movsd	8(%rsp), %xmm0
 	movq	%rax, %rdi

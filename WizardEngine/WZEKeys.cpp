@@ -7,6 +7,16 @@ namespace wze
     engine::keys::keys(engine* Engine) : Engine(Engine)
     {
         this->SDL_KeyStates = NULL;
+        if ((this->KeyStates = new uint8[KEY_COUNT]) == NULL)
+        {
+            printf("wze::engine.keys.keys(): Memory allocation failed\nParams: Engine: %p\n", Engine);
+            exit(1);
+        }
+    }
+
+    engine::keys::~keys()
+    {
+        delete[] this->KeyStates;
     }
 
     bool engine::keys::operator [] (key Key)
