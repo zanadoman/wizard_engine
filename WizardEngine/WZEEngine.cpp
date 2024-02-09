@@ -70,6 +70,9 @@ namespace wze
     engine::~engine()
     {
         this->Threads.Purge({});
+
+        this->Actors.Purge({});
+
         this->Assets.PurgeTextures({});
         this->Assets.PurgeSounds({});
         this->Assets.PurgeFonts({});

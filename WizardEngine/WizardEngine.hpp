@@ -570,7 +570,6 @@ namespace wze
                                     double ActiveMedian2Angle;
                                     button ButtonState;
                                     overlapbox(engine* Engine, actor* Actor, neo::uint64 Type);
-                                    ~overlapbox();
                                     neo::uint8 UpdateOverlapboxScale();
                             };
 
@@ -652,7 +651,6 @@ namespace wze
                 private:
                     neo::array<actor*> Actors;
                     actors(engine* Engine);
-                    ~actors();
             } Actors;
 
             //__________Collision______________________________________________________________________________________

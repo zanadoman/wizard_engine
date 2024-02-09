@@ -188,8 +188,6 @@ namespace wze
         this->UpdateOverlapboxScale();
     }
 
-    engine::actors::actor::overlapboxes::overlapbox::~overlapbox() {}
-
     void* engine::actors::actor::overlapboxes::overlapbox::GetActorData()
     {
         return this->Actor->Data;

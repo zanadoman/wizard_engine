@@ -6,14 +6,6 @@ namespace wze
 {
     engine::actors::actors(engine* Engine) : Engine(Engine), Actors({(actor*)NULL}) {}
 
-    engine::actors::~actors()
-    {
-        for (uint64 i = 1; i < this->Actors.Length(); i++)
-        {
-            delete this->Actors[i];
-        }
-    }
-
     uint64 engine::actors::New(void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer)
     {
         if (X != X)
