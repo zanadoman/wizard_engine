@@ -191,7 +191,7 @@ namespace wze
     {
         if (X != X)
         {
-            printf("engine.actors[].colors[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
+            printf("wze::engine.actors[].colors[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
             exit(1);
         }
 
@@ -210,7 +210,7 @@ namespace wze
     {
         if (Y != Y)
         {
-            printf("engine.actors[].colors[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            printf("wze::engine.actors[].colors[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
             exit(1);
         }
 

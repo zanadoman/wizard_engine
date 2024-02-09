@@ -234,7 +234,8 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    double Sensitivity;
+                    double GetSensitivity();
+                    double SetSensitivity(double Sensitivity);
                     double GetX(double Layer);
                     double GetY(double Layer);
                     double GetMotionX();
@@ -247,6 +248,7 @@ namespace wze
                     neo::uint64 SetCursor(neo::uint64 CursorID);
 
                 private:
+                    double Sensitivity;
                     neo::sint32 X;
                     neo::sint32 Y;
                     double MotionX;

@@ -570,7 +570,7 @@ _ZN3wze6engine6actors5actor4GetXEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC8:
-	.string	"engine.actors[].SetX(): X must not be NaN\nParams: X: %lf\n"
+	.string	"wze::engine.actors[].SetX(): X must not be NaN\nParams: X: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -621,7 +621,7 @@ _ZN3wze6engine6actors5actor4GetYEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC9:
-	.string	"engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
+	.string	"wze??engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1345,7 +1345,7 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	.section	.rodata.str1.8
 	.align 8
 .LC17:
-	.string	"engine.actors[].SetAngle(): Angle must not be NaN\nParams: Angle: %lf\n"
+	.string	"wze::engine.actors[].SetAngle(): Angle must not be NaN\nParams: Angle: %lf\n"
 	.text
 	.align 2
 	.p2align 4

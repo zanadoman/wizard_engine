@@ -67,7 +67,7 @@ namespace wze
     {
         if (X != X)
         {
-            printf("engine.actors[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
+            printf("wze::engine.actors[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
             exit(1);
         }
 
@@ -86,7 +86,7 @@ namespace wze
     {
         if (Y != Y)
         {
-            printf("engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            printf("wze??engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
             exit(1);
         }
 
@@ -145,7 +145,7 @@ namespace wze
 
         if (Angle != Angle)
         {
-            printf("engine.actors[].SetAngle(): Angle must not be NaN\nParams: Angle: %lf\n", Angle);
+            printf("wze::engine.actors[].SetAngle(): Angle must not be NaN\nParams: Angle: %lf\n", Angle);
             exit(1);
         }
 

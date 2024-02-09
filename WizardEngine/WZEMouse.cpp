@@ -15,18 +15,34 @@ namespace wze
         this->Cursor = 0;
     }
 
+    double engine::mouse::GetSensitivity()
+    {
+        return this->Sensitivity;
+    }
+
+    double engine::mouse::SetSensitivity(double Sensitivity)
+    {
+        if (Sensitivity != Sensitivity)
+        {
+            printf("wze::engine.mouse.SetSensitivity(): Sensitivity must not be NaN\nParams: Sensitivity: %lf\n", Sensitivity);
+            exit(1);
+        }
+
+        return this->Sensitivity = Sensitivity;
+    }
+
     double engine::mouse::GetX(double Layer)
     {
         double cache;
 
         if (Layer != Layer)
         {
-            printf("engine.mouse.GetX(): Layer must not be NaN\nParams: Layer: %lf\n", Layer);
+            printf("wze::engine.mouse.GetX(): Layer must not be NaN\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
         if (Layer < 0)
         {
-            printf("engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
+            printf("wze::engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
 
@@ -50,12 +66,12 @@ namespace wze
 
         if (Layer != Layer)
         {
-            printf("engine.mouse.GetY(): Layer must not be NaN\nParams: Layer: %lf\n", Layer);
+            printf("wze::engine.mouse.GetY(): Layer must not be NaN\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
         if (Layer < 0)
         {
-            printf("engine.mouse.GetY(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
+            printf("wze::engine.mouse.GetY(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
 
