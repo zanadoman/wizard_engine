@@ -6,6 +6,12 @@ Demo assets made by ansimuz (https://ansimuz.itch.io/sunny-land-pixel-game-art)
 
 # Wiki
 
+## How to use the Keys subclass?
+
+The keys subclass appears to be empty, but hold on\
+it has an [] operator overload and you can get the\
+state of every key that is present in the key enum.
+
 ## How to load Assets?
 
 Use Assets inner class of your Engine instance.\
@@ -23,7 +29,7 @@ as before.
 You can set the properties of an Actor by using the [] operator\
 overload of the Actors subclass.\
 Also with this method you can request Colors, Textures, Flipbooks,\
-Texts and Overlapboxes for your new actor. (Remember to store their ID as well!)
+Texts and Overlapboxes for your new actor. (Remember to store their IDs as well!)
 
 ## Example main function
 
