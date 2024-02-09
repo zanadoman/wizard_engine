@@ -25,4 +25,4 @@ Test/supervising sequence:
         Flipbooks
         Texts
         Overlaps
-        Collisions
+        Collisions OK

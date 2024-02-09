@@ -49,15 +49,9 @@ namespace wze
     {
         uint64 i;
 
-        if (ID == 0)
-        {
-            printf("wze::engine.actors[].textures.Delete(): Illegal deletion of NULL Texture\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
         if (this->Textures.Length() <= ID || this->Textures[ID] == NULL)
         {
-            printf("wze::engine.actors[].textures.Delete(): Texture does not exist\nParams: ID: %lld\n", ID);
-            exit(1);
+            return 0;
         }
 
         delete this->Textures[ID];
@@ -82,15 +76,6 @@ namespace wze
     uint8 engine::actors::actor::textures::Purge(std::initializer_list<uint64> Keep)
     {
         uint64 i;
-
-        for (i = 0; i < Keep.size(); i++)
-        {
-            if (Keep.begin()[i] != 0 && (this->Textures.Length() <= Keep.begin()[i] || this->Textures[Keep.begin()[i]] == NULL))
-            {
-                printf("wze::engine.actors[].textures.Purge(): Texture does not exist\nParams: Keep(length): %ld\n", Keep.size());
-                exit(1);
-            }
-        }
 
         for (i = 1; i < this->Textures.Length(); i++)
         {
@@ -121,13 +106,10 @@ namespace wze
     {
         uint64 i;
 
-        for (i = 0; i < Keep->Length(); i++)
+        if (Keep == NULL)
         {
-            if ((*Keep)[i] != 0 && (this->Textures.Length() <= (*Keep)[i] || this->Textures[(*Keep)[i]] == NULL))
-            {
-                printf("wze::engine.actors[].textures.Purge(): Texture does not exist\nParams: Keep: %p\n", Keep);
-                exit(1);
-            }
+            printf("wze::engine.actors[].textures.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            exit(1);
         }
 
         for (i = 1; i < this->Textures.Length(); i++)

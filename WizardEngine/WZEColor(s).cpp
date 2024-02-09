@@ -43,15 +43,9 @@ namespace wze
     {
         uint64 i;
 
-        if (ID == 0)
-        {
-            printf("wze::engine.actors[].colors.Delete(): Illegal deletion of NULL Color\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
         if (this->Colors.Length() <= ID || this->Colors[ID] == NULL)
         {
-            printf("wze::engine.actors[].colors.Delete(): Color does not exist\nParams: ID: %lld\n", ID);
-            exit(1);
+            return 0;
         }
 
         delete this->Colors[ID];
@@ -76,15 +70,6 @@ namespace wze
     uint8 engine::actors::actor::colors::Purge(std::initializer_list<uint64> Keep)
     {
         uint64 i;
-
-        for (i = 0; i < Keep.size(); i++)
-        {
-            if (Keep.begin()[i] != 0 && (this->Colors.Length() <= Keep.begin()[i] || this->Colors[Keep.begin()[i]] == NULL))
-            {
-                printf("wze::engine.actors[].colors.Purge(): Color does not exist\nParams: Keep(length): %ld\n", Keep.size());
-                exit(1);
-            }
-        }
 
         for (i = 1; i < this->Colors.Length(); i++)
         {
@@ -115,13 +100,10 @@ namespace wze
     {
         uint64 i;
 
-        for (i = 0; i < Keep->Length(); i++)
+        if (Keep == NULL)
         {
-            if ((*Keep)[i] != 0 && (this->Colors.Length() <= (*Keep)[i] || this->Colors[(*Keep)[i]] == NULL))
-            {
-                printf("wze::engine.actors[].colors.Purge(): Color does not exist\nParams: Keep: %p\n", Keep);
-                exit(1);
-            }
+            printf("wze::engine.actors[].colors.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            exit(1);
         }
 
         for (i = 1; i < this->Colors.Length(); i++)

@@ -108,15 +108,9 @@ namespace wze
     {
         uint64 i;
 
-        if (ID == 0)
-        {
-            printf("wze::engine.actors[].flipbooks.Delete(): Illegal deletion of NULL Flipbook\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
         if (this->Flipbooks.Length() <= ID || this->Flipbooks[ID] == NULL)
         {
-            printf("wze::engine.actors[].flipbooks.Delete(): Flipbook does not exist\nParams: ID: %lld\n", ID);
-            exit(1);
+            return 0;
         }
 
         delete this->Flipbooks[ID];
@@ -141,15 +135,6 @@ namespace wze
     uint8 engine::actors::actor::flipbooks::Purge(std::initializer_list<uint64> Keep)
     {
         uint64 i;
-
-        for (i = 0; i < Keep.size(); i++)
-        {
-            if (Keep.begin()[i] != 0 && (this->Flipbooks.Length() <= Keep.begin()[i] || this->Flipbooks[Keep.begin()[i]] == NULL))
-            {
-                printf("wze::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep(length): %ld\n", Keep.size());
-                exit(1);
-            }
-        }
 
         for (i = 1; i < this->Flipbooks.Length(); i++)
         {
@@ -180,13 +165,10 @@ namespace wze
     {
         uint64 i;
 
-        for (i = 0; i < Keep->Length(); i++)
+        if (Keep == NULL)
         {
-            if ((*Keep)[i] != 0 && (this->Flipbooks.Length() <= (*Keep)[i] || this->Flipbooks[(*Keep)[i]] == NULL))
-            {
-                printf("wze::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep: %p\n", Keep);
-                exit(1);
-            }
+            printf("wze::engine.actors[].flipbooks.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            exit(1);
         }
 
         for (i = 1; i < this->Flipbooks.Length(); i++)

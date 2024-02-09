@@ -44,15 +44,9 @@ namespace wze
     {
         uint64 i;
 
-        if (ID == 0)
-        {
-            printf("wze::engine.actors[].overlapboxes.Delete(): Illegal deletion of NULL Overlapbox\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
         if (this->Overlapboxes.Length() <= ID || this->Overlapboxes[ID] == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes.Delete(): Overlapbox does not exist\nParams: ID: %lld\n", ID);
-            exit(1);
+            return 0;
         }
 
         delete this->Overlapboxes[ID];
@@ -77,15 +71,6 @@ namespace wze
     uint8 engine::actors::actor::overlapboxes::Purge(std::initializer_list<uint64> Keep)
     {
         uint64 i;
-
-        for (i = 0; i < Keep.size(); i++)
-        {
-            if (Keep.begin()[i] != 0 && (this->Overlapboxes.Length() <= Keep.begin()[i] || this->Overlapboxes[Keep.begin()[i]] == NULL))
-            {
-                printf("wze::engine.actors[].overlapboxes.Purge(): Overlapbox does not exist\nParams: Keep(length): %ld\n", Keep.size());
-                exit(1);
-            }
-        }
 
         for (i = 1; i < this->Overlapboxes.Length(); i++)
         {
@@ -116,13 +101,10 @@ namespace wze
     {
         uint64 i;
 
-        for (i = 0; i < Keep->Length(); i++)
+        if (Keep == NULL)
         {
-            if ((*Keep)[i] != 0 && (this->Overlapboxes.Length() <= (*Keep)[i] || this->Overlapboxes[(*Keep)[i]] == NULL))
-            {
-                printf("wze::engine.actors[].overlapboxes.Purge(): Overlapbox does not exist\nParams: Keep: %p\n", Keep);
-                exit(1);
-            }
+            printf("wze::engine.actors[].overlapboxes.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            exit(1);
         }
 
         for (i = 1; i < this->Overlapboxes.Length(); i++)

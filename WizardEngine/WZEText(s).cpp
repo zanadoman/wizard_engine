@@ -55,15 +55,9 @@ namespace wze
     {
         uint64 i;
 
-        if (ID == 0)
-        {
-            printf("wze::engine.actors[].texts.Delete(): Illegal deletion of NULL Text\nParams: ID: %lld\n", ID);
-            exit(1);
-        }
         if (this->Texts.Length() <= ID || this->Texts[ID] == NULL)
         {
-            printf("wze::engine.actors[].texts.Delete(): Text does not exist\nParams: ID: %lld\n", ID);
-            exit(1);
+            return 0;
         }
 
         delete this->Texts[ID];
@@ -88,15 +82,6 @@ namespace wze
     uint8 engine::actors::actor::texts::Purge(std::initializer_list<uint64> Keep)
     {
         uint64 i;
-
-        for (i = 0; i < Keep.size(); i++)
-        {
-            if (Keep.begin()[i] != 0 && (this->Texts.Length() <= Keep.begin()[i] || this->Texts[Keep.begin()[i]] == NULL))
-            {
-                printf("wze::engine.actors[].texts.Purge(): Text does not exist\nParams: Keep(length): %ld\n", Keep.size());
-                exit(1);
-            }
-        }
 
         for (i = 1; i < this->Texts.Length(); i++)
         {
@@ -127,13 +112,10 @@ namespace wze
     {
         uint64 i;
 
-        for (i = 0; i < Keep->Length(); i++)
+        if (Keep == NULL)
         {
-            if ((*Keep)[i] != 0 && (this->Texts.Length() <= (*Keep)[i] || this->Texts[(*Keep)[i]] == NULL))
-            {
-                printf("wze::engine.actors[].texts.Purge(): Text does not exist\nParams: Keep: %p\n", Keep);
-                exit(1);
-            }
+            printf("wze::engine.actors[].texts.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            exit(1);
         }
 
         for (i = 1; i < this->Texts.Length(); i++)
