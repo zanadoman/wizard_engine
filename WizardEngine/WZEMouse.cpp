@@ -116,7 +116,7 @@ namespace wze
     {
         if (CursorID == 0)
         {
-            printf("wze::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: CursorID: %lld\n", CursorID);
+            printf("wze::engine.mouse.SetCursor(): Illegal use of NULL Cursor\nParams: CursorID: %lld\n", CursorID);
             exit(1);
         }
         if (this->Engine->Assets.Cursors.Length() <= CursorID || this->Engine->Assets.Cursors[CursorID] == NULL)

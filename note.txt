@@ -10,7 +10,7 @@ Test/supervising sequence:
         Timing OK
         Keys OK
         Mouse OK
-        Threads
+        Threads OK
         Audio
     Slightly nested:
         Render

@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0:
-.LFB8334:
+.LFB8332:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8334:
+.LFE8332:
 	.size	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0, .-_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -363,10 +363,10 @@ _ZN3wze6engine7threads5StartEPFiPvES2_:
 	.section	.rodata.str1.8
 	.align 8
 .LC8:
-	.string	"wze::engine.threads.Wait(): Illegal use of NULL thread\nParams: ID: %lld\n"
+	.string	"wze::engine.threads.Wait(): Illegal use of NULL Thread\nParams: ThreadID: %lld\n"
 	.align 8
 .LC9:
-	.string	"wze::engine.threads.Wait(): Thread does not exist\nParams: ID: %lld\n"
+	.string	"wze::engine.threads.Wait(): Thread does not exist\nParams: ThreadID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -473,11 +473,6 @@ _ZN3wze6engine7threads4WaitEy:
 	.cfi_endproc
 .LFE8150:
 	.size	_ZN3wze6engine7threads4WaitEy, .-_ZN3wze6engine7threads4WaitEy
-	.section	.rodata.str1.8
-	.align 8
-.LC10:
-	.string	"wze::engine.threads.Purge(): Thread does not exist\nParams: Keep(length): %ld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine7threads5PurgeESt16initializer_listIyE
@@ -488,76 +483,57 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	pushq	%r13
 	.cfi_def_cfa_offset 16
 	.cfi_offset 13, -16
-	movq	%rdi, %r13
 	pushq	%r12
 	.cfi_def_cfa_offset 24
 	.cfi_offset 12, -24
-	movq	%rdx, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 32
 	.cfi_offset 6, -32
-	movq	%rsi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 40
 	.cfi_offset 3, -40
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 48
-	movq	8(%rdi), %rsi
-	testq	%rdx, %rdx
-	je	.L80
-	xorl	%eax, %eax
-	.p2align 4,,10
-	.p2align 3
-.L83:
-	movq	0(%rbp,%rax,8), %rcx
-	testq	%rcx, %rcx
-	je	.L81
-	cmpq	%rsi, %rcx
-	jnb	.L82
-	movq	16(%r13), %rdx
-	cmpq	$0, (%rdx,%rcx,8)
-	je	.L82
-.L81:
-	addq	$1, %rax
-	cmpq	%rax, %r12
-	jne	.L83
-.L80:
-	cmpq	$1, %rsi
-	jbe	.L84
-	movq	16(%r13), %rcx
+	movq	8(%rdi), %rax
+	cmpq	$1, %rax
+	jbe	.L80
+	movq	16(%rdi), %rcx
+	movq	%rdi, %r12
+	movq	%rsi, %rbp
+	movq	%rdx, %r13
 	movl	$1, %ebx
-.L85:
-	testq	%r12, %r12
-	je	.L86
-.L103:
-	xorl	%eax, %eax
-.L91:
-	cmpq	%rbx, 0(%rbp,%rax,8)
-	je	.L127
-	addq	$1, %rax
-	cmpq	%rax, %r12
-	jne	.L91
 .L86:
+	testq	%r13, %r13
+	je	.L81
+.L98:
+	xorl	%eax, %eax
+.L82:
+	cmpq	%rbx, 0(%rbp,%rax,8)
+	je	.L117
+	addq	$1, %rax
+	cmpq	%r13, %rax
+	jne	.L82
+.L81:
 	movq	(%rcx,%rbx,8), %rdi
 	xorl	%esi, %esi
 	call	SDL_WaitThread@PLT
-	movq	8(%r13), %rax
-	movq	16(%r13), %rcx
+	movq	8(%r12), %rax
+	movq	16(%r12), %rcx
 	cmpq	%rax, %rbx
-	jnb	.L128
+	jnb	.L118
 	movq	$0, (%rcx,%rbx,8)
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	jb	.L85
-.L90:
+	jb	.L86
+.L99:
 	movq	%rax, %rdx
 	addq	$-1, %rdx
-	jnc	.L101
+	jnc	.L96
 	cmpq	$0, (%rcx,%rdx,8)
-	jne	.L110
+	jne	.L104
 	cmpq	$1, %rax
-	jne	.L129
-.L110:
+	jne	.L119
+.L104:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -571,28 +547,28 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L127:
+.L117:
 	.cfi_restore_state
-	movq	8(%r13), %rax
+	movq	8(%r12), %rax
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	jb	.L103
-	jmp	.L90
-.L129:
+	jb	.L98
+	jmp	.L99
+.L119:
 	movq	%rax, %rsi
 	.p2align 4,,10
 	.p2align 3
-.L95:
+.L90:
 	movq	%rsi, %rdi
 	subq	$1, %rsi
 	cmpq	%rax, %rsi
-	jnb	.L126
+	jnb	.L116
 	cmpq	$0, (%rcx,%rsi,8)
-	jne	.L130
+	jne	.L120
 	cmpq	$1, %rsi
-	jne	.L95
-.L100:
-	leaq	8(%r13), %rdi
+	jne	.L90
+.L95:
+	leaq	8(%r12), %rdi
 	call	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -607,13 +583,13 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L84:
+.L80:
 	.cfi_restore_state
-	testq	%rsi, %rsi
-	jne	.L110
-.L101:
+	testq	%rax, %rax
+	jne	.L104
+.L96:
 	orq	$-1, %rsi
-.L126:
+.L116:
 	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
@@ -621,127 +597,84 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L130:
+.L120:
 	subq	%rdi, %rax
 	movq	%rdi, %rsi
 	movq	%rax, %rdx
-	jmp	.L100
-.L82:
-	leaq	.LC10(%rip), %rdi
-	movq	%r12, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L128:
+	jmp	.L95
+.L118:
 	movq	%rbx, %rsi
-	jmp	.L126
+	jmp	.L116
 	.cfi_endproc
 .LFE8151:
 	.size	_ZN3wze6engine7threads5PurgeESt16initializer_listIyE, .-_ZN3wze6engine7threads5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
-	.string	"wze::engine.threads.Purge(): Thread does not exist\nParams: Keep: %p\n"
+.LC10:
+	.string	"wze::engine.threads.Purge(): Keep must not be NULL\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE
 	.type	_ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE, @function
 _ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE:
-.LFB8154:
+.LFB8152:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
 	.cfi_offset 12, -16
-	movq	%rsi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 24
 	.cfi_offset 6, -24
-	movq	%rdi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	movq	(%rsi), %rcx
-	movq	8(%rdi), %r8
-	testq	%rcx, %rcx
-	je	.L132
-	movq	8(%rsi), %rsi
-	xorl	%eax, %eax
-	jmp	.L135
-	.p2align 4,,10
-	.p2align 3
-.L133:
-	addq	$1, %rax
-	cmpq	%rax, %rcx
-	je	.L132
-.L135:
-	movq	(%rsi,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L133
-	cmpq	%r8, %rdx
-	jnb	.L134
-	movq	16(%rbp), %rdi
-	cmpq	$0, (%rdi,%rdx,8)
-	jne	.L133
-.L134:
-	leaq	.LC11(%rip), %rdi
-	movq	%r12, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L132:
-	cmpq	$1, %r8
-	jbe	.L136
-	movq	16(%rbp), %rsi
+	testq	%rsi, %rsi
+	je	.L122
+	movq	8(%rdi), %rax
+	movq	%rdi, %r12
+	cmpq	$1, %rax
+	jbe	.L160
+	movq	%rsi, %rbp
+	movq	16(%rdi), %rsi
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L143:
-	movq	8(%r12), %rdx
+.L130:
+	movq	0(%rbp), %rdx
+	movq	8(%rbp), %rcx
 	xorl	%eax, %eax
-	testq	%rcx, %rcx
-	je	.L137
-.L138:
-	cmpq	%rbx, (%rdx,%rax,8)
-	je	.L178
+	testq	%rdx, %rdx
+	je	.L125
+.L126:
+	cmpq	(%rcx,%rax,8), %rbx
+	je	.L161
 	addq	$1, %rax
-	cmpq	%rax, %rcx
-	jne	.L138
+	cmpq	%rax, %rdx
+	jne	.L126
 	.p2align 4,,10
 	.p2align 3
-.L137:
+.L125:
 	movq	(%rsi,%rbx,8), %rdi
 	xorl	%esi, %esi
 	call	SDL_WaitThread@PLT
-	movq	8(%rbp), %rax
-	movq	16(%rbp), %rsi
+	movq	8(%r12), %rax
+	movq	16(%r12), %rsi
 	cmpq	%rax, %rbx
-	jnb	.L179
+	jnb	.L162
 	movq	$0, (%rsi,%rbx,8)
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jnb	.L142
-.L180:
-	movq	(%r12), %rcx
-	jmp	.L143
-.L178:
-	movq	8(%rbp), %rax
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jb	.L180
 .L142:
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	jb	.L130
 	movq	%rax, %rdx
 	addq	$-1, %rdx
-	jnc	.L153
+	jnc	.L140
 	cmpq	$0, (%rsi,%rdx,8)
-	jne	.L162
+	jne	.L147
 	cmpq	$1, %rax
-	jne	.L181
-.L162:
+	jne	.L163
+.L147:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -751,22 +684,25 @@ _ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE:
 	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L181:
+.L161:
 	.cfi_restore_state
+	movq	8(%r12), %rax
+	jmp	.L142
+.L163:
 	movq	%rax, %rcx
 	.p2align 4,,10
 	.p2align 3
-.L147:
+.L134:
 	movq	%rcx, %rdi
 	subq	$1, %rcx
 	cmpq	%rax, %rcx
-	jnb	.L182
+	jnb	.L164
 	cmpq	$0, (%rsi,%rcx,8)
-	jne	.L183
+	jne	.L165
 	cmpq	$1, %rcx
-	jne	.L147
-.L152:
-	leaq	8(%rbp), %rdi
+	jne	.L134
+.L139:
+	leaq	8(%r12), %rdi
 	movq	%rcx, %rsi
 	call	_ZN3neo5arrayIP10SDL_ThreadE6RemoveEyy.isra.0
 	popq	%rbx
@@ -778,33 +714,40 @@ _ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE:
 	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L136:
+.L160:
 	.cfi_restore_state
-	testq	%r8, %r8
-	jne	.L162
-.L153:
+	testq	%rax, %rax
+	jne	.L147
+.L140:
 	orq	$-1, %rsi
-	jmp	.L177
+	jmp	.L159
 	.p2align 4,,10
 	.p2align 3
-.L183:
+.L165:
 	subq	%rdi, %rax
 	movq	%rdi, %rcx
 	movq	%rax, %rdx
-	jmp	.L152
-.L182:
+	jmp	.L139
+.L164:
 	movq	%rcx, %rsi
-.L177:
+.L159:
 	leaq	.LC5(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L179:
+.L162:
 	movq	%rbx, %rsi
-	jmp	.L177
+	jmp	.L159
+.L122:
+	leaq	.LC10(%rip), %rdi
+	xorl	%esi, %esi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.cfi_endproc
-.LFE8154:
+.LFE8152:
 	.size	_ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine7threads5PurgeEPN3neo5arrayIyEE
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

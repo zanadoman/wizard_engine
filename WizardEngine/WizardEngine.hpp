@@ -724,7 +724,7 @@ namespace wze
 
                 public:
                     neo::uint64 Start(neo::sint32(*Function)(void*), void* Parameter);
-                    neo::sint32 Wait(neo::uint64 ID);
+                    neo::sint32 Wait(neo::uint64 ThreadID);
                     neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
                     neo::uint8 Purge(neo::array<neo::uint64>* Keep);
 

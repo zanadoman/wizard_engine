@@ -27,7 +27,7 @@ _ZN3wze6engine5mouseC2EPS0_:
 	.string	"engine.mouse.GetX(): Layer must not be NaN\nParams: Layer: %lf\n"
 	.align 8
 .LC4:
-	.string	"engine.mouse.GetY(): Layer must not be less than 0\nParams: Layer: %lf\n"
+	.string	"engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -88,7 +88,7 @@ _ZN3wze6engine5mouse4GetXEd:
 	.string	"engine.mouse.GetY(): Layer must not be NaN\nParams: Layer: %lf\n"
 	.align 8
 .LC6:
-	.string	"engine.mouse.GetX(): Layer must not be less than 0\nParams: Layer: %lf\n"
+	.string	"engine.mouse.GetY(): Layer must not be less than 0\nParams: Layer: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -194,7 +194,7 @@ _ZN3wze6engine5mouse11SetAbsoluteEv:
 	xorl	%edi, %edi
 	call	SDL_SetRelativeMouseMode@PLT
 	movb	$0, 40(%rbx)
-	xorl	%eax, %eax
+	movl	$1, %eax
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
@@ -249,10 +249,10 @@ _ZN3wze6engine5mouse9GetCursorEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC7:
-	.string	"wze::engine.mouse.SetCursor(): Illegal use of NULL cursor\nParams: ID: %lld\n"
+	.string	"wze::engine.mouse.SetCursor(): Illegal use of NULL Cursor\nParams: CursorID: %lld\n"
 	.align 8
 .LC8:
-	.string	"wze::engine.mouse.SetCursor(): Cursor does not exist\nParams: ID: %lld\n"
+	.string	"wze::engine.mouse.SetCursor(): Cursor does not exist\nParams: CursorID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
