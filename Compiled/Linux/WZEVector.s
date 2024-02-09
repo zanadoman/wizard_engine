@@ -322,6 +322,12 @@ _ZN3wze6engine6vector5AngleEdddd:
 	.align 8
 .LC12:
 	.string	"wze::engine.vector.TerminalX(): InitialX must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n"
+	.align 8
+.LC13:
+	.string	"wze::engine.vector.TerminalX(): Length must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n"
+	.align 8
+.LC14:
+	.string	"wze::engine.vector.TerminalX(): Angle must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -333,22 +339,39 @@ _ZN3wze6engine6vector9TerminalXEddd:
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 32
 	ucomisd	%xmm0, %xmm0
-	movsd	%xmm1, (%rsp)
-	jp	.L86
-	mulsd	.LC13(%rip), %xmm2
-	movsd	%xmm0, 8(%rsp)
+	jp	.L94
+	ucomisd	%xmm1, %xmm1
+	jp	.L95
+	ucomisd	%xmm2, %xmm2
+	jp	.L96
+	mulsd	.LC15(%rip), %xmm2
+	movsd	%xmm0, (%rsp)
+	movsd	%xmm1, 8(%rsp)
 	movapd	%xmm2, %xmm0
 	call	cos@PLT
-	mulsd	(%rsp), %xmm0
-	movsd	8(%rsp), %xmm3
+	movsd	8(%rsp), %xmm1
+	movsd	(%rsp), %xmm3
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
+	mulsd	%xmm1, %xmm0
 	addsd	%xmm3, %xmm0
 	ret
-.L86:
+.L94:
 	.cfi_restore_state
 	leaq	.LC12(%rip), %rdi
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L96:
+	leaq	.LC14(%rip), %rdi
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L95:
+	leaq	.LC13(%rip), %rdi
 	movl	$3, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -358,8 +381,14 @@ _ZN3wze6engine6vector9TerminalXEddd:
 	.size	_ZN3wze6engine6vector9TerminalXEddd, .-_ZN3wze6engine6vector9TerminalXEddd
 	.section	.rodata.str1.8
 	.align 8
-.LC14:
+.LC16:
 	.string	"wze::engine.vector.TerminalY(): InitialY must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n"
+	.align 8
+.LC17:
+	.string	"wze::engine.vector.TerminalY(): Length must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n"
+	.align 8
+.LC18:
+	.string	"wze::engine.vector.TerminalY(): Angle must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -371,22 +400,39 @@ _ZN3wze6engine6vector9TerminalYEddd:
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 32
 	ucomisd	%xmm0, %xmm0
-	movsd	%xmm1, (%rsp)
-	jp	.L93
-	mulsd	.LC13(%rip), %xmm2
-	movsd	%xmm0, 8(%rsp)
+	jp	.L111
+	ucomisd	%xmm1, %xmm1
+	jp	.L112
+	ucomisd	%xmm2, %xmm2
+	jp	.L113
+	mulsd	.LC15(%rip), %xmm2
+	movsd	%xmm0, (%rsp)
+	movsd	%xmm1, 8(%rsp)
 	movapd	%xmm2, %xmm0
 	call	sin@PLT
-	mulsd	(%rsp), %xmm0
-	movsd	8(%rsp), %xmm3
+	movsd	8(%rsp), %xmm1
+	movsd	(%rsp), %xmm3
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
+	mulsd	%xmm1, %xmm0
 	addsd	%xmm3, %xmm0
 	ret
-.L93:
+.L111:
 	.cfi_restore_state
-	leaq	.LC14(%rip), %rdi
+	leaq	.LC16(%rip), %rdi
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L113:
+	leaq	.LC18(%rip), %rdi
+	movl	$3, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L112:
+	leaq	.LC17(%rip), %rdi
 	movl	$3, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -396,40 +442,40 @@ _ZN3wze6engine6vector9TerminalYEddd:
 	.size	_ZN3wze6engine6vector9TerminalYEddd, .-_ZN3wze6engine6vector9TerminalYEddd
 	.section	.rodata.str1.8
 	.align 8
-.LC15:
+.LC19:
 	.string	"neo::array(): Memory allocation failed\nParams: Length: %lld\n"
 	.align 8
-.LC16:
+.LC20:
 	.ascii	"wz"
 	.string	"e::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC17:
+.LC21:
 	.ascii	"wz"
 	.string	"e::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC18:
+.LC22:
 	.ascii	"wze"
 	.string	"::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC19:
+.LC23:
 	.ascii	"wze"
 	.string	"::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC20:
+.LC24:
 	.ascii	"wze::e"
 	.string	"ngine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC22:
+.LC26:
 	.ascii	"wze::engine.vector.RayCast"
 	.string	"(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC23:
+.LC27:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB25:
+.LCOLDB29:
 	.text
-.LHOTB25:
+.LHOTB29:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_
@@ -482,28 +528,28 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	xorl	%eax, %eax
 	movq	%rbx, 112(%rsp)
 	testq	%rbx, %rbx
-	jne	.L95
+	jne	.L115
 	movq	$0, 120(%rsp)
 	xorl	%r12d, %r12d
-.L96:
+.L116:
 	movsd	(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L191
+	jp	.L211
 	movsd	8(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L192
+	jp	.L212
 	movsd	16(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L193
+	jp	.L213
 	movsd	24(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L194
+	jp	.L214
 	movsd	32(%rsp), %xmm7
 	ucomisd	%xmm7, %xmm7
-	jp	.L195
+	jp	.L215
 	pxor	%xmm0, %xmm0
 	comisd	32(%rsp), %xmm0
-	jnb	.L196
+	jnb	.L216
 	movsd	(%rsp), %xmm7
 	ucomisd	16(%rsp), %xmm7
 	movl	$0, %esi
@@ -515,82 +561,82 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	cmovne	%esi, %eax
 	andb	%al, %dl
 	movb	%dl, 93(%rsp)
-	jne	.L110
+	jne	.L130
 	movq	352(%rcx), %rsi
 	cmpq	$1, %rsi
-	jbe	.L146
+	jbe	.L166
 	movl	$1, %ebx
 	xorl	%r15d, %r15d
-	jmp	.L132
+	jmp	.L152
 	.p2align 4,,10
 	.p2align 3
-.L112:
+.L132:
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jnb	.L197
-.L132:
+	jnb	.L217
+.L152:
 	movq	360(%rcx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rdx
 	testq	%rdx, %rdx
-	je	.L112
+	je	.L132
 	movq	208(%rdx), %rdi
 	movq	56(%rsp), %r8
 	xorl	%edx, %edx
 	testq	%r14, %r14
-	je	.L112
+	je	.L132
 	cmpq	(%r8,%rdx,8), %rdi
-	je	.L198
-.L176:
+	je	.L218
+.L196:
 	addq	$1, %rdx
 	cmpq	%rdx, %r14
-	je	.L112
+	je	.L132
 	cmpq	(%r8,%rdx,8), %rdi
-	jne	.L176
-.L198:
+	jne	.L196
+.L218:
 	xorl	%edx, %edx
 	cmpq	$0, 64(%rsp)
 	movq	80(%rsp), %rdi
-	je	.L116
-.L144:
+	je	.L136
+.L164:
 	cmpq	%rbx, (%rdi,%rdx,8)
-	je	.L112
+	je	.L132
 	addq	$1, %rdx
 	cmpq	%rdx, 64(%rsp)
-	jne	.L144
-.L116:
+	jne	.L164
+.L136:
 	cmpq	%rsi, %rbx
-	jnb	.L190
+	jnb	.L210
 	movl	$1, %r12d
 	.p2align 4,,10
 	.p2align 3
-.L118:
+.L138:
 	movq	(%rax,%r13), %rax
 	cmpq	152(%rax), %r12
-	jnb	.L112
+	jnb	.L132
 	movq	160(%rax), %rax
 	leaq	0(,%r12,8), %rdx
 	movq	%rdx, 40(%rsp)
 	movq	(%rax,%r12,8), %rax
 	testq	%rax, %rax
-	jne	.L119
-.L123:
+	jne	.L139
+.L143:
 	movq	360(%rcx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
-	jb	.L118
-.L190:
+	jb	.L138
+.L210:
 	movq	%rbx, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB0:
 	call	printf@PLT
-	jmp	.L101
+	jmp	.L121
 	.p2align 4,,10
 	.p2align 3
-.L197:
+.L217:
 	movq	120(%rsp), %r12
-.L111:
+.L131:
 	movzwl	88(%rsp), %eax
 	pxor	%xmm0, %xmm0
 	movsd	(%rsp), %xmm7
@@ -616,32 +662,32 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	sqrtsd	%xmm2, %xmm2
 	divsd	%xmm2, %xmm0
 	movsd	%xmm2, 16(%rsp)
-	ja	.L199
+	ja	.L219
 	call	acos@PLT
 	movsd	%xmm0, 24(%rsp)
-.L135:
+.L155:
 	movsd	16(%rsp), %xmm6
 	pxor	%xmm0, %xmm0
 	movzwl	94(%rsp), %r14d
 	comisd	%xmm0, %xmm6
-	jbe	.L180
-.L138:
+	jbe	.L200
+.L158:
 	testq	%r15, %r15
-	je	.L141
+	je	.L161
 	movq	112(%rsp), %r13
 	xorl	%ebx, %ebx
-	jmp	.L137
+	jmp	.L157
 	.p2align 4,,10
 	.p2align 3
-.L201:
+.L221:
 	addq	$1, %rbx
 	cmpq	%r15, %rbx
-	je	.L141
-.L137:
+	je	.L161
+.L157:
 	movq	0(%rbp), %rax
 	leaq	368(%rax), %rdi
 	cmpq	%rbx, %r13
-	je	.L200
+	je	.L220
 	pxor	%xmm2, %xmm2
 	movsd	8(%rsp), %xmm1
 	movsd	(%rsp), %xmm5
@@ -653,13 +699,13 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	addsd	%xmm5, %xmm2
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L201
-.L110:
+	je	.L221
+.L130:
 	movq	%r12, %rdi
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L202
+	jne	.L222
 	movzbl	93(%rsp), %eax
 	addq	$152, %rsp
 	.cfi_remember_state
@@ -677,51 +723,51 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L199:
+.L219:
 	.cfi_restore_state
 	call	acos@PLT
-	movsd	.LC24(%rip), %xmm1
+	movsd	.LC28(%rip), %xmm1
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, 24(%rsp)
-	jmp	.L135
+	jmp	.L155
 	.p2align 4,,10
 	.p2align 3
-.L119:
+.L139:
 	movq	24(%rax), %rdx
 	xorl	%eax, %eax
 	cmpq	$0, 48(%rsp)
 	movq	72(%rsp), %rdi
-	je	.L122
-.L121:
+	je	.L142
+.L141:
 	cmpq	(%rdi,%rax,8), %rdx
-	je	.L123
+	je	.L143
 	addq	$1, %rax
 	cmpq	%rax, 48(%rsp)
-	jne	.L121
-.L122:
+	jne	.L141
+.L142:
 	cmpq	%r15, 112(%rsp)
-	je	.L203
-.L125:
+	je	.L223
+.L145:
 	movq	360(%rcx), %rax
 	cmpq	%rsi, %rbx
-	jnb	.L190
+	jnb	.L210
 	movq	(%rax,%r13), %rdx
 	movq	160(%rdx), %rdi
 	cmpq	152(%rdx), %r12
-	jnb	.L204
+	jnb	.L224
 	movq	40(%rsp), %rdx
 	movq	(%rdi,%rdx), %r8
 	movq	120(%rsp), %rdi
 	leaq	1(%r15), %rdx
 	cmpq	112(%rsp), %r15
-	jnb	.L205
+	jnb	.L225
 	movq	%r8, (%rdi,%r15,8)
 	addq	$1, %r12
 	movq	%rdx, %r15
-	jmp	.L118
+	jmp	.L138
 	.p2align 4,,10
 	.p2align 3
-.L141:
+.L161:
 	movsd	24(%rsp), %xmm0
 	leaq	104(%rsp), %rdi
 	leaq	96(%rsp), %rsi
@@ -740,11 +786,11 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movsd	%xmm0, 8(%rsp)
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm7
-	ja	.L138
-.L180:
+	ja	.L158
+.L200:
 	movb	$1, 93(%rsp)
-	jmp	.L110
-.L203:
+	jmp	.L130
+.L223:
 	movzwl	376(%rcx), %eax
 	leaq	112(%rsp), %rdi
 	movq	%r15, %rsi
@@ -753,8 +799,8 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 .LEHE0:
 	movq	0(%rbp), %rcx
 	movq	352(%rcx), %rsi
-	jmp	.L125
-.L95:
+	jmp	.L145
+.L115:
 	leaq	0(,%rbx,8), %rdi
 	movq	%rcx, 40(%rsp)
 	call	malloc@PLT
@@ -762,8 +808,8 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	testq	%rax, %rax
 	movq	%rax, 120(%rsp)
 	movq	%rax, %r12
-	jne	.L96
-	leaq	.LC15(%rip), %rdi
+	jne	.L116
+	leaq	.LC19(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 .LEHB1:
@@ -773,59 +819,25 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L146:
+.L166:
 	xorl	%r15d, %r15d
-	jmp	.L111
-.L200:
+	jmp	.L131
+.L220:
 	movq	%r13, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB2:
 	call	printf@PLT
-.L101:
+.L121:
 	movl	$1, %edi
 	call	exit@PLT
-.L205:
+.L225:
 	movq	%r15, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-	jmp	.L101
-.L193:
-	movzwl	88(%rsp), %esi
-	movq	48(%rsp), %r8
-	movq	%r14, %rdx
-	leaq	.LC18(%rip), %rdi
-	movq	64(%rsp), %rcx
-	movsd	32(%rsp), %xmm4
-	movl	$5, %eax
-	movsd	24(%rsp), %xmm3
-	movsd	16(%rsp), %xmm2
-	movsd	8(%rsp), %xmm1
-	movsd	(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L101
-.L192:
-	movzwl	88(%rsp), %esi
-	movq	48(%rsp), %r8
-	movq	%r14, %rdx
-	movapd	%xmm6, %xmm1
-	movq	64(%rsp), %rcx
-	movsd	(%rsp), %xmm0
-	movl	$5, %eax
-	leaq	.LC17(%rip), %rdi
-	movsd	32(%rsp), %xmm4
-	movsd	24(%rsp), %xmm3
-	movsd	16(%rsp), %xmm2
-	call	printf@PLT
-	jmp	.L101
-.L204:
-	movq	%r12, %rsi
-	leaq	.LC23(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	jmp	.L101
-.L196:
+	jmp	.L121
+.L213:
 	movzwl	88(%rsp), %esi
 	movq	48(%rsp), %r8
 	movq	%r14, %rdx
@@ -838,8 +850,42 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movsd	8(%rsp), %xmm1
 	movsd	(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L101
-.L195:
+	jmp	.L121
+.L212:
+	movzwl	88(%rsp), %esi
+	movq	48(%rsp), %r8
+	movq	%r14, %rdx
+	movapd	%xmm6, %xmm1
+	movq	64(%rsp), %rcx
+	movsd	(%rsp), %xmm0
+	movl	$5, %eax
+	leaq	.LC21(%rip), %rdi
+	movsd	32(%rsp), %xmm4
+	movsd	24(%rsp), %xmm3
+	movsd	16(%rsp), %xmm2
+	call	printf@PLT
+	jmp	.L121
+.L224:
+	movq	%r12, %rsi
+	leaq	.LC27(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	jmp	.L121
+.L216:
+	movzwl	88(%rsp), %esi
+	movq	48(%rsp), %r8
+	movq	%r14, %rdx
+	leaq	.LC26(%rip), %rdi
+	movq	64(%rsp), %rcx
+	movsd	32(%rsp), %xmm4
+	movl	$5, %eax
+	movsd	24(%rsp), %xmm3
+	movsd	16(%rsp), %xmm2
+	movsd	8(%rsp), %xmm1
+	movsd	(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L121
+.L215:
 	movzwl	88(%rsp), %esi
 	movq	48(%rsp), %r8
 	movq	%r14, %rdx
@@ -847,13 +893,13 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movq	64(%rsp), %rcx
 	movsd	(%rsp), %xmm0
 	movl	$5, %eax
-	leaq	.LC20(%rip), %rdi
+	leaq	.LC24(%rip), %rdi
 	movsd	24(%rsp), %xmm3
 	movsd	16(%rsp), %xmm2
 	movsd	8(%rsp), %xmm1
 	call	printf@PLT
-	jmp	.L101
-.L194:
+	jmp	.L121
+.L214:
 	movzwl	88(%rsp), %esi
 	movq	48(%rsp), %r8
 	movq	%r14, %rdx
@@ -861,19 +907,19 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movq	64(%rsp), %rcx
 	movsd	(%rsp), %xmm0
 	movl	$5, %eax
-	leaq	.LC19(%rip), %rdi
+	leaq	.LC23(%rip), %rdi
 	movsd	32(%rsp), %xmm4
 	movsd	16(%rsp), %xmm2
 	movsd	8(%rsp), %xmm1
 	call	printf@PLT
-	jmp	.L101
-.L202:
+	jmp	.L121
+.L222:
 	call	__stack_chk_fail@PLT
-.L191:
+.L211:
 	movzwl	88(%rsp), %esi
 	movq	48(%rsp), %r8
 	movq	%r14, %rdx
-	leaq	.LC16(%rip), %rdi
+	leaq	.LC20(%rip), %rdi
 	movq	64(%rsp), %rcx
 	movsd	32(%rsp), %xmm4
 	movl	$5, %eax
@@ -883,10 +929,10 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movsd	(%rsp), %xmm0
 	call	printf@PLT
 .LEHE2:
-	jmp	.L101
-.L152:
+	jmp	.L121
+.L172:
 	movq	%rax, %rbx
-	jmp	.L142
+	jmp	.L162
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
 .LLSDA8153:
@@ -897,7 +943,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 .LLSDACSB8153:
 	.uleb128 .LEHB0-.LFB8153
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L152-.LFB8153
+	.uleb128 .L172-.LFB8153
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB8153
 	.uleb128 .LEHE1-.LEHB1
@@ -905,7 +951,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB8153
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L152-.LFB8153
+	.uleb128 .L172-.LFB8153
 	.uleb128 0
 .LLSDACSE8153:
 	.text
@@ -917,7 +963,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	.type	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold, @function
 _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 .LFSB8153:
-.L142:
+.L162:
 	.cfi_def_cfa_offset 208
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -929,12 +975,12 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L206
+	jne	.L226
 	movq	%rbx, %rdi
 .LEHB3:
 	call	_Unwind_Resume@PLT
 .LEHE3:
-.L206:
+.L226:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8153:
@@ -945,7 +991,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8153-.LLSDACSBC8153
 .LLSDACSBC8153:
-	.uleb128 .LEHB3-.LCOLDB25
+	.uleb128 .LEHB3-.LCOLDB29
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
@@ -955,38 +1001,38 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold
-.LCOLDE25:
+.LCOLDE29:
 	.text
-.LHOTE25:
+.LHOTE29:
 	.section	.rodata.str1.8
 	.align 8
-.LC26:
+.LC30:
 	.string	"wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC27:
+.LC31:
 	.string	"wze::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC28:
+.LC32:
 	.string	"wze::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC29:
+.LC33:
 	.string	"wze::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC30:
+.LC34:
 	.string	"wze::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC31:
+.LC35:
 	.ascii	"wze::engine.vecto"
 	.string	"r.RayCast(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC32:
+.LC36:
 	.ascii	"wze:"
 	.string	":engine.vector.RayCast(): ActorTypeWhiteList must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist(length): %ld\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB33:
+.LCOLDB37:
 	.text
-.LHOTB33:
+.LHOTB37:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_
@@ -1038,30 +1084,30 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	xorl	%eax, %eax
 	movq	%rbx, 112(%rsp)
 	testq	%rbx, %rbx
-	jne	.L208
+	jne	.L228
 	movq	$0, 120(%rsp)
 	xorl	%r12d, %r12d
-.L209:
+.L229:
 	movsd	24(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L305
+	jp	.L325
 	movsd	32(%rsp), %xmm7
 	ucomisd	%xmm7, %xmm7
-	jp	.L306
+	jp	.L326
 	movsd	40(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L307
+	jp	.L327
 	movsd	48(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L308
+	jp	.L328
 	movsd	56(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L309
+	jp	.L329
 	pxor	%xmm0, %xmm0
 	comisd	56(%rsp), %xmm0
-	jnb	.L310
+	jnb	.L330
 	testq	%r14, %r14
-	je	.L311
+	je	.L331
 	movapd	%xmm7, %xmm4
 	movsd	24(%rsp), %xmm7
 	ucomisd	40(%rsp), %xmm7
@@ -1073,40 +1119,40 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	cmovne	%esi, %eax
 	andb	%al, %cl
 	movb	%cl, 93(%rsp)
-	jne	.L224
+	jne	.L244
 	movq	352(%rdx), %rsi
 	cmpq	$1, %rsi
-	jbe	.L260
+	jbe	.L280
 	movl	$1, %ebx
 	xorl	%r15d, %r15d
 	.p2align 4,,10
 	.p2align 3
-.L246:
+.L266:
 	movq	360(%rdx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
-	je	.L226
+	je	.L246
 	movq	(%r14), %rdi
 	movq	208(%rcx), %r8
 	xorl	%ecx, %ecx
 	movq	8(%r14), %r9
 	testq	%rdi, %rdi
-	je	.L226
-.L227:
+	je	.L246
+.L247:
 	cmpq	(%r9,%rcx,8), %r8
-	je	.L312
+	je	.L332
 	addq	$1, %rcx
 	cmpq	%rcx, %rdi
-	jne	.L227
+	jne	.L247
 	.p2align 4,,10
 	.p2align 3
-.L226:
+.L246:
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jb	.L246
+	jb	.L266
 	movq	120(%rsp), %r12
-.L225:
+.L245:
 	movzwl	88(%rsp), %eax
 	pxor	%xmm0, %xmm0
 	movsd	24(%rsp), %xmm7
@@ -1132,32 +1178,32 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	sqrtsd	%xmm2, %xmm2
 	divsd	%xmm2, %xmm0
 	movsd	%xmm2, 24(%rsp)
-	ja	.L313
+	ja	.L333
 	call	acos@PLT
 	movsd	%xmm0, 32(%rsp)
-.L249:
+.L269:
 	movsd	24(%rsp), %xmm6
 	pxor	%xmm0, %xmm0
 	movzwl	94(%rsp), %r14d
 	comisd	%xmm0, %xmm6
-	jbe	.L295
-.L252:
+	jbe	.L315
+.L272:
 	testq	%r15, %r15
-	je	.L255
+	je	.L275
 	movq	112(%rsp), %r13
 	xorl	%ebx, %ebx
-	jmp	.L251
+	jmp	.L271
 	.p2align 4,,10
 	.p2align 3
-.L315:
+.L335:
 	addq	$1, %rbx
 	cmpq	%r15, %rbx
-	je	.L255
-.L251:
+	je	.L275
+.L271:
 	movq	0(%rbp), %rax
 	leaq	368(%rax), %rdi
 	cmpq	%rbx, %r13
-	je	.L314
+	je	.L334
 	pxor	%xmm2, %xmm2
 	movsd	16(%rsp), %xmm1
 	movsd	8(%rsp), %xmm5
@@ -1170,13 +1216,13 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 .LEHB4:
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L315
-.L224:
+	je	.L335
+.L244:
 	movq	%r12, %rdi
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L316
+	jne	.L336
 	movzbl	93(%rsp), %eax
 	addq	$152, %rsp
 	.cfi_remember_state
@@ -1194,85 +1240,85 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L312:
+.L332:
 	.cfi_restore_state
 	xorl	%ecx, %ecx
 	cmpq	$0, 64(%rsp)
 	movq	80(%rsp), %rdi
-	je	.L230
-.L258:
+	je	.L250
+.L278:
 	cmpq	(%rdi,%rcx,8), %rbx
-	je	.L226
+	je	.L246
 	addq	$1, %rcx
 	cmpq	%rcx, 64(%rsp)
-	jne	.L258
-.L230:
+	jne	.L278
+.L250:
 	cmpq	%rsi, %rbx
-	jnb	.L304
+	jnb	.L324
 	movl	$1, %r12d
 	.p2align 4,,10
 	.p2align 3
-.L232:
+.L252:
 	movq	(%rax,%r13), %rax
 	cmpq	152(%rax), %r12
-	jnb	.L226
+	jnb	.L246
 	movq	160(%rax), %rax
 	leaq	0(,%r12,8), %rcx
 	movq	%rcx, 8(%rsp)
 	movq	(%rax,%r12,8), %rax
 	testq	%rax, %rax
-	jne	.L233
-.L237:
+	jne	.L253
+.L257:
 	movq	360(%rdx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
-	jb	.L232
-.L304:
+	jb	.L252
+.L324:
 	movq	%rbx, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-.L214:
+.L234:
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L233:
+.L253:
 	movq	24(%rax), %rcx
 	xorl	%eax, %eax
 	cmpq	$0, 16(%rsp)
 	movq	72(%rsp), %rdi
-	je	.L236
-.L235:
+	je	.L256
+.L255:
 	cmpq	(%rdi,%rax,8), %rcx
-	je	.L237
+	je	.L257
 	addq	$1, %rax
 	cmpq	%rax, 16(%rsp)
-	jne	.L235
-.L236:
+	jne	.L255
+.L256:
 	cmpq	%r15, 112(%rsp)
-	je	.L317
-.L239:
+	je	.L337
+.L259:
 	movq	360(%rdx), %rax
 	cmpq	%rsi, %rbx
-	jnb	.L304
+	jnb	.L324
 	movq	(%rax,%r13), %rcx
 	movq	160(%rcx), %rdi
 	cmpq	152(%rcx), %r12
-	jnb	.L318
+	jnb	.L338
 	movq	8(%rsp), %rcx
 	movq	(%rdi,%rcx), %r8
 	movq	120(%rsp), %rdi
 	leaq	1(%r15), %rcx
 	cmpq	112(%rsp), %r15
-	jnb	.L319
+	jnb	.L339
 	movq	%r8, (%rdi,%r15,8)
 	addq	$1, %r12
 	movq	%rcx, %r15
-	jmp	.L232
+	jmp	.L252
 	.p2align 4,,10
 	.p2align 3
-.L317:
+.L337:
 	movzwl	376(%rdx), %eax
 	leaq	112(%rsp), %rdi
 	movq	%r15, %rsi
@@ -1281,16 +1327,16 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 .LEHE4:
 	movq	0(%rbp), %rdx
 	movq	352(%rdx), %rsi
-	jmp	.L239
-.L313:
+	jmp	.L259
+.L333:
 	call	acos@PLT
-	movsd	.LC24(%rip), %xmm1
+	movsd	.LC28(%rip), %xmm1
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, 32(%rsp)
-	jmp	.L249
+	jmp	.L269
 	.p2align 4,,10
 	.p2align 3
-.L255:
+.L275:
 	movsd	32(%rsp), %xmm0
 	leaq	104(%rsp), %rdi
 	leaq	96(%rsp), %rsi
@@ -1309,11 +1355,11 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	movsd	%xmm0, 16(%rsp)
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm7
-	ja	.L252
-.L295:
+	ja	.L272
+.L315:
 	movb	$1, 93(%rsp)
-	jmp	.L224
-.L208:
+	jmp	.L244
+.L228:
 	leaq	0(,%rbx,8), %rdi
 	movq	%rdx, 8(%rsp)
 	call	malloc@PLT
@@ -1321,8 +1367,8 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	testq	%rax, %rax
 	movq	%rax, 120(%rsp)
 	movq	%rax, %r12
-	jne	.L209
-	leaq	.LC15(%rip), %rdi
+	jne	.L229
+	leaq	.LC19(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 .LEHB5:
@@ -1332,20 +1378,76 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L260:
+.L280:
 	xorl	%r15d, %r15d
-	jmp	.L225
-.L314:
+	jmp	.L245
+.L334:
 	movq	%r13, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB6:
 	call	printf@PLT
-	jmp	.L214
-.L311:
+	jmp	.L234
+.L331:
 	movzwl	88(%rsp), %esi
 	movq	16(%rsp), %r8
 	xorl	%edx, %edx
+	leaq	.LC36(%rip), %rdi
+	movq	64(%rsp), %rcx
+	movsd	56(%rsp), %xmm4
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm3
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L234
+.L336:
+	call	__stack_chk_fail@PLT
+.L339:
+	movq	%r15, %rsi
+	leaq	.LC27(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	jmp	.L234
+.L330:
+	movzwl	88(%rsp), %esi
+	movq	16(%rsp), %r8
+	movq	%r14, %rdx
+	leaq	.LC35(%rip), %rdi
+	movq	64(%rsp), %rcx
+	movsd	56(%rsp), %xmm4
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm3
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L234
+.L338:
+	movq	%r12, %rsi
+	leaq	.LC27(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	jmp	.L234
+.L328:
+	movzwl	88(%rsp), %esi
+	movq	16(%rsp), %r8
+	movq	%r14, %rdx
+	movapd	%xmm6, %xmm3
+	movq	64(%rsp), %rcx
+	movsd	56(%rsp), %xmm4
+	leaq	.LC33(%rip), %rdi
+	movl	$5, %eax
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L234
+.L327:
+	movzwl	88(%rsp), %esi
+	movq	16(%rsp), %r8
+	movq	%r14, %rdx
 	leaq	.LC32(%rip), %rdi
 	movq	64(%rsp), %rcx
 	movsd	56(%rsp), %xmm4
@@ -1355,96 +1457,40 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	movsd	32(%rsp), %xmm1
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L214
-.L316:
-	call	__stack_chk_fail@PLT
-.L319:
-	movq	%r15, %rsi
-	leaq	.LC23(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	jmp	.L214
-.L310:
-	movzwl	88(%rsp), %esi
-	movq	16(%rsp), %r8
-	movq	%r14, %rdx
-	leaq	.LC31(%rip), %rdi
-	movq	64(%rsp), %rcx
-	movsd	56(%rsp), %xmm4
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L214
-.L318:
-	movq	%r12, %rsi
-	leaq	.LC23(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	jmp	.L214
-.L308:
-	movzwl	88(%rsp), %esi
-	movq	16(%rsp), %r8
-	movq	%r14, %rdx
-	movapd	%xmm6, %xmm3
-	movq	64(%rsp), %rcx
-	movsd	56(%rsp), %xmm4
-	leaq	.LC29(%rip), %rdi
-	movl	$5, %eax
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L214
-.L307:
-	movzwl	88(%rsp), %esi
-	movq	16(%rsp), %r8
-	movq	%r14, %rdx
-	leaq	.LC28(%rip), %rdi
-	movq	64(%rsp), %rcx
-	movsd	56(%rsp), %xmm4
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L214
-.L306:
+	jmp	.L234
+.L326:
 	movzwl	88(%rsp), %esi
 	movq	16(%rsp), %r8
 	movq	%r14, %rdx
 	movapd	%xmm7, %xmm1
 	movq	64(%rsp), %rcx
 	movsd	56(%rsp), %xmm4
-	leaq	.LC27(%rip), %rdi
+	leaq	.LC31(%rip), %rdi
 	movl	$5, %eax
 	movsd	48(%rsp), %xmm3
 	movsd	40(%rsp), %xmm2
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L214
-.L305:
+	jmp	.L234
+.L325:
 	movzwl	88(%rsp), %esi
 	movq	16(%rsp), %r8
 	movq	%r14, %rdx
 	movapd	%xmm6, %xmm0
 	movq	64(%rsp), %rcx
 	movsd	56(%rsp), %xmm4
-	leaq	.LC26(%rip), %rdi
+	leaq	.LC30(%rip), %rdi
 	movl	$5, %eax
 	movsd	48(%rsp), %xmm3
 	movsd	40(%rsp), %xmm2
 	movsd	32(%rsp), %xmm1
 	call	printf@PLT
-	jmp	.L214
-.L309:
+	jmp	.L234
+.L329:
 	movzwl	88(%rsp), %esi
 	movq	16(%rsp), %r8
 	movq	%r14, %rdx
-	leaq	.LC30(%rip), %rdi
+	leaq	.LC34(%rip), %rdi
 	movq	64(%rsp), %rcx
 	movsd	48(%rsp), %xmm3
 	movl	$5, %eax
@@ -1453,10 +1499,10 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
 .LEHE6:
-	jmp	.L214
-.L265:
+	jmp	.L234
+.L285:
 	movq	%rax, %rbx
-	jmp	.L256
+	jmp	.L276
 	.section	.gcc_except_table
 .LLSDA8155:
 	.byte	0xff
@@ -1466,7 +1512,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 .LLSDACSB8155:
 	.uleb128 .LEHB4-.LFB8155
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L265-.LFB8155
+	.uleb128 .L285-.LFB8155
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB8155
 	.uleb128 .LEHE5-.LEHB5
@@ -1474,7 +1520,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	.uleb128 0
 	.uleb128 .LEHB6-.LFB8155
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L265-.LFB8155
+	.uleb128 .L285-.LFB8155
 	.uleb128 0
 .LLSDACSE8155:
 	.text
@@ -1486,7 +1532,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	.type	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_.cold, @function
 _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_.cold:
 .LFSB8155:
-.L256:
+.L276:
 	.cfi_def_cfa_offset 208
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -1498,12 +1544,12 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_.c
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L320
+	jne	.L340
 	movq	%rbx, %rdi
 .LEHB7:
 	call	_Unwind_Resume@PLT
 .LEHE7:
-.L320:
+.L340:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8155:
@@ -1514,7 +1560,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_.c
 	.byte	0x1
 	.uleb128 .LLSDACSEC8155-.LLSDACSBC8155
 .LLSDACSBC8155:
-	.uleb128 .LEHB7-.LCOLDB33
+	.uleb128 .LEHB7-.LCOLDB37
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
@@ -1524,38 +1570,38 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_.c
 	.size	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_, .-_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_.cold, .-_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_.cold
-.LCOLDE33:
+.LCOLDE37:
 	.text
-.LHOTE33:
+.LHOTE37:
 	.section	.rodata.str1.8
 	.align 8
-.LC34:
+.LC38:
 	.string	"wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC35:
+.LC39:
 	.string	"wze::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC36:
+.LC40:
 	.string	"wze::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC37:
+.LC41:
 	.string	"wze::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC38:
+.LC42:
 	.string	"wze::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC39:
+.LC43:
 	.ascii	"wze::engine.vecto"
 	.string	"r.RayCast(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC40:
+.LC44:
 	.ascii	"wz"
 	.string	"e::engine.vector.RayCast(): ActorIDBlacklist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB41:
+.LCOLDB45:
 	.text
-.LHOTB41:
+.LHOTB45:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_
@@ -1607,30 +1653,30 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	xorl	%eax, %eax
 	movq	%rbx, 112(%rsp)
 	testq	%rbx, %rbx
-	jne	.L322
+	jne	.L342
 	movq	$0, 120(%rsp)
 	xorl	%r12d, %r12d
-.L323:
+.L343:
 	movsd	16(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L421
+	jp	.L441
 	movsd	24(%rsp), %xmm7
 	ucomisd	%xmm7, %xmm7
-	jp	.L422
+	jp	.L442
 	movsd	32(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L423
+	jp	.L443
 	movsd	40(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L424
+	jp	.L444
 	movsd	48(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L425
+	jp	.L445
 	pxor	%xmm0, %xmm0
 	comisd	48(%rsp), %xmm0
-	jnb	.L426
+	jnb	.L446
 	cmpq	$0, 56(%rsp)
-	je	.L427
+	je	.L447
 	movsd	16(%rsp), %xmm4
 	ucomisd	32(%rsp), %xmm4
 	movl	$0, %esi
@@ -1641,121 +1687,121 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	cmovne	%esi, %eax
 	andb	%al, %cl
 	movb	%cl, 80(%rsp)
-	jne	.L338
+	jne	.L358
 	movq	352(%rdx), %rsi
 	cmpq	$1, %rsi
-	jbe	.L374
+	jbe	.L394
 	movl	$1, %ebx
 	xorl	%r15d, %r15d
-	jmp	.L360
+	jmp	.L380
 	.p2align 4,,10
 	.p2align 3
-.L340:
+.L360:
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jnb	.L428
-.L360:
+	jnb	.L448
+.L380:
 	movq	360(%rdx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
-	je	.L340
+	je	.L360
 	movq	208(%rcx), %rdi
 	xorl	%ecx, %ecx
 	cmpq	$0, 8(%rsp)
 	movq	72(%rsp), %r8
-	je	.L340
+	je	.L360
 	cmpq	(%r8,%rcx,8), %rdi
-	je	.L429
-.L405:
+	je	.L449
+.L425:
 	addq	$1, %rcx
 	cmpq	%rcx, 8(%rsp)
-	je	.L340
+	je	.L360
 	cmpq	(%r8,%rcx,8), %rdi
-	jne	.L405
-.L429:
+	jne	.L425
+.L449:
 	movq	56(%rsp), %rcx
 	movq	(%rcx), %rdi
 	movq	8(%rcx), %r8
 	xorl	%ecx, %ecx
 	testq	%rdi, %rdi
-	je	.L344
-.L372:
+	je	.L364
+.L392:
 	cmpq	%rbx, (%r8,%rcx,8)
-	je	.L340
+	je	.L360
 	addq	$1, %rcx
 	cmpq	%rcx, %rdi
-	jne	.L372
+	jne	.L392
 	.p2align 4,,10
 	.p2align 3
-.L344:
+.L364:
 	cmpq	%rsi, %rbx
-	jnb	.L420
+	jnb	.L440
 	movl	$1, %r12d
 	.p2align 4,,10
 	.p2align 3
-.L346:
+.L366:
 	movq	(%rax,%r13), %rax
 	cmpq	152(%rax), %r12
-	jnb	.L340
+	jnb	.L360
 	movq	160(%rax), %rax
 	leaq	0(,%r12,8), %r14
 	movq	(%rax,%r12,8), %rax
 	testq	%rax, %rax
-	jne	.L347
-.L351:
+	jne	.L367
+.L371:
 	movq	360(%rdx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
-	jb	.L346
-.L420:
+	jb	.L366
+.L440:
 	movq	%rbx, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB8:
 	call	printf@PLT
-.L328:
+.L348:
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L347:
+.L367:
 	movq	24(%rax), %rcx
 	xorl	%eax, %eax
 	cmpq	$0, (%rsp)
 	movq	64(%rsp), %rdi
-	je	.L350
-.L349:
+	je	.L370
+.L369:
 	cmpq	(%rdi,%rax,8), %rcx
-	je	.L351
+	je	.L371
 	addq	$1, %rax
 	cmpq	%rax, (%rsp)
-	jne	.L349
-.L350:
+	jne	.L369
+.L370:
 	cmpq	%r15, 112(%rsp)
-	je	.L430
-.L353:
+	je	.L450
+.L373:
 	movq	360(%rdx), %rax
 	cmpq	%rsi, %rbx
-	jnb	.L420
+	jnb	.L440
 	movq	(%rax,%r13), %rcx
 	movq	160(%rcx), %rdi
 	cmpq	152(%rcx), %r12
-	jnb	.L431
+	jnb	.L451
 	movq	(%rdi,%r14), %r8
 	leaq	1(%r15), %rcx
 	movq	120(%rsp), %rdi
 	cmpq	112(%rsp), %r15
-	jnb	.L432
+	jnb	.L452
 	movq	%r8, (%rdi,%r15,8)
 	addq	$1, %r12
 	movq	%rcx, %r15
-	jmp	.L346
+	jmp	.L366
 	.p2align 4,,10
 	.p2align 3
-.L428:
+.L448:
 	movq	120(%rsp), %r12
-.L339:
+.L359:
 	movzwl	88(%rsp), %eax
 	pxor	%xmm0, %xmm0
 	movsd	16(%rsp), %xmm7
@@ -1781,32 +1827,32 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	sqrtsd	%xmm2, %xmm2
 	divsd	%xmm2, %xmm0
 	movsd	%xmm2, 16(%rsp)
-	ja	.L433
+	ja	.L453
 	call	acos@PLT
 	movsd	%xmm0, 24(%rsp)
-.L363:
+.L383:
 	movsd	16(%rsp), %xmm6
 	pxor	%xmm0, %xmm0
 	movzwl	94(%rsp), %r14d
 	comisd	%xmm0, %xmm6
-	jbe	.L409
-.L366:
+	jbe	.L429
+.L386:
 	testq	%r15, %r15
-	je	.L369
+	je	.L389
 	movq	112(%rsp), %r13
 	xorl	%ebx, %ebx
-	jmp	.L365
+	jmp	.L385
 	.p2align 4,,10
 	.p2align 3
-.L434:
+.L454:
 	addq	$1, %rbx
 	cmpq	%r15, %rbx
-	je	.L369
-.L365:
+	je	.L389
+.L385:
 	movq	0(%rbp), %rax
 	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
-	je	.L420
+	je	.L440
 	pxor	%xmm2, %xmm2
 	movsd	8(%rsp), %xmm1
 	movsd	(%rsp), %xmm5
@@ -1818,13 +1864,13 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	addsd	%xmm5, %xmm2
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L434
-.L338:
+	je	.L454
+.L358:
 	movq	%r12, %rdi
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L435
+	jne	.L455
 	movzbl	80(%rsp), %eax
 	addq	$152, %rsp
 	.cfi_remember_state
@@ -1844,7 +1890,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L430:
+.L450:
 	.cfi_restore_state
 	movzwl	376(%rdx), %eax
 	leaq	112(%rsp), %rdi
@@ -1854,16 +1900,16 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 .LEHE8:
 	movq	0(%rbp), %rdx
 	movq	352(%rdx), %rsi
-	jmp	.L353
-.L433:
+	jmp	.L373
+.L453:
 	call	acos@PLT
-	movsd	.LC24(%rip), %xmm1
+	movsd	.LC28(%rip), %xmm1
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, 24(%rsp)
-	jmp	.L363
+	jmp	.L383
 	.p2align 4,,10
 	.p2align 3
-.L369:
+.L389:
 	movsd	24(%rsp), %xmm0
 	leaq	104(%rsp), %rdi
 	leaq	96(%rsp), %rsi
@@ -1882,11 +1928,11 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	movsd	%xmm0, 8(%rsp)
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm7
-	ja	.L366
-.L409:
+	ja	.L386
+.L429:
 	movb	$1, 80(%rsp)
-	jmp	.L338
-.L322:
+	jmp	.L358
+.L342:
 	leaq	0(,%rbx,8), %rdi
 	movq	%rdx, 80(%rsp)
 	call	malloc@PLT
@@ -1894,8 +1940,8 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	testq	%rax, %rax
 	movq	%rax, 120(%rsp)
 	movq	%rax, %r12
-	jne	.L323
-	leaq	.LC15(%rip), %rdi
+	jne	.L343
+	leaq	.LC19(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 .LEHB9:
@@ -1905,14 +1951,14 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L374:
+.L394:
 	xorl	%r15d, %r15d
-	jmp	.L339
-.L423:
+	jmp	.L359
+.L443:
 	movzwl	88(%rsp), %esi
 	movq	(%rsp), %r8
 	movl	$5, %eax
-	leaq	.LC36(%rip), %rdi
+	leaq	.LC40(%rip), %rdi
 	movq	56(%rsp), %rcx
 	movq	8(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
@@ -1922,12 +1968,12 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	movsd	16(%rsp), %xmm0
 .LEHB10:
 	call	printf@PLT
-	jmp	.L328
-.L422:
+	jmp	.L348
+.L442:
 	movzwl	88(%rsp), %esi
 	movq	(%rsp), %r8
 	movapd	%xmm7, %xmm1
-	leaq	.LC35(%rip), %rdi
+	leaq	.LC39(%rip), %rdi
 	movq	56(%rsp), %rcx
 	movq	8(%rsp), %rdx
 	movl	$5, %eax
@@ -1936,20 +1982,20 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	movsd	32(%rsp), %xmm2
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L328
-.L435:
+	jmp	.L348
+.L455:
 	call	__stack_chk_fail@PLT
-.L432:
+.L452:
 	movq	%r15, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-	jmp	.L328
-.L424:
+	jmp	.L348
+.L444:
 	movzwl	88(%rsp), %esi
 	movq	(%rsp), %r8
 	movapd	%xmm6, %xmm3
-	leaq	.LC37(%rip), %rdi
+	leaq	.LC41(%rip), %rdi
 	movq	56(%rsp), %rcx
 	movq	8(%rsp), %rdx
 	movl	$5, %eax
@@ -1958,12 +2004,12 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L328
-.L421:
+	jmp	.L348
+.L441:
 	movzwl	88(%rsp), %esi
 	movq	(%rsp), %r8
 	movapd	%xmm6, %xmm0
-	leaq	.LC34(%rip), %rdi
+	leaq	.LC38(%rip), %rdi
 	movq	56(%rsp), %rcx
 	movq	8(%rsp), %rdx
 	movl	$5, %eax
@@ -1972,32 +2018,32 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	call	printf@PLT
-	jmp	.L328
-.L431:
+	jmp	.L348
+.L451:
 	movq	%r12, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-	jmp	.L328
-.L427:
+	jmp	.L348
+.L447:
 	movzwl	88(%rsp), %esi
 	movq	(%rsp), %r8
 	xorl	%ecx, %ecx
 	movl	$5, %eax
 	movq	8(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
-	leaq	.LC40(%rip), %rdi
+	leaq	.LC44(%rip), %rdi
 	movsd	40(%rsp), %xmm3
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L328
-.L426:
+	jmp	.L348
+.L446:
 	movzwl	88(%rsp), %esi
 	movq	(%rsp), %r8
 	movl	$5, %eax
-	leaq	.LC39(%rip), %rdi
+	leaq	.LC43(%rip), %rdi
 	movq	56(%rsp), %rcx
 	movq	8(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
@@ -2006,12 +2052,12 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L328
-.L425:
+	jmp	.L348
+.L445:
 	movzwl	88(%rsp), %esi
 	movq	(%rsp), %r8
 	movl	$5, %eax
-	leaq	.LC38(%rip), %rdi
+	leaq	.LC42(%rip), %rdi
 	movq	56(%rsp), %rcx
 	movq	8(%rsp), %rdx
 	movsd	40(%rsp), %xmm3
@@ -2020,10 +2066,10 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
 .LEHE10:
-	jmp	.L328
-.L379:
+	jmp	.L348
+.L399:
 	movq	%rax, %rbx
-	jmp	.L370
+	jmp	.L390
 	.section	.gcc_except_table
 .LLSDA8156:
 	.byte	0xff
@@ -2033,7 +2079,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 .LLSDACSB8156:
 	.uleb128 .LEHB8-.LFB8156
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L379-.LFB8156
+	.uleb128 .L399-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB9-.LFB8156
 	.uleb128 .LEHE9-.LEHB9
@@ -2041,7 +2087,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	.uleb128 0
 	.uleb128 .LEHB10-.LFB8156
 	.uleb128 .LEHE10-.LEHB10
-	.uleb128 .L379-.LFB8156
+	.uleb128 .L399-.LFB8156
 	.uleb128 0
 .LLSDACSE8156:
 	.text
@@ -2053,7 +2099,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	.type	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_.cold, @function
 _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_.cold:
 .LFSB8156:
-.L370:
+.L390:
 	.cfi_def_cfa_offset 208
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -2065,12 +2111,12 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_.c
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L436
+	jne	.L456
 	movq	%rbx, %rdi
 .LEHB11:
 	call	_Unwind_Resume@PLT
 .LEHE11:
-.L436:
+.L456:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8156:
@@ -2081,7 +2127,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_.c
 	.byte	0x1
 	.uleb128 .LLSDACSEC8156-.LLSDACSBC8156
 .LLSDACSBC8156:
-	.uleb128 .LEHB11-.LCOLDB41
+	.uleb128 .LEHB11-.LCOLDB45
 	.uleb128 .LEHE11-.LEHB11
 	.uleb128 0
 	.uleb128 0
@@ -2091,38 +2137,38 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_.c
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_.cold, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_.cold
-.LCOLDE41:
+.LCOLDE45:
 	.text
-.LHOTE41:
+.LHOTE45:
 	.section	.rodata.str1.8
 	.align 8
-.LC42:
+.LC46:
 	.string	"wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC43:
+.LC47:
 	.string	"wze::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC44:
+.LC48:
 	.string	"wze::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC45:
+.LC49:
 	.string	"wze::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC46:
+.LC50:
 	.string	"wze::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC47:
+.LC51:
 	.ascii	"wze::engine.vecto"
 	.string	"r.RayCast(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC48:
+.LC52:
 	.ascii	"wze::engi"
 	.string	"ne.vector.RayCast(): OverlapboxTypeBlacklist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB49:
+.LCOLDB53:
 	.text
-.LHOTB49:
+.LHOTB53:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE
@@ -2172,30 +2218,30 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	xorl	%eax, %eax
 	movq	%rbx, 112(%rsp)
 	testq	%rbx, %rbx
-	jne	.L438
+	jne	.L458
 	movq	$0, 120(%rsp)
 	xorl	%r12d, %r12d
-.L439:
+.L459:
 	movsd	16(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L537
+	jp	.L557
 	movsd	24(%rsp), %xmm7
 	ucomisd	%xmm7, %xmm7
-	jp	.L538
+	jp	.L558
 	movsd	32(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L539
+	jp	.L559
 	movsd	40(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L540
+	jp	.L560
 	movsd	48(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L541
+	jp	.L561
 	pxor	%xmm0, %xmm0
 	comisd	48(%rsp), %xmm0
-	jnb	.L542
+	jnb	.L562
 	testq	%r14, %r14
-	je	.L543
+	je	.L563
 	movsd	16(%rsp), %xmm4
 	ucomisd	32(%rsp), %xmm4
 	movl	$0, %esi
@@ -2206,107 +2252,107 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	cmovne	%esi, %eax
 	andb	%al, %dl
 	movb	%dl, 85(%rsp)
-	jne	.L454
+	jne	.L474
 	movq	352(%rcx), %rsi
 	cmpq	$1, %rsi
-	jbe	.L490
+	jbe	.L510
 	movl	$1, %ebx
 	xorl	%r15d, %r15d
-	jmp	.L476
+	jmp	.L496
 	.p2align 4,,10
 	.p2align 3
-.L456:
+.L476:
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jnb	.L544
-.L476:
+	jnb	.L564
+.L496:
 	movq	360(%rcx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rdx
 	testq	%rdx, %rdx
-	je	.L456
+	je	.L476
 	movq	208(%rdx), %rdi
 	xorl	%edx, %edx
 	cmpq	$0, (%rsp)
 	movq	56(%rsp), %r8
-	je	.L456
+	je	.L476
 	cmpq	(%r8,%rdx,8), %rdi
-	je	.L545
-.L521:
+	je	.L565
+.L541:
 	addq	$1, %rdx
 	cmpq	%rdx, (%rsp)
-	je	.L456
+	je	.L476
 	cmpq	(%r8,%rdx,8), %rdi
-	jne	.L521
-.L545:
+	jne	.L541
+.L565:
 	xorl	%edx, %edx
 	cmpq	$0, 64(%rsp)
 	movq	72(%rsp), %rdi
-	je	.L460
-.L488:
+	je	.L480
+.L508:
 	cmpq	%rbx, (%rdi,%rdx,8)
-	je	.L456
+	je	.L476
 	addq	$1, %rdx
 	cmpq	%rdx, 64(%rsp)
-	jne	.L488
-.L460:
+	jne	.L508
+.L480:
 	cmpq	%rsi, %rbx
-	jnb	.L536
+	jnb	.L556
 	leaq	112(%rsp), %rdi
 	movl	$1, %r12d
 	movq	%rdi, 88(%rsp)
 	.p2align 4,,10
 	.p2align 3
-.L462:
+.L482:
 	movq	(%rax,%r13), %rax
 	cmpq	152(%rax), %r12
-	jnb	.L456
+	jnb	.L476
 	movq	160(%rax), %rax
 	leaq	0(,%r12,8), %rdx
 	movq	%rdx, 8(%rsp)
 	movq	(%rax,%r12,8), %rax
 	testq	%rax, %rax
-	je	.L467
+	je	.L487
 	movq	(%r14), %rdx
 	movq	24(%rax), %rdi
 	xorl	%eax, %eax
 	movq	8(%r14), %r8
 	testq	%rdx, %rdx
-	je	.L465
-.L466:
+	je	.L485
+.L486:
 	cmpq	(%r8,%rax,8), %rdi
-	je	.L467
+	je	.L487
 	addq	$1, %rax
 	cmpq	%rax, %rdx
-	jne	.L466
+	jne	.L486
 	.p2align 4,,10
 	.p2align 3
-.L465:
+.L485:
 	cmpq	%r15, 112(%rsp)
-	je	.L546
-.L469:
+	je	.L566
+.L489:
 	movq	360(%rcx), %rax
 	cmpq	%rsi, %rbx
-	jnb	.L536
+	jnb	.L556
 	movq	(%rax,%r13), %rdx
 	movq	160(%rdx), %rdi
 	cmpq	152(%rdx), %r12
-	jnb	.L547
+	jnb	.L567
 	movq	8(%rsp), %rdx
 	movq	(%rdi,%rdx), %r8
 	movq	120(%rsp), %rdi
 	leaq	1(%r15), %rdx
 	cmpq	112(%rsp), %r15
-	jnb	.L548
+	jnb	.L568
 	movq	%r8, (%rdi,%r15,8)
 	addq	$1, %r12
 	movq	%rdx, %r15
-	jmp	.L462
+	jmp	.L482
 	.p2align 4,,10
 	.p2align 3
-.L544:
+.L564:
 	movq	120(%rsp), %r12
-.L455:
+.L475:
 	movzwl	80(%rsp), %eax
 	pxor	%xmm0, %xmm0
 	movsd	16(%rsp), %xmm7
@@ -2332,32 +2378,32 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	sqrtsd	%xmm2, %xmm2
 	divsd	%xmm2, %xmm0
 	movsd	%xmm2, 16(%rsp)
-	ja	.L549
+	ja	.L569
 	call	acos@PLT
 	movsd	%xmm0, 24(%rsp)
-.L479:
+.L499:
 	movsd	16(%rsp), %xmm6
 	pxor	%xmm0, %xmm0
 	movzwl	86(%rsp), %r14d
 	comisd	%xmm0, %xmm6
-	jbe	.L525
-.L482:
+	jbe	.L545
+.L502:
 	testq	%r15, %r15
-	je	.L485
+	je	.L505
 	movq	112(%rsp), %r13
 	xorl	%ebx, %ebx
-	jmp	.L481
+	jmp	.L501
 	.p2align 4,,10
 	.p2align 3
-.L550:
+.L570:
 	addq	$1, %rbx
 	cmpq	%r15, %rbx
-	je	.L485
-.L481:
+	je	.L505
+.L501:
 	movq	0(%rbp), %rax
 	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
-	je	.L536
+	je	.L556
 	pxor	%xmm2, %xmm2
 	movsd	8(%rsp), %xmm1
 	movsd	(%rsp), %xmm5
@@ -2370,13 +2416,13 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 .LEHB12:
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L550
-.L454:
+	je	.L570
+.L474:
 	movq	%r12, %rdi
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L551
+	jne	.L571
 	movzbl	85(%rsp), %eax
 	addq	$152, %rsp
 	.cfi_remember_state
@@ -2394,31 +2440,31 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L549:
+.L569:
 	.cfi_restore_state
 	call	acos@PLT
-	movsd	.LC24(%rip), %xmm1
+	movsd	.LC28(%rip), %xmm1
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, 24(%rsp)
-	jmp	.L479
+	jmp	.L499
 	.p2align 4,,10
 	.p2align 3
-.L467:
+.L487:
 	movq	360(%rcx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
-	jb	.L462
-.L536:
+	jb	.L482
+.L556:
 	movq	%rbx, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-.L444:
+.L464:
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L485:
+.L505:
 	movsd	24(%rsp), %xmm0
 	leaq	104(%rsp), %rdi
 	leaq	96(%rsp), %rsi
@@ -2437,13 +2483,13 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	movsd	%xmm0, 8(%rsp)
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm7
-	ja	.L482
-.L525:
+	ja	.L502
+.L545:
 	movb	$1, 85(%rsp)
-	jmp	.L454
+	jmp	.L474
 	.p2align 4,,10
 	.p2align 3
-.L546:
+.L566:
 	movzwl	376(%rcx), %eax
 	movq	88(%rsp), %rdi
 	movq	%r15, %rsi
@@ -2452,8 +2498,8 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 .LEHE12:
 	movq	0(%rbp), %rcx
 	movq	352(%rcx), %rsi
-	jmp	.L469
-.L438:
+	jmp	.L489
+.L458:
 	leaq	0(,%rbx,8), %rdi
 	movq	%rcx, 8(%rsp)
 	call	malloc@PLT
@@ -2461,8 +2507,8 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	testq	%rax, %rax
 	movq	%rax, 120(%rsp)
 	movq	%rax, %r12
-	jne	.L439
-	leaq	.LC15(%rip), %rdi
+	jne	.L459
+	leaq	.LC19(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 .LEHB13:
@@ -2472,31 +2518,31 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L490:
+.L510:
 	xorl	%r15d, %r15d
-	jmp	.L455
-.L537:
+	jmp	.L475
+.L557:
 	movzwl	80(%rsp), %esi
 	movq	(%rsp), %rdx
 	movq	%r14, %r8
 	movapd	%xmm6, %xmm0
 	movq	64(%rsp), %rcx
 	movsd	48(%rsp), %xmm4
-	leaq	.LC42(%rip), %rdi
+	leaq	.LC46(%rip), %rdi
 	movl	$5, %eax
 	movsd	40(%rsp), %xmm3
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 .LEHB14:
 	call	printf@PLT
-	jmp	.L444
-.L551:
+	jmp	.L464
+.L571:
 	call	__stack_chk_fail@PLT
-.L541:
+.L561:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
-	leaq	.LC46(%rip), %rdi
+	leaq	.LC50(%rip), %rdi
 	movq	(%rsp), %rdx
 	movsd	40(%rsp), %xmm3
 	movl	$5, %eax
@@ -2504,65 +2550,37 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L444
-.L540:
+	jmp	.L464
+.L560:
 	movzwl	80(%rsp), %esi
 	movq	(%rsp), %rdx
 	movq	%r14, %r8
 	movapd	%xmm6, %xmm3
 	movq	64(%rsp), %rcx
 	movsd	48(%rsp), %xmm4
-	leaq	.LC45(%rip), %rdi
+	leaq	.LC49(%rip), %rdi
 	movl	$5, %eax
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L444
-.L547:
+	jmp	.L464
+.L567:
 	movq	%r12, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-	jmp	.L444
-.L548:
+	jmp	.L464
+.L568:
 	movq	%r15, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-	jmp	.L444
-.L539:
+	jmp	.L464
+.L559:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
-	leaq	.LC44(%rip), %rdi
-	movq	(%rsp), %rdx
-	movsd	48(%rsp), %xmm4
-	movl	$5, %eax
-	movsd	40(%rsp), %xmm3
-	movsd	32(%rsp), %xmm2
-	movsd	24(%rsp), %xmm1
-	movsd	16(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L444
-.L538:
-	movzwl	80(%rsp), %esi
-	movq	(%rsp), %rdx
-	movq	%r14, %r8
-	movapd	%xmm7, %xmm1
-	movq	64(%rsp), %rcx
-	movsd	48(%rsp), %xmm4
-	leaq	.LC43(%rip), %rdi
-	movl	$5, %eax
-	movsd	40(%rsp), %xmm3
-	movsd	32(%rsp), %xmm2
-	movsd	16(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L444
-.L543:
-	movzwl	80(%rsp), %esi
-	movq	64(%rsp), %rcx
-	xorl	%r8d, %r8d
 	leaq	.LC48(%rip), %rdi
 	movq	(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
@@ -2572,12 +2590,40 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L444
-.L542:
+	jmp	.L464
+.L558:
+	movzwl	80(%rsp), %esi
+	movq	(%rsp), %rdx
+	movq	%r14, %r8
+	movapd	%xmm7, %xmm1
+	movq	64(%rsp), %rcx
+	movsd	48(%rsp), %xmm4
+	leaq	.LC47(%rip), %rdi
+	movl	$5, %eax
+	movsd	40(%rsp), %xmm3
+	movsd	32(%rsp), %xmm2
+	movsd	16(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L464
+.L563:
+	movzwl	80(%rsp), %esi
+	movq	64(%rsp), %rcx
+	xorl	%r8d, %r8d
+	leaq	.LC52(%rip), %rdi
+	movq	(%rsp), %rdx
+	movsd	48(%rsp), %xmm4
+	movl	$5, %eax
+	movsd	40(%rsp), %xmm3
+	movsd	32(%rsp), %xmm2
+	movsd	24(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L464
+.L562:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
-	leaq	.LC47(%rip), %rdi
+	leaq	.LC51(%rip), %rdi
 	movq	(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
 	movl	$5, %eax
@@ -2587,10 +2633,10 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
 .LEHE14:
-	jmp	.L444
-.L495:
+	jmp	.L464
+.L515:
 	movq	%rax, %rbx
-	jmp	.L486
+	jmp	.L506
 	.section	.gcc_except_table
 .LLSDA8157:
 	.byte	0xff
@@ -2600,7 +2646,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 .LLSDACSB8157:
 	.uleb128 .LEHB12-.LFB8157
 	.uleb128 .LEHE12-.LEHB12
-	.uleb128 .L495-.LFB8157
+	.uleb128 .L515-.LFB8157
 	.uleb128 0
 	.uleb128 .LEHB13-.LFB8157
 	.uleb128 .LEHE13-.LEHB13
@@ -2608,7 +2654,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	.uleb128 0
 	.uleb128 .LEHB14-.LFB8157
 	.uleb128 .LEHE14-.LEHB14
-	.uleb128 .L495-.LFB8157
+	.uleb128 .L515-.LFB8157
 	.uleb128 0
 .LLSDACSE8157:
 	.text
@@ -2620,7 +2666,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	.type	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE.cold, @function
 _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE.cold:
 .LFSB8157:
-.L486:
+.L506:
 	.cfi_def_cfa_offset 208
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -2632,12 +2678,12 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE.c
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L552
+	jne	.L572
 	movq	%rbx, %rdi
 .LEHB15:
 	call	_Unwind_Resume@PLT
 .LEHE15:
-.L552:
+.L572:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8157:
@@ -2648,7 +2694,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE.c
 	.byte	0x1
 	.uleb128 .LLSDACSEC8157-.LLSDACSBC8157
 .LLSDACSBC8157:
-	.uleb128 .LEHB15-.LCOLDB49
+	.uleb128 .LEHB15-.LCOLDB53
 	.uleb128 .LEHE15-.LEHB15
 	.uleb128 0
 	.uleb128 0
@@ -2658,40 +2704,40 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE.c
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE.cold, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE.cold
-.LCOLDE49:
+.LCOLDE53:
 	.text
-.LHOTE49:
+.LHOTE53:
 	.section	.rodata.str1.8
 	.align 8
-.LC50:
+.LC54:
 	.string	"wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC51:
+.LC55:
 	.string	"wze::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC52:
+.LC56:
 	.string	"wze::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC53:
+.LC57:
 	.string	"wze::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC54:
+.LC58:
 	.string	"wze::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC55:
+.LC59:
 	.ascii	"wze::eng"
 	.string	"ine.vector.RayCast(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC56:
+.LC60:
 	.string	"wze::engine.vector.RayCast(): ActorTypeWhitelist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.align 8
-.LC57:
+.LC61:
 	.string	"wze::engine.vector.RayCast(): ActorIDBlacklist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist(length): %ld\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB58:
+.LCOLDB62:
 	.text
-.LHOTB58:
+.LHOTB62:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE
@@ -2740,32 +2786,32 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	xorl	%eax, %eax
 	movq	%rbx, 112(%rsp)
 	testq	%rbx, %rbx
-	jne	.L554
+	jne	.L574
 	movq	$0, 120(%rsp)
 	xorl	%r12d, %r12d
-.L555:
+.L575:
 	movsd	16(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L654
+	jp	.L674
 	movsd	24(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L655
+	jp	.L675
 	movsd	32(%rsp), %xmm7
 	ucomisd	%xmm7, %xmm7
-	jp	.L656
+	jp	.L676
 	movsd	40(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L657
+	jp	.L677
 	movsd	48(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L658
+	jp	.L678
 	pxor	%xmm0, %xmm0
 	comisd	48(%rsp), %xmm0
-	jnb	.L659
+	jnb	.L679
 	cmpq	$0, 8(%rsp)
-	je	.L660
+	je	.L680
 	cmpq	$0, 56(%rsp)
-	je	.L661
+	je	.L681
 	movsd	16(%rsp), %xmm4
 	ucomisd	32(%rsp), %xmm4
 	movl	$0, %esi
@@ -2777,43 +2823,43 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	cmovne	%esi, %eax
 	andb	%al, %cl
 	movb	%cl, 72(%rsp)
-	jne	.L571
+	jne	.L591
 	movq	352(%rdx), %rcx
 	cmpq	$1, %rcx
-	jbe	.L607
+	jbe	.L627
 	leaq	112(%rsp), %rax
 	movl	$1, %r12d
 	xorl	%ebp, %ebp
 	movq	%rax, 88(%rsp)
 	.p2align 4,,10
 	.p2align 3
-.L593:
+.L613:
 	movq	360(%rdx), %rax
 	leaq	0(,%r12,8), %r13
 	movq	(%rax,%r12,8), %rsi
 	testq	%rsi, %rsi
-	je	.L573
+	je	.L593
 	movq	8(%rsp), %rbx
 	movq	208(%rsi), %r8
 	xorl	%esi, %esi
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %r9
 	testq	%rdi, %rdi
-	je	.L573
-.L574:
+	je	.L593
+.L594:
 	cmpq	(%r9,%rsi,8), %r8
-	je	.L662
+	je	.L682
 	addq	$1, %rsi
 	cmpq	%rsi, %rdi
-	jne	.L574
+	jne	.L594
 	.p2align 4,,10
 	.p2align 3
-.L573:
+.L593:
 	addq	$1, %r12
 	cmpq	%rcx, %r12
-	jb	.L593
+	jb	.L613
 	movq	120(%rsp), %r12
-.L572:
+.L592:
 	movzwl	80(%rsp), %eax
 	pxor	%xmm0, %xmm0
 	movsd	16(%rsp), %xmm7
@@ -2839,32 +2885,32 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	sqrtsd	%xmm2, %xmm2
 	divsd	%xmm2, %xmm0
 	movsd	%xmm2, 16(%rsp)
-	ja	.L663
+	ja	.L683
 	call	acos@PLT
 	movsd	%xmm0, 24(%rsp)
-.L596:
+.L616:
 	movsd	16(%rsp), %xmm6
 	pxor	%xmm0, %xmm0
 	movzwl	86(%rsp), %r14d
 	comisd	%xmm0, %xmm6
-	jbe	.L643
-.L599:
+	jbe	.L663
+.L619:
 	testq	%rbp, %rbp
-	je	.L602
+	je	.L622
 	movq	112(%rsp), %r13
 	xorl	%ebx, %ebx
-	jmp	.L598
+	jmp	.L618
 	.p2align 4,,10
 	.p2align 3
-.L664:
+.L684:
 	addq	$1, %rbx
 	cmpq	%rbp, %rbx
-	je	.L602
-.L598:
+	je	.L622
+.L618:
 	movq	(%r15), %rax
 	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
-	je	.L653
+	je	.L673
 	pxor	%xmm2, %xmm2
 	movsd	8(%rsp), %xmm1
 	movsd	(%rsp), %xmm5
@@ -2877,13 +2923,13 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 .LEHB16:
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L664
-.L571:
+	je	.L684
+.L591:
 	movq	%r12, %rdi
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L665
+	jne	.L685
 	movzbl	72(%rsp), %eax
 	addq	$152, %rsp
 	.cfi_remember_state
@@ -2901,87 +2947,87 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L662:
+.L682:
 	.cfi_restore_state
 	movq	56(%rsp), %rsi
 	movq	(%rsi), %rdi
 	movq	8(%rsi), %r8
 	xorl	%esi, %esi
 	testq	%rdi, %rdi
-	je	.L577
-.L605:
+	je	.L597
+.L625:
 	cmpq	%r12, (%r8,%rsi,8)
-	je	.L573
+	je	.L593
 	addq	$1, %rsi
 	cmpq	%rsi, %rdi
-	jne	.L605
+	jne	.L625
 	.p2align 4,,10
 	.p2align 3
-.L577:
+.L597:
 	cmpq	%rcx, %r12
-	jnb	.L651
+	jnb	.L671
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L579:
+.L599:
 	movq	(%rax,%r13), %rax
 	cmpq	152(%rax), %rbx
-	jnb	.L573
+	jnb	.L593
 	movq	160(%rax), %rax
 	leaq	0(,%rbx,8), %r14
 	movq	(%rax,%rbx,8), %rax
 	testq	%rax, %rax
-	jne	.L580
-.L584:
+	jne	.L600
+.L604:
 	movq	360(%rdx), %rax
 	addq	$1, %rbx
 	cmpq	%rcx, %r12
-	jb	.L579
-.L651:
+	jb	.L599
+.L671:
 	movq	%r12, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-.L560:
+.L580:
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L580:
+.L600:
 	movq	24(%rax), %rsi
 	xorl	%eax, %eax
 	cmpq	$0, (%rsp)
 	movq	64(%rsp), %rdi
-	je	.L583
-.L582:
+	je	.L603
+.L602:
 	cmpq	(%rdi,%rax,8), %rsi
-	je	.L584
+	je	.L604
 	addq	$1, %rax
 	cmpq	%rax, (%rsp)
-	jne	.L582
-.L583:
+	jne	.L602
+.L603:
 	cmpq	112(%rsp), %rbp
-	je	.L666
-.L586:
+	je	.L686
+.L606:
 	movq	360(%rdx), %rax
 	cmpq	%rcx, %r12
-	jnb	.L651
+	jnb	.L671
 	movq	(%rax,%r13), %rsi
 	movq	160(%rsi), %rdi
 	cmpq	152(%rsi), %rbx
-	jnb	.L653
+	jnb	.L673
 	movq	(%rdi,%r14), %r8
 	leaq	1(%rbp), %rsi
 	movq	120(%rsp), %rdi
 	cmpq	112(%rsp), %rbp
-	jnb	.L667
+	jnb	.L687
 	movq	%r8, (%rdi,%rbp,8)
 	addq	$1, %rbx
 	movq	%rsi, %rbp
-	jmp	.L579
+	jmp	.L599
 	.p2align 4,,10
 	.p2align 3
-.L666:
+.L686:
 	movzwl	376(%rdx), %eax
 	movq	88(%rsp), %rdi
 	movq	%rbp, %rsi
@@ -2990,14 +3036,14 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 .LEHE16:
 	movq	(%r15), %rdx
 	movq	352(%rdx), %rcx
-	jmp	.L586
-.L663:
+	jmp	.L606
+.L683:
 	call	acos@PLT
-	movsd	.LC24(%rip), %xmm1
+	movsd	.LC28(%rip), %xmm1
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, 24(%rsp)
-	jmp	.L596
-.L602:
+	jmp	.L616
+.L622:
 	movsd	24(%rsp), %xmm0
 	leaq	104(%rsp), %rdi
 	leaq	96(%rsp), %rsi
@@ -3016,11 +3062,11 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	movsd	%xmm0, 8(%rsp)
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm7
-	ja	.L599
-.L643:
+	ja	.L619
+.L663:
 	movb	$1, 72(%rsp)
-	jmp	.L571
-.L554:
+	jmp	.L591
+.L574:
 	leaq	0(,%rbx,8), %rdi
 	movq	%rdx, 72(%rsp)
 	call	malloc@PLT
@@ -3028,8 +3074,8 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	testq	%rax, %rax
 	movq	%rax, 120(%rsp)
 	movq	%rax, %r12
-	jne	.L555
-	leaq	.LC15(%rip), %rdi
+	jne	.L575
+	leaq	.LC19(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 .LEHB17:
@@ -3039,57 +3085,57 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L607:
+.L627:
 	xorl	%ebp, %ebp
-	jmp	.L572
-.L653:
+	jmp	.L592
+.L673:
 	movq	%rbx, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB18:
 	call	printf@PLT
-	jmp	.L560
-.L661:
+	jmp	.L580
+.L681:
 	movzwl	80(%rsp), %esi
 	movq	(%rsp), %r8
 	xorl	%ecx, %ecx
 	movl	$5, %eax
 	movq	8(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
-	leaq	.LC57(%rip), %rdi
+	leaq	.LC61(%rip), %rdi
 	movsd	40(%rsp), %xmm3
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L560
-.L660:
+	jmp	.L580
+.L680:
 	movzwl	80(%rsp), %esi
 	movq	(%rsp), %r8
 	xorl	%edx, %edx
 	movl	$5, %eax
 	movq	56(%rsp), %rcx
 	movsd	48(%rsp), %xmm4
-	leaq	.LC56(%rip), %rdi
+	leaq	.LC60(%rip), %rdi
 	movsd	40(%rsp), %xmm3
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L560
-.L665:
+	jmp	.L580
+.L685:
 	call	__stack_chk_fail@PLT
-.L667:
+.L687:
 	movq	%rbp, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-	jmp	.L560
-.L658:
+	jmp	.L580
+.L678:
 	movzwl	80(%rsp), %esi
 	movq	(%rsp), %r8
 	movl	$5, %eax
-	leaq	.LC54(%rip), %rdi
+	leaq	.LC58(%rip), %rdi
 	movq	56(%rsp), %rcx
 	movq	8(%rsp), %rdx
 	movsd	40(%rsp), %xmm3
@@ -3097,12 +3143,12 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L560
-.L654:
+	jmp	.L580
+.L674:
 	movzwl	80(%rsp), %esi
 	movq	(%rsp), %r8
 	movapd	%xmm6, %xmm0
-	leaq	.LC50(%rip), %rdi
+	leaq	.LC54(%rip), %rdi
 	movq	56(%rsp), %rcx
 	movq	8(%rsp), %rdx
 	movl	$5, %eax
@@ -3111,8 +3157,50 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	call	printf@PLT
-	jmp	.L560
-.L659:
+	jmp	.L580
+.L679:
+	movzwl	80(%rsp), %esi
+	movq	(%rsp), %r8
+	movl	$5, %eax
+	leaq	.LC59(%rip), %rdi
+	movq	56(%rsp), %rcx
+	movq	8(%rsp), %rdx
+	movsd	48(%rsp), %xmm4
+	movsd	40(%rsp), %xmm3
+	movsd	32(%rsp), %xmm2
+	movsd	24(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L580
+.L677:
+	movzwl	80(%rsp), %esi
+	movq	(%rsp), %r8
+	movapd	%xmm6, %xmm3
+	leaq	.LC57(%rip), %rdi
+	movq	56(%rsp), %rcx
+	movq	8(%rsp), %rdx
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm4
+	movsd	32(%rsp), %xmm2
+	movsd	24(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L580
+.L676:
+	movzwl	80(%rsp), %esi
+	movq	(%rsp), %r8
+	movapd	%xmm7, %xmm2
+	leaq	.LC56(%rip), %rdi
+	movq	56(%rsp), %rcx
+	movq	8(%rsp), %rdx
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm4
+	movsd	40(%rsp), %xmm3
+	movsd	24(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L580
+.L675:
 	movzwl	80(%rsp), %esi
 	movq	(%rsp), %r8
 	movl	$5, %eax
@@ -3125,53 +3213,11 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L560
-.L657:
-	movzwl	80(%rsp), %esi
-	movq	(%rsp), %r8
-	movapd	%xmm6, %xmm3
-	leaq	.LC53(%rip), %rdi
-	movq	56(%rsp), %rcx
-	movq	8(%rsp), %rdx
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm4
-	movsd	32(%rsp), %xmm2
-	movsd	24(%rsp), %xmm1
-	movsd	16(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L560
-.L656:
-	movzwl	80(%rsp), %esi
-	movq	(%rsp), %r8
-	movapd	%xmm7, %xmm2
-	leaq	.LC52(%rip), %rdi
-	movq	56(%rsp), %rcx
-	movq	8(%rsp), %rdx
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm4
-	movsd	40(%rsp), %xmm3
-	movsd	24(%rsp), %xmm1
-	movsd	16(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L560
-.L655:
-	movzwl	80(%rsp), %esi
-	movq	(%rsp), %r8
-	movl	$5, %eax
-	leaq	.LC51(%rip), %rdi
-	movq	56(%rsp), %rcx
-	movq	8(%rsp), %rdx
-	movsd	48(%rsp), %xmm4
-	movsd	40(%rsp), %xmm3
-	movsd	32(%rsp), %xmm2
-	movsd	24(%rsp), %xmm1
-	movsd	16(%rsp), %xmm0
-	call	printf@PLT
 .LEHE18:
-	jmp	.L560
-.L611:
+	jmp	.L580
+.L631:
 	movq	%rax, %rbx
-	jmp	.L603
+	jmp	.L623
 	.section	.gcc_except_table
 .LLSDA8158:
 	.byte	0xff
@@ -3181,7 +3227,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 .LLSDACSB8158:
 	.uleb128 .LEHB16-.LFB8158
 	.uleb128 .LEHE16-.LEHB16
-	.uleb128 .L611-.LFB8158
+	.uleb128 .L631-.LFB8158
 	.uleb128 0
 	.uleb128 .LEHB17-.LFB8158
 	.uleb128 .LEHE17-.LEHB17
@@ -3189,7 +3235,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	.uleb128 0
 	.uleb128 .LEHB18-.LFB8158
 	.uleb128 .LEHE18-.LEHB18
-	.uleb128 .L611-.LFB8158
+	.uleb128 .L631-.LFB8158
 	.uleb128 0
 .LLSDACSE8158:
 	.text
@@ -3201,7 +3247,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	.type	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE.cold, @function
 _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE.cold:
 .LFSB8158:
-.L603:
+.L623:
 	.cfi_def_cfa_offset 208
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -3213,12 +3259,12 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE.c
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L668
+	jne	.L688
 	movq	%rbx, %rdi
 .LEHB19:
 	call	_Unwind_Resume@PLT
 .LEHE19:
-.L668:
+.L688:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8158:
@@ -3229,7 +3275,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE.c
 	.byte	0x1
 	.uleb128 .LLSDACSEC8158-.LLSDACSBC8158
 .LLSDACSBC8158:
-	.uleb128 .LEHB19-.LCOLDB58
+	.uleb128 .LEHB19-.LCOLDB62
 	.uleb128 .LEHE19-.LEHB19
 	.uleb128 0
 	.uleb128 0
@@ -3239,40 +3285,40 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE.c
 	.size	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE, .-_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE.cold, .-_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE.cold
-.LCOLDE58:
+.LCOLDE62:
 	.text
-.LHOTE58:
+.LHOTE62:
 	.section	.rodata.str1.8
 	.align 8
-.LC59:
+.LC63:
 	.string	"wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC60:
+.LC64:
 	.string	"wze::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC61:
+.LC65:
 	.string	"wze::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC62:
+.LC66:
 	.string	"wze::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC63:
+.LC67:
 	.string	"wze::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC64:
+.LC68:
 	.ascii	"wze::eng"
 	.string	"ine.vector.RayCast(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC65:
+.LC69:
 	.string	"wze::engine.vector.RayCast(): ActorTypeWhitelist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC66:
+.LC70:
 	.string	"wze::engine.vector.RayCast(): OverlapboxTypeBlacklist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist(length): %ld, OverlapboxTypeBlacklist: %p\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB67:
+.LCOLDB71:
 	.text
-.LHOTB67:
+.LHOTB71:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_
@@ -3321,32 +3367,32 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	xorl	%eax, %eax
 	movq	%rbx, 112(%rsp)
 	testq	%rbx, %rbx
-	jne	.L670
+	jne	.L690
 	movq	$0, 120(%rsp)
 	xorl	%r12d, %r12d
-.L671:
+.L691:
 	movsd	24(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L770
+	jp	.L790
 	movsd	32(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L771
+	jp	.L791
 	movsd	40(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L772
+	jp	.L792
 	movsd	48(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L773
+	jp	.L793
 	movsd	56(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L774
+	jp	.L794
 	pxor	%xmm0, %xmm0
 	comisd	56(%rsp), %xmm0
-	jnb	.L775
+	jnb	.L795
 	cmpq	$0, 16(%rsp)
-	je	.L776
+	je	.L796
 	testq	%r14, %r14
-	je	.L777
+	je	.L797
 	movsd	24(%rsp), %xmm7
 	ucomisd	40(%rsp), %xmm7
 	movl	$0, %esi
@@ -3358,43 +3404,43 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	cmovne	%esi, %eax
 	andb	%al, %cl
 	movb	%cl, 85(%rsp)
-	jne	.L687
+	jne	.L707
 	movq	352(%rdx), %rsi
 	cmpq	$1, %rsi
-	jbe	.L723
+	jbe	.L743
 	leaq	112(%rsp), %rax
 	movl	$1, %ebx
 	xorl	%ebp, %ebp
 	movq	%rax, 88(%rsp)
 	.p2align 4,,10
 	.p2align 3
-.L709:
+.L729:
 	movq	360(%rdx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
-	je	.L689
+	je	.L709
 	movq	208(%rcx), %r8
 	movq	16(%rsp), %rcx
 	movq	(%rcx), %rdi
 	movq	8(%rcx), %r9
 	xorl	%ecx, %ecx
 	testq	%rdi, %rdi
-	je	.L689
-.L690:
+	je	.L709
+.L710:
 	cmpq	(%r9,%rcx,8), %r8
-	je	.L778
+	je	.L798
 	addq	$1, %rcx
 	cmpq	%rcx, %rdi
-	jne	.L690
+	jne	.L710
 	.p2align 4,,10
 	.p2align 3
-.L689:
+.L709:
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jb	.L709
+	jb	.L729
 	movq	120(%rsp), %r12
-.L688:
+.L708:
 	movzwl	80(%rsp), %eax
 	pxor	%xmm0, %xmm0
 	movsd	24(%rsp), %xmm7
@@ -3420,32 +3466,32 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	sqrtsd	%xmm2, %xmm2
 	divsd	%xmm2, %xmm0
 	movsd	%xmm2, 24(%rsp)
-	ja	.L779
+	ja	.L799
 	call	acos@PLT
 	movsd	%xmm0, 32(%rsp)
-.L712:
+.L732:
 	movsd	24(%rsp), %xmm6
 	pxor	%xmm0, %xmm0
 	movzwl	86(%rsp), %r14d
 	comisd	%xmm0, %xmm6
-	jbe	.L759
-.L715:
+	jbe	.L779
+.L735:
 	testq	%rbp, %rbp
-	je	.L718
+	je	.L738
 	movq	112(%rsp), %r13
 	xorl	%ebx, %ebx
-	jmp	.L714
+	jmp	.L734
 	.p2align 4,,10
 	.p2align 3
-.L780:
+.L800:
 	addq	$1, %rbx
 	cmpq	%rbp, %rbx
-	je	.L718
-.L714:
+	je	.L738
+.L734:
 	movq	(%r15), %rax
 	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
-	je	.L769
+	je	.L789
 	pxor	%xmm2, %xmm2
 	movsd	16(%rsp), %xmm1
 	movsd	8(%rsp), %xmm5
@@ -3458,13 +3504,13 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 .LEHB20:
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L780
-.L687:
+	je	.L800
+.L707:
 	movq	%r12, %rdi
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L781
+	jne	.L801
 	movzbl	85(%rsp), %eax
 	addq	$152, %rsp
 	.cfi_remember_state
@@ -3482,87 +3528,87 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L778:
+.L798:
 	.cfi_restore_state
 	xorl	%ecx, %ecx
 	cmpq	$0, 64(%rsp)
 	movq	72(%rsp), %rdi
-	je	.L693
-.L721:
+	je	.L713
+.L741:
 	cmpq	%rbx, (%rdi,%rcx,8)
-	je	.L689
+	je	.L709
 	addq	$1, %rcx
 	cmpq	%rcx, 64(%rsp)
-	jne	.L721
-.L693:
+	jne	.L741
+.L713:
 	cmpq	%rsi, %rbx
-	jnb	.L769
+	jnb	.L789
 	movl	$1, %r12d
 	.p2align 4,,10
 	.p2align 3
-.L695:
+.L715:
 	movq	(%rax,%r13), %rax
 	cmpq	152(%rax), %r12
-	jnb	.L689
+	jnb	.L709
 	movq	160(%rax), %rax
 	leaq	0(,%r12,8), %rdi
 	movq	%rdi, 8(%rsp)
 	movq	(%rax,%r12,8), %rax
 	testq	%rax, %rax
-	je	.L700
+	je	.L720
 	movq	(%r14), %rcx
 	movq	24(%rax), %rdi
 	xorl	%eax, %eax
 	movq	8(%r14), %r8
 	testq	%rcx, %rcx
-	je	.L698
-.L699:
+	je	.L718
+.L719:
 	cmpq	(%r8,%rax,8), %rdi
-	je	.L700
+	je	.L720
 	addq	$1, %rax
 	cmpq	%rax, %rcx
-	jne	.L699
+	jne	.L719
 	.p2align 4,,10
 	.p2align 3
-.L698:
+.L718:
 	cmpq	%rbp, 112(%rsp)
-	je	.L782
-.L702:
+	je	.L802
+.L722:
 	movq	360(%rdx), %rax
 	cmpq	%rsi, %rbx
-	jnb	.L769
+	jnb	.L789
 	movq	(%rax,%r13), %rcx
 	movq	160(%rcx), %rdi
 	cmpq	152(%rcx), %r12
-	jnb	.L783
+	jnb	.L803
 	movq	8(%rsp), %rcx
 	movq	(%rdi,%rcx), %r8
 	movq	120(%rsp), %rdi
 	leaq	1(%rbp), %rcx
 	cmpq	112(%rsp), %rbp
-	jnb	.L784
+	jnb	.L804
 	movq	%r8, (%rdi,%rbp,8)
 	addq	$1, %r12
 	movq	%rcx, %rbp
-	jmp	.L695
+	jmp	.L715
 	.p2align 4,,10
 	.p2align 3
-.L700:
+.L720:
 	movq	360(%rdx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
-	jb	.L695
-.L769:
+	jb	.L715
+.L789:
 	movq	%rbx, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-.L676:
+.L696:
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L782:
+.L802:
 	movzwl	376(%rdx), %eax
 	movq	88(%rsp), %rdi
 	movq	%rbp, %rsi
@@ -3571,18 +3617,18 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 .LEHE20:
 	movq	(%r15), %rdx
 	movq	352(%rdx), %rsi
-	jmp	.L702
+	jmp	.L722
 	.p2align 4,,10
 	.p2align 3
-.L779:
+.L799:
 	call	acos@PLT
-	movsd	.LC24(%rip), %xmm1
+	movsd	.LC28(%rip), %xmm1
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, 32(%rsp)
-	jmp	.L712
+	jmp	.L732
 	.p2align 4,,10
 	.p2align 3
-.L718:
+.L738:
 	movsd	32(%rsp), %xmm0
 	leaq	104(%rsp), %rdi
 	leaq	96(%rsp), %rsi
@@ -3601,13 +3647,13 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	movsd	%xmm0, 16(%rsp)
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm7
-	ja	.L715
-.L759:
+	ja	.L735
+.L779:
 	movb	$1, 85(%rsp)
-	jmp	.L687
+	jmp	.L707
 	.p2align 4,,10
 	.p2align 3
-.L670:
+.L690:
 	leaq	0(,%rbx,8), %rdi
 	movq	%rdx, 8(%rsp)
 	call	malloc@PLT
@@ -3615,8 +3661,8 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	testq	%rax, %rax
 	movq	%rax, 120(%rsp)
 	movq	%rax, %r12
-	jne	.L671
-	leaq	.LC15(%rip), %rdi
+	jne	.L691
+	leaq	.LC19(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 .LEHB21:
@@ -3626,107 +3672,17 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L723:
+.L743:
 	xorl	%ebp, %ebp
-	jmp	.L688
-.L784:
+	jmp	.L708
+.L804:
 	movq	%rbp, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB22:
 	call	printf@PLT
-	jmp	.L676
-.L771:
-	movzwl	80(%rsp), %esi
-	movq	64(%rsp), %rcx
-	movq	%r14, %r8
-	leaq	.LC60(%rip), %rdi
-	movq	16(%rsp), %rdx
-	movsd	56(%rsp), %xmm4
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L676
-.L770:
-	movzwl	80(%rsp), %esi
-	movq	64(%rsp), %rcx
-	movq	%r14, %r8
-	movapd	%xmm6, %xmm0
-	movq	16(%rsp), %rdx
-	movsd	56(%rsp), %xmm4
-	leaq	.LC59(%rip), %rdi
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	call	printf@PLT
-	jmp	.L676
-.L783:
-	movq	%r12, %rsi
-	leaq	.LC23(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	jmp	.L676
-.L773:
-	movzwl	80(%rsp), %esi
-	movq	64(%rsp), %rcx
-	movq	%r14, %r8
-	leaq	.LC62(%rip), %rdi
-	movq	16(%rsp), %rdx
-	movsd	56(%rsp), %xmm4
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L676
-.L772:
-	movzwl	80(%rsp), %esi
-	movq	64(%rsp), %rcx
-	movq	%r14, %r8
-	movapd	%xmm6, %xmm2
-	movq	16(%rsp), %rdx
-	movsd	56(%rsp), %xmm4
-	leaq	.LC61(%rip), %rdi
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm3
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L676
-.L777:
-	movzwl	80(%rsp), %esi
-	movq	64(%rsp), %rcx
-	xorl	%r8d, %r8d
-	leaq	.LC66(%rip), %rdi
-	movq	16(%rsp), %rdx
-	movsd	56(%rsp), %xmm4
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L676
-.L776:
-	movzwl	80(%rsp), %esi
-	movq	64(%rsp), %rcx
-	movq	%r14, %r8
-	xorl	%edx, %edx
-	movsd	56(%rsp), %xmm4
-	movsd	48(%rsp), %xmm3
-	leaq	.LC65(%rip), %rdi
-	movl	$5, %eax
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L676
-.L775:
+	jmp	.L696
+.L791:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
@@ -3739,12 +3695,102 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	movsd	32(%rsp), %xmm1
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L676
-.L774:
+	jmp	.L696
+.L790:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
+	movapd	%xmm6, %xmm0
+	movq	16(%rsp), %rdx
+	movsd	56(%rsp), %xmm4
 	leaq	.LC63(%rip), %rdi
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm3
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	call	printf@PLT
+	jmp	.L696
+.L803:
+	movq	%r12, %rsi
+	leaq	.LC27(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	jmp	.L696
+.L793:
+	movzwl	80(%rsp), %esi
+	movq	64(%rsp), %rcx
+	movq	%r14, %r8
+	leaq	.LC66(%rip), %rdi
+	movq	16(%rsp), %rdx
+	movsd	56(%rsp), %xmm4
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm3
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L696
+.L792:
+	movzwl	80(%rsp), %esi
+	movq	64(%rsp), %rcx
+	movq	%r14, %r8
+	movapd	%xmm6, %xmm2
+	movq	16(%rsp), %rdx
+	movsd	56(%rsp), %xmm4
+	leaq	.LC65(%rip), %rdi
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm3
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L696
+.L797:
+	movzwl	80(%rsp), %esi
+	movq	64(%rsp), %rcx
+	xorl	%r8d, %r8d
+	leaq	.LC70(%rip), %rdi
+	movq	16(%rsp), %rdx
+	movsd	56(%rsp), %xmm4
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm3
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L696
+.L796:
+	movzwl	80(%rsp), %esi
+	movq	64(%rsp), %rcx
+	movq	%r14, %r8
+	xorl	%edx, %edx
+	movsd	56(%rsp), %xmm4
+	movsd	48(%rsp), %xmm3
+	leaq	.LC69(%rip), %rdi
+	movl	$5, %eax
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L696
+.L795:
+	movzwl	80(%rsp), %esi
+	movq	64(%rsp), %rcx
+	movq	%r14, %r8
+	leaq	.LC68(%rip), %rdi
+	movq	16(%rsp), %rdx
+	movsd	56(%rsp), %xmm4
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm3
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L696
+.L794:
+	movzwl	80(%rsp), %esi
+	movq	64(%rsp), %rcx
+	movq	%r14, %r8
+	leaq	.LC67(%rip), %rdi
 	movq	16(%rsp), %rdx
 	movsd	48(%rsp), %xmm3
 	movl	$5, %eax
@@ -3753,12 +3799,12 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
 .LEHE22:
-	jmp	.L676
-.L781:
+	jmp	.L696
+.L801:
 	call	__stack_chk_fail@PLT
-.L727:
+.L747:
 	movq	%rax, %rbx
-	jmp	.L719
+	jmp	.L739
 	.section	.gcc_except_table
 .LLSDA8159:
 	.byte	0xff
@@ -3768,7 +3814,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 .LLSDACSB8159:
 	.uleb128 .LEHB20-.LFB8159
 	.uleb128 .LEHE20-.LEHB20
-	.uleb128 .L727-.LFB8159
+	.uleb128 .L747-.LFB8159
 	.uleb128 0
 	.uleb128 .LEHB21-.LFB8159
 	.uleb128 .LEHE21-.LEHB21
@@ -3776,7 +3822,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	.uleb128 0
 	.uleb128 .LEHB22-.LFB8159
 	.uleb128 .LEHE22-.LEHB22
-	.uleb128 .L727-.LFB8159
+	.uleb128 .L747-.LFB8159
 	.uleb128 0
 .LLSDACSE8159:
 	.text
@@ -3788,7 +3834,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	.type	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_.cold, @function
 _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_.cold:
 .LFSB8159:
-.L719:
+.L739:
 	.cfi_def_cfa_offset 208
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -3800,12 +3846,12 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_.c
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L785
+	jne	.L805
 	movq	%rbx, %rdi
 .LEHB23:
 	call	_Unwind_Resume@PLT
 .LEHE23:
-.L785:
+.L805:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8159:
@@ -3816,7 +3862,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_.c
 	.byte	0x1
 	.uleb128 .LLSDACSEC8159-.LLSDACSBC8159
 .LLSDACSBC8159:
-	.uleb128 .LEHB23-.LCOLDB67
+	.uleb128 .LEHB23-.LCOLDB71
 	.uleb128 .LEHE23-.LEHB23
 	.uleb128 0
 	.uleb128 0
@@ -3826,40 +3872,40 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_.c
 	.size	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_, .-_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_.cold, .-_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_.cold
-.LCOLDE67:
+.LCOLDE71:
 	.text
-.LHOTE67:
+.LHOTE71:
 	.section	.rodata.str1.8
 	.align 8
-.LC68:
-	.string	"wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist): %p, OverlapboxTypeBlacklist: %p\n"
-	.align 8
-.LC69:
-	.string	"wze::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
-	.align 8
-.LC70:
-	.string	"wze::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
-	.align 8
-.LC71:
-	.string	"wze::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
-	.align 8
 .LC72:
-	.string	"wze::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
+	.string	"wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
 .LC73:
+	.string	"wze::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
+	.align 8
+.LC74:
+	.string	"wze::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
+	.align 8
+.LC75:
+	.string	"wze::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
+	.align 8
+.LC76:
+	.string	"wze::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
+	.align 8
+.LC77:
 	.ascii	"wze::eng"
 	.string	"ine.vector.RayCast(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC74:
+.LC78:
 	.string	"wze::engine.vector.RayCast(): ActorIDBlacklist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC75:
+.LC79:
 	.string	"wze::engine.vector.RayCast(): OverlapboxTypeBlackList must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList(length): %ld, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB76:
+.LCOLDB80:
 	.text
-.LHOTB76:
+.LHOTB80:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_
@@ -3908,32 +3954,32 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	xorl	%eax, %eax
 	movq	%rbx, 112(%rsp)
 	testq	%rbx, %rbx
-	jne	.L787
+	jne	.L807
 	movq	$0, 120(%rsp)
 	xorl	%r12d, %r12d
-.L788:
+.L808:
 	movsd	24(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L887
+	jp	.L907
 	movsd	32(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L888
+	jp	.L908
 	movsd	40(%rsp), %xmm7
 	ucomisd	%xmm7, %xmm7
-	jp	.L889
+	jp	.L909
 	movsd	48(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L890
+	jp	.L910
 	movsd	56(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L891
+	jp	.L911
 	pxor	%xmm0, %xmm0
 	comisd	56(%rsp), %xmm0
-	jnb	.L892
+	jnb	.L912
 	cmpq	$0, 64(%rsp)
-	je	.L893
+	je	.L913
 	testq	%r14, %r14
-	je	.L894
+	je	.L914
 	movsd	24(%rsp), %xmm4
 	ucomisd	40(%rsp), %xmm4
 	movl	$0, %esi
@@ -3945,127 +3991,127 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	cmovne	%esi, %eax
 	andb	%al, %cl
 	movb	%cl, 85(%rsp)
-	jne	.L804
+	jne	.L824
 	movq	352(%rdx), %rsi
 	cmpq	$1, %rsi
-	jbe	.L840
+	jbe	.L860
 	leaq	112(%rsp), %rax
 	movl	$1, %ebx
 	xorl	%ebp, %ebp
 	movq	%rax, 88(%rsp)
-	jmp	.L826
+	jmp	.L846
 	.p2align 4,,10
 	.p2align 3
-.L806:
+.L826:
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jnb	.L895
-.L826:
+	jnb	.L915
+.L846:
 	movq	360(%rdx), %rax
 	leaq	0(,%rbx,8), %r13
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
-	je	.L806
+	je	.L826
 	movq	208(%rcx), %rdi
 	xorl	%ecx, %ecx
 	cmpq	$0, 16(%rsp)
 	movq	72(%rsp), %r8
-	je	.L806
+	je	.L826
 	cmpq	(%r8,%rcx,8), %rdi
-	je	.L896
-.L872:
+	je	.L916
+.L892:
 	addq	$1, %rcx
 	cmpq	%rcx, 16(%rsp)
-	je	.L806
+	je	.L826
 	cmpq	(%r8,%rcx,8), %rdi
-	jne	.L872
-.L896:
+	jne	.L892
+.L916:
 	movq	64(%rsp), %rcx
 	movq	(%rcx), %rdi
 	movq	8(%rcx), %r8
 	xorl	%ecx, %ecx
 	testq	%rdi, %rdi
-	je	.L810
-.L838:
+	je	.L830
+.L858:
 	cmpq	%rbx, (%r8,%rcx,8)
-	je	.L806
+	je	.L826
 	addq	$1, %rcx
 	cmpq	%rcx, %rdi
-	jne	.L838
+	jne	.L858
 	.p2align 4,,10
 	.p2align 3
-.L810:
+.L830:
 	cmpq	%rsi, %rbx
-	jnb	.L886
+	jnb	.L906
 	movl	$1, %r12d
 	.p2align 4,,10
 	.p2align 3
-.L812:
+.L832:
 	movq	(%rax,%r13), %rax
 	cmpq	152(%rax), %r12
-	jnb	.L806
+	jnb	.L826
 	movq	160(%rax), %rax
 	leaq	0(,%r12,8), %rcx
 	movq	%rcx, 8(%rsp)
 	movq	(%rax,%r12,8), %rax
 	testq	%rax, %rax
-	je	.L817
+	je	.L837
 	movq	(%r14), %rcx
 	movq	24(%rax), %rdi
 	xorl	%eax, %eax
 	movq	8(%r14), %r8
 	testq	%rcx, %rcx
-	je	.L815
-.L816:
+	je	.L835
+.L836:
 	cmpq	(%r8,%rax,8), %rdi
-	je	.L817
+	je	.L837
 	addq	$1, %rax
 	cmpq	%rax, %rcx
-	jne	.L816
+	jne	.L836
 	.p2align 4,,10
 	.p2align 3
-.L815:
+.L835:
 	cmpq	%rbp, 112(%rsp)
-	je	.L897
-.L819:
+	je	.L917
+.L839:
 	movq	360(%rdx), %rax
 	cmpq	%rsi, %rbx
-	jnb	.L886
+	jnb	.L906
 	movq	(%rax,%r13), %rcx
 	movq	160(%rcx), %rdi
 	cmpq	152(%rcx), %r12
-	jnb	.L898
+	jnb	.L918
 	movq	8(%rsp), %rcx
 	movq	(%rdi,%rcx), %r8
 	movq	120(%rsp), %rdi
 	leaq	1(%rbp), %rcx
 	cmpq	112(%rsp), %rbp
-	jnb	.L899
+	jnb	.L919
 	movq	%r8, (%rdi,%rbp,8)
 	addq	$1, %r12
 	movq	%rcx, %rbp
-	jmp	.L812
+	jmp	.L832
 	.p2align 4,,10
 	.p2align 3
-.L817:
+.L837:
 	movq	360(%rdx), %rax
 	addq	$1, %r12
 	cmpq	%rsi, %rbx
-	jb	.L812
-.L886:
+	jb	.L832
+.L906:
 	movq	%rbx, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB24:
 	call	printf@PLT
-.L793:
+.L813:
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L895:
+.L915:
 	movq	120(%rsp), %r12
-.L805:
+.L825:
 	movzwl	80(%rsp), %eax
 	pxor	%xmm0, %xmm0
 	movsd	24(%rsp), %xmm7
@@ -4091,32 +4137,32 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	sqrtsd	%xmm2, %xmm2
 	divsd	%xmm2, %xmm0
 	movsd	%xmm2, 24(%rsp)
-	ja	.L900
+	ja	.L920
 	call	acos@PLT
 	movsd	%xmm0, 32(%rsp)
-.L829:
+.L849:
 	movsd	24(%rsp), %xmm6
 	pxor	%xmm0, %xmm0
 	movzwl	86(%rsp), %r14d
 	comisd	%xmm0, %xmm6
-	jbe	.L876
-.L832:
+	jbe	.L896
+.L852:
 	testq	%rbp, %rbp
-	je	.L835
+	je	.L855
 	movq	112(%rsp), %r13
 	xorl	%ebx, %ebx
-	jmp	.L831
+	jmp	.L851
 	.p2align 4,,10
 	.p2align 3
-.L901:
+.L921:
 	addq	$1, %rbx
 	cmpq	%rbx, %rbp
-	je	.L835
-.L831:
+	je	.L855
+.L851:
 	movq	(%r15), %rax
 	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
-	je	.L886
+	je	.L906
 	pxor	%xmm2, %xmm2
 	movsd	16(%rsp), %xmm1
 	movsd	8(%rsp), %xmm5
@@ -4128,13 +4174,13 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	addsd	%xmm5, %xmm2
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L901
-.L804:
+	je	.L921
+.L824:
 	movq	%r12, %rdi
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L902
+	jne	.L922
 	movzbl	85(%rsp), %eax
 	addq	$152, %rsp
 	.cfi_remember_state
@@ -4154,7 +4200,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L897:
+.L917:
 	.cfi_restore_state
 	movzwl	376(%rdx), %eax
 	movq	88(%rsp), %rdi
@@ -4164,16 +4210,16 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 .LEHE24:
 	movq	(%r15), %rdx
 	movq	352(%rdx), %rsi
-	jmp	.L819
-.L900:
+	jmp	.L839
+.L920:
 	call	acos@PLT
-	movsd	.LC24(%rip), %xmm1
+	movsd	.LC28(%rip), %xmm1
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, 32(%rsp)
-	jmp	.L829
+	jmp	.L849
 	.p2align 4,,10
 	.p2align 3
-.L835:
+.L855:
 	movsd	32(%rsp), %xmm0
 	leaq	104(%rsp), %rdi
 	leaq	96(%rsp), %rsi
@@ -4192,11 +4238,11 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	movsd	%xmm0, 16(%rsp)
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm7
-	ja	.L832
-.L876:
+	ja	.L852
+.L896:
 	movb	$1, 85(%rsp)
-	jmp	.L804
-.L787:
+	jmp	.L824
+.L807:
 	leaq	0(,%rbx,8), %rdi
 	movq	%rdx, 8(%rsp)
 	call	malloc@PLT
@@ -4204,8 +4250,8 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	testq	%rax, %rax
 	movq	%rax, 120(%rsp)
 	movq	%rax, %r12
-	jne	.L788
-	leaq	.LC15(%rip), %rdi
+	jne	.L808
+	leaq	.LC19(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 .LEHB25:
@@ -4215,37 +4261,37 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L840:
+.L860:
 	xorl	%ebp, %ebp
-	jmp	.L805
-.L902:
+	jmp	.L825
+.L922:
 	call	__stack_chk_fail@PLT
-.L899:
+.L919:
 	movq	%rbp, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB26:
 	call	printf@PLT
-	jmp	.L793
-.L887:
+	jmp	.L813
+.L907:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
 	movapd	%xmm6, %xmm0
 	movq	16(%rsp), %rdx
 	movsd	56(%rsp), %xmm4
-	leaq	.LC68(%rip), %rdi
+	leaq	.LC72(%rip), %rdi
 	movl	$5, %eax
 	movsd	48(%rsp), %xmm3
 	movsd	40(%rsp), %xmm2
 	movsd	32(%rsp), %xmm1
 	call	printf@PLT
-	jmp	.L793
-.L894:
+	jmp	.L813
+.L914:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	xorl	%r8d, %r8d
-	leaq	.LC75(%rip), %rdi
+	leaq	.LC79(%rip), %rdi
 	movq	16(%rsp), %rdx
 	movsd	56(%rsp), %xmm4
 	movl	$5, %eax
@@ -4254,12 +4300,12 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	movsd	32(%rsp), %xmm1
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L793
-.L891:
+	jmp	.L813
+.L911:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
-	leaq	.LC72(%rip), %rdi
+	leaq	.LC76(%rip), %rdi
 	movq	16(%rsp), %rdx
 	movsd	48(%rsp), %xmm3
 	movl	$5, %eax
@@ -4267,64 +4313,36 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	movsd	32(%rsp), %xmm1
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L793
-.L890:
+	jmp	.L813
+.L910:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
 	movapd	%xmm6, %xmm3
 	movq	16(%rsp), %rdx
 	movsd	56(%rsp), %xmm4
-	leaq	.LC71(%rip), %rdi
+	leaq	.LC75(%rip), %rdi
 	movl	$5, %eax
 	movsd	40(%rsp), %xmm2
 	movsd	32(%rsp), %xmm1
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L793
-.L889:
+	jmp	.L813
+.L909:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
 	movapd	%xmm7, %xmm2
 	movq	16(%rsp), %rdx
 	movsd	56(%rsp), %xmm4
-	leaq	.LC70(%rip), %rdi
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm3
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L793
-.L888:
-	movzwl	80(%rsp), %esi
-	movq	64(%rsp), %rcx
-	movq	%r14, %r8
-	leaq	.LC69(%rip), %rdi
-	movq	16(%rsp), %rdx
-	movsd	56(%rsp), %xmm4
-	movl	$5, %eax
-	movsd	48(%rsp), %xmm3
-	movsd	40(%rsp), %xmm2
-	movsd	32(%rsp), %xmm1
-	movsd	24(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L793
-.L893:
-	movzwl	80(%rsp), %esi
-	movq	16(%rsp), %rdx
-	movq	%r14, %r8
-	xorl	%ecx, %ecx
-	movsd	56(%rsp), %xmm4
-	movsd	48(%rsp), %xmm3
 	leaq	.LC74(%rip), %rdi
 	movl	$5, %eax
-	movsd	40(%rsp), %xmm2
+	movsd	48(%rsp), %xmm3
 	movsd	32(%rsp), %xmm1
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L793
-.L892:
+	jmp	.L813
+.L908:
 	movzwl	80(%rsp), %esi
 	movq	64(%rsp), %rcx
 	movq	%r14, %r8
@@ -4337,17 +4355,45 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	movsd	32(%rsp), %xmm1
 	movsd	24(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L793
-.L898:
+	jmp	.L813
+.L913:
+	movzwl	80(%rsp), %esi
+	movq	16(%rsp), %rdx
+	movq	%r14, %r8
+	xorl	%ecx, %ecx
+	movsd	56(%rsp), %xmm4
+	movsd	48(%rsp), %xmm3
+	leaq	.LC78(%rip), %rdi
+	movl	$5, %eax
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L813
+.L912:
+	movzwl	80(%rsp), %esi
+	movq	64(%rsp), %rcx
+	movq	%r14, %r8
+	leaq	.LC77(%rip), %rdi
+	movq	16(%rsp), %rdx
+	movsd	56(%rsp), %xmm4
+	movl	$5, %eax
+	movsd	48(%rsp), %xmm3
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
+	movsd	24(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L813
+.L918:
 	movq	%r12, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 .LEHE26:
-	jmp	.L793
-.L844:
+	jmp	.L813
+.L864:
 	movq	%rax, %rbx
-	jmp	.L836
+	jmp	.L856
 	.section	.gcc_except_table
 .LLSDA8160:
 	.byte	0xff
@@ -4357,7 +4403,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 .LLSDACSB8160:
 	.uleb128 .LEHB24-.LFB8160
 	.uleb128 .LEHE24-.LEHB24
-	.uleb128 .L844-.LFB8160
+	.uleb128 .L864-.LFB8160
 	.uleb128 0
 	.uleb128 .LEHB25-.LFB8160
 	.uleb128 .LEHE25-.LEHB25
@@ -4365,7 +4411,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	.uleb128 0
 	.uleb128 .LEHB26-.LFB8160
 	.uleb128 .LEHE26-.LEHB26
-	.uleb128 .L844-.LFB8160
+	.uleb128 .L864-.LFB8160
 	.uleb128 0
 .LLSDACSE8160:
 	.text
@@ -4377,7 +4423,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	.type	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_.cold, @function
 _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_.cold:
 .LFSB8160:
-.L836:
+.L856:
 	.cfi_def_cfa_offset 208
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -4389,12 +4435,12 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_.c
 	call	free@PLT
 	movq	136(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L903
+	jne	.L923
 	movq	%rbx, %rdi
 .LEHB27:
 	call	_Unwind_Resume@PLT
 .LEHE27:
-.L903:
+.L923:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8160:
@@ -4405,7 +4451,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_.c
 	.byte	0x1
 	.uleb128 .LLSDACSEC8160-.LLSDACSBC8160
 .LLSDACSBC8160:
-	.uleb128 .LEHB27-.LCOLDB76
+	.uleb128 .LEHB27-.LCOLDB80
 	.uleb128 .LEHE27-.LEHB27
 	.uleb128 0
 	.uleb128 0
@@ -4415,42 +4461,42 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_.c
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_.cold, .-_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_.cold
-.LCOLDE76:
+.LCOLDE80:
 	.text
-.LHOTE76:
+.LHOTE80:
 	.section	.rodata.str1.8
 	.align 8
-.LC77:
+.LC81:
 	.string	"wze::engine.vector.RayCast(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC78:
+.LC82:
 	.string	"wze::engine.vector.RayCast(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC79:
+.LC83:
 	.string	"wze::engine.vector.RayCast(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC80:
+.LC84:
 	.string	"wze::engine.vector.RayCast(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC81:
+.LC85:
 	.string	"wze::engine.vector.RayCast(): SamplingStep must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC82:
+.LC86:
 	.string	"wze::engine.vector.RayCast(): SamplingStep must not be less than or equal to 0\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC83:
+.LC87:
 	.string	"wze::engine.vector.RayCast(): ActorTypeWhitelist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC84:
+.LC88:
 	.string	"wze::engine.vector.RayCast(): ActorIDBlacklist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.align 8
-.LC85:
+.LC89:
 	.string	"wze::engine.vector.RayCast(): OverlapboxTypeBlacklist must not be NULL\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf, RaySize: %d, SamplingStep: %lf, ActorTypeWhiteList: %p, ActorIDBlacklist: %p, OverlapboxTypeBlacklist: %p\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB86:
+.LCOLDB90:
 	.text
-.LHOTB86:
+.LHOTB90:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_
@@ -4498,34 +4544,34 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	xorl	%eax, %eax
 	movq	%rbx, 96(%rsp)
 	testq	%rbx, %rbx
-	jne	.L905
+	jne	.L925
 	movq	$0, 104(%rsp)
 	xorl	%r12d, %r12d
-.L906:
+.L926:
 	movsd	16(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L1006
+	jp	.L1026
 	movsd	24(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L1007
+	jp	.L1027
 	movsd	32(%rsp), %xmm7
 	ucomisd	%xmm7, %xmm7
-	jp	.L1008
+	jp	.L1028
 	movsd	40(%rsp), %xmm6
 	ucomisd	%xmm6, %xmm6
-	jp	.L1009
+	jp	.L1029
 	movsd	48(%rsp), %xmm4
 	ucomisd	%xmm4, %xmm4
-	jp	.L1010
+	jp	.L1030
 	pxor	%xmm0, %xmm0
 	comisd	48(%rsp), %xmm0
-	jnb	.L1011
+	jnb	.L1031
 	cmpq	$0, 8(%rsp)
-	je	.L1012
+	je	.L1032
 	cmpq	$0, 56(%rsp)
-	je	.L1013
+	je	.L1033
 	testq	%r14, %r14
-	je	.L1014
+	je	.L1034
 	movsd	16(%rsp), %xmm4
 	ucomisd	32(%rsp), %xmm4
 	movl	$0, %esi
@@ -4537,43 +4583,43 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	cmovne	%esi, %eax
 	andb	%al, %cl
 	movb	%cl, 77(%rsp)
-	jne	.L923
+	jne	.L943
 	movq	352(%rdx), %rcx
 	cmpq	$1, %rcx
-	jbe	.L959
+	jbe	.L979
 	leaq	96(%rsp), %rax
 	movl	$1, %r12d
 	xorl	%ebp, %ebp
 	movq	%rax, 64(%rsp)
 	.p2align 4,,10
 	.p2align 3
-.L945:
+.L965:
 	movq	360(%rdx), %rax
 	leaq	0(,%r12,8), %r13
 	movq	(%rax,%r12,8), %rsi
 	testq	%rsi, %rsi
-	je	.L925
+	je	.L945
 	movq	8(%rsp), %rbx
 	movq	208(%rsi), %r8
 	xorl	%esi, %esi
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %r9
 	testq	%rdi, %rdi
-	je	.L925
-.L926:
+	je	.L945
+.L946:
 	cmpq	(%r9,%rsi,8), %r8
-	je	.L1015
+	je	.L1035
 	addq	$1, %rsi
 	cmpq	%rsi, %rdi
-	jne	.L926
+	jne	.L946
 	.p2align 4,,10
 	.p2align 3
-.L925:
+.L945:
 	addq	$1, %r12
 	cmpq	%rcx, %r12
-	jb	.L945
+	jb	.L965
 	movq	104(%rsp), %r12
-.L924:
+.L944:
 	movzwl	72(%rsp), %eax
 	pxor	%xmm0, %xmm0
 	movsd	16(%rsp), %xmm7
@@ -4599,32 +4645,32 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	sqrtsd	%xmm2, %xmm2
 	divsd	%xmm2, %xmm0
 	movsd	%xmm2, 16(%rsp)
-	ja	.L1016
+	ja	.L1036
 	call	acos@PLT
 	movsd	%xmm0, 24(%rsp)
-.L948:
+.L968:
 	movsd	16(%rsp), %xmm6
 	pxor	%xmm0, %xmm0
 	movzwl	78(%rsp), %r14d
 	comisd	%xmm0, %xmm6
-	jbe	.L996
-.L951:
+	jbe	.L1016
+.L971:
 	testq	%rbp, %rbp
-	je	.L954
+	je	.L974
 	movq	96(%rsp), %r13
 	xorl	%ebx, %ebx
-	jmp	.L950
+	jmp	.L970
 	.p2align 4,,10
 	.p2align 3
-.L1017:
+.L1037:
 	addq	$1, %rbx
 	cmpq	%rbp, %rbx
-	je	.L954
-.L950:
+	je	.L974
+.L970:
 	movq	(%r15), %rax
 	leaq	368(%rax), %rdi
 	cmpq	%r13, %rbx
-	je	.L1005
+	je	.L1025
 	pxor	%xmm2, %xmm2
 	movsd	8(%rsp), %xmm1
 	movsd	(%rsp), %xmm5
@@ -4637,13 +4683,13 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 .LEHB28:
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L1017
-.L923:
+	je	.L1037
+.L943:
 	movq	%r12, %rdi
 	call	free@PLT
 	movq	120(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L1018
+	jne	.L1038
 	movzbl	77(%rsp), %eax
 	addq	$136, %rsp
 	.cfi_remember_state
@@ -4661,91 +4707,91 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L1015:
+.L1035:
 	.cfi_restore_state
 	movq	56(%rsp), %rbx
 	xorl	%esi, %esi
 	movq	(%rbx), %rdi
 	movq	8(%rbx), %r8
 	testq	%rdi, %rdi
-	je	.L929
-.L957:
+	je	.L949
+.L977:
 	cmpq	%r12, (%r8,%rsi,8)
-	je	.L925
+	je	.L945
 	addq	$1, %rsi
 	cmpq	%rsi, %rdi
-	jne	.L957
+	jne	.L977
 	.p2align 4,,10
 	.p2align 3
-.L929:
+.L949:
 	cmpq	%rcx, %r12
-	jnb	.L1003
+	jnb	.L1023
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L931:
+.L951:
 	movq	(%rax,%r13), %rax
 	cmpq	152(%rax), %rbx
-	jnb	.L925
+	jnb	.L945
 	movq	160(%rax), %rax
 	leaq	0(,%rbx,8), %rdi
 	movq	%rdi, (%rsp)
 	movq	(%rax,%rbx,8), %rax
 	testq	%rax, %rax
-	je	.L936
+	je	.L956
 	movq	(%r14), %rsi
 	movq	24(%rax), %rdi
 	xorl	%eax, %eax
 	movq	8(%r14), %r8
 	testq	%rsi, %rsi
-	je	.L934
-.L935:
+	je	.L954
+.L955:
 	cmpq	(%r8,%rax,8), %rdi
-	je	.L936
+	je	.L956
 	addq	$1, %rax
 	cmpq	%rax, %rsi
-	jne	.L935
+	jne	.L955
 	.p2align 4,,10
 	.p2align 3
-.L934:
+.L954:
 	cmpq	%rbp, 96(%rsp)
-	je	.L1019
-.L938:
+	je	.L1039
+.L958:
 	movq	360(%rdx), %rax
 	cmpq	%rcx, %r12
-	jnb	.L1003
+	jnb	.L1023
 	movq	(%rax,%r13), %rsi
 	movq	160(%rsi), %rdi
 	cmpq	152(%rsi), %rbx
-	jnb	.L1005
+	jnb	.L1025
 	movq	(%rsp), %rsi
 	movq	(%rdi,%rsi), %r8
 	movq	104(%rsp), %rdi
 	leaq	1(%rbp), %rsi
 	cmpq	96(%rsp), %rbp
-	jnb	.L1020
+	jnb	.L1040
 	movq	%r8, (%rdi,%rbp,8)
 	addq	$1, %rbx
 	movq	%rsi, %rbp
-	jmp	.L931
+	jmp	.L951
 	.p2align 4,,10
 	.p2align 3
-.L936:
+.L956:
 	movq	360(%rdx), %rax
 	addq	$1, %rbx
 	cmpq	%rcx, %r12
-	jb	.L931
-.L1003:
+	jb	.L951
+.L1023:
 	movq	%r12, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-.L911:
+.L931:
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L1019:
+.L1039:
 	movzwl	376(%rdx), %eax
 	movq	64(%rsp), %rdi
 	movq	%rbp, %rsi
@@ -4754,16 +4800,16 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 .LEHE28:
 	movq	(%r15), %rdx
 	movq	352(%rdx), %rcx
-	jmp	.L938
-.L1016:
+	jmp	.L958
+.L1036:
 	call	acos@PLT
-	movsd	.LC24(%rip), %xmm1
+	movsd	.LC28(%rip), %xmm1
 	subsd	%xmm0, %xmm1
 	movsd	%xmm1, 24(%rsp)
-	jmp	.L948
+	jmp	.L968
 	.p2align 4,,10
 	.p2align 3
-.L954:
+.L974:
 	movsd	24(%rsp), %xmm0
 	leaq	88(%rsp), %rdi
 	leaq	80(%rsp), %rsi
@@ -4782,11 +4828,11 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	movsd	%xmm0, 8(%rsp)
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm7
-	ja	.L951
-.L996:
+	ja	.L971
+.L1016:
 	movb	$1, 77(%rsp)
-	jmp	.L923
-.L905:
+	jmp	.L943
+.L925:
 	leaq	0(,%rbx,8), %rdi
 	movq	%rdx, (%rsp)
 	call	malloc@PLT
@@ -4794,8 +4840,8 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	testq	%rax, %rax
 	movq	%rax, 104(%rsp)
 	movq	%rax, %r12
-	jne	.L906
-	leaq	.LC15(%rip), %rdi
+	jne	.L926
+	leaq	.LC19(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 .LEHB29:
@@ -4805,45 +4851,78 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L959:
+.L979:
 	xorl	%ebp, %ebp
-	jmp	.L924
-.L1005:
+	jmp	.L944
+.L1025:
 	movq	%rbx, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	xorl	%eax, %eax
 .LEHB30:
 	call	printf@PLT
-	jmp	.L911
-.L1013:
+	jmp	.L931
+.L1033:
 	movzwl	72(%rsp), %esi
 	movq	8(%rsp), %rdx
 	movq	%r14, %r8
 	xorl	%ecx, %ecx
 	movsd	48(%rsp), %xmm4
 	movsd	40(%rsp), %xmm3
-	leaq	.LC84(%rip), %rdi
+	leaq	.LC88(%rip), %rdi
 	movl	$5, %eax
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L911
-.L1012:
+	jmp	.L931
+.L1032:
 	movzwl	72(%rsp), %esi
 	movq	56(%rsp), %rcx
 	movq	%r14, %r8
 	xorl	%edx, %edx
 	movsd	48(%rsp), %xmm4
 	movsd	40(%rsp), %xmm3
-	leaq	.LC83(%rip), %rdi
+	leaq	.LC87(%rip), %rdi
 	movl	$5, %eax
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L911
-.L1011:
+	jmp	.L931
+.L1031:
+	movzwl	72(%rsp), %esi
+	movq	56(%rsp), %rcx
+	movq	%r14, %r8
+	leaq	.LC86(%rip), %rdi
+	movq	8(%rsp), %rdx
+	movsd	48(%rsp), %xmm4
+	movl	$5, %eax
+	movsd	40(%rsp), %xmm3
+	movsd	32(%rsp), %xmm2
+	movsd	24(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L931
+.L1030:
+	movzwl	72(%rsp), %esi
+	movq	56(%rsp), %rcx
+	movq	%r14, %r8
+	leaq	.LC85(%rip), %rdi
+	movq	8(%rsp), %rdx
+	movsd	40(%rsp), %xmm3
+	movl	$5, %eax
+	movsd	32(%rsp), %xmm2
+	movsd	24(%rsp), %xmm1
+	movsd	16(%rsp), %xmm0
+	call	printf@PLT
+	jmp	.L931
+.L1040:
+	movq	%rbp, %rsi
+	leaq	.LC27(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	jmp	.L931
+.L1027:
 	movzwl	72(%rsp), %esi
 	movq	56(%rsp), %rcx
 	movq	%r14, %r8
@@ -4856,87 +4935,54 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L911
-.L1010:
-	movzwl	72(%rsp), %esi
-	movq	56(%rsp), %rcx
-	movq	%r14, %r8
-	leaq	.LC81(%rip), %rdi
-	movq	8(%rsp), %rdx
-	movsd	40(%rsp), %xmm3
-	movl	$5, %eax
-	movsd	32(%rsp), %xmm2
-	movsd	24(%rsp), %xmm1
-	movsd	16(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L911
-.L1020:
-	movq	%rbp, %rsi
-	leaq	.LC23(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	jmp	.L911
-.L1007:
-	movzwl	72(%rsp), %esi
-	movq	56(%rsp), %rcx
-	movq	%r14, %r8
-	leaq	.LC78(%rip), %rdi
-	movq	8(%rsp), %rdx
-	movsd	48(%rsp), %xmm4
-	movl	$5, %eax
-	movsd	40(%rsp), %xmm3
-	movsd	32(%rsp), %xmm2
-	movsd	24(%rsp), %xmm1
-	movsd	16(%rsp), %xmm0
-	call	printf@PLT
-	jmp	.L911
-.L1006:
+	jmp	.L931
+.L1026:
 	movzwl	72(%rsp), %esi
 	movq	56(%rsp), %rcx
 	movq	%r14, %r8
 	movapd	%xmm6, %xmm0
 	movq	8(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
-	leaq	.LC77(%rip), %rdi
+	leaq	.LC81(%rip), %rdi
 	movl	$5, %eax
 	movsd	40(%rsp), %xmm3
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	call	printf@PLT
-	jmp	.L911
-.L1009:
+	jmp	.L931
+.L1029:
 	movzwl	72(%rsp), %esi
 	movq	56(%rsp), %rcx
 	movq	%r14, %r8
 	movapd	%xmm6, %xmm3
 	movq	8(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
-	leaq	.LC80(%rip), %rdi
+	leaq	.LC84(%rip), %rdi
 	movl	$5, %eax
 	movsd	32(%rsp), %xmm2
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L911
-.L1008:
+	jmp	.L931
+.L1028:
 	movzwl	72(%rsp), %esi
 	movq	56(%rsp), %rcx
 	movq	%r14, %r8
 	movapd	%xmm7, %xmm2
 	movq	8(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
-	leaq	.LC79(%rip), %rdi
+	leaq	.LC83(%rip), %rdi
 	movl	$5, %eax
 	movsd	40(%rsp), %xmm3
 	movsd	24(%rsp), %xmm1
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
-	jmp	.L911
-.L1014:
+	jmp	.L931
+.L1034:
 	movzwl	72(%rsp), %esi
 	movq	56(%rsp), %rcx
 	xorl	%r8d, %r8d
-	leaq	.LC85(%rip), %rdi
+	leaq	.LC89(%rip), %rdi
 	movq	8(%rsp), %rdx
 	movsd	48(%rsp), %xmm4
 	movl	$5, %eax
@@ -4946,12 +4992,12 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	movsd	16(%rsp), %xmm0
 	call	printf@PLT
 .LEHE30:
-	jmp	.L911
-.L1018:
+	jmp	.L931
+.L1038:
 	call	__stack_chk_fail@PLT
-.L962:
+.L982:
 	movq	%rax, %rbx
-	jmp	.L955
+	jmp	.L975
 	.section	.gcc_except_table
 .LLSDA8161:
 	.byte	0xff
@@ -4961,7 +5007,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 .LLSDACSB8161:
 	.uleb128 .LEHB28-.LFB8161
 	.uleb128 .LEHE28-.LEHB28
-	.uleb128 .L962-.LFB8161
+	.uleb128 .L982-.LFB8161
 	.uleb128 0
 	.uleb128 .LEHB29-.LFB8161
 	.uleb128 .LEHE29-.LEHB29
@@ -4969,7 +5015,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	.uleb128 0
 	.uleb128 .LEHB30-.LFB8161
 	.uleb128 .LEHE30-.LEHB30
-	.uleb128 .L962-.LFB8161
+	.uleb128 .L982-.LFB8161
 	.uleb128 0
 .LLSDACSE8161:
 	.text
@@ -4981,7 +5027,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	.type	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_.cold, @function
 _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_.cold:
 .LFSB8161:
-.L955:
+.L975:
 	.cfi_def_cfa_offset 192
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -4993,12 +5039,12 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_.cold:
 	call	free@PLT
 	movq	120(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L1021
+	jne	.L1041
 	movq	%rbx, %rdi
 .LEHB31:
 	call	_Unwind_Resume@PLT
 .LEHE31:
-.L1021:
+.L1041:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8161:
@@ -5009,7 +5055,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8161-.LLSDACSBC8161
 .LLSDACSBC8161:
-	.uleb128 .LEHB31-.LCOLDB86
+	.uleb128 .LEHB31-.LCOLDB90
 	.uleb128 .LEHE31-.LEHB31
 	.uleb128 0
 	.uleb128 0
@@ -5019,9 +5065,9 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_.cold:
 	.size	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_, .-_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_.cold, .-_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_.cold
-.LCOLDE86:
+.LCOLDE90:
 	.text
-.LHOTE86:
+.LHOTE90:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC10:
@@ -5032,11 +5078,11 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_.cold:
 	.long	0
 	.long	1081507840
 	.align 8
-.LC13:
+.LC15:
 	.long	-1571644103
 	.long	1066524486
 	.align 8
-.LC24:
+.LC28:
 	.long	1413754136
 	.long	1075388923
 	.hidden	DW.ref.__gxx_personality_v0

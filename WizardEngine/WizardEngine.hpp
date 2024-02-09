@@ -250,8 +250,8 @@ namespace wze
                     bool SetAbsolute();
                     bool IsRelative();
                     bool SetRelative();
-                    neo::uint64 GetCursor();
-                    neo::uint64 SetCursor(neo::uint64 CursorID);
+                    neo::uint64 GetCursorTextureID();
+                    neo::uint64 SetCursorTextureID(neo::uint64 CursorTextureID);
 
                 private:
                     double Sensitivity;
@@ -260,7 +260,7 @@ namespace wze
                     double MotionX;
                     double MotionY;
                     bool Mode;
-                    neo::uint64 Cursor;
+                    neo::uint64 CursorTextureID;
                     mouse(engine* Engine);
                     neo::uint8 Update();
             } Mouse;
@@ -761,16 +761,16 @@ namespace wze
                     neo::uint8 UnloadFont(neo::uint64 FontID);
                     neo::uint8 PurgeFonts(std::initializer_list<neo::uint64> Keep);
                     neo::uint8 PurgeFonts(neo::array<neo::uint64>* Keep);
-                    neo::uint64 LoadCursor(const char* CursorPath, neo::uint16 HotSpotX, neo::uint16 HotSpotY);
-                    neo::uint8 UnloadCursor(neo::uint64 CursorID);
-                    neo::uint8 PurgeCursors(std::initializer_list<neo::uint64> Keep);
-                    neo::uint8 PurgeCursors(neo::array<neo::uint64>* Keep);
+                    neo::uint64 LoadCursorTexture(const char* CursorTexturePath, neo::uint16 HotSpotX, neo::uint16 HotSpotY);
+                    neo::uint8 UnloadCursorTexture(neo::uint64 CursorTextureID);
+                    neo::uint8 PurgeCursorTextures(std::initializer_list<neo::uint64> Keep);
+                    neo::uint8 PurgeCursorTextures(neo::array<neo::uint64>* Keep);
 
                 private:
                     neo::array<SDL_Texture*> Textures;
                     neo::array<Mix_Chunk*> Sounds;
                     neo::array<TTF_Font*> Fonts;
-                    neo::array<SDL_Cursor*> Cursors;
+                    neo::array<SDL_Cursor*> CursorTextures;
                     assets(engine* Engine);
             } Assets;
 

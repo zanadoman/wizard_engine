@@ -12,7 +12,7 @@ namespace wze
         this->MotionX = 0;
         this->MotionY = 0;
         this->Mode = false;
-        this->Cursor = 0;
+        this->CursorTextureID = 0;
     }
 
     double engine::mouse::GetSensitivity()
@@ -123,27 +123,27 @@ namespace wze
         return this->Mode = true;
     }
 
-    uint64 engine::mouse::GetCursor()
+    uint64 engine::mouse::GetCursorTextureID()
     {
-        return this->Cursor;
+        return this->CursorTextureID;
     }
 
-    uint64 engine::mouse::SetCursor(uint64 CursorID)
+    uint64 engine::mouse::SetCursorTextureID(uint64 CursorTextureID)
     {
-        if (CursorID == 0)
+        if (CursorTextureID == 0)
         {
-            printf("wze::engine.mouse.SetCursor(): Illegal use of NULL Cursor\nParams: CursorID: %lld\n", CursorID);
+            printf("wze::engine.mouse.SetCursorTextureID(): Illegal use of NULL CursorTexture\nParams: CursorTextureID: %lld\n", CursorTextureID);
             exit(1);
         }
-        if (this->Engine->Assets.Cursors.Length() <= CursorID || this->Engine->Assets.Cursors[CursorID] == NULL)
+        if (this->Engine->Assets.CursorTextures.Length() <= CursorTextureID || this->Engine->Assets.CursorTextures[CursorTextureID] == NULL)
         {
-            printf("wze::engine.mouse.SetCursor(): Cursor does not exist\nParams: CursorID: %lld\n", CursorID);
+            printf("wze::engine.mouse.SetCursorTextureID(): CursorTexture does not exist\nParams: CursorTextureID: %lld\n", CursorTextureID);
             exit(1);
         }
 
-        SDL_SetCursor(this->Engine->Assets.Cursors[CursorID]);
+        SDL_SetCursor(this->Engine->Assets.CursorTextures[CursorTextureID]);
 
-        return this->Cursor = CursorID;
+        return this->CursorTextureID = CursorTextureID;
     }
 
     uint8 engine::mouse::Update()

@@ -81,7 +81,7 @@ _ZN3wze6engineD2Ev:
 	movq	%rdi, %rcx
 	movq	$0, 32(%rsp)
 	movq	$0, 40(%rsp)
-	call	_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE
+	call	_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE
 	movq	%rbx, %rcx
 	call	_ZN3wze6engine6window5CloseEv
 	call	TTF_Quit
@@ -1305,7 +1305,7 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	.def	_ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6window5CloseEv;	.scl	2;	.type	32;	.endef
 	.def	TTF_Quit;	.scl	2;	.type	32;	.endef
 	.def	Mix_CloseAudio;	.scl	2;	.type	32;	.endef

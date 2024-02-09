@@ -106,7 +106,7 @@ namespace wze
         this->Assets.PurgeTextures({});
         this->Assets.PurgeSounds({});
         this->Assets.PurgeFonts({});
-        this->Assets.PurgeCursors({});
+        this->Assets.PurgeCursorTextures({});
 
         this->Window.Close();
 

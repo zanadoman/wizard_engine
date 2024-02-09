@@ -4,7 +4,7 @@ using namespace neo;
 
 namespace wze
 {
-    engine::assets::assets(engine* Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Sounds({(Mix_Chunk*)NULL}), Fonts({(TTF_Font*)NULL}), Cursors({(SDL_Cursor*)NULL}) {}
+    engine::assets::assets(engine* Engine) : Engine(Engine), Textures({(SDL_Texture*)NULL}), Sounds({(Mix_Chunk*)NULL}), Fonts({(TTF_Font*)NULL}), CursorTextures({(SDL_Cursor*)NULL}) {}
 
     uint64 engine::assets::LoadTexture(const char* TexturePath)
     {
@@ -568,40 +568,40 @@ namespace wze
         return 0;
     }
 
-    uint64 engine::assets::LoadCursor(const char* CursorPath, uint16 HotSpotX, uint16 HotSpotY)
+    uint64 engine::assets::LoadCursorTexture(const char* CursorTexturePath, uint16 HotSpotX, uint16 HotSpotY)
     {
         SDL_Surface* tmp;
 
-        if (CursorPath == NULL)
+        if (CursorTexturePath == NULL)
         {
-            printf("wze::engine.assets.LoadCursor(): CursorPath must not be NULL\nParams: CursorPath: %p, HotSpotX: %d, HotSpotY: %d\n", CursorPath, HotSpotX, HotSpotY);
+            printf("wze::engine.assets.LoadCursorTexture(): CursorTexturePath must not be NULL\nParams: CursorTexturePath: %p, HotSpotX: %d, HotSpotY: %d\n", CursorTexturePath, HotSpotX, HotSpotY);
             exit(1);
         }
 
-        if ((tmp = IMG_Load(CursorPath)) == NULL)
+        if ((tmp = IMG_Load(CursorTexturePath)) == NULL)
         {
-            printf("wze::engine.assets.LoadCursor(): IMG_Load() failed\nParams: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorPath, HotSpotX, HotSpotY);
+            printf("wze::engine.assets.LoadCursorTexture(): IMG_Load() failed\nParams: CursorTexturePath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorTexturePath, HotSpotX, HotSpotY);
             exit(1);
         }
 
         if (tmp->w <= HotSpotX)
         {
-            printf("wze::engine.assets.LoadCursor(): HotSpotX out of range\nParams: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorPath, HotSpotX, HotSpotY);
+            printf("wze::engine.assets.LoadCursorTexture(): HotSpotX out of range\nParams: CursorTexturePath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorTexturePath, HotSpotX, HotSpotY);
             exit(1);
         }
         if (tmp->h <= HotSpotY)
         {
-            printf("wze::engine.assets.LoadCursor(): HotSpotY out of range\nParams: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorPath, HotSpotX, HotSpotY);
+            printf("wze::engine.assets.LoadCursorTexture(): HotSpotY out of range\nParams: CursorTexturePath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorTexturePath, HotSpotX, HotSpotY);
             exit(1);
         }
 
-        for (uint64 i = 1; i < this->Cursors.Length(); i++)
+        for (uint64 i = 1; i < this->CursorTextures.Length(); i++)
         {
-            if (this->Cursors[i] == NULL)
+            if (this->CursorTextures[i] == NULL)
             {
-                if ((this->Cursors[i] = SDL_CreateColorCursor(tmp, HotSpotX, HotSpotY)) == NULL)
+                if ((this->CursorTextures[i] = SDL_CreateColorCursor(tmp, HotSpotX, HotSpotY)) == NULL)
                 {
-                    printf("wze::engine.assets.LoadCursor(): SDL_CreateColorCursor() failed\nParams: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorPath, HotSpotX, HotSpotY);
+                    printf("wze::engine.assets.LoadCursorTexture(): SDL_CreateColorCursor() failed\nParams: CursorTexturePath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorTexturePath, HotSpotX, HotSpotY);
                     exit(1);
                 }
                 SDL_FreeSurface(tmp);
@@ -610,118 +610,118 @@ namespace wze
             }
         }
 
-        if ((this->Cursors += {SDL_CreateColorCursor(tmp, HotSpotX, HotSpotY)})[this->Cursors.Length() - 1] == NULL)
+        if ((this->CursorTextures += {SDL_CreateColorCursor(tmp, HotSpotX, HotSpotY)})[this->CursorTextures.Length() - 1] == NULL)
         {
-            printf("wze::engine.assets.LoadCursor(): SDL_CreateColorCursor() failed\nParams: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorPath, HotSpotX, HotSpotY);
+            printf("wze::engine.assets.LoadCursorTexture(): SDL_CreateColorCursor() failed\nParams: CursorTexturePath: %s, HotSpotX: %d, HotSpotY: %d\n", CursorTexturePath, HotSpotX, HotSpotY);
             exit(1);
         }
         SDL_FreeSurface(tmp);
 
-        return this->Cursors.Length() - 1;
+        return this->CursorTextures.Length() - 1;
     }
 
-    uint8 engine::assets::UnloadCursor(uint64 CursorID)
+    uint8 engine::assets::UnloadCursorTexture(uint64 CursorTextureID)
     {
         uint64 i;
 
-        if (this->Cursors.Length() <= CursorID || this->Cursors[CursorID] == NULL)
+        if (this->CursorTextures.Length() <= CursorTextureID || this->CursorTextures[CursorTextureID] == NULL)
         {
             return 0;
         }
 
-        SDL_FreeCursor(this->Cursors[CursorID]);
-        this->Cursors[CursorID] = NULL;
+        SDL_FreeCursor(this->CursorTextures[CursorTextureID]);
+        this->CursorTextures[CursorTextureID] = NULL;
 
-        if (this->Cursors[this->Cursors.Length() - 1] == NULL && 1 < this->Cursors.Length())
+        if (this->CursorTextures[this->CursorTextures.Length() - 1] == NULL && 1 < this->CursorTextures.Length())
         {
-            for (i = this->Cursors.Length(); 1 < i; i--)
+            for (i = this->CursorTextures.Length(); 1 < i; i--)
             {
-                if (this->Cursors[i - 1] != NULL)
+                if (this->CursorTextures[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Cursors.Remove(i, this->Cursors.Length() - i);
+            this->CursorTextures.Remove(i, this->CursorTextures.Length() - i);
         }
 
-        if (this->Engine->Mouse.Cursor == CursorID)
+        if (this->Engine->Mouse.CursorTextureID == CursorTextureID)
         {
-            this->Engine->Mouse.Cursor = 0;
+            this->Engine->Mouse.CursorTextureID = 0;
         }
 
         return 0;
     }
 
-    uint8 engine::assets::PurgeCursors(std::initializer_list<uint64> Keep)
+    uint8 engine::assets::PurgeCursorTextures(std::initializer_list<uint64> Keep)
     {
         uint64 i;
 
-        for (i = 1; i < this->Cursors.Length(); i++)
+        for (i = 1; i < this->CursorTextures.Length(); i++)
         {
             if (!initializer_list_Contains(Keep, {i}))
             {
-                if (this->Engine->Mouse.Cursor == i)
+                if (this->Engine->Mouse.CursorTextureID == i)
                 {
-                    this->Engine->Mouse.Cursor = 0;
+                    this->Engine->Mouse.CursorTextureID = 0;
                 }
 
-                SDL_FreeCursor(this->Cursors[i]);
-                this->Cursors[i] = NULL;
+                SDL_FreeCursor(this->CursorTextures[i]);
+                this->CursorTextures[i] = NULL;
             }
         }
 
-        if (this->Cursors[this->Cursors.Length() - 1] == NULL && 1 < this->Cursors.Length())
+        if (this->CursorTextures[this->CursorTextures.Length() - 1] == NULL && 1 < this->CursorTextures.Length())
         {
-            for (i = this->Cursors.Length(); 1 < i; i--)
+            for (i = this->CursorTextures.Length(); 1 < i; i--)
             {
-                if (this->Cursors[i - 1] != NULL)
+                if (this->CursorTextures[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Cursors.Remove(i, this->Cursors.Length() - i);
+            this->CursorTextures.Remove(i, this->CursorTextures.Length() - i);
         }
 
         return 0;
     }
 
-    uint8 engine::assets::PurgeCursors(array<uint64>* Keep)
+    uint8 engine::assets::PurgeCursorTextures(array<uint64>* Keep)
     {
         uint64 i;
 
         if (Keep == NULL)
         {
-            printf("wze::engine.assets.PurgeCursors(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.assets.PurgeCursorTextures(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
             exit(1);
         }
 
-        for (i = 1; i < this->Cursors.Length(); i++)
+        for (i = 1; i < this->CursorTextures.Length(); i++)
         {
             if (!Keep->Contains({i}))
             {
-                if (this->Engine->Mouse.Cursor == i)
+                if (this->Engine->Mouse.CursorTextureID == i)
                 {
-                    this->Engine->Mouse.Cursor = 0;
+                    this->Engine->Mouse.CursorTextureID = 0;
                 }
 
-                SDL_FreeCursor(this->Cursors[i]);
-                this->Cursors[i] = NULL;
+                SDL_FreeCursor(this->CursorTextures[i]);
+                this->CursorTextures[i] = NULL;
             }
         }
 
-        if (this->Cursors[this->Cursors.Length() - 1] == NULL && 1 < this->Cursors.Length())
+        if (this->CursorTextures[this->CursorTextures.Length() - 1] == NULL && 1 < this->CursorTextures.Length())
         {
-            for (i = this->Cursors.Length(); 1 < i; i--)
+            for (i = this->CursorTextures.Length(); 1 < i; i--)
             {
-                if (this->Cursors[i - 1] != NULL)
+                if (this->CursorTextures[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Cursors.Remove(i, this->Cursors.Length() - i);
+            this->CursorTextures.Remove(i, this->CursorTextures.Length() - i);
         }
 
         return 0;

@@ -2729,26 +2729,26 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	.section .rdata,"dr"
 	.align 8
 .LC17:
-	.ascii "wze::engine.assets.LoadCursor(): CursorPath must not be NULL\12Params: CursorPath: %p, HotSpotX: %d, HotSpotY: %d\12\0"
+	.ascii "wze::engine.assets.LoadCursorTexture(): CursorTexturePath must not be NULL\12Params: CursorTexturePath: %p, HotSpotX: %d, HotSpotY: %d\12\0"
 	.align 8
 .LC18:
-	.ascii "wze::engine.assets.LoadCursor(): IMG_Load() failed\12Params: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\12\0"
+	.ascii "wze::engine.assets.LoadCursorTexture(): IMG_Load() failed\12Params: CursorTexturePath: %s, HotSpotX: %d, HotSpotY: %d\12\0"
 	.align 8
 .LC19:
-	.ascii "wze::engine.assets.LoadCursor(): HotSpotX out of range\12Params: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\12\0"
+	.ascii "wze::engine.assets.LoadCursorTexture(): HotSpotX out of range\12Params: CursorTexturePath: %s, HotSpotX: %d, HotSpotY: %d\12\0"
 	.align 8
 .LC20:
-	.ascii "wze::engine.assets.LoadCursor(): HotSpotY out of range\12Params: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\12\0"
+	.ascii "wze::engine.assets.LoadCursorTexture(): HotSpotY out of range\12Params: CursorTexturePath: %s, HotSpotX: %d, HotSpotY: %d\12\0"
 	.align 8
 .LC21:
-	.ascii "wze::engine.assets.LoadCursor(): SDL_CreateColorCursor() failed\12Params: CursorPath: %s, HotSpotX: %d, HotSpotY: %d\12\0"
+	.ascii "wze::engine.assets.LoadCursorTexture(): SDL_CreateColorCursor() failed\12Params: CursorTexturePath: %s, HotSpotX: %d, HotSpotY: %d\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6assets10LoadCursorEPKctt
-	.def	_ZN3wze6engine6assets10LoadCursorEPKctt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6assets10LoadCursorEPKctt
-_ZN3wze6engine6assets10LoadCursorEPKctt:
+	.globl	_ZN3wze6engine6assets17LoadCursorTextureEPKctt
+	.def	_ZN3wze6engine6assets17LoadCursorTextureEPKctt;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6assets17LoadCursorTextureEPKctt
+_ZN3wze6engine6assets17LoadCursorTextureEPKctt:
 .LFB6894:
 	pushq	%r13
 	.seh_pushreg	%r13
@@ -2921,10 +2921,10 @@ _ZN3wze6engine6assets10LoadCursorEPKctt:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6assets12UnloadCursorEy
-	.def	_ZN3wze6engine6assets12UnloadCursorEy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6assets12UnloadCursorEy
-_ZN3wze6engine6assets12UnloadCursorEy:
+	.globl	_ZN3wze6engine6assets19UnloadCursorTextureEy
+	.def	_ZN3wze6engine6assets19UnloadCursorTextureEy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6assets19UnloadCursorTextureEy
+_ZN3wze6engine6assets19UnloadCursorTextureEy:
 .LFB6895:
 	pushq	%rsi
 	.seh_pushreg	%rsi
@@ -3010,10 +3010,10 @@ _ZN3wze6engine6assets12UnloadCursorEy:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE
-	.def	_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE
-_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE:
+	.globl	_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE
+	.def	_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE
+_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE:
 .LFB6896:
 	pushq	%rbp
 	.seh_pushreg	%rbp
@@ -3134,14 +3134,14 @@ _ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC22:
-	.ascii "wze::engine.assets.PurgeCursors(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.assets.PurgeCursorTextures(): Keep must not be NULL\12Params: Keep: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE
-	.def	_ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE
-_ZN3wze6engine6assets12PurgeCursorsEPN3neo5arrayIyEE:
+	.globl	_ZN3wze6engine6assets19PurgeCursorTexturesEPN3neo5arrayIyEE
+	.def	_ZN3wze6engine6assets19PurgeCursorTexturesEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6assets19PurgeCursorTexturesEPN3neo5arrayIyEE
+_ZN3wze6engine6assets19PurgeCursorTexturesEPN3neo5arrayIyEE:
 .LFB6897:
 	pushq	%rdi
 	.seh_pushreg	%rdi

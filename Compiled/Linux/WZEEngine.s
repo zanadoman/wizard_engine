@@ -42,7 +42,7 @@ _ZN3wze6engineD2Ev:
 	xorl	%esi, %esi
 	xorl	%edx, %edx
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6assets12PurgeCursorsESt16initializer_listIyE@PLT
+	call	_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE@PLT
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6window5CloseEv@PLT
 	call	TTF_Quit@PLT

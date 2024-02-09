@@ -295,10 +295,10 @@ _ZN3wze6engine5mouse11SetRelativeEv:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine5mouse9GetCursorEv
-	.def	_ZN3wze6engine5mouse9GetCursorEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5mouse9GetCursorEv
-_ZN3wze6engine5mouse9GetCursorEv:
+	.globl	_ZN3wze6engine5mouse18GetCursorTextureIDEv
+	.def	_ZN3wze6engine5mouse18GetCursorTextureIDEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5mouse18GetCursorTextureIDEv
+_ZN3wze6engine5mouse18GetCursorTextureIDEv:
 .LFB6892:
 	.seh_endprologue
 	movq	48(%rcx), %rax
@@ -307,17 +307,17 @@ _ZN3wze6engine5mouse9GetCursorEv:
 	.section .rdata,"dr"
 	.align 8
 .LC8:
-	.ascii "wze::engine.mouse.SetCursor(): Illegal use of NULL Cursor\12Params: CursorID: %lld\12\0"
+	.ascii "wze::engine.mouse.SetCursorTextureID(): Illegal use of NULL CursorTexture\12Params: CursorTextureID: %lld\12\0"
 	.align 8
 .LC9:
-	.ascii "wze::engine.mouse.SetCursor(): Cursor does not exist\12Params: CursorID: %lld\12\0"
+	.ascii "wze::engine.mouse.SetCursorTextureID(): CursorTexture does not exist\12Params: CursorTextureID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine5mouse9SetCursorEy
-	.def	_ZN3wze6engine5mouse9SetCursorEy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5mouse9SetCursorEy
-_ZN3wze6engine5mouse9SetCursorEy:
+	.globl	_ZN3wze6engine5mouse18SetCursorTextureIDEy
+	.def	_ZN3wze6engine5mouse18SetCursorTextureIDEy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5mouse18SetCursorTextureIDEy
+_ZN3wze6engine5mouse18SetCursorTextureIDEy:
 .LFB6893:
 	pushq	%rsi
 	.seh_pushreg	%rsi
