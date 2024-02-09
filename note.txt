@@ -26,4 +26,4 @@ Test/supervising sequence:
         Texts OK
         Overlaps OK
         Collisions OK
-    WizardEngine.hpp
+    WizardEngine.hpp OK
