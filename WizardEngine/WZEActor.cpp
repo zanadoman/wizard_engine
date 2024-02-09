@@ -86,7 +86,7 @@ namespace wze
     {
         if (Y != Y)
         {
-            printf("wze??engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            printf("wze::engine.actors[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
             exit(1);
         }
 
@@ -103,12 +103,11 @@ namespace wze
 
     uint16 engine::actors::actor::SetWidth(uint16 Width)
     {
-        this->Width = Width;
-
         this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, this->Height) / 2;
         this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, Width, this->Height) : 0;
         this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(Width, 0, 0, this->Height) : 0;
 
+        this->Width = Width;
         this->UpdateHitboxScale();
         this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer, this);
 
@@ -122,12 +121,11 @@ namespace wze
 
     uint16 engine::actors::actor::SetHeight(uint16 Height)
     {
-        this->Height = Height;
-
         this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, this->Width, Height) / 2;
         this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, this->Width, Height) : 0;
         this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(this->Width, 0, 0, Height) : 0;
 
+        this->Height = Height;
         this->UpdateHitboxScale();
         this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer, this);
 
@@ -150,8 +148,6 @@ namespace wze
         }
 
         change = Angle - this->Angle;
-
-        this->Angle = Angle;
 
         for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
         {
@@ -230,7 +226,7 @@ namespace wze
             if (this->Overlapboxes.Overlapboxes[i]->AngleLocked)
             {
                 this->Overlapboxes.Overlapboxes[i]->Angle += change;
-                this->Overlapboxes.Overlapboxes[i]->UpdateOverlapboxScale();
+                this->Overlapboxes.Overlapboxes[i]->UpdateOverlapboxActiveScale();
             }
 
             if (this->Overlapboxes.Overlapboxes[i]->OffsetAngleLocked)
@@ -239,6 +235,7 @@ namespace wze
             }
         }
 
+        this->Angle = Angle;
         this->UpdateHitboxScale();
         this->Engine->Collision.ResolveCollisionLayer(this->CollisionLayer, this);
 
@@ -262,6 +259,7 @@ namespace wze
             printf("wze::engine.actors[].SetLayer(): Layer must not be less than 0\nParams: Layer: %lf\n", Layer);
             exit(1);
         }
+
         if (Layer == 0)
         {
             this->Depth = 0;
@@ -291,14 +289,14 @@ namespace wze
             printf("wze::engine.actors[].SetDepth(): Depth must not be NaN\nParams: Depth: %lf\n", Depth);
             exit(1);
         }
-        if (this->Layer == 0)
-        {
-            printf("wze::engine.actors[].SetDepth(): Illegal to set Depth when Layer is 0\nParams: Depth: %lf\n", Depth);
-            exit(1);
-        }
         if (Depth < 0)
         {
             printf("wze::engine::actors[].SetDepth(): Depth must not be less than 0\nParams: Depth: %lf\n", Depth);
+            exit(1);
+        }
+        if (0 < Depth && this->Layer == 0)
+        {
+            printf("wze::engine.actors[].SetDepth(): Illegal to set non-zero Depth when Layer is 0\nParams: Depth: %lf\n", Depth);
             exit(1);
         }
 

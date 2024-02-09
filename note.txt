@@ -19,7 +19,7 @@ Test/supervising sequence:
         Assets OK
         Actors OK
     Heavily nested:
-        Actor
+        Actor OK
         Colors
         Textures
         Flipbooks

@@ -167,7 +167,7 @@ namespace wze
         this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, this->Width, this->Height) : 0;
         this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(this->Width, 0, 0, this->Height) : 0;
 
-        this->UpdateOverlapboxScale();
+        this->UpdateOverlapboxActiveScale();
     }
 
     void* engine::actors::actor::overlapboxes::overlapbox::GetActorData()
@@ -236,7 +236,7 @@ namespace wze
         this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, Width, this->Height) : 0;
         this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(Width, 0, 0, this->Height) : 0;
 
-        this->UpdateOverlapboxScale();
+        this->UpdateOverlapboxActiveScale();
 
         return this->Width;
     }
@@ -254,7 +254,7 @@ namespace wze
         this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, this->Width, Height) : 0;
         this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(this->Width, 0, 0, Height) : 0;
 
-        this->UpdateOverlapboxScale();
+        this->UpdateOverlapboxActiveScale();
 
         return this->Height;
     }
@@ -274,7 +274,7 @@ namespace wze
 
         this->Angle = Angle;
 
-        this->UpdateOverlapboxScale();
+        this->UpdateOverlapboxActiveScale();
 
         return this->Angle;
     }
@@ -528,7 +528,7 @@ namespace wze
         return this->ButtonState;
     }
 
-    uint8 engine::actors::actor::overlapboxes::overlapbox::UpdateOverlapboxScale()
+    uint8 engine::actors::actor::overlapboxes::overlapbox::UpdateOverlapboxActiveScale()
     {
         double MedAngle1, MedAngle2, MedAngle1_180, MedAngle2_180;
         sint32 x1, x2, x3, x4;

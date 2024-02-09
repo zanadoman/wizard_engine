@@ -579,7 +579,7 @@ namespace wze
                                     double ActiveMedian2Angle;
                                     button ButtonState;
                                     overlapbox(engine* Engine, actor* Actor, neo::uint64 Type);
-                                    neo::uint8 UpdateOverlapboxScale();
+                                    neo::uint8 UpdateOverlapboxActiveScale();
                             };
 
                             public:
