@@ -10,7 +10,7 @@ namespace wze
         uint64 LogoAsset;
         uint64 LogoActor;
         uint64 LogoTexture;
-        double cache;
+        double opacity;
 
         if (Title == NULL)
         {
@@ -48,19 +48,18 @@ namespace wze
         srand(time(NULL));
 
         LogoAsset = this->Assets.LoadTexture("engine/icon.png");
-        LogoActor = this->Actors.New(NULL, 0, Width >> 1, Height >> 1, 500, 500, 0);
+        LogoActor = this->Actors.New(NULL, 0, Width >> 1, Height >> 1, Height >> 1, Height >> 1, 0);
         LogoTexture = this->Actors[LogoActor].Textures.New(LogoAsset);
         
-        this->Actors[LogoActor].Textures[LogoTexture].ColorA = 0;
-        cache = 0;
+        this->Actors[LogoActor].Textures[LogoTexture].ColorA = opacity = 0;
 
-        while (this->Update() && (cache += 0.1 * this->Timing.DeltaTime) < 255)
+        while (this->Update() && (opacity += 0.1 * this->Timing.DeltaTime) <= 255)
         {
-            this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(cache);
+            this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(opacity);
         }
-        while (this->Update() && 0 < (cache -= 0.1 * this->Timing.DeltaTime))
+        while (this->Update() && 0 <= (opacity -= 0.1 * this->Timing.DeltaTime))
         {
-            this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(cache);
+            this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(opacity);
         }
 
         this->Actors[LogoActor].Textures.Delete(LogoTexture);

@@ -31,7 +31,7 @@ sint32 main()
     Engine->Camera.SetAccelerationRateY(0.0002);
     Engine->Camera.SetSlowDownRangeY(100);
 
-    Engine->Audio.Play(Engine->Assets.LoadSound("assets/ara_ara.mp3"), 1, 1);
+    //Engine->Audio.Play(Engine->Assets.LoadSound("assets/ara_ara.mp3"), 1, 1);
 
     while (Engine->Update())
     {

@@ -922,11 +922,11 @@ _ZN3wze6engineC2EPKcS2_tth:
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movl	%r8d, %r13d
+	movl	%ecx, %r13d
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	movl	%ecx, %r12d
+	movl	%r8d, %r12d
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
@@ -1010,26 +1010,26 @@ _ZN3wze6engineC2EPKcS2_tth:
 	testl	%eax, %eax
 	jne	.L184
 	call	TTF_Init@PLT
-	movzwl	%r13w, %r8d
-	movzwl	%r12w, %ecx
+	movzwl	%r12w, %r8d
+	movzwl	%r13w, %ecx
 	testl	%eax, %eax
 	jne	.L185
 	movq	(%rsp), %rdx
 	movq	%r14, %rsi
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6window4OpenEPKcS3_tt@PLT
-	leal	-1(%r12), %eax
-	shrw	%r12w
+	leal	-1(%r13), %eax
+	shrw	%r13w
 	pxor	%xmm0, %xmm0
 	xorl	%edi, %edi
 	movw	%ax, 40(%rbx)
-	leal	-1(%r13), %eax
-	shrw	%r13w
-	movzwl	%r12w, %r12d
+	leal	-1(%r12), %eax
+	shrw	%r12w
 	movzwl	%r13w, %r13d
-	movd	%r12d, %xmm1
+	movzwl	%r12w, %r12d
+	movd	%r13d, %xmm1
 	movw	%ax, 42(%rbx)
-	movd	%r13d, %xmm6
+	movd	%r12d, %xmm6
 	punpckldq	%xmm6, %xmm1
 	psubd	%xmm1, %xmm0
 	cvtdq2pd	%xmm0, %xmm0
@@ -1048,13 +1048,13 @@ _ZN3wze6engineC2EPKcS2_tth:
 	pxor	%xmm0, %xmm0
 	pxor	%xmm1, %xmm1
 	pxor	%xmm2, %xmm2
+	movl	%r12d, %r8d
+	cvtsi2sdl	%r13d, %xmm0
+	movl	%r12d, %ecx
 	xorl	%edx, %edx
-	cvtsi2sdl	%r12d, %xmm0
-	movl	$500, %r8d
 	xorl	%esi, %esi
+	cvtsi2sdl	%r12d, %xmm1
 	movq	%rbp, %rdi
-	cvtsi2sdl	%r13d, %xmm1
-	movl	$500, %ecx
 	movq	%rax, 8(%rsp)
 	movq	%rax, %r14
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
@@ -1086,7 +1086,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	addsd	(%rsp), %xmm0
 	comisd	%xmm0, %xmm5
 	movsd	%xmm0, (%rsp)
-	jbe	.L148
+	jb	.L148
 	call	round@PLT
 	movq	%r12, %rsi
 	movq	%rbp, %rdi
@@ -1114,7 +1114,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	pxor	%xmm0, %xmm0
 	comisd	%xmm0, %xmm3
 	movsd	%xmm3, (%rsp)
-	jbe	.L149
+	jb	.L149
 	movapd	%xmm3, %xmm0
 	call	round@PLT
 	movq	%r12, %rsi
@@ -1163,9 +1163,9 @@ _ZN3wze6engineC2EPKcS2_tth:
 	.cfi_restore_state
 	movzbl	8(%rsp), %r9d
 	movq	(%rsp), %rdx
-	movzwl	%r12w, %ecx
+	movzwl	%r13w, %ecx
 	xorl	%eax, %eax
-	movzwl	%r13w, %r8d
+	movzwl	%r12w, %r8d
 	movq	%r14, %rsi
 	leaq	.LC5(%rip), %rdi
 	call	printf@PLT
@@ -1183,17 +1183,17 @@ _ZN3wze6engineC2EPKcS2_tth:
 .L184:
 	movzbl	8(%rsp), %r9d
 	movq	(%rsp), %rdx
-	movzwl	%r12w, %ecx
+	movzwl	%r13w, %ecx
 	xorl	%eax, %eax
-	movzwl	%r13w, %r8d
+	movzwl	%r12w, %r8d
 	movq	%r14, %rsi
 	leaq	.LC7(%rip), %rdi
 	call	printf@PLT
 	jmp	.L140
 .L183:
 	movq	(%rsp), %rdx
-	movzwl	%r12w, %ecx
-	movzwl	%r13w, %r8d
+	movzwl	%r13w, %ecx
+	movzwl	%r12w, %r8d
 	movq	%r14, %rsi
 	movzbl	8(%rsp), %r9d
 	leaq	.LC6(%rip), %rdi
