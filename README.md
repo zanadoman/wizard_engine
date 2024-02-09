@@ -38,10 +38,10 @@ Layer 0 means the screen, in every other case (when Layer is more than 0) it mea
 
 ## More about the ID system
 
-In every case the 0 ID means an empty object which should not be used, \
+In every case the ID 0 means an empty object which should not be used, \
 it can not be deleted or accessed, but you can use it for example to give an \
 Actor's Texture object and empty TextureID. (In this case the renderer will skip the Texture object.) \
-Just to mention another useful example of 0 ID, if you don't want your Actor to have collision, 
+Just to mention another useful example of using ID 0, if you don't want your Actor to have collision, 
 you need to set it's CollisionLayerID to 0. (No collisions occur in CollisionLayer 0)
 
 ## Example main function
