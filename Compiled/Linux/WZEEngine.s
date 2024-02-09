@@ -1055,20 +1055,21 @@ _ZN3wze6engineC2EPKcS2_tth:
 	xorl	%esi, %esi
 	cvtsi2sdl	%r12d, %xmm1
 	movq	%rbp, %rdi
-	movq	%rax, 8(%rsp)
 	movq	%rax, %r14
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
-	movq	%rax, %rsi
+	movzbl	%al, %r12d
 	movq	%rbp, %rdi
-	movq	%rax, %r12
+	movq	%r12, %rsi
 	call	_ZN3wze6engine6actorsixEy@PLT
+	movzbl	%r14b, %esi
 	leaq	40(%rax), %rdi
-	movq	%r14, %rsi
+	movq	%rsi, 8(%rsp)
 	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
 	movq	%r12, %rsi
 	movq	%rbp, %rdi
 	movq	%rax, %r13
 	call	_ZN3wze6engine6actorsixEy@PLT
+	movzbl	%r13b, %r13d
 	leaq	40(%rax), %rdi
 	movq	%r13, %rsi
 	call	_ZN3wze6engine6actors5actor8texturesixEy@PLT
