@@ -14,7 +14,7 @@ Test/supervising sequence:
         Audio OK
     Slightly nested:
         Render OK
-        Camera
+        Camera OK
         Vector
         Assets
         Actors
