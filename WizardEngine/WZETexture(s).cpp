@@ -73,13 +73,13 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::textures::Purge(std::initializer_list<uint64> Keep)
+    uint8 engine::actors::actor::textures::Purge(std::initializer_list<uint64> KeepTextureIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->Textures.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepTextureIDs, {i}))
             {
                 delete this->Textures[i];
                 this->Textures[i] = NULL;
@@ -102,19 +102,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::textures::Purge(array<uint64>* Keep)
+    uint8 engine::actors::actor::textures::Purge(array<uint64>* KeepTextureIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepTextureIDs == NULL)
         {
-            printf("wze::engine.actors[].textures.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.actors[].textures.Purge(): KeepTextureIDs must not be NULL\nParams: KeepTextureIDs: %p\n", KeepTextureIDs);
             exit(1);
         }
 
         for (i = 1; i < this->Textures.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepTextureIDs->Contains({i}))
             {
                 delete this->Textures[i];
                 this->Textures[i] = NULL;

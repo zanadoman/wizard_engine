@@ -68,13 +68,13 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::overlapboxes::Purge(std::initializer_list<uint64> Keep)
+    uint8 engine::actors::actor::overlapboxes::Purge(std::initializer_list<uint64> KeepOverlapboxIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->Overlapboxes.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepOverlapboxIDs, {i}))
             {
                 delete this->Overlapboxes[i];
                 this->Overlapboxes[i] = NULL;
@@ -97,19 +97,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::overlapboxes::Purge(array<uint64>* Keep)
+    uint8 engine::actors::actor::overlapboxes::Purge(array<uint64>* KeepOverlapboxIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepOverlapboxIDs == NULL)
         {
-            printf("wze::engine.actors[].overlapboxes.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.actors[].overlapboxes.Purge(): KeepOverlapboxIDs must not be NULL\nParams: KeepOverlapboxIDs: %p\n", KeepOverlapboxIDs);
             exit(1);
         }
 
         for (i = 1; i < this->Overlapboxes.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepOverlapboxIDs->Contains({i}))
             {
                 delete this->Overlapboxes[i];
                 this->Overlapboxes[i] = NULL;

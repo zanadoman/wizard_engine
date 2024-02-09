@@ -67,13 +67,13 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::colors::Purge(std::initializer_list<uint64> Keep)
+    uint8 engine::actors::actor::colors::Purge(std::initializer_list<uint64> KeepColorIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->Colors.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepColorIDs, {i}))
             {
                 delete this->Colors[i];
                 this->Colors[i] = NULL;
@@ -96,19 +96,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::colors::Purge(array<uint64>* Keep)
+    uint8 engine::actors::actor::colors::Purge(array<uint64>* KeepColorIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepColorIDs == NULL)
         {
-            printf("wze::engine.actors[].colors.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.actors[].colors.Purge(): KeepColorIDs must not be NULL\nParams: KeepColorIDs: %p\n", KeepColorIDs);
             exit(1);
         }
 
         for (i = 1; i < this->Colors.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepColorIDs->Contains({i}))
             {
                 delete this->Colors[i];
                 this->Colors[i] = NULL;

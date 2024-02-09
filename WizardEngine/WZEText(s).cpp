@@ -79,13 +79,13 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::texts::Purge(std::initializer_list<uint64> Keep)
+    uint8 engine::actors::actor::texts::Purge(std::initializer_list<uint64> KeepTextIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->Texts.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepTextIDs, {i}))
             {
                 delete this->Texts[i];
                 this->Texts[i] = NULL;
@@ -108,19 +108,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::texts::Purge(array<uint64>* Keep)
+    uint8 engine::actors::actor::texts::Purge(array<uint64>* KeepTextIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepTextIDs == NULL)
         {
-            printf("wze::engine.actors[].texts.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.actors[].texts.Purge(): KeepTextIDs must not be NULL\nParams: KeepTextIDs: %p\n", KeepTextIDs);
             exit(1);
         }
 
         for (i = 1; i < this->Texts.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepTextIDs->Contains({i}))
             {
                 delete this->Texts[i];
                 this->Texts[i] = NULL;

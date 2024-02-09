@@ -585,7 +585,7 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC10:
-	.ascii "wze::engine.threads.Purge(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.threads.Purge(): KeepThreadIDs must not be NULL\12Params: KeepThreadIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4

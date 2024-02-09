@@ -321,8 +321,8 @@ namespace wze
                             public:
                                 neo::uint64 New();
                                 neo::uint8 Delete(neo::uint64 ColorID);
-                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
-                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepColorIDs);
+                                neo::uint8 Purge(neo::array<neo::uint64>* KeepColorIDs);
                                 color& operator [] (neo::uint64 ColorID);
 
                             private:
@@ -378,8 +378,8 @@ namespace wze
                             public:
                                 neo::uint64 New(neo::uint64 TextureID);
                                 neo::uint8 Delete(neo::uint64 TextureID);
-                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
-                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextureIDs);
+                                neo::uint8 Purge(neo::array<neo::uint64>* KeepTextureIDs);
                                 texture& operator [] (neo::uint64 TextureID);
 
                             private:
@@ -445,8 +445,8 @@ namespace wze
                                 neo::uint64 New(neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
                                 neo::uint64 New(neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
                                 neo::uint8 Delete(neo::uint64 FlipbookID);
-                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
-                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepFlipbookIDs);
+                                neo::uint8 Purge(neo::array<neo::uint64>* KeepFlipbookIDs);
                                 flipbook& operator [] (neo::uint64 FlipbookID);
 
                             private:
@@ -513,8 +513,8 @@ namespace wze
                             public:
                                 neo::uint64 New(const char* String, neo::uint64 FontID);
                                 neo::uint8 Delete(neo::uint64 TextID);
-                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
-                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextIDs);
+                                neo::uint8 Purge(neo::array<neo::uint64>* KeepTextIDs);
                                 text& operator [] (neo::uint64 TextID);
 
                             private:
@@ -585,15 +585,14 @@ namespace wze
                             public:
                                 neo::uint64 New(neo::uint64 Type);
                                 neo::uint8 Delete(neo::uint64 OverlapboxID);
-                                neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
-                                neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepOverlapboxIDs);
+                                neo::uint8 Purge(neo::array<neo::uint64>* KeepOverlapboxIDs);
                                 overlapbox& operator [] (neo::uint64 OverlapboxID);
 
                             private:
                                 neo::array<overlapbox*> Overlapboxes;
                                 overlapboxes(engine* Engine, actor* Actor);
                                 ~overlapboxes();
-
                         } Overlapboxes;
 
                     //__________Actor______________________________________________________________________________
@@ -653,8 +652,8 @@ namespace wze
                 public:
                     neo::uint64 New(void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
                     neo::uint8 Delete(neo::uint64 ActorID);
-                    neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
-                    neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                    neo::uint8 Purge(std::initializer_list<neo::uint64> KeepActorIDs);
+                    neo::uint8 Purge(neo::array<neo::uint64>* KeepActorIDs);
                     actor& operator [] (neo::uint64 ActorID);
 
                 private:
@@ -733,8 +732,8 @@ namespace wze
                 public:
                     neo::uint64 Start(neo::sint32(*Function)(void*), void* Parameter);
                     neo::sint32 Wait(neo::uint64 ThreadID);
-                    neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
-                    neo::uint8 Purge(neo::array<neo::uint64>* Keep);
+                    neo::uint8 Purge(std::initializer_list<neo::uint64> KeepThreadIDs);
+                    neo::uint8 Purge(neo::array<neo::uint64>* KeepThreadIDs);
 
                 private:
                     neo::array<SDL_Thread*> Threads;
@@ -751,20 +750,20 @@ namespace wze
                 public:
                     neo::uint64 LoadTexture(const char* TexturePath);
                     neo::uint8 UnloadTexture(neo::uint64 TextureID);
-                    neo::uint8 PurgeTextures(std::initializer_list<neo::uint64> Keep);
-                    neo::uint8 PurgeTextures(neo::array<neo::uint64>* Keep);
+                    neo::uint8 PurgeTextures(std::initializer_list<neo::uint64> KeepTextureIDs);
+                    neo::uint8 PurgeTextures(neo::array<neo::uint64>* KeepTextureIDs);
                     neo::uint64 LoadSound(const char* SoundPath);
                     neo::uint8 UnloadSound(neo::uint64 SoundID);
-                    neo::uint8 PurgeSounds(std::initializer_list<neo::uint64> Keep);
-                    neo::uint8 PurgeSounds(neo::array<neo::uint64>* Keep);
+                    neo::uint8 PurgeSounds(std::initializer_list<neo::uint64> KeepSoundIDs);
+                    neo::uint8 PurgeSounds(neo::array<neo::uint64>* KeepSoundIDs);
                     neo::uint64 LoadFont(const char* FontPath, neo::uint8 Size);
                     neo::uint8 UnloadFont(neo::uint64 FontID);
-                    neo::uint8 PurgeFonts(std::initializer_list<neo::uint64> Keep);
-                    neo::uint8 PurgeFonts(neo::array<neo::uint64>* Keep);
+                    neo::uint8 PurgeFonts(std::initializer_list<neo::uint64> KeepFontIDs);
+                    neo::uint8 PurgeFonts(neo::array<neo::uint64>* KeepFontIDs);
                     neo::uint64 LoadCursorTexture(const char* CursorTexturePath, neo::uint16 HotSpotX, neo::uint16 HotSpotY);
                     neo::uint8 UnloadCursorTexture(neo::uint64 CursorTextureID);
-                    neo::uint8 PurgeCursorTextures(std::initializer_list<neo::uint64> Keep);
-                    neo::uint8 PurgeCursorTextures(neo::array<neo::uint64>* Keep);
+                    neo::uint8 PurgeCursorTextures(std::initializer_list<neo::uint64> KeepCursorTextureIDs);
+                    neo::uint8 PurgeCursorTextures(neo::array<neo::uint64>* KeepCursorTextureIDs);
 
                 private:
                     neo::array<SDL_Texture*> Textures;

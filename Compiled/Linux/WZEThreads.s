@@ -611,7 +611,7 @@ _ZN3wze6engine7threads5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC10:
-	.string	"wze::engine.threads.Purge(): Keep must not be NULL\nParams: Keep: %p\n"
+	.string	"wze::engine.threads.Purge(): KeepThreadIDs must not be NULL\nParams: KeepThreadIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4

@@ -1402,7 +1402,7 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC10:
-	.string	"wze::engine.assets.PurgeTextures(): Keep must not be NULL\nParams: Keep: %p\n"
+	.string	"wze::engine.assets.PurgeTextures(): KeepTextureIDs must not be NULL\nParams: KeepTextureIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1977,7 +1977,7 @@ _ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC13:
-	.string	"wze::engine.assets.PurgeSounds(): Keep must not be NULL\nParams: Keep: %p\n"
+	.string	"wze::engine.assets.PurgeSounds(): KeepSoundIDs must not be NULL\nParams: KeepSoundIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -2671,7 +2671,7 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC16:
-	.string	"wze::engine.assets.PurgeFonts(): Keep must not be NULL\nParams: Keep: %p\n"
+	.string	"wze::engine.assets.PurgeFonts(): KeepFontIDs must not be NULL\nParams: KeepFontIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -3342,7 +3342,7 @@ _ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC22:
-	.string	"wze::engine.assets.PurgeCursorTextures(): Keep must not be NULL\nParams: Keep: %p\n"
+	.string	"wze::engine.assets.PurgeCursorTextures(): KeepCursorTextureIDs must not be NULL\nParams: KeepCursorTextureIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4

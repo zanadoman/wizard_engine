@@ -561,7 +561,7 @@ _ZN3wze6engine6actors5actor5texts5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC5:
-	.string	"wze::engine.actors[].texts.Purge(): Keep must not be NULL\nParams: Keep: %p\n"
+	.string	"wze::engine.actors[].texts.Purge(): KeepTextIDs must not be NULL\nParams: KeepTextIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4

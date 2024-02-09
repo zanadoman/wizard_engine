@@ -73,13 +73,13 @@ namespace wze
         return result;
     }
 
-    uint8 engine::threads::Purge(std::initializer_list<uint64> Keep)
+    uint8 engine::threads::Purge(std::initializer_list<uint64> KeepThreadIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->Threads.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepThreadIDs, {i}))
             {
                 SDL_WaitThread(this->Threads[i], NULL);
                 this->Threads[i] = NULL;
@@ -102,19 +102,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::threads::Purge(array<uint64>* Keep)
+    uint8 engine::threads::Purge(array<uint64>* KeepThreadIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepThreadIDs == NULL)
         {
-            printf("wze::engine.threads.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.threads.Purge(): KeepThreadIDs must not be NULL\nParams: KeepThreadIDs: %p\n", KeepThreadIDs);
             exit(1);
         }
 
         for (i = 1; i < this->Threads.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepThreadIDs->Contains({i}))
             {
                 SDL_WaitThread(this->Threads[i], NULL);
                 this->Threads[i] = NULL;

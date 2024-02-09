@@ -765,7 +765,7 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC13:
-	.ascii "wze::engine.actors.Purge(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.actors.Purge(): KeepActorIDs must not be NULL\12Params: KeepActorIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4

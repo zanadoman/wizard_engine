@@ -687,7 +687,7 @@ _ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC8:
-	.string	"wze::engine.actors[].textures.Purge(): Keep must not be NULL\nParams: Keep: %p\n"
+	.string	"wze::engine.actors[].textures.Purge(): KeepTextureIDs must not be NULL\nParams: KeepTextureIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4

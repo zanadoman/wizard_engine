@@ -614,7 +614,7 @@ _ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC9:
-	.ascii "wze::engine.actors[].colors.Purge(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.actors[].colors.Purge(): KeepColorIDs must not be NULL\12Params: KeepColorIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4

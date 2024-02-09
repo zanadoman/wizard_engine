@@ -1336,7 +1336,7 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC10:
-	.ascii "wze::engine.assets.PurgeTextures(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.assets.PurgeTextures(): KeepTextureIDs must not be NULL\12Params: KeepTextureIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -1884,7 +1884,7 @@ _ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC13:
-	.ascii "wze::engine.assets.PurgeSounds(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.assets.PurgeSounds(): KeepSoundIDs must not be NULL\12Params: KeepSoundIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2514,7 +2514,7 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC16:
-	.ascii "wze::engine.assets.PurgeFonts(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.assets.PurgeFonts(): KeepFontIDs must not be NULL\12Params: KeepFontIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -3134,7 +3134,7 @@ _ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC22:
-	.ascii "wze::engine.assets.PurgeCursorTextures(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.assets.PurgeCursorTextures(): KeepCursorTextureIDs must not be NULL\12Params: KeepCursorTextureIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4

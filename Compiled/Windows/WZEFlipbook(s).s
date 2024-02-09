@@ -500,7 +500,7 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC5:
-	.ascii "wze::engine.actors[].flipbooks.Purge(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.actors[].flipbooks.Purge(): KeepFlipbookIDs must not be NULL\12Params: KeepFlipbookIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4

@@ -653,7 +653,7 @@ _ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.section	.rodata.str1.8
 	.align 8
 .LC9:
-	.string	"wze::engine.actors[].colors.Purge(): Keep must not be NULL\nParams: Keep: %p\n"
+	.string	"wze::engine.actors[].colors.Purge(): KeepColorIDs must not be NULL\nParams: KeepColorIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4

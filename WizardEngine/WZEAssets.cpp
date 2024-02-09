@@ -112,13 +112,13 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::assets::PurgeTextures(std::initializer_list<uint64> Keep)
+    uint8 engine::assets::PurgeTextures(std::initializer_list<uint64> KeepTextureIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->Textures.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepTextureIDs, {i}))
             {
                 for (uint64 j = 1; j < this->Engine->Actors.Actors.Length(); j++)
                 {
@@ -178,19 +178,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::assets::PurgeTextures(array<uint64>* Keep)
+    uint8 engine::assets::PurgeTextures(array<uint64>* KeepTextureIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepTextureIDs == NULL)
         {
-            printf("wze::engine.assets.PurgeTextures(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.assets.PurgeTextures(): KeepTextureIDs must not be NULL\nParams: KeepTextureIDs: %p\n", KeepTextureIDs);
             exit(1);
         }
 
         for (i = 1; i < this->Textures.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepTextureIDs->Contains({i}))
             {
                 for (uint64 j = 1; j < this->Engine->Actors.Actors.Length(); j++)
                 {
@@ -309,13 +309,13 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::assets::PurgeSounds(std::initializer_list<uint64> Keep)
+    uint8 engine::assets::PurgeSounds(std::initializer_list<uint64> KeepSoundIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->Sounds.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepSoundIDs, {i}))
             {
                 Mix_FreeChunk(this->Sounds[i]);
                 this->Sounds[i] = NULL;
@@ -338,19 +338,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::assets::PurgeSounds(array<uint64>* Keep)
+    uint8 engine::assets::PurgeSounds(array<uint64>* KeepSoundIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepSoundIDs == NULL)
         {
-            printf("wze::engine.assets.PurgeSounds(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.assets.PurgeSounds(): KeepSoundIDs must not be NULL\nParams: KeepSoundIDs: %p\n", KeepSoundIDs);
             exit(1);
         }
 
         for (i = 1; i < this->Sounds.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepSoundIDs->Contains({i}))
             {
                 Mix_FreeChunk(this->Sounds[i]);
                 this->Sounds[i] = NULL;
@@ -456,13 +456,13 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::assets::PurgeFonts(std::initializer_list<uint64> Keep)
+    uint8 engine::assets::PurgeFonts(std::initializer_list<uint64> KeepFontIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->Fonts.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepFontIDs, {i}))
             {
                 for (uint64 j = 1; j < this->Engine->Actors.Actors.Length(); j++)
                 {
@@ -509,19 +509,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::assets::PurgeFonts(array<uint64>* Keep)
+    uint8 engine::assets::PurgeFonts(array<uint64>* KeepFontIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepFontIDs == NULL)
         {
-            printf("wze::engine.assets.PurgeFonts(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.assets.PurgeFonts(): KeepFontIDs must not be NULL\nParams: KeepFontIDs: %p\n", KeepFontIDs);
             exit(1);
         }
 
         for (i = 1; i < this->Fonts.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepFontIDs->Contains({i}))
             {
                 for (uint64 j = 1; j < this->Engine->Actors.Actors.Length(); j++)
                 {
@@ -653,13 +653,13 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::assets::PurgeCursorTextures(std::initializer_list<uint64> Keep)
+    uint8 engine::assets::PurgeCursorTextures(std::initializer_list<uint64> KeepCursorTextureIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->CursorTextures.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepCursorTextureIDs, {i}))
             {
                 if (this->Engine->Mouse.CursorTextureID == i)
                 {
@@ -687,19 +687,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::assets::PurgeCursorTextures(array<uint64>* Keep)
+    uint8 engine::assets::PurgeCursorTextures(array<uint64>* KeepCursorTextureIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepCursorTextureIDs == NULL)
         {
-            printf("wze::engine.assets.PurgeCursorTextures(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.assets.PurgeCursorTextures(): KeepCursorTextureIDs must not be NULL\nParams: KeepCursorTextureIDs: %p\n", KeepCursorTextureIDs);
             exit(1);
         }
 
         for (i = 1; i < this->CursorTextures.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepCursorTextureIDs->Contains({i}))
             {
                 if (this->Engine->Mouse.CursorTextureID == i)
                 {

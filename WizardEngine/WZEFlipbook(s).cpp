@@ -132,13 +132,13 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::flipbooks::Purge(std::initializer_list<uint64> Keep)
+    uint8 engine::actors::actor::flipbooks::Purge(std::initializer_list<uint64> KeepFlipbookIDs)
     {
         uint64 i;
 
         for (i = 1; i < this->Flipbooks.Length(); i++)
         {
-            if (!initializer_list_Contains(Keep, {i}))
+            if (!initializer_list_Contains(KeepFlipbookIDs, {i}))
             {
                 delete this->Flipbooks[i];
                 this->Flipbooks[i] = NULL;
@@ -161,19 +161,19 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::actors::actor::flipbooks::Purge(array<uint64>* Keep)
+    uint8 engine::actors::actor::flipbooks::Purge(array<uint64>* KeepFlipbookIDs)
     {
         uint64 i;
 
-        if (Keep == NULL)
+        if (KeepFlipbookIDs == NULL)
         {
-            printf("wze::engine.actors[].flipbooks.Purge(): Keep must not be NULL\nParams: Keep: %p\n", Keep);
+            printf("wze::engine.actors[].flipbooks.Purge(): KeepFlipbookIDs must not be NULL\nParams: KeepFlipbookIDs: %p\n", KeepFlipbookIDs);
             exit(1);
         }
 
         for (i = 1; i < this->Flipbooks.Length(); i++)
         {
-            if (!Keep->Contains({i}))
+            if (!KeepFlipbookIDs->Contains({i}))
             {
                 delete this->Flipbooks[i];
                 this->Flipbooks[i] = NULL;

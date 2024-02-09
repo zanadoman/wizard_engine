@@ -644,7 +644,7 @@ _ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC8:
-	.ascii "wze::engine.actors[].textures.Purge(): Keep must not be NULL\12Params: Keep: %p\12\0"
+	.ascii "wze::engine.actors[].textures.Purge(): KeepTextureIDs must not be NULL\12Params: KeepTextureIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
