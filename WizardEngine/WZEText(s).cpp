@@ -51,17 +51,17 @@ namespace wze
         return this->Texts.Length() - 1;
     }
 
-    uint8 engine::actors::actor::texts::Delete(uint64 ID)
+    uint8 engine::actors::actor::texts::Delete(uint64 TextID)
     {
         uint64 i;
 
-        if (this->Texts.Length() <= ID || this->Texts[ID] == NULL)
+        if (this->Texts.Length() <= TextID || this->Texts[TextID] == NULL)
         {
             return 0;
         }
 
-        delete this->Texts[ID];
-        this->Texts[ID] = NULL;
+        delete this->Texts[TextID];
+        this->Texts[TextID] = NULL;
 
         if (this->Texts[this->Texts.Length() - 1] == NULL && 1 < this->Texts.Length())
         {
@@ -143,20 +143,20 @@ namespace wze
         return 0;
     }
 
-    engine::actors::actor::texts::text& engine::actors::actor::texts::operator [] (uint64 ID)
+    engine::actors::actor::texts::text& engine::actors::actor::texts::operator [] (uint64 TextID)
     {
-        if (ID == 0)
+        if (TextID == 0)
         {
-            printf("wze::engine.actors[].texts[]: Illegal access to NULL Text\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].texts[]: Illegal access to NULL Text\nParams: TextID: %lld\n", TextID);
             exit(1);
         }
-        if (this->Texts.Length() <= ID || this->Texts[ID] == NULL)
+        if (this->Texts.Length() <= TextID || this->Texts[TextID] == NULL)
         {
-            printf("wze::engine.actors[].texts[]: Text does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].texts[]: Text does not exist\nParams: TextID: %lld\n", TextID);
             exit(1);
         }
 
-        return *this->Texts[ID];
+        return *this->Texts[TextID];
     }
 
     engine::actors::actor::texts::text::text(engine* Engine, actor* Actor, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
@@ -186,7 +186,7 @@ namespace wze
         this->FontStyle = STYLE_NORMAL;
         this->Texture = NULL;
 
-        if (this->Height != 0 && this->FontID != 0 && 1 < this->String.Length())
+        if (this->FontID != 0 && this->Height != 0 && 1 < this->String.Length())
         {
             color.r = color.g = color.b = color.a = 255;
 
@@ -327,7 +327,7 @@ namespace wze
 
             color.r = color.g = color.b = color.a = 255;
 
-            if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
+            if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], String, color)) == NULL)
             {
                 printf("wze::engine.actors[].texts[].SetString(): TTF_RenderUTF8_Blended failed\nParams: String: %s\n", String);
                 exit(1);
@@ -356,39 +356,39 @@ namespace wze
         return (this->String = {String})();
     }
 
-    uint64 engine::actors::actor::texts::text::GetFont()
+    uint64 engine::actors::actor::texts::text::GetFontID()
     {
         return this->FontID;
     }
 
-    uint64 engine::actors::actor::texts::text::SetFont(uint64 ID)
+    uint64 engine::actors::actor::texts::text::SetFontID(uint64 FontID)
     {
         SDL_Surface* surface;
         SDL_Color color;
 
-        if (ID != 0 && (this->Engine->Assets.Fonts.Length() <= ID || this->Engine->Assets.Fonts[ID] == NULL))
+        if (FontID != 0 && (this->Engine->Assets.Fonts.Length() <= FontID || this->Engine->Assets.Fonts[FontID] == NULL))
         {
-            printf("wze::engine.actors[].texts[].SetFont(): Font does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].texts[].SetFontID(): Font does not exist\nParams: FontID: %lld\n", FontID);
             exit(1);
         }
 
-        if (this->FontID != ID && ID != 0 && this->Height != 0 && 1 < this->String.Length())
+        if (this->FontID != FontID && FontID != 0 && this->Height != 0 && 1 < this->String.Length())
         {
             if (this->FontStyle != STYLE_NORMAL)
             {
-                TTF_SetFontStyle(this->Engine->Assets.Fonts[ID], this->FontStyle);
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[FontID], this->FontStyle);
             }
 
             color.r = color.g = color.b = color.a = 255;
 
-            if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[ID], this->String(), color)) == NULL)
+            if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[FontID], this->String(), color)) == NULL)
             {
-                printf("wze::engine.actors[].texts[].SetFont(): TTF_RenderUTF8_Blended failed\nParams: ID: %lld\n", ID);
+                printf("wze::engine.actors[].texts[].SetFontID(): TTF_RenderUTF8_Blended failed\nParams: FontID: %lld\n", FontID);
                 exit(1);
             }
             if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
             {
-                printf("wze::engine.actors[].texts[].SetFont(): SDL_CreateTextureFromSurface failed\nParams: ID: %lld\n", ID);
+                printf("wze::engine.actors[].texts[].SetFontID(): SDL_CreateTextureFromSurface failed\nParams: FontID: %lld\n", FontID);
                 exit(1);
             }
 
@@ -397,7 +397,7 @@ namespace wze
 
             if (this->FontStyle != STYLE_NORMAL)
             {
-                TTF_SetFontStyle(this->Engine->Assets.Fonts[ID], STYLE_NORMAL);
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[FontID], STYLE_NORMAL);
             }
         }
         else
@@ -407,7 +407,7 @@ namespace wze
             this->Texture = NULL;
         }
 
-        return this->FontID = ID;
+        return this->FontID = FontID;
     }
 
     style engine::actors::actor::texts::text::GetFontStyle()
@@ -443,7 +443,7 @@ namespace wze
             this->Width = round(surface->w * double(this->Height) / surface->h);
             SDL_FreeSurface(surface);
 
-            if (this->FontStyle != STYLE_NORMAL)
+            if (FontStyle != STYLE_NORMAL)
             {
                 TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
             }

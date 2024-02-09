@@ -490,8 +490,8 @@ namespace wze
                                     neo::uint16 SetHeight(neo::uint16);
                                     const char* GetString();
                                     const char* SetString(const char* String);
-                                    neo::uint64 GetFont();
-                                    neo::uint64 SetFont(neo::uint64 ID);
+                                    neo::uint64 GetFontID();
+                                    neo::uint64 SetFontID(neo::uint64 FontID);
                                     style GetFontStyle();
                                     style SetFontStyle(style FontStyle);
 
@@ -512,10 +512,10 @@ namespace wze
 
                             public:
                                 neo::uint64 New(const char* String, neo::uint64 FontID);
-                                neo::uint8 Delete(neo::uint64 ID);
+                                neo::uint8 Delete(neo::uint64 TextID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
                                 neo::uint8 Purge(neo::array<neo::uint64>* Keep);
-                                text& operator [] (neo::uint64 ID);
+                                text& operator [] (neo::uint64 TextID);
 
                             private:
                                 neo::array<text*> Texts;

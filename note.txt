@@ -23,6 +23,6 @@ Test/supervising sequence:
         Colors OK
         Textures OK
         Flipbooks OK
-        Texts
+        Texts OK
         Overlaps
         Collisions OK
