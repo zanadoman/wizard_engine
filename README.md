@@ -14,7 +14,7 @@ state of every key that is present in the key enum.
 
 ## How to load Assets?
 
-Use Assets inner class of your Engine instance. \
+Use the Assets inner class of your Engine instance. \
 The load functions will return the ID of the loaded stuff, \
 and it is your responsibility to store them in integer variables.
 
@@ -22,7 +22,7 @@ and it is your responsibility to store them in integer variables.
 
 You can request new Actors from the Actors subclass. \
 You should store the new Actor's ID in an integer variable \
-as before.
+as well.
 
 ## How to use Actors?
 
@@ -38,11 +38,11 @@ Layer 0 means the screen, in every other case (when Layer is more than 0) it mea
 
 ## More about the ID system
 
-In every case the ID 0 means an empty object which should not be used, \
+In every case ID 0 means an empty object which should not be used, \
 it can not be deleted or accessed, but you can use it for example to give an \
 Actor's Texture object and empty TextureID. (In this case the renderer will skip the Texture object.) \
 Just to mention another useful example of using ID 0, if you don't want your Actor to have collision, 
-you need to set it's CollisionLayerID to 0. (No collisions occur in CollisionLayer 0)
+you need to set it's CollisionLayer to 0. (No collisions occur in CollisionLayer 0)
 
 ## Example main function
 
