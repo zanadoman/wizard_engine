@@ -68,10 +68,10 @@ namespace wze
 
         if (TerminalY < InitialY)
         {
-            return DEG_MAX - acos((x) / sqrt((x) * (x) + (y) * (y))) * DEG;
+            return DEG_MAX - acos(x / sqrt(x * x + y * y)) * DEG;
         }
 
-        return acos(x / sqrt((x) * (x) + (y) * (y))) * DEG;
+        return acos(x / sqrt(x * x + y * y)) * DEG;
     }
 
     double engine::vector::TerminalX(double InitialX, double Length, double Angle)
@@ -79,6 +79,16 @@ namespace wze
         if (InitialX != InitialX)
         {
             printf("wze::engine.vector.TerminalX(): InitialX must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n", InitialX, Length, Angle);
+            exit(1);
+        }
+        if (Length != Length)
+        {
+            printf("wze::engine.vector.TerminalX(): Length must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n", InitialX, Length, Angle);
+            exit(1);
+        }
+        if (Angle != Angle)
+        {
+            printf("wze::engine.vector.TerminalX(): Angle must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n", InitialX, Length, Angle);
             exit(1);
         }
 
@@ -90,6 +100,16 @@ namespace wze
         if (InitialY != InitialY)
         {
             printf("wze::engine.vector.TerminalY(): InitialY must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n", InitialY, Length, Angle);
+            exit(1);
+        }
+        if (Length != Length)
+        {
+            printf("wze::engine.vector.TerminalY(): Length must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n", InitialY, Length, Angle);
+            exit(1);
+        }
+        if (Angle != Angle)
+        {
+            printf("wze::engine.vector.TerminalY(): Angle must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n", InitialY, Length, Angle);
             exit(1);
         }
 
