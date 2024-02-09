@@ -39,17 +39,17 @@ namespace wze
         return this->Colors.Length() - 1;
     }
 
-    uint8 engine::actors::actor::colors::Delete(uint64 ID)
+    uint8 engine::actors::actor::colors::Delete(uint64 ColorID)
     {
         uint64 i;
 
-        if (this->Colors.Length() <= ID || this->Colors[ID] == NULL)
+        if (this->Colors.Length() <= ColorID || this->Colors[ColorID] == NULL)
         {
             return 0;
         }
 
-        delete this->Colors[ID];
-        this->Colors[ID] = NULL;
+        delete this->Colors[ColorID];
+        this->Colors[ColorID] = NULL;
         
         if (this->Colors[this->Colors.Length() - 1] == NULL && 1 < this->Colors.Length())
         {
@@ -131,20 +131,20 @@ namespace wze
         return 0;
     }
 
-    engine::actors::actor::colors::color& engine::actors::actor::colors::operator [] (uint64 ID)
+    engine::actors::actor::colors::color& engine::actors::actor::colors::operator [] (uint64 ColorID)
     {
-        if (ID == 0)
+        if (ColorID == 0)
         {
-            printf("wze::engine.actors[].colors[]: Illegal access to NULL Color\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].colors[]: Illegal access to NULL Color\nParams: ColorID: %lld\n", ColorID);
             exit(1);
         }
-        if (this->Colors.Length() <= ID || this->Colors[ID] == NULL)
+        if (this->Colors.Length() <= ColorID || this->Colors[ColorID] == NULL)
         {
-            printf("wze::engine.actors[].colors[]: Color does not exist\nParams: ID: %lld\n", ID);
+            printf("wze::engine.actors[].colors[]: Color does not exist\nParams: ColorID: %lld\n", ColorID);
             exit(1);
         }
 
-        return *this->Colors[ID];
+        return *this->Colors[ColorID];
     }
 
     engine::actors::actor::colors::color::color(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor)

@@ -320,10 +320,10 @@ namespace wze
 
                             public:
                                 neo::uint64 New();
-                                neo::uint8 Delete(neo::uint64);
+                                neo::uint8 Delete(neo::uint64 ColorID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> Keep);
                                 neo::uint8 Purge(neo::array<neo::uint64>* Keep);
-                                color& operator [] (neo::uint64 ID);
+                                color& operator [] (neo::uint64 ColorID);
 
                             private:
                                 neo::array<color*> Colors;
