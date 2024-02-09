@@ -9,8 +9,6 @@ Demo assets made by ansimuz (https://ansimuz.itch.io/sunny-land-pixel-game-art)
 
 #include \<WizardEngine.hpp\>\
 \
-#undef main\
-\
 int main(int argc, char\* \*argv)\
 {\
 &emsp;&emsp;wze::engine\* Engine = new wze::engine(NULL, NULL, 1920, 1080, 1000 / 60);\
@@ -21,6 +19,8 @@ int main(int argc, char\* \*argv)\
 &emsp;&emsp;&emsp;&emsp;//Some\
 &emsp;&emsp;&emsp;&emsp;//Work\
 &emsp;&emsp;}\
+\
+&emsp;&emsp;delete Engine;
 \
 &emsp;return 0;\
 }

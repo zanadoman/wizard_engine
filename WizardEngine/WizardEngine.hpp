@@ -14,6 +14,7 @@
     #include "Includes/SDL_image.h"
     #include "Includes/SDL_mixer.h"
     #include "Includes/SDL_ttf.h"
+    #undef main
 #endif
 
 #include "WZEEnums.hpp"

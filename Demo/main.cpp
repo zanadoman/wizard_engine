@@ -1,6 +1,6 @@
 #include "demo.hpp"
 
-#undef main
+//#undef main
 
 sint32 main()
 {
