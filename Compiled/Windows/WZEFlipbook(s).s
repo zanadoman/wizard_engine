@@ -882,9 +882,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	testq	%rcx, %rcx
 	je	.L143
 	movq	0(%rbp), %r8
-	cmpq	440(%r8), %rcx
+	cmpq	336(%r8), %rcx
 	jnb	.L144
-	movq	448(%r8), %r8
+	movq	344(%r8), %r8
 	cmpq	$0, (%r8,%rcx,8)
 	je	.L144
 .L143:
@@ -1334,9 +1334,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	testq	%rcx, %rcx
 	je	.L187
 	movq	(%rsi), %rdx
-	cmpq	440(%rdx), %rcx
+	cmpq	336(%rdx), %rcx
 	jnb	.L188
-	movq	448(%rdx), %rdx
+	movq	344(%rdx), %rdx
 	cmpq	$0, (%rdx,%rcx,8)
 	jne	.L187
 .L188:
@@ -1603,7 +1603,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	movq	(%rbx), %rax
 	movapd	%xmm6, %xmm3
 	movsd	%xmm0, 32(%rsp)
-	leaq	400(%rax), %rcx
+	leaq	296(%rax), %rcx
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
 	movapd	%xmm0, %xmm3
@@ -1621,7 +1621,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	movq	(%rbx), %rax
 	movapd	%xmm6, %xmm3
 	movsd	%xmm0, 32(%rsp)
-	leaq	400(%rax), %rcx
+	leaq	296(%rax), %rcx
 	call	_ZN3wze6engine6vector5AngleEdddd
 .L225:
 	movsd	%xmm0, 64(%rbx)
@@ -1692,7 +1692,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 .L237:
 	movq	(%rbx), %rax
 	movsd	%xmm6, 32(%rsp)
-	leaq	400(%rax), %rcx
+	leaq	296(%rax), %rcx
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
 	movsd	40(%rbx), %xmm3
@@ -1708,7 +1708,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 .L241:
 	movq	(%rbx), %rax
 	movsd	%xmm6, 32(%rsp)
-	leaq	400(%rax), %rcx
+	leaq	296(%rax), %rcx
 	call	_ZN3wze6engine6vector5AngleEdddd
 .L244:
 	movsd	%xmm0, 64(%rbx)

@@ -19,17 +19,6 @@ sint32 main()
     crate* crate5 = new crate(Engine, Engine->Random(-500, 500), Engine->Random(-500, 500), Engine->Random(50, 150), Engine->Random(50, 150));
 
     Engine->Camera.Bind(Player1->Actor);
-    Engine->Camera.Smoothing = true;
-    Engine->Camera.SetMinSpeedX(0.2);
-    Engine->Camera.SetMaxSpeedX(0.5);
-    Engine->Camera.SetDecelerationRateX(0.001);
-    Engine->Camera.SetAccelerationRateX(0.0002);
-    Engine->Camera.SetSlowDownRangeX(100);
-    Engine->Camera.SetMinSpeedY(0.2);
-    Engine->Camera.SetMaxSpeedY(0.5);
-    Engine->Camera.SetDecelerationRateY(0.001);
-    Engine->Camera.SetAccelerationRateY(0.0002);
-    Engine->Camera.SetSlowDownRangeY(100);
 
     //Engine->Audio.Play(Engine->Assets.LoadSound("assets/ara_ara.mp3"), 1, 1);
 

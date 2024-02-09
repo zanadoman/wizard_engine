@@ -126,7 +126,8 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    bool Smoothing;
+                    double GetX();
+                    double GetY();
                     double GetOffsetX();
                     double SetOffsetX(double OffsetX);
                     double GetOffsetY();
@@ -141,49 +142,15 @@ namespace wze
                     neo::uint8 UnbindY();
                     neo::uint64 GetXActor();
                     neo::uint64 GetYActor();
-                    double GetX();
-                    double GetY();
-                    double GetMinSpeedX();
-                    double SetMinSpeedX(double MinSpeedX);
-                    double GetMinSpeedY();
-                    double SetMinSpeedY(double MaxSpeedY);
-                    double GetMaxSpeedX();
-                    double SetMaxSpeedX(double MinSpeedX);
-                    double GetMaxSpeedY();
-                    double SetMaxSpeedY(double MaxSpeedY);
-                    double GetDecelerationRateX();
-                    double SetDecelerationRateX(double DecelerationRateX);
-                    double GetDecelerationRateY();
-                    double SetDecelerationRateY(double DecelerationRateY);
-                    double GetAccelerationRateX();
-                    double SetAccelerationRateX(double AccelerationRateX);
-                    double GetAccelerationRateY();
-                    double SetAccelerationRateY(double AccelerationRateY);
-                    double GetSlowDownRangeX();
-                    double SetSlowDownRangeX(double SlowDownRangeX);
-                    double GetSlowDownRangeY();
-                    double SetSlowDownRangeY(double SlowDownRangeY);
 
                 private:
+                    double X;
+                    double Y;
                     double OffsetX;
                     double OffsetY;
                     double Zoom;
                     neo::uint64 XActor;
                     neo::uint64 YActor;
-                    double X;
-                    double Y;
-                    double MinSpeedX;
-                    double MinSpeedY;
-                    double MaxSpeedX;
-                    double MaxSpeedY;
-                    double DecelerationRateX;
-                    double DecelerationRateY;
-                    double AccelerationRateX;
-                    double AccelerationRateY;
-                    double SlowDownRangeX;
-                    double SlowDownRangeY;
-                    double CurrentSpeedX;
-                    double CurrentSpeedY;
                     camera(engine* Engine);
                     neo::uint8 Update();
                     SDL_Rect Transform(double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);

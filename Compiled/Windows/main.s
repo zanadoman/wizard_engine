@@ -31,9 +31,9 @@ _Z6printfPKcz.constprop.0:
 	.seh_endproc
 	.def	__main;	.scl	2;	.type	32;	.endef
 	.section	.text.unlikely,"x"
-.LCOLDB7:
+.LCOLDB2:
 	.section	.text.startup,"x"
-.LHOTB7:
+.LHOTB2:
 	.p2align 4
 	.globl	main
 	.def	main;	.scl	2;	.type	32;	.endef
@@ -56,21 +56,15 @@ main:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$296, %rsp
-	.seh_stackalloc	296
+	subq	$248, %rsp
+	.seh_stackalloc	248
 	movaps	%xmm6, 208(%rsp)
 	.seh_savexmm	%xmm6, 208
 	movaps	%xmm7, 224(%rsp)
 	.seh_savexmm	%xmm7, 224
-	movaps	%xmm8, 240(%rsp)
-	.seh_savexmm	%xmm8, 240
-	movaps	%xmm9, 256(%rsp)
-	.seh_savexmm	%xmm9, 256
-	movaps	%xmm10, 272(%rsp)
-	.seh_savexmm	%xmm10, 272
 	.seh_endprologue
 	call	__main
-	movl	$560, %ecx
+	movl	$456, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
@@ -307,57 +301,20 @@ main:
 	movq	128(%rsp), %rcx
 	call	_ZN5crateC1EPN3wze6engineEddtt
 .LEHE19:
-	leaq	80(%rbx), %r13
 	movq	8(%rdi), %rdx
+	leaq	80(%rbx), %rcx
 	leaq	200(%rsp), %r14
-	movq	%r13, %rcx
+	leaq	.LC0(%rip), %r13
 .LEHB20:
 	call	_ZN3wze6engine6camera4BindEy
-	movb	$1, 88(%rbx)
-	movq	%r13, %rcx
-	movsd	.LC1(%rip), %xmm10
-	movapd	%xmm10, %xmm1
-	call	_ZN3wze6engine6camera12SetMinSpeedXEd
-	movq	%r13, %rcx
-	movsd	.LC2(%rip), %xmm9
-	movapd	%xmm9, %xmm1
-	call	_ZN3wze6engine6camera12SetMaxSpeedXEd
-	movq	%r13, %rcx
-	movsd	.LC3(%rip), %xmm8
-	movapd	%xmm8, %xmm1
-	call	_ZN3wze6engine6camera20SetDecelerationRateXEd
-	movsd	.LC4(%rip), %xmm7
-	movq	%r13, %rcx
-	movapd	%xmm7, %xmm1
-	call	_ZN3wze6engine6camera20SetAccelerationRateXEd
-	movsd	.LC5(%rip), %xmm6
-	movq	%r13, %rcx
-	movapd	%xmm6, %xmm1
-	call	_ZN3wze6engine6camera17SetSlowDownRangeXEd
-	movq	%r13, %rcx
-	movapd	%xmm10, %xmm1
-	call	_ZN3wze6engine6camera12SetMinSpeedYEd
-	movq	%r13, %rcx
-	movapd	%xmm9, %xmm1
-	call	_ZN3wze6engine6camera12SetMaxSpeedYEd
-	movq	%r13, %rcx
-	movapd	%xmm8, %xmm1
-	call	_ZN3wze6engine6camera20SetDecelerationRateYEd
-	movapd	%xmm7, %xmm1
-	movq	%r13, %rcx
-	call	_ZN3wze6engine6camera20SetAccelerationRateYEd
-	movq	%r13, %rcx
-	movapd	%xmm6, %xmm1
-	leaq	.LC0(%rip), %r13
-	call	_ZN3wze6engine6camera17SetSlowDownRangeYEd
 	movq	%r15, 136(%rsp)
-	movsd	.LC6(%rip), %xmm7
+	movsd	.LC1(%rip), %xmm7
 	jmp	.L4
 	.p2align 4,,10
 	.p2align 3
 .L5:
 	movq	%rdi, %rcx
-	leaq	344(%rbx), %r15
+	leaq	240(%rbx), %r15
 	call	_ZN6player6UpdateEv
 	movq	%rbp, %rcx
 	call	_ZN6player6UpdateEv
@@ -396,7 +353,7 @@ main:
 	movapd	%xmm0, %xmm1
 	movq	%rax, 64(%rsp)
 	leaq	176(%rsp), %rax
-	leaq	400(%rbx), %rcx
+	leaq	296(%rbx), %rcx
 	movq	%rax, 56(%rsp)
 	movsd	%xmm7, 48(%rsp)
 	movsd	%xmm6, 32(%rsp)
@@ -468,17 +425,14 @@ main:
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_ZN3wze6engineD1Ev
-	movl	$560, %edx
+	movl	$456, %edx
 	movq	%rbx, %rcx
 	call	_ZdlPvy
 	nop
 	movaps	208(%rsp), %xmm6
 	movaps	224(%rsp), %xmm7
 	xorl	%eax, %eax
-	movaps	240(%rsp), %xmm8
-	movaps	256(%rsp), %xmm9
-	movaps	272(%rsp), %xmm10
-	addq	$296, %rsp
+	addq	$248, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
@@ -617,25 +571,22 @@ main:
 	.section	.text.unlikely,"x"
 	.def	main.cold;	.scl	3;	.type	32;	.endef
 	.seh_proc	main.cold
-	.seh_stackalloc	360
-	.seh_savereg	%rbx, 296
-	.seh_savereg	%rsi, 304
-	.seh_savereg	%rdi, 312
-	.seh_savereg	%rbp, 320
+	.seh_stackalloc	312
+	.seh_savereg	%rbx, 248
+	.seh_savereg	%rsi, 256
+	.seh_savereg	%rdi, 264
+	.seh_savereg	%rbp, 272
 	.seh_savexmm	%xmm6, 208
 	.seh_savexmm	%xmm7, 224
-	.seh_savereg	%r12, 328
-	.seh_savereg	%r13, 336
-	.seh_savereg	%r14, 344
-	.seh_savereg	%r15, 352
-	.seh_savexmm	%xmm8, 240
-	.seh_savexmm	%xmm9, 256
-	.seh_savexmm	%xmm10, 272
+	.seh_savereg	%r12, 280
+	.seh_savereg	%r13, 288
+	.seh_savereg	%r14, 296
+	.seh_savereg	%r15, 304
 	.seh_endprologue
 main.cold:
 .L6:
 	movq	%rbx, %rcx
-	movl	$560, %edx
+	movl	$456, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB21:
@@ -704,7 +655,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC6879-.LLSDACSBC6879
 .LLSDACSBC6879:
-	.uleb128 .LEHB21-.LCOLDB7
+	.uleb128 .LEHB21-.LCOLDB2
 	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
@@ -713,32 +664,12 @@ main.cold:
 	.section	.text.startup,"x"
 	.section	.text.unlikely,"x"
 	.seh_endproc
-.LCOLDE7:
+.LCOLDE2:
 	.section	.text.startup,"x"
-.LHOTE7:
+.LHOTE2:
 	.section .rdata,"dr"
 	.align 8
 .LC1:
-	.long	-1717986918
-	.long	1070176665
-	.align 8
-.LC2:
-	.long	0
-	.long	1071644672
-	.align 8
-.LC3:
-	.long	-755914244
-	.long	1062232653
-	.align 8
-.LC4:
-	.long	-350469331
-	.long	1059731170
-	.align 8
-.LC5:
-	.long	0
-	.long	1079574528
-	.align 8
-.LC6:
 	.long	0
 	.long	1072693248
 	.ident	"GCC: (GNU) 13.1.0"
@@ -751,16 +682,6 @@ main.cold:
 	.def	_ZN3wze6engine6RandomEii;	.scl	2;	.type	32;	.endef
 	.def	_ZN5crateC1EPN3wze6engineEddtt;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera4BindEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera12SetMinSpeedXEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera12SetMaxSpeedXEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera20SetDecelerationRateXEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera20SetAccelerationRateXEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera17SetSlowDownRangeXEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera12SetMinSpeedYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera12SetMaxSpeedYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera20SetDecelerationRateYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera20SetAccelerationRateYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera17SetSlowDownRangeYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN6player6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN10flashlight6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actorsixEy;	.scl	2;	.type	32;	.endef

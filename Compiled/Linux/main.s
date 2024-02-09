@@ -1,12 +1,12 @@
 	.file	"main.cpp"
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
-.LC6:
+.LC1:
 	.string	"%d\n"
 	.section	.text.unlikely,"ax",@progbits
-.LCOLDB7:
+.LCOLDB2:
 	.section	.text.startup,"ax",@progbits
-.LHOTB7:
+.LHOTB2:
 	.p2align 4
 	.globl	main
 	.type	main, @function
@@ -18,7 +18,7 @@ main:
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
-	movl	$560, %edi
+	movl	$456, %edi
 	pushq	%r14
 	.cfi_def_cfa_offset 24
 	.cfi_offset 14, -24
@@ -285,53 +285,11 @@ main:
 	movq	%rbx, %rsi
 	call	_ZN5crateC1EPN3wze6engineEddtt@PLT
 .LEHE19:
-	leaq	80(%rbx), %rbp
 	movq	8(%r12), %rsi
-	movq	%rbp, %rdi
+	leaq	80(%rbx), %rdi
+	leaq	240(%rbx), %rbp
 .LEHB20:
 	call	_ZN3wze6engine6camera4BindEy@PLT
-	movq	.LC0(%rip), %rax
-	movb	$1, 88(%rbx)
-	movq	%rbp, %rdi
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera12SetMinSpeedXEd@PLT
-	movq	.LC1(%rip), %rax
-	movq	%rbp, %rdi
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera12SetMaxSpeedXEd@PLT
-	movq	.LC2(%rip), %rax
-	movq	%rbp, %rdi
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera20SetDecelerationRateXEd@PLT
-	movq	.LC3(%rip), %rax
-	movq	%rbp, %rdi
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera20SetAccelerationRateXEd@PLT
-	movq	.LC4(%rip), %rax
-	movq	%rbp, %rdi
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera17SetSlowDownRangeXEd@PLT
-	movq	.LC0(%rip), %rax
-	movq	%rbp, %rdi
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera12SetMinSpeedYEd@PLT
-	movq	.LC1(%rip), %rax
-	movq	%rbp, %rdi
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera12SetMaxSpeedYEd@PLT
-	movq	.LC2(%rip), %rax
-	movq	%rbp, %rdi
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera20SetDecelerationRateYEd@PLT
-	movq	.LC3(%rip), %rax
-	movq	%rbp, %rdi
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera20SetAccelerationRateYEd@PLT
-	movq	.LC4(%rip), %rax
-	movq	%rbp, %rdi
-	leaq	344(%rbx), %rbp
-	movq	%rax, %xmm0
-	call	_ZN3wze6engine6camera17SetSlowDownRangeYEd@PLT
 	leaq	96(%rsp), %rax
 	movq	%rax, 40(%rsp)
 	jmp	.L2
@@ -376,9 +334,9 @@ main:
 	xorl	%r8d, %r8d
 	pushq	%r14
 	.cfi_def_cfa_offset 192
-	movq	.LC5(%rip), %rax
+	movq	.LC0(%rip), %rax
 	movl	$1, %esi
-	leaq	400(%rbx), %rdi
+	leaq	296(%rbx), %rdi
 	movq	56(%rsp), %rdx
 	movsd	40(%rsp), %xmm3
 	xorl	%r9d, %r9d
@@ -388,7 +346,7 @@ main:
 	call	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_@PLT
 	popq	%rdx
 	.cfi_def_cfa_offset 184
-	leaq	.LC6(%rip), %rdi
+	leaq	.LC1(%rip), %rdi
 	popq	%rcx
 	.cfi_def_cfa_offset 176
 	movzbl	%al, %esi
@@ -454,7 +412,7 @@ main:
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_ZN3wze6engineD1Ev@PLT
-	movl	$560, %esi
+	movl	$456, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 	movq	104(%rsp), %rax
@@ -712,7 +670,7 @@ main.cold:
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .L4:
-	movl	$560, %esi
+	movl	$456, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 	movq	104(%rsp), %rax
@@ -740,7 +698,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8146-.LLSDACSBC8146
 .LLSDACSBC8146:
-	.uleb128 .LEHB21-.LCOLDB7
+	.uleb128 .LEHB21-.LCOLDB2
 	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
@@ -750,32 +708,12 @@ main.cold:
 	.size	main, .-main
 	.section	.text.unlikely
 	.size	main.cold, .-main.cold
-.LCOLDE7:
+.LCOLDE2:
 	.section	.text.startup
-.LHOTE7:
+.LHOTE2:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:
-	.long	-1717986918
-	.long	1070176665
-	.align 8
-.LC1:
-	.long	0
-	.long	1071644672
-	.align 8
-.LC2:
-	.long	-755914244
-	.long	1062232653
-	.align 8
-.LC3:
-	.long	-350469331
-	.long	1059731170
-	.align 8
-.LC4:
-	.long	0
-	.long	1079574528
-	.align 8
-.LC5:
 	.long	0
 	.long	1072693248
 	.hidden	DW.ref.__gxx_personality_v0
