@@ -12,7 +12,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0, @function
 _ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0:
-.LFB8375:
+.LFB8373:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -110,7 +110,7 @@ _ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8375:
+.LFE8373:
 	.size	_ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0, .-_ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -127,7 +127,7 @@ _ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0:
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0:
-.LFB8376:
+.LFB8374:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -260,7 +260,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.i
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8376:
+.LFE8374:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -396,12 +396,6 @@ _ZN3wze6engine6actors5actor12overlapboxesD2Ev:
 	.section	.rodata.str1.8
 	.align 8
 .LC6:
-	.string	"wze::engine.actors[].overlapboxes.Delete(): Illegal deletion of NULL Overlapbox\nParams: ID: %lld\n"
-	.align 8
-.LC7:
-	.string	"wze::engine.actors[].overlapboxes.Delete(): Overlapbox does not exist\nParams: ID: %lld\n"
-	.align 8
-.LC8:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.text
 	.align 2
@@ -411,63 +405,56 @@ _ZN3wze6engine6actors5actor12overlapboxesD2Ev:
 _ZN3wze6engine6actors5actor12overlapboxes6DeleteEy:
 .LFB8153:
 	.cfi_startproc
+	cmpq	16(%rdi), %rsi
+	jb	.L84
+	xorl	%eax, %eax
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L84:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
+	movq	%rsi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 24
 	.cfi_offset 3, -24
+	movq	%rdi, %rbx
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
-	testq	%rsi, %rsi
-	je	.L74
-	movq	%rdi, %rbp
-	movq	%rsi, %rbx
-	cmpq	16(%rdi), %rsi
-	jnb	.L63
 	movq	24(%rdi), %rax
 	movq	(%rax,%rsi,8), %rdi
 	testq	%rdi, %rdi
 	je	.L63
 	movl	$120, %esi
 	call	_ZdlPvm@PLT
-	movq	16(%rbp), %rax
-	movq	24(%rbp), %rdx
-	cmpq	%rax, %rbx
-	jnb	.L75
-	movq	$0, (%rdx,%rbx,8)
+	movq	16(%rbx), %rax
+	movq	24(%rbx), %rdx
+	cmpq	%rax, %rbp
+	jnb	.L85
+	movq	$0, (%rdx,%rbp,8)
 	cmpq	$0, -8(%rdx,%rax,8)
 	leaq	-1(%rax), %r8
-	je	.L76
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 16
-	popq	%rbp
-	.cfi_def_cfa_offset 8
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L76:
-	.cfi_restore_state
+	jne	.L63
+	cmpq	$1, %rax
+	je	.L63
 	movq	%rax, %rsi
 	.p2align 4,,10
 	.p2align 3
-.L70:
+.L69:
 	movq	%rsi, %rcx
 	subq	$1, %rsi
 	cmpq	%rax, %rsi
-	jnb	.L73
+	jnb	.L86
 	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L77
+	jne	.L87
 	cmpq	$1, %rsi
-	jne	.L70
-.L69:
-	leaq	16(%rbp), %rdi
+	jne	.L69
+.L68:
+	leaq	16(%rbx), %rdi
 	movq	%r8, %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0
+.L63:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -479,30 +466,21 @@ _ZN3wze6engine6actors5actor12overlapboxes6DeleteEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L77:
+.L87:
 	.cfi_restore_state
 	subq	%rcx, %rax
 	movq	%rcx, %rsi
 	movq	%rax, %r8
-	jmp	.L69
-.L75:
-	movq	%rbx, %rsi
-.L73:
-	leaq	.LC8(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L63:
-	leaq	.LC7(%rip), %rdi
-	movq	%rbx, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L74:
+	jmp	.L68
+.L86:
 	leaq	.LC6(%rip), %rdi
-	xorl	%esi, %esi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L85:
+	leaq	.LC6(%rip), %rdi
+	movq	%rbp, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -510,11 +488,6 @@ _ZN3wze6engine6actors5actor12overlapboxes6DeleteEy:
 	.cfi_endproc
 .LFE8153:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes6DeleteEy, .-_ZN3wze6engine6actors5actor12overlapboxes6DeleteEy
-	.section	.rodata.str1.8
-	.align 8
-.LC9:
-	.string	"wze::engine.actors[].overlapboxes.Purge(): Overlapbox does not exist\nParams: Keep(length): %ld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE
@@ -528,11 +501,9 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE:
 	pushq	%r13
 	.cfi_def_cfa_offset 24
 	.cfi_offset 13, -24
-	movq	%rdi, %r13
 	pushq	%r12
 	.cfi_def_cfa_offset 32
 	.cfi_offset 12, -32
-	movq	%rsi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 40
 	.cfi_offset 6, -40
@@ -541,62 +512,45 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE:
 	.cfi_def_cfa_offset 48
 	.cfi_offset 3, -48
 	movq	16(%rdi), %rdx
-	testq	%rbp, %rbp
-	je	.L79
-	xorl	%eax, %eax
-	.p2align 4,,10
-	.p2align 3
-.L82:
-	movq	(%r12,%rax,8), %rcx
-	testq	%rcx, %rcx
-	je	.L80
-	cmpq	%rdx, %rcx
-	jnb	.L81
-	movq	24(%r13), %rsi
-	cmpq	$0, (%rsi,%rcx,8)
-	je	.L81
-.L80:
-	addq	$1, %rax
-	cmpq	%rax, %rbp
-	jne	.L82
-.L79:
 	cmpq	$1, %rdx
-	jbe	.L83
-	movq	24(%r13), %rcx
+	jbe	.L89
+	movq	24(%rdi), %rcx
+	movq	%rdi, %r13
+	movq	%rsi, %r12
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L84:
+.L96:
 	xorl	%eax, %eax
 	testq	%rbp, %rbp
-	je	.L85
-.L91:
+	je	.L91
+.L90:
 	cmpq	%rbx, (%r12,%rax,8)
-	je	.L86
+	je	.L92
 	addq	$1, %rax
-	cmpq	%rax, %rbp
-	jne	.L91
-.L85:
+	cmpq	%rbp, %rax
+	jne	.L90
+.L91:
 	movq	(%rcx,%rbx,8), %rdi
 	leaq	0(,%rbx,8), %r14
 	testq	%rdi, %rdi
-	je	.L88
+	je	.L94
 	movl	$120, %esi
 	call	_ZdlPvm@PLT
 	movq	16(%r13), %rdx
 	movq	24(%r13), %rcx
-.L88:
+.L94:
 	cmpq	%rdx, %rbx
-	jnb	.L117
+	jnb	.L116
 	movq	$0, (%rcx,%r14)
-.L86:
+.L92:
 	addq	$1, %rbx
 	cmpq	%rdx, %rbx
-	jb	.L84
+	jb	.L96
 	cmpq	$0, -8(%rcx,%rdx,8)
 	leaq	-1(%rdx), %r8
-	je	.L118
-.L114:
+	je	.L117
+.L113:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -610,23 +564,23 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE:
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
-.L118:
+.L117:
 	.cfi_restore_state
 	movq	%rdx, %rax
-	jmp	.L92
+	jmp	.L97
 	.p2align 4,,10
 	.p2align 3
-.L97:
+.L102:
 	leaq	-1(%rax), %rsi
 	cmpq	%rdx, %rsi
-	jnb	.L116
+	jnb	.L115
 	cmpq	$0, (%rcx,%rsi,8)
-	jne	.L119
+	jne	.L118
 	movq	%rsi, %rax
-.L92:
+.L97:
 	cmpq	$1, %rax
-	jne	.L97
-.L96:
+	jne	.L102
+.L101:
 	leaq	16(%r13), %rdi
 	movq	%rax, %rsi
 	movq	%r8, %rdx
@@ -644,47 +598,40 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE:
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
-.L83:
+.L89:
 	.cfi_restore_state
 	testq	%rdx, %rdx
-	jne	.L114
+	jne	.L113
 	orq	$-1, %rsi
-.L116:
-	leaq	.LC8(%rip), %rdi
+.L115:
+	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L119:
+.L118:
 	subq	%rax, %rdx
 	movq	%rdx, %r8
-	jmp	.L96
-.L81:
-	leaq	.LC9(%rip), %rdi
-	movq	%rbp, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L117:
+	jmp	.L101
+.L116:
 	movq	%rbx, %rsi
-	jmp	.L116
+	jmp	.L115
 	.cfi_endproc
 .LFE8154:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC10:
-	.string	"wze::engine.actors[].overlapboxes.Purge(): Overlapbox does not exist\nParams: Keep: %p\n"
+.LC7:
+	.string	"wze::engine.actors[].overlapboxes.Purge(): Keep must not be NULL\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE, @function
 _ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE:
-.LFB8157:
+.LFB8155:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
@@ -692,94 +639,61 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE:
 	pushq	%r12
 	.cfi_def_cfa_offset 24
 	.cfi_offset 12, -24
-	movq	%rdi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 32
 	.cfi_offset 6, -32
-	movq	%rsi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 40
 	.cfi_offset 3, -40
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 48
-	movq	(%rsi), %rcx
-	movq	16(%rdi), %rdi
-	testq	%rcx, %rcx
-	je	.L121
-	movq	8(%rsi), %rsi
-	xorl	%eax, %eax
-	jmp	.L124
-	.p2align 4,,10
-	.p2align 3
-.L122:
-	addq	$1, %rax
-	cmpq	%rax, %rcx
-	je	.L121
-.L124:
-	movq	(%rsi,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L122
-	cmpq	%rdi, %rdx
-	jnb	.L123
-	movq	24(%r12), %r8
-	cmpq	$0, (%r8,%rdx,8)
-	jne	.L122
-.L123:
-	leaq	.LC10(%rip), %rdi
-	movq	%rbp, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L121:
-	cmpq	$1, %rdi
-	jbe	.L125
-	movq	24(%r12), %rsi
+	testq	%rsi, %rsi
+	je	.L120
+	movq	16(%rdi), %rcx
+	movq	%rdi, %r12
+	cmpq	$1, %rcx
+	jbe	.L151
+	movq	24(%rdi), %rdi
+	movq	%rsi, %rbp
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L133:
-	movq	8(%rbp), %rdx
+.L129:
+	movq	0(%rbp), %rdx
+	movq	8(%rbp), %rsi
 	xorl	%eax, %eax
-	testq	%rcx, %rcx
-	je	.L126
-.L127:
-	cmpq	%rbx, (%rdx,%rax,8)
-	je	.L128
+	testq	%rdx, %rdx
+	je	.L123
+.L124:
+	cmpq	(%rsi,%rax,8), %rbx
+	je	.L125
 	addq	$1, %rax
-	cmpq	%rax, %rcx
-	jne	.L127
+	cmpq	%rax, %rdx
+	jne	.L124
 	.p2align 4,,10
 	.p2align 3
-.L126:
-	movq	(%rsi,%rbx,8), %rax
+.L123:
+	movq	(%rdi,%rbx,8), %rax
 	leaq	0(,%rbx,8), %r13
 	testq	%rax, %rax
-	je	.L130
-	movl	$120, %esi
+	je	.L127
 	movq	%rax, %rdi
+	movl	$120, %esi
 	call	_ZdlPvm@PLT
-	movq	16(%r12), %rdi
-	movq	24(%r12), %rsi
-.L130:
-	cmpq	%rdi, %rbx
-	jnb	.L160
-	movq	$0, (%rsi,%r13)
-.L128:
+	movq	16(%r12), %rcx
+	movq	24(%r12), %rdi
+.L127:
+	cmpq	%rcx, %rbx
+	jnb	.L152
+	movq	$0, (%rdi,%r13)
+.L125:
 	addq	$1, %rbx
-	cmpq	%rdi, %rbx
-	jnb	.L132
-	movq	0(%rbp), %rcx
-	jmp	.L133
-	.p2align 4,,10
-	.p2align 3
-.L132:
-	cmpq	$0, -8(%rsi,%rdi,8)
-	leaq	-1(%rdi), %rdx
-	je	.L161
-.L157:
+	cmpq	%rcx, %rbx
+	jb	.L129
+	cmpq	$0, -8(%rdi,%rcx,8)
+	leaq	-1(%rcx), %rdx
+	je	.L153
+.L148:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -793,25 +707,25 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L161:
+.L153:
 	.cfi_restore_state
-	movq	%rdi, %rcx
-	jmp	.L134
+	movq	%rcx, %rax
+	jmp	.L130
 	.p2align 4,,10
 	.p2align 3
-.L139:
-	leaq	-1(%rcx), %rax
-	cmpq	%rdi, %rax
-	jnb	.L162
-	cmpq	$0, (%rsi,%rax,8)
-	jne	.L163
-	movq	%rax, %rcx
+.L135:
+	leaq	-1(%rax), %rsi
+	cmpq	%rcx, %rsi
+	jnb	.L150
+	cmpq	$0, (%rdi,%rsi,8)
+	jne	.L154
+	movq	%rsi, %rax
+.L130:
+	cmpq	$1, %rax
+	jne	.L135
 .L134:
-	cmpq	$1, %rcx
-	jne	.L139
-.L138:
 	leaq	16(%r12), %rdi
-	movq	%rcx, %rsi
+	movq	%rax, %rsi
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -826,130 +740,134 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L125:
+.L151:
 	.cfi_restore_state
-	testq	%rdi, %rdi
-	jne	.L157
+	testq	%rcx, %rcx
+	jne	.L148
 	orq	$-1, %rsi
-	jmp	.L159
-	.p2align 4,,10
-	.p2align 3
-.L163:
-	subq	%rcx, %rdi
-	movq	%rdi, %rdx
-	jmp	.L138
-.L160:
-	movq	%rbx, %rsi
-.L159:
-	leaq	.LC8(%rip), %rdi
+.L150:
+	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L162:
-	movq	%rax, %rsi
-	jmp	.L159
+	.p2align 4,,10
+	.p2align 3
+.L154:
+	subq	%rax, %rcx
+	movq	%rcx, %rdx
+	jmp	.L134
+.L120:
+	leaq	.LC7(%rip), %rdi
+	xorl	%esi, %esi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L152:
+	movq	%rbx, %rsi
+	jmp	.L150
 	.cfi_endproc
-.LFE8157:
+.LFE8155:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
-.LC11:
-	.string	"wze::engine.actors[].overlapboxes[]: Illegal access to NULL Overlapbox\nParams: ID: %lld\n"
+.LC8:
+	.string	"wze::engine.actors[].overlapboxes[]: Illegal access to NULL Overlapbox\nParams: OverlapboxID: %lld\n"
 	.align 8
-.LC12:
-	.string	"wze::engine.actors[].overlapboxes[]: Overlapbox does not exist\nParams: ID: %lld\n"
+.LC9:
+	.string	"wze::engine.actors[].overlapboxes[]: Overlapbox does not exist\nParams: OverlapboxID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxesixEy
 	.type	_ZN3wze6engine6actors5actor12overlapboxesixEy, @function
 _ZN3wze6engine6actors5actor12overlapboxesixEy:
-.LFB8158:
+.LFB8156:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L169
+	je	.L160
 	cmpq	16(%rdi), %rsi
-	jnb	.L166
+	jnb	.L157
 	movq	24(%rdi), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L166
+	je	.L157
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L166:
+.L157:
 	.cfi_restore_state
-	leaq	.LC12(%rip), %rdi
+	leaq	.LC9(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L169:
-	leaq	.LC11(%rip), %rdi
+.L160:
+	leaq	.LC8(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8158:
+.LFE8156:
 	.size	_ZN3wze6engine6actors5actor12overlapboxesixEy, .-_ZN3wze6engine6actors5actor12overlapboxesixEy
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv
+	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv, @function
+_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv:
+.LFB8160:
+	.cfi_startproc
+	movq	24(%rdi), %rax
+	ret
+	.cfi_endproc
+.LFE8160:
+	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv:
-.LFB8162:
+.LFB8161:
 	.cfi_startproc
 	movq	8(%rdi), %rax
 	movq	200(%rax), %rax
 	ret
 	.cfi_endproc
-.LFE8162:
+.LFE8161:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorDataEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv:
-.LFB8163:
+.LFB8162:
 	.cfi_startproc
 	movq	8(%rdi), %rax
 	movq	208(%rax), %rax
 	ret
 	.cfi_endproc
-.LFE8163:
+.LFE8162:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox12GetActorTypeEv
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv
-	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv, @function
-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv:
-.LFB8164:
-	.cfi_startproc
-	movq	24(%rdi), %rax
-	ret
-	.cfi_endproc
-.LFE8164:
-	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv:
-.LFB8165:
+.LFB8163:
 	.cfi_startproc
 	movsd	32(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8165:
+.LFE8163:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv
 	.section	.rodata.str1.8
 	.align 8
-.LC14:
+.LC11:
 	.string	"wze::engine.actors[].overlapboxes[].SetX(): X must not be NaN\nParams: X: %lf\n"
 	.text
 	.align 2
@@ -957,7 +875,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
-.LFB8166:
+.LFB8164:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -966,25 +884,25 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
 	ucomisd	%xmm0, %xmm0
-	jp	.L192
+	jp	.L183
 	movq	8(%rdi), %rax
 	movsd	40(%rdi), %xmm3
 	movq	%rdi, %rbx
 	movsd	216(%rax), %xmm0
 	movsd	224(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
-	jp	.L177
-	jne	.L177
+	jp	.L168
+	jne	.L168
 	ucomisd	%xmm3, %xmm1
-	jp	.L177
-	jne	.L177
+	jp	.L168
+	jne	.L168
 	movq	$0x000000000, 64(%rdi)
-.L185:
+.L176:
 	pxor	%xmm0, %xmm0
-	jmp	.L184
+	jmp	.L175
 	.p2align 4,,10
 	.p2align 3
-.L177:
+.L168:
 	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
 	leaq	400(%rax), %rdi
@@ -997,18 +915,18 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
 	movsd	224(%rax), %xmm1
 	movsd	%xmm4, 64(%rbx)
 	ucomisd	%xmm0, %xmm2
-	jp	.L181
-	jne	.L181
+	jp	.L172
+	jne	.L172
 	ucomisd	%xmm3, %xmm1
-	jp	.L181
-	je	.L185
-.L181:
+	jp	.L172
+	je	.L176
+.L172:
 	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
-.L184:
+.L175:
 	movsd	%xmm0, 72(%rbx)
 	movapd	%xmm2, %xmm0
 	movsd	%xmm2, 32(%rbx)
@@ -1018,31 +936,31 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
-.L192:
+.L183:
 	.cfi_restore_state
-	leaq	.LC14(%rip), %rdi
+	leaq	.LC11(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8166:
+.LFE8164:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv:
-.LFB8167:
+.LFB8165:
 	.cfi_startproc
 	movsd	40(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8167:
+.LFE8165:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv
 	.section	.rodata.str1.8
 	.align 8
-.LC15:
+.LC12:
 	.string	"wze::engine.actors[].overlapboxes[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
 	.text
 	.align 2
@@ -1050,7 +968,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
-.LFB8168:
+.LFB8166:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1059,25 +977,25 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
 	ucomisd	%xmm0, %xmm0
-	jp	.L212
+	jp	.L203
 	movq	8(%rdi), %rax
 	movsd	32(%rdi), %xmm2
 	movq	%rdi, %rbx
 	movsd	216(%rax), %xmm0
 	movsd	224(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
-	jp	.L197
-	jne	.L197
+	jp	.L188
+	jne	.L188
 	ucomisd	%xmm1, %xmm3
-	jp	.L197
-	jne	.L197
+	jp	.L188
+	jne	.L188
 	movq	$0x000000000, 64(%rdi)
-.L205:
+.L196:
 	pxor	%xmm0, %xmm0
-	jmp	.L204
+	jmp	.L195
 	.p2align 4,,10
 	.p2align 3
-.L197:
+.L188:
 	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
 	leaq	400(%rax), %rdi
@@ -1090,18 +1008,18 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
 	movsd	224(%rax), %xmm1
 	movsd	%xmm4, 64(%rbx)
 	ucomisd	%xmm2, %xmm0
-	jp	.L201
-	jne	.L201
+	jp	.L192
+	jne	.L192
 	ucomisd	%xmm1, %xmm3
-	jp	.L201
-	je	.L205
-.L201:
+	jp	.L192
+	je	.L196
+.L192:
 	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
-.L204:
+.L195:
 	movsd	%xmm0, 72(%rbx)
 	movapd	%xmm3, %xmm0
 	movsd	%xmm3, 40(%rbx)
@@ -1111,82 +1029,88 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
-.L212:
+.L203:
 	.cfi_restore_state
-	leaq	.LC15(%rip), %rdi
+	leaq	.LC12(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8168:
+.LFE8166:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv:
-.LFB8169:
+.LFB8167:
 	.cfi_startproc
 	movzwl	48(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8169:
+.LFE8167:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv:
-.LFB8171:
+.LFB8169:
 	.cfi_startproc
 	movzwl	50(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8171:
+.LFE8169:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv:
-.LFB8173:
+.LFB8171:
 	.cfi_startproc
 	movsd	56(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8173:
+.LFE8171:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv:
-.LFB8175:
+.LFB8173:
 	.cfi_startproc
 	movzwl	80(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8175:
+.LFE8173:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv:
-.LFB8176:
+.LFB8174:
 	.cfi_startproc
 	movzwl	82(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8176:
+.LFE8174:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv
 	.section	.rodata.str1.8
 	.align 8
-.LC16:
+.LC13:
+	.string	"wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Illegal use of NULL Actor\nParams: ActorID: %lld, OverlapboxID: %lld\n"
+	.align 8
+.LC14:
 	.string	"wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Actor does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n"
 	.align 8
-.LC17:
+.LC15:
+	.string	"wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Illegal use of NULL Overlapbox\nParams: ActorID: %lld, OverlapboxID: %lld\n"
+	.align 8
+.LC16:
 	.string	"wze::engine.actors[].overlapboxes[].IsOverlappingWith(): Overlapbox does not exist\nParams: ActorID: %lld, OverlapboxID: %lld\n"
 	.text
 	.align 2
@@ -1194,37 +1118,28 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy:
-.LFB8177:
+.LFB8175:
 	.cfi_startproc
-	testq	%rsi, %rsi
-	je	.L231
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
+	testq	%rsi, %rsi
+	je	.L219
 	movq	%rdi, %rax
 	movq	(%rdi), %rdi
 	cmpq	352(%rdi), %rsi
-	jnb	.L220
+	jnb	.L211
 	movq	360(%rdi), %rcx
 	movq	(%rcx,%rsi,8), %rcx
 	testq	%rcx, %rcx
-	je	.L220
+	je	.L211
 	testq	%rdx, %rdx
-	jne	.L234
-	xorl	%eax, %eax
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L234:
-	.cfi_restore_state
+	je	.L220
 	cmpq	152(%rcx), %rdx
-	jnb	.L222
+	jnb	.L214
 	movq	160(%rcx), %rcx
 	movq	(%rcx,%rdx,8), %r8
 	testq	%r8, %r8
-	je	.L222
+	je	.L214
 	movzwl	80(%rax), %edx
 	pxor	%xmm1, %xmm1
 	pxor	%xmm3, %xmm3
@@ -1247,39 +1162,47 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy:
 	addsd	40(%rax), %xmm1
 	movq	%r8, %rsi
 	addq	$8, %rsp
+	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	addsd	%xmm0, %xmm2
 	movapd	%xmm1, %xmm4
 	subsd	%xmm3, %xmm4
 	movapd	%xmm4, %xmm3
 	jmp	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
-	.p2align 4,,10
-	.p2align 3
-.L231:
+.L211:
+	.cfi_restore_state
+	leaq	.LC14(%rip), %rdi
 	xorl	%eax, %eax
-	ret
-.L220:
-	.cfi_def_cfa_offset 16
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L214:
 	leaq	.LC16(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L222:
-	leaq	.LC17(%rip), %rdi
+.L219:
+	leaq	.LC13(%rip), %rdi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L220:
+	leaq	.LC15(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8177:
+.LFE8175:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy
 	.section	.rodata.str1.8
 	.align 8
-.LC18:
+.LC17:
 	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %ld, ActorIDBlacklist(length): %ld\n"
 	.align 8
-.LC19:
+.LC18:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.text
 	.align 2
@@ -1287,7 +1210,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyESB_
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyESB_, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyESB_:
-.LFB8178:
+.LFB8176:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -1317,17 +1240,17 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	%rdx, 88(%rsp)
 	xorl	%edx, %edx
 	testq	%rsi, %rsi
-	je	.L236
+	je	.L222
 	xorl	%ebx, %ebx
 	cmpq	$0, (%rsi)
 	movq	%rdi, %r15
 	movq	%rsi, %rbp
 	movq	%r10, %r12
 	movq	%rcx, %r13
-	je	.L240
+	je	.L226
 	.p2align 4,,10
 	.p2align 3
-.L237:
+.L223:
 	movq	%rbx, %rax
 	addq	$1, %rbx
 	salq	$4, %rax
@@ -1335,10 +1258,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	8(%rax), %rdi
 	call	free@PLT
 	cmpq	0(%rbp), %rbx
-	jb	.L237
+	jb	.L223
 	movq	%r12, %r10
 	movq	%r13, %rax
-.L240:
+.L226:
 	movq	8(%rbp), %rdi
 	movq	%rax, 8(%rsp)
 	movl	$1, %ebx
@@ -1378,50 +1301,50 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	addsd	%xmm0, %xmm2
 	movapd	%xmm1, %xmm3
 	subsd	%xmm4, %xmm3
-	jbe	.L239
+	jbe	.L225
 	movq	16(%rsp), %r9
 	movq	%rbp, %r13
 	movq	%r14, %r8
-	jmp	.L238
+	jmp	.L224
 	.p2align 4,,10
 	.p2align 3
-.L241:
+.L227:
 	addq	$1, %rbx
 	cmpq	%rdi, %rbx
-	jnb	.L239
-.L238:
+	jnb	.L225
+.L224:
 	movq	360(%rdx), %rsi
 	leaq	0(,%rbx,8), %r14
 	movq	(%rsi,%rbx,8), %rcx
 	testq	%rcx, %rcx
-	je	.L241
+	je	.L227
 	cmpq	8(%r15), %rcx
-	je	.L241
+	je	.L227
 	movq	208(%rcx), %rbp
 	xorl	%ecx, %ecx
 	testq	%rax, %rax
-	je	.L241
+	je	.L227
 	cmpq	(%r10,%rcx,8), %rbp
-	je	.L285
-.L274:
+	je	.L271
+.L260:
 	addq	$1, %rcx
 	cmpq	%rcx, %rax
-	je	.L241
+	je	.L227
 	cmpq	(%r10,%rcx,8), %rbp
-	jne	.L274
-.L285:
+	jne	.L260
+.L271:
 	xorl	%ecx, %ecx
 	testq	%r8, %r8
-	je	.L245
-.L255:
+	je	.L231
+.L241:
 	cmpq	%rbx, (%r9,%rcx,8)
-	je	.L241
+	je	.L227
 	addq	$1, %rcx
 	cmpq	%rcx, %r8
-	jne	.L255
-.L245:
+	jne	.L241
+.L231:
 	cmpq	%rdi, %rbx
-	jnb	.L284
+	jnb	.L270
 	movq	%rbx, %rcx
 	movl	$1, %r12d
 	movq	%r10, 48(%rsp)
@@ -1437,25 +1360,25 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movsd	%xmm1, 8(%rsp)
 	movsd	%xmm2, 16(%rsp)
 	movsd	%xmm3, 24(%rsp)
-	jmp	.L253
+	jmp	.L239
 	.p2align 4,,10
 	.p2align 3
-.L283:
+.L269:
 	movq	(%r15), %rdx
 	movq	352(%rdx), %rdi
-.L248:
+.L234:
 	movq	360(%rdx), %rsi
 	addq	$1, %rbp
 	cmpq	%rdi, %rbx
-	jnb	.L284
-.L253:
+	jnb	.L270
+.L239:
 	movq	(%rsi,%r14), %rax
 	cmpq	152(%rax), %rbp
-	jnb	.L286
+	jnb	.L272
 	movq	160(%rax), %rax
 	movq	(%rax,%rbp,8), %rsi
 	testq	%rsi, %rsi
-	je	.L248
+	je	.L234
 	movsd	24(%rsp), %xmm3
 	movsd	16(%rsp), %xmm2
 	leaq	368(%rdx), %rdi
@@ -1463,11 +1386,11 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movsd	(%rsp), %xmm0
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L283
+	je	.L269
 	movq	%rbp, 80(%rsp)
 	movq	8(%r13), %rdx
 	cmpq	0(%r13), %rbx
-	jnb	.L284
+	jnb	.L270
 	movq	32(%rsp), %rax
 	leaq	(%rdx,%rax), %r12
 	movq	(%r12), %rax
@@ -1478,19 +1401,19 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	call	realloc@PLT
 	movq	%rax, 8(%r12)
 	testq	%rax, %rax
-	je	.L287
+	je	.L273
 	movq	(%r12), %rdx
 	movq	40(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-	jmp	.L283
+	jmp	.L269
 	.p2align 4,,10
 	.p2align 3
-.L239:
+.L225:
 	movq	88(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L288
+	jne	.L274
 	addq	$104, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -1510,7 +1433,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L286:
+.L272:
 	.cfi_restore_state
 	movsd	(%rsp), %xmm0
 	movsd	8(%rsp), %xmm1
@@ -1520,41 +1443,41 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	56(%rsp), %rax
 	movq	64(%rsp), %r9
 	movq	72(%rsp), %r8
-	jmp	.L241
-.L284:
-	leaq	.LC8(%rip), %rdi
+	jmp	.L227
+.L270:
+	leaq	.LC6(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L287:
-	leaq	.LC19(%rip), %rdi
+.L273:
+	leaq	.LC18(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L236:
+.L222:
 	movq	%rax, %rdx
-	leaq	.LC18(%rip), %rdi
+	leaq	.LC17(%rip), %rdi
 	movq	%r9, %rcx
 	xorl	%esi, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L288:
+.L274:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8178:
+.LFE8176:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyESB_, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyESB_
 	.section	.rodata.str1.8
 	.align 8
-.LC20:
+.LC19:
 	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist(length): %ld\n"
 	.align 8
-.LC21:
+.LC20:
 	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorTypeWhitelist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist(length): %ld\n"
 	.text
 	.align 2
@@ -1562,7 +1485,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_St16initializer_listIyE
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_St16initializer_listIyE, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_St16initializer_listIyE:
-.LFB8179:
+.LFB8178:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -1590,19 +1513,19 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	%rax, 88(%rsp)
 	xorl	%eax, %eax
 	testq	%rsi, %rsi
-	je	.L340
+	je	.L326
 	movq	%rsi, %r15
 	testq	%rdx, %rdx
-	je	.L291
+	je	.L277
 	xorl	%ebx, %ebx
 	cmpq	$0, (%rsi)
 	movq	%rdi, %r14
 	movq	%rcx, %r13
 	movq	%rdx, %r12
-	je	.L295
+	je	.L281
 	.p2align 4,,10
 	.p2align 3
-.L292:
+.L278:
 	movq	%rbx, %rax
 	addq	$1, %rbx
 	salq	$4, %rax
@@ -1610,9 +1533,9 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	8(%rax), %rdi
 	call	free@PLT
 	cmpq	(%r15), %rbx
-	jb	.L292
+	jb	.L278
 	movq	%r12, %r9
-.L295:
+.L281:
 	movq	$0, (%r15)
 	movq	8(%r15), %rdi
 	movl	$1, %ebx
@@ -1650,42 +1573,42 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	addsd	%xmm0, %xmm2
 	movapd	%xmm1, %xmm3
 	subsd	%xmm4, %xmm3
-	jbe	.L294
+	jbe	.L280
 	movq	%r15, 40(%rsp)
 	movq	%r13, %r10
 	movq	%r9, %r15
 	.p2align 4,,10
 	.p2align 3
-.L293:
+.L279:
 	movq	360(%rax), %rdx
 	leaq	0(,%rbx,8), %r13
 	movq	(%rdx,%rbx,8), %rcx
 	testq	%rcx, %rcx
-	je	.L296
+	je	.L282
 	cmpq	8(%r14), %rcx
-	je	.L296
+	je	.L282
 	movq	(%r15), %rdi
 	movq	208(%rcx), %r8
 	xorl	%ecx, %ecx
 	movq	8(%r15), %r9
 	testq	%rdi, %rdi
-	je	.L296
-.L297:
+	je	.L282
+.L283:
 	cmpq	(%r9,%rcx,8), %r8
-	je	.L341
+	je	.L327
 	addq	$1, %rcx
 	cmpq	%rcx, %rdi
-	jne	.L297
+	jne	.L283
 	.p2align 4,,10
 	.p2align 3
-.L296:
+.L282:
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jb	.L293
-.L294:
+	jb	.L279
+.L280:
 	movq	88(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L342
+	jne	.L328
 	addq	$104, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -1703,20 +1626,20 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L341:
+.L327:
 	.cfi_restore_state
 	xorl	%ecx, %ecx
 	testq	%rbp, %rbp
-	je	.L300
-.L310:
+	je	.L286
+.L296:
 	cmpq	%rbx, (%r10,%rcx,8)
-	je	.L296
+	je	.L282
 	addq	$1, %rcx
 	cmpq	%rcx, %rbp
-	jne	.L310
-.L300:
+	jne	.L296
+.L286:
 	cmpq	%rsi, %rbx
-	jnb	.L339
+	jnb	.L325
 	movq	%rbx, %rcx
 	movl	$1, %r12d
 	movq	%rbp, 72(%rsp)
@@ -1731,25 +1654,25 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movsd	%xmm1, 16(%rsp)
 	movsd	%xmm2, 24(%rsp)
 	movsd	%xmm3, 32(%rsp)
-	jmp	.L308
+	jmp	.L294
 	.p2align 4,,10
 	.p2align 3
-.L338:
+.L324:
 	movq	(%r14), %rax
 	movq	352(%rax), %rdi
-.L303:
+.L289:
 	movq	360(%rax), %rdx
 	addq	$1, %rbp
 	cmpq	%rdi, %rbx
-	jnb	.L339
-.L308:
+	jnb	.L325
+.L294:
 	movq	(%rdx,%r13), %rdx
 	cmpq	152(%rdx), %rbp
-	jnb	.L343
+	jnb	.L329
 	movq	160(%rdx), %rdx
 	movq	(%rdx,%rbp,8), %rsi
 	testq	%rsi, %rsi
-	je	.L303
+	je	.L289
 	movsd	32(%rsp), %xmm3
 	movsd	24(%rsp), %xmm2
 	leaq	368(%rax), %rdi
@@ -1757,12 +1680,12 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movsd	8(%rsp), %xmm0
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L338
+	je	.L324
 	movq	40(%rsp), %rax
 	movq	%rbp, 80(%rsp)
 	movq	8(%rax), %rdx
 	cmpq	(%rax), %rbx
-	jnb	.L339
+	jnb	.L325
 	movq	48(%rsp), %rax
 	leaq	(%rdx,%rax), %r12
 	movq	(%r12), %rax
@@ -1773,16 +1696,16 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	call	realloc@PLT
 	movq	%rax, 8(%r12)
 	testq	%rax, %rax
-	je	.L344
+	je	.L330
 	movq	(%r12), %rdx
 	movq	56(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-	jmp	.L338
+	jmp	.L324
 	.p2align 4,,10
 	.p2align 3
-.L343:
+.L329:
 	movq	%rdi, %rsi
 	addq	$1, %rbx
 	movsd	8(%rsp), %xmm0
@@ -1792,56 +1715,56 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	64(%rsp), %r10
 	movq	72(%rsp), %rbp
 	cmpq	%rsi, %rbx
-	jb	.L293
-	jmp	.L294
-.L339:
-	leaq	.LC8(%rip), %rdi
+	jb	.L279
+	jmp	.L280
+.L325:
+	leaq	.LC6(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L342:
+.L328:
 	call	__stack_chk_fail@PLT
-.L291:
-	leaq	.LC21(%rip), %rdi
+.L277:
+	leaq	.LC20(%rip), %rdi
 	movq	%r8, %rcx
 	xorl	%edx, %edx
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L340:
-	leaq	.LC20(%rip), %rdi
+.L326:
+	leaq	.LC19(%rip), %rdi
 	movq	%r8, %rcx
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L344:
-	leaq	.LC19(%rip), %rdi
+.L330:
+	leaq	.LC18(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8179:
+.LFE8178:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_St16initializer_listIyE, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_St16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC22:
+.LC21:
 	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %ld, ActorIDBlacklist: %p\n"
 	.align 8
-.LC23:
-	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): AActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %ld, ActorIDBlacklist: %p\n"
+.LC22:
+	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %ld, ActorIDBlacklist: %p\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyEPS7_
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyEPS7_, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyEPS7_:
-.LFB8180:
+.LFB8179:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -1868,20 +1791,20 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	%rax, 88(%rsp)
 	xorl	%eax, %eax
 	testq	%rsi, %rsi
-	je	.L396
+	je	.L382
 	movq	%rsi, %rbp
 	testq	%r8, %r8
-	je	.L347
+	je	.L333
 	xorl	%ebx, %ebx
 	cmpq	$0, (%rsi)
 	movq	%rdi, %r12
 	movq	%rdx, %r9
 	movq	%r8, %r13
 	movq	%rdx, %r14
-	je	.L351
+	je	.L337
 	.p2align 4,,10
 	.p2align 3
-.L348:
+.L334:
 	movq	%rbx, %rax
 	addq	$1, %rbx
 	salq	$4, %rax
@@ -1889,10 +1812,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	8(%rax), %rdi
 	call	free@PLT
 	cmpq	0(%rbp), %rbx
-	jb	.L348
+	jb	.L334
 	movq	%r13, %r8
 	movq	%r14, %r9
-.L351:
+.L337:
 	movq	8(%rbp), %rdi
 	movq	%r9, 16(%rsp)
 	movl	$1, %ebx
@@ -1932,53 +1855,53 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	addsd	%xmm0, %xmm2
 	movapd	%xmm1, %xmm3
 	subsd	%xmm4, %xmm3
-	jbe	.L350
+	jbe	.L336
 	movq	%rbp, 40(%rsp)
 	movq	%r9, %r14
-	jmp	.L349
+	jmp	.L335
 	.p2align 4,,10
 	.p2align 3
-.L352:
+.L338:
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jnb	.L350
-.L349:
+	jnb	.L336
+.L335:
 	movq	360(%rax), %rdx
 	leaq	0(,%rbx,8), %r13
 	movq	(%rdx,%rbx,8), %rcx
 	testq	%rcx, %rcx
-	je	.L352
+	je	.L338
 	cmpq	8(%r12), %rcx
-	je	.L352
+	je	.L338
 	movq	208(%rcx), %rdi
 	xorl	%ecx, %ecx
 	testq	%r15, %r15
-	je	.L352
+	je	.L338
 	cmpq	(%r14,%rcx,8), %rdi
-	je	.L397
-.L386:
+	je	.L383
+.L372:
 	addq	$1, %rcx
 	cmpq	%rcx, %r15
-	je	.L352
+	je	.L338
 	cmpq	(%r14,%rcx,8), %rdi
-	jne	.L386
-.L397:
+	jne	.L372
+.L383:
 	movq	(%r8), %rdi
 	movq	8(%r8), %r9
 	xorl	%ecx, %ecx
 	testq	%rdi, %rdi
-	je	.L356
-.L366:
+	je	.L342
+.L352:
 	cmpq	%rbx, (%r9,%rcx,8)
-	je	.L352
+	je	.L338
 	addq	$1, %rcx
 	cmpq	%rcx, %rdi
-	jne	.L366
+	jne	.L352
 	.p2align 4,,10
 	.p2align 3
-.L356:
+.L342:
 	cmpq	%rsi, %rbx
-	jnb	.L395
+	jnb	.L381
 	movq	%rbx, %rcx
 	movq	%r8, 64(%rsp)
 	movl	$1, %ebp
@@ -1992,25 +1915,25 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movsd	%xmm1, 16(%rsp)
 	movsd	%xmm2, 24(%rsp)
 	movsd	%xmm3, 32(%rsp)
-	jmp	.L364
+	jmp	.L350
 	.p2align 4,,10
 	.p2align 3
-.L394:
+.L380:
 	movq	(%r12), %rax
 	movq	352(%rax), %rdi
-.L359:
+.L345:
 	movq	360(%rax), %rdx
 	addq	$1, %rbp
 	cmpq	%rdi, %rbx
-	jnb	.L395
-.L364:
+	jnb	.L381
+.L350:
 	movq	(%rdx,%r13), %rdx
 	cmpq	152(%rdx), %rbp
-	jnb	.L398
+	jnb	.L384
 	movq	160(%rdx), %rdx
 	movq	(%rdx,%rbp,8), %rsi
 	testq	%rsi, %rsi
-	je	.L359
+	je	.L345
 	movsd	32(%rsp), %xmm3
 	movsd	24(%rsp), %xmm2
 	leaq	368(%rax), %rdi
@@ -2018,12 +1941,12 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movsd	8(%rsp), %xmm0
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L394
+	je	.L380
 	movq	40(%rsp), %rax
 	movq	%rbp, 80(%rsp)
 	movq	8(%rax), %rdx
 	cmpq	(%rax), %rbx
-	jnb	.L395
+	jnb	.L381
 	movq	48(%rsp), %rax
 	leaq	(%rdx,%rax), %r14
 	movq	(%r14), %rax
@@ -2034,19 +1957,19 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	call	realloc@PLT
 	movq	%rax, 8(%r14)
 	testq	%rax, %rax
-	je	.L399
+	je	.L385
 	movq	(%r14), %rdx
 	movq	56(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-	jmp	.L394
+	jmp	.L380
 	.p2align 4,,10
 	.p2align 3
-.L350:
+.L336:
 	movq	88(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L400
+	jne	.L386
 	addq	$104, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -2066,7 +1989,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L398:
+.L384:
 	.cfi_restore_state
 	movsd	8(%rsp), %xmm0
 	movsd	16(%rsp), %xmm1
@@ -2075,59 +1998,59 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movsd	32(%rsp), %xmm3
 	movq	64(%rsp), %r8
 	movq	72(%rsp), %r14
-	jmp	.L352
-.L395:
-	leaq	.LC8(%rip), %rdi
+	jmp	.L338
+.L381:
+	leaq	.LC6(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L347:
-	leaq	.LC23(%rip), %rdi
+.L333:
+	leaq	.LC22(%rip), %rdi
 	xorl	%ecx, %ecx
 	movq	%r15, %rdx
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L396:
-	leaq	.LC22(%rip), %rdi
+.L382:
+	leaq	.LC21(%rip), %rdi
 	movq	%r8, %rcx
 	movq	%r15, %rdx
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L400:
+.L386:
 	call	__stack_chk_fail@PLT
-.L399:
-	leaq	.LC19(%rip), %rdi
+.L385:
+	leaq	.LC18(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8180:
+.LFE8179:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyEPS7_, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyEPS7_
 	.section	.rodata.str1.8
 	.align 8
+.LC23:
+	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist: %p\n"
+	.align 8
 .LC24:
-	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): OverlapboxesByActors must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %p, ActorIDBlacklist: %p\n"
+	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorTypeWhitelist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist: %p\n"
 	.align 8
 .LC25:
-	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorTypeWhitelist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %p, ActorIDBlacklist: %p\n"
-	.align 8
-.LC26:
-	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): AActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist(length): %p, ActorIDBlacklist: %p\n"
+	.string	"wze::engine.actors[].overlapboxes[].GetOverlapState(): ActorIDBlacklist must not be NULL\nParams: OverlapboxesByActors: %p, ActorTypeWhitelist: %p, ActorIDBlacklist: %p\n"
 	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_SA_
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_SA_, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_SA_:
-.LFB8181:
+.LFB8180:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -2154,20 +2077,20 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	%rax, 72(%rsp)
 	xorl	%eax, %eax
 	testq	%rsi, %rsi
-	je	.L453
+	je	.L439
 	movq	%rsi, %r12
 	testq	%rdx, %rdx
-	je	.L454
+	je	.L440
 	testq	%rcx, %rcx
-	je	.L404
+	je	.L390
 	xorl	%ebx, %ebx
 	cmpq	$0, (%rsi)
 	movq	%rdi, %r14
 	movq	%rcx, %rbp
-	je	.L408
+	je	.L394
 	.p2align 4,,10
 	.p2align 3
-.L405:
+.L391:
 	movq	%rbx, %rax
 	addq	$1, %rbx
 	salq	$4, %rax
@@ -2175,9 +2098,9 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	8(%rax), %rdi
 	call	free@PLT
 	cmpq	(%r12), %rbx
-	jb	.L405
+	jb	.L391
 	movq	%rbp, %rcx
-.L408:
+.L394:
 	movq	8(%r12), %rdi
 	movq	%rcx, (%rsp)
 	movl	$1, %ebx
@@ -2216,7 +2139,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	addsd	%xmm0, %xmm2
 	movapd	%xmm1, %xmm3
 	subsd	%xmm4, %xmm3
-	jbe	.L407
+	jbe	.L393
 	movq	%r9, 40(%rsp)
 	movq	%r12, %r13
 	movq	%r15, %r9
@@ -2226,36 +2149,36 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movsd	%xmm3, 24(%rsp)
 	.p2align 4,,10
 	.p2align 3
-.L406:
+.L392:
 	movq	360(%rax), %rdx
 	leaq	0(,%rbx,8), %r15
 	movq	(%rdx,%rbx,8), %rdi
 	testq	%rdi, %rdi
-	je	.L409
+	je	.L395
 	cmpq	8(%r12), %rdi
-	je	.L409
+	je	.L395
 	movq	(%r9), %r10
 	movq	208(%rdi), %r11
 	xorl	%edi, %edi
 	movq	8(%r9), %rbp
 	testq	%r10, %r10
-	je	.L409
-.L410:
+	je	.L395
+.L396:
 	cmpq	0(%rbp,%rdi,8), %r11
-	je	.L455
+	je	.L441
 	addq	$1, %rdi
 	cmpq	%rdi, %r10
-	jne	.L410
+	jne	.L396
 	.p2align 4,,10
 	.p2align 3
-.L409:
+.L395:
 	addq	$1, %rbx
 	cmpq	%rsi, %rbx
-	jb	.L406
-.L407:
+	jb	.L392
+.L393:
 	movq	72(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L456
+	jne	.L442
 	addq	$88, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -2273,24 +2196,24 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L455:
+.L441:
 	.cfi_restore_state
 	movq	(%rcx), %r10
 	movq	8(%rcx), %r11
 	xorl	%edi, %edi
 	testq	%r10, %r10
-	je	.L413
-.L423:
+	je	.L399
+.L409:
 	cmpq	%rbx, (%r11,%rdi,8)
-	je	.L409
+	je	.L395
 	addq	$1, %rdi
 	cmpq	%rdi, %r10
-	jne	.L423
+	jne	.L409
 	.p2align 4,,10
 	.p2align 3
-.L413:
+.L399:
 	cmpq	%rsi, %rbx
-	jnb	.L452
+	jnb	.L438
 	movq	%rbx, %rdi
 	movq	%r9, 48(%rsp)
 	movl	$1, %ebp
@@ -2299,25 +2222,25 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	%rdi, 32(%rsp)
 	movq	%rsi, %rdi
 	movsd	%xmm0, (%rsp)
-	jmp	.L421
+	jmp	.L407
 	.p2align 4,,10
 	.p2align 3
-.L451:
+.L437:
 	movq	(%r12), %rax
 	movq	352(%rax), %rdi
-.L416:
+.L402:
 	movq	360(%rax), %rdx
 	addq	$1, %rbp
 	cmpq	%rdi, %rbx
-	jnb	.L452
-.L421:
+	jnb	.L438
+.L407:
 	movq	(%rdx,%r15), %rdx
 	cmpq	152(%rdx), %rbp
-	jnb	.L457
+	jnb	.L443
 	movq	160(%rdx), %rdx
 	movq	(%rdx,%rbp,8), %rsi
 	testq	%rsi, %rsi
-	je	.L416
+	je	.L402
 	movsd	24(%rsp), %xmm3
 	movsd	16(%rsp), %xmm2
 	leaq	368(%rax), %rdi
@@ -2325,11 +2248,11 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movsd	(%rsp), %xmm0
 	call	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE@PLT
 	testb	%al, %al
-	je	.L451
+	je	.L437
 	movq	%rbp, 64(%rsp)
 	movq	8(%r13), %rdx
 	cmpq	0(%r13), %rbx
-	jnb	.L452
+	jnb	.L438
 	movq	32(%rsp), %rax
 	leaq	(%rdx,%rax), %r14
 	movq	(%r14), %rax
@@ -2340,81 +2263,81 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	call	realloc@PLT
 	movq	%rax, 8(%r14)
 	testq	%rax, %rax
-	je	.L458
+	je	.L444
 	movq	(%r14), %rdx
 	movq	40(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-	jmp	.L451
+	jmp	.L437
 	.p2align 4,,10
 	.p2align 3
-.L457:
+.L443:
 	movq	%rdi, %rsi
 	addq	$1, %rbx
 	movsd	(%rsp), %xmm0
 	movq	48(%rsp), %r9
 	movq	56(%rsp), %rcx
 	cmpq	%rsi, %rbx
-	jb	.L406
-	jmp	.L407
-.L452:
-	leaq	.LC8(%rip), %rdi
+	jb	.L392
+	jmp	.L393
+.L438:
+	leaq	.LC6(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L456:
+.L442:
 	call	__stack_chk_fail@PLT
-.L404:
-	leaq	.LC26(%rip), %rdi
+.L390:
+	leaq	.LC25(%rip), %rdi
 	xorl	%ecx, %ecx
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L454:
-	leaq	.LC25(%rip), %rdi
+.L440:
+	leaq	.LC24(%rip), %rdi
 	xorl	%edx, %edx
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L453:
-	leaq	.LC24(%rip), %rdi
+.L439:
+	leaq	.LC23(%rip), %rdi
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L458:
-	leaq	.LC19(%rip), %rdi
+.L444:
+	leaq	.LC18(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8181:
+.LFE8180:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_SA_, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_SA_
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv:
-.LFB8182:
+.LFB8181:
 	.cfi_startproc
 	movl	112(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8182:
+.LFE8181:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
-	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv, @function
-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv:
-.LFB8183:
+	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv
+	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv, @function
+_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv:
+.LFB8182:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -2444,7 +2367,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv:
 	addsd	%xmm0, %xmm3
 	movsd	88(%rbx), %xmm1
 	addsd	%xmm0, %xmm4
-	movsd	.LC27(%rip), %xmm0
+	movsd	.LC26(%rip), %xmm0
 	leaq	400(%rax), %rdi
 	movapd	%xmm3, %xmm5
 	movapd	%xmm3, %xmm2
@@ -2566,14 +2489,14 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8183:
-	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
+.LFE8182:
+	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
-.LFB8160:
+.LFB8158:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -2604,24 +2527,24 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
 	movups	%xmm4, 32(%rdi)
 	leaq	400(%rsi), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
-	mulsd	.LC29(%rip), %xmm0
+	mulsd	.LC28(%rip), %xmm0
 	pxor	%xmm1, %xmm1
 	ucomisd	%xmm1, %xmm0
 	movsd	%xmm0, 88(%rbx)
-	jp	.L463
-	jne	.L463
+	jp	.L449
+	jne	.L449
 	movsd	%xmm1, 96(%rbx)
-.L465:
+.L451:
 	pxor	%xmm0, %xmm0
 	movq	%rbx, %rdi
 	movsd	%xmm0, 104(%rbx)
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
-	jmp	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
+	jmp	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv
 	.p2align 4,,10
 	.p2align 3
-.L463:
+.L449:
 	.cfi_restore_state
 	movzwl	50(%rbx), %edx
 	movzwl	48(%rbx), %eax
@@ -2638,9 +2561,9 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
 	movsd	%xmm0, 96(%rbx)
 	pxor	%xmm0, %xmm0
 	ucomisd	%xmm0, %xmm1
-	jp	.L466
-	je	.L465
-.L466:
+	jp	.L452
+	je	.L451
+.L452:
 	movzwl	50(%rbx), %eax
 	movzwl	48(%rbx), %edx
 	pxor	%xmm0, %xmm0
@@ -2656,21 +2579,21 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
 	movsd	%xmm0, 104(%rbx)
 	popq	%rbx
 	.cfi_def_cfa_offset 8
-	jmp	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
+	jmp	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv
 	.cfi_endproc
-.LFE8160:
+.LFE8158:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC1EPS0_PS2_y
 	.set	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC1EPS0_PS2_y,_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y
 	.section	.rodata.str1.8
 	.align 8
-.LC30:
-	.string	"wze::engine.actors[].overlapboxes.New(): Memory allocation failed"
+.LC29:
+	.string	"wze::engine.actors[].overlapboxes.New(): Memory allocation failed\nParams: Type: %lld\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB31:
+.LCOLDB30:
 	.text
-.LHOTB31:
+.LHOTB30:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes3NewEy
@@ -2700,19 +2623,19 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	movq	%rax, 8(%rsp)
 	movq	16(%rdi), %rax
 	cmpq	$1, %rax
-	jbe	.L472
+	jbe	.L458
 	movq	24(%rdi), %rdx
 	movl	$1, %ebx
-	jmp	.L476
+	jmp	.L462
 	.p2align 4,,10
 	.p2align 3
-.L473:
+.L459:
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	je	.L472
-.L476:
+	je	.L458
+.L462:
 	cmpq	$0, (%rdx,%rbx,8)
-	jne	.L473
+	jne	.L459
 	movl	$120, %edi
 .LEHB0:
 	call	_Znwm@PLT
@@ -2727,12 +2650,12 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 .LEHE1:
 	movq	24(%rbp), %rax
 	cmpq	16(%rbp), %rbx
-	jnb	.L492
+	jnb	.L478
 	movq	%r13, (%rax,%rbx,8)
-	jmp	.L471
+	jmp	.L457
 	.p2align 4,,10
 	.p2align 3
-.L472:
+.L458:
 	movl	$120, %edi
 .LEHB2:
 	call	_Znwm@PLT
@@ -2754,7 +2677,7 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	call	realloc@PLT
 	movq	%rax, 24(%rbp)
 	testq	%rax, %rax
-	je	.L493
+	je	.L479
 	movq	16(%rbp), %rdx
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
@@ -2765,13 +2688,13 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax
 	movq	%rax, %rbx
-	jnc	.L494
+	jnc	.L480
 	cmpq	$0, (%rdx,%rax,8)
-	je	.L495
-.L471:
+	je	.L481
+.L457:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L496
+	jne	.L482
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -2785,39 +2708,41 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
-.L492:
+.L478:
 	.cfi_restore_state
 	movq	%rbx, %rsi
-.L490:
-	leaq	.LC8(%rip), %rdi
+.L476:
+	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L496:
+.L482:
 	call	__stack_chk_fail@PLT
-.L495:
-	leaq	.LC30(%rip), %rdi
-	call	puts@PLT
+.L481:
+	leaq	.LC29(%rip), %rdi
+	movq	%r12, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L494:
+.L480:
 	orq	$-1, %rsi
-	jmp	.L490
-.L493:
-	leaq	.LC19(%rip), %rdi
+	jmp	.L476
+.L479:
+	leaq	.LC18(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
 .LEHE4:
 	movl	$1, %edi
 	call	exit@PLT
-.L486:
+.L472:
 	movq	%rax, %rbp
-	jmp	.L483
-.L487:
+	jmp	.L469
+.L473:
 	movq	%rax, %rbx
-	jmp	.L481
+	jmp	.L467
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
 .LLSDA8152:
@@ -2832,7 +2757,7 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB8152
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L487-.LFB8152
+	.uleb128 .L473-.LFB8152
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB8152
 	.uleb128 .LEHE2-.LEHB2
@@ -2840,7 +2765,7 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	.uleb128 0
 	.uleb128 .LEHB3-.LFB8152
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L486-.LFB8152
+	.uleb128 .L472-.LFB8152
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB8152
 	.uleb128 .LEHE4-.LEHB4
@@ -2856,7 +2781,7 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	.type	_ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold, @function
 _ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold:
 .LFSB8152:
-.L483:
+.L469:
 	.cfi_def_cfa_offset 64
 	.cfi_offset 3, -40
 	.cfi_offset 6, -32
@@ -2867,21 +2792,21 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold:
 	call	_ZdlPvm@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L491
+	jne	.L477
 	movq	%rbp, %rdi
 .LEHB5:
 	call	_Unwind_Resume@PLT
-.L481:
+.L467:
 	movl	$120, %esi
 	movq	%r13, %rdi
 	call	_ZdlPvm@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L491
+	jne	.L477
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .LEHE5:
-.L491:
+.L477:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8152:
@@ -2892,7 +2817,7 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8152-.LLSDACSBC8152
 .LLSDACSBC8152:
-	.uleb128 .LEHB5-.LCOLDB31
+	.uleb128 .LEHB5-.LCOLDB30
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
@@ -2902,63 +2827,65 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes3NewEy, .-_ZN3wze6engine6actors5actor12overlapboxes3NewEy
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold, .-_ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold
-.LCOLDE31:
+.LCOLDE30:
 	.text
-.LHOTE31:
+.LHOTE30:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
-.LFB8170:
+.LFB8168:
 	.cfi_startproc
+	movzwl	%si, %eax
+	pxor	%xmm2, %xmm2
 	pushq	%r14
 	.cfi_def_cfa_offset 16
 	.cfi_offset 14, -16
-	pxor	%xmm2, %xmm2
 	pxor	%xmm3, %xmm3
-	pxor	%xmm1, %xmm1
-	pushq	%rbx
+	pushq	%rbp
 	.cfi_def_cfa_offset 24
-	.cfi_offset 3, -24
-	movapd	%xmm1, %xmm0
-	movq	%rdi, %rbx
-	subq	$8, %rsp
+	.cfi_offset 6, -24
+	cvtsi2sdl	%eax, %xmm2
+	pxor	%xmm1, %xmm1
+	movl	%esi, %ebp
+	pushq	%rbx
 	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
 	movzwl	50(%rdi), %eax
+	movq	%rdi, %rbx
+	movapd	%xmm1, %xmm0
 	movq	(%rdi), %rdx
-	movw	%si, 48(%rdi)
-	movzwl	%si, %esi
-	cvtsi2sdl	%esi, %xmm2
-	leaq	400(%rdx), %rdi
 	cvtsi2sdl	%eax, %xmm3
+	leaq	400(%rdx), %rdi
 	movq	%xmm2, %r14
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
-	mulsd	.LC29(%rip), %xmm0
+	mulsd	.LC28(%rip), %xmm0
 	pxor	%xmm1, %xmm1
 	ucomisd	%xmm1, %xmm0
 	movsd	%xmm0, 88(%rbx)
-	jp	.L498
-	jne	.L498
+	jp	.L484
+	jne	.L484
 	movsd	%xmm1, 96(%rbx)
-.L500:
+.L486:
 	pxor	%xmm0, %xmm0
-.L503:
-	movsd	%xmm0, 104(%rbx)
+.L489:
+	movw	%bp, 48(%rbx)
 	movq	%rbx, %rdi
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
+	movsd	%xmm0, 104(%rbx)
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv
 	movzwl	48(%rbx), %eax
-	addq	$8, %rsp
+	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
-	popq	%rbx
+	popq	%rbp
 	.cfi_def_cfa_offset 16
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L498:
+.L484:
 	.cfi_restore_state
 	movzwl	50(%rbx), %eax
 	pxor	%xmm3, %xmm3
@@ -2973,9 +2900,9 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
 	movsd	%xmm0, 96(%rbx)
 	pxor	%xmm0, %xmm0
 	ucomisd	%xmm0, %xmm1
-	jp	.L501
-	je	.L500
-.L501:
+	jp	.L487
+	je	.L486
+.L487:
 	movzwl	50(%rbx), %eax
 	pxor	%xmm3, %xmm3
 	movq	(%rbx), %rcx
@@ -2985,60 +2912,66 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
 	cvtsi2sdl	%eax, %xmm3
 	leaq	400(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	jmp	.L503
+	jmp	.L489
 	.cfi_endproc
-.LFE8170:
+.LFE8168:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
-.LFB8172:
+.LFB8170:
 	.cfi_startproc
-	pushq	%rbx
+	pushq	%rbp
 	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
+	.cfi_offset 6, -16
+	movzwl	%si, %eax
 	pxor	%xmm3, %xmm3
 	pxor	%xmm2, %xmm2
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+	cvtsi2sdl	%eax, %xmm3
 	pxor	%xmm1, %xmm1
 	movq	%rdi, %rbx
 	movapd	%xmm1, %xmm0
-	subq	$16, %rsp
-	.cfi_def_cfa_offset 32
+	movl	%esi, %ebp
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 48
 	movzwl	48(%rdi), %eax
 	movq	(%rdi), %rdx
-	movw	%si, 50(%rdi)
-	movzwl	%si, %esi
-	cvtsi2sdl	%esi, %xmm3
-	leaq	400(%rdx), %rdi
-	cvtsi2sdl	%eax, %xmm2
 	movsd	%xmm3, 8(%rsp)
+	cvtsi2sdl	%eax, %xmm2
+	leaq	400(%rdx), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	pxor	%xmm1, %xmm1
 	movsd	8(%rsp), %xmm3
-	mulsd	.LC29(%rip), %xmm0
+	mulsd	.LC28(%rip), %xmm0
 	ucomisd	%xmm1, %xmm0
 	movsd	%xmm0, 88(%rbx)
-	jp	.L507
-	jne	.L507
+	jp	.L493
+	jne	.L493
 	movsd	%xmm1, 96(%rbx)
-.L509:
+.L495:
 	pxor	%xmm0, %xmm0
-.L512:
-	movsd	%xmm0, 104(%rbx)
+.L498:
+	movw	%bp, 50(%rbx)
 	movq	%rbx, %rdi
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
+	movsd	%xmm0, 104(%rbx)
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv
 	movzwl	50(%rbx), %eax
-	addq	$16, %rsp
+	addq	$24, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 16
+	.cfi_def_cfa_offset 24
 	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L507:
+.L493:
 	.cfi_restore_state
 	movzwl	48(%rbx), %eax
 	pxor	%xmm2, %xmm2
@@ -3054,9 +2987,9 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
 	movsd	%xmm0, 96(%rbx)
 	pxor	%xmm0, %xmm0
 	ucomisd	%xmm0, %xmm1
-	jp	.L510
-	je	.L509
-.L510:
+	jp	.L496
+	je	.L495
+.L496:
 	movzwl	48(%rbx), %eax
 	pxor	%xmm0, %xmm0
 	pxor	%xmm2, %xmm2
@@ -3065,13 +2998,13 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
 	movq	(%rbx), %rax
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	jmp	.L512
+	jmp	.L498
 	.cfi_endproc
-.LFE8172:
+.LFE8170:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt
 	.section	.rodata.str1.8
 	.align 8
-.LC32:
+.LC31:
 	.string	"wze::engine.actors[].overlapboxes[].SetAngle(): Angle must not be NaN\nParams: Angle: %lf\n"
 	.text
 	.align 2
@@ -3079,38 +3012,38 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
 	.globl	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd
 	.type	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd, @function
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd:
-.LFB8174:
+.LFB8172:
 	.cfi_startproc
 	ucomisd	%xmm0, %xmm0
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	jp	.L521
+	jp	.L507
 	movq	%rdi, %rbx
 	movsd	%xmm0, 56(%rdi)
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox21UpdateOverlapboxScaleEv
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv
 	movsd	56(%rbx), %xmm0
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L521:
+.L507:
 	.cfi_restore_state
-	leaq	.LC32(%rip), %rdi
+	leaq	.LC31(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8174:
+.LFE8172:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
-.LC27:
+.LC26:
 	.long	0
 	.long	1080459264
 	.align 8
-.LC29:
+.LC28:
 	.long	0
 	.long	1071644672
 	.hidden	DW.ref.__gxx_personality_v0

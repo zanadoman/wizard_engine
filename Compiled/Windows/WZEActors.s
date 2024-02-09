@@ -907,10 +907,10 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	.section .rdata,"dr"
 	.align 8
 .LC14:
-	.ascii "wze::engine.actors[]: Illegal access to NULL Actor\12Params: ID: %lld\12\0"
+	.ascii "wze::engine.actors[]: Illegal access to NULL Actor\12Params: ActorID: %lld\12\0"
 	.align 8
 .LC15:
-	.ascii "wze::engine.actors[]: Actor does not exist\12Params: ID: %lld\12\0"
+	.ascii "wze::engine.actors[]: Actor does not exist\12Params: ActorID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4

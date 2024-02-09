@@ -24,5 +24,6 @@ Test/supervising sequence:
         Textures OK
         Flipbooks OK
         Texts OK
-        Overlaps
+        Overlaps OK
         Collisions OK
+    WizardEngine.hpp

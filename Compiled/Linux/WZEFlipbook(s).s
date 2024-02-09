@@ -278,12 +278,6 @@ _ZN3wze6engine6actors5actor9flipbooksD2Ev:
 	.section	.rodata.str1.8
 	.align 8
 .LC4:
-	.string	"wze::engine.actors[].flipbooks.Delete(): Illegal deletion of NULL Flipbook\nParams: ID: %lld\n"
-	.align 8
-.LC5:
-	.string	"wze::engine.actors[].flipbooks.Delete(): Flipbook does not exist\nParams: ID: %lld\n"
-	.align 8
-.LC6:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.text
 	.align 2
@@ -293,22 +287,25 @@ _ZN3wze6engine6actors5actor9flipbooksD2Ev:
 _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
 .LFB8159:
 	.cfi_startproc
+	cmpq	16(%rdi), %rsi
+	jb	.L65
+	xorl	%eax, %eax
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L65:
 	pushq	%r12
 	.cfi_def_cfa_offset 16
 	.cfi_offset 12, -16
 	pushq	%rbp
 	.cfi_def_cfa_offset 24
 	.cfi_offset 6, -24
+	movq	%rsi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	testq	%rsi, %rsi
-	je	.L55
-	movq	%rdi, %rbp
-	movq	%rsi, %rbx
-	cmpq	16(%rdi), %rsi
-	jnb	.L44
 	movq	24(%rdi), %rax
+	movq	%rdi, %rbx
 	movq	(%rax,%rsi,8), %r12
 	testq	%r12, %r12
 	je	.L44
@@ -317,43 +314,33 @@ _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
 	movl	$112, %esi
 	movq	%r12, %rdi
 	call	_ZdlPvm@PLT
-	movq	16(%rbp), %rax
-	movq	24(%rbp), %rdx
-	cmpq	%rax, %rbx
-	jnb	.L56
-	movq	$0, (%rdx,%rbx,8)
+	movq	16(%rbx), %rax
+	movq	24(%rbx), %rdx
+	cmpq	%rax, %rbp
+	jnb	.L66
+	movq	$0, (%rdx,%rbp,8)
 	cmpq	$0, -8(%rdx,%rax,8)
 	leaq	-1(%rax), %r8
-	je	.L57
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbp
-	.cfi_def_cfa_offset 16
-	popq	%r12
-	.cfi_def_cfa_offset 8
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L57:
-	.cfi_restore_state
+	jne	.L44
+	cmpq	$1, %rax
+	je	.L44
 	movq	%rax, %rsi
 	.p2align 4,,10
 	.p2align 3
-.L51:
+.L50:
 	movq	%rsi, %rcx
 	subq	$1, %rsi
 	cmpq	%rax, %rsi
-	jnb	.L54
+	jnb	.L67
 	cmpq	$0, (%rdx,%rsi,8)
-	jne	.L58
+	jne	.L68
 	cmpq	$1, %rsi
-	jne	.L51
-.L50:
-	leaq	16(%rbp), %rdi
+	jne	.L50
+.L49:
+	leaq	16(%rbx), %rdi
 	movq	%r8, %rdx
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0
+.L44:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -365,30 +352,21 @@ _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L58:
+.L68:
 	.cfi_restore_state
 	subq	%rcx, %rax
 	movq	%rcx, %rsi
 	movq	%rax, %r8
-	jmp	.L50
-.L56:
-	movq	%rbx, %rsi
-.L54:
-	leaq	.LC6(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L44:
-	leaq	.LC5(%rip), %rdi
-	movq	%rbx, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L55:
+	jmp	.L49
+.L67:
 	leaq	.LC4(%rip), %rdi
-	xorl	%esi, %esi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L66:
+	leaq	.LC4(%rip), %rdi
+	movq	%rbp, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -396,11 +374,6 @@ _ZN3wze6engine6actors5actor9flipbooks6DeleteEy:
 	.cfi_endproc
 .LFE8159:
 	.size	_ZN3wze6engine6actors5actor9flipbooks6DeleteEy, .-_ZN3wze6engine6actors5actor9flipbooks6DeleteEy
-	.section	.rodata.str1.8
-	.align 8
-.LC7:
-	.string	"wze::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep(length): %ld\n"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE
@@ -417,11 +390,9 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	pushq	%r13
 	.cfi_def_cfa_offset 32
 	.cfi_offset 13, -32
-	movq	%rdi, %r13
 	pushq	%r12
 	.cfi_def_cfa_offset 40
 	.cfi_offset 12, -40
-	movq	%rsi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 48
 	.cfi_offset 6, -48
@@ -432,65 +403,48 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 64
 	movq	16(%rdi), %rdx
-	testq	%rbp, %rbp
-	je	.L60
-	xorl	%eax, %eax
-	.p2align 4,,10
-	.p2align 3
-.L63:
-	movq	(%r12,%rax,8), %rcx
-	testq	%rcx, %rcx
-	je	.L61
-	cmpq	%rdx, %rcx
-	jnb	.L62
-	movq	24(%r13), %rsi
-	cmpq	$0, (%rsi,%rcx,8)
-	je	.L62
-.L61:
-	addq	$1, %rax
-	cmpq	%rax, %rbp
-	jne	.L63
-.L60:
 	cmpq	$1, %rdx
-	jbe	.L64
-	movq	24(%r13), %rcx
+	jbe	.L70
+	movq	24(%rdi), %rcx
+	movq	%rdi, %r14
+	movq	%rsi, %r12
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L65:
+.L77:
 	xorl	%eax, %eax
 	testq	%rbp, %rbp
-	je	.L66
-.L72:
+	je	.L72
+.L71:
 	cmpq	%rbx, (%r12,%rax,8)
-	je	.L67
+	je	.L73
 	addq	$1, %rax
-	cmpq	%rax, %rbp
-	jne	.L72
-.L66:
-	movq	(%rcx,%rbx,8), %r14
+	cmpq	%rbp, %rax
+	jne	.L71
+.L72:
+	movq	(%rcx,%rbx,8), %r13
 	leaq	0(,%rbx,8), %r15
-	testq	%r14, %r14
-	je	.L69
-	movq	104(%r14), %rdi
+	testq	%r13, %r13
+	je	.L75
+	movq	104(%r13), %rdi
 	call	free@PLT
 	movl	$112, %esi
-	movq	%r14, %rdi
+	movq	%r13, %rdi
 	call	_ZdlPvm@PLT
-	movq	16(%r13), %rdx
-	movq	24(%r13), %rcx
-.L69:
+	movq	16(%r14), %rdx
+	movq	24(%r14), %rcx
+.L75:
 	cmpq	%rdx, %rbx
-	jnb	.L98
+	jnb	.L97
 	movq	$0, (%rcx,%r15)
-.L67:
+.L73:
 	addq	$1, %rbx
 	cmpq	%rdx, %rbx
-	jb	.L65
+	jb	.L77
 	cmpq	$0, -8(%rcx,%rdx,8)
 	leaq	-1(%rdx), %r8
-	je	.L99
-.L95:
+	je	.L98
+.L94:
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -508,61 +462,54 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L99:
+.L98:
 	.cfi_restore_state
 	movq	%rdx, %rax
-	jmp	.L73
+	jmp	.L78
 	.p2align 4,,10
 	.p2align 3
-.L78:
+.L83:
 	leaq	-1(%rax), %rsi
 	cmpq	%rdx, %rsi
-	jnb	.L97
+	jnb	.L96
 	cmpq	$0, (%rcx,%rsi,8)
-	jne	.L100
+	jne	.L99
 	movq	%rsi, %rax
-.L73:
+.L78:
 	cmpq	$1, %rax
-	jne	.L78
-.L77:
-	leaq	16(%r13), %rdi
+	jne	.L83
+.L82:
+	leaq	16(%r14), %rdi
 	movq	%r8, %rdx
 	movq	%rax, %rsi
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0
-	jmp	.L95
-.L64:
+	jmp	.L94
+.L70:
 	testq	%rdx, %rdx
-	jne	.L95
+	jne	.L94
 	orq	$-1, %rsi
-.L97:
-	leaq	.LC6(%rip), %rdi
+.L96:
+	leaq	.LC4(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L100:
+.L99:
 	subq	%rax, %rdx
 	movq	%rdx, %r8
-	jmp	.L77
-.L62:
-	leaq	.LC7(%rip), %rdi
-	movq	%rbp, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L98:
+	jmp	.L82
+.L97:
 	movq	%rbx, %rsi
-	jmp	.L97
+	jmp	.L96
 	.cfi_endproc
 .LFE8160:
 	.size	_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5actor9flipbooks5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC8:
-	.string	"wze::engine.actors[].flipbooks.Purge(): Flipbook does not exist\nParams: Keep: %p\n"
+.LC5:
+	.string	"wze::engine.actors[].flipbooks.Purge(): Keep must not be NULL\nParams: Keep: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -580,94 +527,61 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	pushq	%r12
 	.cfi_def_cfa_offset 32
 	.cfi_offset 12, -32
-	movq	%rdi, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 40
 	.cfi_offset 6, -40
-	movq	%rsi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 48
 	.cfi_offset 3, -48
-	movq	(%rsi), %rcx
-	movq	16(%rdi), %rdi
-	testq	%rcx, %rcx
-	je	.L102
-	movq	8(%rsi), %rsi
-	xorl	%eax, %eax
-	jmp	.L105
-	.p2align 4,,10
-	.p2align 3
-.L103:
-	addq	$1, %rax
-	cmpq	%rax, %rcx
-	je	.L102
-.L105:
-	movq	(%rsi,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L103
-	cmpq	%rdi, %rdx
-	jnb	.L104
-	movq	24(%r12), %r8
-	cmpq	$0, (%r8,%rdx,8)
-	jne	.L103
-.L104:
-	leaq	.LC8(%rip), %rdi
-	movq	%rbp, %rsi
-	xorl	%eax, %eax
-	call	printf@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L102:
-	cmpq	$1, %rdi
-	jbe	.L106
-	movq	24(%r12), %rsi
+	testq	%rsi, %rsi
+	je	.L101
+	movq	16(%rdi), %rcx
+	movq	%rdi, %r13
+	cmpq	$1, %rcx
+	jbe	.L132
+	movq	24(%rdi), %rdi
+	movq	%rsi, %rbp
 	movl	$1, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L114:
-	movq	8(%rbp), %rdx
+.L110:
+	movq	0(%rbp), %rdx
+	movq	8(%rbp), %rsi
 	xorl	%eax, %eax
-	testq	%rcx, %rcx
-	je	.L107
-.L108:
-	cmpq	%rbx, (%rdx,%rax,8)
-	je	.L109
+	testq	%rdx, %rdx
+	je	.L104
+.L105:
+	cmpq	(%rsi,%rax,8), %rbx
+	je	.L106
 	addq	$1, %rax
-	cmpq	%rax, %rcx
-	jne	.L108
+	cmpq	%rax, %rdx
+	jne	.L105
 	.p2align 4,,10
 	.p2align 3
-.L107:
-	movq	(%rsi,%rbx,8), %r13
+.L104:
+	movq	(%rdi,%rbx,8), %r12
 	leaq	0(,%rbx,8), %r14
-	testq	%r13, %r13
-	je	.L111
-	movq	104(%r13), %rdi
+	testq	%r12, %r12
+	je	.L108
+	movq	104(%r12), %rdi
 	call	free@PLT
+	movq	%r12, %rdi
 	movl	$112, %esi
-	movq	%r13, %rdi
 	call	_ZdlPvm@PLT
-	movq	16(%r12), %rdi
-	movq	24(%r12), %rsi
-.L111:
-	cmpq	%rdi, %rbx
-	jnb	.L141
-	movq	$0, (%rsi,%r14)
-.L109:
+	movq	16(%r13), %rcx
+	movq	24(%r13), %rdi
+.L108:
+	cmpq	%rcx, %rbx
+	jnb	.L133
+	movq	$0, (%rdi,%r14)
+.L106:
 	addq	$1, %rbx
-	cmpq	%rdi, %rbx
-	jnb	.L113
-	movq	0(%rbp), %rcx
-	jmp	.L114
-	.p2align 4,,10
-	.p2align 3
-.L113:
-	cmpq	$0, -8(%rsi,%rdi,8)
-	leaq	-1(%rdi), %rdx
-	je	.L142
-.L138:
+	cmpq	%rcx, %rbx
+	jb	.L110
+	cmpq	$0, -8(%rdi,%rcx,8)
+	leaq	-1(%rcx), %rdx
+	je	.L134
+.L129:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -681,25 +595,25 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
-.L142:
+.L134:
 	.cfi_restore_state
-	movq	%rdi, %rcx
-	jmp	.L115
+	movq	%rcx, %rax
+	jmp	.L111
 	.p2align 4,,10
 	.p2align 3
-.L120:
-	leaq	-1(%rcx), %rax
-	cmpq	%rdi, %rax
-	jnb	.L143
-	cmpq	$0, (%rsi,%rax,8)
-	jne	.L144
-	movq	%rax, %rcx
+.L116:
+	leaq	-1(%rax), %rsi
+	cmpq	%rcx, %rsi
+	jnb	.L131
+	cmpq	$0, (%rdi,%rsi,8)
+	jne	.L135
+	movq	%rsi, %rax
+.L111:
+	cmpq	$1, %rax
+	jne	.L116
 .L115:
-	cmpq	$1, %rcx
-	jne	.L120
-.L119:
-	leaq	16(%r12), %rdi
-	movq	%rcx, %rsi
+	leaq	16(%r13), %rdi
+	movq	%rax, %rsi
 	call	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0
 	popq	%rbx
 	.cfi_remember_state
@@ -714,39 +628,43 @@ _ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE:
 	popq	%r14
 	.cfi_def_cfa_offset 8
 	ret
-.L106:
+.L132:
 	.cfi_restore_state
-	testq	%rdi, %rdi
-	jne	.L138
+	testq	%rcx, %rcx
+	jne	.L129
 	orq	$-1, %rsi
-	jmp	.L140
-	.p2align 4,,10
-	.p2align 3
-.L144:
-	subq	%rcx, %rdi
-	movq	%rdi, %rdx
-	jmp	.L119
-.L141:
-	movq	%rbx, %rsi
-.L140:
-	leaq	.LC6(%rip), %rdi
+.L131:
+	leaq	.LC4(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L143:
-	movq	%rax, %rsi
-	jmp	.L140
+	.p2align 4,,10
+	.p2align 3
+.L135:
+	subq	%rax, %rcx
+	movq	%rcx, %rdx
+	jmp	.L115
+.L101:
+	leaq	.LC5(%rip), %rdi
+	xorl	%esi, %esi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L133:
+	movq	%rbx, %rsi
+	jmp	.L131
 	.cfi_endproc
 .LFE8161:
 	.size	_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor9flipbooks5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
-.LC9:
-	.string	"wze::engine.actors[].flipbooks[]: Illegal access to NULL Flipbook\nParams: ID: %lld\n"
+.LC6:
+	.string	"wze::engine.actors[].flipbooks[]: Illegal access to NULL Flipbook\nParams: FlipbookID: %lld\n"
 	.align 8
-.LC10:
-	.string	"wze::engine.actors[].flipbooks[]: Flipbook does not exist\nParams: ID: %lld\n"
+.LC7:
+	.string	"wze::engine.actors[].flipbooks[]: Flipbook does not exist\nParams: FlipbookID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
@@ -758,26 +676,26 @@ _ZN3wze6engine6actors5actor9flipbooksixEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	testq	%rsi, %rsi
-	je	.L150
+	je	.L141
 	cmpq	16(%rdi), %rsi
-	jnb	.L147
+	jnb	.L138
 	movq	24(%rdi), %rax
 	movq	(%rax,%rsi,8), %rax
 	testq	%rax, %rax
-	je	.L147
+	je	.L138
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L147:
+.L138:
 	.cfi_restore_state
-	leaq	.LC10(%rip), %rdi
+	leaq	.LC7(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L150:
-	leaq	.LC9(%rip), %rdi
+.L141:
+	leaq	.LC6(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -787,9 +705,9 @@ _ZN3wze6engine6actors5actor9flipbooksixEy:
 	.size	_ZN3wze6engine6actors5actor9flipbooksixEy, .-_ZN3wze6engine6actors5actor9flipbooksixEy
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB14:
+.LCOLDB11:
 	.text
-.LHOTB14:
+.LHOTB11:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE
@@ -835,8 +753,8 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	movups	%xmm1, 40(%rdi)
 	movups	%xmm0, 56(%rdi)
 	testq	%r9, %r9
-	jne	.L160
-.L152:
+	jne	.L151
+.L143:
 	movq	%rbp, 96(%rbx)
 	movq	%r12, %rdi
 	movq	%r12, 104(%rbx)
@@ -854,7 +772,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	jmp	free@PLT
 	.p2align 4,,10
 	.p2align 3
-.L160:
+.L151:
 	.cfi_restore_state
 	leaq	0(,%r9,8), %r14
 	movq	%r8, %r13
@@ -862,14 +780,14 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	call	malloc@PLT
 	movq	%rax, %r12
 	testq	%rax, %rax
-	je	.L161
+	je	.L152
 	movq	%r14, %rdx
 	movq	%rax, %rsi
 	movq	%r13, %rdi
 .LEHB0:
 	call	_ZN3neo9memCopyToEPKvPvy@PLT
-	jmp	.L152
-.L161:
+	jmp	.L143
+.L152:
 	movq	%rbp, %rdx
 	movl	$8, %esi
 	leaq	.LC3(%rip), %rdi
@@ -878,9 +796,9 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 .LEHE0:
 	movl	$1, %edi
 	call	exit@PLT
-.L156:
+.L147:
 	movq	%rax, %rbp
-	jmp	.L154
+	jmp	.L145
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
 .LLSDA8164:
@@ -891,7 +809,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 .LLSDACSB8164:
 	.uleb128 .LEHB0-.LFB8164
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L156-.LFB8164
+	.uleb128 .L147-.LFB8164
 	.uleb128 0
 .LLSDACSE8164:
 	.text
@@ -903,7 +821,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE.cold, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE.cold:
 .LFSB8164:
-.L154:
+.L145:
 	.cfi_def_cfa_offset 48
 	.cfi_offset 3, -48
 	.cfi_offset 6, -40
@@ -925,7 +843,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.byte	0x1
 	.uleb128 .LLSDACSEC8164-.LLSDACSBC8164
 .LLSDACSBC8164:
-	.uleb128 .LEHB1-.LCOLDB14
+	.uleb128 .LEHB1-.LCOLDB11
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
@@ -935,32 +853,32 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE, .-_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE.cold, .-_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE.cold
-.LCOLDE14:
+.LCOLDE11:
 	.text
-.LHOTE14:
+.LHOTE11:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbookC1EPS0_PS2_jSt16initializer_listIyE
 	.set	_ZN3wze6engine6actors5actor9flipbooks8flipbookC1EPS0_PS2_jSt16initializer_listIyE,_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
-.LC15:
+.LC12:
 	.string	"wze::engine.actors[].flipbooks.New(): Delay must not be 0\nParams: Delay: %d, TextureIDs(length): %ld\n"
 	.align 8
-.LC16:
+.LC13:
 	.string	"wze::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: Delay: %d, TextureIDs(length): %ld\n"
 	.align 8
-.LC17:
+.LC14:
 	.string	"wze::engine.actors[].flipbooks.New(): Texture does not exist\nParams: Delay: %d, TextureIDs(length): %ld\n"
 	.align 8
-.LC18:
+.LC15:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.align 8
-.LC19:
+.LC16:
 	.string	"wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: TextureIDs(length): %ld\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB20:
+.LCOLDB17:
 	.text
-.LHOTB20:
+.LHOTB17:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE
@@ -995,44 +913,44 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movq	%rax, 8(%rsp)
 	xorl	%eax, %eax
 	testl	%esi, %esi
-	je	.L192
+	je	.L183
 	movl	%esi, %r14d
 	cmpq	$1, %rcx
-	jbe	.L193
+	jbe	.L184
 	movq	%rdi, %r12
 	movq	%rdx, %r13
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L164:
+.L155:
 	movq	0(%r13,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L165
+	je	.L156
 	movq	(%r12), %rcx
 	cmpq	440(%rcx), %rdx
-	jnb	.L166
+	jnb	.L157
 	movq	448(%rcx), %rcx
 	cmpq	$0, (%rcx,%rdx,8)
-	je	.L166
-.L165:
+	je	.L157
+.L156:
 	addq	$1, %rax
 	cmpq	%rax, %rbp
-	jne	.L164
+	jne	.L155
 	movq	16(%r12), %rax
 	cmpq	$1, %rax
-	jbe	.L167
+	jbe	.L158
 	movq	24(%r12), %rdx
 	movl	$1, %ebx
-	jmp	.L171
+	jmp	.L162
 	.p2align 4,,10
 	.p2align 3
-.L168:
+.L159:
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	je	.L167
-.L171:
+	je	.L158
+.L162:
 	cmpq	$0, (%rdx,%rbx,8)
-	jne	.L168
+	jne	.L159
 	movl	$112, %edi
 .LEHB2:
 	call	_Znwm@PLT
@@ -1049,12 +967,12 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 .LEHE3:
 	movq	24(%r12), %rax
 	cmpq	16(%r12), %rbx
-	jnb	.L194
+	jnb	.L185
 	movq	%r15, (%rax,%rbx,8)
-	jmp	.L162
+	jmp	.L153
 	.p2align 4,,10
 	.p2align 3
-.L167:
+.L158:
 	movl	$112, %edi
 .LEHB4:
 	call	_Znwm@PLT
@@ -1078,7 +996,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	call	realloc@PLT
 	movq	%rax, 24(%r12)
 	testq	%rax, %rax
-	je	.L195
+	je	.L186
 	movq	16(%r12), %rdx
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
@@ -1089,13 +1007,13 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movq	24(%r12), %rdx
 	addq	$-1, %rax
 	movq	%rax, %rbx
-	jnc	.L196
+	jnc	.L187
 	cmpq	$0, (%rdx,%rax,8)
-	je	.L197
-.L162:
+	je	.L188
+.L153:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L198
+	jne	.L189
 	addq	$24, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
@@ -1113,63 +1031,63 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
-.L166:
+.L157:
 	.cfi_restore_state
-	leaq	.LC17(%rip), %rdi
+	leaq	.LC14(%rip), %rdi
 	movq	%rbp, %rdx
 	movl	%r14d, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L193:
-	leaq	.LC16(%rip), %rdi
+.L184:
+	leaq	.LC13(%rip), %rdi
 	movq	%rcx, %rdx
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L192:
-	leaq	.LC15(%rip), %rdi
+.L183:
+	leaq	.LC12(%rip), %rdi
 	movq	%rcx, %rdx
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L198:
+.L189:
 	call	__stack_chk_fail@PLT
-.L197:
-	leaq	.LC19(%rip), %rdi
+.L188:
+	leaq	.LC16(%rip), %rdi
 	movq	%rbp, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L196:
+.L187:
 	orq	$-1, %rsi
-.L190:
-	leaq	.LC6(%rip), %rdi
+.L181:
+	leaq	.LC4(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L195:
-	leaq	.LC18(%rip), %rdi
+.L186:
+	leaq	.LC15(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
 .LEHE6:
 	movl	$1, %edi
 	call	exit@PLT
-.L194:
+.L185:
 	movq	%rbx, %rsi
-	jmp	.L190
-.L183:
+	jmp	.L181
+.L174:
 	movq	%rax, %rbp
-	jmp	.L178
-.L182:
+	jmp	.L169
+.L173:
 	movq	%rax, %rbx
-	jmp	.L176
+	jmp	.L167
 	.section	.gcc_except_table
 .LLSDA8155:
 	.byte	0xff
@@ -1183,7 +1101,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	.uleb128 0
 	.uleb128 .LEHB3-.LFB8155
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L182-.LFB8155
+	.uleb128 .L173-.LFB8155
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB8155
 	.uleb128 .LEHE4-.LEHB4
@@ -1191,7 +1109,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB8155
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L183-.LFB8155
+	.uleb128 .L174-.LFB8155
 	.uleb128 0
 	.uleb128 .LEHB6-.LFB8155
 	.uleb128 .LEHE6-.LEHB6
@@ -1207,7 +1125,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	.type	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold, @function
 _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 .LFSB8155:
-.L178:
+.L169:
 	.cfi_def_cfa_offset 80
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
@@ -1220,21 +1138,21 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 	call	_ZdlPvm@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L191
+	jne	.L182
 	movq	%rbp, %rdi
 .LEHB7:
 	call	_Unwind_Resume@PLT
-.L176:
+.L167:
 	movl	$112, %esi
 	movq	%r15, %rdi
 	call	_ZdlPvm@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L191
+	jne	.L182
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .LEHE7:
-.L191:
+.L182:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8155:
@@ -1245,7 +1163,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8155-.LLSDACSBC8155
 .LLSDACSBC8155:
-	.uleb128 .LEHB7-.LCOLDB20
+	.uleb128 .LEHB7-.LCOLDB17
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
@@ -1255,24 +1173,24 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold:
 	.size	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE, .-_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold, .-_ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE.cold
-.LCOLDE20:
+.LCOLDE17:
 	.text
-.LHOTE20:
+.LHOTE17:
 	.section	.rodata.str1.8
 	.align 8
-.LC21:
+.LC18:
 	.string	"neo::array=: Arrays[%lld] must not be NULL\nParams: Arrays(type, length): %ld, %ld\n"
 	.align 8
-.LC22:
+.LC19:
 	.string	"neo::array=: Arrays[%lld] must not be Self\nParams: Arrays(type, length): %ld, %ld\n"
 	.align 8
-.LC23:
+.LC20:
 	.string	"neo::array=: Memory allocation failed\nParams: Arrays(type, length): %ld %ld\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB24:
+.LCOLDB21:
 	.text
-.LHOTB24:
+.LHOTB21:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE
@@ -1310,26 +1228,26 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	movups	%xmm1, 40(%rdi)
 	movups	%xmm0, 56(%rdi)
 	testq	%r8, %r8
-	je	.L212
+	je	.L203
 	leaq	96(%rdi), %rax
 	movq	%r8, %rbx
 	cmpq	%r8, %rax
-	je	.L213
+	je	.L204
 	movq	(%r8), %rdx
 	xorl	%esi, %esi
 	movq	%rdx, 96(%rdi)
 	leaq	0(,%rdx,8), %r12
 	testq	%rdx, %rdx
-	je	.L203
+	je	.L194
 	movq	%r12, %rdi
 	call	malloc@PLT
 	movq	%rax, 104(%rbp)
 	movq	%rax, %rsi
 	testq	%rax, %rax
-	je	.L204
+	je	.L195
 	.p2align 4,,10
 	.p2align 3
-.L203:
+.L194:
 	movq	8(%rbx), %rdi
 	movq	%r12, %rdx
 .LEHB8:
@@ -1342,36 +1260,36 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
-.L212:
+.L203:
 	.cfi_restore_state
 	movl	$1, %ecx
 	movl	$8, %edx
 	xorl	%esi, %esi
 	xorl	%eax, %eax
-	leaq	.LC21(%rip), %rdi
+	leaq	.LC18(%rip), %rdi
 	call	printf@PLT
-.L202:
+.L193:
 	movl	$1, %edi
 	call	exit@PLT
-.L213:
+.L204:
 	movl	$1, %ecx
 	movl	$8, %edx
 	xorl	%esi, %esi
 	xorl	%eax, %eax
-	leaq	.LC22(%rip), %rdi
+	leaq	.LC19(%rip), %rdi
 	call	printf@PLT
-	jmp	.L202
-.L204:
+	jmp	.L193
+.L195:
 	movl	$1, %edx
 	movl	$8, %esi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC20(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 .LEHE8:
-	jmp	.L202
-.L208:
+	jmp	.L193
+.L199:
 	movq	%rax, %rbx
-	jmp	.L206
+	jmp	.L197
 	.section	.gcc_except_table
 .LLSDA8167:
 	.byte	0xff
@@ -1381,7 +1299,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 .LLSDACSB8167:
 	.uleb128 .LEHB8-.LFB8167
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L208-.LFB8167
+	.uleb128 .L199-.LFB8167
 	.uleb128 0
 .LLSDACSE8167:
 	.text
@@ -1393,7 +1311,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
 .LFSB8167:
-.L206:
+.L197:
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
 	.cfi_offset 6, -24
@@ -1413,7 +1331,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8167-.LLSDACSBC8167
 .LLSDACSBC8167:
-	.uleb128 .LEHB9-.LCOLDB24
+	.uleb128 .LEHB9-.LCOLDB21
 	.uleb128 .LEHE9-.LEHB9
 	.uleb128 0
 	.uleb128 0
@@ -1423,29 +1341,29 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold, .-_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE.cold
-.LCOLDE24:
+.LCOLDE21:
 	.text
-.LHOTE24:
+.LHOTE21:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbookC1EPS0_PS2_jPN3neo5arrayIyEE
 	.set	_ZN3wze6engine6actors5actor9flipbooks8flipbookC1EPS0_PS2_jPN3neo5arrayIyEE,_ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
+.LC22:
+	.string	"wze::engine.actors[].flipbooks.New(): Delay must not be 0\nParams: Delay: %d, TextureIDs: %p\n"
+	.align 8
+.LC23:
+	.string	"wze::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: Delay: %d, TextureIDs: %p\n"
+	.align 8
+.LC24:
+	.string	"wze::engine.actors[].flipbooks.New(): Texture does not exist\nParams: Delay: %d, TextureIDs: %p\n"
+	.align 8
 .LC25:
-	.string	"wze::engine.actors[].flipbooks.New(): Delay must not be 0\nParams: Delay: %d, TextureIDs(length): %lld\n"
-	.align 8
-.LC26:
-	.string	"wze::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: Delay: %d, TextureIDs(length): %lld\n"
-	.align 8
-.LC27:
-	.string	"wze::engine.actors[].flipbooks.New(): Texture does not exist\nParams: Delay: %d, TextureIDs(length): %lld\n"
-	.align 8
-.LC28:
-	.string	"wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: TextureIDs(length): %lld\n"
+	.string	"wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: Delay: %d, TextureIDs: %p\n"
 	.section	.text.unlikely
 	.align 2
-.LCOLDB29:
+.LCOLDB26:
 	.text
-.LHOTB29:
+.LHOTB26:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE
@@ -1464,6 +1382,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	pushq	%r12
 	.cfi_def_cfa_offset 32
 	.cfi_offset 12, -32
+	movq	%rdx, %r12
 	pushq	%rbp
 	.cfi_def_cfa_offset 40
 	.cfi_offset 6, -40
@@ -1472,39 +1391,38 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	.cfi_offset 3, -48
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 64
-	movq	(%rdx), %rcx
 	movq	%fs:40, %rax
 	movq	%rax, 8(%rsp)
 	xorl	%eax, %eax
 	testl	%esi, %esi
-	je	.L244
+	je	.L235
+	movq	(%rdx), %rdx
 	movl	%esi, %r13d
-	cmpq	$1, %rcx
-	jbe	.L245
-	movq	8(%rdx), %rsi
+	cmpq	$1, %rdx
+	jbe	.L236
+	movq	8(%r12), %rsi
 	movq	%rdi, %rbp
-	movq	%rdx, %r12
 	xorl	%eax, %eax
-	jmp	.L219
+	jmp	.L210
 	.p2align 4,,10
 	.p2align 3
-.L217:
+.L208:
 	addq	$1, %rax
-	cmpq	%rcx, %rax
-	je	.L246
-.L219:
-	movq	(%rsi,%rax,8), %rdx
-	testq	%rdx, %rdx
-	je	.L217
+	cmpq	%rax, %rdx
+	je	.L237
+.L210:
+	movq	(%rsi,%rax,8), %rcx
+	testq	%rcx, %rcx
+	je	.L208
 	movq	0(%rbp), %rdi
-	cmpq	440(%rdi), %rdx
-	jnb	.L218
+	cmpq	440(%rdi), %rcx
+	jnb	.L209
 	movq	448(%rdi), %rdi
-	cmpq	$0, (%rdi,%rdx,8)
-	jne	.L217
-.L218:
-	leaq	.LC27(%rip), %rdi
-	movq	%rcx, %rdx
+	cmpq	$0, (%rdi,%rcx,8)
+	jne	.L208
+.L209:
+	leaq	.LC24(%rip), %rdi
+	movq	%r12, %rdx
 	movl	%r13d, %esi
 	xorl	%eax, %eax
 .LEHB10:
@@ -1513,22 +1431,22 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L246:
+.L237:
 	movq	16(%rbp), %rax
 	cmpq	$1, %rax
-	jbe	.L220
+	jbe	.L211
 	movq	24(%rbp), %rdx
 	movl	$1, %ebx
-	jmp	.L224
+	jmp	.L215
 	.p2align 4,,10
 	.p2align 3
-.L221:
+.L212:
 	addq	$1, %rbx
 	cmpq	%rax, %rbx
-	je	.L220
-.L224:
+	je	.L211
+.L215:
 	cmpq	$0, (%rdx,%rbx,8)
-	jne	.L221
+	jne	.L212
 	movl	$112, %edi
 	call	_Znwm@PLT
 .LEHE10:
@@ -1543,12 +1461,12 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 .LEHE11:
 	movq	24(%rbp), %rax
 	cmpq	16(%rbp), %rbx
-	jnb	.L247
+	jnb	.L238
 	movq	%r14, (%rax,%rbx,8)
-.L214:
+.L205:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L248
+	jne	.L239
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 48
@@ -1566,7 +1484,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L220:
+.L211:
 	.cfi_restore_state
 	movl	$112, %edi
 .LEHB12:
@@ -1590,7 +1508,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	call	realloc@PLT
 	movq	%rax, 24(%rbp)
 	testq	%rax, %rax
-	je	.L249
+	je	.L240
 	movq	16(%rbp), %rdx
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
@@ -1601,56 +1519,56 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax
 	movq	%rax, %rbx
-	jnc	.L250
+	jnc	.L241
 	cmpq	$0, (%rdx,%rax,8)
-	jne	.L214
-	movq	(%r12), %rsi
-	leaq	.LC28(%rip), %rdi
+	jne	.L205
+	leaq	.LC25(%rip), %rdi
+	movq	%r12, %rdx
+	movl	%r13d, %esi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L249:
-	leaq	.LC18(%rip), %rdi
+.L240:
+	leaq	.LC15(%rip), %rdi
 	movl	$1, %edx
 	movl	$8, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L250:
+.L241:
 	orq	$-1, %rsi
-.L242:
-	leaq	.LC6(%rip), %rdi
+.L233:
+	leaq	.LC4(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L245:
-	leaq	.LC26(%rip), %rdi
-	movq	%rcx, %rdx
+.L236:
+	leaq	.LC23(%rip), %rdi
+	movq	%r12, %rdx
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L244:
-	leaq	.LC25(%rip), %rdi
-	movq	%rcx, %rdx
+.L235:
+	leaq	.LC22(%rip), %rdi
 	xorl	%esi, %esi
 	call	printf@PLT
 .LEHE14:
 	movl	$1, %edi
 	call	exit@PLT
-.L247:
+.L238:
 	movq	%rbx, %rsi
-	jmp	.L242
-.L248:
+	jmp	.L233
+.L239:
 	call	__stack_chk_fail@PLT
-.L235:
+.L226:
 	movq	%rax, %rbp
-	jmp	.L231
-.L234:
+	jmp	.L222
+.L225:
 	movq	%rax, %rbx
-	jmp	.L229
+	jmp	.L220
 	.section	.gcc_except_table
 .LLSDA8158:
 	.byte	0xff
@@ -1664,7 +1582,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	.uleb128 0
 	.uleb128 .LEHB11-.LFB8158
 	.uleb128 .LEHE11-.LEHB11
-	.uleb128 .L234-.LFB8158
+	.uleb128 .L225-.LFB8158
 	.uleb128 0
 	.uleb128 .LEHB12-.LFB8158
 	.uleb128 .LEHE12-.LEHB12
@@ -1672,7 +1590,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	.uleb128 0
 	.uleb128 .LEHB13-.LFB8158
 	.uleb128 .LEHE13-.LEHB13
-	.uleb128 .L235-.LFB8158
+	.uleb128 .L226-.LFB8158
 	.uleb128 0
 	.uleb128 .LEHB14-.LFB8158
 	.uleb128 .LEHE14-.LEHB14
@@ -1688,7 +1606,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	.type	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold, @function
 _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 .LFSB8158:
-.L231:
+.L222:
 	.cfi_def_cfa_offset 64
 	.cfi_offset 3, -48
 	.cfi_offset 6, -40
@@ -1700,21 +1618,21 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 	call	_ZdlPvm@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L243
+	jne	.L234
 	movq	%rbp, %rdi
 .LEHB15:
 	call	_Unwind_Resume@PLT
-.L229:
+.L220:
 	movl	$112, %esi
 	movq	%r14, %rdi
 	call	_ZdlPvm@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L243
+	jne	.L234
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .LEHE15:
-.L243:
+.L234:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8158:
@@ -1725,7 +1643,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8158-.LLSDACSBC8158
 .LLSDACSBC8158:
-	.uleb128 .LEHB15-.LCOLDB29
+	.uleb128 .LEHB15-.LCOLDB26
 	.uleb128 .LEHE15-.LEHB15
 	.uleb128 0
 	.uleb128 0
@@ -1735,9 +1653,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold:
 	.size	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE
 	.section	.text.unlikely
 	.size	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold, .-_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE.cold
-.LCOLDE29:
+.LCOLDE26:
 	.text
-.LHOTE29:
+.LHOTE26:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv
@@ -1752,7 +1670,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetXEv
 	.section	.rodata.str1.8
 	.align 8
-.LC30:
+.LC27:
 	.string	"wze::engine.actors[].flipbooks[].SetX(): X must not be NaN\nParams: X: %lf\n"
 	.text
 	.align 2
@@ -1769,25 +1687,25 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
 	ucomisd	%xmm0, %xmm0
-	jp	.L270
+	jp	.L261
 	movq	8(%rdi), %rax
 	movsd	48(%rdi), %xmm3
 	movq	%rdi, %rbx
 	movsd	216(%rax), %xmm0
 	movsd	224(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
-	jp	.L255
-	jne	.L255
+	jp	.L246
+	jne	.L246
 	ucomisd	%xmm3, %xmm1
-	jp	.L255
-	jne	.L255
+	jp	.L246
+	jne	.L246
 	movq	$0x000000000, 56(%rdi)
-.L263:
+.L254:
 	pxor	%xmm0, %xmm0
-	jmp	.L262
+	jmp	.L253
 	.p2align 4,,10
 	.p2align 3
-.L255:
+.L246:
 	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
 	leaq	400(%rax), %rdi
@@ -1800,18 +1718,18 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	movsd	224(%rax), %xmm1
 	movsd	%xmm4, 56(%rbx)
 	ucomisd	%xmm0, %xmm2
-	jp	.L259
-	jne	.L259
+	jp	.L250
+	jne	.L250
 	ucomisd	%xmm3, %xmm1
-	jp	.L259
-	je	.L263
-.L259:
+	jp	.L250
+	je	.L254
+.L250:
 	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
-.L262:
+.L253:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm2, %xmm0
 	movsd	%xmm2, 40(%rbx)
@@ -1821,9 +1739,9 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetXEd:
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
-.L270:
+.L261:
 	.cfi_restore_state
-	leaq	.LC30(%rip), %rdi
+	leaq	.LC27(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -1845,7 +1763,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook4GetYEv
 	.section	.rodata.str1.8
 	.align 8
-.LC31:
+.LC28:
 	.string	"wze::engine.actors[].flipbooks[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
 	.text
 	.align 2
@@ -1862,25 +1780,25 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 32
 	ucomisd	%xmm0, %xmm0
-	jp	.L290
+	jp	.L281
 	movq	8(%rdi), %rax
 	movsd	40(%rdi), %xmm2
 	movq	%rdi, %rbx
 	movsd	216(%rax), %xmm0
 	movsd	224(%rax), %xmm1
 	ucomisd	%xmm2, %xmm0
-	jp	.L275
-	jne	.L275
+	jp	.L266
+	jne	.L266
 	ucomisd	%xmm1, %xmm3
-	jp	.L275
-	jne	.L275
+	jp	.L266
+	jne	.L266
 	movq	$0x000000000, 56(%rdi)
-.L283:
+.L274:
 	pxor	%xmm0, %xmm0
-	jmp	.L282
+	jmp	.L273
 	.p2align 4,,10
 	.p2align 3
-.L275:
+.L266:
 	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
 	leaq	400(%rax), %rdi
@@ -1893,18 +1811,18 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	movsd	224(%rax), %xmm1
 	movsd	%xmm4, 56(%rbx)
 	ucomisd	%xmm2, %xmm0
-	jp	.L279
-	jne	.L279
+	jp	.L270
+	jne	.L270
 	ucomisd	%xmm1, %xmm3
-	jp	.L279
-	je	.L283
-.L279:
+	jp	.L270
+	je	.L274
+.L270:
 	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
-.L282:
+.L273:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm3, %xmm0
 	movsd	%xmm3, 48(%rbx)
@@ -1914,9 +1832,9 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
-.L290:
+.L281:
 	.cfi_restore_state
-	leaq	.LC31(%rip), %rdi
+	leaq	.LC28(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
@@ -1938,7 +1856,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv
 	.section	.rodata.str1.8
 	.align 8
-.LC32:
+.LC29:
 	.string	"wze::engine.actors[].flipbooks[].SetDelay(): Delay must not be 0\nParams: Delay: %d\n"
 	.text
 	.align 2
@@ -1950,13 +1868,13 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
 	.cfi_startproc
 	movl	%esi, %eax
 	testl	%esi, %esi
-	je	.L297
+	je	.L288
 	movl	%esi, 72(%rdi)
 	ret
-.L297:
+.L288:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
-	leaq	.LC32(%rip), %rdi
+	leaq	.LC29(%rip), %rdi
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
@@ -1973,15 +1891,15 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv:
 	.cfi_startproc
 	xorl	%eax, %eax
 	cmpb	$0, 39(%rdi)
-	jne	.L298
+	jne	.L289
 	movzbl	38(%rdi), %eax
 	testb	%al, %al
-	je	.L301
-.L298:
+	je	.L292
+.L289:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L301:
+.L292:
 	movq	96(%rdi), %rax
 	subq	$1, %rax
 	cmpq	80(%rdi), %rax

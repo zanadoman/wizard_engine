@@ -936,10 +936,10 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	.section	.rodata.str1.8
 	.align 8
 .LC14:
-	.string	"wze::engine.actors[]: Illegal access to NULL Actor\nParams: ID: %lld\n"
+	.string	"wze::engine.actors[]: Illegal access to NULL Actor\nParams: ActorID: %lld\n"
 	.align 8
 .LC15:
-	.string	"wze::engine.actors[]: Actor does not exist\nParams: ID: %lld\n"
+	.string	"wze::engine.actors[]: Actor does not exist\nParams: ActorID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
