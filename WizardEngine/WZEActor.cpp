@@ -5,8 +5,9 @@ using namespace neo;
 
 namespace wze
 {
-    engine::actors::actor::actor(engine* Engine, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
+    engine::actors::actor::actor(engine* Engine, void* Data, uint64 ID, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
     {
+        this->ID = ID;
         this->Visible = true;
         this->Force = 0;
         this->Resistance = 0;
@@ -51,6 +52,11 @@ namespace wze
         {
             this->Engine->Camera.YActor = 0;
         }
+    }
+
+    uint64 engine::actors::actor::GetID()
+    {
+        return this->ID;
     }
 
     uint64 engine::actors::actor::GetType()

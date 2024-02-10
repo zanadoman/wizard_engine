@@ -569,6 +569,7 @@ namespace wze
                         neo::uint64 Force;
                         neo::uint64 Resistance;
                         bool HitboxVisible;
+                        neo::uint64 GetID();
                         neo::uint64 GetType();
                         double GetX();
                         double SetX(double X);
@@ -590,6 +591,7 @@ namespace wze
                         neo::uint16 GetHitboxHeight();
 
                     private:
+                        neo::uint64 ID;
                         void* Data;
                         neo::uint64 Type;
                         double X;
@@ -609,7 +611,7 @@ namespace wze
                         double HitboxMedianLength;
                         double HitboxMedian1Angle;
                         double HitboxMedian2Angle;
-                        actor(engine* Engine, void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
+                        actor(engine* Engine, void* Data, neo::uint64 ID, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
                         ~actor();
                         neo::uint8 UpdateHitboxScale();
                         neo::uint8 UpdateMembersPosition();
@@ -618,7 +620,7 @@ namespace wze
                 //__________Actors_____________________________________________________________________________________
 
                 public:
-                    neo::uint64 New(void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
+                    engine::actors::actor& New(void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
                     neo::uint8 Delete(neo::uint64 ActorID);
                     neo::uint8 Purge(std::initializer_list<neo::uint64> KeepActorIDs);
                     neo::uint8 Purge(neo::array<neo::uint64>* KeepActorIDs);
