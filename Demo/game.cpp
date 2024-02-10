@@ -1,8 +1,7 @@
 #include "demo.hpp"
 
-game::game(engine* Engine) : Engine(Engine)
+game::game(engine* Engine) : Engine(Engine), Assets(Engine)
 {
-    this->Assets = new assets(Engine);
     this->ActiveScene = SCENE_MENU;
     this->Menu = new menu(this->Engine, this);
     this->Normal = NULL;
@@ -11,22 +10,9 @@ game::game(engine* Engine) : Engine(Engine)
 
 game::~game()
 {
-    switch (this->ActiveScene)
-    {
-        case SCENE_MENU:
-            delete this->Menu;
-        break;
-
-        case SCENE_NORMAL:
-            delete this->Normal;
-        break;
-
-        case SCENE_INFINITE:
-            delete this->Infinite;
-        break;
-    }
-
-    delete this->Assets;
+    delete this->Menu;
+    delete this->Normal;
+    delete this->Infinite;
 }
 
 uint8 game::Update()
@@ -34,21 +20,62 @@ uint8 game::Update()
     switch (this->ActiveScene)
     {
         case SCENE_MENU:
-            if (this->Menu->Update())
-            {
-                delete this->Menu;
-                this->Menu = NULL;
-            }
+            this->SwitchScenes(this->Menu->Update());
         break;
 
         case SCENE_NORMAL:
-            
+            this->SwitchScenes(this->Normal->Update());
         break;
 
         case SCENE_INFINITE:
-            
+            this->SwitchScenes(this->Infinite->Update());
         break;
     }
+
+    return 0;
+}
+
+uint8 game::SwitchScenes(scene Scene)
+{
+    if (this->ActiveScene != Scene)
+    {
+        switch (this->ActiveScene)
+        {
+            case SCENE_MENU:
+                delete this->Menu;
+                this->Menu = NULL;
+            break;
+
+            case SCENE_NORMAL:
+                delete this->Normal;
+                this->Normal = NULL;
+            break;
+
+            case SCENE_INFINITE:
+                delete this->Infinite;
+                this->Infinite = NULL;
+            break;
+        }
+
+        this->Engine->Actors.Purge({});
+
+        switch (Scene)
+        {
+            case SCENE_MENU:
+                this->Menu = new menu(this->Engine, this);
+            break;
+
+            case SCENE_NORMAL:
+                this->Normal = new normal(this->Engine, this);
+            break;
+
+            case SCENE_INFINITE:
+                this->Infinite = new infinite(this->Engine, this);
+            break;
+        }
+    }
+
+    this->ActiveScene = Scene;
 
     return 0;
 }

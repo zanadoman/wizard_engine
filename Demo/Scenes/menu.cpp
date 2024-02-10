@@ -3,13 +3,13 @@
 menu::menu(engine* Engine, game* Game) : Engine(Engine), Game(Game)
 {
     this->Actor = this->Engine->Actors.New(NULL, ACT_MENU, this->Engine->Window.GetWidth() >> 1, this->Engine->Window.GetHeight() >> 1, 0, 0, 0);
-    this->Title = this->Actor->Texts.New("Wizard Engine Demo", this->Game->Assets->FontFreeSansFont);
+    this->Title = this->Actor->Texts.New("Wizard Engine Demo", this->Game->Assets.FontFreeSansFont);
     this->ButtonNormal = this->Actor->Overlapboxes.New(BOX_BUTTON);
     this->ButtonNormalColor = this->Actor->Colors.New();
-    this->ButtonNormalText = this->Actor->Texts.New("Normal Mode", this->Game->Assets->FontFreeSansFont);
+    this->ButtonNormalText = this->Actor->Texts.New("Normal Mode", this->Game->Assets.FontFreeSansFont);
     this->ButtonInfinite = this->Actor->Overlapboxes.New(BOX_BUTTON);
     this->ButtonInfiniteColor = this->Actor->Colors.New();
-    this->ButtonInfiniteText = this->Actor->Texts.New("Infinite Mode", this->Game->Assets->FontFreeSansFont);
+    this->ButtonInfiniteText = this->Actor->Texts.New("Infinite Mode", this->Game->Assets.FontFreeSansFont);
 
     this->Title->SetY(this->Actor->GetY() + 350);
     this->Title->SetHeight(100);
@@ -39,7 +39,7 @@ menu::menu(engine* Engine, game* Game) : Engine(Engine), Game(Game)
     this->ButtonInfiniteText->SetY(ButtonInfinite->GetY());
 }
 
-uint8 menu::Update()
+scene menu::Update()
 {
     if (this->ButtonNormal->GetButtonState() & BTN_HOVERED)
     {
@@ -49,10 +49,7 @@ uint8 menu::Update()
 
         if (this->ButtonNormal->GetButtonState() & BTN_RELEASED_LMB)
         {
-            this->Engine->Actors.Purge({});
-            this->Game->ActiveScene = SCENE_NORMAL;
-            this->Game->Normal = new normal(this->Engine, this->Game);
-            return 1;
+            return SCENE_NORMAL;
         }
     }
     else
@@ -70,9 +67,7 @@ uint8 menu::Update()
 
         if (this->ButtonInfinite->GetButtonState() & BTN_RELEASED_LMB)
         {
-            this->Engine->Actors.Purge({});
-            this->Game->ActiveScene = SCENE_INFINITE;
-            return 1;
+            return SCENE_INFINITE;
         }
     }
     else
@@ -82,5 +77,5 @@ uint8 menu::Update()
         this->ButtonInfiniteColor->ColorB = 128;
     }
 
-    return 0;
+    return SCENE_MENU;
 }

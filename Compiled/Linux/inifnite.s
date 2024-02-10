@@ -1,10 +1,10 @@
-	.file	"normal.cpp"
+	.file	"inifnite.cpp"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN6normalC2EPN3wze6engineEP4game
-	.type	_ZN6normalC2EPN3wze6engineEP4game, @function
-_ZN6normalC2EPN3wze6engineEP4game:
+	.globl	_ZN8infiniteC2EPN3wze6engineEP4game
+	.type	_ZN8infiniteC2EPN3wze6engineEP4game, @function
+_ZN8infiniteC2EPN3wze6engineEP4game:
 .LFB8147:
 	.cfi_startproc
 	pushq	%rbx
@@ -33,21 +33,21 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	ret
 	.cfi_endproc
 .LFE8147:
-	.size	_ZN6normalC2EPN3wze6engineEP4game, .-_ZN6normalC2EPN3wze6engineEP4game
-	.globl	_ZN6normalC1EPN3wze6engineEP4game
-	.set	_ZN6normalC1EPN3wze6engineEP4game,_ZN6normalC2EPN3wze6engineEP4game
+	.size	_ZN8infiniteC2EPN3wze6engineEP4game, .-_ZN8infiniteC2EPN3wze6engineEP4game
+	.globl	_ZN8infiniteC1EPN3wze6engineEP4game
+	.set	_ZN8infiniteC1EPN3wze6engineEP4game,_ZN8infiniteC2EPN3wze6engineEP4game
 	.align 2
 	.p2align 4
-	.globl	_ZN6normal6UpdateEv
-	.type	_ZN6normal6UpdateEv, @function
-_ZN6normal6UpdateEv:
+	.globl	_ZN8infinite6UpdateEv
+	.type	_ZN8infinite6UpdateEv, @function
+_ZN8infinite6UpdateEv:
 .LFB8149:
 	.cfi_startproc
-	movl	$1, %eax
+	movl	$2, %eax
 	ret
 	.cfi_endproc
 .LFE8149:
-	.size	_ZN6normal6UpdateEv, .-_ZN6normal6UpdateEv
+	.size	_ZN8infinite6UpdateEv, .-_ZN8infinite6UpdateEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:

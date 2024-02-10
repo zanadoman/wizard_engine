@@ -23,39 +23,17 @@ typedef enum
     BOX_BUTTON
 } overlapbox;
 
-class assets;
-class game;
 class menu;
 class normal;
 class infinite;
 
-class game
-{
-    friend class menu;
-    friend class normal;
-    friend class infinite;
-    engine* Engine;
-
-    public:
-        uint8 Update();
-        game(engine* Engine);
-        ~game();
-
-    private:
-        assets* Assets;
-        scene ActiveScene;
-        menu* Menu;
-        normal* Normal;
-        infinite* Infinite;
-};
-
 class assets
 {
+    friend class game;
     engine* Engine;
 
     public:
         uint16 FontFreeSansFont;
-
         uint16 MapBackgroundTexture;
         uint16 MapBushTexture;
         uint16 MapCrateTexture;
@@ -74,44 +52,71 @@ class assets
 
         uint16 BulletShotSound;
         uint16 BulletBaseTexture;
- 
+
+    private:
         assets(engine* Engine);
+};
+
+class game
+{
+    friend class menu;
+    friend class normal;
+    friend class infinite;
+    engine* Engine;
+    assets Assets;
+
+    public:
+        uint8 Update();
+        game(engine* Engine);
+        ~game();
+
+    private:
+        scene ActiveScene;
+        menu* Menu;
+        normal* Normal;
+        infinite* Infinite;
+        uint8 SwitchScenes(scene Scene);
 };
 
 class menu
 {
+    friend class game;
     engine* Engine;
     game* Game;
 
-    public:
-        menu(engine* Engine, game* Game);
-        uint8 Update();
+    menu(engine* Engine, game* Game);
+    scene Update();
 
-    private:
-        engine::actor Actor;
-        engine::text Title;
-        engine::overlapbox ButtonNormal;
-        engine::color ButtonNormalColor;
-        engine::text ButtonNormalText;
-        engine::overlapbox ButtonInfinite;
-        engine::color ButtonInfiniteColor;
-        engine::text ButtonInfiniteText;
+    engine::actor Actor;
+    engine::text Title;
+    engine::overlapbox ButtonNormal;
+    engine::color ButtonNormalColor;
+    engine::text ButtonNormalText;
+    engine::overlapbox ButtonInfinite;
+    engine::color ButtonInfiniteColor;
+    engine::text ButtonInfiniteText;
 };
 
 class normal
 {
+    friend class game;
     engine* Engine;
     game* Game;
 
-    public:
-        normal(engine* Engine, game* Game);
-
-    private:
-        engine::actor Background;
-        engine::texture BackgroundTexture;
+    engine::actor Background;
+    engine::texture BackgroundTexture;
+    normal(engine* Engine, game* Game);
+    scene Update();
 };
 
 class infinite
 {
-    
+    friend class game;
+    engine* Engine;
+    game* Game;
+
+    engine::actor Background;
+    engine::texture BackgroundTexture;
+    infinite(engine* Engine, game* Game);
+    scene Update();
 };
