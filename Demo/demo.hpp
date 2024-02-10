@@ -60,10 +60,13 @@ class menu
 
     private:
         uint16 Actor;
+        uint16 TitleTextID;
         uint16 ButtonNormalOverlapboxID;
         uint16 ButtonNormalColorID;
+        uint16 ButtonNormalTextID;
         uint16 ButtonInfiniteOverlapboxID;
         uint16 ButtonInfiniteColorID;
+        uint16 ButtonInfiniteTextID;
 };
 
 class game
