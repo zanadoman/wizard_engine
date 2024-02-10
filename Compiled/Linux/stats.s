@@ -152,11 +152,14 @@ _ZN5statsC2EPN3wze6engineEP4game:
 	.size	_ZN5statsC2EPN3wze6engineEP4game, .-_ZN5statsC2EPN3wze6engineEP4game
 	.globl	_ZN5statsC1EPN3wze6engineEP4game
 	.set	_ZN5statsC1EPN3wze6engineEP4game,_ZN5statsC2EPN3wze6engineEP4game
+	.section	.rodata.str1.1
+.LC8:
+	.string	"ms"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB8:
+.LCOLDB9:
 	.text
-.LHOTB8:
+.LHOTB9:
 	.align 2
 	.p2align 4
 	.globl	_ZN5stats6UpdateEv
@@ -166,24 +169,28 @@ _ZN5stats6UpdateEv:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA8149
-	pushq	%r14
+	pushq	%r15
 	.cfi_def_cfa_offset 16
-	.cfi_offset 14, -16
-	pushq	%r13
+	.cfi_offset 15, -16
+	leaq	.LC8(%rip), %r15
+	pushq	%r14
 	.cfi_def_cfa_offset 24
-	.cfi_offset 13, -24
-	pushq	%r12
+	.cfi_offset 14, -24
+	pushq	%r13
 	.cfi_def_cfa_offset 32
-	.cfi_offset 12, -32
-	pushq	%rbp
+	.cfi_offset 13, -32
+	pushq	%r12
 	.cfi_def_cfa_offset 40
-	.cfi_offset 6, -40
-	pushq	%rbx
+	.cfi_offset 12, -40
+	pushq	%rbp
 	.cfi_def_cfa_offset 48
-	.cfi_offset 3, -48
+	.cfi_offset 6, -48
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
 	movq	%rdi, %rbx
-	subq	$64, %rsp
-	.cfi_def_cfa_offset 112
+	subq	$72, %rsp
+	.cfi_def_cfa_offset 128
 	movq	%fs:40, %rax
 	movq	%rax, 56(%rsp)
 	xorl	%eax, %eax
@@ -192,110 +199,131 @@ _ZN5stats6UpdateEv:
 .LEHB0:
 	call	_ZN3neo6stringC1Ev@PLT
 .LEHE0:
-	movq	(%rbx), %rax
-	movq	24(%rbx), %r14
-	leaq	400(%rax), %rdi
+	movq	(%rbx), %rcx
+	movq	24(%rbx), %rax
+	movq	%r15, 48(%rsp)
+	leaq	400(%rcx), %rdi
+	movq	%rax, (%rsp)
 .LEHB1:
 	call	_ZN3wze6engine6timing11GetGameTimeEv@PLT
-	movl	%eax, %eax
-	leaq	40(%rsp), %r13
+	movl	%eax, %ecx
+	leaq	32(%rsp), %r14
 	movl	$1, %edx
 	movq	%rbp, %rdi
-	movq	%rax, 48(%rsp)
-	movq	%r13, %rsi
-	leaq	48(%rsp), %r12
-	leaq	.LC2(%rip), %rax
-	movq	%rax, 40(%rsp)
+	movq	%rcx, 40(%rsp)
+	movq	%r14, %rsi
+	leaq	40(%rsp), %r13
+	leaq	.LC2(%rip), %rcx
+	movq	%rcx, 32(%rsp)
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
 	movq	%rax, %rdi
-	movq	%r12, %rsi
+	movq	%r13, %rsi
 	movl	$1, %edx
 	call	_ZN3neo6stringpLESt16initializer_listIyE@PLT
+	leaq	48(%rsp), %r12
+	movq	%rax, %rdi
+	movl	$1, %edx
+	movq	%r12, %rsi
+	call	_ZN3neo6stringpLESt16initializer_listIPKcE@PLT
 	movq	%rax, %rdi
 	call	_ZN3neo6stringclEv@PLT
+	movq	(%rsp), %rdi
 	movq	%rax, %rsi
-	movq	%r14, %rdi
 	call	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc@PLT
+	movq	24(%rbx), %rax
 	movq	16(%rbx), %rdi
-	movq	24(%rbx), %r14
+	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	24(%rbx), %rdi
 	movsd	%xmm0, 8(%rsp)
 	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv@PLT
 	shrw	%ax
 	pxor	%xmm0, %xmm0
-	movq	%r14, %rdi
+	movq	(%rsp), %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
 	addsd	8(%rsp), %xmm0
 	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
-	movq	(%rbx), %rax
-	movq	32(%rbx), %r14
-	leaq	400(%rax), %rdi
+	movq	(%rbx), %rcx
+	movq	32(%rbx), %rax
+	movq	%r15, 48(%rsp)
+	leaq	400(%rcx), %rdi
+	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6timing13GetRenderTimeEv@PLT
-	movl	%eax, %eax
-	movq	%r13, %rsi
-	movl	$1, %edx
+	leaq	.LC3(%rip), %rdx
+	movl	%eax, %ecx
+	movq	%r14, %rsi
 	movq	%rbp, %rdi
-	movq	%rax, 48(%rsp)
-	leaq	.LC3(%rip), %rax
-	movq	%rax, 40(%rsp)
+	movq	%rdx, 32(%rsp)
+	movl	$1, %edx
+	movq	%rcx, 40(%rsp)
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
 	movq	%rax, %rdi
-	movq	%r12, %rsi
+	movq	%r13, %rsi
 	movl	$1, %edx
 	call	_ZN3neo6stringpLESt16initializer_listIyE@PLT
 	movq	%rax, %rdi
+	movq	%r12, %rsi
+	movl	$1, %edx
+	call	_ZN3neo6stringpLESt16initializer_listIPKcE@PLT
+	movq	%rax, %rdi
 	call	_ZN3neo6stringclEv@PLT
+	movq	(%rsp), %rdi
 	movq	%rax, %rsi
-	movq	%r14, %rdi
 	call	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc@PLT
+	movq	32(%rbx), %rax
 	movq	16(%rbx), %rdi
-	movq	32(%rbx), %r14
+	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	32(%rbx), %rdi
 	movsd	%xmm0, 8(%rsp)
 	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv@PLT
 	shrw	%ax
 	pxor	%xmm0, %xmm0
-	movq	%r14, %rdi
+	movq	(%rsp), %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
 	addsd	8(%rsp), %xmm0
 	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
-	movq	(%rbx), %rax
-	movq	40(%rbx), %r14
-	leaq	400(%rax), %rdi
+	movq	(%rbx), %rcx
+	movq	40(%rbx), %rax
+	movq	%r15, 48(%rsp)
+	leaq	400(%rcx), %rdi
+	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
-	movl	%eax, %eax
-	movq	%r13, %rsi
-	movl	$1, %edx
+	movl	%eax, %edx
+	leaq	.LC4(%rip), %rcx
+	movq	%r14, %rsi
 	movq	%rbp, %rdi
-	movq	%rax, 48(%rsp)
-	leaq	.LC4(%rip), %rax
-	movq	%rax, 40(%rsp)
+	movq	%rdx, 40(%rsp)
+	movl	$1, %edx
+	movq	%rcx, 32(%rsp)
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
 	movq	%rax, %rdi
-	movq	%r12, %rsi
+	movq	%r13, %rsi
 	movl	$1, %edx
 	call	_ZN3neo6stringpLESt16initializer_listIyE@PLT
 	movq	%rax, %rdi
+	movq	%r12, %rsi
+	movl	$1, %edx
+	call	_ZN3neo6stringpLESt16initializer_listIPKcE@PLT
+	movq	%rax, %rdi
 	call	_ZN3neo6stringclEv@PLT
+	movq	(%rsp), %rdi
 	movq	%rax, %rsi
-	movq	%r14, %rdi
 	call	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc@PLT
 	movq	16(%rbx), %rdi
 	movq	40(%rbx), %r12
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	40(%rbx), %rdi
-	movsd	%xmm0, 8(%rsp)
+	movsd	%xmm0, (%rsp)
 	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv@PLT
 	shrw	%ax
 	pxor	%xmm0, %xmm0
 	movq	%r12, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
-	addsd	8(%rsp), %xmm0
+	addsd	(%rsp), %xmm0
 	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
 .LEHE1:
 	movq	%rbp, %rdi
@@ -303,19 +331,21 @@ _ZN5stats6UpdateEv:
 	movq	56(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L11
-	addq	$64, %rsp
+	addq	$72, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 48
+	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
 	popq	%rbx
-	.cfi_def_cfa_offset 40
+	.cfi_def_cfa_offset 48
 	popq	%rbp
-	.cfi_def_cfa_offset 32
+	.cfi_def_cfa_offset 40
 	popq	%r12
-	.cfi_def_cfa_offset 24
+	.cfi_def_cfa_offset 32
 	popq	%r13
-	.cfi_def_cfa_offset 16
+	.cfi_def_cfa_offset 24
 	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
 	.cfi_def_cfa_offset 8
 	ret
 .L11:
@@ -351,12 +381,13 @@ _ZN5stats6UpdateEv:
 _ZN5stats6UpdateEv.cold:
 .LFSB8149:
 .L5:
-	.cfi_def_cfa_offset 112
-	.cfi_offset 3, -48
-	.cfi_offset 6, -40
-	.cfi_offset 12, -32
-	.cfi_offset 13, -24
-	.cfi_offset 14, -16
+	.cfi_def_cfa_offset 128
+	.cfi_offset 3, -56
+	.cfi_offset 6, -48
+	.cfi_offset 12, -40
+	.cfi_offset 13, -32
+	.cfi_offset 14, -24
+	.cfi_offset 15, -16
 	movq	%rbp, %rdi
 	call	_ZN3neo6stringD1Ev@PLT
 	movq	56(%rsp), %rax
@@ -377,7 +408,7 @@ _ZN5stats6UpdateEv.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8149-.LLSDACSBC8149
 .LLSDACSBC8149:
-	.uleb128 .LEHB2-.LCOLDB8
+	.uleb128 .LEHB2-.LCOLDB9
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
@@ -387,9 +418,9 @@ _ZN5stats6UpdateEv.cold:
 	.size	_ZN5stats6UpdateEv, .-_ZN5stats6UpdateEv
 	.section	.text.unlikely
 	.size	_ZN5stats6UpdateEv.cold, .-_ZN5stats6UpdateEv.cold
-.LCOLDE8:
+.LCOLDE9:
 	.text
-.LHOTE8:
+.LHOTE9:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:

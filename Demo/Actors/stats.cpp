@@ -33,13 +33,13 @@ uint8 stats::Update()
 {
     string str;
 
-    this->GameTime->SetString(((str = {"GameTime: "}) += {(uint64)this->Engine->Timing.GetGameTime()})());
+    this->GameTime->SetString((((str = {"GameTime: "}) += {(uint64)this->Engine->Timing.GetGameTime()}) += {"ms"})());
     this->GameTime->SetX(this->Actor->GetX() + (this->GameTime->GetWidth() >> 1));
 
-    this->RenderTime->SetString(((str = {"RenderTime: "}) += {(uint64)this->Engine->Timing.GetRenderTime()})());
+    this->RenderTime->SetString((((str = {"RenderTime: "}) += {(uint64)this->Engine->Timing.GetRenderTime()}) += {"ms"})());
     this->RenderTime->SetX(this->Actor->GetX() + (this->RenderTime->GetWidth() >> 1));
 
-    this->FrameTime->SetString(((str = {"FrameTime: "}) += {(uint64)this->Engine->Timing.GetFrameTime()})());
+    this->FrameTime->SetString((((str = {"FrameTime: "}) += {(uint64)this->Engine->Timing.GetFrameTime()}) += {"ms"})());
     this->FrameTime->SetX(this->Actor->GetX() + (this->FrameTime->GetWidth() >> 1));
 
     return 0;
