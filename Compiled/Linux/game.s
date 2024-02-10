@@ -148,43 +148,76 @@ _ZN4gameC2EPN3wze6engineE.cold:
 	.globl	_ZN4gameD2Ev
 	.type	_ZN4gameD2Ev, @function
 _ZN4gameD2Ev:
-.LFB8150:
+.LFB8153:
 	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	movl	16(%rdi), %eax
+	movq	%rdi, %rbx
 	cmpl	$1, %eax
 	je	.L10
 	cmpl	$2, %eax
 	je	.L11
 	testl	%eax, %eax
-	jne	.L9
+	jne	.L12
 	movq	24(%rdi), %rdi
 	testq	%rdi, %rdi
-	je	.L9
+	je	.L12
 	movl	$80, %esi
+	call	_ZdlPvm@PLT
+	.p2align 4,,10
+	.p2align 3
+.L12:
+	movq	8(%rbx), %rbx
+	testq	%rbx, %rbx
+	je	.L9
+.L24:
+	movq	104(%rbx), %rdi
+	call	free@PLT
+	movq	88(%rbx), %rdi
+	call	free@PLT
+	movq	64(%rbx), %rdi
+	call	free@PLT
+	movq	48(%rbx), %rdi
+	call	free@PLT
+	movq	32(%rbx), %rdi
+	call	free@PLT
+	movq	%rbx, %rdi
+	movl	$120, %esi
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	jmp	_ZdlPvm@PLT
 	.p2align 4,,10
 	.p2align 3
 .L11:
+	.cfi_restore_state
 	movq	40(%rdi), %rdi
 	testq	%rdi, %rdi
-	je	.L9
+	je	.L12
 	movl	$1, %esi
-	jmp	_ZdlPvm@PLT
-	.p2align 4,,10
-	.p2align 3
-.L10:
-	movq	32(%rdi), %rdi
-	testq	%rdi, %rdi
-	jne	.L22
+	call	_ZdlPvm@PLT
+	movq	8(%rbx), %rbx
+	testq	%rbx, %rbx
+	jne	.L24
 .L9:
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L22:
+.L10:
+	.cfi_restore_state
+	movq	32(%rdi), %rdi
+	testq	%rdi, %rdi
+	je	.L12
 	movl	$32, %esi
-	jmp	_ZdlPvm@PLT
+	call	_ZdlPvm@PLT
+	jmp	.L12
 	.cfi_endproc
-.LFE8150:
+.LFE8153:
 	.size	_ZN4gameD2Ev, .-_ZN4gameD2Ev
 	.globl	_ZN4gameD1Ev
 	.set	_ZN4gameD1Ev,_ZN4gameD2Ev
@@ -193,26 +226,38 @@ _ZN4gameD2Ev:
 	.globl	_ZN4game6UpdateEv
 	.type	_ZN4game6UpdateEv, @function
 _ZN4game6UpdateEv:
-.LFB8152:
+.LFB8155:
 	.cfi_startproc
 	movl	16(%rdi), %eax
 	testl	%eax, %eax
-	je	.L29
+	je	.L40
 	xorl	%eax, %eax
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L29:
-	subq	$8, %rsp
+.L40:
+	pushq	%rbx
 	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movq	%rdi, %rbx
 	movq	24(%rdi), %rdi
 	call	_ZN4menu6UpdateEv@PLT
+	testb	%al, %al
+	je	.L27
+	movq	24(%rbx), %rdi
+	testq	%rdi, %rdi
+	je	.L29
+	movl	$80, %esi
+	call	_ZdlPvm@PLT
+.L29:
+	movq	$0, 24(%rbx)
+.L27:
 	xorl	%eax, %eax
-	addq	$8, %rsp
+	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8152:
+.LFE8155:
 	.size	_ZN4game6UpdateEv, .-_ZN4game6UpdateEv
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

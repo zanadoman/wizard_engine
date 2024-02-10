@@ -49,9 +49,10 @@ uint8 menu::Update()
 
         if (this->ButtonNormal->GetButtonState() & BTN_RELEASED_LMB)
         {
-            this->Game->ActiveScene = SCENE_NORMAL;
             this->Engine->Actors.Purge({});
-            return 0;
+            this->Game->ActiveScene = SCENE_NORMAL;
+            this->Game->Normal = new normal(this->Engine, this->Game);
+            return 1;
         }
     }
     else
@@ -69,9 +70,9 @@ uint8 menu::Update()
 
         if (this->ButtonInfinite->GetButtonState() & BTN_RELEASED_LMB)
         {
-            this->Game->ActiveScene = SCENE_INFINITE;
             this->Engine->Actors.Purge({});
-            return 0;
+            this->Game->ActiveScene = SCENE_INFINITE;
+            return 1;
         }
     }
     else

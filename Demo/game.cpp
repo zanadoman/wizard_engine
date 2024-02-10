@@ -25,6 +25,8 @@ game::~game()
             delete this->Infinite;
         break;
     }
+
+    delete this->Assets;
 }
 
 uint8 game::Update()
@@ -32,7 +34,11 @@ uint8 game::Update()
     switch (this->ActiveScene)
     {
         case SCENE_MENU:
-            this->Menu->Update();
+            if (this->Menu->Update())
+            {
+                delete this->Menu;
+                this->Menu = NULL;
+            }
         break;
 
         case SCENE_NORMAL:

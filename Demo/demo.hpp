@@ -32,6 +32,8 @@ class infinite;
 class game
 {
     friend class menu;
+    friend class normal;
+    friend class infinite;
     engine* Engine;
 
     public:
