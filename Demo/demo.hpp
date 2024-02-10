@@ -10,6 +10,8 @@ class assets
     engine* Engine;
 
     public:
+        uint16 FontFreeSansFont;
+
         uint16 MapBackgroundTexture;
         uint16 MapBushTexture;
         uint16 MapCrateTexture;
@@ -30,6 +32,16 @@ class assets
         uint16 BulletBaseTexture;
  
         assets(engine* Engine);
+};
+
+class menu
+{
+    engine* Engine;
+    assets* Assets;
+
+    public:
+        menu(engine* Engine, assets* Assets);
+        ~menu();
 };
 
 class game
