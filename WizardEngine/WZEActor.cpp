@@ -27,9 +27,9 @@ namespace wze
         this->HitboxHeight = Height;
         this->PrevHitboxWidth = Width;
         this->PrevHitboxHeight = Height;
-        this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, Height) / 2;
-        this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, Width, Height) : 0;
-        this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(Width, 0, 0, Height) : 0;
+        this->HitboxMedianLength = engine::vector::Length(0, 0, Width, Height) / 2;
+        this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? engine::vector::Angle(0, 0, Width, Height) : 0;
+        this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? engine::vector::Angle(Width, 0, 0, Height) : 0;
     }
 
     engine::actors::actor::~actor()
@@ -103,9 +103,9 @@ namespace wze
 
     uint16 engine::actors::actor::SetWidth(uint16 Width)
     {
-        this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, Width, this->Height) / 2;
-        this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, Width, this->Height) : 0;
-        this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(Width, 0, 0, this->Height) : 0;
+        this->HitboxMedianLength = engine::vector::Length(0, 0, Width, this->Height) / 2;
+        this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? engine::vector::Angle(0, 0, Width, this->Height) : 0;
+        this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? engine::vector::Angle(Width, 0, 0, this->Height) : 0;
 
         this->Width = Width;
         this->UpdateHitboxScale();
@@ -121,9 +121,9 @@ namespace wze
 
     uint16 engine::actors::actor::SetHeight(uint16 Height)
     {
-        this->HitboxMedianLength = this->Engine->Vector.Length(0, 0, this->Width, Height) / 2;
-        this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, this->Width, Height) : 0;
-        this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? this->Engine->Vector.Angle(this->Width, 0, 0, Height) : 0;
+        this->HitboxMedianLength = engine::vector::Length(0, 0, this->Width, Height) / 2;
+        this->HitboxMedian1Angle = this->HitboxMedianLength != 0 ? engine::vector::Angle(0, 0, this->Width, Height) : 0;
+        this->HitboxMedian2Angle = this->HitboxMedianLength != 0 ? engine::vector::Angle(this->Width, 0, 0, Height) : 0;
 
         this->Height = Height;
         this->UpdateHitboxScale();
@@ -350,15 +350,15 @@ namespace wze
         MedAngle1_180 = MedAngle1 + 180;
         MedAngle2_180 =  MedAngle2 + 180;
 
-        x1 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle1));
-        x2 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle2));
-        x3 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle1_180));
-        x4 = round(this->Engine->Vector.TerminalX(0, this->HitboxMedianLength, MedAngle2_180));
+        x1 = round(engine::vector::TerminalX(0, this->HitboxMedianLength, MedAngle1));
+        x2 = round(engine::vector::TerminalX(0, this->HitboxMedianLength, MedAngle2));
+        x3 = round(engine::vector::TerminalX(0, this->HitboxMedianLength, MedAngle1_180));
+        x4 = round(engine::vector::TerminalX(0, this->HitboxMedianLength, MedAngle2_180));
 
-        y1 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle1));
-        y2 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle2));
-        y3 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle1_180));
-        y4 = round(this->Engine->Vector.TerminalY(0, this->HitboxMedianLength, MedAngle2_180));
+        y1 = round(engine::vector::TerminalY(0, this->HitboxMedianLength, MedAngle1));
+        y2 = round(engine::vector::TerminalY(0, this->HitboxMedianLength, MedAngle2));
+        y3 = round(engine::vector::TerminalY(0, this->HitboxMedianLength, MedAngle1_180));
+        y4 = round(engine::vector::TerminalY(0, this->HitboxMedianLength, MedAngle2_180));
 
         minX = (tmp1 = x1 < x2 ? x1 : x2) < (tmp2 = x3 < x4 ? x3 : x4) ? tmp1 : tmp2;
         maxX = (tmp2 = x4 < x3 ? x3 : x4) < (tmp1 = x2 < x1 ? x1 : x2) ? tmp1 : tmp2;
@@ -380,8 +380,8 @@ namespace wze
                 continue;
             }
 
-            this->Colors.Colors[i]->X = this->Engine->Vector.TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
-            this->Colors.Colors[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+            this->Colors.Colors[i]->X = engine::vector::TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+            this->Colors.Colors[i]->Y = engine::vector::TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Textures.Textures.Length(); i++)
@@ -391,8 +391,8 @@ namespace wze
                 continue;
             }
 
-            this->Textures.Textures[i]->X = this->Engine->Vector.TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
-            this->Textures.Textures[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+            this->Textures.Textures[i]->X = engine::vector::TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+            this->Textures.Textures[i]->Y = engine::vector::TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Flipbooks.Flipbooks.Length(); i++)
@@ -402,8 +402,8 @@ namespace wze
                 continue;
             }
 
-            this->Flipbooks.Flipbooks[i]->X = this->Engine->Vector.TerminalX(this->X, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
-            this->Flipbooks.Flipbooks[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
+            this->Flipbooks.Flipbooks[i]->X = engine::vector::TerminalX(this->X, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
+            this->Flipbooks.Flipbooks[i]->Y = engine::vector::TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Texts.Texts.Length(); i++)
@@ -413,8 +413,8 @@ namespace wze
                 continue;
             }
 
-            this->Texts.Texts[i]->X = this->Engine->Vector.TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
-            this->Texts.Texts[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+            this->Texts.Texts[i]->X = engine::vector::TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+            this->Texts.Texts[i]->Y = engine::vector::TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Overlapboxes.Overlapboxes.Length(); i++)
@@ -424,8 +424,8 @@ namespace wze
                 continue;
             }
 
-            this->Overlapboxes.Overlapboxes[i]->X = this->Engine->Vector.TerminalX(this->X, this->Overlapboxes.Overlapboxes[i]->OffsetLength, this->Overlapboxes.Overlapboxes[i]->OffsetAngle);
-            this->Overlapboxes.Overlapboxes[i]->Y = this->Engine->Vector.TerminalY(this->Y, this->Overlapboxes.Overlapboxes[i]->OffsetLength, this->Overlapboxes.Overlapboxes[i]->OffsetAngle);
+            this->Overlapboxes.Overlapboxes[i]->X = engine::vector::TerminalX(this->X, this->Overlapboxes.Overlapboxes[i]->OffsetLength, this->Overlapboxes.Overlapboxes[i]->OffsetAngle);
+            this->Overlapboxes.Overlapboxes[i]->Y = engine::vector::TerminalY(this->Y, this->Overlapboxes.Overlapboxes[i]->OffsetLength, this->Overlapboxes.Overlapboxes[i]->OffsetAngle);
         }
 
         return 0;

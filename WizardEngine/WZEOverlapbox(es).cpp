@@ -163,9 +163,9 @@ namespace wze
         this->OffsetAngle = 0;
         this->ActiveWidth = this->Width;
         this->ActiveHeight = this->Height;
-        this->ActiveMedianLength = this->Engine->Vector.Length(0, 0, this->Width, this->Height) / 2;
-        this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, this->Width, this->Height) : 0;
-        this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(this->Width, 0, 0, this->Height) : 0;
+        this->ActiveMedianLength = engine::vector::Length(0, 0, this->Width, this->Height) / 2;
+        this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? engine::vector::Angle(0, 0, this->Width, this->Height) : 0;
+        this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? engine::vector::Angle(this->Width, 0, 0, this->Height) : 0;
 
         this->UpdateOverlapboxActiveScale();
     }
@@ -198,8 +198,8 @@ namespace wze
             exit(1);
         }
 
-        this->OffsetLength = this->Actor->X != X || this->Actor->Y != this->Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
-        this->OffsetAngle = this->Actor->X != X || this->Actor->Y != this->Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
+        this->OffsetLength = this->Actor->X != X || this->Actor->Y != this->Y ? engine::vector::Length(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
+        this->OffsetAngle = this->Actor->X != X || this->Actor->Y != this->Y ? engine::vector::Angle(this->Actor->X, this->Actor->Y, X, this->Y) : 0;
 
         return this->X = X;
     }
@@ -217,8 +217,8 @@ namespace wze
             exit(1);
         }
 
-        this->OffsetLength = this->Actor->X != this->X || this->Actor->Y != Y ? this->Engine->Vector.Length(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
-        this->OffsetAngle = this->Actor->X != this->X || this->Actor->Y != Y ? this->Engine->Vector.Angle(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
+        this->OffsetLength = this->Actor->X != this->X || this->Actor->Y != Y ? engine::vector::Length(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
+        this->OffsetAngle = this->Actor->X != this->X || this->Actor->Y != Y ? engine::vector::Angle(this->Actor->X, this->Actor->Y, this->X, Y) : 0;
 
         return this->Y = Y;
     }
@@ -230,9 +230,9 @@ namespace wze
 
     uint16 engine::actors::actor::overlapboxes::overlapbox::SetWidth(uint16 Width)
     {
-        this->ActiveMedianLength = this->Engine->Vector.Length(0, 0, Width, this->Height) / 2;
-        this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, Width, this->Height) : 0;
-        this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(Width, 0, 0, this->Height) : 0;
+        this->ActiveMedianLength = engine::vector::Length(0, 0, Width, this->Height) / 2;
+        this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? engine::vector::Angle(0, 0, Width, this->Height) : 0;
+        this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? engine::vector::Angle(Width, 0, 0, this->Height) : 0;
 
         this->Width = Width;
         this->UpdateOverlapboxActiveScale();
@@ -247,9 +247,9 @@ namespace wze
 
     uint16 engine::actors::actor::overlapboxes::overlapbox::SetHeight(uint16 Height)
     {
-        this->ActiveMedianLength = this->Engine->Vector.Length(0, 0, this->Width, Height) / 2;
-        this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(0, 0, this->Width, Height) : 0;
-        this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? this->Engine->Vector.Angle(this->Width, 0, 0, Height) : 0;
+        this->ActiveMedianLength = engine::vector::Length(0, 0, this->Width, Height) / 2;
+        this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? engine::vector::Angle(0, 0, this->Width, Height) : 0;
+        this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? engine::vector::Angle(this->Width, 0, 0, Height) : 0;
 
         this->Height = Height;
         this->UpdateOverlapboxActiveScale();
@@ -540,15 +540,15 @@ namespace wze
         MedAngle1_180 = MedAngle1 + 180;
         MedAngle2_180 =  MedAngle2 + 180;
 
-        x1 = round(this->Engine->Vector.TerminalX(0, this->ActiveMedianLength, MedAngle1));
-        x2 = round(this->Engine->Vector.TerminalX(0, this->ActiveMedianLength, MedAngle2));
-        x3 = round(this->Engine->Vector.TerminalX(0, this->ActiveMedianLength, MedAngle1_180));
-        x4 = round(this->Engine->Vector.TerminalX(0, this->ActiveMedianLength, MedAngle2_180));
+        x1 = round(engine::vector::TerminalX(0, this->ActiveMedianLength, MedAngle1));
+        x2 = round(engine::vector::TerminalX(0, this->ActiveMedianLength, MedAngle2));
+        x3 = round(engine::vector::TerminalX(0, this->ActiveMedianLength, MedAngle1_180));
+        x4 = round(engine::vector::TerminalX(0, this->ActiveMedianLength, MedAngle2_180));
 
-        y1 = round(this->Engine->Vector.TerminalY(0, this->ActiveMedianLength, MedAngle1));
-        y2 = round(this->Engine->Vector.TerminalY(0, this->ActiveMedianLength, MedAngle2));
-        y3 = round(this->Engine->Vector.TerminalY(0, this->ActiveMedianLength, MedAngle1_180));
-        y4 = round(this->Engine->Vector.TerminalY(0, this->ActiveMedianLength, MedAngle2_180));
+        y1 = round(engine::vector::TerminalY(0, this->ActiveMedianLength, MedAngle1));
+        y2 = round(engine::vector::TerminalY(0, this->ActiveMedianLength, MedAngle2));
+        y3 = round(engine::vector::TerminalY(0, this->ActiveMedianLength, MedAngle1_180));
+        y4 = round(engine::vector::TerminalY(0, this->ActiveMedianLength, MedAngle2_180));
 
         minX = (tmp1 = x1 < x2 ? x1 : x2) < (tmp2 = x3 < x4 ? x3 : x4) ? tmp1 : tmp2;
         maxX = (tmp2 = x4 < x3 ? x3 : x4) < (tmp1 = x2 < x1 ? x1 : x2) ? tmp1 : tmp2;
