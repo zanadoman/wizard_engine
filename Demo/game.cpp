@@ -76,9 +76,9 @@ uint8 game::SwitchScenes(scene Scene)
                 this->Infinite = new infinite(this->Engine, this);
             break;
         }
-    }
 
-    this->ActiveScene = Scene;
+        this->ActiveScene = Scene;
+    }
 
     return 0;
 }

@@ -668,7 +668,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	movq	(%rax,%rbx,8), %rdx
 	testq	%rdx, %rdx
 	je	.L128
-	movq	208(%rdx), %r9
+	movq	216(%rdx), %r9
 	xorl	%edx, %edx
 	testq	%r13, %r13
 	je	.L128
@@ -808,7 +808,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	.p2align 4,,10
 	.p2align 3
 .L135:
-	movq	24(%rax), %rdx
+	movq	32(%rax), %rdx
 	xorl	%eax, %eax
 	cmpq	$0, 80(%rsp)
 	movq	96(%rsp), %r9
@@ -1232,7 +1232,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	testq	%rcx, %rcx
 	je	.L237
 	movq	0(%r13), %r9
-	movq	208(%rcx), %r10
+	movq	216(%rcx), %r10
 	xorl	%ecx, %ecx
 	movq	8(%r13), %r11
 	testq	%r9, %r9
@@ -1371,7 +1371,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	.p2align 4,,10
 	.p2align 3
 .L244:
-	movq	24(%rax), %rcx
+	movq	32(%rax), %rcx
 	movq	96(%rsp), %r9
 	xorl	%eax, %eax
 	testq	%r15, %r15
@@ -1814,7 +1814,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L346
-	movq	208(%rcx), %r9
+	movq	216(%rcx), %r9
 	xorl	%ecx, %ecx
 	cmpq	$0, 80(%rsp)
 	movq	88(%rsp), %r10
@@ -1873,7 +1873,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	.p2align 4,,10
 	.p2align 3
 .L353:
-	movq	24(%rax), %rcx
+	movq	32(%rax), %rcx
 	xorl	%eax, %eax
 	testq	%r14, %r14
 	je	.L356
@@ -2399,7 +2399,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	movq	(%rax,%rbx,8), %rdx
 	testq	%rdx, %rdx
 	je	.L456
-	movq	208(%rdx), %r9
+	movq	216(%rdx), %r9
 	xorl	%edx, %edx
 	testq	%r13, %r13
 	je	.L456
@@ -2439,7 +2439,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	movq	(%rax,%rdi,8), %rax
 	testq	%rax, %rax
 	je	.L467
-	movq	24(%rax), %r9
+	movq	32(%rax), %r9
 	movq	424(%rsp), %rax
 	movq	(%rax), %rdx
 	movq	8(%rax), %r10
@@ -2983,7 +2983,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	testq	%r8, %r8
 	je	.L567
 	movq	392(%rsp), %rbx
-	movq	208(%r8), %r10
+	movq	216(%r8), %r10
 	xorl	%r8d, %r8d
 	movq	(%rbx), %r9
 	movq	8(%rbx), %r11
@@ -3127,7 +3127,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	.p2align 4,,10
 	.p2align 3
 .L574:
-	movq	24(%rax), %r8
+	movq	32(%rax), %r8
 	xorl	%eax, %eax
 	testq	%r14, %r14
 	je	.L577
@@ -3589,7 +3589,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	testq	%rcx, %rcx
 	je	.L679
 	movq	(%r14), %r9
-	movq	208(%rcx), %r10
+	movq	216(%rcx), %r10
 	xorl	%ecx, %ecx
 	movq	8(%r14), %r11
 	testq	%r9, %r9
@@ -3714,7 +3714,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	testq	%rax, %rax
 	je	.L690
 	movq	0(%r13), %rcx
-	movq	24(%rax), %r9
+	movq	32(%rax), %r9
 	xorl	%eax, %eax
 	movq	8(%r13), %r10
 	testq	%rcx, %rcx
@@ -4195,7 +4195,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	movq	(%rax,%rbx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L790
-	movq	208(%rcx), %r9
+	movq	216(%rcx), %r9
 	movq	80(%rsp), %r10
 	xorl	%ecx, %ecx
 	testq	%r15, %r15
@@ -4239,7 +4239,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	testq	%rax, %rax
 	je	.L801
 	movq	0(%r13), %rcx
-	movq	24(%rax), %r9
+	movq	32(%rax), %r9
 	xorl	%eax, %eax
 	movq	8(%r13), %r10
 	testq	%rcx, %rcx
@@ -4797,7 +4797,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	testq	%r8, %r8
 	je	.L903
 	movq	(%r15), %r9
-	movq	208(%r8), %r10
+	movq	216(%r8), %r10
 	xorl	%r8d, %r8d
 	movq	8(%r15), %r11
 	testq	%r9, %r9
@@ -4926,7 +4926,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	testq	%rax, %rax
 	je	.L914
 	movq	0(%r13), %r8
-	movq	24(%rax), %r9
+	movq	32(%rax), %r9
 	xorl	%eax, %eax
 	movq	8(%r13), %r10
 	testq	%r8, %r8

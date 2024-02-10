@@ -33,7 +33,7 @@ main:
 .LEHB1:
 	call	_ZN3wze6engineC1EPKcS2_tth
 .LEHE1:
-	movl	$8, %ecx
+	movl	$160, %ecx
 .LEHB2:
 	call	_Znwy
 .LEHE2:
@@ -58,7 +58,7 @@ main:
 	jne	.L3
 	movq	%rsi, %rcx
 	call	_ZN4gameD1Ev
-	movl	$8, %edx
+	movl	$160, %edx
 	movq	%rsi, %rcx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
@@ -126,7 +126,7 @@ main.cold:
 	call	_Unwind_Resume
 .L5:
 	movq	%rsi, %rcx
-	movl	$8, %edx
+	movl	$160, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume

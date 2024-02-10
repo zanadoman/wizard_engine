@@ -151,6 +151,13 @@ namespace wze
         return true;
     }
 
+    uint8 engine::Sleep(uint32 Milliseconds)
+    {
+        SDL_Delay(Milliseconds);
+
+        return 0;
+    }
+
     sint32 engine::Random(sint32 Min, sint32 Max)
     {
         return rand() % (Max - Min) + Min;

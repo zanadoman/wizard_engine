@@ -800,6 +800,7 @@ namespace wze
             engine(const char* Title, const char* IconPath, neo::uint16 WindowWidth, neo::uint16 WindowHeight, neo::uint8 TargetFrameTime);
             ~engine();
             bool Update();
+            neo::uint8 Sleep(neo::uint32 Milliseconds);
             neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
 
         private:

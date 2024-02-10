@@ -305,22 +305,23 @@ _ZN3wze6engine6actors3NewEPvyddttd:
 .L46:
 	cmpq	$0, (%rcx,%rbx,8)
 	jne	.L43
-	movl	$320, %ecx
+	movl	$328, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
 	movq	(%rsi), %rdx
-	movl	%r13d, 56(%rsp)
-	movq	%rbp, %r9
-	movl	%r12d, 48(%rsp)
-	movq	%rdi, %r8
+	movl	%r13d, 64(%rsp)
+	movq	%rdi, %r9
+	movl	%r12d, 56(%rsp)
+	movq	%rbx, %r8
 	movq	%rax, %rcx
 	movq	%rax, %r14
-	movsd	%xmm7, 64(%rsp)
-	movsd	%xmm8, 40(%rsp)
-	movsd	%xmm6, 32(%rsp)
+	movq	%rbp, 32(%rsp)
+	movsd	%xmm7, 72(%rsp)
+	movsd	%xmm8, 48(%rsp)
+	movsd	%xmm6, 40(%rsp)
 .LEHB1:
-	call	_ZN3wze6engine6actors5actorC1EPS0_Pvyddttd
+	call	_ZN3wze6engine6actors5actorC1EPS0_yPvyddttd
 .LEHE1:
 	movq	16(%rsi), %rax
 	cmpq	8(%rsi), %rbx
@@ -330,22 +331,23 @@ _ZN3wze6engine6actors3NewEPvyddttd:
 	.p2align 4,,10
 	.p2align 3
 .L42:
-	movl	$320, %ecx
+	movl	$328, %ecx
 .LEHB2:
 	call	_Znwy
 .LEHE2:
 	movq	(%rsi), %rdx
-	movl	%r13d, 56(%rsp)
-	movq	%rbp, %r9
-	movl	%r12d, 48(%rsp)
-	movq	%rdi, %r8
+	movl	%r13d, 64(%rsp)
+	movq	%rdi, %r9
+	movl	%r12d, 56(%rsp)
 	movq	%rax, %rcx
 	movq	%rax, %rbx
-	movsd	%xmm7, 64(%rsp)
-	movsd	%xmm8, 40(%rsp)
-	movsd	%xmm6, 32(%rsp)
+	movq	%rbp, 32(%rsp)
+	movsd	%xmm7, 72(%rsp)
+	movsd	%xmm8, 48(%rsp)
+	movsd	%xmm6, 40(%rsp)
+	movq	8(%rsi), %r8
 .LEHB3:
-	call	_ZN3wze6engine6actors5actorC1EPS0_Pvyddttd
+	call	_ZN3wze6engine6actors5actorC1EPS0_yPvyddttd
 .LEHE3:
 	movq	8(%rsi), %rax
 	movq	16(%rsi), %rcx
@@ -365,15 +367,16 @@ _ZN3wze6engine6actors3NewEPvyddttd:
 	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	8(%rsi), %rax
 	movq	16(%rsi), %rdx
-	addq	$-1, %rax
-	movq	%rax, %rbx
-	jnc	.L67
-	cmpq	$0, (%rdx,%rax,8)
+	leaq	-1(%rax), %rcx
+	testq	%rax, %rax
+	je	.L67
+	movq	(%rdx,%rcx,8), %r14
+	testq	%r14, %r14
 	je	.L68
 .L33:
 	movaps	96(%rsp), %xmm6
 	movaps	112(%rsp), %xmm7
-	movq	%rbx, %rax
+	movq	%r14, %rax
 	movaps	128(%rsp), %xmm8
 	addq	$144, %rsp
 	popq	%rbx
@@ -513,14 +516,14 @@ _ZN3wze6engine6actors3NewEPvyddttd:
 _ZN3wze6engine6actors3NewEPvyddttd.cold:
 .L52:
 	movq	%rbx, %rcx
-	movl	$320, %edx
+	movl	$328, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB5:
 	call	_Unwind_Resume
 .L51:
 	movq	%r14, %rcx
-	movl	$320, %edx
+	movl	$328, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
@@ -583,7 +586,7 @@ _ZN3wze6engine6actors6DeleteEy:
 	movq	%rdi, %rcx
 	call	_ZN3wze6engine6actors5actorD1Ev
 	movq	%rdi, %rcx
-	movl	$320, %edx
+	movl	$328, %edx
 	call	_ZdlPvy
 	movq	8(%rbx), %rax
 	movq	16(%rbx), %rcx
@@ -680,7 +683,7 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	je	.L98
 	movq	%rbp, %rcx
 	call	_ZN3wze6engine6actors5actorD1Ev
-	movl	$320, %edx
+	movl	$328, %edx
 	movq	%rbp, %rcx
 	call	_ZdlPvy
 	movq	8(%r12), %rdx
@@ -820,7 +823,7 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	movq	%rdi, %rcx
 	call	_ZN3wze6engine6actors5actorD1Ev
 	movq	%rdi, %rcx
-	movl	$320, %edx
+	movl	$328, %edx
 	call	_ZdlPvy
 	movq	8(%rbp), %rcx
 	movq	16(%rbp), %r9
@@ -952,7 +955,7 @@ _ZN3wze6engine6actorsixEy:
 	.def	malloc;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actorC1EPS0_Pvyddttd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actorC1EPS0_yPvyddttd;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actorD1Ev;	.scl	2;	.type	32;	.endef
