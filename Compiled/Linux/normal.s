@@ -10,24 +10,27 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	pxor	%xmm1, %xmm1
-	movsd	.LC0(%rip), %xmm2
 	movq	%rdi, %rbx
-	movq	%rsi, (%rdi)
+	leaq	16(%rdi), %rdi
+	movq	%rsi, -16(%rdi)
+	movq	%rdx, -8(%rdi)
+	call	_ZN5pauseC1EPN3wze6engineEP4game@PLT
+	movq	(%rbx), %rax
+	pxor	%xmm1, %xmm1
+	xorl	%edx, %edx
+	movsd	.LC0(%rip), %xmm2
 	movl	$10800, %r8d
-	movl	$19200, %ecx
 	movapd	%xmm1, %xmm0
-	movq	%rdx, 8(%rdi)
-	leaq	240(%rsi), %rdi
-	movl	$1, %edx
 	xorl	%esi, %esi
+	leaq	240(%rax), %rdi
+	movl	$19200, %ecx
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	8(%rbx), %rdx
-	movq	%rax, 16(%rbx)
+	movq	%rax, 96(%rbx)
 	leaq	40(%rax), %rdi
 	movzwl	18(%rdx), %esi
 	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
-	movq	%rax, 24(%rbx)
+	movq	%rax, 104(%rbx)
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
@@ -43,7 +46,15 @@ _ZN6normalC2EPN3wze6engineEP4game:
 _ZN6normal6UpdateEv:
 .LFB8149:
 	.cfi_startproc
-	movl	$1, %eax
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	addq	$16, %rdi
+	call	_ZN5pause6UpdateEv@PLT
+	cmpl	$2, %eax
+	setne	%al
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 8
+	movzbl	%al, %eax
 	ret
 	.cfi_endproc
 .LFE8149:

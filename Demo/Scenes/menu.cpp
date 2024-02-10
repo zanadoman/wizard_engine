@@ -2,12 +2,12 @@
 
 menu::menu(engine* Engine, game* Game) : Engine(Engine), Game(Game)
 {
-    this->Actor = this->Engine->Actors.New(NULL, ACT_MENU, this->Engine->Window.GetWidth() >> 1, this->Engine->Window.GetHeight() >> 1, 0, 0, 0);
+    this->Actor = this->Engine->Actors.New(NULL, ACT_NONE, this->Engine->Window.GetWidth() >> 1, this->Engine->Window.GetHeight() >> 1, 0, 0, 0);
     this->Title = this->Actor->Texts.New("Wizard Engine Demo", this->Game->Assets.FontFreeSansFont);
-    this->ButtonNormal = this->Actor->Overlapboxes.New(BOX_BUTTON);
+    this->ButtonNormal = this->Actor->Overlapboxes.New(BOX_NONE);
     this->ButtonNormalColor = this->Actor->Colors.New();
     this->ButtonNormalText = this->Actor->Texts.New("Normal Mode", this->Game->Assets.FontFreeSansFont);
-    this->ButtonInfinite = this->Actor->Overlapboxes.New(BOX_BUTTON);
+    this->ButtonInfinite = this->Actor->Overlapboxes.New(BOX_NONE);
     this->ButtonInfiniteColor = this->Actor->Colors.New();
     this->ButtonInfiniteText = this->Actor->Texts.New("Infinite Mode", this->Game->Assets.FontFreeSansFont);
 
@@ -51,6 +51,8 @@ scene menu::Update()
         {
             return SCENE_NORMAL;
         }
+
+        return SCENE_MENU;
     }
     else
     {
@@ -69,6 +71,8 @@ scene menu::Update()
         {
             return SCENE_INFINITE;
         }
+
+        return SCENE_MENU;
     }
     else
     {

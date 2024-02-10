@@ -14,18 +14,19 @@ typedef enum
 
 typedef enum
 {
-    ACT_MENU,
-    ACT_DECOR
+    ACT_NONE
 } actor;
 
 typedef enum
 {
-    BOX_BUTTON
+    BOX_NONE
 } overlapbox;
 
 class menu;
 class normal;
 class infinite;
+
+//_________________________________________________________________
 
 class assets
 {
@@ -59,6 +60,7 @@ class assets
 
 class game
 {
+    friend class pause;
     friend class menu;
     friend class normal;
     friend class infinite;
@@ -77,6 +79,40 @@ class game
         infinite* Infinite;
         uint8 SwitchScenes(scene Scene);
 };
+
+//_________________________________________________________________
+
+class pause
+{
+    friend class game;
+    friend class normal;
+    friend class infinite;
+    engine* Engine;
+    game* Game;
+
+    typedef enum
+    {
+        NONE,
+        PAUSED,
+        MENU
+    } state;
+
+    public:
+        state Update();
+
+    private:
+        engine::actor Actor;
+        engine::color Frame;
+        engine::overlapbox ButtonResume;
+        engine::color ButtonResumeColor;
+        engine::text ButtonResumeText;
+        engine::overlapbox ButtonMenu;
+        engine::color ButtonMenuColor;
+        engine::text ButtonMenuText;
+        pause(engine* Engine, game* Game);
+};
+
+//_________________________________________________________________
 
 class menu
 {
@@ -103,6 +139,7 @@ class normal
     engine* Engine;
     game* Game;
 
+    pause Pause;
     engine::actor Background;
     engine::texture BackgroundTexture;
     normal(engine* Engine, game* Game);
@@ -115,6 +152,7 @@ class infinite
     engine* Engine;
     game* Game;
 
+    pause Pause;
     engine::actor Background;
     engine::texture BackgroundTexture;
     infinite(engine* Engine, game* Game);
