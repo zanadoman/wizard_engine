@@ -58,7 +58,9 @@ your objects, you can use the predefined pointer types from the engine. \
 \
 int main() \
 {\
-&emsp;&emsp;wze::engine\* Engine = new wze::engine(NULL, NULL, 1920, 1080, 1000 / 60); \
+&emsp;&emsp;wze::engine\* Engine; \
+\
+&emsp;&emsp;Engine = new wze::engine(NULL, NULL, 1920, 1080, 1000 / 60); \
 \
 &emsp;&emsp;while (Engine->Update()) \
 &emsp;&emsp;{ \
