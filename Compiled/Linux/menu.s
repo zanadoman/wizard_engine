@@ -15,28 +15,19 @@
 _ZN4menuC2EPN3wze6engineEP6assets:
 .LFB8147:
 	.cfi_startproc
-	pushq	%r15
-	.cfi_def_cfa_offset 16
-	.cfi_offset 15, -16
-	pushq	%r14
-	.cfi_def_cfa_offset 24
-	.cfi_offset 14, -24
-	pushq	%r13
-	.cfi_def_cfa_offset 32
-	.cfi_offset 13, -32
 	pushq	%r12
-	.cfi_def_cfa_offset 40
-	.cfi_offset 12, -40
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
 	pushq	%rbp
-	.cfi_def_cfa_offset 48
-	.cfi_offset 6, -48
+	.cfi_def_cfa_offset 24
+	.cfi_offset 6, -24
 	movq	%rsi, %rbp
 	pushq	%rbx
-	.cfi_def_cfa_offset 56
-	.cfi_offset 3, -56
+	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
 	movq	%rdi, %rbx
-	subq	$40, %rsp
-	.cfi_def_cfa_offset 96
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 48
 	movq	%rsi, (%rdi)
 	movq	%rdx, 8(%rdi)
 	movq	%rsi, %rdi
@@ -60,159 +51,133 @@ _ZN4menuC2EPN3wze6engineEP6assets:
 	xorl	%esi, %esi
 	cvtsi2sdl	%eax, %xmm0
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
-	movw	%ax, 16(%rbx)
-	movzwl	%ax, %esi
-	movq	(%rbx), %rax
-	leaq	240(%rax), %rdi
-	call	_ZN3wze6engine6actorsixEy@PLT
+	movq	8(%rbx), %rdx
 	leaq	.LC1(%rip), %rsi
-	movq	%rax, %r13
-	leaq	104(%rax), %r15
-	movq	8(%rbx), %rax
-	movq	%r15, %rdi
-	leaq	136(%r13), %rbp
-	leaq	8(%r13), %r14
-	movzwl	8(%rax), %edx
+	movq	%rax, 16(%rbx)
+	leaq	104(%rax), %rdi
+	movzwl	8(%rdx), %edx
 	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
 	xorl	%esi, %esi
-	movq	%rbp, %rdi
-	movw	%ax, 18(%rbx)
+	movq	%rax, 24(%rbx)
+	movq	16(%rbx), %rax
+	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes3NewEy@PLT
-	movq	%r14, %rdi
-	movw	%ax, 20(%rbx)
+	movq	%rax, 32(%rbx)
+	movq	16(%rbx), %rax
+	leaq	8(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor6colors3NewEv@PLT
-	movq	%r15, %rdi
 	leaq	.LC2(%rip), %rsi
-	movw	%ax, 22(%rbx)
+	movq	%rax, 40(%rbx)
 	movq	8(%rbx), %rax
 	movzwl	8(%rax), %edx
+	movq	16(%rbx), %rax
+	leaq	104(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
 	xorl	%esi, %esi
-	movq	%rbp, %rdi
-	movw	%ax, 24(%rbx)
+	movq	%rax, 48(%rbx)
+	movq	16(%rbx), %rax
+	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes3NewEy@PLT
-	movq	%r14, %rdi
-	movw	%ax, 26(%rbx)
+	movq	%rax, 56(%rbx)
+	movq	16(%rbx), %rax
+	leaq	8(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor6colors3NewEv@PLT
-	movq	%r15, %rdi
 	leaq	.LC3(%rip), %rsi
-	movw	%ax, 28(%rbx)
+	movq	%rax, 64(%rbx)
 	movq	8(%rbx), %rax
 	movzwl	8(%rax), %edx
+	movq	16(%rbx), %rax
+	leaq	104(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
-	movzwl	18(%rbx), %esi
-	movq	%r15, %rdi
-	movq	%r15, 8(%rsp)
-	movw	%ax, 30(%rbx)
-	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
-	movzwl	20(%rbx), %esi
-	movq	%rbp, %rdi
-	movq	%rax, 16(%rsp)
-	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
-	movzwl	22(%rbx), %esi
-	movq	%r14, %rdi
-	movq	%rax, %r12
-	call	_ZN3wze6engine6actors5actor6colorsixEy@PLT
-	movzwl	24(%rbx), %esi
-	movq	8(%rsp), %rdi
-	movq	%rax, %r15
-	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
-	movzwl	26(%rbx), %esi
-	movq	%rbp, %rdi
-	movq	%rax, 24(%rsp)
-	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
-	movzwl	28(%rbx), %esi
-	movq	%r14, %rdi
-	movq	%rax, %rbp
-	call	_ZN3wze6engine6actors5actor6colorsixEy@PLT
-	movzwl	30(%rbx), %esi
-	movq	8(%rsp), %rdi
-	movq	%rax, %r14
-	call	_ZN3wze6engine6actors5actor5textsixEy@PLT
-	movq	%r13, %rdi
-	movq	%rax, %rbx
+	movq	16(%rbx), %rdi
+	movq	24(%rbx), %rbp
+	movq	%rax, 72(%rbx)
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	addsd	.LC4(%rip), %xmm0
-	movq	16(%rsp), %rdi
+	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd@PLT
-	movq	16(%rsp), %rdi
+	movq	24(%rbx), %rdi
 	movl	$100, %esi
 	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt@PLT
-	movq	%r13, %rdi
+	movq	16(%rbx), %rdi
+	movq	32(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	addsd	.LC5(%rip), %xmm0
-	movq	%r12, %rdi
+	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd@PLT
-	movq	%r12, %rdi
+	movq	32(%rbx), %rdi
 	movl	$250, %esi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt@PLT
+	movq	32(%rbx), %rdi
 	movl	$75, %esi
-	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt@PLT
-	movq	%r12, %rdi
+	movq	40(%rbx), %rbp
+	movq	32(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv@PLT
-	movq	%r15, %rdi
+	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor6colors5color4SetYEd@PLT
-	movq	%r12, %rdi
+	movq	32(%rbx), %rdi
+	movq	40(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv@PLT
-	movq	%r12, %rdi
-	movw	%ax, 16(%r15)
+	movq	32(%rbx), %rdi
+	movw	%ax, 16(%rbp)
+	movq	40(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv@PLT
-	movb	$-128, 22(%r15)
+	movq	48(%rbx), %rdi
 	movl	$30, %esi
-	movzwl	.LC6(%rip), %edx
-	movw	%ax, 18(%r15)
-	movw	%dx, 20(%r15)
-	movq	24(%rsp), %r15
-	movq	%r15, %rdi
+	movw	%ax, 18(%rbp)
+	movq	40(%rbx), %rax
+	movzwl	.LC6(%rip), %ebp
+	movb	$-128, 22(%rax)
+	movw	%bp, 20(%rax)
 	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt@PLT
-	movq	%r12, %rdi
+	movq	48(%rbx), %r12
+	movq	32(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv@PLT
-	movq	%r15, %rdi
+	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd@PLT
-	movq	%r13, %rdi
+	movq	16(%rbx), %rdi
+	movq	56(%rbx), %r12
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	subsd	.LC5(%rip), %xmm0
-	movq	%rbp, %rdi
+	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd@PLT
-	movq	%rbp, %rdi
+	movq	56(%rbx), %rdi
 	movl	$250, %esi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt@PLT
+	movq	56(%rbx), %rdi
 	movl	$75, %esi
-	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt@PLT
-	movq	%rbp, %rdi
+	movq	64(%rbx), %r12
+	movq	56(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv@PLT
-	movq	%r14, %rdi
+	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor6colors5color4SetYEd@PLT
-	movq	%rbp, %rdi
+	movq	56(%rbx), %rdi
+	movq	64(%rbx), %r12
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv@PLT
-	movq	%rbp, %rdi
-	movw	%ax, 16(%r14)
+	movq	56(%rbx), %rdi
+	movw	%ax, 16(%r12)
+	movq	64(%rbx), %r12
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv@PLT
-	movzwl	.LC6(%rip), %edx
-	movb	$-128, 22(%r14)
-	movq	%rbx, %rdi
-	movw	%ax, 18(%r14)
+	movq	72(%rbx), %rdi
 	movl	$30, %esi
-	movw	%dx, 20(%r14)
+	movw	%ax, 18(%r12)
+	movq	64(%rbx), %rax
+	movw	%bp, 20(%rax)
+	movb	$-128, 22(%rax)
 	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt@PLT
-	movq	%rbp, %rdi
+	movq	56(%rbx), %rdi
+	movq	72(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv@PLT
-	addq	$40, %rsp
-	.cfi_def_cfa_offset 56
-	movq	%rbx, %rdi
-	popq	%rbx
-	.cfi_def_cfa_offset 48
-	popq	%rbp
-	.cfi_def_cfa_offset 40
-	popq	%r12
+	addq	$16, %rsp
 	.cfi_def_cfa_offset 32
-	popq	%r13
+	movq	%rbp, %rdi
+	popq	%rbx
 	.cfi_def_cfa_offset 24
-	popq	%r14
+	popq	%rbp
 	.cfi_def_cfa_offset 16
-	popq	%r15
+	popq	%r12
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3wze6engine6actors5actor5texts4text4SetYEd@PLT
 	.cfi_endproc
@@ -227,75 +192,48 @@ _ZN4menuC2EPN3wze6engineEP6assets:
 _ZN4menu6UpdateEv:
 .LFB8149:
 	.cfi_startproc
-	pushq	%r14
-	.cfi_def_cfa_offset 16
-	.cfi_offset 14, -16
-	pushq	%r13
-	.cfi_def_cfa_offset 24
-	.cfi_offset 13, -24
-	pushq	%r12
-	.cfi_def_cfa_offset 32
-	.cfi_offset 12, -32
-	pushq	%rbp
-	.cfi_def_cfa_offset 40
-	.cfi_offset 6, -40
 	pushq	%rbx
-	.cfi_def_cfa_offset 48
-	.cfi_offset 3, -48
-	movq	(%rdi), %rax
-	movq	%rdi, %rbx
-	movzwl	16(%rdi), %esi
-	leaq	240(%rax), %rdi
-	call	_ZN3wze6engine6actorsixEy@PLT
-	movzwl	20(%rbx), %esi
-	leaq	136(%rax), %r12
-	movq	%rax, %rbp
-	movq	%r12, %rdi
-	addq	$8, %rbp
-	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
-	movzwl	22(%rbx), %esi
-	movq	%rbp, %rdi
-	movq	%rax, %r13
-	call	_ZN3wze6engine6actors5actor6colorsixEy@PLT
-	movzwl	26(%rbx), %esi
-	movq	%r12, %rdi
-	movq	%rax, %r14
-	call	_ZN3wze6engine6actors5actor12overlapboxesixEy@PLT
-	movzwl	28(%rbx), %esi
-	movq	%rbp, %rdi
-	movq	%rax, %r12
-	call	_ZN3wze6engine6actors5actor6colorsixEy@PLT
-	movq	%r13, %rdi
-	movq	%rax, %rbx
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
-	movq	%r12, %rdi
-	andl	$1, %eax
-	cmpl	$1, %eax
-	sbbl	%edx, %edx
-	andl	$32, %edx
-	addl	$96, %edx
-	movb	%dl, 20(%r14)
-	movb	%dl, 21(%r14)
-	movb	%dl, 22(%r14)
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
-	andl	$1, %eax
-	cmpl	$1, %eax
-	sbbl	%edx, %edx
-	xorl	%eax, %eax
-	andl	$32, %edx
-	addl	$96, %edx
-	movb	%dl, 20(%rbx)
-	movb	%dl, 21(%rbx)
-	movb	%dl, 22(%rbx)
-	popq	%rbx
-	.cfi_def_cfa_offset 40
-	popq	%rbp
-	.cfi_def_cfa_offset 32
-	popq	%r12
-	.cfi_def_cfa_offset 24
-	popq	%r13
 	.cfi_def_cfa_offset 16
-	popq	%r14
+	.cfi_offset 3, -16
+	movq	%rdi, %rbx
+	movq	32(%rdi), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	testb	$1, %al
+	movq	40(%rbx), %rax
+	je	.L5
+	movl	$24672, %edi
+	movb	$96, 22(%rax)
+	movw	%di, 20(%rax)
+.L6:
+	movq	56(%rbx), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	testb	$1, %al
+	movq	64(%rbx), %rax
+	je	.L7
+	movl	$24672, %ecx
+	movb	$96, 22(%rax)
+	movw	%cx, 20(%rax)
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L5:
+	.cfi_restore_state
+	movl	$-32640, %esi
+	movb	$-128, 22(%rax)
+	movw	%si, 20(%rax)
+	jmp	.L6
+	.p2align 4,,10
+	.p2align 3
+.L7:
+	movl	$-32640, %edx
+	movb	$-128, 22(%rax)
+	movw	%dx, 20(%rax)
+	xorl	%eax, %eax
+	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc

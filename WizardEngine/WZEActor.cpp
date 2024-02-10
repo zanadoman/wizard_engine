@@ -5,13 +5,13 @@ using namespace neo;
 
 namespace wze
 {
-    engine::actors::actor::actor(engine* Engine, void* Data, uint64 ID, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
+    engine::actors::actor::actor(engine* Engine, uint64 ID, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
     {
-        this->ID = ID;
         this->Visible = true;
         this->Force = 0;
         this->Resistance = 0;
         this->HitboxVisible = false;
+        this->ID = ID;
         this->Data = Data;
         this->Type = Type;
         this->X = X;

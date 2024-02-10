@@ -14,29 +14,29 @@ namespace wze
         }
     }
 
-    uint64 engine::actors::actor::colors::New()
+    engine::actors::actor::colors::color& engine::actors::actor::colors::New()
     {
         for (uint64 i = 1; i < this->Colors.Length(); i++)
         {
             if (this->Colors[i] == NULL)
             {
-                if ((this->Colors[i] = new color(this->Engine, this->Actor)) == NULL)
+                if ((this->Colors[i] = new color(this->Engine, this->Actor, i)) == NULL)
                 {
                     printf("wze::engine.actors[].colors.New(): Memory allocation failed\n");
                     exit(1);
                 }
 
-                return i;
+                return *this->Colors[i];
             }
         }
 
-        if ((this->Colors += {new color(this->Engine, this->Actor)})[this->Colors.Length() - 1] == NULL)
+        if ((this->Colors += {new color(this->Engine, this->Actor, this->Colors.Length())})[this->Colors.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].colors.New(): Memory allocation failed\n");
             exit(1);
         }
 
-        return this->Colors.Length() - 1;
+        return *this->Colors[this->Colors.Length() - 1];
     }
 
     uint8 engine::actors::actor::colors::Delete(uint64 ColorID)
@@ -147,7 +147,7 @@ namespace wze
         return *this->Colors[ColorID];
     }
 
-    engine::actors::actor::colors::color::color(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::colors::color::color(engine* Engine, actor* Actor, uint64 ID) : Engine(Engine), Actor(Actor)
     {
         this->Width = this->Actor->Width;
         this->Height = this->Actor->Height;
@@ -158,10 +158,18 @@ namespace wze
         this->OffsetAngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
+        this->ID = ID;
         this->X = this->Actor->X;
         this->Y = this->Actor->Y;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
+    }
+
+    engine::actors::actor::colors::color::~color() {}
+
+    uint64 engine::actors::actor::colors::color::GetID()
+    {
+        return this->ID;
     }
 
     double engine::actors::actor::colors::color::GetX()

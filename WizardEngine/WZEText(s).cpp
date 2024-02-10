@@ -15,7 +15,7 @@ namespace wze
         }
     }
 
-    uint64 engine::actors::actor::texts::New(const char* String, uint64 FontID)
+    engine::actors::actor::texts::text& engine::actors::actor::texts::New(const char* String, uint64 FontID)
     {
         if (String == NULL)
         {
@@ -32,23 +32,23 @@ namespace wze
         {
             if (this->Texts[i] == NULL)
             {
-                if ((this->Texts[i] = new text(this->Engine, this->Actor, String, FontID)) == NULL)
+                if ((this->Texts[i] = new text(this->Engine, this->Actor, i, String, FontID)) == NULL)
                 {
                     printf("wze::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
                     exit(1);
                 }
 
-                return i;
+                return *this->Texts[i];
             }
         }
 
-        if ((this->Texts += {new text(this->Engine, this->Actor, String, FontID)})[this->Texts.Length() - 1] == NULL)
+        if ((this->Texts += {new text(this->Engine, this->Actor, this->Texts.Length(), String, FontID)})[this->Texts.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
             exit(1);
         }
 
-        return this->Texts.Length() - 1;
+        return *this->Texts[this->Texts.Length() - 1];
     }
 
     uint8 engine::actors::actor::texts::Delete(uint64 TextID)
@@ -159,7 +159,7 @@ namespace wze
         return *this->Texts[TextID];
     }
 
-    engine::actors::actor::texts::text::text(engine* Engine, actor* Actor, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::texts::text::text(engine* Engine, actor* Actor, uint64 ID, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
     {
         SDL_Surface* surface;
         SDL_Color color;
@@ -175,6 +175,7 @@ namespace wze
         this->OffsetAngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
+        this->ID = ID;
         this->X = this->Actor->X;
         this->Y = this->Actor->Y;
         this->Width = 0;
@@ -209,6 +210,11 @@ namespace wze
     engine::actors::actor::texts::text::~text()
     {
         SDL_DestroyTexture(this->Texture);
+    }
+
+    uint64 engine::actors::actor::texts::text::GetID()
+    {
+        return this->ID;
     }
 
     double engine::actors::actor::texts::text::GetX()

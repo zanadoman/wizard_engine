@@ -30,7 +30,7 @@ _ZN4gameC2EPN3wze6engineE:
 .LEHB0:
 	call	_ZN6assetsC1EPN3wze6engineE@PLT
 .LEHE0:
-	movl	$32, %edi
+	movl	$80, %edi
 	movl	$0, 128(%rbx)
 .LEHB1:
 	call	_Znwm@PLT
@@ -93,7 +93,7 @@ _ZN4gameC2EPN3wze6engineE.cold:
 	.cfi_offset 3, -32
 	.cfi_offset 6, -24
 	.cfi_offset 12, -16
-	movl	$32, %esi
+	movl	$80, %esi
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
 .L3:
@@ -152,7 +152,7 @@ _ZN4gameD2Ev:
 	movq	136(%rdi), %rdi
 	testq	%rdi, %rdi
 	je	.L10
-	movl	$32, %esi
+	movl	$80, %esi
 	call	_ZdlPvm@PLT
 .L10:
 	movq	112(%rbx), %rdi

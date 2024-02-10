@@ -14,7 +14,7 @@ namespace wze
         }
     }
 
-    uint64 engine::actors::actor::textures::New(uint64 TextureID)
+    engine::actors::actor::textures::texture& engine::actors::actor::textures::New(uint64 TextureID)
     {
         if (TextureID != 0 && (this->Engine->Assets.Textures.Length() <= TextureID || this->Engine->Assets.Textures[TextureID] == NULL))
         {
@@ -26,23 +26,23 @@ namespace wze
         {
             if (this->Textures[i] == NULL)
             {
-                if ((this->Textures[i] = new texture(this->Engine, this->Actor, TextureID)) == NULL)
+                if ((this->Textures[i] = new texture(this->Engine, this->Actor, i, TextureID)) == NULL)
                 {
                     printf("wze::engine.actors[].textures.New(): Memory allocation failed\nParams: TextureID: %lld\n", TextureID);
                     exit(1);
                 }
 
-                return i;
+                return *this->Textures[i];
             }
         }
 
-        if ((this->Textures += {new texture(this->Engine, this->Actor, TextureID)})[this->Textures.Length() - 1] == NULL)
+        if ((this->Textures += {new texture(this->Engine, this->Actor, this->Textures.Length(), TextureID)})[this->Textures.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].textures.New(): Memory allocation failed\nParams: TextureID: %lld\n", TextureID);
             exit(1);
         }
 
-        return this->Textures.Length() - 1;
+        return *this->Textures[this->Textures.Length() - 1];
     }
 
     uint8 engine::actors::actor::textures::Delete(uint64 TextureID)
@@ -153,7 +153,7 @@ namespace wze
         return *this->Textures[TextureID];
     }
 
-    engine::actors::actor::textures::texture::texture(engine* Engine, actor* Actor, uint64 TextureID) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::textures::texture::texture(engine* Engine, actor* Actor, uint64 ID, uint64 TextureID) : Engine(Engine), Actor(Actor)
     {
         this->Width = this->Actor->Width;
         this->Height = this->Actor->Height;
@@ -168,11 +168,19 @@ namespace wze
         this->OffsetAngleLocked = true;
         this->Priority = 128;
         this->Visible = true;
+        this->ID = ID;
         this->X = this->Actor->X;
         this->Y = this->Actor->Y;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
         this->TextureID = TextureID;
+    }
+
+    engine::actors::actor::textures::texture::~texture() {}
+
+    uint64 engine::actors::actor::textures::texture::GetID()
+    {
+        return this->ID;
     }
 
     double engine::actors::actor::textures::texture::GetX()

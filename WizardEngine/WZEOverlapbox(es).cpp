@@ -15,29 +15,29 @@ namespace wze
         }
     }
 
-    uint64 engine::actors::actor::overlapboxes::New(uint64 Type)
+    engine::actors::actor::overlapboxes::overlapbox& engine::actors::actor::overlapboxes::New(uint64 Type)
     {
         for (uint64 i = 1; i < this->Overlapboxes.Length(); i++)
         {
             if (this->Overlapboxes[i] == NULL)
             {
-                if ((this->Overlapboxes[i] = new overlapbox(this->Engine, this->Actor, Type)) == NULL)
+                if ((this->Overlapboxes[i] = new overlapbox(this->Engine, this->Actor, i, Type)) == NULL)
                 {
                     printf("wze::engine.actors[].overlapboxes.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
                     exit(1);
                 }
 
-                return i;
+                return *this->Overlapboxes[i];
             }
         }
 
-        if ((this->Overlapboxes += {new overlapbox(this->Engine, this->Actor, Type)})[this->Overlapboxes.Length() - 1] == NULL)
+        if ((this->Overlapboxes += {new overlapbox(this->Engine, this->Actor, this->Overlapboxes.Length(), Type)})[this->Overlapboxes.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].overlapboxes.New(): Memory allocation failed\nParams: Type: %lld\n", Type);
             exit(1);
         }
 
-        return this->Overlapboxes.Length() - 1;
+        return *this->Overlapboxes[this->Overlapboxes.Length() - 1];
     }
 
     uint8 engine::actors::actor::overlapboxes::Delete(uint64 OverlapboxID)
@@ -148,11 +148,12 @@ namespace wze
         return *this->Overlapboxes[OverlapboxID];
     }
 
-    engine::actors::actor::overlapboxes::overlapbox::overlapbox(engine* Engine, actor* Actor, uint64 Type) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::overlapboxes::overlapbox::overlapbox(engine* Engine, actor* Actor, uint64 ID, uint64 Type) : Engine(Engine), Actor(Actor)
     {
         this->AngleLocked = true;
         this->OffsetAngleLocked = true;
         this->Visible = false;
+        this->ID = ID;
         this->Type = Type;
         this->X = this->Actor->X;
         this->Y = this->Actor->Y;
@@ -170,19 +171,21 @@ namespace wze
         this->UpdateOverlapboxActiveScale();
     }
 
+    engine::actors::actor::overlapboxes::overlapbox::~overlapbox() {}
+
+    uint64 engine::actors::actor::overlapboxes::overlapbox::GetID()
+    {
+        return this->ID;
+    }
+
     uint64 engine::actors::actor::overlapboxes::overlapbox::GetType()
     {
         return this->Type;
     }
 
-    void* engine::actors::actor::overlapboxes::overlapbox::GetActorData()
+    uint64 engine::actors::actor::overlapboxes::overlapbox::GetActorID()
     {
-        return this->Actor->Data;
-    }
-
-    uint64 engine::actors::actor::overlapboxes::overlapbox::GetActorType()
-    {
-        return this->Actor->Type;
+        return this->Actor->ID;
     }
 
     double engine::actors::actor::overlapboxes::overlapbox::GetX()

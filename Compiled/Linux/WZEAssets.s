@@ -1060,9 +1060,9 @@ _ZN3wze6engine6assets13UnloadTextureEy:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L173
-	cmpq	%rbx, 72(%rdx)
+	cmpq	%rbx, 80(%rdx)
 	jne	.L173
-	movq	$0, 72(%rdx)
+	movq	$0, 80(%rdx)
 	movq	248(%r10), %rsi
 	jmp	.L173
 	.p2align 4,,10
@@ -1113,9 +1113,9 @@ _ZN3wze6engine6assets13UnloadTextureEy:
 	cmpq	%rcx, %rdi
 	jnb	.L219
 .L180:
-	cmpq	96(%rdx), %rax
+	cmpq	104(%rdx), %rax
 	jnb	.L178
-	movq	104(%rdx), %rcx
+	movq	112(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
 	jne	.L181
@@ -1249,9 +1249,9 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L229
-	cmpq	%rbx, 72(%rdx)
+	cmpq	%rbx, 80(%rdx)
 	jne	.L229
-	movq	$0, 72(%rdx)
+	movq	$0, 80(%rdx)
 	movq	248(%r10), %rsi
 	jmp	.L229
 	.p2align 4,,10
@@ -1325,9 +1325,9 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	cmpq	%rcx, %rdi
 	jnb	.L282
 .L236:
-	cmpq	96(%rdx), %rax
+	cmpq	104(%rdx), %rax
 	jnb	.L234
-	movq	104(%rdx), %rcx
+	movq	112(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
 	jne	.L237
@@ -1471,9 +1471,9 @@ _ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L295
-	cmpq	%rbx, 72(%rdx)
+	cmpq	%rbx, 80(%rdx)
 	jne	.L295
-	movq	$0, 72(%rdx)
+	movq	$0, 80(%rdx)
 	movq	248(%r10), %rsi
 	jmp	.L295
 	.p2align 4,,10
@@ -1544,9 +1544,9 @@ _ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	cmpq	%rcx, %rdi
 	jnb	.L347
 .L302:
-	cmpq	96(%rdx), %rax
+	cmpq	104(%rdx), %rax
 	jnb	.L300
-	movq	104(%rdx), %rcx
+	movq	112(%rdx), %rcx
 	leaq	(%rcx,%rax,8), %rcx
 	cmpq	%rbx, (%rcx)
 	jne	.L303
@@ -2348,7 +2348,7 @@ _ZN3wze6engine6assets10UnloadFontEy:
 	movq	(%rdx,%rbx,8), %rdx
 	testq	%rdx, %rdx
 	je	.L550
-	cmpq	%r14, 104(%rdx)
+	cmpq	%r14, 112(%rdx)
 	je	.L524
 .L550:
 	movq	256(%rcx), %rax
@@ -2391,13 +2391,13 @@ _ZN3wze6engine6assets10UnloadFontEy:
 .L524:
 	.cfi_restore_state
 	xorl	%esi, %esi
-	movq	$0, 104(%rdx)
-	movw	%si, 56(%rdx)
+	movq	$0, 112(%rdx)
+	movw	%si, 64(%rdx)
 	cmpq	248(%rcx), %rbp
 	jnb	.L555
 	cmpq	120(%rax), %rbx
 	jnb	.L556
-	movq	120(%rdx), %rdi
+	movq	128(%rdx), %rdi
 	call	SDL_DestroyTexture@PLT
 	movq	(%r15), %rcx
 	movq	248(%rcx), %rsi
@@ -2410,7 +2410,7 @@ _ZN3wze6engine6assets10UnloadFontEy:
 	jnb	.L558
 	movq	(%rdi,%r13), %rdx
 	addq	$1, %rbx
-	movq	$0, 120(%rdx)
+	movq	$0, 128(%rdx)
 	jmp	.L521
 .L554:
 	subq	%rcx, %rax
@@ -2536,7 +2536,7 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	movq	(%rdx,%rbx,8), %rdx
 	testq	%rdx, %rdx
 	je	.L603
-	cmpq	%r12, 104(%rdx)
+	cmpq	%r12, 112(%rdx)
 	je	.L570
 .L603:
 	movq	256(%rcx), %rax
@@ -2599,13 +2599,13 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 .L570:
 	.cfi_restore_state
 	xorl	%esi, %esi
-	movq	$0, 104(%rdx)
-	movw	%si, 56(%rdx)
+	movq	$0, 112(%rdx)
+	movw	%si, 64(%rdx)
 	cmpq	248(%rcx), %r14
 	jnb	.L606
 	cmpq	120(%rax), %rbx
 	jnb	.L607
-	movq	120(%rdx), %rdi
+	movq	128(%rdx), %rdi
 	call	SDL_DestroyTexture@PLT
 	movq	0(%rbp), %rcx
 	movq	248(%rcx), %rsi
@@ -2618,7 +2618,7 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	jnb	.L607
 	movq	(%rdi,%r13), %rdx
 	addq	$1, %rbx
-	movq	$0, 120(%rdx)
+	movq	$0, 128(%rdx)
 	jmp	.L567
 .L609:
 	addq	$1, %r12
@@ -2752,7 +2752,7 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	movq	(%rdx,%rbx,8), %rdx
 	testq	%rdx, %rdx
 	je	.L657
-	cmpq	%r15, 104(%rdx)
+	cmpq	%r15, 112(%rdx)
 	je	.L625
 .L657:
 	movq	256(%rcx), %rax
@@ -2816,13 +2816,13 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 .L625:
 	.cfi_restore_state
 	xorl	%esi, %esi
-	movq	$0, 104(%rdx)
-	movw	%si, 56(%rdx)
+	movq	$0, 112(%rdx)
+	movw	%si, 64(%rdx)
 	cmpq	248(%rcx), %r13
 	jnb	.L660
 	cmpq	120(%rax), %rbx
 	jnb	.L661
-	movq	120(%rdx), %rdi
+	movq	128(%rdx), %rdi
 	call	SDL_DestroyTexture@PLT
 	movq	0(%rbp), %rcx
 	movq	248(%rcx), %rsi
@@ -2835,7 +2835,7 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	jnb	.L661
 	movq	(%rdi,%r12), %rdx
 	addq	$1, %rbx
-	movq	$0, 120(%rdx)
+	movq	$0, 128(%rdx)
 	jmp	.L622
 .L664:
 	movq	%rdx, %rax

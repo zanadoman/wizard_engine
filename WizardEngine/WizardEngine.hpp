@@ -273,21 +273,24 @@ namespace wze
                                     bool OffsetAngleLocked;
                                     neo::uint8 Priority;
                                     bool Visible;
+                                    neo::uint64 GetID();
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
 
                                 private:
+                                    neo::uint64 ID;
                                     double X;
                                     double Y;
                                     double OffsetLength;
                                     double OffsetAngle;
-                                    color(engine* Engine, actor* Actor);
+                                    color(engine* Engine, actor* Actor, neo::uint64 ID);
+                                    ~color();
                             };
 
                             public:
-                                neo::uint64 New();
+                                color& New();
                                 neo::uint8 Delete(neo::uint64 ColorID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepColorIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepColorIDs);
@@ -327,6 +330,7 @@ namespace wze
                                     bool OffsetAngleLocked;
                                     neo::uint8 Priority;
                                     bool Visible;
+                                    neo::uint64 GetID();
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
@@ -335,16 +339,18 @@ namespace wze
                                     neo::uint64 SetTextureID(neo::uint64 TextureID);
 
                                 private:
+                                    neo::uint64 ID;
                                     double X;
                                     double Y;
                                     double OffsetLength;
                                     double OffsetAngle;
                                     neo::uint64 TextureID;
-                                    texture(engine* Engine, actor* Actor, neo::uint64 TextureID);
+                                    texture(engine* Engine, actor* Actor, neo::uint64 ID, neo::uint64 TextureID);
+                                    ~texture();
                             };
 
                             public:
-                                neo::uint64 New(neo::uint64 TextureID);
+                                texture& New(neo::uint64 TextureID);
                                 neo::uint8 Delete(neo::uint64 TextureID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextureIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepTextureIDs);
@@ -386,6 +392,7 @@ namespace wze
                                     bool Visible;
                                     bool Loop;
                                     bool Paused;
+                                    neo::uint64 GetID();
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
@@ -397,6 +404,7 @@ namespace wze
                                     neo::uint8 Reset();
 
                                 private:
+                                    neo::uint64 ID;
                                     double X;
                                     double Y;
                                     double OffsetLength;
@@ -405,13 +413,14 @@ namespace wze
                                     neo::uint64 CurrentFrame;
                                     neo::uint32 Remainder;
                                     neo::array<neo::uint64> Textures;
-                                    flipbook(engine* Engine, actor* Actor, neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
-                                    flipbook(engine* Engine, actor* Actor, neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
+                                    flipbook(engine* Engine, actor* Actor, neo::uint64 ID, neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
+                                    flipbook(engine* Engine, actor* Actor, neo::uint64 ID, neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
+                                    ~flipbook();
                             };
 
                             public:
-                                neo::uint64 New(neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
-                                neo::uint64 New(neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
+                                flipbook& New(neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
+                                flipbook& New(neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
                                 neo::uint8 Delete(neo::uint64 FlipbookID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepFlipbookIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepFlipbookIDs);
@@ -449,6 +458,7 @@ namespace wze
                                     bool OffsetAngleLocked;
                                     neo::uint8 Priority;
                                     bool Visible;
+                                    neo::uint64 GetID();
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
@@ -464,6 +474,7 @@ namespace wze
                                     style SetFontStyle(style FontStyle);
 
                                 private:
+                                    neo::uint64 ID;
                                     double X;
                                     double Y;
                                     neo::uint16 Width;
@@ -474,12 +485,12 @@ namespace wze
                                     neo::uint64 FontID;
                                     style FontStyle;
                                     SDL_Texture* Texture;
-                                    text(engine* Engine, actor* Actor, const char* String, neo::uint64 FontID);
+                                    text(engine* Engine, actor* Actor, neo::uint64 ID, const char* String, neo::uint64 FontID);
                                     ~text();
                             };
 
                             public:
-                                neo::uint64 New(const char* String, neo::uint64 FontID);
+                                text& New(const char* String, neo::uint64 FontID);
                                 neo::uint8 Delete(neo::uint64 TextID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepTextIDs);
@@ -509,9 +520,9 @@ namespace wze
                                     bool AngleLocked;
                                     bool OffsetAngleLocked;
                                     bool Visible;
+                                    neo::uint64 GetID();
                                     neo::uint64 GetType();
-                                    void* GetActorData();
-                                    neo::uint64 GetActorType();
+                                    neo::uint64 GetActorID();
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
@@ -532,6 +543,7 @@ namespace wze
                                     button GetButtonState();
 
                                 private:
+                                    neo::uint64 ID;
                                     neo::uint64 Type;
                                     double X;
                                     double Y;
@@ -546,12 +558,13 @@ namespace wze
                                     double ActiveMedian1Angle;
                                     double ActiveMedian2Angle;
                                     button ButtonState;
-                                    overlapbox(engine* Engine, actor* Actor, neo::uint64 Type);
+                                    overlapbox(engine* Engine, actor* Actor, neo::uint64 ID, neo::uint64 Type);
+                                    ~overlapbox();
                                     neo::uint8 UpdateOverlapboxActiveScale();
                             };
 
                             public:
-                                neo::uint64 New(neo::uint64 Type);
+                                overlapbox& New(neo::uint64 Type);
                                 neo::uint8 Delete(neo::uint64 OverlapboxID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepOverlapboxIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepOverlapboxIDs);
@@ -611,7 +624,7 @@ namespace wze
                         double HitboxMedianLength;
                         double HitboxMedian1Angle;
                         double HitboxMedian2Angle;
-                        actor(engine* Engine, void* Data, neo::uint64 ID, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
+                        actor(engine* Engine, neo::uint64 ID, void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
                         ~actor();
                         neo::uint8 UpdateHitboxScale();
                         neo::uint8 UpdateMembersPosition();
@@ -620,7 +633,7 @@ namespace wze
                 //__________Actors_____________________________________________________________________________________
 
                 public:
-                    engine::actors::actor& New(void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
+                    actor& New(void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
                     neo::uint8 Delete(neo::uint64 ActorID);
                     neo::uint8 Purge(std::initializer_list<neo::uint64> KeepActorIDs);
                     neo::uint8 Purge(neo::array<neo::uint64>* KeepActorIDs);

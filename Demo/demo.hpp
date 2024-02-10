@@ -59,14 +59,14 @@ class menu
         uint8 Update();
 
     private:
-        uint16 Actor;
-        uint16 TitleTextID;
-        uint16 ButtonNormalOverlapboxID;
-        uint16 ButtonNormalColorID;
-        uint16 ButtonNormalTextID;
-        uint16 ButtonInfiniteOverlapboxID;
-        uint16 ButtonInfiniteColorID;
-        uint16 ButtonInfiniteTextID;
+        engine::actor Actor;
+        engine::text Title;
+        engine::overlapbox ButtonNormal;
+        engine::color ButtonNormalColor;
+        engine::text ButtonNormalText;
+        engine::overlapbox ButtonInfinite;
+        engine::color ButtonInfiniteColor;
+        engine::text ButtonInfiniteText;
 };
 
 class game

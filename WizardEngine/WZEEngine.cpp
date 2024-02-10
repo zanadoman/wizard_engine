@@ -8,11 +8,6 @@ namespace wze
 {
     engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Threads(this), Assets(this), Timing(this)
     {
-        uint8 LogoAsset;
-        uint8 LogoActor;
-        uint8 LogoTexture;
-        double opacity;
-
         if (Title == NULL)
         {
             Title = "Wizard Engine";
@@ -57,42 +52,42 @@ namespace wze
         this->Timing.TargetFrameTime = TargetFrameTime;
         srand(time(NULL));
 
-        LogoAsset = this->Assets.LoadTexture("engine/wizard.png");
-        LogoActor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
-        LogoTexture = this->Actors[LogoActor].Textures.New(LogoAsset);
-        
-        this->Actors[LogoActor].Textures[LogoTexture].ColorA = opacity = 0;
+        actor LogoActor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
+        texture LogoTexture = LogoActor.Textures.New(this->Assets.LoadTexture("engine/wizard.png"));
+        double opacity;
+
+        LogoTexture.ColorA = opacity = 0;
 
         while ((opacity += 0.1 * this->Timing.GetDeltaTime()) <= 255)
         {
             if (!this->Update())
             {
-                this->Actors[LogoActor].Textures.Delete(LogoTexture);
-                this->Actors.Delete(LogoActor);
-                this->Assets.UnloadTexture(LogoAsset);
+                this->Assets.UnloadTexture(LogoTexture.GetTextureID());
+                LogoActor.Textures.Delete(LogoTexture.GetID());
+                this->Actors.Delete(LogoActor.GetID());
 
                 return;
             }
 
-            this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(opacity);
+            LogoTexture.ColorA = round(opacity);
         }
         while (0 <= (opacity -= 0.1 * this->Timing.GetDeltaTime()))
         {   
             if (!this->Update())
             {
-                this->Actors[LogoActor].Textures.Delete(LogoTexture);
-                this->Actors.Delete(LogoActor);
-                this->Assets.UnloadTexture(LogoAsset);
+                this->Assets.UnloadTexture(LogoTexture.GetTextureID());
+                LogoActor.Textures.Delete(LogoTexture.GetID());
+                this->Actors.Delete(LogoActor.GetID());
 
                 return;
             }
 
-            this->Actors[LogoActor].Textures[LogoTexture].ColorA = round(opacity);
+            LogoTexture.ColorA = round(opacity);
         }
 
-        this->Actors[LogoActor].Textures.Delete(LogoTexture);
-        this->Actors.Delete(LogoActor);
-        this->Assets.UnloadTexture(LogoAsset);
+        this->Assets.UnloadTexture(LogoTexture.GetTextureID());
+        LogoActor.Textures.Delete(LogoTexture.GetID());
+        this->Actors.Delete(LogoActor.GetID());
     }
 
     engine::~engine()

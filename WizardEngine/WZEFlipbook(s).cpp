@@ -14,7 +14,7 @@ namespace wze
         }
     }
 
-    uint64 engine::actors::actor::flipbooks::New(uint32 Delay, std::initializer_list<uint64> TextureIDs)
+    engine::actors::actor::flipbooks::flipbook& engine::actors::actor::flipbooks::New(uint32 Delay, std::initializer_list<uint64> TextureIDs)
     {
         if (Delay == 0)
         {
@@ -40,26 +40,26 @@ namespace wze
         {
             if (this->Flipbooks[i] == NULL)
             {
-                if ((this->Flipbooks[i] = new flipbook(this->Engine, this->Actor, Delay, TextureIDs)) == NULL)
+                if ((this->Flipbooks[i] = new flipbook(this->Engine, this->Actor, i, Delay, TextureIDs)) == NULL)
                 {
                     printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: Delay: %d, TextureIDs(length): %ld\n", Delay, TextureIDs.size());
                     exit(1);
                 }
 
-                return i;
+                return *this->Flipbooks[i];
             }
         }
 
-        if ((this->Flipbooks += {new flipbook(this->Engine, this->Actor, Delay, TextureIDs)})[this->Flipbooks.Length() - 1] == NULL)
+        if ((this->Flipbooks += {new flipbook(this->Engine, this->Actor, this->Flipbooks.Length(), Delay, TextureIDs)})[this->Flipbooks.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: TextureIDs(length): %ld\n", TextureIDs.size());
             exit(1);
         }
 
-        return this->Flipbooks.Length() - 1;
+        return *this->Flipbooks[this->Flipbooks.Length() - 1];
     }
 
-    uint64 engine::actors::actor::flipbooks::New(uint32 Delay, array<uint64>* TextureIDs)
+    engine::actors::actor::flipbooks::flipbook& engine::actors::actor::flipbooks::New(uint32 Delay, array<uint64>* TextureIDs)
     {
         if (Delay == 0)
         {
@@ -85,23 +85,23 @@ namespace wze
         {
             if (this->Flipbooks[i] == NULL)
             {
-                if ((this->Flipbooks[i] = new flipbook(this->Engine, this->Actor, Delay, TextureIDs)) == NULL)
+                if ((this->Flipbooks[i] = new flipbook(this->Engine, this->Actor, i, Delay, TextureIDs)) == NULL)
                 {
                     printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
                     exit(1);
                 }
 
-                return i;
+                return *this->Flipbooks[i];
             }
         }
 
-        if ((this->Flipbooks += {new flipbook(this->Engine, this->Actor, Delay, TextureIDs)})[this->Flipbooks.Length() - 1] == NULL)
+        if ((this->Flipbooks += {new flipbook(this->Engine, this->Actor, this->Flipbooks.Length(), Delay, TextureIDs)})[this->Flipbooks.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].flipbooks.New(): Memory allocation failed\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
             exit(1);
         }
 
-        return this->Flipbooks.Length() - 1;
+        return *this->Flipbooks[this->Flipbooks.Length() - 1];
     }
 
     uint8 engine::actors::actor::flipbooks::Delete(uint64 FlipbookID)
@@ -212,7 +212,7 @@ namespace wze
         return *this->Flipbooks[FlipbookID];
     }
 
-    engine::actors::actor::flipbooks::flipbook::flipbook(engine* Engine, actor* Actor, uint32 Delay, std::initializer_list<uint64> TextureIDs) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::flipbooks::flipbook::flipbook(engine* Engine, actor* Actor, uint64 ID, uint32 Delay, std::initializer_list<uint64> TextureIDs) : Engine(Engine), Actor(Actor)
     {
         this->Width = this->Actor->Width;
         this->Height = this->Actor->Height;
@@ -229,6 +229,7 @@ namespace wze
         this->Visible = true;
         this->Loop = true;
         this->Paused = false;
+        this->ID = ID;
         this->X = this->Actor->X;
         this->Y = this->Actor->Y;
         this->OffsetLength = 0;
@@ -239,7 +240,7 @@ namespace wze
         this->Textures = {TextureIDs};
     }
 
-    engine::actors::actor::flipbooks::flipbook::flipbook(engine* Engine, actor* Actor, uint32 Delay, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::flipbooks::flipbook::flipbook(engine* Engine, actor* Actor, uint64 ID, uint32 Delay, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
     {
         this->Width = this->Actor->Width;
         this->Height = this->Actor->Height;
@@ -256,6 +257,7 @@ namespace wze
         this->Visible = true;
         this->Loop = true;
         this->Paused = false;
+        this->ID = ID;
         this->X = this->Actor->X;
         this->Y = this->Actor->Y;
         this->OffsetLength = 0;
@@ -264,6 +266,13 @@ namespace wze
         this->CurrentFrame = 0;
         this->Remainder = 0;
         this->Textures = {TextureIDs};
+    }
+
+    engine::actors::actor::flipbooks::flipbook::~flipbook() {}
+
+    uint64 engine::actors::actor::flipbooks::flipbook::GetID()
+    {
+        return this->ID;
     }
 
     double engine::actors::actor::flipbooks::flipbook::GetX()
