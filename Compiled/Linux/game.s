@@ -230,9 +230,11 @@ _ZN4game12SwitchScenesE5scene:
 	je	.L54
 .L27:
 	movq	(%rbx), %rax
-	leaq	80(%rax), %rdi
+	xorl	%esi, %esi
+	xorl	%edx, %edx
+	leaq	240(%rax), %rdi
 .LEHB4:
-	call	_ZN3wze6engine6camera6UnbindEv@PLT
+	call	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE@PLT
 	movq	(%rbx), %rax
 	pxor	%xmm0, %xmm0
 	leaq	80(%rax), %rdi
@@ -241,11 +243,6 @@ _ZN4game12SwitchScenesE5scene:
 	pxor	%xmm0, %xmm0
 	leaq	80(%rax), %rdi
 	call	_ZN3wze6engine6camera4SetYEd@PLT
-	movq	(%rbx), %rax
-	xorl	%esi, %esi
-	xorl	%edx, %edx
-	leaq	240(%rax), %rdi
-	call	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE@PLT
 	cmpl	$1, %ebp
 	je	.L31
 	cmpl	$2, %ebp

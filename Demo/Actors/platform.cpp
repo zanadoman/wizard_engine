@@ -6,6 +6,7 @@ platform::platform(engine* Engine, game* Game, double X, double Y, uint16 Width,
     this->Texture = this->Actor->Textures.New(this->Game->Assets.MapPlatformTexture);
     this->Overlapbox = this->Actor->Overlapboxes.New(BOX_PLATFORM);
 
+    this->Actor->SetDepth(0.05);
     this->Actor->SetCollisionLayer(CollisionLayer);
 
     this->Overlapbox->SetWidth(this->Actor->GetWidth() + EPSILON * 2);

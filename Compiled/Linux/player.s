@@ -504,7 +504,7 @@ _ZN6player6UpdateEv:
 	.align 8
 .LC2:
 	.long	0
-	.long	1077346304
+	.long	1077280768
 	.align 8
 .LC4:
 	.long	0
@@ -528,7 +528,7 @@ _ZN6player6UpdateEv:
 	.align 8
 .LC10:
 	.long	0
-	.long	1072693248
+	.long	1072955392
 	.align 8
 .LC11:
 	.long	-350469331

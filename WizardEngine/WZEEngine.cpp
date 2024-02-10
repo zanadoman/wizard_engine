@@ -1,5 +1,4 @@
 #include "WizardEngine.hpp"
-#include <cmath>
 #include <ctime>
 
 using namespace neo;
@@ -8,9 +7,10 @@ namespace wze
 {
     engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Threads(this), Assets(this), Timing(this)
     {
+        array<uint64> LogoTextures(29);
         actor LogoActor;
-        texture LogoTexture;
-        double opacity;
+        flipbook LogoFlipbook;
+        string str;
 
         if (Title == NULL)
         {
@@ -56,41 +56,25 @@ namespace wze
         this->Timing.TargetFrameTime = TargetFrameTime;
         srand(time(NULL));
 
+        for (uint8 i = 0; i < LogoTextures.Length(); i++)
+        {
+            LogoTextures[i] = {this->Assets.LoadTexture((((str = {"engine/logo/logo"}) += {(uint64)i + 1}) += {".png"})())};
+        }
         LogoActor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
-        LogoTexture = LogoActor->Textures.New(this->Assets.LoadTexture("engine/wizard.png"));
+        LogoFlipbook = LogoActor->Flipbooks.New(100, &LogoTextures);
 
-        LogoTexture->ColorA = opacity = 0;
-
-        while ((opacity += 0.1 * this->Timing.GetDeltaTime()) <= 255)
+        do
         {
             if (!this->Update())
             {
-                this->Assets.UnloadTexture(LogoTexture->GetTextureID());
-                LogoActor->Textures.Delete(LogoTexture->GetID());
-                this->Actors.Delete(LogoActor->GetID());
-
+                this->Assets.PurgeTextures({});
+                this->Actors.Purge({});
                 return;
             }
+        } while (LogoFlipbook->GetCurrentFrame() != LogoTextures.Length() - 1);
 
-            LogoTexture->ColorA = round(opacity);
-        }
-        while (0 <= (opacity -= 0.1 * this->Timing.GetDeltaTime()))
-        {   
-            if (!this->Update())
-            {
-                this->Assets.UnloadTexture(LogoTexture->GetTextureID());
-                LogoActor->Textures.Delete(LogoTexture->GetID());
-                this->Actors.Delete(LogoActor->GetID());
-
-                return;
-            }
-
-            LogoTexture->ColorA = round(opacity);
-        }
-
-        this->Assets.UnloadTexture(LogoTexture->GetTextureID());
-        LogoActor->Textures.Delete(LogoTexture->GetID());
-        this->Actors.Delete(LogoActor->GetID());
+        this->Assets.PurgeTextures({});
+        this->Actors.Purge({});
     }
 
     engine::~engine()

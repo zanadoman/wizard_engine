@@ -37,8 +37,11 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes3NewEy@PLT
 	movq	16(%rbx), %rdi
-	movzbl	%bpl, %esi
+	movsd	.LC0(%rip), %xmm0
 	movq	%rax, 24(%rbx)
+	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
+	movq	16(%rbx), %rdi
+	movzbl	%bpl, %esi
 	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
 	movq	16(%rbx), %rdi
 	movq	24(%rbx), %rbp
@@ -47,7 +50,7 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movq	%rbp, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
-	addsd	.LC0(%rip), %xmm0
+	addsd	.LC1(%rip), %xmm0
 	cvttsd2sil	%xmm0, %esi
 	movzwl	%si, %esi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt@PLT
@@ -58,7 +61,7 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movq	%rbp, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
-	addsd	.LC0(%rip), %xmm0
+	addsd	.LC1(%rip), %xmm0
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 24
 	popq	%rbx
@@ -76,6 +79,10 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:
+	.long	-1717986918
+	.long	1068079513
+	.align 8
+.LC1:
 	.long	-350469331
 	.long	1059731170
 	.ident	"GCC: (GNU) 13.2.1 20230801"

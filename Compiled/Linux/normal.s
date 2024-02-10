@@ -68,11 +68,11 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	pxor	%xmm1, %xmm1
 	xorl	%edx, %edx
 	movsd	.LC3(%rip), %xmm2
-	movl	$10800, %r8d
+	movl	$16200, %r8d
 	movapd	%xmm1, %xmm0
 	xorl	%esi, %esi
 	leaq	240(%rax), %rdi
-	movl	$19200, %ecx
+	movl	$28800, %ecx
 .LEHB3:
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	8(%rbx), %rdx
@@ -92,8 +92,8 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movsd	.LC4(%rip), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rbp, %rdi
-	movl	$400, %r8d
-	movl	$1000, %ecx
+	movl	$375, %r8d
+	movl	$1500, %ecx
 	movq	%rax, %xmm2
 .LEHB4:
 	call	_ZN8platformC1EPN3wze6engineEP4gameddttdh@PLT
@@ -111,8 +111,8 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movsd	.LC5(%rip), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rbp, %rdi
-	movl	$30, %r8d
-	movl	$50, %ecx
+	movl	$50, %r8d
+	movl	$300, %ecx
 	movq	%rax, %xmm2
 .LEHB6:
 	call	_ZN8platformC1EPN3wze6engineEP4gameddttdh@PLT
@@ -127,8 +127,8 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	(%rbx), %rsi
 	movl	$1, %r9d
 	movq	.LC0(%rip), %rax
-	movl	$30, %r8d
-	movl	$50, %ecx
+	movl	$50, %r8d
+	movl	$200, %ecx
 	movsd	.LC6(%rip), %xmm1
 	movsd	.LC7(%rip), %xmm0
 	movq	%rbp, %rdi
@@ -149,8 +149,8 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movsd	.LC8(%rip), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%rbp, %rdi
-	movl	$30, %r8d
-	movl	$50, %ecx
+	movl	$50, %r8d
+	movl	$200, %ecx
 	movq	%rax, %xmm2
 .LEHB10:
 	call	_ZN8platformC1EPN3wze6engineEP4gameddttdh@PLT
@@ -165,8 +165,8 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	(%rbx), %rsi
 	movl	$1, %r9d
 	movq	.LC0(%rip), %rax
-	movl	$30, %r8d
-	movl	$50, %ecx
+	movl	$50, %r8d
+	movl	$200, %ecx
 	movsd	.LC9(%rip), %xmm1
 	movsd	.LC10(%rip), %xmm0
 	movq	%rbp, %rdi
@@ -184,6 +184,14 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	%rsp, %rdi
 .LEHB13:
 	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
+	movq	(%rbx), %rax
+	leaq	80(%rax), %rbp
+	movq	144(%rbx), %rax
+	movq	16(%rax), %rdi
+	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
+	movq	%rax, %rsi
+	movq	%rbp, %rdi
+	call	_ZN3wze6engine6camera4BindEy@PLT
 	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L25
@@ -233,16 +241,16 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	jmp	.L5
 .L20:
 	movq	%rax, %r12
-	jmp	.L7
+	jmp	.L11
 .L19:
 	movq	%rax, %r12
-	jmp	.L8
+	jmp	.L11
 .L18:
 	movq	%rax, %r12
-	jmp	.L9
+	jmp	.L11
 .L17:
 	movq	%rax, %r12
-	jmp	.L10
+	jmp	.L11
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
 .LLSDA8147:
@@ -317,12 +325,12 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	.type	_ZN6normalC2EPN3wze6engineEP4game.cold, @function
 _ZN6normalC2EPN3wze6engineEP4game.cold:
 .LFSB8147:
-.L5:
+.L11:
 	.cfi_def_cfa_offset 80
 	.cfi_offset 3, -32
 	.cfi_offset 6, -24
 	.cfi_offset 12, -16
-	movl	$88, %esi
+	movl	$40, %esi
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
 .L6:
@@ -335,33 +343,13 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 .LEHB14:
 	call	_Unwind_Resume@PLT
 .LEHE14:
-.L11:
-	movl	$40, %esi
+.L5:
+	movl	$88, %esi
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
 	jmp	.L6
 .L26:
 	call	__stack_chk_fail@PLT
-.L7:
-	movl	$40, %esi
-	movq	%rbp, %rdi
-	call	_ZdlPvm@PLT
-	jmp	.L6
-.L8:
-	movl	$40, %esi
-	movq	%rbp, %rdi
-	call	_ZdlPvm@PLT
-	jmp	.L6
-.L9:
-	movl	$40, %esi
-	movq	%rbp, %rdi
-	call	_ZdlPvm@PLT
-	jmp	.L6
-.L10:
-	movl	$40, %esi
-	movq	%rbp, %rdi
-	call	_ZdlPvm@PLT
-	jmp	.L6
 	.cfi_endproc
 .LFE8147:
 	.section	.gcc_except_table
@@ -503,31 +491,31 @@ _ZN6normal6UpdateEv:
 	.align 8
 .LC4:
 	.long	0
-	.long	-1066860544
+	.long	-1065402368
 	.align 8
 .LC5:
 	.long	0
-	.long	1079574528
+	.long	-1067270144
 	.align 8
 .LC6:
 	.long	0
-	.long	1080623104
+	.long	1078116352
 	.align 8
 .LC7:
 	.long	0
-	.long	-1067270144
+	.long	-1066450944
 	.align 8
 .LC8:
 	.long	0
-	.long	1081671680
+	.long	1080827904
 	.align 8
 .LC9:
 	.long	0
-	.long	1082310656
+	.long	1081722880
 	.align 8
 .LC10:
 	.long	0
-	.long	1080213504
+	.long	1081032704
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

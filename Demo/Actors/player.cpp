@@ -19,26 +19,26 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
 
     this->Idle->Width = 132;
     this->Idle->Height = 128;
-    this->Idle->SetY(this->Actor->GetY() + 23);
+    this->Idle->SetY(this->Actor->GetY() + 22);
 
     this->Run->Width = 132;
     this->Run->Height = 128;
-    this->Run->SetY(this->Actor->GetY() + 23);
+    this->Run->SetY(this->Actor->GetY() + 22);
     this->Run->Visible = false;
 
     this->Hurt->Width = 132;
     this->Hurt->Height = 128;
-    this->Hurt->SetY(this->Actor->GetY() + 23);
+    this->Hurt->SetY(this->Actor->GetY() + 22);
     this->Hurt->Visible = false;
 
     this->Fall->Width = 132;
     this->Fall->Height = 128;
-    this->Fall->SetY(this->Actor->GetY() + 23);
+    this->Fall->SetY(this->Actor->GetY() + 22);
     this->Fall->Visible = false;
 
     this->Jump->Width = 132;
     this->Jump->Height = 128;
-    this->Jump->SetY(this->Actor->GetY() + 23);
+    this->Jump->SetY(this->Actor->GetY() + 22);
     this->Jump->Visible = false;
 }
 
@@ -115,7 +115,7 @@ uint8 player::Update()
 
     if (this->Engine->Keys[KEY_SPACE] && this->VelocityY == 0)
     {
-        this->VelocityY = 1;
+        this->VelocityY = 1.25;
     }
 
     if (this->Actor->GetY() < PrevY - EPSILON)

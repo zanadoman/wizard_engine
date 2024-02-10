@@ -4,17 +4,19 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
 {
     this->Player = new player(this->Engine, this->Game, 0, 500, 1, 1);
 
-    this->Background = this->Engine->Actors.New(NULL, ACT_NONE, 0, 0, 19200, 10800, 0.1);
+    this->Background = this->Engine->Actors.New(NULL, ACT_NONE, 0, 0, 28800, 16200, 0.1);
     this->BackgroundTexture = this->Background->Textures.New(this->Game->Assets.MapBackgroundTexture);
 
     this->Platforms =
     {
-        new platform(this->Engine, this->Game, 0, -200, 1000, 400, 1, 1),
-        new platform(this->Engine, this->Game, 0, 100, 50, 30, 1, 1),
-        new platform(this->Engine, this->Game, -150, 200, 50, 30, 1, 1),
-        new platform(this->Engine, this->Game, 0, 400, 50, 30, 1, 1),
-        new platform(this->Engine, this->Game, 150, 600, 50, 30, 1, 1)
+        new platform(this->Engine, this->Game, 0, -500, 1500, 375, 1, 1),
+        new platform(this->Engine, this->Game, 0, -150, 300, 50, 1, 1),
+        new platform(this->Engine, this->Game, -250, 37.5, 200, 50, 1, 1),
+        new platform(this->Engine, this->Game, 0, 225, 200, 50, 1, 1),
+        new platform(this->Engine, this->Game, 250, 412.5, 200, 50, 1, 1)
     };
+
+    this->Engine->Camera.Bind(this->Player->Actor->GetID());
 }
 
 normal::~normal()
