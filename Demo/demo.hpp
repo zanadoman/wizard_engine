@@ -14,12 +14,16 @@ typedef enum
 
 typedef enum
 {
-    ACT_NONE
+    ACT_NONE,
+    ACT_PLAYER,
+    ACT_PLATFORM
 } actor;
 
 typedef enum
 {
-    BOX_NONE
+    BOX_NONE,
+    BOX_PLAYER,
+    BOX_PLATFORM
 } overlapbox;
 
 class menu;
@@ -42,14 +46,14 @@ class assets
         uint16 MapPlatformTexture;
         uint16 MapShroomTexture;
 
-        array<uint16> PlayerHurtTextures;
-        array<uint16> PlayerIdleTextures;
-        array<uint16> PlayerRunTextures;
+        array<uint64> PlayerHurtTextures;
+        array<uint64> PlayerIdleTextures;
+        array<uint64> PlayerRunTextures;
         uint16 PlayerJumpTexture;
         uint16 PlayerFallTexture;
 
-        array<uint16> EagleFlyTextures;
-        array<uint16> EagleHurtTextures;
+        array<uint64> EagleFlyTextures;
+        array<uint64> EagleHurtTextures;
 
         uint16 BulletShotSound;
         uint16 BulletBaseTexture;
@@ -60,6 +64,8 @@ class assets
 
 class game
 {
+    friend class player;
+    friend class platform;
     friend class pause;
     friend class stats;
     friend class menu;
@@ -82,6 +88,37 @@ class game
 };
 
 //_________________________________________________________________
+
+class player
+{
+    friend class normal;
+    friend class infinite;
+    engine* Engine;
+    game* Game;
+
+    engine::actor Actor;
+    engine::overlapbox Overlapbox;
+    engine::flipbook Idle;
+    engine::flipbook Run;
+    engine::flipbook Hurt;
+    engine::texture Fall;
+    engine::texture Jump;
+    player(engine* Engine, game* Game, double X, double Y, double Layer, double CollisionLayer);
+    uint8 Update();
+};
+
+class platform
+{
+    friend class normal;
+    friend class infinite;
+    engine* Engine;
+    game* Game;
+
+    engine::actor Actor;
+    engine::overlapbox Overlapbox;
+    engine::texture Texture;
+    platform(engine* Engine, game* Game, double X, double Y, uint16 Width, uint16 Height, double Layer, uint8 CollisionLayer);
+};
 
 class pause
 {
@@ -154,9 +191,12 @@ class normal
 
     pause Pause;
     stats Stats;
+    player* Player;
     engine::actor Background;
     engine::texture BackgroundTexture;
+    array<platform*> Platforms;
     normal(engine* Engine, game* Game);
+    ~normal();
     scene Update();
 };
 

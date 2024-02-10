@@ -143,20 +143,28 @@ _ZN4gameC2EPN3wze6engineE.cold:
 _ZN4gameD2Ev:
 .LFB8153:
 	.cfi_startproc
-	pushq	%rbx
+	pushq	%rbp
 	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
+	.cfi_offset 6, -16
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
 	movq	%rdi, %rbx
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 32
 	movq	136(%rdi), %rdi
 	testq	%rdi, %rdi
 	je	.L10
 	movl	$80, %esi
 	call	_ZdlPvm@PLT
 .L10:
-	movq	144(%rbx), %rdi
-	testq	%rdi, %rdi
+	movq	144(%rbx), %rbp
+	testq	%rbp, %rbp
 	je	.L11
-	movl	$160, %esi
+	movq	%rbp, %rdi
+	call	_ZN6normalD1Ev@PLT
+	movl	$184, %esi
+	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
 .L11:
 	movq	152(%rbx), %rdi
@@ -174,7 +182,11 @@ _ZN4gameD2Ev:
 	movq	56(%rbx), %rdi
 	call	free@PLT
 	movq	40(%rbx), %rdi
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 24
 	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
 	.cfi_def_cfa_offset 8
 	jmp	free@PLT
 	.cfi_endproc
@@ -287,10 +299,13 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 4,,10
 	.p2align 3
 .L25:
-	movq	144(%rdi), %rdi
-	testq	%rdi, %rdi
+	movq	144(%rdi), %r12
+	testq	%r12, %r12
 	je	.L29
-	movl	$160, %esi
+	movq	%r12, %rdi
+	call	_ZN6normalD1Ev@PLT
+	movl	$184, %esi
+	movq	%r12, %rdi
 	call	_ZdlPvm@PLT
 .L29:
 	movq	$0, 144(%rbx)
@@ -335,7 +350,7 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 3
 .L31:
 	.cfi_restore_state
-	movl	$160, %edi
+	movl	$184, %edi
 .LEHB8:
 	call	_Znwm@PLT
 .LEHE8:
@@ -421,7 +436,7 @@ _ZN4game12SwitchScenesE5scene.cold:
 	call	_Unwind_Resume@PLT
 .L35:
 	movq	%r12, %rdi
-	movl	$160, %esi
+	movl	$184, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT

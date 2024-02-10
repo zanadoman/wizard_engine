@@ -66,27 +66,16 @@ _ZN8infinite6UpdateEv:
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
 	movq	%rdi, %rbx
-	addq	$16, %rdi
+	leaq	96(%rdi), %rdi
+	call	_ZN5stats6UpdateEv@PLT
+	leaq	16(%rbx), %rdi
 	call	_ZN5pause6UpdateEv@PLT
-	testl	%eax, %eax
-	je	.L8
-	cmpl	$2, %eax
 	popq	%rbx
-	.cfi_remember_state
 	.cfi_def_cfa_offset 8
+	cmpl	$2, %eax
 	setne	%al
 	movzbl	%al, %eax
 	addl	%eax, %eax
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L8:
-	.cfi_restore_state
-	leaq	96(%rbx), %rdi
-	call	_ZN5stats6UpdateEv@PLT
-	movl	$2, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE8149:

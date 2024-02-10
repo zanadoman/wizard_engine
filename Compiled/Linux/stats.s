@@ -2,11 +2,11 @@
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC2:
-	.string	"GameTime: "
+	.string	"GameTime: 0ms"
 .LC3:
-	.string	"RenderTime: "
+	.string	"RenderTime: 0ms"
 .LC4:
-	.string	"FrameTime: "
+	.string	"FrameTime: 0ms"
 	.text
 	.align 2
 	.p2align 4
@@ -155,11 +155,17 @@ _ZN5statsC2EPN3wze6engineEP4game:
 	.section	.rodata.str1.1
 .LC8:
 	.string	"ms"
+.LC9:
+	.string	"GameTime: "
+.LC10:
+	.string	"RenderTime: "
+.LC11:
+	.string	"FrameTime: "
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB9:
+.LCOLDB12:
 	.text
-.LHOTB9:
+.LHOTB12:
 	.align 2
 	.p2align 4
 	.globl	_ZN5stats6UpdateEv
@@ -213,7 +219,7 @@ _ZN5stats6UpdateEv:
 	movq	%rcx, 40(%rsp)
 	movq	%r14, %rsi
 	leaq	40(%rsp), %r13
-	leaq	.LC2(%rip), %rcx
+	leaq	.LC9(%rip), %rcx
 	movq	%rcx, 32(%rsp)
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
 	movq	%rax, %rdi
@@ -250,7 +256,7 @@ _ZN5stats6UpdateEv:
 	leaq	400(%rcx), %rdi
 	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6timing13GetRenderTimeEv@PLT
-	leaq	.LC3(%rip), %rdx
+	leaq	.LC10(%rip), %rdx
 	movl	%eax, %ecx
 	movq	%r14, %rsi
 	movq	%rbp, %rdi
@@ -292,7 +298,7 @@ _ZN5stats6UpdateEv:
 	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
 	movl	%eax, %edx
-	leaq	.LC4(%rip), %rcx
+	leaq	.LC11(%rip), %rcx
 	movq	%r14, %rsi
 	movq	%rbp, %rdi
 	movq	%rdx, 40(%rsp)
@@ -408,7 +414,7 @@ _ZN5stats6UpdateEv.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8149-.LLSDACSBC8149
 .LLSDACSBC8149:
-	.uleb128 .LEHB2-.LCOLDB9
+	.uleb128 .LEHB2-.LCOLDB12
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
@@ -418,9 +424,9 @@ _ZN5stats6UpdateEv.cold:
 	.size	_ZN5stats6UpdateEv, .-_ZN5stats6UpdateEv
 	.section	.text.unlikely
 	.size	_ZN5stats6UpdateEv.cold, .-_ZN5stats6UpdateEv.cold
-.LCOLDE9:
+.LCOLDE12:
 	.text
-.LHOTE9:
+.LHOTE12:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:

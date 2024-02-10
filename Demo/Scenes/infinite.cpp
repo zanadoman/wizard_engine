@@ -10,11 +10,12 @@ scene infinite::Update()
 {
     pause::state Pause;
 
+    this->Stats.Update();
     Pause = this->Pause.Update();
 
     if (Pause == pause::NONE)
     {
-        this->Stats.Update();
+        
     }
     else if (Pause == pause::MENU)
     {

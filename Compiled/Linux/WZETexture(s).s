@@ -1043,9 +1043,9 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEv:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4GetYEd
-	.type	_ZN3wze6engine6actors5actor8textures7texture4GetYEd, @function
-_ZN3wze6engine6actors5actor8textures7texture4GetYEd:
+	.globl	_ZN3wze6engine6actors5actor8textures7texture4SetYEd
+	.type	_ZN3wze6engine6actors5actor8textures7texture4SetYEd, @function
+_ZN3wze6engine6actors5actor8textures7texture4SetYEd:
 .LFB8167:
 	.cfi_startproc
 	pushq	%rbx
@@ -1112,7 +1112,7 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8167:
-	.size	_ZN3wze6engine6actors5actor8textures7texture4GetYEd, .-_ZN3wze6engine6actors5actor8textures7texture4GetYEd
+	.size	_ZN3wze6engine6actors5actor8textures7texture4SetYEd, .-_ZN3wze6engine6actors5actor8textures7texture4SetYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv

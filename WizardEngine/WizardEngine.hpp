@@ -336,7 +336,7 @@ namespace wze
                                     double GetX();
                                     double SetX(double X);
                                     double GetY();
-                                    double GetY(double Y);
+                                    double SetY(double Y);
                                     neo::uint64 GetTextureID();
                                     neo::uint64 SetTextureID(neo::uint64 TextureID);
 

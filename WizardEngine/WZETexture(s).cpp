@@ -207,7 +207,7 @@ namespace wze
         return this->Y;
     }
 
-    double engine::actors::actor::textures::texture::GetY(double Y)
+    double engine::actors::actor::textures::texture::SetY(double Y)
     {
         if (Y != Y)
         {
