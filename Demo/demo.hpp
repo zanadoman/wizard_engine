@@ -7,18 +7,45 @@ using namespace wze;
 
 typedef enum
 {
-    SCENE_MENU
+    SCENE_MENU,
+    SCENE_NORMAL,
+    SCENE_INFINITE
 } scene;
 
 typedef enum
 {
-    ACT_MENU
+    ACT_MENU,
+    ACT_DECOR
 } actor;
 
 typedef enum
 {
     BOX_BUTTON
 } overlapbox;
+
+class assets;
+class game;
+class menu;
+class normal;
+class infinite;
+
+class game
+{
+    friend class menu;
+    engine* Engine;
+
+    public:
+        uint8 Update();
+        game(engine* Engine);
+        ~game();
+
+    private:
+        assets* Assets;
+        scene ActiveScene;
+        menu* Menu;
+        normal* Normal;
+        infinite* Infinite;
+};
 
 class assets
 {
@@ -52,10 +79,10 @@ class assets
 class menu
 {
     engine* Engine;
-    assets* Assets;
+    game* Game;
 
     public:
-        menu(engine* Engine, assets* Assets);
+        menu(engine* Engine, game* Game);
         uint8 Update();
 
     private:
@@ -69,17 +96,20 @@ class menu
         engine::text ButtonInfiniteText;
 };
 
-class game
+class normal
 {
     engine* Engine;
-    assets Assets;
+    game* Game;
 
     public:
-        uint8 Update();
-        game(engine* Engine);
-        ~game();
+        normal(engine* Engine, game* Game);
 
     private:
-        scene ActiveScene;
-        menu* Menu;
+        engine::actor Background;
+        engine::texture BackgroundTexture;
+};
+
+class infinite
+{
+    
 };

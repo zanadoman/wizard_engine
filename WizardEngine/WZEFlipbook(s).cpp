@@ -14,7 +14,7 @@ namespace wze
         }
     }
 
-    engine::actors::actor::flipbooks::flipbook& engine::actors::actor::flipbooks::New(uint32 Delay, std::initializer_list<uint64> TextureIDs)
+    engine::actors::actor::flipbooks::flipbook* engine::actors::actor::flipbooks::New(uint32 Delay, std::initializer_list<uint64> TextureIDs)
     {
         if (Delay == 0)
         {
@@ -46,7 +46,7 @@ namespace wze
                     exit(1);
                 }
 
-                return *this->Flipbooks[i];
+                return this->Flipbooks[i];
             }
         }
 
@@ -56,10 +56,10 @@ namespace wze
             exit(1);
         }
 
-        return *this->Flipbooks[this->Flipbooks.Length() - 1];
+        return this->Flipbooks[this->Flipbooks.Length() - 1];
     }
 
-    engine::actors::actor::flipbooks::flipbook& engine::actors::actor::flipbooks::New(uint32 Delay, array<uint64>* TextureIDs)
+    engine::actors::actor::flipbooks::flipbook* engine::actors::actor::flipbooks::New(uint32 Delay, array<uint64>* TextureIDs)
     {
         if (Delay == 0)
         {
@@ -91,7 +91,7 @@ namespace wze
                     exit(1);
                 }
 
-                return *this->Flipbooks[i];
+                return this->Flipbooks[i];
             }
         }
 
@@ -101,7 +101,7 @@ namespace wze
             exit(1);
         }
 
-        return *this->Flipbooks[this->Flipbooks.Length() - 1];
+        return this->Flipbooks[this->Flipbooks.Length() - 1];
     }
 
     uint8 engine::actors::actor::flipbooks::Delete(uint64 FlipbookID)

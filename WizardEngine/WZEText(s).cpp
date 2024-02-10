@@ -15,7 +15,7 @@ namespace wze
         }
     }
 
-    engine::actors::actor::texts::text& engine::actors::actor::texts::New(const char* String, uint64 FontID)
+    engine::actors::actor::texts::text* engine::actors::actor::texts::New(const char* String, uint64 FontID)
     {
         if (String == NULL)
         {
@@ -38,7 +38,7 @@ namespace wze
                     exit(1);
                 }
 
-                return *this->Texts[i];
+                return this->Texts[i];
             }
         }
 
@@ -48,7 +48,7 @@ namespace wze
             exit(1);
         }
 
-        return *this->Texts[this->Texts.Length() - 1];
+        return this->Texts[this->Texts.Length() - 1];
     }
 
     uint8 engine::actors::actor::texts::Delete(uint64 TextID)

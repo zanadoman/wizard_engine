@@ -290,7 +290,7 @@ namespace wze
                             };
 
                             public:
-                                color& New();
+                                color* New();
                                 neo::uint8 Delete(neo::uint64 ColorID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepColorIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepColorIDs);
@@ -350,7 +350,7 @@ namespace wze
                             };
 
                             public:
-                                texture& New(neo::uint64 TextureID);
+                                texture* New(neo::uint64 TextureID);
                                 neo::uint8 Delete(neo::uint64 TextureID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextureIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepTextureIDs);
@@ -419,8 +419,8 @@ namespace wze
                             };
 
                             public:
-                                flipbook& New(neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
-                                flipbook& New(neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
+                                flipbook* New(neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
+                                flipbook* New(neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
                                 neo::uint8 Delete(neo::uint64 FlipbookID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepFlipbookIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepFlipbookIDs);
@@ -490,7 +490,7 @@ namespace wze
                             };
 
                             public:
-                                text& New(const char* String, neo::uint64 FontID);
+                                text* New(const char* String, neo::uint64 FontID);
                                 neo::uint8 Delete(neo::uint64 TextID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepTextIDs);
@@ -564,7 +564,7 @@ namespace wze
                             };
 
                             public:
-                                overlapbox& New(neo::uint64 Type);
+                                overlapbox* New(neo::uint64 Type);
                                 neo::uint8 Delete(neo::uint64 OverlapboxID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepOverlapboxIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepOverlapboxIDs);
@@ -633,7 +633,7 @@ namespace wze
                 //__________Actors_____________________________________________________________________________________
 
                 public:
-                    actor& New(void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
+                    actor* New(void* Data, neo::uint64 Type, double X, double Y, neo::uint16 Width, neo::uint16 Height, double Layer);
                     neo::uint8 Delete(neo::uint64 ActorID);
                     neo::uint8 Purge(std::initializer_list<neo::uint64> KeepActorIDs);
                     neo::uint8 Purge(neo::array<neo::uint64>* KeepActorIDs);
@@ -789,12 +789,12 @@ namespace wze
 
             //__________Engine_________________________________________________________________________________________
 
-            typedef actors::actor& actor;
-            typedef actors::actor::colors::color& color;
-            typedef actors::actor::textures::texture& texture;
-            typedef actors::actor::flipbooks::flipbook& flipbook;
-            typedef actors::actor::texts::text& text;
-            typedef actors::actor::overlapboxes::overlapbox& overlapbox;
+            typedef actors::actor* actor;
+            typedef actors::actor::colors::color* color;
+            typedef actors::actor::textures::texture* texture;
+            typedef actors::actor::flipbooks::flipbook* flipbook;
+            typedef actors::actor::texts::text* text;
+            typedef actors::actor::overlapboxes::overlapbox* overlapbox;
             engine(const char* Title, const char* IconPath, neo::uint16 WindowWidth, neo::uint16 WindowHeight, neo::uint8 TargetFrameTime);
             ~engine();
             bool Update();

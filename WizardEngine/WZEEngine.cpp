@@ -8,6 +8,10 @@ namespace wze
 {
     engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Threads(this), Assets(this), Timing(this)
     {
+        actor LogoActor;
+        texture LogoTexture;
+        double opacity;
+
         if (Title == NULL)
         {
             Title = "Wizard Engine";
@@ -52,42 +56,41 @@ namespace wze
         this->Timing.TargetFrameTime = TargetFrameTime;
         srand(time(NULL));
 
-        actor LogoActor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
-        texture LogoTexture = LogoActor.Textures.New(this->Assets.LoadTexture("engine/wizard.png"));
-        double opacity;
+        LogoActor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
+        LogoTexture = LogoActor->Textures.New(this->Assets.LoadTexture("engine/wizard.png"));
 
-        LogoTexture.ColorA = opacity = 0;
+        LogoTexture->ColorA = opacity = 0;
 
         while ((opacity += 0.1 * this->Timing.GetDeltaTime()) <= 255)
         {
             if (!this->Update())
             {
-                this->Assets.UnloadTexture(LogoTexture.GetTextureID());
-                LogoActor.Textures.Delete(LogoTexture.GetID());
-                this->Actors.Delete(LogoActor.GetID());
+                this->Assets.UnloadTexture(LogoTexture->GetTextureID());
+                LogoActor->Textures.Delete(LogoTexture->GetID());
+                this->Actors.Delete(LogoActor->GetID());
 
                 return;
             }
 
-            LogoTexture.ColorA = round(opacity);
+            LogoTexture->ColorA = round(opacity);
         }
         while (0 <= (opacity -= 0.1 * this->Timing.GetDeltaTime()))
         {   
             if (!this->Update())
             {
-                this->Assets.UnloadTexture(LogoTexture.GetTextureID());
-                LogoActor.Textures.Delete(LogoTexture.GetID());
-                this->Actors.Delete(LogoActor.GetID());
+                this->Assets.UnloadTexture(LogoTexture->GetTextureID());
+                LogoActor->Textures.Delete(LogoTexture->GetID());
+                this->Actors.Delete(LogoActor->GetID());
 
                 return;
             }
 
-            LogoTexture.ColorA = round(opacity);
+            LogoTexture->ColorA = round(opacity);
         }
 
-        this->Assets.UnloadTexture(LogoTexture.GetTextureID());
-        LogoActor.Textures.Delete(LogoTexture.GetID());
-        this->Actors.Delete(LogoActor.GetID());
+        this->Assets.UnloadTexture(LogoTexture->GetTextureID());
+        LogoActor->Textures.Delete(LogoTexture->GetID());
+        this->Actors.Delete(LogoActor->GetID());
     }
 
     engine::~engine()

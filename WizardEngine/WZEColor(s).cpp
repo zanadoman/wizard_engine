@@ -14,7 +14,7 @@ namespace wze
         }
     }
 
-    engine::actors::actor::colors::color& engine::actors::actor::colors::New()
+    engine::actors::actor::colors::color* engine::actors::actor::colors::New()
     {
         for (uint64 i = 1; i < this->Colors.Length(); i++)
         {
@@ -26,7 +26,7 @@ namespace wze
                     exit(1);
                 }
 
-                return *this->Colors[i];
+                return this->Colors[i];
             }
         }
 
@@ -36,7 +36,7 @@ namespace wze
             exit(1);
         }
 
-        return *this->Colors[this->Colors.Length() - 1];
+        return this->Colors[this->Colors.Length() - 1];
     }
 
     uint8 engine::actors::actor::colors::Delete(uint64 ColorID)

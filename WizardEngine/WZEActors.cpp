@@ -6,7 +6,7 @@ namespace wze
 {
     engine::actors::actors(engine* Engine) : Engine(Engine), Actors({(actor*)NULL}) {}
 
-    engine::actors::actor& engine::actors::New(void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer)
+    engine::actors::actor* engine::actors::New(void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer)
     {
         if (X != X)
         {
@@ -39,7 +39,7 @@ namespace wze
                     exit(1);
                 }
 
-                return *this->Actors[i];
+                return this->Actors[i];
             }
         }
 
@@ -49,7 +49,7 @@ namespace wze
             exit(1);
         }
 
-        return *this->Actors[this->Actors.Length() - 1];
+        return this->Actors[this->Actors.Length() - 1];
     }
 
     uint8 engine::actors::Delete(uint64 ActorID)

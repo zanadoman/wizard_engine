@@ -15,7 +15,7 @@ namespace wze
         }
     }
 
-    engine::actors::actor::overlapboxes::overlapbox& engine::actors::actor::overlapboxes::New(uint64 Type)
+    engine::actors::actor::overlapboxes::overlapbox* engine::actors::actor::overlapboxes::New(uint64 Type)
     {
         for (uint64 i = 1; i < this->Overlapboxes.Length(); i++)
         {
@@ -27,7 +27,7 @@ namespace wze
                     exit(1);
                 }
 
-                return *this->Overlapboxes[i];
+                return this->Overlapboxes[i];
             }
         }
 
@@ -37,7 +37,7 @@ namespace wze
             exit(1);
         }
 
-        return *this->Overlapboxes[this->Overlapboxes.Length() - 1];
+        return this->Overlapboxes[this->Overlapboxes.Length() - 1];
     }
 
     uint8 engine::actors::actor::overlapboxes::Delete(uint64 OverlapboxID)

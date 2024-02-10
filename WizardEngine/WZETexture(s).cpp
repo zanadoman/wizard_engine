@@ -14,7 +14,7 @@ namespace wze
         }
     }
 
-    engine::actors::actor::textures::texture& engine::actors::actor::textures::New(uint64 TextureID)
+    engine::actors::actor::textures::texture* engine::actors::actor::textures::New(uint64 TextureID)
     {
         if (TextureID != 0 && (this->Engine->Assets.Textures.Length() <= TextureID || this->Engine->Assets.Textures[TextureID] == NULL))
         {
@@ -32,7 +32,7 @@ namespace wze
                     exit(1);
                 }
 
-                return *this->Textures[i];
+                return this->Textures[i];
             }
         }
 
@@ -42,7 +42,7 @@ namespace wze
             exit(1);
         }
 
-        return *this->Textures[this->Textures.Length() - 1];
+        return this->Textures[this->Textures.Length() - 1];
     }
 
     uint8 engine::actors::actor::textures::Delete(uint64 TextureID)

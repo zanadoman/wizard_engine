@@ -10,9 +10,9 @@
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN4menuC2EPN3wze6engineEP6assets
-	.type	_ZN4menuC2EPN3wze6engineEP6assets, @function
-_ZN4menuC2EPN3wze6engineEP6assets:
+	.globl	_ZN4menuC2EPN3wze6engineEP4game
+	.type	_ZN4menuC2EPN3wze6engineEP4game, @function
+_ZN4menuC2EPN3wze6engineEP4game:
 .LFB8147:
 	.cfi_startproc
 	pushq	%r12
@@ -55,6 +55,7 @@ _ZN4menuC2EPN3wze6engineEP6assets:
 	leaq	.LC1(%rip), %rsi
 	movq	%rax, 16(%rbx)
 	leaq	104(%rax), %rdi
+	movq	8(%rdx), %rdx
 	movzwl	8(%rdx), %edx
 	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
 	xorl	%esi, %esi
@@ -69,6 +70,7 @@ _ZN4menuC2EPN3wze6engineEP6assets:
 	leaq	.LC2(%rip), %rsi
 	movq	%rax, 40(%rbx)
 	movq	8(%rbx), %rax
+	movq	8(%rax), %rax
 	movzwl	8(%rax), %edx
 	movq	16(%rbx), %rax
 	leaq	104(%rax), %rdi
@@ -85,6 +87,7 @@ _ZN4menuC2EPN3wze6engineEP6assets:
 	leaq	.LC3(%rip), %rsi
 	movq	%rax, 64(%rbx)
 	movq	8(%rbx), %rax
+	movq	8(%rax), %rax
 	movzwl	8(%rax), %edx
 	movq	16(%rbx), %rax
 	leaq	104(%rax), %rdi
@@ -182,9 +185,9 @@ _ZN4menuC2EPN3wze6engineEP6assets:
 	jmp	_ZN3wze6engine6actors5actor5texts4text4SetYEd@PLT
 	.cfi_endproc
 .LFE8147:
-	.size	_ZN4menuC2EPN3wze6engineEP6assets, .-_ZN4menuC2EPN3wze6engineEP6assets
-	.globl	_ZN4menuC1EPN3wze6engineEP6assets
-	.set	_ZN4menuC1EPN3wze6engineEP6assets,_ZN4menuC2EPN3wze6engineEP6assets
+	.size	_ZN4menuC2EPN3wze6engineEP4game, .-_ZN4menuC2EPN3wze6engineEP4game
+	.globl	_ZN4menuC1EPN3wze6engineEP4game
+	.set	_ZN4menuC1EPN3wze6engineEP4game,_ZN4menuC2EPN3wze6engineEP4game
 	.align 2
 	.p2align 4
 	.globl	_ZN4menu6UpdateEv
@@ -200,19 +203,20 @@ _ZN4menu6UpdateEv:
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
 	testb	$1, %al
 	movq	40(%rbx), %rax
-	je	.L5
-	movl	$24672, %edi
-	movb	$96, 22(%rax)
-	movw	%di, 20(%rax)
+	jne	.L17
+	movl	$-32640, %esi
+	movb	$-128, 22(%rax)
+	movw	%si, 20(%rax)
 .L6:
 	movq	56(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
 	testb	$1, %al
 	movq	64(%rbx), %rax
-	je	.L7
-	movl	$24672, %ecx
-	movb	$96, 22(%rax)
-	movw	%cx, 20(%rax)
+	jne	.L18
+	movl	$-32640, %edx
+	movb	$-128, 22(%rax)
+	movw	%dx, 20(%rax)
+.L7:
 	xorl	%eax, %eax
 	popq	%rbx
 	.cfi_remember_state
@@ -220,22 +224,42 @@ _ZN4menu6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L5:
+.L17:
 	.cfi_restore_state
-	movl	$-32640, %esi
-	movb	$-128, 22(%rax)
-	movw	%si, 20(%rax)
-	jmp	.L6
-	.p2align 4,,10
-	.p2align 3
-.L7:
-	movl	$-32640, %edx
-	movb	$-128, 22(%rax)
-	movw	%dx, 20(%rax)
+	movl	$24672, %edi
+	movb	$96, 22(%rax)
+	movw	%di, 20(%rax)
+	movq	32(%rbx), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	testb	$4, %al
+	je	.L6
+	movq	8(%rbx), %rax
+	movl	$1, 16(%rax)
+.L16:
+	movq	(%rbx), %rdi
+	xorl	%esi, %esi
+	xorl	%edx, %edx
+	addq	$240, %rdi
+	call	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE@PLT
 	xorl	%eax, %eax
 	popq	%rbx
+	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
+	.p2align 4,,10
+	.p2align 3
+.L18:
+	.cfi_restore_state
+	movl	$24672, %ecx
+	movb	$96, 22(%rax)
+	movw	%cx, 20(%rax)
+	movq	56(%rbx), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	testb	$4, %al
+	je	.L7
+	movq	8(%rbx), %rax
+	movl	$2, 16(%rax)
+	jmp	.L16
 	.cfi_endproc
 .LFE8149:
 	.size	_ZN4menu6UpdateEv, .-_ZN4menu6UpdateEv
