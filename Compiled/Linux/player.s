@@ -97,7 +97,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 .L4:
 	salq	$3, %rdx
 	movq	%rsp, %rdi
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	(%rbx), %rax
 	movl	$48, %edx
 	leaq	.LC7(%rip), %rsi

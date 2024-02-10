@@ -124,7 +124,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	movq	16(%rcx), %rdx
 	movq	%rcx, %rbx
 	movq	8(%rcx), %rcx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	xorl	%edx, %edx
 	xorl	%ecx, %ecx
 	call	SDL_GetMouseState
@@ -207,5 +207,5 @@ _ZN3wze6engine4keys6UpdateEv:
 	.def	_Znay;	.scl	2;	.type	32;	.endef
 	.def	_ZdaPv;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	SDL_GetMouseState;	.scl	2;	.type	32;	.endef

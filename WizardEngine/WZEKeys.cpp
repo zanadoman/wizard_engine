@@ -34,7 +34,7 @@ namespace wze
     {
         uint8 MouseState;
 
-        memCopyTo(this->SDL_KeyStates, this->KeyStates, sizeof(uint8) * KEY_COUNT);
+        memory::CopyTo(this->SDL_KeyStates, this->KeyStates, sizeof(uint8) * KEY_COUNT);
 
         MouseState = SDL_GetMouseState(NULL, NULL);
         if (MouseState & 1)

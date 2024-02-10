@@ -182,7 +182,7 @@ _ZN3wze6engine7threadsC2EPS0_:
 	movq	%rax, %rsi
 	movq	%rsp, %rdi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L35
@@ -305,7 +305,7 @@ _ZN3wze6engine7threads5StartEPFiPvES2_:
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	8(%r13), %rbx
 	movq	16(%r13), %rax
 	addq	$-1, %rbx

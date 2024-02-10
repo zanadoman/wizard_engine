@@ -88,7 +88,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	movq	16(%rdi), %rsi
 	movl	$237, %edx
 	movq	8(%rdi), %rdi
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	xorl	%esi, %esi
 	xorl	%edi, %edi
 	call	SDL_GetMouseState@PLT

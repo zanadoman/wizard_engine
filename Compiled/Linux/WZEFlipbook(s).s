@@ -183,7 +183,7 @@ _ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_:
 	movq	%rax, %rsi
 	movq	%rsp, %rdi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L35
@@ -785,7 +785,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	movq	%rax, %rsi
 	movq	%r13, %rdi
 .LEHB0:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	jmp	.L143
 .L152:
 	movq	%rbp, %rdx
@@ -1002,7 +1002,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 .LEHB6:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	16(%r12), %rax
 	movq	24(%r12), %rdx
 	addq	$-1, %rax
@@ -1251,7 +1251,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 	movq	8(%rbx), %rdi
 	movq	%r12, %rdx
 .LEHB8:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -1514,7 +1514,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 .LEHB14:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	16(%rbp), %rax
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax

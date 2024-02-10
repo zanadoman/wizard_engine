@@ -588,7 +588,7 @@ _ZN3wze6engine6assetsC2EPS0_:
 	movl	$8, %r8d
 	movq	%rsi, %rcx
 .LEHB0:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 .LEHE0:
 	movq	$1, 24(%rbx)
 	movl	$8, %ecx
@@ -601,7 +601,7 @@ _ZN3wze6engine6assetsC2EPS0_:
 	movl	$8, %r8d
 	movq	%rax, %rdx
 .LEHB1:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 .LEHE1:
 	movq	$1, 40(%rbx)
 	movl	$8, %ecx
@@ -614,7 +614,7 @@ _ZN3wze6engine6assetsC2EPS0_:
 	movl	$8, %r8d
 	movq	%rax, %rdx
 .LEHB2:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 .LEHE2:
 	movq	$1, 56(%rbx)
 	movl	$8, %ecx
@@ -627,7 +627,7 @@ _ZN3wze6engine6assetsC2EPS0_:
 	movq	%rax, %rdx
 	movq	%rsi, %rcx
 .LEHB3:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 .LEHE3:
 	nop
 	addq	$72, %rsp
@@ -866,7 +866,7 @@ _ZN3wze6engine6assets11LoadTextureEPKc:
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	8(%rsi), %rax
 	movq	16(%rsi), %rdx
 	leaq	-1(%rax), %rcx
@@ -1637,7 +1637,7 @@ _ZN3wze6engine6assets9LoadSoundEPKc:
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	24(%rsi), %rbx
 	movq	32(%rsi), %rax
 	addq	$-1, %rbx
@@ -2091,7 +2091,7 @@ _ZN3wze6engine6assets8LoadFontEPKch:
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	40(%rsi), %rbx
 	movq	48(%rsi), %rax
 	addq	$-1, %rbx
@@ -2837,7 +2837,7 @@ _ZN3wze6engine6assets17LoadCursorTextureEPKctt:
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	56(%rsi), %rax
 	movq	64(%rsi), %rdx
 	leaq	-1(%rax), %rcx
@@ -3271,7 +3271,7 @@ _ZN3wze6engine6assets19PurgeCursorTexturesEPN3neo5arrayIyEE:
 	.def	free;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
 	.def	malloc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
 	.def	IMG_Load;	.scl	2;	.type	32;	.endef
 	.def	SDL_CreateTextureFromSurface;	.scl	2;	.type	32;	.endef

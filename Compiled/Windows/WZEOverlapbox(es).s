@@ -302,7 +302,7 @@ _ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_:
 	je	.L47
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	nop
 	addq	$48, %rsp
 	popq	%rbx
@@ -1317,7 +1317,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movl	$8, %r8d
 	movq	%rsi, %rcx
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	jmp	.L251
 	.p2align 4,,10
 	.p2align 3
@@ -1582,7 +1582,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movl	$8, %r8d
 	movq	%r14, %rcx
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	jmp	.L303
 	.p2align 4,,10
 	.p2align 3
@@ -1826,7 +1826,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movl	$8, %r8d
 	movq	%r14, %rcx
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	jmp	.L356
 	.p2align 4,,10
 	.p2align 3
@@ -2105,7 +2105,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movl	$8, %r8d
 	movq	%r13, %rcx
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	jmp	.L410
 	.p2align 4,,10
 	.p2align 3
@@ -2503,7 +2503,7 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
 .LEHB4:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	16(%rsi), %rax
 	movq	24(%rsi), %rdx
 	addq	$-1, %rax
@@ -2839,7 +2839,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd:
 	.def	exit;	.scl	2;	.type	32;	.endef
 	.def	free;	.scl	2;	.type	32;	.endef
 	.def	malloc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector6LengthEdddd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector5AngleEdddd;	.scl	2;	.type	32;	.endef

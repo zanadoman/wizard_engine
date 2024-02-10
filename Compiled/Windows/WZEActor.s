@@ -945,7 +945,7 @@ _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	jmp	.L129
 .L132:
 	leaq	.LC7(%rip), %rcx
@@ -1803,7 +1803,7 @@ _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
 	.def	_ZN3wze6engine6actors5actor6colorsD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector9TerminalXEddd;	.scl	2;	.type	32;	.endef
 	.def	round;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector9TerminalYEddd;	.scl	2;	.type	32;	.endef

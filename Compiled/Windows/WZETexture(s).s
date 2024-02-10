@@ -200,7 +200,7 @@ _ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_:
 	je	.L32
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	nop
 	addq	$48, %rsp
 	popq	%rbx
@@ -390,7 +390,7 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	16(%rsi), %rax
 	movq	24(%rsi), %rdx
 	addq	$-1, %rax
@@ -1075,7 +1075,7 @@ _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
 	.def	free;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
 	.def	malloc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector6LengthEdddd;	.scl	2;	.type	32;	.endef

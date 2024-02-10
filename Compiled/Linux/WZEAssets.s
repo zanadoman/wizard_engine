@@ -610,7 +610,7 @@ _ZN3wze6engine6assetsC2EPS0_:
 	movl	$8, %edx
 	movq	%rbp, %rdi
 .LEHB0:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 .LEHE0:
 	movq	$1, 24(%rbx)
 	movl	$8, %edi
@@ -623,7 +623,7 @@ _ZN3wze6engine6assetsC2EPS0_:
 	movl	$8, %edx
 	movq	%rax, %rsi
 .LEHB1:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 .LEHE1:
 	movq	$1, 40(%rbx)
 	movl	$8, %edi
@@ -636,7 +636,7 @@ _ZN3wze6engine6assetsC2EPS0_:
 	movl	$8, %edx
 	movq	%rax, %rsi
 .LEHB2:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 .LEHE2:
 	movq	$1, 56(%rbx)
 	movl	$8, %edi
@@ -649,7 +649,7 @@ _ZN3wze6engine6assetsC2EPS0_:
 	movq	%rax, %rsi
 	movq	%rbp, %rdi
 .LEHB3:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	24(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L134
@@ -898,7 +898,7 @@ _ZN3wze6engine6assets11LoadTextureEPKc:
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	8(%rbp), %rax
 	movq	16(%rbp), %rdx
 	leaq	-1(%rax), %rcx
@@ -1698,7 +1698,7 @@ _ZN3wze6engine6assets9LoadSoundEPKc:
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	24(%rbp), %rbx
 	movq	32(%rbp), %rax
 	addq	$-1, %rbx
@@ -2198,7 +2198,7 @@ _ZN3wze6engine6assets8LoadFontEPKch:
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	40(%rbp), %rbx
 	movq	48(%rbp), %rax
 	addq	$-1, %rbx
@@ -2996,7 +2996,7 @@ _ZN3wze6engine6assets17LoadCursorTextureEPKctt:
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	56(%rbp), %rax
 	movq	64(%rbp), %rdx
 	leaq	-1(%rax), %rcx

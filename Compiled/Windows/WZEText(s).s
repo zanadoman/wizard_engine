@@ -200,7 +200,7 @@ _ZN3wze6engine6actors5actor5textsC2EPS0_PS2_:
 	je	.L32
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	nop
 	addq	$48, %rsp
 	popq	%rbx
@@ -1077,7 +1077,7 @@ _ZN3wze6engine6actors5actor5texts3NewEPKcy:
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
 .LEHB10:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	16(%rsi), %rax
 	movq	24(%rsi), %rdx
 	addq	$-1, %rax
@@ -1685,7 +1685,7 @@ _ZN3wze6engine6actors5actor5texts4text9SetStringEPKc:
 	cmpq	$0, 64(%rbx)
 	je	.L237
 	movq	%rsi, %rcx
-	call	_ZN3neo9strLengthEPKc
+	call	_ZN3neo6string13LiteralLengthEPKc
 	cmpq	$1, %rax
 	jbe	.L237
 	movq	(%rbx), %rax
@@ -2130,7 +2130,7 @@ _ZN3wze6engine6actors5actor5texts4text12SetFontStyleENS_5styleE:
 	.def	free;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
 	.def	malloc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	SDL_DestroyTexture;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo6stringD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
@@ -2148,4 +2148,4 @@ _ZN3wze6engine6actors5actor5texts4text12SetFontStyleENS_5styleE:
 	.def	_ZN3wze6engine6vector5AngleEdddd;	.scl	2;	.type	32;	.endef
 	.def	TTF_SetFontStyle;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo6stringneEPKc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9strLengthEPKc;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6string13LiteralLengthEPKc;	.scl	2;	.type	32;	.endef

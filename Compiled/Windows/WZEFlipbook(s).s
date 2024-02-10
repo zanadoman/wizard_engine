@@ -200,7 +200,7 @@ _ZN3wze6engine6actors5actor9flipbooksC2EPS0_PS2_:
 	je	.L32
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	nop
 	addq	$48, %rsp
 	popq	%rbx
@@ -752,7 +752,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jSt16initializer_listIy
 	movq	%rax, %rdx
 	movq	%rbp, %rcx
 .LEHB0:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	jmp	.L132
 .L139:
 	movq	%rdi, %r8
@@ -969,7 +969,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
 .LEHB6:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	16(%rbp), %rax
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax
@@ -1188,7 +1188,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbookC2EPS0_PS2_jPN3neo5arrayIyEE:
 .L174:
 	movq	8(%rbx), %rcx
 .LEHB8:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	nop
 	addq	$56, %rsp
 	popq	%rbx
@@ -1421,7 +1421,7 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
 .LEHB14:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	16(%rsi), %rax
 	movq	24(%rsi), %rdx
 	addq	$-1, %rax
@@ -1820,7 +1820,7 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv:
 	.def	free;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
 	.def	malloc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
 	.def	_Znwy;	.scl	2;	.type	32;	.endef

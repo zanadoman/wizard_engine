@@ -183,7 +183,7 @@ _ZN3wze6engine6actors5actor5textsC2EPS0_PS2_:
 	movq	%rax, %rsi
 	movq	%rsp, %rdi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L35
@@ -1133,7 +1133,7 @@ _ZN3wze6engine6actors5actor5texts3NewEPKcy:
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 .LEHB10:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	16(%rbp), %rax
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax
@@ -1799,7 +1799,7 @@ _ZN3wze6engine6actors5actor5texts4text9SetStringEPKc:
 	cmpq	$0, 64(%rbx)
 	je	.L264
 	movq	%rbp, %rdi
-	call	_ZN3neo9strLengthEPKc@PLT
+	call	_ZN3neo6string13LiteralLengthEPKc@PLT
 	cmpq	$1, %rax
 	jbe	.L264
 	movq	(%rbx), %rax

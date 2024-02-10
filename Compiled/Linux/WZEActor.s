@@ -966,7 +966,7 @@ _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	jmp	.L135
 .L140:
 	leaq	.LC7(%rip), %rdi

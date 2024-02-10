@@ -121,7 +121,7 @@ _ZN6playerC2EPN3wze6engineENS0_3keyES3_S3_S3_:
 .L6:
 	leaq	64(%rsp), %rcx
 	leaq	0(,%rax,8), %r8
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	(%rbx), %rax
 	movl	$48, %r8d
 	leaq	.LC7(%rip), %rdx
@@ -924,7 +924,7 @@ _ZN6player6UpdateEv:
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6assets11LoadTextureEPKc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6assets8LoadFontEPKch;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors3NewEPvyddttd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actorsixEy;	.scl	2;	.type	32;	.endef

@@ -318,7 +318,7 @@ namespace wze
             exit(1);
         }
 
-        if (this->String != String && this->FontID != 0 && this->Height != 0 && 1 < strLength(String))
+        if (this->String != String && this->FontID != 0 && this->Height != 0 && 1 < string::LiteralLength(String))
         {
             if (this->FontStyle != STYLE_NORMAL)
             {

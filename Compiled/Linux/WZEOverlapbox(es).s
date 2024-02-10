@@ -295,7 +295,7 @@ _ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_:
 	movq	%rax, %rsi
 	movq	%rsp, %rdi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L51
@@ -1406,7 +1406,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	40(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	jmp	.L269
 	.p2align 4,,10
 	.p2align 3
@@ -1701,7 +1701,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	56(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	jmp	.L324
 	.p2align 4,,10
 	.p2align 3
@@ -1962,7 +1962,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	56(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	jmp	.L380
 	.p2align 4,,10
 	.p2align 3
@@ -2268,7 +2268,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	movq	40(%rsp), %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	jmp	.L437
 	.p2align 4,,10
 	.p2align 3
@@ -2683,7 +2683,7 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
 .LEHB4:
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	16(%rbp), %rax
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax

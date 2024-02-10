@@ -199,7 +199,7 @@ _ZN3wze6engine6actorsC2EPS0_:
 	je	.L32
 	leaq	40(%rsp), %rcx
 	movl	$8, %r8d
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	nop
 	addq	$48, %rsp
 	popq	%rbx
@@ -362,7 +362,7 @@ _ZN3wze6engine6actors3NewEPvyddttd:
 	movl	$8, %r8d
 	leaq	-8(%rax,%rdx,8), %rdx
 .LEHB4:
-	call	_ZN3neo9memCopyToEPKvPvy
+	call	_ZN3neo6memory6CopyToEPKvPvy
 	movq	8(%rsi), %rax
 	movq	16(%rsi), %rdx
 	addq	$-1, %rax
@@ -950,7 +950,7 @@ _ZN3wze6engine6actorsixEy:
 	.def	free;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
 	.def	malloc;	.scl	2;	.type	32;	.endef
-	.def	_ZN3neo9memCopyToEPKvPvy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6memory6CopyToEPKvPvy;	.scl	2;	.type	32;	.endef
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actorC1EPS0_Pvyddttd;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef

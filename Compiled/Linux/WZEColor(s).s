@@ -183,7 +183,7 @@ _ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_:
 	movq	%rax, %rsi
 	movq	%rsp, %rdi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L35
@@ -377,7 +377,7 @@ _ZN3wze6engine6actors5actor6colors3NewEv:
 	movq	%rsp, %rdi
 	leaq	-8(%rax,%rdx,8), %rsi
 	movl	$8, %edx
-	call	_ZN3neo9memCopyToEPKvPvy@PLT
+	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	16(%rbp), %rax
 	movq	24(%rbp), %rdx
 	addq	$-1, %rax
