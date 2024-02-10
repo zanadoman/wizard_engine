@@ -103,6 +103,7 @@ class player
     engine::flipbook Hurt;
     engine::texture Fall;
     engine::texture Jump;
+    double VelocityY;
     player(engine* Engine, game* Game, double X, double Y, double Layer, double CollisionLayer);
     uint8 Update();
 };

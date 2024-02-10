@@ -9,6 +9,7 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
     this->Hurt = this->Actor->Flipbooks.New(100, &this->Game->Assets.PlayerHurtTextures);
     this->Fall = this->Actor->Textures.New(this->Game->Assets.PlayerFallTexture);
     this->Jump = this->Actor->Textures.New(this->Game->Assets.PlayerJumpTexture);
+    this->VelocityY = 0;
 
     this->Actor->SetCollisionLayer(CollisionLayer);
     this->Actor->HitboxVisible = true;
@@ -35,7 +36,7 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
     this->Fall->Width = 83;
     this->Fall->Height = 80;
     this->Fall->SetY(this->Actor->GetY() + 14);
-    this->Jump->Visible = false;
+    this->Fall->Visible = false;
 
     this->Jump->Width = 83;
     this->Jump->Height = 80;
@@ -45,13 +46,39 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
 
 uint8 player::Update()
 {
+    array<array<uint64>> overlaps;
+    double PrevY;
+
     if (this->Engine->Keys[KEY_A] && !this->Engine->Keys[KEY_D])
     {
         this->Actor->SetX(this->Actor->GetX() + -0.5 * this->Engine->Timing.GetDeltaTime());
+        this->Idle->FlipHorizontal = true;
+        this->Run->FlipHorizontal = true;
+        this->Fall->FlipHorizontal = true;
+        this->Jump->FlipHorizontal = true;
     }
     if (this->Engine->Keys[KEY_D] && !this->Engine->Keys[KEY_A])
     {
         this->Actor->SetX(this->Actor->GetX() + 0.5 * this->Engine->Timing.GetDeltaTime());
+        this->Idle->FlipHorizontal = false;
+        this->Run->FlipHorizontal = false;
+        this->Fall->FlipHorizontal = false;
+        this->Jump->FlipHorizontal = false;
+    }
+
+    this->VelocityY -= 0.004 * this->Engine->Timing.GetDeltaTime();
+
+    PrevY = this->Actor->GetY();
+    this->Actor->SetY(this->Actor->GetY() + this->VelocityY * this->Engine->Timing.GetDeltaTime());
+
+    if (this->Actor->GetY() == PrevY)
+    {
+        this->VelocityY = 0;
+    }
+
+    if (this->Engine->Keys[KEY_SPACE] && this->VelocityY == 0)
+    {
+        this->VelocityY = 1.25;
     }
 
     return 0;
