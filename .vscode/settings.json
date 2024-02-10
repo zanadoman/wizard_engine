@@ -4,6 +4,7 @@
     ],
     
     "cSpell.words": [
+        //Engine
         "flac",
         "wavpack",
         "windowpos",
@@ -37,6 +38,9 @@
         "overlapboxes",
         "hitbox",
         "hitboxes",
+        //Demo
+        "shroom",
+        //Readme
         "ansimuz"
     ]
 }

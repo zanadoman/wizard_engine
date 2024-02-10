@@ -1,6 +1,6 @@
 #include "demo.hpp"
 
-game::game(engine* Engine) : Engine(Engine) {}
+game::game(engine* Engine) : Engine(Engine), Assets(Engine) {}
 
 game::~game() {}
 
