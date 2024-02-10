@@ -190,35 +190,17 @@ _ZN5pause6UpdateEv:
 	subq	$32, %rsp
 	.seh_stackalloc	32
 	.seh_endprologue
-	movq	16(%rcx), %rax
-	cmpb	$0, 168(%rax)
-	movq	%rcx, %rbx
-	je	.L5
-	movq	32(%rcx), %rcx
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
-	testb	$1, %al
-	movq	40(%rbx), %rax
-	jne	.L17
-	movl	$-32640, %r8d
-	movb	$-128, 22(%rax)
-	movw	%r8w, 20(%rax)
-.L7:
-	movq	56(%rbx), %rcx
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
-	testb	$1, %al
-	movq	64(%rbx), %rax
-	jne	.L18
-	movl	$-32640, %edx
-	movb	$-128, 22(%rax)
-	movw	%dx, 20(%rax)
-.L5:
-	movq	(%rbx), %rax
 	movl	$41, %edx
+	movq	(%rcx), %rax
+	movq	%rcx, %rbx
 	leaq	160(%rax), %rcx
 	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
-	jne	.L12
-.L8:
+	movq	16(%rbx), %rax
+	jne	.L16
+	cmpb	$0, 168(%rax)
+	jne	.L6
+.L10:
 	xorl	%eax, %eax
 .L3:
 	addq	$32, %rsp
@@ -226,29 +208,21 @@ _ZN5pause6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L12:
-	movq	16(%rbx), %rax
-	movb	$1, 168(%rax)
-	movl	$1, %eax
-	addq	$32, %rsp
-	popq	%rbx
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L17:
-	movl	$24672, %r9d
-	movb	$96, 22(%rax)
-	movw	%r9w, 20(%rax)
+.L6:
 	movq	32(%rbx), %rcx
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
-	testb	$4, %al
-	je	.L7
-	movq	16(%rbx), %rax
-	movb	$0, 168(%rax)
-	jmp	.L8
-	.p2align 4,,10
-	.p2align 3
-.L18:
+	testb	$1, %al
+	movq	40(%rbx), %rax
+	jne	.L17
+	movl	$-32640, %r8d
+	movb	$-128, 22(%rax)
+	movw	%r8w, 20(%rax)
+.L9:
+	movq	56(%rbx), %rcx
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
+	testb	$1, %al
+	movq	64(%rbx), %rax
+	je	.L11
 	movl	$24672, %ecx
 	movb	$96, 22(%rax)
 	movw	%cx, 20(%rax)
@@ -259,6 +233,33 @@ _ZN5pause6UpdateEv:
 	andl	$4, %edx
 	je	.L5
 	jmp	.L3
+	.p2align 4,,10
+	.p2align 3
+.L16:
+	movb	$1, 168(%rax)
+.L5:
+	movl	$1, %eax
+	jmp	.L3
+	.p2align 4,,10
+	.p2align 3
+.L17:
+	movl	$24672, %r9d
+	movb	$96, 22(%rax)
+	movw	%r9w, 20(%rax)
+	movq	32(%rbx), %rcx
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
+	testb	$4, %al
+	je	.L9
+	movq	16(%rbx), %rax
+	movb	$0, 168(%rax)
+	jmp	.L10
+	.p2align 4,,10
+	.p2align 3
+.L11:
+	movl	$-32640, %edx
+	movb	$-128, 22(%rax)
+	movw	%dx, 20(%rax)
+	jmp	.L5
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
@@ -286,5 +287,5 @@ _ZN5pause6UpdateEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor5texts4text4SetYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine4keysixENS_3keyE;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv;	.scl	2;	.type	32;	.endef

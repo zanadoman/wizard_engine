@@ -66,23 +66,14 @@ _ZN8infinite6UpdateEv:
 	.seh_stackalloc	32
 	.seh_endprologue
 	movq	%rcx, %rbx
-	leaq	16(%rcx), %rcx
+	leaq	96(%rcx), %rcx
+	call	_ZN5stats6UpdateEv
+	leaq	16(%rbx), %rcx
 	call	_ZN5pause6UpdateEv
-	testl	%eax, %eax
-	je	.L6
 	cmpl	$2, %eax
 	setne	%al
 	movzbl	%al, %eax
 	addl	%eax, %eax
-	addq	$32, %rsp
-	popq	%rbx
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L6:
-	leaq	96(%rbx), %rcx
-	call	_ZN5stats6UpdateEv
-	movl	$2, %eax
 	addq	$32, %rsp
 	popq	%rbx
 	ret
@@ -97,5 +88,5 @@ _ZN8infinite6UpdateEv:
 	.def	_ZN5statsC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors3NewEPvyddttd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor8textures3NewEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN5pause6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN5stats6UpdateEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN5pause6UpdateEv;	.scl	2;	.type	32;	.endef

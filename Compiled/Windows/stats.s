@@ -2,11 +2,11 @@
 	.text
 	.section .rdata,"dr"
 .LC2:
-	.ascii "GameTime: \0"
+	.ascii "GameTime: 0ms\0"
 .LC3:
-	.ascii "RenderTime: \0"
+	.ascii "RenderTime: 0ms\0"
 .LC4:
-	.ascii "FrameTime: \0"
+	.ascii "FrameTime: 0ms\0"
 	.text
 	.align 2
 	.p2align 4
@@ -154,11 +154,20 @@ _ZN5statsC2EPN3wze6engineEP4game:
 	.globl	_ZN5statsC1EPN3wze6engineEP4game
 	.def	_ZN5statsC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.set	_ZN5statsC1EPN3wze6engineEP4game,_ZN5statsC2EPN3wze6engineEP4game
+	.section .rdata,"dr"
+.LC8:
+	.ascii "ms\0"
+.LC9:
+	.ascii "GameTime: \0"
+.LC10:
+	.ascii "RenderTime: \0"
+.LC11:
+	.ascii "FrameTime: \0"
 	.section	.text.unlikely,"x"
 	.align 2
-.LCOLDB8:
+.LCOLDB12:
 	.text
-.LHOTB8:
+.LHOTB12:
 	.align 2
 	.p2align 4
 	.globl	_ZN5stats6UpdateEv
@@ -166,6 +175,8 @@ _ZN5statsC2EPN3wze6engineEP4game:
 	.seh_proc	_ZN5stats6UpdateEv
 _ZN5stats6UpdateEv:
 .LFB6882:
+	pushq	%r15
+	.seh_pushreg	%r15
 	pushq	%r14
 	.seh_pushreg	%r14
 	pushq	%r13
@@ -180,137 +191,162 @@ _ZN5stats6UpdateEv:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$112, %rsp
-	.seh_stackalloc	112
-	movaps	%xmm6, 96(%rsp)
-	.seh_savexmm	%xmm6, 96
+	subq	$152, %rsp
+	.seh_stackalloc	152
+	movaps	%xmm6, 128(%rsp)
+	.seh_savexmm	%xmm6, 128
 	.seh_endprologue
-	leaq	80(%rsp), %rsi
+	leaq	.LC8(%rip), %r15
+	leaq	112(%rsp), %rdi
 	movq	%rcx, %rbx
-	movq	%rsi, %rcx
+	leaq	104(%rsp), %rbp
+	movq	%rdi, %rcx
 .LEHB0:
 	call	_ZN3neo6stringC1Ev
 .LEHE0:
-	movq	(%rbx), %rax
-	movq	24(%rbx), %r14
-	leaq	400(%rax), %rcx
+	movq	(%rbx), %rsi
+	movq	24(%rbx), %rax
+	movq	%r15, 104(%rsp)
+	leaq	400(%rsi), %rcx
+	movq	%rax, 40(%rsp)
 .LEHB1:
 	call	_ZN3wze6engine6timing11GetGameTimeEv
-	movl	%eax, %eax
+	movl	%eax, %esi
+	leaq	88(%rsp), %r14
+	leaq	96(%rsp), %r13
+	movq	%rdi, %rcx
+	movq	%rsi, 96(%rsp)
+	leaq	.LC9(%rip), %rsi
+	movq	%rsi, 88(%rsp)
+	leaq	64(%rsp), %rsi
+	movq	%rsi, %rdx
+	movq	%r14, 64(%rsp)
+	movq	$1, 72(%rsp)
+	call	_ZN3neo6stringaSESt16initializer_listIPKcE
 	leaq	48(%rsp), %r12
-	leaq	64(%rsp), %r13
-	movq	%rsi, %rcx
-	movq	%rax, 72(%rsp)
-	movq	%r12, %rdx
-	leaq	.LC2(%rip), %rax
-	leaq	72(%rsp), %rbp
-	movq	%rax, 64(%rsp)
+	movq	%rax, %rcx
 	movq	%r13, 48(%rsp)
 	movq	$1, 56(%rsp)
-	call	_ZN3neo6stringaSESt16initializer_listIPKcE
-	leaq	32(%rsp), %rdi
-	movq	%rax, %rcx
-	movq	%rbp, 32(%rsp)
-	movq	$1, 40(%rsp)
-	movq	%rdi, %rdx
+	movq	%r12, %rdx
 	call	_ZN3neo6stringpLESt16initializer_listIyE
 	movq	%rax, %rcx
+	movq	%rsi, %rdx
+	movq	%rbp, 64(%rsp)
+	movq	$1, 72(%rsp)
+	call	_ZN3neo6stringpLESt16initializer_listIPKcE
+	movq	%rax, %rcx
 	call	_ZN3neo6stringclEv
+	movq	40(%rsp), %rcx
 	movq	%rax, %rdx
-	movq	%r14, %rcx
 	call	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc
+	movq	24(%rbx), %rax
 	movq	16(%rbx), %rcx
-	movq	24(%rbx), %r14
+	movq	%rax, 40(%rsp)
 	call	_ZN3wze6engine6actors5actor4GetXEv
 	movq	24(%rbx), %rcx
 	movapd	%xmm0, %xmm6
 	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv
 	shrw	%ax
 	pxor	%xmm1, %xmm1
-	movq	%r14, %rcx
+	movq	40(%rsp), %rcx
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm1
 	addsd	%xmm6, %xmm1
 	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd
-	movq	(%rbx), %rax
-	movq	32(%rbx), %r14
-	leaq	400(%rax), %rcx
+	movq	(%rbx), %rdx
+	movq	32(%rbx), %rax
+	movq	%r15, 104(%rsp)
+	leaq	400(%rdx), %rcx
+	movq	%rax, 40(%rsp)
 	call	_ZN3wze6engine6timing13GetRenderTimeEv
-	movl	%eax, %eax
-	movq	%r12, %rdx
-	movq	%rsi, %rcx
-	movq	%r13, 48(%rsp)
-	movq	%rax, 72(%rsp)
-	leaq	.LC3(%rip), %rax
-	movq	%rax, 64(%rsp)
-	movq	$1, 56(%rsp)
+	movl	%eax, %edx
+	movq	%rdi, %rcx
+	movq	%r14, 64(%rsp)
+	movq	%rdx, 96(%rsp)
+	leaq	.LC10(%rip), %rdx
+	movq	%rdx, 88(%rsp)
+	movq	%rsi, %rdx
+	movq	$1, 72(%rsp)
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE
 	movq	%rax, %rcx
-	movq	%rdi, %rdx
-	movq	%rbp, 32(%rsp)
-	movq	$1, 40(%rsp)
+	movq	%r12, %rdx
+	movq	%r13, 48(%rsp)
+	movq	$1, 56(%rsp)
 	call	_ZN3neo6stringpLESt16initializer_listIyE
 	movq	%rax, %rcx
+	movq	%rsi, %rdx
+	movq	%rbp, 64(%rsp)
+	movq	$1, 72(%rsp)
+	call	_ZN3neo6stringpLESt16initializer_listIPKcE
+	movq	%rax, %rcx
 	call	_ZN3neo6stringclEv
+	movq	40(%rsp), %rcx
 	movq	%rax, %rdx
-	movq	%r14, %rcx
 	call	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc
+	movq	32(%rbx), %rax
 	movq	16(%rbx), %rcx
-	movq	32(%rbx), %r14
+	movq	%rax, 40(%rsp)
 	call	_ZN3wze6engine6actors5actor4GetXEv
 	movq	32(%rbx), %rcx
 	movapd	%xmm0, %xmm6
 	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv
 	shrw	%ax
 	pxor	%xmm1, %xmm1
-	movq	%r14, %rcx
+	movq	40(%rsp), %rcx
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm1
 	addsd	%xmm6, %xmm1
 	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd
-	movq	(%rbx), %rax
-	movq	40(%rbx), %r14
-	leaq	400(%rax), %rcx
+	movq	(%rbx), %rdx
+	movq	40(%rbx), %rax
+	movq	%r15, 104(%rsp)
+	leaq	400(%rdx), %rcx
+	movq	%rax, 40(%rsp)
 	call	_ZN3wze6engine6timing12GetFrameTimeEv
-	movl	%eax, %eax
-	movq	%r12, %rdx
-	movq	%rsi, %rcx
-	movq	%r13, 48(%rsp)
-	movq	%rax, 72(%rsp)
-	leaq	.LC4(%rip), %rax
-	movq	%rax, 64(%rsp)
-	movq	$1, 56(%rsp)
+	movl	%eax, %edx
+	movq	%rdi, %rcx
+	movq	%r14, 64(%rsp)
+	movq	%rdx, 96(%rsp)
+	leaq	.LC11(%rip), %rdx
+	movq	%rdx, 88(%rsp)
+	movq	%rsi, %rdx
+	movq	$1, 72(%rsp)
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE
 	movq	%rax, %rcx
-	movq	%rdi, %rdx
-	movq	%rbp, 32(%rsp)
-	movq	$1, 40(%rsp)
+	movq	%r12, %rdx
+	movq	%r13, 48(%rsp)
+	movq	$1, 56(%rsp)
 	call	_ZN3neo6stringpLESt16initializer_listIyE
 	movq	%rax, %rcx
+	movq	%rsi, %rdx
+	movq	%rbp, 64(%rsp)
+	movq	$1, 72(%rsp)
+	call	_ZN3neo6stringpLESt16initializer_listIPKcE
+	movq	%rax, %rcx
 	call	_ZN3neo6stringclEv
+	movq	40(%rsp), %rcx
 	movq	%rax, %rdx
-	movq	%r14, %rcx
 	call	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc
 	movq	16(%rbx), %rcx
-	movq	40(%rbx), %rdi
+	movq	40(%rbx), %rsi
 	call	_ZN3wze6engine6actors5actor4GetXEv
 	movq	40(%rbx), %rcx
 	movapd	%xmm0, %xmm6
 	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv
 	shrw	%ax
 	pxor	%xmm1, %xmm1
-	movq	%rdi, %rcx
+	movq	%rsi, %rcx
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm1
 	addsd	%xmm6, %xmm1
 	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd
 .LEHE1:
-	movq	%rsi, %rcx
+	movq	%rdi, %rcx
 	call	_ZN3neo6stringD1Ev
 	nop
-	movaps	96(%rsp), %xmm6
+	movaps	128(%rsp), %xmm6
 	xorl	%eax, %eax
-	addq	$112, %rsp
+	addq	$152, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
@@ -318,6 +354,7 @@ _ZN5stats6UpdateEv:
 	popq	%r12
 	popq	%r13
 	popq	%r14
+	popq	%r15
 	ret
 .L5:
 	movq	%rax, %rbx
@@ -345,19 +382,20 @@ _ZN5stats6UpdateEv:
 	.section	.text.unlikely,"x"
 	.def	_ZN5stats6UpdateEv.cold;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN5stats6UpdateEv.cold
-	.seh_stackalloc	168
-	.seh_savereg	%rbx, 112
-	.seh_savereg	%rsi, 120
-	.seh_savereg	%rdi, 128
-	.seh_savereg	%rbp, 136
-	.seh_savexmm	%xmm6, 96
-	.seh_savereg	%r12, 144
-	.seh_savereg	%r13, 152
-	.seh_savereg	%r14, 160
+	.seh_stackalloc	216
+	.seh_savereg	%rbx, 152
+	.seh_savereg	%rsi, 160
+	.seh_savereg	%rdi, 168
+	.seh_savereg	%rbp, 176
+	.seh_savexmm	%xmm6, 128
+	.seh_savereg	%r12, 184
+	.seh_savereg	%r13, 192
+	.seh_savereg	%r14, 200
+	.seh_savereg	%r15, 208
 	.seh_endprologue
 _ZN5stats6UpdateEv.cold:
 .L4:
-	movq	%rsi, %rcx
+	movq	%rdi, %rcx
 	call	_ZN3neo6stringD1Ev
 	movq	%rbx, %rcx
 .LEHB2:
@@ -372,7 +410,7 @@ _ZN5stats6UpdateEv.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC6882-.LLSDACSBC6882
 .LLSDACSBC6882:
-	.uleb128 .LEHB2-.LCOLDB8
+	.uleb128 .LEHB2-.LCOLDB12
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
@@ -381,9 +419,9 @@ _ZN5stats6UpdateEv.cold:
 	.text
 	.section	.text.unlikely,"x"
 	.seh_endproc
-.LCOLDE8:
+.LCOLDE12:
 	.text
-.LHOTE8:
+.LHOTE12:
 	.section .rdata,"dr"
 	.align 8
 .LC0:
@@ -415,6 +453,7 @@ _ZN5stats6UpdateEv.cold:
 	.def	_ZN3wze6engine6timing11GetGameTimeEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo6stringaSESt16initializer_listIPKcE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo6stringpLESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
+	.def	_ZN3neo6stringpLESt16initializer_listIPKcE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo6stringclEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6timing13GetRenderTimeEv;	.scl	2;	.type	32;	.endef

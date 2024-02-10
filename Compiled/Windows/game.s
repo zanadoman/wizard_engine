@@ -136,10 +136,12 @@ _ZN4gameC2EPN3wze6engineE.cold:
 	.seh_proc	_ZN4gameD2Ev
 _ZN4gameD2Ev:
 .LFB6886:
+	pushq	%rsi
+	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
+	subq	$40, %rsp
+	.seh_stackalloc	40
 	.seh_endprologue
 	movq	%rcx, %rbx
 	movq	136(%rcx), %rcx
@@ -148,10 +150,13 @@ _ZN4gameD2Ev:
 	movl	$80, %edx
 	call	_ZdlPvy
 .L9:
-	movq	144(%rbx), %rcx
-	testq	%rcx, %rcx
+	movq	144(%rbx), %rsi
+	testq	%rsi, %rsi
 	je	.L10
-	movl	$160, %edx
+	movq	%rsi, %rcx
+	call	_ZN6normalD1Ev
+	movl	$184, %edx
+	movq	%rsi, %rcx
 	call	_ZdlPvy
 .L10:
 	movq	152(%rbx), %rcx
@@ -169,8 +174,9 @@ _ZN4gameD2Ev:
 	movq	56(%rbx), %rcx
 	call	free
 	movq	40(%rbx), %rcx
-	addq	$32, %rsp
+	addq	$40, %rsp
 	popq	%rbx
+	popq	%rsi
 	jmp	free
 	.seh_endproc
 	.globl	_ZN4gameD1Ev
@@ -210,9 +216,12 @@ _ZN4game12SwitchScenesE5scene:
 	je	.L48
 .L25:
 	movq	(%rbx), %rax
-	leaq	80(%rax), %rcx
+	leaq	32(%rsp), %rdx
+	movq	$0, 32(%rsp)
+	movq	$0, 40(%rsp)
+	leaq	240(%rax), %rcx
 .LEHB4:
-	call	_ZN3wze6engine6camera6UnbindEv
+	call	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE
 	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
 	leaq	80(%rax), %rcx
@@ -221,12 +230,6 @@ _ZN4game12SwitchScenesE5scene:
 	pxor	%xmm1, %xmm1
 	leaq	80(%rax), %rcx
 	call	_ZN3wze6engine6camera4SetYEd
-	movq	(%rbx), %rax
-	leaq	32(%rsp), %rdx
-	movq	$0, 32(%rsp)
-	movq	$0, 40(%rsp)
-	leaq	240(%rax), %rcx
-	call	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE
 	cmpl	$1, %esi
 	je	.L29
 	cmpl	$2, %esi
@@ -267,10 +270,13 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 4,,10
 	.p2align 3
 .L23:
-	movq	144(%rcx), %rcx
-	testq	%rcx, %rcx
+	movq	144(%rcx), %rdi
+	testq	%rdi, %rdi
 	je	.L27
-	movl	$160, %edx
+	movq	%rdi, %rcx
+	call	_ZN6normalD1Ev
+	movl	$184, %edx
+	movq	%rdi, %rcx
 	call	_ZdlPvy
 .L27:
 	movq	$0, 144(%rbx)
@@ -306,7 +312,7 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 4,,10
 	.p2align 3
 .L29:
-	movl	$160, %ecx
+	movl	$184, %ecx
 .LEHB8:
 	call	_Znwy
 .LEHE8:
@@ -382,7 +388,7 @@ _ZN4game12SwitchScenesE5scene.cold:
 	call	_Unwind_Resume
 .L33:
 	movq	%rdi, %rcx
-	movl	$160, %edx
+	movl	$184, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
@@ -476,10 +482,10 @@ _ZN4game6UpdateEv:
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	free;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera6UnbindEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN6normalD1Ev;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera4SetXEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera4SetYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.def	_ZN8infiniteC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.def	_ZN6normalC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.def	_ZN4menu6UpdateEv;	.scl	2;	.type	32;	.endef

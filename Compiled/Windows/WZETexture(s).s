@@ -974,10 +974,10 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEv:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4GetYEd
-	.def	_ZN3wze6engine6actors5actor8textures7texture4GetYEd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4GetYEd
-_ZN3wze6engine6actors5actor8textures7texture4GetYEd:
+	.globl	_ZN3wze6engine6actors5actor8textures7texture4SetYEd
+	.def	_ZN3wze6engine6actors5actor8textures7texture4SetYEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4SetYEd
+_ZN3wze6engine6actors5actor8textures7texture4SetYEd:
 .LFB6900:
 	pushq	%rbx
 	.seh_pushreg	%rbx

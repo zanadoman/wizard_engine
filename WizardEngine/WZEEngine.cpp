@@ -7,7 +7,7 @@ namespace wze
 {
     engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Threads(this), Assets(this), Timing(this)
     {
-        array<uint64> LogoTextures(29);
+        array<uint64> LogoTextures(30);
         actor LogoActor;
         flipbook LogoFlipbook;
         string str;
