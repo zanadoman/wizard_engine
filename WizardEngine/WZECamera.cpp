@@ -21,9 +21,43 @@ namespace wze
         return this->X;
     }
 
+    double engine::camera::SetX(double X)
+    {
+        if (X != X)
+        {
+            printf("wze::engine.camera.SetX(): X must not be NaN\nParams: X: %lf\n", X);
+            exit(1);
+        }
+
+        if (this->XActor != 0)
+        {
+            printf("wze::engine.camera.SetX(): Illegal to modify X while X is bound to an Actor\nParams: X: %lf\n", X);
+            exit(1);
+        }
+
+        return this->X = X;
+    }
+
     double engine::camera::GetY()
     {
         return this->Y;
+    }
+
+    double engine::camera::SetY(double Y)
+    {
+        if (Y != Y)
+        {
+            printf("wze::engine.camera.SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            exit(1);
+        }
+
+        if (this->YActor != 0)
+        {
+            printf("wze::engine.camera.SetY(): Illegal to modify Y while Y is bound to an Actor\nParams: Y: %lf\n", Y);
+            exit(1);
+        }
+
+        return this->Y = Y;
     }
 
     double engine::camera::GetOffsetX()

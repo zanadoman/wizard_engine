@@ -127,7 +127,9 @@ namespace wze
 
                 public:
                     double GetX();
+                    double SetX(double X);
                     double GetY();
+                    double SetY(double Y);
                     double GetOffsetX();
                     double SetOffsetX(double OffsetX);
                     double GetOffsetY();

@@ -57,6 +57,9 @@ uint8 game::SwitchScenes(scene Scene)
             break;
         }
 
+        this->Engine->Camera.Unbind();
+        this->Engine->Camera.SetX(0);
+        this->Engine->Camera.SetY(0);
         this->Engine->Actors.Purge({});
 
         switch (Scene)

@@ -184,9 +184,9 @@ _ZN4gameD2Ev:
 	.set	_ZN4gameD1Ev,_ZN4gameD2Ev
 	.section	.text.unlikely
 	.align 2
-.LCOLDB1:
+.LCOLDB2:
 	.text
-.LHOTB1:
+.LHOTB2:
 	.align 2
 	.p2align 4
 	.globl	_ZN4game12SwitchScenesE5scene
@@ -218,10 +218,21 @@ _ZN4game12SwitchScenesE5scene:
 	je	.L50
 .L27:
 	movq	(%rbx), %rax
+	leaq	80(%rax), %rdi
+.LEHB4:
+	call	_ZN3wze6engine6camera6UnbindEv@PLT
+	movq	(%rbx), %rax
+	pxor	%xmm0, %xmm0
+	leaq	80(%rax), %rdi
+	call	_ZN3wze6engine6camera4SetXEd@PLT
+	movq	(%rbx), %rax
+	pxor	%xmm0, %xmm0
+	leaq	80(%rax), %rdi
+	call	_ZN3wze6engine6camera4SetYEd@PLT
+	movq	(%rbx), %rax
 	xorl	%esi, %esi
 	xorl	%edx, %edx
 	leaq	240(%rax), %rdi
-.LEHB4:
 	call	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE@PLT
 	cmpl	$1, %ebp
 	je	.L31
@@ -420,7 +431,7 @@ _ZN4game12SwitchScenesE5scene.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8156-.LLSDACSBC8156
 .LLSDACSBC8156:
-	.uleb128 .LEHB10-.LCOLDB1
+	.uleb128 .LEHB10-.LCOLDB2
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
@@ -430,9 +441,9 @@ _ZN4game12SwitchScenesE5scene.cold:
 	.size	_ZN4game12SwitchScenesE5scene, .-_ZN4game12SwitchScenesE5scene
 	.section	.text.unlikely
 	.size	_ZN4game12SwitchScenesE5scene.cold, .-_ZN4game12SwitchScenesE5scene.cold
-.LCOLDE1:
+.LCOLDE2:
 	.text
-.LHOTE1:
+.LHOTE2:
 	.align 2
 	.p2align 4
 	.globl	_ZN4game6UpdateEv
