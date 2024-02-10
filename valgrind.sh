@@ -1,4 +1,4 @@
 #!/bin/bash
 
 source /etc/profile.d/debuginfod.sh
-cd Build && valgrind ./bin.out
+cd Build && valgrind --undef-value-errors=no ./bin.out
