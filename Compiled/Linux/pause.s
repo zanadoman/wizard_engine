@@ -185,34 +185,16 @@ _ZN5pause6UpdateEv:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	movq	16(%rdi), %rax
+	movq	(%rdi), %rax
 	movq	%rdi, %rbx
-	cmpb	$0, 168(%rax)
-	je	.L6
-	movq	32(%rdi), %rdi
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
-	testb	$1, %al
-	movq	40(%rbx), %rax
-	jne	.L19
-	movl	$-32640, %esi
-	movb	$-128, 22(%rax)
-	movw	%si, 20(%rax)
-.L8:
-	movq	56(%rbx), %rdi
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
-	testb	$1, %al
-	movq	64(%rbx), %rax
-	jne	.L20
-	movl	$-32640, %edx
-	movb	$-128, 22(%rax)
-	movw	%dx, 20(%rax)
-.L6:
-	movq	(%rbx), %rax
 	movl	$41, %esi
 	leaq	160(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
-	jne	.L13
+	movq	16(%rbx), %rax
+	jne	.L18
+	cmpb	$0, 168(%rax)
+	jne	.L7
 	xorl	%eax, %eax
 .L4:
 	popq	%rbx
@@ -221,10 +203,41 @@ _ZN5pause6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L13:
+.L7:
 	.cfi_restore_state
-	movq	16(%rbx), %rax
+	movq	32(%rbx), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	testb	$1, %al
+	movq	40(%rbx), %rax
+	jne	.L19
+	movl	$-32640, %esi
+	movb	$-128, 22(%rax)
+	movw	%si, 20(%rax)
+.L10:
+	movq	56(%rbx), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	testb	$1, %al
+	movq	64(%rbx), %rax
+	je	.L12
+	movl	$24672, %ecx
+	movb	$96, 22(%rax)
+	movw	%cx, 20(%rax)
+	movq	56(%rbx), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	movl	%eax, %edx
+	movl	$2, %eax
+	andl	$4, %edx
+	je	.L6
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L18:
+	.cfi_restore_state
 	movb	$1, 168(%rax)
+.L6:
 	movl	$1, %eax
 	popq	%rbx
 	.cfi_remember_state
@@ -240,24 +253,18 @@ _ZN5pause6UpdateEv:
 	movq	32(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
 	testb	$4, %al
-	je	.L8
+	je	.L10
 	movq	16(%rbx), %rax
 	movb	$0, 168(%rax)
 	xorl	%eax, %eax
 	jmp	.L4
 	.p2align 4,,10
 	.p2align 3
-.L20:
-	movl	$24672, %ecx
-	movb	$96, 22(%rax)
-	movw	%cx, 20(%rax)
-	movq	56(%rbx), %rdi
-	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
-	movl	%eax, %edx
-	movl	$2, %eax
-	andl	$4, %edx
-	je	.L6
-	jmp	.L4
+.L12:
+	movl	$-32640, %edx
+	movb	$-128, 22(%rax)
+	movw	%dx, 20(%rax)
+	jmp	.L6
 	.cfi_endproc
 .LFE8149:
 	.size	_ZN5pause6UpdateEv, .-_ZN5pause6UpdateEv

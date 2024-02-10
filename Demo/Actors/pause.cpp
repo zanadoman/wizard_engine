@@ -48,6 +48,12 @@ pause::pause(engine* Engine, game* Game) : Engine(Engine), Game(Game)
 
 pause::state pause::Update()
 {
+    if (this->Engine->Keys[KEY_ESCAPE])
+    {
+        this->Actor->Visible = true;
+        return PAUSED;
+    }
+
     if (this->Actor->Visible)
     {
         if (this->ButtonResume->GetButtonState() & BTN_HOVERED)
@@ -86,11 +92,7 @@ pause::state pause::Update()
             this->ButtonMenuColor->ColorG = 128;
             this->ButtonMenuColor->ColorB = 128;
         }
-    }
 
-    if (this->Engine->Keys[KEY_ESCAPE])
-    {
-        this->Actor->Visible = true;
         return PAUSED;
     }
 
