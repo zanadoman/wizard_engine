@@ -203,20 +203,13 @@ namespace wze
 
         for (uint64 i = 1; i < this->Actors.Actors.Length(); i++)
         {
-            if (this->Actors.Actors[i] == NULL)
+            if (this->Actors.Actors[i] == NULL || this->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length() < 2)
             {
                 continue;
             }
-
-            if (1 < this->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length())
-            {
-                CursorX = this->Mouse.GetX(this->Actors.Actors[i]->Layer);
-                CursorY = this->Mouse.GetY(this->Actors.Actors[i]->Layer);
-            }
-            else
-            {
-                continue;
-            }
+            
+            CursorX = this->Mouse.GetX(this->Actors.Actors[i]->Layer);
+            CursorY = this->Mouse.GetY(this->Actors.Actors[i]->Layer);
 
             for (uint64 j = 1; j < this->Actors.Actors[i]->Overlapboxes.Overlapboxes.Length(); j++)
             {

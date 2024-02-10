@@ -323,10 +323,10 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	pushq	%rbx
 	.cfi_def_cfa_offset 56
 	.cfi_offset 3, -56
-	subq	$88, %rsp
-	.cfi_def_cfa_offset 144
+	subq	$72, %rsp
+	.cfi_def_cfa_offset 128
 	movq	256(%rdi), %rdi
-	movq	%r13, 8(%rsp)
+	movq	%r13, (%rsp)
 	jmp	.L40
 	.p2align 4,,10
 	.p2align 3
@@ -342,19 +342,19 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	cmpq	$1, 152(%rax)
 	jbe	.L41
 	movsd	272(%rax), %xmm0
-	movq	8(%rsp), %rdi
+	movq	(%rsp), %rdi
 	call	_ZN3wze6engine5mouse4GetXEd@PLT
 	movq	256(%r15), %rax
 	cmpq	248(%r15), %r14
 	jnb	.L95
 	movq	(%rax,%rbp), %rax
-	movq	8(%rsp), %rdi
-	movsd	%xmm0, 16(%rsp)
+	movq	(%rsp), %rdi
+	movsd	%xmm0, 8(%rsp)
 	movsd	272(%rax), %xmm0
 	call	_ZN3wze6engine5mouse4GetYEd@PLT
 	movq	248(%r15), %rcx
 	movq	256(%r15), %rdi
-	movsd	16(%rsp), %xmm1
+	movsd	8(%rsp), %xmm1
 	movapd	%xmm0, %xmm4
 	cmpq	%rcx, %r14
 	jnb	.L64
@@ -427,7 +427,7 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	cmpq	%rcx, %r14
 	jb	.L40
 .L94:
-	addq	$88, %rsp
+	addq	$72, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 56
 	xorl	%eax, %eax
@@ -450,55 +450,55 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	.cfi_restore_state
 	leaq	160(%r13), %rax
 	movl	$232, %esi
-	movsd	%xmm4, 32(%rsp)
+	movsd	%xmm4, 24(%rsp)
 	movq	%rax, %rdi
-	movsd	%xmm1, 24(%rsp)
-	movq	%rax, 16(%rsp)
+	movsd	%xmm1, 16(%rsp)
+	movq	%rax, 8(%rsp)
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
-	movsd	24(%rsp), %xmm1
-	movsd	32(%rsp), %xmm4
+	movsd	16(%rsp), %xmm1
+	movsd	24(%rsp), %xmm4
 	testb	%al, %al
 	je	.L99
-	movl	$11, 68(%rsp)
+	movl	$11, 56(%rsp)
 	movl	$43, %r15d
 	movl	$35, %r8d
 	movl	$3, %r10d
 	movl	$67, %r11d
 	movl	$19, %edx
 	movl	$83, %ecx
-	movl	$75, 72(%rsp)
-	movl	$51, 76(%rsp)
+	movl	$75, 52(%rsp)
+	movl	$51, 60(%rsp)
 .L51:
-	movq	16(%rsp), %rdi
+	movq	8(%rsp), %rdi
 	movl	$233, %esi
-	movl	%r10d, 64(%rsp)
-	movl	%r11d, 60(%rsp)
-	movl	%edx, 56(%rsp)
-	movl	%ecx, 52(%rsp)
-	movl	%r8d, 24(%rsp)
-	movsd	%xmm4, 40(%rsp)
-	movsd	%xmm1, 32(%rsp)
+	movl	%r8d, 48(%rsp)
+	movl	%r10d, 44(%rsp)
+	movl	%edx, 40(%rsp)
+	movl	%ecx, 36(%rsp)
+	movl	%r11d, 32(%rsp)
+	movsd	%xmm4, 24(%rsp)
+	movsd	%xmm1, 16(%rsp)
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
-	movl	24(%rsp), %r8d
-	movsd	32(%rsp), %xmm1
+	movsd	16(%rsp), %xmm1
+	movsd	24(%rsp), %xmm4
 	testb	%al, %al
-	movsd	40(%rsp), %xmm4
-	movl	52(%rsp), %ecx
-	movl	56(%rsp), %edx
-	movl	60(%rsp), %r11d
-	movl	64(%rsp), %r10d
+	movl	32(%rsp), %r11d
+	movl	36(%rsp), %ecx
+	movl	40(%rsp), %edx
+	movl	44(%rsp), %r10d
+	movl	48(%rsp), %r8d
 	je	.L100
 .L54:
-	movq	16(%rsp), %rdi
+	movq	8(%rsp), %rdi
 	movl	$234, %esi
-	movsd	%xmm4, 32(%rsp)
-	movsd	%xmm1, 24(%rsp)
+	movsd	%xmm4, 24(%rsp)
+	movsd	%xmm1, 16(%rsp)
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	movq	248(%r13), %rcx
 	movq	256(%r13), %rdi
 	testb	%al, %al
-	movsd	24(%rsp), %xmm1
-	movsd	32(%rsp), %xmm4
+	movsd	16(%rsp), %xmm1
+	movsd	24(%rsp), %xmm4
 	jne	.L46
 	cmpq	%rcx, %r14
 	jnb	.L101
@@ -507,9 +507,9 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	cmpq	152(%rax), %rbx
 	jnb	.L102
 	movq	(%rsi,%r12), %rax
-	movl	68(%rsp), %r15d
+	movl	56(%rsp), %r15d
 	testb	$32, 120(%rax)
-	cmovne	72(%rsp), %r15d
+	cmovne	52(%rsp), %r15d
 	jmp	.L63
 .L100:
 	movq	256(%r13), %rax
@@ -522,9 +522,9 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	movq	(%rsi,%r12), %rax
 	testb	$8, 120(%rax)
 	jne	.L75
-	movl	%r10d, 68(%rsp)
+	movl	%r10d, 56(%rsp)
 	movl	%r8d, %r15d
-	movl	%r11d, 72(%rsp)
+	movl	%r11d, 52(%rsp)
 	jmp	.L54
 .L99:
 	movq	256(%r13), %rax
@@ -546,13 +546,13 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	andl	$-4, %edx
 	addl	$13, %edx
 	cmpl	$1, %eax
-	movl	%edx, 68(%rsp)
+	movl	%edx, 56(%rsp)
 	sbbl	%edx, %edx
 	andl	$-4, %edx
 	addl	$77, %edx
 	cmpl	$1, %eax
 	sbbl	%r8d, %r8d
-	movl	%edx, 72(%rsp)
+	movl	%edx, 52(%rsp)
 	andl	$-4, %r8d
 	addl	$37, %r8d
 	cmpl	$1, %eax
@@ -568,7 +568,7 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	andl	$-4, %edx
 	addl	$53, %edx
 	cmpl	$1, %eax
-	movl	%edx, 76(%rsp)
+	movl	%edx, 60(%rsp)
 	sbbl	%edx, %edx
 	andl	$-4, %edx
 	addl	$21, %edx
@@ -588,16 +588,16 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	xorl	%eax, %eax
 	ret
 .L75:
-	.cfi_def_cfa_offset 144
+	.cfi_def_cfa_offset 128
 	.cfi_offset 3, -56
 	.cfi_offset 6, -48
 	.cfi_offset 12, -40
 	.cfi_offset 13, -32
 	.cfi_offset 14, -24
 	.cfi_offset 15, -16
-	movl	%edx, 68(%rsp)
-	movl	76(%rsp), %r15d
-	movl	%ecx, 72(%rsp)
+	movl	%edx, 56(%rsp)
+	movl	60(%rsp), %r15d
+	movl	%ecx, 52(%rsp)
 	jmp	.L54
 .L64:
 	leaq	.LC0(%rip), %rdi

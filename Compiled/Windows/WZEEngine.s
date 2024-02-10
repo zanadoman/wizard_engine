@@ -436,28 +436,28 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	je	.L87
-	movl	$11, 48(%rsp)
+	movl	$11, 52(%rsp)
 	movl	$43, %r12d
 	movl	$35, %r9d
 	movl	$3, %r10d
-	movl	$75, 52(%rsp)
+	movl	$75, 48(%rsp)
 	movl	$67, %r11d
 	movl	$83, %r8d
-	movl	$51, 56(%rsp)
-	movl	$19, 60(%rsp)
+	movl	$51, 60(%rsp)
+	movl	$19, 56(%rsp)
 .L45:
 	movl	$233, %edx
 	movq	%r14, %rcx
-	movl	%r10d, 44(%rsp)
-	movl	%r11d, 40(%rsp)
+	movl	%r9d, 44(%rsp)
+	movl	%r10d, 40(%rsp)
 	movl	%r8d, 36(%rsp)
-	movl	%r9d, 32(%rsp)
+	movl	%r11d, 32(%rsp)
 	call	_ZN3wze6engine4keysixENS_3keyE
-	movl	32(%rsp), %r9d
+	movl	32(%rsp), %r11d
 	movl	36(%rsp), %r8d
 	testb	%al, %al
-	movl	40(%rsp), %r11d
-	movl	44(%rsp), %r10d
+	movl	40(%rsp), %r10d
+	movl	44(%rsp), %r9d
 	je	.L88
 .L48:
 	movl	$234, %edx
@@ -474,9 +474,9 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	cmpq	152(%rax), %rbx
 	jnb	.L86
 	movq	(%rdx,%rdi), %rax
-	movl	48(%rsp), %r12d
+	movl	52(%rsp), %r12d
 	testb	$32, 120(%rax)
-	cmovne	52(%rsp), %r12d
+	cmovne	48(%rsp), %r12d
 	jmp	.L57
 	.p2align 4,,10
 	.p2align 3
@@ -505,9 +505,9 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	movq	(%rdx,%rdi), %rax
 	testb	$8, 120(%rax)
 	jne	.L69
-	movl	%r10d, 48(%rsp)
+	movl	%r10d, 52(%rsp)
 	movl	%r9d, %r12d
-	movl	%r11d, 52(%rsp)
+	movl	%r11d, 48(%rsp)
 	jmp	.L48
 .L87:
 	movq	256(%r13), %rax
@@ -529,13 +529,13 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	andl	$-4, %ecx
 	addl	$13, %ecx
 	cmpl	$1, %eax
-	movl	%ecx, 48(%rsp)
+	movl	%ecx, 52(%rsp)
 	sbbl	%ecx, %ecx
 	andl	$-4, %ecx
 	addl	$77, %ecx
 	cmpl	$1, %eax
 	sbbl	%r9d, %r9d
-	movl	%ecx, 52(%rsp)
+	movl	%ecx, 48(%rsp)
 	andl	$-4, %r9d
 	addl	$37, %r9d
 	cmpl	$1, %eax
@@ -551,21 +551,21 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	andl	$-4, %ecx
 	addl	$53, %ecx
 	cmpl	$1, %eax
-	movl	%ecx, 56(%rsp)
+	movl	%ecx, 60(%rsp)
 	sbbl	%ecx, %ecx
 	andl	$-4, %ecx
 	addl	$21, %ecx
 	cmpl	$1, %eax
 	sbbl	%r8d, %r8d
-	movl	%ecx, 60(%rsp)
+	movl	%ecx, 56(%rsp)
 	andl	$-4, %r8d
 	addl	$85, %r8d
 	jmp	.L45
 .L69:
-	movl	60(%rsp), %eax
-	movl	56(%rsp), %r12d
-	movl	%r8d, 52(%rsp)
-	movl	%eax, 48(%rsp)
+	movl	56(%rsp), %eax
+	movl	60(%rsp), %r12d
+	movl	%r8d, 48(%rsp)
+	movl	%eax, 52(%rsp)
 	jmp	.L48
 .L85:
 	leaq	.LC0(%rip), %rcx

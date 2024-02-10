@@ -151,13 +151,13 @@ _ZN4gameD2Ev:
 	movq	144(%rbx), %rcx
 	testq	%rcx, %rcx
 	je	.L10
-	movl	$112, %edx
+	movl	$160, %edx
 	call	_ZdlPvy
 .L10:
 	movq	152(%rbx), %rcx
 	testq	%rcx, %rcx
 	je	.L11
-	movl	$112, %edx
+	movl	$160, %edx
 	call	_ZdlPvy
 .L11:
 	movq	112(%rbx), %rcx
@@ -270,7 +270,7 @@ _ZN4game12SwitchScenesE5scene:
 	movq	144(%rcx), %rcx
 	testq	%rcx, %rcx
 	je	.L27
-	movl	$112, %edx
+	movl	$160, %edx
 	call	_ZdlPvy
 .L27:
 	movq	$0, 144(%rbx)
@@ -281,7 +281,7 @@ _ZN4game12SwitchScenesE5scene:
 	movq	152(%rcx), %rcx
 	testq	%rcx, %rcx
 	je	.L28
-	movl	$112, %edx
+	movl	$160, %edx
 	call	_ZdlPvy
 .L28:
 	movq	$0, 152(%rbx)
@@ -289,7 +289,7 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 4,,10
 	.p2align 3
 .L30:
-	movl	$112, %ecx
+	movl	$160, %ecx
 .LEHB6:
 	call	_Znwy
 .LEHE6:
@@ -306,7 +306,7 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 4,,10
 	.p2align 3
 .L29:
-	movl	$112, %ecx
+	movl	$160, %ecx
 .LEHB8:
 	call	_Znwy
 .LEHE8:
@@ -382,13 +382,13 @@ _ZN4game12SwitchScenesE5scene.cold:
 	call	_Unwind_Resume
 .L33:
 	movq	%rdi, %rcx
-	movl	$112, %edx
+	movl	$160, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
 .L34:
 	movq	%rdi, %rcx
-	movl	$112, %edx
+	movl	$160, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
