@@ -1,9 +1,9 @@
-	.file	"Pause.cpp"
+	.file	"pause.cpp"
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
-.LC2:
+.LC1:
 	.string	"Resume"
-.LC3:
+.LC2:
 	.string	"Menu"
 	.text
 	.align 2
@@ -19,16 +19,16 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	pushq	%rbp
 	.cfi_def_cfa_offset 24
 	.cfi_offset 6, -24
-	leaq	240(%rsi), %rbp
+	movq	%rsi, %rbp
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
 	movq	%rdi, %rbx
-	movq	%rsi, %rdi
 	subq	$16, %rsp
 	.cfi_def_cfa_offset 48
-	movq	%rsi, (%rbx)
-	movq	%rdx, 8(%rbx)
+	movq	%rsi, (%rdi)
+	movq	%rdx, 8(%rdi)
+	movq	%rsi, %rdi
 	call	_ZN3wze6engine6window9GetHeightEv@PLT
 	pxor	%xmm1, %xmm1
 	movq	(%rbx), %rdi
@@ -37,18 +37,17 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	cvtsi2sdl	%eax, %xmm1
 	movsd	%xmm1, 8(%rsp)
 	call	_ZN3wze6engine6window8GetWidthEv@PLT
-	movsd	.LC0(%rip), %xmm0
-	movsd	8(%rsp), %xmm1
-	cmpw	$1, %ax
-	ja	.L2
 	pxor	%xmm0, %xmm0
-.L2:
 	pxor	%xmm2, %xmm2
 	xorl	%r8d, %r8d
+	shrw	%ax
+	movsd	8(%rsp), %xmm1
 	xorl	%ecx, %ecx
 	xorl	%edx, %edx
+	movzwl	%ax, %eax
 	xorl	%esi, %esi
-	movq	%rbp, %rdi
+	leaq	240(%rbp), %rdi
+	cvtsi2sdl	%eax, %xmm0
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	%rax, 16(%rbx)
 	leaq	8(%rax), %rdi
@@ -62,7 +61,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	movq	16(%rbx), %rax
 	leaq	8(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor6colors3NewEv@PLT
-	leaq	.LC2(%rip), %rsi
+	leaq	.LC1(%rip), %rsi
 	movq	%rax, 40(%rbx)
 	movq	8(%rbx), %rax
 	movzwl	16(%rax), %edx
@@ -78,7 +77,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	movq	16(%rbx), %rax
 	leaq	8(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor6colors3NewEv@PLT
-	leaq	.LC3(%rip), %rsi
+	leaq	.LC2(%rip), %rsi
 	movq	%rax, 64(%rbx)
 	movq	8(%rbx), %rax
 	movzwl	16(%rax), %edx
@@ -87,12 +86,13 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
 	movq	16(%rbx), %rdi
 	movq	32(%rbx), %rbp
+	movabsq	$-4309891860637679266, %rcx
 	movq	%rax, 72(%rbx)
 	movq	24(%rbx), %rax
 	movb	$0, 168(%rdi)
-	movl	$-2144325584, 20(%rax)
+	movq	%rcx, 16(%rax)
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
-	addsd	.LC5(%rip), %xmm0
+	addsd	.LC3(%rip), %xmm0
 	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd@PLT
 	movq	32(%rbx), %rdi
@@ -117,7 +117,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	movl	$30, %esi
 	movw	%ax, 18(%rbp)
 	movq	40(%rbx), %rax
-	movzwl	.LC6(%rip), %ebp
+	movzwl	.LC4(%rip), %ebp
 	movb	$-128, 22(%rax)
 	movw	%bp, 20(%rax)
 	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt@PLT
@@ -129,7 +129,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	movq	16(%rbx), %rdi
 	movq	56(%rbx), %r12
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
-	subsd	.LC5(%rip), %xmm0
+	subsd	.LC3(%rip), %xmm0
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd@PLT
 	movq	56(%rbx), %rdi
@@ -188,58 +188,87 @@ _ZN5pause6UpdateEv:
 	movq	16(%rdi), %rax
 	movq	%rdi, %rbx
 	cmpb	$0, 168(%rax)
-	je	.L13
+	je	.L6
 	movq	32(%rdi), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
-	testb	$4, %al
-	je	.L11
-	movq	16(%rbx), %rax
-	movb	$0, 168(%rax)
-.L12:
+	testb	$1, %al
+	movq	40(%rbx), %rax
+	jne	.L19
+	movl	$-32640, %esi
+	movb	$-128, 22(%rax)
+	movw	%si, 20(%rax)
+.L8:
+	movq	56(%rbx), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	testb	$1, %al
+	movq	64(%rbx), %rax
+	jne	.L20
+	movl	$-32640, %edx
+	movb	$-128, 22(%rax)
+	movw	%dx, 20(%rax)
+.L6:
+	movq	(%rbx), %rax
+	movl	$41, %esi
+	leaq	160(%rax), %rdi
+	call	_ZN3wze6engine4keysixENS_3keyE@PLT
+	testb	%al, %al
+	jne	.L13
 	xorl	%eax, %eax
-.L7:
+.L4:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L11:
+.L13:
 	.cfi_restore_state
+	movq	16(%rbx), %rax
+	movb	$1, 168(%rax)
+	movl	$1, %eax
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L19:
+	.cfi_restore_state
+	movl	$24672, %edi
+	movb	$96, 22(%rax)
+	movw	%di, 20(%rax)
+	movq	32(%rbx), %rdi
+	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
+	testb	$4, %al
+	je	.L8
+	movq	16(%rbx), %rax
+	movb	$0, 168(%rax)
+	xorl	%eax, %eax
+	jmp	.L4
+	.p2align 4,,10
+	.p2align 3
+.L20:
+	movl	$24672, %ecx
+	movb	$96, 22(%rax)
+	movw	%cx, 20(%rax)
 	movq	56(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
 	movl	%eax, %edx
 	movl	$2, %eax
 	andl	$4, %edx
-	jne	.L7
-.L13:
-	movq	(%rbx), %rax
-	movl	$41, %esi
-	leaq	160(%rax), %rdi
-	call	_ZN3wze6engine4keysixENS_3keyE@PLT
-	testb	%al, %al
-	je	.L12
-	movq	16(%rbx), %rax
-	movb	$1, 168(%rax)
-	movl	$1, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 8
-	ret
+	je	.L6
+	jmp	.L4
 	.cfi_endproc
 .LFE8149:
 	.size	_ZN5pause6UpdateEv, .-_ZN5pause6UpdateEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
-.LC0:
-	.long	0
-	.long	1072693248
-	.align 8
-.LC5:
+.LC3:
 	.long	0
 	.long	1079164928
 	.section	.rodata.cst2,"aM",@progbits,2
 	.align 2
-.LC6:
+.LC4:
 	.byte	-128
 	.byte	-128
 	.ident	"GCC: (GNU) 13.2.1 20230801"

@@ -14,10 +14,12 @@ pause::pause(engine* Engine, game* Game) : Engine(Engine), Game(Game)
 
     this->Actor->Visible = false;
 
+    this->Frame->Height = 600;
+    this->Frame->Width = 350;
     this->Frame->ColorR = 48;
     this->Frame->ColorG = 48;
     this->Frame->ColorB = 48;
-    this->Frame->ColorA = 128;
+    this->Frame->ColorA = 196;
 
     this->ButtonResume->SetY(this->Actor->GetY() + 75);
     this->ButtonResume->SetWidth(250);
@@ -48,15 +50,41 @@ pause::state pause::Update()
 {
     if (this->Actor->Visible)
     {
-        if (this->ButtonResume->GetButtonState() & BTN_RELEASED_LMB)
+        if (this->ButtonResume->GetButtonState() & BTN_HOVERED)
         {
-            this->Actor->Visible = false;
-            return NONE;
+            this->ButtonResumeColor->ColorR = 96;
+            this->ButtonResumeColor->ColorG = 96;
+            this->ButtonResumeColor->ColorB = 96;
+
+            if (this->ButtonResume->GetButtonState() & BTN_RELEASED_LMB)
+            {
+                this->Actor->Visible = false;
+                return NONE;
+            }
         }
-        
-        if (this->ButtonMenu->GetButtonState() & BTN_RELEASED_LMB)
+        else
         {
-            return MENU;
+            this->ButtonResumeColor->ColorR = 128;
+            this->ButtonResumeColor->ColorG = 128;
+            this->ButtonResumeColor->ColorB = 128;
+        }
+
+        if (this->ButtonMenu->GetButtonState() & BTN_HOVERED)
+        {
+            this->ButtonMenuColor->ColorR = 96;
+            this->ButtonMenuColor->ColorG = 96;
+            this->ButtonMenuColor->ColorB = 96;
+
+            if (this->ButtonMenu->GetButtonState() & BTN_RELEASED_LMB)
+            {
+                return MENU;
+            }
+        }
+        else
+        {
+            this->ButtonMenuColor->ColorR = 128;
+            this->ButtonMenuColor->ColorG = 128;
+            this->ButtonMenuColor->ColorB = 128;
         }
     }
 

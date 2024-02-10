@@ -97,19 +97,16 @@ class pause
         MENU
     } state;
 
-    public:
-        state Update();
-
-    private:
-        engine::actor Actor;
-        engine::color Frame;
-        engine::overlapbox ButtonResume;
-        engine::color ButtonResumeColor;
-        engine::text ButtonResumeText;
-        engine::overlapbox ButtonMenu;
-        engine::color ButtonMenuColor;
-        engine::text ButtonMenuText;
-        pause(engine* Engine, game* Game);
+    engine::actor Actor;
+    engine::color Frame;
+    engine::overlapbox ButtonResume;
+    engine::color ButtonResumeColor;
+    engine::text ButtonResumeText;
+    engine::overlapbox ButtonMenu;
+    engine::color ButtonMenuColor;
+    engine::text ButtonMenuText;
+    pause(engine* Engine, game* Game);
+    state Update();
 };
 
 //_________________________________________________________________
