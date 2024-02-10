@@ -49,7 +49,7 @@ your Actor to have collision, you need to set its CollisionLayer to 0. \
 ## A tip to make your life easier
 
 If you become tired of using the ID system every time you want to manage \
-your objects, you can use the predefined reference types from the engine. \
+your objects, you can use the predefined pointer types from the engine. \
 (engine::actor, engine::color, engine::texture, engine::flipbook, engine::text, engine::overlapbox)
 
 ## Example main function
