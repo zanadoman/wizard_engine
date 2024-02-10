@@ -61,6 +61,7 @@ class assets
 class game
 {
     friend class pause;
+    friend class stats;
     friend class menu;
     friend class normal;
     friend class infinite;
@@ -109,6 +110,21 @@ class pause
     state Update();
 };
 
+class stats
+{
+    friend class normal;
+    friend class infinite;
+    engine* Engine;
+    game* Game;
+
+    engine::actor Actor;
+    engine::text GameTime;
+    engine::text RenderTime;
+    engine::text FrameTime;
+    stats(engine* Engine, game* Game);
+    uint8 Update();
+};
+
 //_________________________________________________________________
 
 class menu
@@ -137,6 +153,7 @@ class normal
     game* Game;
 
     pause Pause;
+    stats Stats;
     engine::actor Background;
     engine::texture BackgroundTexture;
     normal(engine* Engine, game* Game);
@@ -150,6 +167,7 @@ class infinite
     game* Game;
 
     pause Pause;
+    stats Stats;
     engine::actor Background;
     engine::texture BackgroundTexture;
     infinite(engine* Engine, game* Game);

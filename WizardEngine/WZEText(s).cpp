@@ -187,7 +187,7 @@ namespace wze
         this->FontStyle = STYLE_NORMAL;
         this->Texture = NULL;
 
-        if (this->FontID != 0 && this->Height != 0 && 1 < this->String.Length())
+        if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
             color.r = color.g = color.b = color.a = 255;
 
@@ -270,7 +270,7 @@ namespace wze
         SDL_Surface* surface;
         SDL_Color color;
 
-        if (this->Height != Height && this->FontID != 0 && Height != 0 && 1 < this->String.Length())
+        if (Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
             if (this->FontStyle != STYLE_NORMAL)
             {
@@ -324,7 +324,7 @@ namespace wze
             exit(1);
         }
 
-        if (this->String != String && this->FontID != 0 && this->Height != 0 && 1 < string::LiteralLength(String))
+        if (this->Height != 0 && 1 < string::LiteralLength(String) && this->FontID != 0)
         {
             if (this->FontStyle != STYLE_NORMAL)
             {
@@ -378,7 +378,7 @@ namespace wze
             exit(1);
         }
 
-        if (this->FontID != FontID && FontID != 0 && this->Height != 0 && 1 < this->String.Length())
+        if (this->Height != 0 && 1 < this->String.Length() && FontID != 0)
         {
             if (this->FontStyle != STYLE_NORMAL)
             {
@@ -426,7 +426,7 @@ namespace wze
         SDL_Surface* surface;
         SDL_Color color;
 
-        if (this->FontStyle != FontStyle && this->FontID != 0 && this->Height != 0 && 1 < this->String.Length())
+        if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
             if (FontStyle != STYLE_NORMAL)
             {

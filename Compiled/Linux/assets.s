@@ -89,7 +89,7 @@ _ZN6assetsC2EPN3wze6engineE:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movl	$72, %edx
+	movl	$48, %edx
 	pushq	%rbx
 	.cfi_def_cfa_offset 24
 	.cfi_offset 3, -24
