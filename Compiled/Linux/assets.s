@@ -2,7 +2,7 @@
 	.text
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC0:
-	.string	"assets/fonts/FreeSans.ttf"
+	.string	"assets/font/FreeSans.ttf"
 .LC1:
 	.string	"assets/map/background.png"
 .LC2:

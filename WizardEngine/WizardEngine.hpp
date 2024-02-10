@@ -779,7 +779,7 @@ namespace wze
             typedef actors::actor::textures::texture& texture;
             typedef actors::actor::flipbooks::flipbook& flipbook;
             typedef actors::actor::texts::text& text;
-            typedef actors::actor::overlapboxes& overlapbox;
+            typedef actors::actor::overlapboxes::overlapbox& overlapbox;
             engine(const char* Title, const char* IconPath, neo::uint16 WindowWidth, neo::uint16 WindowHeight, neo::uint8 TargetFrameTime);
             ~engine();
             bool Update();

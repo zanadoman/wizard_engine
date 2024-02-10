@@ -5,6 +5,21 @@
 using namespace neo;
 using namespace wze;
 
+typedef enum
+{
+    SCENE_MENU
+} scene;
+
+typedef enum
+{
+    ACT_MENU
+} actor;
+
+typedef enum
+{
+    BOX_BUTTON
+} overlapbox;
+
 class assets
 {
     engine* Engine;
@@ -41,7 +56,14 @@ class menu
 
     public:
         menu(engine* Engine, assets* Assets);
-        ~menu();
+        uint8 Update();
+
+    private:
+        uint16 Actor;
+        uint16 ButtonNormalOverlapboxID;
+        uint16 ButtonNormalColorID;
+        uint16 ButtonInfiniteOverlapboxID;
+        uint16 ButtonInfiniteColorID;
 };
 
 class game
@@ -52,7 +74,8 @@ class game
     public:
         uint8 Update();
         game(engine* Engine);
-        ~game();
 
     private:
+        scene ActiveScene;
+        menu* Menu;
 };
