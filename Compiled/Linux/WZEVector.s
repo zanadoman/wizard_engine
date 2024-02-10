@@ -161,16 +161,16 @@ _ZN3wze6engine6vectorC2EPS0_:
 	.section	.rodata.str1.8
 	.align 8
 .LC2:
-	.string	"wze::engine.vector.Length(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
+	.string	"wze::engine::vector::Length(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
 	.align 8
 .LC3:
-	.string	"wze::engine.vector.Length(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
+	.string	"wze::engine::vector::Length(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
 	.align 8
 .LC4:
-	.string	"wze::engine.vector.Length(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
+	.string	"wze::engine::vector::Length(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
 	.align 8
 .LC5:
-	.string	"wze::engine.vector.Length(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
+	.string	"wze::engine::vector::Length(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -231,16 +231,16 @@ _ZN3wze6engine6vector6LengthEdddd:
 	.section	.rodata.str1.8
 	.align 8
 .LC6:
-	.string	"wze::engine.vector.Angle(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
+	.string	"wze::engine::vector::Angle(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
 	.align 8
 .LC7:
-	.string	"wze::engine.vector.Angle(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
+	.string	"wze::engine::vector::Angle(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
 	.align 8
 .LC8:
-	.string	"wze::engine.vector.Angle(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
+	.string	"wze::engine::vector::Angle(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
 	.align 8
 .LC9:
-	.string	"wze::engine.vector.Angle(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
+	.string	"wze::engine::vector::Angle(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -321,13 +321,13 @@ _ZN3wze6engine6vector5AngleEdddd:
 	.section	.rodata.str1.8
 	.align 8
 .LC12:
-	.string	"wze::engine.vector.TerminalX(): InitialX must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n"
+	.string	"wze::engine::vector::TerminalX(): InitialX must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n"
 	.align 8
 .LC13:
-	.string	"wze::engine.vector.TerminalX(): Length must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n"
+	.string	"wze::engine::vector::TerminalX(): Length must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n"
 	.align 8
 .LC14:
-	.string	"wze::engine.vector.TerminalX(): Angle must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n"
+	.string	"wze::engine::vector::TerminalX(): Angle must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -382,13 +382,13 @@ _ZN3wze6engine6vector9TerminalXEddd:
 	.section	.rodata.str1.8
 	.align 8
 .LC16:
-	.string	"wze::engine.vector.TerminalY(): InitialY must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n"
+	.string	"wze::engine::vector::TerminalY(): InitialY must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n"
 	.align 8
 .LC17:
-	.string	"wze::engine.vector.TerminalY(): Length must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n"
+	.string	"wze::engine::vector::TerminalY(): Length must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n"
 	.align 8
 .LC18:
-	.string	"wze::engine.vector.TerminalY(): Angle must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n"
+	.string	"wze::engine::vector::TerminalY(): Angle must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n"
 	.text
 	.align 2
 	.p2align 4

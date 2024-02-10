@@ -177,16 +177,16 @@ _ZN3wze6engine6vectorC2EPS0_:
 	.section .rdata,"dr"
 	.align 8
 .LC2:
-	.ascii "wze::engine.vector.Length(): InitialX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
+	.ascii "wze::engine::vector::Length(): InitialX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
 	.align 8
 .LC3:
-	.ascii "wze::engine.vector.Length(): InitialY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
+	.ascii "wze::engine::vector::Length(): InitialY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
 	.align 8
 .LC4:
-	.ascii "wze::engine.vector.Length(): TerminalX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
+	.ascii "wze::engine::vector::Length(): TerminalX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
 	.align 8
 .LC5:
-	.ascii "wze::engine.vector.Length(): TerminalY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
+	.ascii "wze::engine::vector::Length(): TerminalY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -198,56 +198,68 @@ _ZN3wze6engine6vector6LengthEdddd:
 	subq	$56, %rsp
 	.seh_stackalloc	56
 	.seh_endprologue
-	movsd	96(%rsp), %xmm0
-	ucomisd	%xmm1, %xmm1
-	jp	.L47
-	ucomisd	%xmm2, %xmm2
-	jp	.L48
-	ucomisd	%xmm3, %xmm3
-	jp	.L49
 	ucomisd	%xmm0, %xmm0
+	jp	.L47
+	ucomisd	%xmm1, %xmm1
+	jp	.L48
+	ucomisd	%xmm2, %xmm2
+	jp	.L49
+	ucomisd	%xmm3, %xmm3
 	jp	.L50
+	subsd	%xmm0, %xmm2
 	subsd	%xmm1, %xmm3
-	subsd	%xmm2, %xmm0
+	mulsd	%xmm2, %xmm2
 	mulsd	%xmm3, %xmm3
-	mulsd	%xmm0, %xmm0
-	addsd	%xmm3, %xmm0
+	addsd	%xmm3, %xmm2
+	movapd	%xmm2, %xmm0
 	sqrtsd	%xmm0, %xmm0
 	addq	$56, %rsp
 	ret
 .L47:
-	movsd	%xmm0, 32(%rsp)
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
+	movsd	%xmm3, 32(%rsp)
+	movq	%xmm2, %r9
+	movapd	%xmm2, %xmm3
+	movq	%xmm1, %r8
+	movapd	%xmm1, %xmm2
 	leaq	.LC2(%rip), %rcx
-	movq	%xmm1, %rdx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L50:
-	movsd	%xmm0, 32(%rsp)
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
+	movsd	%xmm3, 32(%rsp)
+	movq	%xmm2, %r9
+	movapd	%xmm2, %xmm3
+	movq	%xmm1, %r8
+	movapd	%xmm1, %xmm2
 	leaq	.LC5(%rip), %rcx
-	movq	%xmm1, %rdx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L49:
-	movsd	%xmm0, 32(%rsp)
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
+	movsd	%xmm3, 32(%rsp)
+	movq	%xmm2, %r9
+	movapd	%xmm2, %xmm3
+	movq	%xmm1, %r8
+	movapd	%xmm1, %xmm2
 	leaq	.LC4(%rip), %rcx
-	movq	%xmm1, %rdx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L48:
-	movsd	%xmm0, 32(%rsp)
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
+	movsd	%xmm3, 32(%rsp)
+	movq	%xmm2, %r9
+	movapd	%xmm2, %xmm3
+	movq	%xmm1, %r8
+	movapd	%xmm1, %xmm2
 	leaq	.LC3(%rip), %rcx
-	movq	%xmm1, %rdx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -256,16 +268,16 @@ _ZN3wze6engine6vector6LengthEdddd:
 	.section .rdata,"dr"
 	.align 8
 .LC6:
-	.ascii "wze::engine.vector.Angle(): InitialX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
+	.ascii "wze::engine::vector::Angle(): InitialX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
 	.align 8
 .LC7:
-	.ascii "wze::engine.vector.Angle(): InitialY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
+	.ascii "wze::engine::vector::Angle(): InitialY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
 	.align 8
 .LC8:
-	.ascii "wze::engine.vector.Angle(): TerminalX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
+	.ascii "wze::engine::vector::Angle(): TerminalX must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
 	.align 8
 .LC9:
-	.ascii "wze::engine.vector.Angle(): TerminalY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
+	.ascii "wze::engine::vector::Angle(): TerminalY must not be NaN\12Params: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -277,26 +289,25 @@ _ZN3wze6engine6vector5AngleEdddd:
 	subq	$56, %rsp
 	.seh_stackalloc	56
 	.seh_endprologue
-	movsd	96(%rsp), %xmm4
-	ucomisd	%xmm1, %xmm1
+	ucomisd	%xmm0, %xmm0
 	jp	.L73
-	ucomisd	%xmm2, %xmm2
+	ucomisd	%xmm1, %xmm1
 	jp	.L74
-	ucomisd	%xmm3, %xmm3
+	ucomisd	%xmm2, %xmm2
 	jp	.L75
-	ucomisd	%xmm4, %xmm4
+	ucomisd	%xmm3, %xmm3
 	jp	.L76
-	subsd	%xmm1, %xmm3
-	comisd	%xmm4, %xmm2
-	movapd	%xmm4, %xmm1
-	subsd	%xmm2, %xmm1
-	movapd	%xmm3, %xmm0
-	mulsd	%xmm3, %xmm0
-	mulsd	%xmm1, %xmm1
-	addsd	%xmm1, %xmm0
+	subsd	%xmm0, %xmm2
+	comisd	%xmm3, %xmm1
+	movapd	%xmm3, %xmm4
+	subsd	%xmm1, %xmm4
+	movapd	%xmm2, %xmm0
+	mulsd	%xmm2, %xmm0
+	mulsd	%xmm4, %xmm4
+	addsd	%xmm4, %xmm0
 	sqrtsd	%xmm0, %xmm0
-	divsd	%xmm0, %xmm3
-	movapd	%xmm3, %xmm0
+	divsd	%xmm0, %xmm2
+	movapd	%xmm2, %xmm0
 	ja	.L77
 	call	acos
 	mulsd	.LC10(%rip), %xmm0
@@ -313,38 +324,50 @@ _ZN3wze6engine6vector5AngleEdddd:
 	addq	$56, %rsp
 	ret
 .L76:
-	movsd	%xmm4, 32(%rsp)
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
+	movsd	%xmm3, 32(%rsp)
+	movq	%xmm2, %r9
+	movapd	%xmm2, %xmm3
+	movq	%xmm1, %r8
+	movapd	%xmm1, %xmm2
 	leaq	.LC9(%rip), %rcx
-	movq	%xmm1, %rdx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L75:
-	movsd	%xmm4, 32(%rsp)
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
+	movsd	%xmm3, 32(%rsp)
+	movq	%xmm2, %r9
+	movapd	%xmm2, %xmm3
+	movq	%xmm1, %r8
+	movapd	%xmm1, %xmm2
 	leaq	.LC8(%rip), %rcx
-	movq	%xmm1, %rdx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L74:
-	movsd	%xmm4, 32(%rsp)
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
+	movsd	%xmm3, 32(%rsp)
+	movq	%xmm2, %r9
+	movapd	%xmm2, %xmm3
+	movq	%xmm1, %r8
+	movapd	%xmm1, %xmm2
 	leaq	.LC7(%rip), %rcx
-	movq	%xmm1, %rdx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L73:
-	movsd	%xmm4, 32(%rsp)
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
+	movsd	%xmm3, 32(%rsp)
+	movq	%xmm2, %r9
+	movapd	%xmm2, %xmm3
+	movq	%xmm1, %r8
+	movapd	%xmm1, %xmm2
 	leaq	.LC6(%rip), %rcx
-	movq	%xmm1, %rdx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -353,13 +376,13 @@ _ZN3wze6engine6vector5AngleEdddd:
 	.section .rdata,"dr"
 	.align 8
 .LC12:
-	.ascii "wze::engine.vector.TerminalX(): InitialX must not be NaN\12Params: InitialX: %lf, Length: %lf, Angle: %lf\12\0"
+	.ascii "wze::engine::vector::TerminalX(): InitialX must not be NaN\12Params: InitialX: %lf, Length: %lf, Angle: %lf\12\0"
 	.align 8
 .LC13:
-	.ascii "wze::engine.vector.TerminalX(): Length must not be NaN\12Params: InitialX: %lf, Length: %lf, Angle: %lf\12\0"
+	.ascii "wze::engine::vector::TerminalX(): Length must not be NaN\12Params: InitialX: %lf, Length: %lf, Angle: %lf\12\0"
 	.align 8
 .LC14:
-	.ascii "wze::engine.vector.TerminalX(): Angle must not be NaN\12Params: InitialX: %lf, Length: %lf, Angle: %lf\12\0"
+	.ascii "wze::engine::vector::TerminalX(): Angle must not be NaN\12Params: InitialX: %lf, Length: %lf, Angle: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -375,16 +398,16 @@ _ZN3wze6engine6vector9TerminalXEddd:
 	movaps	%xmm7, 48(%rsp)
 	.seh_savexmm	%xmm7, 48
 	.seh_endprologue
-	ucomisd	%xmm1, %xmm1
-	movapd	%xmm1, %xmm6
-	movapd	%xmm2, %xmm7
+	ucomisd	%xmm0, %xmm0
+	movapd	%xmm0, %xmm6
+	movapd	%xmm1, %xmm7
 	jp	.L91
-	ucomisd	%xmm2, %xmm2
+	ucomisd	%xmm1, %xmm1
 	jp	.L92
-	ucomisd	%xmm3, %xmm3
+	ucomisd	%xmm2, %xmm2
 	jp	.L93
-	mulsd	.LC15(%rip), %xmm3
-	movapd	%xmm3, %xmm0
+	mulsd	.LC15(%rip), %xmm2
+	movapd	%xmm2, %xmm0
 	call	cos
 	mulsd	%xmm7, %xmm0
 	movaps	48(%rsp), %xmm7
@@ -393,26 +416,35 @@ _ZN3wze6engine6vector9TerminalXEddd:
 	addq	$72, %rsp
 	ret
 .L91:
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movq	%xmm1, %rdx
+	movapd	%xmm2, %xmm3
+	movq	%xmm2, %r9
+	movapd	%xmm1, %xmm2
+	movq	%xmm1, %r8
 	leaq	.LC12(%rip), %rcx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L93:
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movq	%xmm1, %rdx
+	movapd	%xmm2, %xmm3
+	movq	%xmm2, %r9
+	movapd	%xmm1, %xmm2
+	movq	%xmm1, %r8
 	leaq	.LC14(%rip), %rcx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L92:
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movq	%xmm1, %rdx
+	movapd	%xmm2, %xmm3
+	movq	%xmm2, %r9
+	movapd	%xmm1, %xmm2
+	movq	%xmm1, %r8
 	leaq	.LC13(%rip), %rcx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -421,13 +453,13 @@ _ZN3wze6engine6vector9TerminalXEddd:
 	.section .rdata,"dr"
 	.align 8
 .LC16:
-	.ascii "wze::engine.vector.TerminalY(): InitialY must not be NaN\12Params: InitialY: %lf, Length: %lf, Angle: %lf\12\0"
+	.ascii "wze::engine::vector::TerminalY(): InitialY must not be NaN\12Params: InitialY: %lf, Length: %lf, Angle: %lf\12\0"
 	.align 8
 .LC17:
-	.ascii "wze::engine.vector.TerminalY(): Length must not be NaN\12Params: InitialY: %lf, Length: %lf, Angle: %lf\12\0"
+	.ascii "wze::engine::vector::TerminalY(): Length must not be NaN\12Params: InitialY: %lf, Length: %lf, Angle: %lf\12\0"
 	.align 8
 .LC18:
-	.ascii "wze::engine.vector.TerminalY(): Angle must not be NaN\12Params: InitialY: %lf, Length: %lf, Angle: %lf\12\0"
+	.ascii "wze::engine::vector::TerminalY(): Angle must not be NaN\12Params: InitialY: %lf, Length: %lf, Angle: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -443,16 +475,16 @@ _ZN3wze6engine6vector9TerminalYEddd:
 	movaps	%xmm7, 48(%rsp)
 	.seh_savexmm	%xmm7, 48
 	.seh_endprologue
-	ucomisd	%xmm1, %xmm1
-	movapd	%xmm1, %xmm6
-	movapd	%xmm2, %xmm7
+	ucomisd	%xmm0, %xmm0
+	movapd	%xmm0, %xmm6
+	movapd	%xmm1, %xmm7
 	jp	.L107
-	ucomisd	%xmm2, %xmm2
+	ucomisd	%xmm1, %xmm1
 	jp	.L108
-	ucomisd	%xmm3, %xmm3
+	ucomisd	%xmm2, %xmm2
 	jp	.L109
-	mulsd	.LC15(%rip), %xmm3
-	movapd	%xmm3, %xmm0
+	mulsd	.LC15(%rip), %xmm2
+	movapd	%xmm2, %xmm0
 	call	sin
 	mulsd	%xmm7, %xmm0
 	movaps	48(%rsp), %xmm7
@@ -461,26 +493,35 @@ _ZN3wze6engine6vector9TerminalYEddd:
 	addq	$72, %rsp
 	ret
 .L107:
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movq	%xmm1, %rdx
+	movapd	%xmm2, %xmm3
+	movq	%xmm2, %r9
+	movapd	%xmm1, %xmm2
+	movq	%xmm1, %r8
 	leaq	.LC16(%rip), %rcx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L109:
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movq	%xmm1, %rdx
+	movapd	%xmm2, %xmm3
+	movq	%xmm2, %r9
+	movapd	%xmm1, %xmm2
+	movq	%xmm1, %r8
 	leaq	.LC18(%rip), %rcx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L108:
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movq	%xmm1, %rdx
+	movapd	%xmm2, %xmm3
+	movq	%xmm2, %r9
+	movapd	%xmm1, %xmm2
+	movq	%xmm1, %r8
 	leaq	.LC17(%rip), %rcx
+	movapd	%xmm0, %xmm1
+	movq	%xmm0, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit

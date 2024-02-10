@@ -956,9 +956,7 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	.p2align 4,,10
 	.p2align 3
 .L173:
-	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	8(%rsp), %xmm2
@@ -974,9 +972,7 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	jp	.L177
 	je	.L181
 .L177:
-	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
 .L180:
@@ -1049,9 +1045,7 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	.p2align 4,,10
 	.p2align 3
 .L193:
-	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	40(%rbx), %xmm2
@@ -1067,9 +1061,7 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	jp	.L197
 	je	.L201
 .L197:
-	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
 .L200:

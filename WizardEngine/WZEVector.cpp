@@ -13,22 +13,22 @@ namespace wze
 
         if (InitialX != InitialX)
         {
-            printf("wze::engine.vector.Length(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
+            printf("wze::engine::vector::Length(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
         if (InitialY != InitialY)
         {
-            printf("wze::engine.vector.Length(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
+            printf("wze::engine::vector::Length(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
         if (TerminalX != TerminalX)
         {
-            printf("wze::engine.vector.Length(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
+            printf("wze::engine::vector::Length(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
         if (TerminalY != TerminalY)
         {
-            printf("wze::engine.vector.Length(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
+            printf("wze::engine::vector::Length(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
 
@@ -44,22 +44,22 @@ namespace wze
 
         if (InitialX != InitialX)
         {
-            printf("wze::engine.vector.Angle(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
+            printf("wze::engine::vector::Angle(): InitialX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
         if (InitialY != InitialY)
         {
-            printf("wze::engine.vector.Angle(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
+            printf("wze::engine::vector::Angle(): InitialY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
         if (TerminalX != TerminalX)
         {
-            printf("wze::engine.vector.Angle(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
+            printf("wze::engine::vector::Angle(): TerminalX must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
         if (TerminalY != TerminalY)
         {
-            printf("wze::engine.vector.Angle(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
+            printf("wze::engine::vector::Angle(): TerminalY must not be NaN\nParams: InitialX: %lf, InitialY: %lf, TerminalX: %lf, TerminalY: %lf\n", InitialX, InitialY, TerminalX, TerminalY);
             exit(1);
         }
 
@@ -78,17 +78,17 @@ namespace wze
     {
         if (InitialX != InitialX)
         {
-            printf("wze::engine.vector.TerminalX(): InitialX must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n", InitialX, Length, Angle);
+            printf("wze::engine::vector::TerminalX(): InitialX must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n", InitialX, Length, Angle);
             exit(1);
         }
         if (Length != Length)
         {
-            printf("wze::engine.vector.TerminalX(): Length must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n", InitialX, Length, Angle);
+            printf("wze::engine::vector::TerminalX(): Length must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n", InitialX, Length, Angle);
             exit(1);
         }
         if (Angle != Angle)
         {
-            printf("wze::engine.vector.TerminalX(): Angle must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n", InitialX, Length, Angle);
+            printf("wze::engine::vector::TerminalX(): Angle must not be NaN\nParams: InitialX: %lf, Length: %lf, Angle: %lf\n", InitialX, Length, Angle);
             exit(1);
         }
 
@@ -99,17 +99,17 @@ namespace wze
     {
         if (InitialY != InitialY)
         {
-            printf("wze::engine.vector.TerminalY(): InitialY must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n", InitialY, Length, Angle);
+            printf("wze::engine::vector::TerminalY(): InitialY must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n", InitialY, Length, Angle);
             exit(1);
         }
         if (Length != Length)
         {
-            printf("wze::engine.vector.TerminalY(): Length must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n", InitialY, Length, Angle);
+            printf("wze::engine::vector::TerminalY(): Length must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n", InitialY, Length, Angle);
             exit(1);
         }
         if (Angle != Angle)
         {
-            printf("wze::engine.vector.TerminalY(): Angle must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n", InitialY, Length, Angle);
+            printf("wze::engine::vector::TerminalY(): Angle must not be NaN\nParams: InitialY: %lf, Length: %lf, Angle: %lf\n", InitialY, Length, Angle);
             exit(1);
         }
 

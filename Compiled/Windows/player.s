@@ -486,14 +486,12 @@ _ZN6playerD2Ev:
 	.seh_proc	_ZN6player6UpdateEv
 _ZN6player6UpdateEv:
 .LFB6885:
-	pushq	%rdi
-	.seh_pushreg	%rdi
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$80, %rsp
-	.seh_stackalloc	80
+	subq	$88, %rsp
+	.seh_stackalloc	88
 	movaps	%xmm6, 48(%rsp)
 	.seh_savexmm	%xmm6, 48
 	movaps	%xmm7, 64(%rsp)
@@ -552,10 +550,9 @@ _ZN6player6UpdateEv:
 	movaps	48(%rsp), %xmm6
 	movaps	64(%rsp), %xmm7
 	xorl	%eax, %eax
-	addq	$80, %rsp
+	addq	$88, %rsp
 	popq	%rbx
 	popq	%rsi
-	popq	%rdi
 	ret
 	.p2align 4,,10
 	.p2align 3
@@ -570,74 +567,70 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rdx
 	leaq	240(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
-	movq	(%rbx), %rsi
 	movq	8(%rbx), %rdx
-	movq	%rax, %rdi
-	leaq	240(%rsi), %rcx
+	movq	%rax, %rsi
+	movq	(%rbx), %rax
+	leaq	240(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movsd	.LC15(%rip), %xmm7
 	movq	(%rbx), %rax
-	movapd	%xmm0, %xmm3
-	addsd	%xmm7, %xmm3
+	movapd	%xmm0, %xmm2
+	addsd	%xmm7, %xmm2
 	leaq	400(%rax), %rcx
-	movsd	%xmm3, 40(%rsp)
+	movsd	%xmm2, 40(%rsp)
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv
-	pxor	%xmm2, %xmm2
+	pxor	%xmm1, %xmm1
 	movq	8(%rbx), %rdx
 	movsd	.LC16(%rip), %xmm6
 	movl	%eax, %eax
-	cvtsi2sdq	%rax, %xmm2
+	cvtsi2sdq	%rax, %xmm1
 	movq	(%rbx), %rax
 	leaq	240(%rax), %rcx
-	mulsd	%xmm6, %xmm2
-	movsd	%xmm2, 32(%rsp)
+	mulsd	%xmm6, %xmm1
+	movsd	%xmm1, 32(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetXEv
-	movsd	32(%rsp), %xmm2
-	movsd	40(%rsp), %xmm3
-	leaq	296(%rsi), %rcx
-	movapd	%xmm0, %xmm1
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
 	call	_ZN3wze6engine6vector9TerminalXEddd
-	movq	%rdi, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm0, %xmm1
 	call	_ZN3wze6engine6actors5actor4SetXEd
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	240(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
-	movq	(%rbx), %rsi
 	movq	8(%rbx), %rdx
-	movq	%rax, %rdi
-	leaq	240(%rsi), %rcx
+	movq	%rax, %rsi
+	movq	(%rbx), %rax
+	leaq	240(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movq	(%rbx), %rax
-	movapd	%xmm0, %xmm3
-	addsd	%xmm7, %xmm3
+	movapd	%xmm0, %xmm2
+	addsd	%xmm7, %xmm2
 	leaq	400(%rax), %rcx
-	movsd	%xmm3, 40(%rsp)
+	movsd	%xmm2, 40(%rsp)
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv
-	pxor	%xmm2, %xmm2
+	pxor	%xmm1, %xmm1
 	movq	8(%rbx), %rdx
 	movl	%eax, %eax
-	cvtsi2sdq	%rax, %xmm2
+	cvtsi2sdq	%rax, %xmm1
 	movq	(%rbx), %rax
 	leaq	240(%rax), %rcx
-	mulsd	%xmm6, %xmm2
-	movsd	%xmm2, 32(%rsp)
+	mulsd	%xmm6, %xmm1
+	movsd	%xmm1, 32(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetYEv
-	movsd	40(%rsp), %xmm3
-	movsd	32(%rsp), %xmm2
-	leaq	296(%rsi), %rcx
-	movapd	%xmm0, %xmm1
+	movsd	32(%rsp), %xmm1
+	movsd	40(%rsp), %xmm2
 	call	_ZN3wze6engine6vector9TerminalYEddd
-	movq	%rdi, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm0, %xmm1
 	call	_ZN3wze6engine6actors5actor4SetYEd
 	jmp	.L17
@@ -816,74 +809,70 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rdx
 	leaq	240(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
-	movq	(%rbx), %rsi
 	movq	8(%rbx), %rdx
-	movq	%rax, %rdi
-	leaq	240(%rsi), %rcx
+	movq	%rax, %rsi
+	movq	(%rbx), %rax
+	leaq	240(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movsd	.LC15(%rip), %xmm7
 	movq	(%rbx), %rax
-	movapd	%xmm0, %xmm3
-	addsd	%xmm7, %xmm3
+	movapd	%xmm0, %xmm2
+	addsd	%xmm7, %xmm2
 	leaq	400(%rax), %rcx
-	movsd	%xmm3, 40(%rsp)
+	movsd	%xmm2, 40(%rsp)
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv
-	pxor	%xmm2, %xmm2
+	pxor	%xmm1, %xmm1
 	movq	8(%rbx), %rdx
 	movsd	.LC17(%rip), %xmm6
 	movl	%eax, %eax
-	cvtsi2sdq	%rax, %xmm2
+	cvtsi2sdq	%rax, %xmm1
 	movq	(%rbx), %rax
 	leaq	240(%rax), %rcx
-	mulsd	%xmm6, %xmm2
-	movsd	%xmm2, 32(%rsp)
+	mulsd	%xmm6, %xmm1
+	movsd	%xmm1, 32(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetXEv
-	movsd	32(%rsp), %xmm2
-	movsd	40(%rsp), %xmm3
-	leaq	296(%rsi), %rcx
-	movapd	%xmm0, %xmm1
+	movsd	40(%rsp), %xmm2
+	movsd	32(%rsp), %xmm1
 	call	_ZN3wze6engine6vector9TerminalXEddd
-	movq	%rdi, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm0, %xmm1
 	call	_ZN3wze6engine6actors5actor4SetXEd
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rdx
 	leaq	240(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
-	movq	(%rbx), %rsi
 	movq	8(%rbx), %rdx
-	movq	%rax, %rdi
-	leaq	240(%rsi), %rcx
+	movq	%rax, %rsi
+	movq	(%rbx), %rax
+	leaq	240(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movq	(%rbx), %rax
-	movapd	%xmm0, %xmm3
-	addsd	%xmm7, %xmm3
+	movapd	%xmm0, %xmm2
+	addsd	%xmm7, %xmm2
 	leaq	400(%rax), %rcx
-	movsd	%xmm3, 40(%rsp)
+	movsd	%xmm2, 40(%rsp)
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv
-	pxor	%xmm2, %xmm2
+	pxor	%xmm1, %xmm1
 	movq	8(%rbx), %rdx
 	movl	%eax, %eax
-	cvtsi2sdq	%rax, %xmm2
+	cvtsi2sdq	%rax, %xmm1
 	movq	(%rbx), %rax
 	leaq	240(%rax), %rcx
-	mulsd	%xmm6, %xmm2
-	movsd	%xmm2, 32(%rsp)
+	mulsd	%xmm6, %xmm1
+	movsd	%xmm1, 32(%rsp)
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetYEv
-	movsd	40(%rsp), %xmm3
-	movsd	32(%rsp), %xmm2
-	leaq	296(%rsi), %rcx
-	movapd	%xmm0, %xmm1
+	movsd	32(%rsp), %xmm1
+	movsd	40(%rsp), %xmm2
 	call	_ZN3wze6engine6vector9TerminalYEddd
-	movq	%rdi, %rcx
+	movq	%rsi, %rcx
 	movapd	%xmm0, %xmm1
 	call	_ZN3wze6engine6actors5actor4SetYEd
 	jmp	.L24

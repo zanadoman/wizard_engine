@@ -1389,9 +1389,7 @@ _ZN3wze6engine6actors5actor5texts4text4SetXEd:
 	.p2align 4,,10
 	.p2align 3
 .L200:
-	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	8(%rsp), %xmm2
@@ -1407,9 +1405,7 @@ _ZN3wze6engine6actors5actor5texts4text4SetXEd:
 	jp	.L204
 	je	.L208
 .L204:
-	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
 .L207:
@@ -1482,9 +1478,7 @@ _ZN3wze6engine6actors5actor5texts4text4SetYEd:
 	.p2align 4,,10
 	.p2align 3
 .L220:
-	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	40(%rbx), %xmm2
@@ -1500,9 +1494,7 @@ _ZN3wze6engine6actors5actor5texts4text4SetYEd:
 	jp	.L224
 	je	.L228
 .L224:
-	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
 .L227:

@@ -673,10 +673,10 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    double Length(double InitialX, double InitialY, double TerminalX, double TerminalY);
-                    double Angle(double InitialX, double InitialY, double TerminalX, double TerminalY);
-                    double TerminalX(double InitialX, double Length, double Angle);
-                    double TerminalY(double InitialY, double Length, double Angle);
+                    static double Length(double InitialX, double InitialY, double TerminalX, double TerminalY);
+                    static double Angle(double InitialX, double InitialY, double TerminalX, double TerminalY);
+                    static double TerminalX(double InitialX, double Length, double Angle);
+                    static double TerminalY(double InitialY, double Length, double Angle);
                     bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, std::initializer_list<neo::uint64> ActorTypeWhitelist, std::initializer_list<neo::uint64> ActorIDBlacklist, std::initializer_list<neo::uint64> OverlapboxTypeBlacklist);
                     bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, neo::array<neo::uint64>* ActorTypeWhitelist, std::initializer_list<neo::uint64> ActorIDBlacklist, std::initializer_list<neo::uint64> OverlapboxTypeBlacklist);
                     bool RayCast(double InitialX, double InitialY, double TerminalX, double TerminalY, neo::uint16 RaySize, double SamplingStep, std::initializer_list<neo::uint64> ActorTypeWhitelist, neo::array<neo::uint64>* ActorIDBlacklist, std::initializer_list<neo::uint64> OverlapboxTypeBlacklist);
@@ -774,6 +774,12 @@ namespace wze
 
             //__________Engine_________________________________________________________________________________________
 
+            typedef actors::actor& actor;
+            typedef actors::actor::colors::color& color;
+            typedef actors::actor::textures::texture& texture;
+            typedef actors::actor::flipbooks::flipbook& flipbook;
+            typedef actors::actor::texts::text& text;
+            typedef actors::actor::overlapboxes& overlapbox;
             engine(const char* Title, const char* IconPath, neo::uint16 WindowWidth, neo::uint16 WindowHeight, neo::uint8 TargetFrameTime);
             ~engine();
             bool Update();

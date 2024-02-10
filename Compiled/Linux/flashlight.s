@@ -119,18 +119,15 @@ _ZN10flashlightD2Ev:
 _ZN10flashlight6UpdateEv:
 .LFB8152:
 	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	pxor	%xmm0, %xmm0
 	pushq	%rbx
-	.cfi_def_cfa_offset 24
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	pxor	%xmm0, %xmm0
 	movq	%rdi, %rbx
-	subq	$40, %rsp
-	.cfi_def_cfa_offset 64
-	movq	(%rdi), %rbp
-	leaq	184(%rbp), %rdi
+	subq	$32, %rsp
+	.cfi_def_cfa_offset 48
+	movq	(%rdi), %rax
+	leaq	184(%rax), %rdi
 	call	_ZN3wze6engine5mouse4GetYEd@PLT
 	movq	(%rbx), %rax
 	movsd	%xmm0, 24(%rsp)
@@ -153,18 +150,15 @@ _ZN10flashlight6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	24(%rsp), %xmm3
 	movsd	16(%rsp), %xmm2
-	leaq	296(%rbp), %rdi
 	movsd	8(%rsp), %xmm1
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	ucomisd	%xmm0, %xmm0
 	jnp	.L11
-	addq	$40, %rsp
+	addq	$32, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 24
+	.cfi_def_cfa_offset 16
 	xorl	%eax, %eax
 	popq	%rbx
-	.cfi_def_cfa_offset 16
-	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
@@ -179,12 +173,10 @@ _ZN10flashlight6UpdateEv:
 	movsd	8(%rsp), %xmm0
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
-	addq	$40, %rsp
-	.cfi_def_cfa_offset 24
+	addq	$32, %rsp
+	.cfi_def_cfa_offset 16
 	xorl	%eax, %eax
 	popq	%rbx
-	.cfi_def_cfa_offset 16
-	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc

@@ -903,9 +903,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
 	.p2align 4,,10
 	.p2align 3
 .L168:
-	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	8(%rsp), %xmm2
@@ -921,9 +919,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
 	jp	.L172
 	je	.L176
 .L172:
-	movq	(%rbx), %rax
 	movsd	%xmm2, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm2
 .L175:
@@ -996,9 +992,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
 	.p2align 4,,10
 	.p2align 3
 .L188:
-	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	movq	8(%rbx), %rax
 	movsd	32(%rbx), %xmm2
@@ -1014,9 +1008,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
 	jp	.L192
 	je	.L196
 .L192:
-	movq	(%rbx), %rax
 	movsd	%xmm3, 8(%rsp)
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	8(%rsp), %xmm3
 .L195:
@@ -2363,12 +2355,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveSca
 	movsd	56(%rdi), %xmm0
 	movsd	96(%rdi), %xmm3
 	movsd	104(%rdi), %xmm4
-	movq	(%rdi), %rax
+	movsd	88(%rdi), %xmm1
 	addsd	%xmm0, %xmm3
-	movsd	88(%rbx), %xmm1
 	addsd	%xmm0, %xmm4
 	movsd	.LC26(%rip), %xmm0
-	leaq	296(%rax), %rdi
 	movapd	%xmm3, %xmm5
 	movapd	%xmm3, %xmm2
 	movsd	%xmm3, 24(%rsp)
@@ -2380,63 +2370,49 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveSca
 	movq	%xmm5, %r13
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	call	round@PLT
-	movq	(%rbx), %rax
 	movsd	(%rsp), %xmm2
 	movsd	88(%rbx), %xmm1
 	cvttsd2sil	%xmm0, %r12d
 	pxor	%xmm0, %xmm0
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	call	round@PLT
-	movq	(%rbx), %rax
 	movsd	88(%rbx), %xmm1
 	movq	%r13, %xmm2
 	cvttsd2sil	%xmm0, %esi
 	pxor	%xmm0, %xmm0
-	leaq	296(%rax), %rdi
 	movl	%esi, 20(%rsp)
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	call	round@PLT
-	movq	(%rbx), %rax
 	movsd	8(%rsp), %xmm2
-	cvttsd2sil	%xmm0, %ecx
 	movsd	88(%rbx), %xmm1
+	cvttsd2sil	%xmm0, %ecx
 	pxor	%xmm0, %xmm0
-	leaq	296(%rax), %rdi
 	movl	%ecx, 16(%rsp)
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	call	round@PLT
 	movsd	24(%rsp), %xmm3
-	movq	(%rbx), %rax
 	movsd	88(%rbx), %xmm1
 	cvttsd2sil	%xmm0, %r15d
 	pxor	%xmm0, %xmm0
 	movapd	%xmm3, %xmm2
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	call	round@PLT
-	movq	(%rbx), %rax
 	movsd	(%rsp), %xmm2
 	movsd	88(%rbx), %xmm1
 	cvttsd2sil	%xmm0, %ebp
 	pxor	%xmm0, %xmm0
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	call	round@PLT
-	movq	(%rbx), %rax
 	movsd	88(%rbx), %xmm1
 	movq	%r13, %xmm2
 	cvttsd2sil	%xmm0, %r14d
 	pxor	%xmm0, %xmm0
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	call	round@PLT
-	movq	(%rbx), %rax
 	movsd	8(%rsp), %xmm2
 	movsd	88(%rbx), %xmm1
 	cvttsd2sil	%xmm0, %r13d
 	pxor	%xmm0, %xmm0
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	call	round@PLT
 	movl	20(%rsp), %esi
@@ -2505,13 +2481,13 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
 	pxor	%xmm3, %xmm3
 	movq	%rdi, %rbx
 	movl	$257, %eax
+	movsd	256(%rdx), %xmm1
 	movq	%rdx, 8(%rdi)
 	pxor	%xmm2, %xmm2
-	movsd	256(%rdx), %xmm1
-	movw	%ax, 16(%rdi)
 	movupd	216(%rdx), %xmm4
-	pextrw	$0, %xmm0, %eax
+	movw	%ax, 16(%rdi)
 	pextrw	$1, %xmm0, %edx
+	pextrw	$0, %xmm0, %eax
 	cvtsi2sdl	%edx, %xmm3
 	movq	%rsi, (%rdi)
 	cvtsi2sdl	%eax, %xmm2
@@ -2525,7 +2501,6 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
 	movd	%xmm0, 80(%rdi)
 	movapd	%xmm1, %xmm0
 	movups	%xmm4, 32(%rdi)
-	leaq	296(%rsi), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	mulsd	.LC28(%rip), %xmm0
 	pxor	%xmm1, %xmm1
@@ -2550,12 +2525,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
 	movzwl	48(%rbx), %eax
 	pxor	%xmm3, %xmm3
 	pxor	%xmm2, %xmm2
-	movq	(%rbx), %rcx
 	pxor	%xmm1, %xmm1
 	cvtsi2sdl	%edx, %xmm3
 	movapd	%xmm1, %xmm0
 	cvtsi2sdl	%eax, %xmm2
-	leaq	296(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	88(%rbx), %xmm1
 	movsd	%xmm0, 96(%rbx)
@@ -2568,12 +2541,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_y:
 	movzwl	48(%rbx), %edx
 	pxor	%xmm0, %xmm0
 	pxor	%xmm3, %xmm3
-	movq	(%rbx), %rcx
 	pxor	%xmm2, %xmm2
 	cvtsi2sdl	%edx, %xmm0
 	movapd	%xmm2, %xmm1
 	cvtsi2sdl	%eax, %xmm3
-	leaq	296(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movq	%rbx, %rdi
 	movsd	%xmm0, 104(%rbx)
@@ -2838,27 +2809,26 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
 .LFB8168:
 	.cfi_startproc
 	movzwl	%si, %eax
-	pxor	%xmm2, %xmm2
+	pxor	%xmm4, %xmm4
 	pushq	%r14
 	.cfi_def_cfa_offset 16
 	.cfi_offset 14, -16
 	pxor	%xmm3, %xmm3
+	cvtsi2sdl	%eax, %xmm4
 	pushq	%rbp
 	.cfi_def_cfa_offset 24
 	.cfi_offset 6, -24
-	cvtsi2sdl	%eax, %xmm2
 	pxor	%xmm1, %xmm1
 	movl	%esi, %ebp
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
 	movzwl	50(%rdi), %eax
-	movq	%rdi, %rbx
 	movapd	%xmm1, %xmm0
-	movq	(%rdi), %rdx
+	movq	%rdi, %rbx
 	cvtsi2sdl	%eax, %xmm3
-	leaq	296(%rdx), %rdi
-	movq	%xmm2, %r14
+	movapd	%xmm4, %xmm2
+	movq	%xmm4, %r14
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	mulsd	.LC28(%rip), %xmm0
 	pxor	%xmm1, %xmm1
@@ -2889,12 +2859,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
 	.cfi_restore_state
 	movzwl	50(%rbx), %eax
 	pxor	%xmm3, %xmm3
-	movq	(%rbx), %rcx
 	pxor	%xmm1, %xmm1
-	movapd	%xmm1, %xmm0
 	movq	%r14, %xmm2
+	movapd	%xmm1, %xmm0
 	cvtsi2sdl	%eax, %xmm3
-	leaq	296(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	88(%rbx), %xmm1
 	movsd	%xmm0, 96(%rbx)
@@ -2905,12 +2873,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
 .L487:
 	movzwl	50(%rbx), %eax
 	pxor	%xmm3, %xmm3
-	movq	(%rbx), %rcx
 	pxor	%xmm2, %xmm2
-	movapd	%xmm2, %xmm1
 	movq	%r14, %xmm0
+	movapd	%xmm2, %xmm1
 	cvtsi2sdl	%eax, %xmm3
-	leaq	296(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	jmp	.L489
 	.cfi_endproc
@@ -2940,10 +2906,8 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
 	subq	$24, %rsp
 	.cfi_def_cfa_offset 48
 	movzwl	48(%rdi), %eax
-	movq	(%rdi), %rdx
 	movsd	%xmm3, 8(%rsp)
 	cvtsi2sdl	%eax, %xmm2
-	leaq	296(%rdx), %rdi
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT
 	pxor	%xmm1, %xmm1
 	movsd	8(%rsp), %xmm3
@@ -2975,12 +2939,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
 	.cfi_restore_state
 	movzwl	48(%rbx), %eax
 	pxor	%xmm2, %xmm2
-	movq	(%rbx), %rcx
 	pxor	%xmm1, %xmm1
-	movapd	%xmm1, %xmm0
 	movsd	%xmm3, 8(%rsp)
+	movapd	%xmm1, %xmm0
 	cvtsi2sdl	%eax, %xmm2
-	leaq	296(%rcx), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	movsd	88(%rbx), %xmm1
 	movsd	8(%rsp), %xmm3
@@ -2995,8 +2957,6 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
 	pxor	%xmm2, %xmm2
 	movapd	%xmm2, %xmm1
 	cvtsi2sdl	%eax, %xmm0
-	movq	(%rbx), %rax
-	leaq	296(%rax), %rdi
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
 	jmp	.L498
 	.cfi_endproc

@@ -115,53 +115,48 @@ _ZN10flashlightD2Ev:
 	.seh_proc	_ZN10flashlight6UpdateEv
 _ZN10flashlight6UpdateEv:
 .LFB6885:
-	pushq	%rsi
-	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$88, %rsp
-	.seh_stackalloc	88
+	subq	$80, %rsp
+	.seh_stackalloc	80
 	movaps	%xmm6, 64(%rsp)
 	.seh_savexmm	%xmm6, 64
 	.seh_endprologue
 	pxor	%xmm1, %xmm1
-	movq	(%rcx), %rsi
+	movq	(%rcx), %rax
 	movq	%rcx, %rbx
-	leaq	184(%rsi), %rcx
+	leaq	184(%rax), %rcx
 	call	_ZN3wze6engine5mouse4GetYEd
 	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
-	movapd	%xmm0, %xmm6
+	movsd	%xmm0, 56(%rsp)
 	leaq	184(%rax), %rcx
 	call	_ZN3wze6engine5mouse4GetXEd
-	movq	(%rbx), %rax
-	movq	16(%rbx), %rdx
-	movsd	%xmm0, 56(%rsp)
-	leaq	240(%rax), %rcx
-	call	_ZN3wze6engine6actorsixEy
-	movq	%rax, %rcx
-	call	_ZN3wze6engine6actors5actor4GetYEv
 	movq	(%rbx), %rax
 	movq	16(%rbx), %rdx
 	movsd	%xmm0, 48(%rsp)
 	leaq	240(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
+	call	_ZN3wze6engine6actors5actor4GetYEv
+	movq	(%rbx), %rax
+	movq	16(%rbx), %rdx
+	movsd	%xmm0, 40(%rsp)
+	leaq	240(%rax), %rcx
+	call	_ZN3wze6engine6actorsixEy
+	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor4GetXEv
 	movsd	56(%rsp), %xmm3
 	movsd	48(%rsp), %xmm2
-	movsd	%xmm6, 32(%rsp)
-	movapd	%xmm0, %xmm1
-	leaq	296(%rsi), %rcx
+	movsd	40(%rsp), %xmm1
 	call	_ZN3wze6engine6vector5AngleEdddd
 	ucomisd	%xmm0, %xmm0
 	movapd	%xmm0, %xmm6
 	jnp	.L8
 	movaps	64(%rsp), %xmm6
 	xorl	%eax, %eax
-	addq	$88, %rsp
+	addq	$80, %rsp
 	popq	%rbx
-	popq	%rsi
 	ret
 	.p2align 4,,10
 	.p2align 3
@@ -176,9 +171,8 @@ _ZN10flashlight6UpdateEv:
 	nop
 	movaps	64(%rsp), %xmm6
 	xorl	%eax, %eax
-	addq	$88, %rsp
+	addq	$80, %rsp
 	popq	%rbx
-	popq	%rsi
 	ret
 	.seh_endproc
 	.ident	"GCC: (GNU) 13.1.0"

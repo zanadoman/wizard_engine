@@ -481,17 +481,14 @@ _ZN6playerD2Ev:
 _ZN6player6UpdateEv:
 .LFB8152:
 	.cfi_startproc
-	pushq	%r12
-	.cfi_def_cfa_offset 16
-	.cfi_offset 12, -16
 	pushq	%rbp
-	.cfi_def_cfa_offset 24
-	.cfi_offset 6, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
 	pushq	%rbx
-	.cfi_def_cfa_offset 32
-	.cfi_offset 3, -32
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
 	movq	%rdi, %rbx
-	subq	$16, %rsp
+	subq	$24, %rsp
 	.cfi_def_cfa_offset 48
 	movq	(%rdi), %rax
 	movl	24(%rdi), %esi
@@ -541,15 +538,13 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	jne	.L64
-	addq	$16, %rsp
+	addq	$24, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 32
+	.cfi_def_cfa_offset 24
 	xorl	%eax, %eax
 	popq	%rbx
-	.cfi_def_cfa_offset 24
-	popq	%rbp
 	.cfi_def_cfa_offset 16
-	popq	%r12
+	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
@@ -566,10 +561,10 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rsi
 	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	(%rbx), %rbp
 	movq	8(%rbx), %rsi
-	movq	%rax, %r12
-	leaq	240(%rbp), %rdi
+	movq	%rax, %rbp
+	movq	(%rbx), %rax
+	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
@@ -592,18 +587,17 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	(%rsp), %xmm1
 	movsd	8(%rsp), %xmm2
-	leaq	296(%rbp), %rdi
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
-	movq	%r12, %rdi
+	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor4SetXEd@PLT
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	(%rbx), %rbp
 	movq	8(%rbx), %rsi
-	movq	%rax, %r12
-	leaq	240(%rbp), %rdi
+	movq	%rax, %rbp
+	movq	(%rbx), %rax
+	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
@@ -626,9 +620,8 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	movsd	8(%rsp), %xmm2
 	movsd	(%rsp), %xmm1
-	leaq	296(%rbp), %rdi
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
-	movq	%r12, %rdi
+	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor4SetYEd@PLT
 	jmp	.L22
 	.p2align 4,,10
@@ -641,15 +634,13 @@ _ZN6player6UpdateEv:
 	movl	$46, %esi
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor8SetWidthEt@PLT
-	addq	$16, %rsp
+	addq	$24, %rsp
 	.cfi_remember_state
-	.cfi_def_cfa_offset 32
+	.cfi_def_cfa_offset 24
 	xorl	%eax, %eax
 	popq	%rbx
-	.cfi_def_cfa_offset 24
-	popq	%rbp
 	.cfi_def_cfa_offset 16
-	popq	%r12
+	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
@@ -812,10 +803,10 @@ _ZN6player6UpdateEv:
 	movq	8(%rbx), %rsi
 	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	(%rbx), %rbp
 	movq	8(%rbx), %rsi
-	movq	%rax, %r12
-	leaq	240(%rbp), %rdi
+	movq	%rax, %rbp
+	movq	(%rbx), %rax
+	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
@@ -838,18 +829,17 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	(%rsp), %xmm1
 	movsd	8(%rsp), %xmm2
-	leaq	296(%rbp), %rdi
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
-	movq	%r12, %rdi
+	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor4SetXEd@PLT
 	movq	(%rbx), %rax
 	movq	8(%rbx), %rsi
 	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
-	movq	(%rbx), %rbp
 	movq	8(%rbx), %rsi
-	movq	%rax, %r12
-	leaq	240(%rbp), %rdi
+	movq	%rax, %rbp
+	movq	(%rbx), %rax
+	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
@@ -872,9 +862,8 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	movsd	8(%rsp), %xmm2
 	movsd	(%rsp), %xmm1
-	leaq	296(%rbp), %rdi
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
-	movq	%r12, %rdi
+	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor4SetYEd@PLT
 	jmp	.L29
 	.cfi_endproc

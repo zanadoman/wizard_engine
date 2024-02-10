@@ -870,23 +870,23 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 .LFB6894:
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$64, %rsp
-	.seh_stackalloc	64
-	movaps	%xmm6, 48(%rsp)
-	.seh_savexmm	%xmm6, 48
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	movaps	%xmm6, 32(%rsp)
+	.seh_savexmm	%xmm6, 32
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
 	jp	.L169
 	movq	8(%rcx), %rax
-	movsd	48(%rcx), %xmm0
-	movsd	216(%rax), %xmm1
-	movsd	224(%rax), %xmm2
-	ucomisd	%xmm6, %xmm1
+	movsd	48(%rcx), %xmm3
+	movsd	216(%rax), %xmm0
+	movsd	224(%rax), %xmm1
+	ucomisd	%xmm6, %xmm0
 	jp	.L155
 	jne	.L155
-	ucomisd	%xmm0, %xmm2
+	ucomisd	%xmm3, %xmm1
 	jp	.L155
 	jne	.L155
 	movq	$0x000000000, 56(%rcx)
@@ -896,35 +896,29 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	.p2align 4,,10
 	.p2align 3
 .L155:
-	movq	(%rbx), %rax
-	movapd	%xmm6, %xmm3
-	movsd	%xmm0, 32(%rsp)
-	leaq	296(%rax), %rcx
+	movapd	%xmm6, %xmm2
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
-	movapd	%xmm0, %xmm3
-	movsd	48(%rbx), %xmm0
-	movsd	216(%rax), %xmm1
-	movsd	224(%rax), %xmm2
-	movsd	%xmm3, 56(%rbx)
-	ucomisd	%xmm1, %xmm6
+	movsd	48(%rbx), %xmm3
+	movapd	%xmm0, %xmm2
+	movsd	216(%rax), %xmm0
+	movsd	224(%rax), %xmm1
+	movsd	%xmm2, 56(%rbx)
+	ucomisd	%xmm0, %xmm6
 	jp	.L159
 	jne	.L159
-	ucomisd	%xmm0, %xmm2
+	ucomisd	%xmm3, %xmm1
 	jp	.L159
 	je	.L163
 .L159:
-	movq	(%rbx), %rax
-	movapd	%xmm6, %xmm3
-	movsd	%xmm0, 32(%rsp)
-	leaq	296(%rax), %rcx
+	movapd	%xmm6, %xmm2
 	call	_ZN3wze6engine6vector5AngleEdddd
 .L162:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm6, %xmm0
 	movsd	%xmm6, 40(%rbx)
-	movaps	48(%rsp), %xmm6
-	addq	$64, %rsp
+	movaps	32(%rsp), %xmm6
+	addq	$48, %rsp
 	popq	%rbx
 	ret
 .L169:
@@ -960,23 +954,23 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 .LFB6896:
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$64, %rsp
-	.seh_stackalloc	64
-	movaps	%xmm6, 48(%rsp)
-	.seh_savexmm	%xmm6, 48
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	movaps	%xmm6, 32(%rsp)
+	.seh_savexmm	%xmm6, 32
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
 	jp	.L188
 	movq	8(%rcx), %rax
-	movsd	40(%rcx), %xmm3
-	movsd	216(%rax), %xmm1
-	movsd	224(%rax), %xmm2
-	ucomisd	%xmm3, %xmm1
+	movsd	40(%rcx), %xmm2
+	movsd	216(%rax), %xmm0
+	movsd	224(%rax), %xmm1
+	ucomisd	%xmm2, %xmm0
 	jp	.L174
 	jne	.L174
-	ucomisd	%xmm2, %xmm6
+	ucomisd	%xmm1, %xmm6
 	jp	.L174
 	jne	.L174
 	movq	$0x000000000, 56(%rcx)
@@ -986,32 +980,29 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEd:
 	.p2align 4,,10
 	.p2align 3
 .L174:
-	movq	(%rbx), %rax
-	movsd	%xmm6, 32(%rsp)
-	leaq	296(%rax), %rcx
+	movapd	%xmm6, %xmm3
 	call	_ZN3wze6engine6vector6LengthEdddd
 	movq	8(%rbx), %rax
-	movsd	40(%rbx), %xmm3
-	movsd	216(%rax), %xmm1
-	movsd	224(%rax), %xmm2
-	movsd	%xmm0, 56(%rbx)
-	ucomisd	%xmm3, %xmm1
+	movsd	40(%rbx), %xmm2
+	movapd	%xmm0, %xmm3
+	movsd	216(%rax), %xmm0
+	movsd	224(%rax), %xmm1
+	movsd	%xmm3, 56(%rbx)
+	ucomisd	%xmm2, %xmm0
 	jp	.L178
 	jne	.L178
-	ucomisd	%xmm2, %xmm6
+	ucomisd	%xmm1, %xmm6
 	jp	.L178
 	je	.L182
 .L178:
-	movq	(%rbx), %rax
-	movsd	%xmm6, 32(%rsp)
-	leaq	296(%rax), %rcx
+	movapd	%xmm6, %xmm3
 	call	_ZN3wze6engine6vector5AngleEdddd
 .L181:
 	movsd	%xmm0, 64(%rbx)
 	movapd	%xmm6, %xmm0
 	movsd	%xmm6, 48(%rbx)
-	movaps	48(%rsp), %xmm6
-	addq	$64, %rsp
+	movaps	32(%rsp), %xmm6
+	addq	$48, %rsp
 	popq	%rbx
 	ret
 .L188:
