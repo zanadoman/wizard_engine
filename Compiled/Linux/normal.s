@@ -45,7 +45,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	%rbp, %rsi
 	call	_ZN5statsC1EPN3wze6engineEP4game@PLT
 .LEHE0:
-	movl	$72, %edi
+	movl	$88, %edi
 	movq	$0, 168(%rbx)
 	movq	$0, 176(%rbx)
 .LEHB1:
@@ -322,7 +322,7 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 	.cfi_offset 3, -32
 	.cfi_offset 6, -24
 	.cfi_offset 12, -16
-	movl	$72, %esi
+	movl	$88, %esi
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
 .L6:
@@ -432,7 +432,7 @@ _ZN6normalD2Ev:
 	movq	144(%rbp), %rdi
 	testq	%rdi, %rdi
 	je	.L30
-	movl	$72, %esi
+	movl	$88, %esi
 	call	_ZdlPvm@PLT
 .L30:
 	movq	176(%rbp), %rdi
