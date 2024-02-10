@@ -30,7 +30,7 @@ main:
 	movl	$1080, %r8d
 	movl	$1920, %ecx
 	movq	%rax, %rdi
-	movq	%rax, %rbp
+	movq	%rax, %rbx
 .LEHB1:
 	call	_ZN3wze6engineC1EPKcS2_tth@PLT
 .LEHE1:
@@ -38,9 +38,9 @@ main:
 .LEHB2:
 	call	_Znwm@PLT
 .LEHE2:
-	movq	%rbp, %rsi
+	movq	%rbx, %rsi
 	movq	%rax, %rdi
-	movq	%rax, %rbx
+	movq	%rax, %rbp
 .LEHB3:
 	call	_ZN4gameC1EPN3wze6engineE@PLT
 .LEHE3:
@@ -48,31 +48,23 @@ main:
 	.p2align 4,,10
 	.p2align 3
 .L3:
-	movq	%rbx, %rdi
+	movq	%rbp, %rdi
 .LEHB4:
 	call	_ZN4game6UpdateEv@PLT
 .L2:
-	movq	%rbp, %rdi
+	movq	%rbx, %rdi
 	call	_ZN3wze6engine6UpdateEv@PLT
 .LEHE4:
 	testb	%al, %al
 	jne	.L3
-	movq	112(%rbx), %rdi
-	call	free@PLT
-	movq	96(%rbx), %rdi
-	call	free@PLT
-	movq	72(%rbx), %rdi
-	call	free@PLT
-	movq	56(%rbx), %rdi
-	call	free@PLT
-	movq	40(%rbx), %rdi
-	call	free@PLT
+	movq	%rbp, %rdi
+	call	_ZN4gameD1Ev@PLT
 	movl	$144, %esi
-	movq	%rbx, %rdi
+	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
-	movq	%rbp, %rdi
+	movq	%rbx, %rdi
 	call	_ZN3wze6engineD1Ev@PLT
-	movq	%rbp, %rdi
+	movq	%rbx, %rdi
 	movl	$456, %esi
 	call	_ZdlPvm@PLT
 	addq	$8, %rsp
@@ -86,10 +78,10 @@ main:
 	ret
 .L6:
 	.cfi_restore_state
-	movq	%rax, %rbx
+	movq	%rax, %rbp
 	jmp	.L4
 .L7:
-	movq	%rax, %rbp
+	movq	%rax, %rbx
 	jmp	.L5
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
@@ -133,17 +125,17 @@ main.cold:
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -24
 	.cfi_offset 6, -16
-	movq	%rbp, %rdi
+	movq	%rbx, %rdi
 	movl	$456, %esi
 	call	_ZdlPvm@PLT
-	movq	%rbx, %rdi
+	movq	%rbp, %rdi
 .LEHB5:
 	call	_Unwind_Resume@PLT
 .L5:
-	movq	%rbx, %rdi
+	movq	%rbp, %rdi
 	movl	$144, %esi
 	call	_ZdlPvm@PLT
-	movq	%rbp, %rdi
+	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
 .LEHE5:
 	.cfi_endproc

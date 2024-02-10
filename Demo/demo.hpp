@@ -77,6 +77,7 @@ class game
     public:
         uint8 Update();
         game(engine* Engine);
+        ~game();
 
     private:
         scene ActiveScene;

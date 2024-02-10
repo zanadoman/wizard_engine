@@ -6,6 +6,16 @@ game::game(engine* Engine) : Engine(Engine), Assets(Engine)
     this->Menu = new menu(this->Engine, &this->Assets);
 }
 
+game::~game()
+{
+    switch (this->ActiveScene)
+    {
+        case SCENE_MENU:
+            delete this->Menu;
+        break;
+    }
+}
+
 uint8 game::Update()
 {
     switch (this->ActiveScene)
