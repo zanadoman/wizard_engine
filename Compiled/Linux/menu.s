@@ -65,7 +65,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	movq	%rax, 32(%rbx)
 	movq	16(%rbx), %rax
 	leaq	8(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor6colors3NewEv@PLT
+	call	_ZN3wze6engine6actors5actor10colorboxes3NewEv@PLT
 	leaq	.LC2(%rip), %rsi
 	movq	%rax, 40(%rbx)
 	movq	8(%rbx), %rax
@@ -81,7 +81,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	movq	%rax, 56(%rbx)
 	movq	16(%rbx), %rax
 	leaq	8(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor6colors3NewEv@PLT
+	call	_ZN3wze6engine6actors5actor10colorboxes3NewEv@PLT
 	leaq	.LC3(%rip), %rsi
 	movq	%rax, 64(%rbx)
 	movq	8(%rbx), %rax
@@ -115,7 +115,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	movq	32(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv@PLT
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6actors5actor6colors5color4SetYEd@PLT
+	call	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd@PLT
 	movq	32(%rbx), %rdi
 	movq	40(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv@PLT
@@ -152,7 +152,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	movq	56(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv@PLT
 	movq	%r12, %rdi
-	call	_ZN3wze6engine6actors5actor6colors5color4SetYEd@PLT
+	call	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd@PLT
 	movq	56(%rbx), %rdi
 	movq	64(%rbx), %r12
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv@PLT

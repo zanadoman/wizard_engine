@@ -4,12 +4,12 @@
 pause::pause(engine* Engine, game* Game) : Engine(Engine), Game(Game)
 {
     this->Actor = this->Engine->Actors.New(NULL, ACT_NONE, this->Engine->Window.GetWidth() >> 1, this->Engine->Window.GetHeight() >> 1, 0, 0, 0);
-    this->Frame = this->Actor->Colors.New();
+    this->Frame = this->Actor->Colorboxes.New();
     this->ButtonResume = this->Actor->Overlapboxes.New(BOX_NONE);
-    this->ButtonResumeColor = this->Actor->Colors.New();
+    this->ButtonResumeColor = this->Actor->Colorboxes.New();
     this->ButtonResumeText = this->Actor->Texts.New("Resume", this->Game->Assets.FontFreeSansFont);
     this->ButtonMenu = this->Actor->Overlapboxes.New(BOX_NONE);
-    this->ButtonMenuColor = this->Actor->Colors.New();
+    this->ButtonMenuColor = this->Actor->Colorboxes.New();
     this->ButtonMenuText = this->Actor->Texts.New("Menu", this->Game->Assets.FontFreeSansFont);
 
     this->Actor->Visible = false;

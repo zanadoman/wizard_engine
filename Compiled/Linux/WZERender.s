@@ -2675,16 +2675,16 @@ _ZN3wze6engine6render13OrderingStageEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC14:
-	.string	"wze::engine.render.RenderColor(): SDL_SetRenderDrawColor failed"
+	.string	"wze::engine.render.RenderColorbox(): SDL_SetRenderDrawColor failed"
 	.align 8
 .LC15:
-	.string	"wze::engine.render.RenderColor(): SDL_RenderFillRect failed"
+	.string	"wze::engine.render.RenderColorbox(): SDL_RenderFillRect failed"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
-	.type	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE, @function
-_ZN3wze6engine6render11RenderColorEPNS1_5tokenE:
+	.globl	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
+	.type	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE, @function
+_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE:
 .LFB8167:
 	.cfi_startproc
 	pushq	%rbp
@@ -2738,7 +2738,7 @@ _ZN3wze6engine6render11RenderColorEPNS1_5tokenE:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8167:
-	.size	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE, .-_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
+	.size	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE, .-_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
 	.section	.rodata.str1.8
 	.align 8
 .LC16:
@@ -3314,7 +3314,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 .L557:
 	movq	%r14, %rsi
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
+	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
 	movq	32(%rbp), %rdx
 	jmp	.L550
 	.p2align 4,,10
@@ -3391,7 +3391,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 .L572:
 	movq	%r14, %rsi
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
+	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
 	jmp	.L565
 	.p2align 4,,10
 	.p2align 3

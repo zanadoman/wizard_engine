@@ -212,7 +212,7 @@ _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd:
 	movq	%rbx, %rdx
 	movq	%rax, 32(%rsp)
 .LEHB0:
-	call	_ZN3wze6engine6actors5actor6colorsC1EPS0_PS2_@PLT
+	call	_ZN3wze6engine6actors5actor10colorboxesC1EPS0_PS2_@PLT
 .LEHE0:
 	leaq	40(%rbx), %rsi
 	movq	%rbx, %rdx
@@ -408,7 +408,7 @@ _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd.cold:
 	call	_ZN3wze6engine6actors5actor12textureboxesD1Ev@PLT
 .L40:
 	movq	40(%rsp), %rdi
-	call	_ZN3wze6engine6actors5actor6colorsD1Ev@PLT
+	call	_ZN3wze6engine6actors5actor10colorboxesD1Ev@PLT
 	movq	%rbx, %rdi
 .LEHB6:
 	call	_Unwind_Resume@PLT
@@ -502,7 +502,7 @@ _ZN3wze6engine6actors5actorD2Ev:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
-	jmp	_ZN3wze6engine6actors5actor6colorsD1Ev@PLT
+	jmp	_ZN3wze6engine6actors5actor10colorboxesD1Ev@PLT
 	.p2align 4,,10
 	.p2align 3
 .L63:

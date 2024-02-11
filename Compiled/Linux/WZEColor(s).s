@@ -13,8 +13,8 @@
 	.text
 	.align 2
 	.p2align 4
-	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0, @function
-_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
+	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0, @function
+_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0:
 .LFB8347:
 	.cfi_startproc
 	pushq	%r12
@@ -149,7 +149,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8347:
-	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
+	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
 .LC3:
@@ -157,9 +157,9 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_
-	.type	_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_, @function
-_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_:
+	.globl	_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_
+	.type	_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_, @function
+_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_:
 .LFB8147:
 	.cfi_startproc
 	pushq	%rbx
@@ -206,14 +206,14 @@ _ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8147:
-	.size	_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_, .-_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_
-	.globl	_ZN3wze6engine6actors5actor6colorsC1EPS0_PS2_
-	.set	_ZN3wze6engine6actors5actor6colorsC1EPS0_PS2_,_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_
+	.size	_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_, .-_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_
+	.globl	_ZN3wze6engine6actors5actor10colorboxesC1EPS0_PS2_
+	.set	_ZN3wze6engine6actors5actor10colorboxesC1EPS0_PS2_,_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colorsD2Ev
-	.type	_ZN3wze6engine6actors5actor6colorsD2Ev, @function
-_ZN3wze6engine6actors5actor6colorsD2Ev:
+	.globl	_ZN3wze6engine6actors5actor10colorboxesD2Ev
+	.type	_ZN3wze6engine6actors5actor10colorboxesD2Ev, @function
+_ZN3wze6engine6actors5actor10colorboxesD2Ev:
 .LFB8150:
 	.cfi_startproc
 	movq	16(%rdi), %rdx
@@ -278,9 +278,9 @@ _ZN3wze6engine6actors5actor6colorsD2Ev:
 	jmp	free@PLT
 	.cfi_endproc
 .LFE8150:
-	.size	_ZN3wze6engine6actors5actor6colorsD2Ev, .-_ZN3wze6engine6actors5actor6colorsD2Ev
-	.globl	_ZN3wze6engine6actors5actor6colorsD1Ev
-	.set	_ZN3wze6engine6actors5actor6colorsD1Ev,_ZN3wze6engine6actors5actor6colorsD2Ev
+	.size	_ZN3wze6engine6actors5actor10colorboxesD2Ev, .-_ZN3wze6engine6actors5actor10colorboxesD2Ev
+	.globl	_ZN3wze6engine6actors5actor10colorboxesD1Ev
+	.set	_ZN3wze6engine6actors5actor10colorboxesD1Ev,_ZN3wze6engine6actors5actor10colorboxesD2Ev
 	.section	.rodata.str1.8
 	.align 8
 .LC5:
@@ -290,13 +290,13 @@ _ZN3wze6engine6actors5actor6colorsD2Ev:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.align 8
 .LC7:
-	.string	"wze::engine.actors[].colors.New(): Memory allocation failed"
+	.string	"wze::engine.actors[].colorboxes.New(): Memory allocation failed"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors3NewEv
-	.type	_ZN3wze6engine6actors5actor6colors3NewEv, @function
-_ZN3wze6engine6actors5actor6colors3NewEv:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes3NewEv
+	.type	_ZN3wze6engine6actors5actor10colorboxes3NewEv, @function
+_ZN3wze6engine6actors5actor10colorboxes3NewEv:
 .LFB8152:
 	.cfi_startproc
 	pushq	%rbp
@@ -430,12 +430,12 @@ _ZN3wze6engine6actors5actor6colors3NewEv:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8152:
-	.size	_ZN3wze6engine6actors5actor6colors3NewEv, .-_ZN3wze6engine6actors5actor6colors3NewEv
+	.size	_ZN3wze6engine6actors5actor10colorboxes3NewEv, .-_ZN3wze6engine6actors5actor10colorboxes3NewEv
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors6DeleteEy
-	.type	_ZN3wze6engine6actors5actor6colors6DeleteEy, @function
-_ZN3wze6engine6actors5actor6colors6DeleteEy:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes6DeleteEy
+	.type	_ZN3wze6engine6actors5actor10colorboxes6DeleteEy, @function
+_ZN3wze6engine6actors5actor10colorboxes6DeleteEy:
 .LFB8153:
 	.cfi_startproc
 	cmpq	16(%rdi), %rsi
@@ -486,7 +486,7 @@ _ZN3wze6engine6actors5actor6colors6DeleteEy:
 .L70:
 	leaq	16(%rbx), %rdi
 	movq	%r8, %rdx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
 .L65:
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -520,12 +520,12 @@ _ZN3wze6engine6actors5actor6colors6DeleteEy:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8153:
-	.size	_ZN3wze6engine6actors5actor6colors6DeleteEy, .-_ZN3wze6engine6actors5actor6colors6DeleteEy
+	.size	_ZN3wze6engine6actors5actor10colorboxes6DeleteEy, .-_ZN3wze6engine6actors5actor10colorboxes6DeleteEy
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE
-	.type	_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE, @function
-_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes5PurgeESt16initializer_listIyE
+	.type	_ZN3wze6engine6actors5actor10colorboxes5PurgeESt16initializer_listIyE, @function
+_ZN3wze6engine6actors5actor10colorboxes5PurgeESt16initializer_listIyE:
 .LFB8154:
 	.cfi_startproc
 	pushq	%r14
@@ -617,7 +617,7 @@ _ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	leaq	16(%r13), %rdi
 	movq	%rax, %rsi
 	movq	%r8, %rdx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -653,17 +653,17 @@ _ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	jmp	.L117
 	.cfi_endproc
 .LFE8154:
-	.size	_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE
+	.size	_ZN3wze6engine6actors5actor10colorboxes5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5actor10colorboxes5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
 .LC9:
-	.string	"wze::engine.actors[].colors.Purge(): KeepColorIDs must not be NULL\nParams: KeepColorIDs: %p\n"
+	.string	"wze::engine.actors[].colorboxes.Purge(): KeepColorboxIDs must not be NULL\nParams: KeepColorboxIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE
-	.type	_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE, @function
-_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes5PurgeEPN3neo5arrayIyEE
+	.type	_ZN3wze6engine6actors5actor10colorboxes5PurgeEPN3neo5arrayIyEE, @function
+_ZN3wze6engine6actors5actor10colorboxes5PurgeEPN3neo5arrayIyEE:
 .LFB8155:
 	.cfi_startproc
 	pushq	%r13
@@ -759,7 +759,7 @@ _ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 .L136:
 	leaq	16(%r12), %rdi
 	movq	%rax, %rsi
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -802,20 +802,20 @@ _ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	jmp	.L152
 	.cfi_endproc
 .LFE8155:
-	.size	_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE
+	.size	_ZN3wze6engine6actors5actor10colorboxes5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor10colorboxes5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
 .LC10:
-	.string	"wze::engine.actors[].colors[]: Illegal access to NULL Color\nParams: ColorID: %lld\n"
+	.string	"wze::engine.actors[].colorboxes[]: Illegal access to NULL Colorbox\nParams: ColorboxID: %lld\n"
 	.align 8
 .LC11:
-	.string	"wze::engine.actors[].colors[]: Color does not exist\nParams: ColorID: %lld\n"
+	.string	"wze::engine.actors[].colorboxes[]: Colorbox does not exist\nParams: ColorboxID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colorsixEy
-	.type	_ZN3wze6engine6actors5actor6colorsixEy, @function
-_ZN3wze6engine6actors5actor6colorsixEy:
+	.globl	_ZN3wze6engine6actors5actor10colorboxesixEy
+	.type	_ZN3wze6engine6actors5actor10colorboxesixEy, @function
+_ZN3wze6engine6actors5actor10colorboxesixEy:
 .LFB8156:
 	.cfi_startproc
 	subq	$8, %rsp
@@ -847,12 +847,12 @@ _ZN3wze6engine6actors5actor6colorsixEy:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8156:
-	.size	_ZN3wze6engine6actors5actor6colorsixEy, .-_ZN3wze6engine6actors5actor6colorsixEy
+	.size	_ZN3wze6engine6actors5actor10colorboxesixEy, .-_ZN3wze6engine6actors5actor10colorboxesixEy
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y
-	.type	_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y, @function
-_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y:
 .LFB8158:
 	.cfi_startproc
 	movl	256(%rdx), %eax
@@ -871,46 +871,46 @@ _ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y:
 	ret
 	.cfi_endproc
 .LFE8158:
-	.size	_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y, .-_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y
-	.globl	_ZN3wze6engine6actors5actor6colors5colorC1EPS0_PS2_y
-	.set	_ZN3wze6engine6actors5actor6colors5colorC1EPS0_PS2_y,_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y, .-_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorboxC1EPS0_PS2_y
+	.set	_ZN3wze6engine6actors5actor10colorboxes8colorboxC1EPS0_PS2_y,_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5colorD2Ev
-	.type	_ZN3wze6engine6actors5actor6colors5colorD2Ev, @function
-_ZN3wze6engine6actors5actor6colors5colorD2Ev:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev:
 .LFB8161:
 	.cfi_startproc
 	ret
 	.cfi_endproc
 .LFE8161:
-	.size	_ZN3wze6engine6actors5actor6colors5colorD2Ev, .-_ZN3wze6engine6actors5actor6colors5colorD2Ev
-	.globl	_ZN3wze6engine6actors5actor6colors5colorD1Ev
-	.set	_ZN3wze6engine6actors5actor6colors5colorD1Ev,_ZN3wze6engine6actors5actor6colors5colorD2Ev
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev, .-_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorboxD1Ev
+	.set	_ZN3wze6engine6actors5actor10colorboxes8colorboxD1Ev,_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color5GetIDEv
-	.type	_ZN3wze6engine6actors5actor6colors5color5GetIDEv, @function
-_ZN3wze6engine6actors5actor6colors5color5GetIDEv:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox5GetIDEv
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorbox5GetIDEv, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorbox5GetIDEv:
 .LFB8163:
 	.cfi_startproc
 	movq	32(%rdi), %rax
 	ret
 	.cfi_endproc
 .LFE8163:
-	.size	_ZN3wze6engine6actors5actor6colors5color5GetIDEv, .-_ZN3wze6engine6actors5actor6colors5color5GetIDEv
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox5GetIDEv, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox5GetIDEv
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color4GetXEv
-	.type	_ZN3wze6engine6actors5actor6colors5color4GetXEv, @function
-_ZN3wze6engine6actors5actor6colors5color4GetXEv:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv:
 .LFB8164:
 	.cfi_startproc
 	movsd	40(%rdi), %xmm0
 	ret
 	.cfi_endproc
 .LFE8164:
-	.size	_ZN3wze6engine6actors5actor6colors5color4GetXEv, .-_ZN3wze6engine6actors5actor6colors5color4GetXEv
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv
 	.section	.rodata.str1.8
 	.align 8
 .LC13:
@@ -918,9 +918,9 @@ _ZN3wze6engine6actors5actor6colors5color4GetXEv:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color4SetXEd
-	.type	_ZN3wze6engine6actors5actor6colors5color4SetXEd, @function
-_ZN3wze6engine6actors5actor6colors5color4SetXEd:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetXEd
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetXEd, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetXEd:
 .LFB8165:
 	.cfi_startproc
 	pushq	%rbx
@@ -987,19 +987,19 @@ _ZN3wze6engine6actors5actor6colors5color4SetXEd:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8165:
-	.size	_ZN3wze6engine6actors5actor6colors5color4SetXEd, .-_ZN3wze6engine6actors5actor6colors5color4SetXEd
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetXEd, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetXEd
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color4GetYEv
-	.type	_ZN3wze6engine6actors5actor6colors5color4GetYEv, @function
-_ZN3wze6engine6actors5actor6colors5color4GetYEv:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv:
 .LFB8166:
 	.cfi_startproc
 	movsd	48(%rdi), %xmm0
 	ret
 	.cfi_endproc
 .LFE8166:
-	.size	_ZN3wze6engine6actors5actor6colors5color4GetYEv, .-_ZN3wze6engine6actors5actor6colors5color4GetYEv
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv
 	.section	.rodata.str1.8
 	.align 8
 .LC14:
@@ -1007,9 +1007,9 @@ _ZN3wze6engine6actors5actor6colors5color4GetYEv:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color4SetYEd
-	.type	_ZN3wze6engine6actors5actor6colors5color4SetYEd, @function
-_ZN3wze6engine6actors5actor6colors5color4SetYEd:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd:
 .LFB8167:
 	.cfi_startproc
 	pushq	%rbx
@@ -1076,6 +1076,6 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8167:
-	.size	_ZN3wze6engine6actors5actor6colors5color4SetYEd, .-_ZN3wze6engine6actors5actor6colors5color4SetYEd
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

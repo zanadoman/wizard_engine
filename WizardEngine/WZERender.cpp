@@ -77,9 +77,9 @@ namespace wze
                 continue;
             }
 
-            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Colors.Colors.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes.Length(); j++)
             {
-                if (this->Engine->Actors.Actors[i]->Colors.Colors[j] == NULL || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Width == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->Height == 0 || this->Engine->Actors.Actors[i]->Colors.Colors[j]->ColorA == 0 || !this->Engine->Actors.Actors[i]->Colors.Colors[j]->Visible)
+                if (this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j] == NULL || this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j]->Width == 0 || this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j]->Height == 0 || this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j]->ColorA == 0 || !this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j]->Visible)
                 {
                     continue;
                 }
@@ -95,14 +95,14 @@ namespace wze
 
                 for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->Colors.Colors[j]->X, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Y, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Width, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Height, layer);
+                    area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j]->X, this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j]->Y, this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j]->Width, this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j]->Height, layer);
 
                     if (area.w == 0 || area.h == 0)
                     {
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1]->Data == this->Engine->Actors.Actors[i]->Colors.Colors[j] && !(this->RenderQueue[k - 1]->Area.x != area.x || this->RenderQueue[k - 1]->Area.y != area.y || this->RenderQueue[k - 1]->Area.w != area.w || this->RenderQueue[k - 1]->Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1]->Data == this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j] && !(this->RenderQueue[k - 1]->Area.x != area.x || this->RenderQueue[k - 1]->Area.y != area.y || this->RenderQueue[k - 1]->Area.w != area.w || this->RenderQueue[k - 1]->Area.h != area.h))
                     {
                         this->RenderQueue[k - 1]->Layer = layer;
                         continue;
@@ -115,7 +115,7 @@ namespace wze
                             this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
                         
-                        if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i]->Colors.Colors[j], COLOR, layer, this->Engine->Actors.Actors[i]->Colors.Colors[j]->Priority, area)) == NULL)
+                        if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j], COLORBOX, layer, this->Engine->Actors.Actors[i]->Colorboxes.Colorboxes[j]->Priority, area)) == NULL)
                         {
                             printf("wze::engine.render.SelectionStage(): Memory allocation failed\n");
                             exit(1);
@@ -534,8 +534,8 @@ namespace wze
         {
             switch (this->RenderQueue[i]->Type)
             {
-                case COLOR:
-                    this->RenderColor(this->RenderQueue[i]);
+                case COLORBOX:
+                    this->RenderColorbox(this->RenderQueue[i]);
                 break;
 
                 case TEXTUREBOX:
@@ -564,8 +564,8 @@ namespace wze
         {
             switch (this->RenderQueue[i]->Type)
             {
-                case COLOR:
-                    this->RenderColor(this->RenderQueue[i]);
+                case COLORBOX:
+                    this->RenderColorbox(this->RenderQueue[i]);
                 break;
 
                 case TEXTUREBOX:
@@ -595,16 +595,16 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::render::RenderColor(token* Token)
+    uint8 engine::render::RenderColorbox(token* Token)
     {
-        if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, ((engine::actors::actor::colors::color*)Token->Data)->ColorR, ((engine::actors::actor::colors::color*)Token->Data)->ColorG, ((engine::actors::actor::colors::color*)Token->Data)->ColorB, ((engine::actors::actor::colors::color*)Token->Data)->ColorA) != 0)
+        if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, ((engine::actors::actor::colorboxes::colorbox*)Token->Data)->ColorR, ((engine::actors::actor::colorboxes::colorbox*)Token->Data)->ColorG, ((engine::actors::actor::colorboxes::colorbox*)Token->Data)->ColorB, ((engine::actors::actor::colorboxes::colorbox*)Token->Data)->ColorA) != 0)
         {
-            printf("wze::engine.render.RenderColor(): SDL_SetRenderDrawColor failed\n");
+            printf("wze::engine.render.RenderColorbox(): SDL_SetRenderDrawColor failed\n");
             exit(1);
         }
         if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token->Area) != 0)
         {
-            printf("wze::engine.render.RenderColor(): SDL_RenderFillRect failed\n");
+            printf("wze::engine.render.RenderColorbox(): SDL_RenderFillRect failed\n");
             exit(1);
         }
 

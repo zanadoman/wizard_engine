@@ -5,10 +5,10 @@ menu::menu(engine* Engine, game* Game) : Engine(Engine), Game(Game)
     this->Actor = this->Engine->Actors.New(NULL, ACT_NONE, this->Engine->Window.GetWidth() >> 1, this->Engine->Window.GetHeight() >> 1, 0, 0, 0);
     this->Title = this->Actor->Texts.New("Wizard Engine Demo", this->Game->Assets.FontFreeSansFont);
     this->ButtonNormal = this->Actor->Overlapboxes.New(BOX_NONE);
-    this->ButtonNormalColor = this->Actor->Colors.New();
+    this->ButtonNormalColor = this->Actor->Colorboxes.New();
     this->ButtonNormalText = this->Actor->Texts.New("Normal Mode", this->Game->Assets.FontFreeSansFont);
     this->ButtonInfinite = this->Actor->Overlapboxes.New(BOX_NONE);
-    this->ButtonInfiniteColor = this->Actor->Colors.New();
+    this->ButtonInfiniteColor = this->Actor->Colorboxes.New();
     this->ButtonInfiniteText = this->Actor->Texts.New("Infinite Mode", this->Game->Assets.FontFreeSansFont);
 
     this->Title->SetY(this->Actor->GetY() + 350);

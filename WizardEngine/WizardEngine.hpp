@@ -67,7 +67,7 @@ namespace wze
 
                 enum type
                 {
-                    COLOR,
+                    COLORBOX,
                     TEXTUREBOX,
                     FLIPBOOK,
                     TEXT,
@@ -110,7 +110,7 @@ namespace wze
                     neo::uint8 OrderByPriority(neo::uint64 From, neo::uint64 Until);
                     neo::uint8 OrderByPriorityMerge(neo::uint64 Left, neo::uint64 Mid, neo::uint64 Right);
                     neo::uint8 RenderingStage();
-                    neo::uint8 RenderColor(token* Token);
+                    neo::uint8 RenderColorbox(token* Token);
                     neo::uint8 RenderTexturebox(token* Token);
                     neo::uint8 RenderFlipbook(token* Token);
                     neo::uint8 RenderText(token* Token);
@@ -253,13 +253,13 @@ namespace wze
 
                         //__________Colors_____________________________________________________________________________
 
-                        class colors
+                        class colorboxes
                         {
                             friend class engine;
                             engine* Engine;
                             actor* Actor;
 
-                            class color
+                            class colorbox
                             {
                                 friend class engine;
                                 engine* Engine;
@@ -287,22 +287,22 @@ namespace wze
                                     double Y;
                                     double OffsetLength;
                                     double OffsetAngle;
-                                    color(engine* Engine, actor* Actor, neo::uint64 ID);
-                                    ~color();
+                                    colorbox(engine* Engine, actor* Actor, neo::uint64 ID);
+                                    ~colorbox();
                             };
 
                             public:
-                                color* New();
-                                neo::uint8 Delete(neo::uint64 ColorID);
-                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepColorIDs);
-                                neo::uint8 Purge(neo::array<neo::uint64>* KeepColorIDs);
-                                color& operator [] (neo::uint64 ColorID);
+                                colorbox* New();
+                                neo::uint8 Delete(neo::uint64 ColorboxID);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepColorboxIDs);
+                                neo::uint8 Purge(neo::array<neo::uint64>* KeepColorboxIDs);
+                                colorbox& operator [] (neo::uint64 ColorboxID);
 
                             private:
-                                neo::array<color*> Colors;
-                                colors(engine* Engine, actor* Actor);
-                                ~colors();
-                        } Colors;
+                                neo::array<colorbox*> Colorboxes;
+                                colorboxes(engine* Engine, actor* Actor);
+                                ~colorboxes();
+                        } Colorboxes;
 
                         //__________Textures___________________________________________________________________________
 
@@ -793,7 +793,7 @@ namespace wze
             //__________Engine_________________________________________________________________________________________
 
             typedef actors::actor* actor;
-            typedef actors::actor::colors::color* color;
+            typedef actors::actor::colorboxes::colorbox* colorbox;
             typedef actors::actor::textureboxes::texturebox* texturebox;
             typedef actors::actor::flipbooks::flipbook* flipbook;
             typedef actors::actor::texts::text* text;

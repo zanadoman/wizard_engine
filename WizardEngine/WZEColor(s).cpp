@@ -4,150 +4,150 @@ using namespace neo;
 
 namespace wze
 {
-    engine::actors::actor::colors::colors(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Colors({(color*)NULL}) {}
+    engine::actors::actor::colorboxes::colorboxes(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Colorboxes({(colorbox*)NULL}) {}
 
-    engine::actors::actor::colors::~colors()
+    engine::actors::actor::colorboxes::~colorboxes()
     {
-        for (uint64 i = 1; i < this->Colors.Length(); i++)
+        for (uint64 i = 1; i < this->Colorboxes.Length(); i++)
         {
-            delete this->Colors[i];
+            delete this->Colorboxes[i];
         }
     }
 
-    engine::actors::actor::colors::color* engine::actors::actor::colors::New()
+    engine::actors::actor::colorboxes::colorbox* engine::actors::actor::colorboxes::New()
     {
-        for (uint64 i = 1; i < this->Colors.Length(); i++)
+        for (uint64 i = 1; i < this->Colorboxes.Length(); i++)
         {
-            if (this->Colors[i] == NULL)
+            if (this->Colorboxes[i] == NULL)
             {
-                if ((this->Colors[i] = new color(this->Engine, this->Actor, i)) == NULL)
+                if ((this->Colorboxes[i] = new colorbox(this->Engine, this->Actor, i)) == NULL)
                 {
-                    printf("wze::engine.actors[].colors.New(): Memory allocation failed\n");
+                    printf("wze::engine.actors[].colorboxes.New(): Memory allocation failed\n");
                     exit(1);
                 }
 
-                return this->Colors[i];
+                return this->Colorboxes[i];
             }
         }
 
-        if ((this->Colors += {new color(this->Engine, this->Actor, this->Colors.Length())})[this->Colors.Length() - 1] == NULL)
+        if ((this->Colorboxes+= {new colorbox(this->Engine, this->Actor, this->Colorboxes.Length())})[this->Colorboxes.Length() - 1] == NULL)
         {
-            printf("wze::engine.actors[].colors.New(): Memory allocation failed\n");
+            printf("wze::engine.actors[].colorboxes.New(): Memory allocation failed\n");
             exit(1);
         }
 
-        return this->Colors[this->Colors.Length() - 1];
+        return this->Colorboxes[this->Colorboxes.Length() - 1];
     }
 
-    uint8 engine::actors::actor::colors::Delete(uint64 ColorID)
+    uint8 engine::actors::actor::colorboxes::Delete(uint64 ColorboxID)
     {
         uint64 i;
 
-        if (this->Colors.Length() <= ColorID || this->Colors[ColorID] == NULL)
+        if (this->Colorboxes.Length() <= ColorboxID || this->Colorboxes[ColorboxID] == NULL)
         {
             return 0;
         }
 
-        delete this->Colors[ColorID];
-        this->Colors[ColorID] = NULL;
+        delete this->Colorboxes[ColorboxID];
+        this->Colorboxes[ColorboxID] = NULL;
         
-        if (this->Colors[this->Colors.Length() - 1] == NULL && 1 < this->Colors.Length())
+        if (this->Colorboxes[this->Colorboxes.Length() - 1] == NULL && 1 < this->Colorboxes.Length())
         {
-            for (i = this->Colors.Length(); 1 < i; i--)
+            for (i = this->Colorboxes.Length(); 1 < i; i--)
             {
-                if (this->Colors[i - 1] != NULL)
+                if (this->Colorboxes[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Colors.Remove(i, this->Colors.Length() - i);
+            this->Colorboxes.Remove(i, this->Colorboxes.Length() - i);
         }
 
         return 0;
     }
 
-    uint8 engine::actors::actor::colors::Purge(std::initializer_list<uint64> KeepColorIDs)
+    uint8 engine::actors::actor::colorboxes::Purge(std::initializer_list<uint64> KeepColorboxIDs)
     {
         uint64 i;
 
-        for (i = 1; i < this->Colors.Length(); i++)
+        for (i = 1; i < this->Colorboxes.Length(); i++)
         {
-            if (!initializer_list_Contains(KeepColorIDs, {i}))
+            if (!initializer_list_Contains(KeepColorboxIDs, {i}))
             {
-                delete this->Colors[i];
-                this->Colors[i] = NULL;
+                delete this->Colorboxes[i];
+                this->Colorboxes[i] = NULL;
             }
         }
 
-        if (this->Colors[this->Colors.Length() - 1] == NULL && 1 < this->Colors.Length())
+        if (this->Colorboxes[this->Colorboxes.Length() - 1] == NULL && 1 < this->Colorboxes.Length())
         {
-            for (i = this->Colors.Length(); 1 < i; i--)
+            for (i = this->Colorboxes.Length(); 1 < i; i--)
             {
-                if (this->Colors[i - 1] != NULL)
+                if (this->Colorboxes[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Colors.Remove(i, this->Colors.Length() - i);
+            this->Colorboxes.Remove(i, this->Colorboxes.Length() - i);
         }
 
         return 0;
     }
 
-    uint8 engine::actors::actor::colors::Purge(array<uint64>* KeepColorIDs)
+    uint8 engine::actors::actor::colorboxes::Purge(array<uint64>* KeepColorboxIDs)
     {
         uint64 i;
 
-        if (KeepColorIDs == NULL)
+        if (KeepColorboxIDs == NULL)
         {
-            printf("wze::engine.actors[].colors.Purge(): KeepColorIDs must not be NULL\nParams: KeepColorIDs: %p\n", KeepColorIDs);
+            printf("wze::engine.actors[].colorboxes.Purge(): KeepColorboxIDs must not be NULL\nParams: KeepColorboxIDs: %p\n", KeepColorboxIDs);
             exit(1);
         }
 
-        for (i = 1; i < this->Colors.Length(); i++)
+        for (i = 1; i < this->Colorboxes.Length(); i++)
         {
-            if (!KeepColorIDs->Contains({i}))
+            if (!KeepColorboxIDs->Contains({i}))
             {
-                delete this->Colors[i];
-                this->Colors[i] = NULL;
+                delete this->Colorboxes[i];
+                this->Colorboxes[i] = NULL;
             }
         }
 
-        if (this->Colors[this->Colors.Length() - 1] == NULL && 1 < this->Colors.Length())
+        if (this->Colorboxes[this->Colorboxes.Length() - 1] == NULL && 1 < this->Colorboxes.Length())
         {
-            for (i = this->Colors.Length(); 1 < i; i--)
+            for (i = this->Colorboxes.Length(); 1 < i; i--)
             {
-                if (this->Colors[i - 1] != NULL)
+                if (this->Colorboxes[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Colors.Remove(i, this->Colors.Length() - i);
+            this->Colorboxes.Remove(i, this->Colorboxes.Length() - i);
         }
 
         return 0;
     }
 
-    engine::actors::actor::colors::color& engine::actors::actor::colors::operator [] (uint64 ColorID)
+    engine::actors::actor::colorboxes::colorbox& engine::actors::actor::colorboxes::operator [] (uint64 ColorboxID)
     {
-        if (ColorID == 0)
+        if (ColorboxID == 0)
         {
-            printf("wze::engine.actors[].colors[]: Illegal access to NULL Color\nParams: ColorID: %lld\n", ColorID);
+            printf("wze::engine.actors[].colorboxes[]: Illegal access to NULL Colorbox\nParams: ColorboxID: %lld\n", ColorboxID);
             exit(1);
         }
-        if (this->Colors.Length() <= ColorID || this->Colors[ColorID] == NULL)
+        if (this->Colorboxes.Length() <= ColorboxID || this->Colorboxes[ColorboxID] == NULL)
         {
-            printf("wze::engine.actors[].colors[]: Color does not exist\nParams: ColorID: %lld\n", ColorID);
+            printf("wze::engine.actors[].colorboxes[]: Colorbox does not exist\nParams: ColorboxID: %lld\n", ColorboxID);
             exit(1);
         }
 
-        return *this->Colors[ColorID];
+        return *this->Colorboxes[ColorboxID];
     }
 
-    engine::actors::actor::colors::color::color(engine* Engine, actor* Actor, uint64 ID) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::colorboxes::colorbox::colorbox(engine* Engine, actor* Actor, uint64 ID) : Engine(Engine), Actor(Actor)
     {
         this->Width = this->Actor->Width;
         this->Height = this->Actor->Height;
@@ -165,19 +165,19 @@ namespace wze
         this->OffsetAngle = 0;
     }
 
-    engine::actors::actor::colors::color::~color() {}
+    engine::actors::actor::colorboxes::colorbox::~colorbox() {}
 
-    uint64 engine::actors::actor::colors::color::GetID()
+    uint64 engine::actors::actor::colorboxes::colorbox::GetID()
     {
         return this->ID;
     }
 
-    double engine::actors::actor::colors::color::GetX()
+    double engine::actors::actor::colorboxes::colorbox::GetX()
     {
         return this->X;
     }
 
-    double engine::actors::actor::colors::color::SetX(double X)
+    double engine::actors::actor::colorboxes::colorbox::SetX(double X)
     {
         if (X != X)
         {
@@ -191,12 +191,12 @@ namespace wze
         return this->X = X;
     }
 
-    double engine::actors::actor::colors::color::GetY()
+    double engine::actors::actor::colorboxes::colorbox::GetY()
     {
         return this->Y;
     }
 
-    double engine::actors::actor::colors::color::SetY(double Y)
+    double engine::actors::actor::colorboxes::colorbox::SetY(double Y)
     {
         if (Y != Y)
         {

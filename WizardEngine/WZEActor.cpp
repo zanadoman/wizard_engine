@@ -5,7 +5,7 @@ using namespace neo;
 
 namespace wze
 {
-    engine::actors::actor::actor(engine* Engine, uint64 ID, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textureboxes(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
+    engine::actors::actor::actor(engine* Engine, uint64 ID, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colorboxes(Engine, this), Textureboxes(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
     {
         this->Visible = true;
         this->Force = 0;
@@ -155,16 +155,16 @@ namespace wze
 
         change = Angle - this->Angle;
 
-        for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
+        for (uint64 i = 1; i < this->Colorboxes.Colorboxes.Length(); i++)
         {
-            if (this->Colors.Colors[i] == NULL)
+            if (this->Colorboxes.Colorboxes[i] == NULL)
             {
                 continue;
             }
 
-            if (this->Colors.Colors[i]->OffsetAngleLocked)
+            if (this->Colorboxes.Colorboxes[i]->OffsetAngleLocked)
             {
-                this->Colors.Colors[i]->OffsetAngle += change;
+                this->Colorboxes.Colorboxes[i]->OffsetAngle += change;
             }
         }
 
@@ -379,15 +379,15 @@ namespace wze
 
     uint8 engine::actors::actor::UpdateMembersPosition()
     {
-        for (uint64 i = 1; i < this->Colors.Colors.Length(); i++)
+        for (uint64 i = 1; i < this->Colorboxes.Colorboxes.Length(); i++)
         {
-            if (this->Colors.Colors[i] == NULL)
+            if (this->Colorboxes.Colorboxes[i] == NULL)
             {
                 continue;
             }
 
-            this->Colors.Colors[i]->X = engine::vector::TerminalX(this->X, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
-            this->Colors.Colors[i]->Y = engine::vector::TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
+            this->Colorboxes.Colorboxes[i]->X = engine::vector::TerminalX(this->X, this->Colorboxes.Colorboxes[i]->OffsetLength, this->Colorboxes.Colorboxes[i]->OffsetAngle);
+            this->Colorboxes.Colorboxes[i]->Y = engine::vector::TerminalY(this->Y, this->Colorboxes.Colorboxes[i]->OffsetLength, this->Colorboxes.Colorboxes[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Textureboxes.Textureboxes.Length(); i++)

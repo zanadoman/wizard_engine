@@ -138,12 +138,12 @@ class pause
     } state;
 
     engine::actor Actor;
-    engine::color Frame;
+    engine::colorbox Frame;
     engine::overlapbox ButtonResume;
-    engine::color ButtonResumeColor;
+    engine::colorbox ButtonResumeColor;
     engine::text ButtonResumeText;
     engine::overlapbox ButtonMenu;
-    engine::color ButtonMenuColor;
+    engine::colorbox ButtonMenuColor;
     engine::text ButtonMenuText;
     pause(engine* Engine, game* Game);
     state Update();
@@ -178,10 +178,10 @@ class menu
     engine::actor Actor;
     engine::text Title;
     engine::overlapbox ButtonNormal;
-    engine::color ButtonNormalColor;
+    engine::colorbox ButtonNormalColor;
     engine::text ButtonNormalText;
     engine::overlapbox ButtonInfinite;
-    engine::color ButtonInfiniteColor;
+    engine::colorbox ButtonInfiniteColor;
     engine::text ButtonInfiniteText;
 };
 
