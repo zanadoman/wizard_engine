@@ -10,9 +10,20 @@ game::game(engine* Engine) : Engine(Engine), Assets(Engine)
 
 game::~game()
 {
-    delete this->Menu;
-    delete this->Normal;
-    delete this->Infinite;
+    switch (this->ActiveScene)
+    {
+        case SCENE_MENU:
+            delete this->Menu;
+        break;
+
+        case SCENE_NORMAL:
+            delete this->Normal;
+        break;
+
+        case SCENE_INFINITE:
+            delete this->Infinite;
+        break;
+    }
 }
 
 uint8 game::Update()

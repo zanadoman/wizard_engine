@@ -7,6 +7,11 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
     this->Background = this->Engine->Actors.New(NULL, ACT_NONE, 0, 0, 28800, 16200, 0.1);
     this->BackgroundTexture = this->Background->Textureboxes.New(this->Game->Assets.MapBackgroundTexture);
 
+    this->LeftBorder = this->Engine->Actors.New(NULL, ACT_NONE, -755, 0, 10, 65535, 1);
+    this->RightBorder = this->Engine->Actors.New(NULL, ACT_NONE, 755, 0, 10, 65535, 1);
+    this->LeftBorder->SetCollisionLayer(1);
+    this->RightBorder->SetCollisionLayer(1);
+
     this->Platforms =
     {
         new platform(this->Engine, this->Game, 0, -187.5, 1500, 375, 1, 1),
@@ -27,8 +32,6 @@ normal::~normal()
     {
         delete this->Platforms[i];
     }
-
-    this->Engine->Actors.Delete(this->Background->GetID());
 }
 
 scene normal::Update()

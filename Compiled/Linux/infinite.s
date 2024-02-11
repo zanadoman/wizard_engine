@@ -160,45 +160,18 @@ _ZN8infiniteC2EPN3wze6engineEP4game.cold:
 _ZN8infiniteD2Ev:
 .LFB8150:
 	.cfi_startproc
-	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8150
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
 	pushq	%rbx
-	.cfi_def_cfa_offset 24
-	.cfi_offset 3, -24
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
 	movq	%rdi, %rbx
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 32
-	movq	(%rdi), %rax
-	movq	144(%rdi), %rdi
-	leaq	240(%rax), %rbp
-	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
-	movq	%rbp, %rdi
-	movq	%rax, %rsi
-	call	_ZN3wze6engine6actors6DeleteEy@PLT
-	leaq	96(%rbx), %rdi
+	leaq	96(%rdi), %rdi
 	call	_ZN5statsD1Ev@PLT
-	addq	$8, %rsp
-	.cfi_def_cfa_offset 24
 	leaq	16(%rbx), %rdi
 	popq	%rbx
-	.cfi_def_cfa_offset 16
-	popq	%rbp
 	.cfi_def_cfa_offset 8
 	jmp	_ZN5pauseD1Ev@PLT
 	.cfi_endproc
 .LFE8150:
-	.section	.gcc_except_table
-.LLSDA8150:
-	.byte	0xff
-	.byte	0xff
-	.byte	0x1
-	.uleb128 .LLSDACSE8150-.LLSDACSB8150
-.LLSDACSB8150:
-.LLSDACSE8150:
-	.text
 	.size	_ZN8infiniteD2Ev, .-_ZN8infiniteD2Ev
 	.globl	_ZN8infiniteD1Ev
 	.set	_ZN8infiniteD1Ev,_ZN8infiniteD2Ev

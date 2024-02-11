@@ -65,17 +65,10 @@ class assets
 
 class game
 {
-    friend class player;
-    friend class platform;
-    friend class pause;
-    friend class stats;
-    friend class menu;
-    friend class normal;
-    friend class infinite;
     engine* Engine;
-    assets Assets;
 
     public:
+        assets Assets;
         uint8 Update();
         game(engine* Engine);
         ~game();
@@ -127,7 +120,6 @@ class platform
 
 class pause
 {
-    friend class game;
     friend class normal;
     friend class infinite;
     engine* Engine;
@@ -199,9 +191,11 @@ class normal
     pause Pause;
     stats Stats;
     player* Player;
+    array<platform*> Platforms;
     engine::actor Background;
     engine::texturebox BackgroundTexture;
-    array<platform*> Platforms;
+    engine::actor LeftBorder;
+    engine::actor RightBorder;
     normal(engine* Engine, game* Game);
     ~normal();
     scene Update();

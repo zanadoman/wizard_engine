@@ -192,33 +192,9 @@ _ZN4menuC2EPN3wze6engineEP4game:
 _ZN4menuD2Ev:
 .LFB8150:
 	.cfi_startproc
-	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8150
-	pushq	%rbx
-	.cfi_def_cfa_offset 16
-	.cfi_offset 3, -16
-	movq	(%rdi), %rax
-	movq	16(%rdi), %rdi
-	leaq	240(%rax), %rbx
-	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
-	movq	%rbx, %rdi
-	movq	%rax, %rsi
-	call	_ZN3wze6engine6actors6DeleteEy@PLT
-	popq	%rbx
-	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE8150:
-	.globl	__gxx_personality_v0
-	.section	.gcc_except_table,"a",@progbits
-.LLSDA8150:
-	.byte	0xff
-	.byte	0xff
-	.byte	0x1
-	.uleb128 .LLSDACSE8150-.LLSDACSB8150
-.LLSDACSB8150:
-.LLSDACSE8150:
-	.text
 	.size	_ZN4menuD2Ev, .-_ZN4menuD2Ev
 	.globl	_ZN4menuD1Ev
 	.set	_ZN4menuD1Ev,_ZN4menuD2Ev
@@ -242,7 +218,7 @@ _ZN4menu6UpdateEv:
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
 	testb	$1, %al
 	movq	40(%rbx), %rax
-	je	.L7
+	je	.L6
 	movl	$24672, %ecx
 	movb	$96, 22(%rax)
 	movw	%cx, 20(%rax)
@@ -260,7 +236,7 @@ _ZN4menu6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L7:
+.L6:
 	.cfi_restore_state
 	movzwl	.LC6(%rip), %ebp
 	movb	$-128, 22(%rax)
@@ -268,7 +244,7 @@ _ZN4menu6UpdateEv:
 	movq	56(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
 	andl	$1, %eax
-	jne	.L11
+	jne	.L10
 	movq	64(%rbx), %rdx
 	movw	%bp, 20(%rdx)
 	movb	$-128, 22(%rdx)
@@ -282,7 +258,7 @@ _ZN4menu6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L11:
+.L10:
 	.cfi_restore_state
 	movq	64(%rbx), %rax
 	movl	$24672, %edx
@@ -316,13 +292,5 @@ _ZN4menu6UpdateEv:
 .LC6:
 	.byte	-128
 	.byte	-128
-	.hidden	DW.ref.__gxx_personality_v0
-	.weak	DW.ref.__gxx_personality_v0
-	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat
-	.align 8
-	.type	DW.ref.__gxx_personality_v0, @object
-	.size	DW.ref.__gxx_personality_v0, 8
-DW.ref.__gxx_personality_v0:
-	.quad	__gxx_personality_v0
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

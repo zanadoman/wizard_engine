@@ -6,10 +6,7 @@ infinite::infinite(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pau
     this->BackgroundTexture = this->Background->Textureboxes.New(this->Game->Assets.MapBackgroundTexture);
 }
 
-infinite::~infinite()
-{
-    this->Engine->Actors.Delete(this->Background->GetID());
-}
+infinite::~infinite() {}
 
 scene infinite::Update()
 {

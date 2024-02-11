@@ -39,10 +39,7 @@ menu::menu(engine* Engine, game* Game) : Engine(Engine), Game(Game)
     this->ButtonInfiniteText->SetY(ButtonInfinite->GetY());
 }
 
-menu::~menu()
-{
-    this->Engine->Actors.Delete(this->Actor->GetID());
-}
+menu::~menu() {}
 
 scene menu::Update()
 {

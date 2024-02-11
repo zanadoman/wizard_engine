@@ -145,33 +145,64 @@ _ZN4gameD2Ev:
 	movq	%rdi, %rbx
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
+	movl	128(%rdi), %eax
+	cmpl	$1, %eax
+	je	.L10
+	cmpl	$2, %eax
+	je	.L11
+	testl	%eax, %eax
+	jne	.L12
 	movq	136(%rdi), %rbp
 	testq	%rbp, %rbp
-	je	.L10
+	je	.L12
 	movq	%rbp, %rdi
 	call	_ZN4menuD1Ev@PLT
 	movl	$80, %esi
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
-.L10:
-	movq	144(%rbx), %rbp
-	testq	%rbp, %rbp
-	je	.L11
-	movq	%rbp, %rdi
-	call	_ZN6normalD1Ev@PLT
-	movl	$184, %esi
-	movq	%rbp, %rdi
-	call	_ZdlPvm@PLT
+.L12:
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	leaq	8(%rbx), %rdi
+	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
+	.cfi_def_cfa_offset 8
+	jmp	_ZN6assetsD1Ev@PLT
+	.p2align 4,,10
+	.p2align 3
 .L11:
-	movq	152(%rbx), %rbp
+	.cfi_restore_state
+	movq	152(%rdi), %rbp
 	testq	%rbp, %rbp
 	je	.L12
 	movq	%rbp, %rdi
 	call	_ZN8infiniteD1Ev@PLT
-	movl	$160, %esi
 	movq	%rbp, %rdi
+	movl	$160, %esi
 	call	_ZdlPvm@PLT
-.L12:
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	leaq	8(%rbx), %rdi
+	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
+	.cfi_def_cfa_offset 8
+	jmp	_ZN6assetsD1Ev@PLT
+	.p2align 4,,10
+	.p2align 3
+.L10:
+	.cfi_restore_state
+	movq	144(%rdi), %rbp
+	testq	%rbp, %rbp
+	je	.L12
+	movq	%rbp, %rdi
+	call	_ZN6normalD1Ev@PLT
+	movq	%rbp, %rdi
+	movl	$200, %esi
+	call	_ZdlPvm@PLT
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 24
 	leaq	8(%rbx), %rdi
@@ -295,7 +326,7 @@ _ZN4game12SwitchScenesE5scene:
 	je	.L29
 	movq	%r12, %rdi
 	call	_ZN6normalD1Ev@PLT
-	movl	$184, %esi
+	movl	$200, %esi
 	movq	%r12, %rdi
 	call	_ZdlPvm@PLT
 .L29:
@@ -344,7 +375,7 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 3
 .L31:
 	.cfi_restore_state
-	movl	$184, %edi
+	movl	$200, %edi
 .LEHB8:
 	call	_Znwm@PLT
 .LEHE8:
@@ -430,7 +461,7 @@ _ZN4game12SwitchScenesE5scene.cold:
 	call	_Unwind_Resume@PLT
 .L35:
 	movq	%r12, %rdi
-	movl	$184, %esi
+	movl	$200, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbx, %rdi
 	call	_Unwind_Resume@PLT
