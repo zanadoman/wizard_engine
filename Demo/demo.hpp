@@ -16,6 +16,7 @@ typedef enum
 {
     ACT_NONE,
     ACT_PLAYER,
+    ACT_EAGLE,
     ACT_PLATFORM
 } actor;
 
@@ -23,6 +24,7 @@ typedef enum
 {
     BOX_NONE,
     BOX_PLAYER,
+    BOX_EAGLE,
     BOX_PLATFORM
 } overlapbox;
 
@@ -101,6 +103,25 @@ class player
     double VelocityY;
     player(engine* Engine, game* Game, double X, double Y, double Layer, double CollisionLayer);
     ~player();
+    uint8 Update();
+};
+
+class eagle
+{
+    friend class normal;
+    friend class infinite;
+    engine* Engine;
+    game* Game;
+
+    engine::actor Actor;
+    engine::overlapbox Overlapbox;
+    engine::flipbook Fly;
+    engine::flipbook Hurt;
+    double MinX;
+    double MaxX;
+    uint8 Facing;
+    eagle(engine* Engine, game* Game, double Y, double Layer, double MinX, double MaxX);
+    ~eagle();
     uint8 Update();
 };
 
@@ -191,6 +212,7 @@ class normal
     pause Pause;
     stats Stats;
     player* Player;
+    eagle* Eagle;
     array<platform*> Platforms;
     engine::actor Background;
     engine::texturebox BackgroundTexture;

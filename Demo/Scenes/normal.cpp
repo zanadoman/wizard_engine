@@ -3,6 +3,7 @@
 normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(Engine, Game), Stats(Engine, Game)
 {
     this->Player = new player(this->Engine, this->Game, 0, 42, 1, 1);
+    this->Eagle = new eagle(this->Engine, this->Game, 850, 1, -700, 700);
 
     this->Platforms =
     {
@@ -27,7 +28,7 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
 normal::~normal()
 {
     delete this->Player;
-
+    delete this->Eagle;
     for (uint8 i = 0; i < this->Platforms.Length(); i++)
     {
         delete this->Platforms[i];
