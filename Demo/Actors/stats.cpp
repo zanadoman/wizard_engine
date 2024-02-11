@@ -3,9 +3,9 @@
 stats::stats(engine* Engine, game* Game) : Engine(Engine), Game(Game)
 {
     this->Actor = this->Engine->Actors.New(NULL, ACT_NONE, 20, this->Engine->Window.GetHeight() - 20, 0, 0, 0);
-    this->GameTime = this->Actor->Texts.New("GameTime: 0ms", this->Game->Assets.FontFreeSansFont);
-    this->RenderTime = this->Actor->Texts.New("RenderTime: 0ms", this->Game->Assets.FontFreeSansFont);
-    this->FrameTime = this->Actor->Texts.New("FrameTime: 0ms", this->Game->Assets.FontFreeSansFont);
+    this->GameTime = this->Actor->Textboxes.New("GameTime: 0ms", this->Game->Assets.FontFreeSansFont);
+    this->RenderTime = this->Actor->Textboxes.New("RenderTime: 0ms", this->Game->Assets.FontFreeSansFont);
+    this->FrameTime = this->Actor->Textboxes.New("FrameTime: 0ms", this->Game->Assets.FontFreeSansFont);
 
     this->GameTime->SetHeight(20);
     this->GameTime->SetX(this->Actor->GetX() + (this->GameTime->GetWidth() >> 1));

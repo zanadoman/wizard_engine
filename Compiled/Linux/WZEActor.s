@@ -236,7 +236,7 @@ _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd:
 	movq	%rsi, %rdi
 	movq	%rbp, %rsi
 .LEHB3:
-	call	_ZN3wze6engine6actors5actor5textsC1EPS0_PS2_@PLT
+	call	_ZN3wze6engine6actors5actor9textboxesC1EPS0_PS2_@PLT
 .LEHE3:
 	leaq	136(%rbx), %rdx
 	movq	%rbp, %rsi
@@ -399,7 +399,7 @@ _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd.cold:
 	call	_ZN3wze6engine6actors5actor12overlapboxesD1Ev@PLT
 .L37:
 	movq	64(%rsp), %rdi
-	call	_ZN3wze6engine6actors5actor5textsD1Ev@PLT
+	call	_ZN3wze6engine6actors5actor9textboxesD1Ev@PLT
 .L38:
 	movq	56(%rsp), %rdi
 	call	_ZN3wze6engine6actors5actor9flipbooksD1Ev@PLT
@@ -493,7 +493,7 @@ _ZN3wze6engine6actors5actorD2Ev:
 	leaq	136(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxesD1Ev@PLT
 	leaq	104(%rbx), %rdi
-	call	_ZN3wze6engine6actors5actor5textsD1Ev@PLT
+	call	_ZN3wze6engine6actors5actor9textboxesD1Ev@PLT
 	leaq	72(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor9flipbooksD1Ev@PLT
 	leaq	40(%rbx), %rdi

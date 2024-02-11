@@ -70,7 +70,7 @@ namespace wze
                     COLORBOX,
                     TEXTUREBOX,
                     FLIPBOOK,
-                    TEXT,
+                    TEXTBOX,
                     OVERLAPBOX,
                     HITBOX
                 };
@@ -113,7 +113,7 @@ namespace wze
                     neo::uint8 RenderColorbox(token* Token);
                     neo::uint8 RenderTexturebox(token* Token);
                     neo::uint8 RenderFlipbook(token* Token);
-                    neo::uint8 RenderText(token* Token);
+                    neo::uint8 RenderTextbox(token* Token);
                     neo::uint8 RenderOverlapbox(token* Token);
                     neo::uint8 RenderHitbox(token* Token);
             } Render;
@@ -436,13 +436,13 @@ namespace wze
 
                         //__________Texts______________________________________________________________________________
 
-                        class texts
+                        class textboxes
                         {
                             friend class engine;
                             engine* Engine;
                             actor* Actor;
 
-                            class text
+                            class textbox
                             {
                                 friend class engine;
                                 engine* Engine;
@@ -487,23 +487,23 @@ namespace wze
                                     neo::uint64 FontID;
                                     style FontStyle;
                                     SDL_Texture* Texture;
-                                    text(engine* Engine, actor* Actor, neo::uint64 ID, const char* String, neo::uint64 FontID);
-                                    ~text();
+                                    textbox(engine* Engine, actor* Actor, neo::uint64 ID, const char* String, neo::uint64 FontID);
+                                    ~textbox();
                                     neo::uint8 UpdateTexture();
                             };
 
                             public:
-                                text* New(const char* String, neo::uint64 FontID);
-                                neo::uint8 Delete(neo::uint64 TextID);
-                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextIDs);
-                                neo::uint8 Purge(neo::array<neo::uint64>* KeepTextIDs);
-                                text& operator [] (neo::uint64 TextID);
+                                textbox* New(const char* String, neo::uint64 FontID);
+                                neo::uint8 Delete(neo::uint64 TextboxID);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextboxIDs);
+                                neo::uint8 Purge(neo::array<neo::uint64>* KeepTextboxIDs);
+                                textbox& operator [] (neo::uint64 TextboxID);
 
                             private:
-                                neo::array<text*> Texts;
-                                texts(engine* Engine, actor* Actor);
-                                ~texts();
-                        } Texts;
+                                neo::array<textbox*> Textboxes;
+                                textboxes(engine* Engine, actor* Actor);
+                                ~textboxes();
+                        } Textboxes;
 
                         //__________OverlapBoxes_______________________________________________________________________
 
@@ -796,7 +796,7 @@ namespace wze
             typedef actors::actor::colorboxes::colorbox* colorbox;
             typedef actors::actor::textureboxes::texturebox* texturebox;
             typedef actors::actor::flipbooks::flipbook* flipbook;
-            typedef actors::actor::texts::text* text;
+            typedef actors::actor::textboxes::textbox* textbox;
             typedef actors::actor::overlapboxes::overlapbox* overlapbox;
             engine(const char* Title, const char* IconPath, neo::uint16 WindowWidth, neo::uint16 WindowHeight, neo::uint8 TargetFrameTime);
             ~engine();

@@ -67,7 +67,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	movzwl	16(%rax), %edx
 	movq	16(%rbx), %rax
 	leaq	104(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy@PLT
 	xorl	%esi, %esi
 	movq	%rax, 48(%rbx)
 	movq	16(%rbx), %rax
@@ -83,7 +83,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	movzwl	16(%rax), %edx
 	movq	16(%rbx), %rax
 	leaq	104(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy@PLT
 	movq	16(%rbx), %rdi
 	movq	32(%rbx), %rbp
 	movabsq	$-4309891860637679266, %rcx
@@ -120,12 +120,12 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	movzwl	.LC4(%rip), %ebp
 	movb	$-128, 22(%rax)
 	movw	%bp, 20(%rax)
-	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt@PLT
 	movq	48(%rbx), %r12
 	movq	32(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv@PLT
 	movq	%r12, %rdi
-	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd@PLT
 	movq	16(%rbx), %rdi
 	movq	56(%rbx), %r12
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
@@ -156,7 +156,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	movq	64(%rbx), %rax
 	movw	%bp, 20(%rax)
 	movb	$-128, 22(%rax)
-	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt@PLT
 	movq	56(%rbx), %rdi
 	movq	72(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv@PLT
@@ -169,7 +169,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	.cfi_def_cfa_offset 16
 	popq	%r12
 	.cfi_def_cfa_offset 8
-	jmp	_ZN3wze6engine6actors5actor5texts4text4SetYEd@PLT
+	jmp	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd@PLT
 	.cfi_endproc
 .LFE8147:
 	.size	_ZN5pauseC2EPN3wze6engineEP4game, .-_ZN5pauseC2EPN3wze6engineEP4game

@@ -5,161 +5,161 @@ using namespace neo;
 
 namespace wze
 {
-    engine::actors::actor::texts::texts(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Texts({(text*)NULL}) {}
+    engine::actors::actor::textboxes::textboxes(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Textboxes({(textbox*)NULL}) {}
 
-    engine::actors::actor::texts::~texts()
+    engine::actors::actor::textboxes::~textboxes()
     {
-        for (uint64 i = 1; i < this->Texts.Length(); i++)
+        for (uint64 i = 1; i < this->Textboxes.Length(); i++)
         {
-            delete this->Texts[i];
+            delete this->Textboxes[i];
         }
     }
 
-    engine::actors::actor::texts::text* engine::actors::actor::texts::New(const char* String, uint64 FontID)
+    engine::actors::actor::textboxes::textbox* engine::actors::actor::textboxes::New(const char* String, uint64 FontID)
     {
         if (String == NULL)
         {
-            printf("wze::engine.actors[].texts.New(): String must not be NULL\nParams: String: %p, FontID: %lld\n", String, FontID);
+            printf("wze::engine.actors[].textboxes.New(): String must not be NULL\nParams: String: %p, FontID: %lld\n", String, FontID);
             exit(1);
         }
         if (FontID != 0 && (this->Engine->Assets.Fonts.Length() <= FontID || this->Engine->Assets.Fonts[FontID] == NULL))
         {
-            printf("wze::engine.actors[].texts.New(): FontID does not exist\nParams: String: %s, FontID: %lld\n", String, FontID);
+            printf("wze::engine.actors[].textboxes.New(): FontID does not exist\nParams: String: %s, FontID: %lld\n", String, FontID);
             exit(1);
         }
 
-        for (uint64 i = 1; i < this->Texts.Length(); i++)
+        for (uint64 i = 1; i < this->Textboxes.Length(); i++)
         {
-            if (this->Texts[i] == NULL)
+            if (this->Textboxes[i] == NULL)
             {
-                if ((this->Texts[i] = new text(this->Engine, this->Actor, i, String, FontID)) == NULL)
+                if ((this->Textboxes[i] = new textbox(this->Engine, this->Actor, i, String, FontID)) == NULL)
                 {
-                    printf("wze::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
+                    printf("wze::engine.actors[].textboxes.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
                     exit(1);
                 }
 
-                return this->Texts[i];
+                return this->Textboxes[i];
             }
         }
 
-        if ((this->Texts += {new text(this->Engine, this->Actor, this->Texts.Length(), String, FontID)})[this->Texts.Length() - 1] == NULL)
+        if ((this->Textboxes += {new textbox(this->Engine, this->Actor, this->Textboxes.Length(), String, FontID)})[this->Textboxes.Length() - 1] == NULL)
         {
-            printf("wze::engine.actors[].texts.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
+            printf("wze::engine.actors[].textboxes.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
             exit(1);
         }
 
-        return this->Texts[this->Texts.Length() - 1];
+        return this->Textboxes[this->Textboxes.Length() - 1];
     }
 
-    uint8 engine::actors::actor::texts::Delete(uint64 TextID)
+    uint8 engine::actors::actor::textboxes::Delete(uint64 TextboxID)
     {
         uint64 i;
 
-        if (this->Texts.Length() <= TextID || this->Texts[TextID] == NULL)
+        if (this->Textboxes.Length() <= TextboxID || this->Textboxes[TextboxID] == NULL)
         {
             return 0;
         }
 
-        delete this->Texts[TextID];
-        this->Texts[TextID] = NULL;
+        delete this->Textboxes[TextboxID];
+        this->Textboxes[TextboxID] = NULL;
 
-        if (this->Texts[this->Texts.Length() - 1] == NULL && 1 < this->Texts.Length())
+        if (this->Textboxes[this->Textboxes.Length() - 1] == NULL && 1 < this->Textboxes.Length())
         {
-            for (i = this->Texts.Length(); 1 < i; i--)
+            for (i = this->Textboxes.Length(); 1 < i; i--)
             {
-                if (this->Texts[i - 1] != NULL)
+                if (this->Textboxes[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Texts.Remove(i, this->Texts.Length() - i);
+            this->Textboxes.Remove(i, this->Textboxes.Length() - i);
         }
 
         return 0;
     }
 
-    uint8 engine::actors::actor::texts::Purge(std::initializer_list<uint64> KeepTextIDs)
+    uint8 engine::actors::actor::textboxes::Purge(std::initializer_list<uint64> KeepTextboxIDs)
     {
         uint64 i;
 
-        for (i = 1; i < this->Texts.Length(); i++)
+        for (i = 1; i < this->Textboxes.Length(); i++)
         {
-            if (!initializer_list_Contains(KeepTextIDs, {i}))
+            if (!initializer_list_Contains(KeepTextboxIDs, {i}))
             {
-                delete this->Texts[i];
-                this->Texts[i] = NULL;
+                delete this->Textboxes[i];
+                this->Textboxes[i] = NULL;
             }
         }
 
-        if (this->Texts[this->Texts.Length() - 1] == NULL && 1 < this->Texts.Length())
+        if (this->Textboxes[this->Textboxes.Length() - 1] == NULL && 1 < this->Textboxes.Length())
         {
-            for (i = this->Texts.Length(); 1 < i; i--)
+            for (i = this->Textboxes.Length(); 1 < i; i--)
             {
-                if (this->Texts[i - 1] != NULL)
+                if (this->Textboxes[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Texts.Remove(i, this->Texts.Length() - i);
+            this->Textboxes.Remove(i, this->Textboxes.Length() - i);
         }
 
         return 0;
     }
 
-    uint8 engine::actors::actor::texts::Purge(array<uint64>* KeepTextIDs)
+    uint8 engine::actors::actor::textboxes::Purge(array<uint64>* KeepTextboxIDs)
     {
         uint64 i;
 
-        if (KeepTextIDs == NULL)
+        if (KeepTextboxIDs == NULL)
         {
-            printf("wze::engine.actors[].texts.Purge(): KeepTextIDs must not be NULL\nParams: KeepTextIDs: %p\n", KeepTextIDs);
+            printf("wze::engine.actors[].textboxes.Purge(): KeepTextboxIDs must not be NULL\nParams: KeepTextboxIDs: %p\n", KeepTextboxIDs);
             exit(1);
         }
 
-        for (i = 1; i < this->Texts.Length(); i++)
+        for (i = 1; i < this->Textboxes.Length(); i++)
         {
-            if (!KeepTextIDs->Contains({i}))
+            if (!KeepTextboxIDs->Contains({i}))
             {
-                delete this->Texts[i];
-                this->Texts[i] = NULL;
+                delete this->Textboxes[i];
+                this->Textboxes[i] = NULL;
             }
         }
 
-        if (this->Texts[this->Texts.Length() - 1] == NULL && 1 < this->Texts.Length())
+        if (this->Textboxes[this->Textboxes.Length() - 1] == NULL && 1 < this->Textboxes.Length())
         {
-            for (i = this->Texts.Length(); 1 < i; i--)
+            for (i = this->Textboxes.Length(); 1 < i; i--)
             {
-                if (this->Texts[i - 1] != NULL)
+                if (this->Textboxes[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Texts.Remove(i, this->Texts.Length() - i);
+            this->Textboxes.Remove(i, this->Textboxes.Length() - i);
         }
 
         return 0;
     }
 
-    engine::actors::actor::texts::text& engine::actors::actor::texts::operator [] (uint64 TextID)
+    engine::actors::actor::textboxes::textbox& engine::actors::actor::textboxes::operator [] (uint64 TextboxID)
     {
-        if (TextID == 0)
+        if (TextboxID == 0)
         {
-            printf("wze::engine.actors[].texts[]: Illegal access to NULL Text\nParams: TextID: %lld\n", TextID);
+            printf("wze::engine.actors[].textboxes[]: Illegal access to NULL Textbox\nParams: TextboxID: %lld\n", TextboxID);
             exit(1);
         }
-        if (this->Texts.Length() <= TextID || this->Texts[TextID] == NULL)
+        if (this->Textboxes.Length() <= TextboxID || this->Textboxes[TextboxID] == NULL)
         {
-            printf("wze::engine.actors[].texts[]: Text does not exist\nParams: TextID: %lld\n", TextID);
+            printf("wze::engine.actors[].textboxes[]: Textbox does not exist\nParams: TextID: %lld\n", TextboxID);
             exit(1);
         }
 
-        return *this->Texts[TextID];
+        return *this->Textboxes[TextboxID];
     }
 
-    engine::actors::actor::texts::text::text(engine* Engine, actor* Actor, uint64 ID, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::textboxes::textbox::textbox(engine* Engine, actor* Actor, uint64 ID, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
     {
         this->ColorR = 255;
         this->ColorG = 255;
@@ -187,26 +187,26 @@ namespace wze
         this->UpdateTexture();
     }
 
-    engine::actors::actor::texts::text::~text()
+    engine::actors::actor::textboxes::textbox::~textbox()
     {
         SDL_DestroyTexture(this->Texture);
     }
 
-    uint64 engine::actors::actor::texts::text::GetID()
+    uint64 engine::actors::actor::textboxes::textbox::GetID()
     {
         return this->ID;
     }
 
-    double engine::actors::actor::texts::text::GetX()
+    double engine::actors::actor::textboxes::textbox::GetX()
     {
         return this->X;
     }
 
-    double engine::actors::actor::texts::text::SetX(double X)
+    double engine::actors::actor::textboxes::textbox::SetX(double X)
     {
         if (X != X)
         {
-            printf("wze::engine.actors[].texts[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
+            printf("wze::engine.actors[].textboxes[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
             exit(1);
         }
 
@@ -216,16 +216,16 @@ namespace wze
         return this->X = X;
     }
 
-    double engine::actors::actor::texts::text::GetY()
+    double engine::actors::actor::textboxes::textbox::GetY()
     {
         return this->Y;
     }
 
-    double engine::actors::actor::texts::text::SetY(double Y)
+    double engine::actors::actor::textboxes::textbox::SetY(double Y)
     {
         if (Y != Y)
         {
-            printf("wze::engine.actors[].texts[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            printf("wze::engine.actors[].textboxes[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
             exit(1);
         }
 
@@ -235,17 +235,17 @@ namespace wze
         return this->Y = Y;
     }
 
-    uint16 engine::actors::actor::texts::text::GetWidth()
+    uint16 engine::actors::actor::textboxes::textbox::GetWidth()
     {
         return this->Width;
     }
 
-    uint16 engine::actors::actor::texts::text::GetHeight()
+    uint16 engine::actors::actor::textboxes::textbox::GetHeight()
     {
         return this->Height;
     }
 
-    uint16 engine::actors::actor::texts::text::SetHeight(uint16 Height)
+    uint16 engine::actors::actor::textboxes::textbox::SetHeight(uint16 Height)
     {
         if (this->Height != Height)
         {
@@ -256,16 +256,16 @@ namespace wze
         return this->Height;
     }
 
-    const char* engine::actors::actor::texts::text::GetString()
+    const char* engine::actors::actor::textboxes::textbox::GetString()
     {
         return this->String();
     }
 
-    const char* engine::actors::actor::texts::text::SetString(const char* String)
+    const char* engine::actors::actor::textboxes::textbox::SetString(const char* String)
     {
         if (String == NULL)
         {
-            printf("wze::engine.actors[].texts[].SetString(): String must not be NULL\nParams: String: %p\n", String);
+            printf("wze::engine.actors[].textboxes[].SetString(): String must not be NULL\nParams: String: %p\n", String);
             exit(1);
         }
 
@@ -278,16 +278,16 @@ namespace wze
         return this->String();
     }
 
-    uint64 engine::actors::actor::texts::text::GetFontID()
+    uint64 engine::actors::actor::textboxes::textbox::GetFontID()
     {
         return this->FontID;
     }
 
-    uint64 engine::actors::actor::texts::text::SetFontID(uint64 FontID)
+    uint64 engine::actors::actor::textboxes::textbox::SetFontID(uint64 FontID)
     {
         if (FontID != 0 && (this->Engine->Assets.Fonts.Length() <= FontID || this->Engine->Assets.Fonts[FontID] == NULL))
         {
-            printf("wze::engine.actors[].texts[].SetFontID(): Font does not exist\nParams: FontID: %lld\n", FontID);
+            printf("wze::engine.actors[].textboxes[].SetFontID(): Font does not exist\nParams: FontID: %lld\n", FontID);
             exit(1);
         }
 
@@ -300,12 +300,12 @@ namespace wze
         return this->FontID;
     }
 
-    style engine::actors::actor::texts::text::GetFontStyle()
+    style engine::actors::actor::textboxes::textbox::GetFontStyle()
     {
         return this->FontStyle;
     }
 
-    style engine::actors::actor::texts::text::SetFontStyle(style FontStyle)
+    style engine::actors::actor::textboxes::textbox::SetFontStyle(style FontStyle)
     {
         if (this->FontStyle != FontStyle)
         {
@@ -316,7 +316,7 @@ namespace wze
         return this->FontStyle;
     }
 
-    uint8 engine::actors::actor::texts::text::UpdateTexture()
+    uint8 engine::actors::actor::textboxes::textbox::UpdateTexture()
     {
         SDL_Surface* surface;
         SDL_Color color;
@@ -336,12 +336,12 @@ namespace wze
 
             if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
             {
-                printf("wze::engine.actors[].texts[].UpdateTexture(): TTF_RenderUTF8_Blended failed\n");
+                printf("wze::engine.actors[].textboxes[].UpdateTexture(): TTF_RenderUTF8_Blended failed\n");
                 exit(1);
             }
             if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
             {
-                printf("wze::engine.actors[].texts[].UpdateTexture(): SDL_CreateTextureFromSurface failed\n");
+                printf("wze::engine.actors[].textboxes[].UpdateTexture(): SDL_CreateTextureFromSurface failed\n");
                 exit(1);
             }
 

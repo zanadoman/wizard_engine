@@ -5,7 +5,7 @@ using namespace neo;
 
 namespace wze
 {
-    engine::actors::actor::actor(engine* Engine, uint64 ID, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colorboxes(Engine, this), Textureboxes(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
+    engine::actors::actor::actor(engine* Engine, uint64 ID, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colorboxes(Engine, this), Textureboxes(Engine, this), Flipbooks(Engine, this), Textboxes(Engine, this), Overlapboxes(Engine, this)
     {
         this->Visible = true;
         this->Force = 0;
@@ -204,21 +204,21 @@ namespace wze
             }
         }
 
-        for (uint64 i = 1; i < this->Texts.Texts.Length(); i++)
+        for (uint64 i = 1; i < this->Textboxes.Textboxes.Length(); i++)
         {
-            if (this->Texts.Texts[i] == NULL)
+            if (this->Textboxes.Textboxes[i] == NULL)
             {
                 continue;
             }
 
-            if (this->Texts.Texts[i]->AngleLocked)
+            if (this->Textboxes.Textboxes[i]->AngleLocked)
             {
-                this->Texts.Texts[i]->Angle += change;
+                this->Textboxes.Textboxes[i]->Angle += change;
             }
 
-            if (this->Texts.Texts[i]->OffsetAngleLocked)
+            if (this->Textboxes.Textboxes[i]->OffsetAngleLocked)
             {
-                this->Texts.Texts[i]->OffsetAngle += change;
+                this->Textboxes.Textboxes[i]->OffsetAngle += change;
             }
         }
 
@@ -412,15 +412,15 @@ namespace wze
             this->Flipbooks.Flipbooks[i]->Y = engine::vector::TerminalY(this->Y, this->Flipbooks.Flipbooks[i]->OffsetLength, this->Flipbooks.Flipbooks[i]->OffsetAngle);
         }
 
-        for (uint64 i = 1; i < this->Texts.Texts.Length(); i++)
+        for (uint64 i = 1; i < this->Textboxes.Textboxes.Length(); i++)
         {
-            if (this->Texts.Texts[i] == NULL)
+            if (this->Textboxes.Textboxes[i] == NULL)
             {
                 continue;
             }
 
-            this->Texts.Texts[i]->X = engine::vector::TerminalX(this->X, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
-            this->Texts.Texts[i]->Y = engine::vector::TerminalY(this->Y, this->Texts.Texts[i]->OffsetLength, this->Texts.Texts[i]->OffsetAngle);
+            this->Textboxes.Textboxes[i]->X = engine::vector::TerminalX(this->X, this->Textboxes.Textboxes[i]->OffsetLength, this->Textboxes.Textboxes[i]->OffsetAngle);
+            this->Textboxes.Textboxes[i]->Y = engine::vector::TerminalY(this->Y, this->Textboxes.Textboxes[i]->OffsetLength, this->Textboxes.Textboxes[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Overlapboxes.Overlapboxes.Length(); i++)

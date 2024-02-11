@@ -436,19 +436,19 @@ namespace wze
                 continue;
             }
 
-            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Texts.Texts.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Textboxes.Textboxes.Length(); j++)
             {
-                if (this->Engine->Actors.Actors[i]->Texts.Texts[j] == NULL)
+                if (this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j] == NULL)
                 {
                     continue;
                 }
 
-                if (this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID == FontID)
+                if (this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->FontID == FontID)
                 {
-                    this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width = 0;
-                    this->Engine->Actors.Actors[i]->Texts.Texts[j]->FontID = 0;
-                    SDL_DestroyTexture(this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture);
-                    this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture = NULL;
+                    this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Width = 0;
+                    this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->FontID = 0;
+                    SDL_DestroyTexture(this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Texture);
+                    this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Texture = NULL;
                 }
             }
         }
@@ -471,19 +471,19 @@ namespace wze
                         continue;
                     }
 
-                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Texts.Texts.Length(); k++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Textboxes.Textboxes.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[j]->Texts.Texts[k] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID == i)
+                        if (this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->FontID == i)
                         {
-                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->Width = 0;
-                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID = 0;
-                            SDL_DestroyTexture(this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture);
-                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture = NULL;
+                            this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->Width = 0;
+                            this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->FontID = 0;
+                            SDL_DestroyTexture(this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->Texture);
+                            this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->Texture = NULL;
                         }
                     }
                 }
@@ -530,19 +530,19 @@ namespace wze
                         continue;
                     }
 
-                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Texts.Texts.Length(); k++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Textboxes.Textboxes.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[j]->Texts.Texts[k] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID == i)
+                        if (this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->FontID == i)
                         {
-                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->Width = 0;
-                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->FontID = 0;
-                            SDL_DestroyTexture(this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture);
-                            this->Engine->Actors.Actors[j]->Texts.Texts[k]->Texture = NULL;
+                            this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->Width = 0;
+                            this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->FontID = 0;
+                            SDL_DestroyTexture(this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->Texture);
+                            this->Engine->Actors.Actors[j]->Textboxes.Textboxes[k]->Texture = NULL;
                         }
                     }
                 }

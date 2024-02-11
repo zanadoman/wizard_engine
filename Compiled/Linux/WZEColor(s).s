@@ -914,7 +914,7 @@ _ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC13:
-	.string	"wze::engine.actors[].colors[].SetX(): X must not be NaN\nParams: X: %lf\n"
+	.string	"wze::engine.actors[].colorboxes[].SetX(): X must not be NaN\nParams: X: %lf\n"
 	.text
 	.align 2
 	.p2align 4
@@ -1003,7 +1003,7 @@ _ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC14:
-	.string	"wze::engine.actors[].colors[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
+	.string	"wze::engine.actors[].colorboxes[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
 	.text
 	.align 2
 	.p2align 4

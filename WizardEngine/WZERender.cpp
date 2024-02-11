@@ -218,9 +218,9 @@ namespace wze
                 }
             }
 
-            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Texts.Texts.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Textboxes.Textboxes.Length(); j++)
             {
-                if (this->Engine->Actors.Actors[i]->Texts.Texts[j] == NULL || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height == 0 || this->Engine->Actors.Actors[i]->Texts.Texts[j]->ColorA == 0 || !this->Engine->Actors.Actors[i]->Texts.Texts[j]->Visible || this->Engine->Actors.Actors[i]->Texts.Texts[j]->Texture == NULL)
+                if (this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j] == NULL || this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Width == 0 || this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Height == 0 || this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->ColorA == 0 || !this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Visible || this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Texture == NULL)
                 {
                     continue;
                 }
@@ -236,14 +236,14 @@ namespace wze
 
                 for (; layer < depth; layer += this->SamplingStep)
                 {
-                    area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->Texts.Texts[j]->X, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Y, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Width, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Height, layer);
+                    area = this->Engine->Camera.Transform(this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->X, this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Y, this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Width, this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Height, layer);
 
                     if (area.w == 0 || area.h == 0)
                     {
                         continue;
                     }
 
-                    if (0 < k && this->RenderQueue[k - 1]->Data == this->Engine->Actors.Actors[i]->Texts.Texts[j] && !(this->RenderQueue[k - 1]->Area.x != area.x || this->RenderQueue[k - 1]->Area.y != area.y || this->RenderQueue[k - 1]->Area.w != area.w || this->RenderQueue[k - 1]->Area.h != area.h))
+                    if (0 < k && this->RenderQueue[k - 1]->Data == this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j] && !(this->RenderQueue[k - 1]->Area.x != area.x || this->RenderQueue[k - 1]->Area.y != area.y || this->RenderQueue[k - 1]->Area.w != area.w || this->RenderQueue[k - 1]->Area.h != area.h))
                     {
                         this->RenderQueue[k - 1]->Layer = layer;
                         continue;
@@ -256,7 +256,7 @@ namespace wze
                             this->RenderQueue.Insert(this->RenderQueue.Length(), 1 + this->BufferSize);
                         }
 
-                        if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i]->Texts.Texts[j], TEXT, layer, this->Engine->Actors.Actors[i]->Texts.Texts[j]->Priority, area)) == NULL)
+                        if ((this->RenderQueue[k++] = new token(this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j], TEXTBOX, layer, this->Engine->Actors.Actors[i]->Textboxes.Textboxes[j]->Priority, area)) == NULL)
                         {
                             printf("wze::engine.render.SelectionStage(): Memory allocation failed\n");
                             exit(1);
@@ -546,8 +546,8 @@ namespace wze
                     this->RenderFlipbook(this->RenderQueue[i]);
                 break;
 
-                case TEXT:
-                    this->RenderText(this->RenderQueue[i]);
+                case TEXTBOX:
+                    this->RenderTextbox(this->RenderQueue[i]);
                 break;
 
                 case OVERLAPBOX:
@@ -576,8 +576,8 @@ namespace wze
                     this->RenderFlipbook(this->RenderQueue[i]);
                 break;
 
-                case TEXT:
-                    this->RenderText(this->RenderQueue[i]);
+                case TEXTBOX:
+                    this->RenderTextbox(this->RenderQueue[i]);
                 break;
 
                 case OVERLAPBOX:
@@ -683,33 +683,33 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::render::RenderText(token* Token)
+    uint8 engine::render::RenderTextbox(token* Token)
     {
         uint8 flip;
 
         flip = SDL_FLIP_NONE;
-        if (((engine::actors::actor::texts::text*)Token->Data)->FlipHorizontal)
+        if (((engine::actors::actor::textboxes::textbox*)Token->Data)->FlipHorizontal)
         {
             flip = SDL_FLIP_HORIZONTAL;
         }
-        if (((engine::actors::actor::texts::text*)Token->Data)->FlipVertical)
+        if (((engine::actors::actor::textboxes::textbox*)Token->Data)->FlipVertical)
         {
             flip |= SDL_FLIP_VERTICAL;
         }
 
-        if (SDL_SetTextureColorMod(((engine::actors::actor::texts::text*)Token->Data)->Texture, ((engine::actors::actor::texts::text*)Token->Data)->ColorR, ((engine::actors::actor::texts::text*)Token->Data)->ColorG, ((engine::actors::actor::texts::text*)Token->Data)->ColorB) != 0)
+        if (SDL_SetTextureColorMod(((engine::actors::actor::textboxes::textbox*)Token->Data)->Texture, ((engine::actors::actor::textboxes::textbox*)Token->Data)->ColorR, ((engine::actors::actor::textboxes::textbox*)Token->Data)->ColorG, ((engine::actors::actor::textboxes::textbox*)Token->Data)->ColorB) != 0)
         {
-            printf("wze::engine.render.RenderText(): SDL_SetTextureColorMod failed\n");
+            printf("wze::engine.render.RenderTextbox(): SDL_SetTextureColorMod failed\n");
             exit(1);
         }
-        if (SDL_SetTextureAlphaMod(((engine::actors::actor::texts::text*)Token->Data)->Texture, ((engine::actors::actor::texts::text*)Token->Data)->ColorA) != 0)
+        if (SDL_SetTextureAlphaMod(((engine::actors::actor::textboxes::textbox*)Token->Data)->Texture, ((engine::actors::actor::textboxes::textbox*)Token->Data)->ColorA) != 0)
         {
-            printf("wze::engine.render.RenderText(): SDL_SetTextureAlphaMod failed\n");
+            printf("wze::engine.render.RenderTextbox(): SDL_SetTextureAlphaMod failed\n");
             exit(1);
         }
-        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, ((engine::actors::actor::texts::text*)Token->Data)->Texture, NULL, &Token->Area, -((engine::actors::actor::texts::text*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
+        if (SDL_RenderCopyEx(this->Engine->Window.Renderer, ((engine::actors::actor::textboxes::textbox*)Token->Data)->Texture, NULL, &Token->Area, -((engine::actors::actor::textboxes::textbox*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
-            printf("wze::engine.render.RenderText(): SDL_RenderCopyEx failed\n");
+            printf("wze::engine.render.RenderTextbox(): SDL_RenderCopyEx failed\n");
             exit(1);
         }
 

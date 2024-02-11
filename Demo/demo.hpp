@@ -141,10 +141,10 @@ class pause
     engine::colorbox Frame;
     engine::overlapbox ButtonResume;
     engine::colorbox ButtonResumeColor;
-    engine::text ButtonResumeText;
+    engine::textbox ButtonResumeText;
     engine::overlapbox ButtonMenu;
     engine::colorbox ButtonMenuColor;
-    engine::text ButtonMenuText;
+    engine::textbox ButtonMenuText;
     pause(engine* Engine, game* Game);
     state Update();
 };
@@ -157,9 +157,9 @@ class stats
     game* Game;
 
     engine::actor Actor;
-    engine::text GameTime;
-    engine::text RenderTime;
-    engine::text FrameTime;
+    engine::textbox GameTime;
+    engine::textbox RenderTime;
+    engine::textbox FrameTime;
     stats(engine* Engine, game* Game);
     uint8 Update();
 };
@@ -176,13 +176,13 @@ class menu
     scene Update();
 
     engine::actor Actor;
-    engine::text Title;
+    engine::textbox Title;
     engine::overlapbox ButtonNormal;
     engine::colorbox ButtonNormalColor;
-    engine::text ButtonNormalText;
+    engine::textbox ButtonNormalText;
     engine::overlapbox ButtonInfinite;
     engine::colorbox ButtonInfiniteColor;
-    engine::text ButtonInfiniteText;
+    engine::textbox ButtonInfiniteText;
 };
 
 class normal

@@ -46,96 +46,96 @@ _ZN5statsC2EPN3wze6engineEP4game:
 	movq	%rax, 16(%rbx)
 	leaq	104(%rax), %rdi
 	movzwl	16(%rdx), %edx
-	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy@PLT
 	leaq	.LC3(%rip), %rsi
 	movq	%rax, 24(%rbx)
 	movq	8(%rbx), %rax
 	movzwl	16(%rax), %edx
 	movq	16(%rbx), %rax
 	leaq	104(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy@PLT
 	leaq	.LC4(%rip), %rsi
 	movq	%rax, 32(%rbx)
 	movq	8(%rbx), %rax
 	movzwl	16(%rax), %edx
 	movq	16(%rbx), %rax
 	leaq	104(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy@PLT
 	movq	24(%rbx), %rdi
 	movl	$20, %esi
 	movq	%rax, 40(%rbx)
-	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt@PLT
 	movq	16(%rbx), %rdi
 	movq	24(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	24(%rbx), %rdi
 	movsd	%xmm0, 8(%rsp)
-	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv@PLT
 	pxor	%xmm0, %xmm0
 	movq	%rbp, %rdi
 	shrw	%ax
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
 	addsd	8(%rsp), %xmm0
-	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd@PLT
 	movq	16(%rbx), %rdi
 	movq	24(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	subsd	.LC5(%rip), %xmm0
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd@PLT
 	movq	24(%rbx), %rax
 	xorl	%edx, %edx
 	movq	32(%rbx), %rdi
 	movl	$20, %esi
 	movw	%dx, 16(%rax)
 	movb	$0, 18(%rax)
-	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt@PLT
 	movq	16(%rbx), %rdi
 	movq	32(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	32(%rbx), %rdi
 	movsd	%xmm0, 8(%rsp)
-	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv@PLT
 	pxor	%xmm0, %xmm0
 	movq	%rbp, %rdi
 	shrw	%ax
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
 	addsd	8(%rsp), %xmm0
-	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd@PLT
 	movq	16(%rbx), %rdi
 	movq	32(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	subsd	.LC6(%rip), %xmm0
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd@PLT
 	movq	32(%rbx), %rax
 	xorl	%ecx, %ecx
 	movq	40(%rbx), %rdi
 	movl	$20, %esi
 	movw	%cx, 16(%rax)
 	movb	$0, 18(%rax)
-	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt@PLT
 	movq	16(%rbx), %rdi
 	movq	40(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	40(%rbx), %rdi
 	movsd	%xmm0, 8(%rsp)
-	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv@PLT
 	pxor	%xmm0, %xmm0
 	movq	%rbp, %rdi
 	shrw	%ax
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
 	addsd	8(%rsp), %xmm0
-	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd@PLT
 	movq	16(%rbx), %rdi
 	movq	40(%rbx), %rbp
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	subsd	.LC7(%rip), %xmm0
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd@PLT
 	movq	40(%rbx), %rax
 	xorl	%esi, %esi
 	movw	%si, 16(%rax)
@@ -235,21 +235,21 @@ _ZN5stats6UpdateEv:
 	call	_ZN3neo6stringclEv@PLT
 	movq	(%rsp), %rdi
 	movq	%rax, %rsi
-	call	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc@PLT
 	movq	24(%rbx), %rax
 	movq	16(%rbx), %rdi
 	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	24(%rbx), %rdi
 	movsd	%xmm0, 8(%rsp)
-	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv@PLT
 	shrw	%ax
 	pxor	%xmm0, %xmm0
 	movq	(%rsp), %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
 	addsd	8(%rsp), %xmm0
-	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd@PLT
 	movq	(%rbx), %rcx
 	movq	32(%rbx), %rax
 	movq	%r15, 48(%rsp)
@@ -276,21 +276,21 @@ _ZN5stats6UpdateEv:
 	call	_ZN3neo6stringclEv@PLT
 	movq	(%rsp), %rdi
 	movq	%rax, %rsi
-	call	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc@PLT
 	movq	32(%rbx), %rax
 	movq	16(%rbx), %rdi
 	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	32(%rbx), %rdi
 	movsd	%xmm0, 8(%rsp)
-	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv@PLT
 	shrw	%ax
 	pxor	%xmm0, %xmm0
 	movq	(%rsp), %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
 	addsd	8(%rsp), %xmm0
-	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd@PLT
 	movq	(%rbx), %rcx
 	movq	40(%rbx), %rax
 	movq	%r15, 48(%rsp)
@@ -317,20 +317,20 @@ _ZN5stats6UpdateEv:
 	call	_ZN3neo6stringclEv@PLT
 	movq	(%rsp), %rdi
 	movq	%rax, %rsi
-	call	_ZN3wze6engine6actors5actor5texts4text9SetStringEPKc@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc@PLT
 	movq	16(%rbx), %rdi
 	movq	40(%rbx), %r12
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movq	40(%rbx), %rdi
 	movsd	%xmm0, (%rsp)
-	call	_ZN3wze6engine6actors5actor5texts4text8GetWidthEv@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv@PLT
 	shrw	%ax
 	pxor	%xmm0, %xmm0
 	movq	%r12, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
 	addsd	(%rsp), %xmm0
-	call	_ZN3wze6engine6actors5actor5texts4text4SetXEd@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd@PLT
 .LEHE1:
 	movq	%rbp, %rdi
 	call	_ZN3neo6stringD1Ev@PLT
