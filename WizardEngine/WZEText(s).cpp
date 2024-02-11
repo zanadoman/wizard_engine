@@ -270,6 +270,10 @@ namespace wze
         SDL_Surface* surface;
         SDL_Color color;
 
+        this->Width = 0;
+        SDL_DestroyTexture(this->Texture);
+        this->Texture = NULL;
+
         if (Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
             if (this->FontStyle != STYLE_NORMAL)
@@ -298,12 +302,6 @@ namespace wze
                 TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
             }
         }
-        else
-        {
-            this->Width = 0;
-            SDL_DestroyTexture(this->Texture);
-            this->Texture = NULL;
-        }
 
         return this->Height = Height;
     }
@@ -323,6 +321,10 @@ namespace wze
             printf("wze::engine.actors[].texts[].SetString(): String must not be NULL\nParams: String: %p\n", String);
             exit(1);
         }
+
+        this->Width = 0;
+        SDL_DestroyTexture(this->Texture);
+        this->Texture = NULL;
 
         if (this->Height != 0 && 1 < string::LiteralLength(String) && this->FontID != 0)
         {
@@ -352,12 +354,6 @@ namespace wze
                 TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
             }
         }
-        else
-        {
-            this->Width = 0;
-            SDL_DestroyTexture(this->Texture);
-            this->Texture = NULL;
-        }
 
         return (this->String = {String})();
     }
@@ -377,6 +373,10 @@ namespace wze
             printf("wze::engine.actors[].texts[].SetFontID(): Font does not exist\nParams: FontID: %lld\n", FontID);
             exit(1);
         }
+
+        this->Width = 0;
+        SDL_DestroyTexture(this->Texture);
+        this->Texture = NULL;
 
         if (this->Height != 0 && 1 < this->String.Length() && FontID != 0)
         {
@@ -406,12 +406,6 @@ namespace wze
                 TTF_SetFontStyle(this->Engine->Assets.Fonts[FontID], STYLE_NORMAL);
             }
         }
-        else
-        {
-            this->Width = 0;
-            SDL_DestroyTexture(this->Texture);
-            this->Texture = NULL;
-        }
 
         return this->FontID = FontID;
     }
@@ -425,6 +419,10 @@ namespace wze
     {
         SDL_Surface* surface;
         SDL_Color color;
+
+        this->Width = 0;
+        SDL_DestroyTexture(this->Texture);
+        this->Texture = NULL;
 
         if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
@@ -453,12 +451,6 @@ namespace wze
             {
                 TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
             }
-        }
-        else
-        {
-            this->Width = 0;
-            SDL_DestroyTexture(this->Texture);
-            this->Texture = NULL;
         }
 
         return this->FontStyle = FontStyle;
