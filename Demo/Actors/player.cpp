@@ -44,6 +44,10 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
 
 player::~player()
 {
+    for (uint64 i = 0; i < this->Bullets.Length(); i++)
+    {
+        delete this->Bullets[i];
+    }
     this->Engine->Actors.Delete(this->Actor->GetID());
 }
 
@@ -112,6 +116,23 @@ uint8 player::Update()
         else if (this->VelocityY < 0)
         {
             this->VelocityY = 0;
+        }
+    }
+
+    //Shooting
+
+    if (this->Engine->Keys[KEY_LMB])
+    {
+        this->Bullets += {new bullet(this->Engine, this->Game, this->Actor->GetX(), this->Actor->GetY(), this->Actor->GetLayer(), this->Actor->GetID(), (actor)this->Actor->GetType(), this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Engine->Mouse.GetX(this->Actor->GetLayer()), this->Engine->Mouse.GetY(this->Actor->GetLayer())))};
+    }
+
+    for (uint64 i = 0; i < this->Bullets.Length(); i++)
+    {
+        if (this->Bullets[i]->Update())
+        {
+            delete this->Bullets[i];
+            this->Bullets.Remove(i, 1);
+            i--;
         }
     }
 

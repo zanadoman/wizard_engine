@@ -24,9 +24,9 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movq	%rsi, (%rbx)
 	movq	%rbx, %rsi
 	movq	%rdx, 8(%rbx)
-	movl	$3, %edx
+	movl	$4, %edx
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
-	movl	$3, %esi
+	movl	$4, %esi
 	movq	%rax, 16(%rbx)
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes3NewEy@PLT

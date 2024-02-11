@@ -17,6 +17,7 @@ typedef enum
     ACT_NONE,
     ACT_PLAYER,
     ACT_EAGLE,
+    ACT_BULLET,
     ACT_PLATFORM,
     ACT_BORDER
 } actor;
@@ -26,10 +27,20 @@ typedef enum
     BOX_NONE,
     BOX_PLAYER,
     BOX_EAGLE,
+    BOX_BULLET,
     BOX_PLATFORM,
     BOX_BORDER
 } overlapbox;
 
+class assets;
+class game;
+class player;
+class eagle;
+class bullet;
+class platform;
+class border;
+class pause;
+class stats;
 class menu;
 class normal;
 class infinite;
@@ -103,6 +114,7 @@ class player
     engine::texturebox Jump;
     double VelocityX;
     double VelocityY;
+    array<bullet*> Bullets;
     player(engine* Engine, game* Game, double X, double Y, double Layer, double CollisionLayer);
     ~player();
     uint8 Update();
@@ -124,6 +136,25 @@ class eagle
     double Facing;
     eagle(engine* Engine, game* Game, double Y, double Layer, double MinX, double MaxX);
     ~eagle();
+    uint8 Update();
+};
+
+class bullet
+{
+    friend class normal;
+    friend class infinite;
+    friend class player;
+    friend class eagle;
+    engine* Engine;
+    game* Game;
+
+    engine::actor Actor;
+    engine::overlapbox Overlapbox;
+    engine::texturebox Texture;
+    uint64 ParentID;
+    actor ParentType;
+    bullet(engine* Engine, game* Game, double X, double Y, double Layer, uint64 ParentID, actor ParentType, double Angle);
+    ~bullet();
     uint8 Update();
 };
 
