@@ -17,7 +17,8 @@ typedef enum
     ACT_NONE,
     ACT_PLAYER,
     ACT_EAGLE,
-    ACT_PLATFORM
+    ACT_PLATFORM,
+    ACT_BORDER
 } actor;
 
 typedef enum
@@ -25,7 +26,8 @@ typedef enum
     BOX_NONE,
     BOX_PLAYER,
     BOX_EAGLE,
-    BOX_PLATFORM
+    BOX_PLATFORM,
+    BOX_BORDER
 } overlapbox;
 
 class menu;
@@ -139,6 +141,19 @@ class platform
     ~platform();
 };
 
+class border
+{
+    friend class normal;
+    friend class infinite;
+    engine* Engine;
+    game* Game;
+
+    engine::actor Actor;
+    engine::overlapbox Overlapbox;
+    border(engine* Engine, game* Game, double X, double Y, uint16 Width, uint16 Height, double Layer, uint8 CollisionLayer);
+    ~border();
+};
+
 class pause
 {
     friend class normal;
@@ -214,10 +229,10 @@ class normal
     player* Player;
     eagle* Eagle;
     array<platform*> Platforms;
+    border* LeftBorder;
+    border* RightBorder;
     engine::actor Background;
     engine::texturebox BackgroundTexture;
-    engine::actor LeftBorder;
-    engine::actor RightBorder;
     normal(engine* Engine, game* Game);
     ~normal();
     scene Update();

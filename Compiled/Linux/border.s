@@ -1,10 +1,10 @@
-	.file	"platform.cpp"
+	.file	"border.cpp"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN8platformC2EPN3wze6engineEP4gameddttdh
-	.type	_ZN8platformC2EPN3wze6engineEP4gameddttdh, @function
-_ZN8platformC2EPN3wze6engineEP4gameddttdh:
+	.globl	_ZN6borderC2EPN3wze6engineEP4gameddttdh
+	.type	_ZN6borderC2EPN3wze6engineEP4gameddttdh, @function
+_ZN6borderC2EPN3wze6engineEP4gameddttdh:
 .LFB8147:
 	.cfi_startproc
 	pushq	%rbp
@@ -24,24 +24,15 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movq	%rsi, (%rbx)
 	movq	%rbx, %rsi
 	movq	%rdx, 8(%rbx)
-	movl	$3, %edx
+	movl	$4, %edx
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
-	movl	$3, %esi
+	movl	$4, %esi
 	movq	%rax, 16(%rbx)
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes3NewEy@PLT
-	movq	%rax, 24(%rbx)
-	movq	8(%rbx), %rax
-	movzwl	26(%rax), %esi
-	movq	16(%rbx), %rax
-	leaq	40(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
-	movq	16(%rbx), %rdi
-	movsd	.LC0(%rip), %xmm0
-	movq	%rax, 32(%rbx)
-	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
 	movq	16(%rbx), %rdi
 	movzbl	%bpl, %esi
+	movq	%rax, 24(%rbx)
 	movq	$1000, 184(%rdi)
 	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
 	movq	16(%rbx), %rdi
@@ -51,7 +42,7 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movq	%rbp, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
-	addsd	.LC1(%rip), %xmm0
+	addsd	.LC0(%rip), %xmm0
 	cvttsd2sil	%xmm0, %esi
 	movzwl	%si, %esi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt@PLT
@@ -62,7 +53,7 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movq	%rbp, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
-	addsd	.LC1(%rip), %xmm0
+	addsd	.LC0(%rip), %xmm0
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 24
 	popq	%rbx
@@ -74,14 +65,14 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	jmp	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt@PLT
 	.cfi_endproc
 .LFE8147:
-	.size	_ZN8platformC2EPN3wze6engineEP4gameddttdh, .-_ZN8platformC2EPN3wze6engineEP4gameddttdh
-	.globl	_ZN8platformC1EPN3wze6engineEP4gameddttdh
-	.set	_ZN8platformC1EPN3wze6engineEP4gameddttdh,_ZN8platformC2EPN3wze6engineEP4gameddttdh
+	.size	_ZN6borderC2EPN3wze6engineEP4gameddttdh, .-_ZN6borderC2EPN3wze6engineEP4gameddttdh
+	.globl	_ZN6borderC1EPN3wze6engineEP4gameddttdh
+	.set	_ZN6borderC1EPN3wze6engineEP4gameddttdh,_ZN6borderC2EPN3wze6engineEP4gameddttdh
 	.align 2
 	.p2align 4
-	.globl	_ZN8platformD2Ev
-	.type	_ZN8platformD2Ev, @function
-_ZN8platformD2Ev:
+	.globl	_ZN6borderD2Ev
+	.type	_ZN6borderD2Ev, @function
+_ZN6borderD2Ev:
 .LFB8150:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
@@ -111,16 +102,12 @@ _ZN8platformD2Ev:
 .LLSDACSB8150:
 .LLSDACSE8150:
 	.text
-	.size	_ZN8platformD2Ev, .-_ZN8platformD2Ev
-	.globl	_ZN8platformD1Ev
-	.set	_ZN8platformD1Ev,_ZN8platformD2Ev
+	.size	_ZN6borderD2Ev, .-_ZN6borderD2Ev
+	.globl	_ZN6borderD1Ev
+	.set	_ZN6borderD1Ev,_ZN6borderD2Ev
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:
-	.long	-1717986918
-	.long	1068079513
-	.align 8
-.LC1:
 	.long	-350469331
 	.long	1059731170
 	.hidden	DW.ref.__gxx_personality_v0

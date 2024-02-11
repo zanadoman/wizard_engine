@@ -14,22 +14,22 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
         new platform(this->Engine, this->Game, 250, 725, 200, 50, 1, 1)
     };
 
-    this->Background = this->Engine->Actors.New(NULL, ACT_NONE, 0, 0, 28800, 16200, 0.1);
-    this->BackgroundTexture = this->Background->Textureboxes.New(this->Game->Assets.MapBackgroundTexture);
-
-    this->LeftBorder = this->Engine->Actors.New(NULL, ACT_NONE, -755, 0, 10, 65535, 1);
-    this->RightBorder = this->Engine->Actors.New(NULL, ACT_NONE, 755, 0, 10, 65535, 1);
-    this->LeftBorder->SetCollisionLayer(1);
-    this->RightBorder->SetCollisionLayer(1);
+    this->LeftBorder = new border(this->Engine, this->Game, -755, 0, 10, 65535, 1, 1);
+    this->RightBorder = new border(this->Engine, this->Game, 755, 0, 10, 65535, 1, 1);
 
     this->Engine->Camera.Bind(this->Player->Actor->GetID());
     this->Engine->Camera.SetOffsetY(-(400));
+
+    this->Background = this->Engine->Actors.New(NULL, ACT_NONE, 0, 0, 28800, 16200, 0.1);
+    this->BackgroundTexture = this->Background->Textureboxes.New(this->Game->Assets.MapBackgroundTexture);
 }
 
 normal::~normal()
 {
     delete this->Player;
     delete this->Eagle;
+    delete this->LeftBorder;
+    delete this->RightBorder;
     for (uint8 i = 0; i < this->Platforms.Length(); i++)
     {
         delete this->Platforms[i];
