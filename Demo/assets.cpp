@@ -55,3 +55,11 @@ assets::assets(engine* Engine) : Engine(Engine)
     this->BulletBaseTexture = this->Engine->Assets.LoadTexture("assets/bullet/base.png");
     this->BulletShotSound = this->Engine->Assets.LoadSound("assets/bullet/shot.mp3");
 }
+
+assets::~assets()
+{
+    this->Engine->Assets.PurgeTextures({});
+    this->Engine->Assets.PurgeSounds({});
+    this->Engine->Assets.PurgeFonts({});
+    this->Engine->Assets.PurgeCursorTextures({});
+}

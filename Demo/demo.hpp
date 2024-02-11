@@ -60,6 +60,7 @@ class assets
 
     private:
         assets(engine* Engine);
+        ~assets();
 };
 
 class game
@@ -106,6 +107,7 @@ class player
     double VelocityX;
     double VelocityY;
     player(engine* Engine, game* Game, double X, double Y, double Layer, double CollisionLayer);
+    ~player();
     uint8 Update();
 };
 
@@ -120,6 +122,7 @@ class platform
     engine::overlapbox Overlapbox;
     engine::texturebox Texture;
     platform(engine* Engine, game* Game, double X, double Y, uint16 Width, uint16 Height, double Layer, uint8 CollisionLayer);
+    ~platform();
 };
 
 class pause
@@ -146,6 +149,7 @@ class pause
     engine::colorbox ButtonMenuColor;
     engine::textbox ButtonMenuText;
     pause(engine* Engine, game* Game);
+    ~pause();
     state Update();
 };
 
@@ -161,6 +165,7 @@ class stats
     engine::textbox RenderTime;
     engine::textbox FrameTime;
     stats(engine* Engine, game* Game);
+    ~stats();
     uint8 Update();
 };
 
@@ -172,9 +177,6 @@ class menu
     engine* Engine;
     game* Game;
 
-    menu(engine* Engine, game* Game);
-    scene Update();
-
     engine::actor Actor;
     engine::textbox Title;
     engine::overlapbox ButtonNormal;
@@ -183,6 +185,9 @@ class menu
     engine::overlapbox ButtonInfinite;
     engine::colorbox ButtonInfiniteColor;
     engine::textbox ButtonInfiniteText;
+    menu(engine* Engine, game* Game);
+    ~menu();
+    scene Update();
 };
 
 class normal
@@ -213,5 +218,6 @@ class infinite
     engine::actor Background;
     engine::texturebox BackgroundTexture;
     infinite(engine* Engine, game* Game);
+    ~infinite();
     scene Update();
 };

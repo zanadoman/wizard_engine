@@ -76,6 +76,43 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	.size	_ZN8platformC2EPN3wze6engineEP4gameddttdh, .-_ZN8platformC2EPN3wze6engineEP4gameddttdh
 	.globl	_ZN8platformC1EPN3wze6engineEP4gameddttdh
 	.set	_ZN8platformC1EPN3wze6engineEP4gameddttdh,_ZN8platformC2EPN3wze6engineEP4gameddttdh
+	.align 2
+	.p2align 4
+	.globl	_ZN8platformD2Ev
+	.type	_ZN8platformD2Ev, @function
+_ZN8platformD2Ev:
+.LFB8150:
+	.cfi_startproc
+	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+	.cfi_lsda 0x1b,.LLSDA8150
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movq	(%rdi), %rax
+	movq	16(%rdi), %rdi
+	leaq	240(%rax), %rbx
+	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
+	movq	%rbx, %rdi
+	movq	%rax, %rsi
+	call	_ZN3wze6engine6actors6DeleteEy@PLT
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE8150:
+	.globl	__gxx_personality_v0
+	.section	.gcc_except_table,"a",@progbits
+.LLSDA8150:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE8150-.LLSDACSB8150
+.LLSDACSB8150:
+.LLSDACSE8150:
+	.text
+	.size	_ZN8platformD2Ev, .-_ZN8platformD2Ev
+	.globl	_ZN8platformD1Ev
+	.set	_ZN8platformD1Ev,_ZN8platformD2Ev
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:
@@ -85,5 +122,13 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 .LC1:
 	.long	-350469331
 	.long	1059731170
+	.hidden	DW.ref.__gxx_personality_v0
+	.weak	DW.ref.__gxx_personality_v0
+	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat
+	.align 8
+	.type	DW.ref.__gxx_personality_v0, @object
+	.size	DW.ref.__gxx_personality_v0, 8
+DW.ref.__gxx_personality_v0:
+	.quad	__gxx_personality_v0
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

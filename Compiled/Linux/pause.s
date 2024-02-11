@@ -177,10 +177,47 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	.set	_ZN5pauseC1EPN3wze6engineEP4game,_ZN5pauseC2EPN3wze6engineEP4game
 	.align 2
 	.p2align 4
+	.globl	_ZN5pauseD2Ev
+	.type	_ZN5pauseD2Ev, @function
+_ZN5pauseD2Ev:
+.LFB8150:
+	.cfi_startproc
+	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+	.cfi_lsda 0x1b,.LLSDA8150
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movq	(%rdi), %rax
+	movq	16(%rdi), %rdi
+	leaq	240(%rax), %rbx
+	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
+	movq	%rbx, %rdi
+	movq	%rax, %rsi
+	call	_ZN3wze6engine6actors6DeleteEy@PLT
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE8150:
+	.globl	__gxx_personality_v0
+	.section	.gcc_except_table,"a",@progbits
+.LLSDA8150:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE8150-.LLSDACSB8150
+.LLSDACSB8150:
+.LLSDACSE8150:
+	.text
+	.size	_ZN5pauseD2Ev, .-_ZN5pauseD2Ev
+	.globl	_ZN5pauseD1Ev
+	.set	_ZN5pauseD1Ev,_ZN5pauseD2Ev
+	.align 2
+	.p2align 4
 	.globl	_ZN5pause6UpdateEv
 	.type	_ZN5pause6UpdateEv, @function
 _ZN5pause6UpdateEv:
-.LFB8149:
+.LFB8152:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -192,33 +229,24 @@ _ZN5pause6UpdateEv:
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	movq	16(%rbx), %rax
-	jne	.L18
+	je	.L7
 	cmpb	$0, 168(%rax)
-	jne	.L7
-	xorl	%eax, %eax
-.L4:
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L7:
-	.cfi_restore_state
+	je	.L20
+.L8:
 	movq	32(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
 	testb	$1, %al
 	movq	40(%rbx), %rax
-	jne	.L19
+	jne	.L21
 	movl	$-32640, %esi
 	movb	$-128, 22(%rax)
 	movw	%si, 20(%rax)
-.L10:
+.L12:
 	movq	56(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
 	testb	$1, %al
 	movq	64(%rbx), %rax
-	je	.L12
+	je	.L14
 	movl	$24672, %ecx
 	movb	$96, 22(%rax)
 	movw	%cx, 20(%rax)
@@ -227,46 +255,55 @@ _ZN5pause6UpdateEv:
 	movl	%eax, %edx
 	movl	$2, %eax
 	andl	$4, %edx
-	je	.L6
+	jne	.L6
+.L9:
+	movl	$1, %eax
+.L6:
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L18:
+.L7:
+	.cfi_restore_state
+	cmpb	$0, 168(%rax)
+	jne	.L8
+	xorl	%eax, %eax
+.L22:
+	popq	%rbx
+	.cfi_remember_state
+	.cfi_def_cfa_offset 8
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L20:
 	.cfi_restore_state
 	movb	$1, 168(%rax)
-.L6:
-	movl	$1, %eax
-	popq	%rbx
-	.cfi_remember_state
-	.cfi_def_cfa_offset 8
-	ret
+	jmp	.L9
 	.p2align 4,,10
 	.p2align 3
-.L19:
-	.cfi_restore_state
+.L21:
 	movl	$24672, %edi
 	movb	$96, 22(%rax)
 	movw	%di, 20(%rax)
 	movq	32(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv@PLT
 	testb	$4, %al
-	je	.L10
+	je	.L12
 	movq	16(%rbx), %rax
 	movb	$0, 168(%rax)
 	xorl	%eax, %eax
-	jmp	.L4
+	jmp	.L22
 	.p2align 4,,10
 	.p2align 3
-.L12:
+.L14:
 	movl	$-32640, %edx
 	movb	$-128, 22(%rax)
 	movw	%dx, 20(%rax)
-	jmp	.L6
+	jmp	.L9
 	.cfi_endproc
-.LFE8149:
+.LFE8152:
 	.size	_ZN5pause6UpdateEv, .-_ZN5pause6UpdateEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
@@ -278,5 +315,13 @@ _ZN5pause6UpdateEv:
 .LC4:
 	.byte	-128
 	.byte	-128
+	.hidden	DW.ref.__gxx_personality_v0
+	.weak	DW.ref.__gxx_personality_v0
+	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat
+	.align 8
+	.type	DW.ref.__gxx_personality_v0, @object
+	.size	DW.ref.__gxx_personality_v0, 8
+DW.ref.__gxx_personality_v0:
+	.quad	__gxx_personality_v0
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

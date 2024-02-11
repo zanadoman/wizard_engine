@@ -46,9 +46,14 @@ pause::pause(engine* Engine, game* Game) : Engine(Engine), Game(Game)
     this->ButtonMenuText->SetY(ButtonMenu->GetY());
 }
 
+pause::~pause()
+{
+    this->Engine->Actors.Delete(this->Actor->GetID());
+}
+
 pause::state pause::Update()
 {
-    if (this->Engine->Keys[KEY_ESCAPE])
+    if (this->Engine->Keys[KEY_ESCAPE] && !this->Actor->Visible)
     {
         this->Actor->Visible = true;
         return PAUSED;

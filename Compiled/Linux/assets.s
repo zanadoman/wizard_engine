@@ -512,6 +512,65 @@ _ZN6assetsC2EPN3wze6engineE.cold:
 .LHOTE34:
 	.globl	_ZN6assetsC1EPN3wze6engineE
 	.set	_ZN6assetsC1EPN3wze6engineE,_ZN6assetsC2EPN3wze6engineE
+	.align 2
+	.p2align 4
+	.globl	_ZN6assetsD2Ev
+	.type	_ZN6assetsD2Ev, @function
+_ZN6assetsD2Ev:
+.LFB8150:
+	.cfi_startproc
+	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+	.cfi_lsda 0x1b,.LLSDA8150
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movq	(%rdi), %rax
+	movq	%rdi, %rbx
+	xorl	%esi, %esi
+	xorl	%edx, %edx
+	leaq	328(%rax), %rdi
+	call	_ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE@PLT
+	movq	(%rbx), %rax
+	xorl	%esi, %esi
+	xorl	%edx, %edx
+	leaq	328(%rax), %rdi
+	call	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE@PLT
+	movq	(%rbx), %rax
+	xorl	%esi, %esi
+	xorl	%edx, %edx
+	leaq	328(%rax), %rdi
+	call	_ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE@PLT
+	movq	(%rbx), %rax
+	xorl	%esi, %esi
+	xorl	%edx, %edx
+	leaq	328(%rax), %rdi
+	call	_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE@PLT
+	movq	104(%rbx), %rdi
+	call	free@PLT
+	movq	88(%rbx), %rdi
+	call	free@PLT
+	movq	64(%rbx), %rdi
+	call	free@PLT
+	movq	48(%rbx), %rdi
+	call	free@PLT
+	movq	32(%rbx), %rdi
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	jmp	free@PLT
+	.cfi_endproc
+.LFE8150:
+	.section	.gcc_except_table
+.LLSDA8150:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE8150-.LLSDACSB8150
+.LLSDACSB8150:
+.LLSDACSE8150:
+	.text
+	.size	_ZN6assetsD2Ev, .-_ZN6assetsD2Ev
+	.globl	_ZN6assetsD1Ev
+	.set	_ZN6assetsD1Ev,_ZN6assetsD2Ev
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

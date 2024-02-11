@@ -29,6 +29,11 @@ stats::stats(engine* Engine, game* Game) : Engine(Engine), Game(Game)
     this->FrameTime->ColorB = 0;
 }
 
+stats::~stats()
+{
+    this->Engine->Actors.Delete(this->Actor->GetID());
+}
+
 uint8 stats::Update()
 {
     string str;

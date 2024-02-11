@@ -12,3 +12,8 @@ platform::platform(engine* Engine, game* Game, double X, double Y, uint16 Width,
     this->Overlapbox->SetWidth(this->Actor->GetWidth() + EPSILON * 2);
     this->Overlapbox->SetHeight(this->Actor->GetHeight() + EPSILON * 2);
 }
+
+platform::~platform()
+{
+    this->Engine->Actors.Delete(this->Actor->GetID());
+}

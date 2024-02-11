@@ -21,12 +21,14 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
 
 normal::~normal()
 {
+    delete this->Player;
+
     for (uint8 i = 0; i < this->Platforms.Length(); i++)
     {
         delete this->Platforms[i];
     }
 
-    delete this->Player;
+    this->Engine->Actors.Delete(this->Background->GetID());
 }
 
 scene normal::Update()

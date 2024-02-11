@@ -42,14 +42,18 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
     this->Jump->Visible = false;
 }
 
+player::~player()
+{
+    this->Engine->Actors.Delete(this->Actor->GetID());
+}
+
 uint8 player::Update()
 {
-    array<array<uint64>> overlaps;
-    double PrevX, PrevY;
+    //Horizontal movement
 
     if (this->Engine->Keys[KEY_A] && !this->Engine->Keys[KEY_D])
     {
-        this->VelocityX -= 0.004 * this->Engine->Timing.GetDeltaTime();
+        this->VelocityX -= 0.003 * this->Engine->Timing.GetDeltaTime();
         if (this->VelocityX < -0.5)
         {
             this->VelocityX = -0.5;
@@ -61,7 +65,7 @@ uint8 player::Update()
     }
     else if (this->VelocityX < 0)
     {
-        this->VelocityX += 0.004 * this->Engine->Timing.GetDeltaTime();
+        this->VelocityX += 0.003 * this->Engine->Timing.GetDeltaTime();
         if (0 < this->VelocityX)
         {
              this->VelocityX = 0;
@@ -69,7 +73,7 @@ uint8 player::Update()
     }
     if (this->Engine->Keys[KEY_D] && !this->Engine->Keys[KEY_A])
     {
-        this->VelocityX += 0.004 * this->Engine->Timing.GetDeltaTime();
+        this->VelocityX += 0.003 * this->Engine->Timing.GetDeltaTime();
         if (0.5 < this->VelocityX)
         {
             this->VelocityX = 0.5;
@@ -81,31 +85,29 @@ uint8 player::Update()
     }
     else if (0 < this->VelocityX)
     {
-        this->VelocityX -= 0.004 * this->Engine->Timing.GetDeltaTime();
+        this->VelocityX -= 0.003 * this->Engine->Timing.GetDeltaTime();
         if (this->VelocityX < 0)
         {
             this->VelocityX = 0;
         }
     }
 
-    PrevX = this->Actor->GetX();
     this->Actor->SetX(this->Actor->GetX() + this->VelocityX * this->Engine->Timing.GetDeltaTime());
 
-    if (PrevX - EPSILON < this->Actor->GetX() && this->Actor->GetX() < PrevX + EPSILON)
+    //Vertical movement
+
+    if (this->Engine->Keys[KEY_SPACE] && this->VelocityY == 0)
     {
-        this->VelocityX = 0;
+        this->VelocityY = 1.25;
     }
 
     this->VelocityY -= 0.003 * this->Engine->Timing.GetDeltaTime();
 
-    PrevY = this->Actor->GetY();
-    this->Actor->SetY(this->Actor->GetY() + this->VelocityY * this->Engine->Timing.GetDeltaTime());
-
-    if (PrevY - EPSILON < this->Actor->GetY() && this->Actor->GetY() < PrevY + EPSILON)
+    if (this->Actor->GetY() + this->VelocityY * this->Engine->Timing.GetDeltaTime() != this->Actor->SetY(this->Actor->GetY() + this->VelocityY * this->Engine->Timing.GetDeltaTime()))
     {
         if (0 < this->VelocityY)
         {
-            this->VelocityY = -0.004 * this->Engine->Timing.GetDeltaTime();
+            this->VelocityY = -0.003 * this->Engine->Timing.GetDeltaTime();
         }
         else if (this->VelocityY < 0)
         {
@@ -113,12 +115,9 @@ uint8 player::Update()
         }
     }
 
-    if (this->Engine->Keys[KEY_SPACE] && this->VelocityY == 0)
-    {
-        this->VelocityY = 1.25;
-    }
+    //Animation
 
-    if (this->Actor->GetY() < PrevY - EPSILON)
+    if (this->VelocityY < 0)
     {
         this->Idle->Visible = false;
         this->Run->Visible = false;
@@ -126,7 +125,7 @@ uint8 player::Update()
         this->Fall->Visible = true;
         this->Jump->Visible = false;
     }
-    else if (PrevY + EPSILON < this->Actor->GetY())
+    else if (0 < this->VelocityY)
     {
         this->Idle->Visible = false;
         this->Run->Visible = false;
@@ -134,7 +133,7 @@ uint8 player::Update()
         this->Fall->Visible = false;
         this->Jump->Visible = true;
     }
-    else if (this->Actor->GetX() < PrevX - EPSILON || PrevX + EPSILON < this->Actor->GetX())
+    else if (this->VelocityX != 0)
     {
         this->Idle->Visible = false;
         this->Run->Visible = true;

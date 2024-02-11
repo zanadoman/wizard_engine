@@ -39,6 +39,11 @@ menu::menu(engine* Engine, game* Game) : Engine(Engine), Game(Game)
     this->ButtonInfiniteText->SetY(ButtonInfinite->GetY());
 }
 
+menu::~menu()
+{
+    this->Engine->Actors.Delete(this->Actor->GetID());
+}
+
 scene menu::Update()
 {
     if (this->ButtonNormal->GetButtonState() & BTN_HOVERED)
