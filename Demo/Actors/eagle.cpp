@@ -35,6 +35,8 @@ eagle::~eagle()
 
 uint8 eagle::Update()
 {
+    double cache;
+
     if (this->Actor->GetX() < this->MinX)
     {
         this->Actor->SetX(this->MinX);
@@ -50,10 +52,15 @@ uint8 eagle::Update()
 
     this->Actor->SetX(this->Actor->GetX() + 0.25 * this->Facing * this->Engine->Timing.GetDeltaTime());
 
-    if (this->PrevShotTick + 200 < this->Engine->Timing.GetCurrentTick() && this->Engine->Vector.RayCast(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY(), 1, 1, {ACT_EAGLE, ACT_PLATFORM, ACT_BORDER}, {this->Actor->GetID()}, {}))
+    cache = this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY());
+
+    if (this->Engine->Vector.Length(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY()) < 500 && ((Facing == 1 && (cache <= 90 || 270 < cache)) || (Facing == -1 && cache <= 270 && 90 < cache)))
     {
-        this->Bullets += {new bullet(this->Engine, this->Game, this->Actor->GetX(), this->Actor->GetY(), this->Actor->GetLayer(), this->Actor->GetID(), (actor)this->Actor->GetType(), this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY()))};
-        this->PrevShotTick = this->Engine->Timing.GetCurrentTick();
+        if (this->PrevShotTick + 200 < this->Engine->Timing.GetCurrentTick() && this->Engine->Vector.RayCast(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY(), 1, 1, {ACT_EAGLE, ACT_PLATFORM, ACT_BORDER}, {this->Actor->GetID()}, {}))
+        {
+            this->Bullets += {new bullet(this->Engine, this->Game, this->Actor->GetX(), this->Actor->GetY(), this->Actor->GetLayer(), this->Actor->GetID(), (actor)this->Actor->GetType(), this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY()))};
+            this->PrevShotTick = this->Engine->Timing.GetCurrentTick();
+        }
     }
 
     for (uint64 i = 0; i < this->Bullets.Length(); i++)
