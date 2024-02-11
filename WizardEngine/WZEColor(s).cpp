@@ -30,7 +30,7 @@ namespace wze
             }
         }
 
-        if ((this->Colorboxes+= {new colorbox(this->Engine, this->Actor, this->Colorboxes.Length())})[this->Colorboxes.Length() - 1] == NULL)
+        if ((this->Colorboxes += {new colorbox(this->Engine, this->Actor, this->Colorboxes.Length())})[this->Colorboxes.Length() - 1] == NULL)
         {
             printf("wze::engine.actors[].colorboxes.New(): Memory allocation failed\n");
             exit(1);
