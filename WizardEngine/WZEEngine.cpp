@@ -68,13 +68,13 @@ namespace wze
             if (!this->Update())
             {
                 this->Assets.PurgeTextures({});
-                this->Actors.Purge({});
+                this->Actors.Delete(LogoActor->GetID());
                 return;
             }
         } while (LogoFlipbook->GetCurrentFrame() != LogoTextures.Length() - 1);
 
         this->Assets.PurgeTextures({});
-        this->Actors.Purge({});
+        this->Actors.Delete(LogoActor->GetID());
     }
 
     engine::~engine()
