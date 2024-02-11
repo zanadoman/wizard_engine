@@ -541,7 +541,7 @@ _ZN6normal6UpdateEv:
 	.align 8
 .LC1:
 	.long	0
-	.long	1082081280
+	.long	1078263808
 	.align 8
 .LC3:
 	.long	-1717986918
@@ -549,15 +549,15 @@ _ZN6normal6UpdateEv:
 	.align 8
 .LC4:
 	.long	0
-	.long	-1065402368
+	.long	-1066962944
 	.align 8
 .LC5:
 	.long	0
-	.long	-1067270144
+	.long	1080315904
 	.align 8
 .LC6:
 	.long	0
-	.long	1078116352
+	.long	1081466880
 	.align 8
 .LC7:
 	.long	0
@@ -565,11 +565,11 @@ _ZN6normal6UpdateEv:
 	.align 8
 .LC8:
 	.long	0
-	.long	1080827904
+	.long	1082182656
 	.align 8
 .LC9:
 	.long	0
-	.long	1081722880
+	.long	1082566656
 	.align 8
 .LC10:
 	.long	0
