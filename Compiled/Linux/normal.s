@@ -79,7 +79,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	%rax, 152(%rbx)
 	leaq	40(%rax), %rdi
 	movzwl	18(%rdx), %esi
-	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
+	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
 	movq	%rax, 160(%rbx)
 	movl	$40, %edi
 	call	_Znwm@PLT

@@ -13,8 +13,8 @@
 	.text
 	.align 2
 	.p2align 4
-	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0, @function
-_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0:
+	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0, @function
+_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0:
 .LFB8351:
 	.cfi_startproc
 	pushq	%r12
@@ -149,7 +149,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8351:
-	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
+	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
 .LC3:
@@ -157,9 +157,9 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_
-	.type	_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_, @function
-_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_:
+	.globl	_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_
+	.type	_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_, @function
+_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_:
 .LFB8147:
 	.cfi_startproc
 	pushq	%rbx
@@ -206,14 +206,14 @@ _ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8147:
-	.size	_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_, .-_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_
-	.globl	_ZN3wze6engine6actors5actor8texturesC1EPS0_PS2_
-	.set	_ZN3wze6engine6actors5actor8texturesC1EPS0_PS2_,_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_
+	.size	_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_, .-_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_
+	.globl	_ZN3wze6engine6actors5actor12textureboxesC1EPS0_PS2_
+	.set	_ZN3wze6engine6actors5actor12textureboxesC1EPS0_PS2_,_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8texturesD2Ev
-	.type	_ZN3wze6engine6actors5actor8texturesD2Ev, @function
-_ZN3wze6engine6actors5actor8texturesD2Ev:
+	.globl	_ZN3wze6engine6actors5actor12textureboxesD2Ev
+	.type	_ZN3wze6engine6actors5actor12textureboxesD2Ev, @function
+_ZN3wze6engine6actors5actor12textureboxesD2Ev:
 .LFB8150:
 	.cfi_startproc
 	movq	16(%rdi), %rdx
@@ -278,13 +278,13 @@ _ZN3wze6engine6actors5actor8texturesD2Ev:
 	jmp	free@PLT
 	.cfi_endproc
 .LFE8150:
-	.size	_ZN3wze6engine6actors5actor8texturesD2Ev, .-_ZN3wze6engine6actors5actor8texturesD2Ev
-	.globl	_ZN3wze6engine6actors5actor8texturesD1Ev
-	.set	_ZN3wze6engine6actors5actor8texturesD1Ev,_ZN3wze6engine6actors5actor8texturesD2Ev
+	.size	_ZN3wze6engine6actors5actor12textureboxesD2Ev, .-_ZN3wze6engine6actors5actor12textureboxesD2Ev
+	.globl	_ZN3wze6engine6actors5actor12textureboxesD1Ev
+	.set	_ZN3wze6engine6actors5actor12textureboxesD1Ev,_ZN3wze6engine6actors5actor12textureboxesD2Ev
 	.section	.rodata.str1.8
 	.align 8
 .LC4:
-	.string	"wze::engine.actors[].textures.New(): TextureID does not exist\nParams: TextureID: %lld\n"
+	.string	"wze::engine.actors[].textureboxes.New(): TextureID does not exist\nParams: TextureID: %lld\n"
 	.align 8
 .LC5:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
@@ -293,13 +293,13 @@ _ZN3wze6engine6actors5actor8texturesD2Ev:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.align 8
 .LC7:
-	.string	"wze::engine.actors[].textures.New(): Memory allocation failed\nParams: TextureID: %lld\n"
+	.string	"wze::engine.actors[].textureboxes.New(): Memory allocation failed\nParams: TextureID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures3NewEy
-	.type	_ZN3wze6engine6actors5actor8textures3NewEy, @function
-_ZN3wze6engine6actors5actor8textures3NewEy:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes3NewEy
+	.type	_ZN3wze6engine6actors5actor12textureboxes3NewEy, @function
+_ZN3wze6engine6actors5actor12textureboxes3NewEy:
 .LFB8152:
 	.cfi_startproc
 	pushq	%r12
@@ -463,12 +463,12 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8152:
-	.size	_ZN3wze6engine6actors5actor8textures3NewEy, .-_ZN3wze6engine6actors5actor8textures3NewEy
+	.size	_ZN3wze6engine6actors5actor12textureboxes3NewEy, .-_ZN3wze6engine6actors5actor12textureboxes3NewEy
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures6DeleteEy
-	.type	_ZN3wze6engine6actors5actor8textures6DeleteEy, @function
-_ZN3wze6engine6actors5actor8textures6DeleteEy:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes6DeleteEy
+	.type	_ZN3wze6engine6actors5actor12textureboxes6DeleteEy, @function
+_ZN3wze6engine6actors5actor12textureboxes6DeleteEy:
 .LFB8153:
 	.cfi_startproc
 	cmpq	16(%rdi), %rsi
@@ -519,7 +519,7 @@ _ZN3wze6engine6actors5actor8textures6DeleteEy:
 .L74:
 	leaq	16(%rbx), %rdi
 	movq	%r8, %rdx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
 .L69:
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -553,12 +553,12 @@ _ZN3wze6engine6actors5actor8textures6DeleteEy:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8153:
-	.size	_ZN3wze6engine6actors5actor8textures6DeleteEy, .-_ZN3wze6engine6actors5actor8textures6DeleteEy
+	.size	_ZN3wze6engine6actors5actor12textureboxes6DeleteEy, .-_ZN3wze6engine6actors5actor12textureboxes6DeleteEy
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE
-	.type	_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE, @function
-_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE
+	.type	_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE, @function
+_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE:
 .LFB8154:
 	.cfi_startproc
 	pushq	%r14
@@ -650,7 +650,7 @@ _ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	leaq	16(%r13), %rdi
 	movq	%rax, %rsi
 	movq	%r8, %rdx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -686,17 +686,17 @@ _ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	jmp	.L121
 	.cfi_endproc
 .LFE8154:
-	.size	_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE
+	.size	_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
 .LC8:
-	.string	"wze::engine.actors[].textures.Purge(): KeepTextureIDs must not be NULL\nParams: KeepTextureIDs: %p\n"
+	.string	"wze::engine.actors[].textureboxes.Purge(): KeepTextureboxIDs must not be NULL\nParams: KeepTextureboxIDs: %p\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE
-	.type	_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE, @function
-_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE
+	.type	_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE, @function
+_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE:
 .LFB8155:
 	.cfi_startproc
 	pushq	%r13
@@ -792,7 +792,7 @@ _ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 .L140:
 	leaq	16(%r12), %rdi
 	movq	%rax, %rsi
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
@@ -835,20 +835,20 @@ _ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 	jmp	.L156
 	.cfi_endproc
 .LFE8155:
-	.size	_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE
+	.size	_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
 .LC9:
-	.string	"wze::engine.actors[].textures[]: Illegal access to NULL Texture\nParams: TextureID: %lld\n"
+	.string	"wze::engine.actors[].textureboxes[]: Illegal access to NULL Texturebox\nParams: TextureboxID: %lld\n"
 	.align 8
 .LC10:
-	.string	"wze::engine.actors[].textures[]: Texture does not exist\nParams: TextureID: %lld\n"
+	.string	"wze::engine.actors[].textureboxes[]: Texturebox does not exist\nParams: TextureboxID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8texturesixEy
-	.type	_ZN3wze6engine6actors5actor8texturesixEy, @function
-_ZN3wze6engine6actors5actor8texturesixEy:
+	.globl	_ZN3wze6engine6actors5actor12textureboxesixEy
+	.type	_ZN3wze6engine6actors5actor12textureboxesixEy, @function
+_ZN3wze6engine6actors5actor12textureboxesixEy:
 .LFB8156:
 	.cfi_startproc
 	subq	$8, %rsp
@@ -880,12 +880,12 @@ _ZN3wze6engine6actors5actor8texturesixEy:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8156:
-	.size	_ZN3wze6engine6actors5actor8texturesixEy, .-_ZN3wze6engine6actors5actor8texturesixEy
+	.size	_ZN3wze6engine6actors5actor12textureboxesixEy, .-_ZN3wze6engine6actors5actor12textureboxesixEy
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy
-	.type	_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy, @function
-_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy
+	.type	_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy, @function
+_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy:
 .LFB8158:
 	.cfi_startproc
 	movl	256(%rdx), %eax
@@ -907,56 +907,56 @@ _ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy:
 	ret
 	.cfi_endproc
 .LFE8158:
-	.size	_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy, .-_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy
-	.globl	_ZN3wze6engine6actors5actor8textures7textureC1EPS0_PS2_yy
-	.set	_ZN3wze6engine6actors5actor8textures7textureC1EPS0_PS2_yy,_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy
+	.size	_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy, .-_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10textureboxC1EPS0_PS2_yy
+	.set	_ZN3wze6engine6actors5actor12textureboxes10textureboxC1EPS0_PS2_yy,_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7textureD2Ev
-	.type	_ZN3wze6engine6actors5actor8textures7textureD2Ev, @function
-_ZN3wze6engine6actors5actor8textures7textureD2Ev:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev
+	.type	_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev, @function
+_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev:
 .LFB8161:
 	.cfi_startproc
 	ret
 	.cfi_endproc
 .LFE8161:
-	.size	_ZN3wze6engine6actors5actor8textures7textureD2Ev, .-_ZN3wze6engine6actors5actor8textures7textureD2Ev
-	.globl	_ZN3wze6engine6actors5actor8textures7textureD1Ev
-	.set	_ZN3wze6engine6actors5actor8textures7textureD1Ev,_ZN3wze6engine6actors5actor8textures7textureD2Ev
+	.size	_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev, .-_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10textureboxD1Ev
+	.set	_ZN3wze6engine6actors5actor12textureboxes10textureboxD1Ev,_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture5GetIDEv
-	.type	_ZN3wze6engine6actors5actor8textures7texture5GetIDEv, @function
-_ZN3wze6engine6actors5actor8textures7texture5GetIDEv:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv:
 .LFB8163:
 	.cfi_startproc
 	movq	40(%rdi), %rax
 	ret
 	.cfi_endproc
 .LFE8163:
-	.size	_ZN3wze6engine6actors5actor8textures7texture5GetIDEv, .-_ZN3wze6engine6actors5actor8textures7texture5GetIDEv
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4GetXEv
-	.type	_ZN3wze6engine6actors5actor8textures7texture4GetXEv, @function
-_ZN3wze6engine6actors5actor8textures7texture4GetXEv:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv:
 .LFB8164:
 	.cfi_startproc
 	movsd	48(%rdi), %xmm0
 	ret
 	.cfi_endproc
 .LFE8164:
-	.size	_ZN3wze6engine6actors5actor8textures7texture4GetXEv, .-_ZN3wze6engine6actors5actor8textures7texture4GetXEv
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv
 	.section	.rodata.str1.8
 	.align 8
 .LC12:
-	.string	"wze::engine.actors[].textures[].SetX(): X must not be NaN\nParams: X: %lf\n"
+	.string	"wze::engine.actors[].textureboxes[].SetX(): X must not be NaN\nParams: X: %lf\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4SetXEd
-	.type	_ZN3wze6engine6actors5actor8textures7texture4SetXEd, @function
-_ZN3wze6engine6actors5actor8textures7texture4SetXEd:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd:
 .LFB8165:
 	.cfi_startproc
 	pushq	%rbx
@@ -1023,29 +1023,29 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8165:
-	.size	_ZN3wze6engine6actors5actor8textures7texture4SetXEd, .-_ZN3wze6engine6actors5actor8textures7texture4SetXEd
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4GetYEv
-	.type	_ZN3wze6engine6actors5actor8textures7texture4GetYEv, @function
-_ZN3wze6engine6actors5actor8textures7texture4GetYEv:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv:
 .LFB8166:
 	.cfi_startproc
 	movsd	56(%rdi), %xmm0
 	ret
 	.cfi_endproc
 .LFE8166:
-	.size	_ZN3wze6engine6actors5actor8textures7texture4GetYEv, .-_ZN3wze6engine6actors5actor8textures7texture4GetYEv
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv
 	.section	.rodata.str1.8
 	.align 8
 .LC13:
-	.string	"wze::engine.actors[].textures[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
+	.string	"wze::engine.actors[].textureboxes[].SetY(): Y must not be NaN\nParams: Y: %lf\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4SetYEd
-	.type	_ZN3wze6engine6actors5actor8textures7texture4SetYEd, @function
-_ZN3wze6engine6actors5actor8textures7texture4SetYEd:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd:
 .LFB8167:
 	.cfi_startproc
 	pushq	%rbx
@@ -1112,29 +1112,29 @@ _ZN3wze6engine6actors5actor8textures7texture4SetYEd:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8167:
-	.size	_ZN3wze6engine6actors5actor8textures7texture4SetYEd, .-_ZN3wze6engine6actors5actor8textures7texture4SetYEd
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv
-	.type	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv, @function
-_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv:
 .LFB8168:
 	.cfi_startproc
 	movq	80(%rdi), %rax
 	ret
 	.cfi_endproc
 .LFE8168:
-	.size	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv, .-_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv
 	.section	.rodata.str1.8
 	.align 8
 .LC14:
-	.string	"wze::engine.actors[].textures[].SetTextureID(): Texture does not exist\nParams: TextureID: %lld\n"
+	.string	"wze::engine.actors[].textureboxes[].SetTextureID(): Texture does not exist\nParams: TextureID: %lld\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy
-	.type	_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy, @function
-_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy:
 .LFB8169:
 	.cfi_startproc
 	movq	%rsi, %rax
@@ -1160,6 +1160,6 @@ _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8169:
-	.size	_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy, .-_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

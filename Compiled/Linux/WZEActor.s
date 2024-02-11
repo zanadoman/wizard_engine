@@ -220,7 +220,7 @@ _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd:
 	movq	%rsi, %rdi
 	movq	%rbp, %rsi
 .LEHB1:
-	call	_ZN3wze6engine6actors5actor8texturesC1EPS0_PS2_@PLT
+	call	_ZN3wze6engine6actors5actor12textureboxesC1EPS0_PS2_@PLT
 .LEHE1:
 	leaq	72(%rbx), %rdx
 	movq	%rbp, %rsi
@@ -405,7 +405,7 @@ _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd.cold:
 	call	_ZN3wze6engine6actors5actor9flipbooksD1Ev@PLT
 .L39:
 	movq	48(%rsp), %rdi
-	call	_ZN3wze6engine6actors5actor8texturesD1Ev@PLT
+	call	_ZN3wze6engine6actors5actor12textureboxesD1Ev@PLT
 .L40:
 	movq	40(%rsp), %rdi
 	call	_ZN3wze6engine6actors5actor6colorsD1Ev@PLT
@@ -497,7 +497,7 @@ _ZN3wze6engine6actors5actorD2Ev:
 	leaq	72(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor9flipbooksD1Ev@PLT
 	leaq	40(%rbx), %rdi
-	call	_ZN3wze6engine6actors5actor8texturesD1Ev@PLT
+	call	_ZN3wze6engine6actors5actor12textureboxesD1Ev@PLT
 	leaq	8(%rbx), %rdi
 	popq	%rbx
 	.cfi_remember_state

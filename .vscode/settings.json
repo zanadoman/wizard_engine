@@ -32,6 +32,8 @@
         "mousewheel",
         "wheelup",
         "wheeldown",
+        "texturebox",
+        "textureboxes",
         "flipbook",
         "flipbooks",
         "overlapbox",

@@ -7,8 +7,8 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
     this->Idle = this->Actor->Flipbooks.New(125, &this->Game->Assets.PlayerIdleTextures);
     this->Run = this->Actor->Flipbooks.New(125, &this->Game->Assets.PlayerRunTextures);
     this->Hurt = this->Actor->Flipbooks.New(125, &this->Game->Assets.PlayerHurtTextures);
-    this->Fall = this->Actor->Textures.New(this->Game->Assets.PlayerFallTexture);
-    this->Jump = this->Actor->Textures.New(this->Game->Assets.PlayerJumpTexture);
+    this->Fall = this->Actor->Textureboxes.New(this->Game->Assets.PlayerFallTexture);
+    this->Jump = this->Actor->Textureboxes.New(this->Game->Assets.PlayerJumpTexture);
     this->VelocityX = 0;
     this->VelocityY = 0;
 

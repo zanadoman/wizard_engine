@@ -2742,19 +2742,19 @@ _ZN3wze6engine6render11RenderColorEPNS1_5tokenE:
 	.section	.rodata.str1.8
 	.align 8
 .LC16:
-	.string	"wze::engine.render.RenderTexture(): SDL_SetTextureColorMod failed"
+	.string	"wze::engine.render.RenderTexturebox(): SDL_SetTextureColorMod failed"
 	.align 8
 .LC17:
-	.string	"wze::engine.render.RenderTexture(): SDL_SetTextureAlphaMod failed"
+	.string	"wze::engine.render.RenderTexturebox(): SDL_SetTextureAlphaMod failed"
 	.align 8
 .LC19:
-	.string	"wze::engine.render.RenderTexture(): SDL_RenderCopyEx failed"
+	.string	"wze::engine.render.RenderTexturebox(): SDL_RenderCopyEx failed"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
-	.type	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE, @function
-_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
+	.globl	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
+	.type	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE, @function
+_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE:
 .LFB8168:
 	.cfi_startproc
 	pushq	%r12
@@ -2854,7 +2854,7 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8168:
-	.size	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE, .-_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
+	.size	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE, .-_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
 	.section	.rodata.str1.8
 	.align 8
 .LC20:
@@ -3283,7 +3283,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 .L556:
 	movq	%r14, %rsi
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
+	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
 	movq	32(%rbp), %rdx
 	jmp	.L550
 	.p2align 4,,10
@@ -3365,7 +3365,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 .L571:
 	movq	%r14, %rsi
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
+	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
 	jmp	.L565
 	.p2align 4,,10
 	.p2align 3

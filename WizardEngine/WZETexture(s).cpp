@@ -4,156 +4,156 @@ using namespace neo;
 
 namespace wze
 {
-    engine::actors::actor::textures::textures(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Textures({(texture*)NULL}) {}
+    engine::actors::actor::textureboxes::textureboxes(engine* Engine, actor* Actor) : Engine(Engine), Actor(Actor), Textureboxes({(texturebox*)NULL}) {}
 
-    engine::actors::actor::textures::~textures()
+    engine::actors::actor::textureboxes::~textureboxes()
     {
-        for (uint64 i = 1; i < this->Textures.Length(); i++)
+        for (uint64 i = 1; i < this->Textureboxes.Length(); i++)
         {
-            delete this->Textures[i];
+            delete this->Textureboxes[i];
         }
     }
 
-    engine::actors::actor::textures::texture* engine::actors::actor::textures::New(uint64 TextureID)
+    engine::actors::actor::textureboxes::texturebox* engine::actors::actor::textureboxes::New(uint64 TextureID)
     {
         if (TextureID != 0 && (this->Engine->Assets.Textures.Length() <= TextureID || this->Engine->Assets.Textures[TextureID] == NULL))
         {
-            printf("wze::engine.actors[].textures.New(): TextureID does not exist\nParams: TextureID: %lld\n", TextureID);
+            printf("wze::engine.actors[].textureboxes.New(): TextureID does not exist\nParams: TextureID: %lld\n", TextureID);
             exit(1);
         }
 
-        for (uint64 i = 1; i < this->Textures.Length(); i++)
+        for (uint64 i = 1; i < this->Textureboxes.Length(); i++)
         {
-            if (this->Textures[i] == NULL)
+            if (this->Textureboxes[i] == NULL)
             {
-                if ((this->Textures[i] = new texture(this->Engine, this->Actor, i, TextureID)) == NULL)
+                if ((this->Textureboxes[i] = new texturebox(this->Engine, this->Actor, i, TextureID)) == NULL)
                 {
-                    printf("wze::engine.actors[].textures.New(): Memory allocation failed\nParams: TextureID: %lld\n", TextureID);
+                    printf("wze::engine.actors[].textureboxes.New(): Memory allocation failed\nParams: TextureID: %lld\n", TextureID);
                     exit(1);
                 }
 
-                return this->Textures[i];
+                return this->Textureboxes[i];
             }
         }
 
-        if ((this->Textures += {new texture(this->Engine, this->Actor, this->Textures.Length(), TextureID)})[this->Textures.Length() - 1] == NULL)
+        if ((this->Textureboxes += {new texturebox(this->Engine, this->Actor, this->Textureboxes.Length(), TextureID)})[this->Textureboxes.Length() - 1] == NULL)
         {
-            printf("wze::engine.actors[].textures.New(): Memory allocation failed\nParams: TextureID: %lld\n", TextureID);
+            printf("wze::engine.actors[].textureboxes.New(): Memory allocation failed\nParams: TextureID: %lld\n", TextureID);
             exit(1);
         }
 
-        return this->Textures[this->Textures.Length() - 1];
+        return this->Textureboxes[this->Textureboxes.Length() - 1];
     }
 
-    uint8 engine::actors::actor::textures::Delete(uint64 TextureID)
+    uint8 engine::actors::actor::textureboxes::Delete(uint64 TextureboxID)
     {
         uint64 i;
 
-        if (this->Textures.Length() <= TextureID || this->Textures[TextureID] == NULL)
+        if (this->Textureboxes.Length() <= TextureboxID || this->Textureboxes[TextureboxID] == NULL)
         {
             return 0;
         }
 
-        delete this->Textures[TextureID];
-        this->Textures[TextureID] = NULL;
+        delete this->Textureboxes[TextureboxID];
+        this->Textureboxes[TextureboxID] = NULL;
 
-        if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
+        if (this->Textureboxes[this->Textureboxes.Length() - 1] == NULL && 1 < this->Textureboxes.Length())
         {
-            for (i = this->Textures.Length(); 1 < i; i--)
+            for (i = this->Textureboxes.Length(); 1 < i; i--)
             {
-                if (this->Textures[i - 1] != NULL)
+                if (this->Textureboxes[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Textures.Remove(i, this->Textures.Length() - i);
+            this->Textureboxes.Remove(i, this->Textureboxes.Length() - i);
         }
 
         return 0;
     }
 
-    uint8 engine::actors::actor::textures::Purge(std::initializer_list<uint64> KeepTextureIDs)
+    uint8 engine::actors::actor::textureboxes::Purge(std::initializer_list<uint64> KeepTextureboxIDs)
     {
         uint64 i;
 
-        for (i = 1; i < this->Textures.Length(); i++)
+        for (i = 1; i < this->Textureboxes.Length(); i++)
         {
-            if (!initializer_list_Contains(KeepTextureIDs, {i}))
+            if (!initializer_list_Contains(KeepTextureboxIDs, {i}))
             {
-                delete this->Textures[i];
-                this->Textures[i] = NULL;
+                delete this->Textureboxes[i];
+                this->Textureboxes[i] = NULL;
             }
         }
 
-        if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
+        if (this->Textureboxes[this->Textureboxes.Length() - 1] == NULL && 1 < this->Textureboxes.Length())
         {
-            for (i = this->Textures.Length(); 1 < i; i--)
+            for (i = this->Textureboxes.Length(); 1 < i; i--)
             {
-                if (this->Textures[i - 1] != NULL)
+                if (this->Textureboxes[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Textures.Remove(i, this->Textures.Length() - i);
+            this->Textureboxes.Remove(i, this->Textureboxes.Length() - i);
         }
 
         return 0;
     }
 
-    uint8 engine::actors::actor::textures::Purge(array<uint64>* KeepTextureIDs)
+    uint8 engine::actors::actor::textureboxes::Purge(array<uint64>* KeepTextureboxIDs)
     {
         uint64 i;
 
-        if (KeepTextureIDs == NULL)
+        if (KeepTextureboxIDs == NULL)
         {
-            printf("wze::engine.actors[].textures.Purge(): KeepTextureIDs must not be NULL\nParams: KeepTextureIDs: %p\n", KeepTextureIDs);
+            printf("wze::engine.actors[].textureboxes.Purge(): KeepTextureboxIDs must not be NULL\nParams: KeepTextureboxIDs: %p\n", KeepTextureboxIDs);
             exit(1);
         }
 
-        for (i = 1; i < this->Textures.Length(); i++)
+        for (i = 1; i < this->Textureboxes.Length(); i++)
         {
-            if (!KeepTextureIDs->Contains({i}))
+            if (!KeepTextureboxIDs->Contains({i}))
             {
-                delete this->Textures[i];
-                this->Textures[i] = NULL;
+                delete this->Textureboxes[i];
+                this->Textureboxes[i] = NULL;
             }
         }
 
-        if (this->Textures[this->Textures.Length() - 1] == NULL && 1 < this->Textures.Length())
+        if (this->Textureboxes[this->Textureboxes.Length() - 1] == NULL && 1 < this->Textureboxes.Length())
         {
-            for (i = this->Textures.Length(); 1 < i; i--)
+            for (i = this->Textureboxes.Length(); 1 < i; i--)
             {
-                if (this->Textures[i - 1] != NULL)
+                if (this->Textureboxes[i - 1] != NULL)
                 {
                     break;
                 }
             }
 
-            this->Textures.Remove(i, this->Textures.Length() - i);
+            this->Textureboxes.Remove(i, this->Textureboxes.Length() - i);
         }
 
         return 0;
     }
 
-    engine::actors::actor::textures::texture& engine::actors::actor::textures::operator [] (uint64 TextureID)
+    engine::actors::actor::textureboxes::texturebox& engine::actors::actor::textureboxes::operator [] (uint64 TextureboxID)
     {
-        if (TextureID == 0)
+        if (TextureboxID == 0)
         {
-            printf("wze::engine.actors[].textures[]: Illegal access to NULL Texture\nParams: TextureID: %lld\n", TextureID);
+            printf("wze::engine.actors[].textureboxes[]: Illegal access to NULL Texturebox\nParams: TextureboxID: %lld\n", TextureboxID);
             exit(1);
         }
-        if (this->Textures.Length() <= TextureID || this->Textures[TextureID] == NULL)
+        if (this->Textureboxes.Length() <= TextureboxID || this->Textureboxes[TextureboxID] == NULL)
         {
-            printf("wze::engine.actors[].textures[]: Texture does not exist\nParams: TextureID: %lld\n", TextureID);
+            printf("wze::engine.actors[].textureboxes[]: Texturebox does not exist\nParams: TextureboxID: %lld\n", TextureboxID);
             exit(1);
         }
 
-        return *this->Textures[TextureID];
+        return *this->Textureboxes[TextureboxID];
     }
 
-    engine::actors::actor::textures::texture::texture(engine* Engine, actor* Actor, uint64 ID, uint64 TextureID) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::textureboxes::texturebox::texturebox(engine* Engine, actor* Actor, uint64 ID, uint64 TextureID) : Engine(Engine), Actor(Actor)
     {
         this->Width = this->Actor->Width;
         this->Height = this->Actor->Height;
@@ -176,23 +176,23 @@ namespace wze
         this->TextureID = TextureID;
     }
 
-    engine::actors::actor::textures::texture::~texture() {}
+    engine::actors::actor::textureboxes::texturebox::~texturebox() {}
 
-    uint64 engine::actors::actor::textures::texture::GetID()
+    uint64 engine::actors::actor::textureboxes::texturebox::GetID()
     {
         return this->ID;
     }
 
-    double engine::actors::actor::textures::texture::GetX()
+    double engine::actors::actor::textureboxes::texturebox::GetX()
     {
         return this->X;
     }
 
-    double engine::actors::actor::textures::texture::SetX(double X)
+    double engine::actors::actor::textureboxes::texturebox::SetX(double X)
     {
         if (X != X)
         {
-            printf("wze::engine.actors[].textures[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
+            printf("wze::engine.actors[].textureboxes[].SetX(): X must not be NaN\nParams: X: %lf\n", X);
             exit(1);
         }
 
@@ -202,16 +202,16 @@ namespace wze
         return this->X = X;
     }
 
-    double engine::actors::actor::textures::texture::GetY()
+    double engine::actors::actor::textureboxes::texturebox::GetY()
     {
         return this->Y;
     }
 
-    double engine::actors::actor::textures::texture::SetY(double Y)
+    double engine::actors::actor::textureboxes::texturebox::SetY(double Y)
     {
         if (Y != Y)
         {
-            printf("wze::engine.actors[].textures[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            printf("wze::engine.actors[].textureboxes[].SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
             exit(1);
         }
 
@@ -221,16 +221,16 @@ namespace wze
         return this->Y = Y;
     }
 
-    uint64 engine::actors::actor::textures::texture::GetTextureID()
+    uint64 engine::actors::actor::textureboxes::texturebox::GetTextureID()
     {
         return this->TextureID;
     }
 
-    uint64 engine::actors::actor::textures::texture::SetTextureID(uint64 TextureID)
+    uint64 engine::actors::actor::textureboxes::texturebox::SetTextureID(uint64 TextureID)
     {
         if (TextureID != 0 && (this->Engine->Assets.Textures.Length() <= TextureID || this->Engine->Assets.Textures[TextureID] == NULL))
         {
-            printf("wze::engine.actors[].textures[].SetTextureID(): Texture does not exist\nParams: TextureID: %lld\n", TextureID);
+            printf("wze::engine.actors[].textureboxes[].SetTextureID(): Texture does not exist\nParams: TextureID: %lld\n", TextureID);
             exit(1);
         }
 

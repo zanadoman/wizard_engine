@@ -5,7 +5,7 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
     this->Player = new player(this->Engine, this->Game, 0, 500, 1, 1);
 
     this->Background = this->Engine->Actors.New(NULL, ACT_NONE, 0, 0, 28800, 16200, 0.1);
-    this->BackgroundTexture = this->Background->Textures.New(this->Game->Assets.MapBackgroundTexture);
+    this->BackgroundTexture = this->Background->Textureboxes.New(this->Game->Assets.MapBackgroundTexture);
 
     this->Platforms =
     {

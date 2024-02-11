@@ -101,8 +101,8 @@ class player
     engine::flipbook Idle;
     engine::flipbook Run;
     engine::flipbook Hurt;
-    engine::texture Fall;
-    engine::texture Jump;
+    engine::texturebox Fall;
+    engine::texturebox Jump;
     double VelocityX;
     double VelocityY;
     player(engine* Engine, game* Game, double X, double Y, double Layer, double CollisionLayer);
@@ -118,7 +118,7 @@ class platform
 
     engine::actor Actor;
     engine::overlapbox Overlapbox;
-    engine::texture Texture;
+    engine::texturebox Texture;
     platform(engine* Engine, game* Game, double X, double Y, uint16 Width, uint16 Height, double Layer, uint8 CollisionLayer);
 };
 
@@ -195,7 +195,7 @@ class normal
     stats Stats;
     player* Player;
     engine::actor Background;
-    engine::texture BackgroundTexture;
+    engine::texturebox BackgroundTexture;
     array<platform*> Platforms;
     normal(engine* Engine, game* Game);
     ~normal();
@@ -211,7 +211,7 @@ class infinite
     pause Pause;
     stats Stats;
     engine::actor Background;
-    engine::texture BackgroundTexture;
+    engine::texturebox BackgroundTexture;
     infinite(engine* Engine, game* Game);
     scene Update();
 };

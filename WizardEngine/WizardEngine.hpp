@@ -68,7 +68,7 @@ namespace wze
                 enum type
                 {
                     COLOR,
-                    TEXTURE,
+                    TEXTUREBOX,
                     FLIPBOOK,
                     TEXT,
                     OVERLAPBOX,
@@ -111,7 +111,7 @@ namespace wze
                     neo::uint8 OrderByPriorityMerge(neo::uint64 Left, neo::uint64 Mid, neo::uint64 Right);
                     neo::uint8 RenderingStage();
                     neo::uint8 RenderColor(token* Token);
-                    neo::uint8 RenderTexture(token* Token);
+                    neo::uint8 RenderTexturebox(token* Token);
                     neo::uint8 RenderFlipbook(token* Token);
                     neo::uint8 RenderText(token* Token);
                     neo::uint8 RenderOverlapbox(token* Token);
@@ -306,13 +306,13 @@ namespace wze
 
                         //__________Textures___________________________________________________________________________
 
-                        class textures
+                        class textureboxes
                         {
                             friend class engine;
                             engine* Engine;
                             actor* Actor;
 
-                            class texture
+                            class texturebox
                             {
                                 friend class engine;
                                 engine* Engine;
@@ -347,22 +347,22 @@ namespace wze
                                     double OffsetLength;
                                     double OffsetAngle;
                                     neo::uint64 TextureID;
-                                    texture(engine* Engine, actor* Actor, neo::uint64 ID, neo::uint64 TextureID);
-                                    ~texture();
+                                    texturebox(engine* Engine, actor* Actor, neo::uint64 ID, neo::uint64 TextureID);
+                                    ~texturebox();
                             };
 
                             public:
-                                texture* New(neo::uint64 TextureID);
-                                neo::uint8 Delete(neo::uint64 TextureID);
-                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextureIDs);
-                                neo::uint8 Purge(neo::array<neo::uint64>* KeepTextureIDs);
-                                texture& operator [] (neo::uint64 TextureID);
+                                texturebox* New(neo::uint64 TextureID);
+                                neo::uint8 Delete(neo::uint64 TextureboxID);
+                                neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextureboxIDs);
+                                neo::uint8 Purge(neo::array<neo::uint64>* KeepTextureboxIDs);
+                                texturebox& operator [] (neo::uint64 TextureboxID);
 
                             private:
-                                neo::array<texture*> Textures;
-                                textures(engine* Engine, actor* Actor);
-                                ~textures();
-                        } Textures;
+                                neo::array<texturebox*> Textureboxes;
+                                textureboxes(engine* Engine, actor* Actor);
+                                ~textureboxes();
+                        } Textureboxes;
 
                         //__________Flipbooks__________________________________________________________________________
 
@@ -794,7 +794,7 @@ namespace wze
 
             typedef actors::actor* actor;
             typedef actors::actor::colors::color* color;
-            typedef actors::actor::textures::texture* texture;
+            typedef actors::actor::textureboxes::texturebox* texturebox;
             typedef actors::actor::flipbooks::flipbook* flipbook;
             typedef actors::actor::texts::text* text;
             typedef actors::actor::overlapboxes::overlapbox* overlapbox;

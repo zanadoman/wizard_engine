@@ -79,16 +79,16 @@ namespace wze
                 continue;
             }
 
-            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Textures.Textures.Length(); j++)
+            for (uint64 j = 1; j < this->Engine->Actors.Actors[i]->Textureboxes.Textureboxes.Length(); j++)
             {
-                if (this->Engine->Actors.Actors[i]->Textures.Textures[j] == NULL)
+                if (this->Engine->Actors.Actors[i]->Textureboxes.Textureboxes[j] == NULL)
                 {
                     continue;
                 }
 
-                if (this->Engine->Actors.Actors[i]->Textures.Textures[j]->TextureID == TextureID)
+                if (this->Engine->Actors.Actors[i]->Textureboxes.Textureboxes[j]->TextureID == TextureID)
                 {
-                    this->Engine->Actors.Actors[i]->Textures.Textures[j]->TextureID = 0;
+                    this->Engine->Actors.Actors[i]->Textureboxes.Textureboxes[j]->TextureID = 0;
                 }
             }
 
@@ -127,16 +127,16 @@ namespace wze
                         continue;
                     }
 
-                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Textures.Textures.Length(); k++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Textureboxes.Textureboxes.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[j]->Textures.Textures[k] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Textureboxes.Textureboxes[k] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine->Actors.Actors[j]->Textures.Textures[k]->TextureID == i)
+                        if (this->Engine->Actors.Actors[j]->Textureboxes.Textureboxes[k]->TextureID == i)
                         {
-                            this->Engine->Actors.Actors[j]->Textures.Textures[k]->TextureID = 0;
+                            this->Engine->Actors.Actors[j]->Textureboxes.Textureboxes[k]->TextureID = 0;
                         }
                     }
 
@@ -199,16 +199,16 @@ namespace wze
                         continue;
                     }
 
-                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Textures.Textures.Length(); k++)
+                    for (uint64 k = 1; k < this->Engine->Actors.Actors[j]->Textureboxes.Textureboxes.Length(); k++)
                     {
-                        if (this->Engine->Actors.Actors[j]->Textures.Textures[k] == NULL)
+                        if (this->Engine->Actors.Actors[j]->Textureboxes.Textureboxes[k] == NULL)
                         {
                             continue;
                         }
 
-                        if (this->Engine->Actors.Actors[j]->Textures.Textures[k]->TextureID == i)
+                        if (this->Engine->Actors.Actors[j]->Textureboxes.Textureboxes[k]->TextureID == i)
                         {
-                            this->Engine->Actors.Actors[j]->Textures.Textures[k]->TextureID = 0;
+                            this->Engine->Actors.Actors[j]->Textureboxes.Textureboxes[k]->TextureID = 0;
                         }
                     }
 

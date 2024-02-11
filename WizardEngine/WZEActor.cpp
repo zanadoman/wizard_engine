@@ -5,7 +5,7 @@ using namespace neo;
 
 namespace wze
 {
-    engine::actors::actor::actor(engine* Engine, uint64 ID, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textures(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
+    engine::actors::actor::actor(engine* Engine, uint64 ID, void* Data, uint64 Type, double X, double Y, uint16 Width, uint16 Height, double Layer) : Engine(Engine), Colors(Engine, this), Textureboxes(Engine, this), Flipbooks(Engine, this), Texts(Engine, this), Overlapboxes(Engine, this)
     {
         this->Visible = true;
         this->Force = 0;
@@ -168,21 +168,21 @@ namespace wze
             }
         }
 
-        for (uint64 i = 1; i < this->Textures.Textures.Length(); i++)
+        for (uint64 i = 1; i < this->Textureboxes.Textureboxes.Length(); i++)
         {
-            if (this->Textures.Textures[i] == NULL)
+            if (this->Textureboxes.Textureboxes[i] == NULL)
             {
                 continue;
             }
 
-            if (this->Textures.Textures[i]->AngleLocked)
+            if (this->Textureboxes.Textureboxes[i]->AngleLocked)
             {
-                this->Textures.Textures[i]->Angle += change;
+                this->Textureboxes.Textureboxes[i]->Angle += change;
             }
 
-            if (this->Textures.Textures[i]->OffsetAngleLocked)
+            if (this->Textureboxes.Textureboxes[i]->OffsetAngleLocked)
             {
-                this->Textures.Textures[i]->OffsetAngle += change;
+                this->Textureboxes.Textureboxes[i]->OffsetAngle += change;
             }
         }
 
@@ -390,15 +390,15 @@ namespace wze
             this->Colors.Colors[i]->Y = engine::vector::TerminalY(this->Y, this->Colors.Colors[i]->OffsetLength, this->Colors.Colors[i]->OffsetAngle);
         }
 
-        for (uint64 i = 1; i < this->Textures.Textures.Length(); i++)
+        for (uint64 i = 1; i < this->Textureboxes.Textureboxes.Length(); i++)
         {
-            if (this->Textures.Textures[i] == NULL)
+            if (this->Textureboxes.Textureboxes[i] == NULL)
             {
                 continue;
             }
 
-            this->Textures.Textures[i]->X = engine::vector::TerminalX(this->X, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
-            this->Textures.Textures[i]->Y = engine::vector::TerminalY(this->Y, this->Textures.Textures[i]->OffsetLength, this->Textures.Textures[i]->OffsetAngle);
+            this->Textureboxes.Textureboxes[i]->X = engine::vector::TerminalX(this->X, this->Textureboxes.Textureboxes[i]->OffsetLength, this->Textureboxes.Textureboxes[i]->OffsetAngle);
+            this->Textureboxes.Textureboxes[i]->Y = engine::vector::TerminalY(this->Y, this->Textureboxes.Textureboxes[i]->OffsetLength, this->Textureboxes.Textureboxes[i]->OffsetAngle);
         }
 
         for (uint64 i = 1; i < this->Flipbooks.Flipbooks.Length(); i++)

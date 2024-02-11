@@ -58,13 +58,13 @@ _ZN6playerC2EPN3wze6engineEP4gamedddd:
 	movzwl	82(%rax), %esi
 	movq	16(%rbx), %rax
 	leaq	40(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
+	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
 	movq	%rax, 56(%rbx)
 	movq	8(%rbx), %rax
 	movzwl	80(%rax), %esi
 	movq	16(%rbx), %rax
 	leaq	40(%rax), %rdi
-	call	_ZN3wze6engine6actors5actor8textures3NewEy@PLT
+	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
 	movsd	8(%rsp), %xmm3
 	pxor	%xmm0, %xmm0
 	movq	16(%rbx), %rdi
@@ -127,7 +127,7 @@ _ZN6playerC2EPN3wze6engineEP4gamedddd:
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	addsd	.LC2(%rip), %xmm0
 	movq	%r12, %rdi
-	call	_ZN3wze6engine6actors5actor8textures7texture4SetYEd@PLT
+	call	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd@PLT
 	movq	56(%rbx), %rax
 	movq	64(%rbx), %r12
 	movq	16(%rbx), %rdi
@@ -136,7 +136,7 @@ _ZN6playerC2EPN3wze6engineEP4gamedddd:
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	addsd	.LC2(%rip), %xmm0
 	movq	%r12, %rdi
-	call	_ZN3wze6engine6actors5actor8textures7texture4SetYEd@PLT
+	call	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd@PLT
 	movq	64(%rbx), %rax
 	movb	$0, 37(%rax)
 	addq	$16, %rsp
