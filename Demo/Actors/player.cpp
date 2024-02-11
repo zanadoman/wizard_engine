@@ -11,6 +11,7 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
     this->Jump = this->Actor->Textureboxes.New(this->Game->Assets.PlayerJumpTexture);
     this->VelocityX = 0;
     this->VelocityY = 0;
+    this->PrevShotTick = this->Engine->Timing.GetCurrentTick();
 
     this->Actor->SetCollisionLayer(CollisionLayer);
 
@@ -20,26 +21,31 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
     this->Idle->Width = 132;
     this->Idle->Height = 128;
     this->Idle->SetY(this->Actor->GetY() + 22);
+    this->Idle->Priority = 255;
 
     this->Run->Width = 132;
     this->Run->Height = 128;
     this->Run->SetY(this->Actor->GetY() + 22);
     this->Run->Visible = false;
+    this->Run->Priority = 255;
 
     this->Hurt->Width = 132;
     this->Hurt->Height = 128;
     this->Hurt->SetY(this->Actor->GetY() + 22);
     this->Hurt->Visible = false;
+    this->Hurt->Priority = 255;
 
     this->Fall->Width = 132;
     this->Fall->Height = 128;
     this->Fall->SetY(this->Actor->GetY() + 22);
     this->Fall->Visible = false;
+    this->Fall->Priority = 255;
 
     this->Jump->Width = 132;
     this->Jump->Height = 128;
     this->Jump->SetY(this->Actor->GetY() + 22);
     this->Jump->Visible = false;
+    this->Jump->Priority = 255;
 }
 
 player::~player()
@@ -121,9 +127,10 @@ uint8 player::Update()
 
     //Shooting
 
-    if (this->Engine->Keys[KEY_LMB])
+    if (this->Engine->Keys[KEY_LMB] && this->PrevShotTick + 200 < this->Engine->Timing.GetCurrentTick())
     {
         this->Bullets += {new bullet(this->Engine, this->Game, this->Actor->GetX(), this->Actor->GetY(), this->Actor->GetLayer(), this->Actor->GetID(), (actor)this->Actor->GetType(), this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Engine->Mouse.GetX(this->Actor->GetLayer()), this->Engine->Mouse.GetY(this->Actor->GetLayer())))};
+        this->PrevShotTick = this->Engine->Timing.GetCurrentTick();
     }
 
     for (uint64 i = 0; i < this->Bullets.Length(); i++)

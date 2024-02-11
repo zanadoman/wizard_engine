@@ -114,6 +114,7 @@ class player
     engine::texturebox Jump;
     double VelocityX;
     double VelocityY;
+    uint32 PrevShotTick;
     array<bullet*> Bullets;
     player(engine* Engine, game* Game, double X, double Y, double Layer, double CollisionLayer);
     ~player();
@@ -131,10 +132,13 @@ class eagle
     engine::overlapbox Overlapbox;
     engine::flipbook Fly;
     engine::flipbook Hurt;
+    engine::actor Target;
     double MinX;
     double MaxX;
     double Facing;
-    eagle(engine* Engine, game* Game, double Y, double Layer, double MinX, double MaxX);
+    uint32 PrevShotTick;
+    array<bullet*> Bullets;
+    eagle(engine* Engine, game* Game, double Y, double Layer, engine::actor Target, double MinX, double MaxX);
     ~eagle();
     uint8 Update();
 };

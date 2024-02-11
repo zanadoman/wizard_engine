@@ -15,12 +15,12 @@ _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
 	.cfi_def_cfa_offset 24
 	.cfi_offset 12, -24
 	movq	%rcx, %r12
-	movl	$10, %ecx
+	movl	$20, %ecx
 	pushq	%rbp
 	.cfi_def_cfa_offset 32
 	.cfi_offset 6, -32
 	movl	%r8d, %ebp
-	movl	$3, %r8d
+	movl	$5, %r8d
 	pushq	%rbx
 	.cfi_def_cfa_offset 40
 	.cfi_offset 3, -40
@@ -50,16 +50,20 @@ _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
 	movq	%rax, 32(%rbx)
 	movl	%ebp, 48(%rbx)
 	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
+	movq	32(%rbx), %rax
+	xorl	%edx, %edx
+	movsd	.LC0(%rip), %xmm0
+	movw	%dx, 20(%rax)
+	movl	$1, %edx
+	movb	$0, 22(%rax)
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rdi
-	movl	$1, %edx
-	movsd	.LC0(%rip), %xmm0
 	movzwl	120(%rax), %esi
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 40
-	addq	$144, %rdi
 	popq	%rbx
 	.cfi_def_cfa_offset 32
+	addq	$144, %rdi
 	popq	%rbp
 	.cfi_def_cfa_offset 24
 	popq	%r12
@@ -109,20 +113,21 @@ _ZN6bulletD2Ev:
 	.size	_ZN6bulletD2Ev, .-_ZN6bulletD2Ev
 	.globl	_ZN6bulletD1Ev
 	.set	_ZN6bulletD1Ev,_ZN6bulletD2Ev
-	.section	.rodata.str1.8,"aMS",@progbits,1
-	.align 8
-.LC2:
-	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC3:
 	.string	"eagle hit"
+	.section	.rodata.str1.8,"aMS",@progbits,1
+	.align 8
 .LC4:
+	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
+	.section	.rodata.str1.1
+.LC5:
 	.string	"player hit"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB5:
+.LCOLDB6:
 	.text
-.LHOTB5:
+.LHOTB6:
 	.align 2
 	.p2align 4
 	.globl	_ZN6bullet6UpdateEv
@@ -132,9 +137,9 @@ _ZN6bullet6UpdateEv:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
 	.cfi_lsda 0x1b,.LLSDA8152
-	pushq	%r14
+	pushq	%r12
 	.cfi_def_cfa_offset 16
-	.cfi_offset 14, -16
+	.cfi_offset 12, -16
 	pushq	%rbp
 	.cfi_def_cfa_offset 24
 	.cfi_offset 6, -24
@@ -142,11 +147,11 @@ _ZN6bullet6UpdateEv:
 	pushq	%rbx
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -32
-	subq	$80, %rsp
-	.cfi_def_cfa_offset 112
+	subq	$96, %rsp
+	.cfi_def_cfa_offset 128
 	movq	16(%rdi), %rbx
 	movq	%fs:40, %rax
-	movq	%rax, 72(%rsp)
+	movq	%rax, 88(%rsp)
 	xorl	%eax, %eax
 	movq	$0, 16(%rsp)
 	movq	$0, 24(%rsp)
@@ -154,7 +159,7 @@ _ZN6bullet6UpdateEv:
 .LEHB0:
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	0(%rbp), %rax
-	movq	%xmm0, %r14
+	movq	%xmm0, %r12
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
@@ -164,7 +169,7 @@ _ZN6bullet6UpdateEv:
 	movsd	%xmm3, 8(%rsp)
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	movsd	8(%rsp), %xmm1
-	movq	%r14, %xmm2
+	movq	%r12, %xmm2
 	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor4SetXEd@PLT
@@ -172,7 +177,7 @@ _ZN6bullet6UpdateEv:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	0(%rbp), %rax
-	movq	%xmm0, %r14
+	movq	%xmm0, %r12
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
@@ -182,7 +187,7 @@ _ZN6bullet6UpdateEv:
 	movsd	%xmm4, 8(%rsp)
 	call	_ZN3wze6engine6actors5actor4GetYEv@PLT
 	movsd	8(%rsp), %xmm1
-	movq	%r14, %xmm2
+	movq	%r12, %xmm2
 	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor4SetYEd@PLT
@@ -192,69 +197,71 @@ _ZN6bullet6UpdateEv:
 	leaq	16(%rsp), %rsi
 	leaq	40(%rsp), %r8
 	movl	$1, %r9d
-	movl	$2, %ecx
+	movl	$4, %ecx
 	movdqa	.LC1(%rip), %xmm0
 	movq	%rax, 40(%rsp)
 	movaps	%xmm0, 48(%rsp)
+	movdqa	.LC2(%rip), %xmm0
+	movaps	%xmm0, 64(%rsp)
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyESB_@PLT
 	movl	48(%rbp), %edx
 	movq	16(%rsp), %rax
+	movq	24(%rsp), %rdi
 	cmpl	$1, %edx
 	je	.L11
 	cmpl	$2, %edx
-	jne	.L12
-	movl	$1, %ebx
-	cmpq	$1, %rax
-	ja	.L13
-	jmp	.L12
+	jne	.L36
+	xorl	%ebx, %ebx
+	testq	%rax, %rax
+	jne	.L13
+	jmp	.L38
 	.p2align 4,,10
 	.p2align 3
-.L22:
-	cmpq	%rax, %rbx
-	jnb	.L49
-	movq	%rbx, %rdx
-	salq	$4, %rdx
-	cmpq	$0, (%rdi,%rdx)
-	jne	.L21
-.L25:
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jnb	.L52
-.L13:
+.L54:
 	movq	0(%rbp), %rax
 	movq	%rbx, %rsi
 	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor7GetTypeEv@PLT
-	movq	%rax, %rdx
-	movq	24(%rsp), %rdi
+	cmpq	$1, %rax
+	je	.L21
 	movq	16(%rsp), %rax
-	cmpq	$1, %rdx
-	jne	.L22
+	movq	24(%rsp), %rdi
 	cmpq	%rax, %rbx
-	jnb	.L49
-	movq	%rbx, %rdx
-	salq	$4, %rdx
-	cmpq	$0, (%rdi,%rdx)
-	je	.L25
+	jnb	.L31
+	cmpq	$0, (%rdi,%r12)
+	jne	.L40
+.L24:
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	jnb	.L52
+.L13:
+	movq	%rbx, %r12
+	salq	$4, %r12
+	cmpq	$0, (%rdi,%r12)
+	jne	.L54
+	cmpq	%rax, %rbx
+	jb	.L24
+.L31:
+	movq	%rbx, %rsi
 	leaq	.LC4(%rip), %rdi
-	call	puts@PLT
-	jmp	.L53
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L12:
-	movq	24(%rsp), %rdi
-.L52:
+.L36:
 	xorl	%ebp, %ebp
-.L14:
+.L12:
 	testq	%rax, %rax
-	je	.L27
+	je	.L14
 .L34:
 	xorl	%ebx, %ebx
 	.p2align 4,,10
 	.p2align 3
-.L29:
+.L26:
 	movq	%rbx, %rax
 	addq	$1, %rbx
 	salq	$4, %rax
@@ -262,13 +269,13 @@ _ZN6bullet6UpdateEv:
 	call	free@PLT
 	movq	24(%rsp), %rdi
 	cmpq	16(%rsp), %rbx
-	jb	.L29
-.L27:
+	jb	.L26
+.L14:
 	call	free@PLT
-	movq	72(%rsp), %rax
+	movq	88(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L54
-	addq	$80, %rsp
+	jne	.L55
+	addq	$96, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
 	movl	%ebp, %eax
@@ -276,73 +283,76 @@ _ZN6bullet6UpdateEv:
 	.cfi_def_cfa_offset 24
 	popq	%rbp
 	.cfi_def_cfa_offset 16
-	popq	%r14
+	popq	%r12
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L21:
-	.cfi_restore_state
-	movl	$1, %ebp
-	jmp	.L34
-	.p2align 4,,10
-	.p2align 3
 .L11:
-	movl	$1, %ebx
-	cmpq	$1, %rax
-	ja	.L15
-	jmp	.L12
+	.cfi_restore_state
+	testq	%rax, %rax
+	je	.L38
+	xorl	%ebx, %ebx
+	jmp	.L19
 	.p2align 4,,10
 	.p2align 3
-.L16:
-	cmpq	%rax, %rbx
-	jnb	.L49
-	movq	%rbx, %rdx
-	salq	$4, %rdx
-	cmpq	$0, (%rdi,%rdx)
-	jne	.L21
-.L18:
-	addq	$1, %rbx
-	cmpq	%rax, %rbx
-	jnb	.L52
-.L15:
+.L57:
 	movq	0(%rbp), %rax
 	movq	%rbx, %rsi
 	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor7GetTypeEv@PLT
-	movq	%rax, %rdx
-	movq	24(%rsp), %rdi
+	cmpq	$2, %rax
+	je	.L56
 	movq	16(%rsp), %rax
-	cmpq	$2, %rdx
-	jne	.L16
+	movq	24(%rsp), %rdi
 	cmpq	%rax, %rbx
-	jnb	.L49
-	movq	%rbx, %rdx
-	salq	$4, %rdx
-	cmpq	$0, (%rdi,%rdx)
-	je	.L18
-	leaq	.LC3(%rip), %rdi
+	jnb	.L31
+	cmpq	$0, (%rdi,%r12)
+	jne	.L40
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	jnb	.L52
+.L19:
+	movq	%rbx, %r12
+	salq	$4, %r12
+	cmpq	$0, (%rdi,%r12)
+	jne	.L57
+	cmpq	%rax, %rbx
+	jnb	.L31
+	addq	$1, %rbx
+	cmpq	%rax, %rbx
+	jb	.L19
+.L52:
+	xorl	%ebp, %ebp
+	jmp	.L34
+	.p2align 4,,10
+	.p2align 3
+.L40:
+	movl	$1, %ebp
+	jmp	.L34
+.L21:
+	leaq	.LC5(%rip), %rdi
 	call	puts@PLT
-.L53:
+.L51:
 	movq	16(%rsp), %rax
 	movq	24(%rsp), %rdi
 	movl	$1, %ebp
-	jmp	.L14
-.L49:
-	movq	%rbx, %rsi
-	leaq	.LC2(%rip), %rdi
-	xorl	%eax, %eax
-	call	printf@PLT
+	jmp	.L12
+.L56:
+	leaq	.LC3(%rip), %rdi
+	call	puts@PLT
 .LEHE0:
-	movl	$1, %edi
-	call	exit@PLT
-.L54:
-	call	__stack_chk_fail@PLT
+	jmp	.L51
 .L38:
+	xorl	%ebp, %ebp
+	jmp	.L14
+.L55:
+	call	__stack_chk_fail@PLT
+.L41:
 	movq	%rax, %rbp
-	jmp	.L30
+	jmp	.L27
 	.section	.gcc_except_table
 .LLSDA8152:
 	.byte	0xff
@@ -352,7 +362,7 @@ _ZN6bullet6UpdateEv:
 .LLSDACSB8152:
 	.uleb128 .LEHB0-.LFB8152
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L38-.LFB8152
+	.uleb128 .L41-.LFB8152
 	.uleb128 0
 .LLSDACSE8152:
 	.text
@@ -364,32 +374,32 @@ _ZN6bullet6UpdateEv:
 	.type	_ZN6bullet6UpdateEv.cold, @function
 _ZN6bullet6UpdateEv.cold:
 .LFSB8152:
-.L30:
-	.cfi_def_cfa_offset 112
+.L27:
+	.cfi_def_cfa_offset 128
 	.cfi_offset 3, -32
 	.cfi_offset 6, -24
-	.cfi_offset 14, -16
+	.cfi_offset 12, -16
 	xorl	%ebx, %ebx
-.L31:
+.L28:
 	movq	24(%rsp), %rdi
 	cmpq	16(%rsp), %rbx
-	jnb	.L55
+	jnb	.L58
 	movq	%rbx, %rax
 	addq	$1, %rbx
 	salq	$4, %rax
 	movq	8(%rdi,%rax), %rdi
 	call	free@PLT
-	jmp	.L31
-.L55:
+	jmp	.L28
+.L58:
 	call	free@PLT
-	movq	72(%rsp), %rax
+	movq	88(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L56
+	jne	.L59
 	movq	%rbp, %rdi
 .LEHB1:
 	call	_Unwind_Resume@PLT
 .LEHE1:
-.L56:
+.L59:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
 .LFE8152:
@@ -400,7 +410,7 @@ _ZN6bullet6UpdateEv.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8152-.LLSDACSBC8152
 .LLSDACSBC8152:
-	.uleb128 .LEHB1-.LCOLDB5
+	.uleb128 .LEHB1-.LCOLDB6
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
@@ -410,9 +420,9 @@ _ZN6bullet6UpdateEv.cold:
 	.size	_ZN6bullet6UpdateEv, .-_ZN6bullet6UpdateEv
 	.section	.text.unlikely
 	.size	_ZN6bullet6UpdateEv.cold, .-_ZN6bullet6UpdateEv.cold
-.LCOLDE5:
+.LCOLDE6:
 	.text
-.LHOTE5:
+.LHOTE6:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC0:
@@ -423,6 +433,10 @@ _ZN6bullet6UpdateEv.cold:
 .LC1:
 	.quad	1
 	.quad	2
+	.align 16
+.LC2:
+	.quad	4
+	.quad	5
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

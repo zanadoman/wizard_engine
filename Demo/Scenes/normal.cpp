@@ -3,7 +3,7 @@
 normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(Engine, Game), Stats(Engine, Game)
 {
     this->Player = new player(this->Engine, this->Game, 0, 42, 1, 1);
-    this->Eagle = new eagle(this->Engine, this->Game, 900, 1, -700, 700);
+    this->Eagle = new eagle(this->Engine, this->Game, 900, 1, this->Player->Actor, -700, 700);
 
     this->Platforms =
     {
@@ -18,7 +18,7 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
     this->RightBorder = new border(this->Engine, this->Game, 755, 0, 10, 65535, 1, 1);
 
     this->Engine->Camera.Bind(this->Player->Actor->GetID());
-    this->Engine->Camera.SetOffsetY(-(400));
+    this->Engine->Camera.SetOffsetY(-400);
 
     this->Background = this->Engine->Actors.New(NULL, ACT_NONE, 0, 0, 28800, 16200, 0.1);
     this->BackgroundTexture = this->Background->Textureboxes.New(this->Game->Assets.MapBackgroundTexture);

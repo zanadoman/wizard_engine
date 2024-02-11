@@ -769,7 +769,7 @@ namespace wze
                 public:
                     neo::uint8 GetTargetFrameTime();
                     neo::uint8 SetTargetFrameTime(neo::uint8 TargetFrameTime);
-                    neo::uint32 GetPrevTick();
+                    neo::uint32 GetCurrentTick();
                     neo::uint32 GetGameTime();
                     neo::uint32 GetRenderTime();
                     neo::uint32 GetWorkingTime();

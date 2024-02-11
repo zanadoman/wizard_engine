@@ -63,16 +63,16 @@ _ZN3wze6engine6timing18SetTargetFrameTimeEh:
 	.size	_ZN3wze6engine6timing18SetTargetFrameTimeEh, .-_ZN3wze6engine6timing18SetTargetFrameTimeEh
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6timing11GetPrevTickEv
-	.type	_ZN3wze6engine6timing11GetPrevTickEv, @function
-_ZN3wze6engine6timing11GetPrevTickEv:
+	.globl	_ZN3wze6engine6timing14GetCurrentTickEv
+	.type	_ZN3wze6engine6timing14GetCurrentTickEv, @function
+_ZN3wze6engine6timing14GetCurrentTickEv:
 .LFB8151:
 	.cfi_startproc
 	movl	12(%rdi), %eax
 	ret
 	.cfi_endproc
 .LFE8151:
-	.size	_ZN3wze6engine6timing11GetPrevTickEv, .-_ZN3wze6engine6timing11GetPrevTickEv
+	.size	_ZN3wze6engine6timing14GetCurrentTickEv, .-_ZN3wze6engine6timing14GetCurrentTickEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing11GetGameTimeEv

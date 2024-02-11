@@ -32,7 +32,7 @@ namespace wze
         return this->TargetFrameTime = TargetFrameTime;
     }
 
-    uint32 engine::timing::GetPrevTick()
+    uint32 engine::timing::GetCurrentTick()
     {
         return this->PrevTick;
     }
