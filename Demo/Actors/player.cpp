@@ -9,6 +9,7 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
     this->Hurt = this->Actor->Flipbooks.New(125, &this->Game->Assets.PlayerHurtTextures);
     this->Fall = this->Actor->Textureboxes.New(this->Game->Assets.PlayerFallTexture);
     this->Jump = this->Actor->Textureboxes.New(this->Game->Assets.PlayerJumpTexture);
+    this->Facing = 1;
     this->VelocityX = 0;
     this->VelocityY = 0;
     this->PrevShotTick = this->Engine->Timing.GetCurrentTick();
@@ -59,10 +60,13 @@ player::~player()
 
 uint8 player::Update()
 {
+    double cache;
+
     //Horizontal movement
 
     if (this->Engine->Keys[KEY_A] && !this->Engine->Keys[KEY_D])
     {
+        this->Facing = -1;
         this->VelocityX -= 0.003 * this->Engine->Timing.GetDeltaTime();
         if (this->VelocityX < -0.5)
         {
@@ -83,6 +87,7 @@ uint8 player::Update()
     }
     if (this->Engine->Keys[KEY_D] && !this->Engine->Keys[KEY_A])
     {
+        this->Facing = 1;
         this->VelocityX += 0.003 * this->Engine->Timing.GetDeltaTime();
         if (0.5 < this->VelocityX)
         {
@@ -127,9 +132,11 @@ uint8 player::Update()
 
     //Shooting
 
-    if (this->Engine->Keys[KEY_LMB] && this->PrevShotTick + 200 < this->Engine->Timing.GetCurrentTick())
+    cache = this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Engine->Mouse.GetX(this->Actor->GetLayer()), this->Engine->Mouse.GetY(this->Actor->GetLayer()));
+
+    if (this->Engine->Keys[KEY_LMB] && this->PrevShotTick + 200 < this->Engine->Timing.GetCurrentTick() && ((Facing == 1 && (cache <= 90 || 270 < cache)) || (Facing == -1 && cache <= 270 && 90 < cache)))
     {
-        this->Bullets += {new bullet(this->Engine, this->Game, this->Actor->GetX(), this->Actor->GetY(), this->Actor->GetLayer(), this->Actor->GetID(), (actor)this->Actor->GetType(), this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Engine->Mouse.GetX(this->Actor->GetLayer()), this->Engine->Mouse.GetY(this->Actor->GetLayer())))};
+        this->Bullets += {new bullet(this->Engine, this->Game, this->Actor->GetX(), this->Actor->GetY(), this->Actor->GetLayer(), this->Actor->GetID(), (actor)this->Actor->GetType(), cache)};
         this->PrevShotTick = this->Engine->Timing.GetCurrentTick();
     }
 

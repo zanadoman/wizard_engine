@@ -112,6 +112,7 @@ class player
     engine::flipbook Hurt;
     engine::texturebox Fall;
     engine::texturebox Jump;
+    sint8 Facing;
     double VelocityX;
     double VelocityY;
     uint32 PrevShotTick;

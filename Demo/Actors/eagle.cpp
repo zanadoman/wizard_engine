@@ -54,13 +54,10 @@ uint8 eagle::Update()
 
     cache = this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY());
 
-    if (this->Engine->Vector.Length(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY()) < 500 && ((Facing == 1 && (cache <= 90 || 270 < cache)) || (Facing == -1 && cache <= 270 && 90 < cache)))
+    if (this->PrevShotTick + 200 < this->Engine->Timing.GetCurrentTick() && ((Facing == 1 && (cache <= 90 || 270 < cache)) || (Facing == -1 && cache <= 270 && 90 < cache)) && this->Engine->Vector.Length(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY()) < 500 && this->Engine->Vector.RayCast(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY(), 1, 1, {ACT_EAGLE, ACT_PLATFORM, ACT_BORDER}, {this->Actor->GetID()}, {}))
     {
-        if (this->PrevShotTick + 200 < this->Engine->Timing.GetCurrentTick() && this->Engine->Vector.RayCast(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY(), 1, 1, {ACT_EAGLE, ACT_PLATFORM, ACT_BORDER}, {this->Actor->GetID()}, {}))
-        {
-            this->Bullets += {new bullet(this->Engine, this->Game, this->Actor->GetX(), this->Actor->GetY(), this->Actor->GetLayer(), this->Actor->GetID(), (actor)this->Actor->GetType(), this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY()))};
-            this->PrevShotTick = this->Engine->Timing.GetCurrentTick();
-        }
+        this->Bullets += {new bullet(this->Engine, this->Game, this->Actor->GetX(), this->Actor->GetY(), this->Actor->GetLayer(), this->Actor->GetID(), (actor)this->Actor->GetType(), this->Engine->Vector.Angle(this->Actor->GetX(), this->Actor->GetY(), this->Target->GetX(), this->Target->GetY()))};
+        this->PrevShotTick = this->Engine->Timing.GetCurrentTick();
     }
 
     for (uint64 i = 0; i < this->Bullets.Length(); i++)
