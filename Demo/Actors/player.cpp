@@ -4,9 +4,9 @@ player::player(engine* Engine, game* Game, double X, double Y, double Layer, dou
 {
     this->Actor = this->Engine->Actors.New(this, ACT_PLAYER, X, Y, 60, 82, Layer);
     this->Overlapbox = this->Actor->Overlapboxes.New(BOX_PLAYER);
-    this->Idle = this->Actor->Flipbooks.New(100, &this->Game->Assets.PlayerIdleTextures);
-    this->Run = this->Actor->Flipbooks.New(100, &this->Game->Assets.PlayerRunTextures);
-    this->Hurt = this->Actor->Flipbooks.New(100, &this->Game->Assets.PlayerHurtTextures);
+    this->Idle = this->Actor->Flipbooks.New(125, &this->Game->Assets.PlayerIdleTextures);
+    this->Run = this->Actor->Flipbooks.New(125, &this->Game->Assets.PlayerRunTextures);
+    this->Hurt = this->Actor->Flipbooks.New(125, &this->Game->Assets.PlayerHurtTextures);
     this->Fall = this->Actor->Textures.New(this->Game->Assets.PlayerFallTexture);
     this->Jump = this->Actor->Textures.New(this->Game->Assets.PlayerJumpTexture);
     this->VelocityX = 0;

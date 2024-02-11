@@ -161,9 +161,6 @@ namespace wze
 
     engine::actors::actor::texts::text::text(engine* Engine, actor* Actor, uint64 ID, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
     {
-        SDL_Surface* surface;
-        SDL_Color color;
-
         this->ColorR = 255;
         this->ColorG = 255;
         this->ColorB = 255;
@@ -187,24 +184,7 @@ namespace wze
         this->FontStyle = STYLE_NORMAL;
         this->Texture = NULL;
 
-        if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
-        {
-            color.r = color.g = color.b = color.a = 255;
-
-            if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
-            {
-                printf("wze::engine.actors[].texts[].text(): TTF_RenderUTF8_Blended failed\nParams: String: %s\n", String);
-                exit(1);
-            }
-            if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
-            {
-                printf("wze::engine.actors[].texts[].text(): SDL_CreateTextureFromSurface failed\nParams: String: %s\n", String);
-                exit(1);
-            }
-
-            this->Width = round(surface->w * double(this->Height) / surface->h);
-            SDL_FreeSurface(surface);
-        }
+        this->UpdateTexture();
     }
 
     engine::actors::actor::texts::text::~text()
@@ -267,43 +247,13 @@ namespace wze
 
     uint16 engine::actors::actor::texts::text::SetHeight(uint16 Height)
     {
-        SDL_Surface* surface;
-        SDL_Color color;
-
-        this->Width = 0;
-        SDL_DestroyTexture(this->Texture);
-        this->Texture = NULL;
-
-        if (Height != 0 && 1 < this->String.Length() && this->FontID != 0)
+        if (this->Height != Height)
         {
-            if (this->FontStyle != STYLE_NORMAL)
-            {
-                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], this->FontStyle);
-            }
-
-            color.r = color.g = color.b = color.a = 255;
-
-            if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
-            {
-                printf("wze::engine.actors[].texts[].SetHeight(): TTF_RenderUTF8_Blended failed\nParams: Height: %d\n", Height);
-                exit(1);
-            }
-            if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
-            {
-                printf("wze::engine.actors[].texts[].SetHeight(): SDL_CreateTextureFromSurface failed\nParams: Height: %d\n", Height);
-                exit(1);
-            }
-
-            this->Width = round(surface->w * double(Height) / surface->h);
-            SDL_FreeSurface(surface);
-
-            if (this->FontStyle != STYLE_NORMAL)
-            {
-                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
-            }
+            this->Height = Height;
+            this->UpdateTexture();
         }
 
-        return this->Height = Height;
+        return this->Height;
     }
 
     const char* engine::actors::actor::texts::text::GetString()
@@ -313,49 +263,19 @@ namespace wze
 
     const char* engine::actors::actor::texts::text::SetString(const char* String)
     {
-        SDL_Surface* surface;
-        SDL_Color color;
-
         if (String == NULL)
         {
             printf("wze::engine.actors[].texts[].SetString(): String must not be NULL\nParams: String: %p\n", String);
             exit(1);
         }
 
-        this->Width = 0;
-        SDL_DestroyTexture(this->Texture);
-        this->Texture = NULL;
-
-        if (this->Height != 0 && 1 < string::LiteralLength(String) && this->FontID != 0)
+        if (this->String != String)
         {
-            if (this->FontStyle != STYLE_NORMAL)
-            {
-                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], this->FontStyle);
-            }
-
-            color.r = color.g = color.b = color.a = 255;
-
-            if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], String, color)) == NULL)
-            {
-                printf("wze::engine.actors[].texts[].SetString(): TTF_RenderUTF8_Blended failed\nParams: String: %s\n", String);
-                exit(1);
-            }
-            if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
-            {
-                printf("wze::engine.actors[].texts[].SetString(): SDL_CreateTextureFromSurface failed\nParams: String: %s\n", String);
-                exit(1);
-            }
-
-            this->Width = round(surface->w * double(this->Height) / surface->h);
-            SDL_FreeSurface(surface);
-
-            if (this->FontStyle != STYLE_NORMAL)
-            {
-                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
-            }
+            this->String = {String};
+            this->UpdateTexture();
         }
 
-        return (this->String = {String})();
+        return this->String();
     }
 
     uint64 engine::actors::actor::texts::text::GetFontID()
@@ -365,49 +285,19 @@ namespace wze
 
     uint64 engine::actors::actor::texts::text::SetFontID(uint64 FontID)
     {
-        SDL_Surface* surface;
-        SDL_Color color;
-
         if (FontID != 0 && (this->Engine->Assets.Fonts.Length() <= FontID || this->Engine->Assets.Fonts[FontID] == NULL))
         {
             printf("wze::engine.actors[].texts[].SetFontID(): Font does not exist\nParams: FontID: %lld\n", FontID);
             exit(1);
         }
 
-        this->Width = 0;
-        SDL_DestroyTexture(this->Texture);
-        this->Texture = NULL;
-
-        if (this->Height != 0 && 1 < this->String.Length() && FontID != 0)
+        if (this->FontID != FontID)
         {
-            if (this->FontStyle != STYLE_NORMAL)
-            {
-                TTF_SetFontStyle(this->Engine->Assets.Fonts[FontID], this->FontStyle);
-            }
-
-            color.r = color.g = color.b = color.a = 255;
-
-            if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[FontID], this->String(), color)) == NULL)
-            {
-                printf("wze::engine.actors[].texts[].SetFontID(): TTF_RenderUTF8_Blended failed\nParams: FontID: %lld\n", FontID);
-                exit(1);
-            }
-            if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
-            {
-                printf("wze::engine.actors[].texts[].SetFontID(): SDL_CreateTextureFromSurface failed\nParams: FontID: %lld\n", FontID);
-                exit(1);
-            }
-
-            this->Width = round(surface->w * double(this->Height) / surface->h);
-            SDL_FreeSurface(surface);
-
-            if (this->FontStyle != STYLE_NORMAL)
-            {
-                TTF_SetFontStyle(this->Engine->Assets.Fonts[FontID], STYLE_NORMAL);
-            }
+            this->FontID = FontID;
+            this->UpdateTexture();
         }
 
-        return this->FontID = FontID;
+        return this->FontID;
     }
 
     style engine::actors::actor::texts::text::GetFontStyle()
@@ -416,6 +306,17 @@ namespace wze
     }
 
     style engine::actors::actor::texts::text::SetFontStyle(style FontStyle)
+    {
+        if (this->FontStyle != FontStyle)
+        {
+            this->FontStyle = FontStyle;
+            this->UpdateTexture();
+        }
+
+        return this->FontStyle;
+    }
+
+    uint8 engine::actors::actor::texts::text::UpdateTexture()
     {
         SDL_Surface* surface;
         SDL_Color color;
@@ -426,33 +327,33 @@ namespace wze
 
         if (this->Height != 0 && 1 < this->String.Length() && this->FontID != 0)
         {
-            if (FontStyle != STYLE_NORMAL)
+            if (this->FontStyle != STYLE_NORMAL)
             {
-                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], FontStyle);
+                TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], this->FontStyle);
             }
 
             color.r = color.g = color.b = color.a = 255;
 
             if ((surface = TTF_RenderUTF8_Blended(this->Engine->Assets.Fonts[this->FontID], this->String(), color)) == NULL)
             {
-                printf("wze::engine.actors[].texts[].SetFont(): TTF_RenderUTF8_Blended failed\nParams: FontStyle: %d\n", FontStyle);
+                printf("wze::engine.actors[].texts[].UpdateTexture(): TTF_RenderUTF8_Blended failed\n");
                 exit(1);
             }
             if ((this->Texture = SDL_CreateTextureFromSurface(this->Engine->Window.Renderer, surface)) == NULL)
             {
-                printf("wze::engine.actors[].texts[].SetFont(): SDL_CreateTextureFromSurface failed\nParams: FontStyle: %d\n", FontStyle);
+                printf("wze::engine.actors[].texts[].UpdateTexture(): SDL_CreateTextureFromSurface failed\n");
                 exit(1);
             }
 
             this->Width = round(surface->w * double(this->Height) / surface->h);
             SDL_FreeSurface(surface);
 
-            if (FontStyle != STYLE_NORMAL)
+            if (this->FontStyle != STYLE_NORMAL)
             {
                 TTF_SetFontStyle(this->Engine->Assets.Fonts[this->FontID], STYLE_NORMAL);
             }
         }
 
-        return this->FontStyle = FontStyle;
+        return 0;
     }
 }

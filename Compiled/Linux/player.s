@@ -32,21 +32,21 @@ _ZN6playerC2EPN3wze6engineEP4gamedddd:
 	movq	%rax, 16(%rbx)
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes3NewEy@PLT
-	movl	$100, %esi
+	movl	$125, %esi
 	movq	%rax, 24(%rbx)
 	movq	8(%rbx), %rax
 	leaq	48(%rax), %rdx
 	movq	16(%rbx), %rax
 	leaq	72(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE@PLT
-	movl	$100, %esi
+	movl	$125, %esi
 	movq	%rax, 32(%rbx)
 	movq	8(%rbx), %rax
 	leaq	64(%rax), %rdx
 	movq	16(%rbx), %rax
 	leaq	72(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE@PLT
-	movl	$100, %esi
+	movl	$125, %esi
 	movq	%rax, 40(%rbx)
 	movq	8(%rbx), %rax
 	leaq	32(%rax), %rdx

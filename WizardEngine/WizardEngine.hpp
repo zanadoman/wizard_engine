@@ -489,6 +489,7 @@ namespace wze
                                     SDL_Texture* Texture;
                                     text(engine* Engine, actor* Actor, neo::uint64 ID, const char* String, neo::uint64 FontID);
                                     ~text();
+                                    neo::uint8 UpdateTexture();
                             };
 
                             public:
