@@ -1299,7 +1299,7 @@ _ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE:
 	.string	"wze::engine.actors[].textboxes[]: Illegal access to NULL Textbox\nParams: TextboxID: %lld\n"
 	.align 8
 .LC18:
-	.string	"wze::engine.actors[].textboxes[]: Textbox does not exist\nParams: TextID: %lld\n"
+	.string	"wze::engine.actors[].textboxes[]: Textbox does not exist\nParams: TextboxID: %lld\n"
 	.text
 	.align 2
 	.p2align 4

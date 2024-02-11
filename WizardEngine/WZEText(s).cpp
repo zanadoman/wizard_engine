@@ -152,7 +152,7 @@ namespace wze
         }
         if (this->Textboxes.Length() <= TextboxID || this->Textboxes[TextboxID] == NULL)
         {
-            printf("wze::engine.actors[].textboxes[]: Textbox does not exist\nParams: TextID: %lld\n", TextboxID);
+            printf("wze::engine.actors[].textboxes[]: Textbox does not exist\nParams: TextboxID: %lld\n", TextboxID);
             exit(1);
         }
 
