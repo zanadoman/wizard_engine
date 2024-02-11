@@ -2350,6 +2350,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy:
 	pxor	%xmm0, %xmm0
 .L426:
 	movq	%rbx, %rcx
+	movl	$0, 120(%rbx)
 	movsd	%xmm0, 112(%rbx)
 	addq	$32, %rsp
 	popq	%rbx
