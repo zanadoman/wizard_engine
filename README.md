@@ -28,8 +28,8 @@ as well.
 
 You can set the properties of an Actor by using the [] operator \
 overload of the Actors subclass. \
-Also with this method you can request Colors, Textures, Flipbooks, \
-Texts and Overlapboxes for your new actor. (Remember to store their IDs as well!)
+Also with this method you can request Colorboxes, Textureboxes, Flipbooks, \
+Textboxes and Overlapboxes for your new actor. (Remember to store their addresses or IDs as well!)
 
 ## Actors and Layers
 
@@ -40,7 +40,7 @@ Layer 0 means the screen, in every other case (when Layer is more than 0) it mea
 
 In every case ID 0 means an empty object which should not be used, \
 it can not be deleted or accessed, but you can use it in some cases, \
-for example to give an empty TextureID to a Texture object of an Actor. \
+for example to give an empty Texture to a Texturebox of an Actor. \
 (In this case the renderer will skip the Texture object.) \
 Just to mention another useful example of using ID 0, if you don't want \
 your Actor to have collision, you need to set its CollisionLayer to 0. \
@@ -50,7 +50,7 @@ your Actor to have collision, you need to set its CollisionLayer to 0. \
 
 If you become tired of using the ID system every time you want to manage \
 your objects, you can use the predefined pointer types from the engine. \
-(engine::actor, engine::color, engine::texture, engine::flipbook, engine::text, engine::overlapbox)
+(engine::actor, engine::colorbox, engine::texturebox, engine::flipbook, engine::textbox, engine::overlapbox)
 
 ## Example main function
 
