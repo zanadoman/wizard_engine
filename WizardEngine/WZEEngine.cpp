@@ -60,6 +60,7 @@ namespace wze
         {
             LogoTextures[i] = {this->Assets.LoadTexture((((str = {"engine/logo/logo"}) += {(uint64)i + 1}) += {".png"})())};
         }
+        LogoTextures -= {(uint64)0}; LogoTextures += {(uint64)0};
         LogoActor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
         LogoFlipbook = LogoActor->Flipbooks.New(100, &LogoTextures);
 
