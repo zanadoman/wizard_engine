@@ -63,19 +63,20 @@ namespace wze
         LogoTextures -= {(uint64)0}; LogoTextures += {(uint64)0};
         LogoActor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
         LogoFlipbook = LogoActor->Flipbooks.New(100, &LogoTextures);
+        LogoFlipbook->Loop = false;
 
         do
         {
             if (!this->Update())
             {
-                this->Assets.PurgeTextures({});
                 this->Actors.Delete(LogoActor->GetID());
+                this->Assets.PurgeTextures({});
                 return;
             }
-        } while (LogoFlipbook->GetCurrentFrame() != LogoTextures.Length() - 1);
+        } while (LogoFlipbook->IsPlaying());
 
-        this->Assets.PurgeTextures({});
         this->Actors.Delete(LogoActor->GetID());
+        this->Assets.PurgeTextures({});
     }
 
     engine::~engine()

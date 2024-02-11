@@ -1197,17 +1197,15 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movl	$100, %esi
 	movq	%rax, %r12
 	call	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE@PLT
+	movb	$0, 38(%rax)
 	movq	%rax, %rbp
 	jmp	.L154
 	.p2align 4,,10
 	.p2align 3
 .L152:
 	movq	%rbp, %rdi
-	call	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv@PLT
-	movq	%rax, %rdx
-	movq	64(%rsp), %rax
-	subq	$1, %rax
-	cmpq	%rdx, %rax
+	call	_ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv@PLT
+	testb	%al, %al
 	je	.L191
 .L154:
 	movq	%rbx, %rdi
@@ -1215,15 +1213,15 @@ _ZN3wze6engineC2EPKcS2_tth:
 	testb	%al, %al
 	jne	.L152
 .L191:
-	movq	16(%rsp), %rdi
-	xorl	%esi, %esi
-	xorl	%edx, %edx
-	call	_ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE@PLT
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
 	movq	40(%rsp), %rdi
 	movq	%rax, %rsi
 	call	_ZN3wze6engine6actors6DeleteEy@PLT
+	movq	16(%rsp), %rdi
+	xorl	%esi, %esi
+	xorl	%edx, %edx
+	call	_ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE@PLT
 	movq	8(%rsp), %rdi
 	call	_ZN3neo6stringD1Ev@PLT
 	movq	72(%rsp), %rdi
