@@ -59,6 +59,11 @@ namespace wze
         return this->ID;
     }
 
+    void* engine::actors::actor::GetData()
+    {
+        return this->Data;
+    }
+
     uint64 engine::actors::actor::GetType()
     {
         return this->Type;

@@ -586,6 +586,7 @@ namespace wze
                         neo::uint64 Resistance;
                         bool HitboxVisible;
                         neo::uint64 GetID();
+                        void* GetData();
                         neo::uint64 GetType();
                         double GetX();
                         double SetX(double X);

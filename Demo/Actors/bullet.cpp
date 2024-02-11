@@ -38,7 +38,7 @@ uint8 bullet::Update()
             {
                 if (0 < overlap[i].Length() && this->Engine->Actors[i].GetType() == ACT_EAGLE)
                 {
-                    printf("eagle hit\n");
+                    ((eagle*)this->Engine->Actors[i].GetData())->Alive = false;
                     return 1;
                 }
                 else if (0 < overlap[i].Length())
@@ -53,7 +53,7 @@ uint8 bullet::Update()
             {
                 if ( 0 < overlap[i].Length() && this->Engine->Actors[i].GetType() == ACT_PLAYER)
                 {
-                    printf("player hit\n");
+                    ((player*)this->Engine->Actors[i].GetData())->Alive = false;
                     return 1;
                 }
                 else if (0 < overlap[i].Length())

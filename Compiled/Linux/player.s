@@ -73,10 +73,11 @@ _ZN6playerC2EPN3wze6engineEP4gamedddd:
 	movq	16(%rbx), %rax
 	leaq	40(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
+	movl	$257, %r8d
 	movq	%rax, 64(%rbx)
 	movq	(%rbx), %rax
 	pxor	%xmm0, %xmm0
-	movb	$1, 72(%rbx)
+	movw	%r8w, 72(%rbx)
 	movups	%xmm0, 80(%rbx)
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6timing14GetCurrentTickEv@PLT
@@ -673,7 +674,7 @@ _ZN6player6UpdateEv:
 	testb	%al, %al
 	jne	.L32
 	movq	(%rbx), %rax
-	movb	$1, 72(%rbx)
+	movb	$1, 73(%rbx)
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	pxor	%xmm0, %xmm0
@@ -703,7 +704,7 @@ _ZN6player6UpdateEv:
 	testb	%al, %al
 	jne	.L18
 	movq	(%rbx), %rax
-	movb	$-1, 72(%rbx)
+	movb	$-1, 73(%rbx)
 	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	pxor	%xmm1, %xmm1
@@ -737,7 +738,7 @@ _ZN6player6UpdateEv:
 	call	_ZN3wze6engine6timing14GetCurrentTickEv@PLT
 	cmpl	%eax, %ebp
 	jnb	.L60
-	movzbl	72(%rbx), %eax
+	movzbl	73(%rbx), %eax
 	cmpb	$1, %al
 	je	.L125
 	cmpb	$-1, %al

@@ -102,6 +102,7 @@ class player
 {
     friend class normal;
     friend class infinite;
+    friend class bullet;
     engine* Engine;
     game* Game;
 
@@ -112,6 +113,7 @@ class player
     engine::flipbook Hurt;
     engine::texturebox Fall;
     engine::texturebox Jump;
+    bool Alive;
     sint8 Facing;
     double VelocityX;
     double VelocityY;
@@ -126,6 +128,7 @@ class eagle
 {
     friend class normal;
     friend class infinite;
+    friend class bullet;
     engine* Engine;
     game* Game;
 
@@ -134,9 +137,10 @@ class eagle
     engine::flipbook Fly;
     engine::flipbook Hurt;
     engine::actor Target;
+    bool Alive;
+    double Facing;
     double MinX;
     double MaxX;
-    double Facing;
     uint32 PrevShotTick;
     array<bullet*> Bullets;
     eagle(engine* Engine, game* Game, double Y, double Layer, engine::actor Target, double MinX, double MaxX);

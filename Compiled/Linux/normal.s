@@ -74,7 +74,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	call	_ZN6playerC1EPN3wze6engineEP4gamedddd@PLT
 .LEHE3:
 	movq	%r13, 144(%rbx)
-	movl	$104, %edi
+	movl	$112, %edi
 .LEHB4:
 	call	_Znwm@PLT
 .LEHE4:
@@ -479,7 +479,7 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 	call	_ZdlPvm@PLT
 	jmp	.L6
 .L7:
-	movl	$104, %esi
+	movl	$112, %esi
 	movq	%r13, %rdi
 	call	_ZdlPvm@PLT
 	jmp	.L6
@@ -538,7 +538,7 @@ _ZN6normalD2Ev:
 	je	.L37
 	movq	%rbx, %rdi
 	call	_ZN5eagleD1Ev@PLT
-	movl	$104, %esi
+	movl	$112, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
 .L37:

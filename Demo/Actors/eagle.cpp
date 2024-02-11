@@ -7,9 +7,10 @@ eagle::eagle(engine* Engine, game* Game, double Y, double Layer, engine::actor T
     this->Fly = this->Actor->Flipbooks.New(125, &this->Game->Assets.EagleFlyTextures);
     this->Hurt = this->Actor->Flipbooks.New(125, &this->Game->Assets.EagleHurtTextures);
     this->Target = Target;
+    this->Alive = true;
+    this->Facing = 1;
     this->MinX = MinX;
     this->MaxX = MaxX;
-    this->Facing = 1;
     this->PrevShotTick = this->Engine->Timing.GetCurrentTick();
 
     this->Overlapbox->SetWidth(this->Actor->GetWidth() + EPSILON * 2);
