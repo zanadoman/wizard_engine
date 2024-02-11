@@ -2,7 +2,7 @@
 	.text
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
-.LC13:
+.LC10:
 	.string	"neo::array=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
@@ -73,55 +73,9 @@ _ZN6normalC2EPN3wze6engineEP4game:
 .LEHB3:
 	call	_ZN6playerC1EPN3wze6engineEP4gamedddd@PLT
 .LEHE3:
-	movq	(%rbx), %rax
 	movq	%r13, 144(%rbx)
-	pxor	%xmm1, %xmm1
-	xorl	%edx, %edx
-	movsd	.LC3(%rip), %xmm2
-	movl	$16200, %r8d
-	movapd	%xmm1, %xmm0
-	xorl	%esi, %esi
-	leaq	240(%rax), %rdi
-	movl	$28800, %ecx
-.LEHB4:
-	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
-	movq	8(%rbx), %rdx
-	movq	%rax, 168(%rbx)
-	leaq	40(%rax), %rdi
-	movzwl	18(%rdx), %esi
-	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
-	movq	%rax, 176(%rbx)
-	movq	(%rbx), %rax
-	pxor	%xmm1, %xmm1
-	xorl	%edx, %edx
-	movsd	.LC4(%rip), %xmm0
-	movl	$65535, %r8d
-	movl	$10, %ecx
-	xorl	%esi, %esi
-	leaq	240(%rax), %rdi
-	movq	.LC0(%rip), %rax
-	movq	%rax, %xmm2
-	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
-	movq	%rax, 184(%rbx)
-	movq	(%rbx), %rax
-	pxor	%xmm1, %xmm1
-	xorl	%edx, %edx
-	movsd	.LC5(%rip), %xmm0
-	movl	$65535, %r8d
-	movl	$10, %ecx
-	xorl	%esi, %esi
-	leaq	240(%rax), %rdi
-	movq	.LC0(%rip), %rax
-	movq	%rax, %xmm2
-	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
-	movq	%rax, 192(%rbx)
-	movq	184(%rbx), %rdi
-	movl	$1, %esi
-	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
-	movq	192(%rbx), %rdi
-	movl	$1, %esi
-	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
 	movl	$40, %edi
+.LEHB4:
 	call	_Znwm@PLT
 .LEHE4:
 	movq	%rax, %r13
@@ -129,7 +83,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	(%rbx), %rsi
 	movl	$1, %r9d
 	movq	.LC0(%rip), %rax
-	movsd	.LC6(%rip), %xmm1
+	movsd	.LC3(%rip), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%r13, %rdi
 	movl	$375, %r8d
@@ -148,7 +102,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	(%rbx), %rsi
 	movl	$1, %r9d
 	movq	.LC0(%rip), %rax
-	movsd	.LC7(%rip), %xmm1
+	movsd	.LC4(%rip), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%r13, %rdi
 	movl	$50, %r8d
@@ -169,8 +123,8 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	.LC0(%rip), %rax
 	movl	$50, %r8d
 	movl	$200, %ecx
-	movsd	.LC8(%rip), %xmm1
-	movsd	.LC9(%rip), %xmm0
+	movsd	.LC5(%rip), %xmm1
+	movsd	.LC6(%rip), %xmm0
 	movq	%r13, %rdi
 	movq	%rax, %xmm2
 .LEHB9:
@@ -186,7 +140,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	(%rbx), %rsi
 	movl	$1, %r9d
 	movq	.LC0(%rip), %rax
-	movsd	.LC10(%rip), %xmm1
+	movsd	.LC7(%rip), %xmm1
 	pxor	%xmm0, %xmm0
 	movq	%r13, %rdi
 	movl	$50, %r8d
@@ -207,8 +161,8 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	.LC0(%rip), %rax
 	movl	$50, %r8d
 	movl	$200, %ecx
-	movsd	.LC11(%rip), %xmm1
-	movsd	.LC12(%rip), %xmm0
+	movsd	.LC8(%rip), %xmm1
+	movsd	.LC9(%rip), %xmm0
 	movq	%r13, %rdi
 	movq	%rax, %xmm2
 .LEHB13:
@@ -224,6 +178,52 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	%rsp, %rdi
 .LEHB14:
 	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
+	movq	(%rbx), %rax
+	pxor	%xmm1, %xmm1
+	movl	$16200, %r8d
+	xorl	%edx, %edx
+	movsd	.LC11(%rip), %xmm2
+	movl	$28800, %ecx
+	movapd	%xmm1, %xmm0
+	xorl	%esi, %esi
+	leaq	240(%rax), %rdi
+	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
+	movq	8(%rbx), %rdx
+	movq	%rax, 168(%rbx)
+	leaq	40(%rax), %rdi
+	movzwl	18(%rdx), %esi
+	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
+	movq	%rax, 176(%rbx)
+	movq	(%rbx), %rax
+	pxor	%xmm1, %xmm1
+	xorl	%edx, %edx
+	movsd	.LC12(%rip), %xmm0
+	movl	$65535, %r8d
+	movl	$10, %ecx
+	xorl	%esi, %esi
+	leaq	240(%rax), %rdi
+	movq	.LC0(%rip), %rax
+	movq	%rax, %xmm2
+	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
+	movq	%rax, 184(%rbx)
+	movq	(%rbx), %rax
+	pxor	%xmm1, %xmm1
+	xorl	%edx, %edx
+	movsd	.LC13(%rip), %xmm0
+	movl	$65535, %r8d
+	movl	$10, %ecx
+	xorl	%esi, %esi
+	leaq	240(%rax), %rdi
+	movq	.LC0(%rip), %rax
+	movq	%rax, %xmm2
+	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
+	movq	%rax, 192(%rbx)
+	movq	184(%rbx), %rdi
+	movl	$1, %esi
+	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
+	movq	192(%rbx), %rdi
+	movl	$1, %esi
+	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh@PLT
 	movq	(%rbx), %rax
 	leaq	80(%rax), %r13
 	movq	144(%rbx), %rax
@@ -268,7 +268,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 .L3:
 	movl	$5, %edx
 	movl	$8, %esi
-	leaq	.LC13(%rip), %rdi
+	leaq	.LC10(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 .LEHE14:
@@ -285,16 +285,16 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	jmp	.L5
 .L22:
 	movq	%rax, %r14
-	jmp	.L7
+	jmp	.L11
 .L21:
 	movq	%rax, %r14
-	jmp	.L8
+	jmp	.L11
 .L20:
 	movq	%rax, %r14
-	jmp	.L9
+	jmp	.L11
 .L19:
 	movq	%rax, %r14
-	jmp	.L10
+	jmp	.L11
 .L15:
 	movq	%rax, %r13
 	jmp	.L12
@@ -376,7 +376,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	.type	_ZN6normalC2EPN3wze6engineEP4game.cold, @function
 _ZN6normalC2EPN3wze6engineEP4game.cold:
 .LFSB8147:
-.L7:
+.L11:
 	.cfi_def_cfa_offset 96
 	.cfi_offset 3, -48
 	.cfi_offset 6, -40
@@ -402,11 +402,6 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 .LEHB15:
 	call	_Unwind_Resume@PLT
 .LEHE15:
-.L11:
-	movl	$40, %esi
-	movq	%r13, %rdi
-	call	_ZdlPvm@PLT
-	jmp	.L6
 .L5:
 	movl	$88, %esi
 	movq	%r13, %rdi
@@ -414,21 +409,6 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 	jmp	.L6
 .L28:
 	call	__stack_chk_fail@PLT
-.L8:
-	movl	$40, %esi
-	movq	%r13, %rdi
-	call	_ZdlPvm@PLT
-	jmp	.L6
-.L9:
-	movl	$40, %esi
-	movq	%r13, %rdi
-	call	_ZdlPvm@PLT
-	jmp	.L6
-.L10:
-	movl	$40, %esi
-	movq	%r13, %rdi
-	call	_ZdlPvm@PLT
-	jmp	.L6
 	.cfi_endproc
 .LFE8147:
 	.section	.gcc_except_table
@@ -579,44 +559,44 @@ _ZN6normal6UpdateEv:
 	.long	1078263808
 	.align 8
 .LC3:
-	.long	-1717986918
-	.long	1069128089
-	.align 8
-.LC4:
-	.long	0
-	.long	-1064855552
-	.align 8
-.LC5:
-	.long	0
-	.long	1082628096
-	.align 8
-.LC6:
 	.long	0
 	.long	-1066962944
 	.align 8
-.LC7:
+.LC4:
 	.long	0
 	.long	1080315904
 	.align 8
-.LC8:
+.LC5:
 	.long	0
 	.long	1081466880
 	.align 8
-.LC9:
+.LC6:
 	.long	0
 	.long	-1066450944
 	.align 8
-.LC10:
+.LC7:
 	.long	0
 	.long	1082182656
 	.align 8
-.LC11:
+.LC8:
 	.long	0
 	.long	1082566656
 	.align 8
-.LC12:
+.LC9:
 	.long	0
 	.long	1081032704
+	.align 8
+.LC11:
+	.long	-1717986918
+	.long	1069128089
+	.align 8
+.LC12:
+	.long	0
+	.long	-1064855552
+	.align 8
+.LC13:
+	.long	0
+	.long	1082628096
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

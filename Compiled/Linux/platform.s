@@ -26,19 +26,19 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movq	%rdx, 8(%rbx)
 	movl	$2, %edx
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
-	movq	8(%rbx), %rdx
-	movq	%rax, 16(%rbx)
-	leaq	40(%rax), %rdi
-	movzwl	26(%rdx), %esi
-	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
 	movl	$2, %esi
-	movq	%rax, 32(%rbx)
-	movq	16(%rbx), %rax
+	movq	%rax, 16(%rbx)
 	leaq	136(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes3NewEy@PLT
+	movq	%rax, 24(%rbx)
+	movq	8(%rbx), %rax
+	movzwl	26(%rax), %esi
+	movq	16(%rbx), %rax
+	leaq	40(%rax), %rdi
+	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
 	movq	16(%rbx), %rdi
 	movsd	.LC0(%rip), %xmm0
-	movq	%rax, 24(%rbx)
+	movq	%rax, 32(%rbx)
 	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
 	movq	16(%rbx), %rdi
 	movzbl	%bpl, %esi
