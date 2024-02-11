@@ -11,8 +11,8 @@ _ZN5eagleC2EPN3wze6engineEP4gamedddd:
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
 	movapd	%xmm2, %xmm4
-	movl	$80, %r8d
-	movl	$80, %ecx
+	movl	$105, %r8d
+	movl	$105, %ecx
 	pushq	%rbx
 	.cfi_def_cfa_offset 24
 	.cfi_offset 3, -24
@@ -51,17 +51,18 @@ _ZN5eagleC2EPN3wze6engineEP4gamedddd:
 	leaq	72(%rax), %rdi
 	call	_ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE@PLT
 	movapd	(%rsp), %xmm4
-	movb	$1, 64(%rbx)
 	movq	16(%rbx), %rdi
-	movq	24(%rbx), %rbp
 	movq	%rax, 40(%rbx)
+	movq	.LC1(%rip), %rax
 	movups	%xmm4, 48(%rbx)
+	movq	24(%rbx), %rbp
+	movq	%rax, 64(%rbx)
 	call	_ZN3wze6engine6actors5actor8GetWidthEv@PLT
 	pxor	%xmm0, %xmm0
 	movq	%rbp, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
-	addsd	.LC1(%rip), %xmm0
+	addsd	.LC2(%rip), %xmm0
 	cvttsd2sil	%xmm0, %esi
 	movzwl	%si, %esi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt@PLT
@@ -72,12 +73,13 @@ _ZN5eagleC2EPN3wze6engineEP4gamedddd:
 	movq	%rbp, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
-	addsd	.LC1(%rip), %xmm0
+	addsd	.LC2(%rip), %xmm0
 	cvttsd2sil	%xmm0, %esi
 	movzwl	%si, %esi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt@PLT
 	movq	32(%rbx), %rax
-	movl	.LC2(%rip), %edx
+	movl	.LC3(%rip), %edx
+	movb	$1, 32(%rax)
 	movl	%edx, 16(%rax)
 	movq	40(%rbx), %rax
 	movl	%edx, 16(%rax)
@@ -152,22 +154,21 @@ _ZN5eagle6UpdateEv:
 	movapd	%xmm0, %xmm1
 	movsd	48(%rbx), %xmm0
 	comisd	%xmm1, %xmm0
-	jb	.L15
+	jbe	.L15
 	movq	16(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor4SetXEd@PLT
+	movq	.LC1(%rip), %rax
+	movq	%rax, 64(%rbx)
 	movq	32(%rbx), %rax
-	movb	$1, 64(%rbx)
-	movb	$0, 32(%rax)
+	movb	$1, 32(%rax)
 .L9:
 	movq	16(%rbx), %rbp
 	movq	%rbp, %rdi
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
-	movzbl	64(%rbx), %eax
-	movsd	.LC0(%rip), %xmm2
-	movsd	%xmm0, 8(%rsp)
-	pxor	%xmm0, %xmm0
+	movsd	64(%rbx), %xmm2
 	movq	(%rbx), %rdi
-	cvtsi2sdl	%eax, %xmm0
+	movsd	%xmm0, 8(%rsp)
+	movsd	.LC5(%rip), %xmm0
 	addq	$400, %rdi
 	mulsd	%xmm0, %xmm2
 	movsd	%xmm2, (%rsp)
@@ -197,13 +198,14 @@ _ZN5eagle6UpdateEv:
 	movsd	%xmm4, (%rsp)
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT
 	comisd	(%rsp), %xmm0
-	jb	.L9
+	jbe	.L9
 	movsd	56(%rbx), %xmm0
 	movq	16(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor4SetXEd@PLT
+	movq	.LC4(%rip), %rax
+	movq	%rax, 64(%rbx)
 	movq	32(%rbx), %rax
-	movb	$-1, 64(%rbx)
-	movb	$1, 32(%rax)
+	movb	$0, 32(%rax)
 	jmp	.L9
 	.cfi_endproc
 .LFE8152:
@@ -215,13 +217,26 @@ _ZN5eagle6UpdateEv:
 	.long	1071644672
 	.align 8
 .LC1:
+	.long	0
+	.long	1072693248
+	.align 8
+.LC2:
 	.long	-350469331
 	.long	1059731170
 	.section	.rodata.cst4,"aM",@progbits,4
 	.align 4
-.LC2:
-	.value	100
-	.value	100
+.LC3:
+	.value	125
+	.value	125
+	.section	.rodata.cst8
+	.align 8
+.LC4:
+	.long	0
+	.long	-1074790400
+	.align 8
+.LC5:
+	.long	0
+	.long	1070596096
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

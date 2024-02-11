@@ -6,9 +6,9 @@
 	.string	"neo::array=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB17:
+.LCOLDB18:
 	.text
-.LHOTB17:
+.LHOTB18:
 	.align 2
 	.p2align 4
 	.globl	_ZN6normalC2EPN3wze6engineEP4game
@@ -249,6 +249,10 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	%rax, %rsi
 	movq	%r13, %rdi
 	call	_ZN3wze6engine6camera4BindEy@PLT
+	movq	(%rbx), %rax
+	movsd	.LC17(%rip), %xmm0
+	leaq	80(%rax), %rdi
+	call	_ZN3wze6engine6camera10SetOffsetYEd@PLT
 	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
 	jne	.L29
@@ -451,7 +455,7 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8147-.LLSDACSBC8147
 .LLSDACSBC8147:
-	.uleb128 .LEHB17-.LCOLDB17
+	.uleb128 .LEHB17-.LCOLDB18
 	.uleb128 .LEHE17-.LEHB17
 	.uleb128 0
 	.uleb128 0
@@ -461,9 +465,9 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 	.size	_ZN6normalC2EPN3wze6engineEP4game, .-_ZN6normalC2EPN3wze6engineEP4game
 	.section	.text.unlikely
 	.size	_ZN6normalC2EPN3wze6engineEP4game.cold, .-_ZN6normalC2EPN3wze6engineEP4game.cold
-.LCOLDE17:
+.LCOLDE18:
 	.text
-.LHOTE17:
+.LHOTE18:
 	.globl	_ZN6normalC1EPN3wze6engineEP4game
 	.set	_ZN6normalC1EPN3wze6engineEP4game,_ZN6normalC2EPN3wze6engineEP4game
 	.align 2
@@ -582,6 +586,8 @@ _ZN6normal6UpdateEv:
 	.cfi_restore_state
 	movq	144(%rbx), %rdi
 	call	_ZN6player6UpdateEv@PLT
+	movq	152(%rbx), %rdi
+	call	_ZN5eagle6UpdateEv@PLT
 	movl	$1, %edx
 	popq	%rbx
 	.cfi_def_cfa_offset 8
@@ -610,7 +616,7 @@ _ZN6normal6UpdateEv:
 	.align 8
 .LC5:
 	.long	0
-	.long	1082822656
+	.long	1082925056
 	.align 8
 .LC6:
 	.long	0
@@ -651,6 +657,10 @@ _ZN6normal6UpdateEv:
 .LC16:
 	.long	0
 	.long	1082628096
+	.align 8
+.LC17:
+	.long	0
+	.long	-1065811968
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat

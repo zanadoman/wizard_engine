@@ -119,7 +119,7 @@ class eagle
     engine::flipbook Hurt;
     double MinX;
     double MaxX;
-    uint8 Facing;
+    double Facing;
     eagle(engine* Engine, game* Game, double Y, double Layer, double MinX, double MaxX);
     ~eagle();
     uint8 Update();

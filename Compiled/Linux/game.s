@@ -265,6 +265,26 @@ _ZN4game12SwitchScenesE5scene:
 	pxor	%xmm0, %xmm0
 	leaq	80(%rax), %rdi
 	call	_ZN3wze6engine6camera4SetYEd@PLT
+	movq	(%rbx), %r12
+	movq	%r12, %rdi
+	call	_ZN3wze6engine6window8GetWidthEv@PLT
+	pxor	%xmm0, %xmm0
+	leaq	80(%r12), %rdi
+	shrw	%ax
+	movzwl	%ax, %eax
+	negl	%eax
+	cvtsi2sdl	%eax, %xmm0
+	call	_ZN3wze6engine6camera10SetOffsetXEd@PLT
+	movq	(%rbx), %r12
+	movq	%r12, %rdi
+	call	_ZN3wze6engine6window9GetHeightEv@PLT
+	pxor	%xmm0, %xmm0
+	leaq	80(%r12), %rdi
+	shrw	%ax
+	movzwl	%ax, %eax
+	negl	%eax
+	cvtsi2sdl	%eax, %xmm0
+	call	_ZN3wze6engine6camera10SetOffsetYEd@PLT
 	cmpl	$1, %ebp
 	je	.L31
 	cmpl	$2, %ebp

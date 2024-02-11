@@ -3,7 +3,7 @@
 normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(Engine, Game), Stats(Engine, Game)
 {
     this->Player = new player(this->Engine, this->Game, 0, 42, 1, 1);
-    this->Eagle = new eagle(this->Engine, this->Game, 850, 1, -700, 700);
+    this->Eagle = new eagle(this->Engine, this->Game, 900, 1, -700, 700);
 
     this->Platforms =
     {
@@ -23,6 +23,7 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
     this->RightBorder->SetCollisionLayer(1);
 
     this->Engine->Camera.Bind(this->Player->Actor->GetID());
+    this->Engine->Camera.SetOffsetY(-(400));
 }
 
 normal::~normal()
@@ -45,6 +46,7 @@ scene normal::Update()
     if (Pause == pause::NONE)
     {
         this->Player->Update();
+        this->Eagle->Update();
     }
     else if (Pause == pause::MENU)
     {
