@@ -2524,6 +2524,8 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy:
 	movsd	%xmm1, 104(%rbx)
 .L452:
 	pxor	%xmm0, %xmm0
+.L455:
+	movl	$0, 120(%rbx)
 	movq	%rbx, %rdi
 	movsd	%xmm0, 112(%rbx)
 	popq	%rbx
@@ -2559,11 +2561,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy:
 	movapd	%xmm2, %xmm1
 	cvtsi2sdl	%eax, %xmm3
 	call	_ZN3wze6engine6vector5AngleEdddd@PLT
-	movq	%rbx, %rdi
-	movsd	%xmm0, 112(%rbx)
-	popq	%rbx
-	.cfi_def_cfa_offset 8
-	jmp	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv
+	jmp	.L455
 	.cfi_endproc
 .LFE8158:
 	.size	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy, .-_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy

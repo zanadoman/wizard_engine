@@ -167,6 +167,7 @@ namespace wze
         this->ActiveMedianLength = engine::vector::Length(0, 0, this->Width, this->Height) / 2;
         this->ActiveMedian1Angle = this->ActiveMedianLength != 0 ? engine::vector::Angle(0, 0, this->Width, this->Height) : 0;
         this->ActiveMedian2Angle = this->ActiveMedianLength != 0 ? engine::vector::Angle(this->Width, 0, 0, this->Height) : 0;
+        this->ButtonState = BTN_NONE;
 
         this->UpdateOverlapboxActiveScale();
     }
