@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Includes/NeoTypes++.hpp"
+#include "inc/NeoTypes++.hpp"
 
 #ifdef __linux__
     #include <SDL2/SDL.h>
@@ -11,11 +11,11 @@
 #endif
 
 #ifdef _WIN64
-    #include "Includes/SDL.h"
-    #include "Includes/SDL_image.h"
-    #include "Includes/SDL_mixer.h"
-    #include "Includes/SDL_ttf.h"
-    #include "Includes/SDL_net.h"
+    #include "inc/SDL.h"
+    #include "inc/SDL_image.h"
+    #include "inc/SDL_mixer.h"
+    #include "inc/SDL_ttf.h"
+    #include "inc/SDL_net.h"
     #undef main
 #endif
 

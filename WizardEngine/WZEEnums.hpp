@@ -6,8 +6,8 @@
 #endif
 
 #ifdef _WIN64
-    #include "Includes/SDL_scancode.h"
-    #include "Includes/SDL_ttf.h"
+    #include "inc/SDL_scancode.h"
+    #include "inc/SDL_ttf.h"
 #endif
 
 namespace wze
