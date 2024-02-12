@@ -709,24 +709,6 @@ namespace wze
                     vector(engine* Engine);
             } Vector;
 
-            //__________Threads________________________________________________________________________________________
-
-            class threads
-            {
-                friend class engine;
-                engine* Engine;
-
-                public:
-                    neo::uint64 Start(neo::sint32(*Function)(void*), void* Parameter);
-                    neo::sint32 Wait(neo::uint64 ThreadID);
-                    neo::uint8 Purge(std::initializer_list<neo::uint64> KeepThreadIDs);
-                    neo::uint8 Purge(neo::array<neo::uint64>* KeepThreadIDs);
-
-                private:
-                    neo::array<SDL_Thread*> Threads;
-                    threads(engine* Engine);
-            } Threads;
-
             //__________Assets_________________________________________________________________________________________
 
             class assets
