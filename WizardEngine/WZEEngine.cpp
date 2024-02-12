@@ -1,4 +1,5 @@
 #include "WizardEngine.hpp"
+#include <cmath>
 #include <ctime>
 
 using namespace neo;

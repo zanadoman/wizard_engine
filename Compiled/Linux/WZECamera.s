@@ -24,29 +24,29 @@ _ZN3wze6engine6cameraC2EPS0_:
 	.set	_ZN3wze6engine6cameraC1EPS0_,_ZN3wze6engine6cameraC2EPS0_
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6camera4GetXEv
-	.type	_ZN3wze6engine6camera4GetXEv, @function
-_ZN3wze6engine6camera4GetXEv:
+	.globl	_ZN3wze6engine6camera10GetOriginXEv
+	.type	_ZN3wze6engine6camera10GetOriginXEv, @function
+_ZN3wze6engine6camera10GetOriginXEv:
 .LFB8158:
 	.cfi_startproc
 	movsd	8(%rdi), %xmm0
 	ret
 	.cfi_endproc
 .LFE8158:
-	.size	_ZN3wze6engine6camera4GetXEv, .-_ZN3wze6engine6camera4GetXEv
+	.size	_ZN3wze6engine6camera10GetOriginXEv, .-_ZN3wze6engine6camera10GetOriginXEv
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
 .LC3:
-	.string	"wze::engine.camera.SetX(): X must not be NaN\nParams: X: %lf\n"
+	.string	"wze::engine.camera.SetOriginX(): OriginX must not be NaN\nParams: OriginX: %lf\n"
 	.align 8
 .LC4:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6camera4SetXEd
-	.type	_ZN3wze6engine6camera4SetXEd, @function
-_ZN3wze6engine6camera4SetXEd:
+	.globl	_ZN3wze6engine6camera10SetOriginXEd
+	.type	_ZN3wze6engine6camera10SetOriginXEd, @function
+_ZN3wze6engine6camera10SetOriginXEd:
 .LFB8159:
 	.cfi_startproc
 	subq	$8, %rsp
@@ -94,29 +94,29 @@ _ZN3wze6engine6camera4SetXEd:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8159:
-	.size	_ZN3wze6engine6camera4SetXEd, .-_ZN3wze6engine6camera4SetXEd
+	.size	_ZN3wze6engine6camera10SetOriginXEd, .-_ZN3wze6engine6camera10SetOriginXEd
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6camera4GetYEv
-	.type	_ZN3wze6engine6camera4GetYEv, @function
-_ZN3wze6engine6camera4GetYEv:
+	.globl	_ZN3wze6engine6camera10GetOriginYEv
+	.type	_ZN3wze6engine6camera10GetOriginYEv, @function
+_ZN3wze6engine6camera10GetOriginYEv:
 .LFB8160:
 	.cfi_startproc
 	movsd	16(%rdi), %xmm0
 	ret
 	.cfi_endproc
 .LFE8160:
-	.size	_ZN3wze6engine6camera4GetYEv, .-_ZN3wze6engine6camera4GetYEv
+	.size	_ZN3wze6engine6camera10GetOriginYEv, .-_ZN3wze6engine6camera10GetOriginYEv
 	.section	.rodata.str1.8
 	.align 8
 .LC5:
-	.string	"wze::engine.camera.SetY(): Y must not be NaN\nParams: Y: %lf\n"
+	.string	"wze::engine.camera.SetOriginY(): OriginY must not be NaN\nParams: OriginY: %lf\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6camera4SetYEd
-	.type	_ZN3wze6engine6camera4SetYEd, @function
-_ZN3wze6engine6camera4SetYEd:
+	.globl	_ZN3wze6engine6camera10SetOriginYEd
+	.type	_ZN3wze6engine6camera10SetOriginYEd, @function
+_ZN3wze6engine6camera10SetOriginYEd:
 .LFB8161:
 	.cfi_startproc
 	subq	$8, %rsp
@@ -164,7 +164,7 @@ _ZN3wze6engine6camera4SetYEd:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8161:
-	.size	_ZN3wze6engine6camera4SetYEd, .-_ZN3wze6engine6camera4SetYEd
+	.size	_ZN3wze6engine6camera10SetOriginYEd, .-_ZN3wze6engine6camera10SetOriginYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera10GetOffsetXEv
@@ -319,34 +319,34 @@ _ZN3wze6engine6camera4BindEy:
 	.cfi_startproc
 	movq	%rsi, %rax
 	testq	%rsi, %rsi
-	je	.L77
+	je	.L71
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	movq	(%rdi), %rdx
 	cmpq	264(%rdx), %rsi
-	jnb	.L69
+	jnb	.L68
 	movq	272(%rdx), %rdx
 	movq	(%rdx,%rsi,8), %rdx
 	testq	%rdx, %rdx
-	je	.L69
+	je	.L68
 	pxor	%xmm0, %xmm0
 	ucomisd	272(%rdx), %xmm0
-	jp	.L71
+	jp	.L72
 	je	.L78
-.L71:
-	movq	%rax, %xmm0
-	punpcklqdq	%xmm0, %xmm0
-	movups	%xmm0, 64(%rdi)
+.L72:
+	movq	%rax, 64(%rdi)
+	movq	%rax, 72(%rdi)
 	addq	$8, %rsp
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L77:
-	pxor	%xmm0, %xmm0
-	movups	%xmm0, 8(%rdi)
+.L71:
+	xorl	%edx, %edx
+	movq	%rdx, 64(%rdi)
+	movq	%rdx, 72(%rdi)
 	ret
-.L69:
+.L68:
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
 	leaq	.LC11(%rip), %rdi

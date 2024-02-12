@@ -69,8 +69,8 @@ uint8 game::SwitchScenes(scene Scene)
         }
 
         this->Engine->Actors.Purge({});
-        this->Engine->Camera.SetX(0);
-        this->Engine->Camera.SetY(0);
+        this->Engine->Camera.SetOriginX(0);
+        this->Engine->Camera.SetOriginY(0);
         this->Engine->Camera.SetOffsetX(0);
         this->Engine->Camera.SetOffsetY(0);
 

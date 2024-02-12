@@ -57,7 +57,7 @@ namespace wze
         }
         
         cache = this->Engine->Camera.Zoom * Layer;
-        return this->X / cache + this->Engine->Camera.X + this->Engine->Camera.OffsetX / cache;
+        return this->X / cache + this->Engine->Camera.OriginX + this->Engine->Camera.OffsetX / cache;
     }
 
     double engine::mouse::GetY(double Layer)
@@ -86,7 +86,7 @@ namespace wze
         }
         
         cache = this->Engine->Camera.Zoom * Layer;
-        return this->Y / cache + this->Engine->Camera.Y + this->Engine->Camera.OffsetY / cache;
+        return this->Y / cache + this->Engine->Camera.OriginY + this->Engine->Camera.OffsetY / cache;
     }
 
     double engine::mouse::GetMotionX()

@@ -7,8 +7,8 @@ namespace wze
 {
     engine::camera::camera(engine* Engine) : Engine(Engine)
     {
-        this->X = 0;
-        this->Y = 0;
+        this->OriginX = 0;
+        this->OriginY = 0;
         this->BaseOffsetX = 0;
         this->OffsetX = 0;
         this->BaseOffsetY = 0;
@@ -18,46 +18,46 @@ namespace wze
         this->YActor = 0;
     }
 
-    double engine::camera::GetX()
+    double engine::camera::GetOriginX()
     {
-        return this->X;
+        return this->OriginX;
     }
 
-    double engine::camera::SetX(double X)
+    double engine::camera::SetOriginX(double OriginX)
     {
-        if (X != X)
+        if (OriginX != OriginX)
         {
-            printf("wze::engine.camera.SetX(): X must not be NaN\nParams: X: %lf\n", X);
+            printf("wze::engine.camera.SetOriginX(): OriginX must not be NaN\nParams: OriginX: %lf\n", OriginX);
             exit(1);
         }
 
         if (this->XActor != 0)
         {
-            this->OffsetX = X - this->Engine->Actors.Actors[this->XActor]->X - this->BaseOffsetX;
+            this->OffsetX = OriginX - this->Engine->Actors.Actors[this->XActor]->X - this->BaseOffsetX;
         }
 
-        return this->X = X;
+        return this->OriginX = OriginX;
     }
 
-    double engine::camera::GetY()
+    double engine::camera::GetOriginY()
     {
-        return this->Y;
+        return this->OriginY;
     }
 
-    double engine::camera::SetY(double Y)
+    double engine::camera::SetOriginY(double OriginY)
     {
-        if (Y != Y)
+        if (OriginY != OriginY)
         {
-            printf("wze::engine.camera.SetY(): Y must not be NaN\nParams: Y: %lf\n", Y);
+            printf("wze::engine.camera.SetOriginY(): OriginY must not be NaN\nParams: OriginY: %lf\n", OriginY);
             exit(1);
         }
 
         if (this->YActor != 0)
         {
-            this->OffsetY = Y - this->Engine->Actors.Actors[this->YActor]->Y - this->BaseOffsetY;
+            this->OffsetY = OriginY - this->Engine->Actors.Actors[this->YActor]->Y - this->BaseOffsetY;
         }
 
-        return this->Y = Y;
+        return this->OriginY =OriginY;
     }
 
     double engine::camera::GetOffsetX()
@@ -121,8 +121,8 @@ namespace wze
     {
         if (ActorID == 0)
         {
-            this->X = ActorID;
-            this->Y = ActorID;
+            this->XActor = ActorID;
+            this->YActor = ActorID;
 
             return ActorID;
         }
@@ -219,11 +219,11 @@ namespace wze
     {
         if (this->XActor != 0)
         {
-            this->X = this->Engine->Actors.Actors[this->XActor]->X;
+            this->OriginX = this->Engine->Actors.Actors[this->XActor]->X;
         }
         if (this->YActor != 0)
         {
-            this->Y = this->Engine->Actors.Actors[this->YActor]->Y;
+            this->OriginY = this->Engine->Actors.Actors[this->YActor]->Y;
         }
 
         return 0;
@@ -247,8 +247,8 @@ namespace wze
             cache = this->Zoom * Layer;
             result.w = floor(Width * cache);
             result.h = floor(Height * cache);
-            result.x = (sint32)floor((X - (this->X + this->OffsetX / cache)) * cache) - (result.w >> 1);
-            result.y = -((sint32)floor((Y - (this->Y + this->OffsetY / cache)) * cache) - this->Engine->Render.RenderHeight) - (result.h >> 1);
+            result.x = (sint32)floor((X - (this->OriginX + this->OffsetX / cache)) * cache) - (result.w >> 1);
+            result.y = -((sint32)floor((Y - (this->OriginY + this->OffsetY / cache)) * cache) - this->Engine->Render.RenderHeight) - (result.h >> 1);
         }
 
         return result;

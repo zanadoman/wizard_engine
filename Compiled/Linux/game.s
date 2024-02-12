@@ -260,11 +260,11 @@ _ZN4game12SwitchScenesE5scene:
 	movq	(%rbx), %rax
 	pxor	%xmm0, %xmm0
 	leaq	80(%rax), %rdi
-	call	_ZN3wze6engine6camera4SetXEd@PLT
+	call	_ZN3wze6engine6camera10SetOriginXEd@PLT
 	movq	(%rbx), %rax
 	pxor	%xmm0, %xmm0
 	leaq	80(%rax), %rdi
-	call	_ZN3wze6engine6camera4SetYEd@PLT
+	call	_ZN3wze6engine6camera10SetOriginYEd@PLT
 	movq	(%rbx), %rax
 	pxor	%xmm0, %xmm0
 	leaq	80(%rax), %rdi

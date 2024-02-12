@@ -237,11 +237,11 @@ _ZN4game12SwitchScenesE5scene:
 	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
 	leaq	80(%rax), %rcx
-	call	_ZN3wze6engine6camera4SetXEd
+	call	_ZN3wze6engine6camera10SetOriginXEd
 	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
 	leaq	80(%rax), %rcx
-	call	_ZN3wze6engine6camera4SetYEd
+	call	_ZN3wze6engine6camera10SetOriginYEd
 	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
 	leaq	80(%rax), %rcx
@@ -512,8 +512,8 @@ _ZN4game6UpdateEv:
 	.def	_ZN8infiniteD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_ZN6normalD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera4SetXEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6camera4SetYEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6camera10SetOriginXEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6camera10SetOriginYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera10SetOffsetXEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera10SetOffsetYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN8infiniteC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef

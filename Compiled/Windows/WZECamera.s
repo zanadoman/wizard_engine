@@ -57,10 +57,10 @@ _ZN3wze6engine6cameraC2EPS0_:
 	.set	_ZN3wze6engine6cameraC1EPS0_,_ZN3wze6engine6cameraC2EPS0_
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6camera4GetXEv
-	.def	_ZN3wze6engine6camera4GetXEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6camera4GetXEv
-_ZN3wze6engine6camera4GetXEv:
+	.globl	_ZN3wze6engine6camera10GetOriginXEv
+	.def	_ZN3wze6engine6camera10GetOriginXEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6camera10GetOriginXEv
+_ZN3wze6engine6camera10GetOriginXEv:
 .LFB8433:
 	.seh_endprologue
 	movsd	8(%rcx), %xmm0
@@ -69,17 +69,17 @@ _ZN3wze6engine6camera4GetXEv:
 	.section .rdata,"dr"
 	.align 8
 .LC3:
-	.ascii "wze::engine.camera.SetX(): X must not be NaN\12Params: X: %lf\12\0"
+	.ascii "wze::engine.camera.SetOriginX(): OriginX must not be NaN\12Params: OriginX: %lf\12\0"
 	.align 8
 .LC4:
 	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6camera4SetXEd
-	.def	_ZN3wze6engine6camera4SetXEd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6camera4SetXEd
-_ZN3wze6engine6camera4SetXEd:
+	.globl	_ZN3wze6engine6camera10SetOriginXEd
+	.def	_ZN3wze6engine6camera10SetOriginXEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6camera10SetOriginXEd
+_ZN3wze6engine6camera10SetOriginXEd:
 .LFB8434:
 	subq	$40, %rsp
 	.seh_stackalloc	40
@@ -124,10 +124,10 @@ _ZN3wze6engine6camera4SetXEd:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6camera4GetYEv
-	.def	_ZN3wze6engine6camera4GetYEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6camera4GetYEv
-_ZN3wze6engine6camera4GetYEv:
+	.globl	_ZN3wze6engine6camera10GetOriginYEv
+	.def	_ZN3wze6engine6camera10GetOriginYEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6camera10GetOriginYEv
+_ZN3wze6engine6camera10GetOriginYEv:
 .LFB8435:
 	.seh_endprologue
 	movsd	16(%rcx), %xmm0
@@ -136,14 +136,14 @@ _ZN3wze6engine6camera4GetYEv:
 	.section .rdata,"dr"
 	.align 8
 .LC5:
-	.ascii "wze::engine.camera.SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
+	.ascii "wze::engine.camera.SetOriginY(): OriginY must not be NaN\12Params: OriginY: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6camera4SetYEd
-	.def	_ZN3wze6engine6camera4SetYEd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6camera4SetYEd
-_ZN3wze6engine6camera4SetYEd:
+	.globl	_ZN3wze6engine6camera10SetOriginYEd
+	.def	_ZN3wze6engine6camera10SetOriginYEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6camera10SetOriginYEd
+_ZN3wze6engine6camera10SetOriginYEd:
 .LFB8436:
 	subq	$40, %rsp
 	.seh_stackalloc	40
@@ -342,40 +342,40 @@ _ZN3wze6engine6camera4BindEy:
 	.seh_endprologue
 	movq	%rdx, %rax
 	testq	%rdx, %rdx
-	je	.L66
+	je	.L63
 	movq	(%rcx), %rdx
 	cmpq	264(%rdx), %rax
-	jnb	.L61
+	jnb	.L60
 	movq	272(%rdx), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L61
+	je	.L60
 	pxor	%xmm0, %xmm0
 	ucomisd	272(%rdx), %xmm0
-	jp	.L63
-	je	.L67
-.L63:
-	movq	%rax, %xmm0
-	punpcklqdq	%xmm0, %xmm0
-	movups	%xmm0, 64(%rcx)
+	movq	%rax, %rdx
+	jp	.L59
+	je	.L66
+.L59:
+	movq	%rdx, 64(%rcx)
+	movq	%rdx, 72(%rcx)
 	addq	$40, %rsp
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L66:
-	pxor	%xmm0, %xmm0
-	movups	%xmm0, 8(%rcx)
+.L63:
+	xorl	%edx, %edx
+	movq	%rdx, 64(%rcx)
+	movq	%rdx, 72(%rcx)
 	addq	$40, %rsp
 	ret
-.L61:
+.L60:
 	leaq	.LC11(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L67:
+.L66:
 	leaq	.LC12(%rip), %rcx
-	movq	%rax, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -401,32 +401,32 @@ _ZN3wze6engine6camera5BindXEy:
 	.seh_endprologue
 	movq	%rdx, %rax
 	testq	%rdx, %rdx
-	je	.L73
+	je	.L72
 	movq	(%rcx), %rdx
 	cmpq	264(%rdx), %rax
-	jnb	.L70
+	jnb	.L69
 	movq	272(%rdx), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L70
+	je	.L69
 	pxor	%xmm0, %xmm0
 	ucomisd	272(%rdx), %xmm0
 	movq	%rax, %rdx
-	jp	.L69
-	jne	.L69
+	jp	.L68
+	jne	.L68
 	leaq	.LC14(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L73:
+.L72:
 	xorl	%edx, %edx
-.L69:
+.L68:
 	movq	%rdx, 64(%rcx)
 	addq	$40, %rsp
 	ret
-.L70:
+.L69:
 	leaq	.LC13(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
@@ -454,32 +454,32 @@ _ZN3wze6engine6camera5BindYEy:
 	.seh_endprologue
 	movq	%rdx, %rax
 	testq	%rdx, %rdx
-	je	.L81
+	je	.L80
 	movq	(%rcx), %rdx
 	cmpq	264(%rdx), %rax
-	jnb	.L78
+	jnb	.L77
 	movq	272(%rdx), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L78
+	je	.L77
 	pxor	%xmm0, %xmm0
 	ucomisd	272(%rdx), %xmm0
 	movq	%rax, %rdx
-	jp	.L77
-	jne	.L77
+	jp	.L76
+	jne	.L76
 	leaq	.LC16(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L81:
+.L80:
 	xorl	%edx, %edx
-.L77:
+.L76:
 	movq	%rdx, 72(%rcx)
 	addq	$40, %rsp
 	ret
-.L78:
+.L77:
 	leaq	.LC15(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
@@ -558,39 +558,39 @@ _ZN3wze6engine6camera6UpdateEv:
 	.seh_endprologue
 	movq	64(%rcx), %rdx
 	testq	%rdx, %rdx
-	jne	.L101
+	jne	.L100
 	movq	72(%rcx), %rdx
 	testq	%rdx, %rdx
-	jne	.L102
-.L92:
+	jne	.L101
+.L91:
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L101:
+.L100:
 	movq	(%rcx), %rax
 	movq	272(%rax), %r8
 	cmpq	264(%rax), %rdx
-	jnb	.L100
+	jnb	.L99
 	movq	(%r8,%rdx,8), %rax
 	movq	72(%rcx), %rdx
 	movsd	224(%rax), %xmm0
 	movsd	%xmm0, 8(%rcx)
 	testq	%rdx, %rdx
-	je	.L92
-.L102:
+	je	.L91
+.L101:
 	movq	(%rcx), %rax
 	movq	272(%rax), %r8
 	cmpq	264(%rax), %rdx
-	jnb	.L100
+	jnb	.L99
 	movq	(%r8,%rdx,8), %rax
 	movsd	232(%rax), %xmm0
 	xorl	%eax, %eax
 	movsd	%xmm0, 16(%rcx)
 	addq	$40, %rsp
 	ret
-.L100:
+.L99:
 	leaq	.LC4(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -636,8 +636,8 @@ _ZN3wze6engine6camera9TransformEddttd:
 	movapd	%xmm2, %xmm8
 	movapd	%xmm3, %xmm6
 	movq	%rdx, %rsi
-	jp	.L104
-	jne	.L104
+	jp	.L103
+	jne	.L103
 	movapd	%xmm2, %xmm0
 	movl	%ebp, 8(%rcx)
 	sarl	%ebp
@@ -652,7 +652,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	cvttsd2sil	%xmm0, %eax
 	subl	%eax, %edi
 	subl	%r12d, %edi
-.L106:
+.L105:
 	movl	%edi, 4(%rbx)
 	movaps	32(%rsp), %xmm6
 	movq	%rbx, %rax
@@ -668,7 +668,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L104:
+.L103:
 	mulsd	56(%rsi), %xmm7
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%ebp, %xmm0
@@ -706,7 +706,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	movl	%ebp, %eax
 	sarl	%eax
 	subl	%eax, %edi
-	jmp	.L106
+	jmp	.L105
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8

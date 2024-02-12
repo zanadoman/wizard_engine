@@ -128,10 +128,10 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    double GetX();
-                    double SetX(double X);
-                    double GetY();
-                    double SetY(double Y);
+                    double GetOriginX();
+                    double SetOriginX(double OriginX);
+                    double GetOriginY();
+                    double SetOriginY(double OriginY);
                     double GetOffsetX();
                     double SetOffsetX(double OffsetX);
                     double GetOffsetY();
@@ -148,8 +148,8 @@ namespace wze
                     neo::uint64 GetYActor();
 
                 private:
-                    double X;
-                    double Y;
+                    double OriginX;
+                    double OriginY;
                     double BaseOffsetX;
                     double OffsetX;
                     double BaseOffsetY;
