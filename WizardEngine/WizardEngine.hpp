@@ -809,7 +809,7 @@ namespace wze
             ~engine();
             bool Update();
             neo::uint8 Sleep(neo::uint32 Milliseconds);
-            template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Clamp(type Value, type Min, type Max);
+            template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Clamp(type Value, type Limit1, type Limit2);
             neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
 
         private:
@@ -823,21 +823,29 @@ namespace wze
 
     //__________Engine_________________________________________________________________________________________
 
-    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::Clamp(type Value, type Min, type Max)
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::Clamp(type Value, type Limit1, type Limit2)
     {
-        if (Max < Min)
+        if (Limit1 < Limit2)
         {
-            printf("wze::engine::Clamp(): Max must not be less than Min\nParams: Value: %lf, Min: %lf, Max: %lf\n", Value, Min, Max);
-            exit(1);
+            if (Value < Limit1)
+            {
+                return Limit1;
+            }
+            else if (Limit2 < Value)
+            {
+                return Limit2;
+            }
         }
-
-        if (Value < Min)
+        else if (Limit2 < Limit1)
         {
-            return Min;
-        }
-        if (Max < Value)
-        {
-            return Max;
+            if (Value < Limit2)
+            {
+                return Limit2;
+            }
+            else if (Limit1 < Value)
+            {
+                return Limit1;
+            }
         }
 
         return Value;
