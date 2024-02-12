@@ -9,8 +9,8 @@ Test/supervising sequence:
         Window OK OK
         Timing OK OK
         Keys OK OK
-        Mouse OK
-        Audio OK
+        Mouse OK OK
+        Audio OK OK
     Slightly nested:
         Render OK
         Camera OK
