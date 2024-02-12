@@ -168,66 +168,6 @@ namespace wze
         return 0;
     }
 
-    uint64 engine::Clamp(uint64 Value, uint64 Min, uint64 Max)
-    {
-        if (Max < Min)
-        {
-            printf("wze::engine.Clamp(): Max must not be less than Min\nParams: Value: %lld, Min: %lld, Max: %lld\n", Value, Min, Max);
-            exit(1);
-        }
-
-        if (Value < Min)
-        {
-            return Min;
-        }
-        if (Max < Value)
-        {
-            return Max;
-        }
-
-        return Value;
-    }
-
-    sint64 engine::Clamp(sint64 Value, sint64 Min, sint64 Max)
-    {
-        if (Max < Min)
-        {
-            printf("wze::engine.Clamp(): Max must not be less than Min\nParams: Value: %lld, Min: %lld, Max: %lld\n", Value, Min, Max);
-            exit(1);
-        }
-
-        if (Value < Min)
-        {
-            return Min;
-        }
-        if (Max < Value)
-        {
-            return Max;
-        }
-
-        return Value;
-    }
-
-    double engine::Clamp(double Value, double Min, double Max)
-    {
-        if (Max < Min)
-        {
-            printf("wze::engine.Clamp(): Max must not be less than Min\nParams: Value: %lf, Min: %lf, Max: %lf\n", Value, Min, Max);
-            exit(1);
-        }
-
-        if (Value < Min)
-        {
-            return Min;
-        }
-        if (Max < Value)
-        {
-            return Max;
-        }
-
-        return Value;
-    }
-
     sint32 engine::Random(sint32 Min, sint32 Max)
     {
         return rand() % (Max - Min) + Min;

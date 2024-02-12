@@ -10,10 +10,10 @@
 	.globl	_ZN8infiniteC2EPN3wze6engineEP4game
 	.type	_ZN8infiniteC2EPN3wze6engineEP4game, @function
 _ZN8infiniteC2EPN3wze6engineEP4game:
-.LFB8156:
+.LFB8157:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8156
+	.cfi_lsda 0x1b,.LLSDA8157
 	pushq	%r14
 	.cfi_def_cfa_offset 16
 	.cfi_offset 14, -16
@@ -85,34 +85,34 @@ _ZN8infiniteC2EPN3wze6engineEP4game:
 	jmp	.L2
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8156:
+.LLSDA8157:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8156-.LLSDACSB8156
-.LLSDACSB8156:
-	.uleb128 .LEHB0-.LFB8156
+	.uleb128 .LLSDACSE8157-.LLSDACSB8157
+.LLSDACSB8157:
+	.uleb128 .LEHB0-.LFB8157
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8156
+	.uleb128 .LEHB1-.LFB8157
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L4-.LFB8156
+	.uleb128 .L4-.LFB8157
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8156
+	.uleb128 .LEHB2-.LFB8157
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L5-.LFB8156
+	.uleb128 .L5-.LFB8157
 	.uleb128 0
-.LLSDACSE8156:
+.LLSDACSE8157:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8156
+	.cfi_lsda 0x1b,.LLSDAC8157
 	.type	_ZN8infiniteC2EPN3wze6engineEP4game.cold, @function
 _ZN8infiniteC2EPN3wze6engineEP4game.cold:
-.LFSB8156:
+.LFSB8157:
 .L2:
 	.cfi_def_cfa_offset 48
 	.cfi_offset 3, -48
@@ -130,19 +130,19 @@ _ZN8infiniteC2EPN3wze6engineEP4game.cold:
 	call	_Unwind_Resume@PLT
 .LEHE3:
 	.cfi_endproc
-.LFE8156:
+.LFE8157:
 	.section	.gcc_except_table
-.LLSDAC8156:
+.LLSDAC8157:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8156-.LLSDACSBC8156
-.LLSDACSBC8156:
+	.uleb128 .LLSDACSEC8157-.LLSDACSBC8157
+.LLSDACSBC8157:
 	.uleb128 .LEHB3-.LCOLDB2
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8156:
+.LLSDACSEC8157:
 	.section	.text.unlikely
 	.text
 	.size	_ZN8infiniteC2EPN3wze6engineEP4game, .-_ZN8infiniteC2EPN3wze6engineEP4game
@@ -158,7 +158,7 @@ _ZN8infiniteC2EPN3wze6engineEP4game.cold:
 	.globl	_ZN8infiniteD2Ev
 	.type	_ZN8infiniteD2Ev, @function
 _ZN8infiniteD2Ev:
-.LFB8159:
+.LFB8160:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -171,7 +171,7 @@ _ZN8infiniteD2Ev:
 	.cfi_def_cfa_offset 8
 	jmp	_ZN5pauseD1Ev@PLT
 	.cfi_endproc
-.LFE8159:
+.LFE8160:
 	.size	_ZN8infiniteD2Ev, .-_ZN8infiniteD2Ev
 	.globl	_ZN8infiniteD1Ev
 	.set	_ZN8infiniteD1Ev,_ZN8infiniteD2Ev
@@ -180,7 +180,7 @@ _ZN8infiniteD2Ev:
 	.globl	_ZN8infinite6UpdateEv
 	.type	_ZN8infinite6UpdateEv, @function
 _ZN8infinite6UpdateEv:
-.LFB8161:
+.LFB8162:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -198,7 +198,7 @@ _ZN8infinite6UpdateEv:
 	addl	%eax, %eax
 	ret
 	.cfi_endproc
-.LFE8161:
+.LFE8162:
 	.size	_ZN8infinite6UpdateEv, .-_ZN8infinite6UpdateEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

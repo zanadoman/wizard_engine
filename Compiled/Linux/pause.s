@@ -11,7 +11,7 @@
 	.globl	_ZN5pauseC2EPN3wze6engineEP4game
 	.type	_ZN5pauseC2EPN3wze6engineEP4game, @function
 _ZN5pauseC2EPN3wze6engineEP4game:
-.LFB8156:
+.LFB8157:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -171,7 +171,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd@PLT
 	.cfi_endproc
-.LFE8156:
+.LFE8157:
 	.size	_ZN5pauseC2EPN3wze6engineEP4game, .-_ZN5pauseC2EPN3wze6engineEP4game
 	.globl	_ZN5pauseC1EPN3wze6engineEP4game
 	.set	_ZN5pauseC1EPN3wze6engineEP4game,_ZN5pauseC2EPN3wze6engineEP4game
@@ -180,10 +180,10 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	.globl	_ZN5pauseD2Ev
 	.type	_ZN5pauseD2Ev, @function
 _ZN5pauseD2Ev:
-.LFB8159:
+.LFB8160:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8159
+	.cfi_lsda 0x1b,.LLSDA8160
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -198,16 +198,16 @@ _ZN5pauseD2Ev:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8159:
+.LFE8160:
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8159:
+.LLSDA8160:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8159-.LLSDACSB8159
-.LLSDACSB8159:
-.LLSDACSE8159:
+	.uleb128 .LLSDACSE8160-.LLSDACSB8160
+.LLSDACSB8160:
+.LLSDACSE8160:
 	.text
 	.size	_ZN5pauseD2Ev, .-_ZN5pauseD2Ev
 	.globl	_ZN5pauseD1Ev
@@ -217,7 +217,7 @@ _ZN5pauseD2Ev:
 	.globl	_ZN5pause6UpdateEv
 	.type	_ZN5pause6UpdateEv, @function
 _ZN5pause6UpdateEv:
-.LFB8161:
+.LFB8162:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -303,7 +303,7 @@ _ZN5pause6UpdateEv:
 	movw	%dx, 20(%rax)
 	jmp	.L9
 	.cfi_endproc
-.LFE8161:
+.LFE8162:
 	.size	_ZN5pause6UpdateEv, .-_ZN5pause6UpdateEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

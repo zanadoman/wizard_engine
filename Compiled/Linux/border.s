@@ -5,7 +5,7 @@
 	.globl	_ZN6borderC2EPN3wze6engineEP4gameddttdh
 	.type	_ZN6borderC2EPN3wze6engineEP4gameddttdh, @function
 _ZN6borderC2EPN3wze6engineEP4gameddttdh:
-.LFB8156:
+.LFB8157:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -64,7 +64,7 @@ _ZN6borderC2EPN3wze6engineEP4gameddttdh:
 	movzwl	%si, %esi
 	jmp	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt@PLT
 	.cfi_endproc
-.LFE8156:
+.LFE8157:
 	.size	_ZN6borderC2EPN3wze6engineEP4gameddttdh, .-_ZN6borderC2EPN3wze6engineEP4gameddttdh
 	.globl	_ZN6borderC1EPN3wze6engineEP4gameddttdh
 	.set	_ZN6borderC1EPN3wze6engineEP4gameddttdh,_ZN6borderC2EPN3wze6engineEP4gameddttdh
@@ -73,10 +73,10 @@ _ZN6borderC2EPN3wze6engineEP4gameddttdh:
 	.globl	_ZN6borderD2Ev
 	.type	_ZN6borderD2Ev, @function
 _ZN6borderD2Ev:
-.LFB8159:
+.LFB8160:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8159
+	.cfi_lsda 0x1b,.LLSDA8160
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -91,16 +91,16 @@ _ZN6borderD2Ev:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8159:
+.LFE8160:
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8159:
+.LLSDA8160:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8159-.LLSDACSB8159
-.LLSDACSB8159:
-.LLSDACSE8159:
+	.uleb128 .LLSDACSE8160-.LLSDACSB8160
+.LLSDACSB8160:
+.LLSDACSE8160:
 	.text
 	.size	_ZN6borderD2Ev, .-_ZN6borderD2Ev
 	.globl	_ZN6borderD1Ev

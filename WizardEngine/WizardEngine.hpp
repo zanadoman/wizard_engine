@@ -809,9 +809,7 @@ namespace wze
             ~engine();
             bool Update();
             neo::uint8 Sleep(neo::uint32 Milliseconds);
-            static neo::uint64 Clamp(neo::uint64 Value, neo::uint64 Min, neo::uint64 Max);
-            static neo::sint64 Clamp(neo::sint64 Value, neo::sint64 Min, neo::sint64 Max);
-            static double Clamp(double Value, double Min, double Max);
+            template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Clamp(type Value, type Min, type Max);
             neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
 
         private:
@@ -822,4 +820,24 @@ namespace wze
             neo::uint8 UpdateFlipbooks();
             neo::uint8 UpdateOverlapboxes();
     };
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::Clamp(type Value, type Min, type Max)
+    {
+        if (Max < Min)
+        {
+            printf("wze::engine::Clamp(): Max must not be less than Min\nParams: Value: %lf, Min: %lf, Max: %lf\n", Value, Min, Max);
+            exit(1);
+        }
+
+        if (Value < Min)
+        {
+            return Min;
+        }
+        if (Max < Value)
+        {
+            return Max;
+        }
+
+        return Value;
+    }
 }

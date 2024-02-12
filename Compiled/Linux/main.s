@@ -8,10 +8,10 @@
 	.globl	main
 	.type	main, @function
 main:
-.LFB8155:
+.LFB8156:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8155
+	.cfi_lsda 0x1b,.LLSDA8156
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -85,42 +85,42 @@ main:
 	jmp	.L5
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8155:
+.LLSDA8156:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8155-.LLSDACSB8155
-.LLSDACSB8155:
-	.uleb128 .LEHB0-.LFB8155
+	.uleb128 .LLSDACSE8156-.LLSDACSB8156
+.LLSDACSB8156:
+	.uleb128 .LEHB0-.LFB8156
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8155
+	.uleb128 .LEHB1-.LFB8156
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L6-.LFB8155
+	.uleb128 .L6-.LFB8156
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8155
+	.uleb128 .LEHB2-.LFB8156
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8155
+	.uleb128 .LEHB3-.LFB8156
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L7-.LFB8155
+	.uleb128 .L7-.LFB8156
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8155
+	.uleb128 .LEHB4-.LFB8156
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8155:
+.LLSDACSE8156:
 	.section	.text.startup
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8155
+	.cfi_lsda 0x1b,.LLSDAC8156
 	.type	main.cold, @function
 main.cold:
-.LFSB8155:
+.LFSB8156:
 .L4:
 	.cfi_def_cfa_offset 32
 	.cfi_offset 3, -24
@@ -139,19 +139,19 @@ main.cold:
 	call	_Unwind_Resume@PLT
 .LEHE5:
 	.cfi_endproc
-.LFE8155:
+.LFE8156:
 	.section	.gcc_except_table
-.LLSDAC8155:
+.LLSDAC8156:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8155-.LLSDACSBC8155
-.LLSDACSBC8155:
+	.uleb128 .LLSDACSEC8156-.LLSDACSBC8156
+.LLSDACSBC8156:
 	.uleb128 .LEHB5-.LCOLDB0
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8155:
+.LLSDACSEC8156:
 	.section	.text.unlikely
 	.section	.text.startup
 	.size	main, .-main
