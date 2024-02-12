@@ -14,8 +14,9 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
         new platform(this->Engine, this->Game, 250, 725, 200, 50, 1, 1)
     };
 
-    this->LeftBorder = new border(this->Engine, this->Game, -755, 0, 10, 65535, 1, 1);
-    this->RightBorder = new border(this->Engine, this->Game, 755, 0, 10, 65535, 1, 1);
+    this->LeftBorder = new border(this->Engine, this->Game, -755, 0, 10, 2000, 1, 1);
+    this->RightBorder = new border(this->Engine, this->Game, 755, 0, 10, 2000, 1, 1);
+    this->TopBorder = new border(this->Engine, this->Game, 0, 1000, 1520, 10, 1, 1);
 
     this->Engine->Camera.Bind(this->Player->Actor->GetID());
     this->Engine->Camera.SetOffsetY(-400);
@@ -30,6 +31,7 @@ normal::~normal()
     delete this->Eagle;
     delete this->LeftBorder;
     delete this->RightBorder;
+    delete this->TopBorder;
     for (uint8 i = 0; i < this->Platforms.Length(); i++)
     {
         delete this->Platforms[i];

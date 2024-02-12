@@ -6,9 +6,9 @@
 	.string	"neo::array=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
-.LCOLDB18:
+.LCOLDB19:
 	.text
-.LHOTB18:
+.LHOTB19:
 	.align 2
 	.p2align 4
 	.globl	_ZN6normalC2EPN3wze6engineEP4game
@@ -190,7 +190,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movq	160(%rbx), %rdx
 	movq	%r13, 32(%rsp)
 	cmpq	$5, %rdx
-	jne	.L32
+	jne	.L34
 	movq	168(%rbx), %rsi
 .L4:
 	salq	$3, %rdx
@@ -208,7 +208,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movsd	.LC14(%rip), %xmm0
 	pxor	%xmm1, %xmm1
 	movq	%r13, %rdi
-	movl	$65535, %r8d
+	movl	$2000, %r8d
 	movl	$10, %ecx
 	movq	%rax, %xmm2
 .LEHB17:
@@ -227,45 +227,64 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movsd	.LC15(%rip), %xmm0
 	pxor	%xmm1, %xmm1
 	movq	%r13, %rdi
-	movl	$65535, %r8d
+	movl	$2000, %r8d
 	movl	$10, %ecx
 	movq	%rax, %xmm2
 .LEHB19:
 	call	_ZN6borderC1EPN3wze6engineEP4gameddttdh@PLT
 .LEHE19:
-	movq	(%rbx), %rax
 	movq	%r13, 184(%rbx)
+	movl	$32, %edi
+.LEHB20:
+	call	_Znwm@PLT
+.LEHE20:
+	movq	%rax, %r13
+	movq	8(%rbx), %rdx
+	movq	(%rbx), %rsi
+	movl	$1, %r9d
+	movq	.LC0(%rip), %rax
+	movsd	.LC16(%rip), %xmm1
+	pxor	%xmm0, %xmm0
+	movq	%r13, %rdi
+	movl	$10, %r8d
+	movl	$1520, %ecx
+	movq	%rax, %xmm2
+.LEHB21:
+	call	_ZN6borderC1EPN3wze6engineEP4gameddttdh@PLT
+.LEHE21:
+	movq	(%rbx), %rax
+	movq	%r13, 192(%rbx)
 	leaq	80(%rax), %r13
 	movq	144(%rbx), %rax
 	movq	16(%rax), %rdi
-.LEHB20:
+.LEHB22:
 	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
 	movq	%rax, %rsi
 	movq	%r13, %rdi
 	call	_ZN3wze6engine6camera4BindEy@PLT
 	movq	(%rbx), %rax
-	movsd	.LC16(%rip), %xmm0
+	movsd	.LC17(%rip), %xmm0
 	leaq	80(%rax), %rdi
 	call	_ZN3wze6engine6camera10SetOffsetYEd@PLT
 	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
 	movl	$16200, %r8d
 	xorl	%edx, %edx
-	movsd	.LC17(%rip), %xmm2
+	movsd	.LC18(%rip), %xmm2
 	movl	$28800, %ecx
 	movapd	%xmm1, %xmm0
 	xorl	%esi, %esi
 	leaq	240(%rax), %rdi
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	8(%rbx), %rdx
-	movq	%rax, 192(%rbx)
+	movq	%rax, 200(%rbx)
 	leaq	40(%rax), %rdi
 	movzwl	18(%rdx), %esi
 	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
-	movq	%rax, 200(%rbx)
+	movq	%rax, 208(%rbx)
 	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L33
+	jne	.L35
 	addq	$48, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 48
@@ -282,7 +301,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L32:
+.L34:
 	.cfi_restore_state
 	movq	$5, 160(%rbx)
 	movq	168(%rbx), %rdi
@@ -294,7 +313,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	je	.L3
 	movq	160(%rbx), %rdx
 	jmp	.L4
-.L33:
+.L35:
 	call	__stack_chk_fail@PLT
 .L3:
 	movl	$5, %edx
@@ -302,25 +321,25 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	leaq	.LC13(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
-.LEHE20:
+.LEHE22:
 	movl	$1, %edi
 	call	exit@PLT
-.L18:
-	movq	%rax, %r13
+.L29:
+	movq	%rax, %r14
 	jmp	.L15
-.L20:
+.L19:
+	movq	%rax, %r13
+	jmp	.L16
+.L21:
 	movq	%rax, %r14
 	jmp	.L5
-.L19:
-	movq	%rax, %r14
-	jmp	.L6
 .L27:
 	movq	%rax, %r14
-	jmp	.L14
+	jmp	.L15
 .L26:
 	movq	%rax, %r14
-	jmp	.L14
-.L28:
+	jmp	.L12
+.L23:
 	movq	%rax, %r14
 	jmp	.L12
 .L25:
@@ -329,15 +348,18 @@ _ZN6normalC2EPN3wze6engineEP4game:
 .L24:
 	movq	%rax, %r14
 	jmp	.L12
-.L23:
+.L30:
 	movq	%rax, %r14
 	jmp	.L12
+.L28:
+	movq	%rax, %r14
+	jmp	.L15
 .L22:
 	movq	%rax, %r14
-	jmp	.L12
-.L21:
-	movq	%rax, %r14
 	jmp	.L7
+.L20:
+	movq	%rax, %r14
+	jmp	.L6
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
 .LLSDA8156:
@@ -352,83 +374,91 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	.uleb128 0
 	.uleb128 .LEHB1-.LFB8156
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L18-.LFB8156
+	.uleb128 .L19-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB2-.LFB8156
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB3-.LFB8156
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L20-.LFB8156
+	.uleb128 .L21-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB4-.LFB8156
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB5-.LFB8156
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L21-.LFB8156
+	.uleb128 .L22-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB6-.LFB8156
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB7-.LFB8156
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L22-.LFB8156
+	.uleb128 .L23-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB8-.LFB8156
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB9-.LFB8156
 	.uleb128 .LEHE9-.LEHB9
-	.uleb128 .L23-.LFB8156
+	.uleb128 .L24-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB10-.LFB8156
 	.uleb128 .LEHE10-.LEHB10
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB11-.LFB8156
 	.uleb128 .LEHE11-.LEHB11
-	.uleb128 .L24-.LFB8156
+	.uleb128 .L25-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB12-.LFB8156
 	.uleb128 .LEHE12-.LEHB12
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB13-.LFB8156
 	.uleb128 .LEHE13-.LEHB13
-	.uleb128 .L25-.LFB8156
+	.uleb128 .L26-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB14-.LFB8156
 	.uleb128 .LEHE14-.LEHB14
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB15-.LFB8156
 	.uleb128 .LEHE15-.LEHB15
-	.uleb128 .L28-.LFB8156
+	.uleb128 .L30-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB16-.LFB8156
 	.uleb128 .LEHE16-.LEHB16
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB17-.LFB8156
 	.uleb128 .LEHE17-.LEHB17
-	.uleb128 .L26-.LFB8156
+	.uleb128 .L27-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB18-.LFB8156
 	.uleb128 .LEHE18-.LEHB18
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB19-.LFB8156
 	.uleb128 .LEHE19-.LEHB19
-	.uleb128 .L27-.LFB8156
+	.uleb128 .L28-.LFB8156
 	.uleb128 0
 	.uleb128 .LEHB20-.LFB8156
 	.uleb128 .LEHE20-.LEHB20
-	.uleb128 .L19-.LFB8156
+	.uleb128 .L20-.LFB8156
+	.uleb128 0
+	.uleb128 .LEHB21-.LFB8156
+	.uleb128 .LEHE21-.LEHB21
+	.uleb128 .L29-.LFB8156
+	.uleb128 0
+	.uleb128 .LEHB22-.LFB8156
+	.uleb128 .LEHE22-.LEHB22
+	.uleb128 .L20-.LFB8156
 	.uleb128 0
 .LLSDACSE8156:
 	.text
@@ -440,14 +470,14 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	.type	_ZN6normalC2EPN3wze6engineEP4game.cold, @function
 _ZN6normalC2EPN3wze6engineEP4game.cold:
 .LFSB8156:
-.L5:
+.L15:
 	.cfi_def_cfa_offset 96
 	.cfi_offset 3, -48
 	.cfi_offset 6, -40
 	.cfi_offset 12, -32
 	.cfi_offset 13, -24
 	.cfi_offset 14, -16
-	movl	$120, %esi
+	movl	$32, %esi
 	movq	%r13, %rdi
 	call	_ZdlPvm@PLT
 .L6:
@@ -456,23 +486,23 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 	call	free@PLT
 	movq	%r12, %rdi
 	call	_ZN5statsD1Ev@PLT
-.L15:
+.L16:
 	movq	%rbp, %rdi
 	call	_ZN5pauseD1Ev@PLT
 	movq	40(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L34
+	jne	.L36
 	movq	%r13, %rdi
-.LEHB21:
+.LEHB23:
 	call	_Unwind_Resume@PLT
-.LEHE21:
-.L34:
-	call	__stack_chk_fail@PLT
-.L14:
-	movl	$32, %esi
+.LEHE23:
+.L5:
+	movl	$120, %esi
 	movq	%r13, %rdi
 	call	_ZdlPvm@PLT
 	jmp	.L6
+.L36:
+	call	__stack_chk_fail@PLT
 .L12:
 	movl	$40, %esi
 	movq	%r13, %rdi
@@ -492,8 +522,8 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8156-.LLSDACSBC8156
 .LLSDACSBC8156:
-	.uleb128 .LEHB21-.LCOLDB18
-	.uleb128 .LEHE21-.LEHB21
+	.uleb128 .LEHB23-.LCOLDB19
+	.uleb128 .LEHE23-.LEHB23
 	.uleb128 0
 	.uleb128 0
 .LLSDACSEC8156:
@@ -502,9 +532,9 @@ _ZN6normalC2EPN3wze6engineEP4game.cold:
 	.size	_ZN6normalC2EPN3wze6engineEP4game, .-_ZN6normalC2EPN3wze6engineEP4game
 	.section	.text.unlikely
 	.size	_ZN6normalC2EPN3wze6engineEP4game.cold, .-_ZN6normalC2EPN3wze6engineEP4game.cold
-.LCOLDE18:
+.LCOLDE19:
 	.text
-.LHOTE18:
+.LHOTE19:
 	.globl	_ZN6normalC1EPN3wze6engineEP4game
 	.set	_ZN6normalC1EPN3wze6engineEP4game,_ZN6normalC2EPN3wze6engineEP4game
 	.align 2
@@ -526,52 +556,61 @@ _ZN6normalD2Ev:
 	.cfi_offset 3, -32
 	movq	144(%rdi), %rbx
 	testq	%rbx, %rbx
-	je	.L36
+	je	.L38
 	movq	%rbx, %rdi
 	call	_ZN6playerD1Ev@PLT
 	movl	$120, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
-.L36:
+.L38:
 	movq	152(%r12), %rbx
 	testq	%rbx, %rbx
-	je	.L37
+	je	.L39
 	movq	%rbx, %rdi
 	call	_ZN5eagleD1Ev@PLT
 	movl	$112, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
-.L37:
+.L39:
 	movq	176(%r12), %rbx
 	testq	%rbx, %rbx
-	je	.L38
+	je	.L40
 	movq	%rbx, %rdi
 	call	_ZN6borderD1Ev@PLT
 	movl	$32, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
-.L38:
+.L40:
 	movq	184(%r12), %rbx
 	testq	%rbx, %rbx
-	je	.L39
+	je	.L41
 	movq	%rbx, %rdi
 	call	_ZN6borderD1Ev@PLT
 	movl	$32, %esi
 	movq	%rbx, %rdi
 	call	_ZdlPvm@PLT
-.L39:
+.L41:
+	movq	192(%r12), %rbx
+	testq	%rbx, %rbx
+	je	.L42
+	movq	%rbx, %rdi
+	call	_ZN6borderD1Ev@PLT
+	movl	$32, %esi
+	movq	%rbx, %rdi
+	call	_ZdlPvm@PLT
+.L42:
 	movq	160(%r12), %rdx
 	movq	168(%r12), %rdi
 	testq	%rdx, %rdx
-	je	.L40
+	je	.L43
 	xorl	%ebx, %ebx
 	xorl	%eax, %eax
 	.p2align 4,,10
 	.p2align 3
-.L43:
+.L46:
 	movq	(%rdi,%rax,8), %rbp
 	testq	%rbp, %rbp
-	je	.L41
+	je	.L44
 	movq	%rbp, %rdi
 	addl	$1, %ebx
 	call	_ZN8platformD1Ev@PLT
@@ -582,8 +621,8 @@ _ZN6normalD2Ev:
 	movzbl	%bl, %eax
 	movq	168(%r12), %rdi
 	cmpq	%rdx, %rax
-	jb	.L43
-.L40:
+	jb	.L46
+.L43:
 	call	free@PLT
 	leaq	96(%r12), %rdi
 	call	_ZN5statsD1Ev@PLT
@@ -598,13 +637,13 @@ _ZN6normalD2Ev:
 	jmp	_ZN5pauseD1Ev@PLT
 	.p2align 4,,10
 	.p2align 3
-.L41:
+.L44:
 	.cfi_restore_state
 	addl	$1, %ebx
 	movzbl	%bl, %eax
 	cmpq	%rdx, %rax
-	jb	.L43
-	jmp	.L40
+	jb	.L46
+	jmp	.L43
 	.cfi_endproc
 .LFE8159:
 	.size	_ZN6normalD2Ev, .-_ZN6normalD2Ev
@@ -629,7 +668,7 @@ _ZN6normal6UpdateEv:
 	setne	%dl
 	movzbl	%dl, %edx
 	testl	%eax, %eax
-	je	.L65
+	je	.L71
 	movl	%edx, %eax
 	popq	%rbx
 	.cfi_remember_state
@@ -637,7 +676,7 @@ _ZN6normal6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L65:
+.L71:
 	.cfi_restore_state
 	movq	144(%rbx), %rdi
 	call	_ZN6player6UpdateEv@PLT
@@ -711,9 +750,13 @@ _ZN6normal6UpdateEv:
 	.align 8
 .LC16:
 	.long	0
-	.long	-1065811968
+	.long	1083129856
 	.align 8
 .LC17:
+	.long	0
+	.long	-1065811968
+	.align 8
+.LC18:
 	.long	-1717986918
 	.long	1069128089
 	.hidden	DW.ref.__gxx_personality_v0

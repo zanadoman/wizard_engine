@@ -271,6 +271,7 @@ class normal
     array<platform*> Platforms;
     border* LeftBorder;
     border* RightBorder;
+    border* TopBorder;
     engine::actor Background;
     engine::texturebox BackgroundTexture;
     normal(engine* Engine, game* Game);
