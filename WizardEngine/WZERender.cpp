@@ -369,12 +369,12 @@ namespace wze
 
         if ((left = new token*[n1 = Middle - Left + 1]) == NULL)
         {
-            printf("wze::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
+            printf("wze::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %lld, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
         }
         if ((right = new token*[n2 = Right - Middle]) == NULL)
         {
-            printf("wze::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
+            printf("wze::engine.render.OrderByLayerMerge(): Memory allocation failed\nParams: Left: %lld, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
         }
 
@@ -454,12 +454,12 @@ namespace wze
 
         if ((left = new token*[n1 = Middle - Left + 1]) == NULL)
         {
-            printf("wze::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
+            printf("wze::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %lld, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
         }
         if ((right = new token*[n2 = Right - Middle]) == NULL)
         {
-            printf("wze::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %llu, Middle: %lld, Right: %lld", Left, Middle, Right);
+            printf("wze::engine.render.OrderByPriorityMerge(): Memory allocation failed\nParams: Left: %lld, Middle: %lld, Right: %lld", Left, Middle, Right);
             exit(1);
         }
 
@@ -599,12 +599,12 @@ namespace wze
     {
         if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, ((engine::actors::actor::colorboxes::colorbox*)Token->Data)->ColorR, ((engine::actors::actor::colorboxes::colorbox*)Token->Data)->ColorG, ((engine::actors::actor::colorboxes::colorbox*)Token->Data)->ColorB, ((engine::actors::actor::colorboxes::colorbox*)Token->Data)->ColorA) != 0)
         {
-            printf("wze::engine.render.RenderColorbox(): SDL_SetRenderDrawColor failed\n");
+            printf("wze::engine.render.RenderColorbox(): SDL_SetRenderDrawColor failed\nParams: %p\n", Token);
             exit(1);
         }
         if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token->Area) != 0)
         {
-            printf("wze::engine.render.RenderColorbox(): SDL_RenderFillRect failed\n");
+            printf("wze::engine.render.RenderColorbox(): SDL_RenderFillRect failed\nParams: %p\n", Token);
             exit(1);
         }
 
@@ -629,17 +629,17 @@ namespace wze
 
         if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::textureboxes::texturebox*)Token->Data)->TextureID], ((engine::actors::actor::textureboxes::texturebox*)Token->Data)->ColorR, ((engine::actors::actor::textureboxes::texturebox*)Token->Data)->ColorG, ((engine::actors::actor::textureboxes::texturebox*)Token->Data)->ColorB) != 0)
         {
-            printf("wze::engine.render.RenderTexturebox(): SDL_SetTextureColorMod failed\n");
+            printf("wze::engine.render.RenderTexturebox(): SDL_SetTextureColorMod failed\nParams: %p\n", Token);
             exit(1);
         }
         if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::textureboxes::texturebox*)Token->Data)->TextureID], ((engine::actors::actor::textureboxes::texturebox*)Token->Data)->ColorA) != 0)
         {
-            printf("wze::engine.render.RenderTexturebox(): SDL_SetTextureAlphaMod failed\n");
+            printf("wze::engine.render.RenderTexturebox(): SDL_SetTextureAlphaMod failed\nParams: %p\n", Token);
             exit(1);
         }
         if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::textureboxes::texturebox*)Token->Data)->TextureID], NULL, &Token->Area, -((engine::actors::actor::textureboxes::texturebox*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
-            printf("wze::engine.render.RenderTexturebox(): SDL_RenderCopyEx failed\n");
+            printf("wze::engine.render.RenderTexturebox(): SDL_RenderCopyEx failed\nParams: %p\n", Token);
             exit(1);
         }
 
@@ -664,17 +664,17 @@ namespace wze
 
         if (SDL_SetTextureColorMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->CurrentFrame]], ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorR, ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorG, ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorB) != 0)
         {
-            printf("wze::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\n");
+            printf("wze::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\nParams: %p\n", Token);
             exit(1);
         }
         if (SDL_SetTextureAlphaMod(this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->CurrentFrame]], ((engine::actors::actor::flipbooks::flipbook*)Token->Data)->ColorA) != 0)
         {
-            printf("wze::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\n");
+            printf("wze::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\nParams: %p\n", Token);
             exit(1);
         }
         if (SDL_RenderCopyEx(this->Engine->Window.Renderer, this->Engine->Assets.Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Textures[((engine::actors::actor::flipbooks::flipbook*)Token->Data)->CurrentFrame]], NULL, &Token->Area, -((engine::actors::actor::flipbooks::flipbook*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
-            printf("wze::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\n");
+            printf("wze::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\nParams: %p\n", Token);
             exit(1);
         }
 
@@ -699,17 +699,17 @@ namespace wze
 
         if (SDL_SetTextureColorMod(((engine::actors::actor::textboxes::textbox*)Token->Data)->Texture, ((engine::actors::actor::textboxes::textbox*)Token->Data)->ColorR, ((engine::actors::actor::textboxes::textbox*)Token->Data)->ColorG, ((engine::actors::actor::textboxes::textbox*)Token->Data)->ColorB) != 0)
         {
-            printf("wze::engine.render.RenderTextbox(): SDL_SetTextureColorMod failed\n");
+            printf("wze::engine.render.RenderTextbox(): SDL_SetTextureColorMod failed\nParams: %p\n", Token);
             exit(1);
         }
         if (SDL_SetTextureAlphaMod(((engine::actors::actor::textboxes::textbox*)Token->Data)->Texture, ((engine::actors::actor::textboxes::textbox*)Token->Data)->ColorA) != 0)
         {
-            printf("wze::engine.render.RenderTextbox(): SDL_SetTextureAlphaMod failed\n");
+            printf("wze::engine.render.RenderTextbox(): SDL_SetTextureAlphaMod failed\nParams: %p\n", Token);
             exit(1);
         }
         if (SDL_RenderCopyEx(this->Engine->Window.Renderer, ((engine::actors::actor::textboxes::textbox*)Token->Data)->Texture, NULL, &Token->Area, -((engine::actors::actor::textboxes::textbox*)Token->Data)->Angle, NULL, (SDL_RendererFlip)flip) != 0)
         {
-            printf("wze::engine.render.RenderTextbox(): SDL_RenderCopyEx failed\n");
+            printf("wze::engine.render.RenderTextbox(): SDL_RenderCopyEx failed\nParams: %p\n", Token);
             exit(1);
         }
 
@@ -722,12 +722,12 @@ namespace wze
     {
         if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, 255, 0, 0, 128) != 0)
         {
-            printf("wze::engine.render.RenderOverlapbox(): SDL_SetRenderDrawColor failed\n");
+            printf("wze::engine.render.RenderOverlapbox(): SDL_SetRenderDrawColor failed\nParams: %p\n", Token);
             exit(1);
         }
         if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token->Area) != 0)
         {
-            printf("wze::engine.render.RenderOverlapbox(): SDL_RenderFillRect failed\n");
+            printf("wze::engine.render.RenderOverlapbox(): SDL_RenderFillRect failed\nParams: %p\n", Token);
             exit(1);
         }
 
@@ -740,12 +740,12 @@ namespace wze
     {
         if (SDL_SetRenderDrawColor(this->Engine->Window.Renderer, 255, 0, 0, 128) != 0)
         {
-            printf("wze::engine.render.RenderHitbox(): SDL_SetRenderDrawColor failed\n");
+            printf("wze::engine.render.RenderHitbox(): SDL_SetRenderDrawColor failed\nParams: %p\n", Token);
             exit(1);
         }
         if (SDL_RenderFillRect(this->Engine->Window.Renderer, &Token->Area) != 0)
         {
-            printf("wze::engine.render.RenderHitbox(): SDL_RenderFillRect failed\n");
+            printf("wze::engine.render.RenderHitbox(): SDL_RenderFillRect failed\nParams: %p\n", Token);
             exit(1);
         }
 

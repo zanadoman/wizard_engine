@@ -2559,10 +2559,10 @@ _ZN3wze6engine6render13OrderingStageEv:
 	.section .rdata,"dr"
 	.align 8
 .LC14:
-	.ascii "wze::engine.render.RenderColorbox(): SDL_SetRenderDrawColor failed\12\0"
+	.ascii "wze::engine.render.RenderColorbox(): SDL_SetRenderDrawColor failed\12Params: %p\12\0"
 	.align 8
 .LC15:
-	.ascii "wze::engine.render.RenderColorbox(): SDL_RenderFillRect failed\12\0"
+	.ascii "wze::engine.render.RenderColorbox(): SDL_RenderFillRect failed\12Params: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2607,11 +2607,13 @@ _ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE:
 	ret
 .L484:
 	leaq	.LC14(%rip), %rcx
+	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L485:
 	leaq	.LC15(%rip), %rcx
+	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -2620,13 +2622,13 @@ _ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE:
 	.section .rdata,"dr"
 	.align 8
 .LC16:
-	.ascii "wze::engine.render.RenderTexturebox(): SDL_SetTextureColorMod failed\12\0"
+	.ascii "wze::engine.render.RenderTexturebox(): SDL_SetTextureColorMod failed\12Params: %p\12\0"
 	.align 8
 .LC17:
-	.ascii "wze::engine.render.RenderTexturebox(): SDL_SetTextureAlphaMod failed\12\0"
+	.ascii "wze::engine.render.RenderTexturebox(): SDL_SetTextureAlphaMod failed\12Params: %p\12\0"
 	.align 8
 .LC19:
-	.ascii "wze::engine.render.RenderTexturebox(): SDL_RenderCopyEx failed\12\0"
+	.ascii "wze::engine.render.RenderTexturebox(): SDL_RenderCopyEx failed\12Params: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2716,16 +2718,19 @@ _ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE:
 	call	exit
 .L498:
 	leaq	.LC19(%rip), %rcx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L496:
 	leaq	.LC17(%rip), %rcx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L495:
 	leaq	.LC16(%rip), %rcx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -2734,13 +2739,13 @@ _ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE:
 	.section .rdata,"dr"
 	.align 8
 .LC20:
-	.ascii "wze::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\12\0"
+	.ascii "wze::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\12Params: %p\12\0"
 	.align 8
 .LC21:
-	.ascii "wze::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\12\0"
+	.ascii "wze::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\12Params: %p\12\0"
 	.align 8
 .LC22:
-	.ascii "wze::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\12\0"
+	.ascii "wze::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\12Params: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2841,6 +2846,7 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	call	exit
 .L516:
 	leaq	.LC22(%rip), %rcx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -2852,11 +2858,13 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	call	exit
 .L513:
 	leaq	.LC21(%rip), %rcx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L512:
 	leaq	.LC20(%rip), %rcx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -2865,13 +2873,13 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	.section .rdata,"dr"
 	.align 8
 .LC23:
-	.ascii "wze::engine.render.RenderTextbox(): SDL_SetTextureColorMod failed\12\0"
+	.ascii "wze::engine.render.RenderTextbox(): SDL_SetTextureColorMod failed\12Params: %p\12\0"
 	.align 8
 .LC24:
-	.ascii "wze::engine.render.RenderTextbox(): SDL_SetTextureAlphaMod failed\12\0"
+	.ascii "wze::engine.render.RenderTextbox(): SDL_SetTextureAlphaMod failed\12Params: %p\12\0"
 	.align 8
 .LC25:
-	.ascii "wze::engine.render.RenderTextbox(): SDL_RenderCopyEx failed\12\0"
+	.ascii "wze::engine.render.RenderTextbox(): SDL_RenderCopyEx failed\12Params: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2937,16 +2945,19 @@ _ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE:
 	ret
 .L521:
 	leaq	.LC23(%rip), %rcx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L523:
 	leaq	.LC25(%rip), %rcx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 .L522:
 	leaq	.LC24(%rip), %rcx
+	movq	%rsi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -2955,22 +2966,138 @@ _ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE:
 	.section .rdata,"dr"
 	.align 8
 .LC26:
-	.ascii "wze::engine.render.RenderingStage(): SDL_SetRenderDrawColor() failed\12\0"
+	.ascii "wze::engine.render.RenderOverlapbox(): SDL_SetRenderDrawColor failed\12Params: %p\12\0"
 	.align 8
 .LC27:
-	.ascii "wze::engine.render.RenderingStage(): SDL_RenderClear() failed\12\0"
+	.ascii "wze::engine.render.RenderOverlapbox(): SDL_RenderFillRect failed\12Params: %p\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
+	.def	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
+_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE:
+.LFB6914:
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$56, %rsp
+	.seh_stackalloc	56
+	.seh_endprologue
+	xorl	%r9d, %r9d
+	xorl	%r8d, %r8d
+	movq	(%rcx), %rax
+	movq	%rcx, %rsi
+	movq	16(%rax), %rcx
+	movl	$128, 32(%rsp)
+	movq	%rdx, %rbx
+	movl	$255, %edx
+	call	SDL_SetRenderDrawColor
+	testl	%eax, %eax
+	jne	.L531
+	movq	(%rsi), %rax
+	leaq	28(%rbx), %rdx
+	movq	16(%rax), %rcx
+	call	SDL_RenderFillRect
+	testl	%eax, %eax
+	jne	.L532
+	testq	%rbx, %rbx
+	je	.L527
+	movl	$48, %edx
+	movq	%rbx, %rcx
+	call	_ZdlPvy
+.L527:
+	xorl	%eax, %eax
+	addq	$56, %rsp
+	popq	%rbx
+	popq	%rsi
+	ret
+.L531:
+	leaq	.LC26(%rip), %rcx
+	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L532:
+	leaq	.LC27(%rip), %rcx
+	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.section .rdata,"dr"
 	.align 8
 .LC28:
-	.ascii "wze::engine.render.RenderOverlapbox(): SDL_SetRenderDrawColor failed\12\0"
+	.ascii "wze::engine.render.RenderHitbox(): SDL_SetRenderDrawColor failed\12Params: %p\12\0"
 	.align 8
 .LC29:
-	.ascii "wze::engine.render.RenderOverlapbox(): SDL_RenderFillRect failed\12\0"
+	.ascii "wze::engine.render.RenderHitbox(): SDL_RenderFillRect failed\12Params: %p\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
+	.def	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
+_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE:
+.LFB6915:
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$56, %rsp
+	.seh_stackalloc	56
+	.seh_endprologue
+	xorl	%r9d, %r9d
+	xorl	%r8d, %r8d
+	movq	(%rcx), %rax
+	movq	%rcx, %rsi
+	movq	16(%rax), %rcx
+	movl	$128, 32(%rsp)
+	movq	%rdx, %rbx
+	movl	$255, %edx
+	call	SDL_SetRenderDrawColor
+	testl	%eax, %eax
+	jne	.L540
+	movq	(%rsi), %rax
+	leaq	28(%rbx), %rdx
+	movq	16(%rax), %rcx
+	call	SDL_RenderFillRect
+	testl	%eax, %eax
+	jne	.L541
+	testq	%rbx, %rbx
+	je	.L536
+	movl	$48, %edx
+	movq	%rbx, %rcx
+	call	_ZdlPvy
+.L536:
+	xorl	%eax, %eax
+	addq	$56, %rsp
+	popq	%rbx
+	popq	%rsi
+	ret
+.L540:
+	leaq	.LC28(%rip), %rcx
+	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L541:
+	leaq	.LC29(%rip), %rcx
+	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.section .rdata,"dr"
 	.align 8
 .LC30:
-	.ascii "wze::engine.render.RenderHitbox(): SDL_SetRenderDrawColor failed\12\0"
+	.ascii "wze::engine.render.RenderingStage(): SDL_SetRenderDrawColor() failed\12\0"
 	.align 8
 .LC31:
-	.ascii "wze::engine.render.RenderHitbox(): SDL_RenderFillRect failed\12\0"
+	.ascii "wze::engine.render.RenderingStage(): SDL_RenderClear() failed\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -2979,8 +3106,6 @@ _ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE:
 	.seh_proc	_ZN3wze6engine6render14RenderingStageEv
 _ZN3wze6engine6render14RenderingStageEv:
 .LFB6909:
-	pushq	%r12
-	.seh_pushreg	%r12
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -2989,8 +3114,8 @@ _ZN3wze6engine6render14RenderingStageEv:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$48, %rsp
-	.seh_stackalloc	48
+	subq	$56, %rsp
+	.seh_stackalloc	56
 	.seh_endprologue
 	xorl	%r9d, %r9d
 	xorl	%r8d, %r8d
@@ -3001,297 +3126,203 @@ _ZN3wze6engine6render14RenderingStageEv:
 	movl	$255, 32(%rsp)
 	call	SDL_SetRenderDrawColor
 	testl	%eax, %eax
-	jne	.L567
+	jne	.L576
 	movq	(%rsi), %rax
 	movq	16(%rax), %rcx
 	call	SDL_RenderClear
 	testl	%eax, %eax
-	jne	.L526
+	jne	.L544
 	movq	32(%rsi), %rdx
 	testq	%rdx, %rdx
-	je	.L528
+	je	.L546
 	movq	40(%rsi), %rax
 	xorl	%ebx, %ebx
 	pxor	%xmm1, %xmm1
-	jmp	.L530
+	jmp	.L548
 	.p2align 4,,10
 	.p2align 3
-.L569:
+.L578:
 	addq	$1, %rbx
 	cmpq	%rdx, %rbx
-	je	.L568
-.L530:
+	je	.L577
+.L548:
 	movq	(%rax,%rbx,8), %rcx
 	movsd	16(%rcx), %xmm0
 	comisd	%xmm1, %xmm0
-	jbe	.L569
-	movq	%rbx, %rbp
+	jbe	.L578
+	movq	%rbx, %rdi
 	cmpq	%rdx, %rbx
-	jnb	.L532
-.L531:
-	leaq	.L535(%rip), %r12
+	jnb	.L550
+.L549:
+	leaq	.L553(%rip), %rbp
 	.p2align 4,,10
 	.p2align 3
-.L546:
-	movq	(%rax,%rbx,8), %rdi
-	cmpl	$5, 8(%rdi)
-	ja	.L533
-	movl	8(%rdi), %eax
-	movslq	(%r12,%rax,4), %rax
-	addq	%r12, %rax
+.L560:
+	movq	(%rax,%rbx,8), %rcx
+	cmpl	$5, 8(%rcx)
+	ja	.L551
+	movl	8(%rcx), %eax
+	movq	%rcx, %rdx
+	movq	%rsi, %rcx
+	movslq	0(%rbp,%rax,4), %rax
+	addq	%rbp, %rax
 	jmp	*%rax
 	.section .rdata,"dr"
 	.align 4
-.L535:
-	.long	.L540-.L535
-	.long	.L539-.L535
-	.long	.L538-.L535
-	.long	.L537-.L535
-	.long	.L536-.L535
-	.long	.L534-.L535
+.L553:
+	.long	.L558-.L553
+	.long	.L557-.L553
+	.long	.L556-.L553
+	.long	.L555-.L553
+	.long	.L554-.L553
+	.long	.L552-.L553
 	.text
 	.p2align 4,,10
 	.p2align 3
-.L528:
+.L546:
 	movq	(%rsi), %rax
 	movq	16(%rax), %rcx
 	call	SDL_RenderPresent
 	xorl	%eax, %eax
-	addq	$48, %rsp
+	addq	$56, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	popq	%rbp
-	popq	%r12
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L536:
-	movq	(%rsi), %rax
-	xorl	%r9d, %r9d
-	xorl	%r8d, %r8d
-	movl	$255, %edx
-	movq	16(%rax), %rcx
-	movl	$128, 32(%rsp)
-	call	SDL_SetRenderDrawColor
-	testl	%eax, %eax
-	jne	.L556
-	movq	(%rsi), %rax
-	leaq	28(%rdi), %rdx
-	movq	16(%rax), %rcx
-	call	SDL_RenderFillRect
-	testl	%eax, %eax
-	jne	.L557
-.L544:
-	movl	$48, %edx
-	movq	%rdi, %rcx
-	call	_ZdlPvy
+.L554:
+	call	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
 	movq	32(%rsi), %rdx
-.L533:
-	addq	$1, %rbx
-	cmpq	%rdx, %rbx
-	jnb	.L545
-.L570:
-	movq	40(%rsi), %rax
-	jmp	.L546
-	.p2align 4,,10
-	.p2align 3
-.L537:
-	movq	%rdi, %rdx
-	movq	%rsi, %rcx
-	addq	$1, %rbx
-	call	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
-	movq	32(%rsi), %rdx
-	cmpq	%rdx, %rbx
-	jb	.L570
-	.p2align 4,,10
-	.p2align 3
-.L545:
-	testq	%rbp, %rbp
-	je	.L528
-	movq	40(%rsi), %rax
-.L532:
-	xorl	%ebx, %ebx
-	leaq	.L550(%rip), %r12
-	.p2align 4,,10
-	.p2align 3
-.L560:
-	cmpq	%rdx, %rbx
-	jnb	.L571
-	movq	(%rax,%rbx,8), %rdi
-	cmpl	$5, 8(%rdi)
-	ja	.L548
-	movl	8(%rdi), %eax
-	movslq	(%r12,%rax,4), %rax
-	addq	%r12, %rax
-	jmp	*%rax
-	.section .rdata,"dr"
-	.align 4
-.L550:
-	.long	.L555-.L550
-	.long	.L554-.L550
-	.long	.L553-.L550
-	.long	.L552-.L550
-	.long	.L551-.L550
-	.long	.L549-.L550
-	.text
-	.p2align 4,,10
-	.p2align 3
-.L538:
-	movq	%rdi, %rdx
-	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
-	movq	32(%rsi), %rdx
-	jmp	.L533
-	.p2align 4,,10
-	.p2align 3
-.L539:
-	movq	%rdi, %rdx
-	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
-	movq	32(%rsi), %rdx
-	jmp	.L533
-	.p2align 4,,10
-	.p2align 3
-.L534:
-	movq	(%rsi), %rax
-	xorl	%r9d, %r9d
-	xorl	%r8d, %r8d
-	movl	$255, %edx
-	movq	16(%rax), %rcx
-	movl	$128, 32(%rsp)
-	call	SDL_SetRenderDrawColor
-	testl	%eax, %eax
-	jne	.L558
-	movq	(%rsi), %rax
-	leaq	28(%rdi), %rdx
-	movq	16(%rax), %rcx
-	call	SDL_RenderFillRect
-	testl	%eax, %eax
-	je	.L544
-.L559:
-	leaq	.LC31(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	.p2align 4,,10
-	.p2align 3
-.L540:
-	movq	%rdi, %rdx
-	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
-	movq	32(%rsi), %rdx
-	jmp	.L533
-	.p2align 4,,10
-	.p2align 3
 .L551:
-	movq	(%rsi), %rax
-	xorl	%r9d, %r9d
-	xorl	%r8d, %r8d
-	movl	$255, %edx
-	movq	16(%rax), %rcx
-	movl	$128, 32(%rsp)
-	call	SDL_SetRenderDrawColor
-	testl	%eax, %eax
-	jne	.L556
-	movq	(%rsi), %rax
-	leaq	28(%rdi), %rdx
-	movq	16(%rax), %rcx
-	call	SDL_RenderFillRect
-	testl	%eax, %eax
-	jne	.L557
-.L566:
-	movl	$48, %edx
-	movq	%rdi, %rcx
-	call	_ZdlPvy
-.L548:
 	addq	$1, %rbx
-	cmpq	%rbp, %rbx
-	je	.L528
-	movq	32(%rsi), %rdx
+	cmpq	%rdx, %rbx
+	jnb	.L559
+.L579:
 	movq	40(%rsi), %rax
 	jmp	.L560
 	.p2align 4,,10
 	.p2align 3
-.L552:
-	movq	%rdi, %rdx
-	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
-	jmp	.L548
-	.p2align 4,,10
-	.p2align 3
-.L553:
-	movq	%rdi, %rdx
-	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
-	jmp	.L548
-	.p2align 4,,10
-	.p2align 3
-.L554:
-	movq	%rdi, %rdx
-	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
-	jmp	.L548
-	.p2align 4,,10
-	.p2align 3
-.L549:
-	movq	(%rsi), %rax
-	xorl	%r9d, %r9d
-	xorl	%r8d, %r8d
-	movl	$255, %edx
-	movq	16(%rax), %rcx
-	movl	$128, 32(%rsp)
-	call	SDL_SetRenderDrawColor
-	testl	%eax, %eax
-	jne	.L558
-	movq	(%rsi), %rax
-	leaq	28(%rdi), %rdx
-	movq	16(%rax), %rcx
-	call	SDL_RenderFillRect
-	testl	%eax, %eax
-	je	.L566
-	jmp	.L559
-	.p2align 4,,10
-	.p2align 3
 .L555:
-	movq	%rdi, %rdx
+	call	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
+	movq	32(%rsi), %rdx
+	addq	$1, %rbx
+	cmpq	%rdx, %rbx
+	jb	.L579
+	.p2align 4,,10
+	.p2align 3
+.L559:
+	testq	%rdi, %rdi
+	je	.L546
+	movq	40(%rsi), %rax
+.L550:
+	xorl	%ebx, %ebx
+	leaq	.L564(%rip), %rbp
+	.p2align 4,,10
+	.p2align 3
+.L570:
+	cmpq	%rdx, %rbx
+	jnb	.L580
+	movq	(%rax,%rbx,8), %rdx
+	cmpl	$5, 8(%rdx)
+	ja	.L562
+	movl	8(%rdx), %eax
 	movq	%rsi, %rcx
+	movslq	0(%rbp,%rax,4), %rax
+	addq	%rbp, %rax
+	jmp	*%rax
+	.section .rdata,"dr"
+	.align 4
+.L564:
+	.long	.L569-.L564
+	.long	.L568-.L564
+	.long	.L567-.L564
+	.long	.L566-.L564
+	.long	.L565-.L564
+	.long	.L563-.L564
+	.text
+	.p2align 4,,10
+	.p2align 3
+.L556:
+	call	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
+	movq	32(%rsi), %rdx
+	jmp	.L551
+	.p2align 4,,10
+	.p2align 3
+.L557:
+	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
+	movq	32(%rsi), %rdx
+	jmp	.L551
+	.p2align 4,,10
+	.p2align 3
+.L552:
+	call	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
+	movq	32(%rsi), %rdx
+	jmp	.L551
+	.p2align 4,,10
+	.p2align 3
+.L558:
 	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
-	jmp	.L548
+	movq	32(%rsi), %rdx
+	jmp	.L551
+	.p2align 4,,10
+	.p2align 3
+.L565:
+	call	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
+	.p2align 4,,10
+	.p2align 3
+.L562:
+	addq	$1, %rbx
+	cmpq	%rdi, %rbx
+	je	.L546
+	movq	32(%rsi), %rdx
+	movq	40(%rsi), %rax
+	jmp	.L570
+	.p2align 4,,10
+	.p2align 3
+.L567:
+	call	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
+	jmp	.L562
 	.p2align 4,,10
 	.p2align 3
 .L568:
-	xorl	%ebp, %ebp
+	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
+	jmp	.L562
+	.p2align 4,,10
+	.p2align 3
+.L569:
+	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
+	jmp	.L562
+	.p2align 4,,10
+	.p2align 3
+.L563:
+	call	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
+	jmp	.L562
+	.p2align 4,,10
+	.p2align 3
+.L566:
+	call	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
+	jmp	.L562
+	.p2align 4,,10
+	.p2align 3
+.L577:
+	xorl	%edi, %edi
 	xorl	%ebx, %ebx
-	jmp	.L531
-.L571:
+	jmp	.L549
+.L580:
 	leaq	.LC2(%rip), %rcx
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L556:
-	leaq	.LC28(%rip), %rcx
+.L544:
+	leaq	.LC31(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L557:
-	leaq	.LC29(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L558:
+.L576:
 	leaq	.LC30(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L526:
-	leaq	.LC27(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L567:
-	leaq	.LC26(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -3319,114 +3350,6 @@ _ZN3wze6engine6render6UpdateEv:
 	addq	$32, %rsp
 	popq	%rbx
 	ret
-	.seh_endproc
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
-	.def	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
-_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE:
-.LFB6914:
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$56, %rsp
-	.seh_stackalloc	56
-	.seh_endprologue
-	xorl	%r9d, %r9d
-	xorl	%r8d, %r8d
-	movq	(%rcx), %rax
-	movq	%rcx, %rsi
-	movq	16(%rax), %rcx
-	movl	$128, 32(%rsp)
-	movq	%rdx, %rbx
-	movl	$255, %edx
-	call	SDL_SetRenderDrawColor
-	testl	%eax, %eax
-	jne	.L580
-	movq	(%rsi), %rax
-	leaq	28(%rbx), %rdx
-	movq	16(%rax), %rcx
-	call	SDL_RenderFillRect
-	testl	%eax, %eax
-	jne	.L581
-	testq	%rbx, %rbx
-	je	.L576
-	movl	$48, %edx
-	movq	%rbx, %rcx
-	call	_ZdlPvy
-.L576:
-	xorl	%eax, %eax
-	addq	$56, %rsp
-	popq	%rbx
-	popq	%rsi
-	ret
-.L580:
-	leaq	.LC28(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L581:
-	leaq	.LC29(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
-	.def	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
-_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE:
-.LFB6915:
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$56, %rsp
-	.seh_stackalloc	56
-	.seh_endprologue
-	xorl	%r9d, %r9d
-	xorl	%r8d, %r8d
-	movq	(%rcx), %rax
-	movq	%rcx, %rsi
-	movq	16(%rax), %rcx
-	movl	$128, 32(%rsp)
-	movq	%rdx, %rbx
-	movl	$255, %edx
-	call	SDL_SetRenderDrawColor
-	testl	%eax, %eax
-	jne	.L589
-	movq	(%rsi), %rax
-	leaq	28(%rbx), %rdx
-	movq	16(%rax), %rcx
-	call	SDL_RenderFillRect
-	testl	%eax, %eax
-	jne	.L590
-	testq	%rbx, %rbx
-	je	.L585
-	movl	$48, %edx
-	movq	%rbx, %rcx
-	call	_ZdlPvy
-.L585:
-	xorl	%eax, %eax
-	addq	$56, %rsp
-	popq	%rbx
-	popq	%rsi
-	ret
-.L589:
-	leaq	.LC30(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L590:
-	leaq	.LC31(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8

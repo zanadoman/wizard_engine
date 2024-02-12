@@ -2675,10 +2675,10 @@ _ZN3wze6engine6render13OrderingStageEv:
 	.section	.rodata.str1.8
 	.align 8
 .LC14:
-	.string	"wze::engine.render.RenderColorbox(): SDL_SetRenderDrawColor failed"
+	.string	"wze::engine.render.RenderColorbox(): SDL_SetRenderDrawColor failed\nParams: %p\n"
 	.align 8
 .LC15:
-	.string	"wze::engine.render.RenderColorbox(): SDL_RenderFillRect failed"
+	.string	"wze::engine.render.RenderColorbox(): SDL_RenderFillRect failed\nParams: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -2728,12 +2728,16 @@ _ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE:
 .L501:
 	.cfi_restore_state
 	leaq	.LC14(%rip), %rdi
-	call	puts@PLT
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L502:
 	leaq	.LC15(%rip), %rdi
-	call	puts@PLT
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
@@ -2742,13 +2746,13 @@ _ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE:
 	.section	.rodata.str1.8
 	.align 8
 .LC16:
-	.string	"wze::engine.render.RenderTexturebox(): SDL_SetTextureColorMod failed"
+	.string	"wze::engine.render.RenderTexturebox(): SDL_SetTextureColorMod failed\nParams: %p\n"
 	.align 8
 .LC17:
-	.string	"wze::engine.render.RenderTexturebox(): SDL_SetTextureAlphaMod failed"
+	.string	"wze::engine.render.RenderTexturebox(): SDL_SetTextureAlphaMod failed\nParams: %p\n"
 	.align 8
 .LC19:
-	.string	"wze::engine.render.RenderTexturebox(): SDL_RenderCopyEx failed"
+	.string	"wze::engine.render.RenderTexturebox(): SDL_RenderCopyEx failed\nParams: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -2839,17 +2843,23 @@ _ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE:
 	call	exit@PLT
 .L515:
 	leaq	.LC19(%rip), %rdi
-	call	puts@PLT
+	movq	%r12, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L514:
 	leaq	.LC17(%rip), %rdi
-	call	puts@PLT
+	movq	%r12, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L513:
 	leaq	.LC16(%rip), %rdi
-	call	puts@PLT
+	movq	%r12, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
@@ -2858,13 +2868,13 @@ _ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE:
 	.section	.rodata.str1.8
 	.align 8
 .LC20:
-	.string	"wze::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed"
+	.string	"wze::engine.render.RenderFlipbook(): SDL_SetTextureColorMod failed\nParams: %p\n"
 	.align 8
 .LC21:
-	.string	"wze::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed"
+	.string	"wze::engine.render.RenderFlipbook(): SDL_SetTextureAlphaMod failed\nParams: %p\n"
 	.align 8
 .LC22:
-	.string	"wze::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed"
+	.string	"wze::engine.render.RenderFlipbook(): SDL_RenderCopyEx failed\nParams: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -2969,17 +2979,23 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	call	exit@PLT
 .L532:
 	leaq	.LC22(%rip), %rdi
-	call	puts@PLT
+	movq	%rbp, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L531:
 	leaq	.LC21(%rip), %rdi
-	call	puts@PLT
+	movq	%rbp, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L530:
 	leaq	.LC20(%rip), %rdi
-	call	puts@PLT
+	movq	%rbp, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
@@ -2988,13 +3004,13 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	.section	.rodata.str1.8
 	.align 8
 .LC23:
-	.string	"wze::engine.render.RenderTextbox(): SDL_SetTextureColorMod failed"
+	.string	"wze::engine.render.RenderTextbox(): SDL_SetTextureColorMod failed\nParams: %p\n"
 	.align 8
 .LC24:
-	.string	"wze::engine.render.RenderTextbox(): SDL_SetTextureAlphaMod failed"
+	.string	"wze::engine.render.RenderTextbox(): SDL_SetTextureAlphaMod failed\nParams: %p\n"
 	.align 8
 .LC25:
-	.string	"wze::engine.render.RenderTextbox(): SDL_RenderCopyEx failed"
+	.string	"wze::engine.render.RenderTextbox(): SDL_RenderCopyEx failed\nParams: %p\n"
 	.text
 	.align 2
 	.p2align 4
@@ -3061,17 +3077,23 @@ _ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE:
 .L538:
 	.cfi_restore_state
 	leaq	.LC23(%rip), %rdi
-	call	puts@PLT
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L540:
 	leaq	.LC25(%rip), %rdi
-	call	puts@PLT
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 .L539:
 	leaq	.LC24(%rip), %rdi
-	call	puts@PLT
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
@@ -3080,22 +3102,156 @@ _ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE:
 	.section	.rodata.str1.8
 	.align 8
 .LC26:
-	.string	"wze::engine.render.RenderingStage(): SDL_SetRenderDrawColor() failed"
+	.string	"wze::engine.render.RenderOverlapbox(): SDL_SetRenderDrawColor failed\nParams: %p\n"
 	.align 8
 .LC27:
-	.string	"wze::engine.render.RenderingStage(): SDL_RenderClear() failed"
+	.string	"wze::engine.render.RenderOverlapbox(): SDL_RenderFillRect failed\nParams: %p\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
+	.type	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE, @function
+_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE:
+.LFB8181:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rdi, %rbp
+	xorl	%ecx, %ecx
+	xorl	%edx, %edx
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+	movl	$128, %r8d
+	movq	%rsi, %rbx
+	movl	$255, %esi
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 32
+	movq	(%rdi), %rax
+	movq	16(%rax), %rdi
+	call	SDL_SetRenderDrawColor@PLT
+	testl	%eax, %eax
+	jne	.L549
+	movq	0(%rbp), %rax
+	leaq	28(%rbx), %rsi
+	movq	16(%rax), %rdi
+	call	SDL_RenderFillRect@PLT
+	testl	%eax, %eax
+	jne	.L550
+	testq	%rbx, %rbx
+	je	.L544
+	movl	$48, %esi
+	movq	%rbx, %rdi
+	call	_ZdlPvm@PLT
+.L544:
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
+	.cfi_def_cfa_offset 8
+	ret
+.L549:
+	.cfi_restore_state
+	leaq	.LC26(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L550:
+	leaq	.LC27(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8181:
+	.size	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE, .-_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
+	.section	.rodata.str1.8
 	.align 8
 .LC28:
-	.string	"wze::engine.render.RenderOverlapbox(): SDL_SetRenderDrawColor failed"
+	.string	"wze::engine.render.RenderHitbox(): SDL_SetRenderDrawColor failed\nParams: %p\n"
 	.align 8
 .LC29:
-	.string	"wze::engine.render.RenderOverlapbox(): SDL_RenderFillRect failed"
+	.string	"wze::engine.render.RenderHitbox(): SDL_RenderFillRect failed\nParams: %p\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
+	.type	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE, @function
+_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE:
+.LFB8182:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rdi, %rbp
+	xorl	%ecx, %ecx
+	xorl	%edx, %edx
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+	movl	$128, %r8d
+	movq	%rsi, %rbx
+	movl	$255, %esi
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 32
+	movq	(%rdi), %rax
+	movq	16(%rax), %rdi
+	call	SDL_SetRenderDrawColor@PLT
+	testl	%eax, %eax
+	jne	.L559
+	movq	0(%rbp), %rax
+	leaq	28(%rbx), %rsi
+	movq	16(%rax), %rdi
+	call	SDL_RenderFillRect@PLT
+	testl	%eax, %eax
+	jne	.L560
+	testq	%rbx, %rbx
+	je	.L554
+	movl	$48, %esi
+	movq	%rbx, %rdi
+	call	_ZdlPvm@PLT
+.L554:
+	addq	$8, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
+	.cfi_def_cfa_offset 8
+	ret
+.L559:
+	.cfi_restore_state
+	leaq	.LC28(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+.L560:
+	leaq	.LC29(%rip), %rdi
+	movq	%rbx, %rsi
+	xorl	%eax, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8182:
+	.size	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE, .-_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
+	.section	.rodata.str1.8
 	.align 8
 .LC30:
-	.string	"wze::engine.render.RenderHitbox(): SDL_SetRenderDrawColor failed"
+	.string	"wze::engine.render.RenderingStage(): SDL_SetRenderDrawColor() failed"
 	.align 8
 .LC31:
-	.string	"wze::engine.render.RenderHitbox(): SDL_RenderFillRect failed"
+	.string	"wze::engine.render.RenderingStage(): SDL_RenderClear() failed"
 	.text
 	.align 2
 	.p2align 4
@@ -3104,330 +3260,235 @@ _ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE:
 _ZN3wze6engine6render14RenderingStageEv:
 .LFB8176:
 	.cfi_startproc
-	pushq	%r14
+	pushq	%r13
 	.cfi_def_cfa_offset 16
-	.cfi_offset 14, -16
+	.cfi_offset 13, -16
 	xorl	%ecx, %ecx
 	xorl	%edx, %edx
 	xorl	%esi, %esi
-	pushq	%r13
-	.cfi_def_cfa_offset 24
-	.cfi_offset 13, -24
-	movl	$255, %r8d
 	pushq	%r12
-	.cfi_def_cfa_offset 32
-	.cfi_offset 12, -32
+	.cfi_def_cfa_offset 24
+	.cfi_offset 12, -24
+	movl	$255, %r8d
 	pushq	%rbp
-	.cfi_def_cfa_offset 40
-	.cfi_offset 6, -40
+	.cfi_def_cfa_offset 32
+	.cfi_offset 6, -32
 	movq	%rdi, %rbp
 	pushq	%rbx
+	.cfi_def_cfa_offset 40
+	.cfi_offset 3, -40
+	subq	$8, %rsp
 	.cfi_def_cfa_offset 48
-	.cfi_offset 3, -48
 	movq	(%rdi), %rax
 	movq	16(%rax), %rdi
 	call	SDL_SetRenderDrawColor@PLT
 	testl	%eax, %eax
-	jne	.L585
+	jne	.L596
 	movq	0(%rbp), %rax
 	movq	16(%rax), %rdi
 	call	SDL_RenderClear@PLT
 	testl	%eax, %eax
-	jne	.L543
+	jne	.L563
 	movq	32(%rbp), %rdx
 	testq	%rdx, %rdx
-	je	.L545
+	je	.L565
 	movq	40(%rbp), %rax
 	xorl	%ebx, %ebx
 	pxor	%xmm1, %xmm1
-	jmp	.L547
+	jmp	.L567
 	.p2align 4,,10
 	.p2align 3
-.L587:
+.L598:
 	addq	$1, %rbx
 	cmpq	%rdx, %rbx
-	je	.L586
-.L547:
+	je	.L597
+.L567:
 	movq	(%rax,%rbx,8), %rcx
 	movsd	16(%rcx), %xmm0
 	comisd	%xmm1, %xmm0
-	jbe	.L587
+	jbe	.L598
 	movq	%rbx, %r12
 	cmpq	%rdx, %rbx
-	jnb	.L549
-.L548:
-	leaq	.L552(%rip), %r13
+	jnb	.L569
+.L568:
+	leaq	.L572(%rip), %r13
 	.p2align 4,,10
 	.p2align 3
-.L563:
-	movq	(%rax,%rbx,8), %r14
-	cmpl	$5, 8(%r14)
-	ja	.L550
-	movl	8(%r14), %eax
+.L579:
+	movq	(%rax,%rbx,8), %rsi
+	cmpl	$5, 8(%rsi)
+	ja	.L570
+	movl	8(%rsi), %eax
+	movq	%rbp, %rdi
 	movslq	0(%r13,%rax,4), %rax
 	addq	%r13, %rax
 	jmp	*%rax
 	.section	.rodata
 	.align 4
 	.align 4
-.L552:
-	.long	.L557-.L552
-	.long	.L556-.L552
-	.long	.L555-.L552
-	.long	.L554-.L552
-	.long	.L553-.L552
-	.long	.L551-.L552
+.L572:
+	.long	.L577-.L572
+	.long	.L576-.L572
+	.long	.L575-.L572
+	.long	.L574-.L572
+	.long	.L573-.L572
+	.long	.L571-.L572
 	.text
 	.p2align 4,,10
 	.p2align 3
-.L545:
+.L565:
 	movq	0(%rbp), %rax
 	movq	16(%rax), %rdi
 	call	SDL_RenderPresent@PLT
-	popq	%rbx
+	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 40
 	xorl	%eax, %eax
-	popq	%rbp
+	popq	%rbx
 	.cfi_def_cfa_offset 32
-	popq	%r12
+	popq	%rbp
 	.cfi_def_cfa_offset 24
-	popq	%r13
+	popq	%r12
 	.cfi_def_cfa_offset 16
-	popq	%r14
+	popq	%r13
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L553:
+.L573:
 	.cfi_restore_state
-	movq	0(%rbp), %rax
-	xorl	%ecx, %ecx
-	xorl	%edx, %edx
-	movl	$128, %r8d
-	movl	$255, %esi
-	movq	16(%rax), %rdi
-	call	SDL_SetRenderDrawColor@PLT
-	testl	%eax, %eax
-	jne	.L573
-	movq	0(%rbp), %rax
-	leaq	28(%r14), %rsi
-	movq	16(%rax), %rdi
-	call	SDL_RenderFillRect@PLT
-	testl	%eax, %eax
-	jne	.L574
-.L561:
-	movl	$48, %esi
-	movq	%r14, %rdi
-	call	_ZdlPvm@PLT
+	call	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
 	movq	32(%rbp), %rdx
-.L550:
+.L570:
 	addq	$1, %rbx
 	cmpq	%rdx, %rbx
-	jnb	.L562
-.L588:
+	jnb	.L578
+.L599:
 	movq	40(%rbp), %rax
-	jmp	.L563
+	jmp	.L579
 	.p2align 4,,10
 	.p2align 3
-.L554:
-	movq	%r14, %rsi
-	movq	%rbp, %rdi
-	addq	$1, %rbx
+.L574:
 	call	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
 	movq	32(%rbp), %rdx
+	addq	$1, %rbx
 	cmpq	%rdx, %rbx
-	jb	.L588
+	jb	.L599
 	.p2align 4,,10
 	.p2align 3
-.L562:
+.L578:
 	testq	%r12, %r12
-	je	.L545
+	je	.L565
 	movq	40(%rbp), %rax
-.L549:
+.L569:
 	xorl	%ebx, %ebx
-	leaq	.L567(%rip), %r13
+	leaq	.L583(%rip), %r13
 	.p2align 4,,10
 	.p2align 3
-.L577:
+.L589:
 	cmpq	%rdx, %rbx
-	jnb	.L589
-	movq	(%rax,%rbx,8), %r14
-	cmpl	$5, 8(%r14)
-	ja	.L565
-	movl	8(%r14), %eax
+	jnb	.L600
+	movq	(%rax,%rbx,8), %rsi
+	cmpl	$5, 8(%rsi)
+	ja	.L581
+	movl	8(%rsi), %eax
+	movq	%rbp, %rdi
 	movslq	0(%r13,%rax,4), %rax
 	addq	%r13, %rax
 	jmp	*%rax
 	.section	.rodata
 	.align 4
 	.align 4
-.L567:
-	.long	.L572-.L567
-	.long	.L571-.L567
-	.long	.L570-.L567
-	.long	.L569-.L567
-	.long	.L568-.L567
-	.long	.L566-.L567
+.L583:
+	.long	.L588-.L583
+	.long	.L587-.L583
+	.long	.L586-.L583
+	.long	.L585-.L583
+	.long	.L584-.L583
+	.long	.L582-.L583
 	.text
 	.p2align 4,,10
 	.p2align 3
-.L555:
-	movq	%r14, %rsi
-	movq	%rbp, %rdi
+.L575:
 	call	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
 	movq	32(%rbp), %rdx
-	jmp	.L550
+	jmp	.L570
 	.p2align 4,,10
 	.p2align 3
-.L556:
-	movq	%r14, %rsi
-	movq	%rbp, %rdi
+.L576:
 	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
 	movq	32(%rbp), %rdx
-	jmp	.L550
-	.p2align 4,,10
-	.p2align 3
-.L551:
-	movq	0(%rbp), %rax
-	xorl	%ecx, %ecx
-	xorl	%edx, %edx
-	movl	$128, %r8d
-	movl	$255, %esi
-	movq	16(%rax), %rdi
-	call	SDL_SetRenderDrawColor@PLT
-	testl	%eax, %eax
-	jne	.L575
-	movq	0(%rbp), %rax
-	leaq	28(%r14), %rsi
-	movq	16(%rax), %rdi
-	call	SDL_RenderFillRect@PLT
-	testl	%eax, %eax
-	je	.L561
-.L576:
-	leaq	.LC31(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.p2align 4,,10
-	.p2align 3
-.L557:
-	movq	%r14, %rsi
-	movq	%rbp, %rdi
-	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
-	movq	32(%rbp), %rdx
-	jmp	.L550
-	.p2align 4,,10
-	.p2align 3
-.L568:
-	movq	0(%rbp), %rax
-	xorl	%ecx, %ecx
-	xorl	%edx, %edx
-	movl	$128, %r8d
-	movl	$255, %esi
-	movq	16(%rax), %rdi
-	call	SDL_SetRenderDrawColor@PLT
-	testl	%eax, %eax
-	jne	.L573
-	movq	0(%rbp), %rax
-	leaq	28(%r14), %rsi
-	movq	16(%rax), %rdi
-	call	SDL_RenderFillRect@PLT
-	testl	%eax, %eax
-	jne	.L574
-.L584:
-	movl	$48, %esi
-	movq	%r14, %rdi
-	call	_ZdlPvm@PLT
-.L565:
-	addq	$1, %rbx
-	cmpq	%r12, %rbx
-	je	.L545
-	movq	32(%rbp), %rdx
-	movq	40(%rbp), %rax
-	jmp	.L577
-	.p2align 4,,10
-	.p2align 3
-.L569:
-	movq	%r14, %rsi
-	movq	%rbp, %rdi
-	call	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
-	jmp	.L565
-	.p2align 4,,10
-	.p2align 3
-.L570:
-	movq	%r14, %rsi
-	movq	%rbp, %rdi
-	call	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
-	jmp	.L565
+	jmp	.L570
 	.p2align 4,,10
 	.p2align 3
 .L571:
-	movq	%r14, %rsi
-	movq	%rbp, %rdi
-	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
-	jmp	.L565
+	call	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
+	movq	32(%rbp), %rdx
+	jmp	.L570
 	.p2align 4,,10
 	.p2align 3
-.L566:
-	movq	0(%rbp), %rax
-	xorl	%ecx, %ecx
-	xorl	%edx, %edx
-	movl	$128, %r8d
-	movl	$255, %esi
-	movq	16(%rax), %rdi
-	call	SDL_SetRenderDrawColor@PLT
-	testl	%eax, %eax
-	jne	.L575
-	movq	0(%rbp), %rax
-	leaq	28(%r14), %rsi
-	movq	16(%rax), %rdi
-	call	SDL_RenderFillRect@PLT
-	testl	%eax, %eax
-	je	.L584
-	jmp	.L576
-	.p2align 4,,10
-	.p2align 3
-.L572:
-	movq	%r14, %rsi
-	movq	%rbp, %rdi
+.L577:
 	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
-	jmp	.L565
+	movq	32(%rbp), %rdx
+	jmp	.L570
+	.p2align 4,,10
+	.p2align 3
+.L584:
+	call	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
+	.p2align 4,,10
+	.p2align 3
+.L581:
+	addq	$1, %rbx
+	cmpq	%r12, %rbx
+	je	.L565
+	movq	32(%rbp), %rdx
+	movq	40(%rbp), %rax
+	jmp	.L589
 	.p2align 4,,10
 	.p2align 3
 .L586:
+	call	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
+	jmp	.L581
+	.p2align 4,,10
+	.p2align 3
+.L587:
+	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
+	jmp	.L581
+	.p2align 4,,10
+	.p2align 3
+.L588:
+	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
+	jmp	.L581
+	.p2align 4,,10
+	.p2align 3
+.L582:
+	call	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
+	jmp	.L581
+	.p2align 4,,10
+	.p2align 3
+.L585:
+	call	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
+	jmp	.L581
+	.p2align 4,,10
+	.p2align 3
+.L597:
 	xorl	%r12d, %r12d
 	xorl	%ebx, %ebx
-	jmp	.L548
-.L589:
+	jmp	.L568
+.L600:
 	leaq	.LC2(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L573:
-	leaq	.LC28(%rip), %rdi
+.L563:
+	leaq	.LC31(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L574:
-	leaq	.LC29(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L575:
+.L596:
 	leaq	.LC30(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L543:
-	leaq	.LC27(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L585:
-	leaq	.LC26(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
@@ -3457,128 +3518,6 @@ _ZN3wze6engine6render6UpdateEv:
 	.cfi_endproc
 .LFE8169:
 	.size	_ZN3wze6engine6render6UpdateEv, .-_ZN3wze6engine6render6UpdateEv
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
-	.type	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE, @function
-_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE:
-.LFB8181:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rdi, %rbp
-	xorl	%ecx, %ecx
-	xorl	%edx, %edx
-	pushq	%rbx
-	.cfi_def_cfa_offset 24
-	.cfi_offset 3, -24
-	movl	$128, %r8d
-	movq	%rsi, %rbx
-	movl	$255, %esi
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 32
-	movq	(%rdi), %rax
-	movq	16(%rax), %rdi
-	call	SDL_SetRenderDrawColor@PLT
-	testl	%eax, %eax
-	jne	.L600
-	movq	0(%rbp), %rax
-	leaq	28(%rbx), %rsi
-	movq	16(%rax), %rdi
-	call	SDL_RenderFillRect@PLT
-	testl	%eax, %eax
-	jne	.L601
-	testq	%rbx, %rbx
-	je	.L595
-	movl	$48, %esi
-	movq	%rbx, %rdi
-	call	_ZdlPvm@PLT
-.L595:
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 16
-	popq	%rbp
-	.cfi_def_cfa_offset 8
-	ret
-.L600:
-	.cfi_restore_state
-	leaq	.LC28(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L601:
-	leaq	.LC29(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.cfi_endproc
-.LFE8181:
-	.size	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE, .-_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
-	.type	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE, @function
-_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE:
-.LFB8182:
-	.cfi_startproc
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rdi, %rbp
-	xorl	%ecx, %ecx
-	xorl	%edx, %edx
-	pushq	%rbx
-	.cfi_def_cfa_offset 24
-	.cfi_offset 3, -24
-	movl	$128, %r8d
-	movq	%rsi, %rbx
-	movl	$255, %esi
-	subq	$8, %rsp
-	.cfi_def_cfa_offset 32
-	movq	(%rdi), %rax
-	movq	16(%rax), %rdi
-	call	SDL_SetRenderDrawColor@PLT
-	testl	%eax, %eax
-	jne	.L610
-	movq	0(%rbp), %rax
-	leaq	28(%rbx), %rsi
-	movq	16(%rax), %rdi
-	call	SDL_RenderFillRect@PLT
-	testl	%eax, %eax
-	jne	.L611
-	testq	%rbx, %rbx
-	je	.L605
-	movl	$48, %esi
-	movq	%rbx, %rdi
-	call	_ZdlPvm@PLT
-.L605:
-	addq	$8, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 24
-	xorl	%eax, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 16
-	popq	%rbp
-	.cfi_def_cfa_offset 8
-	ret
-.L610:
-	.cfi_restore_state
-	leaq	.LC30(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-.L611:
-	leaq	.LC31(%rip), %rdi
-	call	puts@PLT
-	movl	$1, %edi
-	call	exit@PLT
-	.cfi_endproc
-.LFE8182:
-	.size	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE, .-_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC3:

@@ -12,12 +12,12 @@ Test/supervising sequence:
         Mouse OK OK
         Audio OK OK
     Slightly nested:
-        Render OK
+        Render OK OK
         Camera OK OK
         Vector OK OK
         Assets OK OK
         Actors OK OK
-    Heavily nested:
+    Deeply nested:
         Actor OK
         Colors OK
         Textures OK
