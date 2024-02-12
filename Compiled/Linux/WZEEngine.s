@@ -1191,9 +1191,10 @@ _ZN3wze6engineC2EPKcS2_tth:
 	xorl	%esi, %esi
 	movq	%rax, %r14
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
+	movzbl	%r14b, %r14d
 	leaq	40(%rax), %rdi
-	movq	%r14, %rsi
 	movq	%rax, %r13
+	movq	%r14, %rsi
 	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
 	pxor	%xmm0, %xmm0
 	movq	%rax, %r12

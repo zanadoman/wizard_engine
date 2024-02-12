@@ -7,7 +7,7 @@ namespace wze
 {
     engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Assets(this), Timing(this)
     {
-        uint64 Texture;
+        uint8 Texture;
         actor Actor;
         texturebox Texturebox;
         double opacity;
