@@ -12,7 +12,7 @@
 	.def	_ZN5pauseC2EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN5pauseC2EPN3wze6engineEP4game
 _ZN5pauseC2EPN3wze6engineEP4game:
-.LFB6889:
+.LFB6890:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -184,7 +184,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	.def	_ZN5pauseD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN5pauseD2Ev
 _ZN5pauseD2Ev:
-.LFB6892:
+.LFB6893:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -204,13 +204,13 @@ _ZN5pauseD2Ev:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6892:
+.LLSDA6893:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6892-.LLSDACSB6892
-.LLSDACSB6892:
-.LLSDACSE6892:
+	.uleb128 .LLSDACSE6893-.LLSDACSB6893
+.LLSDACSB6893:
+.LLSDACSE6893:
 	.text
 	.seh_endproc
 	.globl	_ZN5pauseD1Ev
@@ -222,7 +222,7 @@ _ZN5pauseD2Ev:
 	.def	_ZN5pause6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN5pause6UpdateEv
 _ZN5pause6UpdateEv:
-.LFB6894:
+.LFB6895:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp

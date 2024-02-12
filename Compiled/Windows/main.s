@@ -10,7 +10,7 @@
 	.def	main;	.scl	2;	.type	32;	.endef
 	.seh_proc	main
 main:
-.LFB6888:
+.LFB6889:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -80,33 +80,33 @@ main:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6888:
+.LLSDA6889:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6888-.LLSDACSB6888
-.LLSDACSB6888:
-	.uleb128 .LEHB0-.LFB6888
+	.uleb128 .LLSDACSE6889-.LLSDACSB6889
+.LLSDACSB6889:
+	.uleb128 .LEHB0-.LFB6889
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB6888
+	.uleb128 .LEHB1-.LFB6889
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L6-.LFB6888
+	.uleb128 .L6-.LFB6889
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB6888
+	.uleb128 .LEHB2-.LFB6889
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB6888
+	.uleb128 .LEHB3-.LFB6889
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L7-.LFB6888
+	.uleb128 .L7-.LFB6889
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB6888
+	.uleb128 .LEHB4-.LFB6889
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE6888:
+.LLSDACSE6889:
 	.section	.text.startup,"x"
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -134,17 +134,17 @@ main.cold:
 .LEHE5:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6888:
+.LLSDAC6889:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6888-.LLSDACSBC6888
-.LLSDACSBC6888:
+	.uleb128 .LLSDACSEC6889-.LLSDACSBC6889
+.LLSDACSBC6889:
 	.uleb128 .LEHB5-.LCOLDB0
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6888:
+.LLSDACSEC6889:
 	.section	.text.unlikely,"x"
 	.section	.text.startup,"x"
 	.section	.text.unlikely,"x"

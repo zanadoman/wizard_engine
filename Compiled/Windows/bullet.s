@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN6bulletC2EPN3wze6engineEP4gamedddy5actord;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6bulletC2EPN3wze6engineEP4gamedddy5actord
 _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
-.LFB6889:
+.LFB6890:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -107,7 +107,7 @@ _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
 	.def	_ZN6bulletD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6bulletD2Ev
 _ZN6bulletD2Ev:
-.LFB6892:
+.LFB6893:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -127,13 +127,13 @@ _ZN6bulletD2Ev:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6892:
+.LLSDA6893:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6892-.LLSDACSB6892
-.LLSDACSB6892:
-.LLSDACSE6892:
+	.uleb128 .LLSDACSE6893-.LLSDACSB6893
+.LLSDACSB6893:
+.LLSDACSE6893:
 	.text
 	.seh_endproc
 	.globl	_ZN6bulletD1Ev
@@ -154,7 +154,7 @@ _ZN6bulletD2Ev:
 	.def	_ZN6bullet6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6bullet6UpdateEv
 _ZN6bullet6UpdateEv:
-.LFB6894:
+.LFB6895:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -379,17 +379,17 @@ _ZN6bullet6UpdateEv:
 	jmp	.L28
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6894:
+.LLSDA6895:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6894-.LLSDACSB6894
-.LLSDACSB6894:
-	.uleb128 .LEHB0-.LFB6894
+	.uleb128 .LLSDACSE6895-.LLSDACSB6895
+.LLSDACSB6895:
+	.uleb128 .LEHB0-.LFB6895
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L39-.LFB6894
+	.uleb128 .L39-.LFB6895
 	.uleb128 0
-.LLSDACSE6894:
+.LLSDACSE6895:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -424,17 +424,17 @@ _ZN6bullet6UpdateEv.cold:
 .LEHE1:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6894:
+.LLSDAC6895:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6894-.LLSDACSBC6894
-.LLSDACSBC6894:
+	.uleb128 .LLSDACSEC6895-.LLSDACSBC6895
+.LLSDACSBC6895:
 	.uleb128 .LEHB1-.LCOLDB4
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6894:
+.LLSDACSEC6895:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"

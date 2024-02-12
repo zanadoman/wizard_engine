@@ -6,7 +6,7 @@
 	.def	_ZN6borderC2EPN3wze6engineEP4gameddttdh;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6borderC2EPN3wze6engineEP4gameddttdh
 _ZN6borderC2EPN3wze6engineEP4gameddttdh:
-.LFB6889:
+.LFB6890:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -78,7 +78,7 @@ _ZN6borderC2EPN3wze6engineEP4gameddttdh:
 	.def	_ZN6borderD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6borderD2Ev
 _ZN6borderD2Ev:
-.LFB6892:
+.LFB6893:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -98,13 +98,13 @@ _ZN6borderD2Ev:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6892:
+.LLSDA6893:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6892-.LLSDACSB6892
-.LLSDACSB6892:
-.LLSDACSE6892:
+	.uleb128 .LLSDACSE6893-.LLSDACSB6893
+.LLSDACSB6893:
+.LLSDACSE6893:
 	.text
 	.seh_endproc
 	.globl	_ZN6borderD1Ev

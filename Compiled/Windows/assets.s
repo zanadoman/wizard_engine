@@ -113,7 +113,7 @@ _Z6printfPKcz:
 	.def	_ZN6assetsC2EPN3wze6engineE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6assetsC2EPN3wze6engineE
 _ZN6assetsC2EPN3wze6engineE:
-.LFB6889:
+.LFB6890:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -457,17 +457,17 @@ _ZN6assetsC2EPN3wze6engineE:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6889:
+.LLSDA6890:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6889-.LLSDACSB6889
-.LLSDACSB6889:
-	.uleb128 .LEHB0-.LFB6889
+	.uleb128 .LLSDACSE6890-.LLSDACSB6890
+.LLSDACSB6890:
+	.uleb128 .LEHB0-.LFB6890
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L21-.LFB6889
+	.uleb128 .L21-.LFB6890
 	.uleb128 0
-.LLSDACSE6889:
+.LLSDACSE6890:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -496,17 +496,17 @@ _ZN6assetsC2EPN3wze6engineE.cold:
 .LEHE1:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6889:
+.LLSDAC6890:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6889-.LLSDACSBC6889
-.LLSDACSBC6889:
+	.uleb128 .LLSDACSEC6890-.LLSDACSBC6890
+.LLSDACSBC6890:
 	.uleb128 .LEHB1-.LCOLDB34
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6889:
+.LLSDACSEC6890:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -523,7 +523,7 @@ _ZN6assetsC2EPN3wze6engineE.cold:
 	.def	_ZN6assetsD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN6assetsD2Ev
 _ZN6assetsD2Ev:
-.LFB6892:
+.LFB6893:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -572,13 +572,13 @@ _ZN6assetsD2Ev:
 	jmp	free
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6892:
+.LLSDA6893:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6892-.LLSDACSB6892
-.LLSDACSB6892:
-.LLSDACSE6892:
+	.uleb128 .LLSDACSE6893-.LLSDACSB6893
+.LLSDACSB6893:
+.LLSDACSE6893:
 	.text
 	.seh_endproc
 	.globl	_ZN6assetsD1Ev

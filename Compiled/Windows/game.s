@@ -11,7 +11,7 @@
 	.def	_ZN4gameC2EPN3wze6engineE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4gameC2EPN3wze6engineE
 _ZN4gameC2EPN3wze6engineE:
-.LFB6889:
+.LFB6890:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -57,25 +57,25 @@ _ZN4gameC2EPN3wze6engineE:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6889:
+.LLSDA6890:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6889-.LLSDACSB6889
-.LLSDACSB6889:
-	.uleb128 .LEHB0-.LFB6889
+	.uleb128 .LLSDACSE6890-.LLSDACSB6890
+.LLSDACSB6890:
+	.uleb128 .LEHB0-.LFB6890
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB6889
+	.uleb128 .LEHB1-.LFB6890
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L4-.LFB6889
+	.uleb128 .L4-.LFB6890
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB6889
+	.uleb128 .LEHB2-.LFB6890
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L5-.LFB6889
+	.uleb128 .L5-.LFB6890
 	.uleb128 0
-.LLSDACSE6889:
+.LLSDACSE6890:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -101,17 +101,17 @@ _ZN4gameC2EPN3wze6engineE.cold:
 .LEHE3:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6889:
+.LLSDAC6890:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6889-.LLSDACSBC6889
-.LLSDACSBC6889:
+	.uleb128 .LLSDACSEC6890-.LLSDACSBC6890
+.LLSDACSBC6890:
 	.uleb128 .LEHB3-.LCOLDB0
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6889:
+.LLSDACSEC6890:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -128,7 +128,7 @@ _ZN4gameC2EPN3wze6engineE.cold:
 	.def	_ZN4gameD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4gameD2Ev
 _ZN4gameD2Ev:
-.LFB6892:
+.LFB6893:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -205,7 +205,7 @@ _ZN4gameD2Ev:
 	.def	_ZN4game12SwitchScenesE5scene;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4game12SwitchScenesE5scene
 _ZN4game12SwitchScenesE5scene:
-.LFB6895:
+.LFB6896:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -363,37 +363,37 @@ _ZN4game12SwitchScenesE5scene:
 	jmp	.L34
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6895:
+.LLSDA6896:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6895-.LLSDACSB6895
-.LLSDACSB6895:
-	.uleb128 .LEHB4-.LFB6895
+	.uleb128 .LLSDACSE6896-.LLSDACSB6896
+.LLSDACSB6896:
+	.uleb128 .LEHB4-.LFB6896
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB6895
+	.uleb128 .LEHB5-.LFB6896
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L35-.LFB6895
+	.uleb128 .L35-.LFB6896
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB6895
+	.uleb128 .LEHB6-.LFB6896
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB6895
+	.uleb128 .LEHB7-.LFB6896
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L37-.LFB6895
+	.uleb128 .L37-.LFB6896
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB6895
+	.uleb128 .LEHB8-.LFB6896
 	.uleb128 .LEHE8-.LEHB8
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB6895
+	.uleb128 .LEHB9-.LFB6896
 	.uleb128 .LEHE9-.LEHB9
-	.uleb128 .L36-.LFB6895
+	.uleb128 .L36-.LFB6896
 	.uleb128 0
-.LLSDACSE6895:
+.LLSDACSE6896:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -428,17 +428,17 @@ _ZN4game12SwitchScenesE5scene.cold:
 .LEHE10:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6895:
+.LLSDAC6896:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6895-.LLSDACSBC6895
-.LLSDACSBC6895:
+	.uleb128 .LLSDACSEC6896-.LLSDACSBC6896
+.LLSDACSBC6896:
 	.uleb128 .LEHB10-.LCOLDB2
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6895:
+.LLSDACSEC6896:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -452,7 +452,7 @@ _ZN4game12SwitchScenesE5scene.cold:
 	.def	_ZN4game6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4game6UpdateEv
 _ZN4game6UpdateEv:
-.LFB6894:
+.LFB6895:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp

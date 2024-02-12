@@ -43,7 +43,7 @@ _Z6printfPKcz:
 	.def	_ZN5eagleC2EPN3wze6engineEP4gameddPNS1_6actors5actorEdd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN5eagleC2EPN3wze6engineEP4gameddPNS1_6actors5actorEdd
 _ZN5eagleC2EPN3wze6engineEP4gameddPNS1_6actors5actorEdd:
-.LFB6889:
+.LFB6890:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -149,17 +149,17 @@ _ZN5eagleC2EPN3wze6engineEP4gameddPNS1_6actors5actorEdd:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6889:
+.LLSDA6890:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6889-.LLSDACSB6889
-.LLSDACSB6889:
-	.uleb128 .LEHB0-.LFB6889
+	.uleb128 .LLSDACSE6890-.LLSDACSB6890
+.LLSDACSB6890:
+	.uleb128 .LEHB0-.LFB6890
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L5-.LFB6889
+	.uleb128 .L5-.LFB6890
 	.uleb128 0
-.LLSDACSE6889:
+.LLSDACSE6890:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -182,17 +182,17 @@ _ZN5eagleC2EPN3wze6engineEP4gameddPNS1_6actors5actorEdd.cold:
 .LEHE1:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6889:
+.LLSDAC6890:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6889-.LLSDACSBC6889
-.LLSDACSBC6889:
+	.uleb128 .LLSDACSEC6890-.LLSDACSBC6890
+.LLSDACSBC6890:
 	.uleb128 .LEHB1-.LCOLDB4
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6889:
+.LLSDACSEC6890:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -209,7 +209,7 @@ _ZN5eagleC2EPN3wze6engineEP4gameddPNS1_6actors5actorEdd.cold:
 	.def	_ZN5eagleD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN5eagleD2Ev
 _ZN5eagleD2Ev:
-.LFB6892:
+.LFB6893:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -262,13 +262,13 @@ _ZN5eagleD2Ev:
 	jmp	free
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6892:
+.LLSDA6893:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6892-.LLSDACSB6892
-.LLSDACSB6892:
-.LLSDACSE6892:
+	.uleb128 .LLSDACSE6893-.LLSDACSB6893
+.LLSDACSB6893:
+.LLSDACSE6893:
 	.text
 	.seh_endproc
 	.globl	_ZN5eagleD1Ev
@@ -301,7 +301,7 @@ _ZN5eagleD2Ev:
 	.def	_ZN5eagle6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN5eagle6UpdateEv
 _ZN5eagle6UpdateEv:
-.LFB6894:
+.LFB6895:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -664,25 +664,25 @@ _ZN5eagle6UpdateEv:
 	jmp	.L46
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6894:
+.LLSDA6895:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6894-.LLSDACSB6894
-.LLSDACSB6894:
-	.uleb128 .LEHB2-.LFB6894
+	.uleb128 .LLSDACSE6895-.LLSDACSB6895
+.LLSDACSB6895:
+	.uleb128 .LEHB2-.LFB6895
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB6894
+	.uleb128 .LEHB3-.LFB6895
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L48-.LFB6894
+	.uleb128 .L48-.LFB6895
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB6894
+	.uleb128 .LEHB4-.LFB6895
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE6894:
+.LLSDACSE6895:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -710,17 +710,17 @@ _ZN5eagle6UpdateEv.cold:
 .LEHE5:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6894:
+.LLSDAC6895:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6894-.LLSDACSBC6894
-.LLSDACSBC6894:
+	.uleb128 .LLSDACSEC6895-.LLSDACSBC6895
+.LLSDACSBC6895:
 	.uleb128 .LEHB5-.LCOLDB16
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6894:
+.LLSDACSEC6895:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"

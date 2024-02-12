@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
-.LFB8637:
+.LFB8638:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -181,7 +181,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
 	.def	_ZN3wze6engine6actors5actorC2EPS0_yPvyddttd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actorC2EPS0_yPvyddttd
 _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd:
-.LFB8431:
+.LFB8432:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -355,37 +355,37 @@ _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8431:
+.LLSDA8432:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8431-.LLSDACSB8431
-.LLSDACSB8431:
-	.uleb128 .LEHB0-.LFB8431
+	.uleb128 .LLSDACSE8432-.LLSDACSB8432
+.LLSDACSB8432:
+	.uleb128 .LEHB0-.LFB8432
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8431
+	.uleb128 .LEHB1-.LFB8432
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L41-.LFB8431
+	.uleb128 .L41-.LFB8432
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8431
+	.uleb128 .LEHB2-.LFB8432
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L42-.LFB8431
+	.uleb128 .L42-.LFB8432
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8431
+	.uleb128 .LEHB3-.LFB8432
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L43-.LFB8431
+	.uleb128 .L43-.LFB8432
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8431
+	.uleb128 .LEHB4-.LFB8432
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L44-.LFB8431
+	.uleb128 .L44-.LFB8432
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8431
+	.uleb128 .LEHB5-.LFB8432
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L45-.LFB8431
+	.uleb128 .L45-.LFB8432
 	.uleb128 0
-.LLSDACSE8431:
+.LLSDACSE8432:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -426,17 +426,17 @@ _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd.cold:
 .LEHE6:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8431:
+.LLSDAC8432:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8431-.LLSDACSBC8431
-.LLSDACSBC8431:
+	.uleb128 .LLSDACSEC8432-.LLSDACSBC8432
+.LLSDACSBC8432:
 	.uleb128 .LEHB6-.LCOLDB6
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8431:
+.LLSDACSEC8432:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -458,7 +458,7 @@ _ZN3wze6engine6actors5actorC2EPS0_yPvyddttd.cold:
 	.def	_ZN3wze6engine6actors5actorD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actorD2Ev
 _ZN3wze6engine6actors5actorD2Ev:
-.LFB8434:
+.LFB8435:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -537,13 +537,13 @@ _ZN3wze6engine6actors5actorD2Ev:
 	nop
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8434:
+.LLSDA8435:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8434-.LLSDACSB8434
-.LLSDACSB8434:
-.LLSDACSE8434:
+	.uleb128 .LLSDACSE8435-.LLSDACSB8435
+.LLSDACSB8435:
+.LLSDACSE8435:
 	.text
 	.seh_endproc
 	.globl	_ZN3wze6engine6actors5actorD1Ev
@@ -555,7 +555,7 @@ _ZN3wze6engine6actors5actorD2Ev:
 	.def	_ZN3wze6engine6actors5actor5GetIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor5GetIDEv
 _ZN3wze6engine6actors5actor5GetIDEv:
-.LFB8436:
+.LFB8437:
 	.seh_endprologue
 	movq	200(%rcx), %rax
 	ret
@@ -566,7 +566,7 @@ _ZN3wze6engine6actors5actor5GetIDEv:
 	.def	_ZN3wze6engine6actors5actor7GetDataEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor7GetDataEv
 _ZN3wze6engine6actors5actor7GetDataEv:
-.LFB8437:
+.LFB8438:
 	.seh_endprologue
 	movq	208(%rcx), %rax
 	ret
@@ -577,7 +577,7 @@ _ZN3wze6engine6actors5actor7GetDataEv:
 	.def	_ZN3wze6engine6actors5actor7GetTypeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor7GetTypeEv
 _ZN3wze6engine6actors5actor7GetTypeEv:
-.LFB8438:
+.LFB8439:
 	.seh_endprologue
 	movq	216(%rcx), %rax
 	ret
@@ -588,7 +588,7 @@ _ZN3wze6engine6actors5actor7GetTypeEv:
 	.def	_ZN3wze6engine6actors5actor4GetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor4GetXEv
 _ZN3wze6engine6actors5actor4GetXEv:
-.LFB8439:
+.LFB8440:
 	.seh_endprologue
 	movsd	224(%rcx), %xmm0
 	ret
@@ -604,7 +604,7 @@ _ZN3wze6engine6actors5actor4GetXEv:
 	.def	_ZN3wze6engine6actors5actor4SetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor4SetXEd
 _ZN3wze6engine6actors5actor4SetXEd:
-.LFB8440:
+.LFB8441:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -637,7 +637,7 @@ _ZN3wze6engine6actors5actor4SetXEd:
 	.def	_ZN3wze6engine6actors5actor4GetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor4GetYEv
 _ZN3wze6engine6actors5actor4GetYEv:
-.LFB8441:
+.LFB8442:
 	.seh_endprologue
 	movsd	232(%rcx), %xmm0
 	ret
@@ -653,7 +653,7 @@ _ZN3wze6engine6actors5actor4GetYEv:
 	.def	_ZN3wze6engine6actors5actor4SetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor4SetYEd
 _ZN3wze6engine6actors5actor4SetYEd:
-.LFB8442:
+.LFB8443:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -686,7 +686,7 @@ _ZN3wze6engine6actors5actor4SetYEd:
 	.def	_ZN3wze6engine6actors5actor8GetWidthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8GetWidthEv
 _ZN3wze6engine6actors5actor8GetWidthEv:
-.LFB8443:
+.LFB8444:
 	.seh_endprologue
 	movzwl	256(%rcx), %eax
 	ret
@@ -697,7 +697,7 @@ _ZN3wze6engine6actors5actor8GetWidthEv:
 	.def	_ZN3wze6engine6actors5actor9GetHeightEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9GetHeightEv
 _ZN3wze6engine6actors5actor9GetHeightEv:
-.LFB8445:
+.LFB8446:
 	.seh_endprologue
 	movzwl	258(%rcx), %eax
 	ret
@@ -708,7 +708,7 @@ _ZN3wze6engine6actors5actor9GetHeightEv:
 	.def	_ZN3wze6engine6actors5actor8GetAngleEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8GetAngleEv
 _ZN3wze6engine6actors5actor8GetAngleEv:
-.LFB8447:
+.LFB8448:
 	.seh_endprologue
 	movsd	264(%rcx), %xmm0
 	ret
@@ -719,7 +719,7 @@ _ZN3wze6engine6actors5actor8GetAngleEv:
 	.def	_ZN3wze6engine6actors5actor8GetLayerEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8GetLayerEv
 _ZN3wze6engine6actors5actor8GetLayerEv:
-.LFB8449:
+.LFB8450:
 	.seh_endprologue
 	movsd	272(%rcx), %xmm0
 	ret
@@ -738,7 +738,7 @@ _ZN3wze6engine6actors5actor8GetLayerEv:
 	.def	_ZN3wze6engine6actors5actor8SetLayerEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8SetLayerEd
 _ZN3wze6engine6actors5actor8SetLayerEd:
-.LFB8450:
+.LFB8451:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -805,7 +805,7 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 	.def	_ZN3wze6engine6actors5actor8GetDepthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8GetDepthEv
 _ZN3wze6engine6actors5actor8GetDepthEv:
-.LFB8451:
+.LFB8452:
 	.seh_endprologue
 	movsd	280(%rcx), %xmm0
 	ret
@@ -827,7 +827,7 @@ _ZN3wze6engine6actors5actor8GetDepthEv:
 	.def	_ZN3wze6engine6actors5actor8SetDepthEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8SetDepthEd
 _ZN3wze6engine6actors5actor8SetDepthEd:
-.LFB8452:
+.LFB8453:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -872,7 +872,7 @@ _ZN3wze6engine6actors5actor8SetDepthEd:
 	.def	_ZN3wze6engine6actors5actor17GetCollisionLayerEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor17GetCollisionLayerEv
 _ZN3wze6engine6actors5actor17GetCollisionLayerEv:
-.LFB8453:
+.LFB8454:
 	.seh_endprologue
 	movzbl	288(%rcx), %eax
 	ret
@@ -888,7 +888,7 @@ _ZN3wze6engine6actors5actor17GetCollisionLayerEv:
 	.def	_ZN3wze6engine6actors5actor17SetCollisionLayerEh;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor17SetCollisionLayerEh
 _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
-.LFB8454:
+.LFB8455:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -985,7 +985,7 @@ _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
 	.def	_ZN3wze6engine6actors5actor14GetHitboxWidthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor14GetHitboxWidthEv
 _ZN3wze6engine6actors5actor14GetHitboxWidthEv:
-.LFB8455:
+.LFB8456:
 	.seh_endprologue
 	movzwl	290(%rcx), %eax
 	ret
@@ -996,7 +996,7 @@ _ZN3wze6engine6actors5actor14GetHitboxWidthEv:
 	.def	_ZN3wze6engine6actors5actor15GetHitboxHeightEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor15GetHitboxHeightEv
 _ZN3wze6engine6actors5actor15GetHitboxHeightEv:
-.LFB8456:
+.LFB8457:
 	.seh_endprologue
 	movzwl	292(%rcx), %eax
 	ret
@@ -1007,7 +1007,7 @@ _ZN3wze6engine6actors5actor15GetHitboxHeightEv:
 	.def	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor17UpdateHitboxScaleEv
 _ZN3wze6engine6actors5actor17UpdateHitboxScaleEv:
-.LFB8457:
+.LFB8458:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -1144,7 +1144,7 @@ _ZN3wze6engine6actors5actor17UpdateHitboxScaleEv:
 	.def	_ZN3wze6engine6actors5actor8SetWidthEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8SetWidthEt
 _ZN3wze6engine6actors5actor8SetWidthEt:
-.LFB8444:
+.LFB8445:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -1223,7 +1223,7 @@ _ZN3wze6engine6actors5actor8SetWidthEt:
 	.def	_ZN3wze6engine6actors5actor9SetHeightEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9SetHeightEt
 _ZN3wze6engine6actors5actor9SetHeightEt:
-.LFB8446:
+.LFB8447:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -1305,7 +1305,7 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	.def	_ZN3wze6engine6actors5actor8SetAngleEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor8SetAngleEd
 _ZN3wze6engine6actors5actor8SetAngleEd:
-.LFB8448:
+.LFB8449:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -1535,7 +1535,7 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	.def	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor21UpdateMembersPositionEv
 _ZN3wze6engine6actors5actor21UpdateMembersPositionEv:
-.LFB8458:
+.LFB8459:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi

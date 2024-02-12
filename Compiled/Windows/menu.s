@@ -14,7 +14,7 @@
 	.def	_ZN4menuC2EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4menuC2EPN3wze6engineEP4game
 _ZN4menuC2EPN3wze6engineEP4game:
-.LFB6889:
+.LFB6890:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -195,7 +195,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	.def	_ZN4menuD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4menuD2Ev
 _ZN4menuD2Ev:
-.LFB6892:
+.LFB6893:
 	.seh_endprologue
 	ret
 	.seh_endproc
@@ -208,7 +208,7 @@ _ZN4menuD2Ev:
 	.def	_ZN4menu6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4menu6UpdateEv
 _ZN4menu6UpdateEv:
-.LFB6894:
+.LFB6895:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx

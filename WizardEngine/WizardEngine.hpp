@@ -821,6 +821,8 @@ namespace wze
             neo::uint8 UpdateOverlapboxes();
     };
 
+    //__________Engine_________________________________________________________________________________________
+
     template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::Clamp(type Value, type Min, type Max)
     {
         if (Max < Min)

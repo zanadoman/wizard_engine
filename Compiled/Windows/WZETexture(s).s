@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0:
-.LFB6934:
+.LFB6935:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -181,7 +181,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.i
 	.def	_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_
 _ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_:
-.LFB6889:
+.LFB6890:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -223,7 +223,7 @@ _ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_:
 	.def	_ZN3wze6engine6actors5actor12textureboxesD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxesD2Ev
 _ZN3wze6engine6actors5actor12textureboxesD2Ev:
-.LFB6892:
+.LFB6893:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -291,7 +291,7 @@ _ZN3wze6engine6actors5actor12textureboxesD2Ev:
 	.def	_ZN3wze6engine6actors5actor12textureboxes3NewEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes3NewEy
 _ZN3wze6engine6actors5actor12textureboxes3NewEy:
-.LFB6894:
+.LFB6895:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -444,7 +444,7 @@ _ZN3wze6engine6actors5actor12textureboxes3NewEy:
 	.def	_ZN3wze6engine6actors5actor12textureboxes6DeleteEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes6DeleteEy
 _ZN3wze6engine6actors5actor12textureboxes6DeleteEy:
-.LFB6895:
+.LFB6896:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -523,7 +523,7 @@ _ZN3wze6engine6actors5actor12textureboxes6DeleteEy:
 	.def	_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE
 _ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE:
-.LFB6896:
+.LFB6897:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -653,7 +653,7 @@ _ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE:
-.LFB6897:
+.LFB6898:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -792,7 +792,7 @@ _ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6actors5actor12textureboxesixEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxesixEy
 _ZN3wze6engine6actors5actor12textureboxesixEy:
-.LFB6898:
+.LFB6899:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -824,7 +824,7 @@ _ZN3wze6engine6actors5actor12textureboxesixEy:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy
 _ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy:
-.LFB6900:
+.LFB6901:
 	.seh_endprologue
 	movupd	224(%r8), %xmm0
 	movl	256(%r8), %eax
@@ -854,7 +854,7 @@ _ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev
 _ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev:
-.LFB6903:
+.LFB6904:
 	.seh_endprologue
 	ret
 	.seh_endproc
@@ -867,7 +867,7 @@ _ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv
 _ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv:
-.LFB6905:
+.LFB6906:
 	.seh_endprologue
 	movq	40(%rcx), %rax
 	ret
@@ -878,7 +878,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv
 _ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv:
-.LFB6906:
+.LFB6907:
 	.seh_endprologue
 	movsd	48(%rcx), %xmm0
 	ret
@@ -894,7 +894,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd
 _ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd:
-.LFB6907:
+.LFB6908:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -962,7 +962,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv
 _ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv:
-.LFB6908:
+.LFB6909:
 	.seh_endprologue
 	movsd	56(%rcx), %xmm0
 	ret
@@ -978,7 +978,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd
 _ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd:
-.LFB6909:
+.LFB6910:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1046,7 +1046,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv
 _ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv:
-.LFB6910:
+.LFB6911:
 	.seh_endprologue
 	movsd	64(%rcx), %xmm0
 	ret
@@ -1062,7 +1062,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd
 _ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd:
-.LFB6911:
+.LFB6912:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1105,7 +1105,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv
 _ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv:
-.LFB6912:
+.LFB6913:
 	.seh_endprologue
 	movsd	72(%rcx), %xmm0
 	ret
@@ -1121,7 +1121,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd
 _ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd:
-.LFB6913:
+.LFB6914:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1165,7 +1165,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv
 _ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv:
-.LFB6914:
+.LFB6915:
 	.seh_endprologue
 	movq	80(%rcx), %rax
 	ret
@@ -1181,7 +1181,7 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv:
 	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy
 _ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy:
-.LFB6915:
+.LFB6916:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
