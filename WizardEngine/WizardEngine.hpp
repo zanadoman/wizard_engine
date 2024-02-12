@@ -809,6 +809,9 @@ namespace wze
             ~engine();
             bool Update();
             neo::uint8 Sleep(neo::uint32 Milliseconds);
+            static neo::uint64 Clamp(neo::uint64 Value, neo::uint64 Min, neo::uint64 Max);
+            static neo::sint64 Clamp(neo::sint64 Value, neo::sint64 Min, neo::sint64 Max);
+            static double Clamp(double Value, double Min, double Max);
             neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
 
         private:

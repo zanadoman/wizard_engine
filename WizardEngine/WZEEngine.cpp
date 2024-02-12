@@ -7,10 +7,10 @@ namespace wze
 {
     engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Assets(this), Timing(this)
     {
-        array<uint64> LogoTextures(30);
-        actor LogoActor;
-        flipbook LogoFlipbook;
-        string str;
+        uint64 Texture;
+        actor Actor;
+        texturebox Texturebox;
+        double opacity;
 
         if (Title == NULL)
         {
@@ -18,7 +18,7 @@ namespace wze
         }
         if (IconPath == NULL)
         {
-            IconPath = "engine/wizard.png";
+            IconPath = "engine/icon.png";
         }
         if (TargetFrameTime == 0)
         {
@@ -63,27 +63,44 @@ namespace wze
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
 
-        for (uint8 i = 0; i < LogoTextures.Length(); i++)
-        {
-            LogoTextures[i] = {this->Assets.LoadTexture((((str = {"engine/logo/logo"}) += {(uint64)i + 1}) += {".png"})())};
-        }
-        LogoTextures -= {(uint64)0}; LogoTextures += {(uint64)0};
-        LogoActor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
-        LogoFlipbook = LogoActor->Flipbooks.New(100, &LogoTextures);
-        LogoFlipbook->Loop = false;
+        Texture = this->Assets.LoadTexture("engine/logo.png");
+        Actor = this->Actors.New(NULL, 0, WindowWidth >> 1, WindowHeight >> 1, WindowHeight >> 1, WindowHeight >> 1, 0);
+        Texturebox = Actor->Textureboxes.New(Texture);
 
-        do
+        Texturebox->ColorA = opacity = 0;
+
+        while (opacity <= 255)
         {
+            Texturebox->ColorA = round(opacity);
+
             if (!this->Update())
             {
-                this->Actors.Delete(LogoActor->GetID());
-                this->Assets.PurgeTextures({});
+                this->Actors.Delete(Actor->ID);
+                this->Assets.UnloadTexture(Texture);
                 return;
             }
-        } while (LogoFlipbook->IsPlaying());
 
-        this->Actors.Delete(LogoActor->GetID());
-        this->Assets.PurgeTextures({});
+            opacity += 0.1 * this->Timing.GetDeltaTime();
+        }
+
+        Texturebox->ColorA = opacity = 255;
+
+        while (0 <= opacity)
+        {
+            Texturebox->ColorA = round(opacity);
+
+            if (!this->Update())
+            {
+                this->Actors.Delete(Actor->ID);
+                this->Assets.UnloadTexture(Texture);
+                return;
+            }
+
+            opacity -= 0.1 * this->Timing.GetDeltaTime();
+        } 
+
+        this->Actors.Delete(Actor->ID);
+        this->Assets.UnloadTexture(Texture);
     }
 
     engine::~engine()
@@ -148,6 +165,66 @@ namespace wze
         SDL_Delay(Milliseconds);
 
         return 0;
+    }
+
+    uint64 engine::Clamp(uint64 Value, uint64 Min, uint64 Max)
+    {
+        if (Max < Min)
+        {
+            printf("wze::engine.Clamp(): Max must not be less than Min\nParams: Value: %lld, Min: %lld, Max: %lld\n", Value, Min, Max);
+            exit(1);
+        }
+
+        if (Value < Min)
+        {
+            return Min;
+        }
+        if (Max < Value)
+        {
+            return Max;
+        }
+
+        return Value;
+    }
+
+    sint64 engine::Clamp(sint64 Value, sint64 Min, sint64 Max)
+    {
+        if (Max < Min)
+        {
+            printf("wze::engine.Clamp(): Max must not be less than Min\nParams: Value: %lld, Min: %lld, Max: %lld\n", Value, Min, Max);
+            exit(1);
+        }
+
+        if (Value < Min)
+        {
+            return Min;
+        }
+        if (Max < Value)
+        {
+            return Max;
+        }
+
+        return Value;
+    }
+
+    double engine::Clamp(double Value, double Min, double Max)
+    {
+        if (Max < Min)
+        {
+            printf("wze::engine.Clamp(): Max must not be less than Min\nParams: Value: %lf, Min: %lf, Max: %lf\n", Value, Min, Max);
+            exit(1);
+        }
+
+        if (Value < Min)
+        {
+            return Min;
+        }
+        if (Max < Value)
+        {
+            return Max;
+        }
+
+        return Value;
     }
 
     sint32 engine::Random(sint32 Min, sint32 Max)
