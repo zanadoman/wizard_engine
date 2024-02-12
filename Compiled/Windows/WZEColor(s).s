@@ -45,10 +45,10 @@ _Z6printfPKcz:
 	.text
 	.align 2
 	.p2align 4
-	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
-	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
-_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
-.LFB6917:
+	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
+_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0:
+.LFB6930:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -177,11 +177,11 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_
-	.def	_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_
-_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_:
-.LFB6880:
+	.globl	_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_
+	.def	_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_
+_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_:
+.LFB6889:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -214,16 +214,16 @@ _ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_:
 	call	exit
 	nop
 	.seh_endproc
-	.globl	_ZN3wze6engine6actors5actor6colorsC1EPS0_PS2_
-	.def	_ZN3wze6engine6actors5actor6colorsC1EPS0_PS2_;	.scl	2;	.type	32;	.endef
-	.set	_ZN3wze6engine6actors5actor6colorsC1EPS0_PS2_,_ZN3wze6engine6actors5actor6colorsC2EPS0_PS2_
+	.globl	_ZN3wze6engine6actors5actor10colorboxesC1EPS0_PS2_
+	.def	_ZN3wze6engine6actors5actor10colorboxesC1EPS0_PS2_;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine6actors5actor10colorboxesC1EPS0_PS2_,_ZN3wze6engine6actors5actor10colorboxesC2EPS0_PS2_
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colorsD2Ev
-	.def	_ZN3wze6engine6actors5actor6colorsD2Ev;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colorsD2Ev
-_ZN3wze6engine6actors5actor6colorsD2Ev:
-.LFB6883:
+	.globl	_ZN3wze6engine6actors5actor10colorboxesD2Ev
+	.def	_ZN3wze6engine6actors5actor10colorboxesD2Ev;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxesD2Ev
+_ZN3wze6engine6actors5actor10colorboxesD2Ev:
+.LFB6892:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -268,9 +268,9 @@ _ZN3wze6engine6actors5actor6colorsD2Ev:
 	popq	%rsi
 	jmp	free
 	.seh_endproc
-	.globl	_ZN3wze6engine6actors5actor6colorsD1Ev
-	.def	_ZN3wze6engine6actors5actor6colorsD1Ev;	.scl	2;	.type	32;	.endef
-	.set	_ZN3wze6engine6actors5actor6colorsD1Ev,_ZN3wze6engine6actors5actor6colorsD2Ev
+	.globl	_ZN3wze6engine6actors5actor10colorboxesD1Ev
+	.def	_ZN3wze6engine6actors5actor10colorboxesD1Ev;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine6actors5actor10colorboxesD1Ev,_ZN3wze6engine6actors5actor10colorboxesD2Ev
 	.section .rdata,"dr"
 	.align 8
 .LC5:
@@ -280,15 +280,15 @@ _ZN3wze6engine6actors5actor6colorsD2Ev:
 	.ascii "neo::array+=: Memory allocation failed\12Params: Elements(type, length): %ld, %ld\12\0"
 	.align 8
 .LC7:
-	.ascii "wze::engine.actors[].colors.New(): Memory allocation failed\12\0"
+	.ascii "wze::engine.actors[].colorboxes.New(): Memory allocation failed\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors3NewEv
-	.def	_ZN3wze6engine6actors5actor6colors3NewEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors3NewEv
-_ZN3wze6engine6actors5actor6colors3NewEv:
-.LFB6885:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes3NewEv
+	.def	_ZN3wze6engine6actors5actor10colorboxes3NewEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes3NewEv
+_ZN3wze6engine6actors5actor10colorboxes3NewEv:
+.LFB6894:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -410,11 +410,11 @@ _ZN3wze6engine6actors5actor6colors3NewEv:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors6DeleteEy
-	.def	_ZN3wze6engine6actors5actor6colors6DeleteEy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors6DeleteEy
-_ZN3wze6engine6actors5actor6colors6DeleteEy:
-.LFB6886:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes6DeleteEy
+	.def	_ZN3wze6engine6actors5actor10colorboxes6DeleteEy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes6DeleteEy
+_ZN3wze6engine6actors5actor10colorboxes6DeleteEy:
+.LFB6895:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -465,7 +465,7 @@ _ZN3wze6engine6actors5actor6colors6DeleteEy:
 	jne	.L61
 .L60:
 	leaq	16(%rbx), %rcx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
 	jmp	.L55
 	.p2align 4,,10
 	.p2align 3
@@ -489,11 +489,11 @@ _ZN3wze6engine6actors5actor6colors6DeleteEy:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE
-	.def	_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE
-_ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
-.LFB6887:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes5PurgeESt16initializer_listIyE
+	.def	_ZN3wze6engine6actors5actor10colorboxes5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes5PurgeESt16initializer_listIyE
+_ZN3wze6engine6actors5actor10colorboxes5PurgeESt16initializer_listIyE:
+.LFB6896:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -575,7 +575,7 @@ _ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 .L89:
 	leaq	16(%rbp), %rcx
 	movq	%r9, %rdx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$32, %rsp
 	popq	%rbx
@@ -615,15 +615,15 @@ _ZN3wze6engine6actors5actor6colors5PurgeESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC9:
-	.ascii "wze::engine.actors[].colors.Purge(): KeepColorIDs must not be NULL\12Params: KeepColorIDs: %p\12\0"
+	.ascii "wze::engine.actors[].colorboxes.Purge(): KeepColorboxIDs must not be NULL\12Params: KeepColorboxIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE
-	.def	_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE
-_ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
-.LFB6888:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes5PurgeEPN3neo5arrayIyEE
+	.def	_ZN3wze6engine6actors5actor10colorboxes5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes5PurgeEPN3neo5arrayIyEE
+_ZN3wze6engine6actors5actor10colorboxes5PurgeEPN3neo5arrayIyEE:
+.LFB6897:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -707,7 +707,7 @@ _ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 .L121:
 	movq	%rax, %rdx
 	leaq	16(%rdi), %rcx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor6colors5colorEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	popq	%rbx
@@ -751,18 +751,18 @@ _ZN3wze6engine6actors5actor6colors5PurgeEPN3neo5arrayIyEE:
 	.section .rdata,"dr"
 	.align 8
 .LC10:
-	.ascii "wze::engine.actors[].colors[]: Illegal access to NULL Color\12Params: ColorID: %lld\12\0"
+	.ascii "wze::engine.actors[].colorboxes[]: Illegal access to NULL Colorbox\12Params: ColorboxID: %lld\12\0"
 	.align 8
 .LC11:
-	.ascii "wze::engine.actors[].colors[]: Color does not exist\12Params: ColorID: %lld\12\0"
+	.ascii "wze::engine.actors[].colorboxes[]: Colorbox does not exist\12Params: ColorboxID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colorsixEy
-	.def	_ZN3wze6engine6actors5actor6colorsixEy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colorsixEy
-_ZN3wze6engine6actors5actor6colorsixEy:
-.LFB6889:
+	.globl	_ZN3wze6engine6actors5actor10colorboxesixEy
+	.def	_ZN3wze6engine6actors5actor10colorboxesixEy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxesixEy
+_ZN3wze6engine6actors5actor10colorboxesixEy:
+.LFB6898:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -790,11 +790,11 @@ _ZN3wze6engine6actors5actor6colorsixEy:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y
-	.def	_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y
-_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y:
-.LFB6891:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y
+_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y:
+.LFB6900:
 	.seh_endprologue
 	movupd	224(%r8), %xmm0
 	movl	256(%r8), %eax
@@ -811,40 +811,40 @@ _ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y:
 	movups	%xmm0, 56(%rcx)
 	ret
 	.seh_endproc
-	.globl	_ZN3wze6engine6actors5actor6colors5colorC1EPS0_PS2_y
-	.def	_ZN3wze6engine6actors5actor6colors5colorC1EPS0_PS2_y;	.scl	2;	.type	32;	.endef
-	.set	_ZN3wze6engine6actors5actor6colors5colorC1EPS0_PS2_y,_ZN3wze6engine6actors5actor6colors5colorC2EPS0_PS2_y
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorboxC1EPS0_PS2_y
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorboxC1EPS0_PS2_y;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine6actors5actor10colorboxes8colorboxC1EPS0_PS2_y,_ZN3wze6engine6actors5actor10colorboxes8colorboxC2EPS0_PS2_y
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5colorD2Ev
-	.def	_ZN3wze6engine6actors5actor6colors5colorD2Ev;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors5colorD2Ev
-_ZN3wze6engine6actors5actor6colors5colorD2Ev:
-.LFB6894:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev
+_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev:
+.LFB6903:
 	.seh_endprologue
 	ret
 	.seh_endproc
-	.globl	_ZN3wze6engine6actors5actor6colors5colorD1Ev
-	.def	_ZN3wze6engine6actors5actor6colors5colorD1Ev;	.scl	2;	.type	32;	.endef
-	.set	_ZN3wze6engine6actors5actor6colors5colorD1Ev,_ZN3wze6engine6actors5actor6colors5colorD2Ev
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorboxD1Ev
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorboxD1Ev;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine6actors5actor10colorboxes8colorboxD1Ev,_ZN3wze6engine6actors5actor10colorboxes8colorboxD2Ev
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color5GetIDEv
-	.def	_ZN3wze6engine6actors5actor6colors5color5GetIDEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors5color5GetIDEv
-_ZN3wze6engine6actors5actor6colors5color5GetIDEv:
-.LFB6896:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox5GetIDEv
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox5GetIDEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorbox5GetIDEv
+_ZN3wze6engine6actors5actor10colorboxes8colorbox5GetIDEv:
+.LFB6905:
 	.seh_endprologue
 	movq	32(%rcx), %rax
 	ret
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color4GetXEv
-	.def	_ZN3wze6engine6actors5actor6colors5color4GetXEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors5color4GetXEv
-_ZN3wze6engine6actors5actor6colors5color4GetXEv:
-.LFB6897:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv
+_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetXEv:
+.LFB6906:
 	.seh_endprologue
 	movsd	40(%rcx), %xmm0
 	ret
@@ -852,15 +852,15 @@ _ZN3wze6engine6actors5actor6colors5color4GetXEv:
 	.section .rdata,"dr"
 	.align 8
 .LC13:
-	.ascii "wze::engine.actors[].colors[].SetX(): X must not be NaN\12Params: X: %lf\12\0"
+	.ascii "wze::engine.actors[].colorboxes[].SetX(): X must not be NaN\12Params: X: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color4SetXEd
-	.def	_ZN3wze6engine6actors5actor6colors5color4SetXEd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors5color4SetXEd
-_ZN3wze6engine6actors5actor6colors5color4SetXEd:
-.LFB6898:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetXEd
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetXEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetXEd
+_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetXEd:
+.LFB6907:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -924,11 +924,11 @@ _ZN3wze6engine6actors5actor6colors5color4SetXEd:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color4GetYEv
-	.def	_ZN3wze6engine6actors5actor6colors5color4GetYEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors5color4GetYEv
-_ZN3wze6engine6actors5actor6colors5color4GetYEv:
-.LFB6899:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv
+_ZN3wze6engine6actors5actor10colorboxes8colorbox4GetYEv:
+.LFB6908:
 	.seh_endprologue
 	movsd	48(%rcx), %xmm0
 	ret
@@ -936,15 +936,15 @@ _ZN3wze6engine6actors5actor6colors5color4GetYEv:
 	.section .rdata,"dr"
 	.align 8
 .LC14:
-	.ascii "wze::engine.actors[].colors[].SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
+	.ascii "wze::engine.actors[].colorboxes[].SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor6colors5color4SetYEd
-	.def	_ZN3wze6engine6actors5actor6colors5color4SetYEd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor6colors5color4SetYEd
-_ZN3wze6engine6actors5actor6colors5color4SetYEd:
-.LFB6900:
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd
+_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd:
+.LFB6909:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1006,6 +1006,125 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	call	exit
 	nop
 	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox15GetOffsetLengthEv
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox15GetOffsetLengthEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorbox15GetOffsetLengthEv
+_ZN3wze6engine6actors5actor10colorboxes8colorbox15GetOffsetLengthEv:
+.LFB6910:
+	.seh_endprologue
+	movsd	56(%rcx), %xmm0
+	ret
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC15:
+	.ascii "wze::engine.actors[].colorboxes[].SetOffsetLength(): OffsetLength must not be NaN\12Params: OffsetLength: %lf\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox15SetOffsetLengthEd
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox15SetOffsetLengthEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorbox15SetOffsetLengthEd
+_ZN3wze6engine6actors5actor10colorboxes8colorbox15SetOffsetLengthEd:
+.LFB6911:
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	movaps	%xmm6, 32(%rsp)
+	.seh_savexmm	%xmm6, 32
+	.seh_endprologue
+	ucomisd	%xmm1, %xmm1
+	movq	%rcx, %rbx
+	movapd	%xmm1, %xmm6
+	jp	.L193
+	movq	8(%rcx), %rax
+	movsd	64(%rcx), %xmm2
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd
+	movq	8(%rbx), %rax
+	movsd	64(%rbx), %xmm2
+	movapd	%xmm6, %xmm1
+	movsd	%xmm0, 40(%rbx)
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd
+	unpcklpd	%xmm6, %xmm0
+	movups	%xmm0, 48(%rbx)
+	movapd	%xmm6, %xmm0
+	movaps	32(%rsp), %xmm6
+	addq	$48, %rsp
+	popq	%rbx
+	ret
+.L193:
+	leaq	.LC15(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox14GetOffsetAngleEv
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox14GetOffsetAngleEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorbox14GetOffsetAngleEv
+_ZN3wze6engine6actors5actor10colorboxes8colorbox14GetOffsetAngleEv:
+.LFB6912:
+	.seh_endprologue
+	movsd	64(%rcx), %xmm0
+	ret
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC16:
+	.ascii "wze::engine.actors[].colorboxes[].SetOffsetAngle(): OffsetAngle must not be NaN\12Params: OffsetAngle %lf\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox14SetOffsetAngleEd
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox14SetOffsetAngleEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor10colorboxes8colorbox14SetOffsetAngleEd
+_ZN3wze6engine6actors5actor10colorboxes8colorbox14SetOffsetAngleEd:
+.LFB6913:
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	movaps	%xmm6, 32(%rsp)
+	.seh_savexmm	%xmm6, 32
+	.seh_endprologue
+	ucomisd	%xmm1, %xmm1
+	movq	%rcx, %rbx
+	movapd	%xmm1, %xmm6
+	jp	.L200
+	movq	8(%rcx), %rax
+	movapd	%xmm1, %xmm2
+	movsd	56(%rcx), %xmm1
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd
+	movq	8(%rbx), %rax
+	movsd	56(%rbx), %xmm1
+	movapd	%xmm6, %xmm2
+	movsd	%xmm0, 40(%rbx)
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd
+	movsd	%xmm6, 64(%rbx)
+	movsd	%xmm0, 48(%rbx)
+	movapd	%xmm6, %xmm0
+	movaps	32(%rsp), %xmm6
+	addq	$48, %rsp
+	popq	%rbx
+	ret
+.L200:
+	leaq	.LC16(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
 	.def	realloc;	.scl	2;	.type	32;	.endef
@@ -1017,3 +1136,5 @@ _ZN3wze6engine6actors5actor6colors5color4SetYEd:
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector6LengthEdddd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector5AngleEdddd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6vector9TerminalXEddd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6vector9TerminalYEddd;	.scl	2;	.type	32;	.endef

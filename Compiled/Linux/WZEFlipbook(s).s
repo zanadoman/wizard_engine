@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0:
-.LFB8381:
+.LFB8385:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8381:
+.LFE8385:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor9flipbooks8flipbookEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -1878,19 +1878,147 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook4SetYEd
 	.align 2
 	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetOffsetLengthEv
+	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetOffsetLengthEv, @function
+_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetOffsetLengthEv:
+.LFB8183:
+	.cfi_startproc
+	movsd	64(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE8183:
+	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetOffsetLengthEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetOffsetLengthEv
+	.section	.rodata.str1.8
+	.align 8
+.LC29:
+	.string	"wze::engine.actors[].flipbooks[].SetOffsetLength(): OffsetLength must not be NaN\nParams: OffsetLength: %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook15SetOffsetLengthEd
+	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook15SetOffsetLengthEd, @function
+_ZN3wze6engine6actors5actor9flipbooks8flipbook15SetOffsetLengthEd:
+.LFB8184:
+	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movapd	%xmm0, %xmm1
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L289
+	movq	8(%rdi), %rax
+	movsd	72(%rdi), %xmm2
+	movq	%rdi, %rbx
+	movsd	%xmm1, 8(%rsp)
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm1
+	movsd	%xmm0, 48(%rbx)
+	movsd	72(%rbx), %xmm2
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movsd	8(%rsp), %xmm1
+	unpcklpd	%xmm1, %xmm0
+	movups	%xmm0, 56(%rbx)
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 16
+	movapd	%xmm1, %xmm0
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+.L289:
+	.cfi_restore_state
+	leaq	.LC29(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8184:
+	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook15SetOffsetLengthEd, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook15SetOffsetLengthEd
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook14GetOffsetAngleEv
+	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook14GetOffsetAngleEv, @function
+_ZN3wze6engine6actors5actor9flipbooks8flipbook14GetOffsetAngleEv:
+.LFB8185:
+	.cfi_startproc
+	movsd	72(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE8185:
+	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook14GetOffsetAngleEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook14GetOffsetAngleEv
+	.section	.rodata.str1.8
+	.align 8
+.LC30:
+	.string	"wze::engine.actors[].flipbooks[].SetOffsetAngle(): OffsetAngle must not be NaN\nParams: OffsetAngle %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook14SetOffsetAngleEd
+	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook14SetOffsetAngleEd, @function
+_ZN3wze6engine6actors5actor9flipbooks8flipbook14SetOffsetAngleEd:
+.LFB8186:
+	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movapd	%xmm0, %xmm2
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L297
+	movq	8(%rdi), %rax
+	movsd	64(%rdi), %xmm1
+	movq	%rdi, %rbx
+	movsd	%xmm2, 8(%rsp)
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm2
+	movsd	%xmm0, 48(%rbx)
+	movsd	64(%rbx), %xmm1
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movsd	8(%rsp), %xmm2
+	movsd	%xmm0, 56(%rbx)
+	movsd	%xmm2, 72(%rbx)
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 16
+	movapd	%xmm2, %xmm0
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+.L297:
+	.cfi_restore_state
+	leaq	.LC30(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8186:
+	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook14SetOffsetAngleEd, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook14SetOffsetAngleEd
+	.align 2
+	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv:
-.LFB8183:
+.LFB8187:
 	.cfi_startproc
 	movl	80(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8183:
+.LFE8187:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv
 	.section	.rodata.str1.8
 	.align 8
-.LC29:
+.LC31:
 	.string	"wze::engine.actors[].flipbooks[].SetDelay(): Delay must not be 0\nParams: Delay: %d\n"
 	.text
 	.align 2
@@ -1898,74 +2026,74 @@ _ZN3wze6engine6actors5actor9flipbooks8flipbook8GetDelayEv:
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj:
-.LFB8184:
+.LFB8188:
 	.cfi_startproc
 	movl	%esi, %eax
 	testl	%esi, %esi
-	je	.L288
+	je	.L304
 	movl	%esi, 80(%rdi)
 	ret
-.L288:
+.L304:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
-	leaq	.LC29(%rip), %rdi
+	leaq	.LC31(%rip), %rdi
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8184:
+.LFE8188:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook8SetDelayEj
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv:
-.LFB8185:
+.LFB8189:
 	.cfi_startproc
 	xorl	%eax, %eax
 	cmpb	$0, 39(%rdi)
-	jne	.L289
+	jne	.L305
 	movzbl	38(%rdi), %eax
 	testb	%al, %al
-	je	.L292
-.L289:
+	je	.L308
+.L305:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L292:
+.L308:
 	movq	104(%rdi), %rax
 	subq	$1, %rax
 	cmpq	88(%rdi), %rax
 	setne	%al
 	ret
 	.cfi_endproc
-.LFE8185:
+.LFE8189:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook9IsPlayingEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv:
-.LFB8186:
+.LFB8190:
 	.cfi_startproc
 	movq	88(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE8186:
+.LFE8190:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook15GetCurrentFrameEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv
 	.type	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv, @function
 _ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv:
-.LFB8187:
+.LFB8191:
 	.cfi_startproc
 	movq	$0, 88(%rdi)
 	xorl	%eax, %eax
 	ret
 	.cfi_endproc
-.LFE8187:
+.LFE8191:
 	.size	_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv, .-_ZN3wze6engine6actors5actor9flipbooks8flipbook5ResetEv
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0:
-.LFB8360:
+.LFB8364:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.i
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8360:
+.LFE8364:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -1115,19 +1115,147 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd:
 	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd
 	.align 2
 	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv:
+.LFB8177:
+	.cfi_startproc
+	movsd	64(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE8177:
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv
+	.section	.rodata.str1.8
+	.align 8
+.LC14:
+	.string	"wze::engine.actors[].textureboxes[].SetOffsetLength(): OffsetLength must not be NaN\nParams: OffsetLength: %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd:
+.LFB8178:
+	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movapd	%xmm0, %xmm1
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L217
+	movq	8(%rdi), %rax
+	movsd	72(%rdi), %xmm2
+	movq	%rdi, %rbx
+	movsd	%xmm1, 8(%rsp)
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm1
+	movsd	%xmm0, 48(%rbx)
+	movsd	72(%rbx), %xmm2
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movsd	8(%rsp), %xmm1
+	unpcklpd	%xmm1, %xmm0
+	movups	%xmm0, 56(%rbx)
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 16
+	movapd	%xmm1, %xmm0
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+.L217:
+	.cfi_restore_state
+	leaq	.LC14(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8178:
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv:
+.LFB8179:
+	.cfi_startproc
+	movsd	72(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE8179:
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv
+	.section	.rodata.str1.8
+	.align 8
+.LC15:
+	.string	"wze::engine.actors[].textureboxes[].SetOffsetAngle(): OffsetAngle must not be NaN\nParams: OffsetAngle %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd
+	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd, @function
+_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd:
+.LFB8180:
+	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movapd	%xmm0, %xmm2
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L225
+	movq	8(%rdi), %rax
+	movsd	64(%rdi), %xmm1
+	movq	%rdi, %rbx
+	movsd	%xmm2, 8(%rsp)
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm2
+	movsd	%xmm0, 48(%rbx)
+	movsd	64(%rbx), %xmm1
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movsd	8(%rsp), %xmm2
+	movsd	%xmm0, 56(%rbx)
+	movsd	%xmm2, 72(%rbx)
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 16
+	movapd	%xmm2, %xmm0
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+.L225:
+	.cfi_restore_state
+	leaq	.LC15(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8180:
+	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd
+	.align 2
+	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv
 	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv, @function
 _ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv:
-.LFB8177:
+.LFB8181:
 	.cfi_startproc
 	movq	80(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE8177:
+.LFE8181:
 	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv
 	.section	.rodata.str1.8
 	.align 8
-.LC14:
+.LC16:
 	.string	"wze::engine.actors[].textureboxes[].SetTextureID(): Texture does not exist\nParams: TextureID: %lld\n"
 	.text
 	.align 2
@@ -1135,31 +1263,31 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv:
 	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy
 	.type	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy, @function
 _ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy:
-.LFB8178:
+.LFB8182:
 	.cfi_startproc
 	movq	%rsi, %rax
 	testq	%rsi, %rsi
-	je	.L212
+	je	.L228
 	movq	(%rdi), %rdx
 	cmpq	312(%rdx), %rsi
-	jnb	.L213
+	jnb	.L229
 	movq	320(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
-	je	.L213
-.L212:
+	je	.L229
+.L228:
 	movq	%rax, 80(%rdi)
 	ret
-.L213:
+.L229:
 	pushq	%rdx
 	.cfi_def_cfa_offset 16
 	movq	%rax, %rsi
-	leaq	.LC14(%rip), %rdi
+	leaq	.LC16(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8178:
+.LFE8182:
 	.size	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy, .-_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

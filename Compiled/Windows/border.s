@@ -1,11 +1,11 @@
-	.file	"platform.cpp"
+	.file	"border.cpp"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN8platformC2EPN3wze6engineEP4gameddttdh
-	.def	_ZN8platformC2EPN3wze6engineEP4gameddttdh;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN8platformC2EPN3wze6engineEP4gameddttdh
-_ZN8platformC2EPN3wze6engineEP4gameddttdh:
+	.globl	_ZN6borderC2EPN3wze6engineEP4gameddttdh
+	.def	_ZN6borderC2EPN3wze6engineEP4gameddttdh;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN6borderC2EPN3wze6engineEP4gameddttdh
+_ZN6borderC2EPN3wze6engineEP4gameddttdh:
 .LFB6889:
 	pushq	%rsi
 	.seh_pushreg	%rsi
@@ -22,7 +22,7 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movq	%rdx, (%rcx)
 	movq	%rcx, %rbx
 	movq	%r8, 8(%rcx)
-	movl	$4, %r8d
+	movl	$5, %r8d
 	leaq	240(%rdx), %rcx
 	movq	%rbx, %rdx
 	movl	%eax, 48(%rsp)
@@ -32,29 +32,20 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movl	%eax, 40(%rsp)
 	movsd	%xmm0, 32(%rsp)
 	call	_ZN3wze6engine6actors3NewEPvyddttd
-	movl	$4, %edx
+	movl	$5, %edx
 	movq	%rax, 16(%rbx)
 	leaq	136(%rax), %rcx
 	call	_ZN3wze6engine6actors5actor12overlapboxes3NewEy
-	movq	%rax, 24(%rbx)
-	movq	8(%rbx), %rax
-	movzwl	26(%rax), %edx
-	movq	16(%rbx), %rax
-	leaq	40(%rax), %rcx
-	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy
-	movsd	.LC0(%rip), %xmm1
-	movq	16(%rbx), %rcx
-	movq	%rax, 32(%rbx)
-	call	_ZN3wze6engine6actors5actor8SetDepthEd
 	movq	16(%rbx), %rcx
 	movzbl	%sil, %edx
+	movq	%rax, 24(%rbx)
 	movq	$1000, 184(%rcx)
 	call	_ZN3wze6engine6actors5actor17SetCollisionLayerEh
 	movq	16(%rbx), %rcx
 	movq	24(%rbx), %rsi
 	call	_ZN3wze6engine6actors5actor8GetWidthEv
 	pxor	%xmm0, %xmm0
-	movsd	.LC1(%rip), %xmm6
+	movsd	.LC0(%rip), %xmm6
 	movq	%rsi, %rcx
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
@@ -78,15 +69,15 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	popq	%rsi
 	jmp	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt
 	.seh_endproc
-	.globl	_ZN8platformC1EPN3wze6engineEP4gameddttdh
-	.def	_ZN8platformC1EPN3wze6engineEP4gameddttdh;	.scl	2;	.type	32;	.endef
-	.set	_ZN8platformC1EPN3wze6engineEP4gameddttdh,_ZN8platformC2EPN3wze6engineEP4gameddttdh
+	.globl	_ZN6borderC1EPN3wze6engineEP4gameddttdh
+	.def	_ZN6borderC1EPN3wze6engineEP4gameddttdh;	.scl	2;	.type	32;	.endef
+	.set	_ZN6borderC1EPN3wze6engineEP4gameddttdh,_ZN6borderC2EPN3wze6engineEP4gameddttdh
 	.align 2
 	.p2align 4
-	.globl	_ZN8platformD2Ev
-	.def	_ZN8platformD2Ev;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN8platformD2Ev
-_ZN8platformD2Ev:
+	.globl	_ZN6borderD2Ev
+	.def	_ZN6borderD2Ev;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN6borderD2Ev
+_ZN6borderD2Ev:
 .LFB6892:
 	pushq	%rbx
 	.seh_pushreg	%rbx
@@ -116,23 +107,17 @@ _ZN8platformD2Ev:
 .LLSDACSE6892:
 	.text
 	.seh_endproc
-	.globl	_ZN8platformD1Ev
-	.def	_ZN8platformD1Ev;	.scl	2;	.type	32;	.endef
-	.set	_ZN8platformD1Ev,_ZN8platformD2Ev
+	.globl	_ZN6borderD1Ev
+	.def	_ZN6borderD1Ev;	.scl	2;	.type	32;	.endef
+	.set	_ZN6borderD1Ev,_ZN6borderD2Ev
 	.section .rdata,"dr"
 	.align 8
 .LC0:
-	.long	-1717986918
-	.long	1068079513
-	.align 8
-.LC1:
 	.long	-350469331
 	.long	1059731170
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	_ZN3wze6engine6actors3NewEPvyddttd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes3NewEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actor12textureboxes3NewEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actor8SetDepthEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor17SetCollisionLayerEh;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor8GetWidthEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt;	.scl	2;	.type	32;	.endef

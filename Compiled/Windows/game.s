@@ -11,7 +11,7 @@
 	.def	_ZN4gameC2EPN3wze6engineE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4gameC2EPN3wze6engineE
 _ZN4gameC2EPN3wze6engineE:
-.LFB6883:
+.LFB6889:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -22,8 +22,9 @@ _ZN4gameC2EPN3wze6engineE:
 	.seh_stackalloc	32
 	.seh_endprologue
 	movq	%rdx, (%rcx)
+	leaq	8(%rcx), %rdi
 	movq	%rcx, %rbx
-	leaq	8(%rcx), %rcx
+	movq	%rdi, %rcx
 .LEHB0:
 	call	_ZN6assetsC1EPN3wze6engineE
 .LEHE0:
@@ -48,33 +49,33 @@ _ZN4gameC2EPN3wze6engineE:
 	popq	%rdi
 	ret
 .L4:
-	movq	%rax, %rdi
+	movq	%rax, %rbx
 	jmp	.L3
 .L5:
-	movq	%rax, %rdi
+	movq	%rax, %rbx
 	jmp	.L2
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6883:
+.LLSDA6889:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6883-.LLSDACSB6883
-.LLSDACSB6883:
-	.uleb128 .LEHB0-.LFB6883
+	.uleb128 .LLSDACSE6889-.LLSDACSB6889
+.LLSDACSB6889:
+	.uleb128 .LEHB0-.LFB6889
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB6883
+	.uleb128 .LEHB1-.LFB6889
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L4-.LFB6883
+	.uleb128 .L4-.LFB6889
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB6883
+	.uleb128 .LEHB2-.LFB6889
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L5-.LFB6883
+	.uleb128 .L5-.LFB6889
 	.uleb128 0
-.LLSDACSE6883:
+.LLSDACSE6889:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -91,34 +92,26 @@ _ZN4gameC2EPN3wze6engineE.cold:
 	movq	%rsi, %rcx
 	call	_ZdlPvy
 .L3:
-	movq	112(%rbx), %rcx
-	call	free
-	movq	96(%rbx), %rcx
-	call	free
-	movq	72(%rbx), %rcx
-	call	free
-	movq	56(%rbx), %rcx
-	call	free
-	movq	40(%rbx), %rcx
-	call	free
 	movq	%rdi, %rcx
+	call	_ZN6assetsD1Ev
+	movq	%rbx, %rcx
 .LEHB3:
 	call	_Unwind_Resume
 	nop
 .LEHE3:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6883:
+.LLSDAC6889:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6883-.LLSDACSBC6883
-.LLSDACSBC6883:
+	.uleb128 .LLSDACSEC6889-.LLSDACSBC6889
+.LLSDACSBC6889:
 	.uleb128 .LEHB3-.LCOLDB0
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6883:
+.LLSDACSEC6889:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -135,7 +128,7 @@ _ZN4gameC2EPN3wze6engineE.cold:
 	.def	_ZN4gameD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4gameD2Ev
 _ZN4gameD2Ev:
-.LFB6886:
+.LFB6892:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -143,41 +136,60 @@ _ZN4gameD2Ev:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
+	movl	128(%rcx), %eax
 	movq	%rcx, %rbx
-	movq	136(%rcx), %rcx
-	testq	%rcx, %rcx
+	cmpl	$1, %eax
 	je	.L9
-	movl	$80, %edx
-	call	_ZdlPvy
-.L9:
-	movq	144(%rbx), %rsi
-	testq	%rsi, %rsi
+	cmpl	$2, %eax
 	je	.L10
-	movq	%rsi, %rcx
-	call	_ZN6normalD1Ev
-	movl	$184, %edx
-	movq	%rsi, %rcx
-	call	_ZdlPvy
-.L10:
-	movq	152(%rbx), %rcx
-	testq	%rcx, %rcx
+	testl	%eax, %eax
+	jne	.L11
+	movq	136(%rcx), %rsi
+	testq	%rsi, %rsi
 	je	.L11
-	movl	$160, %edx
+	movq	%rsi, %rcx
+	call	_ZN4menuD1Ev
+	movl	$80, %edx
+	movq	%rsi, %rcx
 	call	_ZdlPvy
 .L11:
-	movq	112(%rbx), %rcx
-	call	free
-	movq	96(%rbx), %rcx
-	call	free
-	movq	72(%rbx), %rcx
-	call	free
-	movq	56(%rbx), %rcx
-	call	free
-	movq	40(%rbx), %rcx
+	leaq	8(%rbx), %rcx
 	addq	$40, %rsp
 	popq	%rbx
 	popq	%rsi
-	jmp	free
+	jmp	_ZN6assetsD1Ev
+	.p2align 4,,10
+	.p2align 3
+.L10:
+	movq	152(%rcx), %rsi
+	testq	%rsi, %rsi
+	je	.L11
+	movq	%rsi, %rcx
+	call	_ZN8infiniteD1Ev
+	movq	%rsi, %rcx
+	movl	$160, %edx
+	call	_ZdlPvy
+	leaq	8(%rbx), %rcx
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%rsi
+	jmp	_ZN6assetsD1Ev
+	.p2align 4,,10
+	.p2align 3
+.L9:
+	movq	144(%rcx), %rsi
+	testq	%rsi, %rsi
+	je	.L11
+	movq	%rsi, %rcx
+	call	_ZN6normalD1Ev
+	movq	%rsi, %rcx
+	movl	$216, %edx
+	call	_ZdlPvy
+	leaq	8(%rbx), %rcx
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%rsi
+	jmp	_ZN6assetsD1Ev
 	.seh_endproc
 	.globl	_ZN4gameD1Ev
 	.def	_ZN4gameD1Ev;	.scl	2;	.type	32;	.endef
@@ -193,7 +205,7 @@ _ZN4gameD2Ev:
 	.def	_ZN4game12SwitchScenesE5scene;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4game12SwitchScenesE5scene
 _ZN4game12SwitchScenesE5scene:
-.LFB6889:
+.LFB6895:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -230,6 +242,26 @@ _ZN4game12SwitchScenesE5scene:
 	pxor	%xmm1, %xmm1
 	leaq	80(%rax), %rcx
 	call	_ZN3wze6engine6camera4SetYEd
+	movq	(%rbx), %rdi
+	movq	%rdi, %rcx
+	call	_ZN3wze6engine6window8GetWidthEv
+	pxor	%xmm1, %xmm1
+	leaq	80(%rdi), %rcx
+	shrw	%ax
+	movzwl	%ax, %eax
+	negl	%eax
+	cvtsi2sdl	%eax, %xmm1
+	call	_ZN3wze6engine6camera10SetOffsetXEd
+	movq	(%rbx), %rdi
+	movq	%rdi, %rcx
+	call	_ZN3wze6engine6window9GetHeightEv
+	pxor	%xmm1, %xmm1
+	leaq	80(%rdi), %rcx
+	shrw	%ax
+	movzwl	%ax, %eax
+	negl	%eax
+	cvtsi2sdl	%eax, %xmm1
+	call	_ZN3wze6engine6camera10SetOffsetYEd
 	cmpl	$1, %esi
 	je	.L29
 	cmpl	$2, %esi
@@ -259,10 +291,13 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 4,,10
 	.p2align 3
 .L48:
-	movq	136(%rcx), %rcx
-	testq	%rcx, %rcx
+	movq	136(%rcx), %rdi
+	testq	%rdi, %rdi
 	je	.L26
+	movq	%rdi, %rcx
+	call	_ZN4menuD1Ev
 	movl	$80, %edx
+	movq	%rdi, %rcx
 	call	_ZdlPvy
 .L26:
 	movq	$0, 136(%rbx)
@@ -275,7 +310,7 @@ _ZN4game12SwitchScenesE5scene:
 	je	.L27
 	movq	%rdi, %rcx
 	call	_ZN6normalD1Ev
-	movl	$184, %edx
+	movl	$216, %edx
 	movq	%rdi, %rcx
 	call	_ZdlPvy
 .L27:
@@ -284,10 +319,13 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 4,,10
 	.p2align 3
 .L24:
-	movq	152(%rcx), %rcx
-	testq	%rcx, %rcx
+	movq	152(%rcx), %rdi
+	testq	%rdi, %rdi
 	je	.L28
+	movq	%rdi, %rcx
+	call	_ZN8infiniteD1Ev
 	movl	$160, %edx
+	movq	%rdi, %rcx
 	call	_ZdlPvy
 .L28:
 	movq	$0, 152(%rbx)
@@ -312,7 +350,7 @@ _ZN4game12SwitchScenesE5scene:
 	.p2align 4,,10
 	.p2align 3
 .L29:
-	movl	$184, %ecx
+	movl	$216, %ecx
 .LEHB8:
 	call	_Znwy
 .LEHE8:
@@ -337,37 +375,37 @@ _ZN4game12SwitchScenesE5scene:
 	jmp	.L34
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6889:
+.LLSDA6895:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6889-.LLSDACSB6889
-.LLSDACSB6889:
-	.uleb128 .LEHB4-.LFB6889
+	.uleb128 .LLSDACSE6895-.LLSDACSB6895
+.LLSDACSB6895:
+	.uleb128 .LEHB4-.LFB6895
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB6889
+	.uleb128 .LEHB5-.LFB6895
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L35-.LFB6889
+	.uleb128 .L35-.LFB6895
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB6889
+	.uleb128 .LEHB6-.LFB6895
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB6889
+	.uleb128 .LEHB7-.LFB6895
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L37-.LFB6889
+	.uleb128 .L37-.LFB6895
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB6889
+	.uleb128 .LEHB8-.LFB6895
 	.uleb128 .LEHE8-.LEHB8
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB6889
+	.uleb128 .LEHB9-.LFB6895
 	.uleb128 .LEHE9-.LEHB9
-	.uleb128 .L36-.LFB6889
+	.uleb128 .L36-.LFB6895
 	.uleb128 0
-.LLSDACSE6889:
+.LLSDACSE6895:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -388,7 +426,7 @@ _ZN4game12SwitchScenesE5scene.cold:
 	call	_Unwind_Resume
 .L33:
 	movq	%rdi, %rcx
-	movl	$184, %edx
+	movl	$216, %edx
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_Unwind_Resume
@@ -402,17 +440,17 @@ _ZN4game12SwitchScenesE5scene.cold:
 .LEHE10:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6889:
+.LLSDAC6895:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6889-.LLSDACSBC6889
-.LLSDACSBC6889:
+	.uleb128 .LLSDACSEC6895-.LLSDACSBC6895
+.LLSDACSBC6895:
 	.uleb128 .LEHB10-.LCOLDB2
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6889:
+.LLSDACSEC6895:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -426,7 +464,7 @@ _ZN4game12SwitchScenesE5scene.cold:
 	.def	_ZN4game6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4game6UpdateEv
 _ZN4game6UpdateEv:
-.LFB6888:
+.LFB6894:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -480,12 +518,18 @@ _ZN4game6UpdateEv:
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
 	.def	_ZN4menuC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
-	.def	free;	.scl	2;	.type	32;	.endef
+	.def	_ZN6assetsD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
+	.def	_ZN4menuD1Ev;	.scl	2;	.type	32;	.endef
+	.def	_ZN8infiniteD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_ZN6normalD1Ev;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera4SetXEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera4SetYEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6window8GetWidthEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6camera10SetOffsetXEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6window9GetHeightEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6camera10SetOffsetYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN8infiniteC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.def	_ZN6normalC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.def	_ZN4menu6UpdateEv;	.scl	2;	.type	32;	.endef

@@ -14,7 +14,7 @@
 	.def	_ZN4menuC2EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4menuC2EPN3wze6engineEP4game
 _ZN4menuC2EPN3wze6engineEP4game:
-.LFB6880:
+.LFB6889:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -55,7 +55,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	leaq	104(%rax), %rcx
 	movzwl	16(%rdx), %r8d
 	leaq	.LC1(%rip), %rdx
-	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy
+	call	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy
 	xorl	%edx, %edx
 	movq	%rax, 24(%rbx)
 	movq	16(%rbx), %rax
@@ -64,14 +64,14 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	movq	%rax, 32(%rbx)
 	movq	16(%rbx), %rax
 	leaq	8(%rax), %rcx
-	call	_ZN3wze6engine6actors5actor6colors3NewEv
+	call	_ZN3wze6engine6actors5actor10colorboxes3NewEv
 	movq	16(%rbx), %rdi
 	leaq	.LC2(%rip), %rdx
 	movq	%rax, 40(%rbx)
 	movq	8(%rbx), %rax
 	leaq	104(%rdi), %rcx
 	movzwl	16(%rax), %r8d
-	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy
+	call	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy
 	xorl	%edx, %edx
 	movq	%rax, 48(%rbx)
 	movq	16(%rbx), %rax
@@ -80,14 +80,14 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	movq	%rax, 56(%rbx)
 	movq	16(%rbx), %rax
 	leaq	8(%rax), %rcx
-	call	_ZN3wze6engine6actors5actor6colors3NewEv
+	call	_ZN3wze6engine6actors5actor10colorboxes3NewEv
 	movq	16(%rbx), %rdi
 	leaq	.LC3(%rip), %rdx
 	movq	%rax, 64(%rbx)
 	movq	8(%rbx), %rax
 	leaq	104(%rdi), %rcx
 	movzwl	16(%rax), %r8d
-	call	_ZN3wze6engine6actors5actor5texts3NewEPKcy
+	call	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy
 	movq	16(%rbx), %rcx
 	movq	24(%rbx), %rsi
 	movq	%rax, 72(%rbx)
@@ -95,10 +95,10 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	movsd	.LC4(%rip), %xmm1
 	movq	%rsi, %rcx
 	addsd	%xmm0, %xmm1
-	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd
 	movq	24(%rbx), %rcx
 	movl	$100, %edx
-	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt
 	movq	16(%rbx), %rcx
 	movq	32(%rbx), %rsi
 	call	_ZN3wze6engine6actors5actor4GetYEv
@@ -118,7 +118,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv
 	movq	%rsi, %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN3wze6engine6actors5actor6colors5color4SetYEd
+	call	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd
 	movq	32(%rbx), %rcx
 	movq	40(%rbx), %rsi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv
@@ -133,13 +133,13 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	movzwl	.LC6(%rip), %esi
 	movb	$-128, 22(%rax)
 	movw	%si, 20(%rax)
-	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt
 	movq	32(%rbx), %rcx
 	movq	48(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv
 	movq	%rdi, %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN3wze6engine6actors5actor5texts4text4SetYEd
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd
 	movq	16(%rbx), %rcx
 	movq	56(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor4GetYEv
@@ -158,7 +158,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv
 	movq	%rdi, %rcx
 	movapd	%xmm0, %xmm1
-	call	_ZN3wze6engine6actors5actor6colors5color4SetYEd
+	call	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd
 	movq	56(%rbx), %rcx
 	movq	64(%rbx), %rdi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv
@@ -172,7 +172,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	movq	64(%rbx), %rax
 	movw	%si, 20(%rax)
 	movb	$-128, 22(%rax)
-	call	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt
 	movq	56(%rbx), %rcx
 	movq	72(%rbx), %rsi
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv
@@ -184,18 +184,31 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
-	jmp	_ZN3wze6engine6actors5actor5texts4text4SetYEd
+	jmp	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd
 	.seh_endproc
 	.globl	_ZN4menuC1EPN3wze6engineEP4game
 	.def	_ZN4menuC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.set	_ZN4menuC1EPN3wze6engineEP4game,_ZN4menuC2EPN3wze6engineEP4game
 	.align 2
 	.p2align 4
+	.globl	_ZN4menuD2Ev
+	.def	_ZN4menuD2Ev;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN4menuD2Ev
+_ZN4menuD2Ev:
+.LFB6892:
+	.seh_endprologue
+	ret
+	.seh_endproc
+	.globl	_ZN4menuD1Ev
+	.def	_ZN4menuD1Ev;	.scl	2;	.type	32;	.endef
+	.set	_ZN4menuD1Ev,_ZN4menuD2Ev
+	.align 2
+	.p2align 4
 	.globl	_ZN4menu6UpdateEv
 	.def	_ZN4menu6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN4menu6UpdateEv
 _ZN4menu6UpdateEv:
-.LFB6882:
+.LFB6894:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -208,7 +221,7 @@ _ZN4menu6UpdateEv:
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
 	testb	$1, %al
 	movq	40(%rbx), %rax
-	je	.L4
+	je	.L5
 	movl	$24672, %ecx
 	movb	$96, 22(%rax)
 	movw	%cx, 20(%rax)
@@ -222,14 +235,14 @@ _ZN4menu6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L4:
+.L5:
 	movzwl	.LC6(%rip), %esi
 	movb	$-128, 22(%rax)
 	movw	%si, 20(%rax)
 	movq	56(%rbx), %rcx
 	call	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
 	andl	$1, %eax
-	jne	.L7
+	jne	.L8
 	movq	64(%rbx), %rdx
 	movw	%si, 20(%rdx)
 	movb	$-128, 22(%rdx)
@@ -239,7 +252,7 @@ _ZN4menu6UpdateEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L7:
+.L8:
 	movq	64(%rbx), %rax
 	movl	$24672, %edx
 	movw	%dx, 20(%rax)
@@ -270,17 +283,17 @@ _ZN4menu6UpdateEv:
 	.def	_ZN3wze6engine6window9GetHeightEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6window8GetWidthEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors3NewEPvyddttd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actor5texts3NewEPKcy;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes3NewEy;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actor6colors3NewEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor10colorboxes3NewEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor4GetYEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actor5texts4text4SetYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actor5texts4text9SetHeightEt;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actor6colors5color4SetYEd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv;	.scl	2;	.type	32;	.endef

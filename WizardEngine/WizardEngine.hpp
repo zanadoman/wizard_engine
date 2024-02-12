@@ -282,6 +282,10 @@ namespace wze
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
+                                    double GetOffsetLength();
+                                    double SetOffsetLength(double OffsetLength);
+                                    double GetOffsetAngle();
+                                    double SetOffsetAngle(double OffsetAngle);
 
                                 private:
                                     neo::uint64 ID;
@@ -339,6 +343,10 @@ namespace wze
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
+                                    double GetOffsetLength();
+                                    double SetOffsetLength(double OffsetLength);
+                                    double GetOffsetAngle();
+                                    double SetOffsetAngle(double OffsetAngle);
                                     neo::uint64 GetTextureID();
                                     neo::uint64 SetTextureID(neo::uint64 TextureID);
 
@@ -401,6 +409,10 @@ namespace wze
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
+                                    double GetOffsetLength();
+                                    double SetOffsetLength(double OffsetLength);
+                                    double GetOffsetAngle();
+                                    double SetOffsetAngle(double OffsetAngle);
                                     neo::uint32 GetDelay();
                                     neo::uint32 SetDelay(neo::uint32 Delay);
                                     bool IsPlaying();
@@ -467,6 +479,10 @@ namespace wze
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
+                                    double GetOffsetLength();
+                                    double SetOffsetLength(double OffsetLength);
+                                    double GetOffsetAngle();
+                                    double SetOffsetAngle(double OffsetAngle);
                                     neo::uint16 GetWidth();
                                     neo::uint16 GetHeight();
                                     neo::uint16 SetHeight(neo::uint16);
@@ -532,6 +548,10 @@ namespace wze
                                     double SetX(double X);
                                     double GetY();
                                     double SetY(double Y);
+                                    double GetOffsetLength();
+                                    double SetOffsetLength(double OffsetLength);
+                                    double GetOffsetAngle();
+                                    double SetOffsetAngle(double OffsetAngle);
                                     neo::uint16 GetWidth();
                                     neo::uint16 SetWidth(neo::uint16 Width);
                                     neo::uint16 GetHeight();

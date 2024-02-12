@@ -45,7 +45,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0:
-.LFB6934:
+.LFB6943:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -170,7 +170,7 @@ _ZN3neo5arrayIPN3wze6engine6render5tokenEE6InsertEyy.isra.0:
 	.def	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0
 _ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0:
-.LFB6935:
+.LFB6944:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -193,7 +193,7 @@ _ZN3neo5arrayIPN3wze6engine6render5tokenEEixEy.isra.0:
 	.def	_ZN3wze6engine6renderC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6renderC2EPS0_
 _ZN3wze6engine6renderC2EPS0_:
-.LFB6880:
+.LFB6889:
 	.seh_endprologue
 	movq	.LC3(%rip), %rax
 	movq	%rax, 16(%rcx)
@@ -214,7 +214,7 @@ _ZN3wze6engine6renderC2EPS0_:
 	.def	_ZN3wze6engine6render5tokenC2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render5tokenC2Ev
 _ZN3wze6engine6render5tokenC2Ev:
-.LFB6883:
+.LFB6892:
 	.seh_endprologue
 	ret
 	.seh_endproc
@@ -227,7 +227,7 @@ _ZN3wze6engine6render5tokenC2Ev:
 	.def	_ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect
 _ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect:
-.LFB6886:
+.LFB6895:
 	.seh_endprologue
 	movq	48(%rsp), %rax
 	movq	%rdx, %r9
@@ -251,7 +251,7 @@ _ZN3wze6engine6render5tokenC2EPvNS1_4typeEdh8SDL_Rect:
 	.def	_ZN3wze6engine6render15GetSamplingStepEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render15GetSamplingStepEv
 _ZN3wze6engine6render15GetSamplingStepEv:
-.LFB6888:
+.LFB6897:
 	.seh_endprologue
 	movsd	16(%rcx), %xmm0
 	ret
@@ -270,7 +270,7 @@ _ZN3wze6engine6render15GetSamplingStepEv:
 	.def	_ZN3wze6engine6render15SetSamplingStepEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render15SetSamplingStepEd
 _ZN3wze6engine6render15SetSamplingStepEd:
-.LFB6889:
+.LFB6898:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -303,7 +303,7 @@ _ZN3wze6engine6render15SetSamplingStepEd:
 	.def	_ZN3wze6engine6render15GetBufferSizeKBEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render15GetBufferSizeKBEv
 _ZN3wze6engine6render15GetBufferSizeKBEv:
-.LFB6890:
+.LFB6899:
 	.seh_endprologue
 	movzwl	24(%rcx), %eax
 	shrq	$7, %rax
@@ -315,7 +315,7 @@ _ZN3wze6engine6render15GetBufferSizeKBEv:
 	.def	_ZN3wze6engine6render15SetBufferSizeKBEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render15SetBufferSizeKBEt
 _ZN3wze6engine6render15SetBufferSizeKBEt:
-.LFB6891:
+.LFB6900:
 	.seh_endprologue
 	movq	%rdx, %rax
 	salq	$7, %rax
@@ -340,7 +340,7 @@ _ZN3wze6engine6render15SetBufferSizeKBEt:
 	.def	_ZN3wze6engine6render14SelectionStageEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render14SelectionStageEv
 _ZN3wze6engine6render14SelectionStageEv:
-.LFB6893:
+.LFB6902:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -1670,57 +1670,57 @@ _ZN3wze6engine6render14SelectionStageEv:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6893:
+.LLSDA6902:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6893-.LLSDACSB6893
-.LLSDACSB6893:
-	.uleb128 .LEHB0-.LFB6893
+	.uleb128 .LLSDACSE6902-.LLSDACSB6902
+.LLSDACSB6902:
+	.uleb128 .LEHB0-.LFB6902
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB6893
+	.uleb128 .LEHB1-.LFB6902
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L198-.LFB6893
+	.uleb128 .L198-.LFB6902
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB6893
+	.uleb128 .LEHB2-.LFB6902
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L195-.LFB6893
+	.uleb128 .L195-.LFB6902
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB6893
+	.uleb128 .LEHB3-.LFB6902
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L198-.LFB6893
+	.uleb128 .L198-.LFB6902
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB6893
+	.uleb128 .LEHB4-.LFB6902
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L196-.LFB6893
+	.uleb128 .L196-.LFB6902
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB6893
+	.uleb128 .LEHB5-.LFB6902
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L197-.LFB6893
+	.uleb128 .L197-.LFB6902
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB6893
+	.uleb128 .LEHB6-.LFB6902
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB6893
+	.uleb128 .LEHB7-.LFB6902
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L197-.LFB6893
+	.uleb128 .L197-.LFB6902
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB6893
+	.uleb128 .LEHB8-.LFB6902
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L196-.LFB6893
+	.uleb128 .L196-.LFB6902
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB6893
+	.uleb128 .LEHB9-.LFB6902
 	.uleb128 .LEHE9-.LEHB9
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB10-.LFB6893
+	.uleb128 .LEHB10-.LFB6902
 	.uleb128 .LEHE10-.LEHB10
-	.uleb128 .L195-.LFB6893
+	.uleb128 .L195-.LFB6902
 	.uleb128 0
-.LLSDACSE6893:
+.LLSDACSE6902:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1751,17 +1751,17 @@ _ZN3wze6engine6render14SelectionStageEv.cold:
 .LEHE11:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6893:
+.LLSDAC6902:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6893-.LLSDACSBC6893
-.LLSDACSBC6893:
+	.uleb128 .LLSDACSEC6902-.LLSDACSBC6902
+.LLSDACSBC6902:
 	.uleb128 .LEHB11-.LCOLDB11
 	.uleb128 .LEHE11-.LEHB11
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6893:
+.LLSDACSEC6902:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1780,7 +1780,7 @@ _ZN3wze6engine6render14SelectionStageEv.cold:
 	.def	_ZN3wze6engine6render17OrderByLayerMergeEyyy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render17OrderByLayerMergeEyyy
 _ZN3wze6engine6render17OrderByLayerMergeEyyy:
-.LFB6896:
+.LFB6905:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2016,7 +2016,7 @@ _ZN3wze6engine6render17OrderByLayerMergeEyyy.cold:
 	.def	_ZN3wze6engine6render12OrderByLayerEyy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render12OrderByLayerEyy
 _ZN3wze6engine6render12OrderByLayerEyy:
-.LFB6895:
+.LFB6904:
 	pushq	%r14
 	.seh_pushreg	%r14
 	pushq	%r13
@@ -2090,7 +2090,7 @@ _ZN3wze6engine6render12OrderByLayerEyy:
 	.def	_ZN3wze6engine6render20OrderByPriorityMergeEyyy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render20OrderByPriorityMergeEyyy
 _ZN3wze6engine6render20OrderByPriorityMergeEyyy:
-.LFB6898:
+.LFB6907:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2326,7 +2326,7 @@ _ZN3wze6engine6render20OrderByPriorityMergeEyyy.cold:
 	.def	_ZN3wze6engine6render15OrderByPriorityEyy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render15OrderByPriorityEyy
 _ZN3wze6engine6render15OrderByPriorityEyy:
-.LFB6897:
+.LFB6906:
 	pushq	%r14
 	.seh_pushreg	%r14
 	pushq	%r13
@@ -2395,7 +2395,7 @@ _ZN3wze6engine6render15OrderByPriorityEyy:
 	.def	_ZN3wze6engine6render13OrderingStageEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render13OrderingStageEv
 _ZN3wze6engine6render13OrderingStageEv:
-.LFB6894:
+.LFB6903:
 	pushq	%r14
 	.seh_pushreg	%r14
 	pushq	%r13
@@ -2559,18 +2559,18 @@ _ZN3wze6engine6render13OrderingStageEv:
 	.section .rdata,"dr"
 	.align 8
 .LC14:
-	.ascii "wze::engine.render.RenderColor(): SDL_SetRenderDrawColor failed\12\0"
+	.ascii "wze::engine.render.RenderColorbox(): SDL_SetRenderDrawColor failed\12\0"
 	.align 8
 .LC15:
-	.ascii "wze::engine.render.RenderColor(): SDL_RenderFillRect failed\12\0"
+	.ascii "wze::engine.render.RenderColorbox(): SDL_RenderFillRect failed\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
-	.def	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
-_ZN3wze6engine6render11RenderColorEPNS1_5tokenE:
-.LFB6900:
+	.globl	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
+	.def	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
+_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE:
+.LFB6909:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -2620,21 +2620,21 @@ _ZN3wze6engine6render11RenderColorEPNS1_5tokenE:
 	.section .rdata,"dr"
 	.align 8
 .LC16:
-	.ascii "wze::engine.render.RenderTexture(): SDL_SetTextureColorMod failed\12\0"
+	.ascii "wze::engine.render.RenderTexturebox(): SDL_SetTextureColorMod failed\12\0"
 	.align 8
 .LC17:
-	.ascii "wze::engine.render.RenderTexture(): SDL_SetTextureAlphaMod failed\12\0"
+	.ascii "wze::engine.render.RenderTexturebox(): SDL_SetTextureAlphaMod failed\12\0"
 	.align 8
 .LC19:
-	.ascii "wze::engine.render.RenderTexture(): SDL_RenderCopyEx failed\12\0"
+	.ascii "wze::engine.render.RenderTexturebox(): SDL_RenderCopyEx failed\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
-	.def	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
-_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
-.LFB6901:
+	.globl	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
+	.def	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
+_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE:
+.LFB6910:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -2657,8 +2657,8 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	andl	$2, %edx
 	orl	%edx, %ebx
 	movq	80(%rax), %rdx
-	movq	344(%rcx), %rax
-	cmpq	336(%rcx), %rdx
+	movq	320(%rcx), %rax
+	cmpq	312(%rcx), %rdx
 	jnb	.L494
 	movq	(%rax,%rdx,8), %rcx
 	movl	%r10d, %edx
@@ -2668,9 +2668,9 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	movq	(%rsi), %rdx
 	movq	(%rdi), %rax
 	movzbl	23(%rdx), %ecx
-	movq	344(%rax), %r8
+	movq	320(%rax), %r8
 	movq	80(%rdx), %rdx
-	cmpq	336(%rax), %rdx
+	cmpq	312(%rax), %rdx
 	jnb	.L494
 	movq	(%r8,%rdx,8), %rax
 	movl	%ecx, %edx
@@ -2683,10 +2683,10 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	movzbl	%bl, %edx
 	leaq	28(%rsi), %r9
 	movsd	24(%rcx), %xmm0
-	movq	344(%rax), %r8
+	movq	320(%rax), %r8
 	xorpd	.LC18(%rip), %xmm0
 	movq	80(%rcx), %rcx
-	cmpq	336(%rax), %rcx
+	cmpq	312(%rax), %rcx
 	jnb	.L497
 	movq	(%r8,%rcx,8), %r10
 	movq	16(%rax), %rcx
@@ -2748,7 +2748,7 @@ _ZN3wze6engine6render13RenderTextureEPNS1_5tokenE:
 	.def	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE
 _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
-.LFB6902:
+.LFB6911:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -2775,8 +2775,8 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	cmpq	104(%rax), %rdx
 	jnb	.L511
 	movq	(%r11,%rdx,8), %rdx
-	movq	344(%rcx), %rax
-	cmpq	336(%rcx), %rdx
+	movq	320(%rcx), %rax
+	cmpq	312(%rcx), %rdx
 	jnb	.L511
 	movq	(%rax,%rdx,8), %rcx
 	movl	%r10d, %edx
@@ -2791,8 +2791,8 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	cmpq	104(%rax), %rdx
 	jnb	.L511
 	movq	(%r9,%rdx,8), %rdx
-	movq	344(%rcx), %rax
-	cmpq	336(%rcx), %rdx
+	movq	320(%rcx), %rax
+	cmpq	312(%rcx), %rdx
 	jnb	.L511
 	movq	(%rax,%rdx,8), %rcx
 	movl	%r8d, %edx
@@ -2810,8 +2810,8 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	cmpq	104(%rax), %r8
 	jnb	.L514
 	movq	(%r10,%r8,8), %rax
-	movq	344(%rcx), %r8
-	cmpq	336(%rcx), %rax
+	movq	320(%rcx), %r8
+	cmpq	312(%rcx), %rax
 	jnb	.L515
 	movq	(%r8,%rax,8), %rax
 	movq	16(%rcx), %rcx
@@ -2865,21 +2865,21 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	.section .rdata,"dr"
 	.align 8
 .LC23:
-	.ascii "wze::engine.render.RenderText(): SDL_SetTextureColorMod failed\12\0"
+	.ascii "wze::engine.render.RenderTextbox(): SDL_SetTextureColorMod failed\12\0"
 	.align 8
 .LC24:
-	.ascii "wze::engine.render.RenderText(): SDL_SetTextureAlphaMod failed\12\0"
+	.ascii "wze::engine.render.RenderTextbox(): SDL_SetTextureAlphaMod failed\12\0"
 	.align 8
 .LC25:
-	.ascii "wze::engine.render.RenderText(): SDL_RenderCopyEx failed\12\0"
+	.ascii "wze::engine.render.RenderTextbox(): SDL_RenderCopyEx failed\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6render10RenderTextEPNS1_5tokenE
-	.def	_ZN3wze6engine6render10RenderTextEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6render10RenderTextEPNS1_5tokenE
-_ZN3wze6engine6render10RenderTextEPNS1_5tokenE:
-.LFB6903:
+	.globl	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
+	.def	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
+_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE:
+.LFB6912:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -2978,7 +2978,7 @@ _ZN3wze6engine6render10RenderTextEPNS1_5tokenE:
 	.def	_ZN3wze6engine6render14RenderingStageEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render14RenderingStageEv
 _ZN3wze6engine6render14RenderingStageEv:
-.LFB6899:
+.LFB6908:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -3100,7 +3100,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 	movq	%rdi, %rdx
 	movq	%rsi, %rcx
 	addq	$1, %rbx
-	call	_ZN3wze6engine6render10RenderTextEPNS1_5tokenE
+	call	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
 	movq	32(%rsi), %rdx
 	cmpq	%rdx, %rbx
 	jb	.L570
@@ -3148,7 +3148,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 .L539:
 	movq	%rdi, %rdx
 	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
+	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
 	movq	32(%rsi), %rdx
 	jmp	.L533
 	.p2align 4,,10
@@ -3179,7 +3179,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 .L540:
 	movq	%rdi, %rdx
 	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
+	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
 	movq	32(%rsi), %rdx
 	jmp	.L533
 	.p2align 4,,10
@@ -3216,7 +3216,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 .L552:
 	movq	%rdi, %rdx
 	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render10RenderTextEPNS1_5tokenE
+	call	_ZN3wze6engine6render13RenderTextboxEPNS1_5tokenE
 	jmp	.L548
 	.p2align 4,,10
 	.p2align 3
@@ -3230,7 +3230,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 .L554:
 	movq	%rdi, %rdx
 	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render13RenderTextureEPNS1_5tokenE
+	call	_ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE
 	jmp	.L548
 	.p2align 4,,10
 	.p2align 3
@@ -3256,7 +3256,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 .L555:
 	movq	%rdi, %rdx
 	movq	%rsi, %rcx
-	call	_ZN3wze6engine6render11RenderColorEPNS1_5tokenE
+	call	_ZN3wze6engine6render14RenderColorboxEPNS1_5tokenE
 	jmp	.L548
 	.p2align 4,,10
 	.p2align 3
@@ -3303,7 +3303,7 @@ _ZN3wze6engine6render14RenderingStageEv:
 	.def	_ZN3wze6engine6render6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render6UpdateEv
 _ZN3wze6engine6render6UpdateEv:
-.LFB6892:
+.LFB6901:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -3326,7 +3326,7 @@ _ZN3wze6engine6render6UpdateEv:
 	.def	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE
 _ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE:
-.LFB6904:
+.LFB6913:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -3380,7 +3380,7 @@ _ZN3wze6engine6render16RenderOverlapboxEPNS1_5tokenE:
 	.def	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE
 _ZN3wze6engine6render12RenderHitboxEPNS1_5tokenE:
-.LFB6905:
+.LFB6914:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx

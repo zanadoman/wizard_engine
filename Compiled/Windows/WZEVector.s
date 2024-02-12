@@ -45,7 +45,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.isra.0:
-.LFB8613:
+.LFB8622:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -166,7 +166,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6InsertEyy.i
 	.def	_ZN3wze6engine6vectorC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vectorC2EPS0_
 _ZN3wze6engine6vectorC2EPS0_:
-.LFB8422:
+.LFB8431:
 	.seh_endprologue
 	movq	%rdx, (%rcx)
 	ret
@@ -194,7 +194,7 @@ _ZN3wze6engine6vectorC2EPS0_:
 	.def	_ZN3wze6engine6vector6LengthEdddd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector6LengthEdddd
 _ZN3wze6engine6vector6LengthEdddd:
-.LFB8424:
+.LFB8433:
 	subq	$56, %rsp
 	.seh_stackalloc	56
 	.seh_endprologue
@@ -285,7 +285,7 @@ _ZN3wze6engine6vector6LengthEdddd:
 	.def	_ZN3wze6engine6vector5AngleEdddd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector5AngleEdddd
 _ZN3wze6engine6vector5AngleEdddd:
-.LFB8425:
+.LFB8434:
 	subq	$56, %rsp
 	.seh_stackalloc	56
 	.seh_endprologue
@@ -390,7 +390,7 @@ _ZN3wze6engine6vector5AngleEdddd:
 	.def	_ZN3wze6engine6vector9TerminalXEddd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector9TerminalXEddd
 _ZN3wze6engine6vector9TerminalXEddd:
-.LFB8426:
+.LFB8435:
 	subq	$72, %rsp
 	.seh_stackalloc	72
 	movaps	%xmm6, 32(%rsp)
@@ -467,7 +467,7 @@ _ZN3wze6engine6vector9TerminalXEddd:
 	.def	_ZN3wze6engine6vector9TerminalYEddd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector9TerminalYEddd
 _ZN3wze6engine6vector9TerminalYEddd:
-.LFB8427:
+.LFB8436:
 	subq	$72, %rsp
 	.seh_stackalloc	72
 	movaps	%xmm6, 32(%rsp)
@@ -563,7 +563,7 @@ _ZN3wze6engine6vector9TerminalYEddd:
 	.def	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_
 _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
-.LFB8428:
+.LFB8437:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -1029,25 +1029,25 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8428:
+.LLSDA8437:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8428-.LLSDACSB8428
-.LLSDACSB8428:
-	.uleb128 .LEHB0-.LFB8428
+	.uleb128 .LLSDACSE8437-.LLSDACSB8437
+.LLSDACSB8437:
+	.uleb128 .LEHB0-.LFB8437
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L166-.LFB8428
+	.uleb128 .L166-.LFB8437
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8428
+	.uleb128 .LEHB1-.LFB8437
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8428
+	.uleb128 .LEHB2-.LFB8437
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L166-.LFB8428
+	.uleb128 .L166-.LFB8437
 	.uleb128 0
-.LLSDACSE8428:
+.LLSDACSE8437:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1081,17 +1081,17 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 .LEHE3:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8428:
+.LLSDAC8437:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8428-.LLSDACSBC8428
-.LLSDACSBC8428:
+	.uleb128 .LLSDACSEC8437-.LLSDACSBC8437
+.LLSDACSBC8437:
 	.uleb128 .LEHB3-.LCOLDB29
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8428:
+.LLSDACSEC8437:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1132,7 +1132,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_S3_.cold:
 	.def	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_
 _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
-.LFB8430:
+.LFB8439:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -1609,25 +1609,25 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_:
 	jmp	.L267
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8430:
+.LLSDA8439:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8430-.LLSDACSB8430
-.LLSDACSB8430:
-	.uleb128 .LEHB4-.LFB8430
+	.uleb128 .LLSDACSE8439-.LLSDACSB8439
+.LLSDACSB8439:
+	.uleb128 .LEHB4-.LFB8439
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L274-.LFB8430
+	.uleb128 .L274-.LFB8439
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8430
+	.uleb128 .LEHB5-.LFB8439
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8430
+	.uleb128 .LEHB6-.LFB8439
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L274-.LFB8430
+	.uleb128 .L274-.LFB8439
 	.uleb128 0
-.LLSDACSE8430:
+.LLSDACSE8439:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1661,17 +1661,17 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_.c
 .LEHE7:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8430:
+.LLSDAC8439:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8430-.LLSDACSBC8430
-.LLSDACSBC8430:
+	.uleb128 .LLSDACSEC8439-.LLSDACSBC8439
+.LLSDACSBC8439:
 	.uleb128 .LEHB7-.LCOLDB37
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8430:
+.LLSDACSEC8439:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1712,7 +1712,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES7_.c
 	.def	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_
 _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
-.LFB8431:
+.LFB8440:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2194,25 +2194,25 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_:
 	jmp	.L376
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8431:
+.LLSDA8440:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8431-.LLSDACSB8431
-.LLSDACSB8431:
-	.uleb128 .LEHB8-.LFB8431
+	.uleb128 .LLSDACSE8440-.LLSDACSB8440
+.LLSDACSB8440:
+	.uleb128 .LEHB8-.LFB8440
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L383-.LFB8431
+	.uleb128 .L383-.LFB8440
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB8431
+	.uleb128 .LEHB9-.LFB8440
 	.uleb128 .LEHE9-.LEHB9
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB10-.LFB8431
+	.uleb128 .LEHB10-.LFB8440
 	.uleb128 .LEHE10-.LEHB10
-	.uleb128 .L383-.LFB8431
+	.uleb128 .L383-.LFB8440
 	.uleb128 0
-.LLSDACSE8431:
+.LLSDACSE8440:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -2246,17 +2246,17 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_.c
 .LEHE11:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8431:
+.LLSDAC8440:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8431-.LLSDACSBC8431
-.LLSDACSBC8431:
+	.uleb128 .LLSDACSEC8440-.LLSDACSBC8440
+.LLSDACSBC8440:
 	.uleb128 .LEHB11-.LCOLDB45
 	.uleb128 .LEHE11-.LEHB11
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8431:
+.LLSDACSEC8440:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -2297,7 +2297,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES3_.c
 	.def	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE
 _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
-.LFB8432:
+.LFB8441:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2780,25 +2780,25 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE:
 	jmp	.L486
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8432:
+.LLSDA8441:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8432-.LLSDACSB8432
-.LLSDACSB8432:
-	.uleb128 .LEHB12-.LFB8432
+	.uleb128 .LLSDACSE8441-.LLSDACSB8441
+.LLSDACSB8441:
+	.uleb128 .LEHB12-.LFB8441
 	.uleb128 .LEHE12-.LEHB12
-	.uleb128 .L493-.LFB8432
+	.uleb128 .L493-.LFB8441
 	.uleb128 0
-	.uleb128 .LEHB13-.LFB8432
+	.uleb128 .LEHB13-.LFB8441
 	.uleb128 .LEHE13-.LEHB13
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB14-.LFB8432
+	.uleb128 .LEHB14-.LFB8441
 	.uleb128 .LEHE14-.LEHB14
-	.uleb128 .L493-.LFB8432
+	.uleb128 .L493-.LFB8441
 	.uleb128 0
-.LLSDACSE8432:
+.LLSDACSE8441:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -2832,17 +2832,17 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE.c
 .LEHE15:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8432:
+.LLSDAC8441:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8432-.LLSDACSBC8432
-.LLSDACSBC8432:
+	.uleb128 .LLSDACSEC8441-.LLSDACSBC8441
+.LLSDACSBC8441:
 	.uleb128 .LEHB15-.LCOLDB53
 	.uleb128 .LEHE15-.LEHB15
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8432:
+.LLSDACSEC8441:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -2886,7 +2886,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyES3_PN3neo5arrayIyEE.c
 	.def	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE
 _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
-.LFB8433:
+.LFB8442:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -3382,25 +3382,25 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE:
 	jmp	.L597
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8433:
+.LLSDA8442:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8433-.LLSDACSB8433
-.LLSDACSB8433:
-	.uleb128 .LEHB16-.LFB8433
+	.uleb128 .LLSDACSE8442-.LLSDACSB8442
+.LLSDACSB8442:
+	.uleb128 .LEHB16-.LFB8442
 	.uleb128 .LEHE16-.LEHB16
-	.uleb128 .L603-.LFB8433
+	.uleb128 .L603-.LFB8442
 	.uleb128 0
-	.uleb128 .LEHB17-.LFB8433
+	.uleb128 .LEHB17-.LFB8442
 	.uleb128 .LEHE17-.LEHB17
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB18-.LFB8433
+	.uleb128 .LEHB18-.LFB8442
 	.uleb128 .LEHE18-.LEHB18
-	.uleb128 .L603-.LFB8433
+	.uleb128 .L603-.LFB8442
 	.uleb128 0
-.LLSDACSE8433:
+.LLSDACSE8442:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -3434,17 +3434,17 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE.c
 .LEHE19:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8433:
+.LLSDAC8442:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8433-.LLSDACSBC8433
-.LLSDACSBC8433:
+	.uleb128 .LLSDACSEC8442-.LLSDACSBC8442
+.LLSDACSBC8442:
 	.uleb128 .LEHB19-.LCOLDB62
 	.uleb128 .LEHE19-.LEHB19
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8433:
+.LLSDACSEC8442:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -3488,7 +3488,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_St16initializer_listIyE.c
 	.def	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_
 _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
-.LFB8434:
+.LFB8443:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -3986,25 +3986,25 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_:
 	jmp	.L709
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8434:
+.LLSDA8443:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8434-.LLSDACSB8434
-.LLSDACSB8434:
-	.uleb128 .LEHB20-.LFB8434
+	.uleb128 .LLSDACSE8443-.LLSDACSB8443
+.LLSDACSB8443:
+	.uleb128 .LEHB20-.LFB8443
 	.uleb128 .LEHE20-.LEHB20
-	.uleb128 .L715-.LFB8434
+	.uleb128 .L715-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB21-.LFB8434
+	.uleb128 .LEHB21-.LFB8443
 	.uleb128 .LEHE21-.LEHB21
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB22-.LFB8434
+	.uleb128 .LEHB22-.LFB8443
 	.uleb128 .LEHE22-.LEHB22
-	.uleb128 .L715-.LFB8434
+	.uleb128 .L715-.LFB8443
 	.uleb128 0
-.LLSDACSE8434:
+.LLSDACSE8443:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -4038,17 +4038,17 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_.c
 .LEHE23:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8434:
+.LLSDAC8443:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8434-.LLSDACSBC8434
-.LLSDACSBC8434:
+	.uleb128 .LLSDACSEC8443-.LLSDACSBC8443
+.LLSDACSBC8443:
 	.uleb128 .LEHB23-.LCOLDB71
 	.uleb128 .LEHE23-.LEHB23
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8434:
+.LLSDACSEC8443:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -4092,7 +4092,7 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEESt16initializer_listIyES5_.c
 	.def	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_
 _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
-.LFB8435:
+.LFB8444:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -4590,25 +4590,25 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_:
 	jmp	.L820
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8435:
+.LLSDA8444:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8435-.LLSDACSB8435
-.LLSDACSB8435:
-	.uleb128 .LEHB24-.LFB8435
+	.uleb128 .LLSDACSE8444-.LLSDACSB8444
+.LLSDACSB8444:
+	.uleb128 .LEHB24-.LFB8444
 	.uleb128 .LEHE24-.LEHB24
-	.uleb128 .L826-.LFB8435
+	.uleb128 .L826-.LFB8444
 	.uleb128 0
-	.uleb128 .LEHB25-.LFB8435
+	.uleb128 .LEHB25-.LFB8444
 	.uleb128 .LEHE25-.LEHB25
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB26-.LFB8435
+	.uleb128 .LEHB26-.LFB8444
 	.uleb128 .LEHE26-.LEHB26
-	.uleb128 .L826-.LFB8435
+	.uleb128 .L826-.LFB8444
 	.uleb128 0
-.LLSDACSE8435:
+.LLSDACSE8444:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -4642,17 +4642,17 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_.c
 .LEHE27:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8435:
+.LLSDAC8444:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8435-.LLSDACSBC8435
-.LLSDACSBC8435:
+	.uleb128 .LLSDACSEC8444-.LLSDACSBC8444
+.LLSDACSBC8444:
 	.uleb128 .LEHB27-.LCOLDB80
 	.uleb128 .LEHE27-.LEHB27
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8435:
+.LLSDACSEC8444:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -4699,7 +4699,7 @@ _ZN3wze6engine6vector7RayCastEddddtdSt16initializer_listIyEPN3neo5arrayIyEES7_.c
 	.def	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_
 _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
-.LFB8436:
+.LFB8445:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -5212,25 +5212,25 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_:
 	jmp	.L933
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8436:
+.LLSDA8445:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8436-.LLSDACSB8436
-.LLSDACSB8436:
-	.uleb128 .LEHB28-.LFB8436
+	.uleb128 .LLSDACSE8445-.LLSDACSB8445
+.LLSDACSB8445:
+	.uleb128 .LEHB28-.LFB8445
 	.uleb128 .LEHE28-.LEHB28
-	.uleb128 .L938-.LFB8436
+	.uleb128 .L938-.LFB8445
 	.uleb128 0
-	.uleb128 .LEHB29-.LFB8436
+	.uleb128 .LEHB29-.LFB8445
 	.uleb128 .LEHE29-.LEHB29
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB30-.LFB8436
+	.uleb128 .LEHB30-.LFB8445
 	.uleb128 .LEHE30-.LEHB30
-	.uleb128 .L938-.LFB8436
+	.uleb128 .L938-.LFB8445
 	.uleb128 0
-.LLSDACSE8436:
+.LLSDACSE8445:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -5264,17 +5264,17 @@ _ZN3wze6engine6vector7RayCastEddddtdPN3neo5arrayIyEES5_S5_.cold:
 .LEHE31:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8436:
+.LLSDAC8445:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8436-.LLSDACSBC8436
-.LLSDACSBC8436:
+	.uleb128 .LLSDACSEC8445-.LLSDACSBC8445
+.LLSDACSBC8445:
 	.uleb128 .LEHB31-.LCOLDB90
 	.uleb128 .LEHE31-.LEHB31
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8436:
+.LLSDACSEC8445:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"

@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine4keysC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keysC2EPS0_
 _ZN3wze6engine4keysC2EPS0_:
-.LFB6880:
+.LFB6889:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -64,7 +64,7 @@ _ZN3wze6engine4keysC2EPS0_:
 	.def	_ZN3wze6engine4keysD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keysD2Ev
 _ZN3wze6engine4keysD2Ev:
-.LFB6883:
+.LFB6892:
 	.seh_endprologue
 	movq	16(%rcx), %rcx
 	testq	%rcx, %rcx
@@ -89,7 +89,7 @@ _ZN3wze6engine4keysD2Ev:
 	.def	_ZN3wze6engine4keysixENS_3keyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keysixENS_3keyE
 _ZN3wze6engine4keysixENS_3keyE:
-.LFB6885:
+.LFB6894:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -114,7 +114,7 @@ _ZN3wze6engine4keysixENS_3keyE:
 	.def	_ZN3wze6engine4keys6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keys6UpdateEv
 _ZN3wze6engine4keys6UpdateEv:
-.LFB6886:
+.LFB6895:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -145,7 +145,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	movq	(%rbx), %r8
 	xorl	%eax, %eax
 	xorl	%edx, %edx
-	movq	440(%r8), %r9
+	movq	416(%r8), %r9
 	testq	%r9, %r9
 	jne	.L12
 	jmp	.L20
@@ -157,7 +157,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	cmpq	%r9, %rdx
 	jnb	.L20
 .L12:
-	movq	448(%r8), %rcx
+	movq	424(%r8), %rcx
 	addq	%rax, %rcx
 	cmpl	$1027, (%rcx)
 	jne	.L13
@@ -171,7 +171,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	addq	$56, %rax
 	movb	$0, 236(%rcx)
 	movq	(%rbx), %r8
-	movq	440(%r8), %r9
+	movq	416(%r8), %r9
 	cmpq	%r9, %rdx
 	jb	.L12
 .L20:
@@ -187,7 +187,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	je	.L15
 	movb	$1, 236(%rcx)
 	movq	(%rbx), %r8
-	movq	440(%r8), %r9
+	movq	416(%r8), %r9
 	jmp	.L13
 	.p2align 4,,10
 	.p2align 3
@@ -199,7 +199,7 @@ _ZN3wze6engine4keys6UpdateEv:
 .L15:
 	movb	$0, 236(%rcx)
 	movq	(%rbx), %r8
-	movq	440(%r8), %r9
+	movq	416(%r8), %r9
 	jmp	.L13
 	.seh_endproc
 	.ident	"GCC: (GNU) 13.1.0"

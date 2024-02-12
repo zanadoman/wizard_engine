@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0:
-.LFB8369:
+.LFB8373:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8369:
+.LFE8373:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -165,7 +165,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0:
 	.p2align 4
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0:
-.LFB8370:
+.LFB8374:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -298,7 +298,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8370:
+.LFE8374:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0, .-_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0
 	.section	.rodata.str1.8
 	.align 8
@@ -1737,42 +1737,170 @@ _ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd, .-_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd
 	.align 2
 	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv
+	.type	_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv, @function
+_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv:
+.LFB8177:
+	.cfi_startproc
+	movsd	80(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE8177:
+	.size	_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv
+	.section	.rodata.str1.8
+	.align 8
+.LC22:
+	.string	"wze::engine.actors[].textboxes[].SetOffsetLength(): OffsetLength must not be NaN\nParams: OffsetLength: %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd
+	.type	_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd, @function
+_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd:
+.LFB8178:
+	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movapd	%xmm0, %xmm1
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L270
+	movq	8(%rdi), %rax
+	movsd	88(%rdi), %xmm2
+	movq	%rdi, %rbx
+	movsd	%xmm1, 8(%rsp)
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm1
+	movsd	%xmm0, 48(%rbx)
+	movsd	88(%rbx), %xmm2
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movsd	8(%rsp), %xmm1
+	movsd	%xmm0, 56(%rbx)
+	movsd	%xmm1, 80(%rbx)
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 16
+	movapd	%xmm1, %xmm0
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+.L270:
+	.cfi_restore_state
+	leaq	.LC22(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8178:
+	.size	_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd, .-_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv
+	.type	_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv, @function
+_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv:
+.LFB8179:
+	.cfi_startproc
+	movsd	88(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE8179:
+	.size	_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv
+	.section	.rodata.str1.8
+	.align 8
+.LC23:
+	.string	"wze::engine.actors[].textboxes[].SetOffsetAngle(): OffsetAngle must not be NaN\nParams: OffsetAngle %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd
+	.type	_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd, @function
+_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd:
+.LFB8180:
+	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movapd	%xmm0, %xmm2
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L278
+	movq	8(%rdi), %rax
+	movsd	80(%rdi), %xmm1
+	movq	%rdi, %rbx
+	movsd	%xmm2, 8(%rsp)
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm2
+	movsd	%xmm0, 48(%rbx)
+	movsd	80(%rbx), %xmm1
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movsd	8(%rsp), %xmm2
+	movsd	%xmm0, 56(%rbx)
+	movsd	%xmm2, 88(%rbx)
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 16
+	movapd	%xmm2, %xmm0
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+.L278:
+	.cfi_restore_state
+	leaq	.LC23(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8180:
+	.size	_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd, .-_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd
+	.align 2
+	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv:
-.LFB8177:
+.LFB8181:
 	.cfi_startproc
 	movzwl	64(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8177:
+.LFE8181:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv:
-.LFB8178:
+.LFB8182:
 	.cfi_startproc
 	movzwl	72(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8178:
+.LFE8182:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt:
-.LFB8179:
+.LFB8183:
 	.cfi_startproc
 	movzwl	%si, %eax
 	cmpq	%rax, 72(%rdi)
-	jne	.L274
+	jne	.L290
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L274:
+.L290:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -1785,14 +1913,14 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt:
 	movq	72(%rbx), %rax
 	movq	$0, 128(%rbx)
 	testq	%rax, %rax
-	jne	.L275
+	jne	.L291
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L275:
+.L291:
 	.cfi_restore_state
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0
@@ -1801,23 +1929,23 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8179:
+.LFE8183:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt, .-_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv:
-.LFB8180:
+.LFB8184:
 	.cfi_startproc
 	addq	$96, %rdi
 	jmp	_ZN3neo6stringclEv@PLT
 	.cfi_endproc
-.LFE8180:
+.LFE8184:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv
 	.section	.rodata.str1.8
 	.align 8
-.LC22:
+.LC24:
 	.string	"wze::engine.actors[].textboxes[].SetString(): String must not be NULL\nParams: String: %p\n"
 	.text
 	.align 2
@@ -1825,7 +1953,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc:
-.LFB8181:
+.LFB8185:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -1842,18 +1970,18 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc:
 	movq	%rax, 8(%rsp)
 	xorl	%eax, %eax
 	testq	%rsi, %rsi
-	je	.L285
+	je	.L301
 	leaq	96(%rdi), %r12
 	movq	%rdi, %rbx
 	movq	%rsi, %rbp
 	movq	%r12, %rdi
 	call	_ZN3neo6stringneEPKc@PLT
 	testb	%al, %al
-	jne	.L286
-.L280:
+	jne	.L302
+.L296:
 	movq	8(%rsp), %rax
 	subq	%fs:40, %rax
-	jne	.L287
+	jne	.L303
 	addq	$16, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 32
@@ -1867,7 +1995,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc:
 	jmp	_ZN3neo6stringclEv@PLT
 	.p2align 4,,10
 	.p2align 3
-.L286:
+.L302:
 	.cfi_restore_state
 	movq	%rsp, %rsi
 	movl	$1, %edx
@@ -1880,36 +2008,36 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc:
 	call	SDL_DestroyTexture@PLT
 	cmpq	$0, 72(%rbx)
 	movq	$0, 128(%rbx)
-	je	.L280
+	je	.L296
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0
-	jmp	.L280
-.L287:
+	jmp	.L296
+.L303:
 	call	__stack_chk_fail@PLT
-.L285:
-	leaq	.LC22(%rip), %rdi
+.L301:
+	leaq	.LC24(%rip), %rdi
 	xorl	%esi, %esi
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8181:
+.LFE8185:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc, .-_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv:
-.LFB8182:
+.LFB8186:
 	.cfi_startproc
 	movq	112(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE8182:
+.LFE8186:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv
 	.section	.rodata.str1.8
 	.align 8
-.LC23:
+.LC25:
 	.string	"wze::engine.actors[].textboxes[].SetFontID(): Font does not exist\nParams: FontID: %lld\n"
 	.text
 	.align 2
@@ -1917,7 +2045,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
-.LFB8183:
+.LFB8187:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1925,23 +2053,23 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
 	movq	%rsi, %rax
 	movq	%rdi, %rbx
 	testq	%rsi, %rsi
-	je	.L290
+	je	.L306
 	movq	(%rdi), %rdx
 	cmpq	344(%rdx), %rsi
-	jnb	.L291
+	jnb	.L307
 	movq	352(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
-	je	.L291
-.L290:
+	je	.L307
+.L306:
 	cmpq	%rax, 112(%rbx)
-	jne	.L299
+	jne	.L315
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L299:
+.L315:
 	.cfi_restore_state
 	movq	%rax, 112(%rbx)
 	xorl	%eax, %eax
@@ -1950,8 +2078,8 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
 	call	SDL_DestroyTexture@PLT
 	cmpq	$0, 72(%rbx)
 	movq	$0, 128(%rbx)
-	jne	.L293
-.L298:
+	jne	.L309
+.L314:
 	movq	112(%rbx), %rax
 	popq	%rbx
 	.cfi_remember_state
@@ -1959,47 +2087,47 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L293:
+.L309:
 	.cfi_restore_state
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0
-	jmp	.L298
-.L291:
+	jmp	.L314
+.L307:
 	movq	%rax, %rsi
-	leaq	.LC23(%rip), %rdi
+	leaq	.LC25(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8183:
+.LFE8187:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy, .-_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv:
-.LFB8184:
+.LFB8188:
 	.cfi_startproc
 	movl	120(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8184:
+.LFE8188:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE:
-.LFB8185:
+.LFB8189:
 	.cfi_startproc
 	movl	%esi, %eax
 	cmpl	%esi, 120(%rdi)
-	jne	.L309
+	jne	.L325
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L309:
+.L325:
 	xorl	%eax, %eax
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -2011,7 +2139,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE:
 	call	SDL_DestroyTexture@PLT
 	cmpq	$0, 72(%rbx)
 	movq	$0, 128(%rbx)
-	jne	.L303
+	jne	.L319
 	movl	120(%rbx), %eax
 	popq	%rbx
 	.cfi_remember_state
@@ -2019,7 +2147,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L303:
+.L319:
 	.cfi_restore_state
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0
@@ -2028,14 +2156,14 @@ _ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8185:
+.LFE8189:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE, .-_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv:
-.LFB8186:
+.LFB8190:
 	.cfi_startproc
 	xorl	%eax, %eax
 	pushq	%rbx
@@ -2047,7 +2175,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv:
 	call	SDL_DestroyTexture@PLT
 	cmpq	$0, 72(%rbx)
 	movq	$0, 128(%rbx)
-	jne	.L313
+	jne	.L329
 	xorl	%eax, %eax
 	popq	%rbx
 	.cfi_remember_state
@@ -2055,7 +2183,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L313:
+.L329:
 	.cfi_restore_state
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0
@@ -2064,7 +2192,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8186:
+.LFE8190:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

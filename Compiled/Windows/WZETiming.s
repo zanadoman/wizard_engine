@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine6timingC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timingC2EPS0_
 _ZN3wze6engine6timingC2EPS0_:
-.LFB6880:
+.LFB6889:
 	.seh_endprologue
 	pxor	%xmm0, %xmm0
 	xorl	%eax, %eax
@@ -59,7 +59,7 @@ _ZN3wze6engine6timingC2EPS0_:
 	.def	_ZN3wze6engine6timing18GetTargetFrameTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing18GetTargetFrameTimeEv
 _ZN3wze6engine6timing18GetTargetFrameTimeEv:
-.LFB6882:
+.LFB6891:
 	.seh_endprologue
 	movzbl	8(%rcx), %eax
 	ret
@@ -75,7 +75,7 @@ _ZN3wze6engine6timing18GetTargetFrameTimeEv:
 	.def	_ZN3wze6engine6timing18SetTargetFrameTimeEh;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing18SetTargetFrameTimeEh
 _ZN3wze6engine6timing18SetTargetFrameTimeEh:
-.LFB6883:
+.LFB6892:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -95,11 +95,11 @@ _ZN3wze6engine6timing18SetTargetFrameTimeEh:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6timing11GetPrevTickEv
-	.def	_ZN3wze6engine6timing11GetPrevTickEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6timing11GetPrevTickEv
-_ZN3wze6engine6timing11GetPrevTickEv:
-.LFB6884:
+	.globl	_ZN3wze6engine6timing14GetCurrentTickEv
+	.def	_ZN3wze6engine6timing14GetCurrentTickEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6timing14GetCurrentTickEv
+_ZN3wze6engine6timing14GetCurrentTickEv:
+.LFB6893:
 	.seh_endprologue
 	movl	12(%rcx), %eax
 	ret
@@ -110,7 +110,7 @@ _ZN3wze6engine6timing11GetPrevTickEv:
 	.def	_ZN3wze6engine6timing11GetGameTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing11GetGameTimeEv
 _ZN3wze6engine6timing11GetGameTimeEv:
-.LFB6885:
+.LFB6894:
 	.seh_endprologue
 	movl	16(%rcx), %eax
 	ret
@@ -121,7 +121,7 @@ _ZN3wze6engine6timing11GetGameTimeEv:
 	.def	_ZN3wze6engine6timing13GetRenderTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing13GetRenderTimeEv
 _ZN3wze6engine6timing13GetRenderTimeEv:
-.LFB6886:
+.LFB6895:
 	.seh_endprologue
 	movl	20(%rcx), %eax
 	ret
@@ -132,7 +132,7 @@ _ZN3wze6engine6timing13GetRenderTimeEv:
 	.def	_ZN3wze6engine6timing14GetWorkingTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing14GetWorkingTimeEv
 _ZN3wze6engine6timing14GetWorkingTimeEv:
-.LFB6887:
+.LFB6896:
 	.seh_endprologue
 	movl	24(%rcx), %eax
 	ret
@@ -143,7 +143,7 @@ _ZN3wze6engine6timing14GetWorkingTimeEv:
 	.def	_ZN3wze6engine6timing11GetIdleTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing11GetIdleTimeEv
 _ZN3wze6engine6timing11GetIdleTimeEv:
-.LFB6888:
+.LFB6897:
 	.seh_endprologue
 	movzwl	28(%rcx), %eax
 	ret
@@ -154,7 +154,7 @@ _ZN3wze6engine6timing11GetIdleTimeEv:
 	.def	_ZN3wze6engine6timing12GetFrameTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing12GetFrameTimeEv
 _ZN3wze6engine6timing12GetFrameTimeEv:
-.LFB6889:
+.LFB6898:
 	.seh_endprologue
 	movl	32(%rcx), %eax
 	ret
@@ -165,7 +165,7 @@ _ZN3wze6engine6timing12GetFrameTimeEv:
 	.def	_ZN3wze6engine6timing12GetDeltaTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing12GetDeltaTimeEv
 _ZN3wze6engine6timing12GetDeltaTimeEv:
-.LFB6890:
+.LFB6899:
 	.seh_endprologue
 	movl	36(%rcx), %eax
 	ret
@@ -176,7 +176,7 @@ _ZN3wze6engine6timing12GetDeltaTimeEv:
 	.def	_ZN3wze6engine6timing6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing6UpdateEv
 _ZN3wze6engine6timing6UpdateEv:
-.LFB6891:
+.LFB6900:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx

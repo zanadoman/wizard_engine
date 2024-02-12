@@ -45,10 +45,10 @@ _Z6printfPKcz:
 	.text
 	.align 2
 	.p2align 4
-	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
-	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
-_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0:
-.LFB6921:
+	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
+_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0:
+.LFB6934:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -177,11 +177,11 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0:
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_
-	.def	_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_
-_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_:
-.LFB6880:
+	.globl	_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_
+	.def	_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_
+_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_:
+.LFB6889:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -214,16 +214,16 @@ _ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_:
 	call	exit
 	nop
 	.seh_endproc
-	.globl	_ZN3wze6engine6actors5actor8texturesC1EPS0_PS2_
-	.def	_ZN3wze6engine6actors5actor8texturesC1EPS0_PS2_;	.scl	2;	.type	32;	.endef
-	.set	_ZN3wze6engine6actors5actor8texturesC1EPS0_PS2_,_ZN3wze6engine6actors5actor8texturesC2EPS0_PS2_
+	.globl	_ZN3wze6engine6actors5actor12textureboxesC1EPS0_PS2_
+	.def	_ZN3wze6engine6actors5actor12textureboxesC1EPS0_PS2_;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine6actors5actor12textureboxesC1EPS0_PS2_,_ZN3wze6engine6actors5actor12textureboxesC2EPS0_PS2_
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8texturesD2Ev
-	.def	_ZN3wze6engine6actors5actor8texturesD2Ev;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8texturesD2Ev
-_ZN3wze6engine6actors5actor8texturesD2Ev:
-.LFB6883:
+	.globl	_ZN3wze6engine6actors5actor12textureboxesD2Ev
+	.def	_ZN3wze6engine6actors5actor12textureboxesD2Ev;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxesD2Ev
+_ZN3wze6engine6actors5actor12textureboxesD2Ev:
+.LFB6892:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -268,13 +268,13 @@ _ZN3wze6engine6actors5actor8texturesD2Ev:
 	popq	%rsi
 	jmp	free
 	.seh_endproc
-	.globl	_ZN3wze6engine6actors5actor8texturesD1Ev
-	.def	_ZN3wze6engine6actors5actor8texturesD1Ev;	.scl	2;	.type	32;	.endef
-	.set	_ZN3wze6engine6actors5actor8texturesD1Ev,_ZN3wze6engine6actors5actor8texturesD2Ev
+	.globl	_ZN3wze6engine6actors5actor12textureboxesD1Ev
+	.def	_ZN3wze6engine6actors5actor12textureboxesD1Ev;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine6actors5actor12textureboxesD1Ev,_ZN3wze6engine6actors5actor12textureboxesD2Ev
 	.section .rdata,"dr"
 	.align 8
 .LC4:
-	.ascii "wze::engine.actors[].textures.New(): TextureID does not exist\12Params: TextureID: %lld\12\0"
+	.ascii "wze::engine.actors[].textureboxes.New(): TextureID does not exist\12Params: TextureID: %lld\12\0"
 	.align 8
 .LC5:
 	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"
@@ -283,15 +283,15 @@ _ZN3wze6engine6actors5actor8texturesD2Ev:
 	.ascii "neo::array+=: Memory allocation failed\12Params: Elements(type, length): %ld, %ld\12\0"
 	.align 8
 .LC7:
-	.ascii "wze::engine.actors[].textures.New(): Memory allocation failed\12Params: TextureID: %lld\12\0"
+	.ascii "wze::engine.actors[].textureboxes.New(): Memory allocation failed\12Params: TextureID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures3NewEy
-	.def	_ZN3wze6engine6actors5actor8textures3NewEy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures3NewEy
-_ZN3wze6engine6actors5actor8textures3NewEy:
-.LFB6885:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes3NewEy
+	.def	_ZN3wze6engine6actors5actor12textureboxes3NewEy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes3NewEy
+_ZN3wze6engine6actors5actor12textureboxes3NewEy:
+.LFB6894:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -306,9 +306,9 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	testq	%rdx, %rdx
 	je	.L43
 	movq	(%rcx), %rax
-	cmpq	336(%rax), %rdx
+	cmpq	312(%rax), %rdx
 	jnb	.L42
-	movq	344(%rax), %rax
+	movq	320(%rax), %rax
 	cmpq	$0, (%rax,%rdx,8)
 	je	.L42
 .L43:
@@ -440,11 +440,11 @@ _ZN3wze6engine6actors5actor8textures3NewEy:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures6DeleteEy
-	.def	_ZN3wze6engine6actors5actor8textures6DeleteEy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures6DeleteEy
-_ZN3wze6engine6actors5actor8textures6DeleteEy:
-.LFB6886:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes6DeleteEy
+	.def	_ZN3wze6engine6actors5actor12textureboxes6DeleteEy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes6DeleteEy
+_ZN3wze6engine6actors5actor12textureboxes6DeleteEy:
+.LFB6895:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -495,7 +495,7 @@ _ZN3wze6engine6actors5actor8textures6DeleteEy:
 	jne	.L65
 .L64:
 	leaq	16(%rbx), %rcx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
 	jmp	.L59
 	.p2align 4,,10
 	.p2align 3
@@ -519,11 +519,11 @@ _ZN3wze6engine6actors5actor8textures6DeleteEy:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE
-	.def	_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE
-_ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
-.LFB6887:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE
+	.def	_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE
+_ZN3wze6engine6actors5actor12textureboxes5PurgeESt16initializer_listIyE:
+.LFB6896:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -605,7 +605,7 @@ _ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 .L93:
 	leaq	16(%rbp), %rcx
 	movq	%r9, %rdx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$32, %rsp
 	popq	%rbx
@@ -645,15 +645,15 @@ _ZN3wze6engine6actors5actor8textures5PurgeESt16initializer_listIyE:
 	.section .rdata,"dr"
 	.align 8
 .LC8:
-	.ascii "wze::engine.actors[].textures.Purge(): KeepTextureIDs must not be NULL\12Params: KeepTextureIDs: %p\12\0"
+	.ascii "wze::engine.actors[].textureboxes.Purge(): KeepTextureboxIDs must not be NULL\12Params: KeepTextureboxIDs: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE
-	.def	_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE
-_ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
-.LFB6888:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE
+	.def	_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE
+_ZN3wze6engine6actors5actor12textureboxes5PurgeEPN3neo5arrayIyEE:
+.LFB6897:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -737,7 +737,7 @@ _ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 .L125:
 	movq	%rax, %rdx
 	leaq	16(%rdi), %rcx
-	call	_ZN3neo5arrayIPN3wze6engine6actors5actor8textures7textureEE6RemoveEyy.isra.0
+	call	_ZN3neo5arrayIPN3wze6engine6actors5actor12textureboxes10textureboxEE6RemoveEyy.isra.0
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	popq	%rbx
@@ -781,18 +781,18 @@ _ZN3wze6engine6actors5actor8textures5PurgeEPN3neo5arrayIyEE:
 	.section .rdata,"dr"
 	.align 8
 .LC9:
-	.ascii "wze::engine.actors[].textures[]: Illegal access to NULL Texture\12Params: TextureID: %lld\12\0"
+	.ascii "wze::engine.actors[].textureboxes[]: Illegal access to NULL Texturebox\12Params: TextureboxID: %lld\12\0"
 	.align 8
 .LC10:
-	.ascii "wze::engine.actors[].textures[]: Texture does not exist\12Params: TextureID: %lld\12\0"
+	.ascii "wze::engine.actors[].textureboxes[]: Texturebox does not exist\12Params: TextureboxID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8texturesixEy
-	.def	_ZN3wze6engine6actors5actor8texturesixEy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8texturesixEy
-_ZN3wze6engine6actors5actor8texturesixEy:
-.LFB6889:
+	.globl	_ZN3wze6engine6actors5actor12textureboxesixEy
+	.def	_ZN3wze6engine6actors5actor12textureboxesixEy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxesixEy
+_ZN3wze6engine6actors5actor12textureboxesixEy:
+.LFB6898:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -820,11 +820,11 @@ _ZN3wze6engine6actors5actor8texturesixEy:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy
-	.def	_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy
-_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy:
-.LFB6891:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy
+	.def	_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy
+_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy:
+.LFB6900:
 	.seh_endprologue
 	movupd	224(%r8), %xmm0
 	movl	256(%r8), %eax
@@ -845,40 +845,40 @@ _ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy:
 	movups	%xmm0, 64(%rcx)
 	ret
 	.seh_endproc
-	.globl	_ZN3wze6engine6actors5actor8textures7textureC1EPS0_PS2_yy
-	.def	_ZN3wze6engine6actors5actor8textures7textureC1EPS0_PS2_yy;	.scl	2;	.type	32;	.endef
-	.set	_ZN3wze6engine6actors5actor8textures7textureC1EPS0_PS2_yy,_ZN3wze6engine6actors5actor8textures7textureC2EPS0_PS2_yy
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10textureboxC1EPS0_PS2_yy
+	.def	_ZN3wze6engine6actors5actor12textureboxes10textureboxC1EPS0_PS2_yy;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine6actors5actor12textureboxes10textureboxC1EPS0_PS2_yy,_ZN3wze6engine6actors5actor12textureboxes10textureboxC2EPS0_PS2_yy
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7textureD2Ev
-	.def	_ZN3wze6engine6actors5actor8textures7textureD2Ev;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7textureD2Ev
-_ZN3wze6engine6actors5actor8textures7textureD2Ev:
-.LFB6894:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev
+	.def	_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev
+_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev:
+.LFB6903:
 	.seh_endprologue
 	ret
 	.seh_endproc
-	.globl	_ZN3wze6engine6actors5actor8textures7textureD1Ev
-	.def	_ZN3wze6engine6actors5actor8textures7textureD1Ev;	.scl	2;	.type	32;	.endef
-	.set	_ZN3wze6engine6actors5actor8textures7textureD1Ev,_ZN3wze6engine6actors5actor8textures7textureD2Ev
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10textureboxD1Ev
+	.def	_ZN3wze6engine6actors5actor12textureboxes10textureboxD1Ev;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine6actors5actor12textureboxes10textureboxD1Ev,_ZN3wze6engine6actors5actor12textureboxes10textureboxD2Ev
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture5GetIDEv
-	.def	_ZN3wze6engine6actors5actor8textures7texture5GetIDEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture5GetIDEv
-_ZN3wze6engine6actors5actor8textures7texture5GetIDEv:
-.LFB6896:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv
+_ZN3wze6engine6actors5actor12textureboxes10texturebox5GetIDEv:
+.LFB6905:
 	.seh_endprologue
 	movq	40(%rcx), %rax
 	ret
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4GetXEv
-	.def	_ZN3wze6engine6actors5actor8textures7texture4GetXEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4GetXEv
-_ZN3wze6engine6actors5actor8textures7texture4GetXEv:
-.LFB6897:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv
+_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetXEv:
+.LFB6906:
 	.seh_endprologue
 	movsd	48(%rcx), %xmm0
 	ret
@@ -886,15 +886,15 @@ _ZN3wze6engine6actors5actor8textures7texture4GetXEv:
 	.section .rdata,"dr"
 	.align 8
 .LC12:
-	.ascii "wze::engine.actors[].textures[].SetX(): X must not be NaN\12Params: X: %lf\12\0"
+	.ascii "wze::engine.actors[].textureboxes[].SetX(): X must not be NaN\12Params: X: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4SetXEd
-	.def	_ZN3wze6engine6actors5actor8textures7texture4SetXEd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4SetXEd
-_ZN3wze6engine6actors5actor8textures7texture4SetXEd:
-.LFB6898:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd
+_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetXEd:
+.LFB6907:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -958,11 +958,11 @@ _ZN3wze6engine6actors5actor8textures7texture4SetXEd:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4GetYEv
-	.def	_ZN3wze6engine6actors5actor8textures7texture4GetYEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4GetYEv
-_ZN3wze6engine6actors5actor8textures7texture4GetYEv:
-.LFB6899:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv
+_ZN3wze6engine6actors5actor12textureboxes10texturebox4GetYEv:
+.LFB6908:
 	.seh_endprologue
 	movsd	56(%rcx), %xmm0
 	ret
@@ -970,15 +970,15 @@ _ZN3wze6engine6actors5actor8textures7texture4GetYEv:
 	.section .rdata,"dr"
 	.align 8
 .LC13:
-	.ascii "wze::engine.actors[].textures[].SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
+	.ascii "wze::engine.actors[].textureboxes[].SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture4SetYEd
-	.def	_ZN3wze6engine6actors5actor8textures7texture4SetYEd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture4SetYEd
-_ZN3wze6engine6actors5actor8textures7texture4SetYEd:
-.LFB6900:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd
+_ZN3wze6engine6actors5actor12textureboxes10texturebox4SetYEd:
+.LFB6909:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1042,45 +1042,164 @@ _ZN3wze6engine6actors5actor8textures7texture4SetYEd:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv
-	.def	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv
-_ZN3wze6engine6actors5actor8textures7texture12GetTextureIDEv:
-.LFB6901:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv
+_ZN3wze6engine6actors5actor12textureboxes10texturebox15GetOffsetLengthEv:
+.LFB6910:
+	.seh_endprologue
+	movsd	64(%rcx), %xmm0
+	ret
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC14:
+	.ascii "wze::engine.actors[].textureboxes[].SetOffsetLength(): OffsetLength must not be NaN\12Params: OffsetLength: %lf\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd
+_ZN3wze6engine6actors5actor12textureboxes10texturebox15SetOffsetLengthEd:
+.LFB6911:
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	movaps	%xmm6, 32(%rsp)
+	.seh_savexmm	%xmm6, 32
+	.seh_endprologue
+	ucomisd	%xmm1, %xmm1
+	movq	%rcx, %rbx
+	movapd	%xmm1, %xmm6
+	jp	.L197
+	movq	8(%rcx), %rax
+	movsd	72(%rcx), %xmm2
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd
+	movq	8(%rbx), %rax
+	movsd	72(%rbx), %xmm2
+	movapd	%xmm6, %xmm1
+	movsd	%xmm0, 48(%rbx)
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd
+	unpcklpd	%xmm6, %xmm0
+	movups	%xmm0, 56(%rbx)
+	movapd	%xmm6, %xmm0
+	movaps	32(%rsp), %xmm6
+	addq	$48, %rsp
+	popq	%rbx
+	ret
+.L197:
+	leaq	.LC14(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv
+_ZN3wze6engine6actors5actor12textureboxes10texturebox14GetOffsetAngleEv:
+.LFB6912:
+	.seh_endprologue
+	movsd	72(%rcx), %xmm0
+	ret
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC15:
+	.ascii "wze::engine.actors[].textureboxes[].SetOffsetAngle(): OffsetAngle must not be NaN\12Params: OffsetAngle %lf\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd
+_ZN3wze6engine6actors5actor12textureboxes10texturebox14SetOffsetAngleEd:
+.LFB6913:
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	movaps	%xmm6, 32(%rsp)
+	.seh_savexmm	%xmm6, 32
+	.seh_endprologue
+	ucomisd	%xmm1, %xmm1
+	movq	%rcx, %rbx
+	movapd	%xmm1, %xmm6
+	jp	.L204
+	movq	8(%rcx), %rax
+	movapd	%xmm1, %xmm2
+	movsd	64(%rcx), %xmm1
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd
+	movq	8(%rbx), %rax
+	movsd	64(%rbx), %xmm1
+	movapd	%xmm6, %xmm2
+	movsd	%xmm0, 48(%rbx)
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd
+	movsd	%xmm6, 72(%rbx)
+	movsd	%xmm0, 56(%rbx)
+	movapd	%xmm6, %xmm0
+	movaps	32(%rsp), %xmm6
+	addq	$48, %rsp
+	popq	%rbx
+	ret
+.L204:
+	leaq	.LC15(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv
+_ZN3wze6engine6actors5actor12textureboxes10texturebox12GetTextureIDEv:
+.LFB6914:
 	.seh_endprologue
 	movq	80(%rcx), %rax
 	ret
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC14:
-	.ascii "wze::engine.actors[].textures[].SetTextureID(): Texture does not exist\12Params: TextureID: %lld\12\0"
+.LC16:
+	.ascii "wze::engine.actors[].textureboxes[].SetTextureID(): Texture does not exist\12Params: TextureID: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy
-	.def	_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy
-_ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
-.LFB6902:
+	.globl	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy
+	.def	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy
+_ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy:
+.LFB6915:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	movq	%rdx, %rax
 	testq	%rdx, %rdx
-	je	.L193
+	je	.L207
 	movq	(%rcx), %rdx
-	cmpq	336(%rdx), %rax
-	jnb	.L194
-	movq	344(%rdx), %rdx
+	cmpq	312(%rdx), %rax
+	jnb	.L208
+	movq	320(%rdx), %rdx
 	cmpq	$0, (%rdx,%rax,8)
-	je	.L194
-.L193:
+	je	.L208
+.L207:
 	movq	%rax, 80(%rcx)
 	addq	$40, %rsp
 	ret
-.L194:
-	leaq	.LC14(%rip), %rcx
+.L208:
+	leaq	.LC16(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -1098,3 +1217,5 @@ _ZN3wze6engine6actors5actor8textures7texture12SetTextureIDEy:
 	.def	_Znwy;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector6LengthEdddd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6vector5AngleEdddd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6vector9TerminalXEddd;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6vector9TerminalYEddd;	.scl	2;	.type	32;	.endef

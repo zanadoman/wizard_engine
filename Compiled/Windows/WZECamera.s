@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine6cameraC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6cameraC2EPS0_
 _ZN3wze6engine6cameraC2EPS0_:
-.LFB8422:
+.LFB8431:
 	.seh_endprologue
 	pxor	%xmm0, %xmm0
 	movq	.LC0(%rip), %rax
@@ -60,7 +60,7 @@ _ZN3wze6engine6cameraC2EPS0_:
 	.def	_ZN3wze6engine6camera4GetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera4GetXEv
 _ZN3wze6engine6camera4GetXEv:
-.LFB8424:
+.LFB8433:
 	.seh_endprologue
 	movsd	8(%rcx), %xmm0
 	ret
@@ -79,7 +79,7 @@ _ZN3wze6engine6camera4GetXEv:
 	.def	_ZN3wze6engine6camera4SetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera4SetXEd
 _ZN3wze6engine6camera4SetXEd:
-.LFB8425:
+.LFB8434:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -111,7 +111,7 @@ _ZN3wze6engine6camera4SetXEd:
 	.def	_ZN3wze6engine6camera4GetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera4GetYEv
 _ZN3wze6engine6camera4GetYEv:
-.LFB8426:
+.LFB8435:
 	.seh_endprologue
 	movsd	16(%rcx), %xmm0
 	ret
@@ -130,7 +130,7 @@ _ZN3wze6engine6camera4GetYEv:
 	.def	_ZN3wze6engine6camera4SetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera4SetYEd
 _ZN3wze6engine6camera4SetYEd:
-.LFB8427:
+.LFB8436:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -162,7 +162,7 @@ _ZN3wze6engine6camera4SetYEd:
 	.def	_ZN3wze6engine6camera10GetOffsetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera10GetOffsetXEv
 _ZN3wze6engine6camera10GetOffsetXEv:
-.LFB8428:
+.LFB8437:
 	.seh_endprologue
 	movsd	24(%rcx), %xmm0
 	ret
@@ -178,7 +178,7 @@ _ZN3wze6engine6camera10GetOffsetXEv:
 	.def	_ZN3wze6engine6camera10SetOffsetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera10SetOffsetXEd
 _ZN3wze6engine6camera10SetOffsetXEd:
-.LFB8429:
+.LFB8438:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -202,7 +202,7 @@ _ZN3wze6engine6camera10SetOffsetXEd:
 	.def	_ZN3wze6engine6camera10GetOffsetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera10GetOffsetYEv
 _ZN3wze6engine6camera10GetOffsetYEv:
-.LFB8430:
+.LFB8439:
 	.seh_endprologue
 	movsd	32(%rcx), %xmm0
 	ret
@@ -218,7 +218,7 @@ _ZN3wze6engine6camera10GetOffsetYEv:
 	.def	_ZN3wze6engine6camera10SetOffsetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera10SetOffsetYEd
 _ZN3wze6engine6camera10SetOffsetYEd:
-.LFB8431:
+.LFB8440:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -242,7 +242,7 @@ _ZN3wze6engine6camera10SetOffsetYEd:
 	.def	_ZN3wze6engine6camera7GetZoomEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera7GetZoomEv
 _ZN3wze6engine6camera7GetZoomEv:
-.LFB8432:
+.LFB8441:
 	.seh_endprologue
 	movsd	40(%rcx), %xmm0
 	ret
@@ -261,7 +261,7 @@ _ZN3wze6engine6camera7GetZoomEv:
 	.def	_ZN3wze6engine6camera7SetZoomEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera7SetZoomEd
 _ZN3wze6engine6camera7SetZoomEd:
-.LFB8433:
+.LFB8442:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -302,7 +302,7 @@ _ZN3wze6engine6camera7SetZoomEd:
 	.def	_ZN3wze6engine6camera4BindEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera4BindEy
 _ZN3wze6engine6camera4BindEy:
-.LFB8434:
+.LFB8443:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -361,7 +361,7 @@ _ZN3wze6engine6camera4BindEy:
 	.def	_ZN3wze6engine6camera5BindXEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera5BindXEy
 _ZN3wze6engine6camera5BindXEy:
-.LFB8435:
+.LFB8444:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -414,7 +414,7 @@ _ZN3wze6engine6camera5BindXEy:
 	.def	_ZN3wze6engine6camera5BindYEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera5BindYEy
 _ZN3wze6engine6camera5BindYEy:
-.LFB8436:
+.LFB8445:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -459,7 +459,7 @@ _ZN3wze6engine6camera5BindYEy:
 	.def	_ZN3wze6engine6camera6UnbindEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera6UnbindEv
 _ZN3wze6engine6camera6UnbindEv:
-.LFB8437:
+.LFB8446:
 	.seh_endprologue
 	pxor	%xmm0, %xmm0
 	xorl	%eax, %eax
@@ -472,7 +472,7 @@ _ZN3wze6engine6camera6UnbindEv:
 	.def	_ZN3wze6engine6camera7UnbindXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera7UnbindXEv
 _ZN3wze6engine6camera7UnbindXEv:
-.LFB8438:
+.LFB8447:
 	.seh_endprologue
 	xorl	%eax, %eax
 	movq	$0, 48(%rcx)
@@ -484,7 +484,7 @@ _ZN3wze6engine6camera7UnbindXEv:
 	.def	_ZN3wze6engine6camera7UnbindYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera7UnbindYEv
 _ZN3wze6engine6camera7UnbindYEv:
-.LFB8439:
+.LFB8448:
 	.seh_endprologue
 	xorl	%eax, %eax
 	movq	$0, 56(%rcx)
@@ -496,7 +496,7 @@ _ZN3wze6engine6camera7UnbindYEv:
 	.def	_ZN3wze6engine6camera9GetXActorEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera9GetXActorEv
 _ZN3wze6engine6camera9GetXActorEv:
-.LFB8440:
+.LFB8449:
 	.seh_endprologue
 	movq	48(%rcx), %rax
 	ret
@@ -507,7 +507,7 @@ _ZN3wze6engine6camera9GetXActorEv:
 	.def	_ZN3wze6engine6camera9GetYActorEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera9GetYActorEv
 _ZN3wze6engine6camera9GetYActorEv:
-.LFB8441:
+.LFB8450:
 	.seh_endprologue
 	movq	56(%rcx), %rax
 	ret
@@ -523,7 +523,7 @@ _ZN3wze6engine6camera9GetYActorEv:
 	.def	_ZN3wze6engine6camera6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera6UpdateEv
 _ZN3wze6engine6camera6UpdateEv:
-.LFB8442:
+.LFB8451:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -574,7 +574,7 @@ _ZN3wze6engine6camera6UpdateEv:
 	.def	_ZN3wze6engine6camera9TransformEddttd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6camera9TransformEddttd
 _ZN3wze6engine6camera9TransformEddttd:
-.LFB8443:
+.LFB8452:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12

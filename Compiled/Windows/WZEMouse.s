@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine5mouseC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouseC2EPS0_
 _ZN3wze6engine5mouseC2EPS0_:
-.LFB6880:
+.LFB6889:
 	.seh_endprologue
 	movq	.LC0(%rip), %rax
 	pxor	%xmm0, %xmm0
@@ -60,7 +60,7 @@ _ZN3wze6engine5mouseC2EPS0_:
 	.def	_ZN3wze6engine5mouse14GetSensitivityEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse14GetSensitivityEv
 _ZN3wze6engine5mouse14GetSensitivityEv:
-.LFB6882:
+.LFB6891:
 	.seh_endprologue
 	movsd	8(%rcx), %xmm0
 	ret
@@ -76,7 +76,7 @@ _ZN3wze6engine5mouse14GetSensitivityEv:
 	.def	_ZN3wze6engine5mouse14SetSensitivityEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse14SetSensitivityEd
 _ZN3wze6engine5mouse14SetSensitivityEd:
-.LFB6883:
+.LFB6892:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -108,7 +108,7 @@ _ZN3wze6engine5mouse14SetSensitivityEd:
 	.def	_ZN3wze6engine5mouse4GetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse4GetXEd
 _ZN3wze6engine5mouse4GetXEd:
-.LFB6884:
+.LFB6893:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -164,7 +164,7 @@ _ZN3wze6engine5mouse4GetXEd:
 	.def	_ZN3wze6engine5mouse4GetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse4GetYEd
 _ZN3wze6engine5mouse4GetYEd:
-.LFB6885:
+.LFB6894:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -212,7 +212,7 @@ _ZN3wze6engine5mouse4GetYEd:
 	.def	_ZN3wze6engine5mouse10GetMotionXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10GetMotionXEv
 _ZN3wze6engine5mouse10GetMotionXEv:
-.LFB6886:
+.LFB6895:
 	.seh_endprologue
 	movsd	24(%rcx), %xmm0
 	ret
@@ -223,7 +223,7 @@ _ZN3wze6engine5mouse10GetMotionXEv:
 	.def	_ZN3wze6engine5mouse10GetMotionYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10GetMotionYEv
 _ZN3wze6engine5mouse10GetMotionYEv:
-.LFB6887:
+.LFB6896:
 	.seh_endprologue
 	movsd	32(%rcx), %xmm0
 	ret
@@ -234,7 +234,7 @@ _ZN3wze6engine5mouse10GetMotionYEv:
 	.def	_ZN3wze6engine5mouse10IsAbsoluteEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10IsAbsoluteEv
 _ZN3wze6engine5mouse10IsAbsoluteEv:
-.LFB6888:
+.LFB6897:
 	.seh_endprologue
 	movzbl	40(%rcx), %eax
 	xorl	$1, %eax
@@ -246,7 +246,7 @@ _ZN3wze6engine5mouse10IsAbsoluteEv:
 	.def	_ZN3wze6engine5mouse11SetAbsoluteEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse11SetAbsoluteEv
 _ZN3wze6engine5mouse11SetAbsoluteEv:
-.LFB6889:
+.LFB6898:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -267,7 +267,7 @@ _ZN3wze6engine5mouse11SetAbsoluteEv:
 	.def	_ZN3wze6engine5mouse10IsRelativeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse10IsRelativeEv
 _ZN3wze6engine5mouse10IsRelativeEv:
-.LFB6890:
+.LFB6899:
 	.seh_endprologue
 	movzbl	40(%rcx), %eax
 	ret
@@ -278,7 +278,7 @@ _ZN3wze6engine5mouse10IsRelativeEv:
 	.def	_ZN3wze6engine5mouse11SetRelativeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse11SetRelativeEv
 _ZN3wze6engine5mouse11SetRelativeEv:
-.LFB6891:
+.LFB6900:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -299,7 +299,7 @@ _ZN3wze6engine5mouse11SetRelativeEv:
 	.def	_ZN3wze6engine5mouse18GetCursorTextureIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse18GetCursorTextureIDEv
 _ZN3wze6engine5mouse18GetCursorTextureIDEv:
-.LFB6892:
+.LFB6901:
 	.seh_endprologue
 	movq	48(%rcx), %rax
 	ret
@@ -318,7 +318,7 @@ _ZN3wze6engine5mouse18GetCursorTextureIDEv:
 	.def	_ZN3wze6engine5mouse18SetCursorTextureIDEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse18SetCursorTextureIDEy
 _ZN3wze6engine5mouse18SetCursorTextureIDEy:
-.LFB6893:
+.LFB6902:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -331,9 +331,9 @@ _ZN3wze6engine5mouse18SetCursorTextureIDEy:
 	testq	%rdx, %rdx
 	je	.L52
 	movq	(%rcx), %rax
-	cmpq	384(%rax), %rdx
+	cmpq	360(%rax), %rdx
 	jnb	.L50
-	movq	392(%rax), %rax
+	movq	368(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L50
@@ -364,7 +364,7 @@ _ZN3wze6engine5mouse18SetCursorTextureIDEy:
 	.def	_ZN3wze6engine5mouse6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5mouse6UpdateEv
 _ZN3wze6engine5mouse6UpdateEv:
-.LFB6894:
+.LFB6903:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -380,7 +380,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	cvtsi2sdl	40(%rsp), %xmm0
 	movsd	8(%rbx), %xmm2
 	cvtsi2sdl	44(%rsp), %xmm1
-	movq	440(%r8), %rdx
+	movq	416(%r8), %rdx
 	mulsd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm1
 	xorpd	.LC10(%rip), %xmm1
@@ -388,7 +388,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	movups	%xmm0, 24(%rbx)
 	testq	%rdx, %rdx
 	je	.L54
-	movq	448(%r8), %rax
+	movq	424(%r8), %rax
 	leaq	0(,%rdx,8), %rcx
 	subq	%rdx, %rcx
 	leaq	(%rax,%rcx,8), %rcx

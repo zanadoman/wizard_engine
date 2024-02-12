@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0:
-.LFB8356:
+.LFB8360:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8356:
+.LFE8360:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor10colorboxes8colorboxEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -1077,5 +1077,133 @@ _ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd:
 	.cfi_endproc
 .LFE8176:
 	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox4SetYEd
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox15GetOffsetLengthEv
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorbox15GetOffsetLengthEv, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorbox15GetOffsetLengthEv:
+.LFB8177:
+	.cfi_startproc
+	movsd	56(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE8177:
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox15GetOffsetLengthEv, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox15GetOffsetLengthEv
+	.section	.rodata.str1.8
+	.align 8
+.LC15:
+	.string	"wze::engine.actors[].colorboxes[].SetOffsetLength(): OffsetLength must not be NaN\nParams: OffsetLength: %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox15SetOffsetLengthEd
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorbox15SetOffsetLengthEd, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorbox15SetOffsetLengthEd:
+.LFB8178:
+	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movapd	%xmm0, %xmm1
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L213
+	movq	8(%rdi), %rax
+	movsd	64(%rdi), %xmm2
+	movq	%rdi, %rbx
+	movsd	%xmm1, 8(%rsp)
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm1
+	movsd	%xmm0, 40(%rbx)
+	movsd	64(%rbx), %xmm2
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movsd	8(%rsp), %xmm1
+	unpcklpd	%xmm1, %xmm0
+	movups	%xmm0, 48(%rbx)
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 16
+	movapd	%xmm1, %xmm0
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+.L213:
+	.cfi_restore_state
+	leaq	.LC15(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8178:
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox15SetOffsetLengthEd, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox15SetOffsetLengthEd
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox14GetOffsetAngleEv
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorbox14GetOffsetAngleEv, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorbox14GetOffsetAngleEv:
+.LFB8179:
+	.cfi_startproc
+	movsd	64(%rdi), %xmm0
+	ret
+	.cfi_endproc
+.LFE8179:
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox14GetOffsetAngleEv, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox14GetOffsetAngleEv
+	.section	.rodata.str1.8
+	.align 8
+.LC16:
+	.string	"wze::engine.actors[].colorboxes[].SetOffsetAngle(): OffsetAngle must not be NaN\nParams: OffsetAngle %lf\n"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6actors5actor10colorboxes8colorbox14SetOffsetAngleEd
+	.type	_ZN3wze6engine6actors5actor10colorboxes8colorbox14SetOffsetAngleEd, @function
+_ZN3wze6engine6actors5actor10colorboxes8colorbox14SetOffsetAngleEd:
+.LFB8180:
+	.cfi_startproc
+	pushq	%rbx
+	.cfi_def_cfa_offset 16
+	.cfi_offset 3, -16
+	movapd	%xmm0, %xmm2
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	ucomisd	%xmm0, %xmm0
+	jp	.L221
+	movq	8(%rdi), %rax
+	movsd	56(%rdi), %xmm1
+	movq	%rdi, %rbx
+	movsd	%xmm2, 8(%rsp)
+	movsd	224(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalXEddd@PLT
+	movq	8(%rbx), %rax
+	movsd	8(%rsp), %xmm2
+	movsd	%xmm0, 40(%rbx)
+	movsd	56(%rbx), %xmm1
+	movsd	232(%rax), %xmm0
+	call	_ZN3wze6engine6vector9TerminalYEddd@PLT
+	movsd	8(%rsp), %xmm2
+	movsd	%xmm0, 48(%rbx)
+	movsd	%xmm2, 64(%rbx)
+	addq	$16, %rsp
+	.cfi_remember_state
+	.cfi_def_cfa_offset 16
+	movapd	%xmm2, %xmm0
+	popq	%rbx
+	.cfi_def_cfa_offset 8
+	ret
+.L221:
+	.cfi_restore_state
+	leaq	.LC16(%rip), %rdi
+	movl	$1, %eax
+	call	printf@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE8180:
+	.size	_ZN3wze6engine6actors5actor10colorboxes8colorbox14SetOffsetAngleEd, .-_ZN3wze6engine6actors5actor10colorboxes8colorbox14SetOffsetAngleEd
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits

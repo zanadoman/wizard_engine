@@ -209,4 +209,42 @@ namespace wze
 
         return this->Y = Y;
     }
+
+    double engine::actors::actor::colorboxes::colorbox::GetOffsetLength()
+    {
+        return this->OffsetLength;
+    }
+
+    double engine::actors::actor::colorboxes::colorbox::SetOffsetLength(double OffsetLength)
+    {
+        if (OffsetLength != OffsetLength)
+        {
+            printf("wze::engine.actors[].colorboxes[].SetOffsetLength(): OffsetLength must not be NaN\nParams: OffsetLength: %lf\n", OffsetLength);
+            exit(1);
+        }
+
+        this->X = this->Engine->Vector.TerminalX(this->Actor->X, OffsetLength, this->OffsetAngle);
+        this->Y = this->Engine->Vector.TerminalY(this->Actor->Y, OffsetLength, this->OffsetAngle);
+
+        return this->OffsetLength = OffsetLength;
+    }
+
+    double engine::actors::actor::colorboxes::colorbox::GetOffsetAngle()
+    {
+        return this->OffsetAngle;
+    }
+
+    double engine::actors::actor::colorboxes::colorbox::SetOffsetAngle(double OffsetAngle)
+    {
+        if (OffsetAngle != OffsetAngle)
+        {
+            printf("wze::engine.actors[].colorboxes[].SetOffsetAngle(): OffsetAngle must not be NaN\nParams: OffsetAngle %lf\n", OffsetAngle);
+            exit(1);
+        }
+
+        this->X = this->Engine->Vector.TerminalX(this->Actor->X, this->OffsetLength, OffsetAngle);
+        this->Y = this->Engine->Vector.TerminalY(this->Actor->Y, this->OffsetLength, OffsetAngle);
+
+        return this->OffsetAngle = OffsetAngle;
+    }
 }

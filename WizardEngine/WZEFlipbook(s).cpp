@@ -313,6 +313,44 @@ namespace wze
         return this->Y = Y;
     }
 
+    double engine::actors::actor::flipbooks::flipbook::GetOffsetLength()
+    {
+        return this->OffsetLength;
+    }
+
+    double engine::actors::actor::flipbooks::flipbook::SetOffsetLength(double OffsetLength)
+    {
+        if (OffsetLength != OffsetLength)
+        {
+            printf("wze::engine.actors[].flipbooks[].SetOffsetLength(): OffsetLength must not be NaN\nParams: OffsetLength: %lf\n", OffsetLength);
+            exit(1);
+        }
+
+        this->X = this->Engine->Vector.TerminalX(this->Actor->X, OffsetLength, this->OffsetAngle);
+        this->Y = this->Engine->Vector.TerminalY(this->Actor->Y, OffsetLength, this->OffsetAngle);
+
+        return this->OffsetLength = OffsetLength;
+    }
+
+    double engine::actors::actor::flipbooks::flipbook::GetOffsetAngle()
+    {
+        return this->OffsetAngle;
+    }
+
+    double engine::actors::actor::flipbooks::flipbook::SetOffsetAngle(double OffsetAngle)
+    {
+        if (OffsetAngle != OffsetAngle)
+        {
+            printf("wze::engine.actors[].flipbooks[].SetOffsetAngle(): OffsetAngle must not be NaN\nParams: OffsetAngle %lf\n", OffsetAngle);
+            exit(1);
+        }
+
+        this->X = this->Engine->Vector.TerminalX(this->Actor->X, this->OffsetLength, OffsetAngle);
+        this->Y = this->Engine->Vector.TerminalY(this->Actor->Y, this->OffsetLength, OffsetAngle);
+
+        return this->OffsetAngle = OffsetAngle;
+    }
+
     uint32 engine::actors::actor::flipbooks::flipbook::GetDelay()
     {
         return this->Delay;

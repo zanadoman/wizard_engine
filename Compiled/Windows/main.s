@@ -10,7 +10,7 @@
 	.def	main;	.scl	2;	.type	32;	.endef
 	.seh_proc	main
 main:
-.LFB6879:
+.LFB6888:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -19,7 +19,7 @@ main:
 	.seh_stackalloc	56
 	.seh_endprologue
 	call	__main
-	movl	$456, %ecx
+	movl	$432, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
@@ -63,7 +63,7 @@ main:
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_ZN3wze6engineD1Ev
-	movl	$456, %edx
+	movl	$432, %edx
 	movq	%rbx, %rcx
 	call	_ZdlPvy
 	xorl	%eax, %eax
@@ -80,33 +80,33 @@ main:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6879:
+.LLSDA6888:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6879-.LLSDACSB6879
-.LLSDACSB6879:
-	.uleb128 .LEHB0-.LFB6879
+	.uleb128 .LLSDACSE6888-.LLSDACSB6888
+.LLSDACSB6888:
+	.uleb128 .LEHB0-.LFB6888
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB6879
+	.uleb128 .LEHB1-.LFB6888
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L6-.LFB6879
+	.uleb128 .L6-.LFB6888
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB6879
+	.uleb128 .LEHB2-.LFB6888
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB6879
+	.uleb128 .LEHB3-.LFB6888
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L7-.LFB6879
+	.uleb128 .L7-.LFB6888
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB6879
+	.uleb128 .LEHB4-.LFB6888
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE6879:
+.LLSDACSE6888:
 	.section	.text.startup,"x"
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -119,7 +119,7 @@ main:
 main.cold:
 .L4:
 	movq	%rbx, %rcx
-	movl	$456, %edx
+	movl	$432, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB5:
@@ -134,17 +134,17 @@ main.cold:
 .LEHE5:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6879:
+.LLSDAC6888:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6879-.LLSDACSBC6879
-.LLSDACSBC6879:
+	.uleb128 .LLSDACSEC6888-.LLSDACSBC6888
+.LLSDACSBC6888:
 	.uleb128 .LEHB5-.LCOLDB0
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6879:
+.LLSDACSEC6888:
 	.section	.text.unlikely,"x"
 	.section	.text.startup,"x"
 	.section	.text.unlikely,"x"
