@@ -884,9 +884,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	testq	%rdx, %rdx
 	je	.L143
 	movq	0(%rbp), %rcx
-	cmpq	312(%rcx), %rdx
+	cmpq	328(%rcx), %rdx
 	jnb	.L144
-	movq	320(%rcx), %rcx
+	movq	336(%rcx), %rcx
 	cmpq	$0, (%rcx,%rdx,8)
 	je	.L144
 .L143:
@@ -1341,9 +1341,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	testq	%rdx, %rdx
 	je	.L187
 	movq	(%rsi), %r8
-	cmpq	312(%r8), %rdx
+	cmpq	328(%r8), %rdx
 	jnb	.L188
-	movq	320(%r8), %r8
+	movq	336(%r8), %r8
 	cmpq	$0, (%r8,%rdx,8)
 	jne	.L187
 .L188:

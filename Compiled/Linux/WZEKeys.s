@@ -109,7 +109,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	movq	(%rbx), %rsi
 	xorl	%eax, %eax
 	xorl	%edx, %edx
-	movq	416(%rsi), %rdi
+	movq	432(%rsi), %rdi
 	testq	%rdi, %rdi
 	jne	.L15
 	jmp	.L23
@@ -121,7 +121,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	cmpq	%rdi, %rdx
 	jnb	.L23
 .L15:
-	movq	424(%rsi), %rcx
+	movq	440(%rsi), %rcx
 	addq	%rax, %rcx
 	cmpl	$1027, (%rcx)
 	jne	.L16
@@ -135,7 +135,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	addq	$56, %rax
 	movb	$0, 236(%rcx)
 	movq	(%rbx), %rsi
-	movq	416(%rsi), %rdi
+	movq	432(%rsi), %rdi
 	cmpq	%rdi, %rdx
 	jb	.L15
 .L23:
@@ -153,7 +153,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	je	.L18
 	movb	$1, 236(%rcx)
 	movq	(%rbx), %rsi
-	movq	416(%rsi), %rdi
+	movq	432(%rsi), %rdi
 	jmp	.L16
 	.p2align 4,,10
 	.p2align 3
@@ -165,7 +165,7 @@ _ZN3wze6engine4keys6UpdateEv:
 .L18:
 	movb	$0, 236(%rcx)
 	movq	(%rbx), %rsi
-	movq	416(%rsi), %rdi
+	movq	432(%rsi), %rdi
 	jmp	.L16
 	.cfi_endproc
 .LFE8162:

@@ -15,7 +15,7 @@ main:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movl	$432, %edi
+	movl	$448, %edi
 	pushq	%rbx
 	.cfi_def_cfa_offset 24
 	.cfi_offset 3, -24
@@ -65,7 +65,7 @@ main:
 	movq	%rbx, %rdi
 	call	_ZN3wze6engineD1Ev@PLT
 	movq	%rbx, %rdi
-	movl	$432, %esi
+	movl	$448, %esi
 	call	_ZdlPvm@PLT
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -126,7 +126,7 @@ main.cold:
 	.cfi_offset 3, -24
 	.cfi_offset 6, -16
 	movq	%rbx, %rdi
-	movl	$432, %esi
+	movl	$448, %esi
 	call	_ZdlPvm@PLT
 	movq	%rbp, %rdi
 .LEHB5:

@@ -56,8 +56,10 @@ namespace wze
         this->Window.Open(Title, IconPath, WindowWidth, WindowHeight);
         this->Render.RenderWidth = WindowWidth - 1;
         this->Render.RenderHeight = WindowHeight - 1;
-        this->Camera.OffsetX = -(WindowWidth >> 1);
-        this->Camera.OffsetY = -(WindowHeight >> 1);
+        this->Camera.BaseOffsetX = WindowWidth >> 1;
+        this->Camera.OffsetX = -this->Camera.BaseOffsetX;
+        this->Camera.BaseOffsetY = WindowHeight >> 1;
+        this->Camera.OffsetY = -this->Camera.BaseOffsetY;
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
 

@@ -23,7 +23,7 @@ _ZN8platformC2EPN3wze6engineEP4gameddttdh:
 	movq	%rcx, %rbx
 	movq	%r8, 8(%rcx)
 	movl	$4, %r8d
-	leaq	240(%rdx), %rcx
+	leaq	256(%rdx), %rcx
 	movq	%rbx, %rdx
 	movl	%eax, 48(%rsp)
 	movzwl	152(%rsp), %eax
@@ -95,7 +95,7 @@ _ZN8platformD2Ev:
 	.seh_endprologue
 	movq	(%rcx), %rax
 	movq	16(%rcx), %rcx
-	leaq	240(%rax), %rbx
+	leaq	256(%rax), %rbx
 	call	_ZN3wze6engine6actors5actor5GetIDEv
 	movq	%rbx, %rcx
 	movq	%rax, %rdx

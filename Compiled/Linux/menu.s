@@ -47,7 +47,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	xorl	%ecx, %ecx
 	xorl	%edx, %edx
 	movzwl	%ax, %eax
-	leaq	240(%rbp), %rdi
+	leaq	256(%rbp), %rdi
 	xorl	%esi, %esi
 	cvtsi2sdl	%eax, %xmm0
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT

@@ -19,7 +19,7 @@ normal::normal(engine* Engine, game* Game) : Engine(Engine), Game(Game), Pause(E
     this->TopBorder = new border(this->Engine, this->Game, 0, 1000, 1520, 10, 1, 1);
 
     this->Engine->Camera.Bind(this->Player->Actor->GetID());
-    this->Engine->Camera.SetOffsetY(-400);
+    this->Engine->Camera.SetOffsetY(100);
 
     this->Background = this->Engine->Actors.New(NULL, ACT_NONE, 0, 0, 28800, 16200, 0.1);
     this->BackgroundTexture = this->Background->Textureboxes.New(this->Game->Assets.MapBackgroundTexture);

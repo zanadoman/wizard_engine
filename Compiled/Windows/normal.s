@@ -299,7 +299,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movl	$28800, 40(%rsp)
 	pxor	%xmm3, %xmm3
 	movq	$0x000000000, 32(%rsp)
-	leaq	240(%rax), %rcx
+	leaq	256(%rax), %rcx
 	movq	.LC18(%rip), %rax
 	movq	%rax, 56(%rsp)
 	call	_ZN3wze6engine6actors3NewEPvyddttd
@@ -755,7 +755,7 @@ _ZN6normal6UpdateEv:
 	.align 8
 .LC17:
 	.long	0
-	.long	-1065811968
+	.long	1079574528
 	.align 8
 .LC18:
 	.long	-1717986918

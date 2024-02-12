@@ -49,7 +49,7 @@ _ZN8infiniteC2EPN3wze6engineEP4game:
 	movl	$19200, 40(%rsp)
 	pxor	%xmm3, %xmm3
 	movq	$0x000000000, 32(%rsp)
-	leaq	240(%rax), %rcx
+	leaq	256(%rax), %rcx
 	movq	.LC0(%rip), %rax
 	movq	%rax, 56(%rsp)
 .LEHB2:

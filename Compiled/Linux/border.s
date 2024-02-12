@@ -18,7 +18,7 @@ _ZN6borderC2EPN3wze6engineEP4gameddttdh:
 	.cfi_offset 3, -24
 	movq	%rdi, %rbx
 	movq	%rsi, %rdi
-	addq	$240, %rdi
+	addq	$256, %rdi
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
 	movq	%rsi, (%rbx)
@@ -82,7 +82,7 @@ _ZN6borderD2Ev:
 	.cfi_offset 3, -16
 	movq	(%rdi), %rax
 	movq	16(%rdi), %rdi
-	leaq	240(%rax), %rbx
+	leaq	256(%rax), %rbx
 	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
 	movq	%rbx, %rdi
 	movq	%rax, %rsi

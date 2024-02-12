@@ -321,9 +321,9 @@ _ZN3wze6engine6actors5actor12textureboxes3NewEy:
 	testq	%rsi, %rsi
 	je	.L50
 	movq	(%rdi), %rax
-	cmpq	312(%rax), %rsi
+	cmpq	328(%rax), %rsi
 	jnb	.L49
-	movq	320(%rax), %rax
+	movq	336(%rax), %rax
 	cmpq	$0, (%rax,%rsi,8)
 	je	.L49
 .L50:
@@ -1269,9 +1269,9 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy:
 	testq	%rsi, %rsi
 	je	.L228
 	movq	(%rdi), %rdx
-	cmpq	312(%rdx), %rsi
+	cmpq	328(%rdx), %rsi
 	jnb	.L229
-	movq	320(%rdx), %rdx
+	movq	336(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
 	je	.L229
 .L228:

@@ -9,7 +9,9 @@ namespace wze
     {
         this->X = 0;
         this->Y = 0;
+        this->BaseOffsetX = 0;
         this->OffsetX = 0;
+        this->BaseOffsetY = 0;
         this->OffsetY = 0;
         this->Zoom = 1;
         this->XActor = 0;
@@ -31,8 +33,7 @@ namespace wze
 
         if (this->XActor != 0)
         {
-            printf("wze::engine.camera.SetX(): Illegal to modify X while X is bound to an Actor\nParams: X: %lf\n", X);
-            exit(1);
+            this->OffsetX = X - this->Engine->Actors.Actors[this->XActor]->X - this->BaseOffsetX;
         }
 
         return this->X = X;
@@ -53,8 +54,7 @@ namespace wze
 
         if (this->YActor != 0)
         {
-            printf("wze::engine.camera.SetY(): Illegal to modify Y while Y is bound to an Actor\nParams: Y: %lf\n", Y);
-            exit(1);
+            this->OffsetY = Y - this->Engine->Actors.Actors[this->YActor]->Y - this->BaseOffsetY;
         }
 
         return this->Y = Y;
@@ -73,7 +73,9 @@ namespace wze
             exit(1);
         }
 
-        return this->OffsetX = OffsetX;
+        this->OffsetX = OffsetX - this->BaseOffsetX;
+
+        return OffsetX;
     }
 
     double engine::camera::GetOffsetY()
@@ -89,7 +91,9 @@ namespace wze
             exit(1);
         }
 
-        return this->OffsetY = OffsetY;
+        this->OffsetY = OffsetY - this->BaseOffsetY;
+
+        return OffsetY;
     }
 
     double engine::camera::GetZoom()

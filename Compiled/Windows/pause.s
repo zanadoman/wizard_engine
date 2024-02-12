@@ -41,7 +41,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	xorl	%edx, %edx
 	shrw	%ax
 	movl	$0, 48(%rsp)
-	leaq	240(%rsi), %rcx
+	leaq	256(%rsi), %rcx
 	movzwl	%ax, %eax
 	movl	$0, 40(%rsp)
 	cvtsi2sdl	%eax, %xmm3
@@ -192,7 +192,7 @@ _ZN5pauseD2Ev:
 	.seh_endprologue
 	movq	(%rcx), %rax
 	movq	16(%rcx), %rcx
-	leaq	240(%rax), %rbx
+	leaq	256(%rax), %rbx
 	call	_ZN3wze6engine6actors5actor5GetIDEv
 	movq	%rbx, %rcx
 	movq	%rax, %rdx
@@ -231,7 +231,7 @@ _ZN5pause6UpdateEv:
 	movl	$41, %edx
 	movq	(%rcx), %rax
 	movq	%rcx, %rbx
-	leaq	160(%rax), %rcx
+	leaq	176(%rax), %rcx
 	call	_ZN3wze6engine4keysixENS_3keyE
 	testb	%al, %al
 	movq	16(%rbx), %rax

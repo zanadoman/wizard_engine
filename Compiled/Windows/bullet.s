@@ -57,7 +57,7 @@ _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
 	movq	%rcx, %rbx
 	movq	%r8, 8(%rcx)
 	movl	$3, %r8d
-	leaq	240(%rdx), %rcx
+	leaq	256(%rdx), %rcx
 	movq	%rbx, %rdx
 	movsd	%xmm0, 56(%rsp)
 	movsd	144(%rsp), %xmm0
@@ -91,7 +91,7 @@ _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
 	movq	8(%rbx), %rax
 	movq	(%rbx), %rcx
 	movzwl	120(%rax), %edx
-	addq	$144, %rcx
+	addq	$160, %rcx
 	addq	$80, %rsp
 	popq	%rbx
 	popq	%rsi
@@ -115,7 +115,7 @@ _ZN6bulletD2Ev:
 	.seh_endprologue
 	movq	(%rcx), %rax
 	movq	16(%rcx), %rcx
-	leaq	240(%rax), %rbx
+	leaq	256(%rax), %rbx
 	call	_ZN3wze6engine6actors5actor5GetIDEv
 	movq	%rbx, %rcx
 	movq	%rax, %rdx
@@ -177,7 +177,7 @@ _ZN6bullet6UpdateEv:
 	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movq	(%rsi), %rax
 	movapd	%xmm0, %xmm6
-	leaq	376(%rax), %rcx
+	leaq	392(%rax), %rcx
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv
 	movq	16(%rsi), %rcx
 	movl	%eax, %eax
@@ -195,7 +195,7 @@ _ZN6bullet6UpdateEv:
 	call	_ZN3wze6engine6actors5actor8GetAngleEv
 	movq	(%rsi), %rax
 	movapd	%xmm0, %xmm6
-	leaq	376(%rax), %rcx
+	leaq	392(%rax), %rcx
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv
 	movq	16(%rsi), %rcx
 	movl	%eax, %eax
@@ -241,7 +241,7 @@ _ZN6bullet6UpdateEv:
 .L51:
 	movq	(%rsi), %rax
 	movq	%rbx, %rdx
-	leaq	240(%rax), %rcx
+	leaq	256(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor7GetTypeEv
@@ -313,7 +313,7 @@ _ZN6bullet6UpdateEv:
 .L53:
 	movq	(%rsi), %rax
 	movq	%rbx, %rdx
-	leaq	240(%rax), %rcx
+	leaq	256(%rax), %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor7GetTypeEv
@@ -349,7 +349,7 @@ _ZN6bullet6UpdateEv:
 .L22:
 	movq	(%rsi), %rcx
 	movq	%rbx, %rdx
-	addq	$240, %rcx
+	addq	$256, %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor7GetDataEv
@@ -361,7 +361,7 @@ _ZN6bullet6UpdateEv:
 .L52:
 	movq	(%rsi), %rcx
 	movq	%rbx, %rdx
-	addq	$240, %rcx
+	addq	$256, %rcx
 	call	_ZN3wze6engine6actorsixEy
 	movq	%rax, %rcx
 	call	_ZN3wze6engine6actors5actor7GetDataEv

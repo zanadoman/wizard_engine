@@ -150,7 +150,9 @@ namespace wze
                 private:
                     double X;
                     double Y;
+                    double BaseOffsetX;
                     double OffsetX;
+                    double BaseOffsetY;
                     double OffsetY;
                     double Zoom;
                     neo::uint64 XActor;

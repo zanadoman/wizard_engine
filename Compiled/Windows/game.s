@@ -231,7 +231,7 @@ _ZN4game12SwitchScenesE5scene:
 	leaq	32(%rsp), %rdx
 	movq	$0, 32(%rsp)
 	movq	$0, 40(%rsp)
-	leaq	240(%rax), %rcx
+	leaq	256(%rax), %rcx
 .LEHB4:
 	call	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE
 	movq	(%rbx), %rax
@@ -242,25 +242,13 @@ _ZN4game12SwitchScenesE5scene:
 	pxor	%xmm1, %xmm1
 	leaq	80(%rax), %rcx
 	call	_ZN3wze6engine6camera4SetYEd
-	movq	(%rbx), %rdi
-	movq	%rdi, %rcx
-	call	_ZN3wze6engine6window8GetWidthEv
+	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
-	leaq	80(%rdi), %rcx
-	shrw	%ax
-	movzwl	%ax, %eax
-	negl	%eax
-	cvtsi2sdl	%eax, %xmm1
+	leaq	80(%rax), %rcx
 	call	_ZN3wze6engine6camera10SetOffsetXEd
-	movq	(%rbx), %rdi
-	movq	%rdi, %rcx
-	call	_ZN3wze6engine6window9GetHeightEv
+	movq	(%rbx), %rax
 	pxor	%xmm1, %xmm1
-	leaq	80(%rdi), %rcx
-	shrw	%ax
-	movzwl	%ax, %eax
-	negl	%eax
-	cvtsi2sdl	%eax, %xmm1
+	leaq	80(%rax), %rcx
 	call	_ZN3wze6engine6camera10SetOffsetYEd
 	cmpl	$1, %esi
 	je	.L29
@@ -526,9 +514,7 @@ _ZN4game6UpdateEv:
 	.def	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera4SetXEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera4SetYEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6window8GetWidthEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera10SetOffsetXEd;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6window9GetHeightEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera10SetOffsetYEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN8infiniteC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef
 	.def	_ZN6normalC1EPN3wze6engineEP4game;	.scl	2;	.type	32;	.endef

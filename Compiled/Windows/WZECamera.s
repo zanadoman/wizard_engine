@@ -45,10 +45,11 @@ _ZN3wze6engine6cameraC2EPS0_:
 	movq	.LC0(%rip), %rax
 	movups	%xmm0, 8(%rcx)
 	movups	%xmm0, 24(%rcx)
+	movups	%xmm0, 40(%rcx)
 	pxor	%xmm0, %xmm0
 	movq	%rdx, (%rcx)
-	movq	%rax, 40(%rcx)
-	movups	%xmm0, 48(%rcx)
+	movq	%rax, 56(%rcx)
+	movups	%xmm0, 64(%rcx)
 	ret
 	.seh_endproc
 	.globl	_ZN3wze6engine6cameraC1EPS0_
@@ -71,7 +72,7 @@ _ZN3wze6engine6camera4GetXEv:
 	.ascii "wze::engine.camera.SetX(): X must not be NaN\12Params: X: %lf\12\0"
 	.align 8
 .LC4:
-	.ascii "wze::engine.camera.SetX(): Illegal to modify X while X is bound to an Actor\12Params: X: %lf\12\0"
+	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -84,22 +85,38 @@ _ZN3wze6engine6camera4SetXEd:
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
+	jp	.L15
+	movq	64(%rcx), %rdx
+	testq	%rdx, %rdx
+	jne	.L16
 	movapd	%xmm1, %xmm0
-	jp	.L11
-	cmpq	$0, 48(%rcx)
-	jne	.L12
 	movsd	%xmm1, 8(%rcx)
 	addq	$40, %rsp
 	ret
-.L11:
+	.p2align 4,,10
+	.p2align 3
+.L16:
+	movq	(%rcx), %rax
+	movq	272(%rax), %r8
+	cmpq	264(%rax), %rdx
+	jnb	.L17
+	movq	(%r8,%rdx,8), %rax
+	movapd	%xmm1, %xmm0
+	subsd	224(%rax), %xmm0
+	subsd	24(%rcx), %xmm0
+	movsd	%xmm1, 8(%rcx)
+	movsd	%xmm0, 32(%rcx)
+	movapd	%xmm1, %xmm0
+	addq	$40, %rsp
+	ret
+.L15:
 	leaq	.LC3(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L12:
+.L17:
 	leaq	.LC4(%rip), %rcx
-	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -120,9 +137,6 @@ _ZN3wze6engine6camera4GetYEv:
 	.align 8
 .LC5:
 	.ascii "wze::engine.camera.SetY(): Y must not be NaN\12Params: Y: %lf\12\0"
-	.align 8
-.LC6:
-	.ascii "wze::engine.camera.SetY(): Illegal to modify Y while Y is bound to an Actor\12Params: Y: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -135,22 +149,38 @@ _ZN3wze6engine6camera4SetYEd:
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
+	jp	.L29
+	movq	72(%rcx), %rdx
+	testq	%rdx, %rdx
+	jne	.L30
 	movapd	%xmm1, %xmm0
-	jp	.L20
-	cmpq	$0, 56(%rcx)
-	jne	.L21
 	movsd	%xmm1, 16(%rcx)
 	addq	$40, %rsp
 	ret
-.L20:
+	.p2align 4,,10
+	.p2align 3
+.L30:
+	movq	(%rcx), %rax
+	movq	272(%rax), %r8
+	cmpq	264(%rax), %rdx
+	jnb	.L31
+	movq	(%r8,%rdx,8), %rax
+	movapd	%xmm1, %xmm0
+	subsd	232(%rax), %xmm0
+	subsd	40(%rcx), %xmm0
+	movsd	%xmm1, 16(%rcx)
+	movsd	%xmm0, 48(%rcx)
+	movapd	%xmm1, %xmm0
+	addq	$40, %rsp
+	ret
+.L29:
 	leaq	.LC5(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L21:
-	leaq	.LC6(%rip), %rcx
-	movq	%xmm1, %rdx
+.L31:
+	leaq	.LC4(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -164,12 +194,12 @@ _ZN3wze6engine6camera4SetYEd:
 _ZN3wze6engine6camera10GetOffsetXEv:
 .LFB8437:
 	.seh_endprologue
-	movsd	24(%rcx), %xmm0
+	movsd	32(%rcx), %xmm0
 	ret
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC7:
+.LC6:
 	.ascii "wze::engine.camera.SetOffsetX(): OffsetX must not be NaN\12Params: OffsetX: %lf\12\0"
 	.text
 	.align 2
@@ -183,13 +213,15 @@ _ZN3wze6engine6camera10SetOffsetXEd:
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
+	jp	.L38
 	movapd	%xmm1, %xmm0
-	jp	.L28
-	movsd	%xmm1, 24(%rcx)
+	subsd	24(%rcx), %xmm0
+	movsd	%xmm0, 32(%rcx)
+	movapd	%xmm1, %xmm0
 	addq	$40, %rsp
 	ret
-.L28:
-	leaq	.LC7(%rip), %rcx
+.L38:
+	leaq	.LC6(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -204,12 +236,12 @@ _ZN3wze6engine6camera10SetOffsetXEd:
 _ZN3wze6engine6camera10GetOffsetYEv:
 .LFB8439:
 	.seh_endprologue
-	movsd	32(%rcx), %xmm0
+	movsd	48(%rcx), %xmm0
 	ret
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC8:
+.LC7:
 	.ascii "wze::engine.camera.SetOffsetY(): OffsetY must not be NaN\12Params: OffsetY: %lf\12\0"
 	.text
 	.align 2
@@ -223,13 +255,15 @@ _ZN3wze6engine6camera10SetOffsetYEd:
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
+	jp	.L45
 	movapd	%xmm1, %xmm0
-	jp	.L35
-	movsd	%xmm1, 32(%rcx)
+	subsd	40(%rcx), %xmm0
+	movsd	%xmm0, 48(%rcx)
+	movapd	%xmm1, %xmm0
 	addq	$40, %rsp
 	ret
-.L35:
-	leaq	.LC8(%rip), %rcx
+.L45:
+	leaq	.LC7(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -244,15 +278,15 @@ _ZN3wze6engine6camera10SetOffsetYEd:
 _ZN3wze6engine6camera7GetZoomEv:
 .LFB8441:
 	.seh_endprologue
-	movsd	40(%rcx), %xmm0
+	movsd	56(%rcx), %xmm0
 	ret
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC9:
+.LC8:
 	.ascii "wze::engine.camera.SetZoom(): Zoom must not be NaN\12Params: Zoom: %lf\12\0"
 	.align 8
-.LC11:
+.LC10:
 	.ascii "wze::engine.camera.SetZoom(): Zoom must not be less than or equal to 0\12Params: Zoom: %lf\12\0"
 	.text
 	.align 2
@@ -266,22 +300,22 @@ _ZN3wze6engine6camera7SetZoomEd:
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
-	jp	.L46
+	jp	.L56
 	pxor	%xmm0, %xmm0
 	comisd	%xmm1, %xmm0
-	jnb	.L47
+	jnb	.L57
 	movapd	%xmm1, %xmm0
-	movsd	%xmm1, 40(%rcx)
+	movsd	%xmm1, 56(%rcx)
 	addq	$40, %rsp
 	ret
-.L46:
-	leaq	.LC9(%rip), %rcx
+.L56:
+	leaq	.LC8(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L47:
-	leaq	.LC11(%rip), %rcx
+.L57:
+	leaq	.LC10(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -290,10 +324,10 @@ _ZN3wze6engine6camera7SetZoomEd:
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC12:
+.LC11:
 	.ascii "wze::engine.camera.Bind(): Actor does not exist\12Params: ActorID: %lld\12\0"
 	.align 8
-.LC13:
+.LC12:
 	.ascii "wze::engine.camera.Bind(): Actor must not be in Layer 0\12Params: ActorID: %lld\12\0"
 	.text
 	.align 2
@@ -308,39 +342,39 @@ _ZN3wze6engine6camera4BindEy:
 	.seh_endprologue
 	movq	%rdx, %rax
 	testq	%rdx, %rdx
-	je	.L56
+	je	.L66
 	movq	(%rcx), %rdx
-	cmpq	248(%rdx), %rax
-	jnb	.L51
-	movq	256(%rdx), %rdx
+	cmpq	264(%rdx), %rax
+	jnb	.L61
+	movq	272(%rdx), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L51
+	je	.L61
 	pxor	%xmm0, %xmm0
 	ucomisd	272(%rdx), %xmm0
-	jp	.L53
-	je	.L57
-.L53:
+	jp	.L63
+	je	.L67
+.L63:
 	movq	%rax, %xmm0
 	punpcklqdq	%xmm0, %xmm0
-	movups	%xmm0, 48(%rcx)
+	movups	%xmm0, 64(%rcx)
 	addq	$40, %rsp
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L56:
+.L66:
 	pxor	%xmm0, %xmm0
 	movups	%xmm0, 8(%rcx)
 	addq	$40, %rsp
 	ret
-.L51:
-	leaq	.LC12(%rip), %rcx
+.L61:
+	leaq	.LC11(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L57:
-	leaq	.LC13(%rip), %rcx
+.L67:
+	leaq	.LC12(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -349,10 +383,10 @@ _ZN3wze6engine6camera4BindEy:
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC14:
+.LC13:
 	.ascii "wze::engine.camera.BindX(): Actor does not exist\12Params: ActorID: %lld\12\0"
 	.align 8
-.LC15:
+.LC14:
 	.ascii "wze::engine.camera.BindX(): Actor must not be in Layer 0\12Params: ActorID: %lld\12\0"
 	.text
 	.align 2
@@ -367,33 +401,33 @@ _ZN3wze6engine6camera5BindXEy:
 	.seh_endprologue
 	movq	%rdx, %rax
 	testq	%rdx, %rdx
-	je	.L63
+	je	.L73
 	movq	(%rcx), %rdx
-	cmpq	248(%rdx), %rax
-	jnb	.L60
-	movq	256(%rdx), %rdx
+	cmpq	264(%rdx), %rax
+	jnb	.L70
+	movq	272(%rdx), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L60
+	je	.L70
 	pxor	%xmm0, %xmm0
 	ucomisd	272(%rdx), %xmm0
 	movq	%rax, %rdx
-	jp	.L59
-	jne	.L59
-	leaq	.LC15(%rip), %rcx
+	jp	.L69
+	jne	.L69
+	leaq	.LC14(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L63:
+.L73:
 	xorl	%edx, %edx
-.L59:
-	movq	%rdx, 48(%rcx)
+.L69:
+	movq	%rdx, 64(%rcx)
 	addq	$40, %rsp
 	ret
-.L60:
-	leaq	.LC14(%rip), %rcx
+.L70:
+	leaq	.LC13(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -402,10 +436,10 @@ _ZN3wze6engine6camera5BindXEy:
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC16:
+.LC15:
 	.ascii "wze::engine.camera.BindY(): Actor does not exist\12Params: ActorID: %lld\12\0"
 	.align 8
-.LC17:
+.LC16:
 	.ascii "wze::engine.camera.BindY(): Actor must not be in Layer 0\12Params: ActorID: %lld\12\0"
 	.text
 	.align 2
@@ -420,33 +454,33 @@ _ZN3wze6engine6camera5BindYEy:
 	.seh_endprologue
 	movq	%rdx, %rax
 	testq	%rdx, %rdx
-	je	.L71
+	je	.L81
 	movq	(%rcx), %rdx
-	cmpq	248(%rdx), %rax
-	jnb	.L68
-	movq	256(%rdx), %rdx
+	cmpq	264(%rdx), %rax
+	jnb	.L78
+	movq	272(%rdx), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
-	je	.L68
+	je	.L78
 	pxor	%xmm0, %xmm0
 	ucomisd	272(%rdx), %xmm0
 	movq	%rax, %rdx
-	jp	.L67
-	jne	.L67
-	leaq	.LC17(%rip), %rcx
+	jp	.L77
+	jne	.L77
+	leaq	.LC16(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
 	.p2align 4,,10
 	.p2align 3
-.L71:
+.L81:
 	xorl	%edx, %edx
-.L67:
-	movq	%rdx, 56(%rcx)
+.L77:
+	movq	%rdx, 72(%rcx)
 	addq	$40, %rsp
 	ret
-.L68:
-	leaq	.LC16(%rip), %rcx
+.L78:
+	leaq	.LC15(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -463,7 +497,7 @@ _ZN3wze6engine6camera6UnbindEv:
 	.seh_endprologue
 	pxor	%xmm0, %xmm0
 	xorl	%eax, %eax
-	movups	%xmm0, 48(%rcx)
+	movups	%xmm0, 64(%rcx)
 	ret
 	.seh_endproc
 	.align 2
@@ -475,7 +509,7 @@ _ZN3wze6engine6camera7UnbindXEv:
 .LFB8447:
 	.seh_endprologue
 	xorl	%eax, %eax
-	movq	$0, 48(%rcx)
+	movq	$0, 64(%rcx)
 	ret
 	.seh_endproc
 	.align 2
@@ -487,7 +521,7 @@ _ZN3wze6engine6camera7UnbindYEv:
 .LFB8448:
 	.seh_endprologue
 	xorl	%eax, %eax
-	movq	$0, 56(%rcx)
+	movq	$0, 72(%rcx)
 	ret
 	.seh_endproc
 	.align 2
@@ -498,7 +532,7 @@ _ZN3wze6engine6camera7UnbindYEv:
 _ZN3wze6engine6camera9GetXActorEv:
 .LFB8449:
 	.seh_endprologue
-	movq	48(%rcx), %rax
+	movq	64(%rcx), %rax
 	ret
 	.seh_endproc
 	.align 2
@@ -509,14 +543,9 @@ _ZN3wze6engine6camera9GetXActorEv:
 _ZN3wze6engine6camera9GetYActorEv:
 .LFB8450:
 	.seh_endprologue
-	movq	56(%rcx), %rax
+	movq	72(%rcx), %rax
 	ret
 	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC18:
-	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"
-	.text
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6camera6UpdateEv
@@ -527,42 +556,42 @@ _ZN3wze6engine6camera6UpdateEv:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
-	movq	48(%rcx), %rdx
+	movq	64(%rcx), %rdx
 	testq	%rdx, %rdx
-	jne	.L91
-	movq	56(%rcx), %rdx
+	jne	.L101
+	movq	72(%rcx), %rdx
 	testq	%rdx, %rdx
-	jne	.L92
-.L82:
+	jne	.L102
+.L92:
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L91:
+.L101:
 	movq	(%rcx), %rax
-	movq	256(%rax), %r8
-	cmpq	248(%rax), %rdx
-	jnb	.L90
+	movq	272(%rax), %r8
+	cmpq	264(%rax), %rdx
+	jnb	.L100
 	movq	(%r8,%rdx,8), %rax
-	movq	56(%rcx), %rdx
+	movq	72(%rcx), %rdx
 	movsd	224(%rax), %xmm0
 	movsd	%xmm0, 8(%rcx)
 	testq	%rdx, %rdx
-	je	.L82
-.L92:
+	je	.L92
+.L102:
 	movq	(%rcx), %rax
-	movq	256(%rax), %r8
-	cmpq	248(%rax), %rdx
-	jnb	.L90
+	movq	272(%rax), %r8
+	cmpq	264(%rax), %rdx
+	jnb	.L100
 	movq	(%r8,%rdx,8), %rax
 	movsd	232(%rax), %xmm0
 	xorl	%eax, %eax
 	movsd	%xmm0, 16(%rcx)
 	addq	$40, %rsp
 	ret
-.L90:
-	leaq	.LC18(%rip), %rcx
+.L100:
+	leaq	.LC4(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -607,8 +636,8 @@ _ZN3wze6engine6camera9TransformEddttd:
 	movapd	%xmm2, %xmm8
 	movapd	%xmm3, %xmm6
 	movq	%rdx, %rsi
-	jp	.L94
-	jne	.L94
+	jp	.L104
+	jne	.L104
 	movapd	%xmm2, %xmm0
 	movl	%ebp, 8(%rcx)
 	sarl	%ebp
@@ -623,7 +652,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	cvttsd2sil	%xmm0, %eax
 	subl	%eax, %edi
 	subl	%r12d, %edi
-.L96:
+.L106:
 	movl	%edi, 4(%rbx)
 	movaps	32(%rsp), %xmm6
 	movq	%rbx, %rax
@@ -639,8 +668,8 @@ _ZN3wze6engine6camera9TransformEddttd:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L94:
-	mulsd	40(%rsi), %xmm7
+.L104:
+	mulsd	56(%rsi), %xmm7
 	pxor	%xmm0, %xmm0
 	cvtsi2sdl	%ebp, %xmm0
 	mulsd	%xmm7, %xmm0
@@ -652,7 +681,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	mulsd	%xmm7, %xmm0
 	call	floor
 	cvttsd2sil	%xmm0, %ebp
-	movsd	24(%rsi), %xmm0
+	movsd	32(%rsi), %xmm0
 	divsd	%xmm7, %xmm0
 	movl	%ebp, 12(%rbx)
 	addsd	8(%rsi), %xmm0
@@ -662,7 +691,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	call	floor
 	movl	%r13d, %edx
 	cvttsd2sil	%xmm0, %ecx
-	movsd	32(%rsi), %xmm0
+	movsd	48(%rsi), %xmm0
 	sarl	%edx
 	divsd	%xmm7, %xmm0
 	subl	%edx, %ecx
@@ -677,7 +706,7 @@ _ZN3wze6engine6camera9TransformEddttd:
 	movl	%ebp, %eax
 	sarl	%eax
 	subl	%eax, %edi
-	jmp	.L96
+	jmp	.L106
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8

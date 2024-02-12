@@ -37,7 +37,7 @@ _ZN5statsC2EPN3wze6engineEP4game:
 	xorl	%ecx, %ecx
 	xorl	%edx, %edx
 	subl	$20, %eax
-	leaq	240(%rbp), %rdi
+	leaq	256(%rbp), %rdi
 	xorl	%esi, %esi
 	cvtsi2sdl	%eax, %xmm1
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
@@ -166,7 +166,7 @@ _ZN5statsD2Ev:
 	.cfi_offset 3, -16
 	movq	(%rdi), %rax
 	movq	16(%rdi), %rdi
-	leaq	240(%rax), %rbx
+	leaq	256(%rax), %rbx
 	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
 	movq	%rbx, %rdi
 	movq	%rax, %rsi
@@ -245,7 +245,7 @@ _ZN5stats6UpdateEv:
 	movq	(%rbx), %rcx
 	movq	24(%rbx), %rax
 	movq	%r15, 48(%rsp)
-	leaq	376(%rcx), %rdi
+	leaq	392(%rcx), %rdi
 	movq	%rax, (%rsp)
 .LEHB1:
 	call	_ZN3wze6engine6timing11GetGameTimeEv@PLT
@@ -290,7 +290,7 @@ _ZN5stats6UpdateEv:
 	movq	(%rbx), %rcx
 	movq	32(%rbx), %rax
 	movq	%r15, 48(%rsp)
-	leaq	376(%rcx), %rdi
+	leaq	392(%rcx), %rdi
 	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6timing13GetRenderTimeEv@PLT
 	leaq	.LC10(%rip), %rdx
@@ -331,7 +331,7 @@ _ZN5stats6UpdateEv:
 	movq	(%rbx), %rcx
 	movq	40(%rbx), %rax
 	movq	%r15, 48(%rsp)
-	leaq	376(%rcx), %rdi
+	leaq	392(%rcx), %rdi
 	movq	%rax, (%rsp)
 	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
 	movl	%eax, %edx

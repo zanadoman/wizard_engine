@@ -127,8 +127,8 @@ _ZN3wze6engine5mouse4GetXEd:
 	je	.L11
 .L21:
 	movq	(%rcx), %rax
-	mulsd	120(%rax), %xmm1
-	movsd	104(%rax), %xmm2
+	mulsd	136(%rax), %xmm1
+	movsd	112(%rax), %xmm2
 	divsd	%xmm1, %xmm2
 	divsd	%xmm1, %xmm0
 	addsd	88(%rax), %xmm0
@@ -183,8 +183,8 @@ _ZN3wze6engine5mouse4GetYEd:
 	je	.L26
 .L36:
 	movq	(%rcx), %rax
-	mulsd	120(%rax), %xmm1
-	movsd	112(%rax), %xmm2
+	mulsd	136(%rax), %xmm1
+	movsd	128(%rax), %xmm2
 	divsd	%xmm1, %xmm2
 	divsd	%xmm1, %xmm0
 	addsd	96(%rax), %xmm0
@@ -331,9 +331,9 @@ _ZN3wze6engine5mouse18SetCursorTextureIDEy:
 	testq	%rdx, %rdx
 	je	.L52
 	movq	(%rcx), %rax
-	cmpq	360(%rax), %rdx
+	cmpq	376(%rax), %rdx
 	jnb	.L50
-	movq	368(%rax), %rax
+	movq	384(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L50
@@ -380,7 +380,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	cvtsi2sdl	40(%rsp), %xmm0
 	movsd	8(%rbx), %xmm2
 	cvtsi2sdl	44(%rsp), %xmm1
-	movq	416(%r8), %rdx
+	movq	432(%r8), %rdx
 	mulsd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm1
 	xorpd	.LC10(%rip), %xmm1
@@ -388,7 +388,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	movups	%xmm0, 24(%rbx)
 	testq	%rdx, %rdx
 	je	.L54
-	movq	424(%r8), %rax
+	movq	440(%r8), %rax
 	leaq	0(,%rdx,8), %rcx
 	subq	%rdx, %rcx
 	leaq	(%rax,%rcx,8), %rcx
