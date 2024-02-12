@@ -13,7 +13,7 @@
 	.globl	_ZN4menuC2EPN3wze6engineEP4game
 	.type	_ZN4menuC2EPN3wze6engineEP4game, @function
 _ZN4menuC2EPN3wze6engineEP4game:
-.LFB8147:
+.LFB8156:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -181,7 +181,7 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd@PLT
 	.cfi_endproc
-.LFE8147:
+.LFE8156:
 	.size	_ZN4menuC2EPN3wze6engineEP4game, .-_ZN4menuC2EPN3wze6engineEP4game
 	.globl	_ZN4menuC1EPN3wze6engineEP4game
 	.set	_ZN4menuC1EPN3wze6engineEP4game,_ZN4menuC2EPN3wze6engineEP4game
@@ -190,11 +190,11 @@ _ZN4menuC2EPN3wze6engineEP4game:
 	.globl	_ZN4menuD2Ev
 	.type	_ZN4menuD2Ev, @function
 _ZN4menuD2Ev:
-.LFB8150:
+.LFB8159:
 	.cfi_startproc
 	ret
 	.cfi_endproc
-.LFE8150:
+.LFE8159:
 	.size	_ZN4menuD2Ev, .-_ZN4menuD2Ev
 	.globl	_ZN4menuD1Ev
 	.set	_ZN4menuD1Ev,_ZN4menuD2Ev
@@ -203,7 +203,7 @@ _ZN4menuD2Ev:
 	.globl	_ZN4menu6UpdateEv
 	.type	_ZN4menu6UpdateEv, @function
 _ZN4menu6UpdateEv:
-.LFB8152:
+.LFB8161:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -276,7 +276,7 @@ _ZN4menu6UpdateEv:
 	andl	$2, %eax
 	ret
 	.cfi_endproc
-.LFE8152:
+.LFE8161:
 	.size	_ZN4menu6UpdateEv, .-_ZN4menu6UpdateEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

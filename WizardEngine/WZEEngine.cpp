@@ -46,6 +46,11 @@ namespace wze
             printf("wze::engine.engine(): TTF_Init() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
             exit(1);
         }
+        if (SDLNet_Init() != 0)
+        {
+            printf("wze::engine.engine(): SDLNet_Init() failed\nParams: Title: %s, IconPath: %s, WindowWidth: %d, WindowHeight: %d, TargetFrameTime: %d\n", Title, IconPath, WindowWidth, WindowHeight, TargetFrameTime);
+            exit(1);
+        }
 
         this->Window.Open(Title, IconPath, WindowWidth, WindowHeight);
         this->Render.RenderWidth = WindowWidth - 1;
@@ -90,6 +95,7 @@ namespace wze
 
         this->Window.Close();
 
+        SDLNet_Quit();
         TTF_Quit();
         Mix_CloseAudio();
         Mix_Quit();

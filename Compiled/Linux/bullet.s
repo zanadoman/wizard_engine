@@ -5,7 +5,7 @@
 	.globl	_ZN6bulletC2EPN3wze6engineEP4gamedddy5actord
 	.type	_ZN6bulletC2EPN3wze6engineEP4gamedddy5actord, @function
 _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
-.LFB8147:
+.LFB8156:
 	.cfi_startproc
 	pushq	%r14
 	.cfi_def_cfa_offset 16
@@ -72,7 +72,7 @@ _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3wze6engine5audio4PlayEytd@PLT
 	.cfi_endproc
-.LFE8147:
+.LFE8156:
 	.size	_ZN6bulletC2EPN3wze6engineEP4gamedddy5actord, .-_ZN6bulletC2EPN3wze6engineEP4gamedddy5actord
 	.globl	_ZN6bulletC1EPN3wze6engineEP4gamedddy5actord
 	.set	_ZN6bulletC1EPN3wze6engineEP4gamedddy5actord,_ZN6bulletC2EPN3wze6engineEP4gamedddy5actord
@@ -81,10 +81,10 @@ _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
 	.globl	_ZN6bulletD2Ev
 	.type	_ZN6bulletD2Ev, @function
 _ZN6bulletD2Ev:
-.LFB8150:
+.LFB8159:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8150
+	.cfi_lsda 0x1b,.LLSDA8159
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -99,16 +99,16 @@ _ZN6bulletD2Ev:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8150:
+.LFE8159:
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8150:
+.LLSDA8159:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8150-.LLSDACSB8150
-.LLSDACSB8150:
-.LLSDACSE8150:
+	.uleb128 .LLSDACSE8159-.LLSDACSB8159
+.LLSDACSB8159:
+.LLSDACSE8159:
 	.text
 	.size	_ZN6bulletD2Ev, .-_ZN6bulletD2Ev
 	.globl	_ZN6bulletD1Ev
@@ -127,10 +127,10 @@ _ZN6bulletD2Ev:
 	.globl	_ZN6bullet6UpdateEv
 	.type	_ZN6bullet6UpdateEv, @function
 _ZN6bullet6UpdateEv:
-.LFB8152:
+.LFB8161:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8152
+	.cfi_lsda 0x1b,.LLSDA8161
 	pushq	%r12
 	.cfi_def_cfa_offset 16
 	.cfi_offset 12, -16
@@ -360,26 +360,26 @@ _ZN6bullet6UpdateEv:
 	movq	%rax, %rbp
 	jmp	.L29
 	.section	.gcc_except_table
-.LLSDA8152:
+.LLSDA8161:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8152-.LLSDACSB8152
-.LLSDACSB8152:
-	.uleb128 .LEHB0-.LFB8152
+	.uleb128 .LLSDACSE8161-.LLSDACSB8161
+.LLSDACSB8161:
+	.uleb128 .LEHB0-.LFB8161
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L42-.LFB8152
+	.uleb128 .L42-.LFB8161
 	.uleb128 0
-.LLSDACSE8152:
+.LLSDACSE8161:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8152
+	.cfi_lsda 0x1b,.LLSDAC8161
 	.type	_ZN6bullet6UpdateEv.cold, @function
 _ZN6bullet6UpdateEv.cold:
-.LFSB8152:
+.LFSB8161:
 .L29:
 	.cfi_def_cfa_offset 128
 	.cfi_offset 3, -32
@@ -408,19 +408,19 @@ _ZN6bullet6UpdateEv.cold:
 .L60:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8152:
+.LFE8161:
 	.section	.gcc_except_table
-.LLSDAC8152:
+.LLSDAC8161:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8152-.LLSDACSBC8152
-.LLSDACSBC8152:
+	.uleb128 .LLSDACSEC8161-.LLSDACSBC8161
+.LLSDACSBC8161:
 	.uleb128 .LEHB1-.LCOLDB4
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8152:
+.LLSDACSEC8161:
 	.section	.text.unlikely
 	.text
 	.size	_ZN6bullet6UpdateEv, .-_ZN6bullet6UpdateEv

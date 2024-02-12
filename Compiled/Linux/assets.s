@@ -82,10 +82,10 @@
 	.globl	_ZN6assetsC2EPN3wze6engineE
 	.type	_ZN6assetsC2EPN3wze6engineE, @function
 _ZN6assetsC2EPN3wze6engineE:
-.LFB8147:
+.LFB8156:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8147
+	.cfi_lsda 0x1b,.LLSDA8156
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -445,26 +445,26 @@ _ZN6assetsC2EPN3wze6engineE:
 	jmp	.L18
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8147:
+.LLSDA8156:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8147-.LLSDACSB8147
-.LLSDACSB8147:
-	.uleb128 .LEHB0-.LFB8147
+	.uleb128 .LLSDACSE8156-.LLSDACSB8156
+.LLSDACSB8156:
+	.uleb128 .LEHB0-.LFB8156
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L21-.LFB8147
+	.uleb128 .L21-.LFB8156
 	.uleb128 0
-.LLSDACSE8147:
+.LLSDACSE8156:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8147
+	.cfi_lsda 0x1b,.LLSDAC8156
 	.type	_ZN6assetsC2EPN3wze6engineE.cold, @function
 _ZN6assetsC2EPN3wze6engineE.cold:
-.LFSB8147:
+.LFSB8156:
 .L18:
 	.cfi_def_cfa_offset 224
 	.cfi_offset 3, -24
@@ -489,19 +489,19 @@ _ZN6assetsC2EPN3wze6engineE.cold:
 .L33:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8147:
+.LFE8156:
 	.section	.gcc_except_table
-.LLSDAC8147:
+.LLSDAC8156:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8147-.LLSDACSBC8147
-.LLSDACSBC8147:
+	.uleb128 .LLSDACSEC8156-.LLSDACSBC8156
+.LLSDACSBC8156:
 	.uleb128 .LEHB1-.LCOLDB34
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8147:
+.LLSDACSEC8156:
 	.section	.text.unlikely
 	.text
 	.size	_ZN6assetsC2EPN3wze6engineE, .-_ZN6assetsC2EPN3wze6engineE
@@ -517,10 +517,10 @@ _ZN6assetsC2EPN3wze6engineE.cold:
 	.globl	_ZN6assetsD2Ev
 	.type	_ZN6assetsD2Ev, @function
 _ZN6assetsD2Ev:
-.LFB8150:
+.LFB8159:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8150
+	.cfi_lsda 0x1b,.LLSDA8159
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -558,15 +558,15 @@ _ZN6assetsD2Ev:
 	.cfi_def_cfa_offset 8
 	jmp	free@PLT
 	.cfi_endproc
-.LFE8150:
+.LFE8159:
 	.section	.gcc_except_table
-.LLSDA8150:
+.LLSDA8159:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8150-.LLSDACSB8150
-.LLSDACSB8150:
-.LLSDACSE8150:
+	.uleb128 .LLSDACSE8159-.LLSDACSB8159
+.LLSDACSB8159:
+.LLSDACSE8159:
 	.text
 	.size	_ZN6assetsD2Ev, .-_ZN6assetsD2Ev
 	.globl	_ZN6assetsD1Ev
