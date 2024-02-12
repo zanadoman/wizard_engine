@@ -62,7 +62,9 @@ _ZN3wze6engine6window7IsShownEv:
 _ZN3wze6engine6window8HasFocusEv:
 .LFB8161:
 	.cfi_startproc
-	xorl	%eax, %eax
+	movl	28(%rdi), %eax
+	shrl	$9, %eax
+	andl	$1, %eax
 	ret
 	.cfi_endproc
 .LFE8161:

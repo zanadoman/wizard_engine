@@ -30,7 +30,7 @@ namespace wze
 
     bool engine::window::HasFocus()
     {
-        return this->State & SDL_WINDOW_INPUT_FOCUS & SDL_WINDOW_MOUSE_FOCUS;
+        return this->State & SDL_WINDOW_INPUT_FOCUS;
     }
 
     uint8 engine::window::Open(const char* Title, const char* IconPath, uint16 Width, uint16 Height)
