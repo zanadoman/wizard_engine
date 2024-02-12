@@ -208,12 +208,12 @@ namespace wze
                     continue;
                 }
 
-                state = BTN_NONE;
-
                 ActiveTopLeftX = this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->X - (this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveWidth >> 1);
                 ActiveTopLeftY = this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->Y + (this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveHeight >> 1);
                 ActiveBotRightX = ActiveTopLeftX + this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveWidth;
                 ActiveBotRightY = ActiveTopLeftY - this->Actors.Actors[i]->Overlapboxes.Overlapboxes[j]->ActiveHeight;
+
+                state = BTN_NONE;
 
                 if (ActiveTopLeftX <= CursorX && CursorX <= ActiveBotRightX && ActiveBotRightY <= CursorY && CursorY <= ActiveTopLeftY)
                 {

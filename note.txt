@@ -5,12 +5,11 @@ Roadmap:
 
 Test/supervising sequence:
     Easy:
-        Engine OK
+        Engine OK OK
         Window OK
         Timing OK
         Keys OK
         Mouse OK
-        Threads OK
         Audio OK
     Slightly nested:
         Render OK
