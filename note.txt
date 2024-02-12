@@ -15,8 +15,8 @@ Test/supervising sequence:
         Render OK
         Camera OK OK
         Vector OK
-        Assets OK
-        Actors OK
+        Assets OK OK
+        Actors OK OK
     Heavily nested:
         Actor OK
         Colors OK
