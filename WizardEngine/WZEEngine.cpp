@@ -52,6 +52,7 @@ namespace wze
             exit(1);
         }
 
+        srand(time(NULL));
         this->Window.Open(Title, IconPath, WindowWidth, WindowHeight);
         this->Render.RenderWidth = WindowWidth - 1;
         this->Render.RenderHeight = WindowHeight - 1;
@@ -59,7 +60,6 @@ namespace wze
         this->Camera.OffsetY = -(WindowHeight >> 1);
         this->Keys.SDL_KeyStates = SDL_GetKeyboardState(NULL);
         this->Timing.TargetFrameTime = TargetFrameTime;
-        srand(time(NULL));
 
         for (uint8 i = 0; i < LogoTextures.Length(); i++)
         {
@@ -178,7 +178,7 @@ namespace wze
                 }
             }
         }
-
+ 
         return 0;
     }
 
