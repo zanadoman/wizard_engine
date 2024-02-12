@@ -6,9 +6,9 @@ Roadmap:
 Test/supervising sequence:
     Easy:
         Engine OK OK
-        Window OK
-        Timing OK
-        Keys OK
+        Window OK OK
+        Timing OK OK
+        Keys OK OK
         Mouse OK
         Audio OK
     Slightly nested:
