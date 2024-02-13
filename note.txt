@@ -18,11 +18,11 @@ Test/supervising sequence:
         Assets OK OK
         Actors OK OK
     Deeply nested:
-        Actor OK
+        Actor OK OK
         Colors OK OK
         Textures OK OK
         Flipbooks OK OK
         Texts OK OK
-        Overlaps OK
-        Collisions OK
-    WizardEngine.hpp OK
+        Overlaps OK OK
+        Collisions OK OK
+    WizardEngine.hpp OK OK
