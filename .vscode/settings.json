@@ -4,7 +4,6 @@
     ],
     
     "cSpell.words": [
-        //Engine
         "leftbracket",
         "rightbracket",
         "nonushash",
@@ -44,9 +43,5 @@
         "overlapboxes",
         "hitbox",
         "hitboxes",
-        //Demo
-        "shroom",
-        //Readme
-        "ansimuz"
     ]
 }
