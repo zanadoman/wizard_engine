@@ -19,9 +19,9 @@ Test/supervising sequence:
         Actors OK OK
     Deeply nested:
         Actor OK
-        Colors OK
-        Textures OK
-        Flipbooks OK
+        Colors OK OK
+        Textures OK OK
+        Flipbooks OK OK
         Texts OK
         Overlaps OK
         Collisions OK

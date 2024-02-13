@@ -2,7 +2,7 @@
 
 assets::assets(engine* Engine) : Engine(Engine)
 {
-    this->FontFreeSansFont = this->Engine->Assets.LoadFont("assets/font/FreeSans.ttf", 72);
+    this->FontFreeSansFont = this->Engine->Assets.LoadFont("assets/font/Hack-Regular.ttf", 72);
 
     this->MapBackgroundTexture = this->Engine->Assets.LoadTexture("assets/map/background.png");
     this->MapBushTexture = this->Engine->Assets.LoadTexture("assets/map/bush.png");

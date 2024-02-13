@@ -66,6 +66,11 @@ namespace wze
             printf("wze::engine.actors[].flipbooks.New(): Delay must not be 0\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
             exit(1);
         }
+        if (TextureIDs == NULL)
+        {
+            printf("wze::engine.actors[].flipbooks.New(): TextureIDs must not be NULL\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
+            exit(1);
+        }
         if (TextureIDs->Length() < 2)
         {
             printf("wze::engine.actors[].flipbooks.New(): At least two Textures are required\nParams: Delay: %d, TextureIDs: %p\n", Delay, TextureIDs);
@@ -239,7 +244,7 @@ namespace wze
         this->Remainder = 0;
         if ((this->Textures = new uint64[(this->TexturesLength = TextureIDs.size())]) == NULL)
         {
-            printf("wze::engine.actors[].flipbooks.flipbook(): Memory allocation failed\nParams: Engine: %p, Actor: %p, ID: %lld, Delay: %d, TextureIDs(length): %ld\n", Engine, Actor, ID, Delay, TextureIDs.size());
+            printf("wze::engine.actors[].flipbooks[].flipbook(): Memory allocation failed\nParams: Engine: %p, Actor: %p, ID: %lld, Delay: %d, TextureIDs(length): %ld\n", Engine, Actor, ID, Delay, TextureIDs.size());
             exit(1);
         }
         for (uint64 i = 0; i < TextureIDs.size(); i++)
@@ -275,7 +280,7 @@ namespace wze
         this->Remainder = 0;
         if ((this->Textures = new uint64[(this->TexturesLength = TextureIDs->Length())]) == NULL)
         {
-            printf("wze::engine.actors[].flipbooks.flipbook(): Memory allocation failed\nParams: Engine: %p, Actor: %p, ID: %lld, Delay: %d, TextureIDs: %p\n", Engine, Actor, ID, Delay, TextureIDs);
+            printf("wze::engine.actors[].flipbooks[].flipbook(): Memory allocation failed\nParams: Engine: %p, Actor: %p, ID: %lld, Delay: %d, TextureIDs: %p\n", Engine, Actor, ID, Delay, TextureIDs);
             exit(1);
         }
         for (uint64 i = 0; i < TextureIDs->Length(); i++)
