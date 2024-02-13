@@ -1,0 +1,45 @@
+#!/bin/bash
+
+git config --global core.editor micro
+
+if [[ -n ${1} && ${1} == "-p" ]] || [[ -n ${1} && ${1} == "--pull" ]]
+then
+    git pull
+    exit $?
+fi
+
+if [[ -n ${1} && ${1} == "-c" ]] || [[ -n ${1} && ${1} == "--commit" ]]
+then
+    git add .
+    git commit -m "${2}"
+    git push
+    exit $?
+fi
+
+if [[ -n ${1} && ${1} == "-d" ]] || [[ -n ${1} && ${1} == "--discard" ]]
+then
+    git reset --hard
+    exit $?
+fi
+
+if [[ -n ${1} && ${1} == "-r" ]] || [[ -n ${1} && ${1} == "--revert" ]]
+then
+    git rebase -i "${2}"
+    git push --force-with-lease
+    exit $?
+fi
+
+if [[ -n ${1} && ${1} == "-l" ]] || [[ -n ${1} && ${1} == "--list" ]]
+then
+    echo $(git diff --name-only)
+    exit $?
+fi
+
+if [[ -n ${1} && ${1} == "-i" ]] || [[ -n ${1} && ${1} == "--ignore" ]]
+then
+    git rm -rf --cached .
+    git add .
+    exit $?
+fi
+
+echo -e "\nUsage: ezgit [options]\n\nOptions:\n  -p|--pull\tPull.\n  -c|--commit\tCommit & Push.\n  -d|--discard\tDiscard changes.\n  -r|--revert\tRevert changes.\n  -l|--list\tList changes.\n  -i|--ignore\tApply .gitignore.\n"
