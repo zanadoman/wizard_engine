@@ -2,7 +2,7 @@
 
 #############################################################################################################################
 
-SOURCES="$(find demo -name "*.cpp") $(find src -name "*.cpp")"
+SOURCES="$(find test/src -name "*.cpp") $(find src -name "*.cpp")"
 LANGUAGE_VERSION="gnu++23"
 
 LINUX_ASSEMBLY_FOLDER="cache/linux"
@@ -12,7 +12,7 @@ LINUX_LINK_FLAGS=""
 LINUX_WARNINGS="-Werror -Wall -Wextra -Wstack-usage=256 -Wno-class-memaccess"
 LINUX_LIBRARIES="-Lsrc/lib/linux -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net"
 LINUX_BUILD_NAME="bin.out"
-LINUX_BUILD_FOLDER="test"
+LINUX_BUILD_FOLDER="test/build"
 LINUX_RUN_PREFIX=""
 LINUX_RUN_SUFFIX=""
 
@@ -23,7 +23,7 @@ WINDOWS_LINK_FLAGS="-mwindows"
 WINDOWS_WARNINGS=""
 WINDOWS_LIBRARIES="-Lsrc/lib/windows -lNeoTypes++ -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net"
 WINDOWS_BUILD_NAME="bin.exe"
-WINDOWS_BUILD_FOLDER="test"
+WINDOWS_BUILD_FOLDER="test/build"
 WINDOWS_RUN_PREFIX="wine64"
 WINDOWS_RUN_SUFFIX=""
 

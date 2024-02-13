@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../src/WizardEngine.hpp"
+#include "../../src/WizardEngine.hpp"
 
 using namespace neo;
 using namespace wze;
