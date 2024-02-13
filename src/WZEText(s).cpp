@@ -15,16 +15,16 @@ namespace wze
         }
     }
 
-    engine::actors::actor::textboxes::textbox* engine::actors::actor::textboxes::New(const char* String, uint64 FontID)
+    engine::actors::actor::textboxes::textbox* engine::actors::actor::textboxes::New(const char* Literal, uint64 FontID)
     {
-        if (String == NULL)
+        if (Literal == NULL)
         {
-            printf("wze::engine.actors[].textboxes.New(): String must not be NULL\nParams: String: %p, FontID: %lld\n", String, FontID);
+            printf("wze::engine.actors[].textboxes.New(): Literal must not be NULL\nParams: Literal: %p, FontID: %lld\n", Literal, FontID);
             exit(1);
         }
         if (FontID != 0 && (this->Engine->Assets.Fonts.Length() <= FontID || this->Engine->Assets.Fonts[FontID] == NULL))
         {
-            printf("wze::engine.actors[].textboxes.New(): FontID does not exist\nParams: String: %s, FontID: %lld\n", String, FontID);
+            printf("wze::engine.actors[].textboxes.New(): Font does not exist\nParams: Literal: %s, FontID: %lld\n", Literal, FontID);
             exit(1);
         }
 
@@ -32,9 +32,9 @@ namespace wze
         {
             if (this->Textboxes[i] == NULL)
             {
-                if ((this->Textboxes[i] = new textbox(this->Engine, this->Actor, i, String, FontID)) == NULL)
+                if ((this->Textboxes[i] = new textbox(this->Engine, this->Actor, i, Literal, FontID)) == NULL)
                 {
-                    printf("wze::engine.actors[].textboxes.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
+                    printf("wze::engine.actors[].textboxes.New(): Memory allocation failed\nParams: Literal: %s, FontID: %lld\n", Literal, FontID);
                     exit(1);
                 }
 
@@ -42,9 +42,9 @@ namespace wze
             }
         }
 
-        if ((this->Textboxes += {new textbox(this->Engine, this->Actor, this->Textboxes.Length(), String, FontID)})[this->Textboxes.Length() - 1] == NULL)
+        if ((this->Textboxes += {new textbox(this->Engine, this->Actor, this->Textboxes.Length(), Literal, FontID)})[this->Textboxes.Length() - 1] == NULL)
         {
-            printf("wze::engine.actors[].textboxes.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n", String, FontID);
+            printf("wze::engine.actors[].textboxes.New(): Memory allocation failed\nParams: Literal: %s, FontID: %lld\n", Literal, FontID);
             exit(1);
         }
 
@@ -159,7 +159,7 @@ namespace wze
         return *this->Textboxes[TextboxID];
     }
 
-    engine::actors::actor::textboxes::textbox::textbox(engine* Engine, actor* Actor, uint64 ID, const char* String, uint64 FontID) : Engine(Engine), Actor(Actor)
+    engine::actors::actor::textboxes::textbox::textbox(engine* Engine, actor* Actor, uint64 ID, const char* Literal, uint64 FontID) : Engine(Engine), Actor(Actor)
     {
         this->ColorR = 255;
         this->ColorG = 255;
@@ -179,7 +179,7 @@ namespace wze
         this->Height = this->Actor->Height;
         this->OffsetLength = 0;
         this->OffsetAngle = 0;
-        this->String = {String};
+        this->String = {Literal};
         this->FontID = FontID;
         this->FontStyle = STYLE_NORMAL;
         this->Texture = NULL;
@@ -294,22 +294,22 @@ namespace wze
         return this->Height;
     }
 
-    const char* engine::actors::actor::textboxes::textbox::GetString()
+    const char* engine::actors::actor::textboxes::textbox::GetLiteral()
     {
         return this->String();
     }
 
-    const char* engine::actors::actor::textboxes::textbox::SetString(const char* String)
+    const char* engine::actors::actor::textboxes::textbox::SetLiteral(const char* Literal)
     {
-        if (String == NULL)
+        if (Literal == NULL)
         {
-            printf("wze::engine.actors[].textboxes[].SetString(): String must not be NULL\nParams: String: %p\n", String);
+            printf("wze::engine.actors[].textboxes[].SetLiteral(): Literal must not be NULL\nParams: Literal: %p\n", Literal);
             exit(1);
         }
 
-        if (this->String != String)
+        if (this->String != Literal)
         {
-            this->String = {String};
+            this->String = {Literal};
             this->UpdateTexture();
         }
 

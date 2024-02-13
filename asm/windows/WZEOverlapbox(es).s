@@ -2451,10 +2451,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy:
 	movq	%r9, 24(%rcx)
 	movq	$0x000000000, 72(%rcx)
 	movq	$0x000000000, 80(%rcx)
+	movl	$0, 88(%rcx)
 	movsd	%xmm1, 64(%rcx)
 	pxor	%xmm1, %xmm1
 	movd	%xmm0, 56(%rcx)
-	movd	%xmm0, 88(%rcx)
 	movapd	%xmm1, %xmm0
 	movups	%xmm4, 40(%rcx)
 	call	_ZN3wze6engine6vector6LengthEdddd

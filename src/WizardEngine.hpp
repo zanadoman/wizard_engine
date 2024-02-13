@@ -253,7 +253,7 @@ namespace wze
 
                     public:
 
-                        //__________Colors_____________________________________________________________________________
+                        //__________Colorboxes_________________________________________________________________________
 
                         class colorboxes
                         {
@@ -310,7 +310,7 @@ namespace wze
                                 ~colorboxes();
                         } Colorboxes;
 
-                        //__________Textures___________________________________________________________________________
+                        //__________Textureboxes_______________________________________________________________________
 
                         class textureboxes
                         {
@@ -449,7 +449,7 @@ namespace wze
                                 ~flipbooks();
                         } Flipbooks;
 
-                        //__________Texts______________________________________________________________________________
+                        //__________Textboxes__________________________________________________________________________
 
                         class textboxes
                         {
@@ -487,8 +487,8 @@ namespace wze
                                     neo::uint16 GetWidth();
                                     neo::uint16 GetHeight();
                                     neo::uint16 SetHeight(neo::uint16);
-                                    const char* GetString();
-                                    const char* SetString(const char* String);
+                                    const char* GetLiteral();
+                                    const char* SetLiteral(const char* Literal);
                                     neo::uint64 GetFontID();
                                     neo::uint64 SetFontID(neo::uint64 FontID);
                                     style GetFontStyle();
@@ -506,13 +506,13 @@ namespace wze
                                     neo::uint64 FontID;
                                     style FontStyle;
                                     SDL_Texture* Texture;
-                                    textbox(engine* Engine, actor* Actor, neo::uint64 ID, const char* String, neo::uint64 FontID);
+                                    textbox(engine* Engine, actor* Actor, neo::uint64 ID, const char* Literal, neo::uint64 FontID);
                                     ~textbox();
                                     neo::uint8 UpdateTexture();
                             };
 
                             public:
-                                textbox* New(const char* String, neo::uint64 FontID);
+                                textbox* New(const char* Literal, neo::uint64 FontID);
                                 neo::uint8 Delete(neo::uint64 TextboxID);
                                 neo::uint8 Purge(std::initializer_list<neo::uint64> KeepTextboxIDs);
                                 neo::uint8 Purge(neo::array<neo::uint64>* KeepTextboxIDs);

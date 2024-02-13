@@ -272,7 +272,7 @@ _ZN5stats6UpdateEv:
 	call	_ZN3neo6stringclEv@PLT
 	movq	(%rsp), %rdi
 	movq	%rax, %rsi
-	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc@PLT
 	movq	24(%rbx), %rax
 	movq	16(%rbx), %rdi
 	movq	%rax, (%rsp)
@@ -313,7 +313,7 @@ _ZN5stats6UpdateEv:
 	call	_ZN3neo6stringclEv@PLT
 	movq	(%rsp), %rdi
 	movq	%rax, %rsi
-	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc@PLT
 	movq	32(%rbx), %rax
 	movq	16(%rbx), %rdi
 	movq	%rax, (%rsp)
@@ -354,7 +354,7 @@ _ZN5stats6UpdateEv:
 	call	_ZN3neo6stringclEv@PLT
 	movq	(%rsp), %rdi
 	movq	%rax, %rsi
-	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc@PLT
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc@PLT
 	movq	16(%rbx), %rdi
 	movq	40(%rbx), %r12
 	call	_ZN3wze6engine6actors5actor4GetXEv@PLT

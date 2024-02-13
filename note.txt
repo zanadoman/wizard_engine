@@ -22,7 +22,7 @@ Test/supervising sequence:
         Colors OK OK
         Textures OK OK
         Flipbooks OK OK
-        Texts OK
+        Texts OK OK
         Overlaps OK
         Collisions OK
     WizardEngine.hpp OK

@@ -442,16 +442,16 @@ _ZN3wze6engine6actors5actor9textboxesD2Ev:
 	.section	.rodata.str1.8
 	.align 8
 .LC7:
-	.string	"wze::engine.actors[].textboxes.New(): String must not be NULL\nParams: String: %p, FontID: %lld\n"
+	.string	"wze::engine.actors[].textboxes.New(): Literal must not be NULL\nParams: Literal: %p, FontID: %lld\n"
 	.align 8
 .LC8:
-	.string	"wze::engine.actors[].textboxes.New(): FontID does not exist\nParams: String: %s, FontID: %lld\n"
+	.string	"wze::engine.actors[].textboxes.New(): Font does not exist\nParams: Literal: %s, FontID: %lld\n"
 	.align 8
 .LC12:
 	.string	"neo::array+=: Memory allocation failed\nParams: Elements(type, length): %ld, %ld\n"
 	.align 8
 .LC13:
-	.string	"wze::engine.actors[].textboxes.New(): Memory allocation failed\nParams: String: %s, FontID: %lld\n"
+	.string	"wze::engine.actors[].textboxes.New(): Memory allocation failed\nParams: Literal: %s, FontID: %lld\n"
 	.section	.text.unlikely,"ax",@progbits
 	.align 2
 .LCOLDB15:
@@ -1933,26 +1933,26 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt, .-_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv
-	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv, @function
-_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv:
+	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv
+	.type	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv, @function
+_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv:
 .LFB8185:
 	.cfi_startproc
 	addq	$96, %rdi
 	jmp	_ZN3neo6stringclEv@PLT
 	.cfi_endproc
 .LFE8185:
-	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv
+	.size	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv
 	.section	.rodata.str1.8
 	.align 8
 .LC24:
-	.string	"wze::engine.actors[].textboxes[].SetString(): String must not be NULL\nParams: String: %p\n"
+	.string	"wze::engine.actors[].textboxes[].SetLiteral(): Literal must not be NULL\nParams: Literal: %p\n"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc
-	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc, @function
-_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc:
+	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
+	.type	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc, @function
+_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc:
 .LFB8186:
 	.cfi_startproc
 	pushq	%r12
@@ -2022,7 +2022,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc:
 	call	exit@PLT
 	.cfi_endproc
 .LFE8186:
-	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc, .-_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc
+	.size	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc, .-_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv

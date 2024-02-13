@@ -274,7 +274,7 @@ _ZN3wze6engine6actors5actor12textureboxesD2Ev:
 	.section .rdata,"dr"
 	.align 8
 .LC4:
-	.ascii "wze::engine.actors[].textureboxes.New(): TextureID does not exist\12Params: TextureID: %lld\12\0"
+	.ascii "wze::engine.actors[].textureboxes.New(): Texture does not exist\12Params: TextureID: %lld\12\0"
 	.align 8
 .LC5:
 	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"

@@ -2636,10 +2636,10 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy:
 	movq	%r8, 32(%rdi)
 	movq	$0x000000000, 72(%rdi)
 	movq	$0x000000000, 80(%rdi)
+	movl	$0, 88(%rdi)
 	movsd	%xmm1, 64(%rdi)
 	pxor	%xmm1, %xmm1
 	movd	%xmm0, 56(%rdi)
-	movd	%xmm0, 88(%rdi)
 	movapd	%xmm1, %xmm0
 	movups	%xmm4, 40(%rdi)
 	call	_ZN3wze6engine6vector6LengthEdddd@PLT

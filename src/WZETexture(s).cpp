@@ -18,7 +18,7 @@ namespace wze
     {
         if (TextureID != 0 && (this->Engine->Assets.Textures.Length() <= TextureID || this->Engine->Assets.Textures[TextureID] == NULL))
         {
-            printf("wze::engine.actors[].textureboxes.New(): TextureID does not exist\nParams: TextureID: %lld\n", TextureID);
+            printf("wze::engine.actors[].textureboxes.New(): Texture does not exist\nParams: TextureID: %lld\n", TextureID);
             exit(1);
         }
 

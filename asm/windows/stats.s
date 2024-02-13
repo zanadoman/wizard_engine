@@ -276,7 +276,7 @@ _ZN5stats6UpdateEv:
 	call	_ZN3neo6stringclEv
 	movq	40(%rsp), %rcx
 	movq	%rax, %rdx
-	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
 	movq	24(%rbx), %rax
 	movq	16(%rbx), %rcx
 	movq	%rax, 40(%rsp)
@@ -320,7 +320,7 @@ _ZN5stats6UpdateEv:
 	call	_ZN3neo6stringclEv
 	movq	40(%rsp), %rcx
 	movq	%rax, %rdx
-	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
 	movq	32(%rbx), %rax
 	movq	16(%rbx), %rcx
 	movq	%rax, 40(%rsp)
@@ -364,7 +364,7 @@ _ZN5stats6UpdateEv:
 	call	_ZN3neo6stringclEv
 	movq	40(%rsp), %rcx
 	movq	%rax, %rdx
-	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc
+	call	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
 	movq	16(%rbx), %rcx
 	movq	40(%rbx), %rsi
 	call	_ZN3wze6engine6actors5actor4GetXEv
@@ -494,7 +494,7 @@ _ZN5stats6UpdateEv.cold:
 	.def	_ZN3neo6stringpLESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo6stringpLESt16initializer_listIPKcE;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo6stringclEv;	.scl	2;	.type	32;	.endef
-	.def	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6timing13GetRenderTimeEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6timing12GetFrameTimeEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3neo6stringD1Ev;	.scl	2;	.type	32;	.endef

@@ -284,7 +284,7 @@ _ZN3wze6engine6actors5actor12textureboxesD2Ev:
 	.section	.rodata.str1.8
 	.align 8
 .LC4:
-	.string	"wze::engine.actors[].textureboxes.New(): TextureID does not exist\nParams: TextureID: %lld\n"
+	.string	"wze::engine.actors[].textureboxes.New(): Texture does not exist\nParams: TextureID: %lld\n"
 	.align 8
 .LC5:
 	.string	"neo::array[]: Index out of range\nParams: Index: %lld\n"

@@ -429,16 +429,16 @@ _ZN3wze6engine6actors5actor9textboxesD2Ev:
 	.section .rdata,"dr"
 	.align 8
 .LC7:
-	.ascii "wze::engine.actors[].textboxes.New(): String must not be NULL\12Params: String: %p, FontID: %lld\12\0"
+	.ascii "wze::engine.actors[].textboxes.New(): Literal must not be NULL\12Params: Literal: %p, FontID: %lld\12\0"
 	.align 8
 .LC8:
-	.ascii "wze::engine.actors[].textboxes.New(): FontID does not exist\12Params: String: %s, FontID: %lld\12\0"
+	.ascii "wze::engine.actors[].textboxes.New(): Font does not exist\12Params: Literal: %s, FontID: %lld\12\0"
 	.align 8
 .LC12:
 	.ascii "neo::array+=: Memory allocation failed\12Params: Elements(type, length): %ld, %ld\12\0"
 	.align 8
 .LC13:
-	.ascii "wze::engine.actors[].textboxes.New(): Memory allocation failed\12Params: String: %s, FontID: %lld\12\0"
+	.ascii "wze::engine.actors[].textboxes.New(): Memory allocation failed\12Params: Literal: %s, FontID: %lld\12\0"
 	.section	.text.unlikely,"x"
 	.align 2
 .LCOLDB15:
@@ -1806,10 +1806,10 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt:
 	.seh_endproc
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv
-	.def	_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv
-_ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv:
+	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv
+	.def	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv
+_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv:
 .LFB8460:
 	.seh_endprologue
 	addq	$96, %rcx
@@ -1818,14 +1818,14 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9GetStringEv:
 	.section .rdata,"dr"
 	.align 8
 .LC24:
-	.ascii "wze::engine.actors[].textboxes[].SetString(): String must not be NULL\12Params: String: %p\12\0"
+	.ascii "wze::engine.actors[].textboxes[].SetLiteral(): Literal must not be NULL\12Params: Literal: %p\12\0"
 	.text
 	.align 2
 	.p2align 4
-	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc
-	.def	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc
-_ZN3wze6engine6actors5actor9textboxes7textbox9SetStringEPKc:
+	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
+	.def	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
+_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc:
 .LFB8461:
 	pushq	%rdi
 	.seh_pushreg	%rdi

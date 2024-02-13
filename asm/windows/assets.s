@@ -34,7 +34,7 @@ _Z6printfPKcz:
 	.seh_endproc
 	.section .rdata,"dr"
 .LC0:
-	.ascii "assets/font/FreeSans.ttf\0"
+	.ascii "assets/font/Hack-Regular.ttf\0"
 .LC1:
 	.ascii "assets/map/background.png\0"
 .LC2:
