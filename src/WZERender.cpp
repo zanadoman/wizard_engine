@@ -12,8 +12,6 @@ namespace wze
         this->BufferSize = 1 * 1024 / sizeof(token*);
     }
 
-    engine::render::token::token() {}
-
     engine::render::token::token(void* Data, type Type, double Layer, uint8 Priority, SDL_Rect Area)
     {
         this->Data = Data;

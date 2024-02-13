@@ -192,9 +192,9 @@ namespace wze
                 this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame += (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder) / this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
                 this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder = (this->Timing.FrameTime + this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Remainder) % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Delay;
 
-                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() <= this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame)
+                if (this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength <= this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame)
                 {
-                    this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Loop ? this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() : this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length() - 1;
+                    this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Loop ? this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame % this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength : this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->CurrentFrame = this->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength - 1;
                 }
             }
         }

@@ -80,14 +80,12 @@ namespace wze
                 class token
                 {
                     friend class render;
-                    friend class neo::array<token>;
 
                     void* Data;
                     type Type;
                     double Layer;
                     neo::uint8 Priority;
                     SDL_Rect Area;
-                    token();
                     token(void* Data, type Type, double Layer, neo::uint8 Priority, SDL_Rect Area);
                 };
 
@@ -430,7 +428,8 @@ namespace wze
                                     neo::uint32 Delay;
                                     neo::uint64 CurrentFrame;
                                     neo::uint32 Remainder;
-                                    neo::array<neo::uint64> Textures;
+                                    neo::uint64 TexturesLength;
+                                    neo::uint64* Textures;
                                     flipbook(engine* Engine, actor* Actor, neo::uint64 ID, neo::uint32 Delay, std::initializer_list<neo::uint64> TextureIDs);
                                     flipbook(engine* Engine, actor* Actor, neo::uint64 ID, neo::uint32 Delay, neo::array<neo::uint64>* TextureIDs);
                                     ~flipbook();

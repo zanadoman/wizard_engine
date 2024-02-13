@@ -1,4 +1,4 @@
 *.o
 *.s
-!Compiled/Linux/*.s
-!Compiled/Windows/*.s
+!asm/linux/*.s
+!asm/windows/*.s

@@ -1,4 +1,4 @@
-# Wizard Engine ![Wizard Engine](https://github.com/zanadoman/Wizard-Engine/blob/main/Build/engine/icon.png)
+# Wizard Engine ![Wizard Engine](https://github.com/zanadoman/Wizard-Engine/blob/main/src/engine/icon.png)
 
 2D game engine for Linux and Windows, written in C/C++ over SDL2. \
 Relies on NeoTypes++ library. (https://github.com/zanadoman/NeoTypesPP) \

@@ -99,7 +99,7 @@ namespace wze
                     continue;
                 }
 
-                for (uint64 k = 0; k < this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures.Length(); k++)
+                for (uint64 k = 0; k < this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->TexturesLength; k++)
                 {
                     if (this->Engine->Actors.Actors[i]->Flipbooks.Flipbooks[j]->Textures[k] == TextureID)
                     {
@@ -147,7 +147,7 @@ namespace wze
                             continue;
                         }
 
-                        for (uint64 l = 0; l < this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures.Length(); l++)
+                        for (uint64 l = 0; l < this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->TexturesLength; l++)
                         {
                             if (this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures[l] == i)
                             {
@@ -219,7 +219,7 @@ namespace wze
                             continue;
                         }
 
-                        for (uint64 l = 0; l < this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures.Length(); l++)
+                        for (uint64 l = 0; l < this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->TexturesLength; l++)
                         {
                             if (this->Engine->Actors.Actors[j]->Flipbooks.Flipbooks[k]->Textures[l] == i)
                             {

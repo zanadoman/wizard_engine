@@ -237,7 +237,15 @@ namespace wze
         this->Delay = Delay;
         this->CurrentFrame = 0;
         this->Remainder = 0;
-        this->Textures = {TextureIDs};
+        if ((this->Textures = new uint64[(this->TexturesLength = TextureIDs.size())]) == NULL)
+        {
+            printf("wze::engine.actors[].flipbooks.flipbook(): Memory allocation failed\nParams: Engine: %p, Actor: %p, ID: %lld, Delay: %d, TextureIDs(length): %ld\n", Engine, Actor, ID, Delay, TextureIDs.size());
+            exit(1);
+        }
+        for (uint64 i = 0; i < TextureIDs.size(); i++)
+        {
+            this->Textures[i] = TextureIDs.begin()[i];
+        }
     }
 
     engine::actors::actor::flipbooks::flipbook::flipbook(engine* Engine, actor* Actor, uint64 ID, uint32 Delay, array<uint64>* TextureIDs) : Engine(Engine), Actor(Actor)
@@ -265,10 +273,21 @@ namespace wze
         this->Delay = Delay;
         this->CurrentFrame = 0;
         this->Remainder = 0;
-        this->Textures = {TextureIDs};
+        if ((this->Textures = new uint64[(this->TexturesLength = TextureIDs->Length())]) == NULL)
+        {
+            printf("wze::engine.actors[].flipbooks.flipbook(): Memory allocation failed\nParams: Engine: %p, Actor: %p, ID: %lld, Delay: %d, TextureIDs: %p\n", Engine, Actor, ID, Delay, TextureIDs);
+            exit(1);
+        }
+        for (uint64 i = 0; i < TextureIDs->Length(); i++)
+        {
+            this->Textures[i] = (*TextureIDs)[i];
+        }
     }
 
-    engine::actors::actor::flipbooks::flipbook::~flipbook() {}
+    engine::actors::actor::flipbooks::flipbook::~flipbook()
+    {
+        delete[] this->Textures;
+    }
 
     uint64 engine::actors::actor::flipbooks::flipbook::GetID()
     {
@@ -369,7 +388,7 @@ namespace wze
 
     bool engine::actors::actor::flipbooks::flipbook::IsPlaying()
     {
-        return !(this->Paused || (!this->Loop && this->CurrentFrame == this->Textures.Length() - 1));
+        return !(this->Paused || (!this->Loop && this->CurrentFrame == this->TexturesLength - 1));
     }
 
     uint64 engine::actors::actor::flipbooks::flipbook::GetCurrentFrame()
