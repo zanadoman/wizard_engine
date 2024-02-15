@@ -732,6 +732,22 @@ namespace wze
                     vector(engine* Engine);
             } Vector;
 
+            //__________Math___________________________________________________________________________________________
+
+            class math
+            {
+                friend class engine;
+                engine* Engine;
+
+                public:
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Clamp(type Value, type Limit1, type Limit2);
+                    bool Equals(double Value1, double Value2);
+                    neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
+
+                private:
+                    math(engine* Engine);
+            } Math;
+
             //__________Assets_________________________________________________________________________________________
 
             class assets
@@ -782,6 +798,7 @@ namespace wze
                     neo::sint16 GetIdleTime();
                     neo::uint32 GetFrameTime();
                     neo::uint32 GetDeltaTime();
+                    neo::uint8 Sleep(neo::uint32 Milliseconds);
 
                 private:
                     neo::uint8 TargetFrameTime;
@@ -807,9 +824,6 @@ namespace wze
             engine(const char* Title, const char* IconPath, neo::uint16 WindowWidth, neo::uint16 WindowHeight, neo::uint8 TargetFrameTime);
             ~engine();
             bool Update();
-            neo::uint8 Sleep(neo::uint32 Milliseconds);
-            template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Clamp(type Value, type Limit1, type Limit2);
-            neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
 
         private:
 
@@ -820,9 +834,9 @@ namespace wze
             neo::uint8 UpdateOverlapboxes();
     };
 
-    //__________Engine_________________________________________________________________________________________
+    //__________Math___________________________________________________________________________________________
 
-    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::Clamp(type Value, type Limit1, type Limit2)
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::math::Clamp(type Value, type Limit1, type Limit2)
     {
         if (Limit1 < Limit2)
         {

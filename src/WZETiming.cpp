@@ -67,6 +67,13 @@ namespace wze
         return this->DeltaTime;
     }
 
+    uint8 engine::timing::Sleep(uint32 Milliseconds)
+    {
+        SDL_Delay(Milliseconds);
+
+        return 0;
+    }
+
     uint8 engine::timing::Update()
     {
         this->WorkingTime = SDL_GetTicks() - this->PrevTick;

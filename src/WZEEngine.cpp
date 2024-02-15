@@ -1,12 +1,11 @@
 #include "WizardEngine.hpp"
 #include <cmath>
-#include <ctime>
 
 using namespace neo;
 
 namespace wze
 {
-    engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Assets(this), Timing(this)
+    engine::engine(const char* Title, const char* IconPath, uint16 WindowWidth, uint16 WindowHeight, uint8 TargetFrameTime) : Window(this), Render(this), Camera(this), Audio(this), Keys(this), Mouse(this), Actors(this), Collision(this), Vector(this), Math(this), Assets(this), Timing(this)
     {
         uint8 Texture;
         actor Actor;
@@ -53,7 +52,6 @@ namespace wze
             exit(1);
         }
 
-        srand(time(NULL));
         this->Window.Open(Title, IconPath, WindowWidth, WindowHeight);
         this->Render.RenderWidth = WindowWidth - 1;
         this->Render.RenderHeight = WindowHeight - 1;
@@ -159,18 +157,6 @@ namespace wze
         this->UpdateOverlapboxes();
 
         return true;
-    }
-
-    uint8 engine::Sleep(uint32 Milliseconds)
-    {
-        SDL_Delay(Milliseconds);
-
-        return 0;
-    }
-
-    sint32 engine::Random(sint32 Min, sint32 Max)
-    {
-        return rand() % (Max - Min) + Min;
     }
 
     uint8 engine::UpdateFlipbooks()
