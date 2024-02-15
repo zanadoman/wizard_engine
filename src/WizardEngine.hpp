@@ -741,7 +741,7 @@ namespace wze
 
                 public:
                     template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Clamp(type Value, type Limit1, type Limit2);
-                    bool Equals(double Value1, double Value2);
+                    static bool Equals(double Value1, double Value2);
                     neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
 
                 private:
