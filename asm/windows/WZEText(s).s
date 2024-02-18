@@ -212,8 +212,8 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	movq	(%rbx), %rcx
 	movq	%rax, %rdx
 	movq	112(%rbx), %rax
-	movq	368(%rcx), %r8
-	cmpq	360(%rcx), %rax
+	movq	376(%rcx), %r8
+	cmpq	368(%rcx), %rax
 	jnb	.L50
 	movq	(%r8,%rax,8), %rcx
 	movl	$-1, %r8d
@@ -250,8 +250,8 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	je	.L30
 	movq	(%rbx), %rax
 	movq	112(%rbx), %rdx
-	movq	368(%rax), %rcx
-	cmpq	360(%rax), %rdx
+	movq	376(%rax), %rcx
+	cmpq	368(%rax), %rdx
 	jnb	.L48
 	movq	(%rcx,%rdx,8), %rcx
 	xorl	%edx, %edx
@@ -281,8 +281,8 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	.p2align 3
 .L49:
 	movq	(%rbx), %rcx
-	movq	368(%rcx), %r8
-	cmpq	360(%rcx), %rdx
+	movq	376(%rcx), %r8
+	cmpq	368(%rcx), %rdx
 	jnb	.L48
 	movq	(%r8,%rdx,8), %rcx
 	movl	%eax, %edx
@@ -637,9 +637,9 @@ _ZN3wze6engine6actors5actor9textboxes3NewEPKcy:
 	.p2align 3
 .L63:
 	movq	(%rcx), %rax
-	cmpq	360(%rax), %r8
+	cmpq	368(%rax), %r8
 	jnb	.L66
-	movq	368(%rax), %rax
+	movq	376(%rax), %rax
 	cmpq	$0, (%rax,%r8,8)
 	jne	.L67
 .L66:
@@ -1918,9 +1918,9 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
 	testq	%rdx, %rdx
 	je	.L269
 	movq	(%rcx), %rdx
-	cmpq	360(%rdx), %rax
+	cmpq	368(%rdx), %rax
 	jnb	.L270
-	movq	368(%rdx), %rdx
+	movq	376(%rdx), %rdx
 	cmpq	$0, (%rdx,%rax,8)
 	je	.L270
 .L269:

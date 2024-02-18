@@ -19,7 +19,7 @@ main:
 	.seh_stackalloc	56
 	.seh_endprologue
 	call	__main
-	movl	$448, %ecx
+	movl	$464, %ecx
 .LEHB0:
 	call	_Znwy
 .LEHE0:
@@ -63,7 +63,7 @@ main:
 	call	_ZdlPvy
 	movq	%rbx, %rcx
 	call	_ZN3wze6engineD1Ev
-	movl	$448, %edx
+	movl	$464, %edx
 	movq	%rbx, %rcx
 	call	_ZdlPvy
 	xorl	%eax, %eax
@@ -119,7 +119,7 @@ main:
 main.cold:
 .L4:
 	movq	%rbx, %rcx
-	movl	$448, %edx
+	movl	$464, %edx
 	call	_ZdlPvy
 	movq	%rsi, %rcx
 .LEHB5:

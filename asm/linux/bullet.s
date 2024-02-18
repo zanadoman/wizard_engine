@@ -154,7 +154,7 @@ _ZN6bullet6UpdateEv:
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	0(%rbp), %rax
 	movq	%xmm0, %r12
-	leaq	392(%rax), %rdi
+	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
 	pxor	%xmm3, %xmm3
@@ -172,7 +172,7 @@ _ZN6bullet6UpdateEv:
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	0(%rbp), %rax
 	movq	%xmm0, %r12
-	leaq	392(%rax), %rdi
+	leaq	400(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
 	pxor	%xmm4, %xmm4

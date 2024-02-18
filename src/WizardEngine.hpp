@@ -797,6 +797,8 @@ namespace wze
                     neo::uint32 GetWorkingTime();
                     neo::sint16 GetIdleTime();
                     neo::uint32 GetFrameTime();
+                    neo::uint32 GetMaxDeltaTime();
+                    neo::uint32 SetMaxDeltaTime(neo::uint32 MaxDeltaTime);
                     neo::uint32 GetDeltaTime();
                     neo::uint8 Sleep(neo::uint32 Milliseconds);
 
@@ -808,6 +810,7 @@ namespace wze
                     neo::uint32 WorkingTime;
                     neo::sint16 IdleTime;
                     neo::uint32 FrameTime;
+                    neo::uint32 MaxDeltaTime;
                     neo::uint32 DeltaTime;
                     timing(engine* Engine);
                     neo::uint8 Update();

@@ -331,9 +331,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjSt16initializer_listIyE:
 	testq	%rdx, %rdx
 	je	.L48
 	movq	0(%rbp), %rcx
-	cmpq	328(%rcx), %rdx
+	cmpq	336(%rcx), %rdx
 	jnb	.L49
-	movq	336(%rcx), %rcx
+	movq	344(%rcx), %rcx
 	cmpq	$0, (%rcx,%rdx,8)
 	je	.L49
 .L48:
@@ -1314,9 +1314,9 @@ _ZN3wze6engine6actors5actor9flipbooks3NewEjPN3neo5arrayIyEE:
 	testq	%rdx, %rdx
 	je	.L218
 	movq	(%rsi), %r8
-	cmpq	328(%r8), %rdx
+	cmpq	336(%r8), %rdx
 	jnb	.L219
-	movq	336(%r8), %r8
+	movq	344(%r8), %r8
 	cmpq	$0, (%r8,%rdx,8)
 	jne	.L218
 .L219:

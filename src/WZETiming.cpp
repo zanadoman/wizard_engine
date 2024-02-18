@@ -13,6 +13,7 @@ namespace wze
         this->WorkingTime = 0;
         this->IdleTime = 0;
         this->FrameTime = 0;
+        this->MaxDeltaTime = 1000;
         this->DeltaTime = 0;
     }
 
@@ -62,6 +63,16 @@ namespace wze
         return this->FrameTime;
     }
 
+    uint32 engine::timing::GetMaxDeltaTime()
+    {
+        return this->MaxDeltaTime;
+    }
+
+    uint32 engine::timing::SetMaxDeltaTime(uint32 MaxDeltaTime)
+    {
+        return this->MaxDeltaTime = MaxDeltaTime;
+    }
+
     uint32 engine::timing::GetDeltaTime()
     {
         return this->DeltaTime;
@@ -84,9 +95,9 @@ namespace wze
         this->FrameTime = SDL_GetTicks() - this->PrevTick;
         this->PrevTick = SDL_GetTicks();
 
-        if (40 < (this->DeltaTime = this->FrameTime))
+        if (this->MaxDeltaTime < (this->DeltaTime = this->FrameTime))
         {
-            this->DeltaTime = 40;
+            this->DeltaTime = this->MaxDeltaTime;
         }
 
         return 0;

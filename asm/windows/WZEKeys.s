@@ -145,7 +145,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	movq	(%rbx), %r8
 	xorl	%eax, %eax
 	xorl	%edx, %edx
-	movq	432(%r8), %r9
+	movq	448(%r8), %r9
 	testq	%r9, %r9
 	jne	.L12
 	jmp	.L20
@@ -157,7 +157,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	cmpq	%r9, %rdx
 	jnb	.L20
 .L12:
-	movq	440(%r8), %rcx
+	movq	456(%r8), %rcx
 	addq	%rax, %rcx
 	cmpl	$1027, (%rcx)
 	jne	.L13
@@ -171,7 +171,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	addq	$56, %rax
 	movb	$0, 236(%rcx)
 	movq	(%rbx), %r8
-	movq	432(%r8), %r9
+	movq	448(%r8), %r9
 	cmpq	%r9, %rdx
 	jb	.L12
 .L20:
@@ -187,7 +187,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	je	.L15
 	movb	$1, 236(%rcx)
 	movq	(%rbx), %r8
-	movq	432(%r8), %r9
+	movq	448(%r8), %r9
 	jmp	.L13
 	.p2align 4,,10
 	.p2align 3
@@ -199,7 +199,7 @@ _ZN3wze6engine4keys6UpdateEv:
 .L15:
 	movb	$0, 236(%rcx)
 	movq	(%rbx), %r8
-	movq	432(%r8), %r9
+	movq	448(%r8), %r9
 	jmp	.L13
 	.seh_endproc
 	.ident	"GCC: (GNU) 13.1.0"

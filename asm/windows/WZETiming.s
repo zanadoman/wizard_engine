@@ -41,12 +41,14 @@ _Z6printfPKcz:
 _ZN3wze6engine6timingC2EPS0_:
 .LFB6890:
 	.seh_endprologue
-	pxor	%xmm0, %xmm0
 	xorl	%eax, %eax
+	pxor	%xmm0, %xmm0
+	movw	%ax, 28(%rcx)
+	movq	.LC0(%rip), %rax
 	movq	%rdx, (%rcx)
 	movb	$0, 8(%rcx)
-	movw	%ax, 28(%rcx)
-	movq	$0, 32(%rcx)
+	movq	%rax, 32(%rcx)
+	movl	$0, 40(%rcx)
 	movups	%xmm0, 12(%rcx)
 	ret
 	.seh_endproc
@@ -66,7 +68,7 @@ _ZN3wze6engine6timing18GetTargetFrameTimeEv:
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC0:
+.LC2:
 	.ascii "wze::engine.timing.SetTargetFrameTime(): TargetFrameTime must not be equal to 0\12Params: TargetFrameTime: %d\12\0"
 	.text
 	.align 2
@@ -86,7 +88,7 @@ _ZN3wze6engine6timing18SetTargetFrameTimeEh:
 	addq	$40, %rsp
 	ret
 .L7:
-	leaq	.LC0(%rip), %rcx
+	leaq	.LC2(%rip), %rcx
 	xorl	%edx, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -161,13 +163,52 @@ _ZN3wze6engine6timing12GetFrameTimeEv:
 	.seh_endproc
 	.align 2
 	.p2align 4
+	.globl	_ZN3wze6engine6timing15GetMaxDeltaTimeEv
+	.def	_ZN3wze6engine6timing15GetMaxDeltaTimeEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6timing15GetMaxDeltaTimeEv
+_ZN3wze6engine6timing15GetMaxDeltaTimeEv:
+.LFB6900:
+	.seh_endprologue
+	movl	36(%rcx), %eax
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6timing15SetMaxDeltaTimeEj
+	.def	_ZN3wze6engine6timing15SetMaxDeltaTimeEj;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6timing15SetMaxDeltaTimeEj
+_ZN3wze6engine6timing15SetMaxDeltaTimeEj:
+.LFB6901:
+	.seh_endprologue
+	movl	%edx, %eax
+	movl	%edx, 36(%rcx)
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
 	.globl	_ZN3wze6engine6timing12GetDeltaTimeEv
 	.def	_ZN3wze6engine6timing12GetDeltaTimeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing12GetDeltaTimeEv
 _ZN3wze6engine6timing12GetDeltaTimeEv:
-.LFB6900:
+.LFB6902:
 	.seh_endprologue
-	movl	36(%rcx), %eax
+	movl	40(%rcx), %eax
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine6timing5SleepEj
+	.def	_ZN3wze6engine6timing5SleepEj;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine6timing5SleepEj
+_ZN3wze6engine6timing5SleepEj:
+.LFB6903:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movl	%edx, %ecx
+	call	SDL_Delay
+	xorl	%eax, %eax
+	addq	$40, %rsp
 	ret
 	.seh_endproc
 	.align 2
@@ -176,7 +217,7 @@ _ZN3wze6engine6timing12GetDeltaTimeEv:
 	.def	_ZN3wze6engine6timing6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6timing6UpdateEv
 _ZN3wze6engine6timing6UpdateEv:
-.LFB6901:
+.LFB6904:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -196,27 +237,32 @@ _ZN3wze6engine6timing6UpdateEv:
 	movzwl	%si, %ecx
 	movw	%cx, 28(%rbx)
 	testw	%cx, %cx
-	jle	.L16
+	jle	.L19
 	call	SDL_Delay
-.L16:
+.L19:
 	call	SDL_GetTicks
 	subl	12(%rbx), %eax
 	movl	%eax, 32(%rbx)
 	call	SDL_GetTicks
-	movl	$40, %edx
+	movl	32(%rbx), %edx
 	movl	%eax, 12(%rbx)
-	movl	32(%rbx), %eax
+	movl	36(%rbx), %eax
 	cmpl	%edx, %eax
 	cmova	%edx, %eax
-	movl	%eax, 36(%rbx)
+	movl	%eax, 40(%rbx)
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	popq	%rbx
 	popq	%rsi
 	ret
 	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC0:
+	.long	0
+	.long	1000
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
-	.def	SDL_GetTicks;	.scl	2;	.type	32;	.endef
 	.def	SDL_Delay;	.scl	2;	.type	32;	.endef
+	.def	SDL_GetTicks;	.scl	2;	.type	32;	.endef
