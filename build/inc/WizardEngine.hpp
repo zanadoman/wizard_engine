@@ -168,27 +168,37 @@ namespace wze
                 engine* Engine;
 
                 public:
+                    struct channel
+                    {
+                        neo::uint16 ID;
+                        neo::uint64 SoundID;
+                        double Volume;
+                        double Left;
+                        double Right;
+                        neo::uint16 Loops;
+                        bool Paused;
+                    };
+
                     double GetGlobalVolume();
                     double SetGlobalVolume(double GlobalVolume);
                     neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume);
                     neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, neo::uint16 Loops);
                     neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, double Left, double Right);
                     neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, double Left, double Right, neo::uint16 Loops);
-                    bool IsPlaying(neo::uint16 Channel);
-                    bool IsPaused(neo::uint16 Channel);
                     neo::uint16 GetChannelCount();
                     neo::uint16 SetChannelCount(neo::uint16 ChannelCount);
-                    double GetVolume(neo::uint16 Channel);
-                    double SetVolume(neo::uint16 Channel, double Volume);
-                    neo::uint8 Pause(neo::uint16 Channel);
-                    neo::uint8 Resume(neo::uint16 Channel);
+                    double SetChannelVolume(neo::uint16 Channel, double Volume);
+                    neo::uint8 SetChannelPanning(neo::uint16 Channel, double Left, double Right);
+                    neo::uint8 PauseChannel(neo::uint16 Channel);
+                    neo::uint8 ResumeChannel(neo::uint16 Channel);
+                    neo::uint8 StopChannel(neo::uint16 Channel);
                     neo::uint8 PauseAll();
                     neo::uint8 ResumeAll();
-                    neo::uint8 Stop(neo::uint16 Channel);
+                    channel operator [] (neo::uint16 Channel);
 
                 private:
                     double GlobalVolume;
-                    neo::uint16 ChannelCount;
+                    neo::array<channel> Channels;
                     audio(engine* Engine);
             } Audio;
 

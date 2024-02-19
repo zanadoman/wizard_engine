@@ -7,9 +7,16 @@ namespace wze
     engine::audio::audio(engine* Engine) : Engine(Engine), Channels(8)
     {
         this->GlobalVolume = 1;
+
         for (uint16 i = 0; i < this->Channels.Length(); i++)
         {
             this->Channels[i].ID = i;
+            this->Channels[i].SoundID = 0;
+            this->Channels[i].Volume = 0;
+            this->Channels[i].Left = 0;
+            this->Channels[i].Right = 0;
+            this->Channels[i].Loops = 0;
+            this->Channels[i].Paused = false;
         }
     }
 
@@ -31,7 +38,7 @@ namespace wze
             exit(1);
         }
 
-        for (uint32 i = 0; i < this->Channels.Length(); i++)
+        for (uint16 i = 0; i < this->Channels.Length(); i++)
         {
             Mix_Volume(i, GlobalVolume * this->Channels[i].Volume * 128);
         }
@@ -308,26 +315,46 @@ namespace wze
         return this->Channels.Length();
     }
 
-    double engine::audio::SetVolume(uint16 Channel, double Volume)
+    double engine::audio::SetChannelVolume(uint16 Channel, double Volume)
     {
         if (this->Channels.Length() <= Channel)
         {
-            printf("wze::engine.audio.SetVolume(): Channel does not exist\nParams: Channel: %d, Volume: %lf\n", Channel, Volume);
+            printf("wze::engine.audio.SetChannelVolume(): Channel does not exist\nParams: Channel: %d, Volume: %lf\n", Channel, Volume);
             exit(1);
         }
 
-        Mix_Volume(Channel, Volume * 128);
+        Mix_Volume(Channel, this->GlobalVolume * Volume * 128);
 
         this->Channels[Channel].Volume = Volume;
 
         return Volume;
     }
 
-    uint8 engine::audio::Pause(uint16 Channel)
+    uint8 engine::audio::SetChannelPanning(uint16 Channel, double Left, double Right)
+    {
+        if (this->Channels.Length() <= Channel)
+        {
+            printf("wze::engine.audio.SetChannelPanning(): Channel does not exist\nParams: Channel: %d, Left: %lf, Right: %lf\n", Channel, Left, Right);
+            exit(1);
+        }
+
+        if (Mix_SetPanning(Channel, Left * 255, Right * 255) == 0)
+        {
+            printf("wze::engine.audio.SetChannelPanning(): Mix_SetPanning() failed\nParams: Channel: %d, Left: %lf, Right: %lf\n", Channel, Left, Right);
+            exit(1);
+        }
+
+        this->Channels[Channel].Left = Left;
+        this->Channels[Channel].Right = Right;
+
+        return 0;
+    }
+
+    uint8 engine::audio::PauseChannel(uint16 Channel)
     {   
         if (this->Channels.Length() <= Channel)
         {
-            printf("wze::engine.audio.Pause(): Channel does not exist\nParams: Channel: %d\n", Channel);
+            printf("wze::engine.audio.PauseChannel(): Channel does not exist\nParams: Channel: %d\n", Channel);
             exit(1);
         }
 
@@ -338,17 +365,40 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::audio::Resume(uint16 Channel)
+    uint8 engine::audio::ResumeChannel(uint16 Channel)
     {
         if (this->Channels.Length() <= Channel)
         {
-            printf("wze::engine.audio.Resume(): Channel does not exist\nParams: Channel: %d\n", Channel);
+            printf("wze::engine.audio.ResumeChannel(): Channel does not exist\nParams: Channel: %d\n", Channel);
             exit(1);
         }
 
         Mix_Resume(Channel);
 
         this->Channels[Channel].Paused = false;
+
+        return 0;
+    }
+
+    uint8 engine::audio::StopChannel(uint16 Channel)
+    {
+        if (this->Channels.Length() <= Channel)
+        {
+            printf("wze::engine.audio.StopChannel(): Channel does not exist\nParams: Channel: %d\n", Channel);
+            exit(1);
+        }
+
+        if (Mix_HaltChannel(Channel) != 0)
+        {
+            printf("wze::engine.audio.StopChannel(): Mix_HaltChannel() failed\nParams: Channel: %d\n", Channel);
+            exit(1);
+        }
+
+        this->Channels[Channel].SoundID = 0;
+        this->Channels[Channel].Volume = 0;
+        this->Channels[Channel].Left = 0;
+        this->Channels[Channel].Right = 0;
+        this->Channels[Channel].Loops = 0;
 
         return 0;
     }
@@ -379,35 +429,21 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::audio::Stop(uint16 Channel)
-    {
-        if (this->Channels.Length() <= Channel)
-        {
-            printf("wze::engine.audio.Stop(): Channel does not exist\nParams: Channel: %d\n", Channel);
-            exit(1);
-        }
-
-        if (Mix_HaltChannel(Channel) != 0)
-        {
-            printf("wze::engine.audio.Stop(): Mix_HaltChannel() failed\nParams: Channel: %d\n", Channel);
-            exit(1);
-        }
-
-        this->Channels[Channel].SoundID = 0;
-        this->Channels[Channel].Volume = 0;
-        this->Channels[Channel].Left = 0;
-        this->Channels[Channel].Right = 0;
-        this->Channels[Channel].Loops = 0;
-
-        return 0;
-    }
-
     engine::audio::channel engine::audio::operator [] (uint16 Channel)
     {
         if (this->Channels.Length() <= Channel)
         {
             printf("wze::engine.audio[]: Channel does not exist\nParams: Channel: %d\n", Channel);
             exit(1);
+        }
+
+        if (!Mix_Playing(Channel))
+        {
+            this->Channels[Channel].SoundID = 0;
+            this->Channels[Channel].Volume = 0;
+            this->Channels[Channel].Left = 0;
+            this->Channels[Channel].Right = 0;
+            this->Channels[Channel].Loops = 0;
         }
 
         return this->Channels[Channel];
