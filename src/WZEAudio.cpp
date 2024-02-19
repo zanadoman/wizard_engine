@@ -7,6 +7,7 @@ namespace wze
     engine::audio::audio(engine* Engine) : Engine(Engine)
     {
         this->GlobalVolume = 1;
+        this->ChannelCount = 8;
     }
 
     double engine::audio::GetGlobalVolume()
@@ -40,6 +41,11 @@ namespace wze
         if (Volume < 0 || 1 < Volume)
         {
             printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
+            exit(1);
+        }
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.Play(): Channel does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
             exit(1);
         }
         if (SoundID == 0)
@@ -77,6 +83,11 @@ namespace wze
         if (Volume < 0 || 1 < Volume)
         {
             printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
+            exit(1);
+        }
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.Play(): Channel does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
             exit(1);
         }
         if (SoundID == 0)
@@ -136,6 +147,11 @@ namespace wze
             printf("wze::engine.audio.Play(): Right must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             exit(1);
         }
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.Play(): Channel does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            exit(1);
+        }
         if (SoundID == 0)
         {
             return 0;
@@ -191,6 +207,11 @@ namespace wze
         if (Right < 0 || 1 < Right)
         {
             printf("wze::engine.audio.Play(): Right must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            exit(1);
+        }
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.Play(): Channel does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             exit(1);
         }
         if (SoundID == 0)
@@ -265,5 +286,21 @@ namespace wze
         }
 
         return 0;
+    }
+
+    uint16 engine::audio::GetChannelCount()
+    {
+        return this->ChannelCount;
+    }
+
+    uint16 engine::audio::SetChannelCount(uint16 ChannelCount)
+    {
+        if (Mix_AllocateChannels(ChannelCount) != ChannelCount)
+        {
+            printf("wze::engine.audio.SetChannelCount(): Mix_AllocateChannels() failed\nParams: ChannelCount: %d\n", ChannelCount);
+            exit(1);
+        }
+
+        return this->ChannelCount = ChannelCount;
     }
 }

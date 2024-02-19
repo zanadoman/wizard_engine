@@ -181,9 +181,12 @@ namespace wze
                     neo::uint8 PauseAll();
                     neo::uint8 ResumeAll();
                     neo::uint8 Stop(neo::uint16 Channel);
+                    neo::uint16 GetChannelCount();
+                    neo::uint16 SetChannelCount(neo::uint16 ChannelCount);
 
                 private:
                     double GlobalVolume;
+                    neo::uint16 ChannelCount;
                     audio(engine* Engine);
             } Audio;
 
