@@ -73,15 +73,15 @@ namespace wze
             exit(1);
         }
 
-        Mix_VolumeChunk(this->Engine->Assets.Sounds[SoundID], this->GlobalVolume * Volume * 128);
-        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], 0) == -1)
-        {
-            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
-            exit(1);
-        }
+        Mix_Volume(Channel, this->GlobalVolume * Volume * 128);
         if (Mix_SetPanning(Channel, 255, 255) == 0)
         {
             printf("wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
+            exit(1);
+        }
+        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], 0) == -1)
+        {
+            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
             exit(1);
         }
 
@@ -121,15 +121,15 @@ namespace wze
             exit(1);
         }
 
-        Mix_VolumeChunk(this->Engine->Assets.Sounds[SoundID], this->GlobalVolume * Volume * 128);
-        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], Loops) == -1)
-        {
-            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
-            exit(1);
-        }
+        Mix_Volume(Channel, this->GlobalVolume * Volume * 128);
         if (Mix_SetPanning(Channel, 255, 255) == 0)
         {
             printf("wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
+            exit(1);
+        }
+        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], Loops) == -1)
+        {
+            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\n", SoundID, Channel, Volume, Loops);
             exit(1);
         }
 
@@ -189,15 +189,15 @@ namespace wze
             exit(1);
         }
 
-        Mix_VolumeChunk(this->Engine->Assets.Sounds[SoundID], this->GlobalVolume * Volume * 128);
-        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], 0) == -1)
-        {
-            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
-            exit(1);
-        }
+        Mix_Volume(Channel, this->GlobalVolume * Volume * 128);
         if (Mix_SetPanning(Channel, Left * 255, Right * 255) == 0)
         {
             printf("wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            exit(1);
+        }
+        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], 0) == -1)
+        {
+            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
             exit(1);
         }
 
@@ -257,15 +257,15 @@ namespace wze
             exit(1);
         }
 
-        Mix_VolumeChunk(this->Engine->Assets.Sounds[SoundID], this->GlobalVolume * Volume * 128);
-        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], Loops) == -1)
-        {
-            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
-            exit(1);
-        }
+        Mix_Volume(Channel, this->GlobalVolume * Volume * 128);
         if (Mix_SetPanning(Channel, Left * 255, Right * 255) == 0)
         {
             printf("wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            exit(1);
+        }
+        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], Loops) == -1)
+        {
+            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             exit(1);
         }
 
