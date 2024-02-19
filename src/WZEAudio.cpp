@@ -208,6 +208,11 @@ namespace wze
         return 0;
     }
 
+    bool engine::audio::IsPlaying(uint16 Channel)
+    {
+        return Mix_Playing(Channel);
+    }
+
     bool engine::audio::IsPaused(uint16 Channel)
     {
         return Mix_Paused(Channel) == 1;
