@@ -168,17 +168,25 @@ namespace wze
                 engine* Engine;
 
                 public:
-                    struct channel
+
+                    class channel
                     {
-                        neo::uint16 ID;
-                        neo::uint64 SoundID;
-                        double Volume;
-                        double Left;
-                        double Right;
-                        neo::uint16 Loops;
-                        bool Paused;
+                        friend class audio;
+
+                        public:
+                            neo::uint64 SoundID;
+                            double Volume;
+                            double Left;
+                            double Right;
+                            neo::uint16 Loops;
+                            bool Paused;
+                            neo::uint16 GetChannel();
+
+                        private:
+                            neo::uint16 Channel;
                     };
 
+                public:
                     double GetGlobalVolume();
                     double SetGlobalVolume(double GlobalVolume);
                     neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume);
