@@ -331,9 +331,9 @@ _ZN3wze6engine5mouse18SetCursorTextureIDEy:
 	testq	%rdx, %rdx
 	je	.L52
 	movq	(%rcx), %rax
-	cmpq	384(%rax), %rdx
+	cmpq	400(%rax), %rdx
 	jnb	.L50
-	movq	392(%rax), %rax
+	movq	408(%rax), %rax
 	movq	(%rax,%rdx,8), %rcx
 	testq	%rcx, %rcx
 	je	.L50
@@ -380,7 +380,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	cvtsi2sdl	40(%rsp), %xmm0
 	movsd	8(%rbx), %xmm2
 	cvtsi2sdl	44(%rsp), %xmm1
-	movq	448(%r8), %rdx
+	movq	464(%r8), %rdx
 	mulsd	%xmm2, %xmm0
 	mulsd	%xmm2, %xmm1
 	xorpd	.LC10(%rip), %xmm1
@@ -388,7 +388,7 @@ _ZN3wze6engine5mouse6UpdateEv:
 	movups	%xmm0, 24(%rbx)
 	testq	%rdx, %rdx
 	je	.L54
-	movq	456(%r8), %rax
+	movq	472(%r8), %rax
 	leaq	0(,%rdx,8), %rcx
 	subq	%rdx, %rcx
 	leaq	(%rax,%rcx,8), %rcx

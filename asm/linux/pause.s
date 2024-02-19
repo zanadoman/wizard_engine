@@ -46,7 +46,7 @@ _ZN5pauseC2EPN3wze6engineEP4game:
 	xorl	%edx, %edx
 	movzwl	%ax, %eax
 	xorl	%esi, %esi
-	leaq	256(%rbp), %rdi
+	leaq	272(%rbp), %rdi
 	cvtsi2sdl	%eax, %xmm0
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	%rax, 16(%rbx)
@@ -189,7 +189,7 @@ _ZN5pauseD2Ev:
 	.cfi_offset 3, -16
 	movq	(%rdi), %rax
 	movq	16(%rdi), %rdi
-	leaq	256(%rax), %rbx
+	leaq	272(%rax), %rbx
 	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
 	movq	%rbx, %rdi
 	movq	%rax, %rsi
@@ -225,7 +225,7 @@ _ZN5pause6UpdateEv:
 	movq	(%rdi), %rax
 	movq	%rdi, %rbx
 	movl	$41, %esi
-	leaq	176(%rax), %rdi
+	leaq	192(%rax), %rdi
 	call	_ZN3wze6engine4keysixENS_3keyE@PLT
 	testb	%al, %al
 	movq	16(%rbx), %rax

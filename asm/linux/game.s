@@ -254,7 +254,7 @@ _ZN4game12SwitchScenesE5scene:
 	movq	(%rbx), %rax
 	xorl	%esi, %esi
 	xorl	%edx, %edx
-	leaq	256(%rax), %rdi
+	leaq	272(%rax), %rdi
 .LEHB4:
 	call	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE@PLT
 	movq	(%rbx), %rax

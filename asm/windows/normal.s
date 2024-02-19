@@ -299,7 +299,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movl	$28800, 40(%rsp)
 	pxor	%xmm3, %xmm3
 	movq	$0x000000000, 32(%rsp)
-	leaq	256(%rax), %rcx
+	leaq	272(%rax), %rcx
 	movq	.LC18(%rip), %rax
 	movq	%rax, 56(%rsp)
 	call	_ZN3wze6engine6actors3NewEPvyddttd

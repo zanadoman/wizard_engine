@@ -274,7 +274,7 @@ _ZN6normalC2EPN3wze6engineEP4game:
 	movl	$28800, %ecx
 	movapd	%xmm1, %xmm0
 	xorl	%esi, %esi
-	leaq	256(%rax), %rdi
+	leaq	272(%rax), %rdi
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	8(%rbx), %rdx
 	movq	%rax, 200(%rbx)

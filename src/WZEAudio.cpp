@@ -10,7 +10,6 @@ namespace wze
 
         for (uint16 i = 0; i < this->Channels.Length(); i++)
         {
-            this->Channels[i].Channel = i;
             this->Channels[i].SoundID = 0;
             this->Channels[i].Volume = 0;
             this->Channels[i].Left = 0;
@@ -302,7 +301,6 @@ namespace wze
             this->Channels.Insert(this->Channels.Length(), ChannelCount - (cache = this->Channels.Length()));
             for (uint16 i = cache; i < this->Channels.Length(); i++)
             {
-                this->Channels[i].Channel = i;
                 this->Channels[i].SoundID = 0;
                 this->Channels[i].Volume = 0;
                 this->Channels[i].Left = 0;
@@ -447,10 +445,5 @@ namespace wze
         }
 
         return this->Channels[Channel];
-    }
-
-    uint16 engine::audio::channel::GetChannel()
-    {
-        return this->Channel;
     }
 }

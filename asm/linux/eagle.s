@@ -36,7 +36,7 @@ _ZN5eagleC2EPN3wze6engineEP4gameddPNS1_6actors5actorEdd:
 	mulsd	%xmm4, %xmm3
 	movq	$0, 96(%rdi)
 	movq	$0, 104(%rdi)
-	leaq	256(%rsi), %rdi
+	leaq	272(%rsi), %rdi
 	movq	%rbx, %rsi
 	movsd	%xmm2, (%rsp)
 	movapd	%xmm1, %xmm2
@@ -72,7 +72,7 @@ _ZN5eagleC2EPN3wze6engineEP4gameddPNS1_6actors5actorEdd:
 	movq	(%rbx), %rax
 	movsd	%xmm4, 72(%rbx)
 	movsd	%xmm3, 80(%rbx)
-	leaq	400(%rax), %rdi
+	leaq	416(%rax), %rdi
 	call	_ZN3wze6engine6timing14GetCurrentTickEv@PLT
 	movq	16(%rbx), %rdi
 	movq	24(%rbx), %rbp
@@ -221,7 +221,7 @@ _ZN5eagleD2Ev:
 .L11:
 	movq	(%r12), %rax
 	movq	16(%r12), %rdi
-	leaq	256(%rax), %rbx
+	leaq	272(%rax), %rbx
 	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
 	movq	%rbx, %rdi
 	movq	%rax, %rsi
@@ -323,7 +323,7 @@ _ZN5eagle6UpdateEv:
 	movq	(%rbx), %rax
 	movsd	%xmm0, 16(%rsp)
 	movsd	.LC6(%rip), %xmm0
-	leaq	400(%rax), %rdi
+	leaq	416(%rax), %rdi
 	mulsd	%xmm0, %xmm5
 	movsd	%xmm5, 8(%rsp)
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
@@ -353,7 +353,7 @@ _ZN5eagle6UpdateEv:
 	movsd	%xmm0, 8(%rsp)
 	leal	200(%rax), %ebp
 	movq	(%rbx), %rax
-	leaq	400(%rax), %rdi
+	leaq	416(%rax), %rdi
 	call	_ZN3wze6engine6timing14GetCurrentTickEv@PLT
 	cmpl	%eax, %ebp
 	jnb	.L35
@@ -520,7 +520,7 @@ _ZN5eagle6UpdateEv:
 	movq	16(%rbx), %rdi
 	leaq	40(%rsp), %r13
 	leaq	48(%rsp), %rbp
-	leaq	312(%rax), %r12
+	leaq	328(%rax), %r12
 	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
 	movdqa	.LC10(%rip), %xmm0
 	movq	48(%rbx), %rdi
@@ -621,7 +621,7 @@ _ZN5eagle6UpdateEv:
 .LEHB4:
 	call	_ZN3neo6memory6CopyToEPKvPvy@PLT
 	movq	(%rbx), %rax
-	leaq	400(%rax), %rdi
+	leaq	416(%rax), %rdi
 	call	_ZN3wze6engine6timing14GetCurrentTickEv@PLT
 	movl	%eax, 88(%rbx)
 	jmp	.L35

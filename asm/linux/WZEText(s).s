@@ -193,8 +193,8 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	movq	(%rbx), %rdx
 	movq	%rax, %rsi
 	movq	112(%rbx), %rax
-	movq	376(%rdx), %rcx
-	cmpq	368(%rdx), %rax
+	movq	392(%rdx), %rcx
+	cmpq	384(%rdx), %rax
 	jnb	.L51
 	movq	(%rcx,%rax,8), %rdi
 	movl	$-1, %edx
@@ -231,8 +231,8 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	je	.L30
 	movq	(%rbx), %rax
 	movq	112(%rbx), %rsi
-	movq	376(%rax), %rdx
-	cmpq	368(%rax), %rsi
+	movq	392(%rax), %rdx
+	cmpq	384(%rax), %rsi
 	jnb	.L49
 	movq	(%rdx,%rsi,8), %rdi
 	addq	$8, %rsp
@@ -272,8 +272,8 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	.p2align 3
 .L50:
 	movq	(%rbx), %rdx
-	movq	376(%rdx), %rcx
-	cmpq	368(%rdx), %rsi
+	movq	392(%rdx), %rcx
+	cmpq	384(%rdx), %rsi
 	jnb	.L49
 	movq	(%rcx,%rsi,8), %rdi
 	movl	%eax, %esi
@@ -662,9 +662,9 @@ _ZN3wze6engine6actors5actor9textboxes3NewEPKcy:
 .L68:
 	.cfi_restore_state
 	movq	(%rdi), %rax
-	cmpq	368(%rax), %rdx
+	cmpq	384(%rax), %rdx
 	jnb	.L71
-	movq	376(%rax), %rax
+	movq	392(%rax), %rax
 	cmpq	$0, (%rax,%rdx,8)
 	jne	.L72
 .L71:
@@ -2055,9 +2055,9 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
 	testq	%rsi, %rsi
 	je	.L306
 	movq	(%rdi), %rdx
-	cmpq	368(%rdx), %rsi
+	cmpq	384(%rdx), %rsi
 	jnb	.L307
-	movq	376(%rdx), %rdx
+	movq	392(%rdx), %rdx
 	cmpq	$0, (%rdx,%rsi,8)
 	je	.L307
 .L306:

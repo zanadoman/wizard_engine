@@ -467,8 +467,8 @@ _ZN3wze6engine6actors5actorD2Ev:
 	movq	(%rcx), %r9
 	movzbl	288(%rcx), %edx
 	movq	%rcx, %rbx
-	movq	304(%r9), %rcx
-	cmpq	296(%r9), %rdx
+	movq	320(%r9), %rcx
+	cmpq	312(%r9), %rdx
 	jnb	.L60
 	salq	$4, %rdx
 	addq	%rdx, %rcx
@@ -487,8 +487,8 @@ _ZN3wze6engine6actors5actorD2Ev:
 	jne	.L54
 .L53:
 	movq	144(%r9), %rdx
-	movq	264(%r9), %rcx
-	movq	272(%r9), %rax
+	movq	280(%r9), %rcx
+	movq	288(%r9), %rax
 	cmpq	%rcx, %rdx
 	jnb	.L60
 	cmpq	%rbx, (%rax,%rdx,8)
@@ -617,7 +617,7 @@ _ZN3wze6engine6actors5actor4SetXEd:
 	movzbl	288(%rcx), %edx
 	movsd	%xmm1, 224(%rcx)
 	movq	%rbx, %r8
-	leaq	280(%rax), %rcx
+	leaq	296(%rax), %rcx
 	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE
 	movsd	224(%rbx), %xmm0
 	addq	$32, %rsp
@@ -666,7 +666,7 @@ _ZN3wze6engine6actors5actor4SetYEd:
 	movzbl	288(%rcx), %edx
 	movsd	%xmm1, 232(%rcx)
 	movq	%rbx, %r8
-	leaq	280(%rax), %rcx
+	leaq	296(%rax), %rcx
 	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE
 	movsd	232(%rbx), %xmm0
 	addq	$32, %rsp
@@ -761,8 +761,8 @@ _ZN3wze6engine6actors5actor8SetLayerEd:
 	movq	$0x000000000, 280(%rcx)
 	movq	(%rcx), %rax
 	movq	144(%rax), %rdx
-	movq	264(%rax), %r9
-	movq	272(%rax), %r8
+	movq	280(%rax), %r9
+	movq	288(%rax), %r8
 	cmpq	%r9, %rdx
 	jnb	.L101
 	cmpq	%rcx, (%r8,%rdx,8)
@@ -905,8 +905,8 @@ _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
 	movl	%edx, %esi
 	movl	%edx, %edi
 	movzbl	288(%rcx), %edx
-	movq	304(%rax), %rcx
-	cmpq	296(%rax), %rdx
+	movq	320(%rax), %rcx
+	cmpq	312(%rax), %rdx
 	jnb	.L134
 	salq	$4, %rdx
 	addq	%rdx, %rcx
@@ -945,8 +945,8 @@ _ZN3wze6engine6actors5actor17SetCollisionLayerEh:
 	movq	(%rbx), %rax
 	movq	%rbx, 40(%rsp)
 	movzbl	%sil, %edx
-	movq	304(%rax), %rbp
-	cmpq	296(%rax), %rdx
+	movq	320(%rax), %rbp
+	cmpq	312(%rax), %rdx
 	jnb	.L134
 	salq	$4, %rdx
 	addq	%rdx, %rbp
@@ -1183,7 +1183,7 @@ _ZN3wze6engine6actors5actor8SetWidthEt:
 	movq	(%rbx), %rax
 	movzbl	288(%rbx), %edx
 	movq	%rbx, %r8
-	leaq	280(%rax), %rcx
+	leaq	296(%rax), %rcx
 	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE
 	movzwl	256(%rbx), %eax
 	movaps	32(%rsp), %xmm6
@@ -1261,7 +1261,7 @@ _ZN3wze6engine6actors5actor9SetHeightEt:
 	movq	(%rbx), %rax
 	movzbl	288(%rbx), %edx
 	movq	%rbx, %r8
-	leaq	280(%rax), %rcx
+	leaq	296(%rax), %rcx
 	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE
 	movzwl	258(%rbx), %eax
 	addq	$56, %rsp
@@ -1504,7 +1504,7 @@ _ZN3wze6engine6actors5actor8SetAngleEd:
 	movq	(%rsi), %rax
 	movzbl	288(%rsi), %edx
 	movq	%rsi, %r8
-	leaq	280(%rax), %rcx
+	leaq	296(%rax), %rcx
 	call	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE
 	nop
 	movaps	32(%rsp), %xmm6

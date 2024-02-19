@@ -355,7 +355,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	.seh_endprologue
 	movq	%rcx, %r14
 	movq	(%rcx), %rcx
-	movq	264(%rcx), %rdx
+	movq	280(%rcx), %rdx
 	cmpq	$1, %rdx
 	jbe	.L49
 	movl	$1, %ebx
@@ -369,7 +369,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	cmpq	%rdx, %rbx
 	jnb	.L285
 .L174:
-	movq	272(%rcx), %rax
+	movq	288(%rcx), %rax
 	leaq	0(,%rbx,8), %rsi
 	movq	(%rax,%rbx,8), %r8
 	testq	%r8, %r8
@@ -561,11 +561,11 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jne	.L162
 .L272:
 	movq	(%r14), %rcx
-	movq	264(%rcx), %rdx
+	movq	280(%rcx), %rdx
 	.p2align 4,,10
 	.p2align 3
 .L161:
-	movq	272(%rcx), %rax
+	movq	288(%rcx), %rax
 	addq	$1, %rdi
 	cmpq	%rdx, %rbx
 	jnb	.L167
@@ -603,7 +603,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jne	.L169
 .L273:
 	movq	(%r14), %rcx
-	movq	264(%rcx), %rdx
+	movq	280(%rcx), %rdx
 	jmp	.L50
 	.p2align 4,,10
 	.p2align 3
@@ -655,7 +655,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	(%r14), %rcx
 	movq	%rax, (%rdx,%r15,8)
 	movq	%r8, %r15
-	movq	264(%rcx), %rdx
+	movq	280(%rcx), %rdx
 	jmp	.L161
 	.p2align 4,,10
 	.p2align 3
@@ -710,8 +710,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movl	$48, %ecx
 	call	_Znwy
 	movq	(%r14), %rcx
-	movq	264(%rcx), %r8
-	movq	272(%rcx), %rdx
+	movq	280(%rcx), %r8
+	movq	288(%rcx), %rdx
 	cmpq	%r8, %rbx
 	jnb	.L300
 	movq	(%rdx,%rsi), %rdx
@@ -733,7 +733,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	%rdx, %r15
 .L145:
 	addsd	16(%r14), %xmm6
-	movq	272(%rcx), %rax
+	movq	288(%rcx), %rax
 	comisd	%xmm6, %xmm8
 	jbe	.L302
 .L157:
@@ -762,7 +762,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jne	.L303
 .L271:
 	movq	(%r14), %rcx
-	movq	264(%rcx), %r8
+	movq	280(%rcx), %r8
 	jmp	.L145
 	.p2align 4,,10
 	.p2align 3
@@ -834,8 +834,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movl	$48, %ecx
 	call	_Znwy
 	movq	(%r14), %rcx
-	movq	264(%rcx), %r8
-	movq	272(%rcx), %rdx
+	movq	280(%rcx), %r8
+	movq	288(%rcx), %rdx
 	cmpq	%r8, %rbx
 	jnb	.L307
 	movq	(%rdx,%rsi), %rdx
@@ -857,7 +857,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	%rdx, %r15
 .L63:
 	addsd	16(%r14), %xmm6
-	movq	272(%rcx), %rax
+	movq	288(%rcx), %rax
 	comisd	%xmm6, %xmm8
 	jbe	.L309
 .L76:
@@ -887,7 +887,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jne	.L310
 .L268:
 	movq	(%r14), %rcx
-	movq	264(%rcx), %r8
+	movq	280(%rcx), %r8
 	jmp	.L63
 	.p2align 4,,10
 	.p2align 3
@@ -918,8 +918,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	(%rdx), %rax
 	movq	%rax, 88(%rsp)
 	movq	(%r14), %rax
-	movq	272(%rax), %rcx
-	cmpq	264(%rax), %rbx
+	movq	288(%rax), %rcx
+	cmpq	280(%rax), %rbx
 	jnb	.L167
 	movq	(%rcx,%rsi), %rax
 	movq	32(%rax), %rcx
@@ -1024,8 +1024,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	call	_Znwy
 	movq	(%r14), %rcx
 	movq	%rax, %r13
-	movq	264(%rcx), %r8
-	movq	272(%rcx), %rax
+	movq	280(%rcx), %r8
+	movq	288(%rcx), %rax
 	cmpq	%r8, %rbx
 	jnb	.L314
 	movq	(%rax,%rsi), %rax
@@ -1047,7 +1047,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	%rax, %r15
 .L91:
 	addsd	16(%r14), %xmm6
-	movq	272(%rcx), %rax
+	movq	288(%rcx), %rax
 	comisd	%xmm6, %xmm8
 	jbe	.L316
 .L103:
@@ -1076,7 +1076,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jne	.L317
 .L269:
 	movq	(%r14), %rcx
-	movq	264(%rcx), %r8
+	movq	280(%rcx), %r8
 	jmp	.L91
 	.p2align 4,,10
 	.p2align 3
@@ -1133,8 +1133,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	call	_Znwy
 	movq	(%r14), %rcx
 	movq	%rax, %r13
-	movq	264(%rcx), %r8
-	movq	272(%rcx), %rax
+	movq	280(%rcx), %r8
+	movq	288(%rcx), %rax
 	cmpq	%r8, %rbx
 	jnb	.L321
 	movq	(%rax,%rsi), %rax
@@ -1156,7 +1156,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	%rax, %r15
 .L118:
 	addsd	16(%r14), %xmm6
-	movq	272(%rcx), %rax
+	movq	288(%rcx), %rax
 	comisd	%xmm6, %xmm8
 	jbe	.L323
 .L130:
@@ -1185,7 +1185,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	jne	.L324
 .L270:
 	movq	(%r14), %rcx
-	movq	264(%rcx), %r8
+	movq	280(%rcx), %r8
 	jmp	.L118
 .L295:
 	movzwl	10(%r14), %ecx
@@ -1241,8 +1241,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	(%rdx), %rax
 	movq	%rax, 88(%rsp)
 	movq	(%r14), %rax
-	movq	272(%rax), %rcx
-	cmpq	264(%rax), %rbx
+	movq	288(%rax), %rcx
+	cmpq	280(%rax), %rbx
 	jnb	.L167
 	movq	(%rcx,%rsi), %rax
 	movq	128(%rax), %rcx
@@ -1330,8 +1330,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	(%rdx), %rax
 	movq	%rax, 88(%rsp)
 	movq	(%r14), %rax
-	movq	272(%rax), %rcx
-	cmpq	264(%rax), %rbx
+	movq	288(%rax), %rcx
+	cmpq	280(%rax), %rbx
 	jnb	.L167
 	movq	(%rcx,%rsi), %rax
 	movq	64(%rax), %rcx
@@ -1379,8 +1379,8 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	(%rdx), %rax
 	movq	%rax, 96(%rsp)
 	movq	(%r14), %rax
-	movq	272(%rax), %r11
-	cmpq	264(%rax), %rbx
+	movq	288(%rax), %r11
+	cmpq	280(%rax), %rbx
 	jnb	.L167
 	movq	(%r11,%rsi), %rax
 	movq	96(%rax), %r11
@@ -1520,7 +1520,7 @@ _ZN3wze6engine6render14SelectionStageEv:
 	movq	(%r14), %rcx
 	movq	%rax, (%rdx,%r15,8)
 	movq	%r8, %r15
-	movq	264(%rcx), %rdx
+	movq	280(%rcx), %rdx
 	jmp	.L50
 .L325:
 	movzwl	10(%r14), %ecx
@@ -2616,8 +2616,8 @@ _ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE:
 	andl	$2, %edx
 	orl	%edx, %ebx
 	movq	80(%rax), %rdx
-	movq	344(%rcx), %rax
-	cmpq	336(%rcx), %rdx
+	movq	360(%rcx), %rax
+	cmpq	352(%rcx), %rdx
 	jnb	.L491
 	movq	(%rax,%rdx,8), %rcx
 	movl	%r10d, %edx
@@ -2627,9 +2627,9 @@ _ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE:
 	movq	(%rsi), %rdx
 	movq	(%rdi), %rax
 	movzbl	23(%rdx), %ecx
-	movq	344(%rax), %r8
+	movq	360(%rax), %r8
 	movq	80(%rdx), %rdx
-	cmpq	336(%rax), %rdx
+	cmpq	352(%rax), %rdx
 	jnb	.L491
 	movq	(%r8,%rdx,8), %rax
 	movl	%ecx, %edx
@@ -2642,10 +2642,10 @@ _ZN3wze6engine6render16RenderTextureboxEPNS1_5tokenE:
 	movzbl	%bl, %edx
 	leaq	28(%rsi), %r9
 	movsd	24(%rcx), %xmm0
-	movq	344(%rax), %r8
+	movq	360(%rax), %r8
 	xorpd	.LC18(%rip), %xmm0
 	movq	80(%rcx), %rcx
-	cmpq	336(%rax), %rcx
+	cmpq	352(%rax), %rcx
 	jnb	.L494
 	movq	(%r8,%rcx,8), %r10
 	movq	16(%rax), %rcx
@@ -2735,8 +2735,8 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	movq	88(%rax), %rdx
 	movq	112(%rax), %rax
 	movq	(%rax,%rdx,8), %rdx
-	movq	344(%rcx), %rax
-	cmpq	336(%rcx), %rdx
+	movq	360(%rcx), %rax
+	cmpq	352(%rcx), %rdx
 	jnb	.L504
 	movq	(%rax,%rdx,8), %rcx
 	movl	%r10d, %edx
@@ -2749,8 +2749,8 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	movzbl	23(%rax), %r8d
 	movq	112(%rax), %rax
 	movq	(%rax,%rdx,8), %rdx
-	movq	344(%rcx), %rax
-	cmpq	336(%rcx), %rdx
+	movq	360(%rcx), %rax
+	cmpq	352(%rcx), %rdx
 	jnb	.L504
 	movq	(%rax,%rdx,8), %rcx
 	movl	%r8d, %edx
@@ -2766,8 +2766,8 @@ _ZN3wze6engine6render14RenderFlipbookEPNS1_5tokenE:
 	movq	112(%rcx), %rcx
 	xorpd	.LC18(%rip), %xmm0
 	movq	(%rcx,%r8,8), %rcx
-	movq	344(%rax), %r8
-	cmpq	336(%rax), %rcx
+	movq	360(%rax), %r8
+	cmpq	352(%rax), %rcx
 	jnb	.L507
 	movq	(%r8,%rcx,8), %r10
 	movq	16(%rax), %rcx

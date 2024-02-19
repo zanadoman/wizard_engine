@@ -66,8 +66,8 @@ _ZN3wze6engine6camera10SetOriginXEd:
 .L16:
 	.cfi_restore_state
 	movq	(%rdi), %rax
-	movq	272(%rax), %rdx
-	cmpq	264(%rax), %rsi
+	movq	288(%rax), %rdx
+	cmpq	280(%rax), %rsi
 	jnb	.L17
 	movq	(%rdx,%rsi,8), %rax
 	movapd	%xmm0, %xmm1
@@ -136,8 +136,8 @@ _ZN3wze6engine6camera10SetOriginYEd:
 .L31:
 	.cfi_restore_state
 	movq	(%rdi), %rax
-	movq	272(%rax), %rdx
-	cmpq	264(%rax), %rsi
+	movq	288(%rax), %rdx
+	cmpq	280(%rax), %rsi
 	jnb	.L32
 	movq	(%rdx,%rsi,8), %rax
 	movapd	%xmm0, %xmm1
@@ -323,9 +323,9 @@ _ZN3wze6engine6camera4BindEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	movq	(%rdi), %rdx
-	cmpq	264(%rdx), %rsi
+	cmpq	280(%rdx), %rsi
 	jnb	.L68
-	movq	272(%rdx), %rdx
+	movq	288(%rdx), %rdx
 	movq	(%rdx,%rsi,8), %rdx
 	testq	%rdx, %rdx
 	je	.L68
@@ -384,9 +384,9 @@ _ZN3wze6engine6camera5BindXEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	movq	(%rdi), %rdx
-	cmpq	264(%rdx), %rsi
+	cmpq	280(%rdx), %rsi
 	jnb	.L81
-	movq	272(%rdx), %rdx
+	movq	288(%rdx), %rdx
 	movq	(%rdx,%rsi,8), %rdx
 	testq	%rdx, %rdx
 	je	.L81
@@ -443,9 +443,9 @@ _ZN3wze6engine6camera5BindYEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	movq	(%rdi), %rdx
-	cmpq	264(%rdx), %rsi
+	cmpq	280(%rdx), %rsi
 	jnb	.L94
-	movq	272(%rdx), %rdx
+	movq	288(%rdx), %rdx
 	movq	(%rdx,%rsi,8), %rdx
 	testq	%rdx, %rdx
 	je	.L94
@@ -571,8 +571,8 @@ _ZN3wze6engine6camera6UpdateEv:
 .L123:
 	.cfi_restore_state
 	movq	(%rdi), %rax
-	movq	272(%rax), %rdx
-	cmpq	264(%rax), %rsi
+	movq	288(%rax), %rdx
+	cmpq	280(%rax), %rsi
 	jnb	.L122
 	movq	(%rdx,%rsi,8), %rax
 	movq	72(%rdi), %rsi
@@ -582,8 +582,8 @@ _ZN3wze6engine6camera6UpdateEv:
 	je	.L113
 .L124:
 	movq	(%rdi), %rax
-	movq	272(%rax), %rdx
-	cmpq	264(%rax), %rsi
+	movq	288(%rax), %rdx
+	cmpq	280(%rax), %rsi
 	jnb	.L122
 	movq	(%rdx,%rsi,8), %rax
 	movsd	232(%rax), %xmm0

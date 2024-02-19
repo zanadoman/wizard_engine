@@ -36,7 +36,7 @@ _ZN5statsC2EPN3wze6engineEP4game:
 	movzwl	%ax, %eax
 	movl	$0, 48(%rsp)
 	movsd	.LC0(%rip), %xmm3
-	leaq	256(%rsi), %rcx
+	leaq	272(%rsi), %rcx
 	subl	$20, %eax
 	movl	$0, 40(%rsp)
 	movq	$0x000000000, 56(%rsp)
@@ -168,7 +168,7 @@ _ZN5statsD2Ev:
 	.seh_endprologue
 	movq	(%rcx), %rax
 	movq	16(%rcx), %rcx
-	leaq	256(%rax), %rbx
+	leaq	272(%rax), %rbx
 	call	_ZN3wze6engine6actors5actor5GetIDEv
 	movq	%rbx, %rcx
 	movq	%rax, %rdx
@@ -245,7 +245,7 @@ _ZN5stats6UpdateEv:
 	movq	(%rbx), %rsi
 	movq	24(%rbx), %rax
 	movq	%r15, 104(%rsp)
-	leaq	400(%rsi), %rcx
+	leaq	416(%rsi), %rcx
 	movq	%rax, 40(%rsp)
 .LEHB1:
 	call	_ZN3wze6engine6timing11GetGameTimeEv
@@ -294,7 +294,7 @@ _ZN5stats6UpdateEv:
 	movq	(%rbx), %rdx
 	movq	32(%rbx), %rax
 	movq	%r15, 104(%rsp)
-	leaq	400(%rdx), %rcx
+	leaq	416(%rdx), %rcx
 	movq	%rax, 40(%rsp)
 	call	_ZN3wze6engine6timing13GetRenderTimeEv
 	movl	%eax, %edx
@@ -338,7 +338,7 @@ _ZN5stats6UpdateEv:
 	movq	(%rbx), %rdx
 	movq	40(%rbx), %rax
 	movq	%r15, 104(%rsp)
-	leaq	400(%rdx), %rcx
+	leaq	416(%rdx), %rcx
 	movq	%rax, 40(%rsp)
 	call	_ZN3wze6engine6timing12GetFrameTimeEv
 	movl	%eax, %edx

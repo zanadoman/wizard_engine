@@ -26,7 +26,7 @@ _ZN6bulletC2EPN3wze6engineEP4gamedddy5actord:
 	.cfi_offset 3, -40
 	movq	%rdi, %rbx
 	movq	%rsi, %rdi
-	addq	$256, %rdi
+	addq	$272, %rdi
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 48
 	movq	%rsi, (%rbx)
@@ -90,7 +90,7 @@ _ZN6bulletD2Ev:
 	.cfi_offset 3, -16
 	movq	(%rdi), %rax
 	movq	16(%rdi), %rdi
-	leaq	256(%rax), %rbx
+	leaq	272(%rax), %rbx
 	call	_ZN3wze6engine6actors5actor5GetIDEv@PLT
 	movq	%rbx, %rdi
 	movq	%rax, %rsi
@@ -154,7 +154,7 @@ _ZN6bullet6UpdateEv:
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	0(%rbp), %rax
 	movq	%xmm0, %r12
-	leaq	400(%rax), %rdi
+	leaq	416(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
 	pxor	%xmm3, %xmm3
@@ -172,7 +172,7 @@ _ZN6bullet6UpdateEv:
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	0(%rbp), %rax
 	movq	%xmm0, %r12
-	leaq	400(%rax), %rdi
+	leaq	416(%rax), %rdi
 	call	_ZN3wze6engine6timing12GetDeltaTimeEv@PLT
 	movl	%eax, %eax
 	pxor	%xmm4, %xmm4
@@ -214,7 +214,7 @@ _ZN6bullet6UpdateEv:
 .L55:
 	movq	0(%rbp), %rax
 	movq	%rbx, %rsi
-	leaq	256(%rax), %rdi
+	leaq	272(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor7GetTypeEv@PLT
@@ -293,7 +293,7 @@ _ZN6bullet6UpdateEv:
 .L58:
 	movq	0(%rbp), %rax
 	movq	%rbx, %rsi
-	leaq	256(%rax), %rdi
+	leaq	272(%rax), %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor7GetTypeEv@PLT
@@ -329,7 +329,7 @@ _ZN6bullet6UpdateEv:
 .L23:
 	movq	0(%rbp), %rdi
 	movq	%rbx, %rsi
-	addq	$256, %rdi
+	addq	$272, %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor7GetDataEv@PLT
@@ -341,7 +341,7 @@ _ZN6bullet6UpdateEv:
 .L57:
 	movq	0(%rbp), %rdi
 	movq	%rbx, %rsi
-	addq	$256, %rdi
+	addq	$272, %rdi
 	call	_ZN3wze6engine6actorsixEy@PLT
 	movq	%rax, %rdi
 	call	_ZN3wze6engine6actors5actor7GetDataEv@PLT

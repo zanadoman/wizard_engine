@@ -306,9 +306,9 @@ _ZN3wze6engine6actors5actor12textureboxes3NewEy:
 	testq	%rdx, %rdx
 	je	.L43
 	movq	(%rcx), %rax
-	cmpq	336(%rax), %rdx
+	cmpq	352(%rax), %rdx
 	jnb	.L42
-	movq	344(%rax), %rax
+	movq	360(%rax), %rax
 	cmpq	$0, (%rax,%rdx,8)
 	je	.L42
 .L43:
@@ -1189,9 +1189,9 @@ _ZN3wze6engine6actors5actor12textureboxes10texturebox12SetTextureIDEy:
 	testq	%rdx, %rdx
 	je	.L207
 	movq	(%rcx), %rdx
-	cmpq	336(%rdx), %rax
+	cmpq	352(%rdx), %rax
 	jnb	.L208
-	movq	344(%rdx), %rdx
+	movq	360(%rdx), %rdx
 	cmpq	$0, (%rdx,%rax,8)
 	je	.L208
 .L207:

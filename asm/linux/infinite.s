@@ -54,7 +54,7 @@ _ZN8infiniteC2EPN3wze6engineEP4game:
 	movl	$19200, %ecx
 	movapd	%xmm1, %xmm0
 	xorl	%esi, %esi
-	leaq	256(%rax), %rdi
+	leaq	272(%rax), %rdi
 .LEHB2:
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	movq	8(%rbx), %rdx

@@ -97,8 +97,8 @@ _ZN3wze6engine6camera10SetOriginXEd:
 	.p2align 3
 .L16:
 	movq	(%rcx), %rax
-	movq	272(%rax), %r8
-	cmpq	264(%rax), %rdx
+	movq	288(%rax), %r8
+	cmpq	280(%rax), %rdx
 	jnb	.L17
 	movq	(%r8,%rdx,8), %rax
 	movapd	%xmm1, %xmm0
@@ -161,8 +161,8 @@ _ZN3wze6engine6camera10SetOriginYEd:
 	.p2align 3
 .L30:
 	movq	(%rcx), %rax
-	movq	272(%rax), %r8
-	cmpq	264(%rax), %rdx
+	movq	288(%rax), %r8
+	cmpq	280(%rax), %rdx
 	jnb	.L31
 	movq	(%r8,%rdx,8), %rax
 	movapd	%xmm1, %xmm0
@@ -344,9 +344,9 @@ _ZN3wze6engine6camera4BindEy:
 	testq	%rdx, %rdx
 	je	.L63
 	movq	(%rcx), %rdx
-	cmpq	264(%rdx), %rax
+	cmpq	280(%rdx), %rax
 	jnb	.L60
-	movq	272(%rdx), %rdx
+	movq	288(%rdx), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L60
@@ -403,9 +403,9 @@ _ZN3wze6engine6camera5BindXEy:
 	testq	%rdx, %rdx
 	je	.L72
 	movq	(%rcx), %rdx
-	cmpq	264(%rdx), %rax
+	cmpq	280(%rdx), %rax
 	jnb	.L69
-	movq	272(%rdx), %rdx
+	movq	288(%rdx), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L69
@@ -456,9 +456,9 @@ _ZN3wze6engine6camera5BindYEy:
 	testq	%rdx, %rdx
 	je	.L80
 	movq	(%rcx), %rdx
-	cmpq	264(%rdx), %rax
+	cmpq	280(%rdx), %rax
 	jnb	.L77
-	movq	272(%rdx), %rdx
+	movq	288(%rdx), %rdx
 	movq	(%rdx,%rax,8), %rdx
 	testq	%rdx, %rdx
 	je	.L77
@@ -570,8 +570,8 @@ _ZN3wze6engine6camera6UpdateEv:
 	.p2align 3
 .L100:
 	movq	(%rcx), %rax
-	movq	272(%rax), %r8
-	cmpq	264(%rax), %rdx
+	movq	288(%rax), %r8
+	cmpq	280(%rax), %rdx
 	jnb	.L99
 	movq	(%r8,%rdx,8), %rax
 	movq	72(%rcx), %rdx
@@ -581,8 +581,8 @@ _ZN3wze6engine6camera6UpdateEv:
 	je	.L91
 .L101:
 	movq	(%rcx), %rax
-	movq	272(%rax), %r8
-	cmpq	264(%rax), %rdx
+	movq	288(%rax), %r8
+	cmpq	280(%rax), %rdx
 	jnb	.L99
 	movq	(%r8,%rdx,8), %rax
 	movsd	232(%rax), %xmm0

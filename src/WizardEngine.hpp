@@ -167,24 +167,15 @@ namespace wze
                 friend class engine;
                 engine* Engine;
 
-                public:
-
-                    class channel
-                    {
-                        friend class audio;
-
-                        public:
-                            neo::uint64 SoundID;
-                            double Volume;
-                            double Left;
-                            double Right;
-                            neo::uint16 Loops;
-                            bool Paused;
-                            neo::uint16 GetChannel();
-
-                        private:
-                            neo::uint16 Channel;
-                    };
+                struct channel
+                {
+                    neo::uint64 SoundID;
+                    double Volume;
+                    double Left;
+                    double Right;
+                    neo::uint16 Loops;
+                    bool Paused;
+                };
 
                 public:
                     double GetGlobalVolume();

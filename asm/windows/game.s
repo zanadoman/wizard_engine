@@ -231,7 +231,7 @@ _ZN4game12SwitchScenesE5scene:
 	leaq	32(%rsp), %rdx
 	movq	$0, 32(%rsp)
 	movq	$0, 40(%rsp)
-	leaq	256(%rax), %rcx
+	leaq	272(%rax), %rcx
 .LEHB4:
 	call	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE
 	movq	(%rbx), %rax
