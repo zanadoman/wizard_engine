@@ -2,27 +2,3 @@ Roadmap:
     Networking
     Particle System
     Bloom
-
-Test/supervising sequence:
-    Easy:
-        Engine OK OK
-        Window OK OK
-        Timing OK OK
-        Keys OK OK
-        Mouse OK OK
-        Audio OK OK
-    Slightly nested:
-        Render OK OK
-        Camera OK OK
-        Vector OK OK
-        Assets OK OK
-        Actors OK OK
-    Deeply nested:
-        Actor OK OK
-        Colors OK OK
-        Textures OK OK
-        Flipbooks OK OK
-        Texts OK OK
-        Overlaps OK OK
-        Collisions OK OK
-    WizardEngine.hpp OK OK
