@@ -28,6 +28,11 @@ namespace wze
             exit(1);
         }
 
+        for (uint32 i = 0; i < this->ChannelCount; i++)
+        {
+            Mix_Volume(i, GlobalVolume * 128);
+        }
+
         return this->GlobalVolume = GlobalVolume;
     }
 
@@ -239,18 +244,76 @@ namespace wze
         return 0;
     }
 
+    uint16 engine::audio::GetChannelCount()
+    {
+        return this->ChannelCount;
+    }
+
+    uint16 engine::audio::SetChannelCount(uint16 ChannelCount)
+    {
+        if (Mix_AllocateChannels(ChannelCount) != ChannelCount)
+        {
+            printf("wze::engine.audio.SetChannelCount(): Mix_AllocateChannels() failed\nParams: ChannelCount: %d\n", ChannelCount);
+            exit(1);
+        }
+
+        return this->ChannelCount = ChannelCount;
+    }
+
+    double engine::audio::GetVolume(uint16 Channel)
+    {
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.GetVolume(): Channel does not exist\nParams: Channel: %d\n", Channel);
+            exit(1);
+        }
+
+        return Mix_Volume(Channel, -1) / 128.0;
+    }
+
+    double engine::audio::SetVolume(uint16 Channel, double Volume)
+    {
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.SetVolume(): Channel does not exist\nParams: Channel: %d, Volume: %lf\n", Channel, Volume);
+            exit(1);
+        }
+
+        Mix_Volume(Channel, Volume * 128);
+
+        return Volume;
+    }
+
     bool engine::audio::IsPlaying(uint16 Channel)
     {
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.IsPlaying(): Channel does not exist\nParams: Channel: %d\n", Channel);
+            exit(1);
+        }
+
         return Mix_Playing(Channel);
     }
 
     bool engine::audio::IsPaused(uint16 Channel)
     {
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.IsPaused(): Channel does not exist\nParams: Channel: %d\n", Channel);
+            exit(1);
+        }
+
         return Mix_Paused(Channel) == 1;
     }
 
     uint8 engine::audio::Pause(uint16 Channel)
     {   
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.Pause(): Channel does not exist\nParams: Channel: %d\n", Channel);
+            exit(1);
+        }
+
         Mix_Pause(Channel);
 
         return 0;
@@ -258,6 +321,12 @@ namespace wze
 
     uint8 engine::audio::Resume(uint16 Channel)
     {
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.Resume(): Channel does not exist\nParams: Channel: %d\n", Channel);
+            exit(1);
+        }
+
         Mix_Resume(Channel);
 
         return 0;
@@ -279,6 +348,12 @@ namespace wze
 
     uint8 engine::audio::Stop(uint16 Channel)
     {
+        if (this->ChannelCount <= Channel)
+        {
+            printf("wze::engine.audio.Stop(): Channel does not exist\nParams: Channel: %d\n", Channel);
+            exit(1);
+        }
+
         if (Mix_HaltChannel(Channel) != 0)
         {
             printf("wze::engine.audio.Stop(): Mix_HaltChannel() failed\nParams: Channel: %d\n", Channel);
@@ -286,21 +361,5 @@ namespace wze
         }
 
         return 0;
-    }
-
-    uint16 engine::audio::GetChannelCount()
-    {
-        return this->ChannelCount;
-    }
-
-    uint16 engine::audio::SetChannelCount(uint16 ChannelCount)
-    {
-        if (Mix_AllocateChannels(ChannelCount) != ChannelCount)
-        {
-            printf("wze::engine.audio.SetChannelCount(): Mix_AllocateChannels() failed\nParams: ChannelCount: %d\n", ChannelCount);
-            exit(1);
-        }
-
-        return this->ChannelCount = ChannelCount;
     }
 }

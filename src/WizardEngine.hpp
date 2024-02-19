@@ -176,13 +176,15 @@ namespace wze
                     neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, double Left, double Right, neo::uint16 Loops);
                     bool IsPlaying(neo::uint16 Channel);
                     bool IsPaused(neo::uint16 Channel);
+                    neo::uint16 GetChannelCount();
+                    neo::uint16 SetChannelCount(neo::uint16 ChannelCount);
+                    double GetVolume(neo::uint16 Channel);
+                    double SetVolume(neo::uint16 Channel, double Volume);
                     neo::uint8 Pause(neo::uint16 Channel);
                     neo::uint8 Resume(neo::uint16 Channel);
                     neo::uint8 PauseAll();
                     neo::uint8 ResumeAll();
                     neo::uint8 Stop(neo::uint16 Channel);
-                    neo::uint16 GetChannelCount();
-                    neo::uint16 SetChannelCount(neo::uint16 ChannelCount);
 
                 private:
                     double GlobalVolume;
