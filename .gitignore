@@ -2,3 +2,4 @@
 *.s
 !asm/linux/*.s
 !asm/windows/*.s
+vgcore*
