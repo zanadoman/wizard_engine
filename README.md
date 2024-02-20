@@ -4,6 +4,9 @@
 Relies on NeoTypes++ library. (https://github.com/zanadoman/NeoTypesPP) \
 Demo assets made by ansimuz. (https://ansimuz.itch.io/sunny-land-pixel-game-art)
 
+## Project Sample
+https://github.com/zanadoman/Wizard-Engine-Sample
+
 # Wiki
 
 ## How to use the Keys subclass?
