@@ -180,10 +180,10 @@ namespace wze
                 public:
                     double GetGlobalVolume();
                     double SetGlobalVolume(double GlobalVolume);
-                    neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume);
                     neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, neo::uint16 Loops);
-                    neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, double Left, double Right);
+                    neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, neo::uint16 Loop, neo::uint16 FadeInMilliseconds);
                     neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, double Left, double Right, neo::uint16 Loops);
+                    neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, double Left, double Right, neo::uint16 Loops, neo::uint16 FadeInMilliseconds);
                     neo::uint16 GetChannelCount();
                     neo::uint16 SetChannelCount(neo::uint16 ChannelCount);
                     double SetChannelVolume(neo::uint16 Channel, double Volume);
@@ -191,6 +191,7 @@ namespace wze
                     neo::uint8 PauseChannel(neo::uint16 Channel);
                     neo::uint8 ResumeChannel(neo::uint16 Channel);
                     neo::uint8 StopChannel(neo::uint16 Channel);
+                    neo::uint8 StopChannel(neo::uint16 Cannel, neo::uint16 FadeOutMilliseconds);
                     neo::uint8 PauseAll();
                     neo::uint8 ResumeAll();
                     channel operator [] (neo::uint16 Channel);

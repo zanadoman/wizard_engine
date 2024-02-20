@@ -45,54 +45,6 @@ namespace wze
         return this->GlobalVolume = GlobalVolume;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume)
-    {
-        if (Volume != Volume)
-        {
-            printf("wze::engine.audio.Play(): Volume must not be NaN\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
-            exit(1);
-        }
-        if (Volume < 0 || 1 < Volume)
-        {
-            printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
-            exit(1);
-        }
-        if (this->Channels.Length() <= Channel)
-        {
-            printf("wze::engine.audio.Play(): Channel does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
-            exit(1);
-        }
-        if (SoundID == 0)
-        {
-            return 0;
-        }
-        if (this->Engine->Assets.Sounds.Length() <= SoundID || this->Engine->Assets.Sounds[SoundID] == NULL)
-        {
-            printf("wze::engine.audio.Play(): Sound does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
-            exit(1);
-        }
-
-        Mix_Volume(Channel, this->GlobalVolume * Volume * 128);
-        if (Mix_SetPanning(Channel, 255, 255) == 0)
-        {
-            printf("wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
-            exit(1);
-        }
-        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], 0) == -1)
-        {
-            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf\n", SoundID, Channel, Volume);
-            exit(1);
-        }
-
-        this->Channels[Channel].SoundID = SoundID;
-        this->Channels[Channel].Volume = Volume;
-        this->Channels[Channel].Left = 1;
-        this->Channels[Channel].Right = 1;
-        this->Channels[Channel].Loops = 0;
-
-        return 0;
-    }
-
     uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, uint16 Loops)
     {
         if (Volume != Volume)
@@ -141,41 +93,21 @@ namespace wze
         return 0;
     }
 
-    uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right)
+    uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, uint16 Loops, uint16 FadeInMilliseconds)
     {
         if (Volume != Volume)
         {
-            printf("wze::engine.audio.Play(): Volume must not be NaN\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            printf("wze::engine.audio.Play(): Volume must not be NaN\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Loops, FadeInMilliseconds);
             exit(1);
         }
         if (Volume < 0 || 1 < Volume)
         {
-            printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
-            exit(1);
-        }
-        if (Left != Left)
-        {
-            printf("wze::engine.audio.Play(): Left must not be NaN\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
-            exit(1);
-        }
-        if (Left < 0 || 1 < Left)
-        {
-            printf("wze::engine.audio.Play(): Left must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
-            exit(1);
-        }
-        if (Right != Right)
-        {
-            printf("wze::engine.audio.Play(): Right must not be NaN\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
-            exit(1);
-        }
-        if (Right < 0 || 1 < Right)
-        {
-            printf("wze::engine.audio.Play(): Right must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Loops, FadeInMilliseconds);
             exit(1);
         }
         if (this->Channels.Length() <= Channel)
         {
-            printf("wze::engine.audio.Play(): Channel does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            printf("wze::engine.audio.Play(): Channel does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Loops, FadeInMilliseconds);
             exit(1);
         }
         if (SoundID == 0)
@@ -184,27 +116,27 @@ namespace wze
         }
         if (this->Engine->Assets.Sounds.Length() <= SoundID || this->Engine->Assets.Sounds[SoundID] == NULL)
         {
-            printf("wze::engine.audio.Play(): Sound does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            printf("wze::engine.audio.Play(): Sound does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Loops, FadeInMilliseconds);
             exit(1);
         }
 
         Mix_Volume(Channel, this->GlobalVolume * Volume * 128);
-        if (Mix_SetPanning(Channel, Left * 255, Right * 255) == 0)
+        if (Mix_SetPanning(Channel, 255, 255) == 0)
         {
-            printf("wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            printf("wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Loops, FadeInMilliseconds);
             exit(1);
         }
-        if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], 0) == -1)
+        if (Mix_FadeInChannel(Channel, this->Engine->Assets.Sounds[SoundID], Loops, FadeInMilliseconds) == -1)
         {
-            printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf\n", SoundID, Channel, Volume, Left, Right);
+            printf("wze::engine.audio.Play(): Mix_FadeInChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Loops, FadeInMilliseconds);
             exit(1);
         }
 
         this->Channels[Channel].SoundID = SoundID;
         this->Channels[Channel].Volume = Volume;
-        this->Channels[Channel].Left = Left;
-        this->Channels[Channel].Right = Right;
-        this->Channels[Channel].Loops = 0;
+        this->Channels[Channel].Left = 1;
+        this->Channels[Channel].Right = 1;
+        this->Channels[Channel].Loops = Loops;
 
         return 0;
     }
@@ -265,6 +197,74 @@ namespace wze
         if (Mix_PlayChannel(Channel, this->Engine->Assets.Sounds[SoundID], Loops) == -1)
         {
             printf("wze::engine.audio.Play(): Mix_PlayChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            exit(1);
+        }
+
+        this->Channels[Channel].SoundID = SoundID;
+        this->Channels[Channel].Volume = Volume;
+        this->Channels[Channel].Left = Left;
+        this->Channels[Channel].Right = Right;
+        this->Channels[Channel].Loops = Loops;
+
+        return 0;
+    }
+
+    uint8 engine::audio::Play(uint64 SoundID, uint16 Channel, double Volume, double Left, double Right, uint16 Loops, uint16 FadeInMilliseconds)
+    {
+        if (Volume != Volume)
+        {
+            printf("wze::engine.audio.Play(): Volume must not be NaN\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Left, Right, Loops, FadeInMilliseconds);
+            exit(1);
+        }
+        if (Volume < 0 || 1 < Volume)
+        {
+            printf("wze::engine.audio.Play(): Volume must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Left, Right, Loops, FadeInMilliseconds);
+            exit(1);
+        }
+        if (Left != Left)
+        {
+            printf("wze::engine.audio.Play(): Left must not be NaN\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Left, Right, Loops, FadeInMilliseconds);
+            exit(1);
+        }
+        if (Left < 0 || 1 < Left)
+        {
+            printf("wze::engine.audio.Play(): Left must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Left, Right, Loops, FadeInMilliseconds);
+            exit(1);
+        }
+        if (Right != Right)
+        {
+            printf("wze::engine.audio.Play(): Right must not be NaN\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Left, Right, Loops, FadeInMilliseconds);
+            exit(1);
+        }
+        if (Right < 0 || 1 < Right)
+        {
+            printf("wze::engine.audio.Play(): Right must be in range [0, 1]\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Left, Right, Loops, FadeInMilliseconds);
+            exit(1);
+        }
+        if (this->Channels.Length() <= Channel)
+        {
+            printf("wze::engine.audio.Play(): Channel does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\n", SoundID, Channel, Volume, Left, Right, Loops, FadeInMilliseconds);
+            exit(1);
+        }
+        if (SoundID == 0)
+        {
+            return 0;
+        }
+        if (this->Engine->Assets.Sounds.Length() <= SoundID || this->Engine->Assets.Sounds[SoundID] == NULL)
+        {
+            printf("wze::engine.audio.Play(): Sound does not exist\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            exit(1);
+        }
+
+        Mix_Volume(Channel, this->GlobalVolume * Volume * 128);
+        if (Mix_SetPanning(Channel, Left * 255, Right * 255) == 0)
+        {
+            printf("wze::engine.audio.Play(): Mix_SetPanning() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
+            exit(1);
+        }
+        if (Mix_FadeInChannel(Channel, this->Engine->Assets.Sounds[SoundID], Loops, FadeInMilliseconds) == -1)
+        {
+            printf("wze::engine.audio.Play(): Mix_FadeInChannel() failed\nParams: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\n", SoundID, Channel, Volume, Left, Right, Loops);
             exit(1);
         }
 
@@ -391,6 +391,25 @@ namespace wze
             printf("wze::engine.audio.StopChannel(): Mix_HaltChannel() failed\nParams: Channel: %d\n", Channel);
             exit(1);
         }
+
+        this->Channels[Channel].SoundID = 0;
+        this->Channels[Channel].Volume = 0;
+        this->Channels[Channel].Left = 0;
+        this->Channels[Channel].Right = 0;
+        this->Channels[Channel].Loops = 0;
+
+        return 0;
+    }
+
+    uint8 engine::audio::StopChannel(uint16 Channel, uint16 FadeOutMilliseconds)
+    {
+        if (this->Channels.Length() <= Channel)
+        {
+            printf("wze::engine.audio.StopChannel(): Channel does not exist\nParams: Channel: %d, FadeOutMilliseconds: %d\n", Channel, FadeOutMilliseconds);
+            exit(1);
+        }
+
+        Mix_FadeOutChannel(Channel, FadeOutMilliseconds);
 
         this->Channels[Channel].SoundID = 0;
         this->Channels[Channel].Volume = 0;
