@@ -195,6 +195,7 @@ _ZN3wze6engine6camera10GetOffsetXEv:
 .LFB8438:
 	.seh_endprologue
 	movsd	32(%rcx), %xmm0
+	addsd	24(%rcx), %xmm0
 	ret
 	.seh_endproc
 	.section .rdata,"dr"
@@ -237,6 +238,7 @@ _ZN3wze6engine6camera10GetOffsetYEv:
 .LFB8440:
 	.seh_endprologue
 	movsd	48(%rcx), %xmm0
+	addsd	40(%rcx), %xmm0
 	ret
 	.seh_endproc
 	.section .rdata,"dr"

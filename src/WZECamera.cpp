@@ -57,12 +57,12 @@ namespace wze
             this->OffsetY = OriginY - this->Engine->Actors.Actors[this->YActor]->Y - this->BaseOffsetY;
         }
 
-        return this->OriginY =OriginY;
+        return this->OriginY = OriginY;
     }
 
     double engine::camera::GetOffsetX()
     {
-        return this->OffsetX;
+        return this->OffsetX + this->BaseOffsetX;
     }
 
     double engine::camera::SetOffsetX(double OffsetX)
@@ -80,7 +80,7 @@ namespace wze
 
     double engine::camera::GetOffsetY()
     {
-        return this->OffsetY;
+        return this->OffsetY + this->BaseOffsetY;
     }
 
     double engine::camera::SetOffsetY(double OffsetY)

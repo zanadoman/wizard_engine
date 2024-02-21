@@ -173,6 +173,7 @@ _ZN3wze6engine6camera10GetOffsetXEv:
 .LFB8163:
 	.cfi_startproc
 	movsd	32(%rdi), %xmm0
+	addsd	24(%rdi), %xmm0
 	ret
 	.cfi_endproc
 .LFE8163:
@@ -214,6 +215,7 @@ _ZN3wze6engine6camera10GetOffsetYEv:
 .LFB8165:
 	.cfi_startproc
 	movsd	48(%rdi), %xmm0
+	addsd	40(%rdi), %xmm0
 	ret
 	.cfi_endproc
 .LFE8165:
