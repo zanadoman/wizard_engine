@@ -28,7 +28,7 @@ sint32 main()
     Engine = new engine(NULL, NULL, 3840, 2160, 1000 /  1000);
 
     Texture = Engine->Assets.LoadTexture("assets/test.png");
-    Font = Engine->Assets.LoadFont("assets/Hack-Regular.ttf", 72);
+    Font = Engine->Assets.LoadFont("assets/Hack-Regular.ttf", 48);
 
     Actor1 = Engine->Actors.New(NULL, 0, 0, 0, Engine->Window.GetHeight() >> 1, Engine->Window.GetHeight() >> 1, 3.0 / 3.0);
     Actor1Texturebox = Actor1->Textureboxes.New(Texture);

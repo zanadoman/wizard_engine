@@ -74,7 +74,7 @@ main:
 	movq	%r12, %rdi
 .LEHB3:
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
-	movl	$72, %edx
+	movl	$48, %edx
 	leaq	.LC7(%rip), %rsi
 	movq	%r12, %rdi
 	movq	%rax, %rbx
