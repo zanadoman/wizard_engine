@@ -27,6 +27,11 @@ namespace wze
             printf("wze::engine.mouse.SetSensitivity(): Sensitivity must not be NaN\nParams: Sensitivity: %lf\n", Sensitivity);
             exit(1);
         }
+        if (Sensitivity <= 0)
+        {
+            printf("wze::engine.mouse.SetSensitivity(): Sensitivity must not be less than or equal to 0\nParams: Sensitivity: %lf\n", Sensitivity);
+            exit(1);
+        }
 
         return this->Sensitivity = Sensitivity;
     }
