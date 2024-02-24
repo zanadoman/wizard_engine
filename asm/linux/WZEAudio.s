@@ -290,9 +290,10 @@ _ZN3wze6engine5audio4PlayEytdt:
 	jnb	.L42
 	movq	.LC1(%rip), %rcx
 	movw	%r14w, 32(%rax)
-	movsd	%xmm0, 8(%rax)
+	movb	$0, 34(%rax)
 	movq	%rcx, 16(%rax)
 	movq	%rcx, 24(%rax)
+	movsd	%xmm0, 8(%rax)
 .L26:
 	addq	$24, %rsp
 	.cfi_remember_state
@@ -488,9 +489,10 @@ _ZN3wze6engine5audio4PlayEytdtt:
 	jnb	.L71
 	movq	.LC1(%rip), %rcx
 	movw	%r14w, 32(%rax)
-	movsd	%xmm0, 8(%rax)
+	movb	$0, 34(%rax)
 	movq	%rcx, 16(%rax)
 	movq	%rcx, 24(%rax)
+	movsd	%xmm0, 8(%rax)
 .L55:
 	addq	$24, %rsp
 	.cfi_remember_state
@@ -730,6 +732,7 @@ _ZN3wze6engine5audio4PlayEytdddt:
 	jnb	.L116
 	movw	%r14w, 32(%rax)
 	unpcklpd	%xmm1, %xmm0
+	movb	$0, 34(%rax)
 	movups	%xmm0, 8(%rax)
 	movsd	%xmm2, 24(%rax)
 .L94:
@@ -996,6 +999,7 @@ _ZN3wze6engine5audio4PlayEytdddtt:
 	jnb	.L163
 	movw	%r14w, 32(%rax)
 	unpcklpd	%xmm1, %xmm0
+	movb	$0, 34(%rax)
 	movups	%xmm0, 8(%rax)
 	movsd	%xmm2, 24(%rax)
 .L141:
@@ -1666,6 +1670,7 @@ _ZN3wze6engine5audio11StopChannelEt:
 	xorl	%edx, %edx
 	movq	$0x000000000, 24(%rax)
 	movw	%dx, 32(%rax)
+	movb	$0, 34(%rax)
 	movups	%xmm0, 8(%rax)
 	xorl	%eax, %eax
 	popq	%rbx
@@ -1741,6 +1746,7 @@ _ZN3wze6engine5audio11StopChannelEtt:
 	xorl	%edx, %edx
 	movq	$0x000000000, 24(%rax)
 	movw	%dx, 32(%rax)
+	movb	$0, 34(%rax)
 	movups	%xmm0, 8(%rax)
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -1953,6 +1959,7 @@ _ZN3wze6engine5audioixEt:
 	xorl	%edx, %edx
 	movq	$0x000000000, 24(%rax)
 	movw	%dx, 32(%rax)
+	movb	$0, 34(%rax)
 	movups	%xmm0, 8(%rax)
 	jmp	.L258
 .L262:

@@ -89,6 +89,7 @@ namespace wze
         this->Channels[Channel].Left = 1;
         this->Channels[Channel].Right = 1;
         this->Channels[Channel].Loops = Loops;
+        this->Channels[Channel].Paused = false;
 
         return 0;
     }
@@ -137,6 +138,7 @@ namespace wze
         this->Channels[Channel].Left = 1;
         this->Channels[Channel].Right = 1;
         this->Channels[Channel].Loops = Loops;
+        this->Channels[Channel].Paused = false;
 
         return 0;
     }
@@ -205,6 +207,7 @@ namespace wze
         this->Channels[Channel].Left = Left;
         this->Channels[Channel].Right = Right;
         this->Channels[Channel].Loops = Loops;
+        this->Channels[Channel].Paused = false;
 
         return 0;
     }
@@ -273,6 +276,7 @@ namespace wze
         this->Channels[Channel].Left = Left;
         this->Channels[Channel].Right = Right;
         this->Channels[Channel].Loops = Loops;
+        this->Channels[Channel].Paused = false;
 
         return 0;
     }
@@ -397,6 +401,7 @@ namespace wze
         this->Channels[Channel].Left = 0;
         this->Channels[Channel].Right = 0;
         this->Channels[Channel].Loops = 0;
+        this->Channels[Channel].Paused = false;
 
         return 0;
     }
@@ -416,6 +421,7 @@ namespace wze
         this->Channels[Channel].Left = 0;
         this->Channels[Channel].Right = 0;
         this->Channels[Channel].Loops = 0;
+        this->Channels[Channel].Paused = false;
 
         return 0;
     }
@@ -461,6 +467,7 @@ namespace wze
             this->Channels[Channel].Left = 0;
             this->Channels[Channel].Right = 0;
             this->Channels[Channel].Loops = 0;
+            this->Channels[Channel].Paused = false;
         }
 
         return this->Channels[Channel];
