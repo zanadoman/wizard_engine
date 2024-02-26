@@ -8,9 +8,13 @@ namespace wze
     engine::audio::audio(engine* Engine) : Engine(Engine), Channels(8)
     {
         this->GlobalVolume = 1;
-        for (uint8 i = 0; i < this->Channels.Length(); i++)
+        for (uint16 i = 0; i < this->Channels.Length(); i++)
         {
-            this->Channels[i] = new channel(this->Engine, i);
+            if ((this->Channels[i] = new channel(this->Engine, i)) == NULL)
+            {
+                printf("wze::engine.audio.audio(): Memory allocation failed\n");
+                exit(1);
+            }
         }
     }
 
@@ -40,7 +44,7 @@ namespace wze
             exit(1);
         }
 
-        Mix_MasterVolume(this->GlobalVolume * 128);
+        Mix_MasterVolume(this->GlobalVolume * MIX_MAX_VOLUME);
 
         return this->GlobalVolume = GlobalVolume;
     }
@@ -73,13 +77,17 @@ namespace wze
         {
             this->Channels.Insert(this->Channels.Length(), ChannelCount - (cache = this->Channels.Length()));
 
-            for (uint16 i = cache; i < ChannelCount; i++)
+            for (uint16 i = cache; i < this->Channels.Length(); i++)
             {
-                this->Channels[i] = new channel(this->Engine, i);
+                if ((this->Channels[i] = new channel(this->Engine, i)) == NULL)
+                {
+                    printf("wze::engine.audio.SetChannelCount(): Memory allocation failed\nParams: ChannelCount: %d\n", ChannelCount);
+                    exit(1);
+                }
             }
         }
 
-        return ChannelCount;
+        return this->Channels.Length();
     }
 
     uint8 engine::audio::PauseAll()
@@ -96,6 +104,17 @@ namespace wze
         return 0;
     }
 
+    engine::audio::channel& engine::audio::operator [] (uint16 Channel)
+    {
+        if (this->Channels.Length() <= Channel)
+        {
+            printf("wze::engine.audio[]: Channel does not exist\nParams: Channel: %d\n", Channel);
+            exit(1);
+        }
+
+        return *this->Channels[Channel];
+    }
+
     uint8 engine::audio::Update()
     {
         double left, cache;
@@ -108,7 +127,7 @@ namespace wze
                 {
                     cache = this->Channels[i]->OriginX - this->Engine->Camera.OriginX;
 
-                    Mix_Volume(i, round((cache = 1 - (this->Channels[i]->OriginX - this->Engine->Camera.OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * 128));
+                    Mix_Volume(i, round((cache = 1 - (this->Channels[i]->OriginX - this->Engine->Camera.OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * MIX_MAX_VOLUME));
 
                     if (Mix_SetPanning(i, 255 - round(cache * 255), round(cache * 255)) == 0)
                     {
@@ -120,7 +139,7 @@ namespace wze
                 {
                     cache = this->Engine->Camera.OriginX - this->Channels[i]->OriginX;
 
-                    Mix_Volume(i, round((cache = 1 - (this->Engine->Camera.OriginX - this->Channels[i]->OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * 128));
+                    Mix_Volume(i, round((cache = 1 - (this->Engine->Camera.OriginX - this->Channels[i]->OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * MIX_MAX_VOLUME));
 
                     if (Mix_SetPanning(i, round(cache * 255), 255 - round(cache * 255)) == 0)
                     {
@@ -131,7 +150,7 @@ namespace wze
             }
             else
             {
-                Mix_Volume(i, round(this->Channels[i]->Volume * 128));
+                Mix_Volume(i, round(this->Channels[i]->Volume * MIX_MAX_VOLUME));
                 if (Mix_SetPanning(i, 255, 255) == 0)
                 {
                     printf("wze::engine.audio.Update(): Mix_SetPanning() failed\n");
@@ -165,9 +184,10 @@ namespace wze
             exit(1);
         }
 
-        if (this->SoundID != SoundID)
+        if (this->SoundID != SoundID && Mix_HaltChannel(this->ID) == -1)
         {
-            Mix_HaltChannel(this->ID);
+            printf("wze::engine.audio[].SetSoundID(): Mix_HaltChannel() failed\nParams: SoundID: %lld\n", SoundID);
+            exit(1);
         }
 
         return this->SoundID = SoundID;
@@ -239,7 +259,7 @@ namespace wze
             exit(1);
         }
 
-        Mix_Volume(this->ID, round(this->Volume * 128));
+        Mix_Volume(this->ID, round(this->Volume * MIX_MAX_VOLUME));
 
         return this->Volume = Volume;
     }

@@ -311,7 +311,7 @@ namespace wze
             if (this->Engine->Audio.Channels[i]->SoundID == SoundID)
             {
                 this->Engine->Audio.Channels[i]->SoundID = 0;
-                Mix_HaltChannel(this->Engine->Audio.Channels[i]->ID);
+                Mix_HaltChannel(i);
             }
         }
 
@@ -331,7 +331,7 @@ namespace wze
                     if (this->Engine->Audio.Channels[j]->SoundID == i)
                     {
                         this->Engine->Audio.Channels[j]->SoundID = 0;
-                        Mix_HaltChannel(this->Engine->Audio.Channels[j]->ID);
+                        Mix_HaltChannel(j);
                     }
                 }
 
@@ -375,7 +375,7 @@ namespace wze
                     if (this->Engine->Audio.Channels[j]->SoundID == i)
                     {
                         this->Engine->Audio.Channels[j]->SoundID = 0;
-                        Mix_HaltChannel(this->Engine->Audio.Channels[j]->ID);
+                        Mix_HaltChannel(j);
                     }
                 }
 

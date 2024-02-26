@@ -202,7 +202,7 @@ namespace wze
                     neo::uint16 SetChannelCount(neo::uint16 ChannelCount);
                     neo::uint8 PauseAll();
                     neo::uint8 ResumeAll();
-                    channel operator [] (neo::uint16 Channel);
+                    channel& operator [] (neo::uint16 Channel);
 
                 private:
                     double GlobalVolume;
