@@ -174,7 +174,7 @@ namespace wze
 
                     public:
                         neo::uint64 GetSoundID();
-                        neo::uint64 SetSoundID();
+                        neo::uint64 SetSoundID(neo::uint64 SoundID);
                         neo::uint8 Play();
                         neo::uint8 Play(neo::uint16 Loops);
                         neo::uint8 Play(neo::uint16 Loops, neo::uint16 FadeInMilliseconds);
@@ -185,14 +185,15 @@ namespace wze
                         neo::uint8 Resume();
                         neo::uint8 Stop();
                         neo::uint8 Stop(neo::uint16 FadeOutMilliseconds);
-                        neo::uint8 Bind(neo::uint64 ActorID);
+                        neo::uint64 Bind(neo::uint64 ActorID);
                         neo::uint8 Unbind();
 
                     private:
+                        neo::uint16 ID;
                         neo::uint64 SoundID;
                         double Volume;
                         neo::uint64 ActorID;
-                        channel(engine* Engine);
+                        channel(engine* Engine, neo::uint64 ID);
                 };
 
                 public:

@@ -44,13 +44,21 @@ namespace wze
             }
         }
 
-        if (this->Engine->Actors.Actors[this->Engine->Camera.XActor] == this)
+        if (this->Engine->Camera.XActor == this->ID)
         {
             this->Engine->Camera.XActor = 0;
         }
-        if (this->Engine->Actors.Actors[this->Engine->Camera.YActor] == this)
+        if (this->Engine->Camera.YActor == this->ID)
         {
             this->Engine->Camera.YActor = 0;
+        }
+
+        for (uint16 i = 0; i < this->Engine->Audio.Channels.Length(); i++)
+        {
+            if (this->Engine->Audio.Channels[i]->ActorID == this->ID)
+            {
+                this->Engine->Audio.Channels[i]->ActorID = 0;
+            }
         }
     }
 
