@@ -173,6 +173,8 @@ namespace wze
                     engine* Engine;
 
                     public:
+                        double OriginX;
+                        neo::uint64 Range;
                         neo::uint64 GetSoundID();
                         neo::uint64 SetSoundID(neo::uint64 SoundID);
                         neo::uint8 Play();
@@ -185,14 +187,11 @@ namespace wze
                         neo::uint8 Resume();
                         neo::uint8 Stop();
                         neo::uint8 Stop(neo::uint16 FadeOutMilliseconds);
-                        neo::uint64 Bind(neo::uint64 ActorID);
-                        neo::uint8 Unbind();
 
                     private:
                         neo::uint16 ID;
                         neo::uint64 SoundID;
                         double Volume;
-                        neo::uint64 ActorID;
                         channel(engine* Engine, neo::uint64 ID);
                 };
 
@@ -210,6 +209,7 @@ namespace wze
                     neo::array<channel*> Channels;
                     audio(engine* Engine);
                     ~audio();
+                    neo::uint8 Update();
             } Audio;
 
             //__________Keys___________________________________________________________________________________________

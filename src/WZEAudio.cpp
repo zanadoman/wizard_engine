@@ -96,12 +96,33 @@ namespace wze
         return 0;
     }
 
+    uint8 engine::audio::Update()
+    {
+        for (uint16 i = 0; i < this->Channels.Length(); i++)
+        {
+            if (this->Channels[i]->Range != 0)
+            {
+                if (this->Engine->Camera.OriginX < this->Channels[i]->OriginX)
+                {
+                    Mix_Volume(i, round((1 - (this->Channels[i]->OriginX - this->Engine->Camera.OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * 128));
+                }
+                else if (this->Channels[i]->OriginX < this->Engine->Camera.OriginX)
+                {
+                    Mix_Volume(i, round((1 - (this->Engine->Camera.OriginX - this->Channels[i]->OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * 128));
+                }
+            }
+        }
+
+        return 0;
+    }
+
     engine::audio::channel::channel(engine* Engine, uint64 ID) : Engine(Engine)
     {
+        this->OriginX = 0;
+        this->Range = 0;
         this->ID = ID;
         this->SoundID = 0;
         this->Volume = 1;
-        this->ActorID = 0;
     }
 
     uint64 engine::audio::channel::GetSoundID()
@@ -229,24 +250,6 @@ namespace wze
     uint8 engine::audio::channel::Stop(uint16 FadeOutMilliseconds)
     {
         Mix_FadeOutChannel(this->ID, FadeOutMilliseconds);
-
-        return 0;
-    }
-
-    uint64 engine::audio::channel::Bind(uint64 ActorID)
-    {
-        if (this->ActorID != 0 && (this->Engine->Actors.Actors.Length() <= ActorID || this->Engine->Actors.Actors[ActorID] == NULL))
-        {
-            printf("wze::engine.audio[].Bind(): Actor does not exist\nParams: ActorID: %lld\n", ActorID);
-            exit(1);
-        }
-
-        return this->ActorID = ActorID;
-    }
-
-    uint8 engine::audio::channel::Unbind()
-    {
-        this->ActorID = 0;
 
         return 0;
     }

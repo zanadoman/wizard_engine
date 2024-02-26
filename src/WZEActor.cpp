@@ -52,14 +52,6 @@ namespace wze
         {
             this->Engine->Camera.YActor = 0;
         }
-
-        for (uint16 i = 0; i < this->Engine->Audio.Channels.Length(); i++)
-        {
-            if (this->Engine->Audio.Channels[i]->ActorID == this->ID)
-            {
-                this->Engine->Audio.Channels[i]->ActorID = 0;
-            }
-        }
     }
 
     uint64 engine::actors::actor::GetID()
