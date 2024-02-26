@@ -117,7 +117,10 @@ namespace wze
             exit(1);
         }
 
-        Mix_HaltChannel(this->ID);
+        if (this->SoundID != SoundID)
+        {
+            Mix_HaltChannel(this->ID);
+        }
 
         return this->SoundID = SoundID;
     }

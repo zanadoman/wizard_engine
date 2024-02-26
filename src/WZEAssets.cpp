@@ -306,6 +306,15 @@ namespace wze
             this->Sounds.Remove(i, this->Sounds.Length() - i);
         }
 
+        for (uint16 i = 0; i < this->Engine->Audio.Channels.Length(); i++)
+        {
+            if (this->Engine->Audio.Channels[i]->SoundID == SoundID)
+            {
+                this->Engine->Audio.Channels[i]->SoundID = 0;
+                Mix_HaltChannel(this->Engine->Audio.Channels[i]->ID);
+            }
+        }
+
         return 0;
     }
 
@@ -317,6 +326,15 @@ namespace wze
         {
             if (!initializer_list_Contains(KeepSoundIDs, {i}))
             {
+                for (uint16 j = 0; j < this->Engine->Audio.Channels.Length(); j++)
+                {
+                    if (this->Engine->Audio.Channels[j]->SoundID == i)
+                    {
+                        this->Engine->Audio.Channels[j]->SoundID = 0;
+                        Mix_HaltChannel(this->Engine->Audio.Channels[j]->ID);
+                    }
+                }
+
                 Mix_FreeChunk(this->Sounds[i]);
                 this->Sounds[i] = NULL;
             }
@@ -352,6 +370,15 @@ namespace wze
         {
             if (!KeepSoundIDs->Contains({i}))
             {
+                for (uint16 j = 0; j < this->Engine->Audio.Channels.Length(); j++)
+                {
+                    if (this->Engine->Audio.Channels[j]->SoundID == i)
+                    {
+                        this->Engine->Audio.Channels[j]->SoundID = 0;
+                        Mix_HaltChannel(this->Engine->Audio.Channels[j]->ID);
+                    }
+                }
+
                 Mix_FreeChunk(this->Sounds[i]);
                 this->Sounds[i] = NULL;
             }
