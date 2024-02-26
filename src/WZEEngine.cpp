@@ -129,8 +129,10 @@ namespace wze
         this->Camera.Update();
         this->Render.Update();
         this->Timing.RenderTime = SDL_GetTicks() - this->Timing.PrevTick - this->Timing.GameTime;
+        this->Audio.Update();
 
         this->Timing.Update();
+
         this->UpdateFlipbooks();
 
         this->Window.State = SDL_GetWindowFlags(this->Window.Window);
