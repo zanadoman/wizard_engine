@@ -37,10 +37,7 @@ namespace wze
             exit(1);
         }
 
-        for (uint16 i = 0; i < this->Channels.Length(); i++)
-        {
-            Mix_Volume(i, GlobalVolume * this->Channels[i].Volume * 128);
-        }
+        Mix_MasterVolume(GlobalVolume * 128);
 
         return this->GlobalVolume = GlobalVolume;
     }
