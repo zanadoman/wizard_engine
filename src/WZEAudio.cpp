@@ -125,7 +125,11 @@ namespace wze
             {
                 if (this->Engine->Camera.OriginX < this->Channels[i]->OriginX)
                 {
-                    cache = this->Channels[i]->OriginX - this->Engine->Camera.OriginX;
+                    if (this->Channels[i]->Range < (cache = this->Channels[i]->OriginX - this->Engine->Camera.OriginX))
+                    {
+                        Mix_Volume(i, 0);
+                        continue;
+                    }
 
                     Mix_Volume(i, round((cache = 1 - (this->Channels[i]->OriginX - this->Engine->Camera.OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * MIX_MAX_VOLUME));
 
@@ -137,7 +141,11 @@ namespace wze
                 }
                 else if (this->Channels[i]->OriginX < this->Engine->Camera.OriginX)
                 {
-                    cache = this->Engine->Camera.OriginX - this->Channels[i]->OriginX;
+                    if (this->Channels[i]->Range < (cache = this->Engine->Camera.OriginX - this->Channels[i]->OriginX))
+                    {
+                        Mix_Volume(i, 0);
+                        continue;
+                    }
 
                     Mix_Volume(i, round((cache = 1 - (this->Engine->Camera.OriginX - this->Channels[i]->OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * MIX_MAX_VOLUME));
 
