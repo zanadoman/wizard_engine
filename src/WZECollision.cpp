@@ -36,24 +36,7 @@ namespace wze
             return false;
         }
 
-        if (((Overlapbox1TopLeftX <= Overlapbox2BotRightX && Overlapbox2BotRightX <= Overlapbox1BotRightX) && (Overlapbox1BotRightY <= Overlapbox2BotRightY && Overlapbox2BotRightY <= Overlapbox1TopLeftY)) || ((Overlapbox2TopLeftX <= Overlapbox1TopLeftX && Overlapbox1TopLeftX <= Overlapbox2BotRightX) && (Overlapbox2BotRightY <= Overlapbox1TopLeftY && Overlapbox1TopLeftY <= Overlapbox2TopLeftY)))
-        {
-            return true;
-        }
-        if (((Overlapbox1TopLeftX <= Overlapbox2TopLeftX && Overlapbox2TopLeftX <= Overlapbox1BotRightX) && (Overlapbox1BotRightY <= Overlapbox2BotRightY && Overlapbox2BotRightY <= Overlapbox1TopLeftY)) || ((Overlapbox2TopLeftX <= Overlapbox1BotRightX && Overlapbox1BotRightX <= Overlapbox2BotRightX) && (Overlapbox2BotRightY <= Overlapbox1TopLeftY && Overlapbox1TopLeftY <= Overlapbox2TopLeftY)))
-        {
-            return true;
-        }
-        if (((Overlapbox1TopLeftX <= Overlapbox2BotRightX && Overlapbox2BotRightX <= Overlapbox1BotRightX) && (Overlapbox1BotRightY <= Overlapbox2TopLeftY && Overlapbox2TopLeftY <= Overlapbox1TopLeftY)) || ((Overlapbox2TopLeftX <= Overlapbox1TopLeftX && Overlapbox1TopLeftX <= Overlapbox2BotRightX) && (Overlapbox2BotRightY <= Overlapbox1BotRightY && Overlapbox1BotRightY <= Overlapbox2TopLeftY)))
-        {
-            return true;
-        }
-        if (((Overlapbox1TopLeftX <= Overlapbox2TopLeftX && Overlapbox2TopLeftX <= Overlapbox1BotRightX) && (Overlapbox1BotRightY <= Overlapbox2TopLeftY && Overlapbox2TopLeftY <= Overlapbox1TopLeftY)) || ((Overlapbox2TopLeftX <= Overlapbox1BotRightX && Overlapbox1BotRightX <= Overlapbox2BotRightX) && (Overlapbox2BotRightY <= Overlapbox1BotRightY && Overlapbox1BotRightY <= Overlapbox2TopLeftY)))
-        {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     bool engine::collision::CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY)
@@ -63,24 +46,7 @@ namespace wze
             return false;
         }
 
-        if (((Actor1TopLeftX <= Actor2BotRightX && Actor2BotRightX <= Actor1BotRightX) && (Actor1BotRightY <= Actor2BotRightY && Actor2BotRightY <= Actor1TopLeftY)) || ((Actor2TopLeftX <= Actor1TopLeftX && Actor1TopLeftX <= Actor2BotRightX) && (Actor2BotRightY <= Actor1TopLeftY && Actor1TopLeftY <= Actor2TopLeftY)))
-        {
-            return true;
-        }
-        if (((Actor1TopLeftX <= Actor2TopLeftX && Actor2TopLeftX <= Actor1BotRightX) && (Actor1BotRightY <= Actor2BotRightY && Actor2BotRightY <= Actor1TopLeftY)) || ((Actor2TopLeftX <= Actor1BotRightX && Actor1BotRightX <= Actor2BotRightX) && (Actor2BotRightY <= Actor1TopLeftY && Actor1TopLeftY <= Actor2TopLeftY)))
-        {
-            return true;
-        }
-        if (((Actor1TopLeftX <= Actor2BotRightX && Actor2BotRightX <= Actor1BotRightX) && (Actor1BotRightY <= Actor2TopLeftY && Actor2TopLeftY <= Actor1TopLeftY)) || ((Actor2TopLeftX <= Actor1TopLeftX && Actor1TopLeftX <= Actor2BotRightX) && (Actor2BotRightY <= Actor1BotRightY && Actor1BotRightY <= Actor2TopLeftY)))
-        {
-            return true;
-        }
-        if (((Actor1TopLeftX <= Actor2TopLeftX && Actor2TopLeftX <= Actor1BotRightX) && (Actor1BotRightY <= Actor2TopLeftY && Actor2TopLeftY <= Actor1TopLeftY)) || ((Actor2TopLeftX <= Actor1BotRightX && Actor1BotRightX <= Actor2BotRightX) && (Actor2BotRightY <= Actor1BotRightY && Actor1BotRightY <= Actor2TopLeftY)))
-        {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     engine::collision::direction engine::collision::GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2)
