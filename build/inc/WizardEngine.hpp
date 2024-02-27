@@ -167,39 +167,49 @@ namespace wze
                 friend class engine;
                 engine* Engine;
 
-                struct channel
+                class channel
                 {
-                    neo::uint64 SoundID;
-                    double Volume;
-                    double Left;
-                    double Right;
-                    neo::uint16 Loops;
-                    bool Paused;
+                    friend class engine;
+                    engine* Engine;
+
+                    public:
+                        double OriginX;
+                        neo::uint64 Range;
+                        neo::uint64 GetSoundID();
+                        neo::uint64 SetSoundID(neo::uint64 SoundID);
+                        neo::uint8 Play();
+                        neo::uint8 Play(neo::uint16 Loops);
+                        neo::uint8 Play(neo::uint16 Loops, neo::uint16 FadeInMilliseconds);
+                        double GetVolume();
+                        double SetVolume(double Volume);
+                        bool IsPaused();
+                        neo::uint8 Pause();
+                        neo::uint8 Resume();
+                        neo::uint8 Stop();
+                        neo::uint8 Stop(neo::uint16 FadeOutMilliseconds);
+
+                    private:
+                        neo::uint16 ID;
+                        neo::uint64 SoundID;
+                        double Volume;
+                        channel(engine* Engine, neo::uint64 ID);
                 };
 
                 public:
                     double GetGlobalVolume();
                     double SetGlobalVolume(double GlobalVolume);
-                    neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, neo::uint16 Loops);
-                    neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, neo::uint16 Loop, neo::uint16 FadeInMilliseconds);
-                    neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, double Left, double Right, neo::uint16 Loops);
-                    neo::uint8 Play(neo::uint64 SoundID, neo::uint16 Channel, double Volume, double Left, double Right, neo::uint16 Loops, neo::uint16 FadeInMilliseconds);
                     neo::uint16 GetChannelCount();
                     neo::uint16 SetChannelCount(neo::uint16 ChannelCount);
-                    double SetChannelVolume(neo::uint16 Channel, double Volume);
-                    neo::uint8 SetChannelPanning(neo::uint16 Channel, double Left, double Right);
-                    neo::uint8 PauseChannel(neo::uint16 Channel);
-                    neo::uint8 ResumeChannel(neo::uint16 Channel);
-                    neo::uint8 StopChannel(neo::uint16 Channel);
-                    neo::uint8 StopChannel(neo::uint16 Cannel, neo::uint16 FadeOutMilliseconds);
                     neo::uint8 PauseAll();
                     neo::uint8 ResumeAll();
-                    channel operator [] (neo::uint16 Channel);
+                    channel& operator [] (neo::uint16 Channel);
 
                 private:
                     double GlobalVolume;
-                    neo::array<channel> Channels;
+                    neo::array<channel*> Channels;
                     audio(engine* Engine);
+                    ~audio();
+                    neo::uint8 Update();
             } Audio;
 
             //__________Keys___________________________________________________________________________________________
@@ -758,6 +768,13 @@ namespace wze
                 public:
                     template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Clamp(type Value, type Limit1, type Limit2);
                     static bool Equals(double Value1, double Value2);
+                    static double IfNaN(double Value, double Fallback);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(std::initializer_list<type> Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(neo::array<type>* Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(std::initializer_list<type> Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(neo::array<type>* Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(std::initializer_list<type> Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(neo::array<type>* Values);
                     neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
 
                 private:
@@ -881,5 +898,119 @@ namespace wze
         }
 
         return Value;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(std::initializer_list<type> Values)
+    {
+        type min;
+
+        min = Values.begin()[0];
+
+        for (neo::uint64 i = 1; i < Values.size(); i++)
+        {
+            if (Values.begin()[i] < min)
+            {
+                min = Values.begin()[i];
+            }
+        }
+
+        return min;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(neo::array<type>* Values)
+    {
+        type min;
+
+        if (Values == NULL)
+        {
+            printf("wze::engine::math::Min(): Values must not be NULL\nParams: Values: %p\n", Values);
+            exit(1);
+        }
+
+        min = (*Values)[0];
+
+        for (neo::uint64 i = 1; i < Values->Length(); i++)
+        {
+            if ((*Values)[i] < min)
+            {
+                min = (*Values)[i];
+            }
+        }
+
+        return min;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(std::initializer_list<type> Values)
+    {
+        type max;
+
+        max = Values.begin()[0];
+
+        for (neo::uint64 i = 1; i < Values.size(); i++)
+        {
+            if (max < Values.begin()[i])
+            {
+                max = Values.begin()[i];
+            }
+        }
+
+        return max;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(neo::array<type>* Values)
+    {
+        type max;
+
+        if (Values == NULL)
+        {
+            printf("wze::engine::math::Max(): Values must not be NULL\nParams: Values: %p\n", Values);
+            exit(1);
+        }
+
+        max = (*Values)[0];
+
+        for (neo::uint64 i = 1; i < Values->Length(); i++)
+        {
+            if (max < (*Values)[i])
+            {
+                max = (*Values)[i];
+            }
+        }
+
+        return max;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(std::initializer_list<type> Values)
+    {
+        double sum;
+
+        sum = 0;
+
+        for (neo::uint64 i = 0; i < Values.size(); i++)
+        {
+            sum += Values.begin()[i];
+        }
+
+        return sum / Values.size();
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(neo::array<type>* Values)
+    {
+        double sum;
+
+        if (Values == NULL)
+        {
+            printf("wze::engine::math::Average(): Values must not be NULL\nParams: Values: %p\n", Values);
+            exit(1);
+        }
+
+        sum = 0;
+
+        for (neo::uint64 i = 0; i < Values->Length(); i++)
+        {
+            sum += (*Values)[i];
+        }
+
+        return sum / Values->Length();
     }
 }
