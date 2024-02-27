@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engineD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engineD2Ev
 _ZN3wze6engineD2Ev:
-.LFB8450:
+.LFB8447:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -115,8 +115,8 @@ _ZN3wze6engineD2Ev:
 	call	free
 	leaq	192(%rsi), %rcx
 	call	_ZN3wze6engine4keysD1Ev
-	movq	184(%rsi), %rcx
-	call	free
+	leaq	160(%rsi), %rcx
+	call	_ZN3wze6engine5audioD1Ev
 	movq	72(%rsi), %rcx
 	addq	$48, %rsp
 	popq	%rbx
@@ -126,13 +126,13 @@ _ZN3wze6engineD2Ev:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8450:
+.LLSDA8447:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8450-.LLSDACSB8450
-.LLSDACSB8450:
-.LLSDACSE8450:
+	.uleb128 .LLSDACSE8447-.LLSDACSB8447
+.LLSDACSB8447:
+.LLSDACSE8447:
 	.text
 	.seh_endproc
 	.globl	_ZN3wze6engineD1Ev
@@ -149,7 +149,7 @@ _ZN3wze6engineD2Ev:
 	.def	_ZN3wze6engine15UpdateFlipbooksEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine15UpdateFlipbooksEv
 _ZN3wze6engine15UpdateFlipbooksEv:
-.LFB8453:
+.LFB8450:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -263,7 +263,7 @@ _ZN3wze6engine15UpdateFlipbooksEv:
 	.def	_ZN3wze6engine18UpdateOverlapboxesEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine18UpdateOverlapboxesEv
 _ZN3wze6engine18UpdateOverlapboxesEv:
-.LFB8454:
+.LFB8451:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -549,7 +549,7 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	.def	_ZN3wze6engine6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6UpdateEv
 _ZN3wze6engine6UpdateEv:
-.LFB8452:
+.LFB8449:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -577,8 +577,10 @@ _ZN3wze6engine6UpdateEv:
 	call	SDL_GetTicks
 	subl	432(%rbx), %eax
 	subl	428(%rbx), %eax
-	leaq	416(%rbx), %rcx
+	leaq	160(%rbx), %rcx
 	movl	%eax, 436(%rbx)
+	call	_ZN3wze6engine5audio6UpdateEv
+	leaq	416(%rbx), %rcx
 	call	_ZN3wze6engine6timing6UpdateEv
 	movq	%rbx, %rcx
 	call	_ZN3wze6engine15UpdateFlipbooksEv
@@ -777,7 +779,7 @@ _ZN3wze6engine6UpdateEv:
 	.def	_ZN3wze6engineC2EPKcS2_tth;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engineC2EPKcS2_tth
 _ZN3wze6engineC2EPKcS2_tth:
-.LFB8447:
+.LFB8444:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -794,17 +796,17 @@ _ZN3wze6engineC2EPKcS2_tth:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$136, %rsp
-	.seh_stackalloc	136
-	movaps	%xmm6, 80(%rsp)
-	.seh_savexmm	%xmm6, 80
-	movaps	%xmm7, 96(%rsp)
-	.seh_savexmm	%xmm7, 96
-	movaps	%xmm8, 112(%rsp)
-	.seh_savexmm	%xmm8, 112
+	subq	$152, %rsp
+	.seh_stackalloc	152
+	movaps	%xmm6, 96(%rsp)
+	.seh_savexmm	%xmm6, 96
+	movaps	%xmm7, 112(%rsp)
+	.seh_savexmm	%xmm7, 112
+	movaps	%xmm8, 128(%rsp)
+	.seh_savexmm	%xmm8, 128
 	.seh_endprologue
-	movl	240(%rsp), %edi
-	movl	248(%rsp), %r15d
+	movl	256(%rsp), %edi
+	movl	264(%rsp), %r15d
 	movq	%rcx, %rbx
 	movq	%rdx, %r12
 	movq	%rcx, %rdx
@@ -820,14 +822,16 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	%rbx, %rdx
 .LEHB1:
 	call	_ZN3wze6engine6cameraC1EPS0_
-	leaq	160(%rbx), %rcx
+	leaq	160(%rbx), %rax
 	movq	%rbx, %rdx
+	movq	%rax, %rcx
+	movq	%rax, 80(%rsp)
 	call	_ZN3wze6engine5audioC1EPS0_
 .LEHE1:
 	leaq	192(%rbx), %rax
 	movq	%rbx, %rdx
 	movq	%rax, %rcx
-	movq	%rax, 72(%rsp)
+	movq	%rax, 88(%rsp)
 .LEHB2:
 	call	_ZN3wze6engine4keysC1EPS0_
 .LEHE2:
@@ -858,7 +862,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	leaq	344(%rbx), %rax
 	movq	%rbx, %rdx
 	movq	%rax, %rcx
-	movq	%rax, 64(%rsp)
+	movq	%rax, 72(%rsp)
 .LEHB7:
 	call	_ZN3wze6engine6assetsC1EPS0_
 .LEHE7:
@@ -933,7 +937,7 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movups	%xmm1, 120(%rbx)
 	call	SDL_GetKeyboardState
 	movq	%rax, 200(%rbx)
-	movq	64(%rsp), %rcx
+	movq	72(%rsp), %rcx
 	leaq	.LC14(%rip), %rdx
 	movb	%r15b, 424(%rbx)
 	call	_ZN3wze6engine6assets11LoadTextureEPKc
@@ -983,14 +987,14 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	200(%r12), %rdx
 	movq	%r14, %rcx
 	call	_ZN3wze6engine6actors6DeleteEy
-	movq	64(%rsp), %rcx
+	movq	72(%rsp), %rcx
 	movq	%rbp, %rdx
 	call	_ZN3wze6engine6assets13UnloadTextureEy
 	nop
-	movaps	80(%rsp), %xmm6
-	movaps	96(%rsp), %xmm7
-	movaps	112(%rsp), %xmm8
-	addq	$136, %rsp
+	movaps	96(%rsp), %xmm6
+	movaps	112(%rsp), %xmm7
+	movaps	128(%rsp), %xmm8
+	addq	$152, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
@@ -1125,70 +1129,70 @@ _ZN3wze6engineC2EPKcS2_tth:
 	jmp	.L140
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8447:
+.LLSDA8444:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8447-.LLSDACSB8447
-.LLSDACSB8447:
-	.uleb128 .LEHB0-.LFB8447
+	.uleb128 .LLSDACSE8444-.LLSDACSB8444
+.LLSDACSB8444:
+	.uleb128 .LEHB0-.LFB8444
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8447
+	.uleb128 .LEHB1-.LFB8444
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L146-.LFB8447
+	.uleb128 .L146-.LFB8444
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8447
+	.uleb128 .LEHB2-.LFB8444
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L147-.LFB8447
+	.uleb128 .L147-.LFB8444
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8447
+	.uleb128 .LEHB3-.LFB8444
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L148-.LFB8447
+	.uleb128 .L148-.LFB8444
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8447
+	.uleb128 .LEHB4-.LFB8444
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L149-.LFB8447
+	.uleb128 .L149-.LFB8444
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8447
+	.uleb128 .LEHB5-.LFB8444
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L152-.LFB8447
+	.uleb128 .L152-.LFB8444
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8447
+	.uleb128 .LEHB6-.LFB8444
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L153-.LFB8447
+	.uleb128 .L153-.LFB8444
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB8447
+	.uleb128 .LEHB7-.LFB8444
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L154-.LFB8447
+	.uleb128 .L154-.LFB8444
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB8447
+	.uleb128 .LEHB8-.LFB8444
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L150-.LFB8447
+	.uleb128 .L150-.LFB8444
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB8447
+	.uleb128 .LEHB9-.LFB8444
 	.uleb128 .LEHE9-.LEHB9
-	.uleb128 .L151-.LFB8447
+	.uleb128 .L151-.LFB8444
 	.uleb128 0
-.LLSDACSE8447:
+.LLSDACSE8444:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
 	.def	_ZN3wze6engineC2EPKcS2_tth.cold;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engineC2EPKcS2_tth.cold
-	.seh_stackalloc	200
-	.seh_savereg	%rbx, 136
-	.seh_savereg	%rsi, 144
-	.seh_savereg	%rdi, 152
-	.seh_savereg	%rbp, 160
-	.seh_savexmm	%xmm6, 80
-	.seh_savexmm	%xmm7, 96
-	.seh_savereg	%r12, 168
-	.seh_savereg	%r13, 176
-	.seh_savereg	%r14, 184
-	.seh_savereg	%r15, 192
-	.seh_savexmm	%xmm8, 112
+	.seh_stackalloc	216
+	.seh_savereg	%rbx, 152
+	.seh_savereg	%rsi, 160
+	.seh_savereg	%rdi, 168
+	.seh_savereg	%rbp, 176
+	.seh_savexmm	%xmm6, 96
+	.seh_savexmm	%xmm7, 112
+	.seh_savereg	%r12, 184
+	.seh_savereg	%r13, 192
+	.seh_savereg	%r14, 200
+	.seh_savereg	%r15, 208
+	.seh_savexmm	%xmm8, 128
 	.seh_endprologue
 _ZN3wze6engineC2EPKcS2_tth.cold:
 .L134:
@@ -1220,11 +1224,11 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	movq	288(%rbx), %rcx
 	call	free
 .L140:
-	movq	72(%rsp), %rcx
+	movq	88(%rsp), %rcx
 	call	_ZN3wze6engine4keysD1Ev
 .L141:
-	movq	184(%rbx), %rcx
-	call	free
+	movq	80(%rsp), %rcx
+	call	_ZN3wze6engine5audioD1Ev
 .L142:
 	movq	72(%rbx), %rcx
 	call	free
@@ -1237,17 +1241,17 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	jmp	.L136
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8447:
+.LLSDAC8444:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8447-.LLSDACSBC8447
-.LLSDACSBC8447:
+	.uleb128 .LLSDACSEC8444-.LLSDACSBC8444
+.LLSDACSBC8444:
 	.uleb128 .LEHB10-.LCOLDB16
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8447:
+.LLSDACSEC8444:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1288,6 +1292,7 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	.def	SDL_Quit;	.scl	2;	.type	32;	.endef
 	.def	free;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine4keysD1Ev;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine5audioD1Ev;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine5mouse4GetXEd;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine5mouse4GetYEd;	.scl	2;	.type	32;	.endef
@@ -1295,6 +1300,7 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	.def	SDL_GetTicks;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6camera6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6render6UpdateEv;	.scl	2;	.type	32;	.endef
+	.def	_ZN3wze6engine5audio6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	_ZN3wze6engine6timing6UpdateEv;	.scl	2;	.type	32;	.endef
 	.def	SDL_GetWindowFlags;	.scl	2;	.type	32;	.endef
 	.def	SDL_PollEvent;	.scl	2;	.type	32;	.endef

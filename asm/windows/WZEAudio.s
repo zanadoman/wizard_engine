@@ -36,110 +36,226 @@ _Z6printfPKcz:
 	.align 8
 .LC0:
 	.ascii "neo::array(): Memory allocation failed\12Params: Length: %lld\12\0"
+	.align 8
+.LC3:
+	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"
+	.section	.text.unlikely,"x"
+	.align 2
+.LCOLDB4:
 	.text
+.LHOTB4:
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5audioC2EPS0_
 	.def	_ZN3wze6engine5audioC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audioC2EPS0_
 _ZN3wze6engine5audioC2EPS0_:
-.LFB6890:
+.LFB8432:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	movaps	%xmm6, 32(%rsp)
+	.seh_savexmm	%xmm6, 32
 	.seh_endprologue
 	movq	%rdx, (%rcx)
-	movq	%rcx, %rbx
+	movq	%rcx, %rdi
 	movq	$8, 16(%rcx)
-	movl	$320, %ecx
+	movl	$64, %ecx
 	call	malloc
-	movq	%rax, 24(%rbx)
+	movq	%rax, 24(%rdi)
 	testq	%rax, %rax
-	je	.L5
-	movq	.LC1(%rip), %rdx
-	pxor	%xmm0, %xmm0
-	xorl	%ecx, %ecx
-	xorl	%r8d, %r8d
-	xorl	%r9d, %r9d
-	xorl	%r10d, %r10d
-	xorl	%r11d, %r11d
-	movq	$0, (%rax)
-	movq	%rdx, 8(%rbx)
-	xorl	%edx, %edx
+	je	.L11
+	movsd	.LC1(%rip), %xmm6
+	xorl	%esi, %esi
 	xorl	%ebx, %ebx
-	movw	%dx, 32(%rax)
-	xorl	%edx, %edx
-	movq	$0x000000000, 24(%rax)
-	movb	$0, 34(%rax)
-	movq	$0, 40(%rax)
-	movq	$0x000000000, 64(%rax)
-	movw	%cx, 72(%rax)
-	movb	$0, 74(%rax)
-	movq	$0, 80(%rax)
-	movq	$0x000000000, 104(%rax)
-	movw	%r8w, 112(%rax)
-	movb	$0, 114(%rax)
-	movq	$0, 120(%rax)
-	movq	$0x000000000, 144(%rax)
-	movw	%r9w, 152(%rax)
-	movb	$0, 154(%rax)
-	movq	$0, 160(%rax)
-	movq	$0x000000000, 184(%rax)
-	movw	%r10w, 192(%rax)
-	movb	$0, 194(%rax)
-	movq	$0, 200(%rax)
-	movq	$0x000000000, 224(%rax)
-	movw	%r11w, 232(%rax)
-	movb	$0, 234(%rax)
-	movups	%xmm0, 8(%rax)
-	movups	%xmm0, 48(%rax)
-	movups	%xmm0, 88(%rax)
-	movups	%xmm0, 128(%rax)
-	movups	%xmm0, 168(%rax)
-	movups	%xmm0, 208(%rax)
-	movq	$0, 240(%rax)
-	movq	$0x000000000, 264(%rax)
-	movw	%bx, 272(%rax)
-	movb	$0, 274(%rax)
-	movq	$0, 280(%rax)
-	movq	$0x000000000, 304(%rax)
-	movw	%dx, 312(%rax)
-	movb	$0, 314(%rax)
-	movups	%xmm0, 248(%rax)
-	movups	%xmm0, 288(%rax)
-	addq	$32, %rsp
+	movsd	%xmm6, 8(%rdi)
+	.p2align 4,,10
+	.p2align 3
+.L6:
+	movl	$48, %ecx
+.LEHB0:
+	call	_Znwy
+	movq	(%rdi), %rdx
+	movq	$0x000000000, 8(%rax)
+	movq	$0, 16(%rax)
+	movq	24(%rdi), %rcx
+	movq	%rdx, (%rax)
+	movq	16(%rdi), %rdx
+	movw	%si, 24(%rax)
+	movq	$0, 32(%rax)
+	movsd	%xmm6, 40(%rax)
+	cmpq	%rdx, %rbx
+	jnb	.L12
+	addl	$1, %esi
+	movq	%rax, (%rcx,%rbx,8)
+	movzwl	%si, %ebx
+	cmpq	%rdx, %rbx
+	jb	.L6
+	movaps	32(%rsp), %xmm6
+	addq	$48, %rsp
 	popq	%rbx
+	popq	%rsi
+	popq	%rdi
 	ret
-.L5:
-	leaq	.LC0(%rip), %rcx
-	movl	$8, %edx
+.L12:
+	movq	%rbx, %rdx
+	leaq	.LC3(%rip), %rcx
 	call	_Z6printfPKcz
+.LEHE0:
 	movl	$1, %ecx
 	call	exit
-	nop
+.L11:
+	leaq	.LC0(%rip), %rcx
+	movl	$8, %edx
+.LEHB1:
+	call	_Z6printfPKcz
+.LEHE1:
+	movl	$1, %ecx
+	call	exit
+.L8:
+	movq	%rax, %rbx
+	jmp	.L7
+	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
+	.seh_handler	__gxx_personality_seh0, @unwind, @except
+	.seh_handlerdata
+.LLSDA8432:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSE8432-.LLSDACSB8432
+.LLSDACSB8432:
+	.uleb128 .LEHB0-.LFB8432
+	.uleb128 .LEHE0-.LEHB0
+	.uleb128 .L8-.LFB8432
+	.uleb128 0
+	.uleb128 .LEHB1-.LFB8432
+	.uleb128 .LEHE1-.LEHB1
+	.uleb128 0
+	.uleb128 0
+.LLSDACSE8432:
+	.text
 	.seh_endproc
+	.section	.text.unlikely,"x"
+	.def	_ZN3wze6engine5audioC2EPS0_.cold;	.scl	3;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audioC2EPS0_.cold
+	.seh_stackalloc	72
+	.seh_savereg	%rbx, 48
+	.seh_savereg	%rsi, 56
+	.seh_savereg	%rdi, 64
+	.seh_savexmm	%xmm6, 32
+	.seh_endprologue
+_ZN3wze6engine5audioC2EPS0_.cold:
+.L7:
+	movq	24(%rdi), %rcx
+	call	free
+	movq	%rbx, %rcx
+.LEHB2:
+	call	_Unwind_Resume
+	nop
+.LEHE2:
+	.seh_handler	__gxx_personality_seh0, @unwind, @except
+	.seh_handlerdata
+.LLSDAC8432:
+	.byte	0xff
+	.byte	0xff
+	.byte	0x1
+	.uleb128 .LLSDACSEC8432-.LLSDACSBC8432
+.LLSDACSBC8432:
+	.uleb128 .LEHB2-.LCOLDB4
+	.uleb128 .LEHE2-.LEHB2
+	.uleb128 0
+	.uleb128 0
+.LLSDACSEC8432:
+	.section	.text.unlikely,"x"
+	.text
+	.section	.text.unlikely,"x"
+	.seh_endproc
+.LCOLDE4:
+	.text
+.LHOTE4:
 	.globl	_ZN3wze6engine5audioC1EPS0_
 	.def	_ZN3wze6engine5audioC1EPS0_;	.scl	2;	.type	32;	.endef
 	.set	_ZN3wze6engine5audioC1EPS0_,_ZN3wze6engine5audioC2EPS0_
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audioD2Ev
+	.def	_ZN3wze6engine5audioD2Ev;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audioD2Ev
+_ZN3wze6engine5audioD2Ev:
+.LFB8435:
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movq	16(%rcx), %r8
+	movq	24(%rcx), %rdx
+	movq	%rcx, %rsi
+	testq	%r8, %r8
+	je	.L14
+	xorl	%ebx, %ebx
+	xorl	%eax, %eax
+	.p2align 4,,10
+	.p2align 3
+.L17:
+	movq	(%rdx,%rax,8), %rcx
+	testq	%rcx, %rcx
+	je	.L15
+	movl	$48, %edx
+	addl	$1, %ebx
+	call	_ZdlPvy
+	movq	16(%rsi), %r8
+	movzwl	%bx, %eax
+	movq	24(%rsi), %rdx
+	cmpq	%r8, %rax
+	jb	.L17
+.L14:
+	movq	%rdx, %rcx
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%rsi
+	jmp	free
+	.p2align 4,,10
+	.p2align 3
+.L15:
+	addl	$1, %ebx
+	movzwl	%bx, %eax
+	cmpq	%r8, %rax
+	jb	.L17
+	movq	%rdx, %rcx
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%rsi
+	jmp	free
+	.seh_endproc
+	.globl	_ZN3wze6engine5audioD1Ev
+	.def	_ZN3wze6engine5audioD1Ev;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine5audioD1Ev,_ZN3wze6engine5audioD2Ev
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine5audio15GetGlobalVolumeEv
 	.def	_ZN3wze6engine5audio15GetGlobalVolumeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15GetGlobalVolumeEv
 _ZN3wze6engine5audio15GetGlobalVolumeEv:
-.LFB6892:
+.LFB8437:
 	.seh_endprologue
 	movsd	8(%rcx), %xmm0
 	ret
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC4:
-	.ascii "wze::engine.audio.SetGlobalVolume(): GlobalVolume must not be NaN\12Params: Volume: %lf\12\0"
-	.align 8
 .LC5:
-	.ascii "wze::engine.audio.SetGlobalVolume(): GlobalVolume must be in range [0, 1]\12Params: Volume: %lf\12\0"
+	.ascii "wze::engine.audio.SetGlobalVolume(): GlobalVolume must not be NaN\12Params: GlobalVolume: %lf\12\0"
+	.align 8
+.LC6:
+	.ascii "wze::engine.audio.SetGlobalVolume(): GlobalVolume must be in range [0, 1]\12Params: GlobalVolume: %lf\12\0"
 	.text
 	.align 2
 	.p2align 4
@@ -147,7 +263,7 @@ _ZN3wze6engine5audio15GetGlobalVolumeEv:
 	.def	_ZN3wze6engine5audio15SetGlobalVolumeEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15SetGlobalVolumeEd
 _ZN3wze6engine5audio15SetGlobalVolumeEd:
-.LFB6893:
+.LFB8438:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -158,14 +274,14 @@ _ZN3wze6engine5audio15SetGlobalVolumeEd:
 	ucomisd	%xmm1, %xmm1
 	movq	%rcx, %rbx
 	movapd	%xmm1, %xmm6
-	jp	.L16
+	jp	.L31
 	pxor	%xmm0, %xmm0
 	comisd	%xmm1, %xmm0
-	ja	.L10
+	ja	.L25
 	comisd	.LC1(%rip), %xmm1
-	ja	.L10
-	movsd	.LC6(%rip), %xmm0
-	mulsd	%xmm1, %xmm0
+	ja	.L25
+	movsd	.LC7(%rip), %xmm0
+	mulsd	8(%rcx), %xmm0
 	cvttsd2sil	%xmm0, %ecx
 	call	Mix_MasterVolume
 	movapd	%xmm6, %xmm0
@@ -174,1001 +290,16 @@ _ZN3wze6engine5audio15SetGlobalVolumeEd:
 	addq	$48, %rsp
 	popq	%rbx
 	ret
-.L10:
-	leaq	.LC5(%rip), %rcx
+.L25:
+	leaq	.LC6(%rip), %rcx
 	movapd	%xmm6, %xmm1
 	movq	%xmm6, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L16:
-	leaq	.LC4(%rip), %rcx
+.L31:
+	leaq	.LC5(%rip), %rcx
 	movq	%xmm1, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC7:
-	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
-	.align 8
-.LC8:
-	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
-	.align 8
-.LC9:
-	.ascii "wze::engine.audio.Play(): Channel does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
-	.align 8
-.LC10:
-	.ascii "wze::engine.audio.Play(): Sound does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
-	.align 8
-.LC11:
-	.ascii "wze::engine.audio.Play(): Mix_SetPanning() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
-	.align 8
-.LC12:
-	.ascii "neo::array[]: Index out of range\12Params: Index: %lld\12\0"
-	.align 8
-.LC13:
-	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio4PlayEytdt
-	.def	_ZN3wze6engine5audio4PlayEytdt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio4PlayEytdt
-_ZN3wze6engine5audio4PlayEytdt:
-.LFB6894:
-	pushq	%r13
-	.seh_pushreg	%r13
-	pushq	%r12
-	.seh_pushreg	%r12
-	pushq	%rbp
-	.seh_pushreg	%rbp
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$88, %rsp
-	.seh_stackalloc	88
-	movaps	%xmm6, 48(%rsp)
-	.seh_savexmm	%xmm6, 48
-	movaps	%xmm7, 64(%rsp)
-	.seh_savexmm	%xmm7, 64
-	.seh_endprologue
-	movl	176(%rsp), %r12d
-	ucomisd	%xmm3, %xmm3
-	movq	%rcx, %rbx
-	movapd	%xmm3, %xmm6
-	movq	%rdx, %rdi
-	jp	.L39
-	pxor	%xmm0, %xmm0
-	comisd	%xmm3, %xmm0
-	ja	.L20
-	movsd	.LC1(%rip), %xmm7
-	comisd	%xmm7, %xmm3
-	ja	.L20
-	movzwl	%r8w, %ebp
-	cmpq	16(%rcx), %rbp
-	jnb	.L40
-	testq	%rdx, %rdx
-	je	.L24
-	movq	(%rcx), %rax
-	movzwl	%r8w, %esi
-	movzwl	%r12w, %r13d
-	cmpq	368(%rax), %rdx
-	jnb	.L25
-	movq	376(%rax), %rax
-	cmpq	$0, (%rax,%rdx,8)
-	je	.L25
-	movsd	8(%rcx), %xmm0
-	movl	%esi, %ecx
-	mulsd	%xmm3, %xmm0
-	mulsd	.LC6(%rip), %xmm0
-	cvttsd2sil	%xmm0, %edx
-	call	Mix_Volume
-	movl	$255, %r8d
-	movl	$255, %edx
-	movl	%esi, %ecx
-	call	Mix_SetPanning
-	testl	%eax, %eax
-	je	.L41
-	movq	(%rbx), %rax
-	movq	376(%rax), %rdx
-	cmpq	368(%rax), %rdi
-	jnb	.L42
-	movq	(%rdx,%rdi,8), %rdx
-	movl	%r13d, %r8d
-	movl	%esi, %ecx
-	call	Mix_PlayChannel
-	cmpl	$-1, %eax
-	je	.L43
-	movq	24(%rbx), %rax
-	cmpq	16(%rbx), %rbp
-	jnb	.L38
-	leaq	0(%rbp,%rbp,4), %rdx
-	leaq	(%rax,%rdx,8), %rax
-	movq	%rdi, (%rax)
-	cmpq	16(%rbx), %rbp
-	jnb	.L38
-	movw	%r12w, 32(%rax)
-	movb	$0, 34(%rax)
-	movsd	%xmm6, 8(%rax)
-	movsd	%xmm7, 16(%rax)
-	movsd	%xmm7, 24(%rax)
-.L24:
-	movaps	48(%rsp), %xmm6
-	movaps	64(%rsp), %xmm7
-	xorl	%eax, %eax
-	addq	$88, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%rbp
-	popq	%r12
-	popq	%r13
-	ret
-.L20:
-	movzwl	%r12w, %r12d
-	movapd	%xmm6, %xmm3
-	movq	%xmm6, %r9
-	movq	%rdi, %rdx
-	movl	%r12d, 32(%rsp)
-	leaq	.LC8(%rip), %rcx
-	movzwl	%r8w, %r8d
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L38:
-	leaq	.LC12(%rip), %rcx
-	movq	%rbp, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L25:
-	movl	%r13d, 32(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%esi, %r8d
-	movq	%rdi, %rdx
-	leaq	.LC10(%rip), %rcx
-	movq	%xmm6, %r9
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L40:
-	movzwl	%r12w, %r12d
-	leaq	.LC9(%rip), %rcx
-	movq	%xmm3, %r9
-	movzwl	%r8w, %r8d
-	movl	%r12d, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L39:
-	movzwl	%r12w, %r12d
-	leaq	.LC7(%rip), %rcx
-	movq	%xmm3, %r9
-	movzwl	%r8w, %r8d
-	movl	%r12d, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L43:
-	movl	%r13d, 32(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%esi, %r8d
-	movq	%rdi, %rdx
-	leaq	.LC13(%rip), %rcx
-	movq	%xmm6, %r9
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L42:
-	leaq	.LC12(%rip), %rcx
-	movq	%rdi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L41:
-	movl	%r13d, 32(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%esi, %r8d
-	movq	%rdi, %rdx
-	leaq	.LC11(%rip), %rcx
-	movq	%xmm6, %r9
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC14:
-	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC15:
-	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC16:
-	.ascii "wze::engine.audio.Play(): Channel does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC17:
-	.ascii "wze::engine.audio.Play(): Sound does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC18:
-	.ascii "wze::engine.audio.Play(): Mix_SetPanning() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC19:
-	.ascii "wze::engine.audio.Play(): Mix_FadeInChannel() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio4PlayEytdtt
-	.def	_ZN3wze6engine5audio4PlayEytdtt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio4PlayEytdtt
-_ZN3wze6engine5audio4PlayEytdtt:
-.LFB6895:
-	pushq	%r14
-	.seh_pushreg	%r14
-	pushq	%r13
-	.seh_pushreg	%r13
-	pushq	%r12
-	.seh_pushreg	%r12
-	pushq	%rbp
-	.seh_pushreg	%rbp
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$80, %rsp
-	.seh_stackalloc	80
-	movaps	%xmm6, 48(%rsp)
-	.seh_savexmm	%xmm6, 48
-	movaps	%xmm7, 64(%rsp)
-	.seh_savexmm	%xmm7, 64
-	.seh_endprologue
-	movl	176(%rsp), %r13d
-	movl	184(%rsp), %r12d
-	ucomisd	%xmm3, %xmm3
-	movq	%rcx, %rbx
-	movapd	%xmm3, %xmm6
-	movq	%rdx, %rdi
-	jp	.L66
-	pxor	%xmm0, %xmm0
-	comisd	%xmm3, %xmm0
-	ja	.L47
-	movsd	.LC1(%rip), %xmm7
-	comisd	%xmm7, %xmm3
-	ja	.L47
-	movzwl	%r8w, %ebp
-	cmpq	16(%rcx), %rbp
-	jnb	.L67
-	testq	%rdx, %rdx
-	je	.L51
-	movq	(%rcx), %rax
-	movzwl	%r8w, %esi
-	movzwl	%r12w, %r12d
-	movzwl	%r13w, %r14d
-	cmpq	368(%rax), %rdx
-	jnb	.L52
-	movq	376(%rax), %rax
-	cmpq	$0, (%rax,%rdx,8)
-	je	.L52
-	movsd	8(%rcx), %xmm0
-	movl	%esi, %ecx
-	mulsd	%xmm3, %xmm0
-	mulsd	.LC6(%rip), %xmm0
-	cvttsd2sil	%xmm0, %edx
-	call	Mix_Volume
-	movl	$255, %r8d
-	movl	$255, %edx
-	movl	%esi, %ecx
-	call	Mix_SetPanning
-	testl	%eax, %eax
-	je	.L68
-	movq	(%rbx), %rax
-	movq	376(%rax), %rdx
-	cmpq	368(%rax), %rdi
-	jnb	.L69
-	movq	(%rdx,%rdi,8), %rdx
-	movl	%r12d, %r9d
-	movl	%r14d, %r8d
-	movl	%esi, %ecx
-	call	Mix_FadeInChannel
-	cmpl	$-1, %eax
-	je	.L70
-	movq	24(%rbx), %rax
-	cmpq	16(%rbx), %rbp
-	jnb	.L65
-	leaq	0(%rbp,%rbp,4), %rdx
-	leaq	(%rax,%rdx,8), %rax
-	movq	%rdi, (%rax)
-	cmpq	16(%rbx), %rbp
-	jnb	.L65
-	movw	%r13w, 32(%rax)
-	movb	$0, 34(%rax)
-	movsd	%xmm6, 8(%rax)
-	movsd	%xmm7, 16(%rax)
-	movsd	%xmm7, 24(%rax)
-.L51:
-	movaps	48(%rsp), %xmm6
-	movaps	64(%rsp), %xmm7
-	xorl	%eax, %eax
-	addq	$80, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%rbp
-	popq	%r12
-	popq	%r13
-	popq	%r14
-	ret
-.L47:
-	movzwl	%r12w, %r12d
-	movzwl	%r13w, %r13d
-	movapd	%xmm6, %xmm3
-	movzwl	%r8w, %r8d
-	movl	%r12d, 40(%rsp)
-	leaq	.LC15(%rip), %rcx
-	movq	%xmm6, %r9
-	movq	%rdi, %rdx
-	movl	%r13d, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L65:
-	leaq	.LC12(%rip), %rcx
-	movq	%rbp, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L52:
-	movl	%r12d, 40(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%esi, %r8d
-	movq	%rdi, %rdx
-	movl	%r14d, 32(%rsp)
-	leaq	.LC17(%rip), %rcx
-	movq	%xmm6, %r9
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L67:
-	movzwl	%r12w, %r12d
-	movzwl	%r13w, %r13d
-	leaq	.LC16(%rip), %rcx
-	movzwl	%r8w, %r8d
-	movl	%r12d, 40(%rsp)
-	movq	%xmm3, %r9
-	movl	%r13d, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L66:
-	movzwl	%r12w, %r12d
-	movzwl	%r13w, %r13d
-	leaq	.LC14(%rip), %rcx
-	movzwl	%r8w, %r8d
-	movl	%r12d, 40(%rsp)
-	movq	%xmm3, %r9
-	movl	%r13d, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L70:
-	movl	%r12d, 40(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%esi, %r8d
-	movq	%rdi, %rdx
-	movl	%r14d, 32(%rsp)
-	leaq	.LC19(%rip), %rcx
-	movq	%xmm6, %r9
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L69:
-	leaq	.LC12(%rip), %rcx
-	movq	%rdi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L68:
-	movl	%r12d, 40(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%esi, %r8d
-	movq	%rdi, %rdx
-	movl	%r14d, 32(%rsp)
-	leaq	.LC18(%rip), %rcx
-	movq	%xmm6, %r9
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC20:
-	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.align 8
-.LC21:
-	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.align 8
-.LC22:
-	.ascii "wze::engine.audio.Play(): Left must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.align 8
-.LC23:
-	.ascii "wze::engine.audio.Play(): Left must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.align 8
-.LC24:
-	.ascii "wze::engine.audio.Play(): Right must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.align 8
-.LC25:
-	.ascii "wze::engine.audio.Play(): Right must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.align 8
-.LC26:
-	.ascii "wze::engine.audio.Play(): Channel does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.align 8
-.LC27:
-	.ascii "wze::engine.audio.Play(): Sound does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.align 8
-.LC29:
-	.ascii "wze::engine.audio.Play(): Mix_SetPanning() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.align 8
-.LC30:
-	.ascii "wze::engine.audio.Play(): Mix_PlayChannel() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio4PlayEytdddt
-	.def	_ZN3wze6engine5audio4PlayEytdddt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio4PlayEytdddt
-_ZN3wze6engine5audio4PlayEytdddt:
-.LFB6896:
-	pushq	%r13
-	.seh_pushreg	%r13
-	pushq	%r12
-	.seh_pushreg	%r12
-	pushq	%rbp
-	.seh_pushreg	%rbp
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$120, %rsp
-	.seh_stackalloc	120
-	movaps	%xmm6, 64(%rsp)
-	.seh_savexmm	%xmm6, 64
-	movaps	%xmm7, 80(%rsp)
-	.seh_savexmm	%xmm7, 80
-	movaps	%xmm8, 96(%rsp)
-	.seh_savexmm	%xmm8, 96
-	.seh_endprologue
-	movsd	208(%rsp), %xmm7
-	movl	224(%rsp), %r12d
-	movsd	216(%rsp), %xmm8
-	ucomisd	%xmm3, %xmm3
-	movq	%rcx, %rbx
-	movapd	%xmm3, %xmm6
-	movq	%rdx, %rsi
-	jp	.L109
-	pxor	%xmm0, %xmm0
-	comisd	%xmm3, %xmm0
-	ja	.L74
-	movsd	.LC1(%rip), %xmm1
-	comisd	%xmm1, %xmm3
-	ja	.L74
-	ucomisd	%xmm7, %xmm7
-	jp	.L110
-	comisd	%xmm7, %xmm0
-	ja	.L79
-	comisd	%xmm1, %xmm7
-	ja	.L79
-	ucomisd	%xmm8, %xmm8
-	jp	.L111
-	comisd	%xmm8, %xmm0
-	ja	.L84
-	comisd	%xmm1, %xmm8
-	ja	.L84
-	movzwl	%r8w, %ebp
-	cmpq	16(%rcx), %rbp
-	jnb	.L112
-	testq	%rdx, %rdx
-	je	.L88
-	movq	(%rcx), %rax
-	movzwl	%r8w, %edi
-	movzwl	%r12w, %r13d
-	cmpq	368(%rax), %rdx
-	jnb	.L89
-	movq	376(%rax), %rax
-	cmpq	$0, (%rax,%rdx,8)
-	je	.L89
-	movsd	8(%rcx), %xmm0
-	movl	%edi, %ecx
-	mulsd	%xmm3, %xmm0
-	mulsd	.LC6(%rip), %xmm0
-	cvttsd2sil	%xmm0, %edx
-	call	Mix_Volume
-	movsd	.LC28(%rip), %xmm0
-	movapd	%xmm8, %xmm1
-	movl	%edi, %ecx
-	mulsd	%xmm0, %xmm1
-	mulsd	%xmm7, %xmm0
-	cvttsd2sil	%xmm1, %r8d
-	cvttsd2sil	%xmm0, %edx
-	movzbl	%r8b, %r8d
-	movzbl	%dl, %edx
-	call	Mix_SetPanning
-	testl	%eax, %eax
-	je	.L113
-	movq	(%rbx), %rax
-	movq	376(%rax), %rdx
-	cmpq	368(%rax), %rsi
-	jnb	.L114
-	movq	(%rdx,%rsi,8), %rdx
-	movl	%r13d, %r8d
-	movl	%edi, %ecx
-	call	Mix_PlayChannel
-	cmpl	$-1, %eax
-	je	.L115
-	movq	24(%rbx), %rax
-	cmpq	16(%rbx), %rbp
-	jnb	.L108
-	leaq	0(%rbp,%rbp,4), %rdx
-	leaq	(%rax,%rdx,8), %rax
-	movq	%rsi, (%rax)
-	cmpq	16(%rbx), %rbp
-	jnb	.L108
-	movw	%r12w, 32(%rax)
-	unpcklpd	%xmm7, %xmm6
-	movb	$0, 34(%rax)
-	movups	%xmm6, 8(%rax)
-	movsd	%xmm8, 24(%rax)
-.L88:
-	movaps	64(%rsp), %xmm6
-	movaps	80(%rsp), %xmm7
-	xorl	%eax, %eax
-	movaps	96(%rsp), %xmm8
-	addq	$120, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%rbp
-	popq	%r12
-	popq	%r13
-	ret
-.L74:
-	movzwl	%r12w, %r12d
-	movapd	%xmm6, %xmm3
-	movq	%xmm6, %r9
-	movq	%rsi, %rdx
-	movl	%r12d, 48(%rsp)
-	leaq	.LC21(%rip), %rcx
-	movzwl	%r8w, %r8d
-	movsd	%xmm8, 40(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L84:
-	movzwl	%r12w, %r12d
-	movapd	%xmm6, %xmm3
-	movq	%xmm6, %r9
-	movq	%rsi, %rdx
-	movl	%r12d, 48(%rsp)
-	leaq	.LC25(%rip), %rcx
-	movzwl	%r8w, %r8d
-	movsd	%xmm8, 40(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L79:
-	movzwl	%r12w, %r12d
-	movapd	%xmm6, %xmm3
-	movq	%xmm6, %r9
-	movq	%rsi, %rdx
-	movl	%r12d, 48(%rsp)
-	leaq	.LC23(%rip), %rcx
-	movzwl	%r8w, %r8d
-	movsd	%xmm8, 40(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L108:
-	leaq	.LC12(%rip), %rcx
-	movq	%rbp, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L89:
-	movl	%r13d, 48(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%edi, %r8d
-	movq	%rsi, %rdx
-	leaq	.LC27(%rip), %rcx
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm6, %r9
-	movsd	%xmm8, 40(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L112:
-	movzwl	%r12w, %r12d
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm3, %r9
-	leaq	.LC26(%rip), %rcx
-	movl	%r12d, 48(%rsp)
-	movzwl	%r8w, %r8d
-	movsd	%xmm8, 40(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L110:
-	movzwl	%r12w, %r12d
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm3, %r9
-	leaq	.LC22(%rip), %rcx
-	movl	%r12d, 48(%rsp)
-	movzwl	%r8w, %r8d
-	movsd	%xmm8, 40(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L109:
-	movzwl	%r12w, %r12d
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm3, %r9
-	leaq	.LC20(%rip), %rcx
-	movl	%r12d, 48(%rsp)
-	movzwl	%r8w, %r8d
-	movsd	%xmm8, 40(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L111:
-	movzwl	%r12w, %r12d
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm3, %r9
-	leaq	.LC24(%rip), %rcx
-	movl	%r12d, 48(%rsp)
-	movzwl	%r8w, %r8d
-	movsd	%xmm8, 40(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L115:
-	movl	%r13d, 48(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%edi, %r8d
-	movq	%rsi, %rdx
-	leaq	.LC30(%rip), %rcx
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm6, %r9
-	movsd	%xmm8, 40(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L114:
-	leaq	.LC12(%rip), %rcx
-	movq	%rsi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L113:
-	movl	%r13d, 48(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%edi, %r8d
-	movq	%rsi, %rdx
-	leaq	.LC29(%rip), %rcx
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm6, %r9
-	movsd	%xmm8, 40(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC31:
-	.ascii "wze::engine.audio.Play(): Volume must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC32:
-	.ascii "wze::engine.audio.Play(): Volume must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC33:
-	.ascii "wze::engine.audio.Play(): Left must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC34:
-	.ascii "wze::engine.audio.Play(): Left must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC35:
-	.ascii "wze::engine.audio.Play(): Right must not be NaN\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC36:
-	.ascii "wze::engine.audio.Play(): Right must be in range [0, 1]\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC37:
-	.ascii "wze::engine.audio.Play(): Channel does not exist\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d, FadeInMilliseconds: %d\12\0"
-	.align 8
-.LC38:
-	.ascii "wze::engine.audio.Play(): Mix_FadeInChannel() failed\12Params: SoundID: %lld, Channel: %d, Volume: %lf, Left: %lf, Right: %lf, Loops: %d\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio4PlayEytdddtt
-	.def	_ZN3wze6engine5audio4PlayEytdddtt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio4PlayEytdddtt
-_ZN3wze6engine5audio4PlayEytdddtt:
-.LFB6897:
-	pushq	%r14
-	.seh_pushreg	%r14
-	pushq	%r13
-	.seh_pushreg	%r13
-	pushq	%r12
-	.seh_pushreg	%r12
-	pushq	%rbp
-	.seh_pushreg	%rbp
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$112, %rsp
-	.seh_stackalloc	112
-	movaps	%xmm6, 64(%rsp)
-	.seh_savexmm	%xmm6, 64
-	movaps	%xmm7, 80(%rsp)
-	.seh_savexmm	%xmm7, 80
-	movaps	%xmm8, 96(%rsp)
-	.seh_savexmm	%xmm8, 96
-	.seh_endprologue
-	movl	224(%rsp), %r12d
-	movl	232(%rsp), %r13d
-	movsd	208(%rsp), %xmm7
-	movsd	216(%rsp), %xmm8
-	ucomisd	%xmm3, %xmm3
-	movq	%rcx, %rbx
-	movapd	%xmm3, %xmm6
-	movq	%rdx, %rsi
-	jp	.L154
-	pxor	%xmm0, %xmm0
-	comisd	%xmm3, %xmm0
-	ja	.L119
-	movsd	.LC1(%rip), %xmm1
-	comisd	%xmm1, %xmm3
-	ja	.L119
-	ucomisd	%xmm7, %xmm7
-	jp	.L155
-	comisd	%xmm7, %xmm0
-	ja	.L124
-	comisd	%xmm1, %xmm7
-	ja	.L124
-	ucomisd	%xmm8, %xmm8
-	jp	.L156
-	comisd	%xmm8, %xmm0
-	ja	.L129
-	comisd	%xmm1, %xmm8
-	ja	.L129
-	movzwl	%r8w, %ebp
-	cmpq	16(%rcx), %rbp
-	jnb	.L157
-	testq	%rdx, %rdx
-	je	.L133
-	movq	(%rcx), %rax
-	movzwl	%r8w, %edi
-	movzwl	%r12w, %r14d
-	cmpq	368(%rax), %rdx
-	jnb	.L134
-	movq	376(%rax), %rax
-	cmpq	$0, (%rax,%rdx,8)
-	je	.L134
-	movsd	8(%rcx), %xmm0
-	movl	%edi, %ecx
-	mulsd	%xmm3, %xmm0
-	mulsd	.LC6(%rip), %xmm0
-	cvttsd2sil	%xmm0, %edx
-	call	Mix_Volume
-	movsd	.LC28(%rip), %xmm0
-	movapd	%xmm8, %xmm1
-	movl	%edi, %ecx
-	mulsd	%xmm0, %xmm1
-	mulsd	%xmm7, %xmm0
-	cvttsd2sil	%xmm1, %r8d
-	cvttsd2sil	%xmm0, %edx
-	movzbl	%r8b, %r8d
-	movzbl	%dl, %edx
-	call	Mix_SetPanning
-	testl	%eax, %eax
-	je	.L158
-	movq	(%rbx), %rax
-	movzwl	%r13w, %r9d
-	movq	376(%rax), %rdx
-	cmpq	368(%rax), %rsi
-	jnb	.L159
-	movq	(%rdx,%rsi,8), %rdx
-	movl	%r14d, %r8d
-	movl	%edi, %ecx
-	call	Mix_FadeInChannel
-	cmpl	$-1, %eax
-	je	.L160
-	movq	24(%rbx), %rax
-	cmpq	16(%rbx), %rbp
-	jnb	.L153
-	leaq	0(%rbp,%rbp,4), %rdx
-	leaq	(%rax,%rdx,8), %rax
-	movq	%rsi, (%rax)
-	cmpq	16(%rbx), %rbp
-	jnb	.L153
-	movw	%r12w, 32(%rax)
-	unpcklpd	%xmm7, %xmm6
-	movb	$0, 34(%rax)
-	movups	%xmm6, 8(%rax)
-	movsd	%xmm8, 24(%rax)
-.L133:
-	movaps	64(%rsp), %xmm6
-	movaps	80(%rsp), %xmm7
-	xorl	%eax, %eax
-	movaps	96(%rsp), %xmm8
-	addq	$112, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%rbp
-	popq	%r12
-	popq	%r13
-	popq	%r14
-	ret
-.L119:
-	movzwl	%r13w, %r13d
-	movzwl	%r12w, %r12d
-	movapd	%xmm6, %xmm3
-	movzwl	%r8w, %r8d
-	movl	%r13d, 56(%rsp)
-	movq	%xmm6, %r9
-	movq	%rsi, %rdx
-	leaq	.LC32(%rip), %rcx
-	movl	%r12d, 48(%rsp)
-	movsd	%xmm8, 40(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L129:
-	movzwl	%r13w, %r13d
-	movzwl	%r12w, %r12d
-	movapd	%xmm6, %xmm3
-	movzwl	%r8w, %r8d
-	movl	%r13d, 56(%rsp)
-	movq	%xmm6, %r9
-	movq	%rsi, %rdx
-	leaq	.LC36(%rip), %rcx
-	movl	%r12d, 48(%rsp)
-	movsd	%xmm8, 40(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L124:
-	movzwl	%r13w, %r13d
-	movzwl	%r12w, %r12d
-	movapd	%xmm6, %xmm3
-	movzwl	%r8w, %r8d
-	movl	%r13d, 56(%rsp)
-	movq	%xmm6, %r9
-	movq	%rsi, %rdx
-	leaq	.LC34(%rip), %rcx
-	movl	%r12d, 48(%rsp)
-	movsd	%xmm8, 40(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L153:
-	leaq	.LC12(%rip), %rcx
-	movq	%rbp, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L134:
-	movl	%r14d, 48(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%edi, %r8d
-	movq	%rsi, %rdx
-	leaq	.LC27(%rip), %rcx
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm6, %r9
-	movsd	%xmm8, 40(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L157:
-	movzwl	%r13w, %r13d
-	movzwl	%r12w, %r12d
-	leaq	.LC37(%rip), %rcx
-	movsd	%xmm8, 40(%rsp)
-	movl	%r13d, 56(%rsp)
-	movq	%xmm3, %r9
-	movzwl	%r8w, %r8d
-	movl	%r12d, 48(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L155:
-	movzwl	%r13w, %r13d
-	movzwl	%r12w, %r12d
-	leaq	.LC33(%rip), %rcx
-	movsd	%xmm8, 40(%rsp)
-	movl	%r13d, 56(%rsp)
-	movq	%xmm3, %r9
-	movzwl	%r8w, %r8d
-	movl	%r12d, 48(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L154:
-	movzwl	%r13w, %r13d
-	movzwl	%r12w, %r12d
-	leaq	.LC31(%rip), %rcx
-	movsd	%xmm8, 40(%rsp)
-	movl	%r13d, 56(%rsp)
-	movq	%xmm3, %r9
-	movzwl	%r8w, %r8d
-	movl	%r12d, 48(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L156:
-	movzwl	%r13w, %r13d
-	movzwl	%r12w, %r12d
-	leaq	.LC35(%rip), %rcx
-	movsd	%xmm8, 40(%rsp)
-	movl	%r13d, 56(%rsp)
-	movq	%xmm3, %r9
-	movzwl	%r8w, %r8d
-	movl	%r12d, 48(%rsp)
-	movsd	%xmm7, 32(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L160:
-	movl	%r14d, 48(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%edi, %r8d
-	movq	%rsi, %rdx
-	leaq	.LC38(%rip), %rcx
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm6, %r9
-	movsd	%xmm8, 40(%rsp)
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L159:
-	leaq	.LC12(%rip), %rcx
-	movq	%rsi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L158:
-	movl	%r14d, 48(%rsp)
-	movapd	%xmm6, %xmm3
-	movl	%edi, %r8d
-	movq	%rsi, %rdx
-	leaq	.LC29(%rip), %rcx
-	movsd	%xmm7, 32(%rsp)
-	movq	%xmm6, %r9
-	movsd	%xmm8, 40(%rsp)
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -1180,20 +311,23 @@ _ZN3wze6engine5audio4PlayEytdddtt:
 	.def	_ZN3wze6engine5audio15GetChannelCountEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15GetChannelCountEv
 _ZN3wze6engine5audio15GetChannelCountEv:
-.LFB6898:
+.LFB8439:
 	.seh_endprologue
 	movzwl	16(%rcx), %eax
 	ret
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC39:
+.LC8:
 	.ascii "wze::engine.audio.SetChannelCount(): Mix_AllocateChannels() failed\12Params: ChannelCount: %d\12\0"
 	.align 8
-.LC40:
+.LC9:
+	.ascii "neo::array.Remove(): Index out of range\12Params: Index: %lld, Length: %lld\12\0"
+	.align 8
+.LC10:
 	.ascii "neo::array.Remove(): Memory allocation failed\12Params: Index: %lld, Length: %lld\12\0"
 	.align 8
-.LC41:
+.LC11:
 	.ascii "neo::array.Insert(): Memory allocation failed\12Params: Index: %lld, Length: %lld\12\0"
 	.text
 	.align 2
@@ -1202,7 +336,9 @@ _ZN3wze6engine5audio15GetChannelCountEv:
 	.def	_ZN3wze6engine5audio15SetChannelCountEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15SetChannelCountEt
 _ZN3wze6engine5audio15SetChannelCountEt:
-.LFB6899:
+.LFB8440:
+	pushq	%r12
+	.seh_pushreg	%r12
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -1211,543 +347,221 @@ _ZN3wze6engine5audio15SetChannelCountEt:
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$40, %rsp
-	.seh_stackalloc	40
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	movaps	%xmm6, 32(%rsp)
+	.seh_savexmm	%xmm6, 32
 	.seh_endprologue
-	movzwl	%dx, %ebp
-	movq	%rcx, %rdi
-	movl	%edx, %esi
-	movl	%ebp, %ecx
+	movzwl	%dx, %r12d
+	movq	%rcx, %rsi
+	movl	%edx, %ebp
+	movl	%edx, %edi
+	movl	%r12d, %ecx
 	call	Mix_AllocateChannels
-	cmpl	%eax, %ebp
-	jne	.L178
-	movq	16(%rdi), %rbx
-	movzwl	%si, %esi
-	cmpq	%rbx, %rsi
-	jb	.L179
-	cmpq	%rsi, %rbx
-	jb	.L180
-.L166:
-	movl	%ebx, %eax
-	addq	$40, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%rbp
-	ret
-	.p2align 4,,10
-	.p2align 3
-.L180:
-	subl	%ebx, %ebp
-	movslq	%ebp, %rbp
+	cmpl	%eax, %r12d
+	jne	.L74
+	movq	16(%rsi), %rbx
+	movzwl	%bp, %ebp
+	cmpq	%rbx, %rbp
+	jnb	.L35
+	movq	%rbp, %rax
+.L73:
+	movq	24(%rsi), %rdx
+.L39:
+	movq	(%rdx,%rax,8), %rcx
+	testq	%rcx, %rcx
+	je	.L36
+	movl	$48, %edx
+	addl	$1, %edi
+	call	_ZdlPvy
+	movq	16(%rsi), %rbx
+	movzwl	%di, %eax
+	cmpq	%rbx, %rax
+	jb	.L73
+.L38:
+	movq	%rbx, %rdi
+	subq	%rbp, %rdi
+	cmpq	%rbx, %rbp
+	jnb	.L75
+	testq	%rdi, %rdi
+	je	.L41
+	movq	%rbp, 16(%rsi)
+	movq	24(%rsi), %rcx
 	testq	%rbp, %rbp
-	jne	.L168
-	movq	%rbx, %r9
-.L173:
-	cmpq	%r9, %rbx
-	jnb	.L181
-	movq	24(%rdi), %r8
-	movl	%ebx, %ecx
-	movq	%rbx, %rdx
-	pxor	%xmm0, %xmm0
+	je	.L76
+	leaq	0(,%rbp,8), %rdx
+	call	realloc
+	movq	%rax, 24(%rsi)
+	testq	%rax, %rax
+	je	.L43
+	movq	16(%rsi), %rbx
+	jmp	.L41
 	.p2align 4,,10
 	.p2align 3
-.L175:
-	leaq	(%rdx,%rdx,4), %rax
-	leaq	(%r8,%rax,8), %rax
-	movq	$0, (%rax)
-	movq	16(%rdi), %rbx
-	cmpq	%rbx, %rdx
-	jnb	.L182
-	xorl	%edx, %edx
-	addl	$1, %ecx
-	movq	$0x000000000, 24(%rax)
-	movw	%dx, 32(%rax)
-	movzwl	%cx, %edx
-	movb	$0, 34(%rax)
-	movups	%xmm0, 8(%rax)
-	cmpq	%rbx, %rdx
-	jb	.L175
+.L35:
+	cmpq	%rbp, %rbx
+	jb	.L77
+.L41:
+	movaps	32(%rsp), %xmm6
 	movl	%ebx, %eax
-	addq	$40, %rsp
+	addq	$48, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
 	popq	%rbp
+	popq	%r12
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L179:
-	movq	%rsi, 16(%rdi)
-	movq	24(%rdi), %rcx
-	testq	%rsi, %rsi
-	je	.L183
-	leaq	(%rsi,%rsi,4), %rdx
-	salq	$3, %rdx
-	call	realloc
-	movq	%rax, 24(%rdi)
-	testq	%rax, %rax
-	je	.L184
-	movq	16(%rdi), %rbx
-	movl	%ebx, %eax
-	addq	$40, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	popq	%rbp
-	ret
+.L36:
+	addl	$1, %edi
+	movzwl	%di, %eax
+	cmpq	%rbx, %rax
+	jb	.L39
+	jmp	.L38
 	.p2align 4,,10
 	.p2align 3
-.L168:
-	leaq	0(%rbp,%rbx), %rsi
-	movq	24(%rdi), %rcx
-	movq	%rsi, 16(%rdi)
-	leaq	(%rsi,%rsi,4), %rdx
-	salq	$3, %rdx
-	call	realloc
-	movq	%rax, 24(%rdi)
-	testq	%rax, %rax
-	je	.L185
-	movq	16(%rdi), %r9
-	leaq	-1(%r9), %rcx
-	cmpq	%rsi, %rcx
-	jb	.L173
-	movq	%r9, %rdx
-	subq	%rbp, %rdx
-	leaq	(%rdx,%rdx,4), %rdx
-	leaq	(%rax,%rdx,8), %rax
-	leaq	0(%rbp,%rbp,4), %rdx
-	salq	$3, %rdx
-	.p2align 4,,10
-	.p2align 3
-.L172:
-	movdqu	-40(%rax), %xmm1
-	subq	$1, %rcx
-	subq	$40, %rax
-	movups	%xmm1, (%rax,%rdx)
-	movdqu	16(%rax), %xmm2
-	movups	%xmm2, 16(%rax,%rdx)
-	movq	32(%rax), %r8
-	movq	%r8, 32(%rax,%rdx)
-	cmpq	%rsi, %rcx
-	jnb	.L172
-	jmp	.L173
-	.p2align 4,,10
-	.p2align 3
-.L183:
+.L76:
 	call	free
-	movq	$0, 24(%rdi)
-	movq	16(%rdi), %rbx
-	jmp	.L166
+	movq	$0, 24(%rsi)
+	movq	16(%rsi), %rbx
+	jmp	.L41
 	.p2align 4,,10
 	.p2align 3
-.L181:
-	movq	%r9, %rbx
-	jmp	.L166
-.L182:
-	leaq	.LC12(%rip), %rcx
+.L77:
+	subl	%ebx, %r12d
+	movslq	%r12d, %r12
+	testq	%r12, %r12
+	jne	.L44
+	movq	%rbx, %r8
+.L51:
+	cmpq	%r8, %rbx
+	jnb	.L78
+	movsd	.LC1(%rip), %xmm6
+	movl	%ebx, %ebp
+	movq	%rbx, %rdi
+	jmp	.L56
+	.p2align 4,,10
+	.p2align 3
+.L55:
+	addl	$1, %ebp
+	movq	%rax, (%rdx,%rdi,8)
+	movzwl	%bp, %edi
+	cmpq	%rbx, %rdi
+	jnb	.L41
+.L56:
+	movl	$48, %ecx
+	call	_Znwy
+	movq	(%rsi), %rdx
+	movq	16(%rsi), %rbx
+	movq	$0x000000000, 8(%rax)
+	movq	%rdx, (%rax)
+	movq	24(%rsi), %rdx
+	movq	$0, 16(%rax)
+	movw	%bp, 24(%rax)
+	movq	$0, 32(%rax)
+	movsd	%xmm6, 40(%rax)
+	cmpq	%rbx, %rdi
+	jb	.L55
+	leaq	.LC3(%rip), %rcx
+	movq	%rdi, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L178:
-	leaq	.LC39(%rip), %rcx
-	movl	%ebp, %edx
+	.p2align 4,,10
+	.p2align 3
+.L44:
+	leaq	(%r12,%rbx), %rdi
+	movq	24(%rsi), %rcx
+	movq	%rdi, 16(%rsi)
+	leaq	0(,%rdi,8), %rdx
+	call	realloc
+	movq	%rax, 24(%rsi)
+	movq	%rax, %rcx
+	testq	%rax, %rax
+	je	.L79
+	movq	16(%rsi), %r8
+	leaq	-1(%r8), %rax
+	cmpq	%rdi, %rax
+	jb	.L51
+	movq	%r8, %r10
+	subq	%rdi, %r10
+	leaq	-1(%r10), %rdx
+	cmpq	$2, %rdx
+	jbe	.L48
+	movq	%rbp, %rdx
+	subq	%rbx, %rdx
+	leaq	8(,%rdx,8), %rdx
+	testq	%rdx, %rdx
+	je	.L48
+	testq	%rdi, %rdi
+	je	.L48
+	movq	%r10, %r9
+	leaq	(%rbx,%r8), %rdx
+	leaq	-16(%rcx,%r8,8), %r11
+	shrq	%r9
+	subq	%rbp, %rdx
+	negq	%r9
+	leaq	-16(%rcx,%rdx,8), %rdi
+	xorl	%edx, %edx
+	salq	$4, %r9
+	.p2align 4,,10
+	.p2align 3
+.L49:
+	movdqu	(%rdi,%rdx), %xmm0
+	movups	%xmm0, (%r11,%rdx)
+	subq	$16, %rdx
+	cmpq	%r9, %rdx
+	jne	.L49
+	movq	%r10, %rdx
+	andq	$-2, %rdx
+	subq	%rdx, %rax
+	andl	$1, %r10d
+	je	.L51
+	movq	%rax, %rdx
+	subq	%r12, %rdx
+	movq	(%rcx,%rdx,8), %rdx
+	movq	%rdx, (%rcx,%rax,8)
+	jmp	.L51
+.L48:
+	negq	%r12
+	leaq	(%rcx,%r12,8), %r9
+	.p2align 4,,10
+	.p2align 3
+.L53:
+	movq	(%r9,%rax,8), %rdx
+	movq	%rdx, (%rcx,%rax,8)
+	subq	$1, %rax
+	cmpq	%rdi, %rax
+	jnb	.L53
+	jmp	.L51
+.L78:
+	movq	%r8, %rbx
+	jmp	.L41
+.L74:
+	leaq	.LC8(%rip), %rcx
+	movl	%r12d, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L185:
-	leaq	.LC41(%rip), %rcx
-	movq	%rbp, %r8
+.L75:
+	leaq	.LC9(%rip), %rcx
+	movq	%rdi, %r8
+	movq	%rbp, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L79:
+	leaq	.LC11(%rip), %rcx
+	movq	%r12, %r8
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L184:
-	subq	%rsi, %rbx
-	leaq	.LC40(%rip), %rcx
-	movq	%rsi, %rdx
-	movq	%rbx, %r8
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC42:
-	.ascii "wze::engine.audio.SetChannelVolume(): Channel does not exist\12Params: Channel: %d, Volume: %lf\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio16SetChannelVolumeEtd
-	.def	_ZN3wze6engine5audio16SetChannelVolumeEtd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio16SetChannelVolumeEtd
-_ZN3wze6engine5audio16SetChannelVolumeEtd:
-.LFB6900:
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$56, %rsp
-	.seh_stackalloc	56
-	movaps	%xmm6, 32(%rsp)
-	.seh_savexmm	%xmm6, 32
-	.seh_endprologue
-	movq	%rcx, %rbx
-	movapd	%xmm2, %xmm6
-	movzwl	%dx, %esi
-	movzwl	%dx, %ecx
-	cmpq	16(%rbx), %rsi
-	jnb	.L189
-	movsd	8(%rbx), %xmm0
-	mulsd	%xmm2, %xmm0
-	mulsd	.LC6(%rip), %xmm0
-	cvttsd2sil	%xmm0, %edx
-	call	Mix_Volume
-	movq	24(%rbx), %rax
-	cmpq	16(%rbx), %rsi
-	jnb	.L190
-	leaq	(%rsi,%rsi,4), %rdx
-	movapd	%xmm6, %xmm0
-	movsd	%xmm6, 8(%rax,%rdx,8)
-	movaps	32(%rsp), %xmm6
-	addq	$56, %rsp
-	popq	%rbx
-	popq	%rsi
-	ret
-.L189:
-	movl	%ecx, %edx
-	movq	%xmm2, %r8
-	leaq	.LC42(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L190:
-	leaq	.LC12(%rip), %rcx
-	movq	%rsi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC43:
-	.ascii "wze::engine.audio.SetChannelPanning(): Channel does not exist\12Params: Channel: %d, Left: %lf, Right: %lf\12\0"
-	.align 8
-.LC44:
-	.ascii "wze::engine.audio.SetChannelPanning(): Mix_SetPanning() failed\12Params: Channel: %d, Left: %lf, Right: %lf\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio17SetChannelPanningEtdd
-	.def	_ZN3wze6engine5audio17SetChannelPanningEtdd;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio17SetChannelPanningEtdd
-_ZN3wze6engine5audio17SetChannelPanningEtdd:
-.LFB6901:
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$80, %rsp
-	.seh_stackalloc	80
-	movaps	%xmm6, 32(%rsp)
-	.seh_savexmm	%xmm6, 32
-	movaps	%xmm7, 48(%rsp)
-	.seh_savexmm	%xmm7, 48
-	movaps	%xmm8, 64(%rsp)
-	.seh_savexmm	%xmm8, 64
-	.seh_endprologue
-	movapd	%xmm2, %xmm8
-	movq	%rcx, %rsi
-	movapd	%xmm2, %xmm6
-	movzwl	%dx, %edi
-	movapd	%xmm3, %xmm7
-	unpcklpd	%xmm3, %xmm8
-	movzwl	%dx, %ebx
-	cmpq	16(%rcx), %rdi
-	jnb	.L195
-	movsd	.LC28(%rip), %xmm0
-	movapd	%xmm3, %xmm1
-	movl	%ebx, %ecx
-	mulsd	%xmm0, %xmm1
-	mulsd	%xmm2, %xmm0
-	cvttsd2sil	%xmm1, %r8d
-	cvttsd2sil	%xmm0, %edx
-	movzbl	%r8b, %r8d
-	movzbl	%dl, %edx
-	call	Mix_SetPanning
-	testl	%eax, %eax
-	je	.L196
-	movq	24(%rsi), %rax
-	cmpq	16(%rsi), %rdi
-	jnb	.L197
-	leaq	(%rdi,%rdi,4), %rdx
-	movups	%xmm8, 16(%rax,%rdx,8)
-	movaps	32(%rsp), %xmm6
-	movaps	48(%rsp), %xmm7
-	xorl	%eax, %eax
-	movaps	64(%rsp), %xmm8
-	addq	$80, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	ret
-.L195:
-	leaq	.LC43(%rip), %rcx
-	movq	%xmm3, %r9
-	movq	%xmm2, %r8
-	movl	%ebx, %edx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L197:
-	leaq	.LC12(%rip), %rcx
-	movq	%rdi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L196:
-	movapd	%xmm7, %xmm3
-	movq	%xmm7, %r9
-	movapd	%xmm6, %xmm2
-	movl	%ebx, %edx
-	leaq	.LC44(%rip), %rcx
-	movq	%xmm6, %r8
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC45:
-	.ascii "wze::engine.audio.PauseChannel(): Channel does not exist\12Params: Channel: %d\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio12PauseChannelEt
-	.def	_ZN3wze6engine5audio12PauseChannelEt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio12PauseChannelEt
-_ZN3wze6engine5audio12PauseChannelEt:
-.LFB6902:
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$40, %rsp
-	.seh_stackalloc	40
-	.seh_endprologue
-	movq	%rcx, %rbx
-	movzwl	%dx, %esi
-	movzwl	%dx, %ecx
-	cmpq	16(%rbx), %rsi
-	jnb	.L201
-	call	Mix_Pause
-	movq	24(%rbx), %rax
-	cmpq	16(%rbx), %rsi
-	jnb	.L202
-	leaq	(%rsi,%rsi,4), %rdx
-	movb	$1, 34(%rax,%rdx,8)
-	xorl	%eax, %eax
-	addq	$40, %rsp
-	popq	%rbx
-	popq	%rsi
-	ret
-.L201:
-	movl	%ecx, %edx
-	leaq	.LC45(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L202:
-	leaq	.LC12(%rip), %rcx
-	movq	%rsi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC46:
-	.ascii "wze::engine.audio.ResumeChannel(): Channel does not exist\12Params: Channel: %d\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio13ResumeChannelEt
-	.def	_ZN3wze6engine5audio13ResumeChannelEt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio13ResumeChannelEt
-_ZN3wze6engine5audio13ResumeChannelEt:
-.LFB6903:
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$40, %rsp
-	.seh_stackalloc	40
-	.seh_endprologue
-	movq	%rcx, %rbx
-	movzwl	%dx, %esi
-	movzwl	%dx, %ecx
-	cmpq	16(%rbx), %rsi
-	jnb	.L206
-	call	Mix_Resume
-	movq	24(%rbx), %rax
-	cmpq	16(%rbx), %rsi
-	jnb	.L207
-	leaq	(%rsi,%rsi,4), %rdx
-	movb	$0, 34(%rax,%rdx,8)
-	xorl	%eax, %eax
-	addq	$40, %rsp
-	popq	%rbx
-	popq	%rsi
-	ret
-.L206:
-	movl	%ecx, %edx
-	leaq	.LC46(%rip), %rcx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L207:
-	leaq	.LC12(%rip), %rcx
-	movq	%rsi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC47:
-	.ascii "wze::engine.audio.StopChannel(): Channel does not exist\12Params: Channel: %d\12\0"
-	.align 8
-.LC48:
-	.ascii "wze::engine.audio.StopChannel(): Mix_HaltChannel() failed\12Params: Channel: %d\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio11StopChannelEt
-	.def	_ZN3wze6engine5audio11StopChannelEt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio11StopChannelEt
-_ZN3wze6engine5audio11StopChannelEt:
-.LFB6904:
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
-	.seh_endprologue
-	movq	%rcx, %rsi
-	movzwl	%dx, %edi
-	movzwl	%dx, %ebx
-	cmpq	16(%rcx), %rdi
-	jnb	.L214
-	movl	%ebx, %ecx
-	call	Mix_HaltChannel
-	testl	%eax, %eax
-	jne	.L215
-	movq	24(%rsi), %rax
-	cmpq	16(%rsi), %rdi
-	jnb	.L213
-	leaq	(%rdi,%rdi,4), %rdx
-	leaq	(%rax,%rdx,8), %rax
-	movq	$0, (%rax)
-	cmpq	16(%rsi), %rdi
-	jnb	.L213
-	pxor	%xmm0, %xmm0
-	xorl	%edx, %edx
-	movq	$0x000000000, 24(%rax)
-	movw	%dx, 32(%rax)
-	movb	$0, 34(%rax)
-	movups	%xmm0, 8(%rax)
-	xorl	%eax, %eax
-	addq	$32, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
-	ret
-.L213:
-	leaq	.LC12(%rip), %rcx
-	movq	%rdi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L215:
-	leaq	.LC48(%rip), %rcx
-	movl	%ebx, %edx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L214:
-	leaq	.LC47(%rip), %rcx
-	movl	%ebx, %edx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
-	.seh_endproc
-	.section .rdata,"dr"
-	.align 8
-.LC49:
-	.ascii "wze::engine.audio.StopChannel(): Channel does not exist\12Params: Channel: %d, FadeOutMilliseconds: %d\12\0"
-	.text
-	.align 2
-	.p2align 4
-	.globl	_ZN3wze6engine5audio11StopChannelEtt
-	.def	_ZN3wze6engine5audio11StopChannelEtt;	.scl	2;	.type	32;	.endef
-	.seh_proc	_ZN3wze6engine5audio11StopChannelEtt
-_ZN3wze6engine5audio11StopChannelEtt:
-.LFB6905:
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$40, %rsp
-	.seh_stackalloc	40
-	.seh_endprologue
-	movq	%rcx, %rbx
-	movl	%edx, %ecx
-	movzwl	%dx, %esi
-	movzwl	%r8w, %edx
-	movzwl	%cx, %ecx
-	cmpq	16(%rbx), %rsi
-	jnb	.L221
-	call	Mix_FadeOutChannel
-	movq	24(%rbx), %rax
-	cmpq	16(%rbx), %rsi
-	jnb	.L220
-	leaq	(%rsi,%rsi,4), %rdx
-	leaq	(%rax,%rdx,8), %rax
-	movq	$0, (%rax)
-	cmpq	16(%rbx), %rsi
-	jnb	.L220
-	pxor	%xmm0, %xmm0
-	xorl	%edx, %edx
-	movq	$0x000000000, 24(%rax)
-	movw	%dx, 32(%rax)
-	movb	$0, 34(%rax)
-	movups	%xmm0, 8(%rax)
-	xorl	%eax, %eax
-	addq	$40, %rsp
-	popq	%rbx
-	popq	%rsi
-	ret
-.L220:
-	leaq	.LC12(%rip), %rcx
-	movq	%rsi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L221:
-	movl	%edx, %r8d
-	movl	%ecx, %edx
-	leaq	.LC49(%rip), %rcx
+.L43:
+	leaq	.LC10(%rip), %rcx
+	movq	%rdi, %r8
+	movq	%rbp, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -1759,52 +573,15 @@ _ZN3wze6engine5audio11StopChannelEtt:
 	.def	_ZN3wze6engine5audio8PauseAllEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio8PauseAllEv
 _ZN3wze6engine5audio8PauseAllEv:
-.LFB6906:
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
+.LFB8441:
+	subq	$40, %rsp
+	.seh_stackalloc	40
 	.seh_endprologue
-	movq	%rcx, %rdi
 	movl	$1, %ecx
 	call	Mix_PauseAudio
-	cmpq	$0, 16(%rdi)
-	je	.L223
-	xorl	%esi, %esi
-	xorl	%ebx, %ebx
-	.p2align 4,,10
-	.p2align 3
-.L225:
-	movzwl	%si, %ecx
-	call	Mix_Pause
-	movq	16(%rdi), %rax
-	movq	24(%rdi), %rdx
-	cmpq	%rax, %rbx
-	jnb	.L227
-	addl	$1, %esi
-	leaq	(%rbx,%rbx,4), %rcx
-	movzwl	%si, %ebx
-	movb	$1, 34(%rdx,%rcx,8)
-	cmpq	%rax, %rbx
-	jb	.L225
-.L223:
 	xorl	%eax, %eax
-	addq	$32, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
+	addq	$40, %rsp
 	ret
-.L227:
-	leaq	.LC12(%rip), %rcx
-	movq	%rbx, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
 	.seh_endproc
 	.align 2
 	.p2align 4
@@ -1812,56 +589,19 @@ _ZN3wze6engine5audio8PauseAllEv:
 	.def	_ZN3wze6engine5audio9ResumeAllEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio9ResumeAllEv
 _ZN3wze6engine5audio9ResumeAllEv:
-.LFB6907:
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
+.LFB8442:
+	subq	$40, %rsp
+	.seh_stackalloc	40
 	.seh_endprologue
-	movq	%rcx, %rdi
 	xorl	%ecx, %ecx
 	call	Mix_PauseAudio
-	cmpq	$0, 16(%rdi)
-	je	.L229
-	xorl	%esi, %esi
-	xorl	%ebx, %ebx
-	.p2align 4,,10
-	.p2align 3
-.L231:
-	movzwl	%si, %ecx
-	call	Mix_Resume
-	movq	16(%rdi), %rax
-	movq	24(%rdi), %rdx
-	cmpq	%rax, %rbx
-	jnb	.L233
-	addl	$1, %esi
-	leaq	(%rbx,%rbx,4), %rcx
-	movzwl	%si, %ebx
-	movb	$0, 34(%rdx,%rcx,8)
-	cmpq	%rax, %rbx
-	jb	.L231
-.L229:
 	xorl	%eax, %eax
-	addq	$32, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
+	addq	$40, %rsp
 	ret
-.L233:
-	leaq	.LC12(%rip), %rcx
-	movq	%rbx, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-	nop
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
-.LC50:
+.LC12:
 	.ascii "wze::engine.audio[]: Channel does not exist\12Params: Channel: %d\12\0"
 	.text
 	.align 2
@@ -1870,69 +610,20 @@ _ZN3wze6engine5audio9ResumeAllEv:
 	.def	_ZN3wze6engine5audioixEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audioixEt
 _ZN3wze6engine5audioixEt:
-.LFB6908:
-	pushq	%rdi
-	.seh_pushreg	%rdi
-	pushq	%rsi
-	.seh_pushreg	%rsi
-	pushq	%rbx
-	.seh_pushreg	%rbx
-	subq	$32, %rsp
-	.seh_stackalloc	32
+.LFB8443:
+	subq	$40, %rsp
+	.seh_stackalloc	40
 	.seh_endprologue
-	movq	%rcx, %rbx
-	movq	%rdx, %rsi
-	movzwl	%r8w, %edi
-	movzwl	%r8w, %ecx
-	cmpq	16(%rdx), %rdi
-	jnb	.L243
-	call	Mix_Playing
-	testl	%eax, %eax
-	movq	24(%rsi), %rax
-	je	.L244
-	cmpq	16(%rsi), %rdi
-	jnb	.L242
-	leaq	(%rdi,%rdi,4), %rdx
-	leaq	(%rax,%rdx,8), %rax
-.L239:
-	movdqu	(%rax), %xmm1
-	movdqu	16(%rax), %xmm2
-	movq	32(%rax), %rax
-	movups	%xmm1, (%rbx)
-	movq	%rax, 32(%rbx)
-	movq	%rbx, %rax
-	movups	%xmm2, 16(%rbx)
-	addq	$32, %rsp
-	popq	%rbx
-	popq	%rsi
-	popq	%rdi
+	movzwl	%dx, %eax
+	cmpq	16(%rcx), %rax
+	jnb	.L84
+	movq	24(%rcx), %rdx
+	movq	(%rdx,%rax,8), %rax
+	addq	$40, %rsp
 	ret
-	.p2align 4,,10
-	.p2align 3
-.L244:
-	cmpq	16(%rsi), %rdi
-	jnb	.L242
-	leaq	(%rdi,%rdi,4), %rdx
-	leaq	(%rax,%rdx,8), %rax
-	movq	$0, (%rax)
-	cmpq	16(%rsi), %rdi
-	jnb	.L242
-	pxor	%xmm0, %xmm0
-	xorl	%edx, %edx
-	movq	$0x000000000, 24(%rax)
-	movw	%dx, 32(%rax)
-	movb	$0, 34(%rax)
-	movups	%xmm0, 8(%rax)
-	jmp	.L239
-.L242:
+.L84:
 	leaq	.LC12(%rip), %rcx
-	movq	%rdi, %rdx
-	call	_Z6printfPKcz
-	movl	$1, %ecx
-	call	exit
-.L243:
-	movl	%ecx, %edx
-	leaq	.LC50(%rip), %rcx
+	movzwl	%dx, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -1940,32 +631,621 @@ _ZN3wze6engine5audioixEt:
 	.seh_endproc
 	.section .rdata,"dr"
 	.align 8
+.LC14:
+	.ascii "wze::engine.audio.Update(): Mix_SetPanning() failed\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio6UpdateEv
+	.def	_ZN3wze6engine5audio6UpdateEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio6UpdateEv
+_ZN3wze6engine5audio6UpdateEv:
+.LFB8444:
+	pushq	%rdi
+	.seh_pushreg	%rdi
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$96, %rsp
+	.seh_stackalloc	96
+	movaps	%xmm6, 32(%rsp)
+	.seh_savexmm	%xmm6, 32
+	movaps	%xmm7, 48(%rsp)
+	.seh_savexmm	%xmm7, 48
+	movaps	%xmm8, 64(%rsp)
+	.seh_savexmm	%xmm8, 64
+	movaps	%xmm9, 80(%rsp)
+	.seh_savexmm	%xmm9, 80
+	.seh_endprologue
+	movsd	.LC7(%rip), %xmm7
+	xorl	%ebx, %ebx
+	xorl	%eax, %eax
+	movsd	.LC1(%rip), %xmm8
+	movq	%rcx, %rdi
+	movq	16(%rcx), %rcx
+	testq	%rcx, %rcx
+	jne	.L86
+	jmp	.L116
+	.p2align 4,,10
+	.p2align 3
+.L122:
+	movq	(%rdi), %r8
+	movsd	8(%rax), %xmm0
+	movsd	88(%r8), %xmm1
+	comisd	%xmm1, %xmm0
+	jbe	.L117
+	testq	%rdx, %rdx
+	js	.L90
+	pxor	%xmm2, %xmm2
+	cvtsi2sdq	%rdx, %xmm2
+.L91:
+	subsd	%xmm1, %xmm0
+	movzwl	%bx, %esi
+	comisd	%xmm2, %xmm0
+	ja	.L120
+	divsd	%xmm2, %xmm0
+	movsd	.LC1(%rip), %xmm6
+	subsd	%xmm0, %xmm6
+	movsd	40(%rax), %xmm0
+	mulsd	%xmm6, %xmm0
+	mulsd	.LC7(%rip), %xmm0
+	call	round
+	movl	%esi, %ecx
+	cvttsd2sil	%xmm0, %edx
+	call	Mix_Volume
+	movsd	.LC13(%rip), %xmm9
+	mulsd	%xmm9, %xmm6
+	movapd	%xmm6, %xmm0
+	call	round
+	cvttsd2sil	%xmm0, %r8d
+	subsd	%xmm0, %xmm9
+	cvttsd2sil	%xmm9, %edx
+.L121:
+	movzbl	%dl, %edx
+	movzbl	%r8b, %r8d
+	movl	%esi, %ecx
+	call	Mix_SetPanning
+	testl	%eax, %eax
+	je	.L101
+.L95:
+	movq	16(%rdi), %rcx
+.L94:
+	addl	$1, %ebx
+	movzwl	%bx, %eax
+	cmpq	%rcx, %rax
+	jnb	.L116
+.L86:
+	movq	24(%rdi), %rdx
+	movq	(%rdx,%rax,8), %rax
+	movq	16(%rax), %rdx
+	testq	%rdx, %rdx
+	jne	.L122
+	movsd	40(%rax), %xmm0
+	movzwl	%bx, %esi
+	mulsd	%xmm7, %xmm0
+	call	round
+	movl	%esi, %ecx
+	cvttsd2sil	%xmm0, %edx
+	call	Mix_Volume
+	movl	$255, %r8d
+	movl	$255, %edx
+	movl	%esi, %ecx
+	call	Mix_SetPanning
+	testl	%eax, %eax
+	jne	.L95
+.L101:
+	leaq	.LC14(%rip), %rcx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	.p2align 4,,10
+	.p2align 3
+.L117:
+	comisd	%xmm0, %xmm1
+	jbe	.L94
+	testq	%rdx, %rdx
+	js	.L97
+	pxor	%xmm2, %xmm2
+	cvtsi2sdq	%rdx, %xmm2
+.L98:
+	subsd	%xmm0, %xmm1
+	movzwl	%bx, %esi
+	comisd	%xmm2, %xmm1
+	ja	.L120
+	divsd	%xmm2, %xmm1
+	movapd	%xmm8, %xmm9
+	movsd	40(%rax), %xmm0
+	subsd	%xmm1, %xmm9
+	mulsd	%xmm9, %xmm0
+	mulsd	%xmm7, %xmm0
+	call	round
+	movl	%esi, %ecx
+	cvttsd2sil	%xmm0, %edx
+	call	Mix_Volume
+	movsd	.LC13(%rip), %xmm6
+	movapd	%xmm9, %xmm0
+	mulsd	%xmm6, %xmm0
+	call	round
+	cvttsd2sil	%xmm0, %edx
+	subsd	%xmm0, %xmm6
+	cvttsd2sil	%xmm6, %r8d
+	jmp	.L121
+	.p2align 4,,10
+	.p2align 3
+.L120:
+	movl	%esi, %ecx
+	xorl	%edx, %edx
+	addl	$1, %ebx
+	call	Mix_Volume
+	movq	16(%rdi), %rcx
+	movzwl	%bx, %eax
+	cmpq	%rcx, %rax
+	jb	.L86
+.L116:
+	movaps	32(%rsp), %xmm6
+	movaps	48(%rsp), %xmm7
+	xorl	%eax, %eax
+	movaps	64(%rsp), %xmm8
+	movaps	80(%rsp), %xmm9
+	addq	$96, %rsp
+	popq	%rbx
+	popq	%rsi
+	popq	%rdi
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L90:
+	movq	%rdx, %rcx
+	andl	$1, %edx
+	pxor	%xmm2, %xmm2
+	shrq	%rcx
+	orq	%rdx, %rcx
+	cvtsi2sdq	%rcx, %xmm2
+	addsd	%xmm2, %xmm2
+	jmp	.L91
+	.p2align 4,,10
+	.p2align 3
+.L97:
+	movq	%rdx, %rcx
+	andl	$1, %edx
+	pxor	%xmm2, %xmm2
+	shrq	%rcx
+	orq	%rdx, %rcx
+	cvtsi2sdq	%rcx, %xmm2
+	addsd	%xmm2, %xmm2
+	jmp	.L98
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channelC2EPS0_y
+	.def	_ZN3wze6engine5audio7channelC2EPS0_y;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channelC2EPS0_y
+_ZN3wze6engine5audio7channelC2EPS0_y:
+.LFB8446:
+	.seh_endprologue
+	movq	.LC1(%rip), %rax
+	movq	%rdx, (%rcx)
+	movq	$0x000000000, 8(%rcx)
+	movq	$0, 16(%rcx)
+	movw	%r8w, 24(%rcx)
+	movq	$0, 32(%rcx)
+	movq	%rax, 40(%rcx)
+	ret
+	.seh_endproc
+	.globl	_ZN3wze6engine5audio7channelC1EPS0_y
+	.def	_ZN3wze6engine5audio7channelC1EPS0_y;	.scl	2;	.type	32;	.endef
+	.set	_ZN3wze6engine5audio7channelC1EPS0_y,_ZN3wze6engine5audio7channelC2EPS0_y
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel10GetSoundIDEv
+	.def	_ZN3wze6engine5audio7channel10GetSoundIDEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel10GetSoundIDEv
+_ZN3wze6engine5audio7channel10GetSoundIDEv:
+.LFB8448:
+	.seh_endprologue
+	movq	32(%rcx), %rax
+	ret
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC15:
+	.ascii "wze::engine.audio[].SetSoundID(): Sound does not exist\12Params: SoundID: %lld\12\0"
+	.align 8
+.LC16:
+	.ascii "wze::engine.audio[].SetSoundID(): Mix_HaltChannel() failed\12Params: SoundID: %lld\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel10SetSoundIDEy
+	.def	_ZN3wze6engine5audio7channel10SetSoundIDEy;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel10SetSoundIDEy
+_ZN3wze6engine5audio7channel10SetSoundIDEy:
+.LFB8449:
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movq	%rcx, %rsi
+	movq	%rdx, %rbx
+	testq	%rdx, %rdx
+	je	.L126
+	movq	(%rcx), %rax
+	cmpq	368(%rax), %rdx
+	jnb	.L127
+	movq	376(%rax), %rax
+	cmpq	$0, (%rax,%rdx,8)
+	je	.L127
+.L126:
+	cmpq	%rbx, 32(%rsi)
+	jne	.L134
+.L129:
+	movq	%rbx, %rax
+	movq	%rbx, 32(%rsi)
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%rsi
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L134:
+	movzwl	24(%rsi), %ecx
+	call	Mix_HaltChannel
+	cmpl	$-1, %eax
+	jne	.L129
+	leaq	.LC16(%rip), %rcx
+	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L127:
+	leaq	.LC15(%rip), %rcx
+	movq	%rbx, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC17:
+	.ascii "wze::engine.audio[].Play(): Mix_PlayChannel() failed\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel4PlayEv
+	.def	_ZN3wze6engine5audio7channel4PlayEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel4PlayEv
+_ZN3wze6engine5audio7channel4PlayEv:
+.LFB8450:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movq	32(%rcx), %rdx
+	testq	%rdx, %rdx
+	jne	.L141
+.L136:
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L141:
+	movq	(%rcx), %rax
+	movq	376(%rax), %r8
+	cmpq	368(%rax), %rdx
+	jnb	.L142
+	movq	(%r8,%rdx,8), %rdx
+	movzwl	24(%rcx), %ecx
+	xorl	%r8d, %r8d
+	call	Mix_PlayChannel
+	cmpl	$-1, %eax
+	jne	.L136
+	leaq	.LC17(%rip), %rcx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L142:
+	leaq	.LC3(%rip), %rcx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC18:
+	.ascii "wze::engine.audio[].Play(): Mix_PlayChannel() failed\12Params: Loops: %d\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel4PlayEt
+	.def	_ZN3wze6engine5audio7channel4PlayEt;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel4PlayEt
+_ZN3wze6engine5audio7channel4PlayEt:
+.LFB8451:
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$32, %rsp
+	.seh_stackalloc	32
+	.seh_endprologue
+	movq	32(%rcx), %rax
+	testq	%rax, %rax
+	jne	.L149
+.L144:
+	xorl	%eax, %eax
+	addq	$32, %rsp
+	popq	%rbx
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L149:
+	movzwl	%dx, %ebx
+	movq	(%rcx), %rdx
+	movq	376(%rdx), %r8
+	cmpq	368(%rdx), %rax
+	jnb	.L150
+	movq	(%r8,%rax,8), %rdx
+	movzwl	24(%rcx), %ecx
+	movl	%ebx, %r8d
+	call	Mix_PlayChannel
+	cmpl	$-1, %eax
+	jne	.L144
+	leaq	.LC18(%rip), %rcx
+	movl	%ebx, %edx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L150:
+	leaq	.LC3(%rip), %rcx
+	movq	%rax, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC19:
+	.ascii "wze::engine.audio[].Play(): Mix_FadeInChannel() failed\12Params: Loops: %d, FadeInMilliseconds: %d\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel4PlayEtt
+	.def	_ZN3wze6engine5audio7channel4PlayEtt;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel4PlayEtt
+_ZN3wze6engine5audio7channel4PlayEtt:
+.LFB8452:
+	pushq	%rsi
+	.seh_pushreg	%rsi
+	pushq	%rbx
+	.seh_pushreg	%rbx
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movq	32(%rcx), %rax
+	testq	%rax, %rax
+	jne	.L157
+.L152:
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%rsi
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L157:
+	movzwl	%dx, %ebx
+	movq	(%rcx), %rdx
+	movzwl	%r8w, %esi
+	movq	376(%rdx), %r8
+	cmpq	368(%rdx), %rax
+	jnb	.L158
+	movq	(%r8,%rax,8), %rdx
+	movzwl	24(%rcx), %ecx
+	movl	%esi, %r9d
+	movl	%ebx, %r8d
+	call	Mix_FadeInChannel
+	cmpl	$-1, %eax
+	jne	.L152
+	leaq	.LC19(%rip), %rcx
+	movl	%esi, %r8d
+	movl	%ebx, %edx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L158:
+	leaq	.LC3(%rip), %rcx
+	movq	%rax, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel9GetVolumeEv
+	.def	_ZN3wze6engine5audio7channel9GetVolumeEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel9GetVolumeEv
+_ZN3wze6engine5audio7channel9GetVolumeEv:
+.LFB8453:
+	.seh_endprologue
+	movsd	40(%rcx), %xmm0
+	ret
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC20:
+	.ascii "wze::engine.audio[].SetVolume(): Volume must not be NaN\12Params: Volume: %lf\12\0"
+	.align 8
+.LC21:
+	.ascii "wze::engine.audio[].SetVolume(): Volume must be in range [0, 1]\12Params: Volume: %lf\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel9SetVolumeEd
+	.def	_ZN3wze6engine5audio7channel9SetVolumeEd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel9SetVolumeEd
+_ZN3wze6engine5audio7channel9SetVolumeEd:
+.LFB8454:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	ucomisd	%xmm1, %xmm1
+	jp	.L169
+	pxor	%xmm0, %xmm0
+	comisd	%xmm1, %xmm0
+	ja	.L163
+	comisd	.LC1(%rip), %xmm1
+	ja	.L163
+	movapd	%xmm1, %xmm0
+	movsd	%xmm1, 40(%rcx)
+	addq	$40, %rsp
+	ret
+.L163:
+	leaq	.LC21(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+.L169:
+	leaq	.LC20(%rip), %rcx
+	movq	%xmm1, %rdx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel8IsPausedEv
+	.def	_ZN3wze6engine5audio7channel8IsPausedEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel8IsPausedEv
+_ZN3wze6engine5audio7channel8IsPausedEv:
+.LFB8455:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movzwl	24(%rcx), %ecx
+	call	Mix_Paused
+	testl	%eax, %eax
+	setne	%al
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel5PauseEv
+	.def	_ZN3wze6engine5audio7channel5PauseEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel5PauseEv
+_ZN3wze6engine5audio7channel5PauseEv:
+.LFB8456:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movzwl	24(%rcx), %ecx
+	call	Mix_Pause
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel6ResumeEv
+	.def	_ZN3wze6engine5audio7channel6ResumeEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel6ResumeEv
+_ZN3wze6engine5audio7channel6ResumeEv:
+.LFB8457:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movzwl	24(%rcx), %ecx
+	call	Mix_Resume
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC22:
+	.ascii "wze::engine.audio[].Stop(): Mix_HaltChannel() failed\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel4StopEv
+	.def	_ZN3wze6engine5audio7channel4StopEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel4StopEv
+_ZN3wze6engine5audio7channel4StopEv:
+.LFB8458:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movzwl	24(%rcx), %ecx
+	call	Mix_HaltChannel
+	cmpl	$-1, %eax
+	je	.L175
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+.L175:
+	leaq	.LC22(%rip), %rcx
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel4StopEt
+	.def	_ZN3wze6engine5audio7channel4StopEt;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel4StopEt
+_ZN3wze6engine5audio7channel4StopEt:
+.LFB8459:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movzwl	24(%rcx), %ecx
+	movzwl	%dx, %edx
+	call	Mix_FadeOutChannel
+	xorl	%eax, %eax
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
 .LC1:
 	.long	0
 	.long	1072693248
 	.align 8
-.LC6:
+.LC7:
 	.long	0
 	.long	1080033280
 	.align 8
-.LC28:
+.LC13:
 	.long	0
 	.long	1081073664
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
 	.def	malloc;	.scl	2;	.type	32;	.endef
+	.def	_Znwy;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
+	.def	free;	.scl	2;	.type	32;	.endef
+	.def	_Unwind_Resume;	.scl	2;	.type	32;	.endef
+	.def	_ZdlPvy;	.scl	2;	.type	32;	.endef
 	.def	Mix_MasterVolume;	.scl	2;	.type	32;	.endef
-	.def	Mix_Volume;	.scl	2;	.type	32;	.endef
-	.def	Mix_SetPanning;	.scl	2;	.type	32;	.endef
-	.def	Mix_PlayChannel;	.scl	2;	.type	32;	.endef
-	.def	Mix_FadeInChannel;	.scl	2;	.type	32;	.endef
 	.def	Mix_AllocateChannels;	.scl	2;	.type	32;	.endef
 	.def	realloc;	.scl	2;	.type	32;	.endef
-	.def	free;	.scl	2;	.type	32;	.endef
+	.def	Mix_PauseAudio;	.scl	2;	.type	32;	.endef
+	.def	round;	.scl	2;	.type	32;	.endef
+	.def	Mix_Volume;	.scl	2;	.type	32;	.endef
+	.def	Mix_SetPanning;	.scl	2;	.type	32;	.endef
+	.def	Mix_HaltChannel;	.scl	2;	.type	32;	.endef
+	.def	Mix_PlayChannel;	.scl	2;	.type	32;	.endef
+	.def	Mix_FadeInChannel;	.scl	2;	.type	32;	.endef
+	.def	Mix_Paused;	.scl	2;	.type	32;	.endef
 	.def	Mix_Pause;	.scl	2;	.type	32;	.endef
 	.def	Mix_Resume;	.scl	2;	.type	32;	.endef
-	.def	Mix_HaltChannel;	.scl	2;	.type	32;	.endef
 	.def	Mix_FadeOutChannel;	.scl	2;	.type	32;	.endef
-	.def	Mix_PauseAudio;	.scl	2;	.type	32;	.endef
-	.def	Mix_Playing;	.scl	2;	.type	32;	.endef

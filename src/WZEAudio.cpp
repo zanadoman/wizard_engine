@@ -1,5 +1,8 @@
 #include "WizardEngine.hpp"
-#include <cmath>
+
+#ifdef _WIN64
+    #include <cmath>
+#endif
 
 using namespace neo;
 
@@ -117,7 +120,7 @@ namespace wze
 
     uint8 engine::audio::Update()
     {
-        double left, cache;
+        double cache;
 
         for (uint16 i = 0; i < this->Channels.Length(); i++)
         {
