@@ -166,6 +166,15 @@ namespace wze
                         }
                     }
                 }
+                else
+                {
+                    Mix_Volume(i, round(this->GlobalVolume * this->Channels[i]->Volume * MIX_MAX_VOLUME));
+                    if (Mix_SetPanning(i, 255, 255) == 0)
+                    {
+                        printf("wze::engine.audio.Update(): Mix_SetPanning() failed\n");
+                        exit(1);
+                    }
+                }
             }
             else
             {
