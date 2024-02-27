@@ -134,9 +134,11 @@ namespace wze
                         continue;
                     }
 
-                    Mix_Volume(i, round((cache = 1 - (this->Channels[i]->OriginX - this->Engine->Camera.OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * MIX_MAX_VOLUME));
+                    Mix_Volume(i, round((cache = 1 - cache / this->Channels[i]->Range) * this->Channels[i]->Volume * MIX_MAX_VOLUME));
 
-                    if (Mix_SetPanning(i, 255 - round(cache * 255), round(cache * 255)) == 0)
+                    cache = round(cache * 255);
+
+                    if (Mix_SetPanning(i, 255 - cache, cache) == 0)
                     {
                         printf("wze::engine.audio.Update(): Mix_SetPanning() failed\n");
                         exit(1);
@@ -150,9 +152,11 @@ namespace wze
                         continue;
                     }
 
-                    Mix_Volume(i, round((cache = 1 - (this->Engine->Camera.OriginX - this->Channels[i]->OriginX) / this->Channels[i]->Range) * this->Channels[i]->Volume * MIX_MAX_VOLUME));
+                    Mix_Volume(i, round((cache = 1 - cache / this->Channels[i]->Range) * this->Channels[i]->Volume * MIX_MAX_VOLUME));
 
-                    if (Mix_SetPanning(i, round(cache * 255), 255 - round(cache * 255)) == 0)
+                    cache = round(cache * 255);
+
+                    if (Mix_SetPanning(i, cache, 255 - cache) == 0)
                     {
                         printf("wze::engine.audio.Update(): Mix_SetPanning() failed\n");
                         exit(1);
