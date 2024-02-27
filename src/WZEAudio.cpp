@@ -126,7 +126,7 @@ namespace wze
             {
                 if (this->Engine->Camera.OriginX < this->Channels[i]->OriginX)
                 {
-                    if (this->Channels[i]->Range < (cache = this->Channels[i]->OriginX - this->Engine->Camera.OriginX))
+                    if (this->Channels[i]->Range <= (cache = this->Channels[i]->OriginX - this->Engine->Camera.OriginX))
                     {
                         Mix_Volume(i, 0);
                         if (Mix_SetPanning(i, 0, 255) == 0)
@@ -147,7 +147,7 @@ namespace wze
                 }
                 else if (this->Channels[i]->OriginX < this->Engine->Camera.OriginX)
                 {
-                    if (this->Channels[i]->Range < (cache = this->Engine->Camera.OriginX - this->Channels[i]->OriginX))
+                    if (this->Channels[i]->Range <= (cache = this->Engine->Camera.OriginX - this->Channels[i]->OriginX))
                     {
                         Mix_Volume(i, 0);
                         if (Mix_SetPanning(i, 255, 0) == 0)

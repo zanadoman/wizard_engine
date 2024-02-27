@@ -683,7 +683,7 @@ _ZN3wze6engine5audio6UpdateEv:
 .L102:
 	subsd	%xmm1, %xmm0
 	comisd	%xmm2, %xmm0
-	jbe	.L137
+	jb	.L137
 	xorl	%esi, %esi
 	movl	%r12d, %edi
 	call	Mix_Volume@PLT
@@ -739,7 +739,7 @@ _ZN3wze6engine5audio6UpdateEv:
 .L110:
 	subsd	%xmm0, %xmm1
 	comisd	%xmm2, %xmm1
-	jbe	.L139
+	jb	.L139
 	xorl	%esi, %esi
 	movl	%r12d, %edi
 	call	Mix_Volume@PLT
