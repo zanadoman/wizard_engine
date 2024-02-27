@@ -9,18 +9,18 @@
 	.string	""
 .LC22:
 	.string	"assets/test.mp3"
-.LC25:
-	.string	"ms"
 .LC26:
-	.string	"ms FrameTime: "
+	.string	"ms"
 .LC27:
-	.string	"ms RenderTime: "
+	.string	"ms FrameTime: "
 .LC28:
+	.string	"ms RenderTime: "
+.LC29:
 	.string	"GameTime: "
 	.section	.text.unlikely,"ax",@progbits
-.LCOLDB29:
+.LCOLDB30:
 	.section	.text.startup,"ax",@progbits
-.LHOTB29:
+.LHOTB30:
 	.p2align 4
 	.globl	main
 	.type	main, @function
@@ -287,6 +287,9 @@ main:
 	movsd	.LC24(%rip), %xmm0
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine5mouse14SetSensitivityEd@PLT
+	movsd	.LC25(%rip), %xmm0
+	movq	%r12, %rdi
+	call	_ZN3wze6engine5audio15SetGlobalVolumeEd@PLT
 	movq	.LC2(%rip), %rax
 	movsd	.LC4(%rip), %xmm5
 	movsd	.LC5(%rip), %xmm2
@@ -544,14 +547,14 @@ main:
 	movq	%r14, %rdi
 	call	_ZN3wze6engine6camera10SetOriginYEd@PLT
 .L36:
-	leaq	.LC25(%rip), %rax
+	leaq	.LC26(%rip), %rax
 	movq	%rbx, %rdi
 	movq	%rax, 288(%rsp)
 	leaq	288(%rsp), %rax
 	movq	%rax, 72(%rsp)
 	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
 	movl	%eax, %ecx
-	leaq	.LC26(%rip), %rdx
+	leaq	.LC27(%rip), %rdx
 	movq	%rbx, %rdi
 	movq	%rcx, 280(%rsp)
 	leaq	280(%rsp), %rcx
@@ -563,7 +566,7 @@ main:
 	movq	%rbx, %rdi
 	leaq	264(%rsp), %r14
 	movq	%rdx, 264(%rsp)
-	leaq	.LC27(%rip), %rdx
+	leaq	.LC28(%rip), %rdx
 	leaq	256(%rsp), %r12
 	movq	%rdx, 256(%rsp)
 	call	_ZN3wze6engine6timing11GetGameTimeEv@PLT
@@ -572,7 +575,7 @@ main:
 	leaq	240(%rsp), %rsi
 	leaq	248(%rsp), %rbx
 	movq	%rdx, 248(%rsp)
-	leaq	.LC28(%rip), %rdx
+	leaq	.LC29(%rip), %rdx
 	movq	%rdx, 240(%rsp)
 	movl	$1, %edx
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
@@ -966,7 +969,7 @@ main.cold:
 	.byte	0x1
 	.uleb128 .LLSDACSEC8162-.LLSDACSBC8162
 .LLSDACSBC8162:
-	.uleb128 .LEHB4-.LCOLDB29
+	.uleb128 .LEHB4-.LCOLDB30
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
@@ -976,9 +979,9 @@ main.cold:
 	.size	main, .-main
 	.section	.text.unlikely
 	.size	main.cold, .-main.cold
-.LCOLDE29:
+.LCOLDE30:
 	.section	.text.startup
-.LHOTE29:
+.LHOTE30:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC1:
@@ -1048,6 +1051,10 @@ main.cold:
 .LC24:
 	.long	0
 	.long	1071644672
+	.align 8
+.LC25:
+	.long	-1717986918
+	.long	1069128089
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0
 	.section	.data.rel.local.DW.ref.__gxx_personality_v0,"awG",@progbits,DW.ref.__gxx_personality_v0,comdat
