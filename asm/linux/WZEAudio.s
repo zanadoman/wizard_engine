@@ -641,7 +641,7 @@ _ZN3wze6engine5audioixEt:
 	.size	_ZN3wze6engine5audioixEt, .-_ZN3wze6engine5audioixEt
 	.section	.rodata.str1.8
 	.align 8
-.LC14:
+.LC12:
 	.string	"wze::engine.audio.Update(): Mix_SetPanning() failed"
 	.text
 	.align 2
@@ -651,7 +651,8 @@ _ZN3wze6engine5audioixEt:
 _ZN3wze6engine5audio6UpdateEv:
 .LFB8175:
 	.cfi_startproc
-	cmpq	$0, 16(%rdi)
+	movq	16(%rdi), %rcx
+	testq	%rcx, %rcx
 	je	.L137
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -670,61 +671,49 @@ _ZN3wze6engine5audio6UpdateEv:
 	jmp	.L97
 	.p2align 4,,10
 	.p2align 3
-.L145:
-	movq	0(%rbp), %rcx
+.L144:
+	movq	0(%rbp), %rsi
 	movsd	8(%rax), %xmm0
-	movsd	88(%rcx), %xmm1
+	movsd	88(%rsi), %xmm1
 	comisd	%xmm1, %xmm0
-	jbe	.L132
+	jbe	.L133
 	testq	%rdx, %rdx
 	js	.L101
 	pxor	%xmm2, %xmm2
 	cvtsi2sdq	%rdx, %xmm2
 .L102:
 	subsd	%xmm1, %xmm0
+	movzwl	%bx, %r12d
 	comisd	%xmm2, %xmm0
-	ja	.L143
-	divsd	%xmm2, %xmm0
-	movsd	.LC1(%rip), %xmm1
-	subsd	%xmm0, %xmm1
-	movapd	%xmm1, %xmm0
-	movsd	%xmm1, 8(%rsp)
-	mulsd	8(%rbp), %xmm0
-	mulsd	40(%rax), %xmm0
-	mulsd	.LC12(%rip), %xmm0
-	call	round@PLT
+	jbe	.L134
+	xorl	%esi, %esi
 	movl	%r12d, %edi
-	cvttsd2sil	%xmm0, %esi
 	call	Mix_Volume@PLT
-	movsd	8(%rsp), %xmm1
-	mulsd	.LC13(%rip), %xmm1
-	movapd	%xmm1, %xmm0
-	call	round@PLT
+	xorl	%esi, %esi
 	movl	$255, %edx
 	movl	%r12d, %edi
-	cvttsd2sil	%xmm0, %esi
-	movzbl	%sil, %esi
 	call	Mix_SetPanning@PLT
 	testl	%eax, %eax
-	je	.L113
+	je	.L106
 	.p2align 4,,10
 	.p2align 3
 .L105:
+	movq	16(%rbp), %rcx
+.L107:
 	addl	$1, %ebx
 	movzwl	%bx, %eax
-	cmpq	16(%rbp), %rax
-	jnb	.L144
+	cmpq	%rcx, %rax
+	jnb	.L143
 .L97:
 	movq	24(%rbp), %rdx
-	movzwl	%bx, %r12d
 	movq	(%rdx,%rax,8), %rax
 	movq	16(%rax), %rdx
 	testq	%rdx, %rdx
-	jne	.L145
-.L98:
+	jne	.L144
 	movsd	8(%rbp), %xmm0
 	mulsd	40(%rax), %xmm0
-	mulsd	.LC12(%rip), %xmm0
+	movzwl	%bx, %r12d
+	mulsd	.LC13(%rip), %xmm0
 	call	round@PLT
 	movl	%r12d, %edi
 	cvttsd2sil	%xmm0, %esi
@@ -736,69 +725,60 @@ _ZN3wze6engine5audio6UpdateEv:
 	call	Mix_SetPanning@PLT
 	testl	%eax, %eax
 	jne	.L105
-.L113:
-	leaq	.LC14(%rip), %rdi
+.L106:
+	leaq	.LC12(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
 	call	exit@PLT
 	.p2align 4,,10
 	.p2align 3
-.L132:
+.L133:
 	comisd	%xmm0, %xmm1
-	jbe	.L98
+	jbe	.L107
 	testq	%rdx, %rdx
 	js	.L109
 	pxor	%xmm2, %xmm2
 	cvtsi2sdq	%rdx, %xmm2
 .L110:
 	subsd	%xmm0, %xmm1
+	movzwl	%bx, %r12d
 	comisd	%xmm2, %xmm1
-	ja	.L143
-	divsd	%xmm2, %xmm1
-	movsd	.LC1(%rip), %xmm2
-	subsd	%xmm1, %xmm2
-	movapd	%xmm2, %xmm0
-	movsd	%xmm2, 8(%rsp)
+	jbe	.L135
+	xorl	%esi, %esi
+	movl	%r12d, %edi
+	call	Mix_Volume@PLT
+	xorl	%edx, %edx
+	jmp	.L141
+	.p2align 4,,10
+	.p2align 3
+.L134:
+	divsd	%xmm2, %xmm0
+	movsd	.LC1(%rip), %xmm1
+	subsd	%xmm0, %xmm1
+	movapd	%xmm1, %xmm0
+	movsd	%xmm1, 8(%rsp)
 	mulsd	8(%rbp), %xmm0
 	mulsd	40(%rax), %xmm0
-	mulsd	.LC12(%rip), %xmm0
+	mulsd	.LC13(%rip), %xmm0
 	call	round@PLT
 	movl	%r12d, %edi
 	cvttsd2sil	%xmm0, %esi
 	call	Mix_Volume@PLT
-	movsd	8(%rsp), %xmm2
-	mulsd	.LC13(%rip), %xmm2
-	movapd	%xmm2, %xmm0
+	movsd	8(%rsp), %xmm1
+	mulsd	.LC14(%rip), %xmm1
+	movapd	%xmm1, %xmm0
 	call	round@PLT
-	cvttsd2sil	%xmm0, %edx
-	movzbl	%dl, %edx
-	jmp	.L141
-	.p2align 4,,10
-	.p2align 3
-.L143:
-	xorl	%esi, %esi
+	movl	$255, %edx
 	movl	%r12d, %edi
-	addl	$1, %ebx
-	call	Mix_Volume@PLT
-	movzwl	%bx, %eax
-	cmpq	16(%rbp), %rax
-	jb	.L97
-.L144:
-	addq	$16, %rsp
-	.cfi_remember_state
-	.cfi_def_cfa_offset 32
-	xorl	%eax, %eax
-	popq	%rbx
-	.cfi_def_cfa_offset 24
-	popq	%rbp
-	.cfi_def_cfa_offset 16
-	popq	%r12
-	.cfi_def_cfa_offset 8
-	ret
+	cvttsd2sil	%xmm0, %esi
+	movzbl	%sil, %esi
+	call	Mix_SetPanning@PLT
+	testl	%eax, %eax
+	jne	.L105
+	jmp	.L106
 	.p2align 4,,10
 	.p2align 3
 .L101:
-	.cfi_restore_state
 	movq	%rdx, %rcx
 	andl	$1, %edx
 	pxor	%xmm2, %xmm2
@@ -807,6 +787,28 @@ _ZN3wze6engine5audio6UpdateEv:
 	cvtsi2sdq	%rcx, %xmm2
 	addsd	%xmm2, %xmm2
 	jmp	.L102
+	.p2align 4,,10
+	.p2align 3
+.L135:
+	divsd	%xmm2, %xmm1
+	movsd	.LC1(%rip), %xmm2
+	subsd	%xmm1, %xmm2
+	movapd	%xmm2, %xmm0
+	movsd	%xmm2, 8(%rsp)
+	mulsd	8(%rbp), %xmm0
+	mulsd	40(%rax), %xmm0
+	mulsd	.LC13(%rip), %xmm0
+	call	round@PLT
+	movl	%r12d, %edi
+	cvttsd2sil	%xmm0, %esi
+	call	Mix_Volume@PLT
+	movsd	8(%rsp), %xmm2
+	movsd	.LC14(%rip), %xmm0
+	mulsd	%xmm2, %xmm0
+	call	round@PLT
+	cvttsd2sil	%xmm0, %edx
+	movzbl	%dl, %edx
+	jmp	.L141
 	.p2align 4,,10
 	.p2align 3
 .L109:
@@ -818,8 +820,20 @@ _ZN3wze6engine5audio6UpdateEv:
 	cvtsi2sdq	%rcx, %xmm2
 	addsd	%xmm2, %xmm2
 	jmp	.L110
-.L137:
+	.p2align 4,,10
+	.p2align 3
+.L143:
+	addq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 24
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
 	.cfi_def_cfa_offset 8
+	ret
+.L137:
 	.cfi_restore 3
 	.cfi_restore 6
 	.cfi_restore 12
@@ -886,17 +900,17 @@ _ZN3wze6engine5audio7channel10SetSoundIDEy:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 32
 	testq	%rsi, %rsi
-	je	.L149
+	je	.L148
 	movq	(%rdi), %rax
 	cmpq	368(%rax), %rsi
-	jnb	.L150
+	jnb	.L149
 	movq	376(%rax), %rax
 	cmpq	$0, (%rax,%rsi,8)
-	je	.L150
-.L149:
+	je	.L149
+.L148:
 	cmpq	%rbx, 32(%rbp)
-	jne	.L158
-.L152:
+	jne	.L157
+.L151:
 	movq	%rbx, 32(%rbp)
 	addq	$8, %rsp
 	.cfi_remember_state
@@ -909,19 +923,19 @@ _ZN3wze6engine5audio7channel10SetSoundIDEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L158:
+.L157:
 	.cfi_restore_state
 	movzwl	24(%rbp), %edi
 	call	Mix_HaltChannel@PLT
 	cmpl	$-1, %eax
-	jne	.L152
+	jne	.L151
 	leaq	.LC16(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L150:
+.L149:
 	leaq	.LC15(%rip), %rdi
 	movq	%rbx, %rsi
 	xorl	%eax, %eax
@@ -945,37 +959,37 @@ _ZN3wze6engine5audio7channel4PlayEv:
 	.cfi_startproc
 	movq	32(%rdi), %rsi
 	testq	%rsi, %rsi
-	jne	.L169
+	jne	.L168
 	xorl	%eax, %eax
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L169:
+.L168:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	movq	(%rdi), %rax
 	movq	376(%rax), %rdx
 	cmpq	368(%rax), %rsi
-	jnb	.L170
+	jnb	.L169
 	movq	(%rdx,%rsi,8), %rsi
 	movzwl	24(%rdi), %edi
 	xorl	%edx, %edx
 	call	Mix_PlayChannel@PLT
 	cmpl	$-1, %eax
-	je	.L171
+	je	.L170
 	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L170:
+.L169:
 	.cfi_restore_state
 	leaq	.LC3(%rip), %rdi
 	xorl	%eax, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L171:
+.L170:
 	leaq	.LC17(%rip), %rdi
 	call	puts@PLT
 	movl	$1, %edi
@@ -997,12 +1011,12 @@ _ZN3wze6engine5audio7channel4PlayEt:
 	.cfi_startproc
 	movq	32(%rdi), %rax
 	testq	%rax, %rax
-	jne	.L182
+	jne	.L181
 	xorl	%eax, %eax
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L182:
+.L181:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -1010,19 +1024,19 @@ _ZN3wze6engine5audio7channel4PlayEt:
 	movzwl	%si, %ebx
 	movq	376(%rdx), %rcx
 	cmpq	368(%rdx), %rax
-	jnb	.L183
+	jnb	.L182
 	movq	(%rcx,%rax,8), %rsi
 	movzwl	24(%rdi), %edi
 	movl	%ebx, %edx
 	call	Mix_PlayChannel@PLT
 	cmpl	$-1, %eax
-	je	.L184
+	je	.L183
 	xorl	%eax, %eax
 	popq	%rbx
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L183:
+.L182:
 	.cfi_restore_state
 	movq	%rax, %rsi
 	leaq	.LC3(%rip), %rdi
@@ -1030,7 +1044,7 @@ _ZN3wze6engine5audio7channel4PlayEt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L184:
+.L183:
 	leaq	.LC18(%rip), %rdi
 	movl	%ebx, %esi
 	xorl	%eax, %eax
@@ -1054,12 +1068,12 @@ _ZN3wze6engine5audio7channel4PlayEtt:
 	.cfi_startproc
 	movq	32(%rdi), %rax
 	testq	%rax, %rax
-	jne	.L195
+	jne	.L194
 	xorl	%eax, %eax
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L195:
+.L194:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -1073,14 +1087,14 @@ _ZN3wze6engine5audio7channel4PlayEtt:
 	movq	(%rdi), %rdx
 	movq	376(%rdx), %rcx
 	cmpq	368(%rdx), %rax
-	jnb	.L196
+	jnb	.L195
 	movq	(%rcx,%rax,8), %rsi
 	movzwl	24(%rdi), %edi
 	movl	%ebp, %ecx
 	movl	%ebx, %edx
 	call	Mix_FadeInChannel@PLT
 	cmpl	$-1, %eax
-	je	.L197
+	je	.L196
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 24
@@ -1090,7 +1104,7 @@ _ZN3wze6engine5audio7channel4PlayEtt:
 	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
-.L196:
+.L195:
 	.cfi_restore_state
 	movq	%rax, %rsi
 	leaq	.LC3(%rip), %rdi
@@ -1098,7 +1112,7 @@ _ZN3wze6engine5audio7channel4PlayEtt:
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L197:
+.L196:
 	leaq	.LC19(%rip), %rdi
 	movl	%ebp, %edx
 	movl	%ebx, %esi
@@ -1139,25 +1153,25 @@ _ZN3wze6engine5audio7channel9SetVolumeEd:
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
 	ucomisd	%xmm0, %xmm0
-	jp	.L209
+	jp	.L208
 	pxor	%xmm1, %xmm1
 	comisd	%xmm0, %xmm1
-	ja	.L202
+	ja	.L201
 	comisd	.LC1(%rip), %xmm0
-	ja	.L202
+	ja	.L201
 	movsd	%xmm0, 40(%rdi)
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L202:
+.L201:
 	.cfi_restore_state
 	leaq	.LC21(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
 	movl	$1, %edi
 	call	exit@PLT
-.L209:
+.L208:
 	leaq	.LC20(%rip), %rdi
 	movl	$1, %eax
 	call	printf@PLT
@@ -1238,13 +1252,13 @@ _ZN3wze6engine5audio7channel4StopEv:
 	movzwl	24(%rdi), %edi
 	call	Mix_HaltChannel@PLT
 	cmpl	$-1, %eax
-	je	.L219
+	je	.L218
 	xorl	%eax, %eax
 	addq	$8, %rsp
 	.cfi_remember_state
 	.cfi_def_cfa_offset 8
 	ret
-.L219:
+.L218:
 	.cfi_restore_state
 	leaq	.LC22(%rip), %rdi
 	call	puts@PLT
@@ -1278,11 +1292,11 @@ _ZN3wze6engine5audio7channel4StopEt:
 	.long	0
 	.long	1072693248
 	.align 8
-.LC12:
+.LC13:
 	.long	0
 	.long	1080033280
 	.align 8
-.LC13:
+.LC14:
 	.long	0
 	.long	1081073664
 	.hidden	DW.ref.__gxx_personality_v0

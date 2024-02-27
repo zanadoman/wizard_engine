@@ -12,7 +12,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0:
-.LFB8352:
+.LFB8358:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -142,7 +142,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8352:
+.LFE8358:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -154,7 +154,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0:
 	.globl	_ZN3wze6engine9collisionC2EPS0_
 	.type	_ZN3wze6engine9collisionC2EPS0_, @function
 _ZN3wze6engine9collisionC2EPS0_:
-.LFB8157:
+.LFB8163:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -190,7 +190,7 @@ _ZN3wze6engine9collisionC2EPS0_:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8157:
+.LFE8163:
 	.size	_ZN3wze6engine9collisionC2EPS0_, .-_ZN3wze6engine9collisionC2EPS0_
 	.globl	_ZN3wze6engine9collisionC1EPS0_
 	.set	_ZN3wze6engine9collisionC1EPS0_,_ZN3wze6engine9collisionC2EPS0_
@@ -199,20 +199,20 @@ _ZN3wze6engine9collisionC2EPS0_:
 	.globl	_ZN3wze6engine9collision14GetBufferSizeBEv
 	.type	_ZN3wze6engine9collision14GetBufferSizeBEv, @function
 _ZN3wze6engine9collision14GetBufferSizeBEv:
-.LFB8159:
+.LFB8165:
 	.cfi_startproc
 	movzwl	8(%rdi), %eax
 	sall	$3, %eax
 	ret
 	.cfi_endproc
-.LFE8159:
+.LFE8165:
 	.size	_ZN3wze6engine9collision14GetBufferSizeBEv, .-_ZN3wze6engine9collision14GetBufferSizeBEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine9collision14SetBufferSizeBEh
 	.type	_ZN3wze6engine9collision14SetBufferSizeBEh, @function
 _ZN3wze6engine9collision14SetBufferSizeBEh:
-.LFB8160:
+.LFB8166:
 	.cfi_startproc
 	movzbl	%sil, %esi
 	shrw	$3, %si
@@ -220,14 +220,14 @@ _ZN3wze6engine9collision14SetBufferSizeBEh:
 	leal	0(,%rsi,8), %eax
 	ret
 	.cfi_endproc
-.LFE8160:
+.LFE8166:
 	.size	_ZN3wze6engine9collision14SetBufferSizeBEh, .-_ZN3wze6engine9collision14SetBufferSizeBEh
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE
 	.type	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE, @function
 _ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE:
-.LFB8161:
+.LFB8167:
 	.cfi_startproc
 	movzwl	88(%rsi), %edx
 	pxor	%xmm5, %xmm5
@@ -493,14 +493,14 @@ _ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10ove
 	jb	.L89
 	jmp	.L118
 	.cfi_endproc
-.LFE8161:
+.LFE8167:
 	.size	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE, .-_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine9collision14CheckCollisionEdddddddd
 	.type	_ZN3wze6engine9collision14CheckCollisionEdddddddd, @function
 _ZN3wze6engine9collision14CheckCollisionEdddddddd:
-.LFB8162:
+.LFB8168:
 	.cfi_startproc
 	xorl	%eax, %eax
 	comisd	%xmm2, %xmm4
@@ -777,14 +777,14 @@ _ZN3wze6engine9collision14CheckCollisionEdddddddd:
 	jb	.L200
 	jmp	.L249
 	.cfi_endproc
-.LFE8162:
+.LFE8168:
 	.size	_ZN3wze6engine9collision14CheckCollisionEdddddddd, .-_ZN3wze6engine9collision14CheckCollisionEdddddddd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 	.type	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_, @function
 _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
-.LFB8163:
+.LFB8169:
 	.cfi_startproc
 	movq	%rsi, %rax
 	pxor	%xmm0, %xmm0
@@ -1290,14 +1290,14 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	jnb	.L393
 	jmp	.L283
 	.cfi_endproc
-.LFE8163:
+.LFE8169:
 	.size	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_, .-_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
 	.type	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_, @function
 _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
-.LFB8164:
+.LFB8170:
 	.cfi_startproc
 	movq	%rdx, %r11
 	movq	%rcx, %rdx
@@ -1696,7 +1696,7 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	movsd	%xmm3, 224(%r10)
 	jmp	.L512
 	.cfi_endproc
-.LFE8164:
+.LFE8170:
 	.size	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_, .-_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
 	.section	.rodata.str1.8
 	.align 8
@@ -1712,10 +1712,10 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	.globl	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_
 	.type	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_, @function
 _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_:
-.LFB8166:
+.LFB8172:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8166
+	.cfi_lsda 0x1b,.LLSDA8172
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -1956,34 +1956,34 @@ _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES
 	jmp	.L554
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8166:
+.LLSDA8172:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8166-.LLSDACSB8166
-.LLSDACSB8166:
-	.uleb128 .LEHB0-.LFB8166
+	.uleb128 .LLSDACSE8172-.LLSDACSB8172
+.LLSDACSB8172:
+	.uleb128 .LEHB0-.LFB8172
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L557-.LFB8166
+	.uleb128 .L557-.LFB8172
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8166
+	.uleb128 .LEHB1-.LFB8172
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8166
+	.uleb128 .LEHB2-.LFB8172
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L557-.LFB8166
+	.uleb128 .L557-.LFB8172
 	.uleb128 0
-.LLSDACSE8166:
+.LLSDACSE8172:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8166
+	.cfi_lsda 0x1b,.LLSDAC8172
 	.type	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_.cold, @function
 _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_.cold:
-.LFSB8166:
+.LFSB8172:
 .L554:
 	.cfi_def_cfa_offset 128
 	.cfi_offset 3, -56
@@ -2004,19 +2004,19 @@ _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES
 .L586:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8166:
+.LFE8172:
 	.section	.gcc_except_table
-.LLSDAC8166:
+.LLSDAC8172:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8166-.LLSDACSBC8166
-.LLSDACSBC8166:
+	.uleb128 .LLSDACSEC8172-.LLSDACSBC8172
+.LLSDACSBC8172:
 	.uleb128 .LEHB3-.LCOLDB6
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8166:
+.LLSDACSEC8172:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_, .-_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_
@@ -2035,10 +2035,10 @@ _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES
 	.globl	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE
 	.type	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE, @function
 _ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE:
-.LFB8165:
+.LFB8171:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8165
+	.cfi_lsda 0x1b,.LLSDA8171
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -2358,34 +2358,34 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE:
 	movq	%rax, %rbx
 	jmp	.L618
 	.section	.gcc_except_table
-.LLSDA8165:
+.LLSDA8171:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8165-.LLSDACSB8165
-.LLSDACSB8165:
-	.uleb128 .LEHB4-.LFB8165
+	.uleb128 .LLSDACSE8171-.LLSDACSB8171
+.LLSDACSB8171:
+	.uleb128 .LEHB4-.LFB8171
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L622-.LFB8165
+	.uleb128 .L622-.LFB8171
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8165
+	.uleb128 .LEHB5-.LFB8171
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8165
+	.uleb128 .LEHB6-.LFB8171
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L622-.LFB8165
+	.uleb128 .L622-.LFB8171
 	.uleb128 0
-.LLSDACSE8165:
+.LLSDACSE8171:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8165
+	.cfi_lsda 0x1b,.LLSDAC8171
 	.type	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE.cold, @function
 _ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE.cold:
-.LFSB8165:
+.LFSB8171:
 .L618:
 	.cfi_def_cfa_offset 176
 	.cfi_offset 3, -56
@@ -2406,19 +2406,19 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE.cold:
 .L656:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8165:
+.LFE8171:
 	.section	.gcc_except_table
-.LLSDAC8165:
+.LLSDAC8171:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8165-.LLSDACSBC8165
-.LLSDACSBC8165:
+	.uleb128 .LLSDACSEC8171-.LLSDACSBC8171
+.LLSDACSBC8171:
 	.uleb128 .LEHB7-.LCOLDB7
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8165:
+.LLSDACSEC8171:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE, .-_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE

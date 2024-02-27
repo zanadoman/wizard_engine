@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0:
-.LFB8374:
+.LFB8380:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8374:
+.LFE8380:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -165,7 +165,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0:
 	.p2align 4
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0:
-.LFB8375:
+.LFB8381:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -298,7 +298,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8375:
+.LFE8381:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0, .-_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0
 	.section	.rodata.str1.8
 	.align 8
@@ -310,7 +310,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	.globl	_ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_
 	.type	_ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_, @function
 _ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_:
-.LFB8157:
+.LFB8163:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -355,7 +355,7 @@ _ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8157:
+.LFE8163:
 	.size	_ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_, .-_ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_
 	.globl	_ZN3wze6engine6actors5actor9textboxesC1EPS0_PS2_
 	.set	_ZN3wze6engine6actors5actor9textboxesC1EPS0_PS2_,_ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_
@@ -364,10 +364,10 @@ _ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_:
 	.globl	_ZN3wze6engine6actors5actor9textboxesD2Ev
 	.type	_ZN3wze6engine6actors5actor9textboxesD2Ev, @function
 _ZN3wze6engine6actors5actor9textboxesD2Ev:
-.LFB8160:
+.LFB8166:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8160
+	.cfi_lsda 0x1b,.LLSDA8166
 	pushq	%r12
 	.cfi_def_cfa_offset 16
 	.cfi_offset 12, -16
@@ -425,16 +425,16 @@ _ZN3wze6engine6actors5actor9textboxesD2Ev:
 	.cfi_def_cfa_offset 8
 	jmp	free@PLT
 	.cfi_endproc
-.LFE8160:
+.LFE8166:
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8160:
+.LLSDA8166:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8160-.LLSDACSB8160
-.LLSDACSB8160:
-.LLSDACSE8160:
+	.uleb128 .LLSDACSE8166-.LLSDACSB8166
+.LLSDACSB8166:
+.LLSDACSE8166:
 	.text
 	.size	_ZN3wze6engine6actors5actor9textboxesD2Ev, .-_ZN3wze6engine6actors5actor9textboxesD2Ev
 	.globl	_ZN3wze6engine6actors5actor9textboxesD1Ev
@@ -462,10 +462,10 @@ _ZN3wze6engine6actors5actor9textboxesD2Ev:
 	.globl	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy
 	.type	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy, @function
 _ZN3wze6engine6actors5actor9textboxes3NewEPKcy:
-.LFB8162:
+.LFB8168:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8162
+	.cfi_lsda 0x1b,.LLSDA8168
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -744,62 +744,62 @@ _ZN3wze6engine6actors5actor9textboxes3NewEPKcy:
 	movq	%rax, %rbp
 	jmp	.L87
 	.section	.gcc_except_table
-.LLSDA8162:
+.LLSDA8168:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8162-.LLSDACSB8162
-.LLSDACSB8162:
-	.uleb128 .LEHB0-.LFB8162
+	.uleb128 .LLSDACSE8168-.LLSDACSB8168
+.LLSDACSB8168:
+	.uleb128 .LEHB0-.LFB8168
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8162
+	.uleb128 .LEHB1-.LFB8168
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L94-.LFB8162
+	.uleb128 .L94-.LFB8168
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8162
+	.uleb128 .LEHB2-.LFB8168
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L96-.LFB8162
+	.uleb128 .L96-.LFB8168
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8162
+	.uleb128 .LEHB3-.LFB8168
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8162
+	.uleb128 .LEHB4-.LFB8168
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L95-.LFB8162
+	.uleb128 .L95-.LFB8168
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8162
+	.uleb128 .LEHB5-.LFB8168
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L97-.LFB8162
+	.uleb128 .L97-.LFB8168
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8162
+	.uleb128 .LEHB6-.LFB8168
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB8162
+	.uleb128 .LEHB7-.LFB8168
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L97-.LFB8162
+	.uleb128 .L97-.LFB8168
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB8162
+	.uleb128 .LEHB8-.LFB8168
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L96-.LFB8162
+	.uleb128 .L96-.LFB8168
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB8162
+	.uleb128 .LEHB9-.LFB8168
 	.uleb128 .LEHE9-.LEHB9
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8162:
+.LLSDACSE8168:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8162
+	.cfi_lsda 0x1b,.LLSDAC8168
 	.type	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy.cold, @function
 _ZN3wze6engine6actors5actor9textboxes3NewEPKcy.cold:
-.LFSB8162:
+.LFSB8168:
 .L78:
 	.cfi_def_cfa_offset 80
 	.cfi_offset 3, -56
@@ -837,19 +837,19 @@ _ZN3wze6engine6actors5actor9textboxes3NewEPKcy.cold:
 	call	_Unwind_Resume@PLT
 .LEHE10:
 	.cfi_endproc
-.LFE8162:
+.LFE8168:
 	.section	.gcc_except_table
-.LLSDAC8162:
+.LLSDAC8168:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8162-.LLSDACSBC8162
-.LLSDACSBC8162:
+	.uleb128 .LLSDACSEC8168-.LLSDACSBC8168
+.LLSDACSBC8168:
 	.uleb128 .LEHB10-.LCOLDB15
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8162:
+.LLSDACSEC8168:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy, .-_ZN3wze6engine6actors5actor9textboxes3NewEPKcy
@@ -863,10 +863,10 @@ _ZN3wze6engine6actors5actor9textboxes3NewEPKcy.cold:
 	.globl	_ZN3wze6engine6actors5actor9textboxes6DeleteEy
 	.type	_ZN3wze6engine6actors5actor9textboxes6DeleteEy, @function
 _ZN3wze6engine6actors5actor9textboxes6DeleteEy:
-.LFB8163:
+.LFB8169:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8163
+	.cfi_lsda 0x1b,.LLSDA8169
 	cmpq	16(%rdi), %rsi
 	jb	.L132
 	xorl	%eax, %eax
@@ -956,19 +956,19 @@ _ZN3wze6engine6actors5actor9textboxes6DeleteEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8163:
+.LFE8169:
 	.section	.gcc_except_table
-.LLSDA8163:
+.LLSDA8169:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8163-.LLSDACSB8163
-.LLSDACSB8163:
-	.uleb128 .LEHB11-.LFB8163
+	.uleb128 .LLSDACSE8169-.LLSDACSB8169
+.LLSDACSB8169:
+	.uleb128 .LEHB11-.LFB8169
 	.uleb128 .LEHE11-.LEHB11
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8163:
+.LLSDACSE8169:
 	.text
 	.size	_ZN3wze6engine6actors5actor9textboxes6DeleteEy, .-_ZN3wze6engine6actors5actor9textboxes6DeleteEy
 	.align 2
@@ -976,10 +976,10 @@ _ZN3wze6engine6actors5actor9textboxes6DeleteEy:
 	.globl	_ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE
 	.type	_ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE, @function
 _ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE:
-.LFB8164:
+.LFB8170:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8164
+	.cfi_lsda 0x1b,.LLSDA8170
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -1107,19 +1107,19 @@ _ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE:
 	movq	%rbx, %rsi
 	jmp	.L163
 	.cfi_endproc
-.LFE8164:
+.LFE8170:
 	.section	.gcc_except_table
-.LLSDA8164:
+.LLSDA8170:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8164-.LLSDACSB8164
-.LLSDACSB8164:
-	.uleb128 .LEHB12-.LFB8164
+	.uleb128 .LLSDACSE8170-.LLSDACSB8170
+.LLSDACSB8170:
+	.uleb128 .LEHB12-.LFB8170
 	.uleb128 .LEHE12-.LEHB12
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8164:
+.LLSDACSE8170:
 	.text
 	.size	_ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
@@ -1132,10 +1132,10 @@ _ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE:
 	.globl	_ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE, @function
 _ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE:
-.LFB8165:
+.LFB8171:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8165
+	.cfi_lsda 0x1b,.LLSDA8171
 	pushq	%r14
 	.cfi_def_cfa_offset 16
 	.cfi_offset 14, -16
@@ -1278,19 +1278,19 @@ _ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE:
 	movq	%rbx, %rsi
 	jmp	.L198
 	.cfi_endproc
-.LFE8165:
+.LFE8171:
 	.section	.gcc_except_table
-.LLSDA8165:
+.LLSDA8171:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8165-.LLSDACSB8165
-.LLSDACSB8165:
-	.uleb128 .LEHB13-.LFB8165
+	.uleb128 .LLSDACSE8171-.LLSDACSB8171
+.LLSDACSB8171:
+	.uleb128 .LEHB13-.LFB8171
 	.uleb128 .LEHE13-.LEHB13
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8165:
+.LLSDACSE8171:
 	.text
 	.size	_ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
@@ -1306,7 +1306,7 @@ _ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE:
 	.globl	_ZN3wze6engine6actors5actor9textboxesixEy
 	.type	_ZN3wze6engine6actors5actor9textboxesixEy, @function
 _ZN3wze6engine6actors5actor9textboxesixEy:
-.LFB8166:
+.LFB8172:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -1336,7 +1336,7 @@ _ZN3wze6engine6actors5actor9textboxesixEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8166:
+.LFE8172:
 	.size	_ZN3wze6engine6actors5actor9textboxesixEy, .-_ZN3wze6engine6actors5actor9textboxesixEy
 	.section	.text.unlikely
 	.align 2
@@ -1348,10 +1348,10 @@ _ZN3wze6engine6actors5actor9textboxesixEy:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy
 	.type	_ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy, @function
 _ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy:
-.LFB8168:
+.LFB8174:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8168
+	.cfi_lsda 0x1b,.LLSDA8174
 	pushq	%r14
 	.cfi_def_cfa_offset 16
 	.cfi_offset 14, -16
@@ -1446,30 +1446,30 @@ _ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy:
 	movq	%rax, %rbx
 	jmp	.L212
 	.section	.gcc_except_table
-.LLSDA8168:
+.LLSDA8174:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8168-.LLSDACSB8168
-.LLSDACSB8168:
-	.uleb128 .LEHB14-.LFB8168
+	.uleb128 .LLSDACSE8174-.LLSDACSB8174
+.LLSDACSB8174:
+	.uleb128 .LEHB14-.LFB8174
 	.uleb128 .LEHE14-.LEHB14
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB15-.LFB8168
+	.uleb128 .LEHB15-.LFB8174
 	.uleb128 .LEHE15-.LEHB15
-	.uleb128 .L215-.LFB8168
+	.uleb128 .L215-.LFB8174
 	.uleb128 0
-.LLSDACSE8168:
+.LLSDACSE8174:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8168
+	.cfi_lsda 0x1b,.LLSDAC8174
 	.type	_ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy.cold, @function
 _ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy.cold:
-.LFSB8168:
+.LFSB8174:
 .L212:
 	.cfi_def_cfa_offset 64
 	.cfi_offset 3, -48
@@ -1489,19 +1489,19 @@ _ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy.cold:
 .L219:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8168:
+.LFE8174:
 	.section	.gcc_except_table
-.LLSDAC8168:
+.LLSDAC8174:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8168-.LLSDACSBC8168
-.LLSDACSBC8168:
+	.uleb128 .LLSDACSEC8174-.LLSDACSBC8174
+.LLSDACSBC8174:
 	.uleb128 .LEHB16-.LCOLDB19
 	.uleb128 .LEHE16-.LEHB16
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8168:
+.LLSDACSEC8174:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy, .-_ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy
@@ -1517,10 +1517,10 @@ _ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy.cold:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textboxD2Ev
 	.type	_ZN3wze6engine6actors5actor9textboxes7textboxD2Ev, @function
 _ZN3wze6engine6actors5actor9textboxes7textboxD2Ev:
-.LFB8171:
+.LFB8177:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8171
+	.cfi_lsda 0x1b,.LLSDA8177
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
@@ -1532,15 +1532,15 @@ _ZN3wze6engine6actors5actor9textboxes7textboxD2Ev:
 	.cfi_def_cfa_offset 8
 	jmp	_ZN3neo6stringD1Ev@PLT
 	.cfi_endproc
-.LFE8171:
+.LFE8177:
 	.section	.gcc_except_table
-.LLSDA8171:
+.LLSDA8177:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8171-.LLSDACSB8171
-.LLSDACSB8171:
-.LLSDACSE8171:
+	.uleb128 .LLSDACSE8177-.LLSDACSB8177
+.LLSDACSB8177:
+.LLSDACSE8177:
 	.text
 	.size	_ZN3wze6engine6actors5actor9textboxes7textboxD2Ev, .-_ZN3wze6engine6actors5actor9textboxes7textboxD2Ev
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textboxD1Ev
@@ -1550,24 +1550,24 @@ _ZN3wze6engine6actors5actor9textboxes7textboxD2Ev:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox5GetIDEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox5GetIDEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox5GetIDEv:
-.LFB8173:
+.LFB8179:
 	.cfi_startproc
 	movq	40(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE8173:
+.LFE8179:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox5GetIDEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox5GetIDEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv:
-.LFB8174:
+.LFB8180:
 	.cfi_startproc
 	movsd	48(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8174:
+.LFE8180:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv
 	.section	.rodata.str1.8
 	.align 8
@@ -1579,7 +1579,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd:
-.LFB8175:
+.LFB8181:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1644,19 +1644,19 @@ _ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8175:
+.LFE8181:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd, .-_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv:
-.LFB8176:
+.LFB8182:
 	.cfi_startproc
 	movsd	56(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8176:
+.LFE8182:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv
 	.section	.rodata.str1.8
 	.align 8
@@ -1668,7 +1668,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd:
-.LFB8177:
+.LFB8183:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1733,19 +1733,19 @@ _ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8177:
+.LFE8183:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd, .-_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv:
-.LFB8178:
+.LFB8184:
 	.cfi_startproc
 	movsd	80(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8178:
+.LFE8184:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv
 	.section	.rodata.str1.8
 	.align 8
@@ -1757,7 +1757,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd:
-.LFB8179:
+.LFB8185:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1797,19 +1797,19 @@ _ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8179:
+.LFE8185:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd, .-_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv:
-.LFB8180:
+.LFB8186:
 	.cfi_startproc
 	movsd	88(%rdi), %xmm0
 	ret
 	.cfi_endproc
-.LFE8180:
+.LFE8186:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv
 	.section	.rodata.str1.8
 	.align 8
@@ -1821,7 +1821,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd:
-.LFB8181:
+.LFB8187:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -1861,38 +1861,38 @@ _ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8181:
+.LFE8187:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd, .-_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv:
-.LFB8182:
+.LFB8188:
 	.cfi_startproc
 	movzwl	64(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8182:
+.LFE8188:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv:
-.LFB8183:
+.LFB8189:
 	.cfi_startproc
 	movzwl	72(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8183:
+.LFE8189:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt:
-.LFB8184:
+.LFB8190:
 	.cfi_startproc
 	movzwl	%si, %eax
 	cmpq	%rax, 72(%rdi)
@@ -1929,19 +1929,19 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8184:
+.LFE8190:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt, .-_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv:
-.LFB8185:
+.LFB8191:
 	.cfi_startproc
 	addq	$96, %rdi
 	jmp	_ZN3neo6stringclEv@PLT
 	.cfi_endproc
-.LFE8185:
+.LFE8191:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv
 	.section	.rodata.str1.8
 	.align 8
@@ -1953,7 +1953,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc:
-.LFB8186:
+.LFB8192:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -2021,19 +2021,19 @@ _ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8186:
+.LFE8192:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc, .-_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv:
-.LFB8187:
+.LFB8193:
 	.cfi_startproc
 	movq	112(%rdi), %rax
 	ret
 	.cfi_endproc
-.LFE8187:
+.LFE8193:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv
 	.section	.rodata.str1.8
 	.align 8
@@ -2045,7 +2045,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv:
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
-.LFB8188:
+.LFB8194:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -2100,26 +2100,26 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8188:
+.LFE8194:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy, .-_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv:
-.LFB8189:
+.LFB8195:
 	.cfi_startproc
 	movl	120(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8189:
+.LFE8195:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE:
-.LFB8190:
+.LFB8196:
 	.cfi_startproc
 	movl	%esi, %eax
 	cmpl	%esi, 120(%rdi)
@@ -2156,14 +2156,14 @@ _ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8190:
+.LFE8196:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE, .-_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv
 	.type	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv, @function
 _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv:
-.LFB8191:
+.LFB8197:
 	.cfi_startproc
 	xorl	%eax, %eax
 	pushq	%rbx
@@ -2192,7 +2192,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8191:
+.LFE8197:
 	.size	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv, .-_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

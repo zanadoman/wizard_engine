@@ -5,10 +5,10 @@
 	.globl	_ZN3wze6engineD2Ev
 	.type	_ZN3wze6engineD2Ev, @function
 _ZN3wze6engineD2Ev:
-.LFB8172:
+.LFB8178:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8172
+	.cfi_lsda 0x1b,.LLSDA8178
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -88,16 +88,16 @@ _ZN3wze6engineD2Ev:
 	.cfi_def_cfa_offset 8
 	jmp	free@PLT
 	.cfi_endproc
-.LFE8172:
+.LFE8178:
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8172:
+.LLSDA8178:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8172-.LLSDACSB8172
-.LLSDACSB8172:
-.LLSDACSE8172:
+	.uleb128 .LLSDACSE8178-.LLSDACSB8178
+.LLSDACSB8178:
+.LLSDACSE8178:
 	.text
 	.size	_ZN3wze6engineD2Ev, .-_ZN3wze6engineD2Ev
 	.globl	_ZN3wze6engineD1Ev
@@ -112,7 +112,7 @@ _ZN3wze6engineD2Ev:
 	.globl	_ZN3wze6engine15UpdateFlipbooksEv
 	.type	_ZN3wze6engine15UpdateFlipbooksEv, @function
 _ZN3wze6engine15UpdateFlipbooksEv:
-.LFB8175:
+.LFB8181:
 	.cfi_startproc
 	movq	280(%rdi), %r11
 	cmpq	$1, %r11
@@ -236,14 +236,14 @@ _ZN3wze6engine15UpdateFlipbooksEv:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8175:
+.LFE8181:
 	.size	_ZN3wze6engine15UpdateFlipbooksEv, .-_ZN3wze6engine15UpdateFlipbooksEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine18UpdateOverlapboxesEv
 	.type	_ZN3wze6engine18UpdateOverlapboxesEv, @function
 _ZN3wze6engine18UpdateOverlapboxesEv:
-.LFB8176:
+.LFB8182:
 	.cfi_startproc
 	movq	280(%rdi), %rcx
 	cmpq	$1, %rcx
@@ -616,7 +616,7 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8176:
+.LFE8182:
 	.size	_ZN3wze6engine18UpdateOverlapboxesEv, .-_ZN3wze6engine18UpdateOverlapboxesEv
 	.section	.rodata.str1.8
 	.align 8
@@ -631,7 +631,7 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	.globl	_ZN3wze6engine6UpdateEv
 	.type	_ZN3wze6engine6UpdateEv, @function
 _ZN3wze6engine6UpdateEv:
-.LFB8174:
+.LFB8180:
 	.cfi_startproc
 	pushq	%r13
 	.cfi_def_cfa_offset 16
@@ -838,7 +838,7 @@ _ZN3wze6engine6UpdateEv:
 .L124:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8174:
+.LFE8180:
 	.size	_ZN3wze6engine6UpdateEv, .-_ZN3wze6engine6UpdateEv
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .LC3:
@@ -877,10 +877,10 @@ _ZN3wze6engine6UpdateEv:
 	.globl	_ZN3wze6engineC2EPKcS2_tth
 	.type	_ZN3wze6engineC2EPKcS2_tth, @function
 _ZN3wze6engineC2EPKcS2_tth:
-.LFB8169:
+.LFB8175:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8169
+	.cfi_lsda 0x1b,.LLSDA8175
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -1224,62 +1224,62 @@ _ZN3wze6engineC2EPKcS2_tth:
 	movq	%rax, %rbp
 	jmp	.L159
 	.section	.gcc_except_table
-.LLSDA8169:
+.LLSDA8175:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8169-.LLSDACSB8169
-.LLSDACSB8169:
-	.uleb128 .LEHB0-.LFB8169
+	.uleb128 .LLSDACSE8175-.LLSDACSB8175
+.LLSDACSB8175:
+	.uleb128 .LEHB0-.LFB8175
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8169
+	.uleb128 .LEHB1-.LFB8175
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L165-.LFB8169
+	.uleb128 .L165-.LFB8175
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8169
+	.uleb128 .LEHB2-.LFB8175
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L166-.LFB8169
+	.uleb128 .L166-.LFB8175
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8169
+	.uleb128 .LEHB3-.LFB8175
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L167-.LFB8169
+	.uleb128 .L167-.LFB8175
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8169
+	.uleb128 .LEHB4-.LFB8175
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L168-.LFB8169
+	.uleb128 .L168-.LFB8175
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8169
+	.uleb128 .LEHB5-.LFB8175
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L171-.LFB8169
+	.uleb128 .L171-.LFB8175
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8169
+	.uleb128 .LEHB6-.LFB8175
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L172-.LFB8169
+	.uleb128 .L172-.LFB8175
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB8169
+	.uleb128 .LEHB7-.LFB8175
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L173-.LFB8169
+	.uleb128 .L173-.LFB8175
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB8169
+	.uleb128 .LEHB8-.LFB8175
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L169-.LFB8169
+	.uleb128 .L169-.LFB8175
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB8169
+	.uleb128 .LEHB9-.LFB8175
 	.uleb128 .LEHE9-.LEHB9
-	.uleb128 .L170-.LFB8169
+	.uleb128 .L170-.LFB8175
 	.uleb128 0
-.LLSDACSE8169:
+.LLSDACSE8175:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8169
+	.cfi_lsda 0x1b,.LLSDAC8175
 	.type	_ZN3wze6engineC2EPKcS2_tth.cold, @function
 _ZN3wze6engineC2EPKcS2_tth.cold:
-.LFSB8169:
+.LFSB8175:
 .L153:
 	.cfi_def_cfa_offset 112
 	.cfi_offset 3, -56
@@ -1332,19 +1332,19 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	xorl	%r12d, %r12d
 	jmp	.L155
 	.cfi_endproc
-.LFE8169:
+.LFE8175:
 	.section	.gcc_except_table
-.LLSDAC8169:
+.LLSDAC8175:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8169-.LLSDACSBC8169
-.LLSDACSBC8169:
+	.uleb128 .LLSDACSEC8175-.LLSDACSBC8175
+.LLSDACSBC8175:
 	.uleb128 .LEHB10-.LCOLDB16
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8169:
+.LLSDACSEC8175:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engineC2EPKcS2_tth, .-_ZN3wze6engineC2EPKcS2_tth

@@ -15,7 +15,7 @@
 	.p2align 4
 	.type	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0, @function
 _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
-.LFB8343:
+.LFB8349:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -148,7 +148,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8343:
+.LFE8349:
 	.size	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0, .-_ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0
 	.section	.rodata.str1.8
 	.align 8
@@ -160,7 +160,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6RemoveEyy.isra.0:
 	.globl	_ZN3wze6engine6actorsC2EPS0_
 	.type	_ZN3wze6engine6actorsC2EPS0_, @function
 _ZN3wze6engine6actorsC2EPS0_:
-.LFB8157:
+.LFB8163:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -204,7 +204,7 @@ _ZN3wze6engine6actorsC2EPS0_:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8157:
+.LFE8163:
 	.size	_ZN3wze6engine6actorsC2EPS0_, .-_ZN3wze6engine6actorsC2EPS0_
 	.globl	_ZN3wze6engine6actorsC1EPS0_
 	.set	_ZN3wze6engine6actorsC1EPS0_,_ZN3wze6engine6actorsC2EPS0_
@@ -240,10 +240,10 @@ _ZN3wze6engine6actorsC2EPS0_:
 	.globl	_ZN3wze6engine6actors3NewEPvyddttd
 	.type	_ZN3wze6engine6actors3NewEPvyddttd, @function
 _ZN3wze6engine6actors3NewEPvyddttd:
-.LFB8159:
+.LFB8165:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8159
+	.cfi_lsda 0x1b,.LLSDA8165
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
@@ -477,42 +477,42 @@ _ZN3wze6engine6actors3NewEPvyddttd:
 	jmp	.L54
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8159:
+.LLSDA8165:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8159-.LLSDACSB8159
-.LLSDACSB8159:
-	.uleb128 .LEHB0-.LFB8159
+	.uleb128 .LLSDACSE8165-.LLSDACSB8165
+.LLSDACSB8165:
+	.uleb128 .LEHB0-.LFB8165
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8159
+	.uleb128 .LEHB1-.LFB8165
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L60-.LFB8159
+	.uleb128 .L60-.LFB8165
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8159
+	.uleb128 .LEHB2-.LFB8165
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8159
+	.uleb128 .LEHB3-.LFB8165
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L59-.LFB8159
+	.uleb128 .L59-.LFB8165
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8159
+	.uleb128 .LEHB4-.LFB8165
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8159:
+.LLSDACSE8165:
 	.text
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8159
+	.cfi_lsda 0x1b,.LLSDAC8165
 	.type	_ZN3wze6engine6actors3NewEPvyddttd.cold, @function
 _ZN3wze6engine6actors3NewEPvyddttd.cold:
-.LFSB8159:
+.LFSB8165:
 .L56:
 	.cfi_def_cfa 6, 16
 	.cfi_offset 3, -56
@@ -543,19 +543,19 @@ _ZN3wze6engine6actors3NewEPvyddttd.cold:
 .L69:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8159:
+.LFE8165:
 	.section	.gcc_except_table
-.LLSDAC8159:
+.LLSDAC8165:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8159-.LLSDACSBC8159
-.LLSDACSBC8159:
+	.uleb128 .LLSDACSEC8165-.LLSDACSBC8165
+.LLSDACSBC8165:
 	.uleb128 .LEHB5-.LCOLDB12
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8159:
+.LLSDACSEC8165:
 	.section	.text.unlikely
 	.text
 	.size	_ZN3wze6engine6actors3NewEPvyddttd, .-_ZN3wze6engine6actors3NewEPvyddttd
@@ -569,7 +569,7 @@ _ZN3wze6engine6actors3NewEPvyddttd.cold:
 	.globl	_ZN3wze6engine6actors6DeleteEy
 	.type	_ZN3wze6engine6actors6DeleteEy, @function
 _ZN3wze6engine6actors6DeleteEy:
-.LFB8160:
+.LFB8166:
 	.cfi_startproc
 	cmpq	8(%rdi), %rsi
 	jb	.L101
@@ -656,14 +656,14 @@ _ZN3wze6engine6actors6DeleteEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8160:
+.LFE8166:
 	.size	_ZN3wze6engine6actors6DeleteEy, .-_ZN3wze6engine6actors6DeleteEy
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE
 	.type	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE, @function
 _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
-.LFB8161:
+.LFB8167:
 	.cfi_startproc
 	pushq	%r15
 	.cfi_def_cfa_offset 16
@@ -788,7 +788,7 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	movq	%rbx, %rsi
 	jmp	.L132
 	.cfi_endproc
-.LFE8161:
+.LFE8167:
 	.size	_ZN3wze6engine6actors5PurgeESt16initializer_listIyE, .-_ZN3wze6engine6actors5PurgeESt16initializer_listIyE
 	.section	.rodata.str1.8
 	.align 8
@@ -800,7 +800,7 @@ _ZN3wze6engine6actors5PurgeESt16initializer_listIyE:
 	.globl	_ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE
 	.type	_ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE, @function
 _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
-.LFB8162:
+.LFB8168:
 	.cfi_startproc
 	pushq	%r14
 	.cfi_def_cfa_offset 16
@@ -940,7 +940,7 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	movq	%rbx, %rsi
 	jmp	.L167
 	.cfi_endproc
-.LFE8162:
+.LFE8168:
 	.size	_ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE, .-_ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE
 	.section	.rodata.str1.8
 	.align 8
@@ -955,7 +955,7 @@ _ZN3wze6engine6actors5PurgeEPN3neo5arrayIyEE:
 	.globl	_ZN3wze6engine6actorsixEy
 	.type	_ZN3wze6engine6actorsixEy, @function
 _ZN3wze6engine6actorsixEy:
-.LFB8163:
+.LFB8169:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -985,7 +985,7 @@ _ZN3wze6engine6actorsixEy:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8163:
+.LFE8169:
 	.size	_ZN3wze6engine6actorsixEy, .-_ZN3wze6engine6actorsixEy
 	.hidden	DW.ref.__gxx_personality_v0
 	.weak	DW.ref.__gxx_personality_v0

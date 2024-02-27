@@ -5,7 +5,7 @@
 	.globl	_ZN3wze6engine6timingC2EPS0_
 	.type	_ZN3wze6engine6timingC2EPS0_, @function
 _ZN3wze6engine6timingC2EPS0_:
-.LFB8157:
+.LFB8163:
 	.cfi_startproc
 	xorl	%eax, %eax
 	pxor	%xmm0, %xmm0
@@ -18,7 +18,7 @@ _ZN3wze6engine6timingC2EPS0_:
 	movups	%xmm0, 12(%rdi)
 	ret
 	.cfi_endproc
-.LFE8157:
+.LFE8163:
 	.size	_ZN3wze6engine6timingC2EPS0_, .-_ZN3wze6engine6timingC2EPS0_
 	.globl	_ZN3wze6engine6timingC1EPS0_
 	.set	_ZN3wze6engine6timingC1EPS0_,_ZN3wze6engine6timingC2EPS0_
@@ -27,12 +27,12 @@ _ZN3wze6engine6timingC2EPS0_:
 	.globl	_ZN3wze6engine6timing18GetTargetFrameTimeEv
 	.type	_ZN3wze6engine6timing18GetTargetFrameTimeEv, @function
 _ZN3wze6engine6timing18GetTargetFrameTimeEv:
-.LFB8159:
+.LFB8165:
 	.cfi_startproc
 	movzbl	8(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8159:
+.LFE8165:
 	.size	_ZN3wze6engine6timing18GetTargetFrameTimeEv, .-_ZN3wze6engine6timing18GetTargetFrameTimeEv
 	.section	.rodata.str1.8,"aMS",@progbits,1
 	.align 8
@@ -44,7 +44,7 @@ _ZN3wze6engine6timing18GetTargetFrameTimeEv:
 	.globl	_ZN3wze6engine6timing18SetTargetFrameTimeEh
 	.type	_ZN3wze6engine6timing18SetTargetFrameTimeEh, @function
 _ZN3wze6engine6timing18SetTargetFrameTimeEh:
-.LFB8160:
+.LFB8166:
 	.cfi_startproc
 	testb	%sil, %sil
 	je	.L9
@@ -61,123 +61,123 @@ _ZN3wze6engine6timing18SetTargetFrameTimeEh:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8160:
+.LFE8166:
 	.size	_ZN3wze6engine6timing18SetTargetFrameTimeEh, .-_ZN3wze6engine6timing18SetTargetFrameTimeEh
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing14GetCurrentTickEv
 	.type	_ZN3wze6engine6timing14GetCurrentTickEv, @function
 _ZN3wze6engine6timing14GetCurrentTickEv:
-.LFB8161:
+.LFB8167:
 	.cfi_startproc
 	movl	12(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8161:
+.LFE8167:
 	.size	_ZN3wze6engine6timing14GetCurrentTickEv, .-_ZN3wze6engine6timing14GetCurrentTickEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing11GetGameTimeEv
 	.type	_ZN3wze6engine6timing11GetGameTimeEv, @function
 _ZN3wze6engine6timing11GetGameTimeEv:
-.LFB8162:
+.LFB8168:
 	.cfi_startproc
 	movl	16(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8162:
+.LFE8168:
 	.size	_ZN3wze6engine6timing11GetGameTimeEv, .-_ZN3wze6engine6timing11GetGameTimeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing13GetRenderTimeEv
 	.type	_ZN3wze6engine6timing13GetRenderTimeEv, @function
 _ZN3wze6engine6timing13GetRenderTimeEv:
-.LFB8163:
+.LFB8169:
 	.cfi_startproc
 	movl	20(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8163:
+.LFE8169:
 	.size	_ZN3wze6engine6timing13GetRenderTimeEv, .-_ZN3wze6engine6timing13GetRenderTimeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing14GetWorkingTimeEv
 	.type	_ZN3wze6engine6timing14GetWorkingTimeEv, @function
 _ZN3wze6engine6timing14GetWorkingTimeEv:
-.LFB8164:
+.LFB8170:
 	.cfi_startproc
 	movl	24(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8164:
+.LFE8170:
 	.size	_ZN3wze6engine6timing14GetWorkingTimeEv, .-_ZN3wze6engine6timing14GetWorkingTimeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing11GetIdleTimeEv
 	.type	_ZN3wze6engine6timing11GetIdleTimeEv, @function
 _ZN3wze6engine6timing11GetIdleTimeEv:
-.LFB8165:
+.LFB8171:
 	.cfi_startproc
 	movzwl	28(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8165:
+.LFE8171:
 	.size	_ZN3wze6engine6timing11GetIdleTimeEv, .-_ZN3wze6engine6timing11GetIdleTimeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing12GetFrameTimeEv
 	.type	_ZN3wze6engine6timing12GetFrameTimeEv, @function
 _ZN3wze6engine6timing12GetFrameTimeEv:
-.LFB8166:
+.LFB8172:
 	.cfi_startproc
 	movl	32(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8166:
+.LFE8172:
 	.size	_ZN3wze6engine6timing12GetFrameTimeEv, .-_ZN3wze6engine6timing12GetFrameTimeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing15GetMaxDeltaTimeEv
 	.type	_ZN3wze6engine6timing15GetMaxDeltaTimeEv, @function
 _ZN3wze6engine6timing15GetMaxDeltaTimeEv:
-.LFB8167:
+.LFB8173:
 	.cfi_startproc
 	movl	36(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8167:
+.LFE8173:
 	.size	_ZN3wze6engine6timing15GetMaxDeltaTimeEv, .-_ZN3wze6engine6timing15GetMaxDeltaTimeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing15SetMaxDeltaTimeEj
 	.type	_ZN3wze6engine6timing15SetMaxDeltaTimeEj, @function
 _ZN3wze6engine6timing15SetMaxDeltaTimeEj:
-.LFB8168:
+.LFB8174:
 	.cfi_startproc
 	movl	%esi, 36(%rdi)
 	movl	%esi, %eax
 	ret
 	.cfi_endproc
-.LFE8168:
+.LFE8174:
 	.size	_ZN3wze6engine6timing15SetMaxDeltaTimeEj, .-_ZN3wze6engine6timing15SetMaxDeltaTimeEj
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing12GetDeltaTimeEv
 	.type	_ZN3wze6engine6timing12GetDeltaTimeEv, @function
 _ZN3wze6engine6timing12GetDeltaTimeEv:
-.LFB8169:
+.LFB8175:
 	.cfi_startproc
 	movl	40(%rdi), %eax
 	ret
 	.cfi_endproc
-.LFE8169:
+.LFE8175:
 	.size	_ZN3wze6engine6timing12GetDeltaTimeEv, .-_ZN3wze6engine6timing12GetDeltaTimeEv
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing5SleepEj
 	.type	_ZN3wze6engine6timing5SleepEj, @function
 _ZN3wze6engine6timing5SleepEj:
-.LFB8170:
+.LFB8176:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -188,14 +188,14 @@ _ZN3wze6engine6timing5SleepEj:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8170:
+.LFE8176:
 	.size	_ZN3wze6engine6timing5SleepEj, .-_ZN3wze6engine6timing5SleepEj
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine6timing6UpdateEv
 	.type	_ZN3wze6engine6timing6UpdateEv, @function
 _ZN3wze6engine6timing6UpdateEv:
-.LFB8171:
+.LFB8177:
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -240,7 +240,7 @@ _ZN3wze6engine6timing6UpdateEv:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8171:
+.LFE8177:
 	.size	_ZN3wze6engine6timing6UpdateEv, .-_ZN3wze6engine6timing6UpdateEv
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8

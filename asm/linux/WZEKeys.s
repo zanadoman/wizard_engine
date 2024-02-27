@@ -5,7 +5,7 @@
 	.globl	_ZN3wze6engine4keysC2EPS0_
 	.type	_ZN3wze6engine4keysC2EPS0_, @function
 _ZN3wze6engine4keysC2EPS0_:
-.LFB8157:
+.LFB8163:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -20,7 +20,7 @@ _ZN3wze6engine4keysC2EPS0_:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE8157:
+.LFE8163:
 	.size	_ZN3wze6engine4keysC2EPS0_, .-_ZN3wze6engine4keysC2EPS0_
 	.globl	_ZN3wze6engine4keysC1EPS0_
 	.set	_ZN3wze6engine4keysC1EPS0_,_ZN3wze6engine4keysC2EPS0_
@@ -29,7 +29,7 @@ _ZN3wze6engine4keysC2EPS0_:
 	.globl	_ZN3wze6engine4keysD2Ev
 	.type	_ZN3wze6engine4keysD2Ev, @function
 _ZN3wze6engine4keysD2Ev:
-.LFB8160:
+.LFB8166:
 	.cfi_startproc
 	movq	16(%rdi), %rdi
 	testq	%rdi, %rdi
@@ -40,7 +40,7 @@ _ZN3wze6engine4keysD2Ev:
 .L4:
 	ret
 	.cfi_endproc
-.LFE8160:
+.LFE8166:
 	.size	_ZN3wze6engine4keysD2Ev, .-_ZN3wze6engine4keysD2Ev
 	.globl	_ZN3wze6engine4keysD1Ev
 	.set	_ZN3wze6engine4keysD1Ev,_ZN3wze6engine4keysD2Ev
@@ -54,7 +54,7 @@ _ZN3wze6engine4keysD2Ev:
 	.globl	_ZN3wze6engine4keysixENS_3keyE
 	.type	_ZN3wze6engine4keysixENS_3keyE, @function
 _ZN3wze6engine4keysixENS_3keyE:
-.LFB8162:
+.LFB8168:
 	.cfi_startproc
 	cmpl	$236, %esi
 	jg	.L11
@@ -72,14 +72,14 @@ _ZN3wze6engine4keysixENS_3keyE:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE8162:
+.LFE8168:
 	.size	_ZN3wze6engine4keysixENS_3keyE, .-_ZN3wze6engine4keysixENS_3keyE
 	.align 2
 	.p2align 4
 	.globl	_ZN3wze6engine4keys6UpdateEv
 	.type	_ZN3wze6engine4keys6UpdateEv, @function
 _ZN3wze6engine4keys6UpdateEv:
-.LFB8163:
+.LFB8169:
 	.cfi_startproc
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
@@ -168,7 +168,7 @@ _ZN3wze6engine4keys6UpdateEv:
 	movq	464(%rsi), %rdi
 	jmp	.L16
 	.cfi_endproc
-.LFE8163:
+.LFE8169:
 	.size	_ZN3wze6engine4keys6UpdateEv, .-_ZN3wze6engine4keys6UpdateEv
 	.ident	"GCC: (GNU) 13.2.1 20230801"
 	.section	.note.GNU-stack,"",@progbits
