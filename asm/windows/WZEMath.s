@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine4mathC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4mathC2EPS0_
 _ZN3wze6engine4mathC2EPS0_:
-.LFB6903:
+.LFB6909:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -59,7 +59,7 @@ _ZN3wze6engine4mathC2EPS0_:
 	.def	_ZN3wze6engine4math6EqualsEdd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4math6EqualsEdd
 _ZN3wze6engine4math6EqualsEdd:
-.LFB6905:
+.LFB6911:
 	.seh_endprologue
 	movsd	.LC0(%rip), %xmm2
 	xorl	%eax, %eax
@@ -76,6 +76,42 @@ _ZN3wze6engine4math6EqualsEdd:
 	.section .rdata,"dr"
 	.align 8
 .LC1:
+	.ascii "wze::engine::math::IfNaN(): Fallback must not be NaN\12Params: Value: %lf, Fallback: %lf\12\0"
+	.text
+	.align 2
+	.p2align 4
+	.globl	_ZN3wze6engine4math5IfNaNEdd
+	.def	_ZN3wze6engine4math5IfNaNEdd;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine4math5IfNaNEdd
+_ZN3wze6engine4math5IfNaNEdd:
+.LFB6912:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	ucomisd	%xmm1, %xmm1
+	jp	.L18
+	ucomisd	%xmm0, %xmm0
+	movq	%xmm1, %rdx
+	movq	%xmm0, %rax
+	cmovp	%rdx, %rax
+	movq	%rax, %xmm1
+	movapd	%xmm1, %xmm0
+	addq	$40, %rsp
+	ret
+.L18:
+	movapd	%xmm1, %xmm2
+	movq	%xmm1, %r8
+	movq	%xmm0, %rdx
+	leaq	.LC1(%rip), %rcx
+	movapd	%xmm0, %xmm1
+	call	_Z6printfPKcz
+	movl	$1, %ecx
+	call	exit
+	nop
+	.seh_endproc
+	.section .rdata,"dr"
+	.align 8
+.LC2:
 	.ascii "wze::engine::math::Random(): Max must not be less than or equal to Min\12Params: Min: %d, Max: %d\12\0"
 	.text
 	.align 2
@@ -84,7 +120,7 @@ _ZN3wze6engine4math6EqualsEdd:
 	.def	_ZN3wze6engine4math6RandomEii;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4math6RandomEii
 _ZN3wze6engine4math6RandomEii:
-.LFB6906:
+.LFB6913:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -95,7 +131,7 @@ _ZN3wze6engine4math6RandomEii:
 	movl	%edx, %esi
 	movl	%r8d, %ebx
 	cmpl	%edx, %r8d
-	jle	.L12
+	jle	.L21
 	call	rand
 	subl	%esi, %ebx
 	cltd
@@ -105,8 +141,8 @@ _ZN3wze6engine4math6RandomEii:
 	popq	%rbx
 	popq	%rsi
 	ret
-.L12:
-	leaq	.LC1(%rip), %rcx
+.L21:
+	leaq	.LC2(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
@@ -120,5 +156,5 @@ _ZN3wze6engine4math6RandomEii:
 	.ident	"GCC: (GNU) 13.1.0"
 	.def	__mingw_vfprintf;	.scl	2;	.type	32;	.endef
 	.def	srand;	.scl	2;	.type	32;	.endef
-	.def	rand;	.scl	2;	.type	32;	.endef
 	.def	exit;	.scl	2;	.type	32;	.endef
+	.def	rand;	.scl	2;	.type	32;	.endef

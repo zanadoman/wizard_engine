@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0:
-.LFB8647:
+.LFB8653:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -186,7 +186,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor9textboxes7textboxEE6RemoveEyy.isra.0:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0
 _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.0:
-.LFB8648:
+.LFB8654:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -318,7 +318,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv.part.0.constprop.
 	.def	_ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_
 _ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_:
-.LFB8432:
+.LFB8438:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -360,7 +360,7 @@ _ZN3wze6engine6actors5actor9textboxesC2EPS0_PS2_:
 	.def	_ZN3wze6engine6actors5actor9textboxesD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxesD2Ev
 _ZN3wze6engine6actors5actor9textboxesD2Ev:
-.LFB8435:
+.LFB8441:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -414,13 +414,13 @@ _ZN3wze6engine6actors5actor9textboxesD2Ev:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8435:
+.LLSDA8441:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8435-.LLSDACSB8435
-.LLSDACSB8435:
-.LLSDACSE8435:
+	.uleb128 .LLSDACSE8441-.LLSDACSB8441
+.LLSDACSB8441:
+.LLSDACSE8441:
 	.text
 	.seh_endproc
 	.globl	_ZN3wze6engine6actors5actor9textboxesD1Ev
@@ -450,7 +450,7 @@ _ZN3wze6engine6actors5actor9textboxesD2Ev:
 	.def	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy
 _ZN3wze6engine6actors5actor9textboxes3NewEPKcy:
-.LFB8437:
+.LFB8443:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -714,53 +714,53 @@ _ZN3wze6engine6actors5actor9textboxes3NewEPKcy:
 	jmp	.L74
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8437:
+.LLSDA8443:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8437-.LLSDACSB8437
-.LLSDACSB8437:
-	.uleb128 .LEHB0-.LFB8437
+	.uleb128 .LLSDACSE8443-.LLSDACSB8443
+.LLSDACSB8443:
+	.uleb128 .LEHB0-.LFB8443
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8437
+	.uleb128 .LEHB1-.LFB8443
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L86-.LFB8437
+	.uleb128 .L86-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8437
+	.uleb128 .LEHB2-.LFB8443
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L88-.LFB8437
+	.uleb128 .L88-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8437
+	.uleb128 .LEHB3-.LFB8443
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8437
+	.uleb128 .LEHB4-.LFB8443
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L87-.LFB8437
+	.uleb128 .L87-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8437
+	.uleb128 .LEHB5-.LFB8443
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L89-.LFB8437
+	.uleb128 .L89-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8437
+	.uleb128 .LEHB6-.LFB8443
 	.uleb128 .LEHE6-.LEHB6
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB8437
+	.uleb128 .LEHB7-.LFB8443
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L89-.LFB8437
+	.uleb128 .L89-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB8437
+	.uleb128 .LEHB8-.LFB8443
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L88-.LFB8437
+	.uleb128 .L88-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB8437
+	.uleb128 .LEHB9-.LFB8443
 	.uleb128 .LEHE9-.LEHB9
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8437:
+.LLSDACSE8443:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -798,17 +798,17 @@ _ZN3wze6engine6actors5actor9textboxes3NewEPKcy.cold:
 .LEHE10:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8437:
+.LLSDAC8443:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8437-.LLSDACSBC8437
-.LLSDACSBC8437:
+	.uleb128 .LLSDACSEC8443-.LLSDACSBC8443
+.LLSDACSBC8443:
 	.uleb128 .LEHB10-.LCOLDB15
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8437:
+.LLSDACSEC8443:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -822,7 +822,7 @@ _ZN3wze6engine6actors5actor9textboxes3NewEPKcy.cold:
 	.def	_ZN3wze6engine6actors5actor9textboxes6DeleteEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes6DeleteEy
 _ZN3wze6engine6actors5actor9textboxes6DeleteEy:
-.LFB8438:
+.LFB8444:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -906,17 +906,17 @@ _ZN3wze6engine6actors5actor9textboxes6DeleteEy:
 	nop
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8438:
+.LLSDA8444:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8438-.LLSDACSB8438
-.LLSDACSB8438:
-	.uleb128 .LEHB11-.LFB8438
+	.uleb128 .LLSDACSE8444-.LLSDACSB8444
+.LLSDACSB8444:
+	.uleb128 .LEHB11-.LFB8444
 	.uleb128 .LEHE11-.LEHB11
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8438:
+.LLSDACSE8444:
 	.text
 	.seh_endproc
 	.align 2
@@ -925,7 +925,7 @@ _ZN3wze6engine6actors5actor9textboxes6DeleteEy:
 	.def	_ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE
 _ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE:
-.LFB8439:
+.LFB8445:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -1055,17 +1055,17 @@ _ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE:
 	nop
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8439:
+.LLSDA8445:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8439-.LLSDACSB8439
-.LLSDACSB8439:
-	.uleb128 .LEHB12-.LFB8439
+	.uleb128 .LLSDACSE8445-.LLSDACSB8445
+.LLSDACSB8445:
+	.uleb128 .LEHB12-.LFB8445
 	.uleb128 .LEHE12-.LEHB12
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8439:
+.LLSDACSE8445:
 	.text
 	.seh_endproc
 	.section .rdata,"dr"
@@ -1079,7 +1079,7 @@ _ZN3wze6engine6actors5actor9textboxes5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE:
-.LFB8440:
+.LFB8446:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -1215,17 +1215,17 @@ _ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE:
 	nop
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8440:
+.LLSDA8446:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8440-.LLSDACSB8440
-.LLSDACSB8440:
-	.uleb128 .LEHB13-.LFB8440
+	.uleb128 .LLSDACSE8446-.LLSDACSB8446
+.LLSDACSB8446:
+	.uleb128 .LEHB13-.LFB8446
 	.uleb128 .LEHE13-.LEHB13
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8440:
+.LLSDACSE8446:
 	.text
 	.seh_endproc
 	.section .rdata,"dr"
@@ -1242,7 +1242,7 @@ _ZN3wze6engine6actors5actor9textboxes5PurgeEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6actors5actor9textboxesixEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxesixEy
 _ZN3wze6engine6actors5actor9textboxesixEy:
-.LFB8441:
+.LFB8447:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -1279,7 +1279,7 @@ _ZN3wze6engine6actors5actor9textboxesixEy:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy
 _ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy:
-.LFB8443:
+.LFB8449:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -1355,21 +1355,21 @@ _ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy:
 	jmp	.L194
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8443:
+.LLSDA8449:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8443-.LLSDACSB8443
-.LLSDACSB8443:
-	.uleb128 .LEHB14-.LFB8443
+	.uleb128 .LLSDACSE8449-.LLSDACSB8449
+.LLSDACSB8449:
+	.uleb128 .LEHB14-.LFB8449
 	.uleb128 .LEHE14-.LEHB14
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB15-.LFB8443
+	.uleb128 .LEHB15-.LFB8449
 	.uleb128 .LEHE15-.LEHB15
-	.uleb128 .L195-.LFB8443
+	.uleb128 .L195-.LFB8449
 	.uleb128 0
-.LLSDACSE8443:
+.LLSDACSE8449:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1391,17 +1391,17 @@ _ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy.cold:
 .LEHE16:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8443:
+.LLSDAC8449:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8443-.LLSDACSBC8443
-.LLSDACSBC8443:
+	.uleb128 .LLSDACSEC8449-.LLSDACSBC8449
+.LLSDACSBC8449:
 	.uleb128 .LEHB16-.LCOLDB19
 	.uleb128 .LEHE16-.LEHB16
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8443:
+.LLSDACSEC8449:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -1418,7 +1418,7 @@ _ZN3wze6engine6actors5actor9textboxes7textboxC2EPS0_PS2_yPKcy.cold:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textboxD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textboxD2Ev
 _ZN3wze6engine6actors5actor9textboxes7textboxD2Ev:
-.LFB8446:
+.LFB8452:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -1433,13 +1433,13 @@ _ZN3wze6engine6actors5actor9textboxes7textboxD2Ev:
 	jmp	_ZN3neo6stringD1Ev
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8446:
+.LLSDA8452:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8446-.LLSDACSB8446
-.LLSDACSB8446:
-.LLSDACSE8446:
+	.uleb128 .LLSDACSE8452-.LLSDACSB8452
+.LLSDACSB8452:
+.LLSDACSE8452:
 	.text
 	.seh_endproc
 	.globl	_ZN3wze6engine6actors5actor9textboxes7textboxD1Ev
@@ -1451,7 +1451,7 @@ _ZN3wze6engine6actors5actor9textboxes7textboxD2Ev:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox5GetIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox5GetIDEv
 _ZN3wze6engine6actors5actor9textboxes7textbox5GetIDEv:
-.LFB8448:
+.LFB8454:
 	.seh_endprologue
 	movq	40(%rcx), %rax
 	ret
@@ -1462,7 +1462,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox5GetIDEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv
 _ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv:
-.LFB8449:
+.LFB8455:
 	.seh_endprologue
 	movsd	48(%rcx), %xmm0
 	ret
@@ -1478,7 +1478,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox4GetXEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd
 _ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd:
-.LFB8450:
+.LFB8456:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1546,7 +1546,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox4SetXEd:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv
 _ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv:
-.LFB8451:
+.LFB8457:
 	.seh_endprologue
 	movsd	56(%rcx), %xmm0
 	ret
@@ -1562,7 +1562,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox4GetYEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd
 _ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd:
-.LFB8452:
+.LFB8458:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1630,7 +1630,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv
 _ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv:
-.LFB8453:
+.LFB8459:
 	.seh_endprologue
 	movsd	80(%rcx), %xmm0
 	ret
@@ -1646,7 +1646,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox15GetOffsetLengthEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd
 _ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd:
-.LFB8454:
+.LFB8460:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1689,7 +1689,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox15SetOffsetLengthEd:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv
 _ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv:
-.LFB8455:
+.LFB8461:
 	.seh_endprologue
 	movsd	88(%rcx), %xmm0
 	ret
@@ -1705,7 +1705,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox14GetOffsetAngleEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd
 _ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd:
-.LFB8456:
+.LFB8462:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1749,7 +1749,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox14SetOffsetAngleEd:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv
 _ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv:
-.LFB8457:
+.LFB8463:
 	.seh_endprologue
 	movzwl	64(%rcx), %eax
 	ret
@@ -1760,7 +1760,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv
 _ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv:
-.LFB8458:
+.LFB8464:
 	.seh_endprologue
 	movzwl	72(%rcx), %eax
 	ret
@@ -1771,7 +1771,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9GetHeightEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt
 _ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt:
-.LFB8459:
+.LFB8465:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -1810,7 +1810,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv
 _ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv:
-.LFB8460:
+.LFB8466:
 	.seh_endprologue
 	addq	$96, %rcx
 	jmp	_ZN3neo6stringclEv
@@ -1826,7 +1826,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox10GetLiteralEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc
 _ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc:
-.LFB8461:
+.LFB8467:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -1891,7 +1891,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox10SetLiteralEPKc:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv
 _ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv:
-.LFB8462:
+.LFB8468:
 	.seh_endprologue
 	movq	112(%rcx), %rax
 	ret
@@ -1907,7 +1907,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9GetFontIDEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy
 _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
-.LFB8463:
+.LFB8469:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -1965,7 +1965,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox9SetFontIDEy:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv
 _ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv:
-.LFB8464:
+.LFB8470:
 	.seh_endprologue
 	movl	120(%rcx), %eax
 	ret
@@ -1976,7 +1976,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox12GetFontStyleEv:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE
 _ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE:
-.LFB8465:
+.LFB8471:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -2018,7 +2018,7 @@ _ZN3wze6engine6actors5actor9textboxes7textbox12SetFontStyleENS_5styleE:
 	.def	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv
 _ZN3wze6engine6actors5actor9textboxes7textbox13UpdateTextureEv:
-.LFB8466:
+.LFB8472:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp

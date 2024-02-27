@@ -48,7 +48,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0
 _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0:
-.LFB6970:
+.LFB6976:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -175,7 +175,7 @@ _ZN3neo5arrayIP10SDL_CursorE6RemoveEyy.isra.0:
 	.def	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIP9_TTF_FontE6RemoveEyy.isra.0
 _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy.isra.0:
-.LFB6971:
+.LFB6977:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -302,7 +302,7 @@ _ZN3neo5arrayIP9_TTF_FontE6RemoveEyy.isra.0:
 	.def	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy.isra.0
 _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy.isra.0:
-.LFB6972:
+.LFB6978:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -429,7 +429,7 @@ _ZN3neo5arrayIP9Mix_ChunkE6RemoveEyy.isra.0:
 	.def	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0
 _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0:
-.LFB6973:
+.LFB6979:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -566,7 +566,7 @@ _ZN3neo5arrayIP11SDL_TextureE6RemoveEyy.isra.0:
 	.def	_ZN3wze6engine6assetsC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assetsC2EPS0_
 _ZN3wze6engine6assetsC2EPS0_:
-.LFB6890:
+.LFB6896:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -681,45 +681,45 @@ _ZN3wze6engine6assetsC2EPS0_:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6890:
+.LLSDA6896:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6890-.LLSDACSB6890
-.LLSDACSB6890:
-	.uleb128 .LEHB0-.LFB6890
+	.uleb128 .LLSDACSE6896-.LLSDACSB6896
+.LLSDACSB6896:
+	.uleb128 .LEHB0-.LFB6896
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB6890
+	.uleb128 .LEHB1-.LFB6896
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L120-.LFB6890
+	.uleb128 .L120-.LFB6896
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB6890
+	.uleb128 .LEHB2-.LFB6896
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L121-.LFB6890
+	.uleb128 .L121-.LFB6896
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB6890
+	.uleb128 .LEHB3-.LFB6896
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L122-.LFB6890
+	.uleb128 .L122-.LFB6896
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB6890
+	.uleb128 .LEHB4-.LFB6896
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB6890
+	.uleb128 .LEHB5-.LFB6896
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L122-.LFB6890
+	.uleb128 .L122-.LFB6896
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB6890
+	.uleb128 .LEHB6-.LFB6896
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L121-.LFB6890
+	.uleb128 .L121-.LFB6896
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB6890
+	.uleb128 .LEHB7-.LFB6896
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L120-.LFB6890
+	.uleb128 .L120-.LFB6896
 	.uleb128 0
-.LLSDACSE6890:
+.LLSDACSE6896:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -746,17 +746,17 @@ _ZN3wze6engine6assetsC2EPS0_.cold:
 .LEHE8:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6890:
+.LLSDAC6896:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6890-.LLSDACSBC6890
-.LLSDACSBC6890:
+	.uleb128 .LLSDACSEC6896-.LLSDACSBC6896
+.LLSDACSBC6896:
 	.uleb128 .LEHB8-.LCOLDB4
 	.uleb128 .LEHE8-.LEHB8
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6890:
+.LLSDACSEC6896:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -790,7 +790,7 @@ _ZN3wze6engine6assetsC2EPS0_.cold:
 	.def	_ZN3wze6engine6assets11LoadTextureEPKc;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets11LoadTextureEPKc
 _ZN3wze6engine6assets11LoadTextureEPKc:
-.LFB6892:
+.LFB6898:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -930,7 +930,7 @@ _ZN3wze6engine6assets11LoadTextureEPKc:
 	.def	_ZN3wze6engine6assets13UnloadTextureEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets13UnloadTextureEy
 _ZN3wze6engine6assets13UnloadTextureEy:
-.LFB6893:
+.LFB6899:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -1113,7 +1113,7 @@ _ZN3wze6engine6assets13UnloadTextureEy:
 	.def	_ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE
 _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
-.LFB6894:
+.LFB6900:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -1352,7 +1352,7 @@ _ZN3wze6engine6assets13PurgeTexturesESt16initializer_listIyE:
 	.def	_ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE
 _ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
-.LFB6895:
+.LFB6901:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -1590,7 +1590,7 @@ _ZN3wze6engine6assets13PurgeTexturesEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6assets9LoadSoundEPKc;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets9LoadSoundEPKc
 _ZN3wze6engine6assets9LoadSoundEPKc:
-.LFB6896:
+.LFB6902:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -1699,7 +1699,7 @@ _ZN3wze6engine6assets9LoadSoundEPKc:
 	.def	_ZN3wze6engine6assets11UnloadSoundEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets11UnloadSoundEy
 _ZN3wze6engine6assets11UnloadSoundEy:
-.LFB6897:
+.LFB6903:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -1810,7 +1810,7 @@ _ZN3wze6engine6assets11UnloadSoundEy:
 	.def	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE
 _ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE:
-.LFB6898:
+.LFB6904:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -1974,7 +1974,7 @@ _ZN3wze6engine6assets11PurgeSoundsESt16initializer_listIyE:
 	.def	_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE
 _ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE:
-.LFB6899:
+.LFB6905:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -2142,7 +2142,7 @@ _ZN3wze6engine6assets11PurgeSoundsEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6assets8LoadFontEPKch;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets8LoadFontEPKch
 _ZN3wze6engine6assets8LoadFontEPKch:
-.LFB6900:
+.LFB6906:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -2253,7 +2253,7 @@ _ZN3wze6engine6assets8LoadFontEPKch:
 	.def	_ZN3wze6engine6assets10UnloadFontEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets10UnloadFontEy
 _ZN3wze6engine6assets10UnloadFontEy:
-.LFB6901:
+.LFB6907:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -2424,7 +2424,7 @@ _ZN3wze6engine6assets10UnloadFontEy:
 	.def	_ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE
 _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
-.LFB6902:
+.LFB6908:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2637,7 +2637,7 @@ _ZN3wze6engine6assets10PurgeFontsESt16initializer_listIyE:
 	.def	_ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE
 _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
-.LFB6903:
+.LFB6909:
 	pushq	%r14
 	.seh_pushreg	%r14
 	pushq	%r13
@@ -2864,7 +2864,7 @@ _ZN3wze6engine6assets10PurgeFontsEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6assets17LoadCursorTextureEPKctt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets17LoadCursorTextureEPKctt
 _ZN3wze6engine6assets17LoadCursorTextureEPKctt:
-.LFB6904:
+.LFB6910:
 	pushq	%r13
 	.seh_pushreg	%r13
 	pushq	%r12
@@ -3040,7 +3040,7 @@ _ZN3wze6engine6assets17LoadCursorTextureEPKctt:
 	.def	_ZN3wze6engine6assets19UnloadCursorTextureEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets19UnloadCursorTextureEy
 _ZN3wze6engine6assets19UnloadCursorTextureEy:
-.LFB6905:
+.LFB6911:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -3129,7 +3129,7 @@ _ZN3wze6engine6assets19UnloadCursorTextureEy:
 	.def	_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE
 _ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE:
-.LFB6906:
+.LFB6912:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -3257,7 +3257,7 @@ _ZN3wze6engine6assets19PurgeCursorTexturesESt16initializer_listIyE:
 	.def	_ZN3wze6engine6assets19PurgeCursorTexturesEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6assets19PurgeCursorTexturesEPN3neo5arrayIyEE
 _ZN3wze6engine6assets19PurgeCursorTexturesEPN3neo5arrayIyEE:
-.LFB6907:
+.LFB6913:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi

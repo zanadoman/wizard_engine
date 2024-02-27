@@ -50,7 +50,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine5audioC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audioC2EPS0_
 _ZN3wze6engine5audioC2EPS0_:
-.LFB8432:
+.LFB8438:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -123,21 +123,21 @@ _ZN3wze6engine5audioC2EPS0_:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8432:
+.LLSDA8438:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8432-.LLSDACSB8432
-.LLSDACSB8432:
-	.uleb128 .LEHB0-.LFB8432
+	.uleb128 .LLSDACSE8438-.LLSDACSB8438
+.LLSDACSB8438:
+	.uleb128 .LEHB0-.LFB8438
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L8-.LFB8432
+	.uleb128 .L8-.LFB8438
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8432
+	.uleb128 .LEHB1-.LFB8438
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8432:
+.LLSDACSE8438:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -160,17 +160,17 @@ _ZN3wze6engine5audioC2EPS0_.cold:
 .LEHE2:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8432:
+.LLSDAC8438:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8432-.LLSDACSBC8432
-.LLSDACSBC8432:
+	.uleb128 .LLSDACSEC8438-.LLSDACSBC8438
+.LLSDACSBC8438:
 	.uleb128 .LEHB2-.LCOLDB4
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8432:
+.LLSDACSEC8438:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -187,7 +187,7 @@ _ZN3wze6engine5audioC2EPS0_.cold:
 	.def	_ZN3wze6engine5audioD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audioD2Ev
 _ZN3wze6engine5audioD2Ev:
-.LFB8435:
+.LFB8441:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -244,7 +244,7 @@ _ZN3wze6engine5audioD2Ev:
 	.def	_ZN3wze6engine5audio15GetGlobalVolumeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15GetGlobalVolumeEv
 _ZN3wze6engine5audio15GetGlobalVolumeEv:
-.LFB8437:
+.LFB8443:
 	.seh_endprologue
 	movsd	8(%rcx), %xmm0
 	ret
@@ -263,7 +263,7 @@ _ZN3wze6engine5audio15GetGlobalVolumeEv:
 	.def	_ZN3wze6engine5audio15SetGlobalVolumeEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15SetGlobalVolumeEd
 _ZN3wze6engine5audio15SetGlobalVolumeEd:
-.LFB8438:
+.LFB8444:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -311,7 +311,7 @@ _ZN3wze6engine5audio15SetGlobalVolumeEd:
 	.def	_ZN3wze6engine5audio15GetChannelCountEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15GetChannelCountEv
 _ZN3wze6engine5audio15GetChannelCountEv:
-.LFB8439:
+.LFB8445:
 	.seh_endprologue
 	movzwl	16(%rcx), %eax
 	ret
@@ -336,7 +336,7 @@ _ZN3wze6engine5audio15GetChannelCountEv:
 	.def	_ZN3wze6engine5audio15SetChannelCountEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio15SetChannelCountEt
 _ZN3wze6engine5audio15SetChannelCountEt:
-.LFB8440:
+.LFB8446:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -573,7 +573,7 @@ _ZN3wze6engine5audio15SetChannelCountEt:
 	.def	_ZN3wze6engine5audio8PauseAllEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio8PauseAllEv
 _ZN3wze6engine5audio8PauseAllEv:
-.LFB8441:
+.LFB8447:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -589,7 +589,7 @@ _ZN3wze6engine5audio8PauseAllEv:
 	.def	_ZN3wze6engine5audio9ResumeAllEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio9ResumeAllEv
 _ZN3wze6engine5audio9ResumeAllEv:
-.LFB8442:
+.LFB8448:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -610,7 +610,7 @@ _ZN3wze6engine5audio9ResumeAllEv:
 	.def	_ZN3wze6engine5audioixEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audioixEt
 _ZN3wze6engine5audioixEt:
-.LFB8443:
+.LFB8449:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -640,23 +640,21 @@ _ZN3wze6engine5audioixEt:
 	.def	_ZN3wze6engine5audio6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio6UpdateEv
 _ZN3wze6engine5audio6UpdateEv:
-.LFB8444:
+.LFB8450:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
 	.seh_pushreg	%rbx
-	subq	$96, %rsp
-	.seh_stackalloc	96
+	subq	$80, %rsp
+	.seh_stackalloc	80
 	movaps	%xmm6, 32(%rsp)
 	.seh_savexmm	%xmm6, 32
 	movaps	%xmm7, 48(%rsp)
 	.seh_savexmm	%xmm7, 48
 	movaps	%xmm8, 64(%rsp)
 	.seh_savexmm	%xmm8, 64
-	movaps	%xmm9, 80(%rsp)
-	.seh_savexmm	%xmm9, 80
 	.seh_endprologue
 	movsd	.LC7(%rip), %xmm7
 	xorl	%ebx, %ebx
@@ -669,7 +667,7 @@ _ZN3wze6engine5audio6UpdateEv:
 	jmp	.L116
 	.p2align 4,,10
 	.p2align 3
-.L122:
+.L123:
 	movq	(%rdi), %r8
 	movsd	8(%rax), %xmm0
 	movsd	88(%r8), %xmm1
@@ -694,17 +692,13 @@ _ZN3wze6engine5audio6UpdateEv:
 	movl	%esi, %ecx
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_Volume
-	movsd	.LC13(%rip), %xmm9
-	mulsd	%xmm9, %xmm6
+	mulsd	.LC13(%rip), %xmm6
 	movapd	%xmm6, %xmm0
 	call	round
-	cvttsd2sil	%xmm0, %r8d
-	subsd	%xmm0, %xmm9
-	cvttsd2sil	%xmm9, %edx
-.L121:
-	movzbl	%dl, %edx
-	movzbl	%r8b, %r8d
+	movl	$255, %r8d
 	movl	%esi, %ecx
+	cvttsd2sil	%xmm0, %edx
+	movzbl	%dl, %edx
 	call	Mix_SetPanning
 	testl	%eax, %eax
 	je	.L101
@@ -720,7 +714,7 @@ _ZN3wze6engine5audio6UpdateEv:
 	movq	(%rdx,%rax,8), %rax
 	movq	16(%rax), %rdx
 	testq	%rdx, %rdx
-	jne	.L122
+	jne	.L123
 	movsd	40(%rax), %xmm0
 	movzwl	%bx, %esi
 	mulsd	%xmm7, %xmm0
@@ -729,6 +723,7 @@ _ZN3wze6engine5audio6UpdateEv:
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_Volume
 	movl	$255, %r8d
+.L122:
 	movl	$255, %edx
 	movl	%esi, %ecx
 	call	Mix_SetPanning
@@ -754,23 +749,21 @@ _ZN3wze6engine5audio6UpdateEv:
 	comisd	%xmm2, %xmm1
 	ja	.L120
 	divsd	%xmm2, %xmm1
-	movapd	%xmm8, %xmm9
+	movapd	%xmm8, %xmm6
 	movsd	40(%rax), %xmm0
-	subsd	%xmm1, %xmm9
-	mulsd	%xmm9, %xmm0
+	subsd	%xmm1, %xmm6
+	mulsd	%xmm6, %xmm0
 	mulsd	%xmm7, %xmm0
 	call	round
 	movl	%esi, %ecx
 	cvttsd2sil	%xmm0, %edx
 	call	Mix_Volume
-	movsd	.LC13(%rip), %xmm6
-	movapd	%xmm9, %xmm0
-	mulsd	%xmm6, %xmm0
+	mulsd	.LC13(%rip), %xmm6
+	movapd	%xmm6, %xmm0
 	call	round
-	cvttsd2sil	%xmm0, %edx
-	subsd	%xmm0, %xmm6
-	cvttsd2sil	%xmm6, %r8d
-	jmp	.L121
+	cvttsd2sil	%xmm0, %r8d
+	movzbl	%r8b, %r8d
+	jmp	.L122
 	.p2align 4,,10
 	.p2align 3
 .L120:
@@ -787,8 +780,7 @@ _ZN3wze6engine5audio6UpdateEv:
 	movaps	48(%rsp), %xmm7
 	xorl	%eax, %eax
 	movaps	64(%rsp), %xmm8
-	movaps	80(%rsp), %xmm9
-	addq	$96, %rsp
+	addq	$80, %rsp
 	popq	%rbx
 	popq	%rsi
 	popq	%rdi
@@ -822,7 +814,7 @@ _ZN3wze6engine5audio6UpdateEv:
 	.def	_ZN3wze6engine5audio7channelC2EPS0_y;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channelC2EPS0_y
 _ZN3wze6engine5audio7channelC2EPS0_y:
-.LFB8446:
+.LFB8452:
 	.seh_endprologue
 	movq	.LC1(%rip), %rax
 	movq	%rdx, (%rcx)
@@ -842,7 +834,7 @@ _ZN3wze6engine5audio7channelC2EPS0_y:
 	.def	_ZN3wze6engine5audio7channel10GetSoundIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel10GetSoundIDEv
 _ZN3wze6engine5audio7channel10GetSoundIDEv:
-.LFB8448:
+.LFB8454:
 	.seh_endprologue
 	movq	32(%rcx), %rax
 	ret
@@ -861,7 +853,7 @@ _ZN3wze6engine5audio7channel10GetSoundIDEv:
 	.def	_ZN3wze6engine5audio7channel10SetSoundIDEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel10SetSoundIDEy
 _ZN3wze6engine5audio7channel10SetSoundIDEy:
-.LFB8449:
+.LFB8455:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -872,17 +864,17 @@ _ZN3wze6engine5audio7channel10SetSoundIDEy:
 	movq	%rcx, %rsi
 	movq	%rdx, %rbx
 	testq	%rdx, %rdx
-	je	.L126
+	je	.L127
 	movq	(%rcx), %rax
 	cmpq	368(%rax), %rdx
-	jnb	.L127
+	jnb	.L128
 	movq	376(%rax), %rax
 	cmpq	$0, (%rax,%rdx,8)
-	je	.L127
-.L126:
+	je	.L128
+.L127:
 	cmpq	%rbx, 32(%rsi)
-	jne	.L134
-.L129:
+	jne	.L135
+.L130:
 	movq	%rbx, %rax
 	movq	%rbx, 32(%rsi)
 	addq	$40, %rsp
@@ -891,17 +883,17 @@ _ZN3wze6engine5audio7channel10SetSoundIDEy:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L134:
+.L135:
 	movzwl	24(%rsi), %ecx
 	call	Mix_HaltChannel
 	cmpl	$-1, %eax
-	jne	.L129
+	jne	.L130
 	leaq	.LC16(%rip), %rcx
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L127:
+.L128:
 	leaq	.LC15(%rip), %rcx
 	movq	%rbx, %rdx
 	call	_Z6printfPKcz
@@ -920,35 +912,35 @@ _ZN3wze6engine5audio7channel10SetSoundIDEy:
 	.def	_ZN3wze6engine5audio7channel4PlayEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel4PlayEv
 _ZN3wze6engine5audio7channel4PlayEv:
-.LFB8450:
+.LFB8456:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	movq	32(%rcx), %rdx
 	testq	%rdx, %rdx
-	jne	.L141
-.L136:
+	jne	.L142
+.L137:
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L141:
+.L142:
 	movq	(%rcx), %rax
 	movq	376(%rax), %r8
 	cmpq	368(%rax), %rdx
-	jnb	.L142
+	jnb	.L143
 	movq	(%r8,%rdx,8), %rdx
 	movzwl	24(%rcx), %ecx
 	xorl	%r8d, %r8d
 	call	Mix_PlayChannel
 	cmpl	$-1, %eax
-	jne	.L136
+	jne	.L137
 	leaq	.LC17(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L142:
+.L143:
 	leaq	.LC3(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -966,7 +958,7 @@ _ZN3wze6engine5audio7channel4PlayEv:
 	.def	_ZN3wze6engine5audio7channel4PlayEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel4PlayEt
 _ZN3wze6engine5audio7channel4PlayEt:
-.LFB8451:
+.LFB8457:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -974,32 +966,32 @@ _ZN3wze6engine5audio7channel4PlayEt:
 	.seh_endprologue
 	movq	32(%rcx), %rax
 	testq	%rax, %rax
-	jne	.L149
-.L144:
+	jne	.L150
+.L145:
 	xorl	%eax, %eax
 	addq	$32, %rsp
 	popq	%rbx
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L149:
+.L150:
 	movzwl	%dx, %ebx
 	movq	(%rcx), %rdx
 	movq	376(%rdx), %r8
 	cmpq	368(%rdx), %rax
-	jnb	.L150
+	jnb	.L151
 	movq	(%r8,%rax,8), %rdx
 	movzwl	24(%rcx), %ecx
 	movl	%ebx, %r8d
 	call	Mix_PlayChannel
 	cmpl	$-1, %eax
-	jne	.L144
+	jne	.L145
 	leaq	.LC18(%rip), %rcx
 	movl	%ebx, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L150:
+.L151:
 	leaq	.LC3(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
@@ -1018,7 +1010,7 @@ _ZN3wze6engine5audio7channel4PlayEt:
 	.def	_ZN3wze6engine5audio7channel4PlayEtt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel4PlayEtt
 _ZN3wze6engine5audio7channel4PlayEtt:
-.LFB8452:
+.LFB8458:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -1028,8 +1020,8 @@ _ZN3wze6engine5audio7channel4PlayEtt:
 	.seh_endprologue
 	movq	32(%rcx), %rax
 	testq	%rax, %rax
-	jne	.L157
-.L152:
+	jne	.L158
+.L153:
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	popq	%rbx
@@ -1037,27 +1029,27 @@ _ZN3wze6engine5audio7channel4PlayEtt:
 	ret
 	.p2align 4,,10
 	.p2align 3
-.L157:
+.L158:
 	movzwl	%dx, %ebx
 	movq	(%rcx), %rdx
 	movzwl	%r8w, %esi
 	movq	376(%rdx), %r8
 	cmpq	368(%rdx), %rax
-	jnb	.L158
+	jnb	.L159
 	movq	(%r8,%rax,8), %rdx
 	movzwl	24(%rcx), %ecx
 	movl	%esi, %r9d
 	movl	%ebx, %r8d
 	call	Mix_FadeInChannel
 	cmpl	$-1, %eax
-	jne	.L152
+	jne	.L153
 	leaq	.LC19(%rip), %rcx
 	movl	%esi, %r8d
 	movl	%ebx, %edx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L158:
+.L159:
 	leaq	.LC3(%rip), %rcx
 	movq	%rax, %rdx
 	call	_Z6printfPKcz
@@ -1071,7 +1063,7 @@ _ZN3wze6engine5audio7channel4PlayEtt:
 	.def	_ZN3wze6engine5audio7channel9GetVolumeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel9GetVolumeEv
 _ZN3wze6engine5audio7channel9GetVolumeEv:
-.LFB8453:
+.LFB8459:
 	.seh_endprologue
 	movsd	40(%rcx), %xmm0
 	ret
@@ -1090,28 +1082,28 @@ _ZN3wze6engine5audio7channel9GetVolumeEv:
 	.def	_ZN3wze6engine5audio7channel9SetVolumeEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel9SetVolumeEd
 _ZN3wze6engine5audio7channel9SetVolumeEd:
-.LFB8454:
+.LFB8460:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	ucomisd	%xmm1, %xmm1
-	jp	.L169
+	jp	.L170
 	pxor	%xmm0, %xmm0
 	comisd	%xmm1, %xmm0
-	ja	.L163
+	ja	.L164
 	comisd	.LC1(%rip), %xmm1
-	ja	.L163
+	ja	.L164
 	movapd	%xmm1, %xmm0
 	movsd	%xmm1, 40(%rcx)
 	addq	$40, %rsp
 	ret
-.L163:
+.L164:
 	leaq	.LC21(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
 	call	exit
-.L169:
+.L170:
 	leaq	.LC20(%rip), %rcx
 	movq	%xmm1, %rdx
 	call	_Z6printfPKcz
@@ -1125,7 +1117,7 @@ _ZN3wze6engine5audio7channel9SetVolumeEd:
 	.def	_ZN3wze6engine5audio7channel8IsPausedEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel8IsPausedEv
 _ZN3wze6engine5audio7channel8IsPausedEv:
-.LFB8455:
+.LFB8461:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -1142,7 +1134,7 @@ _ZN3wze6engine5audio7channel8IsPausedEv:
 	.def	_ZN3wze6engine5audio7channel5PauseEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel5PauseEv
 _ZN3wze6engine5audio7channel5PauseEv:
-.LFB8456:
+.LFB8462:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -1158,7 +1150,7 @@ _ZN3wze6engine5audio7channel5PauseEv:
 	.def	_ZN3wze6engine5audio7channel6ResumeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel6ResumeEv
 _ZN3wze6engine5audio7channel6ResumeEv:
-.LFB8457:
+.LFB8463:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -1179,18 +1171,18 @@ _ZN3wze6engine5audio7channel6ResumeEv:
 	.def	_ZN3wze6engine5audio7channel4StopEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel4StopEv
 _ZN3wze6engine5audio7channel4StopEv:
-.LFB8458:
+.LFB8464:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	movzwl	24(%rcx), %ecx
 	call	Mix_HaltChannel
 	cmpl	$-1, %eax
-	je	.L175
+	je	.L176
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	ret
-.L175:
+.L176:
 	leaq	.LC22(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -1203,7 +1195,7 @@ _ZN3wze6engine5audio7channel4StopEv:
 	.def	_ZN3wze6engine5audio7channel4StopEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel4StopEt
 _ZN3wze6engine5audio7channel4StopEt:
-.LFB8459:
+.LFB8465:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue

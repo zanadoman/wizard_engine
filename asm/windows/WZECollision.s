@@ -45,7 +45,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0:
-.LFB6922:
+.LFB6928:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -171,7 +171,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actorEE6InsertEyy.isra.0:
 	.def	_ZN3wze6engine9collisionC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collisionC2EPS0_
 _ZN3wze6engine9collisionC2EPS0_:
-.LFB6890:
+.LFB6896:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -216,7 +216,7 @@ _ZN3wze6engine9collisionC2EPS0_:
 	.def	_ZN3wze6engine9collision14GetBufferSizeBEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision14GetBufferSizeBEv
 _ZN3wze6engine9collision14GetBufferSizeBEv:
-.LFB6892:
+.LFB6898:
 	.seh_endprologue
 	movzwl	8(%rcx), %eax
 	sall	$3, %eax
@@ -228,7 +228,7 @@ _ZN3wze6engine9collision14GetBufferSizeBEv:
 	.def	_ZN3wze6engine9collision14SetBufferSizeBEh;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision14SetBufferSizeBEh
 _ZN3wze6engine9collision14SetBufferSizeBEh:
-.LFB6893:
+.LFB6899:
 	.seh_endprologue
 	movzbl	%dl, %edx
 	shrw	$3, %dx
@@ -242,7 +242,7 @@ _ZN3wze6engine9collision14SetBufferSizeBEh:
 	.def	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE
 _ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10overlapboxE:
-.LFB6894:
+.LFB6900:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	movaps	%xmm6, (%rsp)
@@ -524,7 +524,7 @@ _ZN3wze6engine9collision12CheckOverlapEddddPNS0_6actors5actor12overlapboxes10ove
 	.def	_ZN3wze6engine9collision14CheckCollisionEdddddddd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision14CheckCollisionEdddddddd
 _ZN3wze6engine9collision14CheckCollisionEdddddddd:
-.LFB6895:
+.LFB6901:
 	.seh_endprologue
 	xorl	%eax, %eax
 	movsd	48(%rsp), %xmm0
@@ -830,7 +830,7 @@ _ZN3wze6engine9collision14CheckCollisionEdddddddd:
 	.def	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_
 _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
-.LFB6896:
+.LFB6902:
 	subq	$232, %rsp
 	.seh_stackalloc	232
 	movaps	%xmm6, 80(%rsp)
@@ -1377,7 +1377,7 @@ _ZN3wze6engine9collision21GetCollisionDirectionEPNS0_6actors5actorES4_:
 	.def	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_
 _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
-.LFB6897:
+.LFB6903:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -1819,7 +1819,7 @@ _ZN3wze6engine9collision16ResolveCollisionEPNS0_6actors5actorEyS4_:
 	.def	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_
 _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES6_yS6_:
-.LFB6899:
+.LFB6905:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2036,25 +2036,25 @@ _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6899:
+.LLSDA6905:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6899-.LLSDACSB6899
-.LLSDACSB6899:
-	.uleb128 .LEHB0-.LFB6899
+	.uleb128 .LLSDACSE6905-.LLSDACSB6905
+.LLSDACSB6905:
+	.uleb128 .LEHB0-.LFB6905
 	.uleb128 .LEHE0-.LEHB0
-	.uleb128 .L552-.LFB6899
+	.uleb128 .L552-.LFB6905
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB6899
+	.uleb128 .LEHB1-.LFB6905
 	.uleb128 .LEHE1-.LEHB1
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB6899
+	.uleb128 .LEHB2-.LFB6905
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L552-.LFB6899
+	.uleb128 .L552-.LFB6905
 	.uleb128 0
-.LLSDACSE6899:
+.LLSDACSE6905:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -2081,17 +2081,17 @@ _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES
 .LEHE3:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6899:
+.LLSDAC6905:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6899-.LLSDACSBC6899
-.LLSDACSBC6899:
+	.uleb128 .LLSDACSEC6905-.LLSDACSBC6905
+.LLSDACSBC6905:
 	.uleb128 .LEHB3-.LCOLDB6
 	.uleb128 .LEHE3-.LEHB3
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6899:
+.LLSDACSEC6905:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -2110,7 +2110,7 @@ _ZN3wze6engine9collision18NewCollisionBranchEPN3neo5arrayIPNS0_6actors5actorEEES
 	.def	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE
 _ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE:
-.LFB6898:
+.LFB6904:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2402,25 +2402,25 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE:
 	jmp	.L610
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA6898:
+.LLSDA6904:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE6898-.LLSDACSB6898
-.LLSDACSB6898:
-	.uleb128 .LEHB4-.LFB6898
+	.uleb128 .LLSDACSE6904-.LLSDACSB6904
+.LLSDACSB6904:
+	.uleb128 .LEHB4-.LFB6904
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L612-.LFB6898
+	.uleb128 .L612-.LFB6904
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB6898
+	.uleb128 .LEHB5-.LFB6904
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB6898
+	.uleb128 .LEHB6-.LFB6904
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L612-.LFB6898
+	.uleb128 .L612-.LFB6904
 	.uleb128 0
-.LLSDACSE6898:
+.LLSDACSE6904:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -2447,17 +2447,17 @@ _ZN3wze6engine9collision21ResolveCollisionLayerEyPNS0_6actors5actorE.cold:
 .LEHE7:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC6898:
+.LLSDAC6904:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC6898-.LLSDACSBC6898
-.LLSDACSBC6898:
+	.uleb128 .LLSDACSEC6904-.LLSDACSBC6904
+.LLSDACSBC6904:
 	.uleb128 .LEHB7-.LCOLDB7
 	.uleb128 .LEHE7-.LEHB7
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC6898:
+.LLSDACSEC6904:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"

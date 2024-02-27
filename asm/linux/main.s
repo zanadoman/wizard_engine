@@ -7,26 +7,28 @@
 	.string	"assets/Hack-Regular.ttf"
 .LC20:
 	.string	""
-.LC24:
-	.string	"ms"
+.LC22:
+	.string	"assets/test.mp3"
 .LC25:
-	.string	"ms FrameTime: "
+	.string	"ms"
 .LC26:
-	.string	"ms RenderTime: "
+	.string	"ms FrameTime: "
 .LC27:
+	.string	"ms RenderTime: "
+.LC28:
 	.string	"GameTime: "
 	.section	.text.unlikely,"ax",@progbits
-.LCOLDB28:
+.LCOLDB29:
 	.section	.text.startup,"ax",@progbits
-.LHOTB28:
+.LHOTB29:
 	.p2align 4
 	.globl	main
 	.type	main, @function
 main:
-.LFB8156:
+.LFB8162:
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDA8156
+	.cfi_lsda 0x1b,.LLSDA8162
 	pushq	%r15
 	.cfi_def_cfa_offset 16
 	.cfi_offset 15, -16
@@ -51,7 +53,7 @@ main:
 	movq	%rax, 296(%rsp)
 	xorl	%eax, %eax
 	leaq	224(%rsp), %rdi
-	movq	%rdi, 168(%rsp)
+	movq	%rdi, 176(%rsp)
 .LEHB0:
 	call	_ZN3neo6stringC1Ev@PLT
 .LEHE0:
@@ -69,18 +71,18 @@ main:
 .LEHB2:
 	call	_ZN3wze6engineC1EPKcS2_tth@PLT
 .LEHE2:
-	leaq	344(%rbp), %r12
+	leaq	344(%rbp), %r14
 	leaq	.LC6(%rip), %rsi
-	movq	%r12, %rdi
+	movq	%r14, %rdi
 .LEHB3:
 	call	_ZN3wze6engine6assets11LoadTextureEPKc@PLT
 	movl	$48, %edx
 	leaq	.LC7(%rip), %rsi
-	movq	%r12, %rdi
+	movq	%r14, %rdi
 	movq	%rax, %rbx
 	call	_ZN3wze6engine6assets8LoadFontEPKch@PLT
 	movq	%rbp, %rdi
-	movq	%rax, %r14
+	movq	%rax, %r15
 	leaq	272(%rbp), %r12
 	call	_ZN3wze6engine6window9GetHeightEv@PLT
 	shrw	%ax
@@ -92,28 +94,6 @@ main:
 	movl	%r13d, %r8d
 	xorl	%edx, %edx
 	movsd	.LC8(%rip), %xmm2
-	movzwl	%ax, %ecx
-	xorl	%esi, %esi
-	movq	%r12, %rdi
-	movapd	%xmm1, %xmm0
-	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
-	leaq	40(%rax), %rdi
-	movq	%rbx, %rsi
-	movq	%rax, 208(%rsp)
-	movq	%rax, %r15
-	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
-	movq	%rbp, %rdi
-	movq	%rax, 176(%rsp)
-	call	_ZN3wze6engine6window9GetHeightEv@PLT
-	shrw	%ax
-	movq	%rbp, %rdi
-	movzwl	%ax, %r13d
-	call	_ZN3wze6engine6window9GetHeightEv@PLT
-	shrw	%ax
-	pxor	%xmm1, %xmm1
-	movl	%r13d, %r8d
-	xorl	%edx, %edx
-	movsd	.LC9(%rip), %xmm2
 	movzwl	%ax, %ecx
 	xorl	%esi, %esi
 	movq	%r12, %rdi
@@ -134,7 +114,7 @@ main:
 	pxor	%xmm1, %xmm1
 	movl	%r13d, %r8d
 	xorl	%edx, %edx
-	movsd	.LC10(%rip), %xmm2
+	movsd	.LC9(%rip), %xmm2
 	movzwl	%ax, %ecx
 	xorl	%esi, %esi
 	movq	%r12, %rdi
@@ -144,34 +124,55 @@ main:
 	movq	%rbx, %rsi
 	movq	%rax, 160(%rsp)
 	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
-	movsd	.LC11(%rip), %xmm0
-	movq	%r15, %rdi
-	movq	%rax, %r13
-	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
+	movq	%rbp, %rdi
+	movq	%rax, 200(%rsp)
+	call	_ZN3wze6engine6window9GetHeightEv@PLT
+	shrw	%ax
+	movq	%rbp, %rdi
+	movzwl	%ax, %r13d
+	call	_ZN3wze6engine6window9GetHeightEv@PLT
+	shrw	%ax
+	pxor	%xmm1, %xmm1
+	movl	%r13d, %r8d
+	xorl	%edx, %edx
+	movsd	.LC10(%rip), %xmm2
+	movzwl	%ax, %ecx
+	xorl	%esi, %esi
+	movq	%r12, %rdi
+	movapd	%xmm1, %xmm0
+	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
+	leaq	40(%rax), %rdi
+	movq	%rbx, %rsi
+	movq	%rax, 168(%rsp)
+	call	_ZN3wze6engine6actors5actor12textureboxes3NewEy@PLT
 	movq	184(%rsp), %rbx
-	movsd	.LC12(%rip), %xmm0
+	movsd	.LC11(%rip), %xmm0
+	movq	%rax, %r13
 	movq	%rbx, %rdi
+	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
+	movsd	.LC12(%rip), %xmm0
+	movq	160(%rsp), %rdi
 	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
 	movsd	.LC13(%rip), %xmm0
-	movq	160(%rsp), %rdi
+	movq	168(%rsp), %rdi
 	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
 	movsd	.LC14(%rip), %xmm0
-	movq	%r15, %rdi
-	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
-	movsd	.LC15(%rip), %xmm0
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
-	movsd	.LC16(%rip), %xmm0
+	movsd	.LC15(%rip), %xmm0
 	movq	160(%rsp), %rdi
 	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
-	movq	176(%rsp), %rcx
+	movsd	.LC16(%rip), %xmm0
+	movq	168(%rsp), %rdi
+	call	_ZN3wze6engine6actors5actor8SetDepthEd@PLT
+	movq	192(%rsp), %rsi
 	movl	$-21761, %eax
 	movl	$-171, %edx
 	movq	%rbp, %rdi
-	movw	%ax, 20(%rcx)
-	movq	192(%rsp), %rax
-	movb	$85, 22(%rcx)
 	movl	$-21931, %ecx
+	movw	%ax, 20(%rsi)
+	movq	200(%rsp), %rax
+	movb	$85, 22(%rsi)
 	movw	%dx, 20(%rax)
 	movb	$-86, 22(%rax)
 	movw	%cx, 20(%r13)
@@ -197,15 +198,15 @@ main:
 	movq	%r12, %rdi
 	call	_ZN3wze6engine6actors3NewEPvyddttd@PLT
 	leaq	104(%rax), %rdi
-	movq	%r14, %rdx
+	movq	%r15, %rdx
 	leaq	.LC20(%rip), %rsi
 	call	_ZN3wze6engine6actors5actor9textboxes3NewEPKcy@PLT
 	movq	%rbp, %rdi
 	movq	%rax, 216(%rsp)
-	movq	%rax, %r14
+	movq	%rax, %r15
 	call	_ZN3wze6engine6window9GetHeightEv@PLT
 	movzwl	%ax, %esi
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	imull	$34953, %esi, %esi
 	shrl	$21, %esi
 	call	_ZN3wze6engine6actors5actor9textboxes7textbox9SetHeightEt@PLT
@@ -213,14 +214,14 @@ main:
 	call	_ZN3wze6engine6window9GetHeightEv@PLT
 	movzwl	%ax, %eax
 	pxor	%xmm0, %xmm0
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	cvtsi2sdl	%eax, %xmm0
 	divsd	.LC21(%rip), %xmm0
 	movsd	%xmm0, (%rsp)
 	call	_ZN3wze6engine6actors5actor9textboxes7textbox8GetWidthEv@PLT
 	shrw	%ax
 	pxor	%xmm0, %xmm0
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm0
 	addsd	(%rsp), %xmm0
@@ -236,7 +237,7 @@ main:
 	movq	%rbx, %xmm6
 	movzwl	%ax, %eax
 	pxor	%xmm0, %xmm0
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	cvtsi2sdl	%eax, %xmm0
 	divsd	.LC21(%rip), %xmm0
 	subsd	%xmm0, %xmm6
@@ -245,20 +246,45 @@ main:
 	shrw	%ax
 	pxor	%xmm1, %xmm1
 	movq	%rbx, %xmm0
-	movq	%r14, %rdi
+	movq	%r15, %rdi
 	movzwl	%ax, %eax
 	cvtsi2sdl	%eax, %xmm1
 	subsd	%xmm1, %xmm0
 	call	_ZN3wze6engine6actors5actor9textboxes7textbox4SetYEd@PLT
-	movsd	.LC22(%rip), %xmm0
+	movq	%rbp, %rdi
+	call	_ZN3wze6engine6window8GetWidthEv@PLT
+	leaq	160(%rbp), %r12
+	shrw	%ax
+	xorl	%esi, %esi
+	movq	%r12, %rdi
+	movzwl	%ax, %ebx
+	call	_ZN3wze6engine5audioixEt@PLT
+	movq	%rbx, 16(%rax)
+	xorl	%esi, %esi
+	movq	%r12, %rdi
+	call	_ZN3wze6engine5audioixEt@PLT
+	leaq	.LC22(%rip), %rsi
+	movq	%r14, %rdi
+	movq	%rax, %rbx
+	call	_ZN3wze6engine6assets9LoadSoundEPKc@PLT
+	movq	%rax, %rsi
+	movq	%rbx, %rdi
+	call	_ZN3wze6engine5audio7channel10SetSoundIDEy@PLT
+	xorl	%esi, %esi
+	movq	%r12, %rdi
+	call	_ZN3wze6engine5audioixEt@PLT
+	movq	%rax, %rdi
+	movl	$65535, %esi
+	call	_ZN3wze6engine5audio7channel4PlayEt@PLT
+	movsd	.LC23(%rip), %xmm0
 	leaq	32(%rbp), %rdi
 	call	_ZN3wze6engine6render15SetSamplingStepEd@PLT
 	leaq	216(%rbp), %rax
 	movq	%rax, %rdi
-	movq	%rax, 200(%rsp)
+	movq	%rax, 208(%rsp)
 	movq	%rax, %rbx
 	call	_ZN3wze6engine5mouse11SetRelativeEv@PLT
-	movsd	.LC23(%rip), %xmm0
+	movsd	.LC24(%rip), %xmm0
 	movq	%rbx, %rdi
 	call	_ZN3wze6engine5mouse14SetSensitivityEd@PLT
 	movq	.LC2(%rip), %rax
@@ -319,7 +345,7 @@ main:
 	call	round@PLT
 	cvttsd2sil	%xmm0, %eax
 .L17:
-	movq	176(%rsp), %rcx
+	movq	192(%rsp), %rcx
 	movq	%rbx, %rdi
 	movb	%r14b, 20(%rcx)
 	movb	%r12b, 21(%rcx)
@@ -379,7 +405,7 @@ main:
 	call	round@PLT
 	cvttsd2sil	%xmm0, %eax
 .L26:
-	movq	192(%rsp), %rdx
+	movq	200(%rsp), %rdx
 	movq	%rbx, %rdi
 	movb	%r14b, 20(%rdx)
 	movb	%r12b, 21(%rdx)
@@ -458,7 +484,7 @@ main:
 	movzwl	%ax, %r12d
 	negl	%r12d
 	call	_ZN3wze6engine6camera10GetOriginXEv@PLT
-	movq	200(%rsp), %rdi
+	movq	208(%rsp), %rdi
 	movsd	%xmm0, 72(%rsp)
 	call	_ZN3wze6engine5mouse10GetMotionXEv@PLT
 	movq	%rbx, %rdi
@@ -493,7 +519,7 @@ main:
 	movzwl	%ax, %r12d
 	negl	%r12d
 	call	_ZN3wze6engine6camera10GetOriginYEv@PLT
-	movq	200(%rsp), %rdi
+	movq	208(%rsp), %rdi
 	movsd	%xmm0, 72(%rsp)
 	call	_ZN3wze6engine5mouse10GetMotionYEv@PLT
 	movq	%rbx, %rdi
@@ -518,14 +544,14 @@ main:
 	movq	%r14, %rdi
 	call	_ZN3wze6engine6camera10SetOriginYEd@PLT
 .L36:
-	leaq	.LC24(%rip), %rax
+	leaq	.LC25(%rip), %rax
 	movq	%rbx, %rdi
 	movq	%rax, 288(%rsp)
 	leaq	288(%rsp), %rax
 	movq	%rax, 72(%rsp)
 	call	_ZN3wze6engine6timing12GetFrameTimeEv@PLT
 	movl	%eax, %ecx
-	leaq	.LC25(%rip), %rdx
+	leaq	.LC26(%rip), %rdx
 	movq	%rbx, %rdi
 	movq	%rcx, 280(%rsp)
 	leaq	280(%rsp), %rcx
@@ -537,16 +563,16 @@ main:
 	movq	%rbx, %rdi
 	leaq	264(%rsp), %r14
 	movq	%rdx, 264(%rsp)
-	leaq	.LC26(%rip), %rdx
+	leaq	.LC27(%rip), %rdx
 	leaq	256(%rsp), %r12
 	movq	%rdx, 256(%rsp)
 	call	_ZN3wze6engine6timing11GetGameTimeEv@PLT
 	movl	%eax, %edx
-	movq	168(%rsp), %rdi
+	movq	176(%rsp), %rdi
 	leaq	240(%rsp), %rsi
 	leaq	248(%rsp), %rbx
 	movq	%rdx, 248(%rsp)
-	leaq	.LC27(%rip), %rdx
+	leaq	.LC28(%rip), %rdx
 	movq	%rdx, 240(%rsp)
 	movl	$1, %edx
 	call	_ZN3neo6stringaSESt16initializer_listIPKcE@PLT
@@ -601,7 +627,7 @@ main:
 	call	_ZN3wze6engine6UpdateEv@PLT
 	testb	%al, %al
 	je	.L80
-	movq	208(%rsp), %r15
+	movq	184(%rsp), %r15
 	movq	%r15, %rdi
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	leaq	416(%rbp), %rbx
@@ -615,7 +641,7 @@ main:
 	mulsd	.LC1(%rip), %xmm0
 	addsd	72(%rsp), %xmm0
 	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
-	movq	184(%rsp), %r15
+	movq	160(%rsp), %r15
 	movq	%r15, %rdi
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	%rbx, %rdi
@@ -629,7 +655,7 @@ main:
 	mulsd	.LC1(%rip), %xmm1
 	subsd	%xmm1, %xmm0
 	call	_ZN3wze6engine6actors5actor8SetAngleEd@PLT
-	movq	160(%rsp), %r15
+	movq	168(%rsp), %r15
 	movq	%r15, %rdi
 	call	_ZN3wze6engine6actors5actor8GetAngleEv@PLT
 	movq	%rbx, %rdi
@@ -699,10 +725,10 @@ main:
 	.p2align 4,,10
 	.p2align 3
 .L65:
-	movq	.LC1(%rip), %rsi
+	movq	.LC1(%rip), %rcx
 	xorl	%eax, %eax
 	movq	$0x000000000, 64(%rsp)
-	movq	%rsi, 152(%rsp)
+	movq	%rcx, 152(%rsp)
 	jmp	.L35
 	.p2align 4,,10
 	.p2align 3
@@ -765,11 +791,11 @@ main:
 	.p2align 4,,10
 	.p2align 3
 .L54:
-	movq	.LC2(%rip), %rcx
-	movq	.LC3(%rip), %rsi
+	movq	.LC2(%rip), %rsi
+	movq	.LC3(%rip), %rcx
 	movl	$-1, %eax
-	movq	%rcx, 16(%rsp)
-	movq	%rsi, 104(%rsp)
+	movq	%rsi, 16(%rsp)
+	movq	%rcx, 104(%rsp)
 	jmp	.L17
 	.p2align 4,,10
 	.p2align 3
@@ -792,19 +818,19 @@ main:
 	.p2align 4,,10
 	.p2align 3
 .L60:
-	movq	.LC2(%rip), %rcx
+	movq	.LC2(%rip), %rsi
 	movsd	.LC3(%rip), %xmm5
 	movl	$-1, %eax
-	movq	%rcx, 40(%rsp)
+	movq	%rsi, 40(%rsp)
 	movsd	%xmm5, 128(%rsp)
 	jmp	.L26
 	.p2align 4,,10
 	.p2align 3
 .L66:
-	movq	.LC2(%rip), %rsi
+	movq	.LC2(%rip), %rcx
 	movsd	.LC3(%rip), %xmm4
 	movl	$-1, %eax
-	movq	%rsi, 64(%rsp)
+	movq	%rcx, 64(%rsp)
 	movsd	%xmm4, 152(%rsp)
 	jmp	.L35
 	.p2align 4,,10
@@ -833,7 +859,7 @@ main:
 	movq	%rbp, %rdi
 	movl	$480, %esi
 	call	_ZdlPvm@PLT
-	movq	168(%rsp), %rdi
+	movq	176(%rsp), %rdi
 	call	_ZN3neo6stringD1Ev@PLT
 	movq	296(%rsp), %rax
 	subq	%fs:40, %rax
@@ -876,38 +902,38 @@ main:
 	jmp	.L45
 	.globl	__gxx_personality_v0
 	.section	.gcc_except_table,"a",@progbits
-.LLSDA8156:
+.LLSDA8162:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8156-.LLSDACSB8156
-.LLSDACSB8156:
-	.uleb128 .LEHB0-.LFB8156
+	.uleb128 .LLSDACSE8162-.LLSDACSB8162
+.LLSDACSB8162:
+	.uleb128 .LEHB0-.LFB8162
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8156
+	.uleb128 .LEHB1-.LFB8162
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L71-.LFB8156
+	.uleb128 .L71-.LFB8162
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8156
+	.uleb128 .LEHB2-.LFB8162
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L72-.LFB8156
+	.uleb128 .L72-.LFB8162
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8156
+	.uleb128 .LEHB3-.LFB8162
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L71-.LFB8156
+	.uleb128 .L71-.LFB8162
 	.uleb128 0
-.LLSDACSE8156:
+.LLSDACSE8162:
 	.section	.text.startup
 	.cfi_endproc
 	.section	.text.unlikely
 	.cfi_startproc
 	.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-	.cfi_lsda 0x1b,.LLSDAC8156
+	.cfi_lsda 0x1b,.LLSDAC8162
 	.type	main.cold, @function
 main.cold:
-.LFSB8156:
+.LFSB8162:
 .L44:
 	.cfi_def_cfa_offset 368
 	.cfi_offset 3, -56
@@ -920,7 +946,7 @@ main.cold:
 	movq	%rbp, %rdi
 	call	_ZdlPvm@PLT
 .L45:
-	movq	168(%rsp), %rdi
+	movq	176(%rsp), %rdi
 	call	_ZN3neo6stringD1Ev@PLT
 	movq	296(%rsp), %rax
 	subq	%fs:40, %rax
@@ -932,27 +958,27 @@ main.cold:
 .L85:
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE8156:
+.LFE8162:
 	.section	.gcc_except_table
-.LLSDAC8156:
+.LLSDAC8162:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8156-.LLSDACSBC8156
-.LLSDACSBC8156:
-	.uleb128 .LEHB4-.LCOLDB28
+	.uleb128 .LLSDACSEC8162-.LLSDACSBC8162
+.LLSDACSBC8162:
+	.uleb128 .LEHB4-.LCOLDB29
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8156:
+.LLSDACSEC8162:
 	.section	.text.unlikely
 	.section	.text.startup
 	.size	main, .-main
 	.section	.text.unlikely
 	.size	main.cold, .-main.cold
-.LCOLDE28:
+.LCOLDE29:
 	.section	.text.startup
-.LHOTE28:
+.LHOTE29:
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align 8
 .LC1:
@@ -1015,11 +1041,11 @@ main.cold:
 	.long	0
 	.long	1080623104
 	.align 8
-.LC22:
+.LC23:
 	.long	-350469331
 	.long	1058682594
 	.align 8
-.LC23:
+.LC24:
 	.long	0
 	.long	1071644672
 	.hidden	DW.ref.__gxx_personality_v0

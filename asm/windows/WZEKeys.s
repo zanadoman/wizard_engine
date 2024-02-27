@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engine4keysC2EPS0_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keysC2EPS0_
 _ZN3wze6engine4keysC2EPS0_:
-.LFB6890:
+.LFB6896:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -64,7 +64,7 @@ _ZN3wze6engine4keysC2EPS0_:
 	.def	_ZN3wze6engine4keysD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keysD2Ev
 _ZN3wze6engine4keysD2Ev:
-.LFB6893:
+.LFB6899:
 	.seh_endprologue
 	movq	16(%rcx), %rcx
 	testq	%rcx, %rcx
@@ -89,7 +89,7 @@ _ZN3wze6engine4keysD2Ev:
 	.def	_ZN3wze6engine4keysixENS_3keyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keysixENS_3keyE
 _ZN3wze6engine4keysixENS_3keyE:
-.LFB6895:
+.LFB6901:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -114,7 +114,7 @@ _ZN3wze6engine4keysixENS_3keyE:
 	.def	_ZN3wze6engine4keys6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine4keys6UpdateEv
 _ZN3wze6engine4keys6UpdateEv:
-.LFB6896:
+.LFB6902:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp

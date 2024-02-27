@@ -45,7 +45,7 @@ _Z6printfPKcz:
 	.def	_ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0
 _ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0:
-.LFB8663:
+.LFB8669:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -150,7 +150,7 @@ _ZN3neo5arrayINS0_IyEEE6InsertEyy.isra.0:
 	.def	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0;	.scl	3;	.type	32;	.endef
 	.seh_proc	_ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0
 _ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.isra.0:
-.LFB8664:
+.LFB8670:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -283,7 +283,7 @@ _ZN3neo5arrayIPN3wze6engine6actors5actor12overlapboxes10overlapboxEE6RemoveEyy.i
 	.def	_ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_
 _ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_:
-.LFB8432:
+.LFB8438:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -325,7 +325,7 @@ _ZN3wze6engine6actors5actor12overlapboxesC2EPS0_PS2_:
 	.def	_ZN3wze6engine6actors5actor12overlapboxesD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxesD2Ev
 _ZN3wze6engine6actors5actor12overlapboxesD2Ev:
-.LFB8435:
+.LFB8441:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -384,7 +384,7 @@ _ZN3wze6engine6actors5actor12overlapboxesD2Ev:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes6DeleteEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes6DeleteEy
 _ZN3wze6engine6actors5actor12overlapboxes6DeleteEy:
-.LFB8438:
+.LFB8444:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -463,7 +463,7 @@ _ZN3wze6engine6actors5actor12overlapboxes6DeleteEy:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE
 _ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE:
-.LFB8439:
+.LFB8445:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -593,7 +593,7 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeESt16initializer_listIyE:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE
 _ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE:
-.LFB8440:
+.LFB8446:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -732,7 +732,7 @@ _ZN3wze6engine6actors5actor12overlapboxes5PurgeEPN3neo5arrayIyEE:
 	.def	_ZN3wze6engine6actors5actor12overlapboxesixEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxesixEy
 _ZN3wze6engine6actors5actor12overlapboxesixEy:
-.LFB8441:
+.LFB8447:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -764,7 +764,7 @@ _ZN3wze6engine6actors5actor12overlapboxesixEy:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev
 _ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev:
-.LFB8446:
+.LFB8452:
 	.seh_endprologue
 	ret
 	.seh_endproc
@@ -777,7 +777,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxD2Ev:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox5GetIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox5GetIDEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox5GetIDEv:
-.LFB8448:
+.LFB8454:
 	.seh_endprologue
 	movq	24(%rcx), %rax
 	ret
@@ -788,7 +788,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox5GetIDEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv:
-.LFB8449:
+.LFB8455:
 	.seh_endprologue
 	movq	32(%rcx), %rax
 	ret
@@ -799,7 +799,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox7GetTypeEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox10GetActorIDEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox10GetActorIDEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox10GetActorIDEv:
-.LFB8450:
+.LFB8456:
 	.seh_endprologue
 	movq	8(%rcx), %rax
 	movq	200(%rax), %rax
@@ -811,7 +811,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox10GetActorIDEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv:
-.LFB8451:
+.LFB8457:
 	.seh_endprologue
 	movsd	40(%rcx), %xmm0
 	ret
@@ -827,7 +827,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetXEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
-.LFB8452:
+.LFB8458:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -895,7 +895,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetXEd:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv:
-.LFB8453:
+.LFB8459:
 	.seh_endprologue
 	movsd	48(%rcx), %xmm0
 	ret
@@ -911,7 +911,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4GetYEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
-.LFB8454:
+.LFB8460:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -979,7 +979,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox4SetYEd:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOffsetLengthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOffsetLengthEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOffsetLengthEv:
-.LFB8455:
+.LFB8461:
 	.seh_endprologue
 	movsd	72(%rcx), %xmm0
 	ret
@@ -995,7 +995,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOffsetLengthEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15SetOffsetLengthEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15SetOffsetLengthEd
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15SetOffsetLengthEd:
-.LFB8456:
+.LFB8462:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1038,7 +1038,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15SetOffsetLengthEd:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOffsetAngleEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOffsetAngleEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOffsetAngleEv:
-.LFB8457:
+.LFB8463:
 	.seh_endprologue
 	movsd	80(%rcx), %xmm0
 	ret
@@ -1054,7 +1054,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetOffsetAngleEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14SetOffsetAngleEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14SetOffsetAngleEd
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14SetOffsetAngleEd:
-.LFB8458:
+.LFB8464:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$48, %rsp
@@ -1098,7 +1098,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14SetOffsetAngleEd:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv:
-.LFB8459:
+.LFB8465:
 	.seh_endprologue
 	movzwl	56(%rcx), %eax
 	ret
@@ -1109,7 +1109,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetWidthEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv:
-.LFB8461:
+.LFB8467:
 	.seh_endprologue
 	movzwl	58(%rcx), %eax
 	ret
@@ -1120,7 +1120,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9GetHeightEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv:
-.LFB8463:
+.LFB8469:
 	.seh_endprologue
 	movsd	64(%rcx), %xmm0
 	ret
@@ -1131,7 +1131,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8GetAngleEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv:
-.LFB8465:
+.LFB8471:
 	.seh_endprologue
 	movzwl	88(%rcx), %eax
 	ret
@@ -1142,7 +1142,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetActiveWidthEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv:
-.LFB8466:
+.LFB8472:
 	.seh_endprologue
 	movzwl	90(%rcx), %eax
 	ret
@@ -1167,7 +1167,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetActiveHeightEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy:
-.LFB8467:
+.LFB8473:
 	subq	$56, %rsp
 	.seh_stackalloc	56
 	.seh_endprologue
@@ -1253,7 +1253,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox17IsOverlappingWithEyy:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyESB_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyESB_
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyESB_:
-.LFB8468:
+.LFB8474:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -1503,7 +1503,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_St16initializer_listIyE;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_St16initializer_listIyE
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_St16initializer_listIyE:
-.LFB8470:
+.LFB8476:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -1759,7 +1759,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyEPS7_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyEPS7_
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEESt16initializer_listIyEPS7_:
-.LFB8471:
+.LFB8477:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2021,7 +2021,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_SA_;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_SA_
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5arrayINS6_IyEEEEPS7_SA_:
-.LFB8472:
+.LFB8478:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2277,7 +2277,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox15GetOverlapStateEPN3neo5ar
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv:
-.LFB8473:
+.LFB8479:
 	.seh_endprologue
 	movl	120(%rcx), %eax
 	ret
@@ -2288,7 +2288,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox14GetButtonStateEv:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveScaleEv:
-.LFB8474:
+.LFB8480:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -2425,7 +2425,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox27UpdateOverlapboxActiveSca
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy
 _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy:
-.LFB8443:
+.LFB8449:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp
@@ -2522,7 +2522,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapboxC2EPS0_PS2_yy:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes3NewEy;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes3NewEy
 _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
-.LFB8437:
+.LFB8443:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -2657,33 +2657,33 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8437:
+.LLSDA8443:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8437-.LLSDACSB8437
-.LLSDACSB8437:
-	.uleb128 .LEHB0-.LFB8437
+	.uleb128 .LLSDACSE8443-.LLSDACSB8443
+.LLSDACSB8443:
+	.uleb128 .LEHB0-.LFB8443
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8437
+	.uleb128 .LEHB1-.LFB8443
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L455-.LFB8437
+	.uleb128 .L455-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8437
+	.uleb128 .LEHB2-.LFB8443
 	.uleb128 .LEHE2-.LEHB2
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8437
+	.uleb128 .LEHB3-.LFB8443
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L454-.LFB8437
+	.uleb128 .L454-.LFB8443
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8437
+	.uleb128 .LEHB4-.LFB8443
 	.uleb128 .LEHE4-.LEHB4
 	.uleb128 0
 	.uleb128 0
-.LLSDACSE8437:
+.LLSDACSE8443:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -2713,17 +2713,17 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold:
 .LEHE5:
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8437:
+.LLSDAC8443:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8437-.LLSDACSBC8437
-.LLSDACSBC8437:
+	.uleb128 .LLSDACSEC8443-.LLSDACSBC8443
+.LLSDACSBC8443:
 	.uleb128 .LEHB5-.LCOLDB32
 	.uleb128 .LEHE5-.LEHB5
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8437:
+.LLSDACSEC8443:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"
@@ -2737,7 +2737,7 @@ _ZN3wze6engine6actors5actor12overlapboxes3NewEy.cold:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
-.LFB8460:
+.LFB8466:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -2811,7 +2811,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetWidthEt:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
-.LFB8462:
+.LFB8468:
 	pushq	%rsi
 	.seh_pushreg	%rsi
 	pushq	%rbx
@@ -2888,7 +2888,7 @@ _ZN3wze6engine6actors5actor12overlapboxes10overlapbox9SetHeightEt:
 	.def	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd
 _ZN3wze6engine6actors5actor12overlapboxes10overlapbox8SetAngleEd:
-.LFB8464:
+.LFB8470:
 	pushq	%rbx
 	.seh_pushreg	%rbx
 	subq	$32, %rsp

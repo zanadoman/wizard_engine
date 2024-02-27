@@ -39,7 +39,7 @@ _Z6printfPKcz:
 	.def	_ZN3wze6engineD2Ev;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engineD2Ev
 _ZN3wze6engineD2Ev:
-.LFB8447:
+.LFB8453:
 	pushq	%rdi
 	.seh_pushreg	%rdi
 	pushq	%rsi
@@ -126,13 +126,13 @@ _ZN3wze6engineD2Ev:
 	.def	__gxx_personality_seh0;	.scl	2;	.type	32;	.endef
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8447:
+.LLSDA8453:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8447-.LLSDACSB8447
-.LLSDACSB8447:
-.LLSDACSE8447:
+	.uleb128 .LLSDACSE8453-.LLSDACSB8453
+.LLSDACSB8453:
+.LLSDACSE8453:
 	.text
 	.seh_endproc
 	.globl	_ZN3wze6engineD1Ev
@@ -149,7 +149,7 @@ _ZN3wze6engineD2Ev:
 	.def	_ZN3wze6engine15UpdateFlipbooksEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine15UpdateFlipbooksEv
 _ZN3wze6engine15UpdateFlipbooksEv:
-.LFB8450:
+.LFB8456:
 	pushq	%rbp
 	.seh_pushreg	%rbp
 	pushq	%rdi
@@ -263,7 +263,7 @@ _ZN3wze6engine15UpdateFlipbooksEv:
 	.def	_ZN3wze6engine18UpdateOverlapboxesEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine18UpdateOverlapboxesEv
 _ZN3wze6engine18UpdateOverlapboxesEv:
-.LFB8451:
+.LFB8457:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -549,7 +549,7 @@ _ZN3wze6engine18UpdateOverlapboxesEv:
 	.def	_ZN3wze6engine6UpdateEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine6UpdateEv
 _ZN3wze6engine6UpdateEv:
-.LFB8449:
+.LFB8455:
 	pushq	%r12
 	.seh_pushreg	%r12
 	pushq	%rbp
@@ -779,7 +779,7 @@ _ZN3wze6engine6UpdateEv:
 	.def	_ZN3wze6engineC2EPKcS2_tth;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engineC2EPKcS2_tth
 _ZN3wze6engineC2EPKcS2_tth:
-.LFB8444:
+.LFB8450:
 	pushq	%r15
 	.seh_pushreg	%r15
 	pushq	%r14
@@ -1129,53 +1129,53 @@ _ZN3wze6engineC2EPKcS2_tth:
 	jmp	.L140
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDA8444:
+.LLSDA8450:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSE8444-.LLSDACSB8444
-.LLSDACSB8444:
-	.uleb128 .LEHB0-.LFB8444
+	.uleb128 .LLSDACSE8450-.LLSDACSB8450
+.LLSDACSB8450:
+	.uleb128 .LEHB0-.LFB8450
 	.uleb128 .LEHE0-.LEHB0
 	.uleb128 0
 	.uleb128 0
-	.uleb128 .LEHB1-.LFB8444
+	.uleb128 .LEHB1-.LFB8450
 	.uleb128 .LEHE1-.LEHB1
-	.uleb128 .L146-.LFB8444
+	.uleb128 .L146-.LFB8450
 	.uleb128 0
-	.uleb128 .LEHB2-.LFB8444
+	.uleb128 .LEHB2-.LFB8450
 	.uleb128 .LEHE2-.LEHB2
-	.uleb128 .L147-.LFB8444
+	.uleb128 .L147-.LFB8450
 	.uleb128 0
-	.uleb128 .LEHB3-.LFB8444
+	.uleb128 .LEHB3-.LFB8450
 	.uleb128 .LEHE3-.LEHB3
-	.uleb128 .L148-.LFB8444
+	.uleb128 .L148-.LFB8450
 	.uleb128 0
-	.uleb128 .LEHB4-.LFB8444
+	.uleb128 .LEHB4-.LFB8450
 	.uleb128 .LEHE4-.LEHB4
-	.uleb128 .L149-.LFB8444
+	.uleb128 .L149-.LFB8450
 	.uleb128 0
-	.uleb128 .LEHB5-.LFB8444
+	.uleb128 .LEHB5-.LFB8450
 	.uleb128 .LEHE5-.LEHB5
-	.uleb128 .L152-.LFB8444
+	.uleb128 .L152-.LFB8450
 	.uleb128 0
-	.uleb128 .LEHB6-.LFB8444
+	.uleb128 .LEHB6-.LFB8450
 	.uleb128 .LEHE6-.LEHB6
-	.uleb128 .L153-.LFB8444
+	.uleb128 .L153-.LFB8450
 	.uleb128 0
-	.uleb128 .LEHB7-.LFB8444
+	.uleb128 .LEHB7-.LFB8450
 	.uleb128 .LEHE7-.LEHB7
-	.uleb128 .L154-.LFB8444
+	.uleb128 .L154-.LFB8450
 	.uleb128 0
-	.uleb128 .LEHB8-.LFB8444
+	.uleb128 .LEHB8-.LFB8450
 	.uleb128 .LEHE8-.LEHB8
-	.uleb128 .L150-.LFB8444
+	.uleb128 .L150-.LFB8450
 	.uleb128 0
-	.uleb128 .LEHB9-.LFB8444
+	.uleb128 .LEHB9-.LFB8450
 	.uleb128 .LEHE9-.LEHB9
-	.uleb128 .L151-.LFB8444
+	.uleb128 .L151-.LFB8450
 	.uleb128 0
-.LLSDACSE8444:
+.LLSDACSE8450:
 	.text
 	.seh_endproc
 	.section	.text.unlikely,"x"
@@ -1241,17 +1241,17 @@ _ZN3wze6engineC2EPKcS2_tth.cold:
 	jmp	.L136
 	.seh_handler	__gxx_personality_seh0, @unwind, @except
 	.seh_handlerdata
-.LLSDAC8444:
+.LLSDAC8450:
 	.byte	0xff
 	.byte	0xff
 	.byte	0x1
-	.uleb128 .LLSDACSEC8444-.LLSDACSBC8444
-.LLSDACSBC8444:
+	.uleb128 .LLSDACSEC8450-.LLSDACSBC8450
+.LLSDACSBC8450:
 	.uleb128 .LEHB10-.LCOLDB16
 	.uleb128 .LEHE10-.LEHB10
 	.uleb128 0
 	.uleb128 0
-.LLSDACSEC8444:
+.LLSDACSEC8450:
 	.section	.text.unlikely,"x"
 	.text
 	.section	.text.unlikely,"x"

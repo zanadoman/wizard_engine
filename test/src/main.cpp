@@ -85,6 +85,10 @@ sint32 main()
     StatText->SetX(Engine->Window.GetHeight() / 200.0 + (StatText->GetWidth() >> 1));
     StatText->SetY(Engine->Window.GetHeight() - Engine->Window.GetHeight() / 200.0 - (StatText->GetHeight() >> 1));
 
+    Engine->Audio[0].Range = Engine->Window.GetWidth() >> 1;
+    Engine->Audio[0].SetSoundID(Engine->Assets.LoadSound("assets/test.mp3"));
+    Engine->Audio[0].Play(65535);
+
     Engine->Render.SetSamplingStep(EPSILON);
     Engine->Mouse.SetRelative();
     Engine->Mouse.SetSensitivity(0.5);
