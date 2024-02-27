@@ -768,6 +768,13 @@ namespace wze
                 public:
                     template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Clamp(type Value, type Limit1, type Limit2);
                     static bool Equals(double Value1, double Value2);
+                    static double IfNaN(double Value, double Fallback);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(std::initializer_list<type> Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(neo::array<type>* Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(std::initializer_list<type> Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(neo::array<type>* Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(std::initializer_list<type> Values);
+                    template <typename type> static typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(neo::array<type>* Values);
                     neo::sint32 Random(neo::sint32 Min, neo::sint32 Max);
 
                 private:
@@ -891,5 +898,119 @@ namespace wze
         }
 
         return Value;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(std::initializer_list<type> Values)
+    {
+        type min;
+
+        min = Values.begin()[0];
+
+        for (neo::uint64 i = 0; i < Values.size(); i++)
+        {
+            if (Values.begin()[i] < min)
+            {
+                min = Values.begin()[i];
+            }
+        }
+
+        return min;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(neo::array<type>* Values)
+    {
+        type min;
+
+        if (Values == NULL)
+        {
+            printf("wze::engine::math::Min(): Values must not be NULL\nParams: Values: %p\n", Values);
+            exit(1);
+        }
+
+        min = (*Values)[0];
+
+        for (neo::uint64 i = 0; i < Values->Length(); i++)
+        {
+            if ((*Values)[i] < min)
+            {
+                min = (*Values)[i];
+            }
+        }
+
+        return min;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(std::initializer_list<type> Values)
+    {
+        type max;
+
+        max = Values.begin()[0];
+
+        for (neo::uint64 i = 0; i < Values.size(); i++)
+        {
+            if (max < Values.begin()[i])
+            {
+                max = Values.begin()[i];
+            }
+        }
+
+        return max;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(neo::array<type>* Values)
+    {
+        type max;
+
+        if (Values == NULL)
+        {
+            printf("wze::engine::math::Max(): Values must not be NULL\nParams: Values: %p\n", Values);
+            exit(1);
+        }
+
+        max = (*Values)[0];
+
+        for (neo::uint64 i = 0; i < Values->Length(); i++)
+        {
+            if (max < (*Values)[i])
+            {
+                max = (*Values)[i];
+            }
+        }
+
+        return max;
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(std::initializer_list<type> Values)
+    {
+        double sum;
+
+        sum = 0;
+
+        for (neo::uint64 i = 0; i < Values.size(); i++)
+        {
+            sum += Values.begin()[i];
+        }
+
+        return sum / Values.size();
+    }
+
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(neo::array<type>* Values)
+    {
+        double sum;
+
+        if (Values == NULL)
+        {
+            printf("wze::engine::math::Average(): Values must not be NULL\nParams: Values: %p\n", Values);
+            exit(1);
+        }
+
+        sum = 0;
+
+        for (neo::uint64 i = 0; i < Values->Length(); i++)
+        {
+            sum += (*Values)[i];
+        }
+
+        return sum / Values->Length();
     }
 }
