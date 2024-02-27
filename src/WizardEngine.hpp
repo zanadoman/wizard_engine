@@ -906,7 +906,7 @@ namespace wze
 
         min = Values.begin()[0];
 
-        for (neo::uint64 i = 0; i < Values.size(); i++)
+        for (neo::uint64 i = 1; i < Values.size(); i++)
         {
             if (Values.begin()[i] < min)
             {
@@ -929,7 +929,7 @@ namespace wze
 
         min = (*Values)[0];
 
-        for (neo::uint64 i = 0; i < Values->Length(); i++)
+        for (neo::uint64 i = 1; i < Values->Length(); i++)
         {
             if ((*Values)[i] < min)
             {
@@ -946,7 +946,7 @@ namespace wze
 
         max = Values.begin()[0];
 
-        for (neo::uint64 i = 0; i < Values.size(); i++)
+        for (neo::uint64 i = 1; i < Values.size(); i++)
         {
             if (max < Values.begin()[i])
             {
@@ -969,7 +969,7 @@ namespace wze
 
         max = (*Values)[0];
 
-        for (neo::uint64 i = 0; i < Values->Length(); i++)
+        for (neo::uint64 i = 1; i < Values->Length(); i++)
         {
             if (max < (*Values)[i])
             {
