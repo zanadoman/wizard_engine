@@ -290,9 +290,14 @@ namespace wze
         return this->Volume = Volume;
     }
 
+    bool engine::audio::channel::IsPlaying()
+    {
+        return Mix_Playing(this->ID) != 0;
+    }
+
     bool engine::audio::channel::IsPaused()
     {
-        return Mix_Paused(this->ID);
+        return Mix_Paused(this->ID) != 0;
     }
 
     uint8 engine::audio::channel::Pause()

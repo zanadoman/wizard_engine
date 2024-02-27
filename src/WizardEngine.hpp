@@ -182,6 +182,7 @@ namespace wze
                         neo::uint8 Play(neo::uint16 Loops, neo::uint16 FadeInMilliseconds);
                         double GetVolume();
                         double SetVolume(double Volume);
+                        bool IsPlaying();
                         bool IsPaused();
                         neo::uint8 Pause();
                         neo::uint8 Resume();

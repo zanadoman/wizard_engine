@@ -1114,11 +1114,28 @@ _ZN3wze6engine5audio7channel9SetVolumeEd:
 	.seh_endproc
 	.align 2
 	.p2align 4
+	.globl	_ZN3wze6engine5audio7channel9IsPlayingEv
+	.def	_ZN3wze6engine5audio7channel9IsPlayingEv;	.scl	2;	.type	32;	.endef
+	.seh_proc	_ZN3wze6engine5audio7channel9IsPlayingEv
+_ZN3wze6engine5audio7channel9IsPlayingEv:
+.LFB8461:
+	subq	$40, %rsp
+	.seh_stackalloc	40
+	.seh_endprologue
+	movzwl	24(%rcx), %ecx
+	call	Mix_Playing
+	testl	%eax, %eax
+	setne	%al
+	addq	$40, %rsp
+	ret
+	.seh_endproc
+	.align 2
+	.p2align 4
 	.globl	_ZN3wze6engine5audio7channel8IsPausedEv
 	.def	_ZN3wze6engine5audio7channel8IsPausedEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel8IsPausedEv
 _ZN3wze6engine5audio7channel8IsPausedEv:
-.LFB8461:
+.LFB8462:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -1135,7 +1152,7 @@ _ZN3wze6engine5audio7channel8IsPausedEv:
 	.def	_ZN3wze6engine5audio7channel5PauseEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel5PauseEv
 _ZN3wze6engine5audio7channel5PauseEv:
-.LFB8462:
+.LFB8463:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -1151,7 +1168,7 @@ _ZN3wze6engine5audio7channel5PauseEv:
 	.def	_ZN3wze6engine5audio7channel6ResumeEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel6ResumeEv
 _ZN3wze6engine5audio7channel6ResumeEv:
-.LFB8463:
+.LFB8464:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -1172,18 +1189,18 @@ _ZN3wze6engine5audio7channel6ResumeEv:
 	.def	_ZN3wze6engine5audio7channel4StopEv;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel4StopEv
 _ZN3wze6engine5audio7channel4StopEv:
-.LFB8464:
+.LFB8465:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
 	movzwl	24(%rcx), %ecx
 	call	Mix_HaltChannel
 	cmpl	$-1, %eax
-	je	.L187
+	je	.L188
 	xorl	%eax, %eax
 	addq	$40, %rsp
 	ret
-.L187:
+.L188:
 	leaq	.LC22(%rip), %rcx
 	call	_Z6printfPKcz
 	movl	$1, %ecx
@@ -1196,7 +1213,7 @@ _ZN3wze6engine5audio7channel4StopEv:
 	.def	_ZN3wze6engine5audio7channel4StopEt;	.scl	2;	.type	32;	.endef
 	.seh_proc	_ZN3wze6engine5audio7channel4StopEt
 _ZN3wze6engine5audio7channel4StopEt:
-.LFB8465:
+.LFB8466:
 	subq	$40, %rsp
 	.seh_stackalloc	40
 	.seh_endprologue
@@ -1237,6 +1254,7 @@ _ZN3wze6engine5audio7channel4StopEt:
 	.def	Mix_HaltChannel;	.scl	2;	.type	32;	.endef
 	.def	Mix_PlayChannel;	.scl	2;	.type	32;	.endef
 	.def	Mix_FadeInChannel;	.scl	2;	.type	32;	.endef
+	.def	Mix_Playing;	.scl	2;	.type	32;	.endef
 	.def	Mix_Paused;	.scl	2;	.type	32;	.endef
 	.def	Mix_Pause;	.scl	2;	.type	32;	.endef
 	.def	Mix_Resume;	.scl	2;	.type	32;	.endef
