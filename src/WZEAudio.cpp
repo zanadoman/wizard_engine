@@ -267,8 +267,6 @@ namespace wze
             exit(1);
         }
 
-        Mix_Volume(this->ID, round(this->Volume * MIX_MAX_VOLUME));
-
         return this->Volume = Volume;
     }
 
