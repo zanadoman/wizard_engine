@@ -292,12 +292,12 @@ namespace wze
 
     bool engine::audio::channel::IsPlaying()
     {
-        return Mix_Playing(this->ID) != 0;
+        return Mix_Playing(this->ID);
     }
 
     bool engine::audio::channel::IsPaused()
     {
-        return Mix_Paused(this->ID) != 0;
+        return Mix_Paused(this->ID);
     }
 
     uint8 engine::audio::channel::Pause()
