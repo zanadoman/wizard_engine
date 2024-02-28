@@ -39,9 +39,44 @@ namespace wze
         return true;
     }
 
-    bool engine::collision::CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY)
+    bool engine::collision::CheckCollision(actors::actor* Actor1, actors::actor* Actor2)
     {
+        double Actor1TopLeftX;
+        double Actor1TopLeftY;
+        double Actor1BotRightX;
+        double Actor1BotRightY;
+
+        double Actor1PrevTopLeftX;
+        double Actor1PrevTopLeftY;
+        double Actor1PrevBotRightX;
+        double Actor1PrevBotRightY;
+
+        double Actor2TopLeftX;
+        double Actor2TopLeftY;
+        double Actor2BotRightX;
+        double Actor2BotRightY;
+
+        Actor1TopLeftX = Actor1->X - (Actor1->HitboxWidth >> 1);
+        Actor1TopLeftY = Actor1->Y + (Actor1->HitboxHeight >> 1);
+        Actor1BotRightX = Actor1TopLeftX + Actor1->HitboxWidth;
+        Actor1BotRightY = Actor1TopLeftY - Actor1->HitboxHeight;
+
+        Actor1PrevTopLeftX = Actor1->PrevX - (Actor1->PrevHitboxWidth >> 1);
+        Actor1PrevTopLeftY = Actor1->PrevY + (Actor1->PrevHitboxHeight >> 1);
+        Actor1PrevBotRightX = Actor1PrevTopLeftX + Actor1->PrevHitboxWidth;
+        Actor1PrevBotRightY = Actor1PrevTopLeftY - Actor1->PrevHitboxHeight;
+
+        Actor2TopLeftX = Actor2->X - (Actor2->HitboxWidth >> 1);
+        Actor2TopLeftY = Actor2->Y + (Actor2->HitboxHeight >> 1);
+        Actor2BotRightX = Actor2TopLeftX + Actor2->HitboxWidth;
+        Actor2BotRightY = Actor2TopLeftY - Actor2->HitboxHeight;
+
         if (Actor1BotRightX < Actor2TopLeftX || Actor2BotRightX < Actor1TopLeftX || Actor1TopLeftY < Actor2BotRightY || Actor2TopLeftY < Actor1BotRightY)
+        {
+            return false;
+        }
+
+        if (!(Actor1PrevBotRightX < Actor2TopLeftX || Actor2BotRightX < Actor1PrevTopLeftX || Actor1PrevTopLeftY < Actor2BotRightY || Actor2TopLeftY < Actor1PrevBotRightY))
         {
             return false;
         }
@@ -49,44 +84,14 @@ namespace wze
         return true;
     }
 
-    engine::collision::direction engine::collision::GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2)
+    engine::collision::direction engine::collision::GetCollisionDirection(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor1PrevTopLeftX, double Actor1PrevTopLeftY, double Actor1PrevBotRightX, double Actor1PrevBotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY)
     {
-        double Actor1PrevTopLeftX;
-        double Actor1PrevTopLeftY;
-        double Actor1PrevBotRightX;
-        double Actor1PrevBotRightY;
-
-        double Actor1TopLeftX;
-        double Actor1TopLeftY;
-        double Actor1BotRightX;
-        double Actor1BotRightY;
-
-        double Actor2TopLeftX;
-        double Actor2TopLeftY;
-        double Actor2BotRightX;
-        double Actor2BotRightY;
-
-        Actor1PrevTopLeftX = Actor1->PrevX - (Actor1->PrevHitboxWidth >> 1);
-        Actor1PrevTopLeftY = Actor1->PrevY + (Actor1->PrevHitboxHeight >> 1);
-        Actor1PrevBotRightX = Actor1PrevTopLeftX + Actor1->PrevHitboxWidth;
-        Actor1PrevBotRightY = Actor1PrevTopLeftY - Actor1->PrevHitboxHeight;
-
-        Actor1TopLeftX = Actor1->X - (Actor1->HitboxWidth >> 1);
-        Actor1TopLeftY = Actor1->Y + (Actor1->HitboxHeight >> 1);
-        Actor1BotRightX = Actor1TopLeftX + Actor1->HitboxWidth;
-        Actor1BotRightY = Actor1TopLeftY - Actor1->HitboxHeight;
-
-        Actor2TopLeftX = Actor2->X - (Actor2->HitboxWidth >> 1);
-        Actor2TopLeftY = Actor2->Y + (Actor2->HitboxHeight >> 1);
-        Actor2BotRightX = Actor2TopLeftX + Actor2->HitboxWidth;
-        Actor2BotRightY = Actor2TopLeftY - Actor2->HitboxHeight;
-
-        if (this->CheckCollision(Actor1PrevTopLeftX, Actor1PrevTopLeftY, Actor1PrevBotRightX, Actor1PrevBotRightY, Actor2TopLeftX, Actor2TopLeftY, Actor2BotRightX, Actor2BotRightY))
+        if (Actor1BotRightX < Actor2TopLeftX || Actor2BotRightX < Actor1TopLeftX || Actor1TopLeftY < Actor2BotRightY || Actor2TopLeftY < Actor1BotRightY)
         {
             return NONE;
         }
 
-        if (!this->CheckCollision(Actor1TopLeftX, Actor1TopLeftY, Actor1BotRightX, Actor1BotRightY, Actor2TopLeftX, Actor2TopLeftY, Actor2BotRightX, Actor2BotRightY))
+        if (!(Actor1PrevBotRightX < Actor2TopLeftX || Actor2BotRightX < Actor1PrevTopLeftX || Actor1PrevTopLeftY < Actor2BotRightY || Actor2TopLeftY < Actor1PrevBotRightY))
         {
             return NONE;
         }
@@ -212,25 +217,35 @@ namespace wze
         double Actor1BotRightX;
         double Actor1BotRightY;
 
+        double Actor1PrevTopLeftX;
+        double Actor1PrevTopLeftY;
+        double Actor1PrevBotRightX;
+        double Actor1PrevBotRightY;
+
         double Actor2TopLeftX;
         double Actor2TopLeftY;
         double Actor2BotRightX;
         double Actor2BotRightY;
-
-        if ((Direction = this->GetCollisionDirection(Actor1, Actor2)) == NONE)
-        {
-            return false;
-        }
 
         Actor1TopLeftX = Actor1->X - (Actor1->HitboxWidth >> 1);
         Actor1TopLeftY = Actor1->Y + (Actor1->HitboxHeight >> 1);
         Actor1BotRightX = Actor1TopLeftX + Actor1->HitboxWidth;
         Actor1BotRightY = Actor1TopLeftY - Actor1->HitboxHeight;
 
+        Actor1PrevTopLeftX = Actor1->PrevX - (Actor1->PrevHitboxWidth >> 1);
+        Actor1PrevTopLeftY = Actor1->PrevY + (Actor1->PrevHitboxHeight >> 1);
+        Actor1PrevBotRightX = Actor1PrevTopLeftX + Actor1->PrevHitboxWidth;
+        Actor1PrevBotRightY = Actor1PrevTopLeftY - Actor1->PrevHitboxHeight;
+
         Actor2TopLeftX = Actor2->X - (Actor2->HitboxWidth >> 1);
         Actor2TopLeftY = Actor2->Y + (Actor2->HitboxHeight >> 1);
         Actor2BotRightX = Actor2TopLeftX + Actor2->HitboxWidth;
         Actor2BotRightY = Actor2TopLeftY - Actor2->HitboxHeight;
+
+        if ((Direction = this->GetCollisionDirection(Actor1TopLeftX, Actor1TopLeftY, Actor1BotRightX, Actor1BotRightY, Actor1PrevTopLeftX, Actor1PrevTopLeftY, Actor1PrevBotRightX, Actor1PrevBotRightY, Actor2TopLeftX, Actor2TopLeftY, Actor2BotRightX, Actor2BotRightY)) == NONE)
+        {
+            return false;
+        }
 
         if (Actor1Force <= Actor2->Resistance)
         {
@@ -368,7 +383,7 @@ namespace wze
             ForceRequirement = 0;
             for (uint64 NextBranch = 0; NextBranch < cache->Length(); NextBranch++)
             {
-                if (NextBranch != Root && this->GetCollisionDirection((*cache)[Root], (*cache)[NextBranch]) != NONE)
+                if (NextBranch != Root && this->CheckCollision((*cache)[Root], (*cache)[NextBranch]))
                 {
                     if (i == NextBranches.Length())
                     {
@@ -428,7 +443,7 @@ namespace wze
         ForceRequirement = 0;
         for (uint64 NextBranch = 0; NextBranch < Cache->Length(); NextBranch++)
         {
-            if ((*Cache)[NextBranch] != Root && (*Cache)[NextBranch] != CurrentBranch && this->GetCollisionDirection(CurrentBranch, (*Cache)[NextBranch]) != NONE)
+            if ((*Cache)[NextBranch] != Root && (*Cache)[NextBranch] != CurrentBranch && this->CheckCollision(CurrentBranch, (*Cache)[NextBranch]))
             {
                 if (i == NextBranches.Length())
                 {

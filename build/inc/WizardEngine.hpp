@@ -727,8 +727,8 @@ namespace wze
                     neo::array<neo::array<actors::actor*>> CollisionLayers;
                     collision(engine* Engine);
                     bool CheckOverlap(double Overlapbox1TopLeftX, double Overlapbox1TopLeftY, double Overlapbox1BotRightX, double Overlapbox1BotRightY, actors::actor::overlapboxes::overlapbox* Overlapbox2);
-                    bool CheckCollision(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
-                    direction GetCollisionDirection(actors::actor* Actor1, actors::actor* Actor2);
+                    bool CheckCollision(actors::actor* Actor1, actors::actor* Actor2);
+                    direction GetCollisionDirection(double Actor1TopLeftX, double Actor1TopLeftY, double Actor1BotRightX, double Actor1BotRightY, double Actor1PrevTopLeftX, double Actor1PrevTopLeftY, double Actor1PrevBotRightX, double Actor1PrevBotRightY, double Actor2TopLeftX, double Actor2TopLeftY, double Actor2BotRightX, double Actor2BotRightY);
                     bool ResolveCollision(actors::actor* Actor1, neo::uint64 Actor1Force, actors::actor* Actor2);
                     neo::uint8 ResolveCollisionLayer(neo::uint64 CollisionLayer, actors::actor* Caller);
                     neo::uint8 NewCollisionBranch(neo::array<actors::actor*>* Cache, actors::actor* Root, neo::uint64 RootForce, actors::actor* CurrentBranch);
