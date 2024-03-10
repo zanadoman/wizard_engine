@@ -901,7 +901,7 @@ namespace wze
         return Value;
     }
 
-    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(std::initializer_list<type> Values)
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::math::Min(std::initializer_list<type> Values)
     {
         type min;
 
@@ -918,7 +918,7 @@ namespace wze
         return min;
     }
 
-    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Min(neo::array<type>* Values)
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::math::Min(neo::array<type>* Values)
     {
         type min;
 
@@ -941,7 +941,7 @@ namespace wze
         return min;
     }
 
-    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(std::initializer_list<type> Values)
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::math::Max(std::initializer_list<type> Values)
     {
         type max;
 
@@ -958,7 +958,7 @@ namespace wze
         return max;
     }
 
-    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type Max(neo::array<type>* Values)
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, type>::type engine::math::Max(neo::array<type>* Values)
     {
         type max;
 
@@ -981,7 +981,7 @@ namespace wze
         return max;
     }
 
-    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(std::initializer_list<type> Values)
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, double>::type engine::math::Average(std::initializer_list<type> Values)
     {
         double sum;
 
@@ -995,7 +995,7 @@ namespace wze
         return sum / Values.size();
     }
 
-    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, double>::type Average(neo::array<type>* Values)
+    template <typename type> typename std::enable_if<std::is_arithmetic<type>::value, double>::type engine::math::Average(neo::array<type>* Values)
     {
         double sum;
 
