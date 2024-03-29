@@ -5,14 +5,7 @@
 #include <cstdint>
 #include <vector>
 #include <algorithm>
-
-namespace core
-{
-    extern "C"
-    {
-        #include "core.h"
-    }
-}
+#include "core.h"
 
 using namespace std;
 using namespace core;

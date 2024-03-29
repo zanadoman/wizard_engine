@@ -1,8 +1,20 @@
 #include <stddef.h>
 
-struct PersonCore
-{
-    const char* m_name;
-};
+#ifdef __cplusplus
+    namespace core
+    {
+        extern "C"
+        {
+#endif
 
-void corePrintPersons(struct PersonCore *persons[], size_t size);
+            struct PersonCore
+            {
+                const char* m_name;
+            };
+
+            void corePrintPersons(struct PersonCore *persons[], size_t size);
+
+#ifdef __cplusplus
+        }
+    }
+#endif
