@@ -1,5 +1,7 @@
 #pragma once
 
+#include "WZE_SDL2.h"
+
 #ifdef __cplusplus
     namespace core
     {
