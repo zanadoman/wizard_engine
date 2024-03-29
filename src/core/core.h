@@ -1,15 +1,26 @@
 #pragma once
 
-struct point
-{
-    double x;
-    double y;
-};
+#ifdef __cplusplus
+    namespace core
+    {
+        extern "C"
+        {
+#endif
 
-struct collision_box_base
-{
-    struct point top_left;
-    struct point bot_right;
-    struct point prev_top_left;
-    struct point prev_bot_right;
-};
+            struct CollisionBox
+            {
+                double m_curTopLeftX;
+                double m_curTopLeftY;
+                double m_curBotRightX;
+                double m_curBotRightY;
+
+                double m_prvTopLeftX;
+                double m_prvTopLeftY;
+                double m_prvBotRightX;
+                double m_prvBotRightY;
+            };
+
+#ifdef __cplusplus
+        }
+    }
+#endif

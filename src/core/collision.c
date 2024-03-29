@@ -15,21 +15,21 @@ enum Direction
     DIR_BOT_RIGHT = DIR_BOT | DIR_RIGHT,
 };
 
-bool validate_collision(const struct collision_box_base *box1,
-                        const struct collision_box_base *box2)
+bool validate_collision(const struct CollisionBox *box1,
+                        const struct CollisionBox *box2)
 {
-    if (box1->bot_right.x < box2->top_left.x ||
-        box2->bot_right.x < box1->top_left.x ||
-        box1->top_left.y < box2->bot_right.y ||
-        box2->top_left.y < box1->bot_right.y)
+    if (box1->m_curBotRightX < box2->m_curTopLeftX ||
+        box2->m_curBotRightX < box1->m_curTopLeftX ||
+        box1->m_curTopLeftY < box2->m_curBotRightY ||
+        box2->m_curTopLeftY < box1->m_curBotRightY)
     {
         return false;
     }
 
-    if (box1->prev_bot_right.x < box2->top_left.x ||
-        box2->bot_right.x < box1->prev_top_left.x ||
-        box1->prev_top_left.y < box2->bot_right.y ||
-        box2->top_left.y < box1->prev_bot_right.y)
+    if (box1->m_prvBotRightX < box2->m_prvTopLeftX ||
+        box2->m_prvBotRightX < box1->m_prvTopLeftX ||
+        box1->m_prvTopLeftY < box2->m_prvBotRightY ||
+        box2->m_prvTopLeftY < box1->m_prvBotRightY)
     {
         return true;
     }
@@ -37,8 +37,8 @@ bool validate_collision(const struct collision_box_base *box1,
     return false;
 }
 
-enum Direction get_collision_direction(struct collision_box_base *box1,
-                                       struct collision_box_base *box2)
+enum Direction get_collision_direction(struct CollisionBox *box1,
+                                       struct CollisionBox *box2)
 {
     if (!validate_collision(box1, box2))
     {
@@ -48,8 +48,7 @@ enum Direction get_collision_direction(struct collision_box_base *box1,
     return DIR_NONE;
 }
 
-bool resolve_collision(struct collision_box_base *box1,
-                       struct collision_box_base *box2)
+bool resolve_collision(struct CollisionBox *box1, struct CollisionBox *box2)
 {
     enum Direction direction;
 
@@ -63,7 +62,7 @@ bool resolve_collision(struct collision_box_base *box1,
     return false;
 }
 
-void wze_resolve_collision_layer(struct collision_box_base *boxes, size_t count)
+void wze_resolve_collision_layer(struct CollisionBox *boxes[], size_t size)
 {
 
 }
