@@ -63,7 +63,7 @@ bool resolve_collision(struct collision_box_base *box1,
     return false;
 }
 
-void resolve_collision_layer(struct collision_box_base *boxes, size_t count)
+void wze_resolve_collision_layer(struct collision_box_base *boxes, size_t count)
 {
 
 }
