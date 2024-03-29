@@ -6,12 +6,16 @@
 #include <vector>
 #include <algorithm>
 
-extern "C"
+namespace core
 {
-    #include "core.h"
+    extern "C"
+    {
+        #include "core.h"
+    }
 }
 
 using namespace std;
+using namespace core;
 
 class Person : PersonCore 
 {
