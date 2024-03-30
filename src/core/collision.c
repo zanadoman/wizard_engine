@@ -1,35 +1,37 @@
+#include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stddef.h>
-#include "core.h"
+#include "../inc/WZE/WZE_core.h"
 
-enum Direction
+typedef enum CollisionDirection
 {
-    DIR_NONE = 0b0000,
-    DIR_TOP = 0b0001,
-    DIR_BOT = 0b0010,
-    DIR_LEFT = 0b0100,
-    DIR_RIGHT = 0b1000,
-    DIR_TOP_LEFT = DIR_TOP | DIR_LEFT,
-    DIR_TOP_RIGHT = DIR_TOP | DIR_RIGHT,
-    DIR_BOT_LEFT = DIR_BOT | DIR_LEFT,
-    DIR_BOT_RIGHT = DIR_BOT | DIR_RIGHT,
-};
+    CD_NONE = 0b0000,
+    CD_TOP = 0b0001,
+    CD_BOT = 0b0010,
+    CD_LEFT = 0b0100,
+    CD_RIGHT = 0b1000,
+    CD_TOP_LEFT = CD_TOP | CD_LEFT,
+    CD_TOP_RIGHT = CD_TOP | CD_RIGHT,
+    CD_BOT_LEFT = CD_BOT | CD_LEFT,
+    CD_BOT_RIGHT = CD_BOT | CD_RIGHT,
+} CollisionDirection_t;
 
-bool validate_collision(const struct CollisionBox *box1,
-                        const struct CollisionBox *box2)
+bool validateCollision(const CollisionBox_t *box1,
+                       const CollisionBox_t *box2)
 {
-    if (box1->m_curBotRightX < box2->m_curTopLeftX ||
-        box2->m_curBotRightX < box1->m_curTopLeftX ||
-        box1->m_curTopLeftY < box2->m_curBotRightY ||
-        box2->m_curTopLeftY < box1->m_curBotRightY)
+    if (box1->m_curBotRightX <= box2->m_curTopLeftX ||
+        box2->m_curBotRightX <= box1->m_curTopLeftX ||
+        box1->m_curTopLeftY <= box2->m_curBotRightY ||
+        box2->m_curTopLeftY <= box1->m_curBotRightY)
     {
         return false;
     }
 
-    if (box1->m_prvBotRightX < box2->m_prvTopLeftX ||
-        box2->m_prvBotRightX < box1->m_prvTopLeftX ||
-        box1->m_prvTopLeftY < box2->m_prvBotRightY ||
-        box2->m_prvTopLeftY < box1->m_prvBotRightY)
+    if (box1->m_prvBotRightX <= box2->m_prvTopLeftX ||
+        box2->m_prvBotRightX <= box1->m_prvTopLeftX ||
+        box1->m_prvTopLeftY <= box2->m_prvBotRightY ||
+        box2->m_prvTopLeftY <= box1->m_prvBotRightY)
     {
         return true;
     }
@@ -37,24 +39,42 @@ bool validate_collision(const struct CollisionBox *box1,
     return false;
 }
 
-enum Direction get_collision_direction(struct CollisionBox *box1,
-                                       struct CollisionBox *box2)
+CollisionDirection_t getCollisionDirection(const CollisionBox_t *box1,
+                                           const CollisionBox_t *box2)
 {
-    if (!validate_collision(box1, box2))
+    if (!validateCollision(box1, box2))
     {
-        return DIR_NONE;
+        return CD_NONE;
     }
 
-    return DIR_NONE;
+    if (box2->m_curTopLeftX < box1->m_prvTopLeftX &&
+        box1->m_prvTopLeftY < box2->m_curTopLeftY)
+    {
+        if (box1->m_prvTopLeftX <= box2->m_curBotRightX)
+        {
+            return CD_TOP;
+        }
+        if (box2->m_curBotRightY <= box1->m_prvTopLeftY)
+        {
+            return CD_LEFT;
+        }
+        if (box2->m_curBotRightX - box1->m_curTopLeftX >
+            box1->m_curTopLeftY - box2->m_curBotRightY)
+        {
+            return CD_TOP;
+        }
+    }
+
+    return CD_NONE;
 }
 
-bool resolve_collision(struct CollisionBox *box1, struct CollisionBox *box2)
+bool resolveCollision(CollisionBox_t *box1, CollisionBox_t *box2)
 {
-    enum Direction direction;
+    CollisionDirection_t direction;
 
-    direction = get_collision_direction(box1, box2);
+    direction = getCollisionDirection(box1, box2);
 
-    if (DIR_NONE == direction)
+    if (CD_NONE == direction)
     {
         return false;
     }
@@ -62,7 +82,24 @@ bool resolve_collision(struct CollisionBox *box1, struct CollisionBox *box2)
     return false;
 }
 
-void wze_resolve_collision_layer(struct CollisionBox *boxes[], size_t size)
+void resolveCollisionLayer(CollisionBox_t *root,
+                           CollisionBox_t *boxes[], size_t size)
 {
+    uint_fast64_t i, forceRequirement;
+    CollisionBox_t **cache;
 
+    i = 0;
+    forceRequirement = 0;
+    cache = NULL;
+
+    for (CollisionBox_t *next = *boxes; next < *boxes + size; next++)
+    {
+        if (next != root && validateCollision(root, next))
+        {
+            if (!(cache = realloc(cache, sizeof(CollisionBox_t*) * (i + 1))))
+            {
+                exit(1);
+            }
+        }
+    }
 }
