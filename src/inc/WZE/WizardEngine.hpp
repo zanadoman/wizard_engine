@@ -1,10 +1,17 @@
+#include "WZE_core.h"
 
-namespace core
+namespace wze
 {
-    extern "C"
+    class Engine
     {
-        #include "core/core.h"
-    }
-}
+        public: Engine()
+        {
+            (void)SDL_Init(0);
+        }
 
-class CollisionBox : private collision_box_base {};
+        public: ~Engine()
+        {
+            SDL_Quit();
+        }
+    };
+}
