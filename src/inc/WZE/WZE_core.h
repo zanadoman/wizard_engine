@@ -10,21 +10,21 @@
         extern "C"
         {
 #endif
-            typedef struct CollisionBox
+            struct ColliderBox
             {
-                double m_curTopLeftX;
-                double m_curTopLeftY;
-                double m_curBotRightX;
-                double m_curBotRightY;
+                double cur_tl_x;
+                double cur_tl_y;
+                double cur_br_x;
+                double cur_br_y;
 
-                double m_prvTopLeftX;
-                double m_prvTopLeftY;
-                double m_prvBotRightX;
-                double m_prvBotRightY;
+                double prv_tl_x;
+                double prv_tl_y;
+                double prv_br_x;
+                double prv_br_y;
 
-                uint_fast64_t m_force;
-                uint_fast64_t m_resistance;
-            } CollisionBox_t;
+                uint_fast16_t force;
+                uint_fast16_t drag;
+            };
 #ifdef __cplusplus
         }
     }

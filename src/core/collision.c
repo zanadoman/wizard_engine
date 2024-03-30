@@ -1,37 +1,37 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
 #include "../inc/WZE/WZE_core.h"
 
-typedef enum CollisionDirection
-{
-    CD_NONE = 0b0000,
-    CD_TOP = 0b0001,
-    CD_BOT = 0b0010,
-    CD_LEFT = 0b0100,
-    CD_RIGHT = 0b1000,
-    CD_TOP_LEFT = CD_TOP | CD_LEFT,
-    CD_TOP_RIGHT = CD_TOP | CD_RIGHT,
-    CD_BOT_LEFT = CD_BOT | CD_LEFT,
-    CD_BOT_RIGHT = CD_BOT | CD_RIGHT,
-} CollisionDirection_t;
+#define BUFF_SIZE 100
 
-bool validateCollision(const CollisionBox_t *box1,
-                       const CollisionBox_t *box2)
+typedef struct ColliderBox box_t;
+
+typedef enum
 {
-    if (box1->m_curBotRightX <= box2->m_curTopLeftX ||
-        box2->m_curBotRightX <= box1->m_curTopLeftX ||
-        box1->m_curTopLeftY <= box2->m_curBotRightY ||
-        box2->m_curTopLeftY <= box1->m_curBotRightY)
+    DIR_NONE = 0b0000,
+    DIR_TOP = 0b0001,
+    DIR_BOT = 0b0010,
+    DIR_LEFT = 0b0100,
+    DIR_RIGHT = 0b1000,
+    DIR_TOP_LEFT = DIR_TOP | DIR_LEFT,
+    DIR_TOP_RIGHT = DIR_TOP | DIR_RIGHT,
+    DIR_BOT_LEFT = DIR_BOT | DIR_LEFT,
+    DIR_BOT_RIGHT = DIR_BOT | DIR_RIGHT,
+} direction_t;
+
+bool ValidateCollision(const box_t *box1, const box_t *box2)
+{
+    if (box1->cur_br_x <= box2->cur_tl_x || box2->cur_br_x <= box1->cur_tl_x ||
+        box1->cur_tl_y <= box2->cur_br_y || box2->cur_tl_y <= box1->cur_br_y)
     {
         return false;
     }
 
-    if (box1->m_prvBotRightX <= box2->m_prvTopLeftX ||
-        box2->m_prvBotRightX <= box1->m_prvTopLeftX ||
-        box1->m_prvTopLeftY <= box2->m_prvBotRightY ||
-        box2->m_prvTopLeftY <= box1->m_prvBotRightY)
+    if (box1->prv_br_x <= box2->prv_tl_x || box2->prv_br_x <= box1->prv_tl_x ||
+        box1->prv_tl_y <= box2->prv_br_y || box2->prv_tl_y <= box1->prv_br_y)
     {
         return true;
     }
@@ -39,42 +39,21 @@ bool validateCollision(const CollisionBox_t *box1,
     return false;
 }
 
-CollisionDirection_t getCollisionDirection(const CollisionBox_t *box1,
-                                           const CollisionBox_t *box2)
+direction_t GetDirection(const box_t *box1, const box_t *box2)
 {
-    if (!validateCollision(box1, box2))
+    if (!ValidateCollision(box1, box2))
     {
-        return CD_NONE;
+        return DIR_NONE;
     }
 
-    if (box2->m_curTopLeftX < box1->m_prvTopLeftX &&
-        box1->m_prvTopLeftY < box2->m_curTopLeftY)
-    {
-        if (box1->m_prvTopLeftX <= box2->m_curBotRightX)
-        {
-            return CD_TOP;
-        }
-        if (box2->m_curBotRightY <= box1->m_prvTopLeftY)
-        {
-            return CD_LEFT;
-        }
-        if (box2->m_curBotRightX - box1->m_curTopLeftX >
-            box1->m_curTopLeftY - box2->m_curBotRightY)
-        {
-            return CD_TOP;
-        }
-    }
-
-    return CD_NONE;
+    return DIR_NONE;
 }
 
-bool resolveCollision(CollisionBox_t *box1, CollisionBox_t *box2)
+bool ResolveCollision(box_t *box1, uint_fast16_t box1_force, box_t *box2)
 {
-    CollisionDirection_t direction;
+    direction_t direction;
 
-    direction = getCollisionDirection(box1, box2);
-
-    if (CD_NONE == direction)
+    if ((direction = GetDirection(box1, box2)) == DIR_NONE)
     {
         return false;
     }
@@ -82,24 +61,104 @@ bool resolveCollision(CollisionBox_t *box1, CollisionBox_t *box2)
     return false;
 }
 
-void resolveCollisionLayer(CollisionBox_t *root,
-                           CollisionBox_t *boxes[], size_t size)
+void NewBranch(uint_fast16_t root_force, box_t* current, box_t *layer_begin[], box_t *layer_end[])
 {
-    uint_fast64_t i, forceRequirement;
-    CollisionBox_t **cache;
+    uint_fast16_t total_drag;
+    box_t **nexts;
+    size_t n;
 
-    i = 0;
-    forceRequirement = 0;
-    cache = NULL;
+    total_drag = 0;
+    nexts = NULL;
+    n = 0;
 
-    for (CollisionBox_t *next = *boxes; next < *boxes + size; next++)
+    for (box_t **next = layer_begin; next < layer_end; next++)
     {
-        if (next != root && validateCollision(root, next))
+        if (*next != current && ValidateCollision(current, *next))
         {
-            if (!(cache = realloc(cache, sizeof(CollisionBox_t*) * (i + 1))))
+            if (n % BUFF_SIZE == 0 && (nexts = (box_t**)realloc(nexts, sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
             {
+                (void)fputs("Memory allocation failed in core::collision", stderr);
                 exit(1);
             }
+
+            total_drag = (*next)->drag;
+            nexts[n++] = *next;
         }
+    }
+
+    if (total_drag < root_force)
+    {
+        for (box_t **next = nexts; next < nexts + n; next++)
+        {
+            if (ResolveCollision(current, (*next)->drag + root_force - total_drag, *next))
+            {
+                NewBranch(root_force - total_drag, *next, layer_begin, layer_end);
+                (void)ResolveCollision(current, 0, *next);
+            }
+        }
+    }
+    else
+    {
+        for (box_t **next = nexts; next < nexts + n; next++)
+        {
+            (void)ResolveCollision(current, 0, *next);
+        }
+    }
+
+    free(nexts);
+}
+
+void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[])
+{
+    uint_fast16_t total_drag;
+    box_t **nexts;
+    size_t n;
+
+    total_drag = 0;
+    nexts = NULL;
+    n = 0;
+
+    for (box_t **next = layer_begin; next < layer_end; next++)
+    {
+        if (*next != root && ValidateCollision(root, *next))
+        {
+            if (n % BUFF_SIZE == 0 && (nexts = (box_t**)realloc(nexts, sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
+            {
+                (void)fputs("Memory allocation failed in core::collision", stderr);
+                exit(1);
+            }
+            
+            total_drag = (*next)->drag;
+            nexts[n++] = *next;
+        }
+    }
+
+    if (total_drag < root->force)
+    {
+        for (box_t **next = nexts; next < nexts + n; next++)
+        {
+            if (ResolveCollision(root, (*next)->drag + root->force - total_drag, *next))
+            {
+                NewBranch(root->force - total_drag, *next, layer_begin, layer_end);
+                (void)ResolveCollision(root, 0, *next);
+            }
+        }
+    }
+    else
+    {
+        for (box_t **next = nexts; next < nexts + n; next++)
+        {
+            (void)ResolveCollision(root, 0, *next);
+        }
+    }
+
+    free(nexts);
+
+    for (box_t **box = layer_begin; box < layer_end; box++)
+    {
+        (*box)->prv_tl_x = (*box)->cur_tl_x;
+        (*box)->prv_tl_y = (*box)->cur_tl_y;
+        (*box)->prv_br_x = (*box)->cur_br_x;
+        (*box)->prv_br_y = (*box)->cur_br_y;
     }
 }
