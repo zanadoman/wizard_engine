@@ -1,9 +1,27 @@
+/*
+ * This file is part of Wizard Engine (https://github.com/zanadoman/Wizard-Engine).
+ * Copyright (c) 2024 Zana Domán.
+ *
+ * Wizard Engine is free software: you can redistribute it and/or modify  
+ * it under the terms of the GNU General Public License as published by  
+ * the Free Software Foundation, version 3.
+ *
+ * Wizard Engine is distributed in the hope that it will be useful, but 
+ * WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License 
+ * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
+ */
+
+#include "collision.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <stddef.h>
-#include "../inc/WZE/WZE_core.h"
 
 #define BUFF_SIZE 100
 
@@ -20,15 +38,19 @@ typedef enum
     DIR_TOP_RIGHT = DIR_TOP | DIR_RIGHT,
     DIR_BOT_LEFT = DIR_BOT | DIR_LEFT,
     DIR_BOT_RIGHT = DIR_BOT | DIR_RIGHT,
-} direction_t;
+} dir_t;
 
 bool ValidateCollision(const box_t *box1, const box_t *box2)
 {
+    // Invalid if box1 currently not colliding with box2
+
     if (box1->cur_br_x <= box2->cur_tl_x || box2->cur_br_x <= box1->cur_tl_x ||
         box1->cur_tl_y <= box2->cur_br_y || box2->cur_tl_y <= box1->cur_br_y)
     {
         return false;
     }
+
+    // Invalid if box1 previously collided with box2
 
     if (box1->prv_br_x <= box2->prv_tl_x || box2->prv_br_x <= box1->prv_tl_x ||
         box1->prv_tl_y <= box2->prv_br_y || box2->prv_tl_y <= box1->prv_br_y)
@@ -39,56 +61,241 @@ bool ValidateCollision(const box_t *box1, const box_t *box2)
     return false;
 }
 
-direction_t GetDirection(const box_t *box1, const box_t *box2)
+dir_t GetDirection(const box_t *box1, const box_t *box2)
 {
-    if (!ValidateCollision(box1, box2))
+    float h_diff, v_diff;
+
+    if (ValidateCollision(box1, box2))
     {
-        return DIR_NONE;
+        // Orthogonal collision
+
+        if (box2->cur_tl_x < box1->prv_br_x && box1->prv_tl_x < box2->cur_br_x)
+        {
+            if (box1->prv_tl_y <= box2->cur_br_y)
+            {
+                return DIR_TOP;
+            }
+            if (box2->cur_tl_y <= box1->prv_br_y)
+            {
+                return DIR_BOT;
+            }
+        }
+
+        if (box2->cur_br_y < box1->prv_tl_y && box1->prv_br_y < box2->cur_tl_y)
+        {
+            if (box1->prv_br_x <= box2->cur_tl_x)
+            {
+                return DIR_LEFT;
+            }
+            if (box2->cur_br_x <= box1->prv_tl_x)
+            {
+                return DIR_RIGHT;
+            }
+        }
+
+        // Diagonal collision
+
+        if (box2->cur_tl_x <= box1->prv_tl_x && box1->prv_tl_y <= box2->cur_tl_y)
+        {
+            h_diff = box2->cur_br_x - box1->cur_tl_x;
+            v_diff = box1->cur_tl_y - box2->cur_br_y;
+
+            if (v_diff < h_diff)
+            {
+                return DIR_TOP;
+            }
+            if (h_diff < v_diff)
+            {
+                return DIR_LEFT;
+            }
+
+            return DIR_TOP_LEFT;
+        }
+
+        if (box1->prv_br_x <= box2->cur_br_x && box1->prv_tl_y <= box2->cur_tl_y)
+        {
+            h_diff = box1->cur_br_x - box2->cur_tl_x;
+            v_diff = box1->cur_tl_y - box2->cur_br_y;
+
+            if (v_diff < h_diff)
+            {
+                return DIR_TOP;
+            }
+            if (h_diff < v_diff)
+            {
+                return DIR_RIGHT;
+            }
+
+            return DIR_TOP_RIGHT;
+        }
+
+        if (box2->cur_tl_x <= box1->prv_tl_x && box2->cur_br_y <= box1->prv_br_y)
+        {
+            h_diff = box2->cur_br_x - box1->cur_tl_x;
+            v_diff = box2->cur_tl_y - box1->cur_br_y;
+
+            if (v_diff < h_diff)
+            {
+                return DIR_BOT;
+            }
+            if (h_diff < v_diff)
+            {
+                return DIR_LEFT;
+            }
+
+            return DIR_BOT_LEFT;
+        }
+
+        if (box1->prv_br_x <= box2->cur_br_x && box2->cur_br_y <= box1->prv_br_y)
+        {
+            h_diff = box1->cur_br_x - box2->cur_tl_x;
+            v_diff = box2->cur_tl_y - box1->cur_br_y;
+
+            if (v_diff < h_diff)
+            {
+                return DIR_BOT;
+            }
+            if (h_diff < v_diff)
+            {
+                return DIR_RIGHT;
+            }
+
+            return DIR_BOT_RIGHT;
+        }
     }
 
     return DIR_NONE;
 }
 
-bool ResolveCollision(box_t *box1, uint_fast16_t box1_force, box_t *box2)
+bool ResolveCollision(box_t *box1, const uint16_t box1_force, box_t *box2)
 {
-    direction_t direction;
+    dir_t dir;
+    float diff, box1_ratio, box2_ratio, cache;
 
-    if ((direction = GetDirection(box1, box2)) == DIR_NONE)
+    if ((dir = GetDirection(box1, box2)) == DIR_NONE)
     {
         return false;
+    }
+
+    if (box1_force <= box2->drag)
+    {
+        switch (dir) // Intentional design to allow less code with the same functionality
+        {
+            case DIR_TOP_LEFT:
+                diff = box2->cur_br_x - box1->cur_tl_x;
+                box1->cur_tl_x += diff;
+                box1->cur_br_x += diff;
+
+            case DIR_TOP:
+                diff = box1->cur_tl_y - box2->cur_br_y;
+                box1->cur_tl_y -= diff;
+                box1->cur_br_y -= diff;
+            return true;
+
+            case DIR_TOP_RIGHT:
+                diff = box1->cur_tl_y - box2->cur_br_y;
+                box1->cur_tl_y -= diff;
+                box1->cur_br_y -= diff;
+
+            case DIR_RIGHT:
+                diff = box1->cur_br_x - box2->cur_tl_x;
+                box1->cur_tl_x -= diff;
+                box1->cur_br_x -= diff;
+            return true;
+
+            case DIR_BOT_LEFT:
+                diff = box2->cur_tl_y - box1->cur_br_y;
+                box1->cur_tl_y += diff;
+                box1->cur_br_y += diff;
+
+            case DIR_LEFT:
+                diff = box2->cur_br_x - box1->cur_tl_x;
+                box1->cur_tl_x += diff;
+                box1->cur_br_x += diff;
+            return true;
+
+            case DIR_BOT_RIGHT:
+                diff = box1->cur_br_x - box2->cur_tl_x;
+                box1->cur_tl_x -= diff;
+                box1->cur_br_x -= diff;
+
+            case DIR_BOT:
+                diff = box2->cur_tl_y - box1->cur_br_y;
+                box1->cur_tl_y += diff;
+                box1->cur_br_y += diff;
+            return true;
+
+            default:
+            return false;
+        }
+    }
+    else
+    {
+        box2_ratio = (float)box1_force / (box1_force + box2->drag);
+        box1_ratio = 1 - box1_ratio;
+
+        switch (dir)
+        {
+            case DIR_TOP:
+                diff = box1->cur_tl_y - box2->cur_br_y;
+
+                cache = diff * box1_ratio;
+                box1->cur_tl_y -= cache;
+                box1->cur_br_y -= cache;
+                cache = diff * box2_ratio;
+                box2->cur_tl_y += cache;
+                box2->cur_tl_y += cache;
+            return true;
+
+            default:
+            return false;
+        }
     }
 
     return false;
 }
 
-void NewBranch(uint_fast16_t root_force, box_t* current, box_t *layer_begin[], box_t *layer_end[])
+void NewBranch(const uint16_t root_force, box_t *current, box_t *layer_begin[], box_t *layer_end[])
 {
-    uint_fast16_t total_drag;
-    box_t **nexts;
+    uint16_t total_drag;
+    box_t **nexts_begin, **nexts_end;
     size_t n;
 
     total_drag = 0;
-    nexts = NULL;
+    nexts_begin = NULL;
     n = 0;
 
-    for (box_t **next = layer_begin; next < layer_end; next++)
+    // Sum up the drag of the new valid collisions
+
+    for (box_t **next = layer_begin; next != layer_end; next++)
     {
         if (*next != current && ValidateCollision(current, *next))
         {
-            if (n % BUFF_SIZE == 0 && (nexts = (box_t**)realloc(nexts, sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
+            if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin, sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
             {
-                (void)fputs("Memory allocation failed in core::collision", stderr);
+                (void)fputs("core::NewBranch(): Memory allocation failed", stderr);
                 exit(1);
             }
 
             total_drag = (*next)->drag;
-            nexts[n++] = *next;
+            nexts_begin[n++] = *next;
         }
     }
 
-    if (total_drag < root_force)
+    nexts_end = nexts_begin + n;
+
+    // Handle the new collisions based on the relation between current force / total drag
+
+    if (current->force <= total_drag) // Apply 0 force collisions if there was not enough force
     {
-        for (box_t **next = nexts; next < nexts + n; next++)
+        for (box_t **next = nexts_begin; next != nexts_end; next++)
+        {
+            (void)ResolveCollision(current, 0, *next);
+        }
+    }
+    else // Apply collision, if the collision got resolved then start a new branch, finally normalize it
+    {
+        for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
             if (ResolveCollision(current, (*next)->drag + root_force - total_drag, *next))
             {
@@ -97,45 +304,51 @@ void NewBranch(uint_fast16_t root_force, box_t* current, box_t *layer_begin[], b
             }
         }
     }
-    else
-    {
-        for (box_t **next = nexts; next < nexts + n; next++)
-        {
-            (void)ResolveCollision(current, 0, *next);
-        }
-    }
 
-    free(nexts);
+    free(nexts_begin);
 }
 
 void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[])
 {
-    uint_fast16_t total_drag;
-    box_t **nexts;
+    uint16_t total_drag;
+    box_t **nexts_begin, **nexts_end;
     size_t n;
 
     total_drag = 0;
-    nexts = NULL;
+    nexts_begin = NULL;
     n = 0;
 
-    for (box_t **next = layer_begin; next < layer_end; next++)
+    // Sum up the drag of the new valid collisions
+
+    for (box_t **next = layer_begin; next != layer_end; next++)
     {
         if (*next != root && ValidateCollision(root, *next))
         {
-            if (n % BUFF_SIZE == 0 && (nexts = (box_t**)realloc(nexts, sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
+            if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin, sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
             {
-                (void)fputs("Memory allocation failed in core::collision", stderr);
+                (void)fputs("core::ResolveCollisionLayer(): Memory allocation failed", stderr);
                 exit(1);
             }
             
             total_drag = (*next)->drag;
-            nexts[n++] = *next;
+            nexts_begin[n++] = *next;
         }
     }
 
-    if (total_drag < root->force)
+    nexts_end = nexts_begin + n;
+
+    // Handle the new collisions based on the relation between current force / total drag
+
+    if (root->force <= total_drag) // Apply 0 force collisions if there was not enough force
     {
-        for (box_t **next = nexts; next < nexts + n; next++)
+        for (box_t **next = nexts_begin; next != nexts_end; next++)
+        {
+            (void)ResolveCollision(root, 0, *next);
+        }
+    }
+    else // Apply collision, if the collision got resolved then start a new branch, finally normalize it
+    {
+        for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
             if (ResolveCollision(root, (*next)->drag + root->force - total_drag, *next))
             {
@@ -144,17 +357,12 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
             }
         }
     }
-    else
-    {
-        for (box_t **next = nexts; next < nexts + n; next++)
-        {
-            (void)ResolveCollision(root, 0, *next);
-        }
-    }
 
-    free(nexts);
+    free(nexts_begin);
 
-    for (box_t **box = layer_begin; box < layer_end; box++)
+    // Update the previous poisitons of each box
+
+    for (box_t **box = layer_begin; box != layer_end; box++)
     {
         (*box)->prv_tl_x = (*box)->cur_tl_x;
         (*box)->prv_tl_y = (*box)->cur_tl_y;
