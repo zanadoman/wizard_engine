@@ -179,7 +179,8 @@ bool ResolveCollision(box_t *box1, const uint16_t box1_force, box_t *box2)
 
     if (box1_force <= box2->drag)
     {
-        switch (dir) // Intentional design to allow less code with the same functionality
+        switch (dir) // Intentional design to allow
+                     // less code with the same functionality
         {
             case DIR_TOP_LEFT:
                 diff = box2->cur_br_x - box1->cur_tl_x;
@@ -255,7 +256,8 @@ bool ResolveCollision(box_t *box1, const uint16_t box1_force, box_t *box2)
     return false;
 }
 
-void NewBranch(const uint16_t root_force, box_t *current, box_t *layer_begin[], box_t *layer_end[])
+void NewBranch(const uint16_t root_force, box_t *current,
+               box_t *layer_begin[], box_t *layer_end[])
 {
     uint16_t total_drag;
     box_t **nexts_begin, **nexts_end;
@@ -264,8 +266,6 @@ void NewBranch(const uint16_t root_force, box_t *current, box_t *layer_begin[], 
     total_drag = 0;
     nexts_begin = NULL;
     n = 0;
-
-    // Sum up the drag of the new valid collisions
 
     for (box_t **next = layer_begin; next != layer_end; next++)
     {
@@ -284,16 +284,14 @@ void NewBranch(const uint16_t root_force, box_t *current, box_t *layer_begin[], 
 
     nexts_end = nexts_begin + n;
 
-    // Handle the new collisions based on the relation between current force / total drag
-
-    if (current->force <= total_drag) // Apply 0 force collisions if there was not enough force
+    if (current->force <= total_drag)
     {
         for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
             (void)ResolveCollision(current, 0, *next);
         }
     }
-    else // Apply collision, if the collision got resolved then start a new branch, finally normalize it
+    else
     {
         for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
@@ -324,9 +322,13 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
     {
         if (*next != root && ValidateCollision(root, *next))
         {
-            if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin, sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
+            if (n % BUFF_SIZE == 0 &&
+                (nexts_begin = 
+                 (box_t**)realloc(nexts_begin, 
+                                  sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
             {
-                (void)fputs("core::ResolveCollisionLayer(): Memory allocation failed", stderr);
+                (void)fputs("core::ResolveCollisionLayer(): "
+                            "Memory allocation failed", stderr);
                 exit(1);
             }
             
@@ -337,16 +339,18 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
 
     nexts_end = nexts_begin + n;
 
-    // Handle the new collisions based on the relation between current force / total drag
+    // Handle the new collisions based on
+    // the relation between current force / total drag
 
-    if (root->force <= total_drag) // Apply 0 force collisions if there was not enough force
+                                    // If there was not enough force
+    if (root->force <= total_drag)  // apply 0 force collisions
     {
         for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
             (void)ResolveCollision(root, 0, *next);
         }
-    }
-    else // Apply collision, if the collision got resolved then start a new branch, finally normalize it
+    }       // Apply collision, if the collision got resolved
+    else    // then start a new branch, finally normalize it
     {
         for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
@@ -360,7 +364,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
 
     free(nexts_begin);
 
-    // Update the previous poisitons of each box
+    // Update the previous positions of each box
 
     for (box_t **box = layer_begin; box != layer_end; box++)
     {
