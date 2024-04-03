@@ -23,7 +23,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#define BUFF_SIZE 100
+#define BUFF_SIZE 128
 
 typedef struct ColliderBox box_t;
 
