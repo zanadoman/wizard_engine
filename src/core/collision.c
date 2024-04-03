@@ -178,9 +178,8 @@ bool ResolveCollision(box_t *box1, const uint16_t box1_force, box_t *box2)
     }
 
     if (box1_force <= box2->drag)
-    {
-        switch (dir) // Intentional design to allow
-                     // less code with the same functionality
+    {                               // Intentional design to allow
+        switch (dir)                // less code with the same functionality
         {
             case DIR_TOP_LEFT:
                 diff = box2->cur_br_x - box1->cur_tl_x;
@@ -269,7 +268,7 @@ void NewBranch(const uint16_t root_force, box_t *current,
 
     for (box_t **next = layer_begin; next != layer_end; next++)
     {
-        if (*next != current && ValidateCollision(current, *next))
+        if (ValidateCollision(current, *next) && *next != current)
         {
             if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin, sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
             {
@@ -320,12 +319,9 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
 
     for (box_t **next = layer_begin; next != layer_end; next++)
     {
-        if (*next != root && ValidateCollision(root, *next))
+        if (ValidateCollision(root, *next) && *next != root)
         {
-            if (n % BUFF_SIZE == 0 &&
-                (nexts_begin = 
-                 (box_t**)realloc(nexts_begin, 
-                                  sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
+            if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin, sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
             {
                 (void)fputs("core::ResolveCollisionLayer(): "
                             "Memory allocation failed", stderr);
