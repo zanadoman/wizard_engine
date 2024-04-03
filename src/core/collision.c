@@ -52,8 +52,8 @@ bool ValidateCollision(const box_t *box1, const box_t *box2)
 
     // Valid if box1 previously not collided with box2
 
-    if (box2->prv_br_x <= box1->prv_tl_x || box1->prv_br_x <= box2->prv_tl_x ||
-        box2->prv_tl_y <= box1->prv_br_y || box1->prv_tl_y <= box2->prv_br_y)
+    if (box2->cur_br_x <= box1->prv_tl_x || box1->prv_br_x <= box2->cur_tl_x ||
+        box2->cur_tl_y <= box1->prv_br_y || box1->prv_tl_y <= box2->cur_br_y)
     {
         return true;
     }
@@ -250,14 +250,15 @@ bool ResolveCollision(box_t *box1, const uint16_t box1_force, box_t *box2)
 
 void NewBranch(box_t *current, int32_t rem_force, box_t *layer_begin[], box_t *layer_end[])
 {
-    uint32_t drag_sum;
     box_t **nexts_begin, **nexts_end;
     size_t n;
+    uint32_t drag_sum;
 
+    drag_sum = 0;
     nexts_begin = NULL;
     n = 0;
 
-    for (box_t **next = layer_begin; next != layer_end; next++)
+    for (box_t **next = layer_begin; next != layer_end; next++, n++)
     {
         if (ValidateCollision(current, *next) && *next != current)
         {
@@ -268,12 +269,13 @@ void NewBranch(box_t *current, int32_t rem_force, box_t *layer_begin[], box_t *l
                 exit(1);
             }
 
+            nexts_begin[n] = *next;
             drag_sum += (*next)->drag;
-            nexts_begin[n++] = *next;
         }
     }
 
     nexts_end = nexts_begin + n;
+    rem_force -= drag_sum;
 
     if (0 < rem_force)
     {
@@ -299,18 +301,18 @@ void NewBranch(box_t *current, int32_t rem_force, box_t *layer_begin[], box_t *l
 
 void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[])
 {
-    int32_t rem_force;
-    uint32_t drag_sum;
     box_t **nexts_begin, **nexts_end;
     size_t n;
+    int32_t rem_force;
+    uint32_t drag_sum;
 
-    drag_sum = 0;
     nexts_begin = NULL;
     n = 0;
+    drag_sum = 0;
 
     // Sum up the drag of the new valid collisions
 
-    for (box_t **next = layer_begin; next != layer_end; next++)
+    for (box_t **next = layer_begin; next != layer_end; next++, n++)
     {
         if (ValidateCollision(root, *next) && *next != root)
         {
@@ -322,13 +324,13 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
                 exit(1);
             }
             
+            nexts_begin[n] = *next;
             drag_sum += (*next)->drag;
-            nexts_begin[n++] = *next;
         }
     }
 
-    rem_force = root->force - drag_sum;
     nexts_end = nexts_begin + n;
+    rem_force = root->force - drag_sum;
 
     // Handle the new collisions based on
     // the relation between current force / total drag
