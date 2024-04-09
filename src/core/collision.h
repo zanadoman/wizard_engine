@@ -26,7 +26,7 @@
         {
 #endif
 
-            struct ColliderBox
+            struct ColliderBoxCore
             {
                 float cur_tl_x;
                 float cur_tl_y;

@@ -19,13 +19,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <stdbool.h>
-#include <stddef.h>
 
 #define BUFF_SIZE 128
 
-typedef struct ColliderBox box_t;
+typedef struct ColliderBoxCore box_t;
 
 typedef enum
 {
