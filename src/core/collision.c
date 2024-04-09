@@ -230,7 +230,7 @@ bool ApplyStaticCollision(box_t *box1, const box_t *box2)
             box1->cur_br_x -= diff;
         return true;
 
-        default:
+        case DIR_NONE: 
         return false;
     }
 
