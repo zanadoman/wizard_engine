@@ -27,11 +27,11 @@ typedef struct ColliderBox box_t;
 
 typedef enum Direction
 {
-    DIR_NONE = 0b0000,
-    DIR_TOP = 0b0001,
-    DIR_BOT = 0b0010,
-    DIR_LEFT = 0b0100,
-    DIR_RIGHT = 0b1000,
+    DIR_NONE = 0b0000'0000,
+    DIR_TOP = 0b0000'0001,
+    DIR_BOT = 0b0000'0010,
+    DIR_LEFT = 0b0000'0100,
+    DIR_RIGHT = 0b0000'1000,
     DIR_TOP_LEFT = DIR_TOP | DIR_LEFT,
     DIR_TOP_RIGHT = DIR_TOP | DIR_RIGHT,
     DIR_BOT_LEFT = DIR_BOT | DIR_LEFT,
