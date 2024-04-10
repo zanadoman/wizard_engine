@@ -57,8 +57,6 @@ typedef enum Direction
 
 static dir_t GetDirection(const box_t *box1, const box_t *box2)
 {
-    float h_diff, v_diff;
-
     if (ValidateCollision(box1, box2))
     {
         // Orthogonal collision
@@ -97,8 +95,8 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
         {
             if (box2->cur_br_x <= box1->prv_tl_x)
             {
-                h_diff = box2->cur_br_x - box1->cur_tl_x;
-                v_diff = box1->cur_tl_y - box2->cur_br_y;
+                register float h_diff = box2->cur_br_x - box1->cur_tl_x;
+                register float v_diff = box1->cur_tl_y - box2->cur_br_y;
 
                 if (v_diff < h_diff)
                 {
@@ -114,8 +112,8 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
 
             if (box1->prv_br_x <= box2->cur_tl_x)
             {
-                h_diff = box1->cur_br_x - box2->cur_tl_x;
-                v_diff = box1->cur_tl_y - box2->cur_br_y;
+                register float h_diff = box1->cur_br_x - box2->cur_tl_x;
+                register float v_diff = box1->cur_tl_y - box2->cur_br_y;
 
                 if (v_diff < h_diff)
                 {
@@ -137,8 +135,8 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
         {
             if (box2->cur_br_x <= box1->prv_tl_x)
             {
-                h_diff = box2->cur_br_x - box1->cur_tl_x;
-                v_diff = box2->cur_tl_y - box1->cur_br_y;
+                register float h_diff = box2->cur_br_x - box1->cur_tl_x;
+                register float v_diff = box2->cur_tl_y - box1->cur_br_y;
 
                 if (v_diff < h_diff)
                 {
@@ -154,8 +152,8 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
 
             if (box1->prv_br_x <= box2->cur_tl_x)
             {
-                h_diff = box1->cur_br_x - box2->cur_tl_x;
-                v_diff = box2->cur_tl_y - box1->cur_br_y;
+                register float h_diff = box1->cur_br_x - box2->cur_tl_x;
+                register float v_diff = box2->cur_tl_y - box1->cur_br_y;
 
                 if (v_diff < h_diff)
                 {
@@ -176,9 +174,9 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
     return DIR_NONE;
 }
 
-static bool ApplyStaticCollision(box_t *box1, const box_t *box2)
+inline void ApplyStaticCollision(box_t *box1, const box_t *box2)
 {
-    float diff;
+    register float diff;
 
     switch (GetDirection(box1, box2))
     {
@@ -191,7 +189,7 @@ static bool ApplyStaticCollision(box_t *box1, const box_t *box2)
             diff = box1->cur_tl_y - box2->cur_br_y;
             box1->cur_tl_y -= diff;
             box1->cur_br_y -= diff;
-        return true;
+        break;
 
         case DIR_BOT_RIGHT:
             diff = box1->cur_br_x - box2->cur_tl_x;
@@ -202,7 +200,7 @@ static bool ApplyStaticCollision(box_t *box1, const box_t *box2)
             diff = box2->cur_tl_y - box1->cur_br_y;
             box1->cur_tl_y += diff;
             box1->cur_br_y += diff;
-        return true;
+        break;
 
         case DIR_BOT_LEFT:
             diff = box2->cur_tl_y - box1->cur_br_y;
@@ -213,7 +211,7 @@ static bool ApplyStaticCollision(box_t *box1, const box_t *box2)
             diff = box2->cur_br_x - box1->cur_tl_x;
             box1->cur_tl_x += diff;
             box1->cur_br_x += diff;
-        return true;
+        break;
 
         case DIR_TOP_RIGHT:
             diff = box1->cur_tl_y - box2->cur_br_y;
@@ -224,13 +222,11 @@ static bool ApplyStaticCollision(box_t *box1, const box_t *box2)
             diff = box1->cur_br_x - box2->cur_tl_x;
             box1->cur_tl_x -= diff;
             box1->cur_br_x -= diff;
-        return true;
+        break;
 
         case DIR_NONE: 
-        return false;
+        break;
     }
-
-    return false;
 }
 
 static bool ApplyDynamicCollision(box_t *box1, box_t *box2, const uint16_t rem_force)
@@ -360,7 +356,7 @@ static void NewBranch(box_t *current, int32_t rem_force,
             if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
                                        sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
             {
-                (void)fputs("core::NewBranch(): Memory allocation failed", stderr);
+                (void)fputs("core::collision: Memory allocation failed", stderr);
                 exit(1);
             }
 
@@ -379,7 +375,7 @@ static void NewBranch(box_t *current, int32_t rem_force,
             if (ApplyDynamicCollision(current, *next, (uint16_t)rem_force))
             {
                 NewBranch(*next, rem_force, layer_begin, layer_end);
-                (void)ApplyStaticCollision(current, *next);
+                ApplyStaticCollision(current, *next);
             }
         }
     }
@@ -387,7 +383,7 @@ static void NewBranch(box_t *current, int32_t rem_force,
     {
         for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
-            (void)ApplyStaticCollision(current, *next);
+            ApplyStaticCollision(current, *next);
         }
     }
 
@@ -412,8 +408,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
             if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
                                        sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
             {
-                (void)fputs("core::ResolveCollisionLayer(): "
-                            "Memory allocation failed", stderr);
+                (void)fputs("core::collision: Memory allocation failed", stderr);
                 exit(1);
             }
             
@@ -432,7 +427,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
             if (ApplyDynamicCollision(root, *next, (uint16_t)rem_force))
             {
                 NewBranch(*next, rem_force, layer_begin, layer_end);
-                (void)ApplyStaticCollision(root, *next);
+                ApplyStaticCollision(root, *next);
             }
         }
     }
@@ -440,7 +435,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
     {
         for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
-            (void)ApplyStaticCollision(root, *next);
+            ApplyStaticCollision(root, *next);
         }
     }
 

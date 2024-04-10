@@ -17,7 +17,10 @@
 
 #pragma once
 
+#include "sdl.h"
+
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
     namespace wze { extern "C" {
@@ -36,8 +39,8 @@ struct Camera
     float x;
     float y;
 
-    const uint16_t width;
-    const uint16_t height;
+    const float offset_x;
+    const float offset_y;
 
     float zoom;
 };
@@ -48,23 +51,28 @@ struct TextureBox
     float y;
     float angle;
 
-    uint16_t widht;
+    uint16_t width;
     uint16_t height;
+
+    enum Flip flip;
 
     float layer;
     uint8_t priority;
-
-    enum Flip flip;
 
     uint8_t r;
     uint8_t g;
     uint8_t b;
 
     bool visible;
+
+    SDL_Texture *data;
+    SDL_Rect *_area;
 };
 
-void RenderFrame(const struct Camera *camera, const struct TextureBox *boxes_begin[],
-                 const struct TextureBox *boxes_end[]);
+void InitRender(SDL_Renderer *renderer, struct Camera *camera, uint16_t win_width,
+                uint16_t win_height);
+void RenderFrame(struct TextureBox *texs_begin[], struct TextureBox *texs_end[]);
+void FreeRender();
 
 #ifdef __cplusplus
     }}
