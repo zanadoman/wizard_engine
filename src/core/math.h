@@ -17,8 +17,10 @@
 
 #pragma once
 
+#include <math.h>
+
 #ifdef __cplusplus
-namespace wze { extern "C" {
+    namespace wze { extern "C" {
 #endif
 
 #define EPSILON 0.01f
@@ -26,18 +28,21 @@ namespace wze { extern "C" {
 #define DEG_MAX 360.0f
 #define RAD_MAX 6.2831855f
 
+#define IsEqual(a, b) (a - EPSILON <= b && b <= a + EPSILON)
+#define IfNaN(value, fallback) (isnormal(value) || value == 0.0f ? value : fallback)
+
 #define ToDEG(x) (x * 57.29578f)
 #define ToRAD(x) (x * 0.017453292f)
 #define Pythagoras(a, b) (sqrt(a * a + b * b))
 
 #define GetTermX(init_x, distance, angle) (init_x + distance * cos(angle))
 #define GetTermY(init_y, distance, ange) (init_y + distance * sin(angle))
-#define IsEqual(a, b) (a - EPSILON <= b && b <= a + EPSILON)
-#define IfNaN(value, fallback) (isnormal(value) || value == 0 ? value : fallback)
+
+#define NextRandom(min, max) (rand() % (max - min) + min)
 
 inline float GetDistance(const float init_x, const float init_y, float term_x, float term_y);
 inline float GetAngle(const float init_x, const float init_y, float term_x, float term_y); 
 
 #ifdef __cplusplus
-}}
+    }}
 #endif

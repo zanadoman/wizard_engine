@@ -23,9 +23,9 @@
 
 #define BUFF_SIZE 128
 
-typedef enum Direction dir_t;
+typedef struct ColliderBox box_t;
 
-enum Direction
+typedef enum Direction
 {
     DIR_NONE = 0b0000,
     DIR_TOP = 0b0001,
@@ -36,7 +36,7 @@ enum Direction
     DIR_TOP_RIGHT = DIR_TOP | DIR_RIGHT,
     DIR_BOT_LEFT = DIR_BOT | DIR_LEFT,
     DIR_BOT_RIGHT = DIR_BOT | DIR_RIGHT,
-};
+} dir_t;
 
 // Invalid if box1 not currently colliding with box2
 // Valid if box1 previously not collided with box2
