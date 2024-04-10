@@ -237,8 +237,112 @@ bool ApplyStaticCollision(box_t *box1, const box_t *box2)
     return false;
 }
 
-bool ApplyDynamicCollision(box_t *box1, uint16_t box1_force, box_t *box2)
+bool ApplyDynamicCollision(box_t *box1, box_t *box2, uint16_t rem_force)
 {
+    uint32_t box1_force;
+    float ratio1, ratio2, base_diff, real_diff;
+
+    box1_force = box2->drag + rem_force;
+    ratio1 = 1 - (ratio2 = (float)box1_force / (box1_force + box2->drag));
+
+    switch (GetDirection(box1, box2))
+    {
+        case DIR_TOP_LEFT:
+            base_diff = box2->cur_br_x - box1->cur_tl_x;
+
+            real_diff = base_diff * ratio1;
+            box1->cur_tl_x += real_diff;
+            box1->cur_br_x += real_diff;
+            
+            real_diff = base_diff * ratio2;
+            box2->cur_tl_x -= real_diff;
+            box2->cur_br_x -= real_diff;
+
+        case DIR_TOP:
+            base_diff = box1->cur_tl_y - box2->cur_br_y;
+
+            real_diff = base_diff * ratio1;
+            box1->cur_tl_y -= real_diff;
+            box1->cur_br_y -= real_diff;
+
+            real_diff = base_diff * ratio2;
+            box2->cur_tl_y += real_diff;
+            box2->cur_br_y += real_diff;
+        return true;
+
+        case DIR_BOT_RIGHT:
+            base_diff = box1->cur_br_x - box2->cur_tl_x;
+
+            real_diff = base_diff * ratio1;
+            box1->cur_tl_x -= real_diff;
+            box1->cur_br_x -= real_diff;
+
+            real_diff = base_diff * ratio2;
+            box2->cur_tl_x += real_diff;
+            box2->cur_br_x += real_diff;
+
+        case DIR_BOT:
+            base_diff = box2->cur_tl_y - box1->cur_br_y;
+
+            real_diff = base_diff * ratio1;
+            box1->cur_tl_y += real_diff;
+            box1->cur_br_y += real_diff;
+
+            real_diff = base_diff * ratio2;
+            box2->cur_tl_y -= real_diff;
+            box2->cur_br_y -= real_diff;
+        return true;
+
+        case DIR_BOT_LEFT:
+            base_diff = box2->cur_tl_y - box1->cur_br_y;
+
+            real_diff = base_diff * ratio1;
+            box1->cur_tl_y += real_diff;
+            box1->cur_br_y += real_diff;
+
+            real_diff = base_diff * ratio2;
+            box2->cur_tl_y -= real_diff;
+            box2->cur_br_y -= real_diff;
+
+        case DIR_LEFT:
+            base_diff = box2->cur_br_x - box1->cur_tl_x;
+
+            real_diff = base_diff * ratio1;
+            box1->cur_tl_x += real_diff;
+            box1->cur_br_x += real_diff;
+
+            real_diff = base_diff * ratio2;
+            box2->cur_tl_x -= real_diff;
+            box2->cur_br_x -= real_diff;
+        return true;
+
+        case DIR_TOP_RIGHT:
+            base_diff = box1->cur_tl_y - box2->cur_br_y;
+
+            real_diff = base_diff * ratio1;
+            box1->cur_tl_y -= real_diff;
+            box1->cur_br_y -= real_diff;
+
+            real_diff = base_diff * ratio2;
+            box2->cur_tl_y += real_diff;
+            box2->cur_br_y += real_diff;
+
+        case DIR_RIGHT:
+            base_diff = box1->cur_br_x - box2->cur_tl_x;
+
+            real_diff = base_diff * ratio1;
+            box1->cur_tl_x -= real_diff;
+            box1->cur_br_x -= real_diff;
+
+            real_diff = base_diff * ratio2;
+            box2->cur_tl_x += real_diff;
+            box2->cur_br_x += real_diff;
+        return true;
+
+        case DIR_NONE: 
+        return false;
+    }
+
     return false;
 }
 
@@ -275,7 +379,7 @@ void NewBranch(box_t *current, int32_t rem_force, box_t *layer_begin[], box_t *l
     {
         for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
-            if (ApplyDynamicCollision(current, (*next)->drag + (uint16_t)rem_force, *next))
+            if (ApplyDynamicCollision(current, *next, (uint16_t)rem_force))
             {
                 NewBranch(*next, rem_force, layer_begin, layer_end);
                 (void)ApplyStaticCollision(current, *next);
@@ -297,8 +401,8 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
 {
     box_t **nexts_begin, **nexts_end;
     size_t n;
-    int32_t rem_force;
     uint32_t drag_sum;
+    int32_t rem_force;
 
     nexts_begin = NULL;
     n = 0;
@@ -328,7 +432,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
     { 
         for (box_t **next = nexts_begin; next != nexts_end; next++)
         {
-            if (ApplyDynamicCollision(root, (*next)->drag + (uint16_t)rem_force, *next))
+            if (ApplyDynamicCollision(root, *next, (uint16_t)rem_force))
             {
                 NewBranch(*next, rem_force, layer_begin, layer_end);
                 (void)ApplyStaticCollision(root, *next);
