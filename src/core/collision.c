@@ -23,9 +23,9 @@
 
 #define BUFF_SIZE 128
 
-typedef struct ColliderBoxCore box_t;
+typedef enum Direction dir_t;
 
-typedef enum
+enum Direction
 {
     DIR_NONE = 0b0000,
     DIR_TOP = 0b0001,
@@ -36,30 +36,26 @@ typedef enum
     DIR_TOP_RIGHT = DIR_TOP | DIR_RIGHT,
     DIR_BOT_LEFT = DIR_BOT | DIR_LEFT,
     DIR_BOT_RIGHT = DIR_BOT | DIR_RIGHT,
-} dir_t;
+};
 
-bool ValidateCollision(const box_t *box1, const box_t *box2)
-{
-    // Invalid if box1 not currently colliding with box2
+// Invalid if box1 not currently colliding with box2
+// Valid if box1 previously not collided with box2
 
-    if (box2->cur_br_x <= box1->cur_tl_x || box1->cur_br_x <= box2->cur_tl_x ||
-        box2->cur_tl_y <= box1->cur_br_y || box1->cur_tl_y <= box2->cur_br_y)
-    {
-        return false;
-    }
+#define ValidateCollision(box1, box2) ( \
+    ((box2)->cur_br_x <= (box1)->cur_tl_x || \
+     (box1)->cur_br_x <= (box2)->cur_tl_x || \
+     (box2)->cur_tl_y <= (box1)->cur_br_y || \
+     (box1)->cur_tl_y <= (box2)->cur_br_y) \
+        ? false \
+        : ((box2)->cur_br_x <= (box1)->prv_tl_x || \
+           (box1)->prv_br_x <= (box2)->cur_tl_x || \
+           (box2)->cur_tl_y <= (box1)->prv_br_y || \
+           (box1)->prv_tl_y <= (box2)->cur_br_y) \
+              ? true \
+              : false \
+)
 
-    // Valid if box1 previously not collided with box2
-
-    if (box2->cur_br_x <= box1->prv_tl_x || box1->prv_br_x <= box2->cur_tl_x ||
-        box2->cur_tl_y <= box1->prv_br_y || box1->prv_tl_y <= box2->cur_br_y)
-    {
-        return true;
-    }
-
-    return false;
-}
-
-dir_t GetDirection(const box_t *box1, const box_t *box2)
+static dir_t GetDirection(const box_t *box1, const box_t *box2)
 {
     float h_diff, v_diff;
 
@@ -180,7 +176,7 @@ dir_t GetDirection(const box_t *box1, const box_t *box2)
     return DIR_NONE;
 }
 
-bool ApplyStaticCollision(box_t *box1, const box_t *box2)
+static bool ApplyStaticCollision(box_t *box1, const box_t *box2)
 {
     float diff;
 
@@ -237,7 +233,7 @@ bool ApplyStaticCollision(box_t *box1, const box_t *box2)
     return false;
 }
 
-bool ApplyDynamicCollision(box_t *box1, box_t *box2, uint16_t rem_force)
+static bool ApplyDynamicCollision(box_t *box1, box_t *box2, const uint16_t rem_force)
 {
     uint32_t box1_force;
     float ratio1, ratio2, base_diff, real_diff;
@@ -346,7 +342,8 @@ bool ApplyDynamicCollision(box_t *box1, box_t *box2, uint16_t rem_force)
     return false;
 }
 
-void NewBranch(box_t *current, int32_t rem_force, box_t *layer_begin[], box_t *layer_end[])
+static void NewBranch(box_t *current, int32_t rem_force,
+                      box_t *layer_begin[], box_t *layer_end[])
 {
     box_t **nexts_begin, **nexts_end;
     size_t n;

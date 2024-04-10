@@ -15,34 +15,34 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#pragma once
+#include "math.h"
 
-#include <stdint.h>
+#include <math.h>
 
-#ifdef __cplusplus
-namespace core { extern "C" {
-#endif
-
-typedef struct ColliderBox box_t;
-
-struct ColliderBox
+inline float GetDistance(const float init_x, const float init_y, 
+                         float term_x, float term_y)
 {
-    float cur_tl_x;
-    float cur_tl_y;
-    float cur_br_x;
-    float cur_br_y;
+    term_x -= init_x;
+    term_y -= init_y;
 
-    float prv_tl_x;
-    float prv_tl_y;
-    float prv_br_x;
-    float prv_br_y;
+    return Pythagoras(term_x, term_y);
+}
 
-    uint16_t force;
-    uint16_t drag;
-};
+inline float GetAngle(const float init_x, const float init_y, 
+                      float term_x, float term_y)
+{
+    term_x -= init_x;
 
-void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]); 
+    if (term_y < init_y)
+    {
+        term_y -= init_y;
 
-#ifdef __cplusplus 
-}}
-#endif
+        return RAD_MAX - acos(term_x / Pythagoras(term_x, term_y));
+    }
+    else
+    {
+        term_y -= init_y;
+
+        return acos(term_x / Pythagoras(term_x, term_y));
+    }
+}

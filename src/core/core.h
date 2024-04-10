@@ -17,32 +17,5 @@
 
 #pragma once
 
-#include <stdint.h>
-
-#ifdef __cplusplus
-namespace core { extern "C" {
-#endif
-
-typedef struct ColliderBox box_t;
-
-struct ColliderBox
-{
-    float cur_tl_x;
-    float cur_tl_y;
-    float cur_br_x;
-    float cur_br_y;
-
-    float prv_tl_x;
-    float prv_tl_y;
-    float prv_br_x;
-    float prv_br_y;
-
-    uint16_t force;
-    uint16_t drag;
-};
-
-void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]); 
-
-#ifdef __cplusplus 
-}}
-#endif
+#include "math.h"
+#include "collision.h"

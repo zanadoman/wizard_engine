@@ -17,32 +17,27 @@
 
 #pragma once
 
-#include <stdint.h>
-
 #ifdef __cplusplus
-namespace core { extern "C" {
+namespace wze { extern "C" {
 #endif
 
-typedef struct ColliderBox box_t;
+#define EPSILON 0.01f
+#define PI 3.1415927f
+#define DEG_MAX 360.0f
+#define RAD_MAX 6.2831855f
 
-struct ColliderBox
-{
-    float cur_tl_x;
-    float cur_tl_y;
-    float cur_br_x;
-    float cur_br_y;
+#define ToDEG(x) (x * 57.29578f)
+#define ToRAD(x) (x * 0.017453292f)
+#define Pythagoras(a, b) (sqrt(a * a + b * b))
 
-    float prv_tl_x;
-    float prv_tl_y;
-    float prv_br_x;
-    float prv_br_y;
+#define GetTermX(init_x, distance, angle) (init_x + distance * cos(angle))
+#define GetTermY(init_y, distance, ange) (init_y + distance * sin(angle))
+#define IsEqual(a, b) (a - EPSILON <= b && b <= a + EPSILON)
+#define IfNaN(value, fallback) (isnormal(value) || value == 0 ? value : fallback)
 
-    uint16_t force;
-    uint16_t drag;
-};
+inline float GetDistance(const float init_x, const float init_y, float term_x, float term_y);
+inline float GetAngle(const float init_x, const float init_y, float term_x, float term_y); 
 
-void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]); 
-
-#ifdef __cplusplus 
+#ifdef __cplusplus
 }}
 #endif
