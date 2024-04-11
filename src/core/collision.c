@@ -58,6 +58,8 @@ typedef enum Direction
 
 static dir_t GetDirection(const box_t *box1, const box_t *box2)
 {
+    register float h_diff, v_diff;
+
     if (ValidateCollision(box1, box2))
     {
         // Orthogonal collision
@@ -96,8 +98,8 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
         {
             if (box2->cur_br_x <= box1->prv_tl_x)
             {
-                register float h_diff = box2->cur_br_x - box1->cur_tl_x;
-                register float v_diff = box1->cur_tl_y - box2->cur_br_y;
+                h_diff = box2->cur_br_x - box1->cur_tl_x;
+                v_diff = box1->cur_tl_y - box2->cur_br_y;
 
                 if (v_diff < h_diff)
                 {
@@ -113,8 +115,8 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
 
             if (box1->prv_br_x <= box2->cur_tl_x)
             {
-                register float h_diff = box1->cur_br_x - box2->cur_tl_x;
-                register float v_diff = box1->cur_tl_y - box2->cur_br_y;
+                h_diff = box1->cur_br_x - box2->cur_tl_x;
+                v_diff = box1->cur_tl_y - box2->cur_br_y;
 
                 if (v_diff < h_diff)
                 {
@@ -136,8 +138,8 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
         {
             if (box2->cur_br_x <= box1->prv_tl_x)
             {
-                register float h_diff = box2->cur_br_x - box1->cur_tl_x;
-                register float v_diff = box2->cur_tl_y - box1->cur_br_y;
+                h_diff = box2->cur_br_x - box1->cur_tl_x;
+                v_diff = box2->cur_tl_y - box1->cur_br_y;
 
                 if (v_diff < h_diff)
                 {
@@ -153,8 +155,8 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
 
             if (box1->prv_br_x <= box2->cur_tl_x)
             {
-                register float h_diff = box1->cur_br_x - box2->cur_tl_x;
-                register float v_diff = box2->cur_tl_y - box1->cur_br_y;
+                h_diff = box1->cur_br_x - box2->cur_tl_x;
+                v_diff = box2->cur_tl_y - box1->cur_br_y;
 
                 if (v_diff < h_diff)
                 {

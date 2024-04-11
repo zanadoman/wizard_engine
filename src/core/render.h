@@ -39,9 +39,6 @@ struct Camera
     float x;
     float y;
 
-    const float offset_x;
-    const float offset_y;
-
     float zoom;
 };
 
@@ -49,28 +46,24 @@ struct TextureBox
 {
     float x;
     float y;
-    float angle;
 
     uint16_t width;
     uint16_t height;
 
+    float angle;
     enum Flip flip;
 
     float layer;
     uint8_t priority;
-
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
-
     bool visible;
 
     SDL_Texture *data;
-    SDL_Rect *_area;
+    SDL_Color color;
+    SDL_Rect _area;
 };
 
-void InitRender(SDL_Renderer *renderer, struct Camera *camera, uint16_t win_width,
-                uint16_t win_height);
+void InitRender(uint16_t win_width, uint16_t win_height, SDL_Renderer *renderer,
+                struct Camera *camera);
 void RenderFrame(struct TextureBox *texs_begin[], struct TextureBox *texs_end[]);
 void FreeRender();
 
