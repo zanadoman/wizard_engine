@@ -16,6 +16,7 @@
  */
 
 #include "collision.h"
+#include "def.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -174,7 +175,7 @@ static dir_t GetDirection(const box_t *box1, const box_t *box2)
     return DIR_NONE;
 }
 
-inline void ApplyStaticCollision(box_t *box1, const box_t *box2)
+INLINE void ApplyStaticCollision(box_t *box1, const box_t *box2)
 {
     register float diff;
 
