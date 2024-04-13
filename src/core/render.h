@@ -28,9 +28,9 @@
 
 enum Flip
 {
-    FLP_NONE = 0b0000'0000,
-    FLP_HORIZ = 0b0000'0001,
-    FLP_VERT = 0b0000'0010,
+    FLP_NONE = 0x00,
+    FLP_HORIZ = 0x01,
+    FLP_VERT = 0x02,
     FLP_BOTH = FLP_HORIZ | FLP_VERT
 };
 

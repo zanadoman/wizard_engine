@@ -397,7 +397,7 @@ void NewBranch(register box_t *current, register int32_t rem_force,
         drag_sum = 0;
         n = 0;
 
-        for (register box_t **next = layer_begin; next != layer_end; next++, n++)
+        for (register box_t **next = layer_begin; next != layer_end; next++)
         {
             if (ValidateCollision(current, *next) && *next != current)
             {
@@ -408,7 +408,7 @@ void NewBranch(register box_t *current, register int32_t rem_force,
                     exit(1);
                 }
 
-                nexts_begin[n] = *next;
+                nexts_begin[n++] = *next;
                 drag_sum += (*next)->drag;
             }
         }
@@ -454,7 +454,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
         drag_sum = 0;
         n = 0;
 
-        for (register box_t **next = layer_begin; next != layer_end; next++, n++)
+        for (register box_t **next = layer_begin; next != layer_end; next++)
         {
             if (ValidateCollision(root, *next) && *next != root)
             {
@@ -465,7 +465,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
                     exit(1);
                 }
 
-                nexts_begin[n] = *next;
+                nexts_begin[n++] = *next;
                 drag_sum += (*next)->drag;
             }
         }
