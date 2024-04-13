@@ -113,10 +113,8 @@ void InitRender(uint16_t win_width, uint16_t win_height, SDL_Renderer *renderer,
     queue_size = 0;
 }
 
-static void ApplyCamera(tex_t *tex)
+void ApplyCamera(register tex_t *tex)
 {
-    register float cache;
-
     if (tex->layer == 0)
     {
         tex->_area.w = tex->width;
@@ -126,14 +124,12 @@ static void ApplyCamera(tex_t *tex)
     }
     else
     {
-        cache = tex->layer * CAMERA->zoom;
+        register const float cache = tex->layer * CAMERA->zoom;
 
         tex->_area.w = floorf(tex->width * cache);
         tex->_area.h = floorf(tex->height * cache);
-        tex->_area.x = (int32_t)floorf((tex->x - (CAMERA->x + CAM_OFFSET_X /
-                        cache)) * cache) - (tex->_area.w >> 1);
-        tex->_area.y = -((int32_t)floorf((tex->y - (CAMERA->y + CAM_OFFSET_Y /
-                        cache)) * cache) - WIN_HEIGHT) - (tex->_area.h >> 1);
+        tex->_area.x = tex->x - CAM_OFFSET_X - (tex->_area.w >> 1);
+        tex->_area.y = tex->y - CAM_OFFSET_Y - (tex->_area.h >> 1);
     }
 }
 
@@ -148,6 +144,14 @@ void RenderFrame(tex_t *texs_begin[], tex_t *texs_end[])
     {
         (void)fputs("core::render: SDL_RenderClear failed", stderr);
         exit(1);
+    }
+
+    for (register tex_t **tex = texs_begin; tex != texs_end; tex++)
+    {
+        if ((*tex)->visible && 0 < (*tex)->color.a)
+        {
+            ApplyCamera(*tex);
+        }
     }
     
     SortByLayer(queue_size, queue_begin);

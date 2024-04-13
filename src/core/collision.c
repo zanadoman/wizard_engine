@@ -36,10 +36,7 @@ typedef enum Direction
     DIR_TOP_RIGHT = DIR_TOP | DIR_RIGHT,
     DIR_BOT_LEFT = DIR_BOT | DIR_LEFT,
     DIR_BOT_RIGHT = DIR_BOT | DIR_RIGHT,
-} dir_t;
-
-// Invalid if box1 not currently colliding with box2
-// Valid if box1 previously not collided with box2
+} __attribute__((__packed__)) dir_t;
 
 #define ValidateCollision(box1, box2) ( \
     ((box2)->cur_br_x <= (box1)->cur_tl_x || \
@@ -59,8 +56,6 @@ inline dir_t GetDirection(register const box_t *box1, register const box_t *box2
 {
     if (ValidateCollision(box1, box2))
     {
-        // Orthogonal collision
-
         if (box1->prv_tl_x < box2->cur_br_x && box2->cur_tl_x < box1->prv_br_x)
         {
             if (box1->prv_tl_y <= box2->cur_br_y)
@@ -87,9 +82,6 @@ inline dir_t GetDirection(register const box_t *box1, register const box_t *box2
 
             return DIR_NONE;
         }
-
-        // Diagonal collision
-
         else if (box1->prv_tl_y <= box2->cur_br_y)
         {
             if (box2->cur_br_x <= box1->prv_tl_x)
@@ -239,23 +231,26 @@ inline void ApplyStaticCollision(register box_t *box1, register const box_t *box
     }
 }
 
-inline bool ApplyDynamicCollision(register box_t *box1, register const uint16_t box1_force, 
-                                  register box_t *box2, register const dir_t dir)
+inline bool ApplyDynamicCollision(register box_t *box1, register box_t *box2,
+                                  register const uint16_t force, register const dir_t dir)
 {
+    #define GetRatio(force, drag) ((float)force / (force + drag))
+    #define GetRealDiff1(base_diff, ratio) (base_diff * (1 - ratio))
+    #define GetRealDiff2(base_diff, ratio) (base_diff * ratio)
+
     switch (dir)
     {
         case DIR_TOP_LEFT:
         {
             register const float base_diff = box2->cur_br_x - box1->cur_tl_x;
-            register const float ratio = (float)box1_force / (box1_force + box2->drag);
-
+            register const float ratio = GetRatio(force, box2->drag);
             {
-                register const float real_diff = base_diff * (1 - ratio);
+                register const float real_diff = GetRealDiff1(base_diff, ratio);
                 box1->cur_tl_x += real_diff;
                 box1->cur_br_x += real_diff;
             }
             {
-                register const float real_diff = base_diff * ratio;
+                register const float real_diff = GetRealDiff2(base_diff, ratio);
                 box2->cur_tl_x -= real_diff;
                 box2->cur_br_x -= real_diff;
             }
@@ -264,15 +259,14 @@ inline bool ApplyDynamicCollision(register box_t *box1, register const uint16_t 
         case DIR_TOP:
         {
             register const float base_diff = box1->cur_tl_y - box2->cur_br_y;
-            register const float ratio = (float)box1_force / (box1_force + box2->drag);
-
+            register const float ratio = GetRatio(force, box2->drag);
             {
-                register const float real_diff = base_diff * (1 - ratio);
+                register const float real_diff = GetRealDiff1(base_diff, ratio);
                 box1->cur_tl_y -= real_diff;
                 box1->cur_br_y -= real_diff;
             }
             {
-                register const float real_diff = base_diff * ratio;
+                register const float real_diff = GetRealDiff2(base_diff, ratio);
                 box2->cur_tl_y += real_diff;
                 box2->cur_br_y += real_diff;
             }
@@ -282,15 +276,14 @@ inline bool ApplyDynamicCollision(register box_t *box1, register const uint16_t 
         case DIR_BOT_RIGHT:
         {
             register const float base_diff = box1->cur_br_x - box2->cur_tl_x;
-            register const float ratio = (float)box1_force / (box1_force + box2->drag);
-
+            register const float ratio = GetRatio(force, box2->drag);
             {
-                register const float real_diff = base_diff * (1 - ratio);
+                register const float real_diff = GetRealDiff1(base_diff, ratio);
                 box1->cur_tl_x -= real_diff;
                 box1->cur_br_x -= real_diff;
             }
             {
-                register const float real_diff = base_diff * ratio;
+                register const float real_diff = GetRealDiff2(base_diff, ratio);
                 box2->cur_tl_x += real_diff;
                 box2->cur_br_x += real_diff;
             }
@@ -299,15 +292,14 @@ inline bool ApplyDynamicCollision(register box_t *box1, register const uint16_t 
         case DIR_BOT:
         {
             register const float base_diff = box2->cur_tl_y - box1->cur_br_y;
-            register const float ratio = (float)box1_force / (box1_force + box2->drag);
-
+            register const float ratio = GetRatio(force, box2->drag);
             {
-                register const float real_diff = base_diff * (1 - ratio);
+                register const float real_diff = GetRealDiff1(base_diff, ratio);
                 box1->cur_tl_y += real_diff;
                 box1->cur_br_y += real_diff;
             }
             {
-                register const float real_diff = base_diff * ratio;
+                register const float real_diff = GetRealDiff2(base_diff, ratio);
                 box2->cur_tl_y -= real_diff;
                 box2->cur_br_y -= real_diff;
             }
@@ -317,15 +309,14 @@ inline bool ApplyDynamicCollision(register box_t *box1, register const uint16_t 
         case DIR_BOT_LEFT:
         {
             register const float base_diff = box2->cur_tl_y - box1->cur_br_y;
-            register const float ratio = (float)box1_force / (box1_force + box2->drag);
-
+            register const float ratio = GetRatio(force, box2->drag);
             {
-                register const float real_diff = base_diff * (1 - ratio);
+                register const float real_diff = GetRealDiff1(base_diff, ratio);
                 box1->cur_tl_y += real_diff;
                 box1->cur_br_y += real_diff;
             }
             {
-                register const float real_diff = base_diff * ratio;
+                register const float real_diff = GetRealDiff2(base_diff, ratio);
                 box2->cur_tl_y -= real_diff;
                 box2->cur_br_y -= real_diff;
             }
@@ -334,15 +325,14 @@ inline bool ApplyDynamicCollision(register box_t *box1, register const uint16_t 
         case DIR_LEFT:
         {
             register const float base_diff = box2->cur_br_x - box1->cur_tl_x;
-            register const float ratio = (float)box1_force / (box1_force + box2->drag);
-
+            register const float ratio = GetRatio(force, box2->drag);
             {
-                register const float real_diff = base_diff * (1 - ratio);
+                register const float real_diff = GetRealDiff1(base_diff, ratio);
                 box1->cur_tl_x += real_diff;
                 box1->cur_br_x += real_diff;
             }
             {
-                register const float real_diff = base_diff * ratio;
+                register const float real_diff = GetRealDiff2(base_diff, ratio);
                 box2->cur_tl_x -= real_diff;
                 box2->cur_br_x -= real_diff;
             }
@@ -352,15 +342,14 @@ inline bool ApplyDynamicCollision(register box_t *box1, register const uint16_t 
         case DIR_TOP_RIGHT:
         {
             register const float base_diff = box1->cur_tl_y - box2->cur_br_y;
-            register const float ratio = (float)box1_force / (box1_force + box2->drag);
-
+            register const float ratio = GetRatio(force, box2->drag);
             {
-                register const float real_diff = base_diff * (1 - ratio);
+                register const float real_diff = GetRealDiff1(base_diff, ratio);
                 box1->cur_tl_y -= real_diff;
                 box1->cur_br_y -= real_diff;
             }
             {
-                register const float real_diff = base_diff * ratio;
+                register const float real_diff = GetRealDiff2(base_diff, ratio);
                 box2->cur_tl_y += real_diff;
                 box2->cur_br_y += real_diff;
             }
@@ -369,15 +358,14 @@ inline bool ApplyDynamicCollision(register box_t *box1, register const uint16_t 
         case DIR_RIGHT:
         {
             register const float base_diff = box1->cur_br_x - box2->cur_tl_x;
-            register const float ratio = (float)box1_force / (box1_force + box2->drag);
-
+            register const float ratio = GetRatio(force, box2->drag);
             {
-                register const float real_diff = base_diff * (1 - ratio);
+                register const float real_diff = GetRealDiff1(base_diff, ratio);
                 box1->cur_tl_x -= real_diff;
                 box1->cur_br_x -= real_diff;
             }
             {
-                register const float real_diff = base_diff * ratio;
+                register const float real_diff = GetRealDiff2(base_diff, ratio);
                 box2->cur_tl_x += real_diff;
                 box2->cur_br_x += real_diff;
             }
@@ -387,6 +375,10 @@ inline bool ApplyDynamicCollision(register box_t *box1, register const uint16_t 
         case DIR_NONE: 
         return false;
     }
+
+    #undef GetRatio
+    #undef GetRealDiff1
+    #undef GetRealDiff2
 
     return false;
 }
@@ -410,7 +402,7 @@ void NewBranch(register box_t *current, register int32_t rem_force,
             if (ValidateCollision(current, *next) && *next != current)
             {
                 if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
-                                sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
+                                           sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
                 {
                     (void)fputs("core::collision: Memory allocation failed", stderr);
                     exit(1);
@@ -429,8 +421,8 @@ void NewBranch(register box_t *current, register int32_t rem_force,
     {
         for (register box_t **next = nexts_begin; next != nexts_end; next++)
         {
-            if (ApplyDynamicCollision(current, (*next)->drag + (uint16_t)rem_force,
-                                     *next, GetDirection(current, *next)))
+            if (ApplyDynamicCollision(current, *next, (*next)->drag + (uint16_t)rem_force,
+                                      GetDirection(current, *next)))
             {
                 NewBranch(*next, rem_force, layer_begin, layer_end);
                 ApplyStaticCollision(current, *next, GetDirection(current, *next));
@@ -450,8 +442,8 @@ void NewBranch(register box_t *current, register int32_t rem_force,
 
 void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[])
 {
-    box_t **nexts_begin, **nexts_end;
-    int32_t rem_force;
+    register box_t **nexts_begin, **nexts_end;
+    register int32_t rem_force;
 
     nexts_begin = NULL;
 
@@ -467,7 +459,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
             if (ValidateCollision(root, *next) && *next != root)
             {
                 if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
-                                sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
+                                           sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
                 {
                     (void)fputs("core::collision: Memory allocation failed", stderr);
                     exit(1);
@@ -486,8 +478,8 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
     { 
         for (register box_t **next = nexts_begin; next != nexts_end; next++)
         {
-            if (ApplyDynamicCollision(root, (*next)->drag +  (uint16_t)rem_force,
-                                      *next, GetDirection(root, *next)))
+            if (ApplyDynamicCollision(root, *next, (*next)->drag + (uint16_t)rem_force,
+                                      GetDirection(root, *next)))
             {
                 NewBranch(*next, rem_force, layer_begin, layer_end);
                 ApplyStaticCollision(root, *next, GetDirection(root, *next));
