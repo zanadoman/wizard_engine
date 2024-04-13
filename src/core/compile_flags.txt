@@ -1,5 +1,9 @@
 -std=gnu2x
 -Wall
 -Wextra
--Werror
+-Wpedantic
 -Wdouble-promotion
+-Winline
+-Wstack-usage=128
+-Wstack-protector
+-Werror

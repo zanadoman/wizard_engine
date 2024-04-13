@@ -33,66 +33,70 @@ static uint16_t CAM_OFFSET_Y;
 static tex_t **queue_begin, **queue_end;
 static size_t queue_size;
 
-static void SortByLayerMerge(size_t left, size_t middle, size_t right)
+void SortByLayer(register const size_t size, register tex_t *arr[size])
 {
-    size_t i, j, k, n1, n2; 
-    tex_t **left_sub, **right_sub;
+    register tex_t **left_arr, **right_arr;
 
-    if ((left_sub = (tex_t**)malloc(sizeof(tex_t*) * (n1 = middle - left + 1))) == NULL)
     {
-        (void)fputs("core::render: Memory allocation failed", stderr);
-        exit(1);
-    }
-    if ((right_sub = (tex_t**)malloc(sizeof(tex_t*) * (n2 = right - middle))) == NULL)
-    {
-        (void)fputs("core::render: Memory allocation failed", stderr);
-        exit(1);
-    }
+        register size_t n;
 
-    for (i = 0; i < n1; i++) left_sub[i] = queue_begin[left + i];
-    for (j = 0; j < n2; j++) right_sub[j] = queue_begin[middle + j + 1];
+        n = size - 1;
+        n |= (n >> 1);
+        n |= (n >> 2);
+        n |= (n >> 4);
+        n |= (n >> 8);
+        n |= (n >> 16);
+        #if 64 <= __WORDSIZE
+        n |= (n >> 32);
+        #endif
+        n -= (n >> 1);
+        n *= sizeof(tex_t*);
 
-    for (i = 0, j = 0, k = left; i < n1 && j < n2; k++)
-    {
-        if (right_sub[j]->layer < left_sub[i]->layer)
+        if ((left_arr = (tex_t**)malloc(n)) == NULL)
         {
-            queue_begin[k] = right_sub[j++];
+            (void)fputs("core::render: Memory allocation failed", stderr);
+            exit(1);
         }
-        else
+        if ((right_arr = (tex_t**)malloc(n)) == NULL)
         {
-            queue_begin[k] = left_sub[i++];
+            (void)fputs("core::render: Memory allocation failed", stderr);
+            exit(1);
         }
     }
 
-    while (i < n1) queue_begin[k++] = left_sub[i++];
-    while (j < n2) queue_begin[k++] = right_sub[j++];
-
-    free(left_sub);
-    free(right_sub);
-}
-
-static void SortByLayer()
-{
-    size_t left, middle, right, cache;
-
-    cache = queue_size - 1;
-
-    for (size_t i = 1; i < queue_size; i <<= 1)
     {
-        for (left = 0; left < cache; left += i << 1)
+        register const size_t cache = size - 1;
+
+        for (register size_t current = 1; current < size; current <<= 1)
         {
-            if (cache < (middle = left + i - 1))
+            for (register size_t left = 0, middle, right; left < cache; left += current << 1)
             {
-                middle = cache;
-            }
-            if (cache < (right = left + (i << 1) - 1))
-            {
-                right = cache;
-            }
+                if (cache < (middle = left + current - 1)) middle = cache;
+                if (cache < (right = left + (current << 1) - 1)) right = cache;
 
-            SortByLayerMerge(left, middle, right);
+                {
+                    register const size_t left_size = middle - left + 1;
+                    register const size_t right_size = right - middle;
+
+                    register size_t i, j, k;
+
+                    for (i = 0; i < left_size; i++) left_arr[i] = arr[left + i];
+                    for (j = 0; j < right_size; j++) right_arr[j] = arr[middle + j + 1];
+
+                    for (i = 0, j = 0, k = left; i < left_size && j < right_size; k++)
+                    {
+                        arr[k] = right_arr[j]->layer < left_arr[i]->layer ? right_arr[j++] : left_arr[i++];
+                    }
+
+                    while (i < left_size) arr[k++] = left_arr[i++];
+                    while (j < right_size) arr[k++] = right_arr[j++];
+                }
+            }
         }
     }
+
+    free(left_arr);
+    free(right_arr);
 }
 
 void InitRender(uint16_t win_width, uint16_t win_height, SDL_Renderer *renderer,
@@ -124,11 +128,11 @@ static void ApplyCamera(tex_t *tex)
     {
         cache = tex->layer * CAMERA->zoom;
 
-        tex->_area.w = floor(tex->width * cache);
-        tex->_area.h = floor(tex->height * cache);
-        tex->_area.x = (int32_t)floor((tex->x - (CAMERA->x + CAM_OFFSET_X /
+        tex->_area.w = floorf(tex->width * cache);
+        tex->_area.h = floorf(tex->height * cache);
+        tex->_area.x = (int32_t)floorf((tex->x - (CAMERA->x + CAM_OFFSET_X /
                         cache)) * cache) - (tex->_area.w >> 1);
-        tex->_area.y = -((int32_t)floor((tex->y - (CAMERA->y + CAM_OFFSET_Y /
+        tex->_area.y = -((int32_t)floorf((tex->y - (CAMERA->y + CAM_OFFSET_Y /
                         cache)) * cache) - WIN_HEIGHT) - (tex->_area.h >> 1);
     }
 }
@@ -146,7 +150,7 @@ void RenderFrame(tex_t *texs_begin[], tex_t *texs_end[])
         exit(1);
     }
     
-    SortByLayer();
+    SortByLayer(queue_size, queue_begin);
 
     SDL_RenderPresent(RENDERER);
 }
