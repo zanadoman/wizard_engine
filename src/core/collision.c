@@ -56,7 +56,7 @@ typedef enum Direction
               : false \
 )
 
-static dir_t GetDirection(const box_t *box1, const box_t *box2)
+dir_t GetDirection(const box_t *box1, const box_t *box2)
 {
     register float h_diff, v_diff;
 
@@ -232,7 +232,7 @@ INLINE void ApplyStaticCollision(box_t *box1, const box_t *box2)
     }
 }
 
-static bool ApplyDynamicCollision(box_t *box1, box_t *box2, const uint16_t rem_force)
+bool ApplyDynamicCollision(box_t *box1, box_t *box2, const uint16_t rem_force)
 {
     uint32_t box1_force;
     float ratio1, ratio2, base_diff, real_diff;
@@ -341,7 +341,7 @@ static bool ApplyDynamicCollision(box_t *box1, box_t *box2, const uint16_t rem_f
     return false;
 }
 
-static void NewBranch(box_t *current, int32_t rem_force,
+void NewBranch(box_t *current, int32_t rem_force,
                       box_t *layer_begin[], box_t *layer_end[])
 {
     box_t **nexts_begin, **nexts_end;

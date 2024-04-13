@@ -1,1 +1,5 @@
 -std=gnu2x
+-Wall
+-Wextra
+-Werror
+-Wdouble-promotion

@@ -17,10 +17,8 @@
 
 #include "math.h"
 
-#include <math.h>
-
-inline float GetDistance(const float init_x, const float init_y, 
-                         float term_x, float term_y)
+inline float GetDistance(register const float init_x, register const float init_y,
+                         register float term_x, register float term_y)
 {
     term_x -= init_x;
     term_y -= init_y;
@@ -28,8 +26,8 @@ inline float GetDistance(const float init_x, const float init_y,
     return Pythagoras(term_x, term_y);
 }
 
-inline float GetAngle(const float init_x, const float init_y, 
-                      float term_x, float term_y)
+inline float GetAngle(register const float init_x, register const float init_y,
+                      register float term_x, register float term_y)
 {
     term_x -= init_x;
 
@@ -37,12 +35,12 @@ inline float GetAngle(const float init_x, const float init_y,
     {
         term_y -= init_y;
 
-        return RAD_MAX - acos(term_x / Pythagoras(term_x, term_y));
+        return RAD_MAX - acosf(term_x / Pythagoras(term_x, term_y));
     }
     else
     {
         term_y -= init_y;
 
-        return acos(term_x / Pythagoras(term_x, term_y));
+        return acosf(term_x / Pythagoras(term_x, term_y));
     }
 }

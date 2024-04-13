@@ -33,10 +33,10 @@
 
 #define ToDEG(x) (x * 57.29578f)
 #define ToRAD(x) (x * 0.017453292f)
-#define Pythagoras(a, b) (sqrt(a * a + b * b))
+#define Pythagoras(a, b) (sqrtf(a * a + b * b))
 
-#define GetTermX(init_x, distance, angle) (init_x + distance * cos(angle))
-#define GetTermY(init_y, distance, ange) (init_y + distance * sin(angle))
+#define GetTermX(init_x, distance, angle) (init_x + distance * cosf(angle))
+#define GetTermY(init_y, distance, ange) (init_y + distance * sinf(angle))
 
 #define NextRandom(min, max) (rand() % (max - min) + min)
 
