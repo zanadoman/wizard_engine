@@ -30,22 +30,22 @@
 #define RAD_MAX 6.2831855f
 
 #define IsEqual(a, b) (a - EPSILON <= b && b <= a + EPSILON)
-#define IfNaN(val, fllbck) (isnormal(val) || val == 0.0f ? val : fllbck)
+#define IfNaN(x, fallback) (isnormal(x) || x == 0.0f ? x : fallback)
 
 #define ToDEG(x) (x * 57.29578f)
 #define ToRAD(x) (x * 0.017453292f)
 #define Pythagoras(a, b) (sqrtf(a * a + b * b))
 
-#define GetTermX(init_x, dist, angl) (init_x + dist * cosf(angl))
-#define GetTermY(init_y, dist, angl) (init_y + dist * sinf(angl))
+#define GetTermX(init_x, dist, angle) (init_x + dist * cosf(angle))
+#define GetTermY(init_y, dist, angle) (init_y + dist * sinf(angle))
 
 #define NextRandom(min, max) (rand() % (max - min) + min)
 
 float GetDistance(const float init_x, const float init_y, float term_x, float term_y);
 float GetAngle(const float init_x, const float init_y, float term_x, float term_y); 
 
-void GetBoundingBox(const float med_len, const float diag_angl1, const float diag_angl2,
-                    const float angl, uint16_t *res_width, uint16_t *res_height);
+void GetBoundingBox(const float med_len, const float diag_angle1, const float diag_angle2,
+                    const float angle, uint16_t *res_width, uint16_t *res_height);
 
 #ifdef __cplusplus
     }}
