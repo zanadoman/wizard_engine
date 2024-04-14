@@ -16,9 +16,11 @@
  */
 
 #define INCLUDE_STDLIB
+#define INCLUDE_STDINT
 #define INCLUDE_ERRNO
+#define INCLUDE_CORE_COLLISION
 
-#include "collision.h"
+#include "../../inc/WZE_CORE/WizardCore.h"
 
 #define BUFF_SIZE 128
 

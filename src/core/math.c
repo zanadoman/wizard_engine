@@ -15,9 +15,11 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
+#define INCLUDE_STDINT
 #define INCLUDE_MATH
+#define INCLUDE_CORE_MATH
 
-#include "math.h"
+#include "../../inc/WZE_CORE/WizardCore.h"
 
 /**
  * @file math.c
