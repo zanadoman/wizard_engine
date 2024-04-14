@@ -18,9 +18,9 @@
 #pragma once
 
 #define INCLUDE_SDL_TTF
-#define INCLUDE_CORE_ENUMS
 
 #include "WizardCore.h"
+#include "CORE_enums.h"
 
 #ifdef __cplusplus
     namespace wze { extern "C" {
