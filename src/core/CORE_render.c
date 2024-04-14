@@ -164,12 +164,20 @@ inline static void SortByLayer()
 
                     register size_t i, j, k;
 
-                    for (i = 0; i < left_size; i++) left_arr[i] = queue_begin[left + i];
-                    for (j = 0; j < right_size; j++) right_arr[j] = queue_begin[middle + j + 1];
+                    for (i = 0; i < left_size; i++)
+                    {
+                        left_arr[i] = queue_begin[left + i];
+                    }
+                    for (j = 0; j < right_size; j++)
+                    {
+                        right_arr[j] = queue_begin[middle + j + 1];
+                    }
 
                     for (i = 0, j = 0, k = left; i < left_size && j < right_size; k++)
                     {
-                        queue_begin[k] = right_arr[j]->layer < left_arr[i]->layer ? right_arr[j++] : left_arr[i++];
+                        queue_begin[k] = right_arr[j]->layer < left_arr[i]->layer
+                                             ? right_arr[j++] 
+                                             : left_arr[i++];
                     }
 
                     while (i < left_size) queue_begin[k++] = left_arr[i++];
@@ -222,12 +230,20 @@ inline static void SortByPriority(register const size_t size, register tex_t *be
 
                     register size_t i, j, k;
 
-                    for (i = 0; i < left_size; i++) left_arr[i] = begin[left + i];
-                    for (j = 0; j < right_size; j++) right_arr[j] = begin[middle + j + 1];
+                    for (i = 0; i < left_size; i++)
+                    {
+                        left_arr[i] = begin[left + i];
+                    }
+                    for (j = 0; j < right_size; j++)
+                    {
+                        right_arr[j] = begin[middle + j + 1];
+                    }
 
                     for (i = 0, j = 0, k = left; i < left_size && j < right_size; k++)
                     {
-                        begin[k] = right_arr[j]->priority < left_arr[i]->priority ? right_arr[j++] : left_arr[i++];
+                        begin[k] = right_arr[j]->priority < left_arr[i]->priority 
+                                       ? right_arr[j++] 
+                                       : left_arr[i++];
                     }
 
                     while (i < left_size) begin[k++] = left_arr[i++];
