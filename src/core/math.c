@@ -17,6 +17,18 @@
 
 #include "math.h"
 
+/**
+ * @file math.c
+ * @author Zana Domán
+ *
+ * @brief Calculates the distance between two points.
+ *
+ * @param init_x Initial point X.
+ * @param init_y Initial point Y.
+ * @param term_x Terminal point X.
+ * @param term_y Terminal point Y.
+ * @return Distance between points.
+ */
 float GetDistance(const float init_x, const float init_y, float term_x, float term_y)
 {
     term_x -= init_x;
@@ -25,6 +37,23 @@ float GetDistance(const float init_x, const float init_y, float term_x, float te
     return Pythagoras(term_x, term_y);
 }
 
+/**
+ * @file math.c
+ * @author Zana Domán
+ *
+ * @brief Calculates the angle of a vector.
+ *
+ * @bug The function can return invalid result, such as NAN or INFINITY.
+ *
+ * @param init_x Initial point X.
+ * @param init_y Initial point Y.
+ * @param term_x Terminal point X.
+ * @param term_y Terminal point Y.
+ * @return Angle of vector in radians.
+ *
+ * @note The function uses term_x and term_y as temporary storage during
+ *       calculation.
+ */
 float GetAngle(const float init_x, const float init_y, float term_x, float term_y)
 {
     term_x -= init_x;
@@ -43,6 +72,31 @@ float GetAngle(const float init_x, const float init_y, float term_x, float term_
     }
 }
 
+
+/**
+ * @file math.c
+ * @author Zana Domán
+ *
+ * @brief Calculates the bounding box of a rotated rectangle.
+ * @details Calculations are based on median length and diagonal angles.
+ *          In the first step, all endpoints of the rotated diagonals are
+ *          calculated. Then the bounding box is formed by using the farthest
+ *          endpoints.
+ *
+ * @bug The function can give invalid results, such as NAN or INFINITY.
+ *
+ * @param med_len Half of diagonal length.
+ * @param diag_angle1 Angle of one diagonal in radians.
+ * @param diag_angle2 Angle of other diagonal in radians.
+ * @param angle Angle of rotation in radians.
+ * @param res_width Width of the bounding box.
+ * @param res_height Height of the bounding box.
+ *
+ * @note The function uses res_width and res_height as temporary storage
+ *       during calculation.
+ * @warning You must ensure that the addresses of res_with and res_height are
+ *          valid.
+ */
 void GetBoundingBox(const float med_len, const float diag_angle1, const float diag_angle2,
                     const float angle, uint16_t *res_width, uint16_t *res_height)
 {
