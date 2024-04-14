@@ -15,10 +15,10 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#define INCLUDE_STDLIB
-#define INCLUDE_STDINT
-#define INCLUDE_ERRNO
-#define INCLUDE_CORE_COLLISION
+#define STDLIB_H
+#define STDINT_H
+#define ERRNO_H
+#define CORE_COLLISION_H
 
 #include "../../inc/WZE_CORE/WizardCore.h"
 

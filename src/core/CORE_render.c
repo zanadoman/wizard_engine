@@ -15,9 +15,9 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#define INCLUDE_ERRNO
-#define INCLUDE_SDL_TTF
-#define INCLUDE_CORE_RENDER
+#define ERRNO_H
+#define SDL_TTF_H
+#define CORE_RENDER_H
 
 #include "../../inc/WZE_CORE/WizardCore.h"
 

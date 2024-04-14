@@ -17,31 +17,31 @@
 
 #pragma once
 
-#ifdef INCLUDE_STDIO
+#ifdef STDIO_H
     #include <stdio.h>
 #endif
 
-#ifdef INCLUDE_STDLIB
+#ifdef STDLIB_H
     #include <stdlib.h>
 #endif
 
-#ifdef INCLUDE_STDINT
+#ifdef STDINT_H
     #include <stdint.h>
 #endif
 
-#ifdef INCLUDE_STDDEF
+#ifdef STDDEF_H
     #include <stddef.h>
 #endif
 
-#ifdef INCLUDE_MATH
+#ifdef MATH_H
     #include <math.h>
 #endif
 
-#ifdef INCLUDE_ERRNO
+#ifdef ERRNO_H
     #include <errno.h>
 #endif
 
-#ifdef INCLUDE_SDL
+#ifdef SDL_H
     #ifdef __linux__
         #include <SDL2/SDL.h>
     #endif
@@ -50,7 +50,7 @@
     #endif
 #endif
 
-#ifdef INCLUDE_SDL_IMAGE
+#ifdef SDL_IMAGE_H
     #ifdef __linux__
         #include <SDL2/SDL_image.h>
     #endif
@@ -59,7 +59,7 @@
     #endif
 #endif
 
-#ifdef INCLUDE_SDL_MIXER
+#ifdef SDL_MIXER_H
     #ifdef __linux__
         #include <SDL2/SDL_mixer.h>
     #endif
@@ -68,7 +68,7 @@
     #endif
 #endif
 
-#ifdef INCLUDE_SDL_TTF
+#ifdef SDL_TTF_H
     #ifdef __linux__
         #include <SDL2/SDL_ttf.h>
     #endif
@@ -77,7 +77,7 @@
     #endif
 #endif
 
-#ifdef INCLUDE_SDL_NET
+#ifdef SDL_NET_H
     #ifdef __linux__
         #include <SDL2/SDL_net.h>
     #endif
@@ -86,18 +86,18 @@
     #endif
 #endif
 
-#ifdef INCLUDE_CORE_RENDER
+#ifdef CORE_RENDER_H
     #include "CORE_render.h"
 #endif
 
-#ifdef INCLUDE_CORE_COLLISION
+#ifdef CORE_COLLISION_H
     #include "CORE_collision.h"
 #endif
 
-#ifdef INCLUDE_CORE_MATH
+#ifdef CORE_MATH_H
     #include "CORE_math.h"
 #endif
 
-#ifdef INCLUDE_CORE_ENUMS
+#ifdef CORE_ENUMS_H
     #include "CORE_enums.h"
 #endif

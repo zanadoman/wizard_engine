@@ -18,7 +18,7 @@
 
 #pragma once
 
-#define INCLUDE_SDL_TTF
+#define SDL_TTF_H
 
 #include "WizardCore.h"
 

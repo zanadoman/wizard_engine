@@ -17,7 +17,7 @@
 
 #pragma once
 
-#define INCLUDE_STDINT
+#define STDINT_H
 
 #include "WizardCore.h"
 
