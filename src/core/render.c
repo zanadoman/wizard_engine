@@ -269,6 +269,7 @@ inline static void RenderTexture(register const tex_t *tex)
     #define rgba(color) color.r, color.g, color.b, color.a
     #define area(tex) NULL, &tex->_area
     #define angle(tex) (double)tex->angle, NULL
+    #define flip(tex) (SDL_RendererFlip)tex->flip
 
     if (tex->data == NULL)
     {
@@ -279,13 +280,14 @@ inline static void RenderTexture(register const tex_t *tex)
     {
         (void)SDL_SetTextureColorMod(tex->data, rgb(tex->color));
         (void)SDL_SetTextureAlphaMod(tex->data, tex->color.a);
-        (void)SDL_RenderCopyEx(RENDERER, tex->data, area(tex), angle(tex), tex->flip);
+        (void)SDL_RenderCopyEx(RENDERER, tex->data, area(tex), angle(tex), flip(tex));
     }
 
     #undef rgb 
     #undef rgba
     #undef area
     #undef angle
+    #undef flip
 }
 
 inline static void RenderingStage()

@@ -1,3 +1,4 @@
+
 /*
  * This file is part of Wizard Engine (https://github.com/zanadoman/Wizard-Engine).
  * Copyright (c) 2024 Zana Domán.
@@ -18,48 +19,19 @@
 #pragma once
 
 #include "sdl.h"
-#include "enum.h"
-
-#include <stdint.h>
-#include <stdbool.h>
 
 #ifdef __cplusplus
-    namespace wze { extern "C" {
+    namespace wze { extern "C " {
 #endif
 
-struct Camera
+enum Flip
 {
-    float x;
-    float y;
-
-    float zoom;
+    FLIP_NONE = SDL_FLIP_NONE,
+    FLIP_HORIZONTAL = SDL_FLIP_HORIZONTAL,
+    FLIP_VERTICAL = SDL_FLIP_VERTICAL,
+    FLIP_BOTH = FLIP_HORIZONTAL | FLIP_VERTICAL
 };
 
-struct TextureBox
-{
-    float x;
-    float y;
-
-    uint16_t width;
-    uint16_t height;
-
-    float angle;
-    enum Flip flip;
-
-    float layer;
-    uint8_t priority;
-    bool visible;
-
-    SDL_Texture *data;
-    SDL_Color color;
-    SDL_Rect _area;
-};
-
-void InitRender(uint16_t win_width, uint16_t win_height, SDL_Renderer *renderer,
-                struct Camera *camera);
-void RenderFrame(struct TextureBox *texs_begin[], struct TextureBox *texs_end[]);
-void FreeRender();
-
-#ifdef __cplusplus
+#ifdef __cplucplus
     }}
 #endif
