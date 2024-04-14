@@ -18,6 +18,7 @@
 #define ERRNO_H
 #define SDL_TTF_H
 #define CORE_RENDER_H
+#define CORE_ENUM_H
 
 #include "../../inc/WZE_CORE/WizardCore.h"
 
