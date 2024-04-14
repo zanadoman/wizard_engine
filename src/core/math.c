@@ -15,6 +15,8 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
+#define INCLUDE_MATH
+
 #include "math.h"
 
 /**

@@ -17,11 +17,11 @@
 
 #pragma once
 
-#include "sdl.h"
-#include "enum.h"
+#define INCLUDE_STDINT
+#define INCLUDE_SDL_TTF
 
-#include <stdint.h>
-#include <stdbool.h>
+#include "include.h"
+#include "enum.h"
 
 #ifdef __cplusplus
     namespace wze { extern "C" {
@@ -44,7 +44,7 @@ struct TextureBox
     uint16_t height;
 
     float angle;
-    enum Flip flip;
+    enum TextureFlip flip;
 
     float layer;
     uint8_t priority;

@@ -15,9 +15,9 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#include "render.h"
+#define INCLUDE_ERRNO
 
-#include <errno.h>
+#include "render.h"
 
 #define BUFF_SIZE 128
 #define BLACK 0, 0, 0, 255

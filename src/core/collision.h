@@ -17,7 +17,9 @@
 
 #pragma once
 
-#include <stdint.h>
+#define INCLUDE_STDINT
+
+#include "include.h"
 
 #ifdef __cplusplus
     namespace core { extern "C" {

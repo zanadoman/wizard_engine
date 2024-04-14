@@ -15,12 +15,10 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#include "collision.h"
+#define INCLUDE_STDLIB
+#define INCLUDE_ERRNO
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <errno.h>
+#include "collision.h"
 
 #define BUFF_SIZE 128
 

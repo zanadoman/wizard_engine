@@ -17,8 +17,9 @@
 
 #pragma once
 
-#include <stdint.h>
-#include <math.h>
+#define INCLUDE_STDINT
+
+#include "include.h"
 
 #ifdef __cplusplus
     namespace wze { extern "C" {
