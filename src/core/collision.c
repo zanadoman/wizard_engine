@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <errno.h>
 
 #define BUFF_SIZE 128
 
@@ -52,7 +53,7 @@ typedef enum Direction
               : false \
 )
 
-inline dir_t GetDirection(register const box_t *box1, register const box_t *box2)
+inline static dir_t GetDirection(register const box_t *box1, register const box_t *box2)
 {
     if (ValidateCollision(box1, box2))
     {
@@ -161,7 +162,7 @@ inline dir_t GetDirection(register const box_t *box1, register const box_t *box2
     return DIR_NONE;
 }
 
-inline void ApplyStaticCollision(register box_t *box1, register const box_t *box2,
+inline static void ApplyStaticCollision(register box_t *box1, register const box_t *box2,
                                  register const dir_t dir)
 {
     switch (dir)
@@ -231,8 +232,9 @@ inline void ApplyStaticCollision(register box_t *box1, register const box_t *box
     }
 }
 
-inline bool ApplyDynamicCollision(register box_t *box1, register box_t *box2,
-                                  register const uint16_t force, register const dir_t dir)
+inline static bool ApplyDynamicCollision(register box_t *box1, register box_t *box2,
+                                         register const uint16_t force, 
+                                         register const dir_t dir)
 {
     #define GetRatio(force, drag) ((float)force / (force + drag))
     #define GetRealDiff1(base_diff, ratio) (base_diff * (1 - ratio))
@@ -404,8 +406,7 @@ void NewBranch(register box_t *current, register int32_t rem_force,
                 if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
                                            sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
                 {
-                    (void)fputs("core::collision: Memory allocation failed", stderr);
-                    exit(1);
+                    exit(ENOMEM);
                 }
 
                 nexts_begin[n++] = *next;
@@ -461,8 +462,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
                 if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
                                            sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
                 {
-                    (void)fputs("core::collision: Memory allocation failed", stderr);
-                    exit(1);
+                    exit(ENOMEM);
                 }
 
                 nexts_begin[n++] = *next;

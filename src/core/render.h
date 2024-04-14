@@ -26,14 +26,6 @@
     namespace wze { extern "C" {
 #endif
 
-enum Flip
-{
-    FLP_NONE = 0x00,
-    FLP_HORIZ = 0x01,
-    FLP_VERT = 0x02,
-    FLP_BOTH = FLP_HORIZ | FLP_VERT
-};
-
 struct Camera
 {
     float x;
@@ -51,7 +43,7 @@ struct TextureBox
     uint16_t height;
 
     float angle;
-    enum Flip flip;
+    SDL_RendererFlip flip;
 
     float layer;
     uint8_t priority;
