@@ -15,14 +15,12 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#define INCLUDE_STDINT
 #define INCLUDE_ERRNO
-#define INCLUDE_SDL
 #define INCLUDE_SDL_TTF
 #define INCLUDE_CORE_RENDER
 #define INCLUDE_CORE_ENUMS
 
-#include "../../inc/WZE_CORE/WizardCore.h"
+#include "../../inc/WZE_CORE/WizardCore.h"    
 
 #define BUFF_SIZE 128
 #define BLACK 0, 0, 0, 255
