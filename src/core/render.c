@@ -47,7 +47,7 @@ void InitRender(uint16_t win_width, uint16_t win_height, SDL_Renderer *renderer,
     CAM_OFFSET_X = win_width >> 1;
     CAM_OFFSET_Y = win_height >> 1;
 
-    queue_begin = NULL;
+    queue_begin = nullptr;
     queue_size = 0;
 }
 
@@ -110,7 +110,7 @@ inline static void SelectionStage(register tex_t *texs_begin[], register tex_t *
         if (!IsOnScreen(*tex)) continue;
 
         if (n == queue_size && (queue_begin = (tex_t**)realloc(queue_begin,
-                                sizeof(tex_t*) * (queue_size += BUFF_SIZE))) == NULL)
+                                sizeof(tex_t*) * (queue_size += BUFF_SIZE))) == nullptr)
         {
             exit(ENOMEM);
         }
@@ -145,8 +145,8 @@ inline static void SortByLayer()
         n -= (n >> 1);
         n *= sizeof(tex_t*);
 
-        if ((left_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
-        if ((right_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
+        if ((left_arr = (tex_t**)malloc(n)) == nullptr) exit(ENOMEM);
+        if ((right_arr = (tex_t**)malloc(n)) == nullptr) exit(ENOMEM);
     }
 
     {
@@ -203,8 +203,8 @@ inline static void SortByPriority(register const size_t size, register tex_t *be
         n -= (n >> 1);
         n *= sizeof(float);
 
-        if ((left_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
-        if ((right_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
+        if ((left_arr = (tex_t**)malloc(n)) == nullptr) exit(ENOMEM);
+        if ((right_arr = (tex_t**)malloc(n)) == nullptr) exit(ENOMEM);
     }
 
     {
@@ -270,11 +270,11 @@ inline static void RenderTexture(register const tex_t *tex)
 {
     #define rgb(color) color.r, color.g, color.b
     #define rgba(color) color.r, color.g, color.b, color.a
-    #define area(tex) NULL, &tex->_area
-    #define angle(tex) (double)tex->angle, NULL
+    #define area(tex) nullptr, &tex->_area
+    #define angle(tex) (double)tex->angle, nullptr
     #define flip(tex) (SDL_RendererFlip)tex->flip
 
-    if (tex->data == NULL)
+    if (tex->data == nullptr)
     {
         (void)SDL_SetRenderDrawColor(RENDERER, rgba(tex->color));
         (void)SDL_RenderFillRect(RENDERER, &tex->_area);

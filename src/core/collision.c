@@ -39,19 +39,22 @@ typedef enum Direction
     DIR_BOT_RIGHT = DIR_BOT | DIR_RIGHT,
 } __attribute__((__packed__)) dir_t;
 
-#define ValidateCollision(box1, box2) ( \
-    ((box2)->cur_br_x <= (box1)->cur_tl_x || \
-     (box1)->cur_br_x <= (box2)->cur_tl_x || \
-     (box2)->cur_tl_y <= (box1)->cur_br_y || \
-     (box1)->cur_tl_y <= (box2)->cur_br_y) \
-        ? false \
-        : ((box2)->cur_br_x <= (box1)->prv_tl_x || \
-           (box1)->prv_br_x <= (box2)->cur_tl_x || \
-           (box2)->cur_tl_y <= (box1)->prv_br_y || \
-           (box1)->prv_tl_y <= (box2)->cur_br_y) \
-              ? true \
-              : false \
-)
+inline static bool ValidateCollision(register const box_t *box1, register const box_t *box2)
+{
+    if ((box2)->cur_br_x <= (box1)->cur_tl_x || (box1)->cur_br_x <= (box2)->cur_tl_x ||
+        (box2)->cur_tl_y <= (box1)->cur_br_y || (box1)->cur_tl_y <= (box2)->cur_br_y)
+    {
+        return false;
+    }
+
+    if ((box2)->cur_br_x <= (box1)->prv_tl_x || (box1)->prv_br_x <= (box2)->cur_tl_x ||
+        (box2)->cur_tl_y <= (box1)->prv_br_y || (box1)->prv_tl_y <= (box2)->cur_br_y)
+    {
+        return true;
+    }
+
+    return true;
+}
 
 inline static dir_t GetDirection(register const box_t *box1, register const box_t *box2)
 {
@@ -390,7 +393,7 @@ void NewBranch(register box_t *current, register int32_t rem_force,
 {
     register box_t **nexts_begin, **nexts_end;
 
-    nexts_begin = NULL;
+    nexts_begin = nullptr;
 
     {
         register uint32_t drag_sum;
@@ -404,7 +407,7 @@ void NewBranch(register box_t *current, register int32_t rem_force,
             if (ValidateCollision(current, *next) && *next != current)
             {
                 if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
-                                           sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
+                                           sizeof(box_t*) * (n + BUFF_SIZE))) == nullptr)
                 {
                     exit(ENOMEM);
                 }
@@ -446,7 +449,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
     register box_t **nexts_begin, **nexts_end;
     register int32_t rem_force;
 
-    nexts_begin = NULL;
+    nexts_begin = nullptr;
 
     {
         register uint32_t drag_sum;
@@ -460,7 +463,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
             if (ValidateCollision(root, *next) && *next != root)
             {
                 if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
-                                           sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
+                                           sizeof(box_t*) * (n + BUFF_SIZE))) == nullptr)
                 {
                     exit(ENOMEM);
                 }

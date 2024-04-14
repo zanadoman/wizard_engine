@@ -17,7 +17,6 @@
 
 #pragma once
 
-#define INCLUDE_STDBOOL
 #define INCLUDE_SDL_TTF
 #define INCLUDE_CORE_ENUMS
 
