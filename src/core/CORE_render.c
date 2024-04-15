@@ -15,12 +15,7 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#define ERRNO_H
-#define SDL_TTF_H
-#define CORE_RENDER_H
-#define CORE_ENUM_H
 
-#include "../../inc/WZE_CORE/WizardCore.h"
 
 #define BUFF_SIZE 128
 #define BLACK 0, 0, 0, 255
@@ -47,7 +42,7 @@ void InitRender(uint16_t win_width, uint16_t win_height, SDL_Renderer *renderer,
     CAM_OFFSET_X = win_width >> 1;
     CAM_OFFSET_Y = win_height >> 1;
 
-    queue_begin = nullptr;
+    queue_begin = NULL;
     queue_size = 0;
 }
 
@@ -110,7 +105,7 @@ inline static void SelectionStage(register tex_t *texs_begin[], register tex_t *
         if (!IsOnScreen(*tex)) continue;
 
         if (n == queue_size && (queue_begin = (tex_t**)realloc(queue_begin,
-                                sizeof(tex_t*) * (queue_size += BUFF_SIZE))) == nullptr)
+                                sizeof(tex_t*) * (queue_size += BUFF_SIZE))) == NULL)
         {
             exit(ENOMEM);
         }
@@ -126,7 +121,7 @@ inline static void SelectionStage(register tex_t *texs_begin[], register tex_t *
     queue_size = n;
 }
 
-inline static void SortByLayer()
+inline static void SortByLayer(void)
 {
     register tex_t **left_arr, **right_arr;
 
@@ -145,8 +140,8 @@ inline static void SortByLayer()
         n -= (n >> 1);
         n *= sizeof(tex_t*);
 
-        if ((left_arr = (tex_t**)malloc(n)) == nullptr) exit(ENOMEM);
-        if ((right_arr = (tex_t**)malloc(n)) == nullptr) exit(ENOMEM);
+        if ((left_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
+        if ((right_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
     }
 
     {
@@ -211,8 +206,8 @@ inline static void SortByPriority(register const size_t size, register tex_t *be
         n -= (n >> 1);
         n *= sizeof(float);
 
-        if ((left_arr = (tex_t**)malloc(n)) == nullptr) exit(ENOMEM);
-        if ((right_arr = (tex_t**)malloc(n)) == nullptr) exit(ENOMEM);
+        if ((left_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
+        if ((right_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
     }
 
     {
@@ -258,7 +253,7 @@ inline static void SortByPriority(register const size_t size, register tex_t *be
     free(right_arr);
 }
 
-inline static void SortingStage()
+inline static void SortingStage(void)
 {
     SortByLayer();
 
@@ -286,11 +281,11 @@ inline static void RenderTexture(register const tex_t *tex)
 {
     #define rgb(color) color.r, color.g, color.b
     #define rgba(color) color.r, color.g, color.b, color.a
-    #define area(tex) nullptr, &tex->_area
-    #define angle(tex) (double)tex->angle, nullptr
+    #define area(tex) NULL, &tex->_area
+    #define angle(tex) (double)tex->angle, NULL
     #define flip(tex) (SDL_RendererFlip)tex->flip
 
-    if (tex->data == nullptr)
+    if (tex->data == NULL)
     {
         (void)SDL_SetRenderDrawColor(RENDERER, rgba(tex->color));
         (void)SDL_RenderFillRect(RENDERER, &tex->_area);
@@ -309,7 +304,7 @@ inline static void RenderTexture(register const tex_t *tex)
     #undef flip
 }
 
-inline static void RenderingStage()
+inline static void RenderingStage(void)
 {
     register tex_t **border;
 
@@ -341,7 +336,7 @@ void RenderFrame(tex_t *texs_begin[], tex_t *texs_end[])
     SDL_RenderPresent(RENDERER);
 }
 
-void FreeRender()
+void FreeRender(void)
 {
     free(queue_begin);
 }

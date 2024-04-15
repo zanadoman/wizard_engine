@@ -17,9 +17,8 @@
 
 #pragma once
 
-#define STDINT_H
-
-#include "WizardCore.h"
+#include "stdint.h"
+#include "math.h"
 
 #ifdef __cplusplus
     namespace wze { extern "C" {

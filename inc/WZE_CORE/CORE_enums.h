@@ -18,9 +18,15 @@
 
 #pragma once
 
-#define SDL_TTF_H
+#ifdef __linux__
+    #include <SDL2/SDL_scancode.h>
+    #include <SDL2/SDL_ttf.h> 
+#endif
 
-#include "WizardCore.h"
+#ifdef _WIN64
+    #include "../SDL2/SDL_scancode.h"
+    #include "../SDL2/SDL_ttf.h"
+#endif
 
 #ifdef __cplusplus
     namespace wze { extern "C" {

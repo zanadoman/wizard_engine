@@ -17,10 +17,18 @@
 
 #pragma once
 
-#define SDL_TTF_H
-
-#include "WizardCore.h"
 #include "CORE_enums.h"
+
+#include <stdint.h>
+#include <stdbool.h>
+
+#ifdef __linux__
+    #include <SDL2/SDL.h>
+#endif
+
+#ifdef _WIN64
+    #include "../SDL2/SDL.h"
+#endif
 
 #ifdef __cplusplus
     namespace wze { extern "C" {

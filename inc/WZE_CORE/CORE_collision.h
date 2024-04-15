@@ -17,9 +17,10 @@
 
 #pragma once
 
-#define STDINT_H
-
-#include "WizardCore.h"
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <errno.h>
 
 #ifdef __cplusplus
     namespace core { extern "C" {

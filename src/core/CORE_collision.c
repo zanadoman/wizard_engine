@@ -15,12 +15,7 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#define STDLIB_H
-#define STDINT_H
-#define ERRNO_H
-#define CORE_COLLISION_H
-
-#include "../../inc/WZE_CORE/WizardCore.h"
+#include "../../inc/WZE_CORE/CORE_collision.h"
 
 #define BUFF_SIZE 128
 
@@ -393,7 +388,7 @@ void NewBranch(register box_t *current, register int32_t rem_force,
 {
     register box_t **nexts_begin, **nexts_end;
 
-    nexts_begin = nullptr;
+    nexts_begin = NULL;
 
     {
         register uint32_t drag_sum;
@@ -407,7 +402,7 @@ void NewBranch(register box_t *current, register int32_t rem_force,
             if (ValidateCollision(current, *next) && *next != current)
             {
                 if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
-                                           sizeof(box_t*) * (n + BUFF_SIZE))) == nullptr)
+                                           sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
                 {
                     exit(ENOMEM);
                 }
@@ -449,7 +444,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
     register box_t **nexts_begin, **nexts_end;
     register int32_t rem_force;
 
-    nexts_begin = nullptr;
+    nexts_begin = NULL;
 
     {
         register uint32_t drag_sum;
@@ -463,7 +458,7 @@ void ResolveCollisionLayer(box_t *root, box_t *layer_begin[], box_t *layer_end[]
             if (ValidateCollision(root, *next) && *next != root)
             {
                 if (n % BUFF_SIZE == 0 && (nexts_begin = (box_t**)realloc(nexts_begin,
-                                           sizeof(box_t*) * (n + BUFF_SIZE))) == nullptr)
+                                           sizeof(box_t*) * (n + BUFF_SIZE))) == NULL)
                 {
                     exit(ENOMEM);
                 }
