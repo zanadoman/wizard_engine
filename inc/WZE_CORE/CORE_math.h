@@ -17,8 +17,8 @@
 
 #pragma once
 
-#include "stdint.h"
-#include "math.h"
+#include <stdint.h>
+#include <math.h>
 
 #ifdef __cplusplus
     namespace wze { extern "C" {
@@ -152,7 +152,10 @@
  * @param term_y Terminal point Y.
  * @return Distance between points.
  */
-float GetDistance(const float init_x, const float init_y, float term_x, float term_y);
+float GetDistance( const float  init_x,
+                   const float  init_y,
+                   float        term_x, 
+                   float        term_y );
 
 /**
  * @file math.c
@@ -171,7 +174,10 @@ float GetDistance(const float init_x, const float init_y, float term_x, float te
  * @note The function uses term_x and term_y as temporary storage during
  *       calculation.
  */
-float GetAngle(const float init_x, const float init_y, float term_x, float term_y); 
+float GetAngle( const float init_x,
+                const float init_y,
+                float       term_x, 
+                float       term_y );
 
 /**
  * @file math.c
@@ -197,8 +203,12 @@ float GetAngle(const float init_x, const float init_y, float term_x, float term_
  * @warning You must ensure that the addresses of res_with and res_height are
  *          valid.
  */
-void GetBoundingBox(const float med_len, const float diag_angle1, const float diag_angle2,
-                    const float angle, uint16_t *res_width, uint16_t *res_height);
+void GetBoundingBox( const float    med_len,
+                     const float    diag_angle1,
+                     const float    diag_angle2,
+                     const float    angle, 
+                     uint16_t       *res_width, 
+                     uint16_t       *res_height );
 
 #ifdef __cplusplus
     }}

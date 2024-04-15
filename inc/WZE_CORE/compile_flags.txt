@@ -1,1 +1,9 @@
 -std=c99
+-Werror
+-Wall
+-Wextra
+-Wpedantic
+-Wdouble-promotion
+-Winline
+-Wstack-usage=128
+-Wstack-protector

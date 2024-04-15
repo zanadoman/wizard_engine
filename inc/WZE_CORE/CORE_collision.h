@@ -28,23 +28,23 @@
 
 struct ColliderBox
 {
-    float cur_tl_x;
-    float cur_tl_y;
-    float cur_br_x;
-    float cur_br_y;
+    float       cur_tl_x;
+    float       cur_tl_y;
+    float       cur_br_x;
+    float       cur_br_y;
 
-    float prv_tl_x;
-    float prv_tl_y;
-    float prv_br_x;
-    float prv_br_y;
+    float       prv_tl_x;
+    float       prv_tl_y;
+    float       prv_br_x;
+    float       prv_br_y;
 
-    uint16_t force;
-    uint16_t drag;
+    uint16_t    force;
+    uint16_t    drag;
 };
 
-void ResolveCollisionLayer(struct ColliderBox *root, struct ColliderBox *layer_begin[],
-                           struct ColliderBox *layer_end[]); 
-
+void ResolveCollisionLayer( register struct ColliderBox *root, 
+                            register struct ColliderBox *layer_begin[],
+                            register struct ColliderBox *layer_end[] ); 
 #ifdef __cplusplus 
     }}
 #endif

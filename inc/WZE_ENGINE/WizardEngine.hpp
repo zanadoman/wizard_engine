@@ -16,7 +16,3 @@
  */
 
 #pragma once
-
-#ifdef INCLUDE_WZE_CORE
-    #include "../WZE_CORE/WizardCore.h"
-#endif
