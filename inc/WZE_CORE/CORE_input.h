@@ -19,9 +19,8 @@
 
 #include "CORE_enums.h"
 
-#include <stdint.h>
 #include <stdbool.h>
-#include <errno.h>
+#include <string.h>
 
 #ifdef __linux__
     #include <SDL2/SDL.h>
@@ -35,43 +34,18 @@
     namespace core { extern "C" {
 #endif
 
-struct Camera
-{
-    float   x;
-    float   y;
+void InitInput(register const uint8_t   input_src[SDL_NUM_SCANCODES],
+               register uint8_t         input_dest[KEY_COUNT],
+               register int32_t        *mouse_abs_x,
+               register int32_t        *mouse_abs_y,
+               register float          *mouse_rel_x,
+               register float          *mouse_rel_y,
+               register const float    *mouse_sens,
+               register const uint16_t  win_width,
+               register const uint16_t  win_height);
 
-    float   zoom;
-};
-
-struct TextureBox
-{
-    float               x;
-    float               y;
-
-    uint16_t            width;
-    uint16_t            height;
-
-    float               angle;
-    enum TextureFlip    flip;
-
-    float               layer;
-    uint8_t             priority;
-    bool                visible;
-
-    SDL_Texture         *data;
-    SDL_Color           color;
-    SDL_Rect            _area;
-};
-
-void InitRender( uint16_t       win_width,
-                 uint16_t       win_height,
-                 SDL_Renderer   *renderer,
-                 struct Camera  *camera );
-
-void RenderFrame( struct TextureBox *texs_begin[], 
-                  struct TextureBox *texs_end[] );
-
-void FreeRender(void);
+void UpdateInput(register const SDL_Event  events_begin[],
+                 register const SDL_Event *events_end);
 
 #ifdef __cplusplus
     }}

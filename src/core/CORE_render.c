@@ -15,7 +15,7 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-
+#include "../../inc/WZE_CORE/CORE_render.h"
 
 #define BUFF_SIZE 128
 #define BLACK 0, 0, 0, 255
