@@ -29,7 +29,10 @@
  * @param term_y Terminal point Y.
  * @return Distance between points.
  */
-float GetDistance(const float init_x, const float init_y, float term_x, float term_y)
+inline float GetDistance(register const float init_x,
+                         register const float init_y,
+                         register float       term_x,
+                         register float       term_y)
 {
     term_x -= init_x;
     term_y -= init_y;
@@ -54,7 +57,10 @@ float GetDistance(const float init_x, const float init_y, float term_x, float te
  * @note The function uses term_x and term_y as temporary storage during
  *       calculation.
  */
-float GetAngle(const float init_x, const float init_y, float term_x, float term_y)
+inline float GetAngle(register const float init_x,
+                      register const float init_y, 
+                      register float       term_x,
+                      register float       term_y)
 {
     term_x -= init_x;
 
@@ -97,8 +103,12 @@ float GetAngle(const float init_x, const float init_y, float term_x, float term_
  * @warning You must ensure that the addresses of res_with and res_height are
  *          valid.
  */
-void GetBoundingBox(const float med_len, const float diag_angle1, const float diag_angle2,
-                    const float angle, uint16_t *res_width, uint16_t *res_height)
+inline void GetBoundingBox(register const float  med_len,
+                           register const float  diag_angle1,
+                           register const float  diag_angle2,
+                           register const float  angle,
+                           register uint16_t    *res_width,
+                           register uint16_t    *res_height)
 {
     #define HALF_RAD_MAX 3.1415927f
 
