@@ -306,7 +306,8 @@ inline static void SortingStage(void)
     SortByLayer();
 
     {
-        register size_t i, j;
+        register size_t i;
+        register size_t j;
 
         for (i = 0, j = 1; j < queue_size; j++)
         {
