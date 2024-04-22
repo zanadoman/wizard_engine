@@ -20,29 +20,27 @@
 #define BUFF_SIZE 128
 #define BLACK 0, 0, 0, 255
 
+typedef struct Window win_t;
 typedef struct Camera cam_t;
 typedef struct TextureBox tex_t;
 
-static uint16_t WIN_WIDTH;
-static uint16_t WIN_HEIGHT;
-static SDL_Renderer *RENDERER;
-static cam_t *CAMERA;
-static uint16_t CAM_OFFSET_X;
-static uint16_t CAM_OFFSET_Y;
+static win_t        window;
+static const cam_t *camera;
 
-static tex_t **queue_begin, **queue_end;
-static size_t queue_size;
+static tex_t  **queue_begin;
+static tex_t  **queue_end;
+static size_t   queue_size;
 
-void InitRender(uint16_t win_width, uint16_t win_height, SDL_Renderer *renderer, cam_t *camera)
+void InitRender(register const win_t *_window,
+                register const cam_t *_camera)
 {
-    WIN_WIDTH = win_width;
-    WIN_HEIGHT = win_height;
-    RENDERER = renderer; 
-    CAMERA = camera;
-    CAM_OFFSET_X = win_width >> 1;
-    CAM_OFFSET_Y = win_height >> 1;
+    window = *_window;
+    window._origo_x = window.width >> 1;
+    window._origo_y = window.width >> 1;
+    camera =  _camera;
 
     queue_begin = NULL;
+    queue_end = NULL;
     queue_size = 0;
 }
 
@@ -60,19 +58,19 @@ inline static void ApplyCamera(register tex_t *tex)
 {
     if (tex->layer == 0)
     {
-        tex->_area.w = tex->width;
-        tex->_area.h = tex->height;
-        tex->_area.x = tex->x - CAM_OFFSET_X - (tex->_area.w >> 1);
-        tex->_area.y = tex->y - CAM_OFFSET_Y - (tex->_area.h >> 1);
+        tex->_area.w = (int32_t)tex->width;
+        tex->_area.h = (int32_t)tex->height;
+        tex->_area.x = floorf(tex->x) - (tex->_area.w >> 1) - window._origo_x;
+        tex->_area.y = floorf(tex->y) - (tex->_area.h >> 1) - window._origo_y;
     }
     else
     {
-        register const float cache = tex->layer * CAMERA->zoom;
+        register const float cache = tex->layer * camera->zoom;
 
-        tex->_area.w = floorf(tex->width * cache);
-        tex->_area.h = floorf(tex->height * cache);
-        tex->_area.x = tex->x - CAM_OFFSET_X - (tex->_area.w >> 1);
-        tex->_area.y = tex->y - CAM_OFFSET_Y - (tex->_area.h >> 1);
+        tex->_area.w = (int32_t)floorf(tex->width * cache);
+        tex->_area.h = (int32_t)floorf(tex->height * cache);
+        tex->_area.x = floorf(tex->x) - (tex->_area.w >> 1) - window._origo_x;
+        tex->_area.y = floorf(tex->y) - (tex->_area.h >> 1) - window._origo_y;
     }
 }
 
@@ -81,8 +79,8 @@ inline static bool IsOnScreen(register const tex_t *tex)
     register const uint16_t half_w = tex->_area.w >> 1;
     register const uint16_t half_h = tex->_area.h >> 1;
 
-    if (tex->_area.x + half_w < 0 || WIN_WIDTH < tex->_area.x - half_w ||
-        tex->_area.y + half_h < 0 || WIN_HEIGHT < tex->_area.y - half_h)
+    if (tex->_area.x + half_w < 0 || window.width < tex->_area.x - half_w ||
+        tex->_area.y + half_h < 0 || window.height < tex->_area.y - half_h)
     {
         return false;
     }
@@ -90,7 +88,8 @@ inline static bool IsOnScreen(register const tex_t *tex)
     return true;
 }
 
-inline static void SelectionStage(register tex_t *texs_begin[], register tex_t *texs_end[])
+inline static void SelectionStage(register tex_t *texs_begin[],
+                                  register tex_t *texs_end[])
 {
     register size_t n;
 
@@ -98,11 +97,17 @@ inline static void SelectionStage(register tex_t *texs_begin[], register tex_t *
 
     for (register tex_t **tex = texs_begin; tex != texs_end; tex++)
     {
-        if (!IsVisible(*tex)) continue;
+        if (!IsVisible(*tex))
+        {
+            continue;
+        }
 
         ApplyCamera(*tex);
 
-        if (!IsOnScreen(*tex)) continue;
+        if (!IsOnScreen(*tex))
+        {
+            continue;
+        }
 
         if (n == queue_size && (queue_begin = (tex_t**)realloc(queue_begin,
                                 sizeof(tex_t*) * (queue_size += BUFF_SIZE))) == NULL)
@@ -123,7 +128,8 @@ inline static void SelectionStage(register tex_t *texs_begin[], register tex_t *
 
 inline static void SortByLayer(void)
 {
-    register tex_t **left_arr, **right_arr;
+    register tex_t **restrict left_arr;
+    register tex_t **restrict right_arr;
 
     {
         register size_t n;
@@ -140,8 +146,14 @@ inline static void SortByLayer(void)
         n -= (n >> 1);
         n *= sizeof(tex_t*);
 
-        if ((left_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
-        if ((right_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
+        if ((left_arr = (tex_t**)malloc(n)) == NULL)
+        {
+            exit(ENOMEM);
+        }
+        if ((right_arr = (tex_t**)malloc(n)) == NULL)
+        {
+            exit(ENOMEM);
+        }
     }
 
     {
@@ -151,14 +163,22 @@ inline static void SortByLayer(void)
         {
             for (register size_t left = 0, middle, right; left < cache; left += current << 1)
             {
-                if (cache < (middle = left + current - 1)) middle = cache;
-                if (cache < (right = left + (current << 1) - 1)) right = cache;
+                if (cache < (middle = left + current - 1))
+                {
+                    middle = cache;
+                }
+                if (cache < (right = left + (current << 1) - 1))
+                {
+                    right = cache;
+                }
 
                 {
+                    register size_t i;
+                    register size_t j;
+                    register size_t k;
+
                     register const size_t left_size = middle - left + 1;
                     register const size_t right_size = right - middle;
-
-                    register size_t i, j, k;
 
                     for (i = 0; i < left_size; i++)
                     {
@@ -171,13 +191,19 @@ inline static void SortByLayer(void)
 
                     for (i = 0, j = 0, k = left; i < left_size && j < right_size; k++)
                     {
-                        queue_begin[k] = right_arr[j]->layer < left_arr[i]->layer
-                                             ? right_arr[j++] 
+                        queue_begin[k] = right_arr[j]->priority < left_arr[i]->priority
+                                             ? right_arr[j++]
                                              : left_arr[i++];
                     }
 
-                    while (i < left_size) queue_begin[k++] = left_arr[i++];
-                    while (j < right_size) queue_begin[k++] = right_arr[j++];
+                    while (i < left_size)
+                    {
+                        queue_begin[k++] = left_arr[i++];
+                    }
+                    while (j < right_size)
+                    { 
+                        queue_begin[k++] = right_arr[j++];
+                    }
                 }
             }
         }
@@ -187,9 +213,11 @@ inline static void SortByLayer(void)
     free(right_arr);
 }
 
-inline static void SortByPriority(register const size_t size, register tex_t *begin[])
+inline static void SortByPriority(register const size_t  size,
+                                  register tex_t        *arr[size])
 {
-    register tex_t **left_arr, **right_arr;
+    register tex_t **restrict left_arr;
+    register tex_t **restrict right_arr;
 
     {
         register size_t n;
@@ -204,10 +232,16 @@ inline static void SortByPriority(register const size_t size, register tex_t *be
         n |= (n >> 32);
         #endif
         n -= (n >> 1);
-        n *= sizeof(float);
+        n *= sizeof(tex_t*);
 
-        if ((left_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
-        if ((right_arr = (tex_t**)malloc(n)) == NULL) exit(ENOMEM);
+        if ((left_arr = (tex_t**)malloc(n)) == NULL)
+        {
+            exit(ENOMEM);
+        }
+        if ((right_arr = (tex_t**)malloc(n)) == NULL)
+        {
+            exit(ENOMEM);
+        }
     }
 
     {
@@ -217,33 +251,47 @@ inline static void SortByPriority(register const size_t size, register tex_t *be
         {
             for (register size_t left = 0, middle, right; left < cache; left += current << 1)
             {
-                if (cache < (middle = left + current - 1)) middle = cache;
-                if (cache < (right = left + (current << 1) - 1)) right = cache;
+                if (cache < (middle = left + current - 1))
+                {
+                    middle = cache;
+                }
+                if (cache < (right = left + (current << 1) - 1))
+                {
+                    right = cache;
+                }
 
                 {
+                    register size_t i;
+                    register size_t j;
+                    register size_t k;
+
                     register const size_t left_size = middle - left + 1;
                     register const size_t right_size = right - middle;
 
-                    register size_t i, j, k;
-
                     for (i = 0; i < left_size; i++)
                     {
-                        left_arr[i] = begin[left + i];
+                        left_arr[i] = arr[left + i];
                     }
                     for (j = 0; j < right_size; j++)
                     {
-                        right_arr[j] = begin[middle + j + 1];
+                        right_arr[j] = arr[middle + j + 1];
                     }
 
                     for (i = 0, j = 0, k = left; i < left_size && j < right_size; k++)
                     {
-                        begin[k] = right_arr[j]->priority < left_arr[i]->priority 
-                                       ? right_arr[j++] 
-                                       : left_arr[i++];
+                        arr[k] = right_arr[j]->priority < left_arr[i]->priority
+                                     ? right_arr[j++]
+                                     : left_arr[i++];
                     }
 
-                    while (i < left_size) begin[k++] = left_arr[i++];
-                    while (j < right_size) begin[k++] = right_arr[j++];
+                    while (i < left_size)
+                    {
+                        arr[k++] = left_arr[i++];
+                    }
+                    while (j < right_size)
+                    { 
+                        arr[k++] = right_arr[j++];
+                    }
                 }
             }
         }
@@ -287,14 +335,14 @@ inline static void RenderTexture(register const tex_t *tex)
 
     if (tex->data == NULL)
     {
-        (void)SDL_SetRenderDrawColor(RENDERER, rgba(tex->color));
-        (void)SDL_RenderFillRect(RENDERER, &tex->_area);
+        (void)SDL_SetRenderDrawColor(window.renderer, rgba(tex->color));
+        (void)SDL_RenderFillRect(window.renderer, &tex->_area);
     }
     else
     {
         (void)SDL_SetTextureColorMod(tex->data, rgb(tex->color));
         (void)SDL_SetTextureAlphaMod(tex->data, tex->color.a);
-        (void)SDL_RenderCopyEx(RENDERER, tex->data, area(tex), angle(tex), flip(tex));
+        (void)SDL_RenderCopyEx(window.renderer, tex->data, area(tex), angle(tex), flip(tex));
     }
 
     #undef rgb 
@@ -324,16 +372,17 @@ inline static void RenderingStage(void)
     }
 }
 
-void RenderFrame(tex_t *texs_begin[], tex_t *texs_end[])
+void RenderFrame(register tex_t *texs_begin[],
+                 register tex_t *texs_end[])
 {
-    (void)SDL_SetRenderDrawColor(RENDERER, BLACK);
-    (void)SDL_RenderClear(RENDERER);
+    (void)SDL_SetRenderDrawColor(window.renderer, BLACK);
+    (void)SDL_RenderClear(window.renderer);
 
     SelectionStage(texs_begin, texs_end);
-
+    SortingStage();
     RenderingStage();
 
-    SDL_RenderPresent(RENDERER);
+    SDL_RenderPresent(window.renderer);
 }
 
 void FreeRender(void)
