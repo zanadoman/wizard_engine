@@ -54,6 +54,8 @@ inline static bool IsNotVisible(register const tex_t *tex)
 
 inline static void ApplyCamera(register tex_t *tex)
 {
+    tex->_angle = (double)tex->angle;
+
     if (tex->layer == 1 || tex->layer == 0)
     {
         tex->_area.x = floorf(tex->x);
@@ -63,12 +65,28 @@ inline static void ApplyCamera(register tex_t *tex)
     }
     else
     {
-        register const float scale = tex->layer * camera->zoom;
+        register const double scale = (double)tex->layer * (double)camera->zoom;
 
-        tex->_area.x = floorf((tex->x - camera->x) * scale);
-        tex->_area.y = floorf((tex->y - camera->y) * scale);
-        tex->_area.w = floorf(tex->width * scale);
-        tex->_area.h = floorf(tex->height * scale);
+        if (camera->angle == 0)
+        {
+            tex->_area.x = floor(((double)tex->x - (double)camera->x) * scale);
+            tex->_area.y = floor(((double)tex->y - (double)camera->y) * scale);
+        }
+        else
+        {
+            register const double x = ((double)tex->x - (double)camera->x) * scale;
+            register const double y = ((double)tex->y - (double)camera->y) * scale;
+            register const double x2 = x * x;
+            register const double y2 = y * y;
+            register const double len = sqrt(x2 + y2);
+
+            tex->_area.x = floor(len * cos((double)-camera->angle));
+            tex->_area.y = floor(len * sin((double)-camera->angle));
+            tex->_angle -= (double)camera->angle;
+        }
+
+        tex->_area.w = floor(tex->width * scale);
+        tex->_area.h = floor(tex->height * scale);
     }
 
     tex->_area.x = tex->_area.x - (tex->_area.w >> 1) + window->origo_x;
@@ -334,7 +352,7 @@ inline static void RenderTexture(register const tex_t *tex)
     #define rgb(color) color.r, color.g, color.b
     #define rgba(color) color.r, color.g, color.b, color.a
     #define area(tex) NULL, &tex->_area
-    #define angle(tex) (double)tex->angle, NULL
+    #define angle(tex) tex->_angle, NULL
     #define flip(tex) (SDL_RendererFlip)tex->flip
 
     if (tex->data == NULL)

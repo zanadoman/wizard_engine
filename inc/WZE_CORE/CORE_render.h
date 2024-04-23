@@ -51,6 +51,8 @@ struct Camera
     float x;
     float y;
 
+    float angle;
+
     float zoom;
 };
 
@@ -71,6 +73,7 @@ struct TextureBox
     SDL_Texture      *data;
     SDL_Color         color;
     SDL_Rect          _area;
+    double            _angle;
 };
 
 void InitRender(register const struct Window *window,
