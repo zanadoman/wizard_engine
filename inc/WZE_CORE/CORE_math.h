@@ -60,7 +60,7 @@
  *
  * @warning fallback is unchecked.
  */
-#define IfNaN(x, fallback) (isnormal(x) || x == 0.0f ? x : fallback)
+#define IfNaN(x, fallback) (x == x ? x : fallback)
 
 /**
  * @file math.h
