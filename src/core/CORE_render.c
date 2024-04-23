@@ -56,7 +56,7 @@ inline static void ApplyCamera(register tex_t *tex)
 {
     tex->_angle = (double)tex->angle;
 
-    if (tex->layer == 1 || tex->layer == 0)
+    if (tex->layer == 0)
     {
         tex->_area.x = floorf(tex->x);
         tex->_area.y = floorf(tex->y);
