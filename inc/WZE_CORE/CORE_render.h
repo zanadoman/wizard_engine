@@ -42,8 +42,8 @@ struct Window
 
     SDL_Renderer *renderer;
 
-    uint16_t      _origo_x;
-    uint16_t      _origo_y;
+    uint16_t      origo_x;
+    uint16_t      origo_y;
 };
 
 struct Camera
@@ -67,7 +67,6 @@ struct TextureBox
 
     float             layer;
     uint8_t           priority;
-    bool              visible;
 
     SDL_Texture      *data;
     SDL_Color         color;
