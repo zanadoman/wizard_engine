@@ -15,20 +15,20 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#include "../../inc/WZE_CORE/CORE_render.h"
+#include "../../inc/WZC/WZC_render.h"
 
 #define BUFF_SIZE 128
 #define BLACK 0, 0, 0, 255
 
-typedef struct Window win_t;
-typedef struct Camera cam_t;
-typedef struct TextureBox tex_t;
+typedef struct Window       win_t;
+typedef struct Camera       cam_t;
+typedef struct RenderObject obj_t;
 
 static const win_t *window;
 static const cam_t *camera;
 
-static tex_t  **queue_begin;
-static tex_t  **queue_end;
+static obj_t  **queue_begin;
+static obj_t  **queue_end;
 static size_t   queue_size;
 
 void InitRender(register const win_t *_window,
@@ -42,7 +42,7 @@ void InitRender(register const win_t *_window,
     queue_size = 0;
 }
 
-inline static bool IsNotVisible(register const tex_t *tex)
+inline static bool IsNotVisible(register const obj_t *tex)
 {
     if (tex->color.a == 0 || tex->width == 0 || tex->height == 0)
     {
@@ -52,7 +52,7 @@ inline static bool IsNotVisible(register const tex_t *tex)
     return false;
 }
 
-inline static void ApplyCamera(register tex_t *tex)
+inline static void ApplyCamera(register obj_t *tex)
 {
     tex->_angle = (double)tex->angle;
 
@@ -93,7 +93,7 @@ inline static void ApplyCamera(register tex_t *tex)
     tex->_area.y = -(tex->_area.y - (tex->_area.h >> 1) - window->origo_y);
 }
 
-inline static bool IsNotOnScreen(register const tex_t *tex)
+inline static bool IsNotOnScreen(register const obj_t *tex)
 {
     register const uint16_t half_w = tex->_area.w >> 1;
     register const uint16_t half_h = tex->_area.h >> 1;
@@ -107,14 +107,14 @@ inline static bool IsNotOnScreen(register const tex_t *tex)
     return false;
 }
 
-inline static void SelectionStage(register tex_t *texs_begin[],
-                                  register tex_t *texs_end[])
+inline static void SelectionStage(register obj_t *texs_begin[],
+                                  register obj_t *texs_end[])
 {
     register size_t n;
 
     n = 0;
 
-    for (register tex_t **tex = texs_begin; tex != texs_end; tex++)
+    for (register obj_t **tex = texs_begin; tex != texs_end; tex++)
     {
         if (IsNotVisible(*tex))
         {
@@ -128,8 +128,8 @@ inline static void SelectionStage(register tex_t *texs_begin[],
             continue;
         }
 
-        if (n == queue_size && (queue_begin = (tex_t**)realloc(queue_begin,
-                                sizeof(tex_t*) * (queue_size += BUFF_SIZE))) == NULL)
+        if (n == queue_size && (queue_begin = (obj_t**)realloc(queue_begin,
+                                sizeof(obj_t*) * (queue_size += BUFF_SIZE))) == NULL)
         {
             exit(ENOMEM);
         }
@@ -139,7 +139,7 @@ inline static void SelectionStage(register tex_t *texs_begin[],
 
     if (n < queue_size)
     {
-        queue_begin = (tex_t**)realloc(queue_begin, sizeof(tex_t*) * n);
+        queue_begin = (obj_t**)realloc(queue_begin, sizeof(obj_t*) * n);
     }
 
     queue_size = n;
@@ -147,8 +147,8 @@ inline static void SelectionStage(register tex_t *texs_begin[],
 
 inline static void SortByLayer(void)
 {
-    register tex_t **restrict left_arr;
-    register tex_t **restrict right_arr;
+    register obj_t **restrict left_arr;
+    register obj_t **restrict right_arr;
 
     {
         register size_t n;
@@ -163,13 +163,13 @@ inline static void SortByLayer(void)
         n |= (n >> 32);
         #endif
         n -= (n >> 1);
-        n *= sizeof(tex_t*);
+        n *= sizeof(obj_t*);
 
-        if ((left_arr = (tex_t**)malloc(n)) == NULL)
+        if ((left_arr = (obj_t**)malloc(n)) == NULL)
         {
             exit(ENOMEM);
         }
-        if ((right_arr = (tex_t**)malloc(n)) == NULL)
+        if ((right_arr = (obj_t**)malloc(n)) == NULL)
         {
             exit(ENOMEM);
         }
@@ -233,10 +233,10 @@ inline static void SortByLayer(void)
 }
 
 inline static void SortByPriority(register const size_t  size,
-                                  register tex_t        *arr[size])
+                                  register obj_t        *arr[size])
 {
-    register tex_t **restrict left_arr;
-    register tex_t **restrict right_arr;
+    register obj_t **restrict left_arr;
+    register obj_t **restrict right_arr;
 
     {
         register size_t n;
@@ -251,13 +251,13 @@ inline static void SortByPriority(register const size_t  size,
         n |= (n >> 32);
         #endif
         n -= (n >> 1);
-        n *= sizeof(tex_t*);
+        n *= sizeof(obj_t*);
 
-        if ((left_arr = (tex_t**)malloc(n)) == NULL)
+        if ((left_arr = (obj_t**)malloc(n)) == NULL)
         {
             exit(ENOMEM);
         }
-        if ((right_arr = (tex_t**)malloc(n)) == NULL)
+        if ((right_arr = (obj_t**)malloc(n)) == NULL)
         {
             exit(ENOMEM);
         }
@@ -346,7 +346,7 @@ inline static void SortingStage(void)
     }
 }
 
-inline static void RenderTexture(register const tex_t *tex)
+inline static void RenderTexture(register const obj_t *tex)
 {
     #define rgb(color) color.r, color.g, color.b
     #define rgba(color) color.r, color.g, color.b, color.a
@@ -375,7 +375,7 @@ inline static void RenderTexture(register const tex_t *tex)
 
 inline static void RenderingStage(void)
 {
-    register tex_t **border;
+    register obj_t **border;
 
     for (border = queue_begin; border != queue_end; border++)
     {
@@ -385,19 +385,19 @@ inline static void RenderingStage(void)
         }
     }
 
-    for (register tex_t **tex = border; tex != queue_end; tex++)
+    for (register obj_t **tex = border; tex != queue_end; tex++)
     {
         RenderTexture(*tex);
     }
 
-    for (register tex_t **tex = queue_begin; tex != border; tex++)
+    for (register obj_t **tex = queue_begin; tex != border; tex++)
     {
         RenderTexture(*tex);
     }
 }
 
-void UpdateRender(register tex_t  *texs_begin[],
-                  register tex_t **texs_end)
+void UpdateRender(register obj_t  *texs_begin[],
+                  register obj_t **texs_end)
 {
     (void)SDL_SetRenderDrawColor(window->renderer, BLACK);
     (void)SDL_RenderClear(window->renderer);

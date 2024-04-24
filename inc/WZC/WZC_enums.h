@@ -29,14 +29,15 @@
 #endif
 
 #ifdef __cplusplus
-    namespace wze { extern "C" {
+    namespace core { extern "C" {
 #endif
 
-enum TextureFlip
+enum Flip
 {
     FLIP_NONE       =   SDL_FLIP_NONE,
     FLIP_HORIZONTAL =   SDL_FLIP_HORIZONTAL,
-    FLIP_VERTICAL   =   SDL_FLIP_VERTICAL
+    FLIP_VERTICAL   =   SDL_FLIP_VERTICAL,
+    FLIP_COUNT
 } __attribute__((__packed__));
 
 enum FontStyle

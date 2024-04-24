@@ -15,7 +15,7 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#include "../../inc/WZE_CORE/CORE_collision.h"
+#include "../../inc/WZC/WZC_collision.h"
 
 #define BUFF_SIZE 128
 

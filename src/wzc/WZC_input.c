@@ -15,7 +15,7 @@
  * along with Wizard Engine. If not, see https://www.gnu.org/licenses/licenses.html.
  */
 
-#include "../../inc/WZE_CORE/CORE_input.h"
+#include "../../inc/WZC/WZC_input.h"
 
 typedef struct Window win_t;
 typedef enum InputKey key_t;

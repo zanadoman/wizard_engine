@@ -21,7 +21,7 @@
 #include <math.h>
 
 #ifdef __cplusplus
-    namespace wze { extern "C" {
+    namespace core { extern "C" {
 #endif
 
 // A single precision EPSILON value decided by fate.

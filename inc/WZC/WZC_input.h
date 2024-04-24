@@ -17,8 +17,8 @@
 
 #pragma once
 
-#include "CORE_render.h"
-#include "CORE_enums.h"
+#include "WZC_render.h"
+#include "WZC_enums.h"
 
 #include <stdint.h>
 #include <stdbool.h>

@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "CORE_enums.h"
+#include "WZC_enums.h"
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -59,7 +59,7 @@ struct Camera
     float zoom;
 };
 
-struct TextureBox
+struct RenderObject
 {
     float             x;
     float             y;
@@ -68,7 +68,7 @@ struct TextureBox
     uint16_t          height;
 
     float             angle;
-    enum TextureFlip  flip;
+    enum Flip         flip;
 
     float             layer;
     uint8_t           priority;
@@ -82,8 +82,8 @@ struct TextureBox
 void InitRender(register const struct Window *window,
                 register const struct Camera *camera);
 
-void UpdateRender(register struct TextureBox  *texs_begin[], 
-                  register struct TextureBox **texs_end);
+void UpdateRender(register struct RenderObject  *texs_begin[], 
+                  register struct RenderObject **texs_end);
 
 void FreeRender(void);
 
