@@ -403,8 +403,10 @@ inline static bool ApplyDynamicCollision(register box_t *restrict box1,
     return false;
 }
 
-void NewBranch(register box_t *current,       register int32_t rem_force,
-               register box_t *layer_begin[], register box_t   *layer_end[])
+void NewBranch(register box_t   *current,
+               register int32_t  rem_force,
+               register box_t   *layer_begin[],
+               register box_t   *layer_end[])
 {
     register box_t **restrict nexts_begin;
     register box_t **restrict nexts_end;
@@ -460,8 +462,9 @@ void NewBranch(register box_t *current,       register int32_t rem_force,
     free(nexts_begin);
 }
 
-void ResolveCollisionLayer(register box_t *root,       register box_t *layer_begin[],
-                           register box_t *layer_end[])
+void UpdateCollision(register box_t  *root,
+                     register box_t  *layer_begin[],
+                     register box_t **layer_end)
 {
     register box_t **restrict nexts_begin;
     register box_t **restrict nexts_end;

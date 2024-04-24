@@ -19,8 +19,11 @@
 
 #include "CORE_enums.h"
 
+#include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <math.h>
 #include <errno.h>
 
 #ifdef __linux__
@@ -79,8 +82,8 @@ struct TextureBox
 void InitRender(register const struct Window *window,
                 register const struct Camera *camera);
 
-void RenderFrame(register struct TextureBox *texs_begin[], 
-                 register struct TextureBox *texs_end[]);
+void UpdateRender(register struct TextureBox  *texs_begin[], 
+                  register struct TextureBox **texs_end);
 
 void FreeRender(void);
 

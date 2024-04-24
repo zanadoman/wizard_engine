@@ -17,105 +17,86 @@
 
 #include "../../inc/WZE_CORE/CORE_input.h"
 
-static const uint8_t *INPUT_SRC;
-static uint8_t       *INPUT_DEST;
+typedef struct Window win_t;
+typedef enum InputKey key_t;
+typedef struct Mouse  mouse_t;
 
-static int32_t              *MOUSE_ABS_X;
-static int32_t              *MOUSE_ABS_Y;
-#define                      MOUSE_ABS_X_MIN 0
-static uint16_t              MOUSE_ABS_X_MAX;
-#define                      MOUSE_ABS_Y_MIN 0
-static uint16_t              MOUSE_ABS_Y_MAX;
-static float                *MOUSE_REL_X;
-static float                *MOUSE_REL_Y;
-static const volatile float *MOUSE_SENS;
+static const win_t   *window;
+static const uint8_t *src;
+static key_t         *keys;
+static mouse_t       *mouse;
 
-void InitInput(register const uint8_t  input_src[SDL_NUM_SCANCODES],
-               register uint8_t        input_dest[KEY_COUNT],
-               register int32_t       *mouse_abs_x,
-               register int32_t       *mouse_abs_y,
-               register float         *mouse_rel_x,
-               register float         *mouse_rel_y,
-               register const float   *mouse_sens,
-               register const uint16_t win_width,
-               register const uint16_t win_height)
+void InitInput(register const struct Window *_window,
+               register key_t                _keys[KEY_COUNT],
+               register struct Mouse        *_mouse)
 {
-    INPUT_SRC = input_src;
-    INPUT_DEST = input_dest;
-
-    MOUSE_ABS_X = mouse_abs_x;
-    MOUSE_ABS_Y = mouse_abs_y;
-    MOUSE_ABS_X_MAX = win_width - 1;
-    MOUSE_ABS_Y_MAX = win_height - 1;
-    MOUSE_REL_X = mouse_rel_x;
-    MOUSE_REL_Y = mouse_rel_y;
-    MOUSE_SENS = mouse_sens;
+    window = _window;
+    src = SDL_GetKeyboardState(NULL);
+    keys = _keys;
+    mouse = _mouse;
 }
 
-void UpdateInput(register const SDL_Event  events_begin[],
-                 register const SDL_Event *events_end)
+inline static void UpdateKeys(register const SDL_Event  events_begin[],
+                              register const SDL_Event *events_end)
 {
-    memcpy(INPUT_DEST, INPUT_SRC, KEY_COUNT); 
-    
-    (void)SDL_GetMouseState(MOUSE_ABS_X, MOUSE_ABS_Y);
-
-    if (*MOUSE_ABS_X < MOUSE_ABS_X_MIN)
-    {
-        *MOUSE_ABS_X = MOUSE_ABS_X_MIN;
-    }
-    else if (MOUSE_ABS_X_MAX < *MOUSE_ABS_X)
-    {
-        *MOUSE_ABS_X = MOUSE_ABS_X_MAX;
-    }
-
-    if (*MOUSE_ABS_Y < MOUSE_ABS_Y_MIN)
-    {
-        *MOUSE_ABS_Y = MOUSE_ABS_Y_MIN;
-    }
-    else if (MOUSE_ABS_Y_MAX < *MOUSE_ABS_Y)
-    {
-        *MOUSE_ABS_Y = MOUSE_ABS_Y_MAX;
-    }
-
-    {
-        int32_t x;
-        int32_t y;
-
-        (void)SDL_GetRelativeMouseState(&x, &y);
-
-        *MOUSE_REL_X = x * *MOUSE_SENS;
-        *MOUSE_REL_Y = -y * *MOUSE_SENS;
-    }
+    (void)memcpy(keys, src, KEY_COUNT); 
 
     {
         register const uint8_t mouse_state = (uint8_t)SDL_GetMouseState(NULL, NULL);
 
-        INPUT_DEST[KEY_LMB] = mouse_state & 1 ? true : false;
-        INPUT_DEST[KEY_MMB] = mouse_state & 2 ? true : false;
-        INPUT_DEST[KEY_RMB] = mouse_state & 4 ? true : false;
+        keys[KEY_MOUSE_LMB] = mouse_state & 1 ? true : false;
+        keys[KEY_MOUSE_MMB] = mouse_state & 2 ? true : false;
+        keys[KEY_MOUSE_RMB] = mouse_state & 4 ? true : false;
     }
 
     for (register const SDL_Event *event = events_end - 1; events_begin <= event; event--)
     {
         if (event->type == SDL_MOUSEWHEEL)
         {
-            if (event->wheel.y == 0)
-            {
-                INPUT_DEST[KEY_WHEELUP] = false;
-                INPUT_DEST[KEY_WHEELDOWN] = false;
-            }
-            else if (event->wheel.y < 0)
-            {
-                INPUT_DEST[KEY_WHEELUP] = false;
-                INPUT_DEST[KEY_WHEELDOWN] = true;
-            }
-            else if (0 < event->wheel.y)
-            {
-                INPUT_DEST[KEY_WHEELUP] = true;
-                INPUT_DEST[KEY_WHEELDOWN] = false;
-            }
-
+            keys[KEY_MOUSE_WHEEL] = event->wheel.y;
             break;
         }
     }
+}
+
+inline static void UpdateMouseAbsPos(void)
+{
+    (void)SDL_GetMouseState(&mouse->abs_x, &mouse->abs_y);
+
+    if (mouse->abs_x < 0)
+    {
+        mouse->abs_x = 0;
+    }
+    else if (window->width <= mouse->abs_x)
+    {
+        mouse->abs_x = window->width - 1;
+    }
+
+    if (mouse->abs_y < 0)
+    {
+        mouse->abs_y = 0;
+    }
+    else if (window->height <= mouse->abs_y)
+    {
+        mouse->abs_y = window->height - 1;
+    }
+}
+
+inline static void UpdateMouseRelPos(void)
+{
+    int32_t x;
+    int32_t y;
+
+    (void)SDL_GetRelativeMouseState(&x, &y);
+
+    mouse->rel_x = x * mouse->sens;
+    mouse->rel_y = -y * mouse->sens;
+}
+
+void UpdateInput(register const SDL_Event  events_begin[],
+                 register const SDL_Event *events_end)
+{
+    UpdateKeys(events_begin, events_end);
+    UpdateMouseAbsPos();
+    UpdateMouseRelPos();
 }

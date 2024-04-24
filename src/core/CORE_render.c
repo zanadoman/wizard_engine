@@ -336,7 +336,6 @@ inline static void SortingStage(void)
             }
 
             SortByPriority(j - i, queue_begin + i);
-
             i = j;
         }
 
@@ -397,8 +396,8 @@ inline static void RenderingStage(void)
     }
 }
 
-void RenderFrame(register tex_t *texs_begin[],
-                 register tex_t *texs_end[])
+void UpdateRender(register tex_t  *texs_begin[],
+                  register tex_t **texs_end)
 {
     (void)SDL_SetRenderDrawColor(window->renderer, BLACK);
     (void)SDL_RenderClear(window->renderer);

@@ -17,8 +17,10 @@
 
 #pragma once
 
+#include "CORE_render.h"
 #include "CORE_enums.h"
 
+#include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
 
@@ -34,15 +36,20 @@
     namespace core { extern "C" {
 #endif
 
-void InitInput(register const uint8_t   input_src[SDL_NUM_SCANCODES],
-               register uint8_t         input_dest[KEY_COUNT],
-               register int32_t        *mouse_abs_x,
-               register int32_t        *mouse_abs_y,
-               register float          *mouse_rel_x,
-               register float          *mouse_rel_y,
-               register const float    *mouse_sens,
-               register const uint16_t  win_width,
-               register const uint16_t  win_height);
+struct Mouse
+{
+    int32_t abs_x;
+    int32_t abs_y;
+
+    float   rel_x;
+    float   rel_y;
+
+    float   sens;
+};
+
+void InitInput(register const struct Window *window,
+               register enum InputKey        keys[KEY_COUNT],
+               register struct Mouse        *mouse);
 
 void UpdateInput(register const SDL_Event  events_begin[],
                  register const SDL_Event *events_end);

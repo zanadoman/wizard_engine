@@ -174,11 +174,10 @@ enum InputKey
     KEY_RALT            =   SDL_SCANCODE_RALT,
     KEY_RGUI            =   SDL_SCANCODE_RGUI,
 
-    KEY_LMB,
-    KEY_MMB,
-    KEY_RMB,
-    KEY_WHEELDOWN,
-    KEY_WHEELUP,
+    KEY_MOUSE_LMB,
+    KEY_MOUSE_MMB,
+    KEY_MOUSE_RMB,
+    KEY_MOUSE_WHEEL,
 
     KEY_COUNT
 } __attribute__((__packed__));
