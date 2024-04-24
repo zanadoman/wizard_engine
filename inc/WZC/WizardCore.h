@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "CORE_render.h"
-#include "CORE_collision.h"
-#include "CORE_math.h"
-#include "CORE_enums.h"
+#include "WZC_render.h"
+#include "WZC_collision.h"
+#include "WZC_math.h"
+#include "WZC_enums.h"
