@@ -1,4 +1,4 @@
-#include "../../inc/WZE/WZE_render.hpp"
+#include "../../inc/WZE/WZE_RenderObject.hpp"
 
 namespace wze
 {
@@ -9,7 +9,7 @@ namespace wze
         return this->x;
     }
 
-    RenderObject &RenderObject::SetX(float value)
+    void RenderObject::SetX(float value)
     {
         if (value != value)
         {
@@ -17,7 +17,6 @@ namespace wze
         }
 
         this->x = value;
-        return *this;
     }
 
     float RenderObject::GetY()
@@ -25,7 +24,7 @@ namespace wze
         return this->y;
     }
 
-    RenderObject &RenderObject::SetY(float value)
+    void RenderObject::SetY(float value)
     {
         if (value != value)
         {
@@ -33,7 +32,6 @@ namespace wze
         }
 
         this->y = y;
-        return *this;
     }
 
     uint16_t RenderObject::GetWidth()
@@ -41,10 +39,9 @@ namespace wze
         return this->width;
     }
 
-    RenderObject &RenderObject::SetWidth(uint16_t width)
+    void RenderObject::SetWidth(uint16_t width)
     {
         this->width = width;
-        return *this;
     }
 
     uint16_t RenderObject::GetHeight()
@@ -52,10 +49,9 @@ namespace wze
         return this->height;
     }
 
-    RenderObject &RenderObject::SetHeight(uint16_t height)
+    void RenderObject::SetHeight(uint16_t height)
     {
         this->height = height;
-        return *this;
     }
 
     float RenderObject::GetAngle()
@@ -63,7 +59,7 @@ namespace wze
         return this->angle;
     }
 
-    RenderObject &RenderObject::SetAngle(float value)
+    void RenderObject::SetAngle(float value)
     {
         if (value != value)
         {
@@ -71,7 +67,6 @@ namespace wze
         }
 
         this->angle = value;
-        return *this;
     }
 
     core::Flip RenderObject::GetFlip()
@@ -79,7 +74,7 @@ namespace wze
         return this->flip;
     }
 
-    RenderObject &RenderObject::SetFlip(core::Flip value)
+    void RenderObject::SetFlip(core::Flip value)
     {
         if (value < core::FLIP_NONE || core::FLIP_COUNT <= value)
         {
@@ -87,7 +82,6 @@ namespace wze
         }
 
         this->flip = flip;
-        return *this;
     }
 
     float RenderObject::GetLayer()
@@ -95,7 +89,7 @@ namespace wze
         return this->layer;
     }
 
-    RenderObject &RenderObject::SetLayer(float value)
+    void RenderObject::SetLayer(float value)
     {
         if (value != value)
         {
@@ -107,7 +101,6 @@ namespace wze
         }
 
         this->layer = value;
-        return *this;
     }
 
     uint8_t RenderObject::GetPriority()
@@ -115,31 +108,19 @@ namespace wze
         return this->priority;
     }
 
-    RenderObject &RenderObject::SetPriority(uint8_t priority)
+    void RenderObject::SetPriority(uint8_t priority)
     {
         this->priority = priority;
-        return *this;
     }
 
-    Texture &RenderObject::GetTexture()
+    SDL_Texture *RenderObject::GetData()
     {
-        return *this->texture;
+        return this->data;
     }
 
-    RenderObject &RenderObject::SetTexture(Texture *value)
+    void RenderObject::SetData(SDL_Texture *value)
     {
-        this->texture.reset(value);
-
-        if (value == nullptr)
-        {
-            this->data = nullptr;
-        }
-        else
-        {
-            this->data = value->GetData();
-        }
-
-        return *this;
+        this->data = value;
     }
 
     uint8_t RenderObject::GetColorR()
@@ -147,60 +128,83 @@ namespace wze
         return this->color.r;
     }
 
-    RenderObject &RenderObject::SetColorR(uint8_t r)
+    void RenderObject::SetColorR(uint8_t r)
     {
         this->color.r = r;
-        return *this;
     }
     uint8_t RenderObject::GetColorG()
     {
         return this->color.g;
     }
 
-    RenderObject &RenderObject::SetColorG(uint8_t g)
+    void RenderObject::SetColorG(uint8_t g)
     {
         this->color.g = g;
-        return *this;
     }
     uint8_t RenderObject::GetColorB()
     {
         return this->color.b;
     }
 
-    RenderObject &RenderObject::SetColorB(uint8_t b)
+    void RenderObject::SetColorB(uint8_t b)
     {
         this->color.b = b;
-        return *this;
     }
     uint8_t RenderObject::GetColorA()
     {
         return this->color.a;
     }
 
-    RenderObject &RenderObject::SetColorA(uint8_t a)
+    void RenderObject::SetColorA(uint8_t a)
     {
         this->color.a = a;
-        return *this;
     }
 
-    RenderObject::RenderObject(Texture *texture)
+    RenderObject::RenderObject(float        x,
+                               float        y,
+                               uint16_t     width,
+                               uint16_t     height,
+                               float        angle,
+                               core::Flip   flip,
+                               float        layer,
+                               uint8_t      priority,
+                               SDL_Texture *data,
+                               uint8_t      color_r,
+                               uint8_t      color_g,
+                               uint8_t      color_b,
+                               uint8_t      color_a)
     {
-        this->SetX(0);
-        this->SetY(0);
-        this->SetWidth(0);
-        this->SetHeight(0);
-        this->SetAngle(0);
-        this->SetFlip(core::FLIP_NONE);
-        this->SetLayer(0);
-        this->SetPriority(UINT8_MAX >> 1);
-        this->SetTexture(texture);
-        this->SetColorR(UINT8_MAX);
-        this->SetColorG(UINT8_MAX);
-        this->SetColorB(UINT8_MAX);
-        this->SetColorA(UINT8_MAX);
+        this->SetX(x);
+        this->SetY(y);
+        this->SetWidth(width);
+        this->SetHeight(height);
+        this->SetAngle(angle);
+        this->SetFlip(flip);
+        this->SetLayer(layer);
+        this->SetPriority(priority);
+        this->SetData(data);
+        this->SetColorR(color_r);
+        this->SetColorG(color_g);
+        this->SetColorB(color_b);
+        this->SetColorA(color_a);
 
         this->objs.push_back(this);
     }
+
+    RenderObject::RenderObject()
+        : RenderObject(0,
+                       0,
+                       0,
+                       0,
+                       0,
+                       core::FLIP_NONE,
+                       0,
+                       UINT8_MAX >> 1,
+                       nullptr,
+                       UINT8_MAX,
+                       UINT8_MAX,
+                       UINT8_MAX,
+                       UINT8_MAX) {}
 
     RenderObject::~RenderObject()
     {

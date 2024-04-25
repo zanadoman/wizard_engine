@@ -17,25 +17,11 @@
 
 #pragma once
 
+#include "WZC_include.h"
 #include "WZC_enums.h"
 
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdbool.h>
-#include <stddef.h>
-#include <math.h>
-#include <errno.h>
-
-#ifdef __linux__
-    #include <SDL2/SDL.h>
-#endif
-
-#ifdef _WIN64
-    #include "../SDL2/SDL.h"
-#endif
-
 #ifdef __cplusplus
-    namespace core { extern "C" {
+    namespace wzc { extern "C" {
 #endif
 
 struct Window

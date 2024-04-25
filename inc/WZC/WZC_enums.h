@@ -18,18 +18,10 @@
 
 #pragma once
 
-#ifdef __linux__
-    #include <SDL2/SDL_scancode.h>
-    #include <SDL2/SDL_ttf.h> 
-#endif
-
-#ifdef _WIN64
-    #include "../SDL2/SDL_scancode.h"
-    #include "../SDL2/SDL_ttf.h"
-#endif
+#include "WZC_include.h"
 
 #ifdef __cplusplus
-    namespace core { extern "C" {
+    namespace wzc { extern "C" {
 #endif
 
 enum Flip

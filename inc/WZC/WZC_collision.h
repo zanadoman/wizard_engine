@@ -17,14 +17,10 @@
 
 #pragma once
 
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdbool.h>
-#include <stddef.h>
-#include <errno.h>
+#include "WZC_include.h"
 
 #ifdef __cplusplus
-    namespace core { extern "C" {
+    namespace wzc { extern "C" {
 #endif
 
 struct ColliderBox
