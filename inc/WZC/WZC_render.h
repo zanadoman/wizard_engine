@@ -65,11 +65,11 @@ struct RenderObject
     double            _angle;
 };
 
-void InitRender(register const struct Window *window,
-                register const struct Camera *camera);
+void InitRender(const struct Window *window,
+                const struct Camera *camera);
 
-void UpdateRender(register struct RenderObject  *texs_begin[], 
-                  register struct RenderObject **texs_end);
+void UpdateRender(struct RenderObject  *texs_begin[], 
+                  struct RenderObject **texs_end);
 
 void FreeRender(void);
 

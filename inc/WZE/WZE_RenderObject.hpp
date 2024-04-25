@@ -4,9 +4,20 @@
 
 namespace wze
 {
-    class RenderObject : protected wzc::RenderObject
+    class RenderObject : public wzc::RenderObject
     {
         private: static std::vector<wzc::RenderObject*> objs;
+
+        private: using wzc::RenderObject::x;
+        private: using wzc::RenderObject::y;
+        private: using wzc::RenderObject::width;
+        private: using wzc::RenderObject::height;
+        private: using wzc::RenderObject::angle;
+        private: using wzc::RenderObject::flip;
+        private: using wzc::RenderObject::layer;
+        private: using wzc::RenderObject::priority;
+        private: using wzc::RenderObject::data;
+        private: using wzc::RenderObject::color;
 
         protected: float        GetX();
         protected: void         SetX(float value);

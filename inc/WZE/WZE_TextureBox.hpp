@@ -1,13 +1,12 @@
 #pragma once
 
-#include "WZE_render.hpp"
+#include "WZE_include.hpp"
+#include "WZE_RenderObject.hpp"
 #include "WZE_assets.hpp"
-
-#include <memory>
 
 namespace wze
 {
-    class TextureBox : private RenderObject
+    class TextureBox : public RenderObject
     {
         private: std::shared_ptr<Texture> texture;
 
@@ -55,7 +54,7 @@ namespace wze
                            uint16_t    width,
                            uint16_t    height,
                            float       angle,
-                           core::Flip  flip,
+                           wzc::Flip   flip,
                            float       layer,
                            uint8_t     priority,
                            Texture    *texture,

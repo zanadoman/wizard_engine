@@ -44,12 +44,12 @@ struct Mouse
     float   sens;
 };
 
-void InitInput(register const struct Window *window,
-               register enum InputKey        keys[KEY_COUNT],
-               register struct Mouse        *mouse);
+void InitInput(const struct Window *window,
+               enum InputKey        keys[KEY_COUNT],
+               struct Mouse        *mouse);
 
-void UpdateInput(register const SDL_Event  events_begin[],
-                 register const SDL_Event *events_end);
+void UpdateInput(const SDL_Event  events_begin[],
+                 const SDL_Event *events_end);
 
 #ifdef __cplusplus
     }}

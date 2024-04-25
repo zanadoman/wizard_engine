@@ -39,9 +39,9 @@ struct ColliderBox
     uint16_t drag;
 };
 
-void UpdateCollision(register struct ColliderBox  *root, 
-                     register struct ColliderBox  *layer_begin[],
-                     register struct ColliderBox **layer_end); 
+void UpdateCollision(struct ColliderBox  *root, 
+                     struct ColliderBox  *layer_begin[],
+                     struct ColliderBox **layer_end); 
 #ifdef __cplusplus 
     }}
 #endif

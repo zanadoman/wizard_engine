@@ -2,7 +2,7 @@
 
 namespace wze
 {
-    std::vector<core::RenderObject*> RenderObject::objs;
+    std::vector<wzc::RenderObject*> RenderObject::objs;
 
     float RenderObject::GetX()
     {
@@ -69,14 +69,14 @@ namespace wze
         this->angle = value;
     }
 
-    core::Flip RenderObject::GetFlip()
+    wzc::Flip RenderObject::GetFlip()
     {
         return this->flip;
     }
 
-    void RenderObject::SetFlip(core::Flip value)
+    void RenderObject::SetFlip(wzc::Flip value)
     {
-        if (value < core::FLIP_NONE || core::FLIP_COUNT <= value)
+        if (value < wzc::FLIP_NONE || wzc::FLIP_COUNT <= value)
         {
             throw std::invalid_argument("invalid value");
         }
@@ -165,7 +165,7 @@ namespace wze
                                uint16_t     width,
                                uint16_t     height,
                                float        angle,
-                               core::Flip   flip,
+                               wzc::Flip   flip,
                                float        layer,
                                uint8_t      priority,
                                SDL_Texture *data,
@@ -197,7 +197,7 @@ namespace wze
                        0,
                        0,
                        0,
-                       core::FLIP_NONE,
+                       wzc::FLIP_NONE,
                        0,
                        UINT8_MAX >> 1,
                        nullptr,
@@ -213,7 +213,7 @@ namespace wze
 
     void RenderObject::UpdateRender()
     {
-        core::UpdateRender(RenderObject::objs.data(),
+        wzc::UpdateRender(RenderObject::objs.data(),
                            RenderObject::objs.data() + RenderObject::objs.size());
     }
 }
