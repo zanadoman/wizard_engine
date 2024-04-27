@@ -62,7 +62,6 @@ namespace wze
                            uint8_t     color_g,
                            uint8_t     color_b,
                            uint8_t     color_a);
-        
         public: TextureBox();
     };
 }

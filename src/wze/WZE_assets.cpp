@@ -2,80 +2,57 @@
 
 namespace wze
 {
-    Texture::Texture(std::string path)
-    {
-        SDL_Surface *tmp;
-
-        if ((tmp = IMG_Load(path.c_str())) == nullptr)
-        {
-            throw new std::invalid_argument("invalid path");
-        }
-        if ((this->data = SDL_CreateTextureFromSurface(, tmp)) == nullptr)
-        {
-            throw new std::runtime_error("SDL_CreateTextureFromSurface failed");
-        }
-
-        SDL_FreeSurface(tmp);
+    const SDL_Texture* texture::get_data() {
+        return this->data;
     }
 
-    Texture::~Texture()
-    {
+    texture::texture(std::string path) {
+        if ((this->data = IMG_LoadTexture(, path.c_str())) == nullptr) {
+            throw std::runtime_error(SDL_GetError());
+        }
+    }
+
+    std::shared_ptr<texture> texture::create(std::string path) {
+        return std::shared_ptr<texture>(new texture(path));
+    }
+
+    texture::~texture() {
         SDL_DestroyTexture(this->data);
     }
 
-    bool Texture::operator == (Texture &other)
-    {
-        return other.data == this->data;
-    }
-
-    SDL_Texture *Texture::GetData()
-    {
+    const Mix_Chunk* sound::get_data() {
         return this->data;
     }
 
-    Sound::Sound(std::string path)
-    {
-        if ((this->data = Mix_LoadWAV(path.c_str())) == nullptr)
-        {
-            throw std::invalid_argument("invalid path");
+    sound::sound(std::string path) {
+        if ((this->data = Mix_LoadWAV(path.c_str())) == nullptr) {
+            throw std::runtime_error(Mix_GetError());
         }
     }
 
-    Sound::~Sound()
-    {
+    std::shared_ptr<sound> sound::create(std::string path) {
+        return std::shared_ptr<sound>(new sound(path));
+    }
+
+    sound::~sound() {
         Mix_FreeChunk(this->data);
     }
 
-    bool Sound::operator == (Sound &other)
-    {
-        return other.data == this->data;
-    }
-
-    Mix_Chunk *Sound::GetData()
-    {
+    const TTF_Font* font::get_data() {
         return this->data;
     }
 
-    Font::Font(std::string path, uint8_t size)
-    {
-        if ((this->data = TTF_OpenFont(path.c_str(), size)) == nullptr)
-        {
-            throw std::invalid_argument("invalid path");
+    font::font(std::string path, uint8_t size) {
+        if ((this->data = TTF_OpenFont(path.c_str(), size)) == nullptr) {
+            throw std::runtime_error(TTF_GetError());
         }
     }
 
-    Font::~Font()
-    {
+    std::shared_ptr<font> font::create(std::string path, uint8_t size) {
+        return std::shared_ptr<font>(new font(path, size));
+    }
+
+    font::~font() {
         TTF_CloseFont(this->data);
-    }
-
-    bool Font::operator == (Font &other)
-    {
-        return other.data == this->data;
-    }
-
-    TTF_Font *Font::GetData()
-    {
-        return this->data;
     }
 }

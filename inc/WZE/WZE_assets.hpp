@@ -1,59 +1,36 @@
 #pragma once
 
-#ifdef __linux__
-    #include <SDL2/SDL.h>
-    #include <SDL2/SDL_image.h>
-    #include <SDL2/SDL_mixer.h>
-    #include <SDL2/SDL_ttf.h>
-#endif
-
-#ifdef _WIN64
-    #include <SDL2/SDL.h>
-    #include "../SDL2/SDL_image.h"
-    #include "../SDL2/SDL_mixer.h"
-    #include "../SDL2/SDL_ttf.h"
-#endif
-
-#include <cstdint>
-#include <string>
-#include <memory>
-#include <stdexcept>
+#include "WZE_include.hpp"
 
 namespace wze
 {
-    class Texture
-    {
+    class texture {
         private: SDL_Texture *data;
 
-        public:  Texture(std::string path);
-        public: ~Texture();
+        public: const SDL_Texture* get_data();
 
-        public: bool operator == (Texture &other);
+        private: texture(std::string path);
+        public: static std::shared_ptr<texture> create(std::string path);
+        public: ~texture();
+    }; typedef std::shared_ptr<texture> texture_t;
 
-        public: SDL_Texture *GetData();
-    };
-
-    class Sound
-    {
+    class sound {
         private: Mix_Chunk *data;
 
-        public:  Sound(std::string path);
-        public: ~Sound();
+        public: const Mix_Chunk* get_data();
 
-        public: bool operator == (Sound &other);
+        private: sound(std::string path);
+        public: static std::shared_ptr<sound> create(std::string path);
+        public: ~sound();
+    }; typedef std::shared_ptr<sound> sound_t;
 
-        public: Mix_Chunk *GetData();
-    };
-
-    class Font
-    {
+    class font {
         private: TTF_Font *data;
 
-        public:  Font(std::string path, uint8_t size);
-        public: ~Font();
+        public: const TTF_Font* get_data();
 
-        public: bool operator == (Font &other);
-
-        public: TTF_Font *GetData();
-    };
+        private: font(std::string path, uint8_t size);
+        public: static std::shared_ptr<font> create(std::string path, uint8_t size);
+        public: ~font();
+    }; typedef std::shared_ptr<font> font_t;
 }
