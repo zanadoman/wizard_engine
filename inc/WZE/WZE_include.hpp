@@ -1,12 +1,11 @@
 #pragma once
 
-#include <memory>
 #include <cstdint>
 #include <string>
 #include <vector>
 #include <algorithm>
-
-#include "../WZC/WizardCore.h"
+#include <memory>
+#include <stdexcept>
 
 #ifdef __linux__
     #include <SDL2/SDL.h>
@@ -23,3 +22,7 @@
     #include "../SDL2/SDL_ttf.h"
     #include "../SDL2/SDL_net.h"
 #endif
+
+#define PI 3.1415927f
+#define DEG_MAX 360.0f
+#define RAD_MAX 6.2831855f

@@ -1,13 +1,8 @@
 #pragma once
 
-#include <cmath>
-#include <stdexcept>
+#include "WZE_include.hpp"
 
 namespace wze {
-    #define PI 3.1415927f
-    #define DEG_MAX 360.0f
-    #define RAD_MAX 6.2831855f
-
     struct vector {
         private: float x;
         private: float y;
