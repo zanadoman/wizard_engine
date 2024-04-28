@@ -1,8 +1,7 @@
 #pragma once
 
-#include "WZE_include.hpp"
-
-#include "WZE_point.hpp"
+#include "WZE_include.hpp" // IWYU pragma: keep
+#include "WZE_vector.hpp" // IWYU pragma: keep
 
 namespace wze {
     class socket : public vector {
@@ -31,7 +30,7 @@ namespace wze {
         public: bool get_angle_lock();
         public: void set_angle_lock(bool value);
 
-        protected: socket(vector base, float angle, 
+        public: socket(vector base, float angle, 
                           vector origo, float origo_angle);
 
         private: void update(vector origo, float origo_angle);

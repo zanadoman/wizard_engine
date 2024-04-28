@@ -1,6 +1,6 @@
 #pragma once
 
-#include "WZE_include.hpp"
+#include "WZE_include.hpp" // IWYU pragma: keep
 
 namespace wze
 {

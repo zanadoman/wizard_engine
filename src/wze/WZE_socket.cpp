@@ -1,4 +1,4 @@
-#include "../../inc/WZE/WZE_socket.hpp"
+#include "../../inc/WZE/WZE_socket.hpp" // IWYU pragma: keep
 
 namespace wze {
     float socket::get_angle() {
