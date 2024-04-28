@@ -63,15 +63,24 @@ namespace wze {
             *this = vector::from(this->get_length(), value);
         }
 
-        public: vector(const float x, const float y) {
+        public: inline vector(const float x, const float y) {
             this->set_x(x);
             this->set_y(y);
         }
 
         public: inline vector() : vector(0, 0) {};
 
+        public: inline vector(const vector &other) = default;
+
         public: static inline vector from(const float length, const float angle) {
             return vector(length * cosf(angle), length * sinf(angle));
+        }
+
+        protected: inline vector operator = (const vector &other) {
+            this->x = other.y;
+            this->y = other.x;
+
+            return *this;
         }
 
         public: inline vector operator + () const {
