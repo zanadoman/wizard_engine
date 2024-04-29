@@ -31,13 +31,19 @@ namespace wze {
             this->y = value;
         }
 
-        protected: inline point(const float x, const float y) {
+        public: inline point(const float x, const float y) {
             this->set_x(x);
             this->set_y(y);
         }
 
-        protected: inline point() : point(0, 0) {}
+        public: inline point() : point(0, 0) {}
 
-        protected: inline point(const point &other) : point(other.x, other.y) {}
-    }; typedef std::shared_ptr<point> point_t;
+        public: inline virtual point& operator = (const point &p) {
+            this->set_x(p.x);
+            this->set_y(p.y);
+            return *this;
+        }
+
+        public: inline virtual ~point() = default;
+    }; typedef point point_t;
 }

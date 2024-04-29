@@ -13,10 +13,10 @@ namespace wze {
         private: uint16_t force;
         private: uint16_t resistance;
         private: uint8_t layer;
-        private: vector cur_top_left;
-        private: vector cur_bot_right;
-        private: vector prv_top_left;
-        private: vector prv_bot_right;
+        private: point cur_top_left;
+        private: point cur_bot_right;
+        private: point prv_top_left;
+        private: point prv_bot_right;
 
         public: inline virtual void set_x(const float value) override {
             vector::set_x(value);
@@ -35,6 +35,8 @@ namespace wze {
                 return;
             }
 
+            //Do stuff
+
             vector::set_y(value);
         }
 
@@ -42,6 +44,8 @@ namespace wze {
             if (force <= this->resistance) {
                 return;
             }
+
+            // Do stuff
 
             vector::set_x(value);
         }
