@@ -38,7 +38,7 @@ namespace wze {
 
         public: inline point() : point(0, 0) {}
 
-        public: inline virtual point& operator = (const point &p) {
+        public: inline point& operator = (const point &p) {
             this->set_x(p.x);
             this->set_y(p.y);
             return *this;
