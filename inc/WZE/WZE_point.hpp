@@ -39,5 +39,5 @@ namespace wze {
         protected: inline point() : point(0, 0) {}
 
         protected: inline point(const point &other) : point(other.x, other.y) {}
-    };
+    }; typedef std::shared_ptr<point> point_t;
 }

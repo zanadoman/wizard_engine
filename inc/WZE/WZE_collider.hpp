@@ -130,6 +130,11 @@ namespace wze {
                                                         this));
         }
 
+        public: inline bool operator == (const collider other) const {
+            return this->angle == other.angle && 
+                   this->width == other.width &&
+        }
+
         private: inline void update() {
             
         }
