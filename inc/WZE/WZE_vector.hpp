@@ -39,6 +39,8 @@ namespace wze {
 
         public: inline vector() : vector(0, 0) {}
 
+        public: inline vector(vector const &v) : point(v) {}
+
         public: inline virtual ~vector() = default;
 
         public: static inline vector from(const float length, const float angle) {
@@ -176,7 +178,7 @@ namespace wze {
         }
 
         public: inline bool operator == (const vector &v) const {
-            return this->get_x() == v.get_x() && this->get_y() == v.get_y();
+            return point::operator == (v);
         }
 
         public: inline bool operator != (const float x) const {
@@ -184,7 +186,7 @@ namespace wze {
         }
 
         public: inline bool operator != (const vector &v) const {
-            return this->get_x() != v.get_x() || this->get_y() != v.get_y();
+            return !(*this == v);
         }
     }; typedef struct vector vector_t;
 

@@ -109,38 +109,70 @@ namespace wze {
             this->layer = value;
         }
 
-        protected: inline collider(const float angle, const uint16_t width,
-                                   const uint16_t height, const uint8_t layer) {
-            if (angle != angle) {
-                throw std::invalid_argument("NaN angle");
-            }
-            
-            this->angle = angle;
-            this->width = width;
-            this->layer = height;
+        protected: inline collider(const float x, const float y, const float angle,
+                                   const uint16_t width, const uint16_t height,
+                                   const uint16_t force, const uint16_t resistance,
+                                   const uint8_t layer) : vector(x, y) {
+            this->set_angle(angle);
+            this->set_width(width);
+            this->set_height(height);
+            this->set_force(force);
+            this->set_resistance(resistance);
             this->set_layer(layer);
         }
 
-        public: static inline std::shared_ptr<collider> create(const float angle,
+        public: static inline std::shared_ptr<collider> create(const float x,
+                                                               const float y,
+                                                               const float angle,
                                                                const uint16_t width,
                                                                const uint16_t height,
+                                                               const uint16_t force,
+                                                               const uint16_t resistance,
                                                                const uint8_t layer) {
-            return std::shared_ptr<collider>(new collider(angle, width, height, layer));
+            return std::shared_ptr<collider>(new collider(x, y, angle, width, height,
+                                                          force, resistance, layer));
         }
 
-        public: inline ~collider() {
+        protected: inline collider(const collider &c) : vector(c) {
+            this->angle = c.angle;
+            this->width = c.width;
+            this->height = c.height;
+            this->force = c.force;
+            this->resistance = c.resistance;
+            this->layer = c.layer;
+            this->cur_top_left = c.cur_top_left;
+            this->cur_bot_right = c.cur_bot_right;
+            this->prv_top_left = c.prv_top_left;
+            this->prv_bot_right = c.prv_bot_right;
+            this->layers[this->layer].push_back(this);
+        }
+
+        public: static inline std::shared_ptr<collider> create(const collider &c) {
+            return std::shared_ptr<collider>(new collider(c));
+        }
+
+        public: inline virtual ~collider() {
             this->layers[this->layer].erase(std::remove(this->layers[this->layer].begin(),
                                                         this->layers[this->layer].end(),
                                                         this));
         }
 
-        public: inline bool operator == (const collider other) const {
-            return this->angle == other.angle && 
-                   this->width == other.width &&
+        public: inline bool operator == (const collider &c) const {
+            return vector::operator == (c) &&
+                   this->angle == c.angle && 
+                   this->width == c.width &&
+                   this->height == c.height &&
+                   this->force == c.force &&
+                   this->resistance == c.resistance &&
+                   this->layer == c.layer;
+        }
+
+        public: inline bool operator != (const collider &c) const {
+            return !(*this == c);
         }
 
         private: inline void update() {
             
         }
-    };
+    }; typedef std::shared_ptr<collider> collider_t;
 }

@@ -38,6 +38,11 @@ namespace wze {
 
         public: inline point() : point(0, 0) {}
 
+        public: inline point(const point &p) {
+            this->x = p.x;
+            this->y = p.y;
+        }
+
         public: inline point& operator = (const point &p) {
             this->set_x(p.x);
             this->set_y(p.y);
@@ -45,5 +50,13 @@ namespace wze {
         }
 
         public: inline virtual ~point() = default;
+
+        public: inline bool operator == (const point &p) const {
+            return this->x == p.x && this->y == p.y;
+        }
+
+        public: inline bool operator != (const point &p) const {
+            return !(*this == p);
+        }
     }; typedef point point_t;
 }
