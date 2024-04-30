@@ -17,15 +17,15 @@ namespace wze {
         }
 
         public: inline float get_angle() const {
-            if (this->get_y() < 0) {
-                return RAD_MAX - acosf(this->get_x() / this->get_length());
-            }
+            float result;
 
             if (this->get_y() == 0 && this->get_x() == 0) {
                 return 0;
             }
 
-            return acosf(this->get_x() / this->get_length());
+            result = acosf(this->get_x() / this->get_length());
+
+            return this->get_y() < 0 ? -result : result;
         }
 
         public: inline void set_angle(const float value) {
@@ -51,6 +51,12 @@ namespace wze {
             return *this = vector::from(x, this->get_angle());
         }
 
+        public: inline vector& operator = (const vector &v) {
+            this->set_x(v.get_x());
+            this->set_y(v.get_y());
+            return *this;
+        }
+
         public: inline vector operator + () {
             return *this;
         }
@@ -68,19 +74,27 @@ namespace wze {
         }
 
         public: inline vector& operator += (const float x) {
-            return *this = vector::from(this->get_length() + x, this->get_angle());
+            return *this = *this + x;
         }
 
         public: inline vector& operator += (const vector &v) {
-            return *this = vector(this->get_x() + v.get_x(), this->get_y() + v.get_y());
+            return *this = *this + v;
         }
 
         public: inline vector operator - (const float x) const {
             return vector::from(this->get_length() - x, this->get_angle());
         }
 
-        public: inline vector operator - (const vector v) const {
+        public: inline vector operator - (const vector &v) const {
             return vector(this->get_x() - v.get_x(), this->get_y() - v.get_y());
+        }
+
+        public: inline vector operator -= (const float x) {
+            return *this = *this - x;
+        }
+
+        public: inline vector operator -= (const vector &v) {
+            return *this = *this - v;
         }
 
         public: inline vector operator * (const float x) const {
@@ -92,17 +106,15 @@ namespace wze {
         }
 
         public: inline vector& operator *= (const float x) {
-            return *this = vector(this->get_x() * x, this->get_y() * x);
+            return *this = *this * x;
         }
 
         public: inline vector operator / (const float x) const {
             return vector(this->get_x() / x, this->get_y() / x);
         }
 
-        public: inline vector operator /= (const float x) {
-            this->set_x(this->get_x() / x);
-            this->set_y(this->get_y() / x);
-            return *this;
+        public: inline vector& operator /= (const float x) {
+            return *this = *this / x;
         }
 
         public: inline vector operator << (const float x) {
@@ -113,14 +125,12 @@ namespace wze {
             return vector::from(this->get_length(), this->get_angle() + v.get_angle());
         }
 
-        public: inline vector operator <<= (const float x) {
-            this->set_angle(this->get_angle() + x);
-            return *this;
+        public: inline vector& operator <<= (const float x) {
+            return *this = *this << x;
         }
 
-        public: inline vector operator <<= (const vector &v) {
-            this->set_angle(this->get_angle() + v.get_angle());
-            return *this;
+        public: inline vector& operator <<= (const vector &v) {
+            return *this = *this << v;
         }
 
         public: inline vector operator >> (const float x) {
@@ -131,14 +141,12 @@ namespace wze {
             return vector::from(this->get_length(), this->get_angle() - v.get_angle());
         }
 
-        public: inline vector operator >>= (const float x) {
-            this->set_angle(this->get_angle() - x);
-            return *this;
+        public: inline vector& operator >>= (const float x) {
+            return *this = *this >> x;
         }
 
-        public: inline vector operator >>= (const vector &v) {
-            this->set_angle(this->get_angle() - v.get_angle());
-            return *this;
+        public: inline vector& operator >>= (const vector &v) {
+            return *this = *this >> v;
         }
 
         public: inline bool operator < (const float x) const {
@@ -195,7 +203,7 @@ namespace wze {
     }
 
     inline float& operator += (float &x, const vector &v) {
-        return x += v.get_length();
+        return x = x + v;
     }
 
     inline float operator - (const float x, const vector &v) {
@@ -203,7 +211,7 @@ namespace wze {
     }
 
     inline float& operator -= (float &x, const vector &v) {
-        return x -= v.get_length();
+        return x = x - v;
     }
 
     inline float operator * (const float x, const vector &v) {
@@ -211,7 +219,7 @@ namespace wze {
     }
 
     inline float& operator *= (float &x, const vector &v) {
-        return x *= v.get_length();
+        return x = x * v;
     }
 
     inline float operator / (const float x, const vector &v) {
@@ -219,7 +227,7 @@ namespace wze {
     }
 
     inline float& operator /= (float &x, const vector &v) {
-        return x /= v.get_length();
+        return x = x / v;
     }
 
     inline float operator << (const float x, const vector &v) {
@@ -227,7 +235,7 @@ namespace wze {
     }
 
     inline float& operator <<= (float &x, const vector &v) {
-        return x += v.get_angle();
+        return x = x << v;
     }
 
     inline float operator >> (const float x, const vector &v) {
@@ -235,7 +243,7 @@ namespace wze {
     }
 
     inline float& operator >>= (float &x, const vector &v) {
-        return x -= v.get_angle();
+        return x = x >> v;
     }
 
     inline bool operator < (const float x, const vector &v) {
@@ -260,5 +268,9 @@ namespace wze {
 
     inline bool operator != (const float x, const vector &v) {
         return x != v.get_length();
+    }
+
+    inline std::ostream& operator << (std::ostream &os, const vector &v) {
+        return os << "(" << v.get_x() << ", " << v.get_y() << ")";
     }
 }
