@@ -16,7 +16,6 @@ inline float wze::vector::get_direction() const {
     }
 
     const float angle = acosf(this->get_x() / this->get_length());
-
     return this->get_y() < 0 ? -angle : angle;
 }
 
