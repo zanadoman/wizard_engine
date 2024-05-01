@@ -3,82 +3,57 @@
 #include "WZE_include.hpp" // IWYU pragma: keep
 #include "WZE_except.hpp" // IWYU pragma: keep
 
-namespace wze {
-    class _texture {
+namespace wze
+{
+    class texture
+    {
         private: SDL_Texture *data;
 
-        public: inline const
-        SDL_Texture* get_data() const {
-            return this->data;
-        }
+        public: SDL_Texture const*
+                get_data() const;
         
-        private: inline
-        _texture(const std::string path) {
-            if ((this->data = IMG_LoadTexture(nullptr, path.c_str())) == nullptr) {
-                throw wze_error(SDL_GetError()); 
-            }
-        }
+        private: texture(const std::string path); 
 
-        public: static inline
-        std::shared_ptr<_texture> load(const std::string path) {
-            return std::shared_ptr<_texture>(new _texture(path));
-        }
+        public: static std::shared_ptr<texture>
+                create(const std::string path); 
 
-        public: inline
-        ~_texture() {
-            SDL_DestroyTexture(this->data);
-        }
-    }; typedef std::shared_ptr<_texture> texture;
+        public: ~texture();
+    };
 
-    class _sound {
+    typedef std::shared_ptr<texture> texture_t;
+
+    class sound
+    {
         private: Mix_Chunk *data;
 
-        public: inline const
-        Mix_Chunk* get_data() const {
-            return this->data;
-        }
+        public: Mix_Chunk const*
+                get_data() const; 
 
-        private: inline
-        _sound(const std::string path) {
-            if ((this->data = Mix_LoadWAV(path.c_str())) == nullptr) {
-                throw wze_error(Mix_GetError());
-            }
-        }
+        private: sound(const std::string path);
 
-        public: static inline
-        std::shared_ptr<_sound> load(const std::string path) {
-            return std::shared_ptr<_sound>(new _sound(path));
-        }
+        public: static std::shared_ptr<sound>
+                create(const std::string path);
 
-        public: inline
-        ~_sound() {
-            Mix_FreeChunk(this->data);
-        }
-    }; typedef std::shared_ptr<_sound> sound;
+        public: ~sound();
+    };
 
-    class _font {
+    typedef std::shared_ptr<sound> sound_t;
+
+    class font {
         private: TTF_Font *data;
 
-        public: inline const
-        TTF_Font* get_data() const {
-            return this->data;
-        }
+        public: TTF_Font const* 
+                get_data() const;
 
-        private: inline 
-        _font(const std::string path, const uint8_t size) {
-            if ((this->data = TTF_OpenFont(path.c_str(), size)) == nullptr) {
-                throw wze_error(TTF_GetError());
-            }
-        }
+        private: font(const std::string path,
+                      const uint8_t size); 
 
-        public: static inline
-        std::shared_ptr<_font> load(const std::string path, const uint8_t size) {
-            return std::shared_ptr<_font>(new _font(path, size));
-        }
+        public: static std::shared_ptr<font>
+                create(const std::string path,
+                       const uint8_t size); 
 
-        public: inline
-        ~_font() {
-            TTF_CloseFont(this->data);
-        }
-    }; typedef std::shared_ptr<_font> font;
+        public: ~font();
+    };
+
+    typedef std::shared_ptr<font> font_t;
 }

@@ -3,274 +3,218 @@
 #include "WZE_include.hpp" // IWYU pragma: keep
 #include "WZE_point.hpp" // IWYU pragma: keep
 
-namespace wze {
-    struct vector : public point {
-        public: inline float get_length() const {
-            return sqrtf(this->get_x() * this->get_x() + this->get_y() * this->get_y());
-        }
+namespace wze
+{
+    struct vector : public point
+    {
+        public: float
+                get_length() const;
 
-        public: inline void set_length(float value) {
-            const float angle = this->get_angle();
+        public: void
+                set_length(const float length);
 
-            this->set_x(value * cosf(angle));
-            this->set_y(value * sinf(angle));
-        }
+        public: float
+                get_angle() const;
 
-        public: inline float get_angle() const {
-            float result;
+        public: void
+                set_angle(const float angle);
 
-            if (this->get_y() == 0 && this->get_x() == 0) {
-                return 0;
-            }
+        public: vector(const float x, const float y);
 
-            result = acosf(this->get_x() / this->get_length());
+        public: vector();
 
-            return this->get_y() < 0 ? -result : result;
-        }
+        public: vector(const vector &v);
 
-        public: inline void set_angle(const float value) {
-            const float length = this->get_length();
+        public: inline virtual
+                ~vector() = default;
 
-            this->set_x(length * cosf(value));
-            this->set_y(length * sinf(value));
-        }
+        public: static vector
+                from(const float length,
+                     const float angle);
 
-        public: inline vector(const float x, const float y) : point(x, y) {}
+        public: vector&
+                operator = (const float x);
 
-        public: inline vector() : vector(0, 0) {}
+        public: vector&
+                operator = (const vector &v);
 
-        public: inline vector(vector const &v) : point(v) {}
+        public: vector
+                operator + (void) const;
 
-        public: inline virtual ~vector() = default;
+        public: vector
+                operator - (void) const;
 
-        public: static inline vector from(const float length, const float angle) {
-            return vector(length * cosf(angle), length * sinf(angle));
-        }
+        public: vector
+                operator + (const float x) const;
 
-        public: inline vector& operator = (const float x) {
-            return *this = vector::from(x, this->get_angle());
-        }
+        public: vector
+                operator + (const vector &v) const;
 
-        public: inline vector& operator = (const vector &v) {
-            this->set_x(v.get_x());
-            this->set_y(v.get_y());
-            return *this;
-        }
+        public: vector&
+                operator += (const float x);
 
-        public: inline vector operator + () {
-            return *this;
-        }
+        public: vector&
+                operator += (const vector &v);
 
-        public: inline vector operator - () const {
-            return vector(-this->get_x(), -this->get_y());
-        }
+        public: vector
+                operator - (const float x) const;
 
-        public: inline vector operator + (const float x) const {
-            return vector::from(this->get_length() + x, this->get_angle());
-        }
+        public: vector
+                operator - (const vector &v) const;
 
-        public: inline vector operator + (const vector &v) const {
-            return vector(this->get_x() + v.get_x(), this->get_y() + v.get_y());
-        }
+        public: vector&
+                operator -= (const float x);
 
-        public: inline vector& operator += (const float x) {
-            return *this = *this + x;
-        }
+        public: vector&
+                operator -= (const vector &v);
 
-        public: inline vector& operator += (const vector &v) {
-            return *this = *this + v;
-        }
+        public: vector
+                operator * (const float x) const;
 
-        public: inline vector operator - (const float x) const {
-            return vector::from(this->get_length() - x, this->get_angle());
-        }
+        public: float
+                operator * (const vector &v) const;
 
-        public: inline vector operator - (const vector &v) const {
-            return vector(this->get_x() - v.get_x(), this->get_y() - v.get_y());
-        }
+        public: vector&
+                operator *= (const float x);
 
-        public: inline vector operator -= (const float x) {
-            return *this = *this - x;
-        }
+        public: vector
+                operator / (const float x) const;
 
-        public: inline vector operator -= (const vector &v) {
-            return *this = *this - v;
-        }
+        public: vector&
+                operator /= (const float x);
 
-        public: inline vector operator * (const float x) const {
-            return vector(this->get_x() * x, this->get_y() * x);
-        }
+        public: vector
+                operator << (const float x) const;
 
-        public: inline float operator * (const vector &v) const {
-            return this->get_x() * v.get_x() + this->get_y() * v.get_y(); 
-        }
-
-        public: inline vector& operator *= (const float x) {
-            return *this = *this * x;
-        }
-
-        public: inline vector operator / (const float x) const {
-            return vector(this->get_x() / x, this->get_y() / x);
-        }
-
-        public: inline vector& operator /= (const float x) {
-            return *this = *this / x;
-        }
-
-        public: inline vector operator << (const float x) {
-            return vector::from(this->get_length(), this->get_angle() + x);
-        }
-
-        public: inline vector operator << (const vector &v) {
-            return vector::from(this->get_length(), this->get_angle() + v.get_angle());
-        }
-
-        public: inline vector& operator <<= (const float x) {
-            return *this = *this << x;
-        }
-
-        public: inline vector& operator <<= (const vector &v) {
-            return *this = *this << v;
-        }
-
-        public: inline vector operator >> (const float x) {
-            return vector::from(this->get_length(), this->get_angle() - x);
-        }
-
-        public: inline vector operator >> (const vector &v) {
-            return vector::from(this->get_length(), this->get_angle() - v.get_angle());
-        }
-
-        public: inline vector& operator >>= (const float x) {
-            return *this = *this >> x;
-        }
-
-        public: inline vector& operator >>= (const vector &v) {
-            return *this = *this >> v;
-        }
-
-        public: inline bool operator < (const float x) const {
-            return this->get_length() < x;
-        }
-
-        public: inline bool operator < (const vector &v) const {
-            return this->get_length() < v.get_length();
-        }
-
-        public: inline bool operator <= (const float x) const {
-            return this->get_length() <= x;
-        }
-
-        public: inline bool operator <= (const vector &v) const {
-            return this->get_length() <= v.get_length();
-        }
-
-        public: inline bool operator > (const float x) const {
-            return this->get_length() > x;
-        }
-
-        public: inline bool operator > (const vector &v) const {
-            return this->get_length() > v.get_length();
-        }
-
-        public: inline bool operator >= (const float x) const {
-            return this->get_length() >= x;
-        }
-
-        public: inline bool operator >= (const vector &v) const {
-            return this->get_length() >= v.get_length();
-        }
-
-        public: inline bool operator == (const float x) const {
-            return this->get_length() == x;
-        }
-
-        public: inline bool operator == (const vector &v) const {
-            return point::operator == (v);
-        }
-
-        public: inline bool operator != (const float x) const {
-            return this->get_length() != x;
-        }
-
-        public: inline bool operator != (const vector &v) const {
-            return !(*this == v);
-        }
-    }; typedef struct vector vector_t;
-
-    inline float operator + (const float x, const vector &v) {
-        return x + v.get_length();
-    }
-
-    inline float& operator += (float &x, const vector &v) {
-        return x = x + v;
-    }
-
-    inline float operator - (const float x, const vector &v) {
-        return x - v.get_length();
-    }
-
-    inline float& operator -= (float &x, const vector &v) {
-        return x = x - v;
-    }
-
-    inline float operator * (const float x, const vector &v) {
-        return x * v.get_length();
-    }
-
-    inline float& operator *= (float &x, const vector &v) {
-        return x = x * v;
-    }
-
-    inline float operator / (const float x, const vector &v) {
-        return x / v.get_length();
-    }
-
-    inline float& operator /= (float &x, const vector &v) {
-        return x = x / v;
-    }
-
-    inline float operator << (const float x, const vector &v) {
-        return x + v.get_angle();
-    }
-
-    inline float& operator <<= (float &x, const vector &v) {
-        return x = x << v;
-    }
-
-    inline float operator >> (const float x, const vector &v) {
-        return x - v.get_angle();
-    }
-
-    inline float& operator >>= (float &x, const vector &v) {
-        return x = x >> v;
-    }
-
-    inline bool operator < (const float x, const vector &v) {
-        return x < v.get_length();
-    }
-
-    inline bool operator <= (const float x, const vector &v) {
-        return x <= v.get_length();
-    }
-
-    inline bool operator > (const float x, const vector &v) {
-        return x > v.get_length();
-    }
-
-    inline bool operator >= (const float x, const vector &v) {
-        return x >= v.get_length();
-    }
-
-    inline bool operator == (const float x, const vector &v) {
-        return x == v.get_length();
-    }
-
-    inline bool operator != (const float x, const vector &v) {
-        return x != v.get_length();
-    }
-
-    inline std::ostream& operator << (std::ostream &os, const vector &v) {
-        return os << "(" << v.get_x() << ", " << v.get_y() << ")";
-    }
+        public: vector
+                operator << (const vector &v) const;
+
+        public: vector&
+                operator <<= (const float x);
+
+        public: vector&
+                operator <<= (const vector &v);
+
+        public: vector
+                operator >> (const float x) const;
+
+        public: vector
+                operator >> (const vector &v) const;
+
+        public: vector&
+                operator >>= (const float x);
+
+        public: vector&
+                operator >>= (const vector &v);
+
+        public: bool
+                operator < (const float x) const;
+
+        public: bool
+                operator < (const vector &v) const;
+
+        public: bool
+                operator <= (const float x) const;
+
+        public: bool
+                operator <= (const vector &v) const;
+
+        public: bool
+                operator > (const float x) const;
+
+        public: bool
+                operator > (const vector &v) const;
+
+        public: bool
+                operator >= (const float x) const;
+
+        public: bool
+                operator >= (const vector &v) const;
+
+        public: bool
+                operator == (const float x) const;
+
+        public: bool
+                operator == (const vector &v) const;
+
+        public: bool
+                operator != (const float x) const;
+
+        public: bool
+                operator != (const vector &v) const;
+    };
+
+    typedef struct vector vector_t;
 }
+
+float
+operator + (const float x,
+            const wze::vector &v);
+
+float&
+operator += (float &x,
+             const wze::vector &v);
+
+float
+operator - (const float x,
+            const wze::vector &v);
+
+float&
+operator -= (float &x,
+             const wze::vector &v);
+
+float
+operator * (const float x,
+            const wze::vector &v);
+
+float&
+operator *= (float &x,
+             const wze::vector &v);
+
+float
+operator / (const float x,
+            const wze::vector &v);
+
+float&
+operator /= (float &x,
+             const wze::vector &v);
+
+float
+operator << (const float x,
+             const wze::vector &v);
+
+float&
+operator <<= (float &x,
+              const wze::vector &v);
+
+float
+operator >> (const float x,
+             const wze::vector &v);
+
+float&
+operator >>= (float &x,
+              const wze::vector &v);
+
+bool
+operator < (const float x,
+            const wze::vector &v);
+
+bool
+operator <= (const float x,
+             const wze::vector &v);
+
+bool
+operator > (const float x,
+            const wze::vector &v);
+
+bool
+operator >= (const float x,
+             const wze::vector &v);
+
+bool
+operator == (const float x,
+             const wze::vector &v);
+
+bool
+operator != (const float x,
+             const wze::vector &v);
