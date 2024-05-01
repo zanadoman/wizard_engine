@@ -14,10 +14,10 @@ namespace wze
                 set_length(const float length);
 
         public: float
-                get_angle() const;
+                get_direction() const;
 
         public: void
-                set_angle(const float angle);
+                set_direction(const float direction);
 
         public: vector(const float x, const float y);
 
@@ -30,7 +30,7 @@ namespace wze
 
         public: static vector
                 from(const float length,
-                     const float angle);
+                     const float direction);
 
         public: vector&
                 operator = (const float x);

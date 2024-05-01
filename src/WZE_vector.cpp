@@ -1,4 +1,4 @@
-#include "../inc/WZE/WZE_vector.hpp"
+#include "../inc/WZE/WZE_vector.hpp" // IWYU pragma: keep
 
 inline float
 wze::vector::get_length() const
@@ -9,13 +9,13 @@ wze::vector::get_length() const
 void
 wze::vector::set_length(const float length)
 {
-    const float angle = this->get_angle();
-    this->set_x(length * cosf(angle));
-    this->set_y(length * sinf(angle));
+    const float direction = this->get_direction();
+    this->set_x(length * cosf(direction));
+    this->set_y(length * sinf(direction));
 }
 
 inline float
-wze::vector::get_angle() const
+wze::vector::get_direction() const
 {
     if (point::operator == (point(0, 0)))
         return 0;
@@ -25,11 +25,11 @@ wze::vector::get_angle() const
 }
 
 void
-wze::vector::set_angle(const float angle)
+wze::vector::set_direction(const float direction)
 {
     const float length = this->get_length();
-    this->set_x(length * cosf(angle));
-    this->set_y(length * sinf(angle));
+    this->set_x(length * cosf(direction));
+    this->set_y(length * sinf(direction));
 }
 
 inline
@@ -45,15 +45,15 @@ wze::vector::vector(const vector &v)
 
 inline wze::vector
 wze::vector::from(const float length,
-                  const float angle)
+                  const float direction)
 {
-    return vector(length * cosf(angle), length * sinf(angle));
+    return vector(length * cosf(direction), length * sinf(direction));
 }
 
 wze::vector&
 wze::vector::operator = (const float x)
 {
-    return *this = vector::from(x, this->get_angle());
+    return *this = vector::from(x, this->get_direction());
 }
 
 inline wze::vector&
@@ -79,7 +79,7 @@ wze::vector::operator - (void) const
 inline wze::vector
 wze::vector::operator + (const float x) const
 {
-    return from(this->get_length() + x, this->get_angle());
+    return from(this->get_length() + x, this->get_direction());
 }
 
 inline wze::vector
@@ -103,7 +103,7 @@ wze::vector::operator += (const vector &v)
 inline wze::vector
 wze::vector::operator - (const float x) const
 {
-    return from(this->get_length() - x, this->get_angle());
+    return from(this->get_length() - x, this->get_direction());
 }
 
 inline wze::vector
@@ -157,13 +157,13 @@ wze::vector::operator /= (const float x)
 inline wze::vector
 wze::vector::operator << (const float x) const
 {
-    return from(this->get_length(), this->get_angle() + x);
+    return from(this->get_length(), this->get_direction() + x);
 }
 
 inline wze::vector
 wze::vector::operator << (const vector &v) const
 {
-    return from(this->get_length(), this->get_angle() + v.get_angle());
+    return from(this->get_length(), this->get_direction() + v.get_direction());
 }
 
 wze::vector&
@@ -181,13 +181,13 @@ wze::vector::operator <<= (const vector &v)
 inline wze::vector
 wze::vector::operator >> (const float x) const
 {
-    return from(this->get_length(), this->get_angle() - x);
+    return from(this->get_length(), this->get_direction() - x);
 }
 
 inline wze::vector
 wze::vector::operator >> (const vector &v) const
 {
-    return from(this->get_length(), this->get_angle() - v.get_angle());
+    return from(this->get_length(), this->get_direction() - v.get_direction());
 }
 
 wze::vector&
@@ -334,7 +334,7 @@ inline float
 operator << (const float x,
              const wze::vector &v)
 {
-    return x + v.get_angle();
+    return x + v.get_direction();
 }
 
 float&
@@ -348,7 +348,7 @@ inline float
 operator >> (const float x,
              const wze::vector &v)
 {
-    return x - v.get_angle();
+    return x - v.get_direction();
 }
 
 float&

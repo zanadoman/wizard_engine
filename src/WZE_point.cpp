@@ -1,4 +1,4 @@
-#include "../inc/WZE/WZE_point.hpp"
+#include "../inc/WZE/WZE_point.hpp" // IWYU pragma: keep
 
 inline float
 wze::point::get_x() const

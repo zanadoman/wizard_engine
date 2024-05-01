@@ -1,4 +1,4 @@
-#include "../inc/WZE/WZE_assets.hpp"
+#include "../inc/WZE/WZE_assets.hpp" // IWYU pragma: keep
 
 namespace wze
 {
