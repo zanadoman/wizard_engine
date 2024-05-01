@@ -91,15 +91,17 @@ namespace wze
 
         protected: collider(const collider &c);
 
-        public: static inline std::shared_ptr<collider> create(const collider &c) {
-            return std::shared_ptr<collider>(new collider(c));
-        }
+        public: static std::shared_ptr<collider>
+                create(const collider &c);
 
-        public: inline virtual ~collider() {
-            this->layers[this->layer].erase(std::remove(this->layers[this->layer].begin(),
-                                                        this->layers[this->layer].end(),
-                                                        this));
-        }
+        public: virtual
+                ~collider();
+
+        private: void
+                 update_area();
+
+        private: void
+                 update_layer();
 
         public: bool
                 operator == (const collider &c) const;

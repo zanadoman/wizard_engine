@@ -1,4 +1,5 @@
 #include "../inc/WZE/WZE_collider.hpp" // IWYU pragma: keep
+#include <sys/types.h>
 
 std::vector<std::vector<wze::collider*>> wze::collider::layers(UINT8_MAX);
 
@@ -179,6 +180,39 @@ wze::collider::collider(const collider &c)
 
     if (this->layer != UINT8_MAX)
         layers[this->layer].push_back(this);
+}
+
+std::shared_ptr<wze::collider>
+wze::collider::create(const collider &c)
+{
+    return std::shared_ptr<collider>(new collider(c));
+}
+
+wze::collider::~collider()
+{
+    if (this->layer != UINT8_MAX)
+        layers[this->layer].erase(std::remove(layers[this->layer].begin(),
+                                              layers[this->layer].end(),
+                                              this));
+}
+
+inline void
+wze::collider::update_area()
+{
+    const uint16_t x = this->width >> 1;
+    const uint16_t y = this->height >> 1;
+
+    this->cur_top_left = *this + (vector(-x, y) << this->angle);
+    this->cur_bot_right = *this + (vector(x, -y) << this->angle);
+}
+
+inline void
+wze::collider::update_layer()
+{
+    for (auto elem : layers[this->layer]) {
+        elem->prv_top_left = elem->cur_top_left;
+        elem->prv_bot_right = elem->cur_bot_right;
+    }
 }
 
 inline bool
