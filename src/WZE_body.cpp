@@ -112,7 +112,7 @@ wze::body::body(float x, float y, float angle, uint16_t width, uint16_t height,
     this->mass = mass;
     this->layer = layer;
     this->update_area();
-    this->update_previous();
+    this->update_position();
 
     if (this->layer != UINT8_MAX) {
         this->bodies[this->layer].push_back(this);
@@ -185,7 +185,7 @@ void wze::body::update_area() {
     #undef DEG_180
 }
 
-void wze::body::update_previous() {
+void wze::body::update_position() {
     if (this->cur_tl_x == this->prv_tl_x && this->cur_tl_y == this->prv_tl_y &&
         this->cur_br_x == this->prv_br_x && this->cur_br_y == this->prv_br_y) {
         return;

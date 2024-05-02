@@ -29,3 +29,18 @@ wze::font wze::load_font(const std::string path, uint8_t size) {
 
     return font(result, TTF_CloseFont);
 }
+
+wze::text wze::render_text(const std::string string, font font, style style) {
+    SDL_Surface *result;
+    SDL_Color color;
+
+    color = {255, 255, 255, 255};
+
+    TTF_SetFontStyle(font.get(), style);
+
+    if ((result = TTF_RenderUTF8_Blended(font.get(), string.c_str(), color)) == nullptr) {
+        throw wze_error(TTF_GetError());
+    }
+
+    return text(result, SDL_FreeSurface);
+}
