@@ -3,6 +3,10 @@
 std::vector<std::vector<wze::collider*>> wze::collider::layers(UINT8_MAX);
 
 void wze::collider::set_x(const float x) {
+    std::vector<collider*> candidates;
+    int32_t rem_force;
+    vector diff;
+
     vector::set_x(x);
     this->update_area();
 
@@ -10,12 +14,26 @@ void wze::collider::set_x(const float x) {
         return;
     }
 
-    // Do stuff
+    rem_force = this->force;
 
-    this->update_layer();
+    for (auto elem : layers[this->layer]) {
+        if (this->is_colliding(elem)) {
+            rem_force -= elem->resistance;
+            candidates.push_back(elem);
+        }
+    }
+
+    if (0 < rem_force) {
+        for (auto elem : layers[this->layer]) {
+            elem->set_x(this, vector(x, this->get_y()) - *this,
+                        elem->resistance + rem_force);
+            elem->set_x()
+        }
+    }
 }
 
-inline void wze::collider::set_x(const float x, const uint16_t force) {
+inline void wze::collider::set_x(const collider *const root, const vector diff, 
+                                 const uint16_t force) {
     if (force <= this->resistance) {
         return;
     }
@@ -32,8 +50,6 @@ void wze::collider::set_y(const float y) {
     }
 
     // Do stuff
-    
-    this->update_layer();
 }
 
 inline void wze::collider::set_y(const float x, const uint16_t force) {
@@ -125,10 +141,8 @@ wze::collider::collider(const collider &c) : vector(c) {
     this->force = c.force;
     this->resistance = c.resistance;
     this->layer = c.layer;
-    this->cur_top_left = c.cur_top_left;
-    this->cur_bot_right = c.cur_bot_right;
-    this->prv_top_left = c.prv_top_left;
-    this->prv_bot_right = c.prv_bot_right;
+    this->top_left = c.top_left;
+    this->bot_right = c.bot_right;
 
     if (this->layer != UINT8_MAX) {
         layers[this->layer].push_back(this);
@@ -147,15 +161,19 @@ inline void wze::collider::update_area() {
     const uint16_t x = this->width >> 1;
     const uint16_t y = this->height >> 1;
 
-    this->cur_top_left = *this + (vector(-x, y) << this->angle);
-    this->cur_bot_right = *this + (vector(x, -y) << this->angle);
+    this->top_left = *this + (vector(-x, y) << this->angle);
+    this->bot_right = *this + (vector(x, -y) << this->angle);
 }
 
-inline void wze::collider::update_layer() {
-    for (auto elem : layers[this->layer]) {
-        elem->prv_top_left = elem->cur_top_left;
-        elem->prv_bot_right = elem->cur_bot_right;
+inline bool wze::collider::is_colliding(const collider *const c) const {
+    if (c->bot_right.get_x() <= this->top_left.get_x() ||
+        this->bot_right.get_x() <= c->top_left.get_x() ||
+        c->top_left.get_y() <= this->bot_right.get_y() ||
+        this->top_left.get_y() <= c->bot_right.get_y()) {
+        return false;
     }
+
+    return true;
 }
 
 inline bool wze::collider::operator == (const collider &c) const {

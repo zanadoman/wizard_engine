@@ -17,13 +17,12 @@ namespace wze {
         private: uint16_t force;
         private: uint16_t resistance;
         private: uint8_t layer;
-        private: point cur_top_left;
-        private: point cur_bot_right;
-        private: point prv_top_left;
-        private: point prv_bot_right;
+        private: point top_left;
+        private: point bot_right;
 
         public: virtual void set_x(const float x) override;
-        private: void set_x(const float x, const uint16_t force);
+        private: void set_x(const collider *const root, const vector diff,
+                            const uint16_t force);
 
         public: virtual void set_y(const float y) override;
         private: void set_y(const float y, const uint16_t force);
@@ -54,7 +53,8 @@ namespace wze {
         public: virtual ~collider();
 
         private: void update_area();
-        private: void update_layer();
+
+        private: bool is_colliding(const collider *const c) const;
 
         public: bool operator == (const collider &c) const;
         public: bool operator != (const collider &c) const;
