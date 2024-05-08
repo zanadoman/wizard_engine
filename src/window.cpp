@@ -13,11 +13,11 @@ uint16_t wze::window::get_height() {
     return window::height;
 }
 
-const SDL_Window *wze::window::get_base() {
+SDL_Window *wze::window::get_base() {
     return window::base;
 }
 
-const SDL_Renderer *wze::window::get_renderer() {
+SDL_Renderer *wze::window::get_renderer() {
     return window::renderer;
 }
 
