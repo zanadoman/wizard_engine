@@ -4,10 +4,15 @@
 #include "window.hpp" // IWYU pragma: keep
 
 namespace wze {
-    class render final {
-        private: static void open_frame(void);
-        private: static void close_frame(void);
+class render final
+{
+  private:
+    static void _open_frame(void);
 
-        public: static void update(void);
-    };
-}
+  private:
+    static void _close_frame(void);
+
+  public:
+    static void _update(void);
+};
+} // namespace wze
