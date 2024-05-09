@@ -69,10 +69,24 @@ include CMakeFiles/WizardEngine.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/WizardEngine.dir/flags.make
 
+CMakeFiles/WizardEngine.dir/src/assets.cpp.o: CMakeFiles/WizardEngine.dir/flags.make
+CMakeFiles/WizardEngine.dir/src/assets.cpp.o: /home/doman/Projects/Wizard-Engine/src/assets.cpp
+CMakeFiles/WizardEngine.dir/src/assets.cpp.o: CMakeFiles/WizardEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/WizardEngine.dir/src/assets.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WizardEngine.dir/src/assets.cpp.o -MF CMakeFiles/WizardEngine.dir/src/assets.cpp.o.d -o CMakeFiles/WizardEngine.dir/src/assets.cpp.o -c /home/doman/Projects/Wizard-Engine/src/assets.cpp
+
+CMakeFiles/WizardEngine.dir/src/assets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WizardEngine.dir/src/assets.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/doman/Projects/Wizard-Engine/src/assets.cpp > CMakeFiles/WizardEngine.dir/src/assets.cpp.i
+
+CMakeFiles/WizardEngine.dir/src/assets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WizardEngine.dir/src/assets.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/doman/Projects/Wizard-Engine/src/assets.cpp -o CMakeFiles/WizardEngine.dir/src/assets.cpp.s
+
 CMakeFiles/WizardEngine.dir/src/engine.cpp.o: CMakeFiles/WizardEngine.dir/flags.make
 CMakeFiles/WizardEngine.dir/src/engine.cpp.o: /home/doman/Projects/Wizard-Engine/src/engine.cpp
 CMakeFiles/WizardEngine.dir/src/engine.cpp.o: CMakeFiles/WizardEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/WizardEngine.dir/src/engine.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/WizardEngine.dir/src/engine.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WizardEngine.dir/src/engine.cpp.o -MF CMakeFiles/WizardEngine.dir/src/engine.cpp.o.d -o CMakeFiles/WizardEngine.dir/src/engine.cpp.o -c /home/doman/Projects/Wizard-Engine/src/engine.cpp
 
 CMakeFiles/WizardEngine.dir/src/engine.cpp.i: cmake_force
@@ -83,24 +97,24 @@ CMakeFiles/WizardEngine.dir/src/engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WizardEngine.dir/src/engine.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/doman/Projects/Wizard-Engine/src/engine.cpp -o CMakeFiles/WizardEngine.dir/src/engine.cpp.s
 
-CMakeFiles/WizardEngine.dir/src/window.cpp.o: CMakeFiles/WizardEngine.dir/flags.make
-CMakeFiles/WizardEngine.dir/src/window.cpp.o: /home/doman/Projects/Wizard-Engine/src/window.cpp
-CMakeFiles/WizardEngine.dir/src/window.cpp.o: CMakeFiles/WizardEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/WizardEngine.dir/src/window.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WizardEngine.dir/src/window.cpp.o -MF CMakeFiles/WizardEngine.dir/src/window.cpp.o.d -o CMakeFiles/WizardEngine.dir/src/window.cpp.o -c /home/doman/Projects/Wizard-Engine/src/window.cpp
+CMakeFiles/WizardEngine.dir/src/math.cpp.o: CMakeFiles/WizardEngine.dir/flags.make
+CMakeFiles/WizardEngine.dir/src/math.cpp.o: /home/doman/Projects/Wizard-Engine/src/math.cpp
+CMakeFiles/WizardEngine.dir/src/math.cpp.o: CMakeFiles/WizardEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/WizardEngine.dir/src/math.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WizardEngine.dir/src/math.cpp.o -MF CMakeFiles/WizardEngine.dir/src/math.cpp.o.d -o CMakeFiles/WizardEngine.dir/src/math.cpp.o -c /home/doman/Projects/Wizard-Engine/src/math.cpp
 
-CMakeFiles/WizardEngine.dir/src/window.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WizardEngine.dir/src/window.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/doman/Projects/Wizard-Engine/src/window.cpp > CMakeFiles/WizardEngine.dir/src/window.cpp.i
+CMakeFiles/WizardEngine.dir/src/math.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WizardEngine.dir/src/math.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/doman/Projects/Wizard-Engine/src/math.cpp > CMakeFiles/WizardEngine.dir/src/math.cpp.i
 
-CMakeFiles/WizardEngine.dir/src/window.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WizardEngine.dir/src/window.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/doman/Projects/Wizard-Engine/src/window.cpp -o CMakeFiles/WizardEngine.dir/src/window.cpp.s
+CMakeFiles/WizardEngine.dir/src/math.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WizardEngine.dir/src/math.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/doman/Projects/Wizard-Engine/src/math.cpp -o CMakeFiles/WizardEngine.dir/src/math.cpp.s
 
 CMakeFiles/WizardEngine.dir/src/render.cpp.o: CMakeFiles/WizardEngine.dir/flags.make
 CMakeFiles/WizardEngine.dir/src/render.cpp.o: /home/doman/Projects/Wizard-Engine/src/render.cpp
 CMakeFiles/WizardEngine.dir/src/render.cpp.o: CMakeFiles/WizardEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/WizardEngine.dir/src/render.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/WizardEngine.dir/src/render.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WizardEngine.dir/src/render.cpp.o -MF CMakeFiles/WizardEngine.dir/src/render.cpp.o.d -o CMakeFiles/WizardEngine.dir/src/render.cpp.o -c /home/doman/Projects/Wizard-Engine/src/render.cpp
 
 CMakeFiles/WizardEngine.dir/src/render.cpp.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/WizardEngine.dir/src/render.cpp.s: cmake_force
 CMakeFiles/WizardEngine.dir/src/timer.cpp.o: CMakeFiles/WizardEngine.dir/flags.make
 CMakeFiles/WizardEngine.dir/src/timer.cpp.o: /home/doman/Projects/Wizard-Engine/src/timer.cpp
 CMakeFiles/WizardEngine.dir/src/timer.cpp.o: CMakeFiles/WizardEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/WizardEngine.dir/src/timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/WizardEngine.dir/src/timer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WizardEngine.dir/src/timer.cpp.o -MF CMakeFiles/WizardEngine.dir/src/timer.cpp.o.d -o CMakeFiles/WizardEngine.dir/src/timer.cpp.o -c /home/doman/Projects/Wizard-Engine/src/timer.cpp
 
 CMakeFiles/WizardEngine.dir/src/timer.cpp.i: cmake_force
@@ -125,52 +139,38 @@ CMakeFiles/WizardEngine.dir/src/timer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WizardEngine.dir/src/timer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/doman/Projects/Wizard-Engine/src/timer.cpp -o CMakeFiles/WizardEngine.dir/src/timer.cpp.s
 
-CMakeFiles/WizardEngine.dir/src/assets.cpp.o: CMakeFiles/WizardEngine.dir/flags.make
-CMakeFiles/WizardEngine.dir/src/assets.cpp.o: /home/doman/Projects/Wizard-Engine/src/assets.cpp
-CMakeFiles/WizardEngine.dir/src/assets.cpp.o: CMakeFiles/WizardEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/WizardEngine.dir/src/assets.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WizardEngine.dir/src/assets.cpp.o -MF CMakeFiles/WizardEngine.dir/src/assets.cpp.o.d -o CMakeFiles/WizardEngine.dir/src/assets.cpp.o -c /home/doman/Projects/Wizard-Engine/src/assets.cpp
+CMakeFiles/WizardEngine.dir/src/window.cpp.o: CMakeFiles/WizardEngine.dir/flags.make
+CMakeFiles/WizardEngine.dir/src/window.cpp.o: /home/doman/Projects/Wizard-Engine/src/window.cpp
+CMakeFiles/WizardEngine.dir/src/window.cpp.o: CMakeFiles/WizardEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/WizardEngine.dir/src/window.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WizardEngine.dir/src/window.cpp.o -MF CMakeFiles/WizardEngine.dir/src/window.cpp.o.d -o CMakeFiles/WizardEngine.dir/src/window.cpp.o -c /home/doman/Projects/Wizard-Engine/src/window.cpp
 
-CMakeFiles/WizardEngine.dir/src/assets.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WizardEngine.dir/src/assets.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/doman/Projects/Wizard-Engine/src/assets.cpp > CMakeFiles/WizardEngine.dir/src/assets.cpp.i
+CMakeFiles/WizardEngine.dir/src/window.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WizardEngine.dir/src/window.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/doman/Projects/Wizard-Engine/src/window.cpp > CMakeFiles/WizardEngine.dir/src/window.cpp.i
 
-CMakeFiles/WizardEngine.dir/src/assets.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WizardEngine.dir/src/assets.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/doman/Projects/Wizard-Engine/src/assets.cpp -o CMakeFiles/WizardEngine.dir/src/assets.cpp.s
-
-CMakeFiles/WizardEngine.dir/src/math.cpp.o: CMakeFiles/WizardEngine.dir/flags.make
-CMakeFiles/WizardEngine.dir/src/math.cpp.o: /home/doman/Projects/Wizard-Engine/src/math.cpp
-CMakeFiles/WizardEngine.dir/src/math.cpp.o: CMakeFiles/WizardEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/doman/Projects/Wizard-Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/WizardEngine.dir/src/math.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WizardEngine.dir/src/math.cpp.o -MF CMakeFiles/WizardEngine.dir/src/math.cpp.o.d -o CMakeFiles/WizardEngine.dir/src/math.cpp.o -c /home/doman/Projects/Wizard-Engine/src/math.cpp
-
-CMakeFiles/WizardEngine.dir/src/math.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/WizardEngine.dir/src/math.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/doman/Projects/Wizard-Engine/src/math.cpp > CMakeFiles/WizardEngine.dir/src/math.cpp.i
-
-CMakeFiles/WizardEngine.dir/src/math.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WizardEngine.dir/src/math.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/doman/Projects/Wizard-Engine/src/math.cpp -o CMakeFiles/WizardEngine.dir/src/math.cpp.s
+CMakeFiles/WizardEngine.dir/src/window.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/WizardEngine.dir/src/window.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/doman/Projects/Wizard-Engine/src/window.cpp -o CMakeFiles/WizardEngine.dir/src/window.cpp.s
 
 # Object files for target WizardEngine
 WizardEngine_OBJECTS = \
+"CMakeFiles/WizardEngine.dir/src/assets.cpp.o" \
 "CMakeFiles/WizardEngine.dir/src/engine.cpp.o" \
-"CMakeFiles/WizardEngine.dir/src/window.cpp.o" \
+"CMakeFiles/WizardEngine.dir/src/math.cpp.o" \
 "CMakeFiles/WizardEngine.dir/src/render.cpp.o" \
 "CMakeFiles/WizardEngine.dir/src/timer.cpp.o" \
-"CMakeFiles/WizardEngine.dir/src/assets.cpp.o" \
-"CMakeFiles/WizardEngine.dir/src/math.cpp.o"
+"CMakeFiles/WizardEngine.dir/src/window.cpp.o"
 
 # External object files for target WizardEngine
 WizardEngine_EXTERNAL_OBJECTS =
 
+libWizardEngine.so: CMakeFiles/WizardEngine.dir/src/assets.cpp.o
 libWizardEngine.so: CMakeFiles/WizardEngine.dir/src/engine.cpp.o
-libWizardEngine.so: CMakeFiles/WizardEngine.dir/src/window.cpp.o
+libWizardEngine.so: CMakeFiles/WizardEngine.dir/src/math.cpp.o
 libWizardEngine.so: CMakeFiles/WizardEngine.dir/src/render.cpp.o
 libWizardEngine.so: CMakeFiles/WizardEngine.dir/src/timer.cpp.o
-libWizardEngine.so: CMakeFiles/WizardEngine.dir/src/assets.cpp.o
-libWizardEngine.so: CMakeFiles/WizardEngine.dir/src/math.cpp.o
+libWizardEngine.so: CMakeFiles/WizardEngine.dir/src/window.cpp.o
 libWizardEngine.so: CMakeFiles/WizardEngine.dir/build.make
 libWizardEngine.so: /usr/lib/libSDL2-2.0.so.0.3000.3
 libWizardEngine.so: /usr/lib/libSDL2_image.so

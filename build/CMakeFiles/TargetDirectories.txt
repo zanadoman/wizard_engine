@@ -1,3 +1,7 @@
 /home/doman/Projects/Wizard-Engine/build/CMakeFiles/WizardEngine.dir
 /home/doman/Projects/Wizard-Engine/build/CMakeFiles/edit_cache.dir
 /home/doman/Projects/Wizard-Engine/build/CMakeFiles/rebuild_cache.dir
+/home/doman/Projects/Wizard-Engine/build/CMakeFiles/list_install_components.dir
+/home/doman/Projects/Wizard-Engine/build/CMakeFiles/install.dir
+/home/doman/Projects/Wizard-Engine/build/CMakeFiles/install/local.dir
+/home/doman/Projects/Wizard-Engine/build/CMakeFiles/install/strip.dir

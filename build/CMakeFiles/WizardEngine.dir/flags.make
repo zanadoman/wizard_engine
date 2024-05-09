@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DWizardEngine_EXPORTS
 
-CXX_INCLUDES = -isystem /usr/include/SDL2
+CXX_INCLUDES = -I/home/doman/Projects/Wizard-Engine/inc -isystem /usr/include/SDL2
 
 CXX_FLAGS = -O3 -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion -std=gnu++11 -fPIC
 

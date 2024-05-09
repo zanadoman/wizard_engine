@@ -1,0 +1,10 @@
+/usr/local/lib/libWizardEngine.so
+/usr/local/include/WizardEngine/assets.hpp
+/usr/local/include/WizardEngine/common.hpp
+/usr/local/include/WizardEngine/engine.hpp
+/usr/local/include/WizardEngine/error.hpp
+/usr/local/include/WizardEngine/math.hpp
+/usr/local/include/WizardEngine/render.hpp
+/usr/local/include/WizardEngine/timer.hpp
+/usr/local/include/WizardEngine/window.hpp
+/usr/local/include/WizardEngine/wizard.hpp
