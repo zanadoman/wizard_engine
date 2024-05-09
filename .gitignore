@@ -1,12 +1,5 @@
-# Object files
-*.o
-
-# Assembly files
-*.s
+# Build
+/build
 
 # Valgrind logs
 vgcore*
-
-# Precompiled assemblies
-!asm/linux/*.s
-!asm/windows/*.s
