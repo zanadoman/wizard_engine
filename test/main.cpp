@@ -1,5 +1,7 @@
 #include "../inc/wizard.hpp" // IWYU pragma: keep
 
+#undef main
+
 int32_t main(void) {
     wze::engine::init();
 

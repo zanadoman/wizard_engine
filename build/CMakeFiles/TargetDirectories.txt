@@ -1,0 +1,3 @@
+/home/doman/Projects/Wizard-Engine/build/CMakeFiles/WizardEngine.dir
+/home/doman/Projects/Wizard-Engine/build/CMakeFiles/edit_cache.dir
+/home/doman/Projects/Wizard-Engine/build/CMakeFiles/rebuild_cache.dir
