@@ -1,4 +1,4 @@
-# CMAKE version
+# CMake version
 cmake_minimum_required(VERSION 3.5)
 
 # Project
@@ -7,7 +7,16 @@ project(WizardEngine)
 # Compile flags
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_CXX_FLAGS "-O3 -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion")
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    set(CMAKE_CXX_FLAGS
+        "-O3 -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion -Wl,-rpath=.")
+elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    set(CMAKE_CXX_FLAGS
+        "-O3 -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion -mwindows")
+else()
+    message(FATAL_ERROR "Unsupported OS, CMake will exit.")
+endif()
 
 # Sources
 file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
@@ -24,12 +33,12 @@ target_link_libraries(${PROJECT_NAME} SDL2_mixer::SDL2_mixer)
 target_link_libraries(${PROJECT_NAME} SDL2_ttf::SDL2_ttf)
 
 # Install
-file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp)
-install(FILES ${HEADERS} DESTINATION include/WZE)
+file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/WZE)
+install(DIRECTORY ${HEADERS} DESTINATION include)
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
 
 # Test
-file(GLOB TEST ${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp)
-add_executable(test ${TEST})
+file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp)
+add_executable(test ${SOURCES})
 target_link_libraries(test ${PROJECT_NAME})
 file(COPY assets valgrind.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

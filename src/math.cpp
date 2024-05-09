@@ -1,4 +1,4 @@
-#include "../include/math.hpp" // IWYU pragma: keep
+#include "../include/WZE/math.hpp" // IWYU pragma: keep
 
 float
 wze::math::distance(float init_x, float init_y, float term_x, float term_y)

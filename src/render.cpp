@@ -1,4 +1,4 @@
-#include "../include/render.hpp" // IWYU pragma: keep
+#include "../include/WZE/render.hpp" // IWYU pragma: keep
 
 void
 wze::render::_open_frame(void)

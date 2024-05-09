@@ -1,4 +1,4 @@
-#include "../include/timer.hpp" // IWYU pragma: keep
+#include "../include/WZE/timer.hpp" // IWYU pragma: keep
 
 uint8_t  wze::timer::frametime = 0;
 uint64_t wze::timer::lasttime  = 0;

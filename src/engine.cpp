@@ -1,4 +1,4 @@
-#include "../include/engine.hpp" // IWYU pragma: keep
+#include "../include/WZE/engine.hpp" // IWYU pragma: keep
 
 std::vector<SDL_Event> wze::engine::events;
 

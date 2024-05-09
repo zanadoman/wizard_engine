@@ -1,4 +1,4 @@
-#include "../include/window.hpp"
+#include "../include/WZE/window.hpp"
 
 SDL_Window*   wze::window::base     = nullptr;
 SDL_Renderer* wze::window::renderer = nullptr;

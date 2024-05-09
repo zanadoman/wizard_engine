@@ -1,4 +1,4 @@
-#include "../include/WizardEngine.hpp" // IWYU pragma: keep
+#include "../include/WZE/WizardEngine.hpp" // IWYU pragma: keep
 
 #undef main
 
