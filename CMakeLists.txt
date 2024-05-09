@@ -42,3 +42,8 @@ file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp)
 add_executable(test ${SOURCES})
 target_link_libraries(test ${PROJECT_NAME})
 file(COPY assets valgrind.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    file(GLOB LIBS ${CMAKE_CURRENT_SOURCE_DIR}/lib/*.dll)
+    file(COPY ${LIBS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+endif()
