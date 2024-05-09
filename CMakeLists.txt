@@ -24,7 +24,7 @@ target_link_libraries(${PROJECT_NAME} SDL2_mixer::SDL2_mixer)
 target_link_libraries(${PROJECT_NAME} SDL2_ttf::SDL2_ttf)
 
 # Install
-file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/inc/*.hpp)
+file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp)
 install(FILES ${HEADERS} DESTINATION include/WZE)
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
 

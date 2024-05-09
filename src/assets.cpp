@@ -1,4 +1,4 @@
-#include "../inc/assets.hpp" // IWYU pragma: keep
+#include "../include/assets.hpp" // IWYU pragma: keep
 
 wze::texture wze::load_texture(const std::string path) {
     SDL_Texture *result;

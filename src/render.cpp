@@ -1,4 +1,4 @@
-#include "../inc/render.hpp" // IWYU pragma: keep
+#include "../include/render.hpp" // IWYU pragma: keep
 
 void wze::render::open_frame(void) {
     if (SDL_SetRenderDrawColor(window::get_renderer(), 0, 0, 0, 255)) {
