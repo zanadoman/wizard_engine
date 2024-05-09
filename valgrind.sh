@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source /etc/profile.d/debuginfod.sh && cd test/build && valgrind ./test.out
+source /etc/profile.d/debuginfod.sh && valgrind ./test

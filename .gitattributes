@@ -1,5 +1,0 @@
-# Precompiled assemblies
-*.s linguist-vendored
-
-# SDL headers
-src/inc/SDL2/*.h linguist-vendored
