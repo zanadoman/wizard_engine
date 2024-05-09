@@ -5,19 +5,19 @@ SDL_Renderer *wze::window::renderer = nullptr;
 uint16_t      wze::window::width    = 0;
 uint16_t      wze::window::height   = 0;
 
-uint16_t wze::window::get_width() {
+uint16_t wze::window::get_width(void) {
     return window::width;
 }
 
-uint16_t wze::window::get_height() {
+uint16_t wze::window::get_height(void) {
     return window::height;
 }
 
-SDL_Window *wze::window::get_base() {
+SDL_Window *wze::window::get_base(void) {
     return window::base;
 }
 
-SDL_Renderer *wze::window::get_renderer() {
+SDL_Renderer *wze::window::get_renderer(void) {
     return window::renderer;
 }
 

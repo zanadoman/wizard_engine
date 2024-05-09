@@ -48,5 +48,7 @@ bool wze::engine::update(void) {
         engine::events.push_back(event);
     }
 
+    render::update();
+
     return true;
 }

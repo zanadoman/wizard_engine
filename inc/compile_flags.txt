@@ -4,4 +4,3 @@
 -Wextra
 -Wpedantic
 -Wdouble-promotion
--Wstack-usage=128

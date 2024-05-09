@@ -3,7 +3,9 @@
 wze::texture wze::load_texture(const std::string path) {
     SDL_Texture *result;
 
-    if ((result = IMG_LoadTexture(nullptr, path.c_str())) == nullptr) {
+    result = IMG_LoadTexture(nullptr, path.c_str());
+
+    if (!result) {
         throw wze_error(IMG_GetError());
     }
 
@@ -13,7 +15,9 @@ wze::texture wze::load_texture(const std::string path) {
 wze::sound wze::load_sound(const std::string path) {
     Mix_Chunk *result;
 
-    if ((result = Mix_LoadWAV(path.c_str())) == nullptr) {
+    result = Mix_LoadWAV(path.c_str());
+    
+    if (!result) {
         throw wze_error(Mix_GetError());
     }
 
@@ -23,7 +27,9 @@ wze::sound wze::load_sound(const std::string path) {
 wze::font wze::load_font(const std::string path, uint8_t size) {
     TTF_Font *result;
 
-    if ((result = TTF_OpenFont(path.c_str(), size)) == nullptr) {
+    result = TTF_OpenFont(path.c_str(), size);
+
+    if (!result) {
         throw wze_error(TTF_GetError());
     }
 
@@ -32,13 +38,16 @@ wze::font wze::load_font(const std::string path, uint8_t size) {
 
 wze::text wze::render_text(const std::string string, font font, style style) {
     SDL_Surface *result;
-    SDL_Color color;
-
-    color = {255, 255, 255, 255};
 
     TTF_SetFontStyle(font.get(), style);
 
-    if ((result = TTF_RenderUTF8_Blended(font.get(), string.c_str(), color)) == nullptr) {
+    result = TTF_RenderUTF8_Blended(
+        font.get(),
+        string.c_str(),
+        {255, 255, 255, 255}
+    );
+    
+    if (!result) {
         throw wze_error(TTF_GetError());
     }
 

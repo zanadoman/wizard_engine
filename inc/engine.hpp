@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common.hpp" // IWYU pragma: keep
+#include "render.hpp" // IWYU pragma: keep
 #include "error.hpp"  // IWYU pragma: keep
 
 namespace wze {
