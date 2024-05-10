@@ -3,12 +3,9 @@
 #include "common.hpp" // IWYU pragma: keep
 
 namespace wze {
-class math final
-{
+class math final {
   public:
-    static float distance(float init_x,
-                          float init_y,
-                          float term_x,
+    static float distance(float init_x, float init_y, float term_x,
                           float term_y);
 
   public:

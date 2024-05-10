@@ -1,9 +1,7 @@
 #include "../include/WZE/assets.hpp" // IWYU pragma: keep
 
-wze::texture
-wze::load_texture(const std::string path)
-{
-    SDL_Texture* result;
+wze::texture wze::load_texture(const std::string path) {
+    SDL_Texture *result;
 
     result = IMG_LoadTexture(nullptr, path.c_str());
 
@@ -14,10 +12,8 @@ wze::load_texture(const std::string path)
     return texture(result, SDL_DestroyTexture);
 }
 
-wze::sound
-wze::load_sound(const std::string path)
-{
-    Mix_Chunk* result;
+wze::sound wze::load_sound(const std::string path) {
+    Mix_Chunk *result;
 
     result = Mix_LoadWAV(path.c_str());
 
@@ -28,10 +24,8 @@ wze::load_sound(const std::string path)
     return sound(result, Mix_FreeChunk);
 }
 
-wze::font
-wze::load_font(const std::string path, uint8_t size)
-{
-    TTF_Font* result;
+wze::font wze::load_font(const std::string path, uint8_t size) {
+    TTF_Font *result;
 
     result = TTF_OpenFont(path.c_str(), size);
 
@@ -42,15 +36,13 @@ wze::load_font(const std::string path, uint8_t size)
     return font(result, TTF_CloseFont);
 }
 
-wze::text
-wze::render_text(const std::string string, font font, style style)
-{
-    SDL_Surface* result;
+wze::text wze::render_text(const std::string string, font font, style style) {
+    SDL_Surface *result;
 
     TTF_SetFontStyle(font.get(), style);
 
-    result = TTF_RenderUTF8_Blended(
-      font.get(), string.c_str(), { 255, 255, 255, 255 });
+    result = TTF_RenderUTF8_Blended(font.get(), string.c_str(),
+                                    {255, 255, 255, 255});
 
     if (!result) {
         throw std::runtime_error(TTF_GetError());

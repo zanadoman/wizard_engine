@@ -3,8 +3,7 @@
 #include "common.hpp" // IWYU pragma: keep
 
 namespace wze {
-class timer final
-{
+class timer final {
   private:
     static uint8_t frametime;
 

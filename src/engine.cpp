@@ -2,9 +2,7 @@
 
 std::vector<SDL_Event> wze::engine::events;
 
-void
-wze::engine::init(void)
-{
+void wze::engine::init(void) {
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -14,10 +12,8 @@ wze::engine::init(void)
         throw std::runtime_error(Mix_GetError());
     }
 
-    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY,
-                      MIX_DEFAULT_FORMAT,
-                      MIX_DEFAULT_CHANNELS,
-                      2048)) {
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
+                      MIX_DEFAULT_CHANNELS, 2048)) {
         throw std::runtime_error(Mix_GetError());
     }
 
@@ -26,9 +22,7 @@ wze::engine::init(void)
     }
 }
 
-bool
-wze::engine::update(void)
-{
+bool wze::engine::update(void) {
     SDL_Event event;
 
     engine::events.clear();

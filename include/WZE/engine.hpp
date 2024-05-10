@@ -4,8 +4,7 @@
 #include "render.hpp" // IWYU pragma: keep
 
 namespace wze {
-class engine final
-{
+class engine final {
   private:
     static std::vector<SDL_Event> events;
 

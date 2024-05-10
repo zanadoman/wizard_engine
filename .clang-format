@@ -1,9 +1,10 @@
 Standard: Cpp11
-BasedOnStyle: Mozilla
 
 UseTab: Never
 IndentWidth: 4
 ColumnLimit: 80
+
+AllowShortFunctionsOnASingleLine: Empty
 
 AlignConsecutiveDeclarations: AcrossComments
 AlignConsecutiveAssignments: AcrossComments
