@@ -1,9 +1,9 @@
 #include "../include/WZE/engine.hpp" // IWYU pragma: keep
 
-std::deque<SDL_Event> wze::engine::events;
+std::deque<SDL_Event> wze::engine::_events;
 
-auto wze::engine::get_events() -> const std::deque<SDL_Event> & {
-    return engine::events;
+auto wze::engine::events() -> const std::deque<SDL_Event> & {
+    return engine::_events;
 }
 
 void wze::engine::init() {
@@ -31,20 +31,20 @@ void wze::engine::init() {
 auto wze::engine::update() -> bool {
     SDL_Event event;
 
-    render::_update();
-    timer::_update();
+    render::update();
+    timer::update();
 
-    engine::events.clear();
+    engine::_events.clear();
 
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
             return false;
         }
 
-        engine::events.push_front(event);
+        engine::_events.push_front(event);
     }
 
-    input::_update();
+    input::update();
 
     return true;
 }

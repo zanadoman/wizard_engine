@@ -1,7 +1,7 @@
 #include "../include/WZE/assets.hpp" // IWYU pragma: keep
 
 auto wze::load_texture(const std::string &path) -> texture {
-    SDL_Texture *result = IMG_LoadTexture(nullptr, path.c_str());
+    SDL_Texture *result = IMG_LoadTexture(window::renderer(), path.c_str());
 
     if (!result) {
         throw std::runtime_error(IMG_GetError());
@@ -21,9 +21,7 @@ auto wze::load_sound(const std::string &path) -> sound {
 }
 
 auto wze::load_font(const std::string &path, uint8_t size) -> font {
-    TTF_Font *result = nullptr;
-
-    result = TTF_OpenFont(path.c_str(), size);
+    TTF_Font *result = TTF_OpenFont(path.c_str(), size);
 
     if (!result) {
         throw std::runtime_error(TTF_GetError());
@@ -33,18 +31,27 @@ auto wze::load_font(const std::string &path, uint8_t size) -> font {
 }
 
 auto wze::render_text(const std::string &string, const font &font, style style)
-    -> text {
-    SDL_Surface *result = nullptr;
+    -> texture {
+    SDL_Surface *tmp;
+    SDL_Texture *result;
 
     TTF_SetFontStyle(font.get(), style);
 
-    result =
+    tmp =
         TTF_RenderUTF8_Blended(font.get(), string.c_str(),
                                {UINT8_MAX, UINT8_MAX, UINT8_MAX, UINT8_MAX});
 
-    if (!result) {
+    if (!tmp) {
         throw std::runtime_error(TTF_GetError());
     }
 
-    return {result, SDL_FreeSurface};
+    result = SDL_CreateTextureFromSurface(window::renderer(), tmp);
+    
+    if (!result) {
+        throw std::runtime_error(SDL_GetError());
+    }
+
+    SDL_FreeSurface(tmp);
+
+    return {result, SDL_DestroyTexture};
 }
