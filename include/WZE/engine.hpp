@@ -2,6 +2,8 @@
 
 #include "common.hpp" // IWYU pragma: keep
 #include "render.hpp" // IWYU pragma: keep
+#include "timer.hpp"  // IWYU pragma: keep
+#include "input.hpp"  // IWYU pragma: keep
 
 namespace wze {
 class engine final {

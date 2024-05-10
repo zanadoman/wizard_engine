@@ -31,6 +31,9 @@ void wze::engine::init() {
 auto wze::engine::update() -> bool {
     SDL_Event event;
 
+    render::_update();
+    timer::_update();
+
     engine::events.clear();
 
     while (SDL_PollEvent(&event)) {
@@ -41,7 +44,7 @@ auto wze::engine::update() -> bool {
         engine::events.push_front(event);
     }
 
-    render::_update();
+    input::_update();
 
     return true;
 }
