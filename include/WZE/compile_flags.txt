@@ -1,6 +1,0 @@
--std=c++23
--Werror
--Wall
--Wextra
--Wpedantic
--Wdouble-promotion
