@@ -1,15 +1,16 @@
 #include "../include/WZE/math.hpp" // IWYU pragma: keep
 
-float wze::math::distance(float init_x, float init_y, float term_x,
-                          float term_y) {
+auto wze::math::distance(float init_x, float init_y, float term_x, float term_y)
+    -> float {
     term_x -= init_x;
     term_y -= init_y;
 
     return sqrtf(term_x * term_x + term_y * term_y);
 }
 
-float wze::math::angle(float init_x, float init_y, float term_x, float term_y) {
-    float result;
+auto wze::math::angle(float init_x, float init_y, float term_x, float term_y)
+    -> float {
+    float result = 0;
 
     if (init_x == term_x && init_y == term_y) {
         return 0;
@@ -23,10 +24,10 @@ float wze::math::angle(float init_x, float init_y, float term_x, float term_y) {
     return term_y < 0 ? -result : result;
 }
 
-float wze::math::move_x(float distance, float angle) {
+auto wze::math::move_x(float distance, float angle) -> float {
     return distance * cosf(angle);
 }
 
-float wze::math::move_y(float distance, float angle) {
+auto wze::math::move_y(float distance, float angle) -> float {
     return distance * sinf(angle);
 }

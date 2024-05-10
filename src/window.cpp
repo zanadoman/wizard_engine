@@ -5,25 +5,25 @@ SDL_Renderer *wze::window::renderer = nullptr;
 uint16_t      wze::window::width    = 0;
 uint16_t      wze::window::height   = 0;
 
-uint16_t wze::window::get_width(void) {
+auto wze::window::get_width() -> uint16_t {
     return window::width;
 }
 
-uint16_t wze::window::get_height(void) {
+auto wze::window::get_height() -> uint16_t {
     return window::height;
 }
 
-SDL_Window *wze::window::_get_base(void) {
+auto wze::window::_get_base() -> SDL_Window * {
     return window::base;
 }
 
-SDL_Renderer *wze::window::_get_renderer(void) {
+auto wze::window::_get_renderer() -> SDL_Renderer * {
     return window::renderer;
 }
 
-void wze::window::open(const std::string title, const std::string icon_path,
+void wze::window::open(const std::string &title, const std::string &icon_path,
                        uint16_t width, uint16_t height) {
-    SDL_Surface *icon;
+    SDL_Surface *icon = nullptr;
 
     window::base = SDL_CreateWindow(
         title.empty() ? "Wizard Engine" : title.c_str(), SDL_WINDOWPOS_CENTERED,

@@ -1,31 +1,27 @@
 #include "../include/WZE/assets.hpp" // IWYU pragma: keep
 
-wze::texture wze::load_texture(const std::string path) {
-    SDL_Texture *result;
-
-    result = IMG_LoadTexture(nullptr, path.c_str());
+auto wze::load_texture(const std::string &path) -> texture {
+    SDL_Texture *result = IMG_LoadTexture(nullptr, path.c_str());
 
     if (!result) {
         throw std::runtime_error(IMG_GetError());
     }
 
-    return texture(result, SDL_DestroyTexture);
+    return {result, SDL_DestroyTexture};
 }
 
-wze::sound wze::load_sound(const std::string path) {
-    Mix_Chunk *result;
-
-    result = Mix_LoadWAV(path.c_str());
+auto wze::load_sound(const std::string &path) -> sound {
+    Mix_Chunk *result = Mix_LoadWAV(path.c_str());
 
     if (!result) {
         throw std::runtime_error(Mix_GetError());
     }
 
-    return sound(result, Mix_FreeChunk);
+    return {result, Mix_FreeChunk};
 }
 
-wze::font wze::load_font(const std::string path, uint8_t size) {
-    TTF_Font *result;
+auto wze::load_font(const std::string &path, uint8_t size) -> font {
+    TTF_Font *result = nullptr;
 
     result = TTF_OpenFont(path.c_str(), size);
 
@@ -33,20 +29,22 @@ wze::font wze::load_font(const std::string path, uint8_t size) {
         throw std::runtime_error(TTF_GetError());
     }
 
-    return font(result, TTF_CloseFont);
+    return {result, TTF_CloseFont};
 }
 
-wze::text wze::render_text(const std::string string, font font, style style) {
-    SDL_Surface *result;
+auto wze::render_text(const std::string &string, const font &font, style style)
+    -> text {
+    SDL_Surface *result = nullptr;
 
     TTF_SetFontStyle(font.get(), style);
 
-    result = TTF_RenderUTF8_Blended(font.get(), string.c_str(),
-                                    {255, 255, 255, 255});
+    result =
+        TTF_RenderUTF8_Blended(font.get(), string.c_str(),
+                               {UINT8_MAX, UINT8_MAX, UINT8_MAX, UINT8_MAX});
 
     if (!result) {
         throw std::runtime_error(TTF_GetError());
     }
 
-    return text(result, SDL_FreeSurface);
+    return {result, SDL_FreeSurface};
 }

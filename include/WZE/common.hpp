@@ -13,7 +13,3 @@
 #include <SDL2/SDL_image.h> // IWYU pragma: keep
 #include <SDL2/SDL_mixer.h> // IWYU pragma: keep
 #include <SDL2/SDL_ttf.h>   // IWYU pragma: keep
-
-#define PI 3.1415927f
-#define DEG_MAX 360.0f
-#define RAD_MAX 6.2831855f

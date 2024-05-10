@@ -1,0 +1,9 @@
+Checks:
+  -*,
+  cert-*
+  clang-analyzer-*
+  cppcoreguidelines-*
+  modernize-*,
+  performance-*,
+  portability-*,
+  readibility*

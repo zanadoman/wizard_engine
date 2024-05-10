@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common.hpp" // IWYU pragma: keep
+#include <cstdint>
 
 namespace wze {
 class window final {
@@ -17,19 +18,19 @@ class window final {
     static uint16_t height;
 
   public:
-    static uint16_t get_width(void);
+    static auto get_width() -> uint16_t;
 
   public:
-    static uint16_t get_height(void);
+    static auto get_height() -> uint16_t;
 
   public:
-    static SDL_Window *_get_base(void);
+    static auto _get_base() -> SDL_Window *;
 
   public:
-    static SDL_Renderer *_get_renderer(void);
+    static auto _get_renderer() -> SDL_Renderer *;
 
   public:
-    static void open(const std::string title, const std::string icon_path,
+    static void open(const std::string &title, const std::string &icon_path,
                      uint16_t width, uint16_t height);
 };
 } // namespace wze

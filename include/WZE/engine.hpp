@@ -9,9 +9,9 @@ class engine final {
     static std::vector<SDL_Event> events;
 
   public:
-    static void init(void);
+    static void init();
 
   public:
-    static bool update(void);
+    static auto update() -> bool;
 };
 } // namespace wze

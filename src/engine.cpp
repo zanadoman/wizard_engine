@@ -2,7 +2,9 @@
 
 std::vector<SDL_Event> wze::engine::events;
 
-void wze::engine::init(void) {
+void wze::engine::init() {
+    constexpr uint16_t CHUNK_SIZE = 2048;
+
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -13,7 +15,7 @@ void wze::engine::init(void) {
     }
 
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
-                      MIX_DEFAULT_CHANNELS, 2048)) {
+                      MIX_DEFAULT_CHANNELS, CHUNK_SIZE)) {
         throw std::runtime_error(Mix_GetError());
     }
 
@@ -22,7 +24,7 @@ void wze::engine::init(void) {
     }
 }
 
-bool wze::engine::update(void) {
+auto wze::engine::update() -> bool {
     SDL_Event event;
 
     engine::events.clear();

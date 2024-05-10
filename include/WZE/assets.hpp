@@ -11,13 +11,14 @@ enum style {
     STYLE_STRIKETHROUGH = TTF_STYLE_STRIKETHROUGH
 };
 
-typedef std::shared_ptr<SDL_Texture> texture;
-typedef std::shared_ptr<Mix_Chunk>   sound;
-typedef std::shared_ptr<TTF_Font>    font;
-typedef std::shared_ptr<SDL_Surface> text;
+using texture = std::shared_ptr<SDL_Texture>;
+using sound   = std::shared_ptr<Mix_Chunk>;
+using font    = std::shared_ptr<TTF_Font>;
+using text    = std::shared_ptr<SDL_Surface>;
 
-texture load_texture(const std::string path);
-sound   load_sound(const std::string sound);
-font    load_font(const std::string path, uint8_t size);
-text    render_text(const std::string string, font font, style style);
+auto load_texture(const std::string &path) -> wze::texture;
+auto load_sound(const std::string &path) -> wze::sound;
+auto load_font(const std::string &path, uint8_t size) -> wze::font;
+auto render_text(const std::string &string, const font &font, style style)
+    -> wze::text;
 } // namespace wze
