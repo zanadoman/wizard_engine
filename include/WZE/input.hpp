@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common.hpp" // IWYU pragma: keep
+#include "engine.hpp" // IWYU pragma: keep
 
 namespace wze {
 enum keys {
@@ -125,8 +126,34 @@ enum keys {
 } __attribute__((__packed__));
 
 class input final {
-    private: static uint8_t state[KEY_COUNT];
-    public: static auto get_key(keys key) -> bool;
-    public: static void _update();
+  private:
+    static std::array<uint8_t, KEY_COUNT> state;
+
+  private:
+    static int32_t mouse_x;
+
+  private:
+    static int32_t mouse_y;
+
+  private:
+    static float mouse_sens;
+
+  public:
+    static auto get_key(keys key) -> int8_t;
+
+  public:
+    static auto get_mouse_x() -> int32_t;
+
+  public:
+    static auto get_mouse_y() -> int32_t;
+
+  public:
+    static auto get_mouse_sens() -> float;
+
+  public:
+    static void set_mouse_sens(float sens);
+
+  public:
+    static void _update();
 };
-}
+} // namespace wze

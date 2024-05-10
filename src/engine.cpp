@@ -1,6 +1,10 @@
 #include "../include/WZE/engine.hpp" // IWYU pragma: keep
 
-std::vector<SDL_Event> wze::engine::events;
+std::deque<SDL_Event> wze::engine::events;
+
+auto wze::engine::get_events() -> const std::deque<SDL_Event> & {
+    return engine::events;
+}
 
 void wze::engine::init() {
     constexpr uint16_t CHUNK_SIZE = 2048;
@@ -34,7 +38,7 @@ auto wze::engine::update() -> bool {
             return false;
         }
 
-        engine::events.push_back(event);
+        engine::events.push_front(event);
     }
 
     render::_update();

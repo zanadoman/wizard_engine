@@ -6,7 +6,10 @@
 namespace wze {
 class engine final {
   private:
-    static std::vector<SDL_Event> events;
+    static std::deque<SDL_Event> events;
+
+  public:
+    static auto get_events() -> const std::deque<SDL_Event> &;
 
   public:
     static void init();
