@@ -1,18 +1,35 @@
 #include "../include/WZE/render.hpp" // IWYU pragma: keep
+#include <GL/gl.h>
 
 void wze::render::open_frame() {
-    if (SDL_SetRenderDrawColor(window::renderer(), 0, 0, 0, UINT8_MAX)) {
-        throw std::runtime_error(SDL_GetError());
-    }
-
-    SDL_RenderClear(window::renderer());
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void wze::render::close_frame() {
-    SDL_RenderPresent(window::renderer());
+    SDL_GL_SwapWindow(window::base());
 }
 
 void wze::render::update() {
     render::open_frame();
+
+    glBegin(GL_QUADS);
+    glColor3ub(0, 255, 0);
+    glVertex3s(-5, -5, -50);
+    glVertex3s(5, -5, -50);
+    glVertex3s(5, 5, -50);
+    glVertex3s(-5, 5, -50);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3ub(255, 0, 0);
+    glVertex3s(-5, -5, -25);
+    glColor3ub(0, 0, 255);
+    glVertex3s(5, -5, -25);
+    glColor3ub(255, 0, 0);
+    glVertex3s(5, 5, -25);
+    glColor3ub(0, 0, 255);
+    glVertex3s(-5, 5, -25);
+    glEnd();
+
     render::close_frame();
 }

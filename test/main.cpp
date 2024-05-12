@@ -13,8 +13,14 @@ int32_t main(void) {
 
     window::open("", "", 1920, 1080);
 
+    input::hide_cursor();
+    input::set_mouse_sens(0.2);
+
     while (engine::update()) {
         (void)printf("%u %u\n", window::width(), window::height());
+
+        glTranslatef(input::mouse_x(), -input::mouse_y(), 0);
+        glRotatef(input::key(KEY_MOUSE_WHEEL) * 5, 0, 0, 1);
     }
 
     return 0;

@@ -15,3 +15,6 @@
 #include <SDL2/SDL_image.h> // IWYU pragma: keep
 #include <SDL2/SDL_mixer.h> // IWYU pragma: keep
 #include <SDL2/SDL_ttf.h>   // IWYU pragma: keep
+
+#include <GL/gl.h>          // IWYU pragma: keep
+#include <GL/glu.h>         // IWYU pragma: keep

@@ -1,4 +1,6 @@
 #include "../include/WZE/window.hpp"
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 SDL_Window   *wze::window::_base     = nullptr; // NOLINT
 SDL_Renderer *wze::window::_renderer = nullptr; // NOLINT
@@ -25,14 +27,18 @@ void wze::window::open(const std::string &title, const std::string &icon_path,
                        uint16_t width, uint16_t height) {
     SDL_Surface *icon = nullptr;
 
+    // Open window
+
     _base = SDL_CreateWindow(
         title.empty() ? "Wizard Engine" : title.c_str(), SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED, width, height,
-        SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
+        SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
 
     if (!_base) {
         throw std::runtime_error(SDL_GetError());
     }
+
+    // Set icon
 
     icon =
         IMG_Load(icon_path.empty() ? "assets/wze/icon.png" : icon_path.c_str());
@@ -44,19 +50,29 @@ void wze::window::open(const std::string &title, const std::string &icon_path,
     SDL_SetWindowIcon(_base, icon);
     SDL_FreeSurface(icon);
 
-    _renderer = SDL_CreateRenderer(_base, -1, SDL_RENDERER_ACCELERATED);
+    // Create renderer
 
-    if (!_renderer) {
-        throw std::runtime_error(SDL_GetError());
-    }
+    // _renderer = SDL_CreateRenderer(_base, -1, SDL_RENDERER_ACCELERATED);
+    //
+    // if (!_renderer) {
+    //     throw std::runtime_error(SDL_GetError());
+    // }
+    //
+    // if (SDL_RenderSetLogicalSize(_renderer, width, height)) {
+    //     throw std::runtime_error(SDL_GetError());
+    // }
+    //
+    // if (SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND)) {
+    //     throw std::runtime_error(SDL_GetError());
+    // }
 
-    if (SDL_RenderSetLogicalSize(_renderer, width, height)) {
-        throw std::runtime_error(SDL_GetError());
-    }
-
-    if (SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND)) {
-        throw std::runtime_error(SDL_GetError());
-    }
+    // OpenGL 
+    SDL_GL_CreateContext(_base);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(120, (double)width / (double)height, 1, 1000);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
     _width  = width;
     _height = height;
