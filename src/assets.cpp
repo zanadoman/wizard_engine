@@ -31,7 +31,7 @@ auto wze::load_font(const std::string &path, uint8_t size) -> font {
 }
 
 auto wze::render_text(const std::string &string, const font &font, style style)
-    -> texture {
+    -> std::tuple<texture, std::string> {
     SDL_Surface *tmp    = nullptr;
     SDL_Texture *result = nullptr;
 
@@ -52,5 +52,5 @@ auto wze::render_text(const std::string &string, const font &font, style style)
 
     SDL_FreeSurface(tmp);
 
-    return {result, SDL_DestroyTexture};
+    return {{result, SDL_DestroyTexture}, string};
 }

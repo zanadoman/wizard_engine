@@ -8,6 +8,7 @@
 #include <memory>    // IWYU pragma: keep
 #include <stdexcept> // IWYU pragma: keep
 #include <string>    // IWYU pragma: keep
+#include <tuple>     // IWYU pragma: keep
 #include <vector>    // IWYU pragma: keep
 
 #include <SDL2/SDL.h>       // IWYU pragma: keep

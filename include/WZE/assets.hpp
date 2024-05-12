@@ -20,5 +20,5 @@ namespace wze {
     auto load_sound(const std::string &path) -> sound;
     auto load_font(const std::string &path, uint8_t size) -> font;
     auto render_text(const std::string &string, const font &font, style style)
-        -> texture;
+        -> std::tuple<texture, std::string>;
 } // namespace wze
