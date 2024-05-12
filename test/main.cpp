@@ -4,15 +4,17 @@
 
 #undef main
 
+using namespace wze;
+
 int32_t main(void) {
-    wze::engine::init();
+    engine::init();
 
-    wze::window::open("", "", 1920, 1080);
+    timer::set_frametime(1000 / 60);
 
-    wze::timer::set_frametime(1000 / 60);
+    window::open("", "", 1920, 1080);
 
-    while (wze::engine::update()) {
-        (void)printf("%u\n", wze::timer::get_deltatime());
+    while (engine::update()) {
+        (void)printf("%u %u\n", window::width(), window::height());
     }
 
     return 0;

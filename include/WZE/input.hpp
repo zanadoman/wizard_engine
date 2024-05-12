@@ -2,6 +2,7 @@
 
 #include "common.hpp" // IWYU pragma: keep
 #include "engine.hpp" // IWYU pragma: keep
+#include "window.hpp" // IWYU pragma: keep
 
 namespace wze {
     enum keys {
@@ -127,21 +128,20 @@ namespace wze {
 
     class input final {
         private:
-        static std::array<uint8_t, KEY_COUNT> _keys;
-        static int32_t                        _mouse_x_abs;
-        static int32_t                        _mouse_y_abs;
-        static float                          _mouse_x_rel;
-        static float                          _mouse_y_rel;
-        static float                          _mouse_sens;
+        static std::array<int8_t, KEY_COUNT> _keys;       // NOLINT
+        static float                         _mouse_x;    // NOLINT
+        static float                         _mouse_y;    // NOLINT
+        static float                         _mouse_sens; // NOLINT
 
         public:
         static auto key(keys key) -> int8_t;
-        static auto mouse_x_abs() -> int32_t;
-        static auto mouse_y_abs() -> int32_t;
-        static auto mouse_x_rel() -> float;
-        static auto mouse_y_rel() -> float;
+        static auto mouse_x() -> float;
+        static auto mouse_y() -> float;
         static auto mouse_sens() -> float;
         static void set_mouse_sens(float sens);
+        static void show_cursor();
+        static void hide_cursor();
+        static auto cursor_shown() -> bool;
         static void update();
     };
 } // namespace wze

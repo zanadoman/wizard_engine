@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.5)
 project(WizardEngine)
 
 # Compile flags
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")

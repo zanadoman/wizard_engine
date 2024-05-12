@@ -5,10 +5,10 @@
 namespace wze {
     class window final {
         private:
-        static SDL_Window   *_base;
-        static SDL_Renderer *_renderer;
-        static uint16_t      _width;
-        static uint16_t      _height;
+        static SDL_Window   *_base;     // NOLINT
+        static SDL_Renderer *_renderer; // NOLINT
+        static uint16_t      _width;    // NOLINT
+        static uint16_t      _height;   // NOLINT
 
         public:
         static auto base() -> SDL_Window *;

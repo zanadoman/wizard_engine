@@ -1,36 +1,36 @@
 #include "../include/WZE/window.hpp"
 
-SDL_Window   *wze::window::_base     = nullptr;
-SDL_Renderer *wze::window::_renderer = nullptr;
-uint16_t      wze::window::_width    = 0;
-uint16_t      wze::window::_height   = 0;
+SDL_Window   *wze::window::_base     = nullptr; // NOLINT
+SDL_Renderer *wze::window::_renderer = nullptr; // NOLINT
+uint16_t      wze::window::_width    = 0;       // NOLINT
+uint16_t      wze::window::_height   = 0;       // NOLINT
 
 auto wze::window::base() -> SDL_Window * {
-    return window::_base;
+    return _base;
 }
 
 auto wze::window::renderer() -> SDL_Renderer * {
-    return window::_renderer;
+    return _renderer;
 }
 
 auto wze::window::width() -> uint16_t {
-    return window::_width;
+    return _width;
 }
 
 auto wze::window::height() -> uint16_t {
-    return window::_height;
+    return _height;
 }
 
 void wze::window::open(const std::string &title, const std::string &icon_path,
                        uint16_t width, uint16_t height) {
-    SDL_Surface *icon;
+    SDL_Surface *icon = nullptr;
 
-    window::_base = SDL_CreateWindow(
+    _base = SDL_CreateWindow(
         title.empty() ? "Wizard Engine" : title.c_str(), SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED, width, height,
         SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
 
-    if (!window::_base) {
+    if (!_base) {
         throw std::runtime_error(SDL_GetError());
     }
 
@@ -41,24 +41,23 @@ void wze::window::open(const std::string &title, const std::string &icon_path,
         throw std::runtime_error(IMG_GetError());
     }
 
-    SDL_SetWindowIcon(window::_base, icon);
+    SDL_SetWindowIcon(_base, icon);
     SDL_FreeSurface(icon);
 
-    window::_renderer =
-        SDL_CreateRenderer(window::_base, -1, SDL_RENDERER_ACCELERATED);
+    _renderer = SDL_CreateRenderer(_base, -1, SDL_RENDERER_ACCELERATED);
 
-    if (!window::_renderer) {
+    if (!_renderer) {
         throw std::runtime_error(SDL_GetError());
     }
 
-    if (SDL_RenderSetLogicalSize(window::_renderer, width, height)) {
+    if (SDL_RenderSetLogicalSize(_renderer, width, height)) {
         throw std::runtime_error(SDL_GetError());
     }
 
-    if (SDL_SetRenderDrawBlendMode(window::_renderer, SDL_BLENDMODE_BLEND)) {
+    if (SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND)) {
         throw std::runtime_error(SDL_GetError());
     }
 
-    window::_width  = width;
-    window::_height = height;
+    _width  = width;
+    _height = height;
 }

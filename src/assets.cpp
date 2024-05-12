@@ -32,21 +32,20 @@ auto wze::load_font(const std::string &path, uint8_t size) -> font {
 
 auto wze::render_text(const std::string &string, const font &font, style style)
     -> texture {
-    SDL_Surface *tmp;
-    SDL_Texture *result;
+    SDL_Surface *tmp    = nullptr;
+    SDL_Texture *result = nullptr;
 
     TTF_SetFontStyle(font.get(), style);
 
-    tmp =
-        TTF_RenderUTF8_Blended(font.get(), string.c_str(),
-                               {UINT8_MAX, UINT8_MAX, UINT8_MAX, UINT8_MAX});
+    tmp = TTF_RenderUTF8_Blended(font.get(), string.c_str(),
+                                 {UINT8_MAX, UINT8_MAX, UINT8_MAX, UINT8_MAX});
 
     if (!tmp) {
         throw std::runtime_error(TTF_GetError());
     }
 
     result = SDL_CreateTextureFromSurface(window::renderer(), tmp);
-    
+
     if (!result) {
         throw std::runtime_error(SDL_GetError());
     }

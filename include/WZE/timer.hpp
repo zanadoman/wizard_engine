@@ -5,9 +5,9 @@
 namespace wze {
     class timer final {
         private:
-        static uint8_t  _frametime;
-        static uint64_t _lasttime;
-        static uint8_t  _deltatime;
+        static uint8_t  _frametime; // NOLINT
+        static uint64_t _lasttime;  // NOLINT
+        static uint8_t  _deltatime; // NOLINT
 
         public:
         static auto frametime() -> uint8_t;

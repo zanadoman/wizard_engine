@@ -8,7 +8,7 @@
 namespace wze {
     class engine final {
         private:
-        static std::deque<SDL_Event> _events;
+        static std::deque<SDL_Event> _events; // NOLINT
 
         public:
         static auto events() -> const std::deque<SDL_Event> &;
