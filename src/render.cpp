@@ -1,11 +1,13 @@
 #include "../include/WZE/render.hpp" // IWYU pragma: keep
-#include <GL/gl.h>
 
 void wze::render::open_frame() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glPushMatrix();
+    glTranslatef(camera::x(), camera::y(), 0);
 }
 
 void wze::render::close_frame() {
+    glPopMatrix();
     SDL_GL_SwapWindow(window::base());
 }
 

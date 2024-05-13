@@ -1,5 +1,6 @@
 #include "../include/WZE/WizardEngine.hpp" // IWYU pragma: keep
 
+#include <GL/gl.h>
 #include <cstdio> // IWYU pragma: keep
 
 #undef main
@@ -16,11 +17,10 @@ int32_t main(void) {
     input::hide_cursor();
     input::set_mouse_sens(0.2);
 
+    glPushMatrix();
     while (engine::update()) {
-        (void)printf("%u %u\n", window::width(), window::height());
-
-        glTranslatef(input::mouse_x(), -input::mouse_y(), 0);
-        glRotatef(input::key(KEY_MOUSE_WHEEL) * 5, 0, 0, 1);
+        camera::set_x(camera::x() + input::mouse_x());
+        camera::set_y(camera::y() - input::mouse_y());
     }
 
     return 0;

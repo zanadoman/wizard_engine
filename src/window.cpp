@@ -1,6 +1,4 @@
 #include "../include/WZE/window.hpp"
-#include <GL/gl.h>
-#include <GL/glu.h>
 
 SDL_Window   *wze::window::_base     = nullptr; // NOLINT
 SDL_Renderer *wze::window::_renderer = nullptr; // NOLINT
@@ -70,7 +68,7 @@ void wze::window::open(const std::string &title, const std::string &icon_path,
     SDL_GL_CreateContext(_base);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(120, (double)width / (double)height, 1, 1000);
+    gluPerspective(60, (double)width / (double)height, 0, 1);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 

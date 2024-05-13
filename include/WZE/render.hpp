@@ -2,6 +2,7 @@
 
 #include "common.hpp" // IWYU pragma: keep
 #include "window.hpp" // IWYU pragma: keep
+#include "camera.hpp" // IWYU pragma: keep
 
 namespace wze {
     class render final {

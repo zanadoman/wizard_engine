@@ -2,6 +2,7 @@
 
 #include <algorithm> // IWYU pragma: keep
 #include <array>     // IWYU pragma: keep
+#include <cfloat>    // IWYU pragma: keep
 #include <cstddef>   // IWYU pragma: keep
 #include <cstdint>   // IWYU pragma: keep
 #include <deque>     // IWYU pragma: keep
@@ -16,5 +17,5 @@
 #include <SDL2/SDL_mixer.h> // IWYU pragma: keep
 #include <SDL2/SDL_ttf.h>   // IWYU pragma: keep
 
-#include <GL/gl.h>          // IWYU pragma: keep
-#include <GL/glu.h>         // IWYU pragma: keep
+#include <GL/gl.h>  // IWYU pragma: keep
+#include <GL/glu.h> // IWYU pragma: keep
