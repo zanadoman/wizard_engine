@@ -21,11 +21,14 @@ int32_t main(void) {
     while (engine::update()) {
         camera::set_x(camera::x() + input::mouse_x());
         camera::set_y(camera::y() + input::mouse_y());
+
         if (input::key(KEY_W)) {
             camera::set_z(camera::z() + 0.2f * timer::deltatime());
         } else if (input::key(KEY_S)) {
             camera::set_z(camera::z() - 0.2f * timer::deltatime());
         }
+
+        camera::set_angle(camera::angle() + input::key(KEY_MOUSE_WHEEL) * 3);
 
         (void)printf("%u %u\n", window::width(), window::height());
     }

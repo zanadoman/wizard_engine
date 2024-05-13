@@ -1,8 +1,9 @@
 #include "../include/WZE/camera.hpp" // IWYU pragma: keep
 
-float wze::camera::_x = 0; // NOLINT
-float wze::camera::_y = 0; // NOLINT
-float wze::camera::_z = 0; // NOLINT
+float wze::camera::_x = 0.0f;     // NOLINT
+float wze::camera::_y = 0.0f;     // NOLINT
+float wze::camera::_z = 0.0f;     // NOLINT
+float wze::camera::_angle = 0.0f; // NOLINT
 
 auto wze::camera::x() -> float {
     return _x;
@@ -26,4 +27,12 @@ auto wze::camera::z() -> float {
 
 void wze::camera::set_z(float z) {
     _z = z;
+}
+
+auto wze::camera::angle() -> float {
+    return _angle;
+}
+
+void wze::camera::set_angle(float angle) {
+    _angle = angle;
 }

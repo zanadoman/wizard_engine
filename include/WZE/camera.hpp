@@ -9,6 +9,7 @@ namespace wze {
         static float _x;
         static float _y;
         static float _z;
+        static float _angle;
 
         public:
         static auto x() -> float;
@@ -17,5 +18,7 @@ namespace wze {
         static void set_y(float y);
         static auto z() -> float;
         static void set_z(float z);
+        static auto angle() -> float;
+        static void set_angle(float angle);
     };
 }

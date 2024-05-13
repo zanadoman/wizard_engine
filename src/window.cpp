@@ -34,7 +34,7 @@ void wze::window::resize() {
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(60, (double)_ratio, 0.1, 100);
+    gluPerspective(60, (double)_ratio, 1, 1000);
 }
 
 auto wze::window::base() -> SDL_Window * {
