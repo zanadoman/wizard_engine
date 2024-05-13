@@ -59,7 +59,7 @@ void wze::input::update() {
     if (SDL_GetRelativeMouseMode()) {
         SDL_GetRelativeMouseState(&x, &y);
         _mouse_x = (float)x * _mouse_sens;
-        _mouse_y = (float)y * _mouse_sens;
+        _mouse_y = (float)y * _mouse_sens * -1;
     } else {
         for (auto event : engine::events()) {
             if (event.type == SDL_MOUSEMOTION) { // NOLINT

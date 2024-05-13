@@ -1,17 +1,44 @@
 #include "../include/WZE/window.hpp"
-#include <GL/glu.h>
 
-SDL_Window   *wze::window::_base     = nullptr; // NOLINT
-SDL_Renderer *wze::window::_renderer = nullptr; // NOLINT
-uint16_t      wze::window::_width    = 0;       // NOLINT
-uint16_t      wze::window::_height   = 0;       // NOLINT
+SDL_Window *wze::window::_base   = nullptr; // NOLINT
+uint16_t    wze::window::_width  = 0;       // NOLINT
+uint16_t    wze::window::_height = 0;       // NOLINT
+float       wze::window::_ratio  = 0.0f;    // NOLINT
+
+void wze::window::resize() {
+    int32_t width  = 0;
+    int32_t height = 0;
+    float   ratio  = 0.0f;
+
+    SDL_GetWindowSize(_base, &width, &height);
+    ratio = (float)width / (float)height;
+
+    if (ratio < _ratio) {
+        _width  = width;
+        _height = width / _ratio;
+    } else if (_ratio < ratio) {
+        _width  = height * _ratio;
+        _height = height;
+    } else {
+        _width  = width;
+        _height = height;
+    }
+
+    if (_width < width) {
+        glViewport((width - _width) / 2, 0, _width, _height);
+    } else if (_height < height) {
+        glViewport(0, (height - _height) / 2, _width, _height);
+    } else {
+        glViewport(0, 0, _width, _height);
+    }
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(60, (double)_ratio, 0.1, 100);
+}
 
 auto wze::window::base() -> SDL_Window * {
     return _base;
-}
-
-auto wze::window::renderer() -> SDL_Renderer * {
-    return _renderer;
 }
 
 auto wze::window::width() -> uint16_t {
@@ -22,22 +49,23 @@ auto wze::window::height() -> uint16_t {
     return _height;
 }
 
+auto wze::window::ratio() -> float {
+    return _ratio;
+}
+
 void wze::window::open(const std::string &title, const std::string &icon_path,
-                       uint16_t width, uint16_t height) {
+                       float ratio) {
     SDL_Surface *icon = nullptr;
 
-    // Open window
-
-    _base = SDL_CreateWindow(
-        title.empty() ? "Wizard Engine" : title.c_str(), SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED, width, height,
-        SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
+    _base =
+        SDL_CreateWindow(title.empty() ? "Wizard Engine" : title.c_str(),
+                         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 0, 0,
+                         SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE |
+                             SDL_WINDOW_FULLSCREEN_DESKTOP);
 
     if (!_base) {
         throw std::runtime_error(SDL_GetError());
     }
-
-    // Set icon
 
     icon =
         IMG_Load(icon_path.empty() ? "assets/wze/icon.png" : icon_path.c_str());
@@ -49,41 +77,24 @@ void wze::window::open(const std::string &title, const std::string &icon_path,
     SDL_SetWindowIcon(_base, icon);
     SDL_FreeSurface(icon);
 
-    // Create renderer
-
-    // _renderer = SDL_CreateRenderer(_base, -1, SDL_RENDERER_ACCELERATED);
-    //
-    // if (!_renderer) {
-    //     throw std::runtime_error(SDL_GetError());
-    // }
-    //
-    // if (SDL_RenderSetLogicalSize(_renderer, width, height)) {
-    //     throw std::runtime_error(SDL_GetError());
-    // }
-    //
-    // if (SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND)) {
-    //     throw std::runtime_error(SDL_GetError());
-    // }
-
-    // OpenGL 
     if (!SDL_GL_CreateContext(_base)) {
         throw std::runtime_error(SDL_GetError());
     }
-    
+
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
+    _ratio = ratio;
+    resize();
+}
 
-    gluPerspective(60, (double)width / (double)height, 0.1, 1000);
-
-    // double r = (double)width / (double)height;
-    // double h = tan(0.523599) * 0.1;
-    // double w = h * r;
-    // glFrustum(-w, w, -h, h, 0.1, 100);
-
-    _width  = width;
-    _height = height;
+void wze::window::update() {
+    for (auto event : engine::events()) {
+        if (event.type == SDL_WINDOWEVENT &&                 // NOLINT
+            event.window.event == SDL_WINDOWEVENT_RESIZED) { // NOLINT
+            resize();
+            break;
+        }
+    }
 }

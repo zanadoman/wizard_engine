@@ -12,7 +12,7 @@ namespace wze {
         STYLE_STRIKETHROUGH = TTF_STYLE_STRIKETHROUGH
     };
 
-    using texture = std::shared_ptr<SDL_Texture>;
+    using texture = std::shared_ptr<GLuint>;
     using sound   = std::shared_ptr<Mix_Chunk>;
     using font    = std::shared_ptr<TTF_Font>;
 
@@ -21,15 +21,5 @@ namespace wze {
     auto load_font(const std::string &path, uint8_t size) -> font;
     auto render_text(const std::string &string, const font &font, style style)
         -> std::tuple<texture, std::string>;
-
-    class gl_texture final {
-        private:
-        GLuint _id;
-
-        public:
-        auto id() -> GLuint;
-        static auto load_texture(const std::string &path)
-            -> std::shared_ptr<gl_texture>;
-        ~gl_texture();
-    };
+    auto to_texture(SDL_Surface *raw) -> texture;
 } // namespace wze

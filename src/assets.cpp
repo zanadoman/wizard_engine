@@ -1,43 +1,48 @@
 #include "../include/WZE/assets.hpp" // IWYU pragma: keep
 
-auto wze::gl_texture::id() -> GLuint {
-    return _id;
-}
+auto wze::to_texture(SDL_Surface *raw) -> texture {
+    GLuint *result = new GLuint;
+    int32_t format = 0;
 
-auto wze::gl_texture::load_texture(const std::string &path)
-    -> std::shared_ptr<gl_texture> {
-    gl_texture *result = new gl_texture;
-    
-    SDL_Surface *surface = IMG_Load(path.c_str());
+    switch (raw->format->BytesPerPixel) {
+    case 3:
+        format = GL_RGBA;
+        break;
 
-    if (!surface) {
-        throw std::runtime_error(SDL_GetError());
+    case 4:
+        format = GL_RGBA;
+        break;
+
+    default:
+        throw std::runtime_error("wze::to_texture() Format not supported");
+        break;
     }
 
-    glGenTextures(1, &result->_id);
-    glBindTexture(GL_TEXTURE_2D, result->_id);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0, GL_RGBA,
-                 GL_UNSIGNED_BYTE, surface->pixels);
+    glGenTextures(1, result);
+    glBindTexture(GL_TEXTURE_2D, *result);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, format, raw->w, raw->h, 0, format,
+                 GL_UNSIGNED_BYTE, raw->pixels);
 
-    SDL_FreeSurface(surface);
-
-    return std::shared_ptr<gl_texture>(result);
-}
-
-wze::gl_texture::~gl_texture() {
-    glDeleteTextures(1, &_id);
+    return {result, [](GLuint *tex) {
+                glDeleteTextures(1, tex);
+                delete tex;
+            }};
 }
 
 auto wze::load_texture(const std::string &path) -> texture {
-    SDL_Texture *result = IMG_LoadTexture(window::renderer(), path.c_str());
+    texture      result;
+    SDL_Surface *raw = IMG_Load(path.c_str());
 
-    if (!result) {
+    if (!raw) {
         throw std::runtime_error(IMG_GetError());
     }
 
-    return {result, SDL_DestroyTexture};
+    result = to_texture(raw);
+    SDL_FreeSurface(raw);
+
+    return result;
 }
 
 auto wze::load_sound(const std::string &path) -> sound {
@@ -62,25 +67,19 @@ auto wze::load_font(const std::string &path, uint8_t size) -> font {
 
 auto wze::render_text(const std::string &string, const font &font, style style)
     -> std::tuple<texture, std::string> {
-    SDL_Surface *tmp    = nullptr;
-    SDL_Texture *result = nullptr;
+    texture      result;
+    SDL_Surface *raw = nullptr;
 
     TTF_SetFontStyle(font.get(), style);
-
-    tmp = TTF_RenderUTF8_Blended(font.get(), string.c_str(),
+    raw = TTF_RenderUTF8_Blended(font.get(), string.c_str(),
                                  {UINT8_MAX, UINT8_MAX, UINT8_MAX, UINT8_MAX});
 
-    if (!tmp) {
+    if (!raw) {
         throw std::runtime_error(TTF_GetError());
     }
 
-    result = SDL_CreateTextureFromSurface(window::renderer(), tmp);
+    result = to_texture(raw);
+    SDL_FreeSurface(raw);
 
-    if (!result) {
-        throw std::runtime_error(SDL_GetError());
-    }
-
-    SDL_FreeSurface(tmp);
-
-    return {{result, SDL_DestroyTexture}, string};
+    return {result, string};
 }
