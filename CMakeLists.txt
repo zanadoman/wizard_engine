@@ -1,5 +1,5 @@
 # CMake version
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.29)
 
 # Project
 project(WizardEngine)
