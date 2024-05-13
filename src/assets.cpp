@@ -1,5 +1,35 @@
 #include "../include/WZE/assets.hpp" // IWYU pragma: keep
 
+auto wze::gl_texture::id() -> GLuint {
+    return _id;
+}
+
+auto wze::gl_texture::load_texture(const std::string &path)
+    -> std::shared_ptr<gl_texture> {
+    gl_texture *result = new gl_texture;
+    
+    SDL_Surface *surface = IMG_Load(path.c_str());
+
+    if (!surface) {
+        throw std::runtime_error(SDL_GetError());
+    }
+
+    glGenTextures(1, &result->_id);
+    glBindTexture(GL_TEXTURE_2D, result->_id);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0, GL_RGBA,
+                 GL_UNSIGNED_BYTE, surface->pixels);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+    SDL_FreeSurface(surface);
+
+    return std::shared_ptr<gl_texture>(result);
+}
+
+wze::gl_texture::~gl_texture() {
+    glDeleteTextures(1, &_id);
+}
+
 auto wze::load_texture(const std::string &path) -> texture {
     SDL_Texture *result = IMG_LoadTexture(window::renderer(), path.c_str());
 

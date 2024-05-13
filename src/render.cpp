@@ -3,7 +3,7 @@
 void wze::render::open_frame() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
-    glTranslatef(camera::x(), camera::y(), 0);
+    glTranslatef(camera::x(), camera::y(), camera::z());
 }
 
 void wze::render::close_frame() {
@@ -14,23 +14,30 @@ void wze::render::close_frame() {
 void wze::render::update() {
     render::open_frame();
 
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glColor3ub(0, 0, 255);
     glBegin(GL_QUADS);
-    glColor3ub(255, 0, 0);
-    glVertex3s(-5, -5, -25);
-    glColor3ub(0, 0, 255);
-    glVertex3s(5, -5, -25);
-    glColor3ub(255, 0, 0);
-    glVertex3s(5, 5, -25);
-    glColor3ub(0, 0, 255);
-    glVertex3s(-5, 5, -25);
+    glTexCoord2f(0, 1);
+    glVertex3f(-5, -5, -50);
+    glTexCoord2f(1, 1);
+    glVertex3f(5, -5, -50);
+    glTexCoord2f(1, 0);
+    glVertex3f(5, 5, -50);
+    glTexCoord2f(0, 0);
+    glVertex3f(-5, 5, -50);
     glEnd();
 
+    glBindTexture(GL_TEXTURE_2D, 1);
+    glColor3ub(255, 255, 255);
     glBegin(GL_QUADS);
-    glColor3ub(0, 255, 0);
-    glVertex3s(-5, -5, -50);
-    glVertex3s(5, -5, -50);
-    glVertex3s(5, 5, -50);
-    glVertex3s(-5, 5, -50);
+    glTexCoord2f(0, 1);
+    glVertex3f(-5, -5, -25);
+    glTexCoord2f(1, 1);
+    glVertex3f(5, -5, -25);
+    glTexCoord2f(1, 0);
+    glVertex3f(5, 5, -25);
+    glTexCoord2f(0, 0);
+    glVertex3f(-5, 5, -25);
     glEnd();
 
     render::close_frame();

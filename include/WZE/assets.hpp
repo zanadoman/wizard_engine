@@ -21,4 +21,15 @@ namespace wze {
     auto load_font(const std::string &path, uint8_t size) -> font;
     auto render_text(const std::string &string, const font &font, style style)
         -> std::tuple<texture, std::string>;
+
+    class gl_texture final {
+        private:
+        GLuint _id;
+
+        public:
+        auto id() -> GLuint;
+        static auto load_texture(const std::string &path)
+            -> std::shared_ptr<gl_texture>;
+        ~gl_texture();
+    };
 } // namespace wze

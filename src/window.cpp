@@ -1,4 +1,5 @@
 #include "../include/WZE/window.hpp"
+#include <GL/glu.h>
 
 SDL_Window   *wze::window::_base     = nullptr; // NOLINT
 SDL_Renderer *wze::window::_renderer = nullptr; // NOLINT
@@ -65,13 +66,23 @@ void wze::window::open(const std::string &title, const std::string &icon_path,
     // }
 
     // OpenGL 
-    SDL_GL_CreateContext(_base);
-    glEnable(GL_DEPTH_TEST);
+    if (!SDL_GL_CreateContext(_base)) {
+        throw std::runtime_error(SDL_GetError());
+    }
+    
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(60, (double)width / (double)height, 0, 1);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+
+    gluPerspective(60, (double)width / (double)height, 0.1, 1000);
+
+    // double r = (double)width / (double)height;
+    // double h = tan(0.523599) * 0.1;
+    // double w = h * r;
+    // glFrustum(-w, w, -h, h, 0.1, 100);
 
     _width  = width;
     _height = height;
