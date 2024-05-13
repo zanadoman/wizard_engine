@@ -66,6 +66,7 @@ void wze::window::open(const std::string &title, const std::string &icon_path,
 
     // OpenGL 
     SDL_GL_CreateContext(_base);
+    glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(60, (double)width / (double)height, 0, 1);

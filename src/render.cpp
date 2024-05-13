@@ -15,14 +15,6 @@ void wze::render::update() {
     render::open_frame();
 
     glBegin(GL_QUADS);
-    glColor3ub(0, 255, 0);
-    glVertex3s(-5, -5, -50);
-    glVertex3s(5, -5, -50);
-    glVertex3s(5, 5, -50);
-    glVertex3s(-5, 5, -50);
-    glEnd();
-
-    glBegin(GL_QUADS);
     glColor3ub(255, 0, 0);
     glVertex3s(-5, -5, -25);
     glColor3ub(0, 0, 255);
@@ -31,6 +23,14 @@ void wze::render::update() {
     glVertex3s(5, 5, -25);
     glColor3ub(0, 0, 255);
     glVertex3s(-5, 5, -25);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3ub(0, 255, 0);
+    glVertex3s(-5, -5, -50);
+    glVertex3s(5, -5, -50);
+    glVertex3s(5, 5, -50);
+    glVertex3s(-5, 5, -50);
     glEnd();
 
     render::close_frame();
