@@ -61,14 +61,8 @@ void wze::input::update() {
         _mouse_x = (float)x * _mouse_sens;
         _mouse_y = (float)y * _mouse_sens * -1;
     } else {
-        for (auto event : engine::events()) {
-            if (event.type == SDL_MOUSEMOTION) { // NOLINT
-                _mouse_x = (float)std::clamp(event.motion.x, 0,
-                                             window::width() - 1); // NOLINT
-                _mouse_y = (float)std::clamp(event.motion.y, 0,
-                                             window::width() - 1); // NOLINT
-                break;
-            }
-        }
+        SDL_GetMouseState(&x, &y);
+        _mouse_x = x;
+        _mouse_y = y;
     }
 }

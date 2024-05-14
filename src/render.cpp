@@ -18,7 +18,7 @@ void wze::render::update() {
     render::open_frame();
 
     glBindTexture(GL_TEXTURE_2D, 0);
-    glColor3ub(0, 0, 255);
+    glColor4ub(0, 0, 255, 255);
     glBegin(GL_QUADS);
     glTexCoord2f(0, 1);
     glVertex3f(-5, -5, -50);
@@ -31,7 +31,7 @@ void wze::render::update() {
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, 1);
-    glColor3ub(255, 255, 255);
+    glColor4ub(255, 255, 255, 255);
     glBegin(GL_QUADS);
     glTexCoord2f(0, 1);
     glVertex3f(-5, -5, -25);

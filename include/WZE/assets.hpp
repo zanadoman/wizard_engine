@@ -17,9 +17,8 @@ namespace wze {
     using font    = std::shared_ptr<TTF_Font>;
 
     auto load_texture(const std::string &path) -> texture;
+    auto load_texture(const std::string &string, const font &font, style style)
+        -> texture;
     auto load_sound(const std::string &path) -> sound;
     auto load_font(const std::string &path, uint8_t size) -> font;
-    auto render_text(const std::string &string, const font &font, style style)
-        -> std::tuple<texture, std::string>;
-    auto to_texture(SDL_Surface *raw) -> texture;
 } // namespace wze

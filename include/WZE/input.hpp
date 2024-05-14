@@ -2,7 +2,6 @@
 
 #include "common.hpp" // IWYU pragma: keep
 #include "engine.hpp" // IWYU pragma: keep
-#include "window.hpp" // IWYU pragma: keep
 
 namespace wze {
     enum keys {

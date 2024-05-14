@@ -6,7 +6,7 @@
 
 using namespace wze;
 
-int32_t main(void) {
+auto main() -> int32_t {
     engine::init();
 
     timer::set_frametime(1000 / 60);
@@ -29,8 +29,6 @@ int32_t main(void) {
         }
 
         camera::set_angle(camera::angle() + input::key(KEY_MOUSE_WHEEL) * 3);
-
-        (void)printf("%u %u\n", window::width(), window::height());
     }
 
     return 0;
