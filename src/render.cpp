@@ -1,5 +1,40 @@
 #include "../include/WZE/render.hpp" // IWYU pragma: keep
 
+auto wze::render::project_absolute(const GLdouble vertex[3], 
+                                   GLdouble screen[2]) -> GLint {
+    GLint    viewport[4];
+    GLdouble projection[16];
+    GLdouble model[16];
+    GLdouble tmp;
+
+    glGetIntegerv(GL_VIEWPORT, viewport);
+    glGetDoublev(GL_PROJECTION_MATRIX, projection);
+    glGetDoublev(GL_MODELVIEW_MATRIX, model);
+
+    return gluProject(vertex[0], vertex[1], vertex[2], model, projection,
+                      viewport, &screen[0], &screen[1], &tmp);
+}
+
+auto wze::render::project_relative(const GLdouble vertex[3], 
+                                   GLdouble screen[2]) -> GLint {
+    GLint    viewport[4];
+    GLdouble projection[16];
+    GLdouble model[16];
+    GLdouble tmp;
+
+    glGetIntegerv(GL_VIEWPORT, viewport);
+    glGetDoublev(GL_PROJECTION_MATRIX, projection);
+
+    glPushMatrix();
+    glTranslatef(camera::x(), camera::y(), camera::z());
+    glRotatef(camera::angle(), 0, 0, 1);
+    glGetDoublev(GL_MODELVIEW_MATRIX, model);
+    glPopMatrix();
+
+    return gluProject(vertex[0], vertex[1], vertex[2], model, projection,
+                      viewport, &screen[0], &screen[1], &tmp);
+}
+
 void wze::render::open_frame() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();

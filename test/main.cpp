@@ -18,6 +18,9 @@ auto main() -> int32_t {
 
     texture tex = load_texture("assets/wze/icon.png");
 
+    GLdouble vertex[] = {-5, -5, -50};
+    GLdouble screen[2];
+
     while (engine::update()) {
         camera::set_x(camera::x() + input::mouse_x());
         camera::set_y(camera::y() + input::mouse_y());
@@ -27,6 +30,10 @@ auto main() -> int32_t {
         } else if (input::key(KEY_S)) {
             camera::set_z(camera::z() - 0.2f * timer::deltatime());
         }
+
+        render::project_relative(vertex, screen);;
+
+        printf("%f %f\n", screen[0], screen[1]);
 
         camera::set_angle(camera::angle() + input::key(KEY_MOUSE_WHEEL) * 3);
     }

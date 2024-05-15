@@ -10,6 +10,7 @@ namespace wze {
         static uint16_t      _width;    // NOLINT
         static uint16_t      _height;   // NOLINT
         static float         _ratio;    // NOLINT
+        static GLint         _viewport[4]; // NOLINT
         static void          resize();
 
         public:
@@ -17,6 +18,7 @@ namespace wze {
         static auto width() -> uint16_t;
         static auto height() -> uint16_t;
         static auto ratio() -> float;
+        static auto viewport() -> const GLint *;
         static void open(const std::string &title, const std::string &icon_path,
                          float ratio);
         static void update();
