@@ -14,7 +14,12 @@ namespace wze {
         float                             _width;
         float                             _height;
         uint8_t                           _priority;
+        uint8_t                           _color_r;
+        uint8_t                           _color_g;
+        uint8_t                           _color_b;
+        uint8_t                           _color_a;
         texture                           _data;
+        bool                              _visible;
         void update();
 
         public: 
@@ -33,6 +38,16 @@ namespace wze {
         void set_height(float height);
         auto priority() const -> uint8_t;
         void set_priority(uint8_t priority);
+        auto color_r() -> uint8_t;
+        void set_color_r(uint8_t color_r);
+        auto color_g() -> uint8_t;
+        void set_color_g(uint8_t color_g);
+        auto color_b() -> uint8_t;
+        void set_color_b(uint8_t color_b);
+        auto color_a() -> uint8_t;
+        void set_color_a(uint8_t color_a);
+        auto visible() -> bool;
+        void set_visibility(bool visibility);
         auto data() const -> const texture &;
         void set_data(const texture &data);
         sprite();
