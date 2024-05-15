@@ -63,6 +63,6 @@ void wze::input::update() {
     } else {
         SDL_GetMouseState(&x, &y);
         _mouse_x = x;
-        _mouse_y = y;
+        _mouse_y = y * -1 + window::base_height();
     }
 }

@@ -1,55 +1,68 @@
 #include "../include/WZE/window.hpp"
 
-SDL_Window *wze::window::_base   = nullptr; // NOLINT
-uint16_t    wze::window::_width  = 0;       // NOLINT
-uint16_t    wze::window::_height = 0;       // NOLINT
-float       wze::window::_ratio  = 0.0f;    // NOLINT
+SDL_Window *wze::window::_base          = nullptr; // NOLINT
+int32_t     wze::window::_base_width    = 0;       // NOLINT
+int32_t     wze::window::_base_height   = 0;       // NOLINT
+float       wze::window::_base_ratio    = 0.0f;    // NOLINT
+int32_t     wze::window::_render_width  = 0;       // NOLINT
+int32_t     wze::window::_render_height = 0;       // NOLINT
+float       wze::window::_render_ratio  = 0.0f;    // NOLINT
 
 void wze::window::resize() {
-    int32_t width  = 0;
-    int32_t height = 0;
-    float   ratio  = 0.0f;
+    SDL_GetWindowSize(_base, &_base_width, &_base_height);
+    _base_ratio = (float)_base_width / (float)_base_height;
 
-    SDL_GetWindowSize(_base, &width, &height);
-    ratio = (float)width / (float)height;
-
-    if (ratio < _ratio) {
-        _width  = width;
-        _height = width / _ratio;
-        glViewport(0, (height - _height) / 2, _width, _height);
-    } else if (_ratio < ratio) {
-        _width  = height * _ratio;
-        _height = height;
-        glViewport((width - _width) / 2, 0, _width, _height);
+    if (_base_ratio < _render_ratio) {
+        _render_width  = _base_width;
+        _render_height = _base_width / _render_ratio;
+        glViewport(0, (_base_height - _render_height) / 2, _render_width,
+                   _render_height);
+    } else if (_render_ratio < _base_ratio) {
+        _render_width  = _base_height * _render_ratio;
+        _render_height = _base_height;
+        glViewport((_base_width - _render_width) / 2, 0, _render_width,
+                   _render_height);
     } else {
-        _width  = width;
-        _height = height;
-        glViewport(0, 0, _width, _height);
+        _render_width  = _base_width;
+        _render_height = _base_height;
+        glViewport(0, 0, _render_width, _render_height);
     }
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(60, (double)_ratio, 1, 1000);
+    gluPerspective(60, (double)_render_ratio, 1, 1000);
 }
 
 auto wze::window::base() -> SDL_Window * {
     return _base;
 }
 
-auto wze::window::width() -> uint16_t {
-    return _width;
+auto wze::window::base_width() -> int32_t {
+    return _base_width;
 }
 
-auto wze::window::height() -> uint16_t {
-    return _height;
+auto wze::window::base_height() -> int32_t {
+    return _base_height;
 }
 
-auto wze::window::ratio() -> float {
-    return _ratio;
+auto wze::window::base_ratio() -> float {
+    return _base_ratio;
+}
+
+auto wze::window::render_width() -> int32_t {
+    return _render_width;
+}
+
+auto wze::window::render_height() -> int32_t {
+    return _render_height;
+}
+
+auto wze::window::render_ratio() -> float {
+    return _render_ratio;
 }
 
 void wze::window::open(const std::string &title, const std::string &icon_path,
-                       float ratio) {
+                       float render_ratio) {
     SDL_Surface *icon = nullptr;
 
     _base =
@@ -80,7 +93,7 @@ void wze::window::open(const std::string &title, const std::string &icon_path,
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    _ratio = ratio;
+    _render_ratio = render_ratio;
     resize();
 }
 
