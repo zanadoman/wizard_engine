@@ -4,7 +4,6 @@ SDL_Window *wze::window::_base   = nullptr; // NOLINT
 uint16_t    wze::window::_width  = 0;       // NOLINT
 uint16_t    wze::window::_height = 0;       // NOLINT
 float       wze::window::_ratio  = 0.0f;    // NOLINT
-GLint wze::window::_viewport[4]; // NOLINT
 
 void wze::window::resize() {
     int32_t width  = 0;
@@ -17,29 +16,16 @@ void wze::window::resize() {
     if (ratio < _ratio) {
         _width  = width;
         _height = width / _ratio;
+        glViewport(0, (height - _height) / 2, _width, _height);
     } else if (_ratio < ratio) {
         _width  = height * _ratio;
         _height = height;
+        glViewport((width - _width) / 2, 0, _width, _height);
     } else {
         _width  = width;
         _height = height;
+        glViewport(0, 0, _width, _height);
     }
-
-    if (_width < width) {
-        _viewport[0] = (width - _width) / 2;
-        _viewport[1] = 0;
-    } else if (_height < height) {
-        _viewport[0] = 0;
-        _viewport[1] = (height - _height) / 2;
-    } else {
-        _viewport[0] = 0;
-        _viewport[1] = 0;
-    }
-
-    _viewport[2] = _width;
-    _viewport[3] = _height;
-
-    glViewport(_viewport[0], _viewport[1], _viewport[2], _viewport[3]);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -60,10 +46,6 @@ auto wze::window::height() -> uint16_t {
 
 auto wze::window::ratio() -> float {
     return _ratio;
-}
-
-auto wze::window::viewport() -> const GLint * {
-    return _viewport;
 }
 
 void wze::window::open(const std::string &title, const std::string &icon_path,
