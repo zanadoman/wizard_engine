@@ -12,7 +12,7 @@ namespace wze {
         STYLE_STRIKETHROUGH = TTF_STYLE_STRIKETHROUGH
     };
 
-    using texture = std::shared_ptr<GLuint>;
+    using texture = std::shared_ptr<uint32_t>;
     using sound   = std::shared_ptr<Mix_Chunk>;
     using font    = std::shared_ptr<TTF_Font>;
 

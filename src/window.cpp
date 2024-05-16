@@ -3,14 +3,14 @@
 SDL_Window *wze::window::_base          = nullptr; // NOLINT
 int32_t     wze::window::_base_width    = 0;       // NOLINT
 int32_t     wze::window::_base_height   = 0;       // NOLINT
-float       wze::window::_base_ratio    = 0.0f;    // NOLINT
+double      wze::window::_base_ratio    = 0;    // NOLINT
 int32_t     wze::window::_render_width  = 0;       // NOLINT
 int32_t     wze::window::_render_height = 0;       // NOLINT
-float       wze::window::_render_ratio  = 0.0f;    // NOLINT
+double      wze::window::_render_ratio  = 0;    // NOLINT
 
 void wze::window::resize() {
     SDL_GetWindowSize(_base, &_base_width, &_base_height);
-    _base_ratio = (float)_base_width / (float)_base_height;
+    _base_ratio = (double)_base_width / (double)_base_height;
 
     if (_base_ratio < _render_ratio) {
         _render_width  = _base_width;
@@ -45,7 +45,7 @@ auto wze::window::base_height() -> int32_t {
     return _base_height;
 }
 
-auto wze::window::base_ratio() -> float {
+auto wze::window::base_ratio() -> double {
     return _base_ratio;
 }
 
@@ -57,12 +57,12 @@ auto wze::window::render_height() -> int32_t {
     return _render_height;
 }
 
-auto wze::window::render_ratio() -> float {
+auto wze::window::render_ratio() -> double {
     return _render_ratio;
 }
 
 void wze::window::open(const std::string &title, const std::string &icon_path,
-                       float render_ratio) {
+                       double render_ratio) {
     SDL_Surface *icon = nullptr;
 
     _base =

@@ -11,9 +11,9 @@ auto main() -> int32_t {
 
     timer::set_frametime(1000 / 60);
 
-    window::open("", "", 16.0f / 9.0f);
+    window::open("", "", 16.0 / 9.0);
 
-    input::hide_cursor();
+    input::set_cursor_visibility(false);
     input::set_mouse_sens(0.2);
 
     texture tex = load_texture("assets/wze/icon.png");
@@ -26,9 +26,9 @@ auto main() -> int32_t {
         camera::set_y(camera::y() + input::mouse_y());
 
         if (input::key(KEY_W)) {
-            camera::set_z(camera::z() + 0.2f * timer::deltatime());
+            camera::set_z(camera::z() + 0.2 * timer::deltatime());
         } else if (input::key(KEY_S)) {
-            camera::set_z(camera::z() - 0.2f * timer::deltatime());
+            camera::set_z(camera::z() - 0.2 * timer::deltatime());
         }
 
         render::project_relative(vertex, screen);;

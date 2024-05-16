@@ -6,19 +6,19 @@
 namespace wze {
     class camera final {
         private:
-        static float _x;
-        static float _y;
-        static float _z;
-        static float _angle;
+        static double _x;
+        static double _y;
+        static double _z;
+        static double _angle;
 
         public:
-        static auto x() -> float;
-        static void set_x(float x);
-        static auto y() -> float;
-        static void set_y(float y);
-        static auto z() -> float;
-        static void set_z(float z);
-        static auto angle() -> float;
-        static void set_angle(float angle);
+        static auto x() -> double;
+        static void set_x(double x);
+        static auto y() -> double;
+        static void set_y(double y);
+        static auto z() -> double;
+        static void set_z(double z);
+        static auto angle() -> double;
+        static void set_angle(double angle);
     };
 }

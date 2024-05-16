@@ -6,51 +6,51 @@ auto wze::sprite::sprites() -> const std::vector<const sprite*> & {
     return _sprites;
 }
 
-auto wze::sprite::x() const -> float {
+auto wze::sprite::x() const -> double {
     return _x;
 }
 
-void wze::sprite::set_x(float x) {
+void wze::sprite::set_x(double x) {
     _x = x;
 }
 
-auto wze::sprite::y() const -> float {
+auto wze::sprite::y() const -> double {
     return _y;
 }
 
-void wze::sprite::set_y(float y) {
+void wze::sprite::set_y(double y) {
     _y = y;
 }
 
-auto wze::sprite::z() const -> float {
+auto wze::sprite::z() const -> double {
     return _z;
 }
 
-void wze::sprite::set_z(float z) {
+void wze::sprite::set_z(double z) {
     _z = z;
 }
 
-auto wze::sprite::angle() const -> float {
+auto wze::sprite::angle() const -> double {
     return _angle;
 }
 
-void wze::sprite::set_angle(float angle) {
+void wze::sprite::set_angle(double angle) {
     _angle = angle;
 }
 
-auto wze::sprite::width() const -> float {
+auto wze::sprite::width() const -> double {
     return _width;
 }
 
-void wze::sprite::set_width(float width) {
+void wze::sprite::set_width(double width) {
     _width = width;
 }
 
-auto wze::sprite::height() const -> float {
+auto wze::sprite::height() const -> double {
     return _height;
 }
 
-void wze::sprite::set_height(float height) {
+void wze::sprite::set_height(double height) {
     _height = height;
 }
 

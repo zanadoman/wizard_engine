@@ -1,7 +1,7 @@
 #include "../include/WZE/assets.hpp" // IWYU pragma: keep
 
 auto new_texture(SDL_Surface *image) -> GLuint * {
-    auto result = new GLuint;
+    auto result = new uint32_t;
 
     glGenTextures(1, result);
     glBindTexture(GL_TEXTURE_2D, *result);

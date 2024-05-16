@@ -12,9 +12,9 @@ namespace wze {
 
         public:
         static auto project_absolute(const double vertex[3], double screen[2])
-            -> GLint;
+            -> bool;
         static auto project_relative(const double vertex[3], double screen[2])
-            -> GLint;
+            -> bool;
         static void update();
     };
 } // namespace wze

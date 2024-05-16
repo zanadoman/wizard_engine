@@ -128,19 +128,18 @@ namespace wze {
     class input final {
         private:
         static std::array<int8_t, KEY_COUNT> _keys;       // NOLINT
-        static float                         _mouse_x;    // NOLINT
-        static float                         _mouse_y;    // NOLINT
-        static float                         _mouse_sens; // NOLINT
+        static double                         _mouse_x;    // NOLINT
+        static double                         _mouse_y;    // NOLINT
+        static double                         _mouse_sens; // NOLINT
 
         public:
         static auto key(keys key) -> int8_t;
-        static auto mouse_x() -> float;
-        static auto mouse_y() -> float;
-        static auto mouse_sens() -> float;
-        static void set_mouse_sens(float sens);
-        static void show_cursor();
-        static void hide_cursor();
-        static auto cursor_shown() -> bool;
+        static auto mouse_x() -> double;
+        static auto mouse_y() -> double;
+        static auto mouse_sens() -> double;
+        static void set_mouse_sens(double sens);
+        static void set_cursor_visibility(bool visibility);
+        static auto cursor_visible() -> bool;
         static void update();
     };
 } // namespace wze
