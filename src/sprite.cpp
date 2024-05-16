@@ -62,7 +62,7 @@ void wze::sprite::set_priority(uint8_t priority) {
     _priority = priority;
 }
 
-auto wze::sprite::color_r() -> uint8_t {
+auto wze::sprite::color_r() const -> uint8_t {
     return _color_r;
 }
 
@@ -70,7 +70,7 @@ void wze::sprite::set_color_r(uint8_t color_r) {
     _color_r = color_r;
 }
 
-auto wze::sprite::color_g() -> uint8_t {
+auto wze::sprite::color_g() const -> uint8_t {
     return _color_g;
 }
 
@@ -78,7 +78,7 @@ void wze::sprite::set_color_g(uint8_t color_g) {
     _color_g = color_g;
 }
 
-auto wze::sprite::color_b() -> uint8_t {
+auto wze::sprite::color_b() const -> uint8_t {
     return _color_b;
 }
 
@@ -86,7 +86,7 @@ void wze::sprite::set_color_b(uint8_t color_b) {
     _color_b = color_b;
 }
 
-auto wze::sprite::color_a() -> uint8_t {
+auto wze::sprite::color_a() const -> uint8_t {
     return _color_a;
 }
 
@@ -94,7 +94,7 @@ void wze::sprite::set_color_a(uint8_t color_a) {
     _color_a = color_a;
 }
 
-auto wze::sprite::visible() -> bool {
+auto wze::sprite::visible() const -> bool {
     return _visible;
 }
 
