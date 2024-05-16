@@ -21,4 +21,4 @@ namespace wze {
         static auto angle() -> double;
         static void set_angle(double angle);
     };
-}
+} // namespace wze

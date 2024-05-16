@@ -128,9 +128,9 @@ namespace wze {
     class input final {
         private:
         static std::array<int8_t, KEY_COUNT> _keys;       // NOLINT
-        static double                         _mouse_x;    // NOLINT
-        static double                         _mouse_y;    // NOLINT
-        static double                         _mouse_sens; // NOLINT
+        static double                        _mouse_x;    // NOLINT
+        static double                        _mouse_y;    // NOLINT
+        static double                        _mouse_sens; // NOLINT
 
         public:
         static auto key(keys key) -> int8_t;

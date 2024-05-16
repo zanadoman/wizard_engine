@@ -1,8 +1,8 @@
 #include "../include/WZE/sprite.hpp" // IWYU pragma: keep
 
-std::vector<const wze::sprite*> wze::sprite::_sprites;
+std::vector<const wze::sprite *> wze::sprite::_sprites;
 
-auto wze::sprite::sprites() -> const std::vector<const sprite*> & {
+auto wze::sprite::sprites() -> const std::vector<const sprite *> & {
     return _sprites;
 }
 

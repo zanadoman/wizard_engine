@@ -6,14 +6,14 @@
 namespace wze {
     class window final {
         private:
-        static SDL_Window   *_base;          // NOLINT
-        static int32_t       _base_width;    // NOLINT
-        static int32_t       _base_height;   // NOLINT
-        static double        _base_ratio;    // NOLINT
-        static int32_t       _render_width;  // NOLINT
-        static int32_t       _render_height; // NOLINT
-        static double        _render_ratio;  // NOLINT
-        static void          resize();
+        static SDL_Window *_base;          // NOLINT
+        static int32_t     _base_width;    // NOLINT
+        static int32_t     _base_height;   // NOLINT
+        static double      _base_ratio;    // NOLINT
+        static int32_t     _render_width;  // NOLINT
+        static int32_t     _render_height; // NOLINT
+        static double      _render_ratio;  // NOLINT
+        static void        resize();
 
         public:
         static auto base() -> SDL_Window *;

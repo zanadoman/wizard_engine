@@ -1,8 +1,8 @@
 #pragma once
 
+#include "camera.hpp" // IWYU pragma: keep
 #include "common.hpp" // IWYU pragma: keep
 #include "window.hpp" // IWYU pragma: keep
-#include "camera.hpp" // IWYU pragma: keep
 
 namespace wze {
     class render final {
@@ -11,9 +11,9 @@ namespace wze {
         static void close_frame();
 
         public:
-        static auto project_absolute(const double vertex[3], double screen[2])
+        static auto abs_projection(const double vertex[3], double screen[2])
             -> bool;
-        static auto project_relative(const double vertex[3], double screen[2])
+        static auto rel_projection(const double vertex[3], double screen[2])
             -> bool;
         static void update();
     };

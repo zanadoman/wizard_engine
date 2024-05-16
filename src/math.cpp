@@ -1,15 +1,15 @@
 #include "../include/WZE/math.hpp" // IWYU pragma: keep
 
-auto wze::math::distance(double init_x, double init_y, double term_x, double term_y)
-    -> double {
+auto wze::math::distance(double init_x, double init_y, double term_x,
+                         double term_y) -> double {
     term_x -= init_x;
     term_y -= init_y;
 
     return sqrt(term_x * term_x + term_y * term_y);
 }
 
-auto wze::math::angle(double init_x, double init_y, double term_x, double term_y)
-    -> double {
+auto wze::math::angle(double init_x, double init_y, double term_x,
+                      double term_y) -> double {
     double result = 0;
 
     if (init_x == term_x && init_y == term_y) {

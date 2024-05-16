@@ -3,10 +3,10 @@
 SDL_Window *wze::window::_base          = nullptr; // NOLINT
 int32_t     wze::window::_base_width    = 0;       // NOLINT
 int32_t     wze::window::_base_height   = 0;       // NOLINT
-double      wze::window::_base_ratio    = 0;    // NOLINT
+double      wze::window::_base_ratio    = 0;       // NOLINT
 int32_t     wze::window::_render_width  = 0;       // NOLINT
 int32_t     wze::window::_render_height = 0;       // NOLINT
-double      wze::window::_render_ratio  = 0;    // NOLINT
+double      wze::window::_render_ratio  = 0;       // NOLINT
 
 void wze::window::resize() {
     SDL_GetWindowSize(_base, &_base_width, &_base_height);

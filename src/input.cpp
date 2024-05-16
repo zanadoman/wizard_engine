@@ -29,7 +29,6 @@ void wze::input::set_cursor_visibility(bool cursor_visibility) {
     SDL_SetRelativeMouseMode((SDL_bool)!cursor_visibility);
 }
 
-
 auto wze::input::cursor_visible() -> bool {
     return !SDL_GetRelativeMouseMode();
 }

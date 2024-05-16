@@ -1,8 +1,8 @@
 #include "../include/WZE/camera.hpp" // IWYU pragma: keep
 
-double wze::camera::_x = 0;     // NOLINT
-double wze::camera::_y = 0;     // NOLINT
-double wze::camera::_z = 0;     // NOLINT
+double wze::camera::_x     = 0; // NOLINT
+double wze::camera::_y     = 0; // NOLINT
+double wze::camera::_z     = 0; // NOLINT
 double wze::camera::_angle = 0; // NOLINT
 
 auto wze::camera::x() -> double {

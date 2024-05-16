@@ -17,7 +17,7 @@ auto new_texture(SDL_Surface *image) -> GLuint * {
     return result;
 }
 
-void delete_texture(GLuint *texture) {
+void delete_texture(uint32_t *texture) {
     glDeleteTextures(1, texture);
     delete texture;
 }
@@ -38,18 +38,19 @@ auto wze::load_texture(const std::string &path) -> texture {
 
 auto wze::load_texture(const std::string &string, const font &font, style style)
     -> texture {
-        SDL_Surface *image = nullptr;
+    SDL_Surface *image = nullptr;
 
-        TTF_SetFontStyle(font.get(), style);
-        image = TTF_RenderUTF8_Blended(font.get(), string.c_str(),
-                    {UINT8_MAX, UINT8_MAX, UINT8_MAX, UINT8_MAX});
+    TTF_SetFontStyle(font.get(), style);
+    image =
+        TTF_RenderUTF8_Blended(font.get(), string.c_str(),
+                               {UINT8_MAX, UINT8_MAX, UINT8_MAX, UINT8_MAX});
 
-        if (!image) {
-            throw std::runtime_error(TTF_GetError());
-        }
-
-        return {new_texture(image), delete_texture};
+    if (!image) {
+        throw std::runtime_error(TTF_GetError());
     }
+
+    return {new_texture(image), delete_texture};
+}
 
 auto wze::load_sound(const std::string &path) -> sound {
     Mix_Chunk *result = Mix_LoadWAV(path.c_str());

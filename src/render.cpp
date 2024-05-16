@@ -1,11 +1,11 @@
 #include "../include/WZE/render.hpp" // IWYU pragma: keep
 
-auto wze::render::project_absolute(const double vertex[3], 
-                                   double screen[2]) -> bool {
-    int32_t    viewport[4];
-    double projection[16];
-    double model[16];
-    double tmp;
+auto wze::render::abs_projection(const double vertex[3], double screen[2])
+    -> bool {
+    int32_t viewport[4];
+    double  projection[16];
+    double  model[16];
+    double  tmp;
 
     glGetIntegerv(GL_VIEWPORT, viewport);
     glGetDoublev(GL_PROJECTION_MATRIX, projection);
@@ -15,12 +15,12 @@ auto wze::render::project_absolute(const double vertex[3],
                       viewport, &screen[0], &screen[1], &tmp);
 }
 
-auto wze::render::project_relative(const double vertex[3], 
-                                   double screen[2]) -> bool {
-    int32_t    viewport[4];
-    double projection[16];
-    double model[16];
-    double tmp;
+auto wze::render::rel_projection(const double vertex[3], double screen[2])
+    -> bool {
+    int32_t viewport[4];
+    double  projection[16];
+    double  model[16];
+    double  tmp;
 
     glGetIntegerv(GL_VIEWPORT, viewport);
     glGetDoublev(GL_PROJECTION_MATRIX, projection);
