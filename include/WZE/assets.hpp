@@ -22,7 +22,7 @@ namespace wze {
 
         public:
         static auto load_texture(const std::string &path) -> texture;
-        static auto load_texture(const std::string &string, const font &font,
+        static auto load_texture(const std::string &text, const font &font,
                                  styles style) -> texture;
         static auto load_sound(const std::string &path) -> sound;
         static auto load_font(const std::string &path, uint8_t size) -> font;

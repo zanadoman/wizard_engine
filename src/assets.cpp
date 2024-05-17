@@ -41,13 +41,13 @@ auto wze::assets::load_texture(const std::string &path) -> texture {
     return result;
 }
 
-auto wze::assets::load_texture(const std::string &string, const font &font,
+auto wze::assets::load_texture(const std::string &text, const font &font,
                                styles style) -> texture {
     auto result = texture();
     SDL_Surface *surface = nullptr;
 
     TTF_SetFontStyle(font.get(), style);
-    surface = TTF_RenderUTF8_Blended(font.get(), string.c_str(),
+    surface = TTF_RenderUTF8_Blended(font.get(), text.c_str(),
                                      {255, 255, 255, 255});
 
     if (!surface) {
