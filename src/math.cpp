@@ -13,12 +13,12 @@ auto wze::math::angle(float init_x, float init_y, float term_x, float term_y)
     auto angle = float();
 
     if (init_x == term_x && init_y == term_y) {
-        return 0;
+        return 0.0f;
     }
 
     angle = acosf(term_x / distance(init_x, init_y, term_x, term_y));
 
-    return term_y < 0 ? -angle : angle;
+    return term_y < 0.0f ? -angle : angle;
 }
 
 auto wze::math::move_x(float distance, float angle) -> float {

@@ -26,9 +26,9 @@ auto main() -> int32_t {
         camera::set_y(camera::y() + input::cursor_y());
 
         if (input::key(KEY_W)) {
-            camera::set_z(camera::z() + 0.2 * timer::deltatime());
+            camera::set_z(camera::z() + 0.2f * timer::deltatime());
         } else if (input::key(KEY_S)) {
-            camera::set_z(camera::z() - 0.2 * timer::deltatime());
+            camera::set_z(camera::z() - 0.2f * timer::deltatime());
         }
 
         render::rel_projection(vertex, screen);;

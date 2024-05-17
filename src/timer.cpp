@@ -1,8 +1,8 @@
 #include "../include/WZE/timer.hpp" // IWYU pragma: keep
 
-uint8_t wze::timer::_frametime = 0; // NOLINT
-uint64_t wze::timer::_lasttime = 0; // NOLINT
-uint8_t wze::timer::_deltatime = 0; // NOLINT
+uint8_t wze::timer::_frametime = 0;
+uint64_t wze::timer::_lasttime = 0;
+uint8_t wze::timer::_deltatime = 0;
 
 auto wze::timer::frametime(void) -> uint8_t {
     return _frametime;
@@ -24,7 +24,7 @@ auto wze::timer::time(void) -> uint64_t {
     return SDL_GetTicks64();
 }
 
-void wze::timer::update(void) {
+void wze::timer::__update(void) {
     auto deadline = _lasttime + _frametime;
 
     if (SDL_GetTicks64() < deadline) {

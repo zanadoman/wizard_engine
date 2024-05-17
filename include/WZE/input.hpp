@@ -11,8 +11,8 @@ namespace wze {
         static float _cursor_x;
         static float _cursor_y;
         static float _mouse_sens;
-        static void update_keys(void);
-        static void update_cursor(void);
+        static void _update_keys(void);
+        static void _update_cursor(void);
 
         public:
         static auto key(keys key) -> bool;
@@ -23,6 +23,6 @@ namespace wze {
         static auto cursor_visible(void) -> bool;
         static void hide_cursor(void);
         static void show_cursor(void);
-        static void update(void);
+        static void __update(void);
     };
 } // namespace wze

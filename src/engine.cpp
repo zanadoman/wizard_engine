@@ -33,7 +33,7 @@ auto wze::engine::update() -> bool {
 
     window::update();
     render::update();
-    timer::update();
+    timer::__update();
 
     _events.clear();
 
@@ -45,7 +45,7 @@ auto wze::engine::update() -> bool {
         _events.push_front(event);
     }
 
-    input::update();
+    input::__update();
 
     return true;
 }

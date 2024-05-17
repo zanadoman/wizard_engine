@@ -5,13 +5,6 @@ float wze::camera::_y = float();
 float wze::camera::_z = float();
 float wze::camera::_angle = float();
 float wze::camera::_fov = 60.0f;
-float wze::camera::_aspect = float();
-
-void wze::camera::_update(void) {
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective((double)_fov, (double)_aspect, 0.3, 1000.0);
-}
 
 auto wze::camera::x(void) -> float {
     return _x;
@@ -51,10 +44,10 @@ auto wze::camera::fov(void) -> float {
 
 void wze::camera::set_fov(float fov) {
     _fov = fov;
-    _update();
 }
 
-void wze::camera::__init(float aspect) {
-    _aspect = aspect;
-    _update();
+void wze::camera::__update(void) {
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective((double)_fov, (double)window::render_ratio(), 0.3, 1000.0);
 }
