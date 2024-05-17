@@ -4,13 +4,13 @@ SDL_Window *wze::window::_base = nullptr;
 int32_t wze::window::_width = int32_t();
 int32_t wze::window::_height = int32_t();
 std::array<int32_t, 4> wze::window::_viewport({});
-float wze::window::_aspect_ratio = float();
+double wze::window::_aspect_ratio = double();
 
 void wze::window::_resize(void) {
-    auto aspect_ratio = float();
+    auto aspect_ratio = double();
 
     SDL_GetWindowSize(_base, &_width, &_height);
-    aspect_ratio = (float)_width / (float)_height;
+    aspect_ratio = (double)_width / (double)_height;
 
     if (aspect_ratio < _aspect_ratio) {
         _viewport.at(2) = _width;
@@ -79,7 +79,7 @@ void wze::window::set_icon(const std::string &path) {
     SDL_FreeSurface(icon);
 }
 
-void wze::window::__init(const std::string &title, float aspect_ratio) {
+void wze::window::__init(const std::string &title, double aspect_ratio) {
     _init_base(title);
     _init_render();
     _aspect_ratio = aspect_ratio;

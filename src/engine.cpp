@@ -31,7 +31,7 @@ void wze::engine::init() {
 auto wze::engine::update() -> bool {
     SDL_Event event;
 
-    window::update();
+    window::__update();
     render::update();
     timer::__update();
 
