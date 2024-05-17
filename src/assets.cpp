@@ -1,58 +1,66 @@
 #include "../include/WZE/assets.hpp" // IWYU pragma: keep
 
-auto new_texture(SDL_Surface *image) -> GLuint * {
-    auto result = new uint32_t;
+auto wze::assets::_new_texture(SDL_Surface *surface) -> wze::texture {
+    auto id = new uint32_t();
 
-    glGenTextures(1, result);
-    glBindTexture(GL_TEXTURE_2D, *result);
+    glGenTextures(1, id);
+    glBindTexture(GL_TEXTURE_2D, *id);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->w, image->h, 0, GL_RGBA,
-                 GL_UNSIGNED_BYTE, image->pixels);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0, GL_RGBA,
+                 GL_UNSIGNED_BYTE, surface->pixels);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-    SDL_FreeSurface(image);
+    return {id, _delete_texture};
+}
+
+void wze::assets::_delete_texture(uint32_t *id) {
+    if (id) {
+        glDeleteTextures(1, id);
+        delete id;
+    }
+}
+
+auto wze::assets::load_texture(const std::string &path) -> texture {
+    auto result = texture();
+    auto surface = IMG_Load(path.c_str());
+
+    if (!surface) {
+        throw std::runtime_error(IMG_GetError());
+    }
+
+    if (surface->format->BytesPerPixel != 4) {
+        throw std::runtime_error("wze::assets::load_texture(" + path +
+                                 ") Format not supported");
+    }
+
+    result = _new_texture(surface);
+    SDL_FreeSurface(surface);
 
     return result;
 }
 
-void delete_texture(uint32_t *texture) {
-    glDeleteTextures(1, texture);
-    delete texture;
-}
-
-auto wze::load_texture(const std::string &path) -> texture {
-    SDL_Surface *image = IMG_Load(path.c_str());
-
-    if (!image) {
-        throw std::runtime_error(IMG_GetError());
-    }
-
-    if (image->format->BytesPerPixel != 4) {
-        throw std::runtime_error("wze::load_texture() Format not supported");
-    }
-
-    return {new_texture(image), delete_texture};
-}
-
-auto wze::load_texture(const std::string &string, const font &font, style style)
-    -> texture {
-    SDL_Surface *image = nullptr;
+auto wze::assets::load_texture(const std::string &string, const font &font,
+                               styles style) -> texture {
+    auto result = texture();
+    SDL_Surface *surface = nullptr;
 
     TTF_SetFontStyle(font.get(), style);
-    image =
-        TTF_RenderUTF8_Blended(font.get(), string.c_str(),
-                               {UINT8_MAX, UINT8_MAX, UINT8_MAX, UINT8_MAX});
+    surface = TTF_RenderUTF8_Blended(font.get(), string.c_str(),
+                                     {255, 255, 255, 255});
 
-    if (!image) {
+    if (!surface) {
         throw std::runtime_error(TTF_GetError());
     }
 
-    return {new_texture(image), delete_texture};
+    result = _new_texture(surface);
+    SDL_FreeSurface(surface);
+
+    return result;
 }
 
-auto wze::load_sound(const std::string &path) -> sound {
+auto wze::assets::load_sound(const std::string &path) -> sound {
     Mix_Chunk *result = Mix_LoadWAV(path.c_str());
 
     if (!result) {
@@ -62,7 +70,7 @@ auto wze::load_sound(const std::string &path) -> sound {
     return {result, Mix_FreeChunk};
 }
 
-auto wze::load_font(const std::string &path, uint8_t size) -> font {
+auto wze::assets::load_font(const std::string &path, uint8_t size) -> font {
     TTF_Font *result = TTF_OpenFont(path.c_str(), size);
 
     if (!result) {

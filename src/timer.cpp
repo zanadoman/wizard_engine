@@ -1,8 +1,8 @@
 #include "../include/WZE/timer.hpp" // IWYU pragma: keep
 
-uint8_t wze::timer::_frametime = 0;
-uint64_t wze::timer::_lasttime = 0;
-uint8_t wze::timer::_deltatime = 0;
+uint8_t wze::timer::_frametime = uint8_t();
+uint64_t wze::timer::_lasttime = uint8_t();
+uint8_t wze::timer::_deltatime = uint8_t();
 
 auto wze::timer::frametime(void) -> uint8_t {
     return _frametime;
