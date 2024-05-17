@@ -1,14 +1,6 @@
 UseTab: Never
 IndentWidth: 4
 ColumnLimit: 80
-
-AlignConsecutiveDeclarations: AcrossComments
-AlignConsecutiveAssignments: AcrossComments
-AlignTrailingComments: Always
-AlignEscapedNewlines: Left
-AlignOperands: AlignAfterOperator
-
 AllowShortFunctionsOnASingleLine: Empty
-
 NamespaceIndentation: All
 AccessModifierOffset: 0

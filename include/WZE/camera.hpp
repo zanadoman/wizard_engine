@@ -1,24 +1,23 @@
 #pragma once
 
 #include "common.hpp" // IWYU pragma: keep
-#include "window.hpp" // IWYU pragma: keep
 
 namespace wze {
     class camera final {
         private:
-        static double _x;
-        static double _y;
-        static double _z;
-        static double _angle;
+        static GLdouble _x;
+        static GLdouble _y;
+        static GLdouble _z;
+        static GLdouble _angle;
 
         public:
-        static auto x() -> double;
-        static void set_x(double x);
-        static auto y() -> double;
-        static void set_y(double y);
-        static auto z() -> double;
-        static void set_z(double z);
-        static auto angle() -> double;
-        static void set_angle(double angle);
+        static auto x() -> GLdouble;
+        static void set_x(GLdouble x);
+        static auto y() -> GLdouble;
+        static void set_y(GLdouble y);
+        static auto z() -> GLdouble;
+        static void set_z(GLdouble z);
+        static auto angle() -> GLdouble;
+        static void set_angle(GLdouble angle);
     };
 } // namespace wze

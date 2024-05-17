@@ -1,64 +1,81 @@
 #include "../include/WZE/input.hpp" // IWYU pragma: keep
 
-std::array<int8_t, wze::KEY_COUNT> wze::input::_keys;           // NOLINT
-double                             wze::input::_mouse_x    = 0; // NOLINT
-double                             wze::input::_mouse_y    = 0; // NOLINT
-double                             wze::input::_mouse_sens = 1; // NOLINT
+bool wze::input::_keys[KEY_COUNT];
+float wze::input::_cursor_x = 0;
+float wze::input::_cursor_y = 0;
+float wze::input::_mouse_sens = 1;
 
-auto wze::input::key(keys key) -> int8_t {
-    return _keys.at(key);
+auto wze::input::key(keys key) -> bool {
+    return _keys[key];
 }
 
-auto wze::input::mouse_x() -> double {
-    return _mouse_x;
+auto wze::input::cursor_x(void) -> float {
+    return _cursor_x;
 }
 
-auto wze::input::mouse_y() -> double {
-    return _mouse_y;
+auto wze::input::cursor_y(void) -> float {
+    return _cursor_y;
 }
 
-auto wze::input::mouse_sens() -> double {
+auto wze::input::mouse_sens(void) -> float {
     return _mouse_sens;
 }
 
-void wze::input::set_mouse_sens(double sens) {
+void wze::input::set_mouse_sens(float sens) {
     _mouse_sens = sens;
 }
 
-void wze::input::set_cursor_visibility(bool cursor_visibility) {
-    SDL_SetRelativeMouseMode((SDL_bool)!cursor_visibility);
-}
-
-auto wze::input::cursor_visible() -> bool {
+auto wze::input::cursor_visible(void) -> bool {
     return !SDL_GetRelativeMouseMode();
 }
 
-void wze::input::update() {
-    int32_t  x           = 0;
-    int32_t  y           = 0;
-    uint32_t mouse_state = SDL_GetMouseState(nullptr, nullptr);
+void wze::input::hide_cursor(void) {
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+}
 
-    memcpy(_keys.data(), SDL_GetKeyboardState(nullptr), KEY_COUNT);
+void wze::input::show_cursor(void) {
+    SDL_SetRelativeMouseMode(SDL_FALSE);
+}
 
-    _keys[KEY_MOUSE_LMB]   = (int8_t)(mouse_state == 1);
-    _keys[KEY_MOUSE_MMB]   = (int8_t)(mouse_state == 2);
-    _keys[KEY_MOUSE_RMB]   = (int8_t)(mouse_state == 3);
-    _keys[KEY_MOUSE_WHEEL] = 0;
+void wze::input::update(void) {
+    update_keys();
+    update_cursor();
+}
+
+void wze::input::update_keys(void) {
+    auto mouse_state = SDL_GetMouseState(nullptr, nullptr);
+
+    (void)memcpy(_keys, SDL_GetKeyboardState(nullptr), KEY_COUNT);
+
+    _keys[KEY_MOUSE_LMB] = mouse_state & SDL_BUTTON_LEFT;
+    _keys[KEY_MOUSE_MMB] = mouse_state & SDL_BUTTON_MIDDLE;
+    _keys[KEY_MOUSE_RMB] = mouse_state & SDL_BUTTON_RIGHT;
+    _keys[KEY_MOUSE_MWU] = false;
+    _keys[KEY_MOUSE_MWD] = false;
 
     for (auto event : engine::events()) {
-        if (event.type == SDL_MOUSEWHEEL) {         // NOLINT
-            _keys[KEY_MOUSE_WHEEL] = event.wheel.y; // NOLINT
+        if (event.type == SDL_MOUSEWHEEL) {
+            if (0 < event.wheel.y) {
+                _keys[KEY_MOUSE_MWU] = true;
+            } else if (event.wheel.y < 0) {
+                _keys[KEY_MOUSE_MWD] = true;
+            }
             break;
         }
     }
+}
+
+void wze::input::update_cursor() {
+    auto cursor_x = int32_t();
+    auto cursor_y = int32_t();
 
     if (SDL_GetRelativeMouseMode()) {
-        SDL_GetRelativeMouseState(&x, &y);
-        _mouse_x = (double)x * _mouse_sens;
-        _mouse_y = (double)y * _mouse_sens * -1;
+        (void)SDL_GetRelativeMouseState(&cursor_x, &cursor_y);
+        _cursor_x = cursor_x * _mouse_sens;
+        _cursor_y = -cursor_y * _mouse_sens;
     } else {
-        SDL_GetMouseState(&x, &y);
-        _mouse_x = x;
-        _mouse_y = y * -1 + window::base_height();
+        (void)SDL_GetMouseState(&cursor_x, &cursor_y);
+        _cursor_x = cursor_x;
+        _cursor_y = -cursor_y + window::base_height();
     }
 }

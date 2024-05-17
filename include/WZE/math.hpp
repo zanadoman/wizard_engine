@@ -5,17 +5,11 @@
 namespace wze {
     class math final {
         public:
-        static auto distance(double init_x, double init_y, double term_x,
-                             double term_y) -> double;
-
-        public:
-        static auto angle(double init_x, double init_y, double term_x,
-                          double term_y) -> double;
-
-        public:
-        static auto move_x(double distance, double angle) -> double;
-
-        public:
-        static auto move_y(double distance, double angle) -> double;
+        static auto distance(float init_x, float init_y, float term_x,
+                             float term_y) -> float;
+        static auto angle(float init_x, float init_y, float term_x,
+                          float term_y) -> float;
+        static auto move_x(float distance, float angle) -> float;
+        static auto move_y(float distance, float angle) -> float;
     };
 } // namespace wze

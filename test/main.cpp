@@ -13,7 +13,7 @@ auto main() -> int32_t {
 
     window::open("", "", 16.0 / 9.0);
 
-    input::set_cursor_visibility(false);
+    input::hide_cursor();
     input::set_mouse_sens(0.2);
 
     texture tex = load_texture("assets/wze/icon.png");
@@ -22,8 +22,8 @@ auto main() -> int32_t {
     GLdouble screen[2];
 
     while (engine::update()) {
-        camera::set_x(camera::x() + input::mouse_x());
-        camera::set_y(camera::y() + input::mouse_y());
+        camera::set_x(camera::x() + input::cursor_x());
+        camera::set_y(camera::y() + input::cursor_y());
 
         if (input::key(KEY_W)) {
             camera::set_z(camera::z() + 0.2 * timer::deltatime());
@@ -31,12 +31,16 @@ auto main() -> int32_t {
             camera::set_z(camera::z() - 0.2 * timer::deltatime());
         }
 
-        render::project_relative(vertex, screen);;
+        render::rel_projection(vertex, screen);;
 
         printf("%f %f\n", screen[0], screen[1]);
         // printf("%f, %f\n", (double)input::mouse_x(), (double)input::mouse_y());
 
-        camera::set_angle(camera::angle() + input::key(KEY_MOUSE_WHEEL) * 3);
+        if (input::key(KEY_MOUSE_MWU)) {
+            camera::set_angle(camera::angle() + 3);
+        } else if (input::key(KEY_MOUSE_MWD)) {
+            camera::set_angle(camera::angle() - 3);
+        }
     }
 
     return 0;

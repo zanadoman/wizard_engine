@@ -7,7 +7,7 @@ auto wze::engine::events() -> const std::deque<SDL_Event> & {
 }
 
 void wze::engine::init() {
-    constexpr uint16_t CHUNK_SIZE = 2048;
+    constexpr auto CHUNK_SIZE = 2048;
 
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
