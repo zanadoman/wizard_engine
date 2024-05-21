@@ -1,30 +1,28 @@
 #include "../include/WZE/math.hpp" // IWYU pragma: keep
 
-constexpr auto wze::math::dist(double ix, double iy, double tx, double ty)
-    -> double {
+float wze::math::dist(float ix, float iy, float tx, float ty) {
     tx -= ix;
     ty -= iy;
 
-    return std::sqrt(tx * tx + ty * ty);
+    return std::sqrtf(tx * tx + ty * ty);
 }
 
-constexpr auto wze::math::angle(double ix, double iy, double tx, double ty)
-    -> double {
-    double res;
+float wze::math::angle(float ix, float iy, float tx, float ty) {
+    float res;
 
     if (ix == tx && iy == ty) {
-        return 0.0;
+        return 0.0f;
     }
 
-    res = std::acos(tx / dist(ix, iy, tx, ty));
+    res = std::acosf(tx / dist(ix, iy, tx, ty));
 
-    return ty < 0.0 ? -res : res;
+    return ty < 0.0f ? -res : res;
 }
 
-constexpr auto wze::math::mov_x(double dist, double angle) -> double {
-    return dist * std::cos(angle);
+float wze::math::mov_x(float dist, float angle) {
+    return dist * std::cosf(angle);
 }
 
-constexpr auto wze::math::mov_y(double dist, double angle) -> double {
-    return dist * std::sin(angle);
+float wze::math::mov_y(float dist, float angle) {
+    return dist * std::sinf(angle);
 }

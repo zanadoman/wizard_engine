@@ -5,11 +5,9 @@
 namespace wze {
     class math final {
         public:
-        static constexpr auto dist(double ix, double iy, double tx, double ty)
-            -> double;
-        static constexpr auto angle(double ix, double iy, double tx, double ty)
-            -> double;
-        static constexpr auto mov_x(double dist, double angle) -> double;
-        static constexpr auto mov_y(double dist, double angle) -> double;
+        static float dist(float ix, float iy, float tx, float ty);
+        static float angle(float ix, float iy, float tx, float ty);
+        static float mov_x(float dist, float angle);
+        static float mov_y(float dist, float angle);
     };
 } // namespace wze

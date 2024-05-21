@@ -4,7 +4,7 @@ uint8_t wze::timer::_frame = 0;
 uint64_t wze::timer::_last = 0;
 uint8_t wze::timer::_delta = 0;
 
-auto wze::timer::frame(void) -> uint8_t {
+uint8_t wze::timer::frame() {
     return _frame;
 }
 
@@ -12,7 +12,7 @@ void wze::timer::set_frame(uint8_t ms) {
     _frame = ms;
 }
 
-auto wze::timer::delta(void) -> uint8_t {
+uint8_t wze::timer::delta() {
     return _delta;
 }
 
@@ -20,11 +20,11 @@ void wze::timer::set_delta(uint8_t ms) {
     _delta = ms;
 }
 
-auto wze::timer::now(void) -> uint64_t {
+uint64_t wze::timer::now() {
     return SDL_GetTicks64();
 }
 
-void wze::timer::__update(void) {
+void wze::timer::__update() {
     uint64_t now;
     uint64_t end;
 
