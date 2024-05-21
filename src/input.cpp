@@ -1,22 +1,31 @@
 #include "../include/WZE/input.hpp" // IWYU pragma: keep
+#include <SDL2/SDL_keyboard.h>
 
 std::array<bool, wze::KEY_COUNT> wze::input::_keys({});
-double wze::input::_cursor_x = double();
-double wze::input::_cursor_y = double();
+double wze::input::_cursor_x = 0.0;
+double wze::input::_cursor_y = 0.0;
 double wze::input::_mouse_sens = 1.0;
 
 void wze::input::_update_keys(void) {
-    auto mouse_state = SDL_GetMouseState(nullptr, nullptr);
+    static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
 
-    (void)memcpy(_keys.data(), SDL_GetKeyboardState(nullptr), KEY_COUNT);
+    const uint8_t *keys;
+    uint32_t mouse;
 
-    _keys.at(KEY_MOUSE_LMB) = mouse_state & SDL_BUTTON_LEFT;
-    _keys.at(KEY_MOUSE_MMB) = mouse_state & SDL_BUTTON_MIDDLE;
-    _keys.at(KEY_MOUSE_RMB) = mouse_state & SDL_BUTTON_RIGHT;
+    keys = SDL_GetKeyboardState(nullptr);
+
+    for (size_t i = 0; i < KEY_COUNT; i++) {
+        _keys.at(i) = keys[i];
+    }
+
+    mouse = SDL_GetMouseState(nullptr, nullptr);
+    _keys.at(KEY_MOUSE_LMB) = mouse & SDL_BUTTON_LEFT;
+    _keys.at(KEY_MOUSE_MMB) = mouse & SDL_BUTTON_MIDDLE;
+    _keys.at(KEY_MOUSE_RMB) = mouse & SDL_BUTTON_RIGHT;
     _keys.at(KEY_MOUSE_MWU) = false;
     _keys.at(KEY_MOUSE_MWD) = false;
 
-    for (auto event : engine::events()) {
+    for (SDL_Event const &event : engine::events()) {
         if (event.type == SDL_MOUSEWHEEL) {
             if (0 < event.wheel.y) {
                 _keys.at(KEY_MOUSE_MWU) = true;
@@ -28,22 +37,22 @@ void wze::input::_update_keys(void) {
     }
 }
 
-void wze::input::_update_cursor() {
-    auto cursor_x = int32_t();
-    auto cursor_y = int32_t();
+void wze::input::_update_cursor(void) {
+    int32_t x;
+    int32_t y;
 
     if (SDL_GetRelativeMouseMode()) {
-        (void)SDL_GetRelativeMouseState(&cursor_x, &cursor_y);
-        _cursor_x = cursor_x * _mouse_sens;
-        _cursor_y = -cursor_y * _mouse_sens;
+        (void)SDL_GetRelativeMouseState(&x, &y);
+        _cursor_x = x * _mouse_sens;
+        _cursor_y = -y * _mouse_sens;
     } else {
-        (void)SDL_GetMouseState(&cursor_x, &cursor_y);
-        _cursor_x = cursor_x;
-        _cursor_y = -cursor_y + window::height();
+        (void)SDL_GetMouseState(&x, &y);
+        _cursor_x = x;
+        _cursor_y = -y + window::height();
     }
 }
 
-auto wze::input::key(keys key) -> bool {
+auto wze::input::keys(key key) -> bool {
     return _keys.at(key);
 }
 
@@ -59,8 +68,8 @@ auto wze::input::mouse_sens(void) -> double {
     return _mouse_sens;
 }
 
-void wze::input::set_mouse_sens(double mouse_sens) {
-    _mouse_sens = mouse_sens;
+void wze::input::set_mouse_sens(double sens) {
+    _mouse_sens = sens;
 }
 
 auto wze::input::cursor_visible(void) -> bool {

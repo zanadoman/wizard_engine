@@ -1,8 +1,8 @@
 #include "../include/WZE/sprite.hpp" // IWYU pragma: keep
 
-std::vector<const wze::sprite *> wze::sprite::_sprites;
+std::deque<const wze::sprite *> wze::sprite::_sprites;
 
-auto wze::sprite::sprites() -> const std::vector<const sprite *> & {
+auto wze::sprite::__sprites(void) -> const std::deque<const sprite *> {
     return _sprites;
 }
 
@@ -11,6 +11,13 @@ auto wze::sprite::x() const -> double {
 }
 
 void wze::sprite::set_x(double x) {
+    auto diff = x - _x;
+
+    _area.at(0) += diff;
+    _area.at(2) += diff;
+    _area.at(4) += diff;
+    _area.at(6) += diff;
+
     _x = x;
 }
 
@@ -19,6 +26,13 @@ auto wze::sprite::y() const -> double {
 }
 
 void wze::sprite::set_y(double y) {
+    auto diff = y - _y;
+
+    _area.at(1) += diff;
+    _area.at(3) += diff;
+    _area.at(5) += diff;
+    _area.at(7) += diff;
+    
     _y = y;
 }
 
@@ -43,6 +57,13 @@ auto wze::sprite::width() const -> double {
 }
 
 void wze::sprite::set_width(double width) {
+    auto half = width / 2;
+
+    _area.at(0) = _x - half;
+    _area.at(2) = _x + half;
+    _area.at(4) = _x + half;
+    _area.at(6) = _x - half;
+
     _width = width;
 }
 
@@ -51,15 +72,14 @@ auto wze::sprite::height() const -> double {
 }
 
 void wze::sprite::set_height(double height) {
+    auto half = height / 2;
+
+    _area.at(1) = _y - half;
+    _area.at(3) = _y - half;
+    _area.at(5) = _y + half;
+    _area.at(7) = _y + half;
+
     _height = height;
-}
-
-auto wze::sprite::priority() const -> uint8_t {
-    return _priority;
-}
-
-void wze::sprite::set_priority(uint8_t priority) {
-    _priority = priority;
 }
 
 auto wze::sprite::color_r() const -> uint8_t {
@@ -86,14 +106,6 @@ void wze::sprite::set_color_b(uint8_t color_b) {
     _color_b = color_b;
 }
 
-auto wze::sprite::color_a() const -> uint8_t {
-    return _color_a;
-}
-
-void wze::sprite::set_color_a(uint8_t color_a) {
-    _color_a = color_a;
-}
-
 auto wze::sprite::visible() const -> bool {
     return _visible;
 }
@@ -110,10 +122,15 @@ void wze::sprite::set_data(const texture &data) {
     _data = data;
 }
 
+auto wze::sprite::__area(void) const -> const std::array<double, 8> & {
+    return _area;
+}
+
 wze::sprite::sprite() {
     _sprites.push_back(this);
 }
 
 wze::sprite::~sprite() {
-    _sprites.erase(std::find(_sprites.begin(), _sprites.end(), this));
+    _sprites.erase(std::find(_sprites.begin(),
+                             _sprites.end(), this));
 }

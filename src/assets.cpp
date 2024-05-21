@@ -44,7 +44,7 @@ auto wze::assets::load_texture(const std::string &path) -> texture {
 auto wze::assets::load_texture(const std::string &text, const font &font,
                                styles style) -> texture {
     auto result = texture();
-    SDL_Surface *surface = nullptr;
+    auto surface = (SDL_Surface*)nullptr;
 
     TTF_SetFontStyle(font.get(), style);
     surface = TTF_RenderUTF8_Blended(font.get(), text.c_str(),
@@ -61,7 +61,7 @@ auto wze::assets::load_texture(const std::string &text, const font &font,
 }
 
 auto wze::assets::load_sound(const std::string &path) -> sound {
-    Mix_Chunk *result = Mix_LoadWAV(path.c_str());
+    auto result = Mix_LoadWAV(path.c_str());
 
     if (!result) {
         throw std::runtime_error(Mix_GetError());
@@ -71,7 +71,7 @@ auto wze::assets::load_sound(const std::string &path) -> sound {
 }
 
 auto wze::assets::load_font(const std::string &path, uint8_t size) -> font {
-    TTF_Font *result = TTF_OpenFont(path.c_str(), size);
+    auto result = TTF_OpenFont(path.c_str(), size);
 
     if (!result) {
         throw std::runtime_error(TTF_GetError());

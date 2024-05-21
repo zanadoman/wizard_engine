@@ -2,7 +2,7 @@
 
 #include "common.hpp" // IWYU pragma: keep
 #include "engine.hpp" // IWYU pragma: keep
-#include "keys.hpp"   // IWYU pragma: keep
+#include "key.hpp"    // IWYU pragma: keep
 
 namespace wze {
     class input final {
@@ -15,11 +15,11 @@ namespace wze {
         static void _update_cursor(void);
 
         public:
-        static auto key(keys key) -> bool;
+        static auto keys(key key) -> bool;
         static auto cursor_x(void) -> double;
         static auto cursor_y(void) -> double;
         static auto mouse_sens(void) -> double;
-        static void set_mouse_sens(double mouse_sens);
+        static void set_mouse_sens(double sens);
         static auto cursor_visible(void) -> bool;
         static void hide_cursor(void);
         static void show_cursor(void);

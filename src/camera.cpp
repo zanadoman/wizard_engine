@@ -1,16 +1,16 @@
 #include "../include/WZE/camera.hpp" // IWYU pragma: keep
 
-double wze::camera::_x = double();
-double wze::camera::_y = double();
-double wze::camera::_z = double();
-double wze::camera::_angle = double();
+double wze::camera::_x = 0.0;
+double wze::camera::_y = 0.0;
+double wze::camera::_z = 0.0;
+double wze::camera::_angle = 0.0;
 double wze::camera::_fov = 60.0;
-double wze::camera::_aspect = double();
+double wze::camera::_ar = 0.0;
 
 void wze::camera::_update(void) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(_fov, _aspect, 0.3, 1000.0);
+    gluPerspective(_fov, _ar, 0.3, 1000.0);
 }
 
 auto wze::camera::x(void) -> double {
@@ -54,7 +54,7 @@ void wze::camera::set_fov(double fov) {
     _update();
 }
 
-void wze::camera::__init(double aspect) {
-    _aspect = aspect;
+void wze::camera::__init(double ar) {
+    _ar = ar;
     _update();
 }

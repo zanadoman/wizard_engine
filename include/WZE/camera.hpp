@@ -11,7 +11,7 @@ namespace wze {
         static double _z;
         static double _angle;
         static double _fov;
-        static double _aspect;
+        static double _ar;
         static void _update(void);
 
         public:
@@ -25,6 +25,6 @@ namespace wze {
         static void set_angle(double angle);
         static auto fov(void) -> double;
         static void set_fov(double fov);
-        static void __init(double aspect);
+        static void __init(double ar);
     };
 } // namespace wze

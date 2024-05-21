@@ -5,11 +5,11 @@
 namespace wze {
     class math final {
         public:
-        static auto distance(double init_x, double init_y, double term_x,
-                             double term_y) -> double;
-        static auto angle(double init_x, double init_y, double term_x,
-                          double term_y) -> double;
-        static auto move_x(double distance, double angle) -> double;
-        static auto move_y(double distance, double angle) -> double;
+        static constexpr auto dist(double ix, double iy, double tx, double ty)
+            -> double;
+        static constexpr auto angle(double ix, double iy, double tx, double ty)
+            -> double;
+        static constexpr auto mov_x(double dist, double angle) -> double;
+        static constexpr auto mov_y(double dist, double angle) -> double;
     };
 } // namespace wze

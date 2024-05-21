@@ -1,30 +1,30 @@
 #include "../include/WZE/math.hpp" // IWYU pragma: keep
 
-auto wze::math::distance(double init_x, double init_y, double term_x, double term_y)
+constexpr auto wze::math::dist(double ix, double iy, double tx, double ty)
     -> double {
-    auto diff_x = term_x - init_x;
-    auto diff_y = term_y - init_y;
+    tx -= ix;
+    ty -= iy;
 
-    return std::sqrt(diff_x * diff_x + diff_y * diff_y);
+    return std::sqrt(tx * tx + ty * ty);
 }
 
-auto wze::math::angle(double init_x, double init_y, double term_x, double term_y)
+constexpr auto wze::math::angle(double ix, double iy, double tx, double ty)
     -> double {
-    auto result = double();
+    double res;
 
-    if (init_x == term_x && init_y == term_y) {
+    if (ix == tx && iy == ty) {
         return 0.0;
     }
 
-    result = std::acos(term_x / distance(init_x, init_y, term_x, term_y));
+    res = std::acos(tx / dist(ix, iy, tx, ty));
 
-    return term_y < 0.0 ? -result : result;
+    return ty < 0.0 ? -res : res;
 }
 
-auto wze::math::move_x(double distance, double angle) -> double {
-    return distance * std::cos(angle);
+constexpr auto wze::math::mov_x(double dist, double angle) -> double {
+    return dist * std::cos(angle);
 }
 
-auto wze::math::move_y(double distance, double angle) -> double {
-    return distance * std::sin(angle);
+constexpr auto wze::math::mov_y(double dist, double angle) -> double {
+    return dist * std::sin(angle);
 }

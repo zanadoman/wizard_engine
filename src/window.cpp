@@ -1,93 +1,112 @@
 #include "../include/WZE/window.hpp"
 
 SDL_Window *wze::window::_base = nullptr;
-int32_t wze::window::_width = int32_t();
-int32_t wze::window::_height = int32_t();
-std::array<int32_t, 4> wze::window::_viewport({});
-double wze::window::_aspect_ratio = double();
+std::string _title;
+std::string _height;
+std::array<int32_t, 4> wze::window::_view({});
+double wze::window::_ar = 0.0;
+int32_t wze::window::_width = 0;
+int32_t wze::window::_height = 0;
 
 void wze::window::_resize(void) {
-    auto aspect_ratio = double();
+    double ar;
 
     SDL_GetWindowSize(_base, &_width, &_height);
-    aspect_ratio = (double)_width / (double)_height;
+    ar = (double)_width / (double)_height;
 
-    if (aspect_ratio < _aspect_ratio) {
-        _viewport.at(2) = _width;
-        _viewport.at(3) = std::round(_width / _aspect_ratio);
-    } else if (_aspect_ratio < aspect_ratio) {
-        _viewport.at(2) = std::round(_height * _aspect_ratio);
-        _viewport.at(3) = _height;
+    if (ar < _ar) {
+        _view.at(2) = _width;
+        _view.at(3) = std::round(_width / _ar);
+    } else if (_ar < ar) {
+        _view.at(2) = std::round(_height * _ar);
+        _view.at(3) = _height;
     } else {
-        _viewport.at(2) = _width;
-        _viewport.at(3) = _height;
+        _view.at(2) = _width;
+        _view.at(3) = _height;
     }
 
-    _viewport.at(0) = (_width - _viewport.at(2)) / 2;
-    _viewport.at(1) = (_height - _viewport.at(3)) / 2;
+    _view.at(0) = (_width - _view.at(2)) / 2;
+    _view.at(1) = (_height - _view.at(3)) / 2;
 
-    glViewport(_viewport.at(0), _viewport.at(1), _viewport.at(2),
-               _viewport.at(3));
+    glViewport(_view.at(0), _view.at(1), _view.at(2), _view.at(3));
 }
 
-void wze::window::_init_base(const std::string &title) {
-    _base =
-        SDL_CreateWindow(title.empty() ? "Wizard Engine" : title.c_str(),
-                         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0,
-                         SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE |
-                             SDL_WINDOW_FULLSCREEN_DESKTOP);
+void wze::window::_init_base() {
+    _base = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED,
+                             SDL_WINDOWPOS_UNDEFINED, 0, 0,
+                             SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE |
+                                 SDL_WINDOW_FULLSCREEN_DESKTOP);
 
     if (!_base) {
         throw std::runtime_error(SDL_GetError());
     }
 }
 
-void wze::window::_init_render() {
+void wze::window::_init_render(void) {
     if (!SDL_GL_CreateContext(_base)) {
         throw std::runtime_error(SDL_GetError());
     }
 
     glEnable(GL_TEXTURE_2D);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc(GL_GREATER, 0.0);
 }
 
-auto wze::window::base() -> SDL_Window * {
+auto wze::window::base(void) -> SDL_Window * {
     return _base;
 }
 
-auto wze::window::width() -> int32_t {
+auto wze::window::width(void) -> int32_t {
     return _width;
 }
 
-auto wze::window::height() -> int32_t {
+auto wze::window::height(void) -> int32_t {
     return _height;
 }
 
-auto wze::window::viewport(void) -> const std::array<int32_t, 4> & {
-    return _viewport;
+auto wze::window::view(void) -> const std::array<int32_t, 4> & {
+    return _view;
 }
 
-void wze::window::set_icon(const std::string &path) {
-    auto *icon = IMG_Load(path.empty() ? "assets/wze/icon.png" : path.c_str());
+auto wze::window::title(void) -> const std::string & {
+    return _title;
+}
 
-    if (!icon) {
+void wze::window::set_title(const std::string &title) {
+    _title = title.empty() ? "Wizard Engine" : title;
+    SDL_SetWindowTitle(_base, title.c_str());
+}
+
+auto wze::window::icon(void) -> const std::string & {
+    return _icon;
+}
+
+void wze::window::set_icon(const std::string &icon) {
+    SDL_Surface *img;
+
+    _icon = icon.empty() ? "assets/wze/icon.png" : icon;
+    img = IMG_Load(_icon.c_str());
+
+    if (img == nullptr) {
         throw std::runtime_error(IMG_GetError());
     }
 
-    SDL_SetWindowIcon(_base, icon);
-    SDL_FreeSurface(icon);
+    SDL_SetWindowIcon(_base, img);
+    SDL_FreeSurface(img);
 }
 
-void wze::window::__init(const std::string &title, double aspect_ratio) {
-    _init_base(title);
+void wze::window::__init(double ar) {
+    _init_base();
     _init_render();
-    _aspect_ratio = aspect_ratio;
+    _ar = ar;
     _resize();
+    set_title("");
+    set_icon("");
 }
 
 void wze::window::__update(void) {
-    for (auto event : engine::events()) {
+    for (const SDL_Event &event : engine::events()) {
         if (event.type == SDL_WINDOWEVENT &&
             event.window.event == SDL_WINDOWEVENT_RESIZED) {
             _resize();

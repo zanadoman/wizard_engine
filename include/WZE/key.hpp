@@ -3,7 +3,7 @@
 #include "common.hpp" // IWYU pragma: keep
 
 namespace wze {
-    enum keys {
+    enum key {
         KEY_A = SDL_SCANCODE_A,
         KEY_B = SDL_SCANCODE_B,
         KEY_C = SDL_SCANCODE_C,

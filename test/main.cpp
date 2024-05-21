@@ -11,24 +11,26 @@ auto main() -> int32_t {
 
     timer::set_frametime(1000 / 60);
 
-    window::open("", "", 16.0 / 9.0);
+    window::__init("", 16.0 / 9.0);
 
     input::hide_cursor();
     input::set_mouse_sens(0.2);
 
-    texture tex = load_texture("assets/wze/icon.png");
+    texture tex = assets::load_texture("assets/wze/icon.png");
 
     GLdouble vertex[] = {-5, -5, -50};
     GLdouble screen[2];
+
+    camera::__init(16.0 / 9.0);
 
     while (engine::update()) {
         camera::set_x(camera::x() + input::cursor_x());
         camera::set_y(camera::y() + input::cursor_y());
 
         if (input::key(KEY_W)) {
-            camera::set_z(camera::z() + 0.2f * timer::deltatime());
+            camera::set_z(camera::z() + 0.2 * timer::deltatime());
         } else if (input::key(KEY_S)) {
-            camera::set_z(camera::z() - 0.2f * timer::deltatime());
+            camera::set_z(camera::z() - 0.2 * timer::deltatime());
         }
 
         render::rel_projection(vertex, screen);;

@@ -1,36 +1,41 @@
 #include "../include/WZE/timer.hpp" // IWYU pragma: keep
 
-uint8_t wze::timer::_frametime = uint8_t();
-uint64_t wze::timer::_lasttime = uint8_t();
-uint8_t wze::timer::_deltatime = uint8_t();
+uint8_t wze::timer::_frame = 0;
+uint64_t wze::timer::_last = 0;
+uint8_t wze::timer::_delta = 0;
 
-auto wze::timer::frametime(void) -> uint8_t {
-    return _frametime;
+auto wze::timer::frame(void) -> uint8_t {
+    return _frame;
 }
 
-void wze::timer::set_frametime(uint8_t frametime) {
-    _frametime = frametime;
+void wze::timer::set_frame(uint8_t ms) {
+    _frame = ms;
 }
 
-auto wze::timer::deltatime(void) -> uint8_t {
-    return _deltatime;
+auto wze::timer::delta(void) -> uint8_t {
+    return _delta;
 }
 
-void wze::timer::set_deltatime(uint8_t deltatime) {
-    _deltatime = deltatime;
+void wze::timer::set_delta(uint8_t ms) {
+    _delta = ms;
 }
 
-auto wze::timer::time(void) -> uint64_t {
+auto wze::timer::now(void) -> uint64_t {
     return SDL_GetTicks64();
 }
 
 void wze::timer::__update(void) {
-    auto deadline = _lasttime + _frametime;
+    uint64_t now;
+    uint64_t end;
 
-    if (SDL_GetTicks64() < deadline) {
-        SDL_Delay(deadline - SDL_GetTicks64());
+    now = SDL_GetTicks64();
+    end = _last + _frame;
+
+    if (now < end) {
+        SDL_Delay(end - now);
     }
 
-    _deltatime = SDL_GetTicks64() - _lasttime;
-    _lasttime = SDL_GetTicks64();
+    now = SDL_GetTicks64();
+    _delta = now - _last;
+    _last = now;
 }

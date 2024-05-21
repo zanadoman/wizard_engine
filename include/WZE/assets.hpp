@@ -8,7 +8,7 @@ namespace wze {
     using font = std::shared_ptr<TTF_Font>;
 
     enum styles {
-        STYLE_NORMAL = TTF_STYLE_BOLD,
+        STYLE_NORMAL = TTF_STYLE_NORMAL,
         STYLE_BOLD = TTF_STYLE_BOLD,
         STYLE_ITALIC = TTF_STYLE_ITALIC,
         STYLE_UNDERLINE = TTF_STYLE_UNDERLINE,

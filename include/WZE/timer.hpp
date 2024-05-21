@@ -5,16 +5,16 @@
 namespace wze {
     class timer final {
         private:
-        static uint8_t _frametime;
-        static uint64_t _lasttime;
-        static uint8_t _deltatime;
+        static uint8_t _frame;
+        static uint64_t _last;
+        static uint8_t _delta;
 
         public:
-        static auto frametime(void) -> uint8_t;
-        static void set_frametime(uint8_t frametime);
-        static auto deltatime(void) -> uint8_t;
-        static void set_deltatime(uint8_t deltatime);
-        static auto time(void) -> uint64_t;
+        static auto frame(void) -> uint8_t;
+        static void set_frame(uint8_t ms);
+        static auto delta(void) -> uint8_t;
+        static void set_delta(uint8_t ms);
+        static auto now(void) -> uint64_t;
         static void __update(void);
     };
 } // namespace wze
