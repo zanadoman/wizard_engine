@@ -1,4 +1,8 @@
-#include "../include/WZE/window.hpp"
+#include "WZE/window.hpp"
+#include <SDL2/SDL.h>
+#include <cstdint>
+#include <stdexcept>
+#include <string>
 
 SDL_Window *wze::window::_base = nullptr;
 uint16_t wze::window::_width = 0;

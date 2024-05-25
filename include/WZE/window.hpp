@@ -1,7 +1,9 @@
 #pragma once
 
-#include "assets.hpp" // IWYU pragma: keep
-#include "common.hpp" // IWYU pragma: keep
+#include "assets.hpp"
+#include <SDL2/SDL.h>
+#include <cstdint>
+#include <string>
 
 namespace wze {
     class window final {

@@ -4,6 +4,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
+#include <cstdint>
+#include <stdexcept>
 #include <string>
 
 wze::image wze::assets::load_image(const std::string &path) {
