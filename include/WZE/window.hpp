@@ -7,15 +7,10 @@ namespace wze {
     class window final {
         private:
         static SDL_Window *_base;
-        static int32_t _width;
-        static int32_t _height;
-        static std::array<int32_t, 4> _view;
-        static double _ar;
+        static uint16_t _width;
+        static uint16_t _height;
         static std::string _title;
         static std::string _icon;
-        static void _resize(void);
-        static void _init_base(void);
-        static void _init_render(void);
 
         public:
         static auto base(void) -> SDL_Window *;
@@ -26,7 +21,6 @@ namespace wze {
         static void set_title(const std::string &title);
         static auto icon(void) -> const std::string &;
         static void set_icon(const std::string &icon);
-        static void __init(double ar);
-        static void __update(void);
+        static void __init(uint16_t width, uint16_t height);
     };
 } // namespace wze
