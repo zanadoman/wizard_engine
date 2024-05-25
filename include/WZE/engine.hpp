@@ -11,8 +11,8 @@ namespace wze {
         static std::deque<SDL_Event> _events;
 
         public:
-        static auto events() -> const std::deque<SDL_Event> &;
+        static const std::deque<SDL_Event> &events();
         static void init();
-        static auto update() -> bool;
+        static bool update();
     };
 } // namespace wze

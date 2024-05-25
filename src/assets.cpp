@@ -1,4 +1,22 @@
-#include "../include/WZE/assets.hpp" // IWYU pragma: keep
+#include "WZE/assets.hpp"
+#include "WZE/render.hpp"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
+#include <string>
+
+wze::image wze::assets::load_image(const std::string &path) {
+    SDL_Surface *res;
+
+    res = IMG_Load(path.c_str());
+
+    if (!res) {
+        throw std::runtime_error(IMG_GetError());
+    }
+
+    return {res, SDL_FreeSurface};
+}
 
 wze::texture wze::assets::load_texture(const std::string &path) {
     SDL_Texture *res;

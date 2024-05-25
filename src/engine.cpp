@@ -1,8 +1,8 @@
 #include "../include/WZE/engine.hpp" // IWYU pragma: keep
 
-std::deque<SDL_Event> wze::engine::_events; // NOLINT
+std::deque<SDL_Event> wze::engine::_events;
 
-auto wze::engine::events() -> const std::deque<SDL_Event> & {
+const std::deque<SDL_Event> &wze::engine::events() {
     return _events;
 }
 
@@ -31,7 +31,6 @@ void wze::engine::init() {
 auto wze::engine::update() -> bool {
     SDL_Event event;
 
-    window::__update();
     render::update();
     timer::__update();
 
