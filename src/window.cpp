@@ -1,32 +1,30 @@
 #include "WZE/window.hpp"
-#include <SDL2/SDL.h>
-#include <cstdint>
-#include <stdexcept>
-#include <string>
 
-SDL_Window *wze::window::_base = nullptr;
+SDL_Window *wze::window::_base = 0;
 uint16_t wze::window::_width = 0;
 uint16_t wze::window::_height = 0;
-wze::image wze::window::_icon;
+std::string wze::window::_title = "";
+wze::image wze::window::_icon = nullptr;
 
-SDL_Window *wze::window::base() {
+SDL_Window *wze::window::__base() {
     return _base;
 }
 
-int32_t wze::window::width() {
+uint16_t wze::window::width() {
     return _width;
 }
 
-int32_t wze::window::height() {
+uint16_t wze::window::height() {
     return _height;
 }
 
-std::string wze::window::title() {
-    return SDL_GetWindowTitle(_base);
+const std::string &wze::window::title() {
+    return _title;
 }
 
 void wze::window::set_title(const std::string &title) {
     SDL_SetWindowTitle(_base, title.c_str());
+    _title = title;
 }
 
 const wze::image &wze::window::icon() {
@@ -36,6 +34,14 @@ const wze::image &wze::window::icon() {
 void wze::window::set_icon(const image &icon) {
     SDL_SetWindowIcon(_base, icon.get());
     _icon = icon;
+}
+
+bool wze::window::visible() {
+    return SDL_GetWindowFlags(_base) & SDL_WINDOW_SHOWN;
+}
+
+bool wze::window::focused() {
+    return SDL_GetWindowFlags(_base) & SDL_WINDOW_INPUT_FOCUS;
 }
 
 void wze::window::__init(uint16_t width, uint16_t height) {
@@ -49,4 +55,6 @@ void wze::window::__init(uint16_t width, uint16_t height) {
 
     _width = width;
     _height = height;
+    set_title("Wizard Engine");
+    set_icon(assets::load_image("assets/wze/icon.png"));
 }

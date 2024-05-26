@@ -1,7 +1,6 @@
 #pragma once
 
-#include "common.hpp" // IWYU pragma: keep
-#include "window.hpp" // IWYU pragma: keep
+#include "WZE/common.hpp" // IWYU pragma: keep
 
 namespace wze {
     class render final {
@@ -11,8 +10,8 @@ namespace wze {
         static void close_frame();
 
         public:
-        static SDL_Renderer *renderer();
-        static void init();
-        static void update();
+        static SDL_Renderer *__renderer();
+        static void __init();
+        static void __update();
     };
 } // namespace wze

@@ -1,9 +1,7 @@
 #pragma once
 
 #include "common.hpp" // IWYU pragma: keep
-#include "engine.hpp" // IWYU pragma: keep
 #include "key.hpp"    // IWYU pragma: keep
-#include "window.hpp" // IWYU pragma: keep
 
 namespace wze {
     class input final {

@@ -1,23 +1,29 @@
-#include "../include/WZE/render.hpp" // IWYU pragma: keep
+#include "WZE/render.hpp"
+#include "WZE/window.hpp"
 
 SDL_Renderer *wze::render::_renderer = nullptr;
 
 void wze::render::open_frame() {
-    SDL_SetRenderDrawColor(_renderer, 0, 0, 0, UINT8_MAX);
-    SDL_RenderClear(_renderer);
+    if (SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255)) {
+        throw std::runtime_error(SDL_GetError());
+    }
+
+    if (SDL_RenderClear(_renderer)) {
+        throw std::runtime_error(SDL_GetError());
+    }
 }
 
 void wze::render::close_frame() {
     SDL_RenderPresent(_renderer);
 }
 
-SDL_Renderer *wze::render::renderer() {
+SDL_Renderer *wze::render::__renderer() {
     return _renderer;
 }
 
-void wze::render::init() {
+void wze::render::__init() {
     _renderer =
-        SDL_CreateRenderer(window::base(), -1, SDL_RENDERER_ACCELERATED);
+        SDL_CreateRenderer(window::__base(), -1, SDL_RENDERER_ACCELERATED);
 
     if (!_renderer) {
         throw std::runtime_error(SDL_GetError());
@@ -33,7 +39,7 @@ void wze::render::init() {
     }
 }
 
-void wze::render::update() {
+void wze::render::__update() {
     render::open_frame();
     render::close_frame();
 }

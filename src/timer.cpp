@@ -1,15 +1,15 @@
-#include "../include/WZE/timer.hpp" // IWYU pragma: keep
+#include "WZE/timer.hpp"
 
-uint8_t wze::timer::_frame = 0;
+uint8_t wze::timer::_delay = 0;
 uint64_t wze::timer::_last = 0;
 uint8_t wze::timer::_delta = 0;
 
-uint8_t wze::timer::frame() {
-    return _frame;
+uint8_t wze::timer::delay() {
+    return _delay;
 }
 
-void wze::timer::set_frame(uint8_t ms) {
-    _frame = ms;
+void wze::timer::set_delay(uint8_t ms) {
+    _delay = ms;
 }
 
 uint8_t wze::timer::delta() {
@@ -29,7 +29,7 @@ void wze::timer::__update() {
     uint64_t end;
 
     now = SDL_GetTicks64();
-    end = _last + _frame;
+    end = _last + _delay;
 
     if (now < end) {
         SDL_Delay(end - now);

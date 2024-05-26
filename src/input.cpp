@@ -1,6 +1,8 @@
-#include "../include/WZE/input.hpp" // IWYU pragma: keep
+#include "WZE/input.hpp"
+#include "WZE/engine.hpp"
+#include "WZE/window.hpp"
 
-std::array<bool, wze::KEY_COUNT> wze::input::_keys({});
+std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
 float wze::input::_cursor_x = 0.0f;
 float wze::input::_cursor_y = 0.0f;
 float wze::input::_mouse_sens = 1.0f;
@@ -12,7 +14,6 @@ void wze::input::_update_keys() {
     uint32_t mouse;
 
     keys = SDL_GetKeyboardState(nullptr);
-
     for (size_t i = 0; i < KEY_COUNT; i++) {
         _keys.at(i) = keys[i];
     }
@@ -24,7 +25,7 @@ void wze::input::_update_keys() {
     _keys.at(KEY_MOUSE_MWU) = false;
     _keys.at(KEY_MOUSE_MWD) = false;
 
-    for (SDL_Event const &event : engine::events()) {
+    for (SDL_Event const &event : engine::__events()) {
         if (event.type == SDL_MOUSEWHEEL) {
             if (0 < event.wheel.y) {
                 _keys.at(KEY_MOUSE_MWU) = true;

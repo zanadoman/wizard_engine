@@ -1,12 +1,5 @@
 #include "WZE/assets.hpp"
 #include "WZE/render.hpp"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_ttf.h>
-#include <cstdint>
-#include <stdexcept>
-#include <string>
 
 wze::image wze::assets::load_image(const std::string &path) {
     SDL_Surface *res;
@@ -23,7 +16,7 @@ wze::image wze::assets::load_image(const std::string &path) {
 wze::texture wze::assets::load_texture(const std::string &path) {
     SDL_Texture *res;
 
-    res = IMG_LoadTexture(render::renderer(), path.c_str());
+    res = IMG_LoadTexture(render::__renderer(), path.c_str());
 
     if (!res) {
         throw std::runtime_error(IMG_GetError());

@@ -1,14 +1,16 @@
-#include "../include/WZE/engine.hpp" // IWYU pragma: keep
+#include "WZE/engine.hpp"
+#include "WZE/input.hpp"
+#include "WZE/render.hpp"
+#include "WZE/timer.hpp"
+#include "WZE/window.hpp"
 
 std::deque<SDL_Event> wze::engine::_events;
 
-const std::deque<SDL_Event> &wze::engine::events() {
+const std::deque<SDL_Event> &wze::engine::__events() {
     return _events;
 }
 
-void wze::engine::init() {
-    constexpr auto CHUNK_SIZE = 2048;
-
+void wze::engine::init(uint16_t width, uint16_t height) {
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -19,28 +21,29 @@ void wze::engine::init() {
     }
 
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
-                      MIX_DEFAULT_CHANNELS, CHUNK_SIZE)) {
+                      MIX_DEFAULT_CHANNELS, 2048)) {
         throw std::runtime_error(Mix_GetError());
     }
 
     if (TTF_Init()) {
         throw std::runtime_error(TTF_GetError());
     }
+
+    window::__init(width, height);
+    render::__init();
 }
 
-auto wze::engine::update() -> bool {
+bool wze::engine::update() {
     SDL_Event event;
 
-    render::update();
+    render::__update();
     timer::__update();
 
     _events.clear();
-
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
             return false;
         }
-
         _events.push_front(event);
     }
 

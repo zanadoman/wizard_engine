@@ -1,4 +1,4 @@
-#include "../include/WZE/math.hpp" // IWYU pragma: keep
+#include "WZE/math.hpp"
 
 float wze::math::dist(float ix, float iy, float tx, float ty) {
     tx -= ix;
