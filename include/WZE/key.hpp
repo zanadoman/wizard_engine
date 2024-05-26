@@ -123,5 +123,5 @@ namespace wze {
         KEY_MOUSE_MWD,
 
         KEY_COUNT
-    } __attribute__((__packed__));
+    };
 }
