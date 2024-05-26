@@ -1,6 +1,6 @@
 #pragma once
 
-#include "WZE/common.hpp" // IWYU pragma: keep
+#include "common.hpp" // IWYU pragma: keep
 
 namespace wze {
     using image = std::shared_ptr<SDL_Surface>;
