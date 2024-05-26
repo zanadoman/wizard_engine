@@ -1,53 +1,50 @@
-# CMake version
+# Version
 cmake_minimum_required(VERSION 3.29)
-
+ 
 # Project
 project(WizardEngine)
-
-# Compile flags
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    set(CMAKE_CXX_FLAGS
-        "-O3 -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion -Wl,-rpath=.")
-elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    set(CMAKE_CXX_FLAGS
-        "-O3 -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion -mwindows")
-else()
+ 
+# Target
+if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux" AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     message(FATAL_ERROR "Unsupported OS, CMake will exit.")
 endif()
-
+ 
+# Standard 
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+ 
 # Sources
-file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
-
+ 
+# Flags
+set(CMAKE_CXX_FLAGS "-O3 -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion")
+ 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    string(CONCAT CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} " -Wl,-rpath=.")
+else()
+    string(CONCAT CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} " -mwindows")
+endif()
+ 
 # SDL2
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_mixer REQUIRED)
-find_package(SDL2_ttf REQUIRED)
-find_package(SDL2_ttf REQUIRED)
-find_package(OpenGL REQUIRED)
-target_link_libraries(${PROJECT_NAME} SDL2::SDL2)
-target_link_libraries(${PROJECT_NAME} SDL2_image::SDL2_image)
-target_link_libraries(${PROJECT_NAME} SDL2_mixer::SDL2_mixer)
-target_link_libraries(${PROJECT_NAME} SDL2_ttf::SDL2_ttf)
-target_link_libraries(${PROJECT_NAME} OpenGL::GL)
-target_link_libraries(${PROJECT_NAME} OpenGL::GLU)
-
-# Install
-file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/WZE)
-install(DIRECTORY ${HEADERS} DESTINATION include)
-install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/libs/libSDL2-2.0.so.0.3000.3)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/libs/libSDL2_image-2.0.so.0.800.2)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/libs/libSDL2_mixer-2.0.so.0.800.0)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/libs/libSDL2_ttf-2.0.so.0.2200.0)
+else()
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/libs/SDL2.dll)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/libs/SDL2_image.dll)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/libs/SDL2_mixer.dll)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/libs/SDL2_ttf.dll)
+endif()
+ 
+# Libs
+file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/libs/*)
+file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
+ 
 # Test
-file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp)
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/test/*.cpp)
 add_executable(test ${SOURCES})
 target_link_libraries(test ${PROJECT_NAME})
-file(COPY assets valgrind.sh DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-
-if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    file(GLOB LIBS ${CMAKE_CURRENT_SOURCE_DIR}/lib/*.dll)
-    file(COPY ${LIBS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-endif()
+file(COPY assets valgrind.sh DESTINATION ${CMAKE_BINARY_DIR})
