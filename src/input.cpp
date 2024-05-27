@@ -5,9 +5,10 @@
 std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
 int16_t wze::input::_cursor_x = 0;
 int16_t wze::input::_cursor_y = 0;
-float wze::input::_cursor_dx = 0.0f;
-float wze::input::_cursor_dy = 0.0f;
-float wze::input::_mouse_sens = 1.0f;
+float_t wze::input::_cursor_dx = 0.0f;
+float_t wze::input::_cursor_dy = 0.0f;
+float_t wze::input::_mouse_sens = 1.0f;
+wze::cursor_t wze::input::_cursor = nullptr;
 
 void wze::input::_update_keys() {
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
@@ -68,19 +69,19 @@ int16_t wze::input::cursor_y() {
     return _cursor_y;
 }
 
-float wze::input::cursor_dx() {
+float_t wze::input::cursor_dx() {
     return _cursor_dx;
 }
 
-float wze::input::cursor_dy() {
+float_t wze::input::cursor_dy() {
     return _cursor_dy;
 }
 
-float wze::input::mouse_sens() {
+float_t wze::input::mouse_sens() {
     return _mouse_sens;
 }
 
-void wze::input::set_mouse_sens(float sens) {
+void wze::input::set_mouse_sens(float_t sens) {
     _mouse_sens = sens;
 }
 
@@ -94,6 +95,15 @@ void wze::input::hide_cursor() {
 
 void wze::input::show_cursor() {
     SDL_SetRelativeMouseMode(SDL_FALSE);
+}
+
+const wze::cursor_t &wze::input::cursor() {
+    return _cursor;
+}
+
+void wze::input::set_cursor(const cursor_t &cursor) {
+    SDL_SetCursor(cursor.get());
+    _cursor = cursor;
 }
 
 void wze::input::__update() {

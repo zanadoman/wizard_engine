@@ -4,7 +4,7 @@ SDL_Window *wze::window::_base = 0;
 uint16_t wze::window::_width = 0;
 uint16_t wze::window::_height = 0;
 std::string wze::window::_title = "";
-wze::image wze::window::_icon = nullptr;
+wze::image_t wze::window::_icon = nullptr;
 
 SDL_Window *wze::window::__base() {
     return _base;
@@ -27,11 +27,11 @@ void wze::window::set_title(const std::string &title) {
     _title = title;
 }
 
-const wze::image &wze::window::icon() {
+const wze::image_t &wze::window::icon() {
     return _icon;
 }
 
-void wze::window::set_icon(const image &icon) {
+void wze::window::set_icon(const image_t &icon) {
     SDL_SetWindowIcon(_base, icon.get());
     _icon = icon;
 }
