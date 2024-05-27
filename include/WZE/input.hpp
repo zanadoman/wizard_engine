@@ -7,16 +7,20 @@ namespace wze {
     class input final {
         private:
         static std::array<bool, KEY_COUNT> _keys;
-        static float _cursor_x;
-        static float _cursor_y;
+        static int16_t _cursor_x;
+        static int16_t _cursor_y;
+        static float _cursor_dx;
+        static float _cursor_dy;
         static float _mouse_sens;
         static void _update_keys();
         static void _update_cursor();
 
         public:
         static bool keys(key key);
-        static float cursor_x();
-        static float cursor_y();
+        static int16_t cursor_x();
+        static int16_t cursor_y();
+        static float cursor_dx();
+        static float cursor_dy();
         static float mouse_sens();
         static void set_mouse_sens(float sens);
         static bool cursor_visible();

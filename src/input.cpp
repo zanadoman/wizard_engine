@@ -3,8 +3,10 @@
 #include "WZE/window.hpp"
 
 std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
-float wze::input::_cursor_x = 0.0f;
-float wze::input::_cursor_y = 0.0f;
+int16_t wze::input::_cursor_x = 0;
+int16_t wze::input::_cursor_y = 0;
+float wze::input::_cursor_dx = 0.0f;
+float wze::input::_cursor_dy = 0.0f;
 float wze::input::_mouse_sens = 1.0f;
 
 void wze::input::_update_keys() {
@@ -41,27 +43,37 @@ void wze::input::_update_cursor() {
     int32_t x;
     int32_t y;
 
-    if (SDL_GetRelativeMouseMode()) {
-        SDL_GetRelativeMouseState(&x, &y);
-        _cursor_x = x * _mouse_sens;
-        _cursor_y = -y * _mouse_sens;
-    } else {
-        SDL_GetMouseState(&x, &y);
-        _cursor_x = x + (window::width() >> 1);
-        _cursor_y = -y + (window::height() >> 1);
+    for (SDL_Event const &event : engine::__events()) {
+        if (event.type == SDL_MOUSEMOTION) {
+            _cursor_x = std::clamp(event.motion.x, 0, window::width() - 1);
+            _cursor_y = std::clamp(event.motion.y, 0, window::height() - 1);
+            break;
+        }
     }
+
+    SDL_GetRelativeMouseState(&x, &y);
+    _cursor_dx = x * _mouse_sens;
+    _cursor_dy = -y * _mouse_sens;
 }
 
 bool wze::input::keys(key key) {
     return _keys.at(key);
 }
 
-float wze::input::cursor_x() {
+int16_t wze::input::cursor_x() {
     return _cursor_x;
 }
 
-float wze::input::cursor_y() {
+int16_t wze::input::cursor_y() {
     return _cursor_y;
+}
+
+float wze::input::cursor_dx() {
+    return _cursor_dx;
+}
+
+float wze::input::cursor_dy() {
+    return _cursor_dy;
 }
 
 float wze::input::mouse_sens() {
