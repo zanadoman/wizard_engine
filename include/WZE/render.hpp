@@ -6,6 +6,7 @@ namespace wze {
     class render final {
         private:
         static SDL_Renderer *_renderer;
+        static SDL_Texture *_canvas;
         static void open_frame();
         static void close_frame();
 
