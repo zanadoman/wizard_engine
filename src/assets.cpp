@@ -30,7 +30,7 @@ wze::image_t wze::assets::new_image(const std::string &text,
 wze::texture_t wze::assets::load_texture(const std::string &path) {
     SDL_Texture *res;
 
-    res = IMG_LoadTexture(render::__renderer(), path.c_str());
+    res = IMG_LoadTexture(render::__base(), path.c_str());
 
     if (!res) {
         throw std::runtime_error(IMG_GetError());
@@ -42,7 +42,7 @@ wze::texture_t wze::assets::load_texture(const std::string &path) {
 wze::texture_t wze::assets::new_texture(const image_t &img) {
     SDL_Texture *res;
 
-    res = SDL_CreateTextureFromSurface(render::__renderer(), img.get());
+    res = SDL_CreateTextureFromSurface(render::__base(), img.get());
 
     if (!res) {
         throw std::runtime_error(SDL_GetError());
