@@ -3,11 +3,11 @@
 #include "common.hpp" // IWYU pragma: keep
 
 namespace wze {
-    using image_t = std::shared_ptr<SDL_Surface>;
-    using texture_t = std::shared_ptr<SDL_Texture>;
-    using sound_t = std::shared_ptr<Mix_Chunk>;
-    using font_t = std::shared_ptr<TTF_Font>;
-    using cursor_t = std::shared_ptr<SDL_Cursor>;
+    using image = std::shared_ptr<SDL_Surface>;
+    using texture = std::shared_ptr<SDL_Texture>;
+    using sound = std::shared_ptr<Mix_Chunk>;
+    using font = std::shared_ptr<TTF_Font>;
+    using cursor = std::shared_ptr<SDL_Cursor>;
 
     enum font_style {
         FONT_NORMAL = TTF_STYLE_NORMAL,
@@ -35,14 +35,14 @@ namespace wze {
 
     class assets final {
         public:
-        static image_t load_image(const std::string &path);
-        static image_t new_image(const std::string &text, const font_t &font);
-        static texture_t load_texture(const std::string &path);
-        static texture_t new_texture(const image_t &img);
-        static sound_t load_sound(const std::string &path);
-        static font_t load_font(const std::string &path, uint8_t size);
-        static cursor_t new_cursor(const image_t &img, uint16_t hot_x,
-                                   uint16_t hot_y);
-        static cursor_t new_cursor(sys_cursor type);
+        static image load_image(std::string const& path);
+        static image create_image(std::string const& text, font const& font);
+        static texture load_texture(std::string const& path);
+        static texture create_texture(image const& img);
+        static sound load_sound(std::string const& path);
+        static font load_font(std::string const& path, uint8_t size);
+        static cursor create_cursor(sys_cursor type);
+        static cursor create_cursor(image const& img, uint16_t hot_x,
+                                    uint16_t hot_y);
     };
 } // namespace wze

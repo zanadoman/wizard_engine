@@ -1,12 +1,12 @@
 #include "WZE/window.hpp"
 
-SDL_Window *wze::window::_base = 0;
+SDL_Window* wze::window::_base = nullptr;
 uint16_t wze::window::_width = 0;
 uint16_t wze::window::_height = 0;
 std::string wze::window::_title = "";
-wze::image_t wze::window::_icon = nullptr;
+wze::image wze::window::_icon = nullptr;
 
-SDL_Window *wze::window::__base() {
+SDL_Window* wze::window::__base() {
     return _base;
 }
 
@@ -18,20 +18,20 @@ uint16_t wze::window::height() {
     return _height;
 }
 
-const std::string &wze::window::title() {
+std::string const& wze::window::title() {
     return _title;
 }
 
-void wze::window::set_title(const std::string &title) {
+void wze::window::set_title(std::string const& title) {
     SDL_SetWindowTitle(_base, title.c_str());
     _title = title;
 }
 
-const wze::image_t &wze::window::icon() {
+wze::image const& wze::window::icon() {
     return _icon;
 }
 
-void wze::window::set_icon(const image_t &icon) {
+void wze::window::set_icon(image const& icon) {
     SDL_SetWindowIcon(_base, icon.get());
     _icon = icon;
 }

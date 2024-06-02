@@ -2,9 +2,9 @@
 #include "WZE/math.hpp"
 #include "WZE/window.hpp"
 
-SDL_Renderer *wze::render::_base = nullptr;
+SDL_Renderer* wze::render::_base = nullptr;
 SDL_Rect wze::render::_sview = {0, 0, 0, 0};
-SDL_Texture *wze::render::_dtarg = nullptr;
+SDL_Texture* wze::render::_dtarg = nullptr;
 SDL_Rect wze::render::_dview = {0, 0, 0, 0};
 
 void wze::render::_clear_targ() {
@@ -44,7 +44,7 @@ void wze::render::_put_starg() {
     SDL_RenderPresent(_base);
 }
 
-SDL_Renderer *wze::render::__base() {
+SDL_Renderer* wze::render::__base() {
     return _base;
 }
 

@@ -4,3 +4,5 @@ ColumnLimit: 80
 AllowShortFunctionsOnASingleLine: Empty
 NamespaceIndentation: All
 AccessModifierOffset: 0
+PointerAlignment: Left
+QualifierAlignment: Right

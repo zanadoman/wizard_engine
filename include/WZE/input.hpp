@@ -13,7 +13,7 @@ namespace wze {
         static float_t _cursor_dx;
         static float_t _cursor_dy;
         static float_t _mouse_sens;
-        static cursor_t _cursor;
+        static wze::cursor _cursor;
         static void _update_keys();
         static void _update_cursor();
 
@@ -28,8 +28,8 @@ namespace wze {
         static bool cursor_visible();
         static void hide_cursor();
         static void show_cursor();
-        static const cursor_t &cursor();
-        static void set_cursor(const cursor_t &cursor);
+        static wze::cursor const& cursor();
+        static void set_cursor(wze::cursor const& cursor);
         static void __update();
     };
 } // namespace wze

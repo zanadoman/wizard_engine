@@ -8,12 +8,12 @@ int16_t wze::input::_cursor_y = 0;
 float_t wze::input::_cursor_dx = 0.0f;
 float_t wze::input::_cursor_dy = 0.0f;
 float_t wze::input::_mouse_sens = 1.0f;
-wze::cursor_t wze::input::_cursor = nullptr;
+wze::cursor wze::input::_cursor = nullptr;
 
 void wze::input::_update_keys() {
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
 
-    uint8_t const *keys;
+    uint8_t const* keys;
     uint32_t mouse;
 
     keys = SDL_GetKeyboardState(nullptr);
@@ -28,7 +28,7 @@ void wze::input::_update_keys() {
     _keys.at(KEY_MOUSE_MWU) = false;
     _keys.at(KEY_MOUSE_MWD) = false;
 
-    for (SDL_Event const &event : engine::__events()) {
+    for (SDL_Event const& event : engine::__events()) {
         if (event.type == SDL_MOUSEWHEEL) {
             if (0 < event.wheel.y) {
                 _keys.at(KEY_MOUSE_MWU) = true;
@@ -44,7 +44,7 @@ void wze::input::_update_cursor() {
     int32_t x;
     int32_t y;
 
-    for (SDL_Event const &event : engine::__events()) {
+    for (SDL_Event const& event : engine::__events()) {
         if (event.type == SDL_MOUSEMOTION) {
             _cursor_x = std::clamp(event.motion.x, 0, window::width() - 1);
             _cursor_y = std::clamp(event.motion.y, 0, window::height() - 1);
@@ -97,11 +97,11 @@ void wze::input::show_cursor() {
     SDL_SetRelativeMouseMode(SDL_FALSE);
 }
 
-const wze::cursor_t &wze::input::cursor() {
+wze::cursor const& wze::input::cursor() {
     return _cursor;
 }
 
-void wze::input::set_cursor(const cursor_t &cursor) {
+void wze::input::set_cursor(wze::cursor const& cursor) {
     SDL_SetCursor(cursor.get());
     _cursor = cursor;
 }

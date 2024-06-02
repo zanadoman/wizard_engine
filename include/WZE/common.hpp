@@ -6,7 +6,7 @@
 #include <cstdint>   // IWYU pragma: keep
 #include <deque>     // IWYU pragma: keep
 #include <memory>    // IWYU pragma: keep
-#include <stdexcept> // IWYU pragma: keep
+#include <exception> // IWYU pragma: keep
 #include <string>    // IWYU pragma: keep
 #include <vector>    // IWYU pragma: keep
 
