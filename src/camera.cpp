@@ -40,8 +40,8 @@ void wze::camera::set_angle(float_t angle) {
     float_t cosa;
     float_t sina;
 
-    cosa = cosf(angle);
-    sina = sinf(angle);
+    cosa = cosf(-angle);
+    sina = sinf(-angle);
     _rotmat.at(0) = cosa;
     _rotmat.at(1) = -sina;
     _rotmat.at(2) = sina;
@@ -58,18 +58,23 @@ void wze::camera::set_focal(float_t focal) {
     _focal = focal;
 }
 
-void wze::camera::__project(renderable& renderable) {
+void wze::camera::__project(renderable& r) {
     float_t x;
     float_t y;
     float_t z;
 
-    z = renderable.z() - _z;
-    x = z == 0.f ? 0.f : (renderable.x() - _x) / z * _focal;
-    y = z == 0.f ? 0.f : (renderable.y() - _y) / z * _focal;
+    if (r.projectable()) {
+        z = r.z() - _z;
+        x = z == 0.f ? 0.f : (r.x() - _x) / z * _focal;
+        y = z == 0.f ? 0.f : (r.y() - _y) / z * _focal;
 
-    renderable.__rect().x = x * _rotmat.at(0) + y * _rotmat.at(1);
-    renderable.__rect().y = x * _rotmat.at(2) + y * _rotmat.at(3);
-    renderable.__rect().w = z == 0.f ? 0.f : renderable.width() / z * _focal;
-    renderable.__rect().h = z == 0.f ? 0.f : renderable.height() / z * _focal;
-    renderable.__set_recta(_angle + renderable.angle());
+        r.__rect() = {x * _rotmat.at(0) + y * _rotmat.at(1),
+                      x * _rotmat.at(2) + y * _rotmat.at(3),
+                      z == 0.f ? 0.f : r.width() / z * _focal,
+                      z == 0.f ? 0.f : r.height() / z * _focal};
+        r.__set_recta(r.angle() - _angle);
+    } else {
+        r.__rect() = {r.x(), r.y(), r.width(), r.height()};
+        r.__set_recta(r.angle());
+    }
 }
