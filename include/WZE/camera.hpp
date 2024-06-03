@@ -11,7 +11,7 @@ namespace wze {
         static float_t _z;
         static float_t _angle;
         static float_t _focal;
-        static std::array<float_t, 6> _transmat;
+        static std::array<float_t, 4> _rotmat;
 
         public:
         static float_t x();
@@ -24,8 +24,6 @@ namespace wze {
         static void set_angle(float_t angle);
         static float_t focal();
         static void set_focal(float_t focal);
-        static void __project_renderable(renderable& renderable);
-        static void unproject_cursor(float_t& x, float_t& y, float_t z);
-        static void __init();
+        static void __project(renderable& renderable);
     };
 } // namespace wze

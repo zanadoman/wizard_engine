@@ -6,12 +6,16 @@ std::deque<wze::renderable*> const& wze::renderable::__insts() {
     return _insts;
 }
 
-SDL_FRect const& wze::renderable::__rect() const {
+SDL_FRect& wze::renderable::__rect() {
     return _rect;
 }
 
-void wze::renderable::__set_rect(SDL_FRect const& rect) {
-    _rect = rect;
+float_t wze::renderable::__recta() const {
+    return _recta;
+}
+
+void wze::renderable::__set_recta(float_t recta) {
+    _recta = recta;
 }
 
 wze::renderable::renderable() {

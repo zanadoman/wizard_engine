@@ -3,11 +3,13 @@
 #include "WZE/window.hpp"
 
 SDL_Renderer* wze::render::_base = nullptr;
-std::vector<wze::renderable const*> wze::render::_projqueue = {};
-std::vector<wze::renderable const*> wze::render::_origqueue = {};
+float_t wze::render::_ox = 0.f;
+float_t wze::render::_oy = 0.f;
+std::vector<wze::renderable*> wze::render::_projqueue = {};
+std::vector<wze::renderable*> wze::render::_origqueue = {};
 
 void wze::render::_open_frame() {
-    if (SDL_SetRenderDrawColor(_base, 255, 255, 255, 255)) {
+    if (SDL_SetRenderDrawColor(_base, 0, 0, 0, 255)) {
         throw std::runtime_error(SDL_GetError());
     }
 
@@ -22,14 +24,14 @@ bool wze::render::_invisible(renderable const& item) {
            !item.visible();
 }
 
-bool wze::render::_offscreen(renderable const& item) {
+bool wze::render::_offscreen(renderable& item) {
     return item.__rect().x + item.__rect().w < 0 ||
            window::width() <= item.__rect().x ||
            item.__rect().y + item.__rect().h < 0 ||
            window::height() <= item.__rect().y;
 }
 
-void wze::render::_render(renderable const& item) {
+void wze::render::_render(renderable& item) {
     if (item.texture().get()) {
         if (SDL_SetTextureColorMod(item.texture().get(), item.color_r(),
                                    item.color_g(), item.color_b())) {
@@ -40,10 +42,9 @@ void wze::render::_render(renderable const& item) {
             throw std::runtime_error(SDL_GetError());
         }
 
-        if (SDL_RenderCopyExF(
-                _base, item.texture().get(), nullptr, &item.__rect(),
-                (double)((item.angle() - camera::angle()) * deg), nullptr,
-                (SDL_RendererFlip)item.flip())) {
+        if (SDL_RenderCopyExF(_base, item.texture().get(), nullptr,
+                              &item.__rect(), (double)item.__recta(), nullptr,
+                              (SDL_RendererFlip)item.flip())) {
             throw std::runtime_error(SDL_GetError());
         }
     } else {
@@ -82,6 +83,9 @@ void wze::render::__init() {
     if (SDL_SetRenderDrawBlendMode(_base, SDL_BLENDMODE_BLEND)) {
         throw std::runtime_error(SDL_GetError());
     }
+
+    _ox = window::width() / 2.f;
+    _oy = window::height() / 2.f;
 }
 
 void wze::render::__update() {
@@ -95,7 +99,19 @@ void wze::render::__update() {
             continue;
         }
 
-        camera::__project_renderable(*item);
+        if (item->projectable()) {
+            camera::__project(*item);
+        } else {
+            item->__rect().x = item->x();
+            item->__rect().y = item->y();
+            item->__rect().w = item->width();
+            item->__rect().w = item->height();
+            item->__set_recta(item->angle());
+        }
+
+        item->__rect().x += _ox - item->__rect().w / 2.f;
+        item->__rect().y += _oy - item->__rect().h / 2.f;
+        item->__set_recta(item->__recta() * deg);
 
         if (_offscreen(*item)) {
             continue;
@@ -122,11 +138,11 @@ void wze::render::__update() {
                   return r1->priority() < r2->priority();
               });
 
-    for (renderable const* item : _projqueue) {
+    for (renderable* item : _projqueue) {
         _render(*item);
     }
 
-    for (renderable const* item : _origqueue) {
+    for (renderable* item : _origqueue) {
         _render(*item);
     }
 

@@ -14,11 +14,13 @@ namespace wze {
         private:
         static std::deque<renderable*> _insts;
         SDL_FRect _rect;
+        float _recta;
 
         public:
         static std::deque<renderable*> const& __insts();
-        SDL_FRect const& __rect() const;
-        void __set_rect(SDL_FRect const& rect);
+        SDL_FRect& __rect();
+        float_t __recta() const;
+        void __set_recta(float_t recta);
         virtual float_t x() const = 0;
         virtual float_t y() const = 0;
         virtual float_t z() const = 0;
