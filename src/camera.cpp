@@ -64,18 +64,25 @@ void wze::camera::__project_renderable(renderable& renderable) {
     float_t x;
     float_t y;
     float_t z;
+    
+    if (renderable.projectable()) {
+        z = renderable.z() - _z;
+        x = z == 0.f ? 0.f : (renderable.x() - _x) / z * _focal;
+        y = z == 0.f ? 0.f : (renderable.y() - _y) / z * _focal;
 
-    z = renderable.z() - _z;
-    x = z == 0.f ? 0.f : (renderable.x() - _x) / z * _focal;
-    y = z == 0.f ? 0.f : (renderable.y() - _y) / z * _focal;
+        rect.x = x * _transmat.at(0) + y * _transmat.at(1) + _transmat.at(2);
+        rect.y = x * _transmat.at(3) + y * _transmat.at(4) + _transmat.at(5);
+        rect.w = z == 0.f ? 0.f : renderable.width() / z * _focal;
+        rect.h = z == 0.f ? 0.f : renderable.height() / z * _focal;
+    } else {
+        rect.x = renderable.x() + _transmat.at(2);
+        rect.y = renderable.y() + _transmat.at(5);
+        rect.w = renderable.width();
+        rect.h = renderable.height();
+    }
 
-    rect.x = x * _transmat.at(0) + y * _transmat.at(1) + _transmat.at(2);
-    rect.y = x * _transmat.at(3) + y * _transmat.at(4) + _transmat.at(5);
-
-    rect.w = z == 0.f ? 0.f : renderable.width() / z * _focal;
-    rect.h = z == 0.f ? 0.f : renderable.height() / z * _focal;
-    rect.x -= rect.w / 2;
-    rect.y -= rect.h / 2;
+    rect.x -= rect.w / 2.f;
+    rect.y -= rect.h / 2.f;
 
     renderable.__set_rect(rect);
 }
@@ -97,6 +104,6 @@ void wze::camera::unproject_cursor(float_t& x, float_t& y, float_t z) {
 }
 
 void wze::camera::__init() {
-    _transmat.at(2) = window::width() / -2.f;
-    _transmat.at(5) = window::height() / -2.f;
+    _transmat.at(2) = window::width() / 2.f;
+    _transmat.at(5) = window::height() / 2.f;
 }

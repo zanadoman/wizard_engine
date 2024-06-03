@@ -1,14 +1,13 @@
 #include "WZE/render.hpp"
-#include "WZE/math.hpp"
+#include "WZE/camera.hpp"
 #include "WZE/window.hpp"
 
 SDL_Renderer* wze::render::_base = nullptr;
-SDL_Rect wze::render::_sview = {0, 0, 0, 0};
-SDL_Texture* wze::render::_dtarg = nullptr;
-SDL_Rect wze::render::_dview = {0, 0, 0, 0};
+std::vector<wze::renderable const*> wze::render::_projqueue = {};
+std::vector<wze::renderable const*> wze::render::_origqueue = {};
 
-void wze::render::_clear_targ() {
-    if (SDL_SetRenderDrawColor(_base, 0, 0, 0, 255)) {
+void wze::render::_open_frame() {
+    if (SDL_SetRenderDrawColor(_base, 255, 255, 255, 255)) {
         throw std::runtime_error(SDL_GetError());
     }
 
@@ -17,30 +16,49 @@ void wze::render::_clear_targ() {
     }
 }
 
-void wze::render::_set_dtarg() {
-    if (SDL_SetRenderTarget(_base, _dtarg)) {
-        throw std::runtime_error(SDL_GetError());
-    }
-
-    _clear_targ();
+bool wze::render::_invisible(renderable const& item) {
+    return (item.projectable() && item.z() - camera::z() <= 0.f) ||
+           item.width() == 0.f || item.height() == 0.f || item.color_a() == 0 ||
+           !item.visible();
 }
 
-void wze::render::_set_starg() {
-    if (SDL_SetRenderTarget(_base, _starg)) {
-        throw std::runtime_error(SDL_GetError());
-    }
-
-    _clear_targ();
+bool wze::render::_offscreen(renderable const& item) {
+    return item.__rect().x + item.__rect().w < 0 ||
+           window::width() <= item.__rect().x ||
+           item.__rect().y + item.__rect().h < 0 ||
+           window::height() <= item.__rect().y;
 }
 
-void wze::render::_put_dtarg() {
-    if (SDL_RenderCopyEx(_base, _dtarg, NULL, &_dview, 45, NULL,
-                         SDL_FLIP_NONE)) {
-        throw std::runtime_error(SDL_GetError());
+void wze::render::_render(renderable const& item) {
+    if (item.texture().get()) {
+        if (SDL_SetTextureColorMod(item.texture().get(), item.color_r(),
+                                   item.color_g(), item.color_b())) {
+            throw std::runtime_error(SDL_GetError());
+        }
+
+        if (SDL_SetTextureAlphaMod(item.texture().get(), item.color_a())) {
+            throw std::runtime_error(SDL_GetError());
+        }
+
+        if (SDL_RenderCopyExF(
+                _base, item.texture().get(), nullptr, &item.__rect(),
+                (double)((item.angle() - camera::angle()) * deg), nullptr,
+                (SDL_RendererFlip)item.flip())) {
+            throw std::runtime_error(SDL_GetError());
+        }
+    } else {
+        if (SDL_SetRenderDrawColor(_base, item.color_r(), item.color_g(),
+                                   item.color_b(), item.color_a())) {
+            throw std::runtime_error(SDL_GetError());
+        }
+
+        if (SDL_RenderFillRectF(_base, &item.__rect())) {
+            throw std::runtime_error(SDL_GetError());
+        }
     }
 }
 
-void wze::render::_put_starg() {
+void wze::render::_close_frame() {
     SDL_RenderPresent(_base);
 }
 
@@ -49,8 +67,6 @@ SDL_Renderer* wze::render::__base() {
 }
 
 void wze::render::__init() {
-    uint16_t diag;
-
     _base = SDL_CreateRenderer(window::__base(), -1,
                                SDL_RENDERER_ACCELERATED |
                                    SDL_RENDERER_TARGETTEXTURE);
@@ -66,40 +82,53 @@ void wze::render::__init() {
     if (SDL_SetRenderDrawBlendMode(_base, SDL_BLENDMODE_BLEND)) {
         throw std::runtime_error(SDL_GetError());
     }
-
-    diag = math::dist(0, 0, window::width(), window::height());
-
-    _dtarg = SDL_CreateTexture(_base, SDL_PIXELFORMAT_RGBA8888,
-                               SDL_TEXTUREACCESS_TARGET, diag, diag);
-
-    if (!_dtarg) {
-        throw std::runtime_error(SDL_GetError());
-    }
-
-    _dview.x = (window::width() - diag) / 2;
-    _dview.y = (window::height() - diag) / 2;
-    _dview.w = diag;
-    _dview.h = diag;
-
-    _sview.x = window::width() / 2;
-    _sview.y = window::height() / 2;
-    _sview.w = window::width();
-    _sview.h = window::height();
 }
 
 void wze::render::__update() {
-    _set_dtarg();
+    _open_frame();
 
-    SDL_Rect r1(500 - _dview.x, 500 - _dview.y, 100, 100);
-    SDL_SetRenderDrawColor(_base, 0, 255, 0, 255);
-    SDL_RenderFillRect(_base, &r1);
+    _projqueue.clear();
+    _origqueue.clear();
 
-    _set_starg();
-    _put_dtarg();
+    for (renderable* item : renderable::__insts()) {
+        if (_invisible(*item)) {
+            continue;
+        }
 
-    SDL_Rect r2(0 - 50 + _sview.x, 0 * -1 - 50 + _sview.y, 100, 100);
-    SDL_SetRenderDrawColor(_base, 0, 0, 255, 255);
-    SDL_RenderFillRect(_base, &r2);
+        camera::__project_renderable(*item);
 
-    _put_starg();
+        if (_offscreen(*item)) {
+            continue;
+        }
+
+        if (item->projectable()) {
+            _projqueue.push_back(item);
+        } else {
+            _origqueue.push_back(item);
+        }
+    }
+
+    std::sort(_projqueue.begin(), _projqueue.end(),
+              [](renderable const* r1, renderable const* r2) {
+                  if (r1->z() != r2->z()) {
+                      return r2->z() < r1->z();
+                  } else {
+                      return r1->priority() < r2->priority();
+                  }
+              });
+
+    std::sort(_origqueue.begin(), _origqueue.end(),
+              [](renderable const* r1, renderable const* r2) {
+                  return r1->priority() < r2->priority();
+              });
+
+    for (renderable const* item : _projqueue) {
+        _render(*item);
+    }
+
+    for (renderable const* item : _origqueue) {
+        _render(*item);
+    }
+
+    _close_frame();
 }

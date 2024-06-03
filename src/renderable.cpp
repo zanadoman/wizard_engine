@@ -1,12 +1,12 @@
 #include "WZE/renderable.hpp"
 
-std::deque<wze::renderable const*> wze::renderable::_insts;
+std::deque<wze::renderable*> wze::renderable::_insts;
 
-std::deque<wze::renderable const*> const& wze::renderable::__insts() {
+std::deque<wze::renderable*> const& wze::renderable::__insts() {
     return _insts;
 }
 
-SDL_FRect const& wze::renderable::__rect() {
+SDL_FRect const& wze::renderable::__rect() const {
     return _rect;
 }
 

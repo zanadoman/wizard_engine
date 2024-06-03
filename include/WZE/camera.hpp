@@ -14,18 +14,18 @@ namespace wze {
         static std::array<float_t, 6> _transmat;
 
         public:
-        float_t x();
-        void set_x(float_t x);
-        float_t y();
-        void set_y(float_t y);
-        float_t z();
-        void set_z(float_t z);
-        float_t angle();
-        void set_angle(float_t angle);
-        float_t focal();
-        void set_focal(float_t focal);
-        void __project_renderable(renderable& renderable);
-        void unproject_cursor(float_t& x, float_t& y, float_t z);
-        void __init();
+        static float_t x();
+        static void set_x(float_t x);
+        static float_t y();
+        static void set_y(float_t y);
+        static float_t z();
+        static void set_z(float_t z);
+        static float_t angle();
+        static void set_angle(float_t angle);
+        static float_t focal();
+        static void set_focal(float_t focal);
+        static void __project_renderable(renderable& renderable);
+        static void unproject_cursor(float_t& x, float_t& y, float_t z);
+        static void __init();
     };
 } // namespace wze
