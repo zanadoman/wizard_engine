@@ -105,7 +105,7 @@ void wze::render::__update() {
             item->__rect().x = item->x();
             item->__rect().y = item->y();
             item->__rect().w = item->width();
-            item->__rect().w = item->height();
+            item->__rect().h = item->height();
             item->__set_recta(item->angle());
         }
 

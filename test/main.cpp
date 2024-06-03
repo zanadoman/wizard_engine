@@ -86,9 +86,9 @@ int32_t main() {
 
     wze::timer::set_delay(1000 / 60);
 
-    box b1(0.f, 0.f, 0.5f, -0.f * wze::rad, wze::assets::load_texture("assets/wze/icon.png"));
-    box b2(0.f, 0.f, 1.f, -0.f * wze::rad, wze::assets::load_texture("assets/wze/icon.png"));
-    box b3(0.f, 0.f, 1.5f, -0.f * wze::rad, wze::assets::load_texture("assets/wze/icon.png"));
+    box b1(0.f, 0.f, 0.5f, 45.f * wze::rad, wze::assets::load_texture("assets/wze/icon.png"));
+    // box b2(0.f, 0.f, 1.f, -0.f * wze::rad, wze::assets::load_texture("assets/wze/icon.png"));
+    // box b3(0.f, 0.f, 1.5f, -0.f * wze::rad, wze::assets::load_texture("assets/wze/icon.png"));
 
     while (wze::engine::update()) {
         if (wze::input::keys(wze::KEY_MOUSE_MWU)) {
