@@ -1,5 +1,4 @@
 #include "WZE/camera.hpp"
-#include "WZE/error.hpp"
 #include "WZE/input.hpp"
 #include "WZE/window.hpp"
 
@@ -57,33 +56,28 @@ float_t wze::camera::focal() {
 }
 
 void wze::camera::set_focal(float_t focal) {
-    if (focal <= 0) {
-        throw argument_error("Invalid focal value");
-    }
-
     _focal = focal;
 }
 
-void wze::camera::project_renderable(renderable const& src, SDL_FRect& res) {
+void wze::camera::__project_renderable(renderable& renderable) {
+    SDL_FRect rect;
     float_t x;
     float_t y;
     float_t z;
 
-    if (src.z() <= _z) {
-        throw projection_error("Invalid z value");
-    }
+    z = renderable.z() - _z;
+    x = z == 0.f ? 0.f : (renderable.x() - _x) / z * _focal;
+    y = z == 0.f ? 0.f : (renderable.y() - _y) / z * _focal;
 
-    z = src.z() - _z;
-    x = (src.x() - _x) / z * _focal;
-    y = (src.y() - _y) / z * _focal;
+    rect.x = x * _transmat.at(0) + y * _transmat.at(1) + _transmat.at(2);
+    rect.y = x * _transmat.at(3) + y * _transmat.at(4) + _transmat.at(5);
 
-    res.x = x * _transmat.at(0) + y * _transmat.at(1) + _transmat.at(2);
-    res.y = x * _transmat.at(3) + y * _transmat.at(4) + _transmat.at(5);
+    rect.w = z == 0.f ? 0.f : renderable.width() / z * _focal;
+    rect.h = z == 0.f ? 0.f : renderable.height() / z * _focal;
+    rect.x -= rect.w / 2;
+    rect.y -= rect.h / 2;
 
-    res.w = src.width() / z * _focal;
-    res.h = src.height() / z * _focal;
-    res.x -= res.w / 2;
-    res.y -= res.h / 2;
+    renderable.__set_rect(rect);
 }
 
 void wze::camera::unproject_cursor(float_t& x, float_t& y, float_t z) {
@@ -98,8 +92,8 @@ void wze::camera::unproject_cursor(float_t& x, float_t& y, float_t z) {
     y = (_transmat.at(0) * ty - _transmat.at(3) * tx) / ta;
 
     z = z - _z;
-    x = x / _focal * z + _x;
-    y = y / _focal * z + _y;
+    x = _focal == 0.f ? 0.f : x / _focal * z + _x;
+    y = _focal == 0.f ? 0.f : y / _focal * z + _y;
 }
 
 void wze::camera::__init() {

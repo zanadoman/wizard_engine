@@ -24,7 +24,7 @@ namespace wze {
         void set_angle(float_t angle);
         float_t focal();
         void set_focal(float_t focal);
-        void project_renderable(renderable const& src, SDL_FRect& res);
+        void __project_renderable(renderable& renderable);
         void unproject_cursor(float_t& x, float_t& y, float_t z);
         void __init();
     };

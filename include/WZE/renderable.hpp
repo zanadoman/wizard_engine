@@ -13,9 +13,12 @@ namespace wze {
     class renderable {
         private:
         static std::deque<renderable const*> _insts;
+        SDL_FRect _rect;
 
         public:
         static std::deque<renderable const*> const& __insts();
+        SDL_FRect const& __rect();
+        void __set_rect(SDL_FRect const& rect);
         virtual float_t x() const = 0;
         virtual float_t y() const = 0;
         virtual float_t z() const = 0;

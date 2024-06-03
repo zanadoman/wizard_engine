@@ -6,6 +6,14 @@ std::deque<wze::renderable const*> const& wze::renderable::__insts() {
     return _insts;
 }
 
+SDL_FRect const& wze::renderable::__rect() {
+    return _rect;
+}
+
+void wze::renderable::__set_rect(SDL_FRect const& rect) {
+    _rect = rect;
+}
+
 wze::renderable::renderable() {
     _insts.push_back(this);
 }
