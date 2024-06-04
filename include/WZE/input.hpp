@@ -53,7 +53,7 @@ namespace wze {
          * @file input.hpp
          * @author Zana Domán
          * @brief Queries the current state of a keyboard/mousekey.
-         * @param Keyboard/mousekey.
+         * @param key Keyboard/mousekey.
          * @return State of the given keyboard/mousekey.
          */
         static bool keys(key key);
@@ -136,7 +136,7 @@ namespace wze {
          * @file input.hpp
          * @author Zana Domán
          * @brief Changes the visibility of the cursor.
-         * @param Cursor visibility.
+         * @param cursor_visibility Cursor visibility.
          * @note Hiding the cursor also captures it into the game's window.
          */
         static void set_cursor_visibility(bool cursor_visibility);
