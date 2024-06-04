@@ -94,8 +94,6 @@ int32_t main() {
     box b5(0.f, 0.f, 750.f, 0.f * wze::TO_RADF,
            wze::assets::load_texture("assets/wze/icon.png"));
 
-    float_t x, y;
-
     while (wze::engine::update()) {
         if (wze::input::keys(wze::KEY_MOUSE_MWU)) {
             wze::camera::set_angle(wze::camera::angle() + 0.1f);
@@ -123,12 +121,6 @@ int32_t main() {
         }
         // std::cout << wze::input::cursor_x() << '\n';
         // std::cout << wze::input::cursor_y() << '\n';
-
-        x = wze::input::cursor_x();
-        y = wze::input::cursor_y();
-        wze::render::__itransform(x, y);
-        wze::camera::__unproject(x, y, 1.0f);
-        printf("%f, %f\n", (double)x, (double)y);
     }
 
     return 0;

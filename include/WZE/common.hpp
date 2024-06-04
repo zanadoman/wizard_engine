@@ -9,6 +9,7 @@
 #include <ranges>    // IWYU pragma: keep
 #include <stdexcept> // IWYU pragma: keep
 #include <string>    // IWYU pragma: keep
+#include <utility>   // IWYU pragma: keep
 #include <vector>    // IWYU pragma: keep
 
 #include "SDL2/SDL.h"       // IWYU pragma: keep
