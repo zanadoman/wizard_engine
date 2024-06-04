@@ -24,7 +24,7 @@ namespace wze {
         static void set_angle(float_t angle);
         static float_t focus();
         static void set_focus(float_t focus);
-        static void __project_renderable(renderable& instance);
+        static void __project(renderable& instance);
         static void __unproject(float_t &x, float_t &y, float_t z);
     };
 } // namespace wze

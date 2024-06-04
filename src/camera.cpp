@@ -4,7 +4,7 @@ float_t wze::camera::_x = 0.f;
 float_t wze::camera::_y = 0.f;
 float_t wze::camera::_z = 0.f;
 float_t wze::camera::_angle = 0.f;
-float_t wze::camera::_focus = 1.f;
+float_t wze::camera::_focus = 512.f;
 std::array<float_t, 4> wze::camera::_rotation_matrix = {1.f, 0.f, -0.f, 1.f};
 
 float_t wze::camera::x() {
@@ -48,57 +48,50 @@ float_t wze::camera::focus() {
 }
 
 void wze::camera::set_focus(float_t focus) {
+    if (focus <= 0.f) {
+        throw std::invalid_argument("Invalid focus");
+    }
+
     _focus = focus;
 }
 
-void wze::camera::__project_renderable(renderable& instance) {
+void wze::camera::__project(renderable& instance) {
     float_t x_;
     float_t y_;
-    float_t z_;
     float_t scale;
 
-    if (instance.projectable()) {
-        z_ = instance.z() - _z;
-        if (z_ == 0.f) {
-            instance.__set_render_area({0.f, 0.f, 0.f, 0.f});
-        } else {
-            scale = _focus / z_;
-            x_ = (instance.x() - _x) * scale;
-            y_ = (instance.y() - _y) * scale;
-            instance.__set_render_area(
-                {x_ * _rotation_matrix.at(0) + y_ * _rotation_matrix.at(1),
-                 x_ * _rotation_matrix.at(2) + y_ * _rotation_matrix.at(3),
-                 instance.width() * scale, instance.height() * scale});
-        }
-        instance.__set_render_angle(instance.angle() - _angle);
-    } else {
+    if (!instance.projectable()) {
         instance.__set_render_area(
             {instance.x(), instance.y(), instance.width(), instance.height()});
         instance.__set_render_angle(instance.angle());
+        return;
     }
+
+    scale = _focus / (instance.z() - _z);
+    x_ = (instance.x() - _x) * scale;
+    y_ = (instance.y() - _y) * scale;
+    instance.__set_render_area(
+        {x_ * _rotation_matrix.at(0) + y_ * _rotation_matrix.at(1),
+         x_ * _rotation_matrix.at(2) + y_ * _rotation_matrix.at(3),
+         instance.width() * scale, instance.height() * scale});
+    instance.__set_render_angle(instance.angle() - _angle);
 }
 
 void wze::camera::__unproject(float_t& x, float_t& y, float_t z) {
     float_t x_;
     float_t y_;
-    float_t z_;
-    float_t divisor;
+    float_t determinant;
     float_t scale;
 
     y_ = y;
     x_ = x;
-    divisor = _rotation_matrix.at(0) * _rotation_matrix.at(3) -
-              _rotation_matrix.at(1) * _rotation_matrix.at(2);
-    x = (x_ * _rotation_matrix.at(3) - y_ * _rotation_matrix.at(1)) / divisor;
-    y = (y_ * _rotation_matrix.at(0) - x_ * _rotation_matrix.at(2)) / divisor;
-
-    z_ = z - _z;
-    if (z_ == 0.f) {
-        x = 0.f;
-        y = 0.f;
-    } else {
-        scale = z_ / _focus;
-        x = _x + x * scale;
-        y = _y + y * scale;
-    }
+    determinant = _rotation_matrix.at(0) * _rotation_matrix.at(3) -
+                  _rotation_matrix.at(1) * _rotation_matrix.at(2);
+    x = (x_ * _rotation_matrix.at(3) - y_ * _rotation_matrix.at(1)) /
+        determinant;
+    y = (y_ * _rotation_matrix.at(0) - x_ * _rotation_matrix.at(2)) /
+        determinant;
+    scale = (z - _z) / _focus;
+    x = _x + x * scale;
+    y = _y + y * scale;
 }

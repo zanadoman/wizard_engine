@@ -86,9 +86,9 @@ int32_t main() {
 
     wze::timer::set_delay(1000 / 60);
 
-    box b1(0.f, 0.f, 0.5f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
-    box b3(0.f, 0.f, 1.f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
-    box b5(0.f, 0.f, 1.5f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
+    box b1(0.f, 0.f, 250.f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
+    box b3(0.f, 0.f, 500.f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
+    box b5(0.f, 0.f, 750.f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
 
     float_t x, y;
 
@@ -100,10 +100,10 @@ int32_t main() {
             wze::camera::set_angle(wze::camera::angle() - 0.1f);
         }
         if (wze::input::keys(wze::KEY_W)) {
-            wze::camera::set_z(wze::camera::z() + 0.02f);
+            wze::camera::set_z(wze::camera::z() + 10.f);
         }
         if (wze::input::keys(wze::KEY_S)) {
-            wze::camera::set_z(wze::camera::z() - 0.02f);
+            wze::camera::set_z(wze::camera::z() - 10.f);
         }
         if (wze::input::keys(wze::KEY_D)) {
             wze::camera::set_x(wze::camera::x() + 10.f);

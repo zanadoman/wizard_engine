@@ -109,7 +109,7 @@ void wze::render::__update() {
             return;
         }
 
-        camera::__project_renderable(*instance);
+        camera::__project(*instance);
         _transform(*instance);
 
         if (_offscreen(*instance)) {
