@@ -31,5 +31,6 @@ namespace wze {
         static wze::cursor const& cursor();
         static void set_cursor(wze::cursor const& cursor);
         static void __update();
+        static std::pair<float_t, float_t> unproject_cursor(float_t z);
     };
 } // namespace wze

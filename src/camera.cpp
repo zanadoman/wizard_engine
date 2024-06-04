@@ -77,7 +77,8 @@ void wze::camera::__project(renderable& instance) {
     instance.__set_render_angle(instance.angle() - _angle);
 }
 
-void wze::camera::__unproject(float_t& x, float_t& y, float_t z) {
+std::pair<float_t, float_t> wze::camera::__unproject(float_t x, float_t y,
+                                                     float_t z) {
     float_t x_;
     float_t y_;
     float_t determinant;
@@ -92,6 +93,6 @@ void wze::camera::__unproject(float_t& x, float_t& y, float_t z) {
     y = (y_ * _rotation_matrix.at(0) - x_ * _rotation_matrix.at(2)) /
         determinant;
     scale = (z - _z) / _focus;
-    x = _x + x * scale;
-    y = _y + y * scale;
+
+    return {_x + x * scale, _y + y * scale};
 }

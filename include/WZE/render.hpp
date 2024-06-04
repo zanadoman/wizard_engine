@@ -26,6 +26,6 @@ namespace wze {
         static void set_origo_y(float_t origo_y);
         static void __init();
         static void __update();
-        static void __itransform(float_t& x, float_t& y);
+        static std::pair<float_t, float_t> __itransform(float_t x, float_t y);
     };
 } // namespace wze

@@ -148,7 +148,6 @@ void wze::render::__update() {
     _close_frame();
 }
 
-void wze::render::__itransform(float_t& x, float_t& y) {
-    x -= _origo_x;
-    y -= _origo_y;
+std::pair<float_t, float_t> wze::render::__itransform(float_t x, float_t y) {
+    return {x - _origo_x, y - _origo_y};
 }

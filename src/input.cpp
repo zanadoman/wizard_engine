@@ -1,5 +1,7 @@
 #include "WZE/input.hpp"
+#include "WZE/camera.hpp"
 #include "WZE/engine.hpp"
+#include "WZE/render.hpp"
 #include "WZE/window.hpp"
 
 std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
@@ -105,8 +107,14 @@ void wze::input::set_cursor(wze::cursor const& cursor) {
     SDL_SetCursor(cursor.get());
     _cursor = cursor;
 }
-
+;
 void wze::input::__update() {
     _update_keys();
     _update_cursor();
+}
+
+std::pair<float_t, float_t> wze::input::unproject_cursor(float_t z) {
+    return std::apply(
+        [z](float_t x, float_t y) { return camera::__unproject(x, y, z); },
+        render::__itransform(_cursor_x, _cursor_y));
 }
