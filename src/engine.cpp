@@ -6,7 +6,7 @@
 
 std::deque<SDL_Event> wze::engine::_events;
 
-const std::deque<SDL_Event> &wze::engine::__events() {
+std::deque<SDL_Event> const& wze::engine::__events() {
     return _events;
 }
 

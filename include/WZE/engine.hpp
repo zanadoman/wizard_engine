@@ -8,7 +8,7 @@ namespace wze {
         static std::deque<SDL_Event> _events;
 
         public:
-        static const std::deque<SDL_Event> &__events();
+        static std::deque<SDL_Event> const& __events();
         static void init(uint16_t width, uint16_t height);
         static bool update();
     };

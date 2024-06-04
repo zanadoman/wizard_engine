@@ -25,6 +25,6 @@ namespace wze {
         static float_t focus();
         static void set_focus(float_t focus);
         static void __project(renderable& instance);
-        static void __unproject(float_t &x, float_t &y, float_t z);
+        static void __unproject(float_t& x, float_t& y, float_t z);
     };
 } // namespace wze

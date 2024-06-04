@@ -72,7 +72,8 @@ class box : wze::renderable {
         return true;
     }
 
-    box(float_t x, float_t y, float_t z, float_t angle, wze::texture const& texture) {
+    box(float_t x, float_t y, float_t z, float_t angle,
+        wze::texture const& texture) {
         _x = x;
         _y = y;
         _z = z;
@@ -86,9 +87,12 @@ int32_t main() {
 
     wze::timer::set_delay(1000 / 60);
 
-    box b1(0.f, 0.f, 250.f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
-    box b3(0.f, 0.f, 500.f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
-    box b5(0.f, 0.f, 750.f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
+    box b1(0.f, 0.f, 250.f, 0.f * wze::TO_RADF,
+           wze::assets::load_texture("assets/wze/icon.png"));
+    box b3(0.f, 0.f, 500.f, 0.f * wze::TO_RADF,
+           wze::assets::load_texture("assets/wze/icon.png"));
+    box b5(0.f, 0.f, 750.f, 0.f * wze::TO_RADF,
+           wze::assets::load_texture("assets/wze/icon.png"));
 
     float_t x, y;
 
@@ -119,7 +123,7 @@ int32_t main() {
         }
         // std::cout << wze::input::cursor_x() << '\n';
         // std::cout << wze::input::cursor_y() << '\n';
-    
+
         x = wze::input::cursor_x();
         y = wze::input::cursor_y();
         wze::render::__itransform(x, y);
