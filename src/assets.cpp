@@ -1,102 +1,115 @@
 #include "WZE/assets.hpp"
 #include "WZE/render.hpp"
-#include "WZE/error.hpp"
 
 wze::image wze::assets::load_image(std::string const& path) {
-    SDL_Surface* res;
+    SDL_Surface* image;
 
-    res = IMG_Load(path.c_str());
-
-    if (!res) {
-        throw sdl_image_error();
+    image = IMG_Load(path.c_str());
+    if (!image) {
+        throw std::runtime_error(IMG_GetError());
     }
 
-    return {res, SDL_FreeSurface};
+    return {image, SDL_FreeSurface};
 }
 
-wze::image wze::assets::create_image(std::string const& text,
-                                     font const& font) {
-    SDL_Surface* res;
+wze::image wze::assets::create_image(int32_t width, int32_t height, uint8_t r,
+                                     uint8_t g, uint8_t b, uint8_t a) {
+    SDL_Surface* image;
 
-    res =
-        TTF_RenderUTF8_Blended(font.get(), text.c_str(), {255, 255, 255, 255});
-
-    if (!res) {
-        throw sdl_ttf_error();
+    image = SDL_CreateRGBSurfaceWithFormat(0, width, height, 24,
+                                           SDL_PIXELFORMAT_RGBA8888);
+    if (!image) {
+        throw std::runtime_error(SDL_GetError());
     }
 
-    return {res, SDL_FreeSurface};
+    if (SDL_SetSurfaceColorMod(image, r, g, b)) {
+        throw std::runtime_error(SDL_GetError());
+    }
+    if (SDL_SetSurfaceAlphaMod(image, a)) {
+        throw std::runtime_error(SDL_GetError());
+    }
+
+    return {image, SDL_FreeSurface};
+}
+
+wze::image wze::assets::create_image(std::string const& text, font const& font,
+                                     font_style style, uint8_t r, uint8_t g,
+                                     uint8_t b, uint8_t a) {
+    SDL_Surface* image;
+
+    TTF_SetFontStyle(font.get(), style);
+
+    image = TTF_RenderUTF8_Blended(font.get(), text.c_str(), {r, g, b, a});
+    if (!image) {
+        throw std::runtime_error(TTF_GetError());
+    }
+
+    return {image, SDL_FreeSurface};
 }
 
 wze::texture wze::assets::load_texture(std::string const& path) {
-    SDL_Texture* res;
+    SDL_Texture* texture;
 
-    res = IMG_LoadTexture(render::__base(), path.c_str());
-
-    if (!res) {
-        throw sdl_image_error();
+    texture = IMG_LoadTexture(render::__renderer(), path.c_str());
+    if (!texture) {
+        throw std::runtime_error(IMG_GetError());
     }
 
-    return {res, SDL_DestroyTexture};
+    return {texture, SDL_DestroyTexture};
 }
 
 wze::texture wze::assets::create_texture(image const& img) {
-    SDL_Texture* res;
+    SDL_Texture* texture;
 
-    res = SDL_CreateTextureFromSurface(render::__base(), img.get());
-
-    if (!res) {
-        throw sdl_error();
+    texture = SDL_CreateTextureFromSurface(render::__renderer(), img.get());
+    if (!texture) {
+        throw std::runtime_error(SDL_GetError());
     }
 
-    return {res, SDL_DestroyTexture};
+    return {texture, SDL_DestroyTexture};
 }
 
 wze::sound wze::assets::load_sound(std::string const& path) {
-    Mix_Chunk* res;
+    Mix_Chunk* sound;
 
-    res = Mix_LoadWAV(path.c_str());
-
-    if (!res) {
-        throw sdl_mixer_error();
+    sound = Mix_LoadWAV(path.c_str());
+    if (!sound) {
+        throw std::runtime_error(Mix_GetError());
     }
 
-    return {res, Mix_FreeChunk};
+    return {sound, Mix_FreeChunk};
 }
 
 wze::font wze::assets::load_font(std::string const& path, uint8_t size) {
-    TTF_Font* res;
+    TTF_Font* font;
 
-    res = TTF_OpenFont(path.c_str(), size);
-
-    if (!res) {
-        throw sdl_ttf_error();
+    font = TTF_OpenFont(path.c_str(), size);
+    if (!font) {
+        throw std::runtime_error(TTF_GetError());
     }
 
-    return {res, TTF_CloseFont};
+    return {font, TTF_CloseFont};
 }
 
 wze::cursor wze::assets::create_cursor(sys_cursor type) {
-    SDL_Cursor* res;
+    SDL_Cursor* cursor;
 
-    res = SDL_CreateSystemCursor((SDL_SystemCursor)type);
-
-    if (!res) {
-        throw sdl_error();
+    cursor = SDL_CreateSystemCursor((SDL_SystemCursor)type);
+    if (!cursor) {
+        throw std::runtime_error(SDL_GetError());
     }
 
-    return {res, SDL_FreeCursor};
+    return {cursor, SDL_FreeCursor};
 }
 
-wze::cursor wze::assets::create_cursor(image const& img, uint16_t hot_x,
-                                       uint16_t hot_y) {
-    SDL_Cursor* res;
+wze::cursor wze::assets::create_cursor(image const& img, int32_t hot_x,
+                                       int32_t hot_y) {
+    SDL_Cursor* cursor;
 
-    res = SDL_CreateColorCursor(img.get(), hot_x, hot_y);
-
-    if (!res) {
-        throw sdl_error();
+    cursor = SDL_CreateColorCursor(img.get(), hot_x, hot_y);
+    if (!cursor) {
+        throw std::runtime_error(SDL_GetError());
     }
 
-    return {res, SDL_FreeCursor};
+    return {cursor, SDL_FreeCursor};
 }

@@ -10,8 +10,8 @@ namespace wze {
         static float_t _y;
         static float_t _z;
         static float_t _angle;
-        static float_t _focal;
-        static std::array<float_t, 4> _rotmat;
+        static float_t _focus;
+        static std::array<float_t, 4> _rotation_matrix;
 
         public:
         static float_t x();
@@ -22,8 +22,9 @@ namespace wze {
         static void set_z(float_t z);
         static float_t angle();
         static void set_angle(float_t angle);
-        static float_t focal();
-        static void set_focal(float_t focal);
-        static void __project(renderable& renderable);
+        static float_t focus();
+        static void set_focus(float_t focus);
+        static void __project_renderable(renderable& instance);
+        static void __unproject(float_t &x, float_t &y, float_t z);
     };
 } // namespace wze

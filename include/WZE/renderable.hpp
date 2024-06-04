@@ -12,15 +12,16 @@ namespace wze {
 
     class renderable {
         private:
-        static std::deque<renderable*> _insts;
-        SDL_FRect _rect;
-        float _recta;
+        static std::deque<renderable*> _instances;
+        SDL_FRect _render_area;
+        float _render_angle;
 
         public:
-        static std::deque<renderable*> const& __insts();
-        SDL_FRect& __rect();
-        float_t __recta() const;
-        void __set_recta(float_t recta);
+        static std::deque<renderable*> const& __instances();
+        SDL_FRect const& __render_area() const;
+        void __set_render_area(SDL_FRect const& render_area);
+        float_t __render_angle() const;
+        void __set_render_angle(float_t target_angle);
         virtual float_t x() const = 0;
         virtual float_t y() const = 0;
         virtual float_t z() const = 0;

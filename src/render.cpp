@@ -2,69 +2,64 @@
 #include "WZE/camera.hpp"
 #include "WZE/window.hpp"
 
-SDL_Renderer* wze::render::_base = nullptr;
+SDL_Renderer* wze::render::_renderer = nullptr;
 float_t wze::render::_origo_x = 0.f;
 float_t wze::render::_origo_y = 0.f;
-std::vector<wze::renderable*> wze::render::_projectables = {};
-std::vector<wze::renderable*> wze::render::_inprojectables = {};
+std::vector<wze::renderable const*> wze::render::_projectables = {};
+std::vector<wze::renderable const*> wze::render::_inprojectables = {};
 
 void wze::render::_open_frame() {
-    if (SDL_SetRenderDrawColor(_base, 0, 0, 0, 255)) {
+    if (SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255)) {
         throw std::runtime_error(SDL_GetError());
     }
-    if (SDL_RenderClear(_base)) {
+    if (SDL_RenderClear(_renderer)) {
         throw std::runtime_error(SDL_GetError());
     }
 }
 
-bool wze::render::_invisible(renderable const& r) {
-    return (r.projectable() && r.z() - camera::z() <= 0.f) ||
-           r.width() == 0.f || r.height() == 0.f || r.color_a() == 0 ||
-           !r.visible();
+bool wze::render::_invisible(renderable const& instance) {
+    return (instance.projectable() && instance.z() - camera::z() <= 0.f) ||
+           instance.width() == 0.f || instance.height() == 0.f ||
+           instance.color_a() == 0 || !instance.visible() ||
+           !instance.texture().get();
 }
 
-void wze::render::_transform(renderable& r) {
-    r.__rect().x += _origo_x - r.__rect().w / 2.f;
-    r.__rect().y += _origo_y - r.__rect().h / 2.f;
-    r.__set_recta(r.__recta() * deg);
+void wze::render::_transform(renderable& instance) {
+    SDL_FRect const& area = instance.__render_area();
+    instance.__set_render_area({area.x + _origo_x - area.w / 2.f,
+                                area.y + _origo_y - area.h / 2.f, area.w,
+                                area.h});
+    instance.__set_render_angle(instance.__render_angle() * TO_DEGF);
 }
 
-bool wze::render::_offscreen(renderable& r) {
-    return r.__rect().x + r.__rect().w < 0 || window::width() <= r.__rect().x ||
-           r.__rect().y + r.__rect().h < 0 || window::height() <= r.__rect().y;
+bool wze::render::_offscreen(renderable const& instance) {
+    SDL_FRect const& area = instance.__render_area();
+    return area.x + area.w < 0.f || window::width() <= area.x ||
+           area.y + area.h < 0.f || window::height() <= area.y;
 }
 
-void wze::render::_render(renderable& r) {
-    if (r.texture().get()) {
-        if (SDL_SetTextureColorMod(r.texture().get(), r.color_r(), r.color_g(),
-                                   r.color_b())) {
-            throw std::runtime_error(SDL_GetError());
-        }
-        if (SDL_SetTextureAlphaMod(r.texture().get(), r.color_a())) {
-            throw std::runtime_error(SDL_GetError());
-        }
-        if (SDL_RenderCopyExF(_base, r.texture().get(), nullptr, &r.__rect(),
-                              (double)r.__recta(), nullptr,
-                              (SDL_RendererFlip)r.flip())) {
-            throw std::runtime_error(SDL_GetError());
-        }
-    } else {
-        if (SDL_SetRenderDrawColor(_base, r.color_r(), r.color_g(), r.color_b(),
-                                   r.color_a())) {
-            throw std::runtime_error(SDL_GetError());
-        }
-        if (SDL_RenderFillRectF(_base, &r.__rect())) {
-            throw std::runtime_error(SDL_GetError());
-        }
+void wze::render::_render(renderable const& instance) {
+    if (SDL_SetTextureColorMod(instance.texture().get(), instance.color_r(),
+                               instance.color_g(), instance.color_b())) {
+        throw std::runtime_error(SDL_GetError());
+    }
+    if (SDL_SetTextureAlphaMod(instance.texture().get(), instance.color_a())) {
+        throw std::runtime_error(SDL_GetError());
+    }
+    if (SDL_RenderCopyExF(_renderer, instance.texture().get(), nullptr,
+                          &instance.__render_area(),
+                          (double)instance.__render_angle(), nullptr,
+                          (SDL_RendererFlip)instance.flip())) {
+        throw std::runtime_error(SDL_GetError());
     }
 }
 
 void wze::render::_close_frame() {
-    SDL_RenderPresent(_base);
+    SDL_RenderPresent(_renderer);
 }
 
-SDL_Renderer* wze::render::__base() {
-    return _base;
+SDL_Renderer* wze::render::__renderer() {
+    return _renderer;
 }
 
 float_t wze::render::origo_x() {
@@ -84,17 +79,18 @@ void wze::render::set_origo_y(float_t origo_y) {
 }
 
 void wze::render::__init() {
-    _base = SDL_CreateRenderer(window::__base(), -1,
-                               SDL_RENDERER_ACCELERATED |
-                                   SDL_RENDERER_TARGETTEXTURE);
-    if (!_base) {
+    _renderer = SDL_CreateRenderer(window::__base(), -1,
+                                   SDL_RENDERER_ACCELERATED |
+                                       SDL_RENDERER_TARGETTEXTURE);
+    if (!_renderer) {
         throw std::runtime_error(SDL_GetError());
     }
 
-    if (SDL_RenderSetLogicalSize(_base, window::width(), window::height())) {
+    if (SDL_RenderSetLogicalSize(_renderer, window::width(),
+                                 window::height())) {
         throw std::runtime_error(SDL_GetError());
     }
-    if (SDL_SetRenderDrawBlendMode(_base, SDL_BLENDMODE_BLEND)) {
+    if (SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND)) {
         throw std::runtime_error(SDL_GetError());
     }
 
@@ -108,45 +104,46 @@ void wze::render::__update() {
     _projectables.clear();
     _inprojectables.clear();
 
-    for (renderable* r : renderable::__insts()) {
-        if (_invisible(*r)) {
-            continue;
+    std::ranges::for_each(renderable::__instances(), [](renderable* instance) {
+        if (_invisible(*instance)) {
+            return;
         }
 
-        camera::__project(*r);
-        _transform(*r);
+        camera::__project_renderable(*instance);
+        _transform(*instance);
 
-        if (_offscreen(*r)) {
-            continue;
+        if (_offscreen(*instance)) {
+            return;
         }
 
-        if (r->projectable()) {
-            _projectables.push_back(r);
+        if (instance->projectable()) {
+            _projectables.push_back(instance);
         } else {
-            _inprojectables.push_back(r);
+            _inprojectables.push_back(instance);
         }
-    }
+    });
 
-    std::sort(_projectables.begin(), _projectables.end(),
-              [](renderable const* r1, renderable const* r2) {
-                  if (r1->z() != r2->z()) {
-                      return r2->z() < r1->z();
-                  } else {
-                      return r1->priority() < r2->priority();
-                  }
-              });
+    std::ranges::sort(_projectables, [](renderable const* projectable1,
+                                        renderable const* projectable2) {
+        if (projectable1->z() != projectable2->z()) {
+            return projectable2->z() < projectable1->z();
+        } else {
+            return projectable1->priority() < projectable2->priority();
+        }
+    });
 
-    std::sort(_inprojectables.begin(), _inprojectables.end(),
-              [](renderable const* r1, renderable const* r2) {
-                  return r1->priority() < r2->priority();
-              });
+    std::ranges::sort(_inprojectables, [](renderable const* inprojectable1,
+                                          renderable const* inprojectable2) {
+        return inprojectable1->priority() < inprojectable2->priority();
+    });
 
-    for (renderable* r : _projectables) {
-        _render(*r);
-    }
-    for (renderable* r : _inprojectables) {
-        _render(*r);
-    }
+    std::ranges::for_each(_projectables, [](renderable const* projectable) {
+        _render(*projectable);
+    });
+
+    std::ranges::for_each(_inprojectables, [](renderable const* inprojectable) {
+        _render(*inprojectable);
+    });
 
     _close_frame();
 }

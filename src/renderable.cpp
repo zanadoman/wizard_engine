@@ -1,27 +1,31 @@
 #include "WZE/renderable.hpp"
 
-std::deque<wze::renderable*> wze::renderable::_insts;
+std::deque<wze::renderable*> wze::renderable::_instances;
 
-std::deque<wze::renderable*> const& wze::renderable::__insts() {
-    return _insts;
+std::deque<wze::renderable*> const& wze::renderable::__instances() {
+    return _instances;
 }
 
-SDL_FRect& wze::renderable::__rect() {
-    return _rect;
+SDL_FRect const& wze::renderable::__render_area() const {
+    return _render_area;
 }
 
-float_t wze::renderable::__recta() const {
-    return _recta;
+void wze::renderable::__set_render_area(SDL_FRect const& render_area) {
+    _render_area = render_area;
 }
 
-void wze::renderable::__set_recta(float_t recta) {
-    _recta = recta;
+float_t wze::renderable::__render_angle() const {
+    return _render_angle;
+}
+
+void wze::renderable::__set_render_angle(float_t render_angle) {
+    _render_angle = render_angle;
 }
 
 wze::renderable::renderable() {
-    _insts.push_back(this);
+    _instances.push_back(this);
 }
 
 wze::renderable::~renderable() {
-    _insts.erase(std::find(_insts.begin(), _insts.end(), this));
+    _instances.erase(std::ranges::find(_instances, this));
 }

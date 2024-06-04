@@ -86,9 +86,11 @@ int32_t main() {
 
     wze::timer::set_delay(1000 / 60);
 
-    box b1(0.f, 0.f, 0.5f, 0.f * wze::rad, wze::assets::load_texture("assets/wze/icon.png"));
-    box b3(0.f, 0.f, 1.f, 0.f * wze::rad, wze::assets::load_texture("assets/wze/icon.png"));
-    box b5(0.f, 0.f, 1.5f, 0.f * wze::rad, wze::assets::load_texture("assets/wze/icon.png"));
+    box b1(0.f, 0.f, 0.5f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
+    box b3(0.f, 0.f, 1.f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
+    box b5(0.f, 0.f, 1.5f, 0.f * wze::TO_RADF, wze::assets::load_texture("assets/wze/icon.png"));
+
+    float_t x, y;
 
     while (wze::engine::update()) {
         if (wze::input::keys(wze::KEY_MOUSE_MWU)) {
@@ -109,8 +111,20 @@ int32_t main() {
         if (wze::input::keys(wze::KEY_A)) {
             wze::camera::set_x(wze::camera::x() - 10.f);
         }
+        if (wze::input::keys(wze::KEY_SPACE)) {
+            wze::camera::set_y(wze::camera::y() - 10.f);
+        }
+        if (wze::input::keys(wze::KEY_LSHIFT)) {
+            wze::camera::set_y(wze::camera::y() + 10.f);
+        }
         // std::cout << wze::input::cursor_x() << '\n';
         // std::cout << wze::input::cursor_y() << '\n';
+    
+        x = wze::input::cursor_x();
+        y = wze::input::cursor_y();
+        wze::render::__itransform(x, y);
+        wze::camera::__unproject(x, y, 1.0f);
+        printf("%f, %f\n", (double)x, (double)y);
     }
 
     return 0;

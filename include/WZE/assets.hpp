@@ -36,13 +36,19 @@ namespace wze {
     class assets final {
         public:
         static image load_image(std::string const& path);
-        static image create_image(std::string const& text, font const& font);
+        static image create_image(int32_t width, int32_t height,
+                                  uint8_t r = 255, uint8_t g = 255,
+                                  uint8_t b = 255, uint8_t a = 255);
+        static image create_image(std::string const& text, font const& font,
+                                  font_style style = FONT_NORMAL,
+                                  uint8_t r = 255, uint8_t g = 255,
+                                  uint8_t b = 255, uint8_t a = 255);
         static texture load_texture(std::string const& path);
         static texture create_texture(image const& img);
         static sound load_sound(std::string const& path);
         static font load_font(std::string const& path, uint8_t size);
-        static cursor create_cursor(sys_cursor type);
-        static cursor create_cursor(image const& img, uint16_t hot_x,
-                                    uint16_t hot_y);
+        static cursor create_cursor(sys_cursor type = CURSOR_ARROW);
+        static cursor create_cursor(image const& img, int32_t hot_x = 0,
+                                    int32_t hot_y = 0);
     };
 } // namespace wze
