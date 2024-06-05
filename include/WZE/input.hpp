@@ -48,6 +48,13 @@ namespace wze {
          */
         static void _update_cursor();
 
+        /**
+         * @file input.hpp
+         * @author Zana Domán
+         * @brief Private constructor to prevent instantiation.
+         */
+        input();
+
         public:
         /**
          * @file input.hpp

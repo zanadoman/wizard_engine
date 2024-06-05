@@ -80,6 +80,8 @@ void wze::input::_update_cursor() {
     _cursor_relative_y = y * _mouse_sensitivity;
 }
 
+wze::input::input() {}
+
 bool wze::input::keys(key key) {
     return _keys.at(key);
 }
@@ -106,8 +108,8 @@ std::pair<float_t, float_t> wze::input::cursor_spatial_xy(float_t z) {
     }
 
     return std::apply(
-            [z](float_t x, float_t y) { return camera::__unproject(x, y, z); },
-            render::__detransform(_cursor_absolute_x, _cursor_absolute_y));
+        [z](float_t x, float_t y) { return camera::__unproject(x, y, z); },
+        render::__detransform(_cursor_absolute_x, _cursor_absolute_y));
 }
 
 float_t wze::input::mouse_sensitivity() {
