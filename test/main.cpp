@@ -85,13 +85,13 @@ class box : wze::renderable {
 int32_t main() {
     wze::engine::init(1920, 1080);
 
-    wze::timer::set_delay(1000 / 60);
+    wze::timer::set_frame_time(1000 / 60);
 
-    box b1(0.f, 0.f, 250.f, 0.f * wze::TO_RADF,
+    box b1(0.f, 0.f, 250.f, 0.f,
            wze::assets::load_texture("assets/wze/icon.png"));
-    box b3(0.f, 0.f, 500.f, 0.f * wze::TO_RADF,
+    box b3(0.f, 0.f, 500.f, 0.f,
            wze::assets::load_texture("assets/wze/icon.png"));
-    box b5(0.f, 0.f, 750.f, 0.f * wze::TO_RADF,
+    box b5(0.f, 0.f, 750.f, 0.f,
            wze::assets::load_texture("assets/wze/icon.png"));
 
     while (wze::engine::update()) {

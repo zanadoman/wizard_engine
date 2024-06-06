@@ -1,5 +1,6 @@
 #include "WZE/render.hpp"
 #include "WZE/camera.hpp"
+#include "WZE/math.hpp"
 #include "WZE/window.hpp"
 
 SDL_Renderer* wze::render::_renderer = nullptr;
@@ -18,7 +19,7 @@ void wze::render::_open_frame() {
 }
 
 bool wze::render::_invisible(renderable const& instance) {
-    return (instance.projectable() && instance.z() - camera::z() <= 0.f) ||
+    return (instance.projectable() && instance.z() <= camera::z()) ||
            instance.width() == 0.f || instance.height() == 0.f ||
            instance.color_a() == 0 || !instance.visible() ||
            !instance.texture().get();
@@ -29,7 +30,6 @@ void wze::render::_transform(renderable& instance) {
     instance.__set_render_area({area.x + _origo_x - area.w / 2.f,
                                 area.y + _origo_y - area.h / 2.f, area.w,
                                 area.h});
-    instance.__set_render_angle(instance.__render_angle() * TO_DEGF);
 }
 
 bool wze::render::_offscreen(renderable const& instance) {
@@ -48,8 +48,8 @@ void wze::render::_render(renderable const& instance) {
     }
     if (SDL_RenderCopyExF(_renderer, instance.texture().get(), nullptr,
                           &instance.__render_area(),
-                          (double)instance.__render_angle(), nullptr,
-                          (SDL_RendererFlip)instance.flip())) {
+                          (double)math::to_degrees(instance.__render_angle()),
+                          nullptr, (SDL_RendererFlip)instance.flip())) {
         throw std::runtime_error(SDL_GetError());
     }
 }
