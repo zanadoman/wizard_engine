@@ -25,7 +25,6 @@ namespace wze {
         static float_t origo_y();
         static void set_origo_y(float_t origo_y);
         static void __init();
-        static void __quit();
         static void __update();
         static std::pair<float_t, float_t> __detransform(float_t x, float_t y);
     };

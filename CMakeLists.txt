@@ -41,7 +41,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 endif()
  
 # Libraries
-file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/libs/*)
+file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*)
 file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
  
 # Test

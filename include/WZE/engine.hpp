@@ -7,7 +7,6 @@ namespace wze {
         private:
         static std::deque<SDL_Event> _events;
         engine();
-        ~engine();
 
         public:
         static std::deque<SDL_Event> const& __events();
