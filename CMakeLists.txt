@@ -5,7 +5,8 @@ cmake_minimum_required(VERSION 3.29)
 project(WizardEngine)
  
 # Target
-if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux" AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+string(FIND "Linux Windows" ${CMAKE_SYSTEM_NAME} TARGET)
+if (${TARGET} EQUAL -1)
     message(FATAL_ERROR "Unsupported OS, CMake will exit.")
 endif()
  
@@ -18,16 +19,16 @@ file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
  
 # Flags
-set(CMAKE_CXX_FLAGS "-O3 -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion")
+set(CMAKE_CXX_FLAGS "-Ofast -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion")
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     string(CONCAT CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} " -Wl,-rpath=.")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     string(CONCAT CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} " -mwindows")
 endif()
- 
+
 # SDL2
-if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2-2.0.so.0.3000.3)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_image-2.0.so.0.800.2)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_mixer-2.0.so.0.800.0)

@@ -98,6 +98,10 @@ void wze::render::__init() {
     _origo_y = window::height() / 2.f;
 }
 
+void wze::render::__quit() {
+    SDL_DestroyRenderer(_renderer);
+}
+
 void wze::render::__update() {
     _open_frame();
 

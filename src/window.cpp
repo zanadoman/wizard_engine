@@ -58,3 +58,7 @@ void wze::window::__init(uint16_t width, uint16_t height) {
     set_title("Wizard Engine");
     set_icon(assets::load_image("assets/wze/icon.png"));
 }
+
+void wze::window::__quit() {
+    SDL_DestroyWindow(_base);
+}
