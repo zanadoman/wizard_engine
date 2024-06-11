@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source /etc/profile.d/debuginfod.sh && valgrind ./test
+source /etc/profile.d/debuginfod.sh && valgrind --leak-check=full ./test
