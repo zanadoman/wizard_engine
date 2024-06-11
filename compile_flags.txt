@@ -1,4 +1,5 @@
--std=c++23
+-Ofast
+-std=gnu++23
 -Werror
 -Wall
 -Wextra
