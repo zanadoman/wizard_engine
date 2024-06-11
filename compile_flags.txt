@@ -1,5 +1,5 @@
--Ofast
 -std=gnu++23
+-Ofast
 -Werror
 -Wall
 -Wextra
