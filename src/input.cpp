@@ -1,22 +1,27 @@
-/*
- * This file is part of Wizard Engine
- * (https://github.com/zanadoman/Wizard-Engine). Copyright (c) 2024 Zana Domán.
+/**
+ * zlib License
  *
- * Wizard Engine is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, version 3.
+ * Copyright (C) 2023 Zana Domán
  *
- * Wizard Engine is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
  *
- * You should have received a copy of the GNU General Public License
- * along with Wizard Engine. If not, see
- * https://www.gnu.org/licenses/licenses.html.
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
  */
 
 #include "WZE/input.hpp"
+#include "WZE/assets.hpp"
 #include "WZE/camera.hpp"
 #include "WZE/engine.hpp"
 #include "WZE/render.hpp"
@@ -34,18 +39,16 @@ wze::cursor wze::input::_cursor = nullptr;
 void wze::input::_update_keys() {
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
 
-    uint8_t const* keys;
-    uint32_t mouse;
+    uint8_t const* keyboard_keys;
+    uint32_t mouse_keys;
 
-    keys = SDL_GetKeyboardState(nullptr);
-    for (size_t i = 0; i < KEY_COUNT; i++) {
-        _keys.at(i) = keys[i];
-    }
+    keyboard_keys = SDL_GetKeyboardState(nullptr);
+    std::copy(keyboard_keys, keyboard_keys + KEY_COUNT, _keys.data());
 
-    mouse = SDL_GetMouseState(nullptr, nullptr);
-    _keys.at(KEY_MOUSE_LMB) = SDL_BUTTON(mouse) & SDL_BUTTON_LEFT;
-    _keys.at(KEY_MOUSE_MMB) = SDL_BUTTON(mouse) & SDL_BUTTON_MIDDLE;
-    _keys.at(KEY_MOUSE_RMB) = SDL_BUTTON(mouse) & SDL_BUTTON_RIGHT;
+    mouse_keys = SDL_GetMouseState(nullptr, nullptr);
+    _keys.at(KEY_MOUSE_LMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_LEFT;
+    _keys.at(KEY_MOUSE_MMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_MIDDLE;
+    _keys.at(KEY_MOUSE_RMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_RIGHT;
     _keys.at(KEY_MOUSE_MWU) = false;
     _keys.at(KEY_MOUSE_MWD) = false;
 
@@ -80,8 +83,6 @@ void wze::input::_update_cursor() {
     _cursor_relative_y = y * _mouse_sensitivity;
 }
 
-wze::input::input() {}
-
 bool wze::input::keys(key key) {
     return _keys.at(key);
 }
@@ -103,10 +104,6 @@ float_t wze::input::cursor_relative_y() {
 }
 
 std::pair<float_t, float_t> wze::input::cursor_spatial_xy(float_t z) {
-    if (z <= camera::z()) {
-        throw std::invalid_argument("z is less than or equal to camera::z()");
-    }
-
     return std::apply(
         [z](float_t x, float_t y) { return camera::__unproject(x, y, z); },
         render::__detransform(_cursor_absolute_x, _cursor_absolute_y));
@@ -134,12 +131,13 @@ wze::cursor const& wze::input::cursor() {
 }
 
 void wze::input::set_cursor(wze::cursor const& cursor) {
-    if (!cursor.get()) {
-        throw std::invalid_argument("null cursor");
+    if (cursor.get()) {
+        _cursor = cursor;
+    } else {
+        _cursor = assets::create_cursor(SYSTEM_CURSOR_ARROW);
     }
 
-    SDL_SetCursor(cursor.get());
-    _cursor = cursor;
+    SDL_SetCursor(_cursor.get());
 };
 
 void wze::input::__update() {

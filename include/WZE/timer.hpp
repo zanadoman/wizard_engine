@@ -28,7 +28,7 @@ namespace wze {
 /**
  * @file timer.hpp
  * @author Zana Domán
- * @brief Timing subsystem to handle frame rate and delta time.
+ * @brief Subsystem to handle frame rate and delta time.
  */
 class timer final {
   private:
