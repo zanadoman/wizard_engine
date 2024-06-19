@@ -34,18 +34,6 @@ wze::image wze::assets::load_image(std::string const& path) {
     return {image, SDL_FreeSurface};
 }
 
-wze::image wze::assets::create_image(int32_t width, int32_t height) {
-    SDL_Surface* image;
-
-    image = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32,
-                                           SDL_PIXELFORMAT_RGBA8888);
-    if (!image) {
-        throw std::runtime_error(SDL_GetError());
-    }
-
-    return {image, SDL_FreeSurface};
-}
-
 wze::image wze::assets::create_image(std::string const& text, font const& font,
                                      font_style font_style) {
     SDL_Surface* image;
@@ -63,17 +51,6 @@ wze::image wze::assets::create_image(std::string const& text, font const& font,
     }
 
     return {image, SDL_FreeSurface};
-}
-
-wze::texture wze::assets::load_texture(std::string const& path) {
-    SDL_Texture* texture;
-
-    texture = IMG_LoadTexture(render::__renderer(), path.c_str());
-    if (!texture) {
-        throw std::runtime_error(IMG_GetError());
-    }
-
-    return {texture, SDL_DestroyTexture};
 }
 
 wze::texture wze::assets::create_texture(image const& image) {
@@ -124,8 +101,8 @@ wze::cursor wze::assets::create_cursor(system_cursor system_cursor) {
     return {cursor, SDL_FreeCursor};
 }
 
-wze::cursor wze::assets::create_cursor(image const& image, int32_t hot_x,
-                                       int32_t hot_y) {
+wze::cursor wze::assets::create_cursor(image const& image, uint16_t hot_x,
+                                       uint16_t hot_y) {
     SDL_Cursor* cursor;
 
     if (!image.get()) {

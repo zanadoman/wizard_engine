@@ -28,14 +28,14 @@ namespace wze {
 /*
  * @file assets.hpp
  * @author Zana Domán
- * @brief Image in host memory.
+ * @brief Image file in host memory.
  */
 using image = std::shared_ptr<SDL_Surface>;
 
 /*
  * @file assets.hpp
  * @author Zana Domán
- * @brief Image in device memory.
+ * @brief Image file in device memory.
  */
 using texture = std::shared_ptr<SDL_Texture>;
 
@@ -107,8 +107,8 @@ class assets final {
     /*
      * @file assets.hpp
      * @author Zana Domán
-     * @brief Loads an image into the host memory from the given path.
-     * @param path Path to the image file.
+     * @brief Loads an image into the host memory from a path.
+     * @param path Path of the image.
      * @return Shared pointer to the loaded image.
      * @warning If image cannot be loaded, throws std::runtime_error.
      */
@@ -117,24 +117,13 @@ class assets final {
     /**
      * @file assets.hpp
      * @author Zana Domán
-     * @brief Creates an empty image into the host memory with the given size.
-     * @param width Width of the image.
-     * @param height Height of the image.
-     * @return Shared pointer to the created image.
-     * @warning If image creation fails, throws std::runtime_error.
-     */
-    static image create_image(int32_t width, int32_t height);
-
-    /**
-     * @file assets.hpp
-     * @author Zana Domán
-     * @brief Creates a text image into the host memory from a text.
-     * @param text Source text.
-     * @param font Used font.
-     * @param font_style Style modifier.
+     * @brief Creates an image into the host memory from a text.
+     * @param text Text of the image.
+     * @param font Font of the text.
+     * @param font_style Style of the font.
      * @return Shared pointer to the created image.
      * @warning If font is nullptr, throws std::invalid_argument.
-     * @warning If image creation fails, throws std::runtime_error.
+     * @warning If image cannot be created, throws std::runtime_error.
      */
     static image create_image(std::string const& text, font const& font,
                               font_style font_style = FONT_STYLE_NORMAL);
@@ -142,29 +131,19 @@ class assets final {
     /**
      * @file assets.hpp
      * @author Zana Domán
-     * @brief Loads an image into the device memory from the given path.
-     * @param path Path to the image file.
-     * @return Shared pointer to the loaded texture.
-     * @warning If texture cannot be loaded, throws std::runtime_error.
-     */
-    static texture load_texture(std::string const& path);
-
-    /**
-     * @file assets.hpp
-     * @author Zana Domán
-     * @brief Creates a texture into the device memory from the given image.
-     * @param image Source image.
+     * @brief Creates a texture into the device memory from an image.
+     * @param image Image of the texture.
      * @return Shared pointer to the created texture.
      * @warning If image is nullptr, throws std::invalid_argument
-     * @warning If texture creation fails, throws std::runtime_error.
+     * @warning If texture cannot be created, throws std::runtime_error.
      */
     static texture create_texture(image const& image);
 
     /**
      * @file assets.hpp
      * @author Zana Domán
-     * @brief Loads a sound from the given path.
-     * @param path Path to the sound file.
+     * @brief Loads a sound from a path.
+     * @param path Path of the sound.
      * @return Shared pointer to the loaded sound.
      * @warning If sound cannot be loaded, throws std::runtime_error.
      */
@@ -173,8 +152,8 @@ class assets final {
     /**
      * @file assets.hpp
      * @author Zana Domán
-     * @brief Loads a font from the given path.
-     * @param path Path to the font file.
+     * @brief Loads a font from a path.
+     * @param path Path of the font.
      * @return Shared pointer to the loaded font.
      * @warning If font cannot be loaded, throws std::runtime_error.
      */
@@ -183,10 +162,10 @@ class assets final {
     /**
      * @file assets.hpp
      * @author Zana Domán
-     * @brief Creates a system cursor.
-     * @param system_cursor Predefined system cursor.
+     * @brief Creates a cursor from a system cursor.
+     * @param system_cursor Type of the cursor.
      * @return Shared pointer to the created cursor.
-     * @warning If cursor creation fails, throws std::runtime_error.
+     * @warning If cursor cannot be created, throws std::runtime_error.
      */
     static cursor create_cursor(system_cursor system_cursor);
 
@@ -194,14 +173,14 @@ class assets final {
      * @file assets.hpp
      * @author Zana Domán
      * @brief Creates a cursor from an image.
-     * @param image Appereance of the cursor.
-     * @param hot_x Hot spot x of the cursor inside the bounds of the image.
-     * @param hot_y Hot spot y of the cursor inside the bounds of the image.
+     * @param image Image of the cursor.
+     * @param hot_x Hot spot x of the cursor.
+     * @param hot_y Hot spot y of the cursor.
      * @return Shared pointer to the created cursor.
      * @warning If image is nullptr, throws std::invalid_argument.
-     * @warning If cursor creation fails, throws std::runtime_error.
+     * @warning If cursor cannot be created, throws std::runtime_error.
      */
-    static cursor create_cursor(image const& image, int32_t hot_x = 0,
-                                int32_t hot_y = 0);
+    static cursor create_cursor(image const& image, uint16_t hot_x = 0,
+                                uint16_t hot_y = 0);
 };
 } // namespace wze
