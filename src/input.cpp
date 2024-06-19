@@ -33,7 +33,7 @@ float_t wze::input::_cursor_relative_x = 0.f;
 float_t wze::input::_cursor_relative_y = 0.f;
 float_t wze::input::_mouse_sensitivity = 1.f;
 bool wze::input::_cursor_visible = true;
-wze::cursor wze::input::_cursor = nullptr;
+wze::cursor wze::input::_cursor_appearance = {};
 
 void wze::input::_update_keys() {
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
@@ -120,16 +120,20 @@ void wze::input::set_cursor_visibility(bool cursor_visibility) {
     _cursor_visible = cursor_visibility;
 }
 
-wze::cursor const& wze::input::cursor() {
-    return _cursor;
+wze::cursor const& wze::input::cursor_appearance() {
+    return _cursor_appearance;
 }
 
-void wze::input::set_cursor(wze::cursor const& cursor) {
-    static wze::cursor fallback = assets::create_cursor(SYSTEM_CURSOR_ARROW);
+void wze::input::set_cursor_appearance(wze::cursor const& cursor_appearance) {
+    static cursor fallback = assets::create_cursor(SYSTEM_CURSOR_ARROW);
 
-    _cursor = cursor.get() ? cursor : fallback;
-    SDL_SetCursor(_cursor.get());
+    _cursor_appearance = cursor_appearance.get() ? cursor_appearance : fallback;
+    SDL_SetCursor(_cursor_appearance.get());
 };
+
+void wze::input::__init() {
+    set_cursor_appearance({});
+}
 
 void wze::input::__update() {
     _update_keys();

@@ -167,7 +167,7 @@ class input final {
     static float_t _cursor_relative_y;
     static float_t _mouse_sensitivity;
     static bool _cursor_visible;
-    static wze::cursor _cursor;
+    static wze::cursor _cursor_appearance;
 
     /**
      * @file input.hpp
@@ -270,19 +270,26 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Returns the appereance of the cursor.
-     * @return Appereance of the cursor.
+     * @brief Returns the appearance of the cursor.
+     * @return Appearance of the cursor.
      */
-    static wze::cursor const& cursor();
+    static wze::cursor const& cursor_appearance();
 
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Sets the appereance of the cursor.
-     * @param cursor Appereance of the cursor.
+     * @brief Sets the appearance of the cursor.
+     * @param cursor Appearance of the cursor.
      * @note Nullptr cursor defaults to SYSTEM_CURSOR_ARROW.
      */
-    static void set_cursor(wze::cursor const& cursor);
+    static void set_cursor_appearance(wze::cursor const& cursor_appearance);
+
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Sets the appearance of the cursor to the default.
+     */
+    static void __init();
 
     /**
      * @file input.hpp

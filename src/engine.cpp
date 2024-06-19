@@ -40,6 +40,7 @@ void wze::engine::init(uint16_t width, uint16_t height) {
 
     window::__init(width, height);
     render::__init();
+    input::__init();
 }
 
 bool wze::engine::update() {
