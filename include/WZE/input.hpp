@@ -194,9 +194,9 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Queries the current state of a keyboard/mousekey.
+     * @brief Checks if a keyboard/mousekey is pressed.
      * @param key Keyboard/mousekey.
-     * @return State of the given keyboard/mousekey.
+     * @return True if the keyboard/mouskey is pressed, false otherwise.
      */
     static bool keys(key key);
 
@@ -204,7 +204,7 @@ class input final {
      * @file input.hpp
      * @author Zana Domán
      * @brief Returns the current absolute x position of the cursor.
-     * @return Cursor absolute x position inside the window.
+     * @return Current absolute x position of the cursor.
      */
     static float_t cursor_absolute_x();
 
@@ -212,7 +212,7 @@ class input final {
      * @file input.hpp
      * @author Zana Domán
      * @brief Returns the current absolute y position of the cursor.
-     * @return Cursor absolute y position inside the window.
+     * @return Current absolute y position of the cursor.
      */
     static float_t cursor_absolute_y();
 
@@ -220,7 +220,7 @@ class input final {
      * @file input.hpp
      * @author Zana Domán
      * @brief Returns the current relative x position of the cursor.
-     * @return Cursor relative x position to the last absolute x position.
+     * @return Current relative x position of the cursor.
      */
     static float_t cursor_relative_x();
 
@@ -228,26 +228,15 @@ class input final {
      * @file input.hpp
      * @author Zana Domán
      * @brief Returns the current relative y position of the cursor.
-     * @return Cursor relative y position to the last absolute y position.
+     * @return Current relative y position of the cursor.
      */
     static float_t cursor_relative_y();
 
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Returns the spatial x, y components of the cursor.
-     * @details Transforms the cursor's absolute position, then unprojects it
-     * into the game's 3D space by using the z parameter.
-     * @param z Used as the z component in the unprojection.
-     * @return Tuple containing the unprojected x, y components.
-     */
-    static std::pair<float_t, float_t> cursor_spatial_xy(float_t z);
-
-    /**
-     * @file input.hpp
-     * @author Zana Domán
      * @brief Returns the sensitivity of the mouse.
-     * @return Mouse sensitivity.
+     * @return Sensitivity of the mouse.
      */
     static float_t mouse_sensitivity();
 
@@ -255,9 +244,7 @@ class input final {
      * @file input.hpp
      * @author Zana Domán
      * @brief Sets the sensitivity of the mouse.
-     * @details The cursor's relative position is multiplied with this value
-     * without further modification.
-     * @param mouse_sensitivity Mouse sensitivity.
+     * @param mouse_sensitivity Sensitivity of the mouse.
      * @note Setting this value to 0 locks the cursor's relative position,
      * setting this value less than 0 inverts the cursor's relative position.
      */
@@ -274,8 +261,8 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Changes the visibility of the cursor.
-     * @param cursor_visibility Cursor visibility.
+     * @brief Sets the visibility of the cursor.
+     * @param cursor_visibility Visibility of the cursor.
      * @note Hiding the cursor also captures it into the game's window.
      */
     static void set_cursor_visibility(bool cursor_visibility);
@@ -284,16 +271,16 @@ class input final {
      * @file input.hpp
      * @author Zana Domán
      * @brief Returns the appereance of the cursor.
-     * @return Cursor.
+     * @return Appereance of the cursor.
      */
     static wze::cursor const& cursor();
 
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Changes the appereance of the cursor.
-     * @param cursor Cursor's new appereance.
-     * @note nullptr cursor defaults to SYSTEM_CURSOR_ARROW.
+     * @brief Sets the appereance of the cursor.
+     * @param cursor Appereance of the cursor.
+     * @note Nullptr cursor defaults to SYSTEM_CURSOR_ARROW.
      */
     static void set_cursor(wze::cursor const& cursor);
 
@@ -305,5 +292,14 @@ class input final {
      * explicitly can lead to undefined behavior.
      */
     static void __update();
+
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns the spatial x, y components of the cursor.
+     * @param z Spatial z component of the cursor.
+     * @return Spatial x, y components of the cursor.
+     */
+    static std::pair<float_t, float_t> cursor_spatial_xy(float_t z);
 };
 } // namespace wze

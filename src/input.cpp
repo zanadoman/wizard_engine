@@ -21,7 +21,6 @@
  */
 
 #include "WZE/input.hpp"
-#include "WZE/assets.hpp"
 #include "WZE/camera.hpp"
 #include "WZE/engine.hpp"
 #include "WZE/render.hpp"
@@ -65,15 +64,16 @@ void wze::input::_update_keys() {
 }
 
 void wze::input::_update_cursor() {
+    static uint16_t max_x = window::width() - 1;
+    static uint16_t max_y = window::height() - 1;
+
     int32_t x;
     int32_t y;
 
     for (SDL_Event const& event : engine::__events()) {
         if (event.type == SDL_MOUSEMOTION) {
-            _cursor_absolute_x =
-                std::clamp(event.motion.x, 0, window::width() - 1);
-            _cursor_absolute_y =
-                std::clamp(event.motion.y, 0, window::height() - 1);
+            _cursor_absolute_x = std::clamp(event.motion.x, 0, (int32_t)max_x);
+            _cursor_absolute_y = std::clamp(event.motion.y, 0, (int32_t)max_y);
             break;
         }
     }
@@ -103,12 +103,6 @@ float_t wze::input::cursor_relative_y() {
     return _cursor_relative_y;
 }
 
-std::pair<float_t, float_t> wze::input::cursor_spatial_xy(float_t z) {
-    return std::apply(
-        [z](float_t x, float_t y) { return camera::__unproject(x, y, z); },
-        render::__detransform(_cursor_absolute_x, _cursor_absolute_y));
-}
-
 float_t wze::input::mouse_sensitivity() {
     return _mouse_sensitivity;
 }
@@ -131,16 +125,19 @@ wze::cursor const& wze::input::cursor() {
 }
 
 void wze::input::set_cursor(wze::cursor const& cursor) {
-    if (cursor.get()) {
-        _cursor = cursor;
-    } else {
-        _cursor = assets::create_cursor(SYSTEM_CURSOR_ARROW);
-    }
+    static wze::cursor fallback = assets::create_cursor(SYSTEM_CURSOR_ARROW);
 
+    _cursor = cursor.get() ? cursor : fallback;
     SDL_SetCursor(_cursor.get());
 };
 
 void wze::input::__update() {
     _update_keys();
     _update_cursor();
+}
+
+std::pair<float_t, float_t> wze::input::cursor_spatial_xy(float_t z) {
+    return std::apply(
+        [z](float_t x, float_t y) { return camera::__unproject(x, y, z); },
+        render::__detransform(_cursor_absolute_x, _cursor_absolute_y));
 }
