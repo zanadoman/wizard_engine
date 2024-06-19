@@ -41,7 +41,12 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 endif()
  
 # Libraries
-file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*)
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*.so*)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*.dll)
+endif()
+
 file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
  
 # Test
