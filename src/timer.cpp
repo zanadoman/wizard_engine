@@ -1,5 +1,7 @@
 /**
- * (C) 2023 Zana Domán
+ * zlib License
+ *
+ * Copyright (C) 2023 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -44,15 +46,15 @@ void wze::timer::__update() {
     uint64_t now;
     uint64_t end;
 
+    end = last + _frame_time;
     now = current_time();
-    end = last + frame_time();
 
     if (now < end) {
         SDL_Delay(end - now);
+        now = end;
     }
 
-    now = current_time();
-    set_delta_time(now - last);
+    _delta_time = now - last;
     last = now;
 }
 

@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * (C) 2023 Zana Domán
+ * Copyright (C) 2023 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -22,8 +22,7 @@
 
 #include "WZE/math.hpp"
 
-inline float_t wze::math::distance(float_t x1, float_t y1, float_t x2,
-                                   float_t y2) {
+float_t wze::math::distance(float_t x1, float_t y1, float_t x2, float_t y2) {
     return sqrtf(powf(x2 - x1, 2.f) + powf(y2 - y1, 2.f));
 }
 
