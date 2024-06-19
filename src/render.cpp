@@ -81,7 +81,7 @@ void wze::render::set_origo_y(float_t origo_y) {
 void wze::render::__init() {
     std::atexit([]() { SDL_DestroyRenderer(_renderer); });
 
-    _renderer = SDL_CreateRenderer(window::__base(), -1,
+    _renderer = SDL_CreateRenderer(window::__window(), -1,
                                    SDL_RENDERER_ACCELERATED |
                                        SDL_RENDERER_TARGETTEXTURE);
     if (!_renderer) {
