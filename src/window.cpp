@@ -26,7 +26,7 @@ SDL_Window* wze::window::_window = nullptr;
 uint16_t wze::window::_width = 0;
 uint16_t wze::window::_height = 0;
 std::string wze::window::_title = {};
-wze::image wze::window::_icon = nullptr;
+wze::image wze::window::_icon = {};
 
 SDL_Window* wze::window::__window() {
     return _window;
@@ -45,8 +45,10 @@ std::string const& wze::window::title() {
 }
 
 void wze::window::set_title(std::string const& title) {
-    SDL_SetWindowTitle(_window, title.c_str());
-    _title = title;
+    static std::string fallback = "Wizard Engine";
+
+    _title = title.empty() ? fallback : title;
+    SDL_SetWindowTitle(_window, _title.c_str());
 }
 
 wze::image const& wze::window::icon() {
@@ -54,13 +56,27 @@ wze::image const& wze::window::icon() {
 }
 
 void wze::window::set_icon(image const& icon) {
-    if (icon.get()) {
-        _icon = icon;
-    } else {
-        _icon = assets::load_image("assets/wze/icon.png");
+    static image fallback = assets::load_image("./assets/wze/icon.png");
+
+    _icon = icon.get() ? icon : fallback;
+    SDL_SetWindowIcon(_window, _icon.get());
+}
+
+void wze::window::__init(uint16_t width, uint16_t height) {
+    std::atexit([]() { SDL_DestroyWindow(_window); });
+
+    _window = SDL_CreateWindow(
+            "", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height,
+            SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
+
+    if (!_window) {
+        throw std::runtime_error(SDL_GetError());
     }
 
-    SDL_SetWindowIcon(_window, _icon.get());
+    _width = width;
+    _height = height;
+    set_title({});
+    set_icon({});
 }
 
 bool wze::window::visible() {
@@ -69,21 +85,4 @@ bool wze::window::visible() {
 
 bool wze::window::focused() {
     return SDL_GetWindowFlags(_window) & SDL_WINDOW_INPUT_FOCUS;
-}
-
-void wze::window::__init(uint16_t width, uint16_t height) {
-    std::atexit([]() { SDL_DestroyWindow(_window); });
-
-    _window = SDL_CreateWindow(
-        "", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height,
-        SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
-
-    if (!_window) {
-        throw std::runtime_error(SDL_GetError());
-    }
-
-    _width = width;
-    _height = height;
-    set_title("Wizard Engine");
-    set_icon(assets::load_image("assets/wze/icon.png"));
 }

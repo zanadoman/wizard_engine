@@ -86,6 +86,7 @@ class window final {
      * @author Zana Domán
      * @brief Sets the title of the game window.
      * @param title Title of the game window.
+     * @note Empty title defaults to "Wizard Engine".
      */
     static void set_title(std::string const& title);
 
@@ -102,9 +103,21 @@ class window final {
      * @author Zana Domán
      * @brief Sets the icon of the game window.
      * @param icon Icon of the game window.
-     * @note nullptr icon defaults to the Wizard Engine logo.
+     * @note Nullptr icon defaults to "./assets/wze/icon.png".
      */
     static void set_icon(image const& icon);
+
+    /*
+     * @file window.hpp
+     * @author Zana Domán
+     * @brief Opens the game window.
+     * @param width Width of the game window.
+     * @param height Height of the game window.
+     * @warning If game window cannot be opened, throws std::runtime_error.
+     * @warning This method is handled by the engine itself, calling it
+     * explicitly can lead to undefined behavior.
+     */
+    static void __init(uint16_t width, uint16_t height);
 
     /*
      * @file window.hpp
@@ -121,17 +134,5 @@ class window final {
      * @return True if game window is focused, false otherwise.
      */
     static bool focused();
-
-    /*
-     * @file window.hpp
-     * @author Zana Domán
-     * @brief Opens the game window.
-     * @param width Width of the game window.
-     * @param height Height of the game window.
-     * @warning If window cannot be opened, throws std::runtime_error.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
-     */
-    static void __init(uint16_t width, uint16_t height);
 };
 } // namespace wze
