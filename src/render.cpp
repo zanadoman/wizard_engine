@@ -19,21 +19,21 @@ void wze::render::_open_frame() {
 }
 
 bool wze::render::_invisible(renderable const& instance) {
-    return (instance.projectable() && instance.z() <= camera::z()) ||
+    return (instance.spatial() && instance.z() <= camera::z()) ||
            instance.width() == 0.f || instance.height() == 0.f ||
            instance.color_a() == 0 || !instance.visible() ||
            !instance.texture().get();
 }
 
 void wze::render::_transform(renderable& instance) {
-    SDL_FRect const& area = instance.__render_area();
-    instance.__set_render_area({area.x + _origo_x - area.w / 2.f,
+    SDL_FRect const& area = instance.__screen_area();
+    instance.__set_screen_area({area.x + _origo_x - area.w / 2.f,
                                 area.y + _origo_y - area.h / 2.f, area.w,
                                 area.h});
 }
 
 bool wze::render::_offscreen(renderable const& instance) {
-    SDL_FRect const& area = instance.__render_area();
+    SDL_FRect const& area = instance.__screen_area();
     return area.x + area.w < 0.f || window::width() <= area.x ||
            area.y + area.h < 0.f || window::height() <= area.y;
 }
@@ -47,8 +47,8 @@ void wze::render::_render(renderable const& instance) {
         throw std::runtime_error(SDL_GetError());
     }
     if (SDL_RenderCopyExF(_renderer, instance.texture().get(), nullptr,
-                          &instance.__render_area(),
-                          (double)math::to_degrees(instance.__render_angle()),
+                          &instance.__screen_area(),
+                          (double)math::to_degrees(instance.__screen_angle()),
                           nullptr, (SDL_RendererFlip)instance.flip())) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -118,7 +118,7 @@ void wze::render::__update() {
             return;
         }
 
-        if (instance->projectable()) {
+        if (instance->spatial()) {
             _projectables.push_back(instance);
         } else {
             _inprojectables.push_back(instance);

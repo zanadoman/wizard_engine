@@ -60,21 +60,21 @@ void wze::camera::__project(renderable& instance) {
     float_t y_;
     float_t scale;
 
-    if (!instance.projectable()) {
-        instance.__set_render_area(
+    if (!instance.spatial()) {
+        instance.__set_screen_area(
             {instance.x(), instance.y(), instance.width(), instance.height()});
-        instance.__set_render_angle(instance.angle());
+        instance.__set_screen_angle(instance.angle());
         return;
     }
 
     scale = _focus / (instance.z() - _z);
     x_ = (instance.x() - _x) * scale;
     y_ = (instance.y() - _y) * scale;
-    instance.__set_render_area(
+    instance.__set_screen_area(
         {x_ * _rotation_matrix.at(0) + y_ * _rotation_matrix.at(1),
          x_ * _rotation_matrix.at(2) + y_ * _rotation_matrix.at(3),
          instance.width() * scale, instance.height() * scale});
-    instance.__set_render_angle(instance.angle() - _angle);
+    instance.__set_screen_angle(instance.angle() - _angle);
 }
 
 std::pair<float_t, float_t> wze::camera::__unproject(float_t x, float_t y,

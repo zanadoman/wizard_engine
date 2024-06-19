@@ -68,7 +68,7 @@ class box : wze::renderable {
         return 255;
     }
 
-    bool projectable() const override {
+    bool spatial() const override {
         return true;
     }
 
