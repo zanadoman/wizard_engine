@@ -4,14 +4,14 @@
 #undef main
 
 class box : wze::renderable {
-    private:
+  private:
     float_t _x;
     float_t _y;
     float_t _z;
     float_t _angle;
     wze::texture _texture;
 
-    public:
+  public:
     float_t x() const override {
         return _x;
     }
@@ -88,11 +88,14 @@ int32_t main() {
     wze::timer::set_frame_time(1000 / 60);
 
     box b1(0.f, 0.f, 250.f, 0.f,
-           wze::assets::load_texture("assets/wze/icon.png"));
+           wze::assets::create_texture(
+               wze::assets::load_image("assets/wze/icon.png")));
     box b3(0.f, 0.f, 500.f, 0.f,
-           wze::assets::load_texture("assets/wze/icon.png"));
+           wze::assets::create_texture(
+               wze::assets::load_image("assets/wze/icon.png")));
     box b5(0.f, 0.f, 750.f, 0.f,
-           wze::assets::load_texture("assets/wze/icon.png"));
+           wze::assets::create_texture(
+               wze::assets::load_image("assets/wze/icon.png")));
 
     while (wze::engine::update()) {
         if (wze::input::keys(wze::KEY_MOUSE_MWU)) {
