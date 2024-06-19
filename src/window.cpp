@@ -66,8 +66,8 @@ void wze::window::__init(uint16_t width, uint16_t height) {
     std::atexit([]() { SDL_DestroyWindow(_window); });
 
     _window = SDL_CreateWindow(
-            "", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height,
-            SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
+        "", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height,
+        SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
 
     if (!_window) {
         throw std::runtime_error(SDL_GetError());

@@ -47,15 +47,15 @@ class timer final {
      * @file timer.hpp
      * @author Zana Domán
      * @brief Returns the target frame time in milliseconds.
-     * @return Frame time in milliseconds.
+     * @return Target frame time in milliseconds.
      */
     static uint8_t frame_time();
 
     /**
      * @file timer.hpp
      * @author Zana Domán
-     * @brief Sets the target frame time to the given value in milliseconds.
-     * @param frame_time Frame time in milliseconds.
+     * @brief Sets the target frame time in milliseconds.
+     * @param frame_time Target frame time in milliseconds.
      */
     static void set_frame_time(uint8_t frame_time);
 
@@ -63,15 +63,15 @@ class timer final {
      * @file timer.hpp
      * @author Zana Domán
      * @brief Returns the current delta time in milliseconds.
-     * @return Delta time in milliseconds.
+     * @return Current delta time in milliseconds.
      */
     static uint8_t delta_time();
 
     /**
      * @file timer.hpp
      * @author Zana Domán
-     * @brief Sets the current delta time to the given value in milliseconds.
-     * @param delta_time Delta time in milliseconds.
+     * @brief Sets the current delta time in milliseconds.
+     * @param delta_time Current delta time in milliseconds.
      * @note You can change the pace of the game by manipulating this value.
      */
     static void set_delta_time(uint8_t delta_time);
@@ -80,7 +80,7 @@ class timer final {
      * @file timer.hpp
      * @author Zana Domán
      * @brief Delays the current frame to match the target frame time if needed,
-     * then sets the delta time for the next frame.
+     * then sets the current delta time for the next frame.
      * @warning This method is handled by the engine itself, calling it
      * explicitly can lead to undefined behavior.
      */
@@ -90,7 +90,7 @@ class timer final {
      * @file timer.hpp
      * @author Zana Domán
      * @brief Returns the current game time in milliseconds.
-     * @return Game time in milliseconds.
+     * @return Current game time in milliseconds.
      */
     static uint64_t current_time();
 };
