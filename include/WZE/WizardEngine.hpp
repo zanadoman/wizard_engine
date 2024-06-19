@@ -5,7 +5,6 @@
 #include "common.hpp"     // IWYU pragma: keep
 #include "engine.hpp"     // IWYU pragma: keep
 #include "input.hpp"      // IWYU pragma: keep
-#include "key.hpp"        // IWYU pragma: keep
 #include "math.hpp"       // IWYU pragma: keep
 #include "render.hpp"     // IWYU pragma: keep
 #include "renderable.hpp" // IWYU pragma: keep

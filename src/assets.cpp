@@ -1,19 +1,23 @@
 /**
- * This file is part of Wizard Engine
- * (https://github.com/zanadoman/Wizard-Engine). Copyright (c) 2024 Zana Domán.
+ * zlib License
  *
- * Wizard Engine is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, version 3.
+ * Copyright (C) 2023 Zana Domán
  *
- * Wizard Engine is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
  *
- * You should have received a copy of the GNU General Public License
- * along with Wizard Engine. If not, see
- * https://www.gnu.org/licenses/licenses.html.
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
  */
 
 #include "WZE/assets.hpp"
@@ -33,7 +37,7 @@ wze::image wze::assets::load_image(std::string const& path) {
 wze::image wze::assets::create_image(int32_t width, int32_t height) {
     SDL_Surface* image;
 
-    image = SDL_CreateRGBSurfaceWithFormat(0, width, height, 24,
+    image = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32,
                                            SDL_PIXELFORMAT_RGBA8888);
     if (!image) {
         throw std::runtime_error(SDL_GetError());
@@ -43,10 +47,14 @@ wze::image wze::assets::create_image(int32_t width, int32_t height) {
 }
 
 wze::image wze::assets::create_image(std::string const& text, font const& font,
-                                     font_style style) {
+                                     font_style font_style) {
     SDL_Surface* image;
 
-    TTF_SetFontStyle(font.get(), style);
+    if (!font.get()) {
+        throw std::invalid_argument("nullptr font");
+    }
+
+    TTF_SetFontStyle(font.get(), font_style);
 
     image =
         TTF_RenderUTF8_Blended(font.get(), text.c_str(), {255, 255, 255, 255});
@@ -70,6 +78,10 @@ wze::texture wze::assets::load_texture(std::string const& path) {
 
 wze::texture wze::assets::create_texture(image const& image) {
     SDL_Texture* texture;
+
+    if (!image.get()) {
+        throw std::invalid_argument("nullptr image");
+    }
 
     texture = SDL_CreateTextureFromSurface(render::__renderer(), image.get());
     if (!texture) {
@@ -115,6 +127,10 @@ wze::cursor wze::assets::create_cursor(system_cursor system_cursor) {
 wze::cursor wze::assets::create_cursor(image const& image, int32_t hot_x,
                                        int32_t hot_y) {
     SDL_Cursor* cursor;
+
+    if (!image.get()) {
+        throw std::invalid_argument("nullptr image");
+    }
 
     cursor = SDL_CreateColorCursor(image.get(), hot_x, hot_y);
     if (!cursor) {
