@@ -10,28 +10,26 @@ int32_t main() {
     wze::texture texture = wze::assets::create_texture(
         wze::assets::load_image("assets/wze/icon.png"));
 
-    std::unique_ptr<wze::sprite> s1 =
+    std::shared_ptr<wze::sprite> s1 =
         wze::sprite::create(0.f, 0.f, 250.f, 0.f, 100.f, 100.f, true, texture);
     std::shared_ptr<wze::sprite> s2 =
         wze::sprite::create(0.f, 0.f, 500.f, 0.f, 100.f, 100.f, true, texture);
-    std::unique_ptr<wze::sprite> s3 =
+    std::shared_ptr<wze::sprite> s3 =
         wze::sprite::create(0.f, 0.f, 750.f, 0.f, 100.f, 100.f, true, texture);
 
     std::unique_ptr<wze::animator> anim = wze::animator::create(
-        s2, {
-                wze::assets::create_texture(
-                    wze::assets::load_image("assets/test/run1.png")),
-                wze::assets::create_texture(
-                    wze::assets::load_image("assets/test/run2.png")),
-                wze::assets::create_texture(
-                    wze::assets::load_image("assets/test/run3.png")),
-                wze::assets::create_texture(
-                    wze::assets::load_image("assets/test/run4.png")),
-                wze::assets::create_texture(
-                    wze::assets::load_image("assets/test/run5.png")),
-                wze::assets::create_texture(
-                    wze::assets::load_image("assets/test/run6.png"))
-            });
+        {s2, s1, s3}, {wze::assets::create_texture(
+                   wze::assets::load_image("assets/test/run1.png")),
+               wze::assets::create_texture(
+                   wze::assets::load_image("assets/test/run2.png")),
+               wze::assets::create_texture(
+                   wze::assets::load_image("assets/test/run3.png")),
+               wze::assets::create_texture(
+                   wze::assets::load_image("assets/test/run4.png")),
+               wze::assets::create_texture(
+                   wze::assets::load_image("assets/test/run5.png")),
+               wze::assets::create_texture(
+                   wze::assets::load_image("assets/test/run6.png"))});
 
     while (wze::engine::update()) {
         if (wze::input::keys(wze::KEY_MOUSE_MWU)) {

@@ -23,25 +23,21 @@
 #include "WZE/animator.hpp"
 #include "WZE/timer.hpp"
 
-wze::animator::animator(std::shared_ptr<animatable> const& target,
-                        std::deque<texture> const& frames,
-                        uint16_t frame_time) {
-    _target = target;
+wze::animator::animator(
+    std::deque<std::shared_ptr<animatable>> const& instances,
+    std::vector<texture> const& frames, uint16_t frame_time) {
+    _instances = instances;
     _frames = frames;
     _frame_time = frame_time;
     _current_frame = 0;
     _remaining_time = 0;
 }
 
-std::shared_ptr<wze::animatable> const& wze::animator::target() const {
-    return _target;
+std::deque<std::shared_ptr<wze::animatable>>& wze::animator::instances() {
+    return _instances;
 }
 
-void wze::animator::set_target(std::shared_ptr<animatable> const& target) {
-    _target = target;
-}
-
-std::deque<wze::texture>& wze::animator::frames() {
+std::vector<wze::texture> const& wze::animator::frames() const {
     return _frames;
 }
 
@@ -58,9 +54,10 @@ size_t wze::animator::current_frame() const {
 }
 
 std::unique_ptr<wze::animator>
-wze::animator::create(std::shared_ptr<animatable> const& target,
-                      std::deque<texture> const& frames, uint16_t frame_time) {
-    return std::unique_ptr<animator>(new animator(target, frames, frame_time));
+wze::animator::create(std::deque<std::shared_ptr<animatable>> const& instances,
+                      std::vector<texture> const& frames, uint16_t frame_time) {
+    return std::unique_ptr<animator>(
+        new animator(instances, frames, frame_time));
 }
 
 bool wze::animator::animate() {
@@ -76,9 +73,12 @@ bool wze::animator::animate() {
         _current_frame %= _frames.size();
     }
 
-    if (_target.get()) {
-        _target->set_texture(_frames.at(_current_frame));
-    }
+    std::ranges::for_each(
+        _instances, [this](std::shared_ptr<animatable> const& instance) {
+            if (instance.get()) {
+                instance->set_texture(_frames.at(_current_frame));
+            }
+        });
 
     return looped;
 }

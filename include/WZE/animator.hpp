@@ -40,12 +40,12 @@ class animatable {
 /**
  * @file animator.hpp
  * @author Zana Domán
- * @brief Animates an animatable object.
+ * @brief Animates animatable objects.
  */
 class animator final {
   private:
-    std::shared_ptr<animatable> _target;
-    std::deque<texture> _frames;
+    std::deque<std::shared_ptr<animatable>> _instances;
+    std::vector<texture> _frames;
     uint16_t _frame_time;
     size_t _current_frame;
     uint16_t _remaining_time;
@@ -54,30 +54,22 @@ class animator final {
      * @file animator.hpp
      * @author Zana Domán
      * @brief Construct an animator instance.
-     * @param target Animated object.
+     * @param instances Animated instances.
      * @param frames Frame pool of the animation.
      * @param frame_time Frame time of the animation.
      * @return Animator instance.
      */
-    animator(std::shared_ptr<animatable> const& target,
-             std::deque<texture> const& frames, uint16_t frame_time);
+    animator(std::deque<std::shared_ptr<animatable>> const& instances,
+             std::vector<texture> const& frames, uint16_t frame_time);
 
   public:
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Returns the animated object.
-     * @return Animated object.
+     * @brief Returns the animated instances.
+     * @return Animated instances.
      */
-    std::shared_ptr<animatable> const& target() const;
-
-    /**
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Sets the animated object.
-     * @param target Animated object.
-     */
-    void set_target(std::shared_ptr<animatable> const& target);
+    std::deque<std::shared_ptr<animatable>>& instances();
 
     /**
      * @file animator.hpp
@@ -85,7 +77,7 @@ class animator final {
      * @brief Returns the frame pool of the animation.
      * @return Frame pool of the animation.
      */
-    std::deque<texture>& frames();
+    std::vector<texture> const& frames() const;
 
     /**
      * @file animator.hpp
@@ -115,14 +107,14 @@ class animator final {
      * @file animator.hpp
      * @author Zana Domán
      * @brief Returns a new animator instance allocated on the heap.
-     * @param target Animated object.
+     * @param instances Animated instances.
      * @param frames Frame pool of the animation.
      * @param frame_time Frame time of the animation.
      * @return New animator instance allocated on the heap.
      */
     static std::unique_ptr<animator>
-    create(std::shared_ptr<animatable> const& target = {},
-           std::deque<texture> const& frames = {}, uint16_t frame_time = 100);
+    create(std::deque<std::shared_ptr<animatable>> const& instances = {},
+           std::vector<texture> const& frames = {}, uint16_t frame_time = 100);
 
     /**
      * @file animator.hpp
