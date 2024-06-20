@@ -26,7 +26,7 @@
 #include "common.hpp" // IWYU pragma: keep
 
 namespace wze {
-/*
+/**
  * @file window.hpp
  * @author Zana Domán
  * @brief Subsystem to handle game window.
@@ -47,7 +47,7 @@ class window final {
     window() = default;
 
   public:
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Returns the pointer of the game window.
@@ -57,7 +57,7 @@ class window final {
      */
     static SDL_Window* __window();
 
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Returns the width of the game window.
@@ -65,7 +65,7 @@ class window final {
      */
     static uint16_t width();
 
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Returns the height of the game window.
@@ -73,7 +73,7 @@ class window final {
      */
     static uint16_t height();
 
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Returns the title of the game window.
@@ -81,7 +81,7 @@ class window final {
      */
     static std::string const& title();
 
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Sets the title of the game window.
@@ -90,7 +90,7 @@ class window final {
      */
     static void set_title(std::string const& title);
 
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Returns the icon of the game window.
@@ -98,7 +98,7 @@ class window final {
      */
     static image const& icon();
 
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Sets the icon of the game window.
@@ -107,7 +107,7 @@ class window final {
      */
     static void set_icon(image const& icon);
 
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Opens the game window.
@@ -119,7 +119,7 @@ class window final {
      */
     static void __init(uint16_t width, uint16_t height);
 
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Checks if the game window is visible.
@@ -127,7 +127,7 @@ class window final {
      */
     static bool visible();
 
-    /*
+    /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Checks if the game window is focused.

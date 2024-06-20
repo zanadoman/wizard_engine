@@ -43,24 +43,24 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Calculates the length of the vector formed by points.
+     * @brief Returns the length of the vector formed by points.
      * @param x1 Initial point x.
      * @param y1 Initial point y.
      * @param x2 Terminal point x.
      * @param y2 Terminal point y.
-     * @return Length of the formed vector.
+     * @return Length of the vector.
      */
     static float_t distance(float_t x1, float_t y1, float_t x2, float_t y2);
 
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Calculates the angle of the vector formed by points.
+     * @brief Returns the angle of the vector formed by points.
      * @param x1 Initial point x.
      * @param y1 Initial point y.
      * @param x2 Terminal point x.
      * @param y2 Terminal point y.
-     * @return Angle of the formed vector.
+     * @return Angle of the vector.
      */
     static float_t angle(float_t x1, float_t y1, float_t x2, float_t y2);
 
@@ -71,7 +71,7 @@ class math final {
      * angle.
      * @param distance Length of the vector.
      * @param angle Angle of the vector.
-     * @return X component of the formed vector.
+     * @return X component of the vector.
      */
     static float_t move_x(float_t distance, float_t angle);
 
@@ -82,7 +82,7 @@ class math final {
      * angle.
      * @param distance Length of the vector.
      * @param angle Angle of the vector.
-     * @return Y component of the formed vector.
+     * @return Y component of the vector.
      */
     static float_t move_y(float_t distance, float_t angle);
 

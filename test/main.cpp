@@ -1,101 +1,37 @@
 #include "WZE/WizardEngine.hpp" // IWYU pragma: keep
-#include <iostream>
 
 #undef main
-
-class box : wze::renderable {
-  private:
-    float_t _x;
-    float_t _y;
-    float_t _z;
-    float_t _angle;
-    wze::texture _texture;
-
-  public:
-    float_t x() const override {
-        return _x;
-    }
-
-    float_t y() const override {
-        return _y;
-    }
-
-    float_t z() const override {
-        return _z;
-    }
-
-    float_t width() const override {
-        return 100.f;
-    }
-
-    float_t height() const override {
-        return 100.f;
-    }
-
-    float_t angle() const override {
-        return _angle;
-    }
-
-    float_t flip() const override {
-        return wze::FLIP_NONE;
-    }
-
-    uint8_t color_r() const override {
-        return 255;
-    }
-
-    uint8_t color_g() const override {
-        return 255;
-    }
-
-    uint8_t color_b() const override {
-        return 255;
-    }
-
-    uint8_t color_a() const override {
-        return 255;
-    }
-
-    bool visible() const override {
-        return true;
-    }
-
-    wze::texture const& texture() const override {
-        return _texture;
-    }
-
-    uint8_t priority() const override {
-        return 255;
-    }
-
-    bool spatial() const override {
-        return true;
-    }
-
-    box(float_t x, float_t y, float_t z, float_t angle,
-        wze::texture const& texture) {
-        _x = x;
-        _y = y;
-        _z = z;
-        _angle = angle;
-        _texture = texture;
-    }
-};
 
 int32_t main() {
     wze::engine::init(1920, 1080);
 
     wze::timer::set_frame_time(1000 / 60);
 
-    box b1(0.f, 0.f, 250.f, 0.f,
-           wze::assets::create_texture(
-               wze::assets::load_image("assets/wze/icon.png")));
-    box b3(0.f, 0.f, 500.f, 0.f,
-           wze::assets::create_texture(
-               wze::assets::load_image("assets/wze/icon.png")));
-    box b5(0.f, 0.f, 750.f, 0.f,
-           wze::assets::create_texture(
-               wze::assets::load_image("assets/wze/icon.png")));
+    wze::texture texture = wze::assets::create_texture(
+        wze::assets::load_image("assets/wze/icon.png"));
+
+    std::unique_ptr<wze::sprite> s1 =
+        wze::sprite::create(0.f, 0.f, 250.f, 0.f, 100.f, 100.f, true, texture);
+    std::shared_ptr<wze::sprite> s2 =
+        wze::sprite::create(0.f, 0.f, 500.f, 0.f, 100.f, 100.f, true, texture);
+    std::unique_ptr<wze::sprite> s3 =
+        wze::sprite::create(0.f, 0.f, 750.f, 0.f, 100.f, 100.f, true, texture);
+
+    std::unique_ptr<wze::animator> anim = wze::animator::create(
+        s2, {
+                wze::assets::create_texture(
+                    wze::assets::load_image("assets/test/run1.png")),
+                wze::assets::create_texture(
+                    wze::assets::load_image("assets/test/run2.png")),
+                wze::assets::create_texture(
+                    wze::assets::load_image("assets/test/run3.png")),
+                wze::assets::create_texture(
+                    wze::assets::load_image("assets/test/run4.png")),
+                wze::assets::create_texture(
+                    wze::assets::load_image("assets/test/run5.png")),
+                wze::assets::create_texture(
+                    wze::assets::load_image("assets/test/run6.png"))
+            });
 
     while (wze::engine::update()) {
         if (wze::input::keys(wze::KEY_MOUSE_MWU)) {
@@ -124,6 +60,8 @@ int32_t main() {
         }
         // std::cout << wze::input::cursor_x() << '\n';
         // std::cout << wze::input::cursor_y() << '\n';
+
+        anim->animate();
     }
 
     return 0;

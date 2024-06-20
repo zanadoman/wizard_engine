@@ -26,7 +26,7 @@
 #include "common.hpp" // IWYU pragma: keep
 
 namespace wze {
-/*
+/**
  * @file renderable.hpp
  * @author Zana Domán
  * @brief Flip states.
@@ -37,7 +37,7 @@ enum flip {
     FLIP_VERTICAL = SDL_FLIP_VERTICAL
 };
 
-/*
+/**
  * @file renderable.hpp
  * @author Zana Domán
  * @brief Interface to make an object renderable.
@@ -49,7 +49,7 @@ class renderable {
     float _screen_angle;
 
   public:
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns all renderable instances.
@@ -59,7 +59,7 @@ class renderable {
      */
     static std::deque<renderable*> const& __instances();
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the screen area of the object.
@@ -69,7 +69,7 @@ class renderable {
      */
     SDL_FRect const& __screen_area() const;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Sets the screen area of the object.
@@ -79,7 +79,7 @@ class renderable {
      */
     void __set_screen_area(SDL_FRect const& screen_area);
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the screen angle of the object.
@@ -89,7 +89,7 @@ class renderable {
      */
     float_t __screen_angle() const;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Sets the screen angle of the object.
@@ -99,7 +99,7 @@ class renderable {
      */
     void __set_screen_angle(float_t screen_angle);
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the x position of the object.
@@ -107,7 +107,7 @@ class renderable {
      */
     virtual float_t x() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the y position of the object.
@@ -115,7 +115,7 @@ class renderable {
      */
     virtual float_t y() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the z position of the object.
@@ -124,7 +124,7 @@ class renderable {
      */
     virtual float_t z() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the angle of the object.
@@ -132,7 +132,7 @@ class renderable {
      */
     virtual float_t angle() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the width of the object.
@@ -140,7 +140,7 @@ class renderable {
      */
     virtual float_t width() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the height of the object.
@@ -148,7 +148,7 @@ class renderable {
      */
     virtual float_t height() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns whether the object is spatial or not.
@@ -156,7 +156,7 @@ class renderable {
      */
     virtual bool spatial() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the texture of the object.
@@ -164,7 +164,7 @@ class renderable {
      */
     virtual wze::texture const& texture() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the red color modifier of the texture.
@@ -172,7 +172,7 @@ class renderable {
      */
     virtual uint8_t color_r() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the green color modifier of the texture.
@@ -180,7 +180,7 @@ class renderable {
      */
     virtual uint8_t color_g() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the blue color modifier of the texture.
@@ -188,7 +188,7 @@ class renderable {
      */
     virtual uint8_t color_b() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the alpha color modifier of the texture.
@@ -196,15 +196,15 @@ class renderable {
      */
     virtual uint8_t color_a() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns whether the object is flipped on one of its axes.
      * @return Wheter the object is flipped on one of its axes.
      */
-    virtual float_t flip() const = 0;
+    virtual wze::flip flip() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the visibility of the object.
@@ -212,7 +212,7 @@ class renderable {
      */
     virtual bool visible() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the priority of the object in the render queue.
@@ -220,14 +220,14 @@ class renderable {
      */
     virtual uint8_t priority() const = 0;
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Puts the object into the render queue.
      */
     renderable();
 
-    /*
+    /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Removes the object from the render queue.

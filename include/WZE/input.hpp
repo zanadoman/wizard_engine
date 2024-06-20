@@ -26,7 +26,7 @@
 #include "common.hpp" // IWYU pragma: keep
 
 namespace wze {
-/*
+/**
  * @file input.hpp
  * @author Zana Domán
  * @brief Keyboard and mousekeys.

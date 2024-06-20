@@ -25,42 +25,42 @@
 #include "common.hpp" // IWYU pragma: keep
 
 namespace wze {
-/*
+/**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Image file in host memory.
  */
 using image = std::shared_ptr<SDL_Surface>;
 
-/*
+/**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Image file in device memory.
  */
 using texture = std::shared_ptr<SDL_Texture>;
 
-/*
+/**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Audio file.
  */
 using sound = std::shared_ptr<Mix_Chunk>;
 
-/*
+/**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Font file.
  */
 using font = std::shared_ptr<TTF_Font>;
 
-/*
+/**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Cursor image.
  */
 using cursor = std::shared_ptr<SDL_Cursor>;
 
-/*
+/**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Font styles.
@@ -104,7 +104,7 @@ class assets final {
     assets() = default;
 
   public:
-    /*
+    /**
      * @file assets.hpp
      * @author Zana Domán
      * @brief Loads an image into the host memory from a path.
