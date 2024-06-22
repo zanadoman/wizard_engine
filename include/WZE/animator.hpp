@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -59,7 +59,7 @@ class animator final {
      * @param frame_time Frame time of the animation.
      * @return Animator instance.
      */
-    animator(std::vector<std::shared_ptr<animatable>> const& instances,
+    animator(std::vector<std::weak_ptr<animatable>> const& instances,
              std::vector<texture> const& frames, uint16_t frame_time);
 
   public:
@@ -113,14 +113,14 @@ class animator final {
      * @return New animator instance allocated on the heap.
      */
     static std::unique_ptr<animator>
-    create(std::vector<std::shared_ptr<animatable>> const& instances = {},
+    create(std::vector<std::weak_ptr<animatable>> const& instances = {},
            std::vector<texture> const& frames = {}, uint16_t frame_time = 100);
 
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Updates the animation and returns whether the animation is looped
-     * or not.
+     * @brief Updates the animation and erases expired instances, then returns
+     * whether the animation is looped or not.
      * @return Whether the animation is looped or not.
      */
     bool animate();

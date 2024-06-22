@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -23,10 +23,10 @@
 #include "WZE/animator.hpp"
 #include "WZE/timer.hpp"
 
-wze::animator::animator(
-    std::vector<std::shared_ptr<animatable>> const& instances,
-    std::vector<texture> const& frames, uint16_t frame_time) {
-    _instances = {instances.begin(), instances.end()};
+wze::animator::animator(std::vector<std::weak_ptr<animatable>> const& instances,
+                        std::vector<texture> const& frames,
+                        uint16_t frame_time) {
+    _instances = instances;
     _frames = frames;
     _frame_time = frame_time;
     _current_frame = 0;
@@ -54,7 +54,7 @@ size_t wze::animator::current_frame() const {
 }
 
 std::unique_ptr<wze::animator>
-wze::animator::create(std::vector<std::shared_ptr<animatable>> const& instances,
+wze::animator::create(std::vector<std::weak_ptr<animatable>> const& instances,
                       std::vector<texture> const& frames, uint16_t frame_time) {
     return std::unique_ptr<animator>(
         new animator(instances, frames, frame_time));
@@ -73,12 +73,16 @@ bool wze::animator::animate() {
         _current_frame %= _frames.size();
     }
 
-    std::ranges::for_each(
-        _instances, [this](std::weak_ptr<animatable> const& instance) {
-            if (!instance.expired()) {
-                instance.lock()->set_texture(_frames.at(_current_frame));
-            }
-        });
+    for (std::vector<std::weak_ptr<animatable>>::iterator instance =
+             _instances.begin();
+         instance != _instances.end();) {
+        if (instance->expired()) {
+            _instances.erase(instance);
+        } else {
+            instance->lock()->set_texture(_frames.at(_current_frame));
+            ++instance;
+        }
+    }
 
     return looped;
 }
