@@ -24,7 +24,7 @@
 #include "WZE/timer.hpp"
 
 wze::animator::animator(
-    std::deque<std::shared_ptr<animatable>> const& instances,
+    std::vector<std::shared_ptr<animatable>> const& instances,
     std::vector<texture> const& frames, uint16_t frame_time) {
     _instances = instances;
     _frames = frames;
@@ -33,7 +33,7 @@ wze::animator::animator(
     _remaining_time = 0;
 }
 
-std::deque<std::shared_ptr<wze::animatable>>& wze::animator::instances() {
+std::vector<std::shared_ptr<wze::animatable>>& wze::animator::instances() {
     return _instances;
 }
 
@@ -54,7 +54,7 @@ size_t wze::animator::current_frame() const {
 }
 
 std::unique_ptr<wze::animator>
-wze::animator::create(std::deque<std::shared_ptr<animatable>> const& instances,
+wze::animator::create(std::vector<std::shared_ptr<animatable>> const& instances,
                       std::vector<texture> const& frames, uint16_t frame_time) {
     return std::unique_ptr<animator>(
         new animator(instances, frames, frame_time));

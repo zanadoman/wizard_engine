@@ -44,7 +44,7 @@ class animatable {
  */
 class animator final {
   private:
-    std::deque<std::shared_ptr<animatable>> _instances;
+    std::vector<std::shared_ptr<animatable>> _instances;
     std::vector<texture> _frames;
     uint16_t _frame_time;
     size_t _current_frame;
@@ -59,7 +59,7 @@ class animator final {
      * @param frame_time Frame time of the animation.
      * @return Animator instance.
      */
-    animator(std::deque<std::shared_ptr<animatable>> const& instances,
+    animator(std::vector<std::shared_ptr<animatable>> const& instances,
              std::vector<texture> const& frames, uint16_t frame_time);
 
   public:
@@ -69,7 +69,7 @@ class animator final {
      * @brief Returns the animated instances.
      * @return Animated instances.
      */
-    std::deque<std::shared_ptr<animatable>>& instances();
+    std::vector<std::shared_ptr<animatable>>& instances();
 
     /**
      * @file animator.hpp
@@ -113,7 +113,7 @@ class animator final {
      * @return New animator instance allocated on the heap.
      */
     static std::unique_ptr<animator>
-    create(std::deque<std::shared_ptr<animatable>> const& instances = {},
+    create(std::vector<std::shared_ptr<animatable>> const& instances = {},
            std::vector<texture> const& frames = {}, uint16_t frame_time = 100);
 
     /**
