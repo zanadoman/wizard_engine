@@ -44,7 +44,7 @@ class animatable {
  */
 class animator final {
   private:
-    std::vector<std::shared_ptr<animatable>> _instances;
+    std::vector<std::weak_ptr<animatable>> _instances;
     std::vector<texture> _frames;
     uint16_t _frame_time;
     size_t _current_frame;
@@ -69,7 +69,7 @@ class animator final {
      * @brief Returns the animated instances.
      * @return Animated instances.
      */
-    std::vector<std::shared_ptr<animatable>>& instances();
+    std::vector<std::weak_ptr<animatable>>& instances();
 
     /**
      * @file animator.hpp

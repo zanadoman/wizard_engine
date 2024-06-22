@@ -26,14 +26,14 @@
 wze::animator::animator(
     std::vector<std::shared_ptr<animatable>> const& instances,
     std::vector<texture> const& frames, uint16_t frame_time) {
-    _instances = instances;
+    _instances = {instances.begin(), instances.end()};
     _frames = frames;
     _frame_time = frame_time;
     _current_frame = 0;
     _remaining_time = 0;
 }
 
-std::vector<std::shared_ptr<wze::animatable>>& wze::animator::instances() {
+std::vector<std::weak_ptr<wze::animatable>>& wze::animator::instances() {
     return _instances;
 }
 
@@ -74,9 +74,9 @@ bool wze::animator::animate() {
     }
 
     std::ranges::for_each(
-        _instances, [this](std::shared_ptr<animatable> const& instance) {
-            if (instance.get()) {
-                instance->set_texture(_frames.at(_current_frame));
+        _instances, [this](std::weak_ptr<animatable> const& instance) {
+            if (!instance.expired()) {
+                instance.lock()->set_texture(_frames.at(_current_frame));
             }
         });
 
