@@ -62,6 +62,22 @@ class animator final {
     animator(std::vector<std::weak_ptr<animatable>> const& instances,
              std::vector<texture> const& frames, uint16_t frame_time);
 
+    /*
+     * @file animator.hpp
+     * @author Zana Domán
+     * @brief Updates the current frame of the animation.
+     * @return Whether the animation is looped or not.
+     */
+    bool _update_animation();
+
+    /*
+     * @file animator.hpp
+     * @author Zana Domán
+     * @brief Updates the textures of the non-expired instances to the current
+     * frame of the animation.
+     */
+    void _update_instances();
+
   public:
     /**
      * @file animator.hpp
@@ -106,6 +122,14 @@ class animator final {
     /**
      * @file animator.hpp
      * @author Zana Domán
+     * @brief Sets the current frame of the animation.
+     * @param current_frame Current frame of the animation.
+     */
+    void set_current_frame(size_t current_frame);
+
+    /**
+     * @file animator.hpp
+     * @author Zana Domán
      * @brief Returns a new animator instance allocated on the heap.
      * @param instances Animated instances.
      * @param frames Frame pool of the animation.
@@ -119,11 +143,10 @@ class animator final {
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Updates the animation and erases expired instances, then returns
-     * whether the animation is looped or not.
+     * @brief Updates the animation and non-expired instances.
      * @return Whether the animation is looped or not.
      */
-    bool animate();
+    bool update();
 
     /**
      * @file animator.hpp

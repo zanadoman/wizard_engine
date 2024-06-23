@@ -20,7 +20,7 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "WZE/animator.hpp"
+#include "WZE/animation.hpp"
 #include "WZE/timer.hpp"
 
 wze::animator::animator(std::vector<std::weak_ptr<animatable>> const& instances,
@@ -31,6 +31,35 @@ wze::animator::animator(std::vector<std::weak_ptr<animatable>> const& instances,
     _frame_time = frame_time;
     _current_frame = 0;
     _remaining_time = 0;
+}
+
+bool wze::animator::_update_animation() {
+    uint64_t elapsed_time;
+    bool looped;
+
+    elapsed_time = timer::delta_time() + _remaining_time;
+    _current_frame += elapsed_time / _frame_time;
+    _remaining_time = elapsed_time % _frame_time;
+
+    looped = _frames.size() <= _current_frame;
+    if (looped) {
+        _current_frame %= _frames.size();
+    }
+
+    return looped;
+}
+
+void wze::animator::_update_instances() {
+    for (std::vector<std::weak_ptr<animatable>>::iterator instance =
+             _instances.begin();
+         instance != _instances.end();) {
+        if (instance->expired()) {
+            _instances.erase(instance);
+        } else {
+            instance->lock()->set_texture(_frames.at(_current_frame));
+            ++instance;
+        }
+    }
 }
 
 std::vector<std::weak_ptr<wze::animatable>>& wze::animator::instances() {
@@ -53,6 +82,11 @@ size_t wze::animator::current_frame() const {
     return _current_frame;
 }
 
+void wze::animator::set_current_frame(size_t current_frame) {
+    _current_frame = current_frame;
+    _update_instances();
+}
+
 std::unique_ptr<wze::animator>
 wze::animator::create(std::vector<std::weak_ptr<animatable>> const& instances,
                       std::vector<texture> const& frames, uint16_t frame_time) {
@@ -60,29 +94,11 @@ wze::animator::create(std::vector<std::weak_ptr<animatable>> const& instances,
         new animator(instances, frames, frame_time));
 }
 
-bool wze::animator::animate() {
-    uint64_t elapsed_time;
+bool wze::animator::update() {
     bool looped;
-
-    elapsed_time = timer::delta_time() + _remaining_time;
-    _current_frame += elapsed_time / _frame_time;
-    _remaining_time = elapsed_time % _frame_time;
-
-    looped = _frames.size() <= _current_frame;
-    if (looped) {
-        _current_frame %= _frames.size();
-    }
-
-    for (std::vector<std::weak_ptr<animatable>>::iterator instance =
-             _instances.begin();
-         instance != _instances.end();) {
-        if (instance->expired()) {
-            _instances.erase(instance);
-        } else {
-            instance->lock()->set_texture(_frames.at(_current_frame));
-            ++instance;
-        }
-    }
+    
+    looped = _update_animation();
+    _update_instances();
 
     return looped;
 }
@@ -90,4 +106,5 @@ bool wze::animator::animate() {
 void wze::animator::reset() {
     _current_frame = 0;
     _remaining_time = 0;
+    _update_instances();
 }

@@ -59,7 +59,7 @@ int32_t main() {
         // std::cout << wze::input::cursor_x() << '\n';
         // std::cout << wze::input::cursor_y() << '\n';
 
-        anim->animate();
+        anim->update();
     }
 
     return 0;

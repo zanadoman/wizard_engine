@@ -1,6 +1,6 @@
 #pragma once
 
-#include "animator.hpp"   // IWYU pragma: keep
+#include "animation.hpp"  // IWYU pragma: keep
 #include "assets.hpp"     // IWYU pragma: keep
 #include "camera.hpp"     // IWYU pragma: keep
 #include "common.hpp"     // IWYU pragma: keep

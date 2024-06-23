@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "animator.hpp"   // IWYU pragma: keep
+#include "animation.hpp"  // IWYU pragma: keep
 #include "assets.hpp"     // IWYU pragma: keep
 #include "common.hpp"     // IWYU pragma: keep
 #include "renderable.hpp" // IWYU pragma: keep
