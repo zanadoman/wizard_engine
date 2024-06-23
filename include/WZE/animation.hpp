@@ -33,7 +33,19 @@ namespace wze {
  */
 class animatable {
   public:
+    /**
+     * @file animator.hpp
+     * @author Zana Domán
+     * @brief Sets the texture of the object.
+     * @param texture Texture of the object.
+     */
     virtual void set_texture(texture const& texture) = 0;
+
+    /**
+     * @file animator.hpp
+     * @author Zana Domán
+     * @brief Default virtual destructor.
+     */
     virtual ~animatable() = default;
 };
 
@@ -61,22 +73,6 @@ class animator final {
      */
     animator(std::vector<std::weak_ptr<animatable>> const& instances,
              std::vector<texture> const& frames, uint16_t frame_time);
-
-    /*
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Updates the current frame of the animation.
-     * @return Whether the animation is looped or not.
-     */
-    bool _update_animation();
-
-    /*
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Updates the textures of the non-expired instances to the current
-     * frame of the animation.
-     */
-    void _update_instances();
 
   public:
     /**
@@ -143,7 +139,8 @@ class animator final {
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Updates the animation and non-expired instances.
+     * @brief Updates the animation and erases expired instances, then returns
+     * whether the animation is looped or not.
      * @return Whether the animation is looped or not.
      */
     bool update();
