@@ -39,7 +39,7 @@ class animatable {
      * @brief Sets the texture of the object.
      * @param texture Texture of the object.
      */
-    virtual void set_texture(texture const& texture) = 0;
+    virtual void set_texture(std::shared_ptr<texture> const& texture) = 0;
 
     /**
      * @file animator.hpp
@@ -57,7 +57,7 @@ class animatable {
 class animator final {
   private:
     std::vector<std::weak_ptr<animatable>> _instances;
-    std::vector<texture> _frames;
+    std::vector<std::shared_ptr<texture>> _frames;
     uint16_t _frame_time;
     size_t _current_frame;
     uint16_t _remaining_time;
@@ -72,7 +72,8 @@ class animator final {
      * @return Animator instance.
      */
     animator(std::vector<std::weak_ptr<animatable>> const& instances,
-             std::vector<texture> const& frames, uint16_t frame_time);
+             std::vector<std::shared_ptr<texture>> const& frames,
+             uint16_t frame_time);
 
   public:
     /**
@@ -89,7 +90,7 @@ class animator final {
      * @brief Returns the frame pool of the animation.
      * @return Frame pool of the animation.
      */
-    std::vector<texture> const& frames() const;
+    std::vector<std::shared_ptr<texture>> const& frames() const;
 
     /**
      * @file animator.hpp
@@ -134,7 +135,8 @@ class animator final {
      */
     static std::unique_ptr<animator>
     create(std::vector<std::weak_ptr<animatable>> const& instances = {},
-           std::vector<texture> const& frames = {}, uint16_t frame_time = 100);
+           std::vector<std::shared_ptr<texture>> const& frames = {},
+           uint16_t frame_time = 100);
 
     /**
      * @file animator.hpp

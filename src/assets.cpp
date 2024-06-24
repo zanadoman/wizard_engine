@@ -23,7 +23,8 @@
 #include "WZE/assets.hpp"
 #include "WZE/render.hpp"
 
-wze::image wze::assets::load_image(std::string const& path) {
+std::unique_ptr<wze::image, std::function<void(wze::image*)>>
+wze::assets::load_image(std::string const& path) {
     SDL_Surface* image;
 
     image = IMG_Load(path.c_str());
@@ -34,15 +35,14 @@ wze::image wze::assets::load_image(std::string const& path) {
     return {image, SDL_FreeSurface};
 }
 
-wze::image wze::assets::create_image(std::string const& text, font const& font,
-                                     font_style font_style) {
+std::unique_ptr<wze::image, std::function<void(wze::image*)>>
+wze::assets::create_image(std::string const& text,
+                          std::shared_ptr<font> const& font) {
     SDL_Surface* image;
 
-    if (!font.get()) {
-        throw std::invalid_argument("nullptr font");
+    if (!font) {
+        return nullptr;
     }
-
-    TTF_SetFontStyle(font.get(), font_style);
 
     image =
         TTF_RenderUTF8_Blended(font.get(), text.c_str(), {255, 255, 255, 255});
@@ -53,11 +53,12 @@ wze::image wze::assets::create_image(std::string const& text, font const& font,
     return {image, SDL_FreeSurface};
 }
 
-wze::texture wze::assets::create_texture(image const& image) {
+std::unique_ptr<wze::texture, std::function<void(wze::texture*)>>
+wze::assets::create_texture(std::shared_ptr<image> const& image) {
     SDL_Texture* texture;
 
-    if (!image.get()) {
-        throw std::invalid_argument("nullptr image");
+    if (!image) {
+        return nullptr;
     }
 
     texture = SDL_CreateTextureFromSurface(render::__renderer(), image.get());
@@ -68,7 +69,8 @@ wze::texture wze::assets::create_texture(image const& image) {
     return {texture, SDL_DestroyTexture};
 }
 
-wze::sound wze::assets::load_sound(std::string const& path) {
+std::unique_ptr<wze::sound, std::function<void(wze::sound*)>>
+wze::assets::load_sound(std::string const& path) {
     Mix_Chunk* sound;
 
     sound = Mix_LoadWAV(path.c_str());
@@ -79,7 +81,9 @@ wze::sound wze::assets::load_sound(std::string const& path) {
     return {sound, Mix_FreeChunk};
 }
 
-wze::font wze::assets::load_font(std::string const& path, uint8_t size) {
+std::unique_ptr<wze::font, std::function<void(wze::font*)>>
+wze::assets::load_font(std::string const& path, uint8_t size,
+                       font_style font_style) {
     TTF_Font* font;
 
     font = TTF_OpenFont(path.c_str(), size);
@@ -87,10 +91,12 @@ wze::font wze::assets::load_font(std::string const& path, uint8_t size) {
         throw std::runtime_error(TTF_GetError());
     }
 
+    TTF_SetFontStyle(font, font_style);
     return {font, TTF_CloseFont};
 }
 
-wze::cursor wze::assets::create_cursor(system_cursor system_cursor) {
+std::unique_ptr<wze::cursor, std::function<void(wze::cursor*)>>
+wze::assets::create_cursor(system_cursor system_cursor) {
     SDL_Cursor* cursor;
 
     cursor = SDL_CreateSystemCursor((SDL_SystemCursor)system_cursor);
@@ -101,12 +107,13 @@ wze::cursor wze::assets::create_cursor(system_cursor system_cursor) {
     return {cursor, SDL_FreeCursor};
 }
 
-wze::cursor wze::assets::create_cursor(image const& image, uint16_t hot_x,
-                                       uint16_t hot_y) {
+std::unique_ptr<wze::cursor, std::function<void(wze::cursor*)>>
+wze::assets::create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x,
+                           uint16_t hot_y) {
     SDL_Cursor* cursor;
 
-    if (!image.get()) {
-        throw std::invalid_argument("nullptr image");
+    if (!image) {
+        return nullptr;
     }
 
     cursor = SDL_CreateColorCursor(image.get(), hot_x, hot_y);

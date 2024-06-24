@@ -30,35 +30,35 @@ namespace wze {
  * @author Zana Domán
  * @brief Image file in host memory.
  */
-using image = std::shared_ptr<SDL_Surface>;
+using image = SDL_Surface;
 
 /**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Image file in device memory.
  */
-using texture = std::shared_ptr<SDL_Texture>;
+using texture = SDL_Texture;
 
 /**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Audio file.
  */
-using sound = std::shared_ptr<Mix_Chunk>;
+using sound = Mix_Chunk;
 
 /**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Font file.
  */
-using font = std::shared_ptr<TTF_Font>;
+using font = TTF_Font;
 
 /**
  * @file assets.hpp
  * @author Zana Domán
  * @brief Cursor image.
  */
-using cursor = std::shared_ptr<SDL_Cursor>;
+using cursor = SDL_Cursor;
 
 /**
  * @file assets.hpp
@@ -112,7 +112,8 @@ class assets final {
      * @return Shared pointer to the loaded image.
      * @warning If image cannot be loaded, throws std::runtime_error.
      */
-    static image load_image(std::string const& path);
+    static std::unique_ptr<image, std::function<void(image*)>>
+    load_image(std::string const& path);
 
     /**
      * @file assets.hpp
@@ -125,8 +126,8 @@ class assets final {
      * @warning If font is nullptr, throws std::invalid_argument.
      * @warning If image cannot be created, throws std::runtime_error.
      */
-    static image create_image(std::string const& text, font const& font,
-                              font_style font_style = FONT_STYLE_NORMAL);
+    static std::unique_ptr<image, std::function<void(image*)>>
+    create_image(std::string const& text, std::shared_ptr<font> const& font);
 
     /**
      * @file assets.hpp
@@ -137,7 +138,8 @@ class assets final {
      * @warning If image is nullptr, throws std::invalid_argument
      * @warning If texture cannot be created, throws std::runtime_error.
      */
-    static texture create_texture(image const& image);
+    static std::unique_ptr<texture, std::function<void(texture*)>>
+    create_texture(std::shared_ptr<image> const& image);
 
     /**
      * @file assets.hpp
@@ -147,7 +149,8 @@ class assets final {
      * @return Shared pointer to the loaded sound.
      * @warning If sound cannot be loaded, throws std::runtime_error.
      */
-    static sound load_sound(std::string const& path);
+    static std::unique_ptr<sound, std::function<void(sound*)>>
+    load_sound(std::string const& path);
 
     /**
      * @file assets.hpp
@@ -157,7 +160,9 @@ class assets final {
      * @return Shared pointer to the loaded font.
      * @warning If font cannot be loaded, throws std::runtime_error.
      */
-    static font load_font(std::string const& path, uint8_t size);
+    static std::unique_ptr<font, std::function<void(font*)>>
+    load_font(std::string const& path, uint8_t size = 48,
+              font_style font_style = FONT_STYLE_NORMAL);
 
     /**
      * @file assets.hpp
@@ -167,7 +172,8 @@ class assets final {
      * @return Shared pointer to the created cursor.
      * @warning If cursor cannot be created, throws std::runtime_error.
      */
-    static cursor create_cursor(system_cursor system_cursor);
+    static std::unique_ptr<cursor, std::function<void(cursor*)>>
+    create_cursor(system_cursor system_cursor);
 
     /**
      * @file assets.hpp
@@ -180,7 +186,8 @@ class assets final {
      * @warning If image is nullptr, throws std::invalid_argument.
      * @warning If cursor cannot be created, throws std::runtime_error.
      */
-    static cursor create_cursor(image const& image, uint16_t hot_x = 0,
-                                uint16_t hot_y = 0);
+    static std::unique_ptr<cursor, std::function<void(cursor*)>>
+    create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x = 0,
+                  uint16_t hot_y = 0);
 };
 } // namespace wze
