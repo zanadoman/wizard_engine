@@ -95,7 +95,6 @@ enum system_cursor {
 };
 
 class assets final {
-  private:
     /**
      * @file assets.hpp
      * @author Zana Domán
@@ -107,9 +106,9 @@ class assets final {
     /**
      * @file assets.hpp
      * @author Zana Domán
-     * @brief Loads an image into the host memory from a path.
-     * @param path Path of the image.
-     * @return Shared pointer to the loaded image.
+     * @brief Loads an image from a path.
+     * @param path Path to the image.
+     * @return Loaded image.
      * @warning If image cannot be loaded, throws std::runtime_error.
      */
     static std::unique_ptr<image, std::function<void(image*)>>
@@ -118,12 +117,10 @@ class assets final {
     /**
      * @file assets.hpp
      * @author Zana Domán
-     * @brief Creates an image into the host memory from a text.
+     * @brief Creates an image from a text.
      * @param text Text of the image.
      * @param font Font of the text.
-     * @param font_style Style of the font.
-     * @return Shared pointer to the created image.
-     * @warning If font is nullptr, throws std::invalid_argument.
+     * @return Created image.
      * @warning If image cannot be created, throws std::runtime_error.
      */
     static std::unique_ptr<image, std::function<void(image*)>>
@@ -132,10 +129,9 @@ class assets final {
     /**
      * @file assets.hpp
      * @author Zana Domán
-     * @brief Creates a texture into the device memory from an image.
+     * @brief Creates a texture from an image.
      * @param image Image of the texture.
-     * @return Shared pointer to the created texture.
-     * @warning If image is nullptr, throws std::invalid_argument
+     * @return Created texture.
      * @warning If texture cannot be created, throws std::runtime_error.
      */
     static std::unique_ptr<texture, std::function<void(texture*)>>
@@ -145,8 +141,8 @@ class assets final {
      * @file assets.hpp
      * @author Zana Domán
      * @brief Loads a sound from a path.
-     * @param path Path of the sound.
-     * @return Shared pointer to the loaded sound.
+     * @param path Path to the sound.
+     * @return Loaded sound.
      * @warning If sound cannot be loaded, throws std::runtime_error.
      */
     static std::unique_ptr<sound, std::function<void(sound*)>>
@@ -156,8 +152,10 @@ class assets final {
      * @file assets.hpp
      * @author Zana Domán
      * @brief Loads a font from a path.
-     * @param path Path of the font.
-     * @return Shared pointer to the loaded font.
+     * @param path Path to the font.
+     * @param size Size of the font.
+     * @param font_style Style of the font.
+     * @return Loaded font.
      * @warning If font cannot be loaded, throws std::runtime_error.
      */
     static std::unique_ptr<font, std::function<void(font*)>>
@@ -169,7 +167,7 @@ class assets final {
      * @author Zana Domán
      * @brief Creates a cursor from a system cursor.
      * @param system_cursor Type of the cursor.
-     * @return Shared pointer to the created cursor.
+     * @return Created cursor.
      * @warning If cursor cannot be created, throws std::runtime_error.
      */
     static std::unique_ptr<cursor, std::function<void(cursor*)>>
@@ -182,8 +180,7 @@ class assets final {
      * @param image Image of the cursor.
      * @param hot_x Hot spot x of the cursor.
      * @param hot_y Hot spot y of the cursor.
-     * @return Shared pointer to the created cursor.
-     * @warning If image is nullptr, throws std::invalid_argument.
+     * @return Created cursor.
      * @warning If cursor cannot be created, throws std::runtime_error.
      */
     static std::unique_ptr<cursor, std::function<void(cursor*)>>
