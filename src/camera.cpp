@@ -1,11 +1,37 @@
-#include "WZE/camera.hpp"
+/**
+ * zlib License
+ *
+ * Copyright (C) 2023-2024 Zana Domán
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
+
+#define WZE_INTERNAL
+
+#include <WZE/camera.hpp>
+#include <WZE/math.hpp>
 
 float_t wze::camera::_x = 0.f;
 float_t wze::camera::_y = 0.f;
 float_t wze::camera::_z = 0.f;
 float_t wze::camera::_angle = 0.f;
 float_t wze::camera::_focus = 512.f;
-std::array<float_t, 4> wze::camera::_rotation_matrix = {1.f, 0.f, -0.f, 1.f};
+std::array<float_t, 4> wze::camera::_rotation_matrix =
+    math::rotation_matrix(0.f);
 
 float_t wze::camera::x() {
     return _x;
@@ -36,10 +62,7 @@ float_t wze::camera::angle() {
 }
 
 void wze::camera::set_angle(float_t angle) {
-    _rotation_matrix.at(0) = cosf(angle);
-    _rotation_matrix.at(1) = sinf(angle);
-    _rotation_matrix.at(2) = -_rotation_matrix.at(1);
-    _rotation_matrix.at(3) = _rotation_matrix.at(0);
+    _rotation_matrix = math::rotation_matrix(angle);
     _angle = angle;
 }
 
@@ -48,51 +71,52 @@ float_t wze::camera::focus() {
 }
 
 void wze::camera::set_focus(float_t focus) {
-    if (focus <= 0.f) {
-        throw std::invalid_argument("Invalid focus");
-    }
-
     _focus = focus;
 }
 
-void wze::camera::__project(renderable& instance) {
-    float_t x_;
-    float_t y_;
+void wze::camera::project(renderable& instance) {
     float_t scale;
+    float_t x;
+    float_t y;
 
     if (!instance.spatial()) {
-        instance.__set_screen_area(
+        instance.set_screen_area(
             {instance.x(), instance.y(), instance.width(), instance.height()});
-        instance.__set_screen_angle(instance.angle());
+        instance.set_screen_angle(instance.angle());
+        return;
+    }
+
+    if (instance.z() == _z || _focus == 0.f) {
+        instance.set_screen_area({0.f, 0.f, 0.f, 0.f});
+        instance.set_screen_angle(instance.angle() - _angle);
         return;
     }
 
     scale = _focus / (instance.z() - _z);
-    x_ = (instance.x() - _x) * scale;
-    y_ = (instance.y() - _y) * scale;
-    instance.__set_screen_area(
-        {x_ * _rotation_matrix.at(0) + y_ * _rotation_matrix.at(1),
-         x_ * _rotation_matrix.at(2) + y_ * _rotation_matrix.at(3),
-         instance.width() * scale, instance.height() * scale});
-    instance.__set_screen_angle(instance.angle() - _angle);
+    x = (instance.x() - _x) * scale;
+    y = (instance.y() - _y) * scale;
+    instance.set_screen_area({math::rotate_x(x, y, _rotation_matrix),
+                              math::rotate_y(x, y, _rotation_matrix),
+                              instance.width() * scale,
+                              instance.height() * scale});
+    instance.set_screen_angle(instance.angle() - _angle);
 }
 
-std::pair<float_t, float_t> wze::camera::__unproject(float_t x, float_t y,
-                                                     float_t z) {
-    float_t x_;
-    float_t y_;
+std::pair<float_t, float_t> wze::camera::unproject(float_t x, float_t y,
+                                                   float_t z) {
     float_t determinant;
     float_t scale;
 
-    y_ = y;
-    x_ = x;
+    if (z == _z || _focus == 0.f) {
+        return {0.f, 0.f};
+    }
+
     determinant = _rotation_matrix.at(0) * _rotation_matrix.at(3) -
                   _rotation_matrix.at(1) * _rotation_matrix.at(2);
-    x = (x_ * _rotation_matrix.at(3) - y_ * _rotation_matrix.at(1)) /
-        determinant;
-    y = (y_ * _rotation_matrix.at(0) - x_ * _rotation_matrix.at(2)) /
-        determinant;
     scale = (z - _z) / _focus;
 
-    return {_x + x * scale, _y + y * scale};
+    return {_x + (x * _rotation_matrix.at(3) - y * _rotation_matrix.at(1)) /
+                     determinant * scale,
+            _y + (y * _rotation_matrix.at(0) - x * _rotation_matrix.at(2)) /
+                     determinant * scale};
 }

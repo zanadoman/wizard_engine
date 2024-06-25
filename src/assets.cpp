@@ -64,7 +64,7 @@ wze::assets::create_texture(std::shared_ptr<image> const& image) {
         return nullptr;
     }
 
-    texture = {SDL_CreateTextureFromSurface(render::__renderer(), image.get()),
+    texture = {SDL_CreateTextureFromSurface(render::base(), image.get()),
                SDL_DestroyTexture};
     if (!texture) {
         throw std::runtime_error(SDL_GetError());

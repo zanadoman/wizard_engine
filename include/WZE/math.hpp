@@ -27,7 +27,7 @@
 namespace wze {
 /**
  * @file math.hpp
- * @author Zana Domán
+ * @author Zana Domán, Gunics Roland
  * @brief Subsystem to handle vector math and unit conversions.
  */
 class math final {
@@ -81,7 +81,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Zana Domán, Gunics Roland
      * @brief Rotates the x component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -93,7 +93,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Zana Domán, Gunics Roland
      * @brief Rotates the y component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -105,7 +105,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Zana Domán, Gunics Roland
      * @brief Creates a rotation matrix.
      * @param angle Angle of the rotation matrix.
      * @return Created rotation matrix.

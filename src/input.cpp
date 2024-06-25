@@ -144,7 +144,7 @@ void wze::input::update() {
 std::pair<float_t, float_t> wze::input::cursor_spatial_xy(float_t z) {
     return apply(
         [z](float_t x, float_t y) -> std::pair<float_t, float_t> {
-            return camera::__unproject(x, y, z);
+            return camera::unproject(x, y, z);
         },
-        render::__detransform(_cursor_absolute_x, _cursor_absolute_y));
+        render::detransform(_cursor_absolute_x, _cursor_absolute_y));
 }
