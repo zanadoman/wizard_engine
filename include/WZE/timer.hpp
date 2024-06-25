@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -31,7 +31,6 @@ namespace wze {
  * @brief Subsystem to handle frame rate and delta time.
  */
 class timer final {
-  private:
     static uint8_t _frame_time;
     static uint8_t _delta_time;
 

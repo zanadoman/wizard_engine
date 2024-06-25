@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -26,7 +26,7 @@ SDL_Window* wze::window::_window = nullptr;
 uint16_t wze::window::_width = 0;
 uint16_t wze::window::_height = 0;
 std::string wze::window::_title = {};
-wze::image wze::window::_icon = {};
+std::shared_ptr<wze::image> wze::window::_icon = {};
 
 SDL_Window* wze::window::__window() {
     return _window;
@@ -51,19 +51,20 @@ void wze::window::set_title(std::string const& title) {
     SDL_SetWindowTitle(_window, _title.c_str());
 }
 
-wze::image const& wze::window::icon() {
+std::shared_ptr<wze::image> const& wze::window::icon() {
     return _icon;
 }
 
-void wze::window::set_icon(image const& icon) {
-    static image fallback = assets::load_image("./assets/wze/icon.png");
+void wze::window::set_icon(std::shared_ptr<image> const& icon) {
+    static std::shared_ptr<image> fallback =
+        assets::load_image("./assets/wze/icon.png");
 
-    _icon = icon.get() ? icon : fallback;
+    _icon = icon ? icon : fallback;
     SDL_SetWindowIcon(_window, _icon.get());
 }
 
 void wze::window::__init(uint16_t width, uint16_t height) {
-    std::atexit([]() { SDL_DestroyWindow(_window); });
+    atexit([]() -> void { SDL_DestroyWindow(_window); });
 
     _window = SDL_CreateWindow(
         "", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height,

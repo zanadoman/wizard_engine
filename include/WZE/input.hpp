@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -147,8 +147,7 @@ enum key {
     KEY_MOUSE_LMB,
     KEY_MOUSE_MMB,
     KEY_MOUSE_RMB,
-    KEY_MOUSE_MWU,
-    KEY_MOUSE_MWD,
+    KEY_MOUSE_WHEEL,
 
     KEY_COUNT
 };
@@ -159,27 +158,26 @@ enum key {
  * @brief Subsystem to handle keyboard and mouse input.
  */
 class input final {
-  private:
-    static std::array<bool, KEY_COUNT> _keys;
+    static std::array<int8_t, KEY_COUNT> _keys;
     static float_t _cursor_absolute_x;
     static float_t _cursor_absolute_y;
     static float_t _cursor_relative_x;
     static float_t _cursor_relative_y;
     static float_t _mouse_sensitivity;
     static bool _cursor_visible;
-    static wze::cursor _cursor_appearance;
+    static std::shared_ptr<cursor> _cursor_appearance;
 
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Polls for keyboard/mousekeys.
+     * @brief Polls for keyboard and mousekey states.
      */
     static void _update_keys();
 
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Polls for cursor absolute/relative positions.
+     * @brief Polls for cursor absolute and relative positions.
      */
     static void _update_cursor();
 
@@ -194,9 +192,10 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Checks if a keyboard/mousekey is pressed.
-     * @param key Keyboard/mousekey.
-     * @return True if the keyboard/mouskey is pressed, false otherwise.
+     * @brief Returns true if a keyboard or mousekey is pressed, false
+     * otherwise.
+     * @param key The keyboard or mousekey.
+     * @return True if the keyboard or mousekey is pressed, false otherwise.
      */
     static bool keys(key key);
 
@@ -253,8 +252,8 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Returns true if the cursor if visible, false otherwise.
-     * @return Cursor's current visibility.
+     * @brief Returns true if the cursor is visible, false otherwise.
+     * @return True if the cursor is visible, false otherwise.
      */
     static bool cursor_visible();
 
@@ -273,7 +272,7 @@ class input final {
      * @brief Returns the appearance of the cursor.
      * @return Appearance of the cursor.
      */
-    static wze::cursor const& cursor_appearance();
+    static std::shared_ptr<cursor> const& cursor_appearance();
 
     /**
      * @file input.hpp
@@ -282,19 +281,22 @@ class input final {
      * @param cursor Appearance of the cursor.
      * @note Nullptr cursor defaults to SYSTEM_CURSOR_ARROW.
      */
-    static void set_cursor_appearance(wze::cursor const& cursor_appearance);
+    static void
+    set_cursor_appearance(std::shared_ptr<cursor> const& cursor_appearance);
 
     /**
      * @file input.hpp
      * @author Zana Domán
      * @brief Sets the appearance of the cursor to the default.
+     * @warning This method is handled by the engine itself, calling it
+     * explicitly can lead to undefined behavior.
      */
     static void __init();
 
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Polls the current state of the keyboard and mouse.
+     * @brief Polls for the current state of the keyboard and mouse.
      * @warning This method is handled by the engine itself, calling it
      * explicitly can lead to undefined behavior.
      */

@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -32,12 +32,11 @@ namespace wze {
  * @brief Subsystem to handle game window.
  */
 class window final {
-  private:
     static SDL_Window* _window;
     static uint16_t _width;
     static uint16_t _height;
     static std::string _title;
-    static image _icon;
+    static std::shared_ptr<image> _icon;
 
     /**
      * @file window.hpp
@@ -96,7 +95,7 @@ class window final {
      * @brief Returns the icon of the game window.
      * @return Icon of the game window.
      */
-    static image const& icon();
+    static std::shared_ptr<image> const& icon();
 
     /**
      * @file window.hpp
@@ -105,7 +104,7 @@ class window final {
      * @param icon Icon of the game window.
      * @note Nullptr icon defaults to "./assets/wze/icon.png".
      */
-    static void set_icon(image const& icon);
+    static void set_icon(std::shared_ptr<image> const& icon);
 
     /**
      * @file window.hpp
@@ -122,16 +121,16 @@ class window final {
     /**
      * @file window.hpp
      * @author Zana Domán
-     * @brief Checks if the game window is visible.
-     * @return True if game window is visible, false otherwise.
+     * @brief Returns true if the game window is visible, false otherwise.
+     * @return True if the game window is visible, false otherwise.
      */
     static bool visible();
 
     /**
      * @file window.hpp
      * @author Zana Domán
-     * @brief Checks if the game window is focused.
-     * @return True if game window is focused, false otherwise.
+     * @brief Returns true if the game window is focused, false otherwise.
+     * @return True if the game window is focused, false otherwise.
      */
     static bool focused();
 };

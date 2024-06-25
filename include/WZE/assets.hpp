@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -94,6 +94,11 @@ enum system_cursor {
     SYSTEM_CURSOR_COUNT = SDL_NUM_SYSTEM_CURSORS
 };
 
+/**
+ * @file assets.hpp
+ * @author Zana Domán
+ * @brief Subsystem to handle external resources.
+ */
 class assets final {
     /**
      * @file assets.hpp

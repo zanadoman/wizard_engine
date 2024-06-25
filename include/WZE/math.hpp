@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -28,7 +28,7 @@ namespace wze {
 /**
  * @file math.hpp
  * @author Zana Domán
- * @brief Common vector math and unit conversion functions.
+ * @brief Subsystem to handle vector math and unit conversions.
  */
 class math final {
     /**

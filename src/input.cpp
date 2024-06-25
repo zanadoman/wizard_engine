@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -26,14 +26,14 @@
 #include "WZE/render.hpp"
 #include "WZE/window.hpp"
 
-std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
+std::array<int8_t, wze::KEY_COUNT> wze::input::_keys = {};
 float_t wze::input::_cursor_absolute_x = 0.f;
 float_t wze::input::_cursor_absolute_y = 0.f;
 float_t wze::input::_cursor_relative_x = 0.f;
 float_t wze::input::_cursor_relative_y = 0.f;
 float_t wze::input::_mouse_sensitivity = 1.f;
 bool wze::input::_cursor_visible = true;
-wze::cursor wze::input::_cursor_appearance = {};
+std::shared_ptr<wze::cursor> wze::input::_cursor_appearance = {};
 
 void wze::input::_update_keys() {
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
@@ -48,32 +48,27 @@ void wze::input::_update_keys() {
     _keys.at(KEY_MOUSE_LMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_LEFT;
     _keys.at(KEY_MOUSE_MMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_MIDDLE;
     _keys.at(KEY_MOUSE_RMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_RIGHT;
-    _keys.at(KEY_MOUSE_MWU) = false;
-    _keys.at(KEY_MOUSE_MWD) = false;
+    _keys.at(KEY_MOUSE_WHEEL) = 0;
 
     for (SDL_Event const& event : engine::__events()) {
         if (event.type == SDL_MOUSEWHEEL) {
-            if (0 < event.wheel.y) {
-                _keys.at(KEY_MOUSE_MWU) = true;
-            } else if (event.wheel.y < 0) {
-                _keys.at(KEY_MOUSE_MWD) = true;
-            }
+            _keys.at(KEY_MOUSE_WHEEL) = event.wheel.y;
             break;
         }
     }
 }
 
 void wze::input::_update_cursor() {
-    static uint16_t max_x = window::width() - 1;
-    static uint16_t max_y = window::height() - 1;
+    static int32_t max_x = window::width() - 1;
+    static int32_t max_y = window::height() - 1;
 
     int32_t x;
     int32_t y;
 
     for (SDL_Event const& event : engine::__events()) {
         if (event.type == SDL_MOUSEMOTION) {
-            _cursor_absolute_x = std::clamp(event.motion.x, 0, (int32_t)max_x);
-            _cursor_absolute_y = std::clamp(event.motion.y, 0, (int32_t)max_y);
+            _cursor_absolute_x = std::clamp(event.motion.x, 0, max_x);
+            _cursor_absolute_y = std::clamp(event.motion.y, 0, max_y);
             break;
         }
     }
@@ -120,14 +115,16 @@ void wze::input::set_cursor_visibility(bool cursor_visibility) {
     _cursor_visible = cursor_visibility;
 }
 
-wze::cursor const& wze::input::cursor_appearance() {
+std::shared_ptr<wze::cursor> const& wze::input::cursor_appearance() {
     return _cursor_appearance;
 }
 
-void wze::input::set_cursor_appearance(wze::cursor const& cursor_appearance) {
-    static cursor fallback = assets::create_cursor(SYSTEM_CURSOR_ARROW);
+void wze::input::set_cursor_appearance(
+    std::shared_ptr<cursor> const& cursor_appearance) {
+    static std::shared_ptr<cursor> fallback =
+        assets::create_cursor(SYSTEM_CURSOR_ARROW);
 
-    _cursor_appearance = cursor_appearance.get() ? cursor_appearance : fallback;
+    _cursor_appearance = cursor_appearance ? cursor_appearance : fallback;
     SDL_SetCursor(_cursor_appearance.get());
 };
 
@@ -141,7 +138,9 @@ void wze::input::__update() {
 }
 
 std::pair<float_t, float_t> wze::input::cursor_spatial_xy(float_t z) {
-    return std::apply(
-        [z](float_t x, float_t y) { return camera::__unproject(x, y, z); },
+    return apply(
+        [z](float_t x, float_t y) -> std::pair<float_t, float_t> {
+            return camera::__unproject(x, y, z);
+        },
         render::__detransform(_cursor_absolute_x, _cursor_absolute_y));
 }
