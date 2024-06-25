@@ -1,14 +1,36 @@
+/**
+ * zlib License
+ *
+ * Copyright (C) 2023-2024 Zana Domán
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
+
 #pragma once
 
-#include <WZE/animation.hpp>  // IWYU pragma: keep
-#include <WZE/assets.hpp>     // IWYU pragma: keep
-#include <WZE/camera.hpp>     // IWYU pragma: keep
-#include <WZE/common.hpp>     // IWYU pragma: keep
-#include <WZE/engine.hpp>     // IWYU pragma: keep
-#include <WZE/input.hpp>      // IWYU pragma: keep
-#include <WZE/math.hpp>       // IWYU pragma: keep
-#include <WZE/render.hpp>     // IWYU pragma: keep
-#include <WZE/renderable.hpp> // IWYU pragma: keep
-#include <WZE/sprite.hpp>     // IWYU pragma: keep
-#include <WZE/timer.hpp>      // IWYU pragma: keep
-#include <WZE/window.hpp>     // IWYU pragma: keep
+#include <WZE/animation.hpp>  // IWYU pragma: export
+#include <WZE/assets.hpp>     // IWYU pragma: export
+#include <WZE/camera.hpp>     // IWYU pragma: export
+#include <WZE/common.hpp>     // IWYU pragma: export
+#include <WZE/engine.hpp>     // IWYU pragma: export
+#include <WZE/input.hpp>      // IWYU pragma: export
+#include <WZE/math.hpp>       // IWYU pragma: export
+#include <WZE/render.hpp>     // IWYU pragma: export
+#include <WZE/renderable.hpp> // IWYU pragma: export
+#include <WZE/sprite.hpp>     // IWYU pragma: export
+#include <WZE/timer.hpp>      // IWYU pragma: export
+#include <WZE/window.hpp>     // IWYU pragma: export

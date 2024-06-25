@@ -19,6 +19,7 @@ namespace wze {
         static void _close_frame();
 
         public:
+        static std::vector<std::unique_ptr<renderable>>& instances();
         static SDL_Renderer* __renderer();
         static float_t origo_x();
         static void set_origo_x(float_t origo_x);

@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -22,8 +22,8 @@
 
 #pragma once
 
-#include "assets.hpp" // IWYU pragma: keep
-#include "common.hpp" // IWYU pragma: keep
+#include <WZE/assets.hpp>
+#include <WZE/common.hpp>
 
 namespace wze {
 /**
@@ -43,61 +43,45 @@ enum flip {
  * @brief Interface to make an object renderable.
  */
 class renderable {
-  private:
-    static std::deque<renderable*> _instances;
     SDL_FRect _screen_area;
-    float _screen_angle;
+    float_t _screen_angle;
 
   public:
     /**
      * @file renderable.hpp
      * @author Zana Domán
-     * @brief Returns all renderable instances.
-     * @return All renderable instances.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
-     */
-    static std::deque<renderable*> const& __instances();
-
-    /**
-     * @file renderable.hpp
-     * @author Zana Domán
      * @brief Returns the screen area of the object.
      * @return Screen area of the object.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
      */
-    SDL_FRect const& __screen_area() const;
+    SDL_FRect const& screen_area() const;
 
+#ifdef WZE_INTERNAL
     /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Sets the screen area of the object.
      * @param screen_area Screen area of the object.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
      */
-    void __set_screen_area(SDL_FRect const& screen_area);
+    void set_screen_area(SDL_FRect const& screen_area);
+#endif
 
     /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the screen angle of the object.
      * @return Screen angle of the object.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
      */
-    float_t __screen_angle() const;
+    float_t screen_angle() const;
 
+#ifdef WZE_INTERNAL
     /**
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Sets the screen angle of the object.
      * @param screen_angle Screen angle of the object.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
      */
-    void __set_screen_angle(float_t screen_angle);
+    void set_screen_angle(float_t screen_angle);
+#endif
 
     /**
      * @file renderable.hpp
@@ -120,7 +104,7 @@ class renderable {
      * @author Zana Domán
      * @brief Returns the z position of the object.
      * @return Z position of the object.
-     * @note Taken into account if the object is spatial, otherwise ignored.
+     * @note Ignored if the object is not spatial.
      */
     virtual float_t z() const = 0;
 
@@ -162,7 +146,7 @@ class renderable {
      * @brief Returns the texture of the object.
      * @return Texture of the object.
      */
-    virtual wze::texture const& texture() const = 0;
+    virtual std::shared_ptr<texture> const& texture() const = 0;
 
     /**
      * @file renderable.hpp
@@ -200,7 +184,7 @@ class renderable {
      * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns whether the object is flipped on one of its axes.
-     * @return Wheter the object is flipped on one of its axes.
+     * @return Whether the object is flipped on one of its axes.
      */
     virtual wze::flip flip() const = 0;
 
@@ -223,15 +207,15 @@ class renderable {
     /**
      * @file renderable.hpp
      * @author Zana Domán
-     * @brief Puts the object into the render queue.
+     * @brief Constructs a renderable instance.
      */
     renderable();
 
     /**
      * @file renderable.hpp
      * @author Zana Domán
-     * @brief Removes the object from the render queue.
+     * @brief Default virtual destructor.
      */
-    virtual ~renderable();
+    virtual ~renderable() = default;
 };
 } // namespace wze

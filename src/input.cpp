@@ -22,9 +22,9 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/input.hpp>
 #include <WZE/camera.hpp>
 #include <WZE/engine.hpp>
+#include <WZE/input.hpp>
 #include <WZE/render.hpp>
 #include <WZE/window.hpp>
 
@@ -52,7 +52,8 @@ void wze::input::update_keys() {
     _keys.at(KEY_MOUSE_RMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_RIGHT;
     _keys.at(KEY_MOUSE_WHEEL) = 0;
 
-    for (SDL_Event const& event : engine::__events()) {
+    for (SDL_Event const& event :
+         std::ranges::reverse_view(engine::__events())) {
         if (event.type == SDL_MOUSEWHEEL) {
             _keys.at(KEY_MOUSE_WHEEL) = event.wheel.y;
             break;
@@ -67,7 +68,8 @@ void wze::input::update_cursor() {
     int32_t x;
     int32_t y;
 
-    for (SDL_Event const& event : engine::__events()) {
+    for (SDL_Event const& event :
+         std::ranges::reverse_view(engine::__events())) {
         if (event.type == SDL_MOUSEMOTION) {
             _cursor_absolute_x = std::clamp(event.motion.x, 0, max_x);
             _cursor_absolute_y = std::clamp(event.motion.y, 0, max_y);

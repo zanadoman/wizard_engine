@@ -4,22 +4,15 @@
 #include "WZE/timer.hpp"
 #include "WZE/window.hpp"
 
-std::deque<SDL_Event> wze::engine::_events;
+std::vector<SDL_Event> wze::engine::_events;
 
 wze::engine::engine() {}
 
-std::deque<SDL_Event> const& wze::engine::__events() {
+std::vector<SDL_Event> const& wze::engine::__events() {
     return _events;
 }
 
 void wze::engine::init(uint16_t width, uint16_t height) {
-    std::atexit([]() {
-        TTF_Quit();
-        Mix_CloseAudio();
-        Mix_Quit();
-        SDL_Quit();
-    });
-
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -54,7 +47,7 @@ bool wze::engine::update() {
         if (event.type == SDL_QUIT) {
             return false;
         }
-        _events.push_front(event);
+        _events.push_back(event);
     }
 
     input::__update();

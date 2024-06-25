@@ -22,8 +22,8 @@
 
 #pragma once
 
-#include <WZE/assets.hpp> // IWYU pragma: keep
-#include <WZE/common.hpp> // IWYU pragma: keep
+#include <WZE/assets.hpp>
+#include <WZE/common.hpp>
 
 namespace wze {
 /**
@@ -40,6 +40,14 @@ class animatable {
      * @param texture Texture of the object.
      */
     virtual void set_texture(std::shared_ptr<texture> const& texture) = 0;
+
+    /**
+     * @file animator.hpp
+     * @author Zana Domán
+     * @brief Returns whether the object should be animated or not.
+     * @return Whether the object should be animated or not.
+     */
+    virtual bool active() const = 0;
 
     /**
      * @file animator.hpp
@@ -64,11 +72,10 @@ class animator final {
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Construct an animator instance.
+     * @brief Constructs an animator instance.
      * @param instances Animated instances.
      * @param frames Frame pool of the animation.
-     * @param frame_time Frame time of the animation.
-     * @return Animator instance.
+     * @param frame_time Frame time of the animation in milliseconds.
      */
     animator(std::vector<std::weak_ptr<animatable>> const& instances,
              std::vector<std::shared_ptr<texture>> const& frames,
@@ -94,16 +101,16 @@ class animator final {
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Returns the frame time of the animation.
-     * @return Frame time of the animation.
+     * @brief Returns the frame time of the animation in milliseconds.
+     * @return Frame time of the animation in milliseconds.
      */
     uint16_t frame_time() const;
 
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Sets the frame time of the animation.
-     * @param frame_time Frame time of the animation.
+     * @brief Sets the frame time of the animation in milliseconds.
+     * @param frame_time Frame time of the animation in milliseconds.
      */
     void set_frame_time(uint16_t frame_time);
 
@@ -129,7 +136,7 @@ class animator final {
      * @brief Returns a new animator instance allocated on the heap.
      * @param instances Animated instances.
      * @param frames Frame pool of the animation.
-     * @param frame_time Frame time of the animation.
+     * @param frame_time Frame time of the animation in milliseconds.
      * @return New animator instance allocated on the heap.
      */
     static std::unique_ptr<animator>

@@ -22,8 +22,8 @@
 
 #pragma once
 
-#include <WZE/assets.hpp> // IWYU pragma: keep
-#include <WZE/common.hpp> // IWYU pragma: keep
+#include <WZE/assets.hpp>
+#include <WZE/common.hpp>
 
 namespace wze {
 /**

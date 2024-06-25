@@ -71,6 +71,7 @@ wze::animator::create(std::vector<std::weak_ptr<animatable>> const& instances,
 bool wze::animator::update() {
     uint64_t elapsed_time;
     bool looped;
+    std::shared_ptr<animatable> locked_instance;
 
     elapsed_time = timer::delta_time() + _remaining_time;
     _current_frame += elapsed_time / _frame_time;
@@ -87,7 +88,10 @@ bool wze::animator::update() {
         if (instance->expired()) {
             _instances.erase(instance);
         } else {
-            instance->lock()->set_texture(_frames.at(_current_frame));
+            locked_instance = instance->lock();
+            if (locked_instance->active()) {
+                locked_instance->set_texture(_frames.at(_current_frame));
+            }
             ++instance;
         }
     }

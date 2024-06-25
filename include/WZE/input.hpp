@@ -22,8 +22,8 @@
 
 #pragma once
 
-#include <WZE/assets.hpp> // IWYU pragma: keep
-#include <WZE/common.hpp> // IWYU pragma: keep
+#include <WZE/assets.hpp>
+#include <WZE/common.hpp>
 
 namespace wze {
 /**
@@ -252,8 +252,8 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Returns true if the cursor is visible, false otherwise.
-     * @return True if the cursor is visible, false otherwise.
+     * @brief Returns the visibility of the cursor.
+     * @return Visibility of the cursor.
      */
     static bool cursor_visible();
 

@@ -20,36 +20,27 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "WZE/renderable.hpp"
+#define WZE_INTERNAL
 
-std::deque<wze::renderable*> wze::renderable::_instances = {};
+#include <WZE/renderable.hpp>
 
-std::deque<wze::renderable*> const& wze::renderable::__instances() {
-    return _instances;
-}
-
-SDL_FRect const& wze::renderable::__screen_area() const {
+SDL_FRect const& wze::renderable::screen_area() const {
     return _screen_area;
 }
 
-void wze::renderable::__set_screen_area(SDL_FRect const& screen_area) {
+void wze::renderable::set_screen_area(SDL_FRect const& screen_area) {
     _screen_area = screen_area;
 }
 
-float_t wze::renderable::__screen_angle() const {
+float_t wze::renderable::screen_angle() const {
     return _screen_angle;
 }
 
-void wze::renderable::__set_screen_angle(float_t screen_angle) {
+void wze::renderable::set_screen_angle(float_t screen_angle) {
     _screen_angle = screen_angle;
 }
 
 wze::renderable::renderable() {
     _screen_area = {0.f, 0.f, 0.f, 0.f};
     _screen_angle = 0.f;
-    _instances.push_back(this);
-}
-
-wze::renderable::~renderable() {
-    _instances.erase(std::ranges::find(_instances, this));
 }

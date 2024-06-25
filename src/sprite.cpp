@@ -1,7 +1,7 @@
 /**
  * zlib License
  *
- * Copyright (C) 2023 Zana Domán
+ * Copyright (C) 2023-2024 Zana Domán
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -20,13 +20,16 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "WZE/sprite.hpp"
+#define WZE_INTERNAL
+
+#include <WZE/sprite.hpp>
 
 wze::sprite::sprite(float_t x, float_t y, float_t z, float_t angle,
                     float_t width, float_t height, bool spatial,
-                    wze::texture const& texture, uint8_t color_r,
-                    uint8_t color_g, uint8_t color_b, uint8_t color_a,
-                    enum flip flip, bool visible, uint8_t priority) {
+                    std::shared_ptr<wze::texture> const& texture,
+                    uint8_t color_r, uint8_t color_g, uint8_t color_b,
+                    uint8_t color_a, enum flip flip, bool visible,
+                    uint8_t priority, bool active) {
     _x = x;
     _y = y;
     _z = z;
@@ -42,6 +45,7 @@ wze::sprite::sprite(float_t x, float_t y, float_t z, float_t angle,
     _flip = flip;
     _visible = visible;
     _priority = priority;
+    _active = active;
 }
 
 float_t wze::sprite::x() const {
@@ -100,11 +104,11 @@ void wze::sprite::set_spatial(bool spatial) {
     _spatial = spatial;
 }
 
-wze::texture const& wze::sprite::texture() const {
+std::shared_ptr<wze::texture> const& wze::sprite::texture() const {
     return _texture;
 }
 
-void wze::sprite::set_texture(wze::texture const& texture) {
+void wze::sprite::set_texture(std::shared_ptr<wze::texture> const& texture) {
     _texture = texture;
 }
 
@@ -164,13 +168,20 @@ void wze::sprite::set_priority(uint8_t priority) {
     _priority = priority;
 }
 
-std::unique_ptr<wze::sprite>
-wze::sprite::create(float_t x, float_t y, float_t z, float_t angle,
-                    float_t width, float_t height, bool spatial,
-                    wze::texture const& texture, uint8_t color_r,
-                    uint8_t color_g, uint8_t color_b, uint8_t color_a,
-                    enum flip flip, bool visible, uint8_t priority) {
+bool wze::sprite::active() const {
+    return _active;
+}
+
+void wze::sprite::set_active(bool active) {
+    _active = active;
+}
+
+std::unique_ptr<wze::sprite> wze::sprite::create(
+    float_t x, float_t y, float_t z, float_t angle, float_t width,
+    float_t height, bool spatial, std::shared_ptr<wze::texture> const& texture,
+    uint8_t color_r, uint8_t color_g, uint8_t color_b, uint8_t color_a,
+    enum flip flip, bool visible, uint8_t priority, bool active) {
     return std::unique_ptr<sprite>(
         new sprite(x, y, z, angle, width, height, spatial, texture, color_r,
-                   color_g, color_b, color_a, flip, visible, priority));
+                   color_g, color_b, color_a, flip, visible, priority, active));
 }
