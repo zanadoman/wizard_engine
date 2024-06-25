@@ -14,7 +14,7 @@
 #include <utility>    // IWYU pragma: keep
 #include <vector>     // IWYU pragma: keep
 
-#include "SDL2/SDL.h"       // IWYU pragma: keep
-#include "SDL2/SDL_image.h" // IWYU pragma: keep
-#include "SDL2/SDL_mixer.h" // IWYU pragma: keep
-#include "SDL2/SDL_ttf.h"   // IWYU pragma: keep
+#include <SDL2/SDL.h>       // IWYU pragma: keep
+#include <SDL2/SDL_image.h> // IWYU pragma: keep
+#include <SDL2/SDL_mixer.h> // IWYU pragma: keep
+#include <SDL2/SDL_ttf.h>   // IWYU pragma: keep

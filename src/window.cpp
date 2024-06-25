@@ -20,7 +20,9 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "WZE/window.hpp"
+#define WZE_INTERNAL
+
+#include <WZE/window.hpp>
 
 SDL_Window* wze::window::_window = nullptr;
 uint16_t wze::window::_width = 0;
@@ -28,7 +30,7 @@ uint16_t wze::window::_height = 0;
 std::string wze::window::_title = {};
 std::shared_ptr<wze::image> wze::window::_icon = {};
 
-SDL_Window* wze::window::__window() {
+SDL_Window* wze::window::base() {
     return _window;
 }
 
@@ -63,7 +65,7 @@ void wze::window::set_icon(std::shared_ptr<image> const& icon) {
     SDL_SetWindowIcon(_window, _icon.get());
 }
 
-void wze::window::__init(uint16_t width, uint16_t height) {
+void wze::window::init(uint16_t width, uint16_t height) {
     atexit([]() -> void { SDL_DestroyWindow(_window); });
 
     _window = SDL_CreateWindow(

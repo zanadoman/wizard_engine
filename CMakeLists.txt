@@ -1,33 +1,27 @@
 # Version
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.29.6)
  
 # Project
 project(WizardEngine)
  
-# Target
-string(FIND "Linux Windows" ${CMAKE_SYSTEM_NAME} TARGET)
-if (${TARGET} EQUAL -1)
-    message(FATAL_ERROR "Unsupported OS, CMake will exit.")
+# Host
+string(FIND "Linux Windows" ${CMAKE_SYSTEM_NAME} HOST)
+if (${HOST} EQUAL -1)
+    message(FATAL_ERROR "Unsupported host, CMake will exit.")
 endif()
  
 # Standard 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
  
+# Headers
+include_directories(${CMAKE_SOURCE_DIR}/include/)
+
 # Sources
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
- 
-# Flags
-set(CMAKE_CXX_FLAGS "-Ofast -Werror -Wall -Wextra -Wpedantic -Wdouble-promotion")
 
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    string(CONCAT CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} " -Wl,-rpath=.")
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    string(CONCAT CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} " -mwindows")
-endif()
-
-# SDL2
+# Libraries
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2-2.0.so.0.3000.3)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_image-2.0.so.0.800.2)
@@ -40,17 +34,28 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/SDL2_ttf.dll)
 endif()
  
-# Libraries
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*.so*)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*.dll)
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*.dll*)
 endif()
 
 file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
+
+# Flags
+file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
+string(REPLACE \n \  FLAGS ${FLAGS})
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    string(CONCAT FLAGS ${FLAGS} " -Wl,-rpath=.")
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    string(CONCAT FLAGS ${FLAGS} " -mwindows")
+endif()
  
+set(CMAKE_CXX_FLAGS ${FLAGS})
+
 # Test
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/test/*.cpp)
 add_executable(test ${SOURCES})
 target_link_libraries(test ${PROJECT_NAME})
-file(COPY ${CMAKE_SOURCE_DIR}/assets ${CMAKE_SOURCE_DIR}/valgrind.sh DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})

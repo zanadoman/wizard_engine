@@ -1,4 +1,5 @@
 -std=gnu++23
+-I./include
 -Ofast
 -Werror
 -Wall

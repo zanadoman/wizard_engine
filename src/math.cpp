@@ -20,7 +20,9 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "WZE/math.hpp"
+#define WZE_INTERNAL
+
+#include <WZE/math.hpp>
 
 float_t wze::math::distance(float_t x, float_t y) {
     return sqrtf(powf(x, 2.f) + powf(y, 2.f));

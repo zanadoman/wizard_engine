@@ -22,8 +22,8 @@
 
 #pragma once
 
-#include "assets.hpp" // IWYU pragma: keep
-#include "common.hpp" // IWYU pragma: keep
+#include <WZE/assets.hpp> // IWYU pragma: keep
+#include <WZE/common.hpp> // IWYU pragma: keep
 
 namespace wze {
 /**
@@ -55,7 +55,6 @@ class animatable {
  * @brief Animates animatable objects.
  */
 class animator final {
-  private:
     std::vector<std::weak_ptr<animatable>> _instances;
     std::vector<std::shared_ptr<texture>> _frames;
     uint16_t _frame_time;

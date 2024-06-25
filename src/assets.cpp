@@ -20,8 +20,10 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "WZE/assets.hpp"
-#include "WZE/render.hpp"
+#define WZE_INTERNAL
+
+#include <WZE/assets.hpp>
+#include <WZE/render.hpp>
 
 std::unique_ptr<wze::image, std::function<void(wze::image*)>>
 wze::assets::load_image(std::string const& path) {

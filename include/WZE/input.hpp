@@ -22,8 +22,8 @@
 
 #pragma once
 
-#include "assets.hpp" // IWYU pragma: keep
-#include "common.hpp" // IWYU pragma: keep
+#include <WZE/assets.hpp> // IWYU pragma: keep
+#include <WZE/common.hpp> // IWYU pragma: keep
 
 namespace wze {
 /**
@@ -172,14 +172,14 @@ class input final {
      * @author Zana Domán
      * @brief Polls for keyboard and mousekey states.
      */
-    static void _update_keys();
+    static void update_keys();
 
     /**
      * @file input.hpp
      * @author Zana Domán
      * @brief Polls for cursor absolute and relative positions.
      */
-    static void _update_cursor();
+    static void update_cursor();
 
     /**
      * @file input.hpp
@@ -284,23 +284,23 @@ class input final {
     static void
     set_cursor_appearance(std::shared_ptr<cursor> const& cursor_appearance);
 
+#ifdef WZE_INTERNAL
     /**
      * @file input.hpp
      * @author Zana Domán
      * @brief Sets the appearance of the cursor to the default.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
      */
-    static void __init();
+    static void init();
+#endif
 
+#ifdef WZE_INTERNAL
     /**
      * @file input.hpp
      * @author Zana Domán
      * @brief Polls for the current state of the keyboard and mouse.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
      */
-    static void __update();
+    static void update();
+#endif
 
     /**
      * @file input.hpp

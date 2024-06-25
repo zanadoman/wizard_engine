@@ -20,8 +20,10 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "WZE/animation.hpp"
-#include "WZE/timer.hpp"
+#define WZE_INTERNAL
+
+#include <WZE/animation.hpp>
+#include <WZE/timer.hpp>
 
 wze::animator::animator(std::vector<std::weak_ptr<animatable>> const& instances,
                         std::vector<std::shared_ptr<texture>> const& frames,

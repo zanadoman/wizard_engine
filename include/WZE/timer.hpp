@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "common.hpp" // IWYU pragma: keep
+#include <WZE/common.hpp> // IWYU pragma: keep
 
 namespace wze {
 /**
@@ -75,15 +75,15 @@ class timer final {
      */
     static void set_delta_time(uint8_t delta_time);
 
+#ifdef WZE_INTERNAL
     /**
      * @file timer.hpp
      * @author Zana Domán
      * @brief Delays the current frame to match the target frame time if needed,
      * then sets the current delta time for the next frame.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
      */
-    static void __update();
+    static void update();
+#endif
 
     /**
      * @file timer.hpp

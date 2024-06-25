@@ -20,7 +20,9 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "WZE/timer.hpp"
+#define WZE_INTERNAL
+
+#include <WZE/timer.hpp>
 
 uint8_t wze::timer::_frame_time = 0;
 uint8_t wze::timer::_delta_time = 0;
@@ -41,7 +43,7 @@ void wze::timer::set_delta_time(uint8_t delta_time) {
     _delta_time = delta_time;
 }
 
-void wze::timer::__update() {
+void wze::timer::update() {
     static uint64_t last = 0;
     uint64_t now;
     uint64_t end;

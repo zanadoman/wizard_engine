@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "common.hpp" // IWYU pragma: keep
+#include <WZE/common.hpp> // IWYU pragma: keep
 
 namespace wze {
 /**

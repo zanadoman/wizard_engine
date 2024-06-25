@@ -22,8 +22,8 @@
 
 #pragma once
 
-#include "assets.hpp" // IWYU pragma: keep
-#include "common.hpp" // IWYU pragma: keep
+#include <WZE/assets.hpp> // IWYU pragma: keep
+#include <WZE/common.hpp> // IWYU pragma: keep
 
 namespace wze {
 /**
@@ -46,15 +46,15 @@ class window final {
     window() = default;
 
   public:
+#ifdef WZE_INTERNAL
     /**
      * @file window.hpp
      * @author Zana Domán
      * @brief Returns the pointer of the game window.
      * @return Pointer of the game window.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
      */
-    static SDL_Window* __window();
+    static SDL_Window* base();
+#endif
 
     /**
      * @file window.hpp
@@ -106,6 +106,7 @@ class window final {
      */
     static void set_icon(std::shared_ptr<image> const& icon);
 
+#ifdef WZE_INTERNAL
     /**
      * @file window.hpp
      * @author Zana Domán
@@ -113,10 +114,9 @@ class window final {
      * @param width Width of the game window.
      * @param height Height of the game window.
      * @warning If game window cannot be opened, throws std::runtime_error.
-     * @warning This method is handled by the engine itself, calling it
-     * explicitly can lead to undefined behavior.
      */
-    static void __init(uint16_t width, uint16_t height);
+    static void init(uint16_t width, uint16_t height);
+#endif
 
     /**
      * @file window.hpp

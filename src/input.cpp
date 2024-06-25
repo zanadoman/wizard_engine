@@ -20,11 +20,13 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "WZE/input.hpp"
-#include "WZE/camera.hpp"
-#include "WZE/engine.hpp"
-#include "WZE/render.hpp"
-#include "WZE/window.hpp"
+#define WZE_INTERNAL
+
+#include <WZE/input.hpp>
+#include <WZE/camera.hpp>
+#include <WZE/engine.hpp>
+#include <WZE/render.hpp>
+#include <WZE/window.hpp>
 
 std::array<int8_t, wze::KEY_COUNT> wze::input::_keys = {};
 float_t wze::input::_cursor_absolute_x = 0.f;
@@ -35,7 +37,7 @@ float_t wze::input::_mouse_sensitivity = 1.f;
 bool wze::input::_cursor_visible = true;
 std::shared_ptr<wze::cursor> wze::input::_cursor_appearance = {};
 
-void wze::input::_update_keys() {
+void wze::input::update_keys() {
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
 
     uint8_t const* keyboard_keys;
@@ -58,7 +60,7 @@ void wze::input::_update_keys() {
     }
 }
 
-void wze::input::_update_cursor() {
+void wze::input::update_cursor() {
     static int32_t max_x = window::width() - 1;
     static int32_t max_y = window::height() - 1;
 
@@ -128,13 +130,13 @@ void wze::input::set_cursor_appearance(
     SDL_SetCursor(_cursor_appearance.get());
 };
 
-void wze::input::__init() {
+void wze::input::init() {
     set_cursor_appearance({});
 }
 
-void wze::input::__update() {
-    _update_keys();
-    _update_cursor();
+void wze::input::update() {
+    update_keys();
+    update_cursor();
 }
 
 std::pair<float_t, float_t> wze::input::cursor_spatial_xy(float_t z) {
