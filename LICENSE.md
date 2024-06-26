@@ -1,5 +1,4 @@
-zlib License
-
+Wizard Engine
 Copyright (C) 2023-2024 Zana Domán
 
 This software is provided 'as-is', without any express or implied

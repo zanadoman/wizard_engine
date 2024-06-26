@@ -23,7 +23,7 @@
 
 #include <wizard_engine/animation.hpp>
 #include <wizard_engine/assets.hpp>
-#include <wizard_engine/common.hpp>
+#include <wizard_engine/export.hpp>
 #include <wizard_engine/renderable.hpp>
 
 namespace wze {

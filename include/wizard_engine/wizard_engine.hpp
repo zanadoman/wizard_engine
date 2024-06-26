@@ -32,8 +32,8 @@
 #include <wizard_engine/animation.hpp>  // IWYU pragma: export
 #include <wizard_engine/assets.hpp>     // IWYU pragma: export
 #include <wizard_engine/camera.hpp>     // IWYU pragma: export
-#include <wizard_engine/common.hpp>     // IWYU pragma: export
 #include <wizard_engine/engine.hpp>     // IWYU pragma: export
+#include <wizard_engine/export.hpp>     // IWYU pragma: export
 #include <wizard_engine/input.hpp>      // IWYU pragma: export
 #include <wizard_engine/math.hpp>       // IWYU pragma: export
 #include <wizard_engine/render.hpp>     // IWYU pragma: export

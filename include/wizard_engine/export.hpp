@@ -21,6 +21,12 @@
 
 #pragma once
 
+/**
+ * @file export.hpp
+ * @author Zana Domán
+ * @brief Export header of the Wizard Engine.
+ */
+
 #include <cmath>   // IWYU pragma: export
 #include <cstddef> // IWYU pragma: export
 #include <cstdint> // IWYU pragma: export

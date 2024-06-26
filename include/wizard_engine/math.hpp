@@ -21,7 +21,7 @@
 
 #pragma once
 
-#include <wizard_engine/common.hpp>
+#include <wizard_engine/export.hpp>
 
 namespace wze {
 /**
