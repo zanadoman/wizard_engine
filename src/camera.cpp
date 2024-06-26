@@ -113,7 +113,6 @@ std::pair<float_t, float_t> wze::camera::unproject(float_t x, float_t y,
     determinant = _rotation_matrix.at(0) * _rotation_matrix.at(3) -
                   _rotation_matrix.at(1) * _rotation_matrix.at(2);
     scale = (z - _z) / _focus;
-
     return {_x + (x * _rotation_matrix.at(3) - y * _rotation_matrix.at(1)) /
                      determinant * scale,
             _y + (y * _rotation_matrix.at(0) - x * _rotation_matrix.at(2)) /

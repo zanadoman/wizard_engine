@@ -43,23 +43,24 @@ void wze::render::open_frame() {
 }
 
 bool wze::render::invisible(renderable const& instance) {
-    return (instance.spatial() && instance.z() <= camera::z()) ||
-           instance.width() == 0.f || instance.height() == 0.f ||
-           !instance.texture() || instance.color_a() == 0 ||
-           !instance.visible();
+    return !instance.visible() ||
+           (instance.spatial() && instance.z() <= camera::z()) ||
+           instance.color_a() == 0 || !instance.texture() ||
+           instance.width() == 0.f || instance.height() == 0.f;
 }
 
 void wze::render::transform(renderable& instance) {
-    SDL_FRect const& area = instance.screen_area();
-    instance.set_screen_area({_origo_x + area.x - area.w / 2.f,
-                              _origo_y + area.y - area.h / 2.f, area.w,
-                              area.h});
+    instance.set_screen_area(
+        {_origo_x + instance.screen_area().x - instance.screen_area().w / 2.f,
+         _origo_y + instance.screen_area().y - instance.screen_area().h / 2.f,
+         instance.screen_area().w, instance.screen_area().h});
 }
 
 bool wze::render::offscreen(renderable const& instance) {
-    SDL_FRect const& area = instance.screen_area();
-    return area.x + area.w < 0.f || window::width() <= area.x ||
-           area.y + area.h < 0.f || window::height() <= area.y;
+    return instance.screen_area().x + instance.screen_area().w < 0.f ||
+           window::width() <= instance.screen_area().x ||
+           instance.screen_area().y + instance.screen_area().h < 0.f ||
+           window::height() <= instance.screen_area().y;
 }
 
 void wze::render::draw(renderable const& instance) {
@@ -125,38 +126,32 @@ void wze::render::init() {
 }
 
 void wze::render::update() {
-    open_frame();
+    std::vector<std::weak_ptr<renderable>>::iterator iterator;
+    std::shared_ptr<renderable> instance;
 
     _space.clear();
     _plane.clear();
 
-    std::ranges::for_each(
-        _instances, [](std::weak_ptr<renderable> const& instance) -> void {
-            std::shared_ptr<renderable> locked_instance;
-
-            if (instance.expired()) {
-                return;
+    for (iterator = _instances.begin(); iterator != _instances.end();) {
+        if ((instance = iterator->lock())) {
+            ++iterator;
+            if (invisible(*instance)) {
+                continue;
             }
-
-            locked_instance = instance.lock();
-
-            if (invisible(*locked_instance)) {
-                return;
+            camera::project(*instance);
+            transform(*instance);
+            if (offscreen(*instance)) {
+                continue;
             }
-
-            camera::project(*locked_instance);
-            transform(*locked_instance);
-
-            if (offscreen(*locked_instance)) {
-                return;
-            }
-
-            if (locked_instance->spatial()) {
-                _space.push_back(locked_instance);
+            if (instance->spatial()) {
+                _space.push_back(instance);
             } else {
-                _plane.push_back(locked_instance);
+                _plane.push_back(instance);
             }
-        });
+        } else {
+            _instances.erase(iterator);
+        }
+    }
 
     std::ranges::sort(
         _space,
@@ -173,6 +168,8 @@ void wze::render::update() {
            std::shared_ptr<renderable const> const& instance2) -> bool {
             return instance1->priority() < instance2->priority();
         });
+
+    open_frame();
 
     std::ranges::for_each(
         _space, [](std::shared_ptr<renderable const> const& instance) -> void {

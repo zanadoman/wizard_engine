@@ -84,9 +84,10 @@ class render final {
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Draws an instance onto the new frame.
+     * @brief Draws a renderable instance onto the new frame.
      * @param instance Renderable instance.
-     * @warning If the instance cannot be drawn, throws std::runtime_error.
+     * @warning If the renderable instance cannot be drawn, throws
+     * std::runtime_error.
      */
     static void draw(renderable const& instance);
 

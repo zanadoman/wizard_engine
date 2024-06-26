@@ -21,6 +21,14 @@
 
 #pragma once
 
+/**
+ * @file WizardEngine.hpp
+ * @author Zana Domán
+ * @brief Interface of the Wizard Engine.
+ */
+
+#undef WZE_INTERNAL
+
 #include <WZE/animation.hpp>  // IWYU pragma: export
 #include <WZE/assets.hpp>     // IWYU pragma: export
 #include <WZE/camera.hpp>     // IWYU pragma: export
@@ -33,3 +41,26 @@
 #include <WZE/sprite.hpp>     // IWYU pragma: export
 #include <WZE/timer.hpp>      // IWYU pragma: export
 #include <WZE/window.hpp>     // IWYU pragma: export
+
+#undef main
+
+/**
+ * @file WizardEngine.hpp
+ * @author Zana Domán
+ * @brief Entry point of the Wizard Engine.
+ */
+#define wizard_main(width, height)                                             \
+    void __wizard_main(int32_t argc, char* argv[]);                            \
+    int32_t main(int32_t argc, char* argv[]) {                                 \
+        wze::engine::init(width, height);                                      \
+        __wizard_main(argc, argv);                                             \
+    }                                                                          \
+    void __wizard_main([[maybe_unused]] int32_t argc,                          \
+                       [[maybe_unused]] char* argv[])
+
+/**
+ * @file WizardEngine.hpp
+ * @author Zana Domán
+ * @brief Game loop of the Wizard Engine.
+ */
+#define wizard_loop while (wze::engine::update())
