@@ -21,7 +21,7 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/math.hpp>
+#include <wizard_engine/math.hpp>
 
 float_t wze::math::distance(float_t x, float_t y) {
     return sqrtf(powf(x, 2.f) + powf(y, 2.f));

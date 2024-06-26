@@ -21,8 +21,8 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/camera.hpp>
-#include <WZE/math.hpp>
+#include <wizard_engine/camera.hpp>
+#include <wizard_engine/math.hpp>
 
 float_t wze::camera::_x = 0.f;
 float_t wze::camera::_y = 0.f;

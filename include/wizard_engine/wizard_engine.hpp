@@ -29,38 +29,35 @@
 
 #undef WZE_INTERNAL
 
-#include <WZE/animation.hpp>  // IWYU pragma: export
-#include <WZE/assets.hpp>     // IWYU pragma: export
-#include <WZE/camera.hpp>     // IWYU pragma: export
-#include <WZE/common.hpp>     // IWYU pragma: export
-#include <WZE/engine.hpp>     // IWYU pragma: export
-#include <WZE/input.hpp>      // IWYU pragma: export
-#include <WZE/math.hpp>       // IWYU pragma: export
-#include <WZE/render.hpp>     // IWYU pragma: export
-#include <WZE/renderable.hpp> // IWYU pragma: export
-#include <WZE/sprite.hpp>     // IWYU pragma: export
-#include <WZE/timer.hpp>      // IWYU pragma: export
-#include <WZE/window.hpp>     // IWYU pragma: export
-
-#undef main
+#include <wizard_engine/animation.hpp>  // IWYU pragma: export
+#include <wizard_engine/assets.hpp>     // IWYU pragma: export
+#include <wizard_engine/camera.hpp>     // IWYU pragma: export
+#include <wizard_engine/common.hpp>     // IWYU pragma: export
+#include <wizard_engine/engine.hpp>     // IWYU pragma: export
+#include <wizard_engine/input.hpp>      // IWYU pragma: export
+#include <wizard_engine/math.hpp>       // IWYU pragma: export
+#include <wizard_engine/render.hpp>     // IWYU pragma: export
+#include <wizard_engine/renderable.hpp> // IWYU pragma: export
+#include <wizard_engine/sprite.hpp>     // IWYU pragma: export
+#include <wizard_engine/timer.hpp>      // IWYU pragma: export
+#include <wizard_engine/window.hpp>     // IWYU pragma: export
 
 /**
  * @file WizardEngine.hpp
  * @author Zana Domán
  * @brief Entry point of the Wizard Engine.
  */
-#define wizard_main(width, height)                                             \
-    void __wizard_main(int32_t argc, char* argv[]);                            \
+#define WZE_MAIN(width, height)                                                \
+    void wze_main(int32_t argc, char* argv[]);                                 \
     int32_t main(int32_t argc, char* argv[]) {                                 \
         wze::engine::init(width, height);                                      \
-        __wizard_main(argc, argv);                                             \
+        wze_main(argc, argv);                                                  \
     }                                                                          \
-    void __wizard_main([[maybe_unused]] int32_t argc,                          \
-                       [[maybe_unused]] char* argv[])
+    void wze_main([[maybe_unused]] int32_t argc, [[maybe_unused]] char* argv[])
 
 /**
  * @file WizardEngine.hpp
  * @author Zana Domán
  * @brief Game loop of the Wizard Engine.
  */
-#define wizard_loop while (wze::engine::update())
+#define WZE_LOOP while (wze::engine::update())

@@ -1,4 +1,4 @@
-#include <WZE/WizardEngine.hpp>
+#include <wizard_engine/wizard_engine.hpp>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -13,7 +13,7 @@ std::ostream& operator<<(std::ostream& ostream,
     return ostream << std::get<0>(pair) << ' ' << std::get<1>(pair);
 }
 
-wizard_main(1920, 1080) {
+WZE_MAIN(1920, 1080) {
     std::unique_ptr<wze::animator> animator;
     std::vector<std::shared_ptr<wze::sprite>> sprites;
 
@@ -41,7 +41,7 @@ wizard_main(1920, 1080) {
         animator->instances().push_back(sprites.back());
     }
 
-    wizard_loop {
+    WZE_LOOP {
         if (wze::input::keys(wze::KEY_W)) {
             wze::camera::set_z(wze::camera::z() +
                                0.5f * wze::timer::delta_time());

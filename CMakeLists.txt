@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.29.6)
  
 # Project
-project(WizardEngine)
+project(wizard_engine)
  
 # Host
 string(FIND "Linux Windows" ${CMAKE_SYSTEM_NAME} HOST)

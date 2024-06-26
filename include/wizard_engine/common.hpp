@@ -41,3 +41,5 @@
 #include <SDL2/SDL_image.h> // IWYU pragma: export
 #include <SDL2/SDL_mixer.h> // IWYU pragma: export
 #include <SDL2/SDL_ttf.h>   // IWYU pragma: export
+
+#undef main

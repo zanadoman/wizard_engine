@@ -21,7 +21,7 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/window.hpp>
+#include <wizard_engine/window.hpp>
 
 SDL_Window* wze::window::_base = nullptr;
 uint16_t wze::window::_width = 0;

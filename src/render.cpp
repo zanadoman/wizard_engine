@@ -21,10 +21,10 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/camera.hpp>
-#include <WZE/math.hpp>
-#include <WZE/render.hpp>
-#include <WZE/window.hpp>
+#include <wizard_engine/camera.hpp>
+#include <wizard_engine/math.hpp>
+#include <wizard_engine/render.hpp>
+#include <wizard_engine/window.hpp>
 
 SDL_Renderer* wze::render::_base = nullptr;
 float_t wze::render::_origo_x = 0.f;

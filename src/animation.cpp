@@ -21,8 +21,8 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/animation.hpp>
-#include <WZE/timer.hpp>
+#include <wizard_engine/animation.hpp>
+#include <wizard_engine/timer.hpp>
 
 wze::animator::animator(std::vector<std::weak_ptr<animatable>> const& instances,
                         std::vector<std::shared_ptr<texture>> const& frames,

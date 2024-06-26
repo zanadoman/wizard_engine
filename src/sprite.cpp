@@ -21,7 +21,7 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/sprite.hpp>
+#include <wizard_engine/sprite.hpp>
 
 wze::sprite::sprite(float_t x, float_t y, float_t z, float_t angle,
                     float_t width, float_t height, bool spatial,

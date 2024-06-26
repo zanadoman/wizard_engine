@@ -21,10 +21,10 @@
 
 #pragma once
 
-#include <WZE/animation.hpp>
-#include <WZE/assets.hpp>
-#include <WZE/common.hpp>
-#include <WZE/renderable.hpp>
+#include <wizard_engine/animation.hpp>
+#include <wizard_engine/assets.hpp>
+#include <wizard_engine/common.hpp>
+#include <wizard_engine/renderable.hpp>
 
 namespace wze {
 /**

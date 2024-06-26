@@ -21,8 +21,8 @@
 
 #pragma once
 
-#include <WZE/assets.hpp>
-#include <WZE/common.hpp>
+#include <wizard_engine/assets.hpp>
+#include <wizard_engine/common.hpp>
 
 namespace wze {
 /**

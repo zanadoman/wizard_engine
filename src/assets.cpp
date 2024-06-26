@@ -21,8 +21,8 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/assets.hpp>
-#include <WZE/render.hpp>
+#include <wizard_engine/assets.hpp>
+#include <wizard_engine/render.hpp>
 
 std::unique_ptr<wze::image, std::function<void(wze::image*)>>
 wze::assets::load_image(std::string const& path) {

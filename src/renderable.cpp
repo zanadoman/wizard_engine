@@ -21,7 +21,7 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/renderable.hpp>
+#include <wizard_engine/renderable.hpp>
 
 SDL_FRect const& wze::renderable::screen_area() const {
     return _screen_area;

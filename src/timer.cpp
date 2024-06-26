@@ -21,7 +21,7 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/timer.hpp>
+#include <wizard_engine/timer.hpp>
 
 uint8_t wze::timer::_frame_time = 0;
 uint8_t wze::timer::_delta_time = 0;

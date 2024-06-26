@@ -21,11 +21,11 @@
 
 #define WZE_INTERNAL
 
-#include <WZE/camera.hpp>
-#include <WZE/engine.hpp>
-#include <WZE/input.hpp>
-#include <WZE/render.hpp>
-#include <WZE/window.hpp>
+#include <wizard_engine/camera.hpp>
+#include <wizard_engine/engine.hpp>
+#include <wizard_engine/input.hpp>
+#include <wizard_engine/render.hpp>
+#include <wizard_engine/window.hpp>
 
 std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
 float_t wze::input::_cursor_absolute_x = 0.f;
