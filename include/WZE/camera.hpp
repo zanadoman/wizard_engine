@@ -131,7 +131,7 @@ class camera final {
      * @file camera.hpp
      * @author Zana Domán, Gunics Roland
      * @brief Transforms and projects a renderable instance.
-     * @param Renderable instance.
+     * @param instance Renderable instance.
      */
     static void project(renderable& instance);
 #endif

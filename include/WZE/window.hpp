@@ -31,7 +31,7 @@ namespace wze {
  * @brief Subsystem to handle game window.
  */
 class window final {
-    static SDL_Window* _window;
+    static SDL_Window* _base;
     static uint16_t _width;
     static uint16_t _height;
     static std::string _title;
@@ -112,7 +112,7 @@ class window final {
      * @brief Opens the game window.
      * @param width Width of the game window.
      * @param height Height of the game window.
-     * @warning If game window cannot be opened, throws std::runtime_error.
+     * @warning If the game window cannot be opened, throws std::runtime_error.
      */
     static void init(uint16_t width, uint16_t height);
 #endif

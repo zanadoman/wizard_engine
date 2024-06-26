@@ -26,42 +26,43 @@
 #include <WZE/render.hpp>
 #include <WZE/window.hpp>
 
-SDL_Renderer* wze::render::_renderer = nullptr;
+SDL_Renderer* wze::render::_base = nullptr;
 float_t wze::render::_origo_x = 0.f;
 float_t wze::render::_origo_y = 0.f;
-std::vector<wze::renderable const*> wze::render::_projectables = {};
-std::vector<wze::renderable const*> wze::render::_inprojectables = {};
+std::vector<std::weak_ptr<wze::renderable>> wze::render::_instances = {};
+std::vector<std::shared_ptr<wze::renderable const>> wze::render::_space = {};
+std::vector<std::shared_ptr<wze::renderable const>> wze::render::_plane = {};
 
-void wze::render::_open_frame() {
-    if (SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255)) {
+void wze::render::open_frame() {
+    if (SDL_SetRenderDrawColor(_base, 0, 0, 0, 255)) {
         throw std::runtime_error(SDL_GetError());
     }
-    if (SDL_RenderClear(_renderer)) {
+    if (SDL_RenderClear(_base)) {
         throw std::runtime_error(SDL_GetError());
     }
 }
 
-bool wze::render::_invisible(renderable const& instance) {
+bool wze::render::invisible(renderable const& instance) {
     return (instance.spatial() && instance.z() <= camera::z()) ||
            instance.width() == 0.f || instance.height() == 0.f ||
-           instance.color_a() == 0 || !instance.visible() ||
-           !instance.texture().get();
+           !instance.texture() || instance.color_a() == 0 ||
+           !instance.visible();
 }
 
-void wze::render::_transform(renderable& instance) {
-    SDL_FRect const& area = instance.__screen_area();
-    instance.__set_screen_area({area.x + _origo_x - area.w / 2.f,
-                                area.y + _origo_y - area.h / 2.f, area.w,
-                                area.h});
+void wze::render::transform(renderable& instance) {
+    SDL_FRect const& area = instance.screen_area();
+    instance.set_screen_area({_origo_x + area.x - area.w / 2.f,
+                              _origo_y + area.y - area.h / 2.f, area.w,
+                              area.h});
 }
 
-bool wze::render::_offscreen(renderable const& instance) {
-    SDL_FRect const& area = instance.__screen_area();
+bool wze::render::offscreen(renderable const& instance) {
+    SDL_FRect const& area = instance.screen_area();
     return area.x + area.w < 0.f || window::width() <= area.x ||
            area.y + area.h < 0.f || window::height() <= area.y;
 }
 
-void wze::render::_render(renderable const& instance) {
+void wze::render::draw(renderable const& instance) {
     if (SDL_SetTextureColorMod(instance.texture().get(), instance.color_r(),
                                instance.color_g(), instance.color_b())) {
         throw std::runtime_error(SDL_GetError());
@@ -69,20 +70,24 @@ void wze::render::_render(renderable const& instance) {
     if (SDL_SetTextureAlphaMod(instance.texture().get(), instance.color_a())) {
         throw std::runtime_error(SDL_GetError());
     }
-    if (SDL_RenderCopyExF(_renderer, instance.texture().get(), nullptr,
-                          &instance.__screen_area(),
-                          (double)math::to_degrees(instance.__screen_angle()),
+    if (SDL_RenderCopyExF(_base, instance.texture().get(), nullptr,
+                          &instance.screen_area(),
+                          (double_t)math::to_degrees(instance.screen_angle()),
                           nullptr, (SDL_RendererFlip)instance.flip())) {
         throw std::runtime_error(SDL_GetError());
     }
 }
 
-void wze::render::_close_frame() {
-    SDL_RenderPresent(_renderer);
+void wze::render::close_frame() {
+    SDL_RenderPresent(_base);
 }
 
-SDL_Renderer* wze::render::__renderer() {
-    return _renderer;
+SDL_Renderer* wze::render::base() {
+    return _base;
+}
+
+std::vector<std::weak_ptr<wze::renderable>>& wze::render::instances() {
+    return _instances;
 }
 
 float_t wze::render::origo_x() {
@@ -101,19 +106,17 @@ void wze::render::set_origo_y(float_t origo_y) {
     _origo_y = origo_y;
 }
 
-void wze::render::__init() {
-    _renderer = SDL_CreateRenderer(window::__window(), -1,
-                                   SDL_RENDERER_ACCELERATED |
-                                       SDL_RENDERER_TARGETTEXTURE);
-    if (!_renderer) {
+void wze::render::init() {
+    _base = SDL_CreateRenderer(window::base(), -1,
+                               SDL_RENDERER_ACCELERATED |
+                                   SDL_RENDERER_TARGETTEXTURE);
+    if (!_base) {
         throw std::runtime_error(SDL_GetError());
     }
-
-    if (SDL_RenderSetLogicalSize(_renderer, window::width(),
-                                 window::height())) {
+    if (SDL_RenderSetLogicalSize(_base, window::width(), window::height())) {
         throw std::runtime_error(SDL_GetError());
     }
-    if (SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND)) {
+    if (SDL_SetRenderDrawBlendMode(_base, SDL_BLENDMODE_BLEND)) {
         throw std::runtime_error(SDL_GetError());
     }
 
@@ -121,56 +124,69 @@ void wze::render::__init() {
     _origo_y = window::height() / 2.f;
 }
 
-void wze::render::__update() {
-    _open_frame();
+void wze::render::update() {
+    open_frame();
 
-    _projectables.clear();
-    _inprojectables.clear();
+    _space.clear();
+    _plane.clear();
 
-    std::ranges::for_each(renderable::__instances(), [](renderable* instance) {
-        if (_invisible(*instance)) {
-            return;
-        }
+    std::ranges::for_each(
+        _instances, [](std::weak_ptr<renderable> const& instance) -> void {
+            std::shared_ptr<renderable> locked_instance;
 
-        camera::__project(*instance);
-        _transform(*instance);
+            if (instance.expired()) {
+                return;
+            }
 
-        if (_offscreen(*instance)) {
-            return;
-        }
+            locked_instance = instance.lock();
 
-        if (instance->spatial()) {
-            _projectables.push_back(instance);
-        } else {
-            _inprojectables.push_back(instance);
-        }
-    });
+            if (invisible(*locked_instance)) {
+                return;
+            }
 
-    std::ranges::sort(_projectables, [](renderable const* projectable1,
-                                        renderable const* projectable2) {
-        if (projectable1->z() != projectable2->z()) {
-            return projectable2->z() < projectable1->z();
-        } else {
-            return projectable1->priority() < projectable2->priority();
-        }
-    });
+            camera::project(*locked_instance);
+            transform(*locked_instance);
 
-    std::ranges::sort(_inprojectables, [](renderable const* inprojectable1,
-                                          renderable const* inprojectable2) {
-        return inprojectable1->priority() < inprojectable2->priority();
-    });
+            if (offscreen(*locked_instance)) {
+                return;
+            }
 
-    std::ranges::for_each(_projectables, [](renderable const* projectable) {
-        _render(*projectable);
-    });
+            if (locked_instance->spatial()) {
+                _space.push_back(locked_instance);
+            } else {
+                _plane.push_back(locked_instance);
+            }
+        });
 
-    std::ranges::for_each(_inprojectables, [](renderable const* inprojectable) {
-        _render(*inprojectable);
-    });
+    std::ranges::sort(
+        _space,
+        [](std::shared_ptr<renderable const> const& instance1,
+           std::shared_ptr<renderable const> const& instance2) -> bool {
+            return instance1->z() != instance2->z()
+                       ? instance2->z() < instance1->z()
+                       : instance1->priority() < instance2->priority();
+        });
 
-    _close_frame();
+    std::ranges::sort(
+        _plane,
+        [](std::shared_ptr<renderable const> const& instance1,
+           std::shared_ptr<renderable const> const& instance2) -> bool {
+            return instance1->priority() < instance2->priority();
+        });
+
+    std::ranges::for_each(
+        _space, [](std::shared_ptr<renderable const> const& instance) -> void {
+            draw(*instance);
+        });
+
+    std::ranges::for_each(
+        _plane, [](std::shared_ptr<renderable const> const& instance) -> void {
+            draw(*instance);
+        });
+
+    close_frame();
 }
 
-std::pair<float_t, float_t> wze::render::__detransform(float_t x, float_t y) {
+std::pair<float_t, float_t> wze::render::detransform(float_t x, float_t y) {
     return {x - _origo_x, y - _origo_y};
 }

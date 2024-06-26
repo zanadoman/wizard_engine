@@ -1,4 +1,4 @@
-#include "WZE/WizardEngine.hpp" // IWYU pragma: keep
+#include "WZE/WizardEngine.hpp"
 
 #undef main
 
@@ -7,37 +7,35 @@ int32_t main() {
 
     wze::timer::set_frame_time(1000 / 60);
 
-    wze::texture texture = wze::assets::create_texture(
+    std::shared_ptr<wze::texture> texture = wze::assets::create_texture(
         wze::assets::load_image("assets/wze/icon.png"));
 
-    std::shared_ptr<wze::sprite> s1 =
+    std::shared_ptr<wze::sprite> sprite1 =
         wze::sprite::create(0.f, 0.f, 250.f, 0.f, 100.f, 100.f, true, texture);
-    std::shared_ptr<wze::sprite> s2 =
+    std::shared_ptr<wze::sprite> sprite2 =
         wze::sprite::create(0.f, 0.f, 500.f, 0.f, 100.f, 100.f, true, texture);
-    std::shared_ptr<wze::sprite> s3 =
+    std::shared_ptr<wze::sprite> sprite3 =
         wze::sprite::create(0.f, 0.f, 750.f, 0.f, 100.f, 100.f, true, texture);
 
-    std::unique_ptr<wze::animator> anim = wze::animator::create(
-        {s2, s1, s3}, {wze::assets::create_texture(
-                   wze::assets::load_image("assets/test/run1.png")),
-               wze::assets::create_texture(
-                   wze::assets::load_image("assets/test/run2.png")),
-               wze::assets::create_texture(
-                   wze::assets::load_image("assets/test/run3.png")),
-               wze::assets::create_texture(
-                   wze::assets::load_image("assets/test/run4.png")),
-               wze::assets::create_texture(
-                   wze::assets::load_image("assets/test/run5.png")),
-               wze::assets::create_texture(
-                   wze::assets::load_image("assets/test/run6.png"))});
+    wze::render::instances().insert(wze::render::instances().end(),
+                                    {sprite1, sprite2, sprite3});
+
+    std::unique_ptr<wze::animator> animator = wze::animator::create(
+        {sprite2, sprite1, sprite3},
+        {wze::assets::create_texture(
+             wze::assets::load_image("assets/test/run1.png")),
+         wze::assets::create_texture(
+             wze::assets::load_image("assets/test/run2.png")),
+         wze::assets::create_texture(
+             wze::assets::load_image("assets/test/run3.png")),
+         wze::assets::create_texture(
+             wze::assets::load_image("assets/test/run4.png")),
+         wze::assets::create_texture(
+             wze::assets::load_image("assets/test/run5.png")),
+         wze::assets::create_texture(
+             wze::assets::load_image("assets/test/run6.png"))});
 
     while (wze::engine::update()) {
-        if (wze::input::keys(wze::KEY_MOUSE_MWU)) {
-            wze::camera::set_angle(wze::camera::angle() + 0.1f);
-        }
-        if (wze::input::keys(wze::KEY_MOUSE_MWD)) {
-            wze::camera::set_angle(wze::camera::angle() - 0.1f);
-        }
         if (wze::input::keys(wze::KEY_W)) {
             wze::camera::set_z(wze::camera::z() + 10.f);
         }
@@ -56,10 +54,14 @@ int32_t main() {
         if (wze::input::keys(wze::KEY_LSHIFT)) {
             wze::camera::set_y(wze::camera::y() + 10.f);
         }
-        // std::cout << wze::input::cursor_x() << '\n';
-        // std::cout << wze::input::cursor_y() << '\n';
+        if (wze::input::keys(wze::KEY_MOUSE_MWU)) {
+            wze::camera::set_angle(wze::camera::angle() + 0.1f);
+        }
+        if (wze::input::keys(wze::KEY_MOUSE_MWD)) {
+            wze::camera::set_angle(wze::camera::angle() - 0.1f);
+        }
 
-        anim->update();
+        animator->update();
     }
 
     return 0;

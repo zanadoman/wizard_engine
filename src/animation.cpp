@@ -86,13 +86,14 @@ bool wze::animator::update() {
          instance != _instances.end();) {
         if (instance->expired()) {
             _instances.erase(instance);
-        } else {
-            locked_instance = instance->lock();
-            if (locked_instance->active()) {
-                locked_instance->set_texture(_frames.at(_current_frame));
-            }
-            ++instance;
+            continue;
         }
+
+        locked_instance = instance->lock();
+        if (locked_instance->active()) {
+            locked_instance->set_texture(_frames.at(_current_frame));
+        }
+        ++instance;
     }
 
     return looped;

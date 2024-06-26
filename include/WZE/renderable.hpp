@@ -145,7 +145,7 @@ class renderable {
      * @brief Returns the texture of the object.
      * @return Texture of the object.
      */
-    virtual std::shared_ptr<texture> const& texture() const = 0;
+    virtual std::shared_ptr<wze::texture> const& texture() const = 0;
 
     /**
      * @file renderable.hpp

@@ -19,17 +19,17 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+#define WZE_INTERNAL
+
 #include "WZE/engine.hpp"
 #include "WZE/input.hpp"
 #include "WZE/render.hpp"
 #include "WZE/timer.hpp"
 #include "WZE/window.hpp"
 
-std::vector<SDL_Event> wze::engine::_events;
+std::vector<SDL_Event> wze::engine::_events = {};
 
-wze::engine::engine() {}
-
-std::vector<SDL_Event> const& wze::engine::__events() {
+std::vector<SDL_Event> const& wze::engine::events() {
     return _events;
 }
 
@@ -52,16 +52,16 @@ void wze::engine::init(uint16_t width, uint16_t height) {
         throw std::runtime_error(TTF_GetError());
     }
 
-    window::__init(width, height);
-    render::__init();
-    input::__init();
+    window::init(width, height);
+    render::init();
+    input::init();
 }
 
 bool wze::engine::update() {
     SDL_Event event;
 
-    render::__update();
-    timer::__update();
+    render::update();
+    timer::update();
 
     _events.clear();
     while (SDL_PollEvent(&event)) {
@@ -71,7 +71,7 @@ bool wze::engine::update() {
         _events.push_back(event);
     }
 
-    input::__update();
+    input::update();
 
     return true;
 }

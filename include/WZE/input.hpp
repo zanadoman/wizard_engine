@@ -146,7 +146,8 @@ enum key {
     KEY_MOUSE_LMB,
     KEY_MOUSE_MMB,
     KEY_MOUSE_RMB,
-    KEY_MOUSE_WHEEL,
+    KEY_MOUSE_MWU,
+    KEY_MOUSE_MWD,
 
     KEY_COUNT
 };
@@ -157,7 +158,7 @@ enum key {
  * @brief Subsystem to handle keyboard and mouse input.
  */
 class input final {
-    static std::array<int8_t, KEY_COUNT> _keys;
+    static std::array<bool, KEY_COUNT> _keys;
     static float_t _cursor_absolute_x;
     static float_t _cursor_absolute_y;
     static float_t _cursor_relative_x;

@@ -25,36 +25,158 @@
 #include <WZE/renderable.hpp>
 
 namespace wze {
+/**
+ * @file render.hpp
+ * @author Zana Domán, Gunics Roland
+ * @brief Subsystem to handle graphics.
+ */
 class render final {
     static SDL_Renderer* _base;
     static float_t _origo_x;
     static float_t _origo_y;
-    static std::vector<renderable const*> _projectables;
-    static std::vector<renderable const*> _inprojectables;
+    static std::vector<std::weak_ptr<renderable>> _instances;
+    static std::vector<std::shared_ptr<renderable const>> _space;
+    static std::vector<std::shared_ptr<renderable const>> _plane;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Private default constructor to prevent instantiation.
+     */
     render() = default;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Opens a new blank frame to render on.
+     * @warning If the frame cannot be opened, throws std::runtime_error.
+     */
     static void open_frame();
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the visibility of a renderable instance.
+     * @param instance Renderable instance.
+     * @return Visibility of the renderable instance.
+     */
     static bool invisible(renderable const& instance);
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán, Gunics Roland
+     * @brief Transforms a renderable instance.
+     * @param instance Renderable instance.
+     */
     static void transform(renderable& instance);
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns whether a renderable instance is inside the bounds of
+     * the screen or not.
+     * @param instance Renderable instance.
+     * @return Whether the renderable instance is inside the bounds of the
+     * screen or not.
+     */
     static bool offscreen(renderable const& instance);
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Draws an instance onto the new frame.
+     * @param instance Renderable instance.
+     * @warning If the instance cannot be drawn, throws std::runtime_error.
+     */
     static void draw(renderable const& instance);
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Presents the complete frame.
+     */
     static void close_frame();
 
   public:
-    static std::vector<std::unique_ptr<renderable>>& instances();
 #ifdef WZE_INTERNAL
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the pointer of the renderer.
+     * @return Pointer of the renderer.
+     */
     static SDL_Renderer* base();
 #endif
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the render queue.
+     * @return Render queue.
+     */
+    static std::vector<std::weak_ptr<renderable>>& instances();
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the origo x of the screen.
+     * @return Origo x of the screen.
+     */
     static float_t origo_x();
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Sets the origo x of the screen.
+     * @param origo_x Origo x of the screen.
+     */
     static void set_origo_x(float_t origo_x);
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the origo y of the sceen.
+     * @return Origo y of the screen.
+     */
     static float_t origo_y();
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Sets the origo y of the screen.
+     * @param origo_y Origo y of the screen.
+     */
     static void set_origo_y(float_t origo_y);
+
 #ifdef WZE_INTERNAL
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Initializes the renderer.
+     * @warning If the renderer cannot be initialized, throws
+     * std::runtime_error.
+     */
     static void init();
 #endif
+
 #ifdef WZE_INTERNAL
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Draws a new frame onto the screen.
+     */
     static void update();
 #endif
+
 #ifdef WZE_INTERNAL
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Detransforms a plane coordinate.
+     * @param x X component of the plane coordinate.
+     * @param y Y component of the plane coordinate.
+     * @return Plane coordinate.
+     */
     static std::pair<float_t, float_t> detransform(float_t x, float_t y);
 #endif
 };

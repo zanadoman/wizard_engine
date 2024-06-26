@@ -23,14 +23,14 @@
 
 #include <WZE/window.hpp>
 
-SDL_Window* wze::window::_window = nullptr;
+SDL_Window* wze::window::_base = nullptr;
 uint16_t wze::window::_width = 0;
 uint16_t wze::window::_height = 0;
 std::string wze::window::_title = {};
 std::shared_ptr<wze::image> wze::window::_icon = {};
 
 SDL_Window* wze::window::base() {
-    return _window;
+    return _base;
 }
 
 uint16_t wze::window::width() {
@@ -49,7 +49,7 @@ void wze::window::set_title(std::string const& title) {
     static std::string fallback = "Wizard Engine";
 
     _title = title.empty() ? fallback : title;
-    SDL_SetWindowTitle(_window, _title.c_str());
+    SDL_SetWindowTitle(_base, _title.c_str());
 }
 
 std::shared_ptr<wze::image> const& wze::window::icon() {
@@ -61,15 +61,15 @@ void wze::window::set_icon(std::shared_ptr<image> const& icon) {
         assets::load_image("./assets/wze/icon.png");
 
     _icon = icon ? icon : fallback;
-    SDL_SetWindowIcon(_window, _icon.get());
+    SDL_SetWindowIcon(_base, _icon.get());
 }
 
 void wze::window::init(uint16_t width, uint16_t height) {
-    _window = SDL_CreateWindow(
+    _base = SDL_CreateWindow(
         "", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height,
         SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
 
-    if (!_window) {
+    if (!_base) {
         throw std::runtime_error(SDL_GetError());
     }
 
@@ -80,9 +80,9 @@ void wze::window::init(uint16_t width, uint16_t height) {
 }
 
 bool wze::window::visible() {
-    return SDL_GetWindowFlags(_window) & SDL_WINDOW_SHOWN;
+    return SDL_GetWindowFlags(_base) & SDL_WINDOW_SHOWN;
 }
 
 bool wze::window::focused() {
-    return SDL_GetWindowFlags(_window) & SDL_WINDOW_INPUT_FOCUS;
+    return SDL_GetWindowFlags(_base) & SDL_WINDOW_INPUT_FOCUS;
 }

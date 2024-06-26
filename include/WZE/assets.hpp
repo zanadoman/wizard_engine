@@ -113,7 +113,7 @@ class assets final {
      * @brief Loads an image from a path.
      * @param path Path to the image.
      * @return Loaded image.
-     * @warning If image cannot be loaded, throws std::runtime_error.
+     * @warning If the image cannot be loaded, throws std::runtime_error.
      */
     static std::unique_ptr<image, std::function<void(image*)>>
     load_image(std::string const& path);
@@ -125,7 +125,7 @@ class assets final {
      * @param text Text of the image.
      * @param font Font of the text.
      * @return Created image.
-     * @warning If image cannot be created, throws std::runtime_error.
+     * @warning If the image cannot be created, throws std::runtime_error.
      */
     static std::unique_ptr<image, std::function<void(image*)>>
     create_image(std::string const& text, std::shared_ptr<font> const& font);
@@ -136,7 +136,7 @@ class assets final {
      * @brief Creates a texture from an image.
      * @param image Image of the texture.
      * @return Created texture.
-     * @warning If texture cannot be created, throws std::runtime_error.
+     * @warning If the texture cannot be created, throws std::runtime_error.
      */
     static std::unique_ptr<texture, std::function<void(texture*)>>
     create_texture(std::shared_ptr<image> const& image);
@@ -147,7 +147,7 @@ class assets final {
      * @brief Loads a sound from a path.
      * @param path Path to the sound.
      * @return Loaded sound.
-     * @warning If sound cannot be loaded, throws std::runtime_error.
+     * @warning If the sound cannot be loaded, throws std::runtime_error.
      */
     static std::unique_ptr<sound, std::function<void(sound*)>>
     load_sound(std::string const& path);
@@ -160,7 +160,7 @@ class assets final {
      * @param size Size of the font.
      * @param font_style Style of the font.
      * @return Loaded font.
-     * @warning If font cannot be loaded, throws std::runtime_error.
+     * @warning If the font cannot be loaded, throws std::runtime_error.
      */
     static std::unique_ptr<font, std::function<void(font*)>>
     load_font(std::string const& path, uint8_t size = 48,
@@ -172,7 +172,7 @@ class assets final {
      * @brief Creates a cursor from a system cursor.
      * @param system_cursor Type of the cursor.
      * @return Created cursor.
-     * @warning If cursor cannot be created, throws std::runtime_error.
+     * @warning If the cursor cannot be created, throws std::runtime_error.
      */
     static std::unique_ptr<cursor, std::function<void(cursor*)>>
     create_cursor(system_cursor system_cursor);
@@ -185,7 +185,7 @@ class assets final {
      * @param hot_x Hot spot x of the cursor.
      * @param hot_y Hot spot y of the cursor.
      * @return Created cursor.
-     * @warning If cursor cannot be created, throws std::runtime_error.
+     * @warning If the cursor cannot be created, throws std::runtime_error.
      */
     static std::unique_ptr<cursor, std::function<void(cursor*)>>
     create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x = 0,

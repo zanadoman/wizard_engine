@@ -27,7 +27,7 @@
 #include <WZE/render.hpp>
 #include <WZE/window.hpp>
 
-std::array<int8_t, wze::KEY_COUNT> wze::input::_keys = {};
+std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
 float_t wze::input::_cursor_absolute_x = 0.f;
 float_t wze::input::_cursor_absolute_y = 0.f;
 float_t wze::input::_cursor_relative_x = 0.f;
@@ -49,12 +49,16 @@ void wze::input::update_keys() {
     _keys.at(KEY_MOUSE_LMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_LEFT;
     _keys.at(KEY_MOUSE_MMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_MIDDLE;
     _keys.at(KEY_MOUSE_RMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_RIGHT;
-    _keys.at(KEY_MOUSE_WHEEL) = 0;
+    _keys.at(KEY_MOUSE_MWU) = false;
+    _keys.at(KEY_MOUSE_MWD) = false;
 
-    for (SDL_Event const& event :
-         std::ranges::reverse_view(engine::__events())) {
+    for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
         if (event.type == SDL_MOUSEWHEEL) {
-            _keys.at(KEY_MOUSE_WHEEL) = event.wheel.y;
+            if (0 < event.wheel.y) {
+                _keys.at(KEY_MOUSE_MWU) = true;
+            } else if (event.wheel.y < 0) {
+                _keys.at(KEY_MOUSE_MWD) = true;
+            }
             break;
         }
     }
@@ -67,8 +71,7 @@ void wze::input::update_cursor() {
     int32_t x;
     int32_t y;
 
-    for (SDL_Event const& event :
-         std::ranges::reverse_view(engine::__events())) {
+    for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
         if (event.type == SDL_MOUSEMOTION) {
             _cursor_absolute_x = std::clamp(event.motion.x, 0, max_x);
             _cursor_absolute_y = std::clamp(event.motion.y, 0, max_y);
