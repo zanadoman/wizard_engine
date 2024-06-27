@@ -47,17 +47,18 @@
  * @author Zana Domán
  * @brief Entry point of the Wizard Engine.
  */
-#define WZE_MAIN(width, height)                                                \
-    void wze_main(int32_t argc, char* argv[]);                                 \
+#define wze_main(width, height)                                                \
+    void __wze_main(int32_t argc, char* argv[]);                               \
     int32_t main(int32_t argc, char* argv[]) {                                 \
         wze::engine::init(width, height);                                      \
-        wze_main(argc, argv);                                                  \
+        __wze_main(argc, argv);                                                \
     }                                                                          \
-    void wze_main([[maybe_unused]] int32_t argc, [[maybe_unused]] char* argv[])
+    void __wze_main([[maybe_unused]] int32_t argc,                             \
+                    [[maybe_unused]] char* argv[])
 
 /**
  * @file WizardEngine.hpp
  * @author Zana Domán
  * @brief Game loop of the Wizard Engine.
  */
-#define WZE_LOOP while (wze::engine::update())
+#define wze_while(condition) while (wze::engine::update() && condition)

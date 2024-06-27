@@ -39,6 +39,13 @@ class engine final {
      */
     engine() = default;
 
+    /**
+     * @file engine.hpp
+     * @author Zana Domán
+     * @brief Displays the intro of the Wizard Engine.
+     */
+    static void intro();
+
   public:
 #ifdef WZE_INTERNAL
     static std::vector<SDL_Event> const& events();

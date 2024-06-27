@@ -21,13 +21,44 @@
 
 #define WZE_INTERNAL
 
+#include <wizard_engine/assets.hpp>
 #include <wizard_engine/engine.hpp>
 #include <wizard_engine/input.hpp>
 #include <wizard_engine/render.hpp>
+#include <wizard_engine/sprite.hpp>
 #include <wizard_engine/timer.hpp>
 #include <wizard_engine/window.hpp>
 
 std::vector<SDL_Event> wze::engine::_events = {};
+
+void wze::engine::intro() {
+    std::shared_ptr<sprite> logo;
+    float_t opacity;
+
+    logo = sprite::create(
+        0.f, 0.f, 0.f, 0.f, window::height() / 2.f, window::height() / 2.f,
+        false,
+        assets::create_texture(assets::load_image("./assets/wze/logo.png")));
+    render::instances().push_back(logo);
+
+    opacity = 0.f;
+    while (opacity <= 255.f) {
+        logo->set_color_a(opacity);
+        if (!update()) {
+            return;
+        }
+        opacity += 0.1f * timer::delta_time();
+    }
+
+    opacity = 255.f;
+    while (0.f <= opacity) {
+        logo->set_color_a(opacity);
+        if (!update()) {
+            return;
+        }
+        opacity -= 0.1f * timer::delta_time();
+    }
+}
 
 std::vector<SDL_Event> const& wze::engine::events() {
     return _events;
@@ -55,6 +86,8 @@ void wze::engine::init(uint16_t width, uint16_t height) {
     window::init(width, height);
     render::init();
     input::init();
+
+    intro();
 }
 
 bool wze::engine::update() {

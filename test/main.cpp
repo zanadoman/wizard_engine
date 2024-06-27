@@ -13,7 +13,7 @@ std::ostream& operator<<(std::ostream& ostream,
     return ostream << std::get<0>(pair) << ' ' << std::get<1>(pair);
 }
 
-WZE_MAIN(1920, 1080) {
+wze_main(1920, 1080) {
     std::unique_ptr<wze::animator> animator;
     std::vector<std::shared_ptr<wze::sprite>> sprites;
 
@@ -41,7 +41,7 @@ WZE_MAIN(1920, 1080) {
         animator->instances().push_back(sprites.back());
     }
 
-    WZE_LOOP {
+    wze_while(true) {
         if (wze::input::keys(wze::KEY_W)) {
             wze::camera::set_z(wze::camera::z() +
                                0.5f * wze::timer::delta_time());
