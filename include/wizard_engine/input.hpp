@@ -413,23 +413,23 @@ class input final {
     static void
     set_cursor_appearance(std::shared_ptr<cursor> const& cursor_appearance);
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file input.hpp
      * @author Zana Domán
      * @brief Sets the appearance of the cursor to the default.
      */
     static void initialize();
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file input.hpp
      * @author Zana Domán
      * @brief Polls for the current state of the keyboard and mouse.
      */
     static void update();
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file input.hpp

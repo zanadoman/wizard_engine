@@ -55,7 +55,7 @@ class renderable {
      */
     SDL_FRect const& screen_area() const;
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file render.hpp
      * @author Zana Domán
@@ -63,7 +63,7 @@ class renderable {
      * @param screen_area Screen area of the object.
      */
     void set_screen_area(SDL_FRect const& screen_area);
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file render.hpp
@@ -73,7 +73,7 @@ class renderable {
      */
     float_t screen_angle() const;
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file render.hpp
      * @author Zana Domán
@@ -81,7 +81,7 @@ class renderable {
      * @param screen_angle Screen angle of the object.
      */
     void set_screen_angle(float_t screen_angle);
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file render.hpp
@@ -293,7 +293,7 @@ class renderer final {
     static void close_frame();
 
   public:
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file render.hpp
      * @author Zana Domán
@@ -301,7 +301,7 @@ class renderer final {
      * @return Pointer of the renderer.
      */
     static SDL_Renderer* base();
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file render.hpp
@@ -343,7 +343,7 @@ class renderer final {
      */
     static void set_origo_y(float_t origo_y);
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file render.hpp
      * @author Zana Domán
@@ -352,18 +352,18 @@ class renderer final {
      * std::runtime_error.
      */
     static void initialize();
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file render.hpp
      * @author Zana Domán
      * @brief Renders the renderable instances and erases expired ones.
      */
     static void update();
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file render.hpp
      * @author Zana Domán
@@ -373,7 +373,7 @@ class renderer final {
      * @return Plane coordinate.
      */
     static std::pair<float_t, float_t> detransform(float_t x, float_t y);
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 };
 } /* namespace wze */
 

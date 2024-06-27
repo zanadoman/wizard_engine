@@ -46,7 +46,7 @@ class window final {
     window() = default;
 
   public:
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file window.hpp
      * @author Zana Domán
@@ -54,7 +54,7 @@ class window final {
      * @return Pointer of the game window.
      */
     static SDL_Window* base();
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file window.hpp
@@ -104,7 +104,7 @@ class window final {
      */
     static void set_icon(std::shared_ptr<image> const& icon);
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file window.hpp
      * @author Zana Domán
@@ -114,7 +114,7 @@ class window final {
      * @warning If the game window cannot be opened, throws std::runtime_error.
      */
     static void initialize(uint16_t width, uint16_t height);
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file window.hpp

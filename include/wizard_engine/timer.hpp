@@ -80,7 +80,7 @@ class timer final {
      */
     static void set_delta_time(uint8_t delta_time);
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file timer.hpp
      * @author Zana Domán
@@ -88,7 +88,7 @@ class timer final {
      * then sets the current delta time for the next frame.
      */
     static void update();
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file timer.hpp

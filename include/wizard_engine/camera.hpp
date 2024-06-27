@@ -127,7 +127,7 @@ class camera final {
      */
     static void set_focus(float_t focus);
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file camera.hpp
      * @author Zana Domán, Gunics Roland
@@ -135,9 +135,9 @@ class camera final {
      * @param instance Renderable instance.
      */
     static void project(renderable& instance);
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
-#ifdef WZE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file camera.hpp
      * @author Zana Domán, Gunics Roland
@@ -149,7 +149,7 @@ class camera final {
      */
     static std::pair<float_t, float_t> unproject(float_t x, float_t y,
                                                  float_t z);
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 };
 } /* namespace wze */
 

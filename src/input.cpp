@@ -19,7 +19,7 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#define WZE_INTERNAL
+#define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/engine.hpp>

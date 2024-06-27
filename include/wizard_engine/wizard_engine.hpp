@@ -28,7 +28,7 @@
  * @brief Interface header of the Wizard Engine.
  */
 
-#undef WZE_INTERNAL
+#undef __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/animation.hpp> /* IWYU pragma: export */
 #include <wizard_engine/assets.hpp>    /* IWYU pragma: export */
