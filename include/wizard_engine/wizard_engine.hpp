@@ -23,9 +23,9 @@
 #define WIZARD_ENGINE_WIZARD_ENGINE_HPP
 
 /**
- * @file WizardEngine.hpp
+ * @file wizard_engine.hpp
  * @author Zana Domán
- * @brief Interface of the Wizard Engine.
+ * @brief Interface header of the Wizard Engine.
  */
 
 #undef WZE_INTERNAL
@@ -43,26 +43,23 @@
 #include <wizard_engine/timer.hpp>      // IWYU pragma: export
 #include <wizard_engine/window.hpp>     // IWYU pragma: export
 
-/**
- * @file WizardEngine.hpp
- * @author Zana Domán
- * @brief Entry point of the Wizard Engine.
- */
 #define wze_main(width, height)                                                \
+    /* @file wizard_engine.hpp           */                                    \
+    /* @author Zana Domán                */                                   \
+    /* @brief Main of the Wizard Engine. */                                    \
     void __wze_main(int32_t argc, char* argv[]);                               \
     int32_t main(int32_t argc, char* argv[]) {                                 \
-        wze::engine::init(width, height);                                      \
+        wze::engine::initialize(width, height);                                \
         __wze_main(argc, argv);                                                \
         return 0;                                                              \
     }                                                                          \
     void __wze_main([[maybe_unused]] int32_t argc,                             \
                     [[maybe_unused]] char* argv[])
 
-/**
- * @file WizardEngine.hpp
- * @author Zana Domán
- * @brief Game loop of the Wizard Engine.
- */
-#define wze_while(condition) while (wze::engine::update() && condition)
+#define wze_while(condition)                                                   \
+    /* @file wizard_engine.hpp                */                               \
+    /* @author Zana Domán                     */                              \
+    /* @brief Game loop of the Wizard Engine. */                               \
+    while (wze::engine::update() && condition)
 
 #endif

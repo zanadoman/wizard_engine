@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_ENGINE_HPP
+#define WIZARD_ENGINE_ENGINE_HPP
 
 #include <wizard_engine/export.hpp>
 
@@ -27,7 +28,7 @@ namespace wze {
 /**
  * @file engine.hpp
  * @author Zana Domán
- * @brief Wizard Engine
+ * @brief Master singleton of the Wizard Engine.
  */
 class engine final {
     static std::vector<SDL_Event> _events;
@@ -42,12 +43,18 @@ class engine final {
     /**
      * @file engine.hpp
      * @author Zana Domán
-     * @brief Displays the intro of the Wizard Engine.
+     * @brief Plays the intro of the engine.
      */
-    static void intro();
+    static void play_intro();
 
   public:
 #ifdef WZE_INTERNAL
+    /**
+     * @file engine.hpp
+     * @author Zana Domán
+     * @brief Returns the events of the engine.
+     * @return Events of the engine.
+     */
     static std::vector<SDL_Event> const& events();
 #endif
 
@@ -57,18 +64,23 @@ class engine final {
      * @brief Initializes the subsystems of the engine.
      * @param width Width of the game window.
      * @param height Height of the game window.
+     * @note This method is automatically called when wze_main is used.
      * @warning This method must be called only once at the beginning of main.
+     * @warning If the engine cannot be initialized, throws std::runtime_error.
      */
-    static void init(uint16_t width, uint16_t height);
+    static void initialize(uint16_t width, uint16_t height);
 
     /**
      * @file engine.hpp
      * @author Zana Domán
-     * @brief Updates the subsystems of the engine and polls for events,
+     * @brief Updates the subsystems of the engine and polls for events, then
      * returns true if the game should continue, false otherwise.
      * @return True if the game should continue, false otherwise.
-     * @warning This method must be used as the only condition of the game loop.
+     * @note This method is automatically called when wze_loop is used.
+     * @warning This method must be called in the condition of the game loop.
      */
     static bool update();
 };
 } // namespace wze
+
+#endif

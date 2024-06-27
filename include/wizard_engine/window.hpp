@@ -113,7 +113,7 @@ class window final {
      * @param height Height of the game window.
      * @warning If the game window cannot be opened, throws std::runtime_error.
      */
-    static void init(uint16_t width, uint16_t height);
+    static void initialize(uint16_t width, uint16_t height);
 #endif
 
     /**

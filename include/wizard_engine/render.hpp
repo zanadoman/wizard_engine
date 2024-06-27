@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_RENDER_HPP
+#define WIZARD_ENGINE_RENDER_HPP
 
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/renderable.hpp>
@@ -157,7 +158,7 @@ class renderer final {
      * @warning If the renderer cannot be initialized, throws
      * std::runtime_error.
      */
-    static void init();
+    static void initialize();
 #endif
 
 #ifdef WZE_INTERNAL
@@ -182,3 +183,5 @@ class renderer final {
 #endif
 };
 } // namespace wze
+
+#endif

@@ -135,7 +135,7 @@ void wze::input::set_cursor_appearance(
     SDL_SetCursor(_cursor_appearance.get());
 };
 
-void wze::input::init() {
+void wze::input::initialize() {
     set_cursor_appearance({});
 }
 

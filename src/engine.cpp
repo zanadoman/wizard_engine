@@ -31,7 +31,7 @@
 
 std::vector<SDL_Event> wze::engine::_events = {};
 
-void wze::engine::intro() {
+void wze::engine::play_intro() {
     std::shared_ptr<sprite> logo;
     float_t opacity;
 
@@ -64,9 +64,12 @@ std::vector<SDL_Event> const& wze::engine::events() {
     return _events;
 }
 
-void wze::engine::init(uint16_t width, uint16_t height) {
+void wze::engine::initialize(uint16_t width, uint16_t height) {
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
+    }
+    if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF | IMG_INIT_WEBP |
+                 IMG_INIT_JXL | IMG_INIT_AVIF)) {
     }
     if (!Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG |
                   MIX_INIT_MID | MIX_INIT_OPUS | MIX_INIT_WAVPACK)) {
@@ -79,11 +82,10 @@ void wze::engine::init(uint16_t width, uint16_t height) {
     if (TTF_Init()) {
         throw std::runtime_error(TTF_GetError());
     }
-
-    window::init(width, height);
-    renderer::init();
-    input::init();
-    intro();
+    window::initialize(width, height);
+    renderer::initialize();
+    input::initialize();
+    play_intro();
 }
 
 bool wze::engine::update() {

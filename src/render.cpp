@@ -107,7 +107,7 @@ void wze::renderer::set_origo_y(float_t origo_y) {
     _origo_y = origo_y;
 }
 
-void wze::renderer::init() {
+void wze::renderer::initialize() {
     _base = SDL_CreateRenderer(window::base(), -1,
                                SDL_RENDERER_ACCELERATED |
                                    SDL_RENDERER_TARGETTEXTURE);

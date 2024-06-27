@@ -64,7 +64,7 @@ void wze::window::set_icon(std::shared_ptr<image> const& icon) {
     SDL_SetWindowIcon(_base, _icon.get());
 }
 
-void wze::window::init(uint16_t width, uint16_t height) {
+void wze::window::initialize(uint16_t width, uint16_t height) {
     if (!(_base = SDL_CreateWindow(
               nullptr, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width,
               height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP))) {

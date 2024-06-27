@@ -429,7 +429,7 @@ class input final {
      * @author Zana Domán
      * @brief Sets the appearance of the cursor to the default.
      */
-    static void init();
+    static void initialize();
 #endif
 
 #ifdef WZE_INTERNAL

@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_CAMERA_HPP
+#define WIZARD_ENGINE_CAMERA_HPP
 
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/renderable.hpp>
@@ -151,3 +152,5 @@ class camera final {
 #endif
 };
 } // namespace wze
+
+#endif
