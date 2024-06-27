@@ -26,6 +26,27 @@
 #include <wizard_engine/render.hpp>
 #include <wizard_engine/window.hpp>
 
+SDL_FRect const& wze::renderable::screen_area() const {
+    return _screen_area;
+}
+
+void wze::renderable::set_screen_area(SDL_FRect const& screen_area) {
+    _screen_area = screen_area;
+}
+
+float_t wze::renderable::screen_angle() const {
+    return _screen_angle;
+}
+
+void wze::renderable::set_screen_angle(float_t screen_angle) {
+    _screen_angle = screen_angle;
+}
+
+wze::renderable::renderable() {
+    _screen_area = {0.f, 0.f, 0.f, 0.f};
+    _screen_angle = 0.f;
+}
+
 SDL_Renderer* wze::renderer::_base = nullptr;
 float_t wze::renderer::_origo_x = 0.f;
 float_t wze::renderer::_origo_y = 0.f;

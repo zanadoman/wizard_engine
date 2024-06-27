@@ -25,7 +25,7 @@
 #include <wizard_engine/animation.hpp>
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/export.hpp>
-#include <wizard_engine/renderable.hpp>
+#include <wizard_engine/render.hpp>
 
 namespace wze {
 /**

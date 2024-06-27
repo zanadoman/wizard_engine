@@ -22,10 +22,203 @@
 #ifndef WIZARD_ENGINE_RENDER_HPP
 #define WIZARD_ENGINE_RENDER_HPP
 
+#include <wizard_engine/assets.hpp>
 #include <wizard_engine/export.hpp>
-#include <wizard_engine/renderable.hpp>
 
 namespace wze {
+/**
+ * @file render.hpp
+ * @author Zana Domán
+ * @brief Flip states.
+ */
+enum flip {
+    FLIP_NONE = SDL_FLIP_NONE,
+    FLIP_HORIZONTAL = SDL_FLIP_HORIZONTAL,
+    FLIP_VERTICAL = SDL_FLIP_VERTICAL
+};
+
+/**
+ * @file render.hpp
+ * @author Zana Domán
+ * @brief Interface to make an object renderable.
+ */
+class renderable {
+    SDL_FRect _screen_area;
+    float_t _screen_angle;
+
+  public:
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the screen area of the object.
+     * @return Screen area of the object.
+     */
+    SDL_FRect const& screen_area() const;
+
+#ifdef WZE_INTERNAL
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Sets the screen area of the object.
+     * @param screen_area Screen area of the object.
+     */
+    void set_screen_area(SDL_FRect const& screen_area);
+#endif
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the screen angle of the object.
+     * @return Screen angle of the object.
+     */
+    float_t screen_angle() const;
+
+#ifdef WZE_INTERNAL
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Sets the screen angle of the object.
+     * @param screen_angle Screen angle of the object.
+     */
+    void set_screen_angle(float_t screen_angle);
+#endif
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the x position of the object.
+     * @return X position of the object.
+     */
+    virtual float_t x() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the y position of the object.
+     * @return Y position of the object.
+     */
+    virtual float_t y() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the z position of the object.
+     * @return Z position of the object.
+     * @note Ignored if the object is not spatial.
+     */
+    virtual float_t z() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the angle of the object.
+     * @return Angle of the object.
+     */
+    virtual float_t angle() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the width of the object.
+     * @return Width of the object.
+     */
+    virtual float_t width() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the height of the object.
+     * @return Height of the object.
+     */
+    virtual float_t height() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns whether the object is spatial or not.
+     * @return Whether the object is spatial or not.
+     */
+    virtual bool spatial() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the texture of the object.
+     * @return Texture of the object.
+     */
+    virtual std::shared_ptr<wze::texture> const& texture() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the red color modifier of the texture.
+     * @return Red color modifier of the texture.
+     */
+    virtual uint8_t color_r() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the green color modifier of the texture.
+     * @return Green color modifier of the texture.
+     */
+    virtual uint8_t color_g() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the blue color modifier of the texture.
+     * @return Blue color modifier of the texture.
+     */
+    virtual uint8_t color_b() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the alpha color modifier of the texture.
+     * @return Alpha color modifier of the texture.
+     */
+    virtual uint8_t color_a() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns whether the object is flipped on one of its axes.
+     * @return Whether the object is flipped on one of its axes.
+     */
+    virtual wze::flip flip() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the visibility of the object.
+     * @brief Visibility of the object.
+     */
+    virtual bool visible() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns the priority of the object in the render queue.
+     * @brief Priority of the object in the render queue.
+     */
+    virtual uint8_t priority() const = 0;
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Constructs a renderable instance.
+     */
+    renderable();
+
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Default virtual destructor.
+     */
+    virtual ~renderable() = default;
+};
+
 /**
  * @file render.hpp
  * @author Zana Domán, Gunics Roland
