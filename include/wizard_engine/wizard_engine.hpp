@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_WIZARD_ENGINE_HPP
+#define WIZARD_ENGINE_WIZARD_ENGINE_HPP
 
 /**
  * @file WizardEngine.hpp
@@ -52,6 +53,7 @@
     int32_t main(int32_t argc, char* argv[]) {                                 \
         wze::engine::init(width, height);                                      \
         __wze_main(argc, argv);                                                \
+        return 0;                                                              \
     }                                                                          \
     void __wze_main([[maybe_unused]] int32_t argc,                             \
                     [[maybe_unused]] char* argv[])
@@ -62,3 +64,5 @@
  * @brief Game loop of the Wizard Engine.
  */
 #define wze_while(condition) while (wze::engine::update() && condition)
+
+#endif

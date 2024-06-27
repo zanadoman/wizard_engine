@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_WINDOW_HPP
+#define WIZARD_ENGINE_WINDOW_HPP
 
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/export.hpp>
@@ -132,3 +133,5 @@ class window final {
     static bool focused();
 };
 } // namespace wze
+
+#endif

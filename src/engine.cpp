@@ -83,7 +83,6 @@ void wze::engine::init(uint16_t width, uint16_t height) {
     window::init(width, height);
     renderer::init();
     input::init();
-
     intro();
 }
 

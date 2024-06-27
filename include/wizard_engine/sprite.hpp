@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_SPRITE_HPP
+#define WIZARD_ENGINE_SPRITE_HPP
 
 #include <wizard_engine/animation.hpp>
 #include <wizard_engine/assets.hpp>
@@ -368,3 +369,5 @@ class sprite final : public renderable, public animatable {
            bool visible = true, uint8_t priority = 128, bool active = true);
 };
 } // namespace wze
+
+#endif

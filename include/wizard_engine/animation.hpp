@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_ANIMATION_HPP
+#define WIZARD_ENGINE_ANIMATION_HPP
 
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/export.hpp>
@@ -146,8 +147,8 @@ class animator final {
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Updates the animation and erases expired instances, then returns
-     * whether the animation is looped or not.
+     * @brief Animates the animated instances and erases expired ones, then
+     * returns whether the animation is looped or not.
      * @return Whether the animation is looped or not.
      */
     bool update();
@@ -160,3 +161,5 @@ class animator final {
     void reset();
 };
 } // namespace wze
+
+#endif

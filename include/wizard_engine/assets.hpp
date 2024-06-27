@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_ASSETS_HPP
+#define WIZARD_ENGINE_ASSETS_HPP
 
 #include <wizard_engine/export.hpp>
 
@@ -192,3 +193,5 @@ class assets final {
                   uint16_t hot_y = 0);
 };
 } // namespace wze
+
+#endif

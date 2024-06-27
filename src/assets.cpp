@@ -89,8 +89,8 @@ wze::assets::load_font(std::string const& path, uint8_t size,
     if (!(font = {TTF_OpenFont(path.c_str(), size), TTF_CloseFont})) {
         throw std::runtime_error(TTF_GetError());
     }
-
     TTF_SetFontStyle(font.get(), style);
+
     return font;
 }
 

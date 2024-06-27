@@ -164,7 +164,7 @@ class renderer final {
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Draws a new frame onto the screen.
+     * @brief Renders the renderable instances and erases expired ones.
      */
     static void update();
 #endif

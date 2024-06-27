@@ -77,8 +77,7 @@ bool wze::animator::update() {
     _current_frame += elapsed_time / _frame_time;
     _remaining_time = elapsed_time % _frame_time;
 
-    looped = _frames.size() <= _current_frame;
-    if (looped) {
+    if ((looped = _frames.size() <= _current_frame)) {
         _current_frame %= _frames.size();
     }
 

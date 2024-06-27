@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_TIMER_HPP
+#define WIZARD_ENGINE_TIMER_HPP
 
 #include <wizard_engine/export.hpp>
 
@@ -46,6 +47,8 @@ class timer final {
      * @author Zana Domán
      * @brief Returns the target frame time in milliseconds.
      * @return Target frame time in milliseconds.
+     * @note You can change the frame rate of the game by manipulating this
+     * value.
      */
     static uint8_t frame_time();
 
@@ -64,6 +67,7 @@ class timer final {
      * @author Zana Domán
      * @brief Returns the current delta time in milliseconds.
      * @return Current delta time in milliseconds.
+     * @note You can change the pace of the game by manipulating this value.
      */
     static uint8_t delta_time();
 
@@ -95,3 +99,5 @@ class timer final {
     static uint64_t current_time();
 };
 } // namespace wze
+
+#endif

@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_RENDERABLE_HPP
+#define WIZARD_ENGINE_RENDERABLE_HPP
 
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/export.hpp>
@@ -218,3 +219,5 @@ class renderable {
     virtual ~renderable() = default;
 };
 } // namespace wze
+
+#endif

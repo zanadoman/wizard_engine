@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_INPUT_HPP
+#define WIZARD_ENGINE_INPUT_HPP
 
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/export.hpp>
@@ -372,6 +373,8 @@ class input final {
      * @author Zana Domán
      * @brief Returns the sensitivity of the mouse.
      * @return Sensitivity of the mouse.
+     * @note Setting this value to 0 locks the cursor's relative position,
+     * setting this value less than 0 inverts the cursor's relative position.
      */
     static float_t mouse_sensitivity();
 
@@ -390,6 +393,7 @@ class input final {
      * @author Zana Domán
      * @brief Returns the visibility of the cursor.
      * @return Visibility of the cursor.
+     * @note Hiding the cursor also captures it into the game window.
      */
     static bool cursor_visible();
 
@@ -447,3 +451,5 @@ class input final {
     static std::pair<float_t, float_t> cursor_spatial(float_t z);
 };
 } // namespace wze
+
+#endif

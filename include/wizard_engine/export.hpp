@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_EXPORT_HPP
+#define WIZARD_ENGINE_EXPORT_HPP
 
 /**
  * @file export.hpp
@@ -43,9 +44,11 @@
 #include <utility>    // IWYU pragma: export
 #include <vector>     // IWYU pragma: export
 
+#define SDL_MAIN_HANDLED
+
 #include <SDL2/SDL.h>       // IWYU pragma: export
 #include <SDL2/SDL_image.h> // IWYU pragma: export
 #include <SDL2/SDL_mixer.h> // IWYU pragma: export
 #include <SDL2/SDL_ttf.h>   // IWYU pragma: export
 
-#undef main
+#endif

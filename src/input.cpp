@@ -51,9 +51,9 @@ void wze::input::update_keys() {
     _keys.at(KEY_MOUSE_RIGHT) = mouse_keys & SDL_BUTTON_RMASK;
     _keys.at(KEY_MOUSE_X1) = mouse_keys & SDL_BUTTON_X1MASK;
     _keys.at(KEY_MOUSE_X2) = mouse_keys & SDL_BUTTON_X2MASK;
+
     _keys.at(KEY_MOUSE_WHEEL_UP) = false;
     _keys.at(KEY_MOUSE_WHEEL_DOWN) = false;
-
     for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
         if (event.type == SDL_MOUSEWHEEL) {
             if (0 < event.wheel.y) {

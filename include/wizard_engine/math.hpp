@@ -19,7 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#pragma once
+#ifndef WIZARD_ENGINE_MATH_HPP
+#define WIZARD_ENGINE_MATH_HPP
 
 #include <wizard_engine/export.hpp>
 
@@ -134,3 +135,5 @@ class math final {
     }
 };
 } // namespace wze
+
+#endif
