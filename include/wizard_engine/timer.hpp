@@ -100,4 +100,4 @@ class timer final {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_TIMER_HPP */

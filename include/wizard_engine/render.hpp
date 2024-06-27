@@ -377,4 +377,4 @@ class renderer final {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_RENDER_HPP */

@@ -370,4 +370,4 @@ class sprite final : public renderable, public animatable {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_SPRITE_HPP */

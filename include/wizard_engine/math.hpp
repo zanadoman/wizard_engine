@@ -136,4 +136,4 @@ class math final {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_MATH_HPP */

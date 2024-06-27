@@ -153,4 +153,4 @@ class camera final {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_CAMERA_HPP */

@@ -44,7 +44,7 @@
 
 #define wze_main(width, height)                                                \
     /* @file wizard_engine.hpp           */                                    \
-    /* @author Zana Domán                */                                    \
+    /* @author Zana Domán                */                                   \
     /* @brief Main of the Wizard Engine. */                                    \
     void __wze_main(int32_t argc, char* argv[]);                               \
     int32_t main(int32_t argc, char* argv[]) {                                 \
@@ -57,8 +57,8 @@
 
 #define wze_while(condition)                                                   \
     /* @file wizard_engine.hpp                */                               \
-    /* @author Zana Domán                     */                               \
+    /* @author Zana Domán                     */                              \
     /* @brief Game loop of the Wizard Engine. */                               \
     while (wze::engine::update() && condition)
 
-#endif
+#endif /* WIZARD_ENGINE_WIZARD_ENGINE_HPP */

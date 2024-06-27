@@ -134,4 +134,4 @@ class window final {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_WINDOW_HPP */

@@ -162,4 +162,4 @@ class animator final {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_ANIMATION_HPP */

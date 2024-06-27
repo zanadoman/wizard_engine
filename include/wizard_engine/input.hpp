@@ -452,4 +452,4 @@ class input final {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_INPUT_HPP */

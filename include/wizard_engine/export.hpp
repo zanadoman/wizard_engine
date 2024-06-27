@@ -51,4 +51,4 @@
 #include <SDL2/SDL_mixer.h> /* IWYU pragma: export */
 #include <SDL2/SDL_ttf.h>   /* IWYU pragma: export */
 
-#endif
+#endif /* WIZARD_ENGINE_EXPORT_HPP */

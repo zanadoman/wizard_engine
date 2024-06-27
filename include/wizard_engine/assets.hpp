@@ -200,4 +200,4 @@ class assets final {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_ASSETS_HPP */

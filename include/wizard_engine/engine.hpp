@@ -83,4 +83,4 @@ class engine final {
 };
 } /* namespace wze */
 
-#endif
+#endif /* WIZARD_ENGINE_ENGINE_HPP */
