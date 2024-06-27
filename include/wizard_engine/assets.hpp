@@ -158,13 +158,13 @@ class assets final {
      * @brief Loads a font from a path.
      * @param path Path to the font.
      * @param size Size of the font.
-     * @param font_style Style of the font.
+     * @param style Style of the font.
      * @return Loaded font.
      * @warning If the font cannot be loaded, throws std::runtime_error.
      */
     static std::unique_ptr<font, std::function<void(font*)>>
     load_font(std::string const& path, uint8_t size = 48,
-              font_style font_style = FONT_STYLE_NORMAL);
+              font_style style = FONT_STYLE_NORMAL);
 
     /**
      * @file assets.hpp

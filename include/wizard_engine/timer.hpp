@@ -54,6 +54,8 @@ class timer final {
      * @author Zana Domán
      * @brief Sets the target frame time in milliseconds.
      * @param frame_time Target frame time in milliseconds.
+     * @note You can change the frame rate of the game by manipulating this
+     * value.
      */
     static void set_frame_time(uint8_t frame_time);
 

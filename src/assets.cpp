@@ -28,8 +28,7 @@ std::unique_ptr<wze::image, std::function<void(wze::image*)>>
 wze::assets::load_image(std::string const& path) {
     std::unique_ptr<image, std::function<void(image*)>> image;
 
-    image = {IMG_Load(path.c_str()), SDL_FreeSurface};
-    if (!image) {
+    if (!(image = {IMG_Load(path.c_str()), SDL_FreeSurface})) {
         throw std::runtime_error(IMG_GetError());
     }
 
@@ -45,10 +44,9 @@ wze::assets::create_image(std::string const& text,
         return nullptr;
     }
 
-    image = {
-        TTF_RenderUTF8_Blended(font.get(), text.c_str(), {255, 255, 255, 255}),
-        SDL_FreeSurface};
-    if (!image) {
+    if (!(image = {TTF_RenderUTF8_Blended(font.get(), text.c_str(),
+                                          {255, 255, 255, 255}),
+                   SDL_FreeSurface})) {
         throw std::runtime_error(TTF_GetError());
     }
 
@@ -63,9 +61,9 @@ wze::assets::create_texture(std::shared_ptr<image> const& image) {
         return nullptr;
     }
 
-    texture = {SDL_CreateTextureFromSurface(render::base(), image.get()),
-               SDL_DestroyTexture};
-    if (!texture) {
+    if (!(texture = {
+              SDL_CreateTextureFromSurface(renderer::base(), image.get()),
+              SDL_DestroyTexture})) {
         throw std::runtime_error(SDL_GetError());
     }
 
@@ -76,8 +74,7 @@ std::unique_ptr<wze::sound, std::function<void(wze::sound*)>>
 wze::assets::load_sound(std::string const& path) {
     std::unique_ptr<sound, std::function<void(sound*)>> sound;
 
-    sound = {Mix_LoadWAV(path.c_str()), Mix_FreeChunk};
-    if (!sound) {
+    if (!(sound = {Mix_LoadWAV(path.c_str()), Mix_FreeChunk})) {
         throw std::runtime_error(Mix_GetError());
     }
 
@@ -86,15 +83,14 @@ wze::assets::load_sound(std::string const& path) {
 
 std::unique_ptr<wze::font, std::function<void(wze::font*)>>
 wze::assets::load_font(std::string const& path, uint8_t size,
-                       font_style font_style) {
+                       font_style style) {
     std::unique_ptr<font, std::function<void(font*)>> font;
 
-    font = {TTF_OpenFont(path.c_str(), size), TTF_CloseFont};
-    if (!font) {
+    if (!(font = {TTF_OpenFont(path.c_str(), size), TTF_CloseFont})) {
         throw std::runtime_error(TTF_GetError());
     }
 
-    TTF_SetFontStyle(font.get(), font_style);
+    TTF_SetFontStyle(font.get(), style);
     return font;
 }
 
@@ -102,9 +98,8 @@ std::unique_ptr<wze::cursor, std::function<void(wze::cursor*)>>
 wze::assets::create_cursor(system_cursor system_cursor) {
     std::unique_ptr<cursor, std::function<void(cursor*)>> cursor;
 
-    cursor = {SDL_CreateSystemCursor((SDL_SystemCursor)system_cursor),
-              SDL_FreeCursor};
-    if (!cursor) {
+    if (!(cursor = {SDL_CreateSystemCursor((SDL_SystemCursor)system_cursor),
+                    SDL_FreeCursor})) {
         throw std::runtime_error(SDL_GetError());
     }
 
@@ -120,8 +115,8 @@ wze::assets::create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x,
         return nullptr;
     }
 
-    cursor = {SDL_CreateColorCursor(image.get(), hot_x, hot_y), SDL_FreeCursor};
-    if (!cursor) {
+    if (!(cursor = {SDL_CreateColorCursor(image.get(), hot_x, hot_y),
+                    SDL_FreeCursor})) {
         throw std::runtime_error(SDL_GetError());
     }
 

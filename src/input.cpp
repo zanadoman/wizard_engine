@@ -46,18 +46,20 @@ void wze::input::update_keys() {
     std::copy(keyboard_keys, keyboard_keys + KEY_COUNT, _keys.data());
 
     mouse_keys = SDL_GetMouseState(nullptr, nullptr);
-    _keys.at(KEY_MOUSE_LMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_LEFT;
-    _keys.at(KEY_MOUSE_MMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_MIDDLE;
-    _keys.at(KEY_MOUSE_RMB) = SDL_BUTTON(mouse_keys) & SDL_BUTTON_RIGHT;
-    _keys.at(KEY_MOUSE_MWU) = false;
-    _keys.at(KEY_MOUSE_MWD) = false;
+    _keys.at(KEY_MOUSE_LEFT) = mouse_keys & SDL_BUTTON_LMASK;
+    _keys.at(KEY_MOUSE_MIDDLE) = mouse_keys & SDL_BUTTON_MMASK;
+    _keys.at(KEY_MOUSE_RIGHT) = mouse_keys & SDL_BUTTON_RMASK;
+    _keys.at(KEY_MOUSE_X1) = mouse_keys & SDL_BUTTON_X1MASK;
+    _keys.at(KEY_MOUSE_X2) = mouse_keys & SDL_BUTTON_X2MASK;
+    _keys.at(KEY_MOUSE_WHEEL_UP) = false;
+    _keys.at(KEY_MOUSE_WHEEL_DOWN) = false;
 
     for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
         if (event.type == SDL_MOUSEWHEEL) {
             if (0 < event.wheel.y) {
-                _keys.at(KEY_MOUSE_MWU) = true;
+                _keys.at(KEY_MOUSE_WHEEL_UP) = true;
             } else if (event.wheel.y < 0) {
-                _keys.at(KEY_MOUSE_MWD) = true;
+                _keys.at(KEY_MOUSE_WHEEL_DOWN) = true;
             }
             break;
         }
@@ -65,16 +67,15 @@ void wze::input::update_keys() {
 }
 
 void wze::input::update_cursor() {
-    static int32_t max_x = window::width() - 1;
-    static int32_t max_y = window::height() - 1;
-
     int32_t x;
     int32_t y;
 
     for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
         if (event.type == SDL_MOUSEMOTION) {
-            _cursor_absolute_x = std::clamp(event.motion.x, 0, max_x);
-            _cursor_absolute_y = std::clamp(event.motion.y, 0, max_y);
+            _cursor_absolute_x =
+                std::clamp(event.motion.x, 0, window::width() - 1);
+            _cursor_absolute_y =
+                std::clamp(event.motion.y, 0, window::height() - 1);
             break;
         }
     }
@@ -84,7 +85,7 @@ void wze::input::update_cursor() {
     _cursor_relative_y = y * _mouse_sensitivity;
 }
 
-bool wze::input::keys(key key) {
+bool wze::input::key(enum key key) {
     return _keys.at(key);
 }
 
@@ -143,10 +144,10 @@ void wze::input::update() {
     update_cursor();
 }
 
-std::pair<float_t, float_t> wze::input::cursor_spatial_xy(float_t z) {
+std::pair<float_t, float_t> wze::input::cursor_spatial(float_t z) {
     return apply(
         [z](float_t x, float_t y) -> std::pair<float_t, float_t> {
             return camera::unproject(x, y, z);
         },
-        render::detransform(_cursor_absolute_x, _cursor_absolute_y));
+        renderer::detransform(_cursor_absolute_x, _cursor_absolute_y));
 }

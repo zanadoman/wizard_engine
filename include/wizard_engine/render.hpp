@@ -30,7 +30,7 @@ namespace wze {
  * @author Zana Domán, Gunics Roland
  * @brief Subsystem to handle graphics.
  */
-class render final {
+class renderer final {
     static SDL_Renderer* _base;
     static float_t _origo_x;
     static float_t _origo_y;
@@ -43,7 +43,7 @@ class render final {
      * @author Zana Domán
      * @brief Private default constructor to prevent instantiation.
      */
-    render() = default;
+    renderer() = default;
 
     /**
      * @file render.hpp

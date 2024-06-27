@@ -1,8 +1,8 @@
-#include <wizard_engine/wizard_engine.hpp>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 #include <ostream>
+#include <wizard_engine/wizard_engine.hpp>
 
 int32_t random(int32_t min, int32_t max) {
     return min + rand() % (max - min);
@@ -37,47 +37,47 @@ wze_main(1920, 1080) {
         sprites.push_back(wze::sprite::create(
             random(-2000, 2000), random(-2000, 2000), random(-2000, 2000),
             random(0, 360), 100, 100, true));
-        wze::render::instances().push_back(sprites.back());
+        wze::renderer::instances().push_back(sprites.back());
         animator->instances().push_back(sprites.back());
     }
 
     wze_while(true) {
-        if (wze::input::keys(wze::KEY_W)) {
+        if (wze::input::key(wze::KEY_W)) {
             wze::camera::set_z(wze::camera::z() +
                                0.5f * wze::timer::delta_time());
         }
-        if (wze::input::keys(wze::KEY_S)) {
+        if (wze::input::key(wze::KEY_S)) {
             wze::camera::set_z(wze::camera::z() -
                                0.5f * wze::timer::delta_time());
         }
-        if (wze::input::keys(wze::KEY_D)) {
+        if (wze::input::key(wze::KEY_D)) {
             wze::camera::set_x(wze::camera::x() +
                                0.5f * wze::timer::delta_time());
         }
-        if (wze::input::keys(wze::KEY_A)) {
+        if (wze::input::key(wze::KEY_A)) {
             wze::camera::set_x(wze::camera::x() -
                                0.5f * wze::timer::delta_time());
         }
-        if (wze::input::keys(wze::KEY_SPACE)) {
+        if (wze::input::key(wze::KEY_SPACE)) {
             wze::camera::set_y(wze::camera::y() -
                                0.5f * wze::timer::delta_time());
         }
-        if (wze::input::keys(wze::KEY_LSHIFT)) {
+        if (wze::input::key(wze::KEY_LSHIFT)) {
             wze::camera::set_y(wze::camera::y() +
                                0.5f * wze::timer::delta_time());
         }
-        if (wze::input::keys(wze::KEY_MOUSE_MWU)) {
+        if (wze::input::key(wze::KEY_MOUSE_RIGHT)) {
             wze::camera::set_angle(wze::camera::angle() +
                                    0.05f * wze::timer::delta_time());
         }
-        if (wze::input::keys(wze::KEY_MOUSE_MWD)) {
+        if (wze::input::key(wze::KEY_MOUSE_LEFT)) {
             wze::camera::set_angle(wze::camera::angle() -
                                    0.05f * wze::timer::delta_time());
         }
 
         animator->update();
 
-        std::cout << wze::input::cursor_spatial_xy(500.f) << std::endl;
+        std::cout << wze::input::cursor_spatial(500.f) << std::endl;
         printf("%u\n", wze::timer::delta_time());
     }
 }

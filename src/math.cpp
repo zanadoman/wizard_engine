@@ -46,16 +46,6 @@ float_t wze::math::move_y(float_t distance, float_t angle) {
     return distance * sinf(angle);
 }
 
-float_t wze::math::rotate_x(float_t x, float_t y,
-                            std::array<float_t, 4> const& rotation_matrix) {
-    return x * rotation_matrix.at(0) + y * rotation_matrix.at(1);
-}
-
-float_t wze::math::rotate_y(float_t x, float_t y,
-                            std::array<float_t, 4> const& rotation_matrix) {
-    return x * rotation_matrix.at(2) + y * rotation_matrix.at(3);
-}
-
 std::array<float_t, 4> wze::math::rotation_matrix(float_t angle) {
     std::array<float_t, 4> rotation_matrix;
 
@@ -65,4 +55,14 @@ std::array<float_t, 4> wze::math::rotation_matrix(float_t angle) {
     rotation_matrix.at(3) = rotation_matrix.at(0);
 
     return rotation_matrix;
+}
+
+float_t wze::math::rotate_x(float_t x, float_t y,
+                            std::array<float_t, 4> const& rotation_matrix) {
+    return x * rotation_matrix.at(0) + y * rotation_matrix.at(1);
+}
+
+float_t wze::math::rotate_y(float_t x, float_t y,
+                            std::array<float_t, 4> const& rotation_matrix) {
+    return x * rotation_matrix.at(2) + y * rotation_matrix.at(3);
 }

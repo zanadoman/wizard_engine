@@ -81,6 +81,15 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán, Gunics Roland
+     * @brief Creates a rotation matrix.
+     * @param angle Angle of the rotation matrix.
+     * @return Created rotation matrix.
+     */
+    static std::array<float_t, 4> rotation_matrix(float_t angle);
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán, Gunics Roland
      * @brief Rotates the x component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -104,20 +113,10 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán, Gunics Roland
-     * @brief Creates a rotation matrix.
-     * @param angle Angle of the rotation matrix.
-     * @return Created rotation matrix.
-     */
-    static std::array<float_t, 4> rotation_matrix(float_t angle);
-
-    /**
-     * @file math.hpp
      * @author Zana Domán
      * @brief Converts degrees to radians.
      * @param degrees Angle in degrees.
      * @return Angle in radians.
-     * @note This function can be evaluated at compile time.
      */
     static constexpr float_t to_radians(float_t degrees) {
         return degrees * std::numbers::pi_v<float_t> / 180.f;
@@ -129,7 +128,6 @@ class math final {
      * @brief Converts radians to degrees.
      * @param radians Angle in radians.
      * @return Angle in degrees.
-     * @note This function can be evaluated at compile time.
      */
     static constexpr float_t to_degrees(float_t radians) {
         return radians * 180.f / std::numbers::pi_v<float_t>;

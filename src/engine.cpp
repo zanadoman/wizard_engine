@@ -39,7 +39,7 @@ void wze::engine::intro() {
         0.f, 0.f, 0.f, 0.f, window::height() / 2.f, window::height() / 2.f,
         false,
         assets::create_texture(assets::load_image("./assets/wze/logo.png")));
-    render::instances().push_back(logo);
+    renderer::instances().push_back(logo);
 
     opacity = 0.f;
     while (opacity <= 255.f) {
@@ -68,23 +68,20 @@ void wze::engine::init(uint16_t width, uint16_t height) {
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
     }
-
     if (!Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG |
                   MIX_INIT_MID | MIX_INIT_OPUS | MIX_INIT_WAVPACK)) {
         throw std::runtime_error(Mix_GetError());
     }
-
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
                       MIX_DEFAULT_CHANNELS, 2048)) {
         throw std::runtime_error(Mix_GetError());
     }
-
     if (TTF_Init()) {
         throw std::runtime_error(TTF_GetError());
     }
 
     window::init(width, height);
-    render::init();
+    renderer::init();
     input::init();
 
     intro();
@@ -93,7 +90,7 @@ void wze::engine::init(uint16_t width, uint16_t height) {
 bool wze::engine::update() {
     SDL_Event event;
 
-    render::update();
+    renderer::update();
     timer::update();
 
     _events.clear();

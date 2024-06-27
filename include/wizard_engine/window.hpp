@@ -84,7 +84,6 @@ class window final {
      * @author Zana Domán
      * @brief Sets the title of the game window.
      * @param title Title of the game window.
-     * @note Empty title defaults to "Wizard Engine".
      */
     static void set_title(std::string const& title);
 
@@ -101,7 +100,6 @@ class window final {
      * @author Zana Domán
      * @brief Sets the icon of the game window.
      * @param icon Icon of the game window.
-     * @note Nullptr icon defaults to "./assets/wze/icon.png".
      */
     static void set_icon(std::shared_ptr<image> const& icon);
 
