@@ -35,10 +35,10 @@ void wze::engine::play_intro() {
     std::shared_ptr<sprite> logo;
     float_t opacity;
 
-    logo = sprite::create(
-        0.f, 0.f, 0.f, 0.f, window::height() / 2.f, window::height() / 2.f,
-        false,
-        assets::create_texture(assets::load_image("./assets/wze/logo.png")));
+    logo = sprite::create(0.f, 0.f, 0.f, 0.f, window::height() / 2.f,
+                          window::height() / 2.f, false,
+                          assets::create_texture(assets::load_image(
+                              "./assets/wizard_engine/logo.png")));
     renderer::instances().push_back(logo);
 
     opacity = 0.f;
