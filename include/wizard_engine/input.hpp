@@ -329,16 +329,6 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Returns true if a keyboard or mousekey is pressed, false
-     * otherwise.
-     * @param key The keyboard or mousekey.
-     * @return True if the keyboard or mousekey is pressed, false otherwise.
-     */
-    static bool key(enum key key);
-
-    /**
-     * @file input.hpp
-     * @author Zana Domán
      * @brief Returns the current absolute x position of the cursor.
      * @return Current absolute x position of the cursor.
      */
@@ -440,6 +430,16 @@ class input final {
      */
     static void update();
 #endif
+
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns true if a keyboard or mousekey is pressed, false
+     * otherwise.
+     * @param key The keyboard or mousekey.
+     * @return True if the keyboard or mousekey is pressed, false otherwise.
+     */
+    static bool key(enum key key);
 
     /**
      * @file input.hpp

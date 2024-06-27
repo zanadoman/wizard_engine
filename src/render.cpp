@@ -57,13 +57,13 @@ void wze::renderer::transform(renderable& instance) {
 }
 
 bool wze::renderer::offscreen(renderable const& instance) {
-    return instance.screen_area().x + instance.screen_area().w < 0.f ||
+    return instance.screen_area().x + instance.screen_area().w < 0 ||
            window::width() <= instance.screen_area().x ||
-           instance.screen_area().y + instance.screen_area().h < 0.f ||
+           instance.screen_area().y + instance.screen_area().h < 0 ||
            window::height() <= instance.screen_area().y;
 }
 
-void wze::renderer::draw(renderable const& instance) {
+void wze::renderer::render(renderable const& instance) {
     if (SDL_SetTextureColorMod(instance.texture().get(), instance.color_r(),
                                instance.color_g(), instance.color_b())) {
         throw std::runtime_error(SDL_GetError());
@@ -108,19 +108,13 @@ void wze::renderer::set_origo_y(float_t origo_y) {
 }
 
 void wze::renderer::initialize() {
-    _base = SDL_CreateRenderer(window::base(), -1,
-                               SDL_RENDERER_ACCELERATED |
-                                   SDL_RENDERER_TARGETTEXTURE);
-    if (!_base) {
+    if (!(_base = SDL_CreateRenderer(window::base(), -1,
+                                     SDL_RENDERER_ACCELERATED))) {
         throw std::runtime_error(SDL_GetError());
     }
     if (SDL_RenderSetLogicalSize(_base, window::width(), window::height())) {
         throw std::runtime_error(SDL_GetError());
     }
-    if (SDL_SetRenderDrawBlendMode(_base, SDL_BLENDMODE_BLEND)) {
-        throw std::runtime_error(SDL_GetError());
-    }
-
     _origo_x = window::width() / 2.f;
     _origo_y = window::height() / 2.f;
 }
@@ -173,12 +167,12 @@ void wze::renderer::update() {
 
     std::ranges::for_each(
         _space, [](std::shared_ptr<renderable const> const& instance) -> void {
-            draw(*instance);
+            render(*instance);
         });
 
     std::ranges::for_each(
         _plane, [](std::shared_ptr<renderable const> const& instance) -> void {
-            draw(*instance);
+            render(*instance);
         });
 
     close_frame();

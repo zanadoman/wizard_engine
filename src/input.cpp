@@ -85,10 +85,6 @@ void wze::input::update_cursor() {
     _cursor_relative_y = y * _mouse_sensitivity;
 }
 
-bool wze::input::key(enum key key) {
-    return _keys.at(key);
-}
-
 float_t wze::input::cursor_absolute_x() {
     return _cursor_absolute_x;
 }
@@ -118,8 +114,8 @@ bool wze::input::cursor_visible() {
 }
 
 void wze::input::set_cursor_visibility(bool cursor_visibility) {
-    SDL_SetRelativeMouseMode(cursor_visibility ? SDL_FALSE : SDL_TRUE);
     _cursor_visible = cursor_visibility;
+    SDL_SetRelativeMouseMode(_cursor_visible ? SDL_FALSE : SDL_TRUE);
 }
 
 std::shared_ptr<wze::cursor> const& wze::input::cursor_appearance() {
@@ -142,6 +138,10 @@ void wze::input::initialize() {
 void wze::input::update() {
     update_keys();
     update_cursor();
+}
+
+bool wze::input::key(enum key key) {
+    return _keys.at(key);
 }
 
 std::pair<float_t, float_t> wze::input::cursor_spatial(float_t z) {

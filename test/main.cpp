@@ -17,8 +17,6 @@ wze_main(1920, 1080) {
     std::unique_ptr<wze::animator> animator;
     std::vector<std::shared_ptr<wze::sprite>> sprites;
 
-    srand(time(nullptr));
-
     animator = wze::animator::create(
         {}, {wze::assets::create_texture(
                  wze::assets::load_image("assets/test/run1.png")),
@@ -33,6 +31,7 @@ wze_main(1920, 1080) {
              wze::assets::create_texture(
                  wze::assets::load_image("assets/test/run6.png"))});
 
+    srand(time(nullptr));
     for (size_t i = 0; i < 10000; ++i) {
         sprites.push_back(wze::sprite::create(
             random(-2000, 2000), random(-2000, 2000), random(-2000, 2000),
@@ -68,11 +67,11 @@ wze_main(1920, 1080) {
         }
         if (wze::input::key(wze::KEY_MOUSE_RIGHT)) {
             wze::camera::set_angle(wze::camera::angle() +
-                                   0.05f * wze::timer::delta_time());
+                                   0.001f * wze::timer::delta_time());
         }
         if (wze::input::key(wze::KEY_MOUSE_LEFT)) {
             wze::camera::set_angle(wze::camera::angle() -
-                                   0.05f * wze::timer::delta_time());
+                                   0.001f * wze::timer::delta_time());
         }
 
         animator->update();

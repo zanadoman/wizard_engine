@@ -49,7 +49,7 @@ class renderer final {
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Opens a new blank frame to render on.
+     * @brief Opens a new frame to render on.
      * @warning If the frame cannot be opened, throws std::runtime_error.
      */
     static void open_frame();
@@ -85,17 +85,17 @@ class renderer final {
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Draws a renderable instance onto the new frame.
+     * @brief Renders a renderable instance onto the new frame.
      * @param instance Renderable instance.
-     * @warning If the renderable instance cannot be drawn, throws
+     * @warning If the renderable instance cannot be rendered, throws
      * std::runtime_error.
      */
-    static void draw(renderable const& instance);
+    static void render(renderable const& instance);
 
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Presents the complete frame.
+     * @brief Presents the new frame.
      */
     static void close_frame();
 
@@ -113,8 +113,8 @@ class renderer final {
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Returns the render queue.
-     * @return Render queue.
+     * @brief Returns the rendered instances.
+     * @return Rendered instances.
      */
     static std::vector<std::weak_ptr<renderable>>& instances();
 
