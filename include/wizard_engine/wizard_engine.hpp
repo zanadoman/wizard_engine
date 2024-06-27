@@ -30,21 +30,21 @@
 
 #undef WZE_INTERNAL
 
-#include <wizard_engine/animation.hpp> // IWYU pragma: export
-#include <wizard_engine/assets.hpp>    // IWYU pragma: export
-#include <wizard_engine/camera.hpp>    // IWYU pragma: export
-#include <wizard_engine/engine.hpp>    // IWYU pragma: export
-#include <wizard_engine/export.hpp>    // IWYU pragma: export
-#include <wizard_engine/input.hpp>     // IWYU pragma: export
-#include <wizard_engine/math.hpp>      // IWYU pragma: export
-#include <wizard_engine/render.hpp>    // IWYU pragma: export
-#include <wizard_engine/sprite.hpp>    // IWYU pragma: export
-#include <wizard_engine/timer.hpp>     // IWYU pragma: export
-#include <wizard_engine/window.hpp>    // IWYU pragma: export
+#include <wizard_engine/animation.hpp> /* IWYU pragma: export */
+#include <wizard_engine/assets.hpp>    /* IWYU pragma: export */
+#include <wizard_engine/camera.hpp>    /* IWYU pragma: export */
+#include <wizard_engine/engine.hpp>    /* IWYU pragma: export */
+#include <wizard_engine/export.hpp>    /* IWYU pragma: export */
+#include <wizard_engine/input.hpp>     /* IWYU pragma: export */
+#include <wizard_engine/math.hpp>      /* IWYU pragma: export */
+#include <wizard_engine/render.hpp>    /* IWYU pragma: export */
+#include <wizard_engine/sprite.hpp>    /* IWYU pragma: export */
+#include <wizard_engine/timer.hpp>     /* IWYU pragma: export */
+#include <wizard_engine/window.hpp>    /* IWYU pragma: export */
 
 #define wze_main(width, height)                                                \
     /* @file wizard_engine.hpp           */                                    \
-    /* @author Zana Domán                */                                   \
+    /* @author Zana Domán                */                                    \
     /* @brief Main of the Wizard Engine. */                                    \
     void __wze_main(int32_t argc, char* argv[]);                               \
     int32_t main(int32_t argc, char* argv[]) {                                 \
@@ -57,7 +57,7 @@
 
 #define wze_while(condition)                                                   \
     /* @file wizard_engine.hpp                */                               \
-    /* @author Zana Domán                     */                              \
+    /* @author Zana Domán                     */                               \
     /* @brief Game loop of the Wizard Engine. */                               \
     while (wze::engine::update() && condition)
 

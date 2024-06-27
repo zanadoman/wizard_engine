@@ -368,6 +368,6 @@ class sprite final : public renderable, public animatable {
            uint8_t color_a = 255, enum flip flip = FLIP_NONE,
            bool visible = true, uint8_t priority = 128, bool active = true);
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif

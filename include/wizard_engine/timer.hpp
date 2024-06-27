@@ -98,6 +98,6 @@ class timer final {
      */
     static uint64_t current_time();
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif

@@ -375,6 +375,6 @@ class renderer final {
     static std::pair<float_t, float_t> detransform(float_t x, float_t y);
 #endif
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif

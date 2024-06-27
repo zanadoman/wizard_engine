@@ -134,6 +134,6 @@ class math final {
         return radians * 180.f / std::numbers::pi_v<float_t>;
     }
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif

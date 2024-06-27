@@ -81,6 +81,6 @@ class engine final {
      */
     static bool update();
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif

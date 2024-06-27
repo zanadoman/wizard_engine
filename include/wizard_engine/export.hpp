@@ -28,27 +28,27 @@
  * @brief Export header of the Wizard Engine.
  */
 
-#include <cmath>   // IWYU pragma: export
-#include <cstddef> // IWYU pragma: export
-#include <cstdint> // IWYU pragma: export
+#include <cmath>   /* IWYU pragma: export */
+#include <cstddef> /* IWYU pragma: export */
+#include <cstdint> /* IWYU pragma: export */
 
-#include <algorithm>  // IWYU pragma: export
-#include <array>      // IWYU pragma: export
-#include <functional> // IWYU pragma: export
-#include <memory>     // IWYU pragma: export
-#include <numbers>    // IWYU pragma: export
-#include <ranges>     // IWYU pragma: export
-#include <stdexcept>  // IWYU pragma: export
-#include <string>     // IWYU pragma: export
-#include <tuple>      // IWYU pragma: export
-#include <utility>    // IWYU pragma: export
-#include <vector>     // IWYU pragma: export
+#include <algorithm>  /* IWYU pragma: export */
+#include <array>      /* IWYU pragma: export */
+#include <functional> /* IWYU pragma: export */
+#include <memory>     /* IWYU pragma: export */
+#include <numbers>    /* IWYU pragma: export */
+#include <ranges>     /* IWYU pragma: export */
+#include <stdexcept>  /* IWYU pragma: export */
+#include <string>     /* IWYU pragma: export */
+#include <tuple>      /* IWYU pragma: export */
+#include <utility>    /* IWYU pragma: export */
+#include <vector>     /* IWYU pragma: export */
 
 #define SDL_MAIN_HANDLED
 
-#include <SDL2/SDL.h>       // IWYU pragma: export
-#include <SDL2/SDL_image.h> // IWYU pragma: export
-#include <SDL2/SDL_mixer.h> // IWYU pragma: export
-#include <SDL2/SDL_ttf.h>   // IWYU pragma: export
+#include <SDL2/SDL.h>       /* IWYU pragma: export */
+#include <SDL2/SDL_image.h> /* IWYU pragma: export */
+#include <SDL2/SDL_mixer.h> /* IWYU pragma: export */
+#include <SDL2/SDL_ttf.h>   /* IWYU pragma: export */
 
 #endif

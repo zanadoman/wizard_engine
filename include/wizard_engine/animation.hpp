@@ -160,6 +160,6 @@ class animator final {
      */
     void reset();
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif

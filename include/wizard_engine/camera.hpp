@@ -151,6 +151,6 @@ class camera final {
                                                  float_t z);
 #endif
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif

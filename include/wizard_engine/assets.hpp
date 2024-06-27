@@ -198,6 +198,6 @@ class assets final {
     create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x = 0,
                   uint16_t hot_y = 0);
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif

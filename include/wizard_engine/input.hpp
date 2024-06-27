@@ -450,6 +450,6 @@ class input final {
      */
     static std::pair<float_t, float_t> cursor_spatial(float_t z);
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif

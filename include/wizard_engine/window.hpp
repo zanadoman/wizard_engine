@@ -132,6 +132,6 @@ class window final {
      */
     static bool focused();
 };
-} // namespace wze
+} /* namespace wze */
 
 #endif
