@@ -18,7 +18,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 include_directories(${CMAKE_SOURCE_DIR}/include/)
 
 # Sources
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 # Libraries
@@ -47,7 +47,7 @@ file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
 string(REPLACE \n \  FLAGS ${FLAGS})
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    string(CONCAT FLAGS ${FLAGS} " -Wl,-rpath=.")
+    string(CONCAT FLAGS ${FLAGS} " -Wl,-rpath=./")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     string(CONCAT FLAGS ${FLAGS} " -mwindows")
 endif()
@@ -55,7 +55,9 @@ endif()
 set(CMAKE_CXX_FLAGS ${FLAGS})
 
 # Test
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/test/*.cpp)
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/test/*)
 add_executable(test ${SOURCES})
 target_link_libraries(test ${PROJECT_NAME})
+
+# Assets
 file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
