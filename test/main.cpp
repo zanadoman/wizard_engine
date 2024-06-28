@@ -15,8 +15,8 @@ wze_main(1920, 1080) {
                             wze::assets::create_texture(wze::assets::load_image(
                                 "./assets/test/run1.png")));
 
-    wze::renderer::instances().push_back(wizard);
-    wze::renderer::instances().push_back(cat);
+    wze::renderer::queue().push_back(wizard);
+    wze::renderer::queue().push_back(cat);
 
     entity = wze::entity::create(0.f, 0.f, 0.f, {wizard, cat});
 

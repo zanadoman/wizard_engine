@@ -39,7 +39,7 @@ void wze::engine::play_intro() {
                           window::height() / 2.f, false,
                           assets::create_texture(assets::load_image(
                               "./assets/wizard_engine/logo.png")));
-    renderer::instances().push_back(logo);
+    renderer::queue().push_back(logo);
 
     opacity = 0.f;
     while (opacity <= 255.f) {

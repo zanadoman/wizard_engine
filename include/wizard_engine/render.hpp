@@ -228,7 +228,7 @@ class renderer final {
     static SDL_Renderer* _base;
     static float_t _origo_x;
     static float_t _origo_y;
-    static std::vector<std::weak_ptr<renderable>> _instances;
+    static std::vector<std::weak_ptr<renderable>> _queue;
     static std::vector<std::shared_ptr<renderable const>> _space;
     static std::vector<std::shared_ptr<renderable const>> _plane;
 
@@ -306,10 +306,10 @@ class renderer final {
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Returns the rendered instances.
-     * @return Rendered instances.
+     * @brief Returns the queue of the renderer.
+     * @return Queue of the renderer.
      */
-    static std::vector<std::weak_ptr<renderable>>& instances();
+    static std::vector<std::weak_ptr<renderable>>& queue();
 
     /**
      * @file render.hpp

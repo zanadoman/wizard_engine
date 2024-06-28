@@ -50,7 +50,7 @@ wze::renderable::renderable() {
 SDL_Renderer* wze::renderer::_base = nullptr;
 float_t wze::renderer::_origo_x = 0.f;
 float_t wze::renderer::_origo_y = 0.f;
-std::vector<std::weak_ptr<wze::renderable>> wze::renderer::_instances = {};
+std::vector<std::weak_ptr<wze::renderable>> wze::renderer::_queue = {};
 std::vector<std::shared_ptr<wze::renderable const>> wze::renderer::_space = {};
 std::vector<std::shared_ptr<wze::renderable const>> wze::renderer::_plane = {};
 
@@ -108,8 +108,8 @@ SDL_Renderer* wze::renderer::base() {
     return _base;
 }
 
-std::vector<std::weak_ptr<wze::renderable>>& wze::renderer::instances() {
-    return _instances;
+std::vector<std::weak_ptr<wze::renderable>>& wze::renderer::queue() {
+    return _queue;
 }
 
 float_t wze::renderer::origo_x() {
@@ -147,7 +147,7 @@ void wze::renderer::update() {
     _space.clear();
     _plane.clear();
 
-    for (iterator = _instances.begin(); iterator != _instances.end();) {
+    for (iterator = _queue.begin(); iterator != _queue.end();) {
         if ((instance = iterator->lock())) {
             ++iterator;
             if (invisible(*instance)) {
@@ -164,7 +164,7 @@ void wze::renderer::update() {
                 _plane.push_back(instance);
             }
         } else {
-            _instances.erase(iterator);
+            _queue.erase(iterator);
         }
     }
 
