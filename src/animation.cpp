@@ -24,18 +24,14 @@
 #include <wizard_engine/animation.hpp>
 #include <wizard_engine/timer.hpp>
 
-wze::animator::animator(std::vector<std::weak_ptr<animatable>> const& instances,
-                        std::vector<std::shared_ptr<texture>> const& frames,
-                        uint16_t frame_time) {
-    _instances = instances;
+wze::animator::animator(std::vector<std::shared_ptr<texture>> const& frames,
+                        uint16_t frame_time,
+                        std::vector<std::weak_ptr<animatable>> const& targets) {
     _frames = frames;
     _frame_time = frame_time;
     _current_frame = 0;
     _remaining_time = 0;
-}
-
-std::vector<std::weak_ptr<wze::animatable>>& wze::animator::instances() {
-    return _instances;
+    _targets = targets;
 }
 
 std::vector<std::shared_ptr<wze::texture>> const&
@@ -59,12 +55,15 @@ void wze::animator::set_current_frame(size_t current_frame) {
     _current_frame = current_frame;
 }
 
+std::vector<std::weak_ptr<wze::animatable>>& wze::animator::targets() {
+    return _targets;
+}
+
 std::unique_ptr<wze::animator>
-wze::animator::create(std::vector<std::weak_ptr<animatable>> const& instances,
-                      std::vector<std::shared_ptr<texture>> const& frames,
-                      uint16_t frame_time) {
-    return std::unique_ptr<animator>(
-        new animator(instances, frames, frame_time));
+wze::animator::create(std::vector<std::shared_ptr<texture>> const& frames,
+                      uint16_t frame_time,
+                      std::vector<std::weak_ptr<animatable>> const& targets) {
+    return std::unique_ptr<animator>(new animator(frames, frame_time, targets));
 }
 
 bool wze::animator::update() {
@@ -85,14 +84,14 @@ bool wze::animator::update() {
         _current_frame %= _frames.size();
     }
 
-    for (iterator = _instances.begin(); iterator != _instances.end();) {
+    for (iterator = _targets.begin(); iterator != _targets.end();) {
         if ((instance = iterator->lock())) {
             ++iterator;
             if (instance->active()) {
                 instance->set_texture(_frames.at(_current_frame));
             }
         } else {
-            _instances.erase(iterator);
+            _targets.erase(iterator);
         }
     }
 
