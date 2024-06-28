@@ -73,6 +73,10 @@ bool wze::animator::update() {
     std::vector<std::weak_ptr<animatable>>::iterator iterator;
     std::shared_ptr<animatable> instance;
 
+    if (!_frames.size() || !_frame_time) {
+        return false;
+    }
+
     elapsed_time = timer::delta_time() + _remaining_time;
     _current_frame += elapsed_time / _frame_time;
     _remaining_time = elapsed_time % _frame_time;
