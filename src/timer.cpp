@@ -24,7 +24,7 @@
 #include <wizard_engine/timer.hpp>
 
 uint8_t wze::timer::_frame_time = 0;
-uint8_t wze::timer::_delta_time = 0;
+uint64_t wze::timer::_delta_time = 0;
 
 uint8_t wze::timer::frame_time() {
     return _frame_time;
@@ -34,11 +34,11 @@ void wze::timer::set_frame_time(uint8_t frame_time) {
     _frame_time = frame_time;
 }
 
-uint8_t wze::timer::delta_time() {
+uint64_t wze::timer::delta_time() {
     return _delta_time;
 }
 
-void wze::timer::set_delta_time(uint8_t delta_time) {
+void wze::timer::set_delta_time(uint64_t delta_time) {
     _delta_time = delta_time;
 }
 

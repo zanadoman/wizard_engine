@@ -66,8 +66,8 @@ void wze::renderer::open_frame() {
 bool wze::renderer::invisible(renderable const& instance) {
     return !instance.visible() ||
            (instance.spatial() && instance.z() <= camera::z()) ||
-           !instance.color_a() || !instance.texture() ||
-           instance.width() == 0.f || instance.height() == 0.f;
+           !instance.color_a() || !instance.texture() || !instance.width() ||
+           !instance.height();
 }
 
 void wze::renderer::transform(renderable& instance) {

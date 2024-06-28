@@ -30,12 +30,12 @@ float_t wze::math::distance(float_t x, float_t y) {
 float_t wze::math::angle(float_t x, float_t y) {
     float_t angle;
 
-    if (x == 0.f && y == 0.f) {
-        return 0.f;
+    if (x || y) {
+        angle = acosf(x / distance(x, y));
+        return y < 0.f ? -angle : angle;
     }
 
-    angle = acosf(x / distance(x, y));
-    return y < 0.f ? -angle : angle;
+    return 0;
 }
 
 float_t wze::math::move_x(float_t distance, float_t angle) {
@@ -47,14 +47,13 @@ float_t wze::math::move_y(float_t distance, float_t angle) {
 }
 
 std::array<float_t, 4> wze::math::rotation_matrix(float_t angle) {
-    std::array<float_t, 4> rotation_matrix;
+    float_t cosine;
+    float_t sine;
 
-    rotation_matrix.at(0) = cosf(angle);
-    rotation_matrix.at(1) = sinf(angle);
-    rotation_matrix.at(2) = -rotation_matrix.at(1);
-    rotation_matrix.at(3) = rotation_matrix.at(0);
+    cosine = cosf(angle);
+    sine = sinf(angle);
 
-    return rotation_matrix;
+    return {cosine, sine, -sine, cosine};
 }
 
 float_t wze::math::rotate_x(float_t x, float_t y,

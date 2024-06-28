@@ -32,7 +32,7 @@ namespace wze {
  */
 class timer final {
     static uint8_t _frame_time;
-    static uint8_t _delta_time;
+    static uint64_t _delta_time;
 
     /**
      * @file timer.hpp
@@ -69,7 +69,7 @@ class timer final {
      * @return Current delta time in milliseconds.
      * @note You can change the pace of the game by manipulating this value.
      */
-    static uint8_t delta_time();
+    static uint64_t delta_time();
 
     /**
      * @file timer.hpp
@@ -78,7 +78,7 @@ class timer final {
      * @param delta_time Current delta time in milliseconds.
      * @note You can change the pace of the game by manipulating this value.
      */
-    static void set_delta_time(uint8_t delta_time);
+    static void set_delta_time(uint64_t delta_time);
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**

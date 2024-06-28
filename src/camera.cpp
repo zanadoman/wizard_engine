@@ -85,20 +85,21 @@ void wze::camera::project(renderable& instance) {
         return;
     }
 
-    if (instance.z() == _z || _focus == 0.f) {
+    instance.set_screen_angle(instance.angle() - _angle);
+
+    if (instance.z() == _z || !_focus) {
         instance.set_screen_area({0.f, 0.f, 0.f, 0.f});
-        instance.set_screen_angle(instance.angle() - _angle);
         return;
     }
 
     scale = _focus / (instance.z() - _z);
     x = (instance.x() - _x) * scale;
     y = (instance.y() - _y) * scale;
+
     instance.set_screen_area({math::rotate_x(x, y, _rotation_matrix),
                               math::rotate_y(x, y, _rotation_matrix),
                               instance.width() * scale,
                               instance.height() * scale});
-    instance.set_screen_angle(instance.angle() - _angle);
 }
 
 std::pair<float_t, float_t> wze::camera::unproject(float_t x, float_t y,
@@ -106,13 +107,14 @@ std::pair<float_t, float_t> wze::camera::unproject(float_t x, float_t y,
     float_t determinant;
     float_t scale;
 
-    if (z == _z || _focus == 0.f) {
+    if (z == _z || !_focus) {
         return {0.f, 0.f};
     }
 
     determinant = _rotation_matrix.at(0) * _rotation_matrix.at(3) -
                   _rotation_matrix.at(1) * _rotation_matrix.at(2);
     scale = (z - _z) / _focus;
+
     return {_x + (x * _rotation_matrix.at(3) - y * _rotation_matrix.at(1)) /
                      determinant * scale,
             _y + (y * _rotation_matrix.at(0) - x * _rotation_matrix.at(2)) /
