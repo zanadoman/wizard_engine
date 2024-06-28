@@ -391,10 +391,10 @@ class input final {
      * @file input.hpp
      * @author Zana Domán
      * @brief Sets the visibility of the cursor.
-     * @param cursor_visibility Visibility of the cursor.
+     * @param cursor_visible Visibility of the cursor.
      * @note Hiding the cursor also captures it into the game window.
      */
-    static void set_cursor_visibility(bool cursor_visibility);
+    static void set_cursor_visible(bool cursor_visible);
 
     /**
      * @file input.hpp

@@ -24,6 +24,7 @@
 
 #include <wizard_engine/animation.hpp>
 #include <wizard_engine/assets.hpp>
+#include <wizard_engine/composition.hpp>
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/render.hpp>
 
@@ -31,9 +32,9 @@ namespace wze {
 /**
  * @file sprite.hpp
  * @author Zana Domán
- * @brief Visual object.
+ * @brief Visual component.
  */
-class sprite final : public renderable, public animatable {
+class sprite final : public renderable, public animatable, public component {
     float_t _x;
     float_t _y;
     float_t _z;
@@ -50,6 +51,14 @@ class sprite final : public renderable, public animatable {
     bool _visible;
     uint8_t _priority;
     bool _active;
+    float_t _x_offset;
+    float_t _y_offset;
+    float_t _angle_offset;
+    bool _attach_x;
+    bool _attach_y;
+    bool _attach_angle;
+    bool _x_angle_lock;
+    bool _y_angle_lock;
 
     /**
      * @file sprite.hpp
@@ -71,12 +80,22 @@ class sprite final : public renderable, public animatable {
      * @param visible Visibility of the sprite.
      * @param priority Priority of the sprite in the render queue.
      * @param active Whether the sprite should be animated or not.
+     * @param x_offset X offset of the sprite.
+     * @param y_offset Y offset of the sprite.
+     * @param angle_offset Angle offset of the sprite.
+     * @param attach_x Whether the x position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     * @param attach_angle Whether the angle is attached to entities.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
      */
     sprite(float_t x, float_t y, float_t z, float_t angle, float_t width,
            float_t height, bool spatial,
            std::shared_ptr<wze::texture> const& texture, uint8_t color_r,
            uint8_t color_g, uint8_t color_b, uint8_t color_a, enum flip flip,
-           bool visible, uint8_t priority, bool active);
+           bool visible, uint8_t priority, bool active, float_t x_offset,
+           float_t y_offset, float_t angle_offset, bool attach_x, bool attach_y,
+           bool attach_angle, bool x_angle_lock, bool y_angle_lock);
 
   public:
     /**
@@ -93,7 +112,7 @@ class sprite final : public renderable, public animatable {
      * @brief Sets the x position of the sprite.
      * @param x X position of the sprite.
      */
-    void set_x(float_t x);
+    void set_x(float_t x) final;
 
     /**
      * @file sprite.hpp
@@ -109,7 +128,7 @@ class sprite final : public renderable, public animatable {
      * @brief Sets the y position of the sprite.
      * @param y Y position of the sprite.
      */
-    void set_y(float_t y);
+    void set_y(float_t y) final;
 
     /**
      * @file sprite.hpp
@@ -143,7 +162,7 @@ class sprite final : public renderable, public animatable {
      * @brief Sets the angle of the sprite.
      * @param angle Angle of the sprite.
      */
-    void set_angle(float_t angle);
+    void set_angle(float_t angle) final;
 
     /**
      * @file sprite.hpp
@@ -301,9 +320,9 @@ class sprite final : public renderable, public animatable {
      * @file sprite.hpp
      * @author Zana Domán
      * @brief Sets the visibility of the sprite.
-     * @param visibility Visibility of the sprite.
+     * @param visible Visibility of the sprite.
      */
-    void set_visibility(bool visibility);
+    void set_visible(bool visible);
 
     /**
      * @file sprite.hpp
@@ -340,6 +359,134 @@ class sprite final : public renderable, public animatable {
     /**
      * @file sprite.hpp
      * @author Zana Domán
+     * @brief Returns the x offset of the sprite.
+     * @return X offset of the sprite.
+     */
+    float_t x_offset() const final;
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Sets the x offset of the sprite.
+     * @param x_offset X offset of the sprite.
+     */
+    void set_x_offset(float_t x_offset);
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Returns the y offset of the sprite.
+     * @return Y offset of the sprite.
+     */
+    float_t y_offset() const final;
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Sets the y offset of the sprite.
+     * @param y_offset Y offset of the sprite.
+     */
+    void set_y_offset(float_t y_offset);
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Returns the angle offset of the sprite.
+     * @return Angle offset of the sprite.
+     */
+    float_t angle_offset() const final;
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Sets the angle offset of the sprite.
+     * @param angle_offset Angle offset of the sprite.
+     */
+    void set_angle_offset(float_t angle_offset);
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Returns whether the x position is attached to entities.
+     * @return Whether the x position is attached to entities.
+     */
+    bool attach_x() const final;
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Sets whether the x position is attached to entities.
+     * @param attach_x Whether the x position is attached to entities.
+     */
+    void set_attach_x(bool attach_x);
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Returns whether the y position is attached to entities.
+     * @return Whether the y position is attached to entities.
+     */
+    bool attach_y() const final;
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Sets whether the y position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     */
+    void set_attach_y(bool attach_y);
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Returns whether the angle is attached to entities.
+     * @return Whether the angle is attached to entities.
+     */
+    bool attach_angle() const final;
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Sets whether the angle is attached to entities.
+     * @param attach_angle Whether the angle is attached to entities.
+     */
+    void set_attach_angle(bool attach_angle);
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Returns whether the x position is affected by the angle.
+     * @return Whether the x position is affected by the angle.
+     */
+    bool x_angle_lock() const final;
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Sets whether the x position is affected by the angle.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     */
+    void set_x_angle_lock(bool x_angle_lock);
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Returns whether the y position is affected by the angle.
+     * @return Whether the y position is affected by the angle.
+     */
+    bool y_angle_lock() const final;
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
+     * @brief Sets whether the y position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
+     */
+    void set_y_angle_lock(bool y_angle_lock);
+
+    /**
+     * @file sprite.hpp
+     * @author Zana Domán
      * @brief Returns a new sprite instance allocated on the heap.
      * @param x X position of the sprite.
      * @param y Y position of the sprite.
@@ -357,16 +504,26 @@ class sprite final : public renderable, public animatable {
      * @param visible Visibility of the sprite.
      * @param priority Priority of the sprite in the render queue.
      * @param active Whether the sprite should be animated or not.
+     * @param x_offset X offset of the sprite.
+     * @param y_offset Y offset of the sprite.
+     * @param angle_offset Angle offset of the sprite.
+     * @param attach_x Whether the x position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     * @param attach_angle Whether the angle is attached to entities.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
      * @return New sprite instance allocated on the heap.
      */
-    static std::unique_ptr<sprite>
-    create(float_t x = 0.f, float_t y = 0.f, float_t z = 0.f,
-           float_t angle = 0.f, float_t width = 0.f, float_t height = 0.f,
-           bool spatial = false,
-           std::shared_ptr<wze::texture> const& texture = {},
-           uint8_t color_r = 255, uint8_t color_g = 255, uint8_t color_b = 255,
-           uint8_t color_a = 255, enum flip flip = FLIP_NONE,
-           bool visible = true, uint8_t priority = 128, bool active = true);
+    static std::unique_ptr<sprite> create(
+        float_t x = 0.f, float_t y = 0.f, float_t z = 0.f, float_t angle = 0.f,
+        float_t width = 0.f, float_t height = 0.f, bool spatial = false,
+        std::shared_ptr<wze::texture> const& texture = {},
+        uint8_t color_r = 255, uint8_t color_g = 255, uint8_t color_b = 255,
+        uint8_t color_a = 255, enum flip flip = FLIP_NONE, bool visible = true,
+        uint8_t priority = 128, bool active = true, float_t x_offset = 0.f,
+        float_t y_offset = 0.f, float_t angle_offset = 0.f,
+        bool attach_x = true, bool attach_y = true, bool attach_angle = true,
+        bool x_angle_lock = true, bool y_angle_lock = true);
 };
 } /* namespace wze */
 

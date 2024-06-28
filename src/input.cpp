@@ -113,8 +113,8 @@ bool wze::input::cursor_visible() {
     return _cursor_visible;
 }
 
-void wze::input::set_cursor_visibility(bool cursor_visibility) {
-    _cursor_visible = cursor_visibility;
+void wze::input::set_cursor_visible(bool cursor_visible) {
+    _cursor_visible = cursor_visible;
     SDL_SetRelativeMouseMode(_cursor_visible ? SDL_FALSE : SDL_TRUE);
 }
 

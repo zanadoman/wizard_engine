@@ -1,82 +1,53 @@
-#include <cstdlib>
-#include <ctime>
-#include <iostream>
-#include <ostream>
+#include "wizard_engine/render.hpp"
 #include <wizard_engine/wizard_engine.hpp>
 
-int32_t random(int32_t min, int32_t max) {
-    return min + rand() % (max - min);
-}
-
-std::ostream& operator<<(std::ostream& ostream,
-                         std::pair<float_t, float_t> const& pair) {
-    return ostream << std::get<0>(pair) << ' ' << std::get<1>(pair);
-}
-
 wze_main(1920, 1080) {
-    std::unique_ptr<wze::animator> animator;
-    std::vector<std::shared_ptr<wze::sprite>> sprites;
+    std::shared_ptr<wze::sprite> wizard;
+    std::shared_ptr<wze::sprite> cat;
+    std::unique_ptr<wze::entity> entity;
 
-    animator = wze::animator::create(
-        {}, {wze::assets::create_texture(
-                 wze::assets::load_image("assets/test/run1.png")),
-             wze::assets::create_texture(
-                 wze::assets::load_image("assets/test/run2.png")),
-             wze::assets::create_texture(
-                 wze::assets::load_image("assets/test/run3.png")),
-             wze::assets::create_texture(
-                 wze::assets::load_image("assets/test/run4.png")),
-             wze::assets::create_texture(
-                 wze::assets::load_image("assets/test/run5.png")),
-             wze::assets::create_texture(
-                 wze::assets::load_image("assets/test/run6.png"))});
+    wizard =
+        wze::sprite::create(0.f, 0.f, 0.f, 0.f, 100.f, 100.f, false,
+                            wze::assets::create_texture(wze::assets::load_image(
+                                "./assets/wizard_engine/icon.png")));
+    cat =
+        wze::sprite::create(0.f, 0.f, 0.f, 0.f, 50.f, 50.f, false,
+                            wze::assets::create_texture(wze::assets::load_image(
+                                "./assets/test/run1.png")));
 
-    srand(time(nullptr));
-    for (size_t i = 0; i < 10000; ++i) {
-        sprites.push_back(wze::sprite::create(
-            random(-2000, 2000), random(-2000, 2000), random(-2000, 2000),
-            random(0, 360), 100, 100, true));
-        wze::renderer::instances().push_back(sprites.back());
-        animator->instances().push_back(sprites.back());
-    }
+    wze::renderer::instances().push_back(wizard);
+    wze::renderer::instances().push_back(cat);
+
+    entity = wze::entity::create(0.f, 0.f, 0.f, {wizard, cat});
 
     wze_while(true) {
-        if (wze::input::key(wze::KEY_W)) {
-            wze::camera::set_z(wze::camera::z() +
-                               0.5f * wze::timer::delta_time());
+        if (wze::input::key(wze::KEY_UP)) {
+            entity->set_x(entity->x() +
+                          wze::math::move_x(0.5f * wze::timer::delta_time(),
+                                            entity->angle() -
+                                                wze::math::to_radians(90.f)));
+            entity->set_y(entity->y() +
+                          wze::math::move_y(0.5f * wze::timer::delta_time(),
+                                            entity->angle() -
+                                                wze::math::to_radians(90.f)));
         }
-        if (wze::input::key(wze::KEY_S)) {
-            wze::camera::set_z(wze::camera::z() -
-                               0.5f * wze::timer::delta_time());
+        if (wze::input::key(wze::KEY_DOWN)) {
+            entity->set_x(entity->x() +
+                          wze::math::move_x(-0.5f * wze::timer::delta_time(),
+                                            entity->angle() -
+                                                wze::math::to_radians(90.f)));
+            entity->set_y(entity->y() +
+                          wze::math::move_y(-0.5f * wze::timer::delta_time(),
+                                            entity->angle() -
+                                                wze::math::to_radians(90.f)));
         }
-        if (wze::input::key(wze::KEY_D)) {
-            wze::camera::set_x(wze::camera::x() +
-                               0.5f * wze::timer::delta_time());
+        if (wze::input::key(wze::KEY_LEFT)) {
+            entity->set_angle(entity->angle() -
+                              0.003f * wze::timer::delta_time());
         }
-        if (wze::input::key(wze::KEY_A)) {
-            wze::camera::set_x(wze::camera::x() -
-                               0.5f * wze::timer::delta_time());
+        if (wze::input::key(wze::KEY_RIGHT)) {
+            entity->set_angle(entity->angle() +
+                              0.003f * wze::timer::delta_time());
         }
-        if (wze::input::key(wze::KEY_SPACE)) {
-            wze::camera::set_y(wze::camera::y() -
-                               0.5f * wze::timer::delta_time());
-        }
-        if (wze::input::key(wze::KEY_LSHIFT)) {
-            wze::camera::set_y(wze::camera::y() +
-                               0.5f * wze::timer::delta_time());
-        }
-        if (wze::input::key(wze::KEY_MOUSE_RIGHT)) {
-            wze::camera::set_angle(wze::camera::angle() +
-                                   0.001f * wze::timer::delta_time());
-        }
-        if (wze::input::key(wze::KEY_MOUSE_LEFT)) {
-            wze::camera::set_angle(wze::camera::angle() -
-                                   0.001f * wze::timer::delta_time());
-        }
-
-        animator->update();
-
-        std::cout << wze::input::cursor_spatial(500.f) << std::endl;
-        printf("%u\n", wze::timer::delta_time());
     }
 }
