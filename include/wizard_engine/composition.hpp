@@ -152,6 +152,29 @@ class entity : public component {
     /**
      * @file composition.hpp
      * @author Zana Domán
+     * @brief Constructs an entity instance.
+     * @param x X position of the entity.
+     * @param y Y position of the entity.
+     * @param angle Angle of the entity.
+     * @param components Components of the entity.
+     * @param x_offset X offset of the entity.
+     * @param y_offset Y offset of the entity.
+     * @param angle_offset Angle offset of the entity.
+     * @param attach_x Whether the x position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     * @param attach_angle Whether tha angle is attached to entities.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
+     */
+    entity(float x, float y, float angle,
+           std::vector<std::weak_ptr<component>> const& components,
+           float x_offset, float y_offset, float angle_offset, bool attach_x,
+           bool attach_y, bool attach_angle, bool x_angle_lock,
+           bool y_angle_lock);
+
+    /**
+     * @file composition.hpp
+     * @author Zana Domán
      * @brief Updates the x position of a component instance.
      */
     void update_x(component& instance);
@@ -166,21 +189,9 @@ class entity : public component {
     /**
      * @file composition.hpp
      * @author Zana Domán
-     * @brief Updates the angle of a components instance.
+     * @brief Updates the angle of a component instance.
      */
     void update_angle(component& instance);
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Constructs an entity instance.
-     * @param x X position of the entity.
-     * @param y Y position of the entity.
-     * @param angle Angle of the entity.
-     * @param components Components of the entity.
-     */
-    entity(float x, float y, float angle,
-           std::vector<std::weak_ptr<component>> const& components);
 
   public:
     /**
@@ -296,7 +307,7 @@ class entity : public component {
     bool attach_x() const final;
 
     /**
-     * @file sprite.hpp
+     * @file composition.hpp
      * @author Zana Domán
      * @brief Sets whether the x position is attached to entities.
      * @param attach_x Whether the x position is attached to entities.
@@ -304,7 +315,7 @@ class entity : public component {
     void set_attach_x(bool attach_x);
 
     /**
-     * @file sprite.hpp
+     * @file composition.hpp
      * @author Zana Domán
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
@@ -312,7 +323,7 @@ class entity : public component {
     bool attach_y() const final;
 
     /**
-     * @file sprite.hpp
+     * @file composition.hpp
      * @author Zana Domán
      * @brief Sets whether the y position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
@@ -320,7 +331,7 @@ class entity : public component {
     void set_attach_y(bool attach_y);
 
     /**
-     * @file sprite.hpp
+     * @file composition.hpp
      * @author Zana Domán
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
@@ -328,7 +339,7 @@ class entity : public component {
     bool attach_angle() const final;
 
     /**
-     * @file sprite.hpp
+     * @file composition.hpp
      * @author Zana Domán
      * @brief Sets whether the angle is attached to entities.
      * @param attach_angle Whether the angle is attached to entities.
@@ -336,7 +347,7 @@ class entity : public component {
     void set_attach_angle(bool attach_angle);
 
     /**
-     * @file sprite.hpp
+     * @file composition.hpp
      * @author Zana Domán
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
@@ -344,7 +355,7 @@ class entity : public component {
     bool x_angle_lock() const final;
 
     /**
-     * @file sprite.hpp
+     * @file composition.hpp
      * @author Zana Domán
      * @brief Sets whether the x position is affected by the angle.
      * @param x_angle_lock Whether the x position is affected by the angle.
@@ -352,7 +363,7 @@ class entity : public component {
     void set_x_angle_lock(bool x_angle_lock);
 
     /**
-     * @file sprite.hpp
+     * @file composition.hpp
      * @author Zana Domán
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
@@ -360,7 +371,7 @@ class entity : public component {
     bool y_angle_lock() const final;
 
     /**
-     * @file sprite.hpp
+     * @file composition.hpp
      * @author Zana Domán
      * @brief Sets whether the y position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
@@ -375,11 +386,22 @@ class entity : public component {
      * @param y Y position of the entity.
      * @param angle Angle of the entity.
      * @param components Components of the entity.
+     * @param x_offset X offset of the entity.
+     * @param y_offset Y offset of the entity.
+     * @param angle_offset Angle offset of the entity.
+     * @param attach_x Whether the x position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     * @param attach_angle Whether tha angle is attached to entities.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
      * @return New entity instance allocated on the heap.
      */
     static std::unique_ptr<entity>
     create(float x = 0, float y = 0, float angle = 0,
-           std::vector<std::weak_ptr<component>> const& components = {});
+           std::vector<std::weak_ptr<component>> const& components = {},
+           float x_offset = 0, float y_offset = 0, float angle_offset = 0,
+           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
+           bool x_angle_lock = true, bool y_angle_lock = true);
 
     /**
      * @file composition.hpp

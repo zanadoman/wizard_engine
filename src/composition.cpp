@@ -25,11 +25,23 @@
 #include <wizard_engine/math.hpp>
 
 wze::entity::entity(float x, float y, float angle,
-                    std::vector<std::weak_ptr<component>> const& components) {
+                    std::vector<std::weak_ptr<component>> const& components,
+                    float x_offset, float y_offset, float angle_offset,
+                    bool attach_x, bool attach_y, bool attach_angle,
+                    bool x_angle_lock, bool y_angle_lock) {
     _x = x;
     _y = y;
+    _angle = angle;
+    _rotation_matrix = math::rotation_matrix(-_angle);
     _components = components;
-    set_angle(angle);
+    _x_offset = x_offset;
+    _y_offset = y_offset;
+    _angle_offset = angle_offset;
+    _attach_x = attach_x;
+    _attach_y = attach_y;
+    _attach_angle = attach_angle;
+    _x_angle_lock = x_angle_lock;
+    _y_angle_lock = y_angle_lock;
 }
 
 void wze::entity::update_x(component& instance) {
@@ -194,6 +206,11 @@ void wze::entity::set_y_angle_lock(bool y_angle_lock) {
 
 std::unique_ptr<wze::entity>
 wze::entity::create(float x, float y, float angle,
-                    std::vector<std::weak_ptr<component>> const& components) {
-    return std::unique_ptr<entity>(new entity(x, y, angle, components));
+                    std::vector<std::weak_ptr<component>> const& components,
+                    float x_offset, float y_offset, float angle_offset,
+                    bool attach_x, bool attach_y, bool attach_angle,
+                    bool x_angle_lock, bool y_angle_lock) {
+    return std::unique_ptr<entity>(new entity(
+        x, y, angle, components, x_offset, y_offset, angle_offset, attach_x,
+        attach_y, attach_angle, x_angle_lock, y_angle_lock));
 }
