@@ -31,6 +31,7 @@ namespace wze {
  * @brief Subsystem to handle vector math and unit conversions.
  */
 class math final {
+  private:
     /**
      * @file math.hpp
      * @author Zana Domán
@@ -47,7 +48,7 @@ class math final {
      * @param y Y component of the vector.
      * @return Length of the vector.
      */
-    static float_t distance(float_t x, float_t y);
+    static float length(float x, float y);
 
     /**
      * @file math.hpp
@@ -57,27 +58,27 @@ class math final {
      * @param y Y component of the vector.
      * @return Angle of the vector.
      */
-    static float_t angle(float_t x, float_t y);
+    static float angle(float x, float y);
 
     /**
      * @file math.hpp
      * @author Zana Domán
      * @brief Moves the x component of a vector.
-     * @param distance Length of the movement.
+     * @param length Length of the movement.
      * @param angle Angle of the movement.
      * @return Moved x component of the vector.
      */
-    static float_t move_x(float_t distance, float_t angle);
+    static float move_x(float length, float angle);
 
     /**
      * @file math.hpp
      * @author Zana Domán
      * @brief Moves the y component of a vector.
-     * @param distance Length of the movement.
+     * @param length Length of the movement.
      * @param angle Angle of the movement
      * @return Moved y component of the vector.
      */
-    static float_t move_y(float_t distance, float_t angle);
+    static float move_y(float length, float angle);
 
     /**
      * @file math.hpp
@@ -86,7 +87,7 @@ class math final {
      * @param angle Angle of the rotation matrix.
      * @return Created rotation matrix.
      */
-    static std::array<float_t, 4> rotation_matrix(float_t angle);
+    static std::array<float, 4> rotation_matrix(float angle);
 
     /**
      * @file math.hpp
@@ -94,11 +95,11 @@ class math final {
      * @brief Rotates the x component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
-     * @param rotation_matrix Matrix of the rotation.
+     * @param rotation_matrix Rotation matrix.
      * @return Rotated x component of the vector.
      */
-    static float_t rotate_x(float_t x, float_t y,
-                            std::array<float_t, 4> const& rotation_matrix);
+    static float rotate_x(float x, float y,
+                          std::array<float, 4> const& rotation_matrix);
 
     /**
      * @file math.hpp
@@ -106,11 +107,11 @@ class math final {
      * @brief Rotates the y component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
-     * @param rotation_matrix Matrix of the rotation.
+     * @param rotation_matrix Rotation matrix.
      * @return Rotated y component of the vector.
      */
-    static float_t rotate_y(float_t x, float_t y,
-                            std::array<float_t, 4> const& rotation_matrix);
+    static float rotate_y(float x, float y,
+                          std::array<float, 4> const& rotation_matrix);
 
     /**
      * @file math.hpp
@@ -119,8 +120,8 @@ class math final {
      * @param degrees Angle in degrees.
      * @return Angle in radians.
      */
-    static constexpr float_t to_radians(float_t degrees) {
-        return degrees * std::numbers::pi_v<float_t> / 180.f;
+    static constexpr float to_radians(float degrees) {
+        return degrees * std::numbers::pi_v<float> / 180;
     }
 
     /**
@@ -130,8 +131,8 @@ class math final {
      * @param radians Angle in radians.
      * @return Angle in degrees.
      */
-    static constexpr float_t to_degrees(float_t radians) {
-        return radians * 180.f / std::numbers::pi_v<float_t>;
+    static constexpr float to_degrees(float radians) {
+        return radians * 180 / std::numbers::pi_v<float>;
     }
 };
 } /* namespace wze */

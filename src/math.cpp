@@ -23,32 +23,33 @@
 
 #include <wizard_engine/math.hpp>
 
-float_t wze::math::distance(float_t x, float_t y) {
-    return sqrtf(powf(x, 2.f) + powf(y, 2.f));
+float wze::math::length(float x, float y) {
+    return sqrtf(powf(x, 2) + powf(y, 2));
 }
 
-float_t wze::math::angle(float_t x, float_t y) {
-    float_t angle;
+float wze::math::angle(float x, float y) {
+    float angle;
 
-    if (x || y) {
-        angle = acosf(x / distance(x, y));
-        return y < 0.f ? -angle : angle;
+    if (x != 0 || y != 0) {
+        angle = acosf(x / length(x, y)) * (y < 0 ? -1 : 1);
+    } else {
+        angle = 0;
     }
 
-    return 0;
+    return angle;
 }
 
-float_t wze::math::move_x(float_t distance, float_t angle) {
-    return distance * cosf(angle);
+float wze::math::move_x(float length, float angle) {
+    return length * cosf(angle);
 }
 
-float_t wze::math::move_y(float_t distance, float_t angle) {
-    return distance * sinf(angle);
+float wze::math::move_y(float length, float angle) {
+    return length * sinf(angle);
 }
 
-std::array<float_t, 4> wze::math::rotation_matrix(float_t angle) {
-    float_t cosine;
-    float_t sine;
+std::array<float, 4> wze::math::rotation_matrix(float angle) {
+    float cosine;
+    float sine;
 
     cosine = cosf(angle);
     sine = sinf(angle);
@@ -56,12 +57,12 @@ std::array<float_t, 4> wze::math::rotation_matrix(float_t angle) {
     return {cosine, sine, -sine, cosine};
 }
 
-float_t wze::math::rotate_x(float_t x, float_t y,
-                            std::array<float_t, 4> const& rotation_matrix) {
+float wze::math::rotate_x(float x, float y,
+                          std::array<float, 4> const& rotation_matrix) {
     return x * rotation_matrix.at(0) + y * rotation_matrix.at(1);
 }
 
-float_t wze::math::rotate_y(float_t x, float_t y,
-                            std::array<float_t, 4> const& rotation_matrix) {
+float wze::math::rotate_y(float x, float y,
+                          std::array<float, 4> const& rotation_matrix) {
     return x * rotation_matrix.at(2) + y * rotation_matrix.at(3);
 }

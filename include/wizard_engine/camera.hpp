@@ -32,12 +32,13 @@ namespace wze {
  * @brief Subsystem to handle transformations and spatial projections.
  */
 class camera final {
-    static float_t _x;
-    static float_t _y;
-    static float_t _z;
-    static float_t _angle;
-    static float_t _focus;
-    static std::array<float_t, 4> _rotation_matrix;
+  private:
+    static float _x;
+    static float _y;
+    static float _z;
+    static float _angle;
+    static std::array<float, 4> _rotation_matrix;
+    static float _focus;
 
     /**
      * @file camera.hpp
@@ -53,7 +54,7 @@ class camera final {
      * @brief Returns the x position of the camera.
      * @return X position of the camera.
      */
-    static float_t x();
+    static float x();
 
     /**
      * @file camera.hpp
@@ -61,7 +62,7 @@ class camera final {
      * @brief Sets the x position of the camera.
      * @param x X position of the camera.
      */
-    static void set_x(float_t x);
+    static void set_x(float x);
 
     /**
      * @file camera.hpp
@@ -69,7 +70,7 @@ class camera final {
      * @brief Returns the y position of the camera.
      * @return Y position of the camera.
      */
-    static float_t y();
+    static float y();
 
     /**
      * @file camera.hpp
@@ -77,7 +78,7 @@ class camera final {
      * @brief Sets the y position of the camera.
      * @param y Y position of the camera.
      */
-    static void set_y(float_t y);
+    static void set_y(float y);
 
     /**
      * @file camera.hpp
@@ -85,7 +86,7 @@ class camera final {
      * @brief Returns the z position of the camera.
      * @return Z position of the camera.
      */
-    static float_t z();
+    static float z();
 
     /**
      * @file camera.hpp
@@ -93,7 +94,7 @@ class camera final {
      * @brief Sets the z position of the camera.
      * @param z Z position of the camera.
      */
-    static void set_z(float_t z);
+    static void set_z(float z);
 
     /**
      * @file camera.hpp
@@ -101,7 +102,7 @@ class camera final {
      * @brief Returns the angle of the camera.
      * @return Angle of the camera.
      */
-    static float_t angle();
+    static float angle();
 
     /**
      * @file camera.hpp
@@ -109,7 +110,7 @@ class camera final {
      * @brief Sets the angle of the camera.
      * @param angle Angle of the camera.
      */
-    static void set_angle(float_t angle);
+    static void set_angle(float angle);
 
     /**
      * @file camera.hpp
@@ -117,7 +118,7 @@ class camera final {
      * @brief Returns the focus of the camera.
      * @return Focus of the camera.
      */
-    static float_t focus();
+    static float focus();
 
     /**
      * @file camera.hpp
@@ -125,7 +126,7 @@ class camera final {
      * @brief Sets the focus of the camera.
      * @param focus Focus of the camera.
      */
-    static void set_focus(float_t focus);
+    static void set_focus(float focus);
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
@@ -147,8 +148,7 @@ class camera final {
      * @param z Z component of the spatial coordinate.
      * @return Plane coordinate.
      */
-    static std::pair<float_t, float_t> unproject(float_t x, float_t y,
-                                                 float_t z);
+    static std::pair<float, float> unproject(float x, float y, float z);
 #endif /* __WIZARD_ENGINE_INTERNAL */
 };
 } /* namespace wze */
