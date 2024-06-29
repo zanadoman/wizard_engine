@@ -19,46 +19,28 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#define __WIZARD_ENGINE_INTERNAL
+#ifndef WIZARD_ENGINE_AUDIO_HPP
+#define WIZARD_ENGINE_AUDIO_HPP
 
-#include <wizard_engine/timer.hpp>
+#include <wizard_engine/assets.hpp>
+#include <wizard_engine/composition.hpp>
+#include <wizard_engine/export.hpp>
 
-uint8_t wze::timer::_frame_time = 0;
-uint64_t wze::timer::_delta_time = 0;
+namespace wze {
+class audiable {
+};
 
-uint8_t wze::timer::frame_time() {
-    return _frame_time;
-}
+class audio final {
+  private:
+    static uint8_t _volume;
+    static bool _paused;
+    static std::unordered_map<uint16_t, std::weak_ptr<audiable>> _speakers;
 
-void wze::timer::set_frame_time(uint8_t frame_time) {
-    _frame_time = frame_time;
-}
+  public:
+    static std::unordered_map<uint16_t, std::weak_ptr<audiable>> speakers();
 
-uint64_t wze::timer::delta_time() {
-    return _delta_time;
-}
+    static void update();
+};
+} // namespace wze
 
-void wze::timer::set_delta_time(uint64_t delta_time) {
-    _delta_time = delta_time;
-}
-
-void wze::timer::update() {
-    static uint64_t last_time = 0;
-    uint64_t now;
-    uint64_t end;
-
-    end = last_time + _frame_time;
-    now = current_time();
-
-    if (now < end) {
-        SDL_Delay(end - now);
-        now = end;
-    }
-
-    _delta_time = now - last_time;
-    last_time = now;
-}
-
-uint64_t wze::timer::current_time() {
-    return SDL_GetTicks64();
-}
+#endif /* WIZARD_ENGINE_AUDIO_HPP */

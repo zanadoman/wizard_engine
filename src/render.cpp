@@ -51,8 +51,6 @@ SDL_Renderer* wze::renderer::_base = nullptr;
 float wze::renderer::_origo_x = 0;
 float wze::renderer::_origo_y = 0;
 std::vector<std::weak_ptr<wze::renderable>> wze::renderer::_queue = {};
-std::vector<std::shared_ptr<wze::renderable const>> wze::renderer::_space = {};
-std::vector<std::shared_ptr<wze::renderable const>> wze::renderer::_plane = {};
 
 void wze::renderer::open_frame() {
     if (SDL_SetRenderDrawColor(_base, 0, 0, 0, 255)) {
@@ -143,9 +141,8 @@ void wze::renderer::initialize() {
 void wze::renderer::update() {
     std::vector<std::weak_ptr<renderable>>::iterator iterator;
     std::shared_ptr<renderable> instance;
-
-    _space.clear();
-    _plane.clear();
+    std::vector<std::shared_ptr<renderable const>> space;
+    std::vector<std::shared_ptr<renderable const>> plane;
 
     for (iterator = _queue.begin(); iterator != _queue.end(); ++iterator) {
         if ((instance = iterator->lock())) {
@@ -158,9 +155,9 @@ void wze::renderer::update() {
                 continue;
             }
             if (instance->spatial()) {
-                _space.push_back(instance);
+                space.push_back(instance);
             } else {
-                _plane.push_back(instance);
+                plane.push_back(instance);
             }
         } else {
             _queue.erase(iterator--);
@@ -168,7 +165,7 @@ void wze::renderer::update() {
     }
 
     std::ranges::sort(
-        _space,
+        space,
         [](std::shared_ptr<renderable const> const& instance1,
            std::shared_ptr<renderable const> const& instance2) -> bool {
             return instance1->z() != instance2->z()
@@ -177,7 +174,7 @@ void wze::renderer::update() {
         });
 
     std::ranges::sort(
-        _plane,
+        plane,
         [](std::shared_ptr<renderable const> const& instance1,
            std::shared_ptr<renderable const> const& instance2) -> bool {
             return instance1->priority() < instance2->priority();
@@ -186,12 +183,12 @@ void wze::renderer::update() {
     open_frame();
 
     std::ranges::for_each(
-        _space, [](std::shared_ptr<renderable const> const& instance) -> void {
+        space, [](std::shared_ptr<renderable const> const& instance) -> void {
             render(*instance);
         });
 
     std::ranges::for_each(
-        _plane, [](std::shared_ptr<renderable const> const& instance) -> void {
+        plane, [](std::shared_ptr<renderable const> const& instance) -> void {
             render(*instance);
         });
 

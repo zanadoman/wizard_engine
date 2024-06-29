@@ -231,8 +231,6 @@ class renderer final {
     static float _origo_x;
     static float _origo_y;
     static std::vector<std::weak_ptr<renderable>> _queue;
-    static std::vector<std::shared_ptr<renderable const>> _space;
-    static std::vector<std::shared_ptr<renderable const>> _plane;
 
     /**
      * @file render.hpp
