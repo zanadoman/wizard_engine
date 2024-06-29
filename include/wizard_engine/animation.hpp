@@ -148,8 +148,8 @@ class animator final {
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Animates the animated instances and erases expired ones, then
-     * returns whether the animation is looped or not.
+     * @brief Animates the targets and erases expired ones, then returns whether
+     * the animation is looped or not.
      * @return Whether the animation is looped or not.
      */
     bool update();

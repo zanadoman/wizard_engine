@@ -28,15 +28,7 @@ float wze::math::length(float x, float y) {
 }
 
 float wze::math::angle(float x, float y) {
-    float angle;
-
-    if (x != 0 || y != 0) {
-        angle = acosf(x / length(x, y)) * (y < 0 ? -1 : 1);
-    } else {
-        angle = 0;
-    }
-
-    return angle;
+    return x || y ? acosf(x / length(x, y)) * (y < 0 ? -1 : 1) : 0;
 }
 
 float wze::math::move_x(float length, float angle) {

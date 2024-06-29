@@ -80,7 +80,7 @@ void wze::camera::project(renderable& instance) {
     float y;
 
     if (instance.spatial()) {
-        if (instance.z() == _z || _focus == 0) {
+        if (instance.z() == _z || !_focus) {
             screen_area = {0, 0, 0, 0};
         } else {
             scale = _focus / (instance.z() - _z);
@@ -105,23 +105,18 @@ void wze::camera::project(renderable& instance) {
 }
 
 std::pair<float, float> wze::camera::unproject(float x, float y, float z) {
-    std::pair<float, float> plane_coordinate;
     float determinant;
     float scale;
 
-    if (z == _z || _focus == 0) {
-        plane_coordinate = {0, 0};
-    } else {
-        determinant = _rotation_matrix.at(0) * _rotation_matrix.at(3) -
-                      _rotation_matrix.at(1) * _rotation_matrix.at(2);
-        scale = (z - _z) / _focus;
-        plane_coordinate.first =
-            _x + (x * _rotation_matrix.at(3) - y * _rotation_matrix.at(1)) /
-                     determinant * scale;
-        plane_coordinate.second =
-            _y + (y * _rotation_matrix.at(0) - x * _rotation_matrix.at(2)) /
-                     determinant * scale;
+    if (z == _z || !_focus) {
+        return {0, 0};
     }
 
-    return plane_coordinate;
+    determinant = _rotation_matrix.at(0) * _rotation_matrix.at(3) -
+                  _rotation_matrix.at(1) * _rotation_matrix.at(2);
+    scale = (z - _z) / _focus;
+    return {_x + (x * _rotation_matrix.at(3) - y * _rotation_matrix.at(1)) /
+                     determinant * scale,
+            _y + (y * _rotation_matrix.at(0) - x * _rotation_matrix.at(2)) /
+                     determinant * scale};
 }

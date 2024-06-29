@@ -84,14 +84,13 @@ bool wze::animator::update() {
         _current_frame %= _frames.size();
     }
 
-    for (iterator = _targets.begin(); iterator != _targets.end();) {
+    for (iterator = _targets.begin(); iterator != _targets.end(); ++iterator) {
         if ((instance = iterator->lock())) {
-            ++iterator;
             if (instance->active()) {
                 instance->set_texture(_frames.at(_current_frame));
             }
         } else {
-            _targets.erase(iterator);
+            _targets.erase(iterator--);
         }
     }
 

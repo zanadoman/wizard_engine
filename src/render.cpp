@@ -94,7 +94,7 @@ void wze::renderer::render(renderable const& instance) {
     }
     if (SDL_RenderCopyExF(_base, instance.texture().get(), nullptr,
                           &instance.screen_area(),
-                          (double_t)math::to_degrees(instance.screen_angle()),
+                          (double)math::to_degrees(instance.screen_angle()),
                           nullptr, (SDL_RendererFlip)instance.flip())) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -147,9 +147,8 @@ void wze::renderer::update() {
     _space.clear();
     _plane.clear();
 
-    for (iterator = _queue.begin(); iterator != _queue.end();) {
+    for (iterator = _queue.begin(); iterator != _queue.end(); ++iterator) {
         if ((instance = iterator->lock())) {
-            ++iterator;
             if (invisible(*instance)) {
                 continue;
             }
@@ -164,7 +163,7 @@ void wze::renderer::update() {
                 _plane.push_back(instance);
             }
         } else {
-            _queue.erase(iterator);
+            _queue.erase(iterator--);
         }
     }
 
