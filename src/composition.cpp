@@ -73,12 +73,12 @@ void wze::entity::set_x(float x) {
     std::shared_ptr<component> instance;
 
     _x = x;
-    for (iterator = _components.begin(); iterator != _components.end();) {
+    for (iterator = _components.begin(); iterator != _components.end();
+         ++iterator) {
         if ((instance = iterator->lock())) {
-            ++iterator;
             update_x(*instance);
         } else {
-            _components.erase(iterator);
+            _components.erase(iterator--);
         }
     }
 }
@@ -92,12 +92,12 @@ void wze::entity::set_y(float y) {
     std::shared_ptr<component> instance;
 
     _y = y;
-    for (iterator = _components.begin(); iterator != _components.end();) {
+    for (iterator = _components.begin(); iterator != _components.end();
+         ++iterator) {
         if ((instance = iterator->lock())) {
-            ++iterator;
             update_y(*instance);
         } else {
-            _components.erase(iterator);
+            _components.erase(iterator--);
         }
     }
 }
@@ -112,14 +112,14 @@ void wze::entity::set_angle(float angle) {
 
     _angle = angle;
     _rotation_matrix = math::rotation_matrix(-_angle);
-    for (iterator = _components.begin(); iterator != _components.end();) {
+    for (iterator = _components.begin(); iterator != _components.end();
+         ++iterator) {
         if ((instance = iterator->lock())) {
-            ++iterator;
             update_x(*instance);
             update_y(*instance);
             update_angle(*instance);
         } else {
-            _components.erase(iterator);
+            _components.erase(iterator--);
         }
     }
 }

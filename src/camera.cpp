@@ -73,35 +73,31 @@ void wze::camera::set_focus(float focus) {
 }
 
 void wze::camera::project(renderable& instance) {
-    SDL_FRect screen_area;
-    float screen_angle;
     float scale;
     float x;
     float y;
 
-    if (instance.spatial()) {
-        if (instance.z() == _z || !_focus) {
-            screen_area = {0, 0, 0, 0};
-        } else {
-            scale = _focus / (instance.z() - _z);
-            x = (instance.x() - _x) * scale;
-            y = (instance.y() - _y) * scale;
-            screen_area.x = math::rotate_x(x, y, _rotation_matrix);
-            screen_area.y = math::rotate_y(x, y, _rotation_matrix);
-            screen_area.w = instance.width() * scale;
-            screen_area.h = instance.height() * scale;
-        }
-        screen_angle = instance.angle() - _angle;
-    } else {
-        screen_area.x = instance.x();
-        screen_area.y = instance.y();
-        screen_area.w = instance.width();
-        screen_area.h = instance.height();
-        screen_angle = instance.angle();
+    if (!instance.spatial()) {
+        instance.set_screen_area(
+            {instance.x(), instance.y(), instance.width(), instance.height()});
+        instance.set_screen_angle(instance.angle());
+        return;
     }
 
-    instance.set_screen_area(screen_area);
-    instance.set_screen_angle(screen_angle);
+    instance.set_screen_angle(instance.angle() - _angle);
+
+    if (instance.z() == _z || !_focus) {
+        instance.set_screen_area({0, 0, 0, 0});
+        return;
+    }
+
+    scale = _focus / (instance.z() - _z);
+    x = (instance.x() - _x) * scale;
+    y = (instance.y() - _y) * scale;
+    instance.set_screen_area({math::rotate_x(x, y, _rotation_matrix),
+                              math::rotate_y(x, y, _rotation_matrix),
+                              instance.width() * scale,
+                              instance.height() * scale});
 }
 
 std::pair<float, float> wze::camera::unproject(float x, float y, float z) {
