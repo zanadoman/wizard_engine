@@ -103,6 +103,7 @@ enum system_cursor {
  * @brief Subsystem to handle external resources.
  */
 class assets final {
+  private:
     /**
      * @file assets.hpp
      * @author Zana Domán

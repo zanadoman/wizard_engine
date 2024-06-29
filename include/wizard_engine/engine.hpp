@@ -31,6 +31,7 @@ namespace wze {
  * @brief Master singleton of the Wizard Engine.
  */
 class engine final {
+  private:
     static std::vector<SDL_Event> _events;
 
     /**

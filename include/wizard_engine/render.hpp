@@ -43,6 +43,7 @@ enum flip {
  * @brief Interface to make an object renderable.
  */
 class renderable {
+  private:
     SDL_FRect _screen_area;
     float_t _screen_angle;
 
@@ -225,6 +226,7 @@ class renderable {
  * @brief Subsystem to handle graphics.
  */
 class renderer final {
+  private:
     static SDL_Renderer* _base;
     static float_t _origo_x;
     static float_t _origo_y;

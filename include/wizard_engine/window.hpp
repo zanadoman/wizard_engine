@@ -32,6 +32,7 @@ namespace wze {
  * @brief Subsystem to handle game window.
  */
 class window final {
+  private:
     static SDL_Window* _base;
     static uint16_t _width;
     static uint16_t _height;

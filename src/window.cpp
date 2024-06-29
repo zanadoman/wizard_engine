@@ -46,9 +46,7 @@ std::string const& wze::window::title() {
 }
 
 void wze::window::set_title(std::string const& title) {
-    static std::string fallback = "Wizard Engine";
-
-    _title = title.empty() ? fallback : title;
+    _title = title.empty() ? "Wizard Engine" : title;
     SDL_SetWindowTitle(_base, _title.c_str());
 }
 
@@ -57,10 +55,7 @@ std::shared_ptr<wze::image> const& wze::window::icon() {
 }
 
 void wze::window::set_icon(std::shared_ptr<image> const& icon) {
-    static std::shared_ptr<image> fallback =
-        assets::load_image("./assets/wizard_engine/icon.png");
-
-    _icon = icon ? icon : fallback;
+    _icon = icon ? icon : assets::load_image("./assets/wizard_engine/icon.png");
     SDL_SetWindowIcon(_base, _icon.get());
 }
 

@@ -295,12 +295,13 @@ enum key {
  * @brief Subsystem to handle keyboard and mouse input.
  */
 class input final {
+  private:
     static std::array<bool, KEY_COUNT> _keys;
-    static float_t _cursor_absolute_x;
-    static float_t _cursor_absolute_y;
-    static float_t _cursor_relative_x;
-    static float_t _cursor_relative_y;
-    static float_t _mouse_sensitivity;
+    static float _cursor_absolute_x;
+    static float _cursor_absolute_y;
+    static float _cursor_relative_x;
+    static float _cursor_relative_y;
+    static float _mouse_sensitivity;
     static bool _cursor_visible;
     static std::shared_ptr<cursor> _cursor_appearance;
 
@@ -332,7 +333,7 @@ class input final {
      * @brief Returns the current absolute x position of the cursor.
      * @return Current absolute x position of the cursor.
      */
-    static float_t cursor_absolute_x();
+    static float cursor_absolute_x();
 
     /**
      * @file input.hpp
@@ -340,7 +341,7 @@ class input final {
      * @brief Returns the current absolute y position of the cursor.
      * @return Current absolute y position of the cursor.
      */
-    static float_t cursor_absolute_y();
+    static float cursor_absolute_y();
 
     /**
      * @file input.hpp
@@ -348,7 +349,7 @@ class input final {
      * @brief Returns the current relative x position of the cursor.
      * @return Current relative x position of the cursor.
      */
-    static float_t cursor_relative_x();
+    static float cursor_relative_x();
 
     /**
      * @file input.hpp
@@ -356,7 +357,7 @@ class input final {
      * @brief Returns the current relative y position of the cursor.
      * @return Current relative y position of the cursor.
      */
-    static float_t cursor_relative_y();
+    static float cursor_relative_y();
 
     /**
      * @file input.hpp
@@ -366,7 +367,7 @@ class input final {
      * @note Setting this value to 0 locks the cursor's relative position,
      * setting this value less than 0 inverts the cursor's relative position.
      */
-    static float_t mouse_sensitivity();
+    static float mouse_sensitivity();
 
     /**
      * @file input.hpp
@@ -376,7 +377,7 @@ class input final {
      * @note Setting this value to 0 locks the cursor's relative position,
      * setting this value less than 0 inverts the cursor's relative position.
      */
-    static void set_mouse_sensitivity(float_t mouse_sensitivity);
+    static void set_mouse_sensitivity(float mouse_sensitivity);
 
     /**
      * @file input.hpp
@@ -448,7 +449,7 @@ class input final {
      * @param z Spatial z component of the cursor.
      * @return Spatial x, y components of the cursor.
      */
-    static std::pair<float_t, float_t> cursor_spatial(float_t z);
+    static std::pair<float, float> cursor_spatial(float z);
 };
 } /* namespace wze */
 

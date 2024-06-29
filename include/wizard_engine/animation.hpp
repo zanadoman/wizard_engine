@@ -63,6 +63,7 @@ class animatable {
  * @brief Animates animatable objects.
  */
 class animator final {
+  private:
     std::vector<std::shared_ptr<texture>> _frames;
     uint16_t _frame_time;
     size_t _current_frame;
