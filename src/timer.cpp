@@ -25,6 +25,7 @@
 
 uint8_t wze::timer::_frame_time = 0;
 uint64_t wze::timer::_delta_time = 0;
+uint64_t wze::timer::_last_time = 0;
 
 uint8_t wze::timer::frame_time() {
     return _frame_time;
@@ -43,11 +44,10 @@ void wze::timer::set_delta_time(uint64_t delta_time) {
 }
 
 void wze::timer::update() {
-    static uint64_t last_time = 0;
     uint64_t now;
     uint64_t end;
 
-    end = last_time + _frame_time;
+    end = _last_time + _frame_time;
     now = current_time();
 
     if (now < end) {
@@ -55,8 +55,8 @@ void wze::timer::update() {
         now = end;
     }
 
-    _delta_time = now - last_time;
-    last_time = now;
+    _delta_time = now - _last_time;
+    _last_time = now;
 }
 
 uint64_t wze::timer::current_time() {

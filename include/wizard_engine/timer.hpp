@@ -34,6 +34,7 @@ class timer final {
   private:
     static uint8_t _frame_time;
     static uint64_t _delta_time;
+    static uint64_t _last_time;
 
     /**
      * @file timer.hpp
