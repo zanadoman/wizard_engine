@@ -35,6 +35,7 @@ namespace wze {
  * @brief Visual component.
  */
 class sprite final : public renderable, public animatable, public component {
+  private:
     float_t _x;
     float_t _y;
     float_t _z;

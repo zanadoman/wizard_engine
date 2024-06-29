@@ -134,6 +134,7 @@ class component {
  * @brief Composes components together.
  */
 class entity : public component {
+  private:
     float_t _x;
     float_t _y;
     float_t _angle;
