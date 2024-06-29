@@ -38,7 +38,7 @@ class component {
      * @brief Sets the x position of the object.
      * @param x X position of the object.
      */
-    virtual void set_x(float_t x) = 0;
+    virtual void set_x(float x) = 0;
 
     /**
      * @file composition.hpp
@@ -46,7 +46,7 @@ class component {
      * @brief Sets the y position of the object.
      * @param y Y position of the object.
      */
-    virtual void set_y(float_t y) = 0;
+    virtual void set_y(float y) = 0;
 
     /**
      * @file composition.hpp
@@ -54,7 +54,7 @@ class component {
      * @brief Sets the angle of the object.
      * @param angle Angle of the object.
      */
-    virtual void set_angle(float_t angle) = 0;
+    virtual void set_angle(float angle) = 0;
 
     /**
      * @file composition.hpp
@@ -62,7 +62,7 @@ class component {
      * @brief Returns the x offset of the object.
      * @return X offset of the object.
      */
-    virtual float_t x_offset() const = 0;
+    virtual float x_offset() const = 0;
 
     /**
      * @file composition.hpp
@@ -70,7 +70,7 @@ class component {
      * @brief Returns the y offset of the object.
      * @return Y offset of the object.
      */
-    virtual float_t y_offset() const = 0;
+    virtual float y_offset() const = 0;
 
     /**
      * @file composition.hpp
@@ -78,7 +78,7 @@ class component {
      * @brief Returns the angle offset of the object.
      * @return Angle offset of the object.
      */
-    virtual float_t angle_offset() const = 0;
+    virtual float angle_offset() const = 0;
 
     /**
      * @file composition.hpp
@@ -135,14 +135,14 @@ class component {
  */
 class entity : public component {
   private:
-    float_t _x;
-    float_t _y;
-    float_t _angle;
-    std::array<float_t, 4> _rotation_matrix;
+    float _x;
+    float _y;
+    float _angle;
+    std::array<float, 4> _rotation_matrix;
     std::vector<std::weak_ptr<component>> _components;
-    float_t _x_offset;
-    float_t _y_offset;
-    float_t _angle_offset;
+    float _x_offset;
+    float _y_offset;
+    float _angle_offset;
     bool _attach_x;
     bool _attach_y;
     bool _attach_angle;
@@ -179,7 +179,7 @@ class entity : public component {
      * @param angle Angle of the entity.
      * @param components Components of the entity.
      */
-    entity(float_t x, float_t y, float_t angle,
+    entity(float x, float y, float angle,
            std::vector<std::weak_ptr<component>> const& components);
 
   public:
@@ -189,7 +189,7 @@ class entity : public component {
      * @brief Returns the x position of the entity.
      * @return X position of the entity.
      */
-    float_t x() const;
+    float x() const;
 
     /**
      * @file composition.hpp
@@ -197,7 +197,7 @@ class entity : public component {
      * @brief Sets the x position of the entity.
      * @param x X position of the entity.
      */
-    void set_x(float_t x) final;
+    void set_x(float x) final;
 
     /**
      * @file composition.hpp
@@ -205,7 +205,7 @@ class entity : public component {
      * @brief Returns the y position of the entity.
      * @return Y position of the entity.
      */
-    float_t y() const;
+    float y() const;
 
     /**
      * @file composition.hpp
@@ -213,7 +213,7 @@ class entity : public component {
      * @brief Sets the y position of the entity.
      * @param y Y position of the entity.
      */
-    void set_y(float_t y) final;
+    void set_y(float y) final;
 
     /**
      * @file composition.hpp
@@ -221,7 +221,7 @@ class entity : public component {
      * @brief Returns the angle of the entity.
      * @return Angle of the entity.
      */
-    float_t angle() const;
+    float angle() const;
 
     /**
      * @file composition.hpp
@@ -229,7 +229,7 @@ class entity : public component {
      * @brief Sets the angle of the entity.
      * @param angle Angle of the entity.
      */
-    void set_angle(float_t angle) final;
+    void set_angle(float angle) final;
 
     /**
      * @file composition.hpp
@@ -245,7 +245,7 @@ class entity : public component {
      * @brief Returns the x offset of the entity.
      * @return X offset of the entity.
      */
-    float_t x_offset() const final;
+    float x_offset() const final;
 
     /**
      * @file composition.hpp
@@ -253,7 +253,7 @@ class entity : public component {
      * @brief Sets the x offset of the entity.
      * @param x_offset X offset of the entity.
      */
-    void set_x_offset(float_t x_offset);
+    void set_x_offset(float x_offset);
 
     /**
      * @file composition.hpp
@@ -261,7 +261,7 @@ class entity : public component {
      * @brief Returns the y offset of the entity.
      * @return Y offset of the entity.
      */
-    float_t y_offset() const final;
+    float y_offset() const final;
 
     /**
      * @file composition.hpp
@@ -269,7 +269,7 @@ class entity : public component {
      * @brief Sets the y offset of the entity.
      * @param y_offset Y offset of the entity.
      */
-    void set_y_offset(float_t y_offset);
+    void set_y_offset(float y_offset);
 
     /**
      * @file composition.hpp
@@ -277,7 +277,7 @@ class entity : public component {
      * @brief Returns the angle offset of the entity.
      * @return Angle offset of the entity.
      */
-    float_t angle_offset() const final;
+    float angle_offset() const final;
 
     /**
      * @file composition.hpp
@@ -285,7 +285,7 @@ class entity : public component {
      * @brief Sets the angle offset of the entity.
      * @param angle_offset Angle offset of the entity.
      */
-    void set_angle_offset(float_t angle_offset);
+    void set_angle_offset(float angle_offset);
 
     /**
      * @file composition.hpp
@@ -378,7 +378,7 @@ class entity : public component {
      * @return New entity instance allocated on the heap.
      */
     static std::unique_ptr<entity>
-    create(float_t x = 0.f, float_t y = 0.f, float_t angle = 0.f,
+    create(float x = 0, float y = 0, float angle = 0,
            std::vector<std::weak_ptr<component>> const& components = {});
 
     /**

@@ -34,22 +34,22 @@ void wze::renderable::set_screen_area(SDL_FRect const& screen_area) {
     _screen_area = screen_area;
 }
 
-float_t wze::renderable::screen_angle() const {
+float wze::renderable::screen_angle() const {
     return _screen_angle;
 }
 
-void wze::renderable::set_screen_angle(float_t screen_angle) {
+void wze::renderable::set_screen_angle(float screen_angle) {
     _screen_angle = screen_angle;
 }
 
 wze::renderable::renderable() {
-    _screen_area = {0.f, 0.f, 0.f, 0.f};
-    _screen_angle = 0.f;
+    _screen_area = {0, 0, 0, 0};
+    _screen_angle = 0;
 }
 
 SDL_Renderer* wze::renderer::_base = nullptr;
-float_t wze::renderer::_origo_x = 0.f;
-float_t wze::renderer::_origo_y = 0.f;
+float wze::renderer::_origo_x = 0;
+float wze::renderer::_origo_y = 0;
 std::vector<std::weak_ptr<wze::renderable>> wze::renderer::_queue = {};
 std::vector<std::shared_ptr<wze::renderable const>> wze::renderer::_space = {};
 std::vector<std::shared_ptr<wze::renderable const>> wze::renderer::_plane = {};
@@ -72,8 +72,8 @@ bool wze::renderer::invisible(renderable const& instance) {
 
 void wze::renderer::transform(renderable& instance) {
     instance.set_screen_area(
-        {_origo_x + instance.screen_area().x - instance.screen_area().w / 2.f,
-         _origo_y + instance.screen_area().y - instance.screen_area().h / 2.f,
+        {_origo_x + instance.screen_area().x - instance.screen_area().w / 2,
+         _origo_y + instance.screen_area().y - instance.screen_area().h / 2,
          instance.screen_area().w, instance.screen_area().h});
 }
 
@@ -112,19 +112,19 @@ std::vector<std::weak_ptr<wze::renderable>>& wze::renderer::queue() {
     return _queue;
 }
 
-float_t wze::renderer::origo_x() {
+float wze::renderer::origo_x() {
     return _origo_x;
 }
 
-void wze::renderer::set_origo_x(float_t origo_x) {
+void wze::renderer::set_origo_x(float origo_x) {
     _origo_x = origo_x;
 }
 
-float_t wze::renderer::origo_y() {
+float wze::renderer::origo_y() {
     return _origo_y;
 }
 
-void wze::renderer::set_origo_y(float_t origo_y) {
+void wze::renderer::set_origo_y(float origo_y) {
     _origo_y = origo_y;
 }
 
@@ -199,6 +199,6 @@ void wze::renderer::update() {
     close_frame();
 }
 
-std::pair<float_t, float_t> wze::renderer::detransform(float_t x, float_t y) {
+std::pair<float, float> wze::renderer::detransform(float x, float y) {
     return {x - _origo_x, y - _origo_y};
 }

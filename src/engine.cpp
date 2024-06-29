@@ -33,16 +33,16 @@ std::vector<SDL_Event> wze::engine::_events = {};
 
 void wze::engine::play_intro() {
     std::shared_ptr<sprite> logo;
-    float_t opacity;
+    float opacity;
 
-    logo = sprite::create(0.f, 0.f, 0.f, 0.f, window::height() / 2.f,
+    logo = sprite::create(0, 0, 0, 0, window::height() / 2.f,
                           window::height() / 2.f, false,
                           assets::create_texture(assets::load_image(
                               "./assets/wizard_engine/logo.png")));
     renderer::queue().push_back(logo);
 
-    opacity = 0.f;
-    while (opacity <= 255.f) {
+    opacity = 0;
+    while (opacity <= 255) {
         logo->set_color_a(opacity);
         if (!update()) {
             return;
@@ -50,8 +50,8 @@ void wze::engine::play_intro() {
         opacity += 0.1f * timer::delta_time();
     }
 
-    opacity = 255.f;
-    while (0.f <= opacity) {
+    opacity = 255;
+    while (0 <= opacity) {
         logo->set_color_a(opacity);
         if (!update()) {
             return;

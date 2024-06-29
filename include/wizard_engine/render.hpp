@@ -45,7 +45,7 @@ enum flip {
 class renderable {
   private:
     SDL_FRect _screen_area;
-    float_t _screen_angle;
+    float _screen_angle;
 
   public:
     /**
@@ -72,7 +72,7 @@ class renderable {
      * @brief Returns the screen angle of the object.
      * @return Screen angle of the object.
      */
-    float_t screen_angle() const;
+    float screen_angle() const;
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
@@ -81,7 +81,7 @@ class renderable {
      * @brief Sets the screen angle of the object.
      * @param screen_angle Screen angle of the object.
      */
-    void set_screen_angle(float_t screen_angle);
+    void set_screen_angle(float screen_angle);
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
@@ -90,7 +90,7 @@ class renderable {
      * @brief Returns the x position of the object.
      * @return X position of the object.
      */
-    virtual float_t x() const = 0;
+    virtual float x() const = 0;
 
     /**
      * @file render.hpp
@@ -98,7 +98,7 @@ class renderable {
      * @brief Returns the y position of the object.
      * @return Y position of the object.
      */
-    virtual float_t y() const = 0;
+    virtual float y() const = 0;
 
     /**
      * @file render.hpp
@@ -107,7 +107,7 @@ class renderable {
      * @return Z position of the object.
      * @note Ignored if the object is not spatial.
      */
-    virtual float_t z() const = 0;
+    virtual float z() const = 0;
 
     /**
      * @file render.hpp
@@ -115,7 +115,7 @@ class renderable {
      * @brief Returns the angle of the object.
      * @return Angle of the object.
      */
-    virtual float_t angle() const = 0;
+    virtual float angle() const = 0;
 
     /**
      * @file render.hpp
@@ -123,7 +123,7 @@ class renderable {
      * @brief Returns the width of the object.
      * @return Width of the object.
      */
-    virtual float_t width() const = 0;
+    virtual float width() const = 0;
 
     /**
      * @file render.hpp
@@ -131,7 +131,7 @@ class renderable {
      * @brief Returns the height of the object.
      * @return Height of the object.
      */
-    virtual float_t height() const = 0;
+    virtual float height() const = 0;
 
     /**
      * @file render.hpp
@@ -228,8 +228,8 @@ class renderable {
 class renderer final {
   private:
     static SDL_Renderer* _base;
-    static float_t _origo_x;
-    static float_t _origo_y;
+    static float _origo_x;
+    static float _origo_y;
     static std::vector<std::weak_ptr<renderable>> _queue;
     static std::vector<std::shared_ptr<renderable const>> _space;
     static std::vector<std::shared_ptr<renderable const>> _plane;
@@ -319,7 +319,7 @@ class renderer final {
      * @brief Returns the origo x of the screen.
      * @return Origo x of the screen.
      */
-    static float_t origo_x();
+    static float origo_x();
 
     /**
      * @file render.hpp
@@ -327,7 +327,7 @@ class renderer final {
      * @brief Sets the origo x of the screen.
      * @param origo_x Origo x of the screen.
      */
-    static void set_origo_x(float_t origo_x);
+    static void set_origo_x(float origo_x);
 
     /**
      * @file render.hpp
@@ -335,7 +335,7 @@ class renderer final {
      * @brief Returns the origo y of the sceen.
      * @return Origo y of the screen.
      */
-    static float_t origo_y();
+    static float origo_y();
 
     /**
      * @file render.hpp
@@ -343,7 +343,7 @@ class renderer final {
      * @brief Sets the origo y of the screen.
      * @param origo_y Origo y of the screen.
      */
-    static void set_origo_y(float_t origo_y);
+    static void set_origo_y(float origo_y);
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
@@ -374,7 +374,7 @@ class renderer final {
      * @param y Y component of the plane coordinate.
      * @return Plane coordinate.
      */
-    static std::pair<float_t, float_t> detransform(float_t x, float_t y);
+    static std::pair<float, float> detransform(float x, float y);
 #endif /* __WIZARD_ENGINE_INTERNAL */
 };
 } /* namespace wze */

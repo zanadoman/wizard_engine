@@ -36,12 +36,12 @@ namespace wze {
  */
 class sprite final : public renderable, public animatable, public component {
   private:
-    float_t _x;
-    float_t _y;
-    float_t _z;
-    float_t _angle;
-    float_t _width;
-    float_t _height;
+    float _x;
+    float _y;
+    float _z;
+    float _angle;
+    float _width;
+    float _height;
     bool _spatial;
     std::shared_ptr<wze::texture> _texture;
     uint8_t _color_r;
@@ -52,9 +52,9 @@ class sprite final : public renderable, public animatable, public component {
     bool _visible;
     uint8_t _priority;
     bool _active;
-    float_t _x_offset;
-    float_t _y_offset;
-    float_t _angle_offset;
+    float _x_offset;
+    float _y_offset;
+    float _angle_offset;
     bool _attach_x;
     bool _attach_y;
     bool _attach_angle;
@@ -90,13 +90,13 @@ class sprite final : public renderable, public animatable, public component {
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
-    sprite(float_t x, float_t y, float_t z, float_t angle, float_t width,
-           float_t height, bool spatial,
-           std::shared_ptr<wze::texture> const& texture, uint8_t color_r,
-           uint8_t color_g, uint8_t color_b, uint8_t color_a, enum flip flip,
-           bool visible, uint8_t priority, bool active, float_t x_offset,
-           float_t y_offset, float_t angle_offset, bool attach_x, bool attach_y,
-           bool attach_angle, bool x_angle_lock, bool y_angle_lock);
+    sprite(float x, float y, float z, float angle, float width, float height,
+           bool spatial, std::shared_ptr<wze::texture> const& texture,
+           uint8_t color_r, uint8_t color_g, uint8_t color_b, uint8_t color_a,
+           enum flip flip, bool visible, uint8_t priority, bool active,
+           float x_offset, float y_offset, float angle_offset, bool attach_x,
+           bool attach_y, bool attach_angle, bool x_angle_lock,
+           bool y_angle_lock);
 
   public:
     /**
@@ -105,7 +105,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the x position of the sprite.
      * @return X position of the sprite.
      */
-    float_t x() const final;
+    float x() const final;
 
     /**
      * @file sprite.hpp
@@ -113,7 +113,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Sets the x position of the sprite.
      * @param x X position of the sprite.
      */
-    void set_x(float_t x) final;
+    void set_x(float x) final;
 
     /**
      * @file sprite.hpp
@@ -121,7 +121,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the y position of the sprite.
      * @return Y position of the sprite.
      */
-    float_t y() const final;
+    float y() const final;
 
     /**
      * @file sprite.hpp
@@ -129,7 +129,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Sets the y position of the sprite.
      * @param y Y position of the sprite.
      */
-    void set_y(float_t y) final;
+    void set_y(float y) final;
 
     /**
      * @file sprite.hpp
@@ -138,7 +138,7 @@ class sprite final : public renderable, public animatable, public component {
      * @return Z position of the sprite.
      * @note Ignored if the sprite is not spatial.
      */
-    float_t z() const final;
+    float z() const final;
 
     /**
      * @file sprite.hpp
@@ -147,7 +147,7 @@ class sprite final : public renderable, public animatable, public component {
      * @param z Z position of the sprite.
      * @note Ignored if the sprite is not spatial.
      */
-    void set_z(float_t z);
+    void set_z(float z);
 
     /**
      * @file sprite.hpp
@@ -155,7 +155,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the angle of the sprite.
      * @return Angle of the sprite.
      */
-    float_t angle() const final;
+    float angle() const final;
 
     /**
      * @file sprite.hpp
@@ -163,7 +163,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Sets the angle of the sprite.
      * @param angle Angle of the sprite.
      */
-    void set_angle(float_t angle) final;
+    void set_angle(float angle) final;
 
     /**
      * @file sprite.hpp
@@ -171,7 +171,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the width of the sprite.
      * @return Width of the sprite.
      */
-    float_t width() const final;
+    float width() const final;
 
     /**
      * @file sprite.hpp
@@ -179,7 +179,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Sets the width of the sprite.
      * @param width Width of the sprite.
      */
-    void set_width(float_t width);
+    void set_width(float width);
 
     /**
      * @file sprite.hpp
@@ -187,7 +187,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the height of the sprite.
      * @return Height of the sprite.
      */
-    float_t height() const final;
+    float height() const final;
 
     /**
      * @file sprite.hpp
@@ -195,7 +195,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Sets the height of the sprite.
      * @param height Height of the sprite.
      */
-    void set_height(float_t height);
+    void set_height(float height);
 
     /**
      * @file sprite.hpp
@@ -363,7 +363,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the x offset of the sprite.
      * @return X offset of the sprite.
      */
-    float_t x_offset() const final;
+    float x_offset() const final;
 
     /**
      * @file sprite.hpp
@@ -371,7 +371,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Sets the x offset of the sprite.
      * @param x_offset X offset of the sprite.
      */
-    void set_x_offset(float_t x_offset);
+    void set_x_offset(float x_offset);
 
     /**
      * @file sprite.hpp
@@ -379,7 +379,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the y offset of the sprite.
      * @return Y offset of the sprite.
      */
-    float_t y_offset() const final;
+    float y_offset() const final;
 
     /**
      * @file sprite.hpp
@@ -387,7 +387,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Sets the y offset of the sprite.
      * @param y_offset Y offset of the sprite.
      */
-    void set_y_offset(float_t y_offset);
+    void set_y_offset(float y_offset);
 
     /**
      * @file sprite.hpp
@@ -395,7 +395,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the angle offset of the sprite.
      * @return Angle offset of the sprite.
      */
-    float_t angle_offset() const final;
+    float angle_offset() const final;
 
     /**
      * @file sprite.hpp
@@ -403,7 +403,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Sets the angle offset of the sprite.
      * @param angle_offset Angle offset of the sprite.
      */
-    void set_angle_offset(float_t angle_offset);
+    void set_angle_offset(float angle_offset);
 
     /**
      * @file sprite.hpp
@@ -515,16 +515,16 @@ class sprite final : public renderable, public animatable, public component {
      * @param y_angle_lock Whether the y position is affected by the angle.
      * @return New sprite instance allocated on the heap.
      */
-    static std::unique_ptr<sprite> create(
-        float_t x = 0.f, float_t y = 0.f, float_t z = 0.f, float_t angle = 0.f,
-        float_t width = 0.f, float_t height = 0.f, bool spatial = false,
-        std::shared_ptr<wze::texture> const& texture = {},
-        uint8_t color_r = 255, uint8_t color_g = 255, uint8_t color_b = 255,
-        uint8_t color_a = 255, enum flip flip = FLIP_NONE, bool visible = true,
-        uint8_t priority = 128, bool active = true, float_t x_offset = 0.f,
-        float_t y_offset = 0.f, float_t angle_offset = 0.f,
-        bool attach_x = true, bool attach_y = true, bool attach_angle = true,
-        bool x_angle_lock = true, bool y_angle_lock = true);
+    static std::unique_ptr<sprite>
+    create(float x = 0, float y = 0, float z = 0, float angle = 0,
+           float width = 0, float height = 0, bool spatial = false,
+           std::shared_ptr<wze::texture> const& texture = {},
+           uint8_t color_r = 255, uint8_t color_g = 255, uint8_t color_b = 255,
+           uint8_t color_a = 255, enum flip flip = FLIP_NONE,
+           bool visible = true, uint8_t priority = 128, bool active = true,
+           float x_offset = 0, float y_offset = 0, float angle_offset = 0,
+           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
+           bool x_angle_lock = true, bool y_angle_lock = true);
 };
 } /* namespace wze */
 

@@ -23,13 +23,13 @@
 
 #include <wizard_engine/sprite.hpp>
 
-wze::sprite::sprite(float_t x, float_t y, float_t z, float_t angle,
-                    float_t width, float_t height, bool spatial,
+wze::sprite::sprite(float x, float y, float z, float angle, float width,
+                    float height, bool spatial,
                     std::shared_ptr<wze::texture> const& texture,
                     uint8_t color_r, uint8_t color_g, uint8_t color_b,
                     uint8_t color_a, enum flip flip, bool visible,
-                    uint8_t priority, bool active, float_t x_offset,
-                    float_t y_offset, float_t angle_offset, bool attach_x,
+                    uint8_t priority, bool active, float x_offset,
+                    float y_offset, float angle_offset, bool attach_x,
                     bool attach_y, bool attach_angle, bool x_angle_lock,
                     bool y_angle_lock) {
     _x = x;
@@ -58,51 +58,51 @@ wze::sprite::sprite(float_t x, float_t y, float_t z, float_t angle,
     _y_angle_lock = y_angle_lock;
 }
 
-float_t wze::sprite::x() const {
+float wze::sprite::x() const {
     return _x;
 }
 
-void wze::sprite::set_x(float_t x) {
+void wze::sprite::set_x(float x) {
     _x = x;
 }
 
-float_t wze::sprite::y() const {
+float wze::sprite::y() const {
     return _y;
 }
 
-void wze::sprite::set_y(float_t y) {
+void wze::sprite::set_y(float y) {
     _y = y;
 }
 
-float_t wze::sprite::z() const {
+float wze::sprite::z() const {
     return _z;
 }
 
-void wze::sprite::set_z(float_t z) {
+void wze::sprite::set_z(float z) {
     _z = z;
 }
 
-float_t wze::sprite::angle() const {
+float wze::sprite::angle() const {
     return _angle;
 }
 
-void wze::sprite::set_angle(float_t angle) {
+void wze::sprite::set_angle(float angle) {
     _angle = angle;
 }
 
-float_t wze::sprite::width() const {
+float wze::sprite::width() const {
     return _width;
 }
 
-void wze::sprite::set_width(float_t width) {
+void wze::sprite::set_width(float width) {
     _width = width;
 }
 
-float_t wze::sprite::height() const {
+float wze::sprite::height() const {
     return _height;
 }
 
-void wze::sprite::set_height(float_t height) {
+void wze::sprite::set_height(float height) {
     _height = height;
 }
 
@@ -186,27 +186,27 @@ void wze::sprite::set_active(bool active) {
     _active = active;
 }
 
-float_t wze::sprite::x_offset() const {
+float wze::sprite::x_offset() const {
     return _x_offset;
 }
 
-void wze::sprite::set_x_offset(float_t x_offset) {
+void wze::sprite::set_x_offset(float x_offset) {
     _x_offset = x_offset;
 }
 
-float_t wze::sprite::y_offset() const {
+float wze::sprite::y_offset() const {
     return _y_offset;
 }
 
-void wze::sprite::set_y_offset(float_t y_offset) {
+void wze::sprite::set_y_offset(float y_offset) {
     _y_offset = y_offset;
 }
 
-float_t wze::sprite::angle_offset() const {
+float wze::sprite::angle_offset() const {
     return _angle_offset;
 }
 
-void wze::sprite::set_angle_offset(float_t angle_offset) {
+void wze::sprite::set_angle_offset(float angle_offset) {
     _angle_offset = angle_offset;
 }
 
@@ -251,12 +251,12 @@ void wze::sprite::set_y_angle_lock(bool y_angle_lock) {
 }
 
 std::unique_ptr<wze::sprite> wze::sprite::create(
-    float_t x, float_t y, float_t z, float_t angle, float_t width,
-    float_t height, bool spatial, std::shared_ptr<wze::texture> const& texture,
-    uint8_t color_r, uint8_t color_g, uint8_t color_b, uint8_t color_a,
-    enum flip flip, bool visible, uint8_t priority, bool active,
-    float_t x_offset, float_t y_offset, float_t angle_offset, bool attach_x,
-    bool attach_y, bool attach_angle, bool x_angle_lock, bool y_angle_lock) {
+    float x, float y, float z, float angle, float width, float height,
+    bool spatial, std::shared_ptr<wze::texture> const& texture, uint8_t color_r,
+    uint8_t color_g, uint8_t color_b, uint8_t color_a, enum flip flip,
+    bool visible, uint8_t priority, bool active, float x_offset, float y_offset,
+    float angle_offset, bool attach_x, bool attach_y, bool attach_angle,
+    bool x_angle_lock, bool y_angle_lock) {
     return std::unique_ptr<sprite>(
         new sprite(x, y, z, angle, width, height, spatial, texture, color_r,
                    color_g, color_b, color_a, flip, visible, priority, active,

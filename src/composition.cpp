@@ -24,7 +24,7 @@
 #include <wizard_engine/composition.hpp>
 #include <wizard_engine/math.hpp>
 
-wze::entity::entity(float_t x, float_t y, float_t angle,
+wze::entity::entity(float x, float y, float angle,
                     std::vector<std::weak_ptr<component>> const& components) {
     _x = x;
     _y = y;
@@ -64,11 +64,11 @@ void wze::entity::update_angle(component& instance) {
     }
 }
 
-float_t wze::entity::x() const {
+float wze::entity::x() const {
     return _x;
 }
 
-void wze::entity::set_x(float_t x) {
+void wze::entity::set_x(float x) {
     std::vector<std::weak_ptr<component>>::iterator iterator;
     std::shared_ptr<component> instance;
 
@@ -83,11 +83,11 @@ void wze::entity::set_x(float_t x) {
     }
 }
 
-float_t wze::entity::y() const {
+float wze::entity::y() const {
     return _y;
 }
 
-void wze::entity::set_y(float_t y) {
+void wze::entity::set_y(float y) {
     std::vector<std::weak_ptr<component>>::iterator iterator;
     std::shared_ptr<component> instance;
 
@@ -102,11 +102,11 @@ void wze::entity::set_y(float_t y) {
     }
 }
 
-float_t wze::entity::angle() const {
+float wze::entity::angle() const {
     return _angle;
 }
 
-void wze::entity::set_angle(float_t angle) {
+void wze::entity::set_angle(float angle) {
     std::vector<std::weak_ptr<component>>::iterator iterator;
     std::shared_ptr<component> instance;
 
@@ -128,27 +128,27 @@ std::vector<std::weak_ptr<wze::component>>& wze::entity::components() {
     return _components;
 }
 
-float_t wze::entity::x_offset() const {
+float wze::entity::x_offset() const {
     return _x_offset;
 }
 
-void wze::entity::set_x_offset(float_t x_offset) {
+void wze::entity::set_x_offset(float x_offset) {
     _x_offset = x_offset;
 }
 
-float_t wze::entity::y_offset() const {
+float wze::entity::y_offset() const {
     return _y_offset;
 }
 
-void wze::entity::set_y_offset(float_t y_offset) {
+void wze::entity::set_y_offset(float y_offset) {
     _y_offset = y_offset;
 }
 
-float_t wze::entity::angle_offset() const {
+float wze::entity::angle_offset() const {
     return _angle_offset;
 }
 
-void wze::entity::set_angle_offset(float_t angle_offset) {
+void wze::entity::set_angle_offset(float angle_offset) {
     _angle_offset = angle_offset;
 }
 
@@ -193,7 +193,7 @@ void wze::entity::set_y_angle_lock(bool y_angle_lock) {
 }
 
 std::unique_ptr<wze::entity>
-wze::entity::create(float_t x, float_t y, float_t angle,
+wze::entity::create(float x, float y, float angle,
                     std::vector<std::weak_ptr<component>> const& components) {
     return std::unique_ptr<entity>(new entity(x, y, angle, components));
 }
