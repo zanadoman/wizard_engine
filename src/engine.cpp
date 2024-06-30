@@ -22,6 +22,7 @@
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/assets.hpp>
+#include <wizard_engine/audio.hpp>
 #include <wizard_engine/engine.hpp>
 #include <wizard_engine/input.hpp>
 #include <wizard_engine/render.hpp>
@@ -85,6 +86,7 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     }
     window::initialize(width, height);
     renderer::initialize();
+    audio::initialize();
     input::initialize();
     play_intro();
 }

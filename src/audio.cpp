@@ -23,43 +23,115 @@
 
 #include <wizard_engine/audio.hpp>
 
-uint8_t wze::audio::_volume = 255;
-bool wze::audio::_paused = false;
-std::unordered_map<uint16_t, std::weak_ptr<wze::audiable>>
-    wze::audio::_speakers = {};
-
-std::unordered_map<uint16_t, std::weak_ptr<wze::audiable>>
-wze::audio::speakers() {
-    return _speakers;
+wze::mono_speaker::mono_speaker(std::shared_ptr<wze::sound> const& sound,
+                                float volume) {
+    _channel = audio::request_channel();
+    _sound = sound;
+    set_volume(volume);
 }
 
-void wze::audio::update() {
-    std::unordered_map<uint16_t, std::weak_ptr<audiable>>::iterator iterator;
-    uint16_t channel_count;
-    std::shared_ptr<audiable> instance;
+std::shared_ptr<wze::sound> const& wze::mono_speaker::sound() const {
+    return _sound;
+}
 
-    channel_count = 0;
-    for (iterator = _speakers.begin(); iterator != _speakers.end();
-         ++iterator) {
-        if (iterator->second.expired()) {
-            _speakers.erase(iterator);
-        } else if (channel_count < iterator->first) {
-            channel_count = iterator->first;
+void wze::mono_speaker::set_sound(std::shared_ptr<wze::sound> const& sound) {
+    _sound = sound;
+}
+
+float wze::mono_speaker::volume() const {
+    return Mix_Volume(_channel, -1) / (float)MIX_MAX_VOLUME;
+}
+
+void wze::mono_speaker::set_volume(float volume) {
+    Mix_Volume(_channel, round(MIX_MAX_VOLUME * std::clamp(volume, 0.f, 1.f)));
+}
+
+bool wze::mono_speaker::paused() const {
+    return Mix_Paused(_channel);
+}
+
+void wze::mono_speaker::set_paused(bool paused) {
+    if (paused) {
+        Mix_Pause(_channel);
+    } else {
+        Mix_Resume(_channel);
+    }
+}
+
+std::unique_ptr<wze::mono_speaker>
+wze::mono_speaker::create(std::shared_ptr<wze::sound> const& sound,
+                          float volume) {
+    return std::unique_ptr<mono_speaker>(new mono_speaker(sound, volume));
+}
+
+wze::mono_speaker::~mono_speaker() {
+    audio::drop_channel(_channel);
+}
+
+void wze::mono_speaker::play(uint16_t fade_in, uint16_t loops) {
+    if (!_sound) {
+        return;
+    }
+    if (Mix_FadeInChannel(_channel, _sound.get(), loops, fade_in) == -1) {
+        throw std::runtime_error(Mix_GetError());
+    }
+}
+
+void wze::mono_speaker::stop(uint16_t fade_out) {
+    Mix_FadeOutChannel(_channel, fade_out);
+}
+
+bool wze::mono_speaker::playing() const {
+    return Mix_Playing(_channel);
+}
+
+std::vector<uint16_t> wze::audio::_channels = {};
+
+uint16_t wze::audio::request_channel() {
+    uint16_t channel;
+
+    for (channel = 0; channel != std::numeric_limits<uint16_t>::max();
+         ++channel) {
+        if (std::ranges::find(_channels, channel) == _channels.end()) {
+            _channels.push_back(channel);
+            Mix_AllocateChannels(std::ranges::max(_channels));
+            return channel;
         }
     }
 
-    if (Mix_AllocateChannels(-1) != channel_count) {
-        if (Mix_AllocateChannels(channel_count) != channel_count) {
-            throw std::runtime_error(Mix_GetError());
-        }
+    throw std::runtime_error("out of channels");
+}
+
+void wze::audio::drop_channel(uint16_t channel) {
+    if (Mix_HaltChannel(channel)) {
+        throw std::runtime_error(Mix_GetError());
     }
+    Mix_AllocateChannels(std::ranges::max(_channels));
+    _channels.erase(std::ranges::find(_channels, channel));
+}
 
-    for (iterator = _speakers.begin(); iterator != _speakers.end();
-         ++iterator) {
-        if ((instance = iterator->second.lock())) {
+float wze::audio::volume() {
+    return Mix_MasterVolume(-1) / (float)MIX_MAX_VOLUME;
+}
 
-        } else {
-            _speakers.erase(iterator);
-        }
+void wze::audio::set_volume(float volume) {
+    Mix_MasterVolume(round(MIX_MAX_VOLUME * std::clamp(volume, 0.f, 1.f)));
+}
+
+void wze::audio::initialize() {
+    Mix_AllocateChannels(0);
+}
+
+void wze::audio::pause() {
+    Mix_Pause(-1);
+}
+
+void wze::audio::resume() {
+    Mix_Resume(-1);
+}
+
+void wze::audio::stop() {
+    if (Mix_HaltChannel(-1)) {
+        throw std::runtime_error(Mix_GetError());
     }
 }
