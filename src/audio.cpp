@@ -31,20 +31,21 @@ wze::speaker::speaker(std::shared_ptr<wze::sound> const& sound, float volume,
                       bool attach_x, bool attach_y, bool attach_angle,
                       bool x_angle_lock, bool y_angle_lock) {
     _channel = audio::request_channel();
-    _sound = sound;
+    set_sound(sound);
     set_volume(volume);
-    _range = range;
-    _x = x;
-    _y = y;
-    _angle = angle;
-    _x_offset = x_offset;
-    _y_offset = y_offset;
-    _angle_offset = angle_offset;
-    _attach_x = attach_x;
-    _attach_y = attach_y;
-    _attach_angle = attach_angle;
-    _x_angle_lock = x_angle_lock;
-    _y_angle_lock = y_angle_lock;
+    set_range(range);
+    set_x(x);
+    set_y(y);
+    set_angle(angle);
+    set_x_offset(x_offset);
+    set_y_offset(y_offset);
+    set_angle_offset(angle_offset);
+    set_attach_x(attach_x);
+    set_attach_y(attach_y);
+    set_attach_angle(attach_angle);
+    set_x_angle_lock(x_angle_lock);
+    set_y_angle_lock(y_angle_lock);
+    update_panning();
 }
 
 std::shared_ptr<wze::sound> const& wze::speaker::sound() const {
@@ -211,7 +212,7 @@ void wze::speaker::update_panning() {
     float left;
     float right;
 
-    distance = math::length(camera::x() - _x, camera::y() - _y);
+    distance = math::length(_x - camera::x(), _y - camera::y());
     if (_range <= distance) {
         left = 0;
         right = 0;
@@ -233,14 +234,14 @@ void wze::speaker::update_panning() {
     }
 }
 
-std::vector<uint16_t> wze::audio::_channels = {};
-float wze::audio::_volume = 1;
-std::vector<std::weak_ptr<wze::speaker>> wze::audio::_auto_panning = {};
+std::vector<int32_t> wze::audio::_channels;
+float wze::audio::_volume;
+std::vector<std::weak_ptr<wze::speaker>> wze::audio::_auto_panning;
 
-uint16_t wze::audio::request_channel() {
-    uint16_t channel;
+int32_t wze::audio::request_channel() {
+    int32_t channel;
 
-    for (channel = 0; channel != std::numeric_limits<uint16_t>::max();
+    for (channel = 0; channel != std::numeric_limits<int32_t>::max();
          ++channel) {
         if (std::ranges::find(_channels, channel) == _channels.end()) {
             _channels.push_back(channel);
@@ -252,7 +253,7 @@ uint16_t wze::audio::request_channel() {
     throw std::runtime_error("out of channels");
 }
 
-void wze::audio::drop_channel(uint16_t channel) {
+void wze::audio::drop_channel(int32_t channel) {
     if (Mix_HaltChannel(channel)) {
         throw std::runtime_error(Mix_GetError());
     }
@@ -274,7 +275,10 @@ std::vector<std::weak_ptr<wze::speaker>>& wze::audio::auto_panning() {
 }
 
 void wze::audio::initialize() {
+    _channels = {};
     Mix_AllocateChannels(0);
+    set_volume(1);
+    auto_panning() = {};
 }
 
 void wze::audio::update() {

@@ -34,7 +34,7 @@ namespace wze {
  */
 class speaker final : public component {
   private:
-    uint16_t _channel;
+    int32_t _channel;
     std::shared_ptr<wze::sound> _sound;
     float _volume;
     float _range;
@@ -400,7 +400,7 @@ class speaker final : public component {
  */
 class audio final {
   private:
-    static std::vector<uint16_t> _channels;
+    static std::vector<int32_t> _channels;
     static float _volume;
     static std::vector<std::weak_ptr<speaker>> _auto_panning;
 
@@ -420,7 +420,7 @@ class audio final {
      * @return Allocated channel.
      * @warning If the channel cannot be allocated, throws std::runtime_error.
      */
-    static uint16_t request_channel();
+    static int32_t request_channel();
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
 #ifdef __WIZARD_ENGINE_INTERNAL
@@ -430,7 +430,7 @@ class audio final {
      * @brief Drops a channel.
      * @param channel Dropped channel.
      */
-    static void drop_channel(uint16_t channel);
+    static void drop_channel(int32_t channel);
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
@@ -457,7 +457,7 @@ class audio final {
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Allocates the default channel count.
+     * @brief Initializes the audio subsystem.
      */
     static void initialize();
 #endif /* __WIZARD_ENGINE_INTERNAL */
@@ -466,7 +466,7 @@ class audio final {
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Updates the panning of the auto panning added speakers.
+     * @brief Updates the audio subsystem.
      */
     static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL */

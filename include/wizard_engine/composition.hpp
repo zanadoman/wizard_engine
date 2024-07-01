@@ -28,7 +28,7 @@ namespace wze {
 /**
  * @file composition.hpp
  * @author Zana Domán
- * @brief Interface to make an object a composable.
+ * @brief Interface to make an object composable.
  */
 class component {
   public:
@@ -152,29 +152,6 @@ class entity : public component {
     /**
      * @file composition.hpp
      * @author Zana Domán
-     * @brief Constructs an entity instance.
-     * @param x X position of the entity.
-     * @param y Y position of the entity.
-     * @param angle Angle of the entity.
-     * @param components Components of the entity.
-     * @param x_offset X offset of the entity.
-     * @param y_offset Y offset of the entity.
-     * @param angle_offset Angle offset of the entity.
-     * @param attach_x Whether the x position is attached to entities.
-     * @param attach_y Whether the y position is attached to entities.
-     * @param attach_angle Whether tha angle is attached to entities.
-     * @param x_angle_lock Whether the x position is affected by the angle.
-     * @param y_angle_lock Whether the y position is affected by the angle.
-     */
-    entity(float x, float y, float angle,
-           std::vector<std::weak_ptr<component>> const& components,
-           float x_offset, float y_offset, float angle_offset, bool attach_x,
-           bool attach_y, bool attach_angle, bool x_angle_lock,
-           bool y_angle_lock);
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
      * @brief Updates the x position of a component instance.
      */
     void update_x(component& instance);
@@ -193,6 +170,30 @@ class entity : public component {
      */
     void update_angle(component& instance);
 
+  protected:
+    /**
+     * @file composition.hpp
+     * @author Zana Domán
+     * @brief Constructs an entity instance.
+     * @param x X position of the entity.
+     * @param y Y position of the entity.
+     * @param angle Angle of the entity.
+     * @param components Components of the entity.
+     * @param x_offset X offset of the entity.
+     * @param y_offset Y offset of the entity.
+     * @param angle_offset Angle offset of the entity.
+     * @param attach_x Whether the x position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     * @param attach_angle Whether tha angle is attached to entities.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
+     */
+    entity(float x = 0, float y = 0, float angle = 0,
+           std::vector<std::weak_ptr<component>> const& components = {},
+           float x_offset = 0, float y_offset = 0, float angle_offset = 0,
+           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
+           bool x_angle_lock = true, bool y_angle_lock = true);
+
   public:
     /**
      * @file composition.hpp
@@ -200,7 +201,7 @@ class entity : public component {
      * @brief Returns the x position of the entity.
      * @return X position of the entity.
      */
-    float x() const;
+    virtual float x() const;
 
     /**
      * @file composition.hpp
@@ -208,7 +209,7 @@ class entity : public component {
      * @brief Sets the x position of the entity.
      * @param x X position of the entity.
      */
-    void set_x(float x) final;
+    void set_x(float x) override;
 
     /**
      * @file composition.hpp
@@ -216,7 +217,7 @@ class entity : public component {
      * @brief Returns the y position of the entity.
      * @return Y position of the entity.
      */
-    float y() const;
+    virtual float y() const;
 
     /**
      * @file composition.hpp
@@ -224,7 +225,7 @@ class entity : public component {
      * @brief Sets the y position of the entity.
      * @param y Y position of the entity.
      */
-    void set_y(float y) final;
+    void set_y(float y) override;
 
     /**
      * @file composition.hpp
@@ -232,7 +233,7 @@ class entity : public component {
      * @brief Returns the angle of the entity.
      * @return Angle of the entity.
      */
-    float angle() const;
+    virtual float angle() const;
 
     /**
      * @file composition.hpp
@@ -240,7 +241,7 @@ class entity : public component {
      * @brief Sets the angle of the entity.
      * @param angle Angle of the entity.
      */
-    void set_angle(float angle) final;
+    void set_angle(float angle) override;
 
     /**
      * @file composition.hpp
@@ -256,7 +257,7 @@ class entity : public component {
      * @brief Returns the x offset of the entity.
      * @return X offset of the entity.
      */
-    float x_offset() const final;
+    float x_offset() const override;
 
     /**
      * @file composition.hpp
@@ -264,7 +265,7 @@ class entity : public component {
      * @brief Sets the x offset of the entity.
      * @param x_offset X offset of the entity.
      */
-    void set_x_offset(float x_offset);
+    virtual void set_x_offset(float x_offset);
 
     /**
      * @file composition.hpp
@@ -272,7 +273,7 @@ class entity : public component {
      * @brief Returns the y offset of the entity.
      * @return Y offset of the entity.
      */
-    float y_offset() const final;
+    float y_offset() const override;
 
     /**
      * @file composition.hpp
@@ -280,7 +281,7 @@ class entity : public component {
      * @brief Sets the y offset of the entity.
      * @param y_offset Y offset of the entity.
      */
-    void set_y_offset(float y_offset);
+    virtual void set_y_offset(float y_offset);
 
     /**
      * @file composition.hpp
@@ -288,7 +289,7 @@ class entity : public component {
      * @brief Returns the angle offset of the entity.
      * @return Angle offset of the entity.
      */
-    float angle_offset() const final;
+    float angle_offset() const override;
 
     /**
      * @file composition.hpp
@@ -296,7 +297,7 @@ class entity : public component {
      * @brief Sets the angle offset of the entity.
      * @param angle_offset Angle offset of the entity.
      */
-    void set_angle_offset(float angle_offset);
+    virtual void set_angle_offset(float angle_offset);
 
     /**
      * @file composition.hpp
@@ -304,7 +305,7 @@ class entity : public component {
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
-    bool attach_x() const final;
+    bool attach_x() const override;
 
     /**
      * @file composition.hpp
@@ -312,7 +313,7 @@ class entity : public component {
      * @brief Sets whether the x position is attached to entities.
      * @param attach_x Whether the x position is attached to entities.
      */
-    void set_attach_x(bool attach_x);
+    virtual void set_attach_x(bool attach_x);
 
     /**
      * @file composition.hpp
@@ -320,7 +321,7 @@ class entity : public component {
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
-    bool attach_y() const final;
+    bool attach_y() const override;
 
     /**
      * @file composition.hpp
@@ -328,7 +329,7 @@ class entity : public component {
      * @brief Sets whether the y position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
      */
-    void set_attach_y(bool attach_y);
+    virtual void set_attach_y(bool attach_y);
 
     /**
      * @file composition.hpp
@@ -336,7 +337,7 @@ class entity : public component {
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
-    bool attach_angle() const final;
+    bool attach_angle() const override;
 
     /**
      * @file composition.hpp
@@ -344,7 +345,7 @@ class entity : public component {
      * @brief Sets whether the angle is attached to entities.
      * @param attach_angle Whether the angle is attached to entities.
      */
-    void set_attach_angle(bool attach_angle);
+    virtual void set_attach_angle(bool attach_angle);
 
     /**
      * @file composition.hpp
@@ -352,7 +353,7 @@ class entity : public component {
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
-    bool x_angle_lock() const final;
+    bool x_angle_lock() const override;
 
     /**
      * @file composition.hpp
@@ -360,7 +361,7 @@ class entity : public component {
      * @brief Sets whether the x position is affected by the angle.
      * @param x_angle_lock Whether the x position is affected by the angle.
      */
-    void set_x_angle_lock(bool x_angle_lock);
+    virtual void set_x_angle_lock(bool x_angle_lock);
 
     /**
      * @file composition.hpp
@@ -368,7 +369,7 @@ class entity : public component {
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
-    bool y_angle_lock() const final;
+    bool y_angle_lock() const override;
 
     /**
      * @file composition.hpp
@@ -376,7 +377,7 @@ class entity : public component {
      * @brief Sets whether the y position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
-    void set_y_angle_lock(bool y_angle_lock);
+    virtual void set_y_angle_lock(bool y_angle_lock);
 
     /**
      * @file composition.hpp
@@ -402,6 +403,14 @@ class entity : public component {
            float x_offset = 0, float y_offset = 0, float angle_offset = 0,
            bool attach_x = true, bool attach_y = true, bool attach_angle = true,
            bool x_angle_lock = true, bool y_angle_lock = true);
+
+    /**
+     * @file composition.hpp
+     * @author Zana Domán
+     * @brief Explicitly updates the components of the entity and erases expired
+     * ones.
+     */
+    virtual void update();
 
     /**
      * @file composition.hpp
