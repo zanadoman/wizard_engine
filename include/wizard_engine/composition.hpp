@@ -249,7 +249,7 @@ class entity : public component {
      * @brief Returns the components of the entity.
      * @return Components of the entity.
      */
-    std::vector<std::weak_ptr<component>>& components();
+    virtual std::vector<std::weak_ptr<component>>& components();
 
     /**
      * @file composition.hpp
