@@ -6,3 +6,4 @@
 -Wextra
 -Wpedantic
 -Wdouble-promotion
+-Wno-nan-infinity-disabled
