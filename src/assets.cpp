@@ -44,9 +44,13 @@ wze::assets::create_image(std::string const& text,
         return nullptr;
     }
 
-    if (!(image = {TTF_RenderUTF8_Blended(font.get(), text.c_str(),
-                                          {255, 255, 255, 255}),
-                   SDL_FreeSurface})) {
+    if (!(image = {
+              TTF_RenderUTF8_Blended(font.get(), text.c_str(),
+                                     {std::numeric_limits<uint8_t>::max(),
+                                      std::numeric_limits<uint8_t>::max(),
+                                      std::numeric_limits<uint8_t>::max(),
+                                      std::numeric_limits<uint8_t>::max()}),
+              SDL_FreeSurface})) {
         throw std::runtime_error(TTF_GetError());
     }
 

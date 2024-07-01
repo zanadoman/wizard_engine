@@ -4,6 +4,7 @@ wze_main(1920, 1080) {
     std::shared_ptr<wze::sprite> wizard;
     std::shared_ptr<wze::sprite> cat;
     std::unique_ptr<wze::entity> entity;
+    std::shared_ptr<wze::speaker> speaker;
 
     wizard =
         wze::sprite::create(0, 0, 500, 0, 100, 100, true,
@@ -13,11 +14,16 @@ wze_main(1920, 1080) {
         wze::sprite::create(0, 0, 400, 0, 50, 50, true,
                             wze::assets::create_texture(wze::assets::load_image(
                                 "./assets/test/run1.png")));
+    speaker =
+        wze::speaker::create(wze::assets::load_sound("assets/test/music.wav"));
 
     wze::renderer::queue().push_back(wizard);
     wze::renderer::queue().push_back(cat);
+    wze::audio::auto_panning().push_back(speaker);
 
-    entity = wze::entity::create(0, 0, 0, {wizard, cat});
+    entity = wze::entity::create(0, 0, 0, {wizard, cat, speaker});
+
+    speaker->play(0, 1000);
 
     wze_while(true) {
         if (wze::input::key(wze::KEY_UP)) {

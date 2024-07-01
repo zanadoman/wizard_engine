@@ -30,12 +30,25 @@ namespace wze {
 /**
  * @file audio.hpp
  * @author Zana Domán
- * @brief Plays sound regardless of the position.
+ * @brief Plays sound on a unique channel.
  */
-class mono_speaker {
+class speaker final : public component {
   private:
     uint16_t _channel;
     std::shared_ptr<wze::sound> _sound;
+    float _volume;
+    float _range;
+    float _x;
+    float _y;
+    float _angle;
+    float _x_offset;
+    float _y_offset;
+    float _angle_offset;
+    bool _attach_x;
+    bool _attach_y;
+    bool _attach_angle;
+    bool _x_angle_lock;
+    bool _y_angle_lock;
 
     /**
      * @file audio.hpp
@@ -43,9 +56,24 @@ class mono_speaker {
      * @brief Constructs a speaker instance.
      * @param sound Sound of the speaker.
      * @param volume Volume of the speaker.
+     * @param range Range of the speaker.
+     * @param x X position of the speaker.
+     * @param y Y position of the speaker.
+     * @param angle Angle of the speaker.
+     * @param x_offset X offset of the speaker.
+     * @param y_offset Y offset of the speaker.
+     * @param angle_offset Angle offset of the speaker.
+     * @param attach_x Whether the x position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     * @param attach_angle Whether the angle is attached to entities.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
      * @note Volume is bounded to [0, 1].
      */
-    mono_speaker(std::shared_ptr<wze::sound> const& sound, float volume);
+    speaker(std::shared_ptr<wze::sound> const& sound, float volume, float range,
+            float x, float y, float angle, float x_offset, float y_offset,
+            float angle_offset, bool attach_x, bool attach_y, bool attach_angle,
+            bool x_angle_lock, bool y_angle_lock);
 
   public:
     /**
@@ -85,37 +113,229 @@ class mono_speaker {
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Returns whether the speaker is paused or not.
-     * @return Whether the speaker is paused or not.
+     * @brief Returns the range of the speaker.
+     * @return Range of the speaker.
      */
-    bool paused() const;
+    float range() const;
 
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Sets whether the speaker is paused or not.
-     * @param paused Whether the speaker is paused or not.
+     * @brief Sets the range of the speaker.
+     * @param range Range of the speaker.
      */
-    void set_paused(bool paused);
+    void set_range(float range);
 
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Returns a new mono speaker instance allocated on the heap.
+     * @brief Returns the x position of the speaker.
+     * @return X position of the speaker.
+     */
+    float x() const;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets the x position of the speaker.
+     * @param x X position of the speaker.
+     */
+    void set_x(float x) final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns the y position of the speaker.
+     * @return Y position of the speaker.
+     */
+    float y() const;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets the y position of the speaker.
+     * @param y Y position of the speaker.
+     */
+    void set_y(float y) final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns the angle of the speaker.
+     * @return Angle of the speaker.
+     */
+    float angle() const;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets the angle of the speaker.
+     * @param angle Angle of the speaker.
+     */
+    void set_angle(float angle) final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns the x offset of the speaker.
+     * @return X offset of the speaker.
+     */
+    float x_offset() const final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets the x offset of the speaker.
+     * @param x_offset X offset of the speaker.
+     */
+    void set_x_offset(float x_offset);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns the y offset of the speaker.
+     * @return Y offset of the speaker.
+     */
+    float y_offset() const final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets the y offset of the speaker.
+     * @param y_offset Y offset of the speaker.
+     */
+    void set_y_offset(float y_offset);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns the angle offset of the speaker.
+     * @return Angle offset of the speaker.
+     */
+    float angle_offset() const final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets the angle offset of the speaker.
+     * @param angle_offset Angle offset of the speaker.
+     */
+    void set_angle_offset(float angle_offset);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns whether the x position is attached to entities.
+     * @return Whether the x position is attached to entities.
+     */
+    bool attach_x() const final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets whether the x position is attached to entities.
+     * @param attach_x Whether the x position is attached to entities.
+     */
+    void set_attach_x(bool attach_x);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns whether the y position is attached to entities.
+     * @return Whether the y position is attached to entities.
+     */
+    bool attach_y() const final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets whether the y position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     */
+    void set_attach_y(bool attach_y);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns whether the angle is attached to entities.
+     * @return Whether the angle is attached to entities.
+     */
+    bool attach_angle() const final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets whether the angle is attached to entities.
+     * @param attach_angle Whether the angle is attached to entities.
+     */
+    void set_attach_angle(bool attach_angle);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns whether the x position is affected by the angle.
+     * @return Whether the x position is affected by the angle.
+     */
+    bool x_angle_lock() const final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets whether the x position is affected by the angle.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     */
+    void set_x_angle_lock(bool x_angle_lock);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns whether the y position is affected by the angle.
+     * @return Whether the y position is affected by the angle.
+     */
+    bool y_angle_lock() const final;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets whether the y position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
+     */
+    void set_y_angle_lock(bool y_angle_lock);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns a new speaker instance allocated on the heap.
      * @param sound Sound of the speaker.
      * @param volume Volume of the speaker.
-     * @return New mono speaker instance allocated on the heap.
+     * @param range Range of the speaker.
+     * @param x X position of the speaker.
+     * @param y Y position of the speaker.
+     * @param angle Angle of the speaker.
+     * @param x_offset X offset of the speaker.
+     * @param y_offset Y offset of the speaker.
+     * @param angle_offset Angle offset of the speaker.
+     * @param attach_x Whether the x position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     * @param attach_angle Whether the angle is attached to entities.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
+     * @return New speaker instance allocated on the heap.
      * @note Volume is bounded to [0, 1].
      */
-    static std::unique_ptr<mono_speaker>
-    create(std::shared_ptr<wze::sound> const& sound = {}, float volume = 1);
+    static std::unique_ptr<speaker>
+    create(std::shared_ptr<wze::sound> const& sound = {}, float volume = 1,
+           float range = 1024, float x = 0, float y = 0, float angle = 0,
+           float offset_x = 0, float offset_y = 0, float offset_angle = 0,
+           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
+           bool x_angle_lock = true, bool y_angle_lock = true);
 
     /**
      * @file audio.hpp
      * @author Zana Domán
      * @brief Drops the channel of the speaker.
      */
-    virtual ~mono_speaker();
+    virtual ~speaker();
 
     /**
      * @file audio.hpp
@@ -125,6 +345,20 @@ class mono_speaker {
      * @param loops Number of loops.
      */
     void play(uint16_t fade_in = 0, uint16_t loops = 0);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Pauses the sound of the speaker.
+     */
+    void pause();
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Resumes the sound of the speaker.
+     */
+    void resume();
 
     /**
      * @file audio.hpp
@@ -141,51 +375,22 @@ class mono_speaker {
      * @return Whether the speaker is playing or not.
      */
     bool playing() const;
-};
 
-class stereo_speaker final : mono_speaker, component {
-  private:
-    float _x;
-    float _y;
-    float _x_offset;
-    float _y_offset;
-    bool _attach_x;
-    bool _attach_y;
-    bool _attach_angle;
-    bool _x_angle_lock;
-    bool _y_angle_lock;
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns whether the speaker is paused or not.
+     * @return Whether the speaker is paused or not.
+     */
+    bool paused() const;
 
-  public:
-    float x() const;
-    void set_x(float x) final;
-
-    float y() const;
-    void set_y(float y) final;
-
-    void set_angle(float angle) final;
-
-    float x_offset() const final;
-    void set_x_offset(float x_offset);
-
-    float y_offset() const final;
-    void set_y_offset(float y_offset);
-
-    float angle_offset() const final;
-
-    bool attach_x() const final;
-    void set_attach_x(bool attach_x);
-
-    bool attach_y() const final;
-    void set_attach_y(bool attach_y);
-
-    bool attach_angle() const final;
-    void set_attach_angle(bool attach_angle);
-
-    bool x_angle_lock() const final;
-    void set_x_angle_lock(bool x_angle_lock);
-
-    bool y_angle_lock() const final;
-    void set_y_angle_lock(bool y_angle_lock);
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Updates the panning of the sound relative to the camera.
+     * @warning If position cannot be updated, throws std::runtime_error.
+     */
+    void update_panning();
 };
 
 /**
@@ -196,6 +401,8 @@ class stereo_speaker final : mono_speaker, component {
 class audio final {
   private:
     static std::vector<uint16_t> _channels;
+    static float _volume;
+    static std::vector<std::weak_ptr<speaker>> _auto_panning;
 
     /**
      * @file audio.hpp
@@ -244,6 +451,8 @@ class audio final {
      */
     static void set_volume(float volume);
 
+    static std::vector<std::weak_ptr<speaker>>& auto_panning();
+
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file audio.hpp
@@ -251,6 +460,15 @@ class audio final {
      * @brief Allocates the default channel count.
      */
     static void initialize();
+#endif /* __WIZARD_ENGINE_INTERNAL */
+
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Updates the panning of the auto panning added speakers.
+     */
+    static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**

@@ -43,7 +43,7 @@ void wze::engine::play_intro() {
     renderer::queue().push_back(logo);
 
     opacity = 0;
-    while (opacity <= 255) {
+    while (opacity <= std::numeric_limits<uint8_t>::max()) {
         logo->set_color_a(opacity);
         if (!update()) {
             return;
@@ -51,7 +51,7 @@ void wze::engine::play_intro() {
         opacity += 0.1f * timer::delta_time();
     }
 
-    opacity = 255;
+    opacity = std::numeric_limits<uint8_t>::max();
     while (0 <= opacity) {
         logo->set_color_a(opacity);
         if (!update()) {
@@ -95,6 +95,7 @@ bool wze::engine::update() {
     SDL_Event event;
 
     renderer::update();
+    audio::update();
     timer::update();
 
     _events.clear();

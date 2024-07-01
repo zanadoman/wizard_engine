@@ -53,7 +53,8 @@ float wze::renderer::_origo_y = 0;
 std::vector<std::weak_ptr<wze::renderable>> wze::renderer::_queue = {};
 
 void wze::renderer::open_frame() {
-    if (SDL_SetRenderDrawColor(_base, 0, 0, 0, 255)) {
+    if (SDL_SetRenderDrawColor(_base, 0, 0, 0,
+                               std::numeric_limits<uint8_t>::max())) {
         throw std::runtime_error(SDL_GetError());
     }
     if (SDL_RenderClear(_base)) {
