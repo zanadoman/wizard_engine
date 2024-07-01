@@ -64,7 +64,7 @@ wze::entity::entity(float x, float y, float angle,
     set_x(x);
     set_y(y);
     set_angle(angle);
-    this->components() = components;
+    _components = components;
     set_x_offset(x_offset);
     set_y_offset(y_offset);
     set_angle_offset(angle_offset);
