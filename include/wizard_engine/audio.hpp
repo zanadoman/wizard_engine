@@ -32,7 +32,7 @@ namespace wze {
  * @author Zana Domán
  * @brief Plays a sound on a unique channel.
  */
-class speaker : public component {
+class speaker final : public component {
   private:
     int32_t _channel;
     std::shared_ptr<wze::sound> _sound;
@@ -50,7 +50,6 @@ class speaker : public component {
     bool _x_angle_lock;
     bool _y_angle_lock;
 
-  protected:
     /**
      * @file audio.hpp
      * @author Zana Domán
@@ -85,7 +84,7 @@ class speaker : public component {
      * @brief Returns the sound of the speaker.
      * @return Sound of the speaker.
      */
-    virtual std::shared_ptr<wze::sound> const& sound() const;
+    std::shared_ptr<wze::sound> const& sound() const;
 
     /**
      * @file audio.hpp
@@ -93,7 +92,7 @@ class speaker : public component {
      * @brief Sets the sound of the speaker.
      * @param sound Sound of the speaker.
      */
-    virtual void set_sound(std::shared_ptr<wze::sound> const& sound);
+    void set_sound(std::shared_ptr<wze::sound> const& sound);
 
     /**
      * @file audio.hpp
@@ -102,7 +101,7 @@ class speaker : public component {
      * @return Volume of the speaker.
      * @note Volume is bounded to [0, 1].
      */
-    virtual float volume() const;
+    float volume() const;
 
     /**
      * @file audio.hpp
@@ -111,7 +110,7 @@ class speaker : public component {
      * @param volume Volume of the speaker.
      * @note Volume is bounded to [0, 1].
      */
-    virtual void set_volume(float volume);
+    void set_volume(float volume);
 
     /**
      * @file audio.hpp
@@ -119,7 +118,7 @@ class speaker : public component {
      * @brief Returns the range of the speaker.
      * @return Range of the speaker.
      */
-    virtual float range() const;
+    float range() const;
 
     /**
      * @file audio.hpp
@@ -127,7 +126,7 @@ class speaker : public component {
      * @brief Sets the range of the speaker.
      * @param range Range of the speaker.
      */
-    virtual void set_range(float range);
+    void set_range(float range);
 
     /**
      * @file audio.hpp
@@ -135,7 +134,7 @@ class speaker : public component {
      * @brief Returns the x position of the speaker.
      * @return X position of the speaker.
      */
-    virtual float x() const;
+    float x() const;
 
     /**
      * @file audio.hpp
@@ -143,7 +142,7 @@ class speaker : public component {
      * @brief Sets the x position of the speaker.
      * @param x X position of the speaker.
      */
-    void set_x(float x) override;
+    void set_x(float x) final;
 
     /**
      * @file audio.hpp
@@ -151,7 +150,7 @@ class speaker : public component {
      * @brief Returns the y position of the speaker.
      * @return Y position of the speaker.
      */
-    virtual float y() const;
+    float y() const;
 
     /**
      * @file audio.hpp
@@ -159,7 +158,7 @@ class speaker : public component {
      * @brief Sets the y position of the speaker.
      * @param y Y position of the speaker.
      */
-    void set_y(float y) override;
+    void set_y(float y) final;
 
     /**
      * @file audio.hpp
@@ -167,7 +166,7 @@ class speaker : public component {
      * @brief Returns the angle of the speaker.
      * @return Angle of the speaker.
      */
-    virtual float angle() const;
+    float angle() const;
 
     /**
      * @file audio.hpp
@@ -175,7 +174,7 @@ class speaker : public component {
      * @brief Sets the angle of the speaker.
      * @param angle Angle of the speaker.
      */
-    void set_angle(float angle) override;
+    void set_angle(float angle) final;
 
     /**
      * @file audio.hpp
@@ -183,7 +182,7 @@ class speaker : public component {
      * @brief Returns the x offset of the speaker.
      * @return X offset of the speaker.
      */
-    float x_offset() const override;
+    float x_offset() const final;
 
     /**
      * @file audio.hpp
@@ -191,7 +190,7 @@ class speaker : public component {
      * @brief Sets the x offset of the speaker.
      * @param x_offset X offset of the speaker.
      */
-    virtual void set_x_offset(float x_offset);
+    void set_x_offset(float x_offset);
 
     /**
      * @file audio.hpp
@@ -199,7 +198,7 @@ class speaker : public component {
      * @brief Returns the y offset of the speaker.
      * @return Y offset of the speaker.
      */
-    float y_offset() const override;
+    float y_offset() const final;
 
     /**
      * @file audio.hpp
@@ -207,7 +206,7 @@ class speaker : public component {
      * @brief Sets the y offset of the speaker.
      * @param y_offset Y offset of the speaker.
      */
-    virtual void set_y_offset(float y_offset);
+    void set_y_offset(float y_offset);
 
     /**
      * @file audio.hpp
@@ -215,7 +214,7 @@ class speaker : public component {
      * @brief Returns the angle offset of the speaker.
      * @return Angle offset of the speaker.
      */
-    float angle_offset() const override;
+    float angle_offset() const final;
 
     /**
      * @file audio.hpp
@@ -223,7 +222,7 @@ class speaker : public component {
      * @brief Sets the angle offset of the speaker.
      * @param angle_offset Angle offset of the speaker.
      */
-    virtual void set_angle_offset(float angle_offset);
+    void set_angle_offset(float angle_offset);
 
     /**
      * @file audio.hpp
@@ -231,7 +230,7 @@ class speaker : public component {
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
-    bool attach_x() const override;
+    bool attach_x() const final;
 
     /**
      * @file audio.hpp
@@ -239,7 +238,7 @@ class speaker : public component {
      * @brief Sets whether the x position is attached to entities.
      * @param attach_x Whether the x position is attached to entities.
      */
-    virtual void set_attach_x(bool attach_x);
+    void set_attach_x(bool attach_x);
 
     /**
      * @file audio.hpp
@@ -247,7 +246,7 @@ class speaker : public component {
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
-    bool attach_y() const override;
+    bool attach_y() const final;
 
     /**
      * @file audio.hpp
@@ -255,7 +254,7 @@ class speaker : public component {
      * @brief Sets whether the y position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
      */
-    virtual void set_attach_y(bool attach_y);
+    void set_attach_y(bool attach_y);
 
     /**
      * @file audio.hpp
@@ -263,7 +262,7 @@ class speaker : public component {
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
-    bool attach_angle() const override;
+    bool attach_angle() const final;
 
     /**
      * @file audio.hpp
@@ -271,7 +270,7 @@ class speaker : public component {
      * @brief Sets whether the angle is attached to entities.
      * @param attach_angle Whether the angle is attached to entities.
      */
-    virtual void set_attach_angle(bool attach_angle);
+    void set_attach_angle(bool attach_angle);
 
     /**
      * @file audio.hpp
@@ -279,7 +278,7 @@ class speaker : public component {
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
-    bool x_angle_lock() const override;
+    bool x_angle_lock() const final;
 
     /**
      * @file audio.hpp
@@ -287,7 +286,7 @@ class speaker : public component {
      * @brief Sets whether the x position is affected by the angle.
      * @param x_angle_lock Whether the x position is affected by the angle.
      */
-    virtual void set_x_angle_lock(bool x_angle_lock);
+    void set_x_angle_lock(bool x_angle_lock);
 
     /**
      * @file audio.hpp
@@ -295,7 +294,7 @@ class speaker : public component {
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
-    bool y_angle_lock() const override;
+    bool y_angle_lock() const final;
 
     /**
      * @file audio.hpp
@@ -303,7 +302,7 @@ class speaker : public component {
      * @brief Sets whether the y position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
-    virtual void set_y_angle_lock(bool y_angle_lock);
+    void set_y_angle_lock(bool y_angle_lock);
 
     /**
      * @file audio.hpp
@@ -338,7 +337,7 @@ class speaker : public component {
      * @author Zana Domán
      * @brief Drops the channel of the speaker.
      */
-    virtual ~speaker();
+    ~speaker();
 
     /**
      * @file audio.hpp
@@ -346,7 +345,7 @@ class speaker : public component {
      * @brief Updates the panning of the sound relative to the camera.
      * @warning If the panning cannot be updated, throws std::runtime_error.
      */
-    virtual void update();
+    void update();
 
     /**
      * @file audio.hpp
@@ -356,7 +355,7 @@ class speaker : public component {
      * @param loops Number of loops.
      * @warning If the sound cannot be played, throws std::runtime_error.
      */
-    virtual void play(uint16_t fade_in = 0, uint16_t loops = 0);
+    void play(uint16_t fade_in = 0, uint16_t loops = 0);
 
     /**
      * @file audio.hpp
@@ -364,7 +363,7 @@ class speaker : public component {
      * @brief Stops the sound of the speaker.
      * @param fade_out Fade out in milliseconds.
      */
-    virtual void stop(uint16_t fade_out = 0);
+    void stop(uint16_t fade_out = 0);
 
     /**
      * @file audio.hpp
@@ -372,21 +371,21 @@ class speaker : public component {
      * @brief Returns whether the speaker is playing or not.
      * @return Whether the speaker is playing or not.
      */
-    virtual bool playing() const;
+    bool playing() const;
 
     /**
      * @file audio.hpp
      * @author Zana Domán
      * @brief Pauses the sound of the speaker.
      */
-    virtual void pause();
+    void pause();
 
     /**
      * @file audio.hpp
      * @author Zana Domán
      * @brief Resumes the sound of the speaker.
      */
-    virtual void resume();
+    void resume();
 
     /**
      * @file audio.hpp
@@ -394,7 +393,7 @@ class speaker : public component {
      * @brief Returns whether the speaker is paused or not.
      * @return Whether the speaker is paused or not.
      */
-    virtual bool paused() const;
+    bool paused() const;
 };
 
 /**

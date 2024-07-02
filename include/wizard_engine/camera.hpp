@@ -37,7 +37,7 @@ class camera final {
     static float _y;
     static float _z;
     static float _angle;
-    static std::array<float, 4> _rotation_matrix;
+    static std::array<float, 4> _transformation_matrix;
     static float _focus;
 
     /**

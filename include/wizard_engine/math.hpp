@@ -83,35 +83,36 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán, Gunics Roland
-     * @brief Creates a rotation matrix.
-     * @param angle Angle of the rotation matrix.
-     * @return Created rotation matrix.
+     * @brief Creates a transformation matrix.
+     * @param angle Angle of the transformation matrix.
+     * @param scale Scale of the transformation matrix.
+     * @return Created transformation matrix.
      */
-    static std::array<float, 4> rotation_matrix(float angle);
+    static std::array<float, 4> transformation_matrix(float angle, float scale);
 
     /**
      * @file math.hpp
      * @author Zana Domán, Gunics Roland
-     * @brief Rotates the x component of a vector.
+     * @brief Transforms the x component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
-     * @param rotation_matrix Rotation matrix.
-     * @return Rotated x component of the vector.
+     * @param transformation_matrix Transformation matrix.
+     * @return Transformed x component of the vector.
      */
-    static float rotate_x(float x, float y,
-                          std::array<float, 4> const& rotation_matrix);
+    static float transform_x(float x, float y,
+                             std::array<float, 4> const& transformation_matrix);
 
     /**
      * @file math.hpp
      * @author Zana Domán, Gunics Roland
-     * @brief Rotates the y component of a vector.
+     * @brief Transforms the y component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
-     * @param rotation_matrix Rotation matrix.
-     * @return Rotated y component of the vector.
+     * @param transformation_matrix Transformation matrix.
+     * @return Transformed y component of the vector.
      */
-    static float rotate_y(float x, float y,
-                          std::array<float, 4> const& rotation_matrix);
+    static float transform_y(float x, float y,
+                             std::array<float, 4> const& transformation_matrix);
 
     /**
      * @file math.hpp

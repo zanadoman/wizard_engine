@@ -232,9 +232,9 @@ bool wze::speaker::paused() const {
     return Mix_Paused(_channel);
 }
 
-std::vector<int32_t> wze::audio::_channels;
-float wze::audio::_volume;
-std::vector<std::weak_ptr<wze::speaker>> wze::audio::_auto_panning;
+std::vector<int32_t> wze::audio::_channels = {};
+float wze::audio::_volume = 1;
+std::vector<std::weak_ptr<wze::speaker>> wze::audio::_auto_panning = {};
 
 int32_t wze::audio::request_channel() {
     int32_t channel;
@@ -273,10 +273,7 @@ std::vector<std::weak_ptr<wze::speaker>>& wze::audio::auto_panning() {
 }
 
 void wze::audio::initialize() {
-    _channels = {};
     Mix_AllocateChannels(0);
-    set_volume(1);
-    _auto_panning = {};
 }
 
 void wze::audio::update() {

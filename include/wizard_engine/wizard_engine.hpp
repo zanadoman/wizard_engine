@@ -38,6 +38,7 @@
 #include <wizard_engine/export.hpp>    /* IWYU pragma: export */
 #include <wizard_engine/input.hpp>     /* IWYU pragma: export */
 #include <wizard_engine/math.hpp>      /* IWYU pragma: export */
+#include <wizard_engine/polygon.hpp>   /* IWYU pragma: export */
 #include <wizard_engine/render.hpp>    /* IWYU pragma: export */
 #include <wizard_engine/sprite.hpp>    /* IWYU pragma: export */
 #include <wizard_engine/timer.hpp>     /* IWYU pragma: export */

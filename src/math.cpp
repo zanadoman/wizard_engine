@@ -39,22 +39,23 @@ float wze::math::move_y(float length, float angle) {
     return length * sinf(angle);
 }
 
-std::array<float, 4> wze::math::rotation_matrix(float angle) {
+std::array<float, 4> wze::math::transformation_matrix(float angle,
+                                                      float scale) {
     float cosine;
     float sine;
 
-    cosine = cosf(angle);
-    sine = sinf(angle);
+    cosine = cosf(angle) * scale;
+    sine = sinf(angle) * scale;
 
     return {cosine, sine, -sine, cosine};
 }
 
-float wze::math::rotate_x(float x, float y,
-                          std::array<float, 4> const& rotation_matrix) {
-    return x * rotation_matrix.at(0) + y * rotation_matrix.at(1);
+float wze::math::transform_x(
+    float x, float y, std::array<float, 4> const& transformation_matrix) {
+    return x * transformation_matrix.at(0) + y * transformation_matrix.at(1);
 }
 
-float wze::math::rotate_y(float x, float y,
-                          std::array<float, 4> const& rotation_matrix) {
-    return x * rotation_matrix.at(2) + y * rotation_matrix.at(3);
+float wze::math::transform_y(
+    float x, float y, std::array<float, 4> const& transformation_matrix) {
+    return x * transformation_matrix.at(2) + y * transformation_matrix.at(3);
 }

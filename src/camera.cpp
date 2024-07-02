@@ -28,7 +28,8 @@ float wze::camera::_x = 0;
 float wze::camera::_y = 0;
 float wze::camera::_z = 0;
 float wze::camera::_angle = 0;
-std::array<float, 4> wze::camera::_rotation_matrix = math::rotation_matrix(0);
+std::array<float, 4> wze::camera::_transformation_matrix =
+    math::transformation_matrix(0, 1);
 float wze::camera::_focus = 512;
 
 float wze::camera::x() {
@@ -61,7 +62,7 @@ float wze::camera::angle() {
 
 void wze::camera::set_angle(float angle) {
     _angle = angle;
-    _rotation_matrix = math::rotation_matrix(_angle);
+    _transformation_matrix = math::transformation_matrix(_angle, 1);
 }
 
 float wze::camera::focus() {
@@ -94,8 +95,8 @@ void wze::camera::project(renderable& instance) {
     scale = _focus / (instance.z() - _z);
     x = (instance.x() - _x) * scale;
     y = (instance.y() - _y) * scale;
-    instance.set_screen_area({math::rotate_x(x, y, _rotation_matrix),
-                              math::rotate_y(x, y, _rotation_matrix),
+    instance.set_screen_area({math::transform_x(x, y, _transformation_matrix),
+                              math::transform_y(x, y, _transformation_matrix),
                               instance.width() * scale,
                               instance.height() * scale});
 }
@@ -108,11 +109,13 @@ std::pair<float, float> wze::camera::unproject(float x, float y, float z) {
         return {0, 0};
     }
 
-    determinant = _rotation_matrix.at(0) * _rotation_matrix.at(3) -
-                  _rotation_matrix.at(1) * _rotation_matrix.at(2);
+    determinant = _transformation_matrix.at(0) * _transformation_matrix.at(3) -
+                  _transformation_matrix.at(1) * _transformation_matrix.at(2);
     scale = (z - _z) / _focus;
-    return {_x + (x * _rotation_matrix.at(3) - y * _rotation_matrix.at(1)) /
+    return {_x + (x * _transformation_matrix.at(3) -
+                  y * _transformation_matrix.at(1)) /
                      determinant * scale,
-            _y + (y * _rotation_matrix.at(0) - x * _rotation_matrix.at(2)) /
+            _y + (y * _transformation_matrix.at(0) -
+                  x * _transformation_matrix.at(2)) /
                      determinant * scale};
 }

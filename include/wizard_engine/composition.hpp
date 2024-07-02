@@ -138,7 +138,7 @@ class entity : public component {
     float _x;
     float _y;
     float _angle;
-    std::array<float, 4> _rotation_matrix;
+    std::array<float, 4> _transformation_matrix;
     std::vector<std::weak_ptr<component>> _components;
     float _x_offset;
     float _y_offset;
