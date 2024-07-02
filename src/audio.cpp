@@ -213,9 +213,7 @@ void wze::speaker::play(uint16_t fade_in, uint16_t loops) {
 }
 
 void wze::speaker::stop(uint16_t fade_out) {
-    if (!Mix_FadeOutChannel(_channel, fade_out)) {
-        throw std::runtime_error(Mix_GetError());
-    }
+    Mix_FadeOutChannel(_channel, fade_out);
 }
 
 bool wze::speaker::playing() const {

@@ -363,7 +363,6 @@ class speaker : public component {
      * @author Zana Domán
      * @brief Stops the sound of the speaker.
      * @param fade_out Fade out in milliseconds.
-     * @warning If the sound cannot be stopped, throws std::runtime_error.
      */
     virtual void stop(uint16_t fade_out = 0);
 
