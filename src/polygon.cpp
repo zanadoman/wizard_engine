@@ -261,8 +261,8 @@ float wze::polygon::collision(polygon const& other) const {
             normal_x = -(p1->_points.at(j1).second - p1->_points.at(j2).second);
             normal_y = p1->_points.at(j1).first - p1->_points.at(j2).first;
             normalization = sqrtf(powf(normal_x, 2) + powf(normal_y, 2));
-            normal_x /= normalization;
-            normal_y /= normalization;
+            normal_x = normalization ? normal_x / normalization : 0;
+            normal_y = normalization ? normal_y / normalization : 0;
 
             min1 = std::numeric_limits<float>::infinity();
             max1 = -std::numeric_limits<float>::infinity();
