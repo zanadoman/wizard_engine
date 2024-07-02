@@ -29,9 +29,6 @@ wze::polygon::polygon(std::vector<std::pair<float, float>> const& shape,
                       float x_offset, float y_offset, float angle_offset,
                       bool attach_x, bool attach_y, bool attach_angle,
                       bool x_angle_lock, bool y_angle_lock) {
-    if (shape.size() < 3) {
-        throw std::invalid_argument("invalid shape");
-    }
     _shape = shape;
     _points = _shape;
     _x = x;

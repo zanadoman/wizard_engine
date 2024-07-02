@@ -66,9 +66,7 @@ class polygon final : public component {
      * @param attach_angle Whether the angle is attached to entities.
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
-     * @warning Shape must be convex with at least 3 vertices.
-     * @warning If the shape has less than 3 vertices, throws
-     * std::invalid_argument.
+     * @warning Shape should be convex with at least 3 vertices.
      */
     polygon(std::vector<std::pair<float, float>> const& shape, float x, float y,
             float angle, float scale, float x_offset, float y_offset,
@@ -88,7 +86,7 @@ class polygon final : public component {
      * @author Zana Domán
      * @brief Returns the shape of the polygon.
      * @return Shape of the polygon.
-     * @warning Shape must be convex with at least 3 vertices.
+     * @warning Shape should be convex with at least 3 vertices.
      */
     std::vector<std::pair<float, float>> const& shape() const;
 

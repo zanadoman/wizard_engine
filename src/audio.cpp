@@ -31,20 +31,21 @@ wze::speaker::speaker(std::shared_ptr<wze::sound> const& sound, float volume,
                       bool attach_x, bool attach_y, bool attach_angle,
                       bool x_angle_lock, bool y_angle_lock) {
     _channel = audio::request_channel();
-    set_sound(sound);
-    set_volume(volume);
-    set_range(range);
-    set_x(x);
-    set_y(y);
-    set_angle(angle);
-    set_x_offset(x_offset);
-    set_y_offset(y_offset);
-    set_angle_offset(angle_offset);
-    set_attach_x(attach_x);
-    set_attach_y(attach_y);
-    set_attach_angle(attach_angle);
-    set_x_angle_lock(x_angle_lock);
-    set_y_angle_lock(y_angle_lock);
+    _sound = sound;
+    _volume = std::clamp(volume, 0.f, 1.f);
+    Mix_Volume(_channel, round(MIX_MAX_VOLUME * _volume));
+    _range = range;
+    _x = x;
+    _y = y;
+    _angle = angle;
+    _x_offset = x_offset;
+    _y_offset = y_offset;
+    _angle_offset = angle_offset;
+    _attach_x = attach_x;
+    _attach_y = attach_y;
+    _attach_angle = attach_angle;
+    _x_angle_lock = x_angle_lock;
+    _y_angle_lock = y_angle_lock;
     update();
 }
 
