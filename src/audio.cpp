@@ -239,12 +239,16 @@ std::vector<std::weak_ptr<wze::speaker>> wze::audio::_auto_panning = {};
 
 int32_t wze::audio::request_channel() {
     int32_t channel;
+    int32_t channel_count;
 
     for (channel = 0; channel != std::numeric_limits<int32_t>::max();
          ++channel) {
         if (std::ranges::find(_channels, channel) == _channels.end()) {
             _channels.push_back(channel);
-            Mix_AllocateChannels(std::ranges::max(_channels) + 1);
+            channel_count = std::ranges::max(_channels) + 1;
+            if (MIX_CHANNELS < channel_count) {
+                Mix_AllocateChannels(channel_count);
+            }
             return channel;
         }
     }
@@ -253,11 +257,17 @@ int32_t wze::audio::request_channel() {
 }
 
 void wze::audio::drop_channel(int32_t channel) {
+    int32_t channel_count;
+
     if (Mix_HaltChannel(channel)) {
         throw std::runtime_error(Mix_GetError());
     }
+
     _channels.erase(std::ranges::find(_channels, channel));
-    Mix_AllocateChannels(std::ranges::max(_channels) + 1);
+    channel_count = _channels.size() ? std::ranges::max(_channels) + 1 : 0;
+    if (MIX_CHANNELS <= channel_count) {
+        Mix_AllocateChannels(channel_count);
+    }
 }
 
 float wze::audio::volume() {
@@ -273,9 +283,7 @@ std::vector<std::weak_ptr<wze::speaker>>& wze::audio::auto_panning() {
     return _auto_panning;
 }
 
-void wze::audio::initialize() {
-    Mix_AllocateChannels(0);
-}
+void wze::audio::initialize() {}
 
 void wze::audio::update() {
     std::vector<std::weak_ptr<speaker>>::iterator iterator;

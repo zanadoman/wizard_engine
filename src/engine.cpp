@@ -91,6 +91,15 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     play_intro();
 }
 
+void wze::engine::quit() {
+    update();
+    TTF_Quit();
+    Mix_CloseAudio();
+    Mix_Quit();
+    IMG_Quit();
+    SDL_Quit();
+}
+
 bool wze::engine::update() {
     SDL_Event event;
 

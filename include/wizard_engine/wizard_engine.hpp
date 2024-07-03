@@ -52,6 +52,7 @@
     int32_t main(int32_t argc, char* argv[]) {                                 \
         wze::engine::initialize(width, height);                                \
         __wze_main(argc, argv);                                                \
+        wze::engine::quit();                                                   \
         return 0;                                                              \
     }                                                                          \
     void __wze_main([[maybe_unused]] int32_t argc,                             \
