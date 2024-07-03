@@ -138,6 +138,7 @@ class entity : public component {
     float _x;
     float _y;
     float _angle;
+    float _scale;
     std::array<float, 4> _transformation_matrix;
     std::vector<std::weak_ptr<component>> _components;
     float _x_offset;
@@ -175,10 +176,11 @@ class entity : public component {
      * @file composition.hpp
      * @author Zana Domán
      * @brief Constructs an entity instance.
+     * @param components Components of the entity.
      * @param x X position of the entity.
      * @param y Y position of the entity.
      * @param angle Angle of the entity.
-     * @param components Components of the entity.
+     * @param scale Scale of the entity.
      * @param x_offset X offset of the entity.
      * @param y_offset Y offset of the entity.
      * @param angle_offset Angle offset of the entity.
@@ -188,13 +190,21 @@ class entity : public component {
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
-    entity(float x = 0, float y = 0, float angle = 0,
-           std::vector<std::weak_ptr<component>> const& components = {},
+    entity(std::vector<std::weak_ptr<component>> const& components = {},
+           float x = 0, float y = 0, float angle = 0, float scale = 1,
            float x_offset = 0, float y_offset = 0, float angle_offset = 0,
            bool attach_x = true, bool attach_y = true, bool attach_angle = true,
            bool x_angle_lock = true, bool y_angle_lock = true);
 
   public:
+    /**
+     * @file composition.hpp
+     * @author Zana Domán
+     * @brief Returns the components of the entity.
+     * @return Components of the entity.
+     */
+    virtual std::vector<std::weak_ptr<component>>& components();
+
     /**
      * @file composition.hpp
      * @author Zana Domán
@@ -246,10 +256,18 @@ class entity : public component {
     /**
      * @file composition.hpp
      * @author Zana Domán
-     * @brief Returns the components of the entity.
-     * @return Components of the entity.
+     * @brief Returns the scale of the entity.
+     * @return Scale of the entity.
      */
-    virtual std::vector<std::weak_ptr<component>>& components();
+    virtual float scale() const;
+
+    /**
+     * @file composition.hpp
+     * @author Zana Domán
+     * @brief Sets the scale of the entity.
+     * @param scale Scale of the entity.
+     */
+    virtual void set_scale(float scale);
 
     /**
      * @file composition.hpp
@@ -383,10 +401,11 @@ class entity : public component {
      * @file composition.hpp
      * @author Zana Domán
      * @brief Returns a new entity instance allocated on the heap.
+     * @param components Components of the entity.
      * @param x X position of the entity.
      * @param y Y position of the entity.
      * @param angle Angle of the entity.
-     * @param components Components of the entity.
+     * @param scale Scale of the entity.
      * @param x_offset X offset of the entity.
      * @param y_offset Y offset of the entity.
      * @param angle_offset Angle offset of the entity.
@@ -398,8 +417,8 @@ class entity : public component {
      * @return New entity instance allocated on the heap.
      */
     static std::unique_ptr<entity>
-    create(float x = 0, float y = 0, float angle = 0,
-           std::vector<std::weak_ptr<component>> const& components = {},
+    create(std::vector<std::weak_ptr<component>> const& components = {},
+           float x = 0, float y = 0, float angle = 0, float scale = 1,
            float x_offset = 0, float y_offset = 0, float angle_offset = 0,
            bool attach_x = true, bool attach_y = true, bool attach_angle = true,
            bool x_angle_lock = true, bool y_angle_lock = true);

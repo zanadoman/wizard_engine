@@ -62,7 +62,7 @@ float wze::camera::angle() {
 
 void wze::camera::set_angle(float angle) {
     _angle = angle;
-    _transformation_matrix = math::transformation_matrix(_angle, 1);
+    _transformation_matrix = math::transformation_matrix(-_angle, 1);
 }
 
 float wze::camera::focus() {

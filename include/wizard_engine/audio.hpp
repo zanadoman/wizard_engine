@@ -70,12 +70,10 @@ class speaker final : public component {
      * @param y_angle_lock Whether the y position is affected by the angle.
      * @note Volume is bounded to [0, 1].
      */
-    speaker(std::shared_ptr<wze::sound> const& sound = {}, float volume = 1,
-            float range = 1024, float x = 0, float y = 0, float angle = 0,
-            float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-            bool attach_x = true, bool attach_y = true,
-            bool attach_angle = true, bool x_angle_lock = true,
-            bool y_angle_lock = true);
+    speaker(std::shared_ptr<wze::sound> const& sound, float volume, float range,
+            float x, float y, float angle, float x_offset, float y_offset,
+            float angle_offset, bool attach_x, bool attach_y, bool attach_angle,
+            bool x_angle_lock, bool y_angle_lock);
 
   public:
     /**

@@ -179,9 +179,36 @@ wze::polygon::create(std::vector<std::pair<float, float>> const& shape, float x,
         attach_y, attach_angle, x_angle_lock, y_angle_lock));
 }
 
+bool wze::polygon::inside(float x, float y) const {
+    float determinant;
+    float temporary;
+
+    determinant = 0;
+
+    for (size_t i1 = 0, i2 = 1; i1 < _points.size(); ++i1, ++i2) {
+        if (i2 == _points.size()) {
+            i2 = 0;
+        }
+
+        temporary = (_points.at(i2).first - _points.at(i1).first) *
+                        (y - _points.at(i1).second) -
+                    (x - _points.at(i1).first) *
+                        (_points.at(i2).second - _points.at(i1).second);
+
+        if ((0 < determinant && temporary < 0) ||
+            (determinant < 0 && 0 < temporary)) {
+            return false;
+        } else {
+            determinant = temporary;
+        }
+    }
+
+    return true;
+}
+
 bool wze::polygon::overlap(polygon const& other) const {
-    polygon const* p1;
-    polygon const* p2;
+    polygon const* polygon1;
+    polygon const* polygon2;
     float normal_x;
     float normal_y;
     float projection;
@@ -190,32 +217,34 @@ bool wze::polygon::overlap(polygon const& other) const {
     float min2;
     float max2;
 
-    p1 = this;
-    p2 = &other;
+    polygon1 = this;
+    polygon2 = &other;
 
     for (size_t i = 0; i < 2; ++i) {
-        for (size_t j1 = 0, j2 = 1; j1 < p1->_points.size(); ++j1, ++j2) {
-            if (j2 == p1->_points.size()) {
+        for (size_t j1 = 0, j2 = 1; j1 < polygon1->_points.size(); ++j1, ++j2) {
+            if (j2 == polygon1->_points.size()) {
                 j2 = 0;
             }
 
-            normal_x = -(p1->_points.at(j1).second - p1->_points.at(j2).second);
-            normal_y = p1->_points.at(j1).first - p1->_points.at(j2).first;
+            normal_x = -(polygon1->_points.at(j1).second -
+                         polygon1->_points.at(j2).second);
+            normal_y =
+                polygon1->_points.at(j1).first - polygon1->_points.at(j2).first;
 
             min1 = std::numeric_limits<float>::infinity();
             max1 = -std::numeric_limits<float>::infinity();
-            for (size_t k = 0; k < p1->_points.size(); ++k) {
-                projection = p1->_points.at(k).first * normal_x +
-                             p1->_points.at(k).second * normal_y;
+            for (size_t k = 0; k < polygon1->_points.size(); ++k) {
+                projection = polygon1->_points.at(k).first * normal_x +
+                             polygon1->_points.at(k).second * normal_y;
                 min1 = std::min(min1, projection);
                 max1 = std::max(max1, projection);
             }
 
             min2 = std::numeric_limits<float>::infinity();
             max2 = -std::numeric_limits<float>::infinity();
-            for (size_t k = 0; k < p2->_points.size(); ++k) {
-                projection = p2->_points.at(k).first * normal_x +
-                             p2->_points.at(k).second * normal_y;
+            for (size_t k = 0; k < polygon2->_points.size(); ++k) {
+                projection = polygon2->_points.at(k).first * normal_x +
+                             polygon2->_points.at(k).second * normal_y;
                 min2 = std::min(min2, projection);
                 max2 = std::max(max2, projection);
             }
@@ -225,16 +254,16 @@ bool wze::polygon::overlap(polygon const& other) const {
             }
         }
 
-        p1 = &other;
-        p2 = this;
+        polygon1 = &other;
+        polygon2 = this;
     }
 
     return true;
 }
 
 float wze::polygon::collision(polygon const& other) const {
-    polygon const* p1;
-    polygon const* p2;
+    polygon const* polygon1;
+    polygon const* polygon2;
     float normal_x;
     float normal_y;
     float normalization;
@@ -245,36 +274,38 @@ float wze::polygon::collision(polygon const& other) const {
     float max2;
     float collision;
 
-    p1 = this;
-    p2 = &other;
+    polygon1 = this;
+    polygon2 = &other;
     collision = std::numeric_limits<float>::infinity();
 
     for (size_t i = 0; i < 2; ++i) {
-        for (size_t j1 = 0, j2 = 1; j1 < p1->_points.size(); ++j1, ++j2) {
-            if (j2 == p1->_points.size()) {
+        for (size_t j1 = 0, j2 = 1; j1 < polygon1->_points.size(); ++j1, ++j2) {
+            if (j2 == polygon1->_points.size()) {
                 j2 = 0;
             }
 
-            normal_x = -(p1->_points.at(j1).second - p1->_points.at(j2).second);
-            normal_y = p1->_points.at(j1).first - p1->_points.at(j2).first;
+            normal_x = -(polygon1->_points.at(j1).second -
+                         polygon1->_points.at(j2).second);
+            normal_y =
+                polygon1->_points.at(j1).first - polygon1->_points.at(j2).first;
             normalization = sqrtf(powf(normal_x, 2) + powf(normal_y, 2));
             normal_x = normalization ? normal_x / normalization : 0;
             normal_y = normalization ? normal_y / normalization : 0;
 
             min1 = std::numeric_limits<float>::infinity();
             max1 = -std::numeric_limits<float>::infinity();
-            for (size_t k = 0; k < p1->_points.size(); ++k) {
-                projection = p1->_points.at(k).first * normal_x +
-                             p1->_points.at(k).second * normal_y;
+            for (size_t k = 0; k < polygon1->_points.size(); ++k) {
+                projection = polygon1->_points.at(k).first * normal_x +
+                             polygon1->_points.at(k).second * normal_y;
                 min1 = std::min(min1, projection);
                 max1 = std::max(max1, projection);
             }
 
             min2 = std::numeric_limits<float>::infinity();
             max2 = -std::numeric_limits<float>::infinity();
-            for (size_t k = 0; k < p2->_points.size(); ++k) {
-                projection = p2->_points.at(k).first * normal_x +
-                             p2->_points.at(k).second * normal_y;
+            for (size_t k = 0; k < polygon2->_points.size(); ++k) {
+                projection = polygon2->_points.at(k).first * normal_x +
+                             polygon2->_points.at(k).second * normal_y;
                 min2 = std::min(min2, projection);
                 max2 = std::max(max2, projection);
             }
@@ -287,8 +318,8 @@ float wze::polygon::collision(polygon const& other) const {
                                  collision);
         }
 
-        p1 = &other;
-        p2 = this;
+        polygon1 = &other;
+        polygon2 = this;
     }
 
     return collision;

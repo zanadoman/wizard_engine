@@ -322,7 +322,18 @@ class polygon final : public component {
     /**
      * @file polygon.hpp
      * @author Zana Domán
+     * @brief Returns whether a point lies inside the polygon.
+     * @param x X position of the point.
+     * @param y Y position of the point.
+     * @return Whether the point lies inside the polygon.
+     */
+    bool inside(float x, float y) const;
+
+    /**
+     * @file polygon.hpp
+     * @author Zana Domán
      * @brief Returns whether the polygon overlaps with another polygon.
+     * @param other Other polygon.
      * @return Whether the polygon overlaps with another polygon.
      */
     bool overlap(polygon const& other) const;
@@ -331,6 +342,7 @@ class polygon final : public component {
      * @file polygon.hpp
      * @author Zana Domán
      * @brief Returns the depth of the collision with another polygon.
+     * @param other Other polygon.
      * @return Depth of the collison with another polygon.
      */
     float collision(polygon const& other) const;

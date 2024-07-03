@@ -47,7 +47,7 @@ std::array<float, 4> wze::math::transformation_matrix(float angle,
     cosine = cosf(angle) * scale;
     sine = sinf(angle) * scale;
 
-    return {cosine, sine, -sine, cosine};
+    return {cosine, -sine, sine, cosine};
 }
 
 float wze::math::transform_x(
