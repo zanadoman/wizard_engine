@@ -245,7 +245,7 @@ int32_t wze::audio::request_channel() {
          ++channel) {
         if (std::ranges::find(_channels, channel) == _channels.end()) {
             _channels.push_back(channel);
-            Mix_AllocateChannels(std::ranges::max(_channels));
+            Mix_AllocateChannels(std::ranges::max(_channels) + 1);
             return channel;
         }
     }
