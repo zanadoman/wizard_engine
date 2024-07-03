@@ -71,8 +71,6 @@ class engine final {
      */
     static void initialize(uint16_t width, uint16_t height);
 
-    static void quit();
-
     /**
      * @file engine.hpp
      * @author Zana Domán
