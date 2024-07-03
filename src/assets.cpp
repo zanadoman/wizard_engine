@@ -24,9 +24,8 @@
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/render.hpp>
 
-std::unique_ptr<wze::image, std::function<void(wze::image*)>>
-wze::assets::load_image(std::string const& path) {
-    std::unique_ptr<image, std::function<void(image*)>> image;
+std::shared_ptr<wze::image> wze::assets::load_image(std::string const& path) {
+    std::shared_ptr<image> image;
 
     if (!(image = {IMG_Load(path.c_str()), SDL_FreeSurface})) {
         throw std::runtime_error(IMG_GetError());
@@ -35,10 +34,10 @@ wze::assets::load_image(std::string const& path) {
     return image;
 }
 
-std::unique_ptr<wze::image, std::function<void(wze::image*)>>
+std::shared_ptr<wze::image>
 wze::assets::create_image(std::string const& text,
                           std::shared_ptr<font> const& font) {
-    std::unique_ptr<image, std::function<void(image*)>> image;
+    std::shared_ptr<image> image;
 
     if (!font) {
         return nullptr;
@@ -57,9 +56,9 @@ wze::assets::create_image(std::string const& text,
     return image;
 }
 
-std::unique_ptr<wze::texture, std::function<void(wze::texture*)>>
+std::shared_ptr<wze::texture>
 wze::assets::create_texture(std::shared_ptr<image> const& image) {
-    std::unique_ptr<texture, std::function<void(texture*)>> texture;
+    std::shared_ptr<texture> texture;
 
     if (!image) {
         return nullptr;
@@ -74,9 +73,8 @@ wze::assets::create_texture(std::shared_ptr<image> const& image) {
     return texture;
 }
 
-std::unique_ptr<wze::sound, std::function<void(wze::sound*)>>
-wze::assets::load_sound(std::string const& path) {
-    std::unique_ptr<sound, std::function<void(sound*)>> sound;
+std::shared_ptr<wze::sound> wze::assets::load_sound(std::string const& path) {
+    std::shared_ptr<sound> sound;
 
     if (!(sound = {Mix_LoadWAV(path.c_str()), Mix_FreeChunk})) {
         throw std::runtime_error(Mix_GetError());
@@ -85,10 +83,10 @@ wze::assets::load_sound(std::string const& path) {
     return sound;
 }
 
-std::unique_ptr<wze::font, std::function<void(wze::font*)>>
-wze::assets::load_font(std::string const& path, uint8_t size,
-                       font_style style) {
-    std::unique_ptr<font, std::function<void(font*)>> font;
+std::shared_ptr<wze::font> wze::assets::load_font(std::string const& path,
+                                                  uint8_t size,
+                                                  font_style style) {
+    std::shared_ptr<font> font;
 
     if (!(font = {TTF_OpenFont(path.c_str(), size), TTF_CloseFont})) {
         throw std::runtime_error(TTF_GetError());
@@ -98,9 +96,9 @@ wze::assets::load_font(std::string const& path, uint8_t size,
     return font;
 }
 
-std::unique_ptr<wze::cursor, std::function<void(wze::cursor*)>>
+std::shared_ptr<wze::cursor>
 wze::assets::create_cursor(system_cursor system_cursor) {
-    std::unique_ptr<cursor, std::function<void(cursor*)>> cursor;
+    std::shared_ptr<cursor> cursor;
 
     if (!(cursor = {SDL_CreateSystemCursor((SDL_SystemCursor)system_cursor),
                     SDL_FreeCursor})) {
@@ -110,10 +108,10 @@ wze::assets::create_cursor(system_cursor system_cursor) {
     return cursor;
 }
 
-std::unique_ptr<wze::cursor, std::function<void(wze::cursor*)>>
+std::shared_ptr<wze::cursor>
 wze::assets::create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x,
                            uint16_t hot_y) {
-    std::unique_ptr<cursor, std::function<void(cursor*)>> cursor;
+    std::shared_ptr<cursor> cursor;
 
     if (!image) {
         return nullptr;

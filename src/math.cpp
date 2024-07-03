@@ -41,13 +41,13 @@ float wze::math::move_y(float length, float angle) {
 
 std::array<float, 4> wze::math::transformation_matrix(float angle,
                                                       float scale) {
-    float cosine;
-    float sine;
+    float cosine_scale;
+    float sine_scale;
 
-    cosine = cosf(angle) * scale;
-    sine = sinf(angle) * scale;
+    cosine_scale = cosf(angle) * scale;
+    sine_scale = sinf(angle) * scale;
 
-    return {cosine, -sine, sine, cosine};
+    return {cosine_scale, -sine_scale, sine_scale, cosine_scale};
 }
 
 float wze::math::transform_x(

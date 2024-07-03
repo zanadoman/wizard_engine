@@ -121,8 +121,7 @@ class assets final {
      * @note Supported image formats: jpg, png, tif, webp, jxl, avif.
      * @warning If the image cannot be loaded, throws std::runtime_error.
      */
-    static std::unique_ptr<image, std::function<void(image*)>>
-    load_image(std::string const& path);
+    static std::shared_ptr<image> load_image(std::string const& path);
 
     /**
      * @file assets.hpp
@@ -133,7 +132,7 @@ class assets final {
      * @return Created image.
      * @warning If the image cannot be created, throws std::runtime_error.
      */
-    static std::unique_ptr<image, std::function<void(image*)>>
+    static std::shared_ptr<image>
     create_image(std::string const& text, std::shared_ptr<font> const& font);
 
     /**
@@ -144,7 +143,7 @@ class assets final {
      * @return Created texture.
      * @warning If the texture cannot be created, throws std::runtime_error.
      */
-    static std::unique_ptr<texture, std::function<void(texture*)>>
+    static std::shared_ptr<texture>
     create_texture(std::shared_ptr<image> const& image);
 
     /**
@@ -156,8 +155,7 @@ class assets final {
      * @note Supported sound formats: flac, mod, mp3, ogg, mid, opus, wavpack.
      * @warning If the sound cannot be loaded, throws std::runtime_error.
      */
-    static std::unique_ptr<sound, std::function<void(sound*)>>
-    load_sound(std::string const& path);
+    static std::shared_ptr<sound> load_sound(std::string const& path);
 
     /**
      * @file assets.hpp
@@ -170,7 +168,7 @@ class assets final {
      * @note Supported font format: ttf.
      * @warning If the font cannot be loaded, throws std::runtime_error.
      */
-    static std::unique_ptr<font, std::function<void(font*)>>
+    static std::shared_ptr<font>
     load_font(std::string const& path, uint8_t size = 48,
               font_style style = FONT_STYLE_NORMAL);
 
@@ -182,8 +180,7 @@ class assets final {
      * @return Created cursor.
      * @warning If the cursor cannot be created, throws std::runtime_error.
      */
-    static std::unique_ptr<cursor, std::function<void(cursor*)>>
-    create_cursor(system_cursor system_cursor);
+    static std::shared_ptr<cursor> create_cursor(system_cursor system_cursor);
 
     /**
      * @file assets.hpp
@@ -195,7 +192,7 @@ class assets final {
      * @return Created cursor.
      * @warning If the cursor cannot be created, throws std::runtime_error.
      */
-    static std::unique_ptr<cursor, std::function<void(cursor*)>>
+    static std::shared_ptr<cursor>
     create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x = 0,
                   uint16_t hot_y = 0);
 };
