@@ -29,7 +29,7 @@ namespace wze {
 /**
  * @file polygon.hpp
  * @author Zana Domán
- * @brief Convex polygon shape.
+ * @brief Geometric component.
  */
 class polygon final : public component {
   private:
@@ -308,7 +308,7 @@ class polygon final : public component {
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      * @return New polygon instance allocated on the heap.
-     * @warning Shape must be convex with at least 3 vertices.
+     * @warning Shape should be convex with at least 3 vertices.
      */
     static std::unique_ptr<polygon>
     create(std::vector<std::pair<float, float>> const& shape = {{0, 0},
@@ -322,10 +322,10 @@ class polygon final : public component {
     /**
      * @file polygon.hpp
      * @author Zana Domán
-     * @brief Returns whether a point lies inside the polygon.
+     * @brief Returns whether a point is inside the polygon.
      * @param x X position of the point.
      * @param y Y position of the point.
-     * @return Whether the point lies inside the polygon.
+     * @return Whether the point is inside the polygon.
      */
     bool inside(float x, float y) const;
 

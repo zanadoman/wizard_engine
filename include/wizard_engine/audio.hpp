@@ -465,15 +465,6 @@ class audio final {
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Initializes the audio subsystem.
-     */
-    static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL */
-
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
      * @brief Updates the speakers with auto panning and erases expired ones.
      */
     static void update();

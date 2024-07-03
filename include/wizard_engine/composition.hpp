@@ -135,12 +135,12 @@ class component {
  */
 class entity : public component {
   private:
+    std::vector<std::weak_ptr<component>> _components;
     float _x;
     float _y;
     float _angle;
     float _scale;
     std::array<float, 4> _transformation_matrix;
-    std::vector<std::weak_ptr<component>> _components;
     float _x_offset;
     float _y_offset;
     float _angle_offset;

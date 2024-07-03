@@ -79,7 +79,7 @@ class sprite final : public renderable, public animatable, public component {
      * @param color_a Alpha color modifier of the texture.
      * @param flip Whether the sprite is flipped on one of its axes.
      * @param visible Visibility of the sprite.
-     * @param priority Priority of the sprite in the render queue.
+     * @param priority Priority of the sprite in the renderer queue.
      * @param active Whether the sprite should be animated or not.
      * @param x_offset X offset of the sprite.
      * @param y_offset Y offset of the sprite.
@@ -328,16 +328,16 @@ class sprite final : public renderable, public animatable, public component {
     /**
      * @file sprite.hpp
      * @author Zana Domán
-     * @brief Returns the priority of the sprite in the render queue.
-     * @return Priority of the sprite in the render queue.
+     * @brief Returns the priority of the sprite in the renderer queue.
+     * @return Priority of the sprite in the renderer queue.
      */
     uint8_t priority() const final;
 
     /**
      * @file sprite.hpp
      * @author Zana Domán
-     * @brief Sets the priority of the sprite in the render queue.
-     * @param priority Priority of the sprite in the render queue.
+     * @brief Sets the priority of the sprite in the renderer queue.
+     * @param priority Priority of the sprite in the renderer queue.
      */
     void set_priority(uint8_t priority);
 
@@ -503,7 +503,7 @@ class sprite final : public renderable, public animatable, public component {
      * @param color_a Alpha color modifier of the texture.
      * @param flip Whether the sprite is flipped on one of its axes.
      * @param visible Visibility of the sprite.
-     * @param priority Priority of the sprite in the render queue.
+     * @param priority Priority of the sprite in the renderer queue.
      * @param active Whether the sprite should be animated or not.
      * @param x_offset X offset of the sprite.
      * @param y_offset Y offset of the sprite.
@@ -519,11 +519,14 @@ class sprite final : public renderable, public animatable, public component {
     create(float x = 0, float y = 0, float z = 0, float angle = 0,
            float width = 0, float height = 0, bool spatial = false,
            std::shared_ptr<wze::texture> const& texture = {},
-           uint8_t color_r = 255, uint8_t color_g = 255, uint8_t color_b = 255,
-           uint8_t color_a = 255, enum flip flip = FLIP_NONE,
-           bool visible = true, uint8_t priority = 128, bool active = true,
-           float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
+           uint8_t color_r = std::numeric_limits<uint8_t>::max(),
+           uint8_t color_g = std::numeric_limits<uint8_t>::max(),
+           uint8_t color_b = std::numeric_limits<uint8_t>::max(),
+           uint8_t color_a = std::numeric_limits<uint8_t>::max(),
+           enum flip flip = FLIP_NONE, bool visible = true,
+           uint8_t priority = 128, bool active = true, float x_offset = 0,
+           float y_offset = 0, float angle_offset = 0, bool attach_x = true,
+           bool attach_y = true, bool attach_angle = true,
            bool x_angle_lock = true, bool y_angle_lock = true);
 };
 } /* namespace wze */
