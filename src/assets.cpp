@@ -39,10 +39,6 @@ wze::assets::create_image(std::string const& text,
                           std::shared_ptr<font> const& font) {
     std::shared_ptr<image> image;
 
-    if (!font) {
-        return nullptr;
-    }
-
     if (!(image = {
               TTF_RenderUTF8_Blended(font.get(), text.c_str(),
                                      {std::numeric_limits<uint8_t>::max(),
@@ -59,10 +55,6 @@ wze::assets::create_image(std::string const& text,
 std::shared_ptr<wze::texture>
 wze::assets::create_texture(std::shared_ptr<image> const& image) {
     std::shared_ptr<texture> texture;
-
-    if (!image) {
-        return nullptr;
-    }
 
     if (!(texture = {
               SDL_CreateTextureFromSurface(renderer::base(), image.get()),
@@ -112,10 +104,6 @@ std::shared_ptr<wze::cursor>
 wze::assets::create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x,
                            uint16_t hot_y) {
     std::shared_ptr<cursor> cursor;
-
-    if (!image) {
-        return nullptr;
-    }
 
     if (!(cursor = {SDL_CreateColorCursor(image.get(), hot_x, hot_y),
                     SDL_FreeCursor})) {
