@@ -249,7 +249,7 @@ class renderer final {
 
     /**
      * @file render.hpp
-     * @author Zana Domán
+     * @author Zana Domán, Gunics Roland
      * @brief Returns the visibility of a renderable instance.
      * @param instance Renderable instance.
      * @return Visibility of the renderable instance.
@@ -330,7 +330,7 @@ class renderer final {
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Returns the origo y of the sceen.
+     * @brief Returns the origo y of the screen.
      * @return Origo y of the screen.
      */
     static float origo_y();
@@ -366,11 +366,11 @@ class renderer final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file render.hpp
-     * @author Zana Domán
+     * @author Zana Domán, Gunics Roland
      * @brief Detransforms a plane coordinate.
      * @param x X component of the plane coordinate.
      * @param y Y component of the plane coordinate.
-     * @return Plane coordinate.
+     * @return Detransformed plane coordinate.
      */
     static std::pair<float, float> detransform(float x, float y);
 #endif /* __WIZARD_ENGINE_INTERNAL */
