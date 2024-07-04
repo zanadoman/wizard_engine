@@ -205,9 +205,6 @@ void wze::speaker::update() {
 }
 
 void wze::speaker::play(uint16_t fade_in, uint16_t loops) {
-    if (!_sound) {
-        return;
-    }
     if (Mix_FadeInChannel(_channel, _sound.get(), loops, fade_in) == -1) {
         throw std::runtime_error(Mix_GetError());
     }

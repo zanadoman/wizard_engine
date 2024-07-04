@@ -34,6 +34,7 @@
 #include <wizard_engine/assets.hpp>    /* IWYU pragma: export */
 #include <wizard_engine/audio.hpp>     /* IWYU pragma: export */
 #include <wizard_engine/camera.hpp>    /* IWYU pragma: export */
+#include <wizard_engine/collider.hpp>  /* IWYU pragma: export */
 #include <wizard_engine/engine.hpp>    /* IWYU pragma: export */
 #include <wizard_engine/export.hpp>    /* IWYU pragma: export */
 #include <wizard_engine/input.hpp>     /* IWYU pragma: export */
