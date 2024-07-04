@@ -34,7 +34,9 @@ namespace wze {
 class polygon final : public component {
   private:
     std::vector<std::pair<float, float>> _shape;
+    float _shape_radius;
     std::vector<std::pair<float, float>> _points;
+    float _points_radius;
     float _x;
     float _y;
     float _angle;
@@ -76,9 +78,24 @@ class polygon final : public component {
     /**
      * @file polygon.hpp
      * @author Zana Domán
-     * @brief Updates the points of the polygon.
+     * @brief Updates the x positions of the points of the polygon.
      */
-    void update();
+    void update_x();
+
+    /**
+     * @file polygon.hpp
+     * @author Zana Domán
+     * @brief Updates the y positions of the points of the polygon.
+     */
+    void update_y();
+
+    /**
+     * @file polygon.hpp
+     * @author Zana Domán
+     * @brief Returns the circumradius of the shape of the polygon.
+     * @return Circumradius of the shape of the polygon.
+     */
+    float circumradius() const;
 
   public:
     /**
@@ -93,10 +110,26 @@ class polygon final : public component {
     /**
      * @file polygon.hpp
      * @author Zana Domán
+     * @brief Returns the radius of the shape of the polygon.
+     * @return Radius of the shape of the polygon.
+     */
+    float shape_radius() const;
+
+    /**
+     * @file polygon.hpp
+     * @author Zana Domán
      * @brief Returns the points of the polygon.
      * @return Points of the polygon.
      */
     std::vector<std::pair<float, float>> const& points() const;
+
+    /**
+     * @file polygon.hpp
+     * @author Zana Domán
+     * @brief Returns the radius of the points of the polygon.
+     * @return Radius of the points of the polygon.
+     */
+    float points_radius() const;
 
     /**
      * @file polygon.hpp

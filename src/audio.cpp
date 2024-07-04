@@ -19,7 +19,6 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "SDL2/SDL_mixer.h"
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/audio.hpp>
@@ -254,6 +253,9 @@ int32_t wze::audio::request_channel() {
 }
 
 void wze::audio::drop_channel(int32_t channel) {
+    if (!Mix_UnregisterAllEffects(channel)) {
+        throw std::runtime_error(Mix_GetError());
+    }
     if (Mix_HaltChannel(channel)) {
         throw std::runtime_error(Mix_GetError());
     }
