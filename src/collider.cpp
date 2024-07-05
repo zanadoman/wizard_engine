@@ -256,24 +256,6 @@ void wze::collider::update_entities() {
     });
 }
 
-wze::collider::collider(polygon const& body, float force, float mass,
-                        uint8_t world,
-                        std::vector<std::weak_ptr<component>> const& components,
-                        float x_offset, float y_offset, float angle_offset,
-                        bool attach_x, bool attach_y, bool attach_angle,
-                        bool x_angle_lock, bool y_angle_lock)
-    : entity(components, body.x(), body.y(), body.angle(), body.scale(),
-             x_offset, y_offset, angle_offset, attach_x, attach_y, attach_angle,
-             x_angle_lock, y_angle_lock),
-      _body(body) {
-    _force = force;
-    _mass = mass;
-    _world = world;
-    if (_world != std::numeric_limits<uint8_t>::max()) {
-        _worlds.at(_world).push_back(this);
-    }
-}
-
 wze::polygon const& wze::collider::body() const {
     return _body;
 }
@@ -380,14 +362,22 @@ void wze::collider::set_scale(float scale) {
     update_entities();
 }
 
-std::unique_ptr<wze::collider> wze::collider::create(
-    polygon const& body, float force, float mass, uint8_t world,
-    std::vector<std::weak_ptr<component>> const& components, float x_offset,
-    float y_offset, float angle_offset, bool attach_x, bool attach_y,
-    bool attach_angle, bool x_angle_lock, bool y_angle_lock) {
-    return std::unique_ptr<collider>(new collider(
-        body, force, mass, world, components, x_offset, y_offset, angle_offset,
-        attach_x, attach_y, attach_angle, x_angle_lock, y_angle_lock));
+wze::collider::collider(polygon const& body, float force, float mass,
+                        uint8_t world,
+                        std::vector<std::weak_ptr<component>> const& components,
+                        float x_offset, float y_offset, float angle_offset,
+                        bool attach_x, bool attach_y, bool attach_angle,
+                        bool x_angle_lock, bool y_angle_lock)
+    : entity(components, body.x(), body.y(), body.angle(), body.scale(),
+             x_offset, y_offset, angle_offset, attach_x, attach_y, attach_angle,
+             x_angle_lock, y_angle_lock),
+      _body(body) {
+    _force = force;
+    _mass = mass;
+    _world = world;
+    if (_world != std::numeric_limits<uint8_t>::max()) {
+        _worlds.at(_world).push_back(this);
+    }
 }
 
 wze::collider::~collider() {

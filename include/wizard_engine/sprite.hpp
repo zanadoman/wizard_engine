@@ -477,13 +477,19 @@ class sprite final : public renderable, public animatable, public component {
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
-    sprite(float x, float y, float z, float angle, float width, float height,
-           bool spatial, std::shared_ptr<wze::texture> const& texture,
-           uint8_t color_r, uint8_t color_g, uint8_t color_b, uint8_t color_a,
-           enum flip flip, bool visible, uint8_t priority, bool active,
-           float x_offset, float y_offset, float angle_offset, bool attach_x,
-           bool attach_y, bool attach_angle, bool x_angle_lock,
-           bool y_angle_lock);
+    sprite(float x = 0, float y = 0, float z = 0, float angle = 0,
+           float width = 0, float height = 0, bool spatial = false,
+           std::shared_ptr<wze::texture> const& texture = {},
+           uint8_t color_r = std::numeric_limits<uint8_t>::max(),
+           uint8_t color_g = std::numeric_limits<uint8_t>::max(),
+           uint8_t color_b = std::numeric_limits<uint8_t>::max(),
+           uint8_t color_a = std::numeric_limits<uint8_t>::max(),
+           enum flip flip = FLIP_NONE, bool visible = true,
+           uint8_t priority = std::numeric_limits<uint8_t>::max() / 2,
+           bool active = true, float x_offset = 0, float y_offset = 0,
+           float angle_offset = 0, bool attach_x = true, bool attach_y = true,
+           bool attach_angle = true, bool x_angle_lock = true,
+           bool y_angle_lock = true);
 };
 } /* namespace wze */
 

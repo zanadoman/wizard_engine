@@ -2,10 +2,7 @@
 
 class wizard final : wze::collider {
   private:
-    std::shared_ptr<wze::sprite> _sprite =
-        wze::sprite::create(0, 0, 0, 0, 100, 100, false,
-                            wze::assets::create_texture(wze::assets::load_image(
-                                "assets/wizard_engine/icon.png")));
+    std::shared_ptr<wze::sprite> _sprite;
     wze::key _forward;
     wze::key _backward;
     wze::key _left;
@@ -14,16 +11,18 @@ class wizard final : wze::collider {
   public:
     wizard(float x, float y, float z, float force, float mass, wze::key forward,
            wze::key backward, wze::key left, wze::key right)
-        : collider(*wze::polygon::create(
-                       {{-50, -50}, {-50, 50}, {50, 50}, {50, -50}}, x, y, z),
+        : collider({{{-50, -50}, {-50, 50}, {50, 50}, {50, -50}}, x, y, z},
                    force, mass, 0) {
+        _sprite = std::shared_ptr<wze::sprite>(
+            new wze::sprite(0, 0, 0, 0, 100, 100, false,
+                            wze::assets::create_texture(wze::assets::load_image(
+                                "assets/wizard_engine/icon.png"))));
         _forward = forward;
         _backward = backward;
         _left = left;
         _right = right;
         components().push_back(_sprite);
-        wze::renderer::queue().push_back(_sprite);
-        entity::update_components();
+        entity::recompose();
     }
 
     void refresh() {
@@ -51,9 +50,15 @@ class wizard final : wze::collider {
 wze_main(1920, 1080) {
     wizard wizard1 = {-500,       0,          0,          10,        1000,
                       wze::KEY_W, wze::KEY_S, wze::KEY_A, wze::KEY_D};
-    wizard wizard2 = {
-        500,           0, 0, 1001, 10, wze::KEY_UP, wze::KEY_DOWN, wze::KEY_LEFT,
-        wze::KEY_RIGHT};
+    wizard wizard2 = {500,
+                      0,
+                      0,
+                      1001,
+                      10,
+                      wze::KEY_UP,
+                      wze::KEY_DOWN,
+                      wze::KEY_LEFT,
+                      wze::KEY_RIGHT};
 
     wze_while(true) {
         wizard1.refresh();

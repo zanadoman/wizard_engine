@@ -50,31 +50,6 @@ class speaker final : public component {
     bool _x_angle_lock;
     bool _y_angle_lock;
 
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
-     * @brief Constructs a speaker instance.
-     * @param sound Sound of the speaker.
-     * @param volume Volume of the speaker.
-     * @param range Range of the speaker.
-     * @param x X position of the speaker.
-     * @param y Y position of the speaker.
-     * @param angle Angle of the speaker.
-     * @param x_offset X offset of the speaker.
-     * @param y_offset Y offset of the speaker.
-     * @param angle_offset Angle offset of the speaker.
-     * @param attach_x Whether the x position is attached to entities.
-     * @param attach_y Whether the y position is attached to entities.
-     * @param attach_angle Whether the angle is attached to entities.
-     * @param x_angle_lock Whether the x position is affected by the angle.
-     * @param y_angle_lock Whether the y position is affected by the angle.
-     * @note Volume is bounded to [0, 1].
-     */
-    speaker(std::shared_ptr<wze::sound> const& sound, float volume, float range,
-            float x, float y, float angle, float x_offset, float y_offset,
-            float angle_offset, bool attach_x, bool attach_y, bool attach_angle,
-            bool x_angle_lock, bool y_angle_lock);
-
   public:
     /**
      * @file audio.hpp
@@ -305,7 +280,7 @@ class speaker final : public component {
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Returns a new speaker instance allocated on the heap.
+     * @brief Constructs a speaker instance.
      * @param sound Sound of the speaker.
      * @param volume Volume of the speaker.
      * @param range Range of the speaker.
@@ -320,15 +295,14 @@ class speaker final : public component {
      * @param attach_angle Whether the angle is attached to entities.
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
-     * @return New speaker instance allocated on the heap.
      * @note Volume is bounded to [0, 1].
      */
-    static std::unique_ptr<speaker>
-    create(std::shared_ptr<wze::sound> const& sound = {}, float volume = 1,
-           float range = 1024, float x = 0, float y = 0, float angle = 0,
-           float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
-           bool x_angle_lock = true, bool y_angle_lock = true);
+    speaker(std::shared_ptr<wze::sound> const& sound = {}, float volume = 1,
+            float range = 1024, float x = 0, float y = 0, float angle = 0,
+            float x_offset = 0, float y_offset = 0, float angle_offset = 0,
+            bool attach_x = true, bool attach_y = true,
+            bool attach_angle = true, bool x_angle_lock = true,
+            bool y_angle_lock = true);
 
     /**
      * @file audio.hpp

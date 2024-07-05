@@ -56,28 +56,6 @@ void wze::entity::update_angle(component& instance) {
     }
 }
 
-wze::entity::entity(std::vector<std::weak_ptr<component>> const& components,
-                    float x, float y, float angle, float scale, float x_offset,
-                    float y_offset, float angle_offset, bool attach_x,
-                    bool attach_y, bool attach_angle, bool x_angle_lock,
-                    bool y_angle_lock) {
-    _components = components;
-    _x = x;
-    _y = y;
-    _angle = angle;
-    _scale = scale;
-    _transformation_matrix = math::transformation_matrix(_angle, _scale);
-    _x_offset = x_offset;
-    _y_offset = y_offset;
-    _angle_offset = angle_offset;
-    _attach_x = attach_x;
-    _attach_y = attach_y;
-    _attach_angle = attach_angle;
-    _x_angle_lock = x_angle_lock;
-    _y_angle_lock = y_angle_lock;
-    update_components();
-}
-
 std::vector<std::weak_ptr<wze::component>>& wze::entity::components() {
     return _components;
 }
@@ -231,18 +209,29 @@ void wze::entity::set_y_angle_lock(bool y_angle_lock) {
     _y_angle_lock = y_angle_lock;
 }
 
-std::unique_ptr<wze::entity>
-wze::entity::create(std::vector<std::weak_ptr<component>> const& components,
+wze::entity::entity(std::vector<std::weak_ptr<component>> const& components,
                     float x, float y, float angle, float scale, float x_offset,
                     float y_offset, float angle_offset, bool attach_x,
                     bool attach_y, bool attach_angle, bool x_angle_lock,
                     bool y_angle_lock) {
-    return std::unique_ptr<entity>(new entity(
-        components, x, y, angle, scale, x_offset, y_offset, angle_offset,
-        attach_x, attach_y, attach_angle, x_angle_lock, y_angle_lock));
+    _components = components;
+    _x = x;
+    _y = y;
+    _angle = angle;
+    _scale = scale;
+    _transformation_matrix = math::transformation_matrix(_angle, _scale);
+    _x_offset = x_offset;
+    _y_offset = y_offset;
+    _angle_offset = angle_offset;
+    _attach_x = attach_x;
+    _attach_y = attach_y;
+    _attach_angle = attach_angle;
+    _x_angle_lock = x_angle_lock;
+    _y_angle_lock = y_angle_lock;
+    recompose();
 }
 
-void wze::entity::update_components() {
+void wze::entity::recompose() {
     std::vector<std::weak_ptr<component>>::iterator iterator;
     std::shared_ptr<component> instance;
 

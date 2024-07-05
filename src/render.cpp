@@ -26,6 +26,12 @@
 #include <wizard_engine/render.hpp>
 #include <wizard_engine/window.hpp>
 
+std::vector<wze::renderable*> wze::renderable::_instances = {};
+
+std::vector<wze::renderable*> const& wze::renderable::instances() {
+    return _instances;
+}
+
 SDL_FRect const& wze::renderable::screen_area() const {
     return _screen_area;
 }
@@ -45,12 +51,16 @@ void wze::renderable::set_screen_angle(float screen_angle) {
 wze::renderable::renderable() {
     _screen_area = {0, 0, 0, 0};
     _screen_angle = 0;
+    _instances.push_back(this);
+}
+
+wze::renderable::~renderable() {
+    _instances.erase(std::ranges::find(_instances, this));
 }
 
 SDL_Renderer* wze::renderer::_base = nullptr;
 float wze::renderer::_origo_x = 0;
 float wze::renderer::_origo_y = 0;
-std::vector<std::weak_ptr<wze::renderable>> wze::renderer::_queue = {};
 
 void wze::renderer::open_frame() {
     if (SDL_SetRenderDrawColor(_base, 0, 0, 0,
@@ -107,10 +117,6 @@ SDL_Renderer* wze::renderer::base() {
     return _base;
 }
 
-std::vector<std::weak_ptr<wze::renderable>>& wze::renderer::queue() {
-    return _queue;
-}
-
 float wze::renderer::origo_x() {
     return _origo_x;
 }
@@ -140,35 +146,29 @@ void wze::renderer::initialize() {
 }
 
 void wze::renderer::update() {
-    std::vector<std::weak_ptr<renderable>>::iterator iterator;
-    std::shared_ptr<renderable> instance;
-    std::vector<std::shared_ptr<renderable const>> space;
-    std::vector<std::shared_ptr<renderable const>> plane;
+    std::vector<renderable const*> space;
+    std::vector<renderable const*> plane;
 
-    for (iterator = _queue.begin(); iterator != _queue.end(); ++iterator) {
-        if ((instance = iterator->lock())) {
-            if (invisible(*instance)) {
-                continue;
-            }
-            camera::project(*instance);
-            transform(*instance);
-            if (offscreen(*instance)) {
-                continue;
-            }
-            if (instance->spatial()) {
-                space.push_back(instance);
-            } else {
-                plane.push_back(instance);
-            }
-        } else {
-            _queue.erase(iterator--);
-        }
-    }
+    std::ranges::for_each(renderable::instances(),
+                          [&space, &plane](renderable* instance) {
+                              if (invisible(*instance)) {
+                                  return;
+                              }
+                              camera::project(*instance);
+                              transform(*instance);
+                              if (offscreen(*instance)) {
+                                  return;
+                              }
+                              if (instance->spatial()) {
+                                  space.push_back(instance);
+                              } else {
+                                  plane.push_back(instance);
+                              }
+                          });
 
     std::ranges::sort(
         space,
-        [](std::shared_ptr<renderable const> const& instance1,
-           std::shared_ptr<renderable const> const& instance2) -> bool {
+        [](renderable const* instance1, renderable const* instance2) -> bool {
             return instance1->z() != instance2->z()
                        ? instance2->z() < instance1->z()
                        : instance1->priority() < instance2->priority();
@@ -176,22 +176,17 @@ void wze::renderer::update() {
 
     std::ranges::sort(
         plane,
-        [](std::shared_ptr<renderable const> const& instance1,
-           std::shared_ptr<renderable const> const& instance2) -> bool {
+        [](renderable const* instance1, renderable const* instance2) -> bool {
             return instance1->priority() < instance2->priority();
         });
 
     open_frame();
 
     std::ranges::for_each(
-        space, [](std::shared_ptr<renderable const> const& instance) -> void {
-            render(*instance);
-        });
+        space, [](renderable const* instance) -> void { render(*instance); });
 
     std::ranges::for_each(
-        plane, [](std::shared_ptr<renderable const> const& instance) -> void {
-            render(*instance);
-        });
+        plane, [](renderable const* instance) -> void { render(*instance); });
 
     close_frame();
 }

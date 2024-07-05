@@ -171,31 +171,6 @@ class entity : public component {
      */
     void update_angle(component& instance);
 
-  protected:
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Constructs an entity instance.
-     * @param components Components of the entity.
-     * @param x X position of the entity.
-     * @param y Y position of the entity.
-     * @param angle Angle of the entity.
-     * @param scale Scale of the entity.
-     * @param x_offset X offset of the entity.
-     * @param y_offset Y offset of the entity.
-     * @param angle_offset Angle offset of the entity.
-     * @param attach_x Whether the x position is attached to entities.
-     * @param attach_y Whether the y position is attached to entities.
-     * @param attach_angle Whether tha angle is attached to entities.
-     * @param x_angle_lock Whether the x position is affected by the angle.
-     * @param y_angle_lock Whether the y position is affected by the angle.
-     */
-    entity(std::vector<std::weak_ptr<component>> const& components = {},
-           float x = 0, float y = 0, float angle = 0, float scale = 1,
-           float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
-           bool x_angle_lock = true, bool y_angle_lock = true);
-
   public:
     /**
      * @file composition.hpp
@@ -400,7 +375,7 @@ class entity : public component {
     /**
      * @file composition.hpp
      * @author Zana Domán
-     * @brief Returns a new entity instance allocated on the heap.
+     * @brief Constructs an entity instance.
      * @param components Components of the entity.
      * @param x X position of the entity.
      * @param y Y position of the entity.
@@ -414,10 +389,8 @@ class entity : public component {
      * @param attach_angle Whether tha angle is attached to entities.
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
-     * @return New entity instance allocated on the heap.
      */
-    static std::unique_ptr<entity>
-    create(std::vector<std::weak_ptr<component>> const& components = {},
+    entity(std::vector<std::weak_ptr<component>> const& components = {},
            float x = 0, float y = 0, float angle = 0, float scale = 1,
            float x_offset = 0, float y_offset = 0, float angle_offset = 0,
            bool attach_x = true, bool attach_y = true, bool attach_angle = true,
@@ -429,7 +402,7 @@ class entity : public component {
      * @brief Explicitly updates the components of the entity and erases expired
      * ones.
      */
-    virtual void update_components();
+    virtual void recompose();
 
     /**
      * @file composition.hpp

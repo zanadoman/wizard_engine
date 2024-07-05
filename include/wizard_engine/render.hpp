@@ -44,10 +44,21 @@ enum flip {
  */
 class renderable {
   private:
+    static std::vector<renderable*> _instances;
     SDL_FRect _screen_area;
     float _screen_angle;
 
   public:
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file render.hpp
+     * @author Zana Domán
+     * @brief Returns renderable instances.
+     * @return Renderable instances.
+     */
+    static std::vector<renderable*> const& instances();
+#endif
+
     /**
      * @file render.hpp
      * @author Zana Domán
@@ -208,16 +219,16 @@ class renderable {
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Constructs a renderable instance.
+     * @brief Constructs a renderable instance and pushes into instances.
      */
     renderable();
 
     /**
      * @file render.hpp
      * @author Zana Domán
-     * @brief Default virtual destructor.
+     * @brief Destroys the renderable isntance and erases from instances.
      */
-    virtual ~renderable() = default;
+    virtual ~renderable();
 };
 
 /**
@@ -230,7 +241,6 @@ class renderer final {
     static SDL_Renderer* _base;
     static float _origo_x;
     static float _origo_y;
-    static std::vector<std::weak_ptr<renderable>> _queue;
 
     /**
      * @file render.hpp
@@ -302,14 +312,6 @@ class renderer final {
      */
     static SDL_Renderer* base();
 #endif /* __WIZARD_ENGINE_INTERNAL */
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Returns the queue of the renderer.
-     * @return Queue of the renderer.
-     */
-    static std::vector<std::weak_ptr<renderable>>& queue();
 
     /**
      * @file render.hpp

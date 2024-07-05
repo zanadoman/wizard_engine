@@ -143,33 +143,6 @@ class collider : public entity {
      */
     void update_entities();
 
-  protected:
-    /**
-     * @file collider.hpp
-     * @author Zana Domán
-     * @brief Constructs a collider instance.
-     * @param body Body of the collider.
-     * @param force Force of the collider.
-     * @param mass Mass of the collider.
-     * @param world World of the collider.
-     * @param components Components of the collider.
-     * @param x_offset X offset of the collider.
-     * @param y_offset Y offset of the collider.
-     * @param angle_offset Angle offset of the collider.
-     * @param attach_x Whether the x position is attached to entities.
-     * @param attach_y Whether the y position is attached to entities.
-     * @param attach_angle Whether the angle is attached to entities.
-     * @param x_angle_lock Whether the x position is affected by the angle.
-     * @param y_angle_lock Whether the y position is affected by the angle.
-     */
-    collider(polygon const& body, float force = 0, float mass = 0,
-             uint8_t world = std::numeric_limits<uint8_t>::max(),
-             std::vector<std::weak_ptr<component>> const& components = {},
-             float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-             bool attach_x = true, bool attach_y = true,
-             bool attach_angle = true, bool x_angle_lock = true,
-             bool y_angle_lock = true);
-
   public:
     /**
      * @file collider.hpp
@@ -302,7 +275,7 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Returns a new collider instance allocated on the heap.
+     * @brief Constructs a collider instance.
      * @param body Body of the collider.
      * @param force Force of the collider.
      * @param mass Mass of the collider.
@@ -316,15 +289,14 @@ class collider : public entity {
      * @param attach_angle Whether the angle is attached to entities.
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
-     * @return New collider instance allocated on the heap.
      */
-    static std::unique_ptr<collider>
-    create(polygon const& body, float force = 0, float mass = 0,
-           uint8_t world = std::numeric_limits<uint8_t>::max(),
-           std::vector<std::weak_ptr<component>> const& components = {},
-           float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
-           bool x_angle_lock = true, bool y_angle_lock = true);
+    collider(polygon const& body = {}, float force = 0, float mass = 0,
+             uint8_t world = std::numeric_limits<uint8_t>::max(),
+             std::vector<std::weak_ptr<component>> const& components = {},
+             float x_offset = 0, float y_offset = 0, float angle_offset = 0,
+             bool attach_x = true, bool attach_y = true,
+             bool attach_angle = true, bool x_angle_lock = true,
+             bool y_angle_lock = true);
 
     /**
      * @file collider.hpp

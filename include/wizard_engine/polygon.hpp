@@ -318,10 +318,14 @@ class polygon final : public component {
      * @param y_angle_lock Whether the y position is affected by the angle.
      * @warning Shape should be convex with at least 3 vertices.
      */
-    polygon(std::vector<std::pair<float, float>> const& shape, float x, float y,
-            float angle, float scale, float x_offset, float y_offset,
-            float angle_offset, bool attach_x, bool attach_y, bool attach_angle,
-            bool x_angle_lock, bool y_angle_lock);
+    polygon(std::vector<std::pair<float, float>> const& shape = {{0, 0},
+                                                                 {0, 0},
+                                                                 {0, 0}},
+            float x = 0, float y = 0, float angle = 0, float scale = 1,
+            float x_offset = 0, float y_offset = 0, float angle_offset = 0,
+            bool attach_x = true, bool attach_y = true,
+            bool attach_angle = true, bool x_angle_lock = true,
+            bool y_angle_lock = true);
 
     /**
      * @file polygon.hpp
