@@ -61,43 +61,6 @@ class sprite final : public renderable, public animatable, public component {
     bool _x_angle_lock;
     bool _y_angle_lock;
 
-    /**
-     * @file sprite.hpp
-     * @author Zana Domán
-     * @brief Constructs a sprite instance.
-     * @param x X position of the sprite.
-     * @param y Y position of the sprite.
-     * @param z Z position of the sprite.
-     * @param angle Angle of the sprite.
-     * @param width Width of the sprite.
-     * @param height Height of the sprite.
-     * @param spatial Whether the sprite is spatial or not.
-     * @param texture Texture of the sprite.
-     * @param color_r Red color modifier of the texture.
-     * @param color_g Green color modifier of the texture.
-     * @param color_b Blue color modifier of the texture.
-     * @param color_a Alpha color modifier of the texture.
-     * @param flip Whether the sprite is flipped on one of its axes.
-     * @param visible Visibility of the sprite.
-     * @param priority Priority of the sprite in the renderer queue.
-     * @param active Whether the sprite should be animated or not.
-     * @param x_offset X offset of the sprite.
-     * @param y_offset Y offset of the sprite.
-     * @param angle_offset Angle offset of the sprite.
-     * @param attach_x Whether the x position is attached to entities.
-     * @param attach_y Whether the y position is attached to entities.
-     * @param attach_angle Whether the angle is attached to entities.
-     * @param x_angle_lock Whether the x position is affected by the angle.
-     * @param y_angle_lock Whether the y position is affected by the angle.
-     */
-    sprite(float x, float y, float z, float angle, float width, float height,
-           bool spatial, std::shared_ptr<wze::texture> const& texture,
-           uint8_t color_r, uint8_t color_g, uint8_t color_b, uint8_t color_a,
-           enum flip flip, bool visible, uint8_t priority, bool active,
-           float x_offset, float y_offset, float angle_offset, bool attach_x,
-           bool attach_y, bool attach_angle, bool x_angle_lock,
-           bool y_angle_lock);
-
   public:
     /**
      * @file sprite.hpp
@@ -488,7 +451,7 @@ class sprite final : public renderable, public animatable, public component {
     /**
      * @file sprite.hpp
      * @author Zana Domán
-     * @brief Returns a new sprite instance allocated on the heap.
+     * @brief Constructs a sprite instance.
      * @param x X position of the sprite.
      * @param y Y position of the sprite.
      * @param z Z position of the sprite.
@@ -513,21 +476,14 @@ class sprite final : public renderable, public animatable, public component {
      * @param attach_angle Whether the angle is attached to entities.
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
-     * @return New sprite instance allocated on the heap.
      */
-    static std::unique_ptr<sprite>
-    create(float x = 0, float y = 0, float z = 0, float angle = 0,
-           float width = 0, float height = 0, bool spatial = false,
-           std::shared_ptr<wze::texture> const& texture = {},
-           uint8_t color_r = std::numeric_limits<uint8_t>::max(),
-           uint8_t color_g = std::numeric_limits<uint8_t>::max(),
-           uint8_t color_b = std::numeric_limits<uint8_t>::max(),
-           uint8_t color_a = std::numeric_limits<uint8_t>::max(),
-           enum flip flip = FLIP_NONE, bool visible = true,
-           uint8_t priority = 128, bool active = true, float x_offset = 0,
-           float y_offset = 0, float angle_offset = 0, bool attach_x = true,
-           bool attach_y = true, bool attach_angle = true,
-           bool x_angle_lock = true, bool y_angle_lock = true);
+    sprite(float x, float y, float z, float angle, float width, float height,
+           bool spatial, std::shared_ptr<wze::texture> const& texture,
+           uint8_t color_r, uint8_t color_g, uint8_t color_b, uint8_t color_a,
+           enum flip flip, bool visible, uint8_t priority, bool active,
+           float x_offset, float y_offset, float angle_offset, bool attach_x,
+           bool attach_y, bool attach_angle, bool x_angle_lock,
+           bool y_angle_lock);
 };
 } /* namespace wze */
 

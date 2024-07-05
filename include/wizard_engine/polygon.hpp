@@ -54,30 +54,6 @@ class polygon final : public component {
     /**
      * @file polygon.hpp
      * @author Zana Domán
-     * @brief Constructs a polygon instance.
-     * @param shape Shape of the polygon.
-     * @param x X position of the polygon.
-     * @param y Y position of the polygon.
-     * @param angle Angle of the polygon.
-     * @param scale Scale of the polygon.
-     * @param x_offset X offset of the polygon.
-     * @param y_offset Y offset of the polygon.
-     * @param angle_offset Angle offset of the polygon.
-     * @param attach_x Whether the x position is attached to entities.
-     * @param attach_y Whether the y position is attached to entities.
-     * @param attach_angle Whether the angle is attached to entities.
-     * @param x_angle_lock Whether the x position is affected by the angle.
-     * @param y_angle_lock Whether the y position is affected by the angle.
-     * @warning Shape should be convex with at least 3 vertices.
-     */
-    polygon(std::vector<std::pair<float, float>> const& shape, float x, float y,
-            float angle, float scale, float x_offset, float y_offset,
-            float angle_offset, bool attach_x, bool attach_y, bool attach_angle,
-            bool x_angle_lock, bool y_angle_lock);
-
-    /**
-     * @file polygon.hpp
-     * @author Zana Domán
      * @brief Updates the x positions of the points of the polygon.
      */
     void update_x();
@@ -326,7 +302,7 @@ class polygon final : public component {
     /**
      * @file polygon.hpp
      * @author Zana Domán
-     * @brief Returns a new polygon instance allocated on the heap.
+     * @brief Constructs a polygon instance.
      * @param shape Shape of the polygon.
      * @param x X position of the polygon.
      * @param y Y position of the polygon.
@@ -340,17 +316,12 @@ class polygon final : public component {
      * @param attach_angle Whether the angle is attached to entities.
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
-     * @return New polygon instance allocated on the heap.
      * @warning Shape should be convex with at least 3 vertices.
      */
-    static std::unique_ptr<polygon>
-    create(std::vector<std::pair<float, float>> const& shape = {{0, 0},
-                                                                {0, 0},
-                                                                {0, 0}},
-           float x = 0, float y = 0, float angle = 0, float scale = 1,
-           float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
-           bool x_angle_lock = true, bool y_angle_lock = true);
+    polygon(std::vector<std::pair<float, float>> const& shape, float x, float y,
+            float angle, float scale, float x_offset, float y_offset,
+            float angle_offset, bool attach_x, bool attach_y, bool attach_angle,
+            bool x_angle_lock, bool y_angle_lock);
 
     /**
      * @file polygon.hpp

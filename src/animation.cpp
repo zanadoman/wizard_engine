@@ -24,16 +24,6 @@
 #include <wizard_engine/animation.hpp>
 #include <wizard_engine/timer.hpp>
 
-wze::animator::animator(std::vector<std::shared_ptr<texture>> const& frames,
-                        uint16_t frame_time,
-                        std::vector<std::weak_ptr<animatable>> const& targets) {
-    _frames = frames;
-    _frame_time = frame_time;
-    _current_frame = 0;
-    _remaining_time = 0;
-    _targets = targets;
-}
-
 std::vector<std::shared_ptr<wze::texture>> const&
 wze::animator::frames() const {
     return _frames;
@@ -59,14 +49,17 @@ std::vector<std::weak_ptr<wze::animatable>>& wze::animator::targets() {
     return _targets;
 }
 
-std::unique_ptr<wze::animator>
-wze::animator::create(std::vector<std::shared_ptr<texture>> const& frames,
-                      uint16_t frame_time,
-                      std::vector<std::weak_ptr<animatable>> const& targets) {
-    return std::unique_ptr<animator>(new animator(frames, frame_time, targets));
+wze::animator::animator(std::vector<std::shared_ptr<texture>> const& frames,
+                        uint16_t frame_time,
+                        std::vector<std::weak_ptr<animatable>> const& targets) {
+    _frames = frames;
+    _frame_time = frame_time;
+    _current_frame = 0;
+    _remaining_time = 0;
+    _targets = targets;
 }
 
-bool wze::animator::update() {
+bool wze::animator::animate() {
     uint64_t elapsed_time;
     bool looped;
     std::vector<std::weak_ptr<animatable>>::iterator iterator;

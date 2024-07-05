@@ -24,32 +24,6 @@
 #include <wizard_engine/math.hpp>
 #include <wizard_engine/polygon.hpp>
 
-wze::polygon::polygon(std::vector<std::pair<float, float>> const& shape,
-                      float x, float y, float angle, float scale,
-                      float x_offset, float y_offset, float angle_offset,
-                      bool attach_x, bool attach_y, bool attach_angle,
-                      bool x_angle_lock, bool y_angle_lock) {
-    _shape = shape;
-    _shape_radius = circumradius();
-    _points = _shape;
-    _points_radius = _shape_radius * scale;
-    _x = x;
-    _y = y;
-    _angle = angle;
-    _scale = scale;
-    _transformation_matrix = math::transformation_matrix(_angle, _scale);
-    _x_offset = x_offset;
-    _y_offset = y_offset;
-    _angle_offset = angle_offset;
-    _attach_x = attach_x;
-    _attach_y = attach_y;
-    _attach_angle = attach_angle;
-    _x_angle_lock = x_angle_lock;
-    _y_angle_lock = y_angle_lock;
-    update_x();
-    update_y();
-}
-
 void wze::polygon::update_x() {
     for (size_t i = 0; i < _shape.size(); ++i) {
         _points.at(i).first =
@@ -204,15 +178,30 @@ void wze::polygon::set_y_angle_lock(bool y_angle_lock) {
     _y_angle_lock = y_angle_lock;
 }
 
-std::unique_ptr<wze::polygon>
-wze::polygon::create(std::vector<std::pair<float, float>> const& shape, float x,
-                     float y, float angle, float scale, float x_offset,
-                     float y_offset, float angle_offset, bool attach_x,
-                     bool attach_y, bool attach_angle, bool x_angle_lock,
-                     bool y_angle_lock) {
-    return std::unique_ptr<polygon>(new polygon(
-        shape, x, y, angle, scale, x_offset, y_offset, angle_offset, attach_x,
-        attach_y, attach_angle, x_angle_lock, y_angle_lock));
+wze::polygon::polygon(std::vector<std::pair<float, float>> const& shape,
+                      float x, float y, float angle, float scale,
+                      float x_offset, float y_offset, float angle_offset,
+                      bool attach_x, bool attach_y, bool attach_angle,
+                      bool x_angle_lock, bool y_angle_lock) {
+    _shape = shape;
+    _shape_radius = circumradius();
+    _points = _shape;
+    _points_radius = _shape_radius * scale;
+    _x = x;
+    _y = y;
+    _angle = angle;
+    _scale = scale;
+    _transformation_matrix = math::transformation_matrix(_angle, _scale);
+    _x_offset = x_offset;
+    _y_offset = y_offset;
+    _angle_offset = angle_offset;
+    _attach_x = attach_x;
+    _attach_y = attach_y;
+    _attach_angle = attach_angle;
+    _x_angle_lock = x_angle_lock;
+    _y_angle_lock = y_angle_lock;
+    update_x();
+    update_y();
 }
 
 bool wze::polygon::inside(float x, float y) const {

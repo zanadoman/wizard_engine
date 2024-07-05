@@ -70,18 +70,6 @@ class animator final {
     uint16_t _remaining_time;
     std::vector<std::weak_ptr<animatable>> _targets;
 
-    /**
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Constructs an animator instance.
-     * @param frames Frame pool of the animation.
-     * @param frame_time Frame time of the animation in milliseconds.
-     * @param targets Targets of the animation.
-     */
-    animator(std::vector<std::shared_ptr<texture>> const& frames,
-             uint16_t frame_time,
-             std::vector<std::weak_ptr<animatable>> const& targets);
-
   public:
     /**
      * @file animator.hpp
@@ -134,16 +122,14 @@ class animator final {
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Returns a new animator instance allocated on the heap.
+     * @brief Constructs an animator instance.
      * @param frames Frame pool of the animation.
      * @param frame_time Frame time of the animation in milliseconds.
      * @param targets Targets of the animation.
-     * @return New animator instance allocated on the heap.
      */
-    static std::unique_ptr<animator>
-    create(std::vector<std::shared_ptr<texture>> const& frames = {},
-           uint16_t frame_time = 100,
-           std::vector<std::weak_ptr<animatable>> const& targets = {});
+    animator(std::vector<std::shared_ptr<texture>> const& frames,
+             uint16_t frame_time,
+             std::vector<std::weak_ptr<animatable>> const& targets);
 
     /**
      * @file animator.hpp
@@ -152,7 +138,7 @@ class animator final {
      * the animation is looped or not.
      * @return Whether the animation is looped or not.
      */
-    bool update();
+    bool animate();
 
     /**
      * @file animator.hpp

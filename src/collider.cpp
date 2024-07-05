@@ -134,8 +134,8 @@ bool wze::collider::resolve_x(collider& other, float force) {
         return false;
     }
 
-    other_movement = collision * force / (force + other._mass);
-    movement = collision - other_movement;
+    movement = collision * other._mass / (force + other._mass);
+    other_movement = collision - movement;
 
     if (_body.x() < other._body.x()) {
         _body.set_x(_body.x() - movement);
@@ -168,8 +168,8 @@ bool wze::collider::resolve_y(collider& other, float force) {
         return false;
     }
 
-    other_movement = collision * force / (force + other._mass);
-    movement = collision - other_movement;
+    movement = collision * other._mass / (force + other._mass);
+    other_movement = collision - movement;
 
     if (_body.y() < other._body.y()) {
         _body.set_y(_body.y() - movement);

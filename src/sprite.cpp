@@ -23,41 +23,6 @@
 
 #include <wizard_engine/sprite.hpp>
 
-wze::sprite::sprite(float x, float y, float z, float angle, float width,
-                    float height, bool spatial,
-                    std::shared_ptr<wze::texture> const& texture,
-                    uint8_t color_r, uint8_t color_g, uint8_t color_b,
-                    uint8_t color_a, enum flip flip, bool visible,
-                    uint8_t priority, bool active, float x_offset,
-                    float y_offset, float angle_offset, bool attach_x,
-                    bool attach_y, bool attach_angle, bool x_angle_lock,
-                    bool y_angle_lock) {
-    _x = x;
-    _y = y;
-    _z = z;
-    _angle = angle;
-    _width = width;
-    _height = height;
-    _spatial = spatial;
-    _texture = texture;
-    _color_r = color_r;
-    _color_g = color_g;
-    _color_b = color_b;
-    _color_a = color_a;
-    _flip = flip;
-    _visible = visible;
-    _priority = priority;
-    _active = active;
-    _x_offset = x_offset;
-    _y_offset = y_offset;
-    _angle_offset = angle_offset;
-    _attach_x = attach_x;
-    _attach_y = attach_y;
-    _attach_angle = attach_angle;
-    _x_angle_lock = x_angle_lock;
-    _y_angle_lock = y_angle_lock;
-}
-
 float wze::sprite::x() const {
     return _x;
 }
@@ -250,16 +215,37 @@ void wze::sprite::set_y_angle_lock(bool y_angle_lock) {
     _y_angle_lock = y_angle_lock;
 }
 
-std::unique_ptr<wze::sprite> wze::sprite::create(
-    float x, float y, float z, float angle, float width, float height,
-    bool spatial, std::shared_ptr<wze::texture> const& texture, uint8_t color_r,
-    uint8_t color_g, uint8_t color_b, uint8_t color_a, enum flip flip,
-    bool visible, uint8_t priority, bool active, float x_offset, float y_offset,
-    float angle_offset, bool attach_x, bool attach_y, bool attach_angle,
-    bool x_angle_lock, bool y_angle_lock) {
-    return std::unique_ptr<sprite>(
-        new sprite(x, y, z, angle, width, height, spatial, texture, color_r,
-                   color_g, color_b, color_a, flip, visible, priority, active,
-                   x_offset, y_offset, angle_offset, attach_x, attach_y,
-                   attach_angle, x_angle_lock, y_angle_lock));
+wze::sprite::sprite(float x, float y, float z, float angle, float width,
+                    float height, bool spatial,
+                    std::shared_ptr<wze::texture> const& texture,
+                    uint8_t color_r, uint8_t color_g, uint8_t color_b,
+                    uint8_t color_a, enum flip flip, bool visible,
+                    uint8_t priority, bool active, float x_offset,
+                    float y_offset, float angle_offset, bool attach_x,
+                    bool attach_y, bool attach_angle, bool x_angle_lock,
+                    bool y_angle_lock) {
+    _x = x;
+    _y = y;
+    _z = z;
+    _angle = angle;
+    _width = width;
+    _height = height;
+    _spatial = spatial;
+    _texture = texture;
+    _color_r = color_r;
+    _color_g = color_g;
+    _color_b = color_b;
+    _color_a = color_a;
+    _flip = flip;
+    _visible = visible;
+    _priority = priority;
+    _active = active;
+    _x_offset = x_offset;
+    _y_offset = y_offset;
+    _angle_offset = angle_offset;
+    _attach_x = attach_x;
+    _attach_y = attach_y;
+    _attach_angle = attach_angle;
+    _x_angle_lock = x_angle_lock;
+    _y_angle_lock = y_angle_lock;
 }
