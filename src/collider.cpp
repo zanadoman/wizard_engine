@@ -27,12 +27,13 @@ std::array<std::vector<wze::collider*>, std::numeric_limits<uint8_t>::max()>
     wze::collider::_worlds = {};
 
 void wze::collider::push_x(float force) {
-    std::vector<collider*> contacts;
+    std::vector<collider*> const& contacts = collider::contacts();
 
-    contacts = collider::contacts();
-    force -= contacts_mass(contacts);
+    if (!contacts.size()) {
+        return;
+    }
 
-    if (0 < force) {
+    if (0 < (force -= contacts_mass(contacts))) {
         std::ranges::for_each(
             contacts, [this, force](collider* contact) -> void {
                 if (resolve_x(*contact, contact->_mass + force)) {
@@ -48,12 +49,13 @@ void wze::collider::push_x(float force) {
 }
 
 void wze::collider::push_y(float force) {
-    std::vector<collider*> contacts;
+    std::vector<collider*> const& contacts = collider::contacts();
 
-    contacts = collider::contacts();
-    force -= contacts_mass(contacts);
+    if (!contacts.size()) {
+        return;
+    }
 
-    if (0 < force) {
+    if (0 < (force -= contacts_mass(contacts))) {
         std::ranges::for_each(
             contacts, [this, force](collider* contact) -> void {
                 if (resolve_y(*contact, contact->_mass + force)) {
@@ -69,12 +71,13 @@ void wze::collider::push_y(float force) {
 }
 
 void wze::collider::push_xy(float force) {
-    std::vector<collider*> contacts;
+    std::vector<collider*> const& contacts = collider::contacts();
 
-    contacts = collider::contacts();
-    force -= contacts_mass(contacts);
+    if (!contacts.size()) {
+        return;
+    }
 
-    if (0 < force) {
+    if (0 < (force -= contacts_mass(contacts))) {
         std::ranges::for_each(
             contacts, [this, force](collider* contact) -> void {
                 if (resolve_xy(*contact, contact->_mass + force)) {
@@ -135,7 +138,7 @@ bool wze::collider::resolve_x(collider& other, float force) {
     }
 
     movement = collision * other._mass / (force + other._mass);
-    other_movement = collision - movement;
+    other_movement = collision - movement + std::numbers::e_v<float>;
 
     if (_body.x() < other._body.x()) {
         _body.set_x(_body.x() - movement);
@@ -169,7 +172,7 @@ bool wze::collider::resolve_y(collider& other, float force) {
     }
 
     movement = collision * other._mass / (force + other._mass);
-    other_movement = collision - movement;
+    other_movement = collision - movement + std::numbers::e_v<float>;
 
     if (_body.y() < other._body.y()) {
         _body.set_y(_body.y() - movement);
@@ -228,8 +231,8 @@ bool wze::collider::resolve_xy(collider& other, float force) {
     difference_x /= normalization;
     difference_y /= normalization;
 
-    other_movement = collision * force / (force + other._mass);
-    movement = collision - other_movement;
+    movement = collision * other._mass / (force + other._mass);
+    other_movement = collision - movement + std::numbers::e_v<float>;
 
     _body.set_x(_body.x() - difference_x * movement);
     _body.set_y(_body.y() - difference_y * movement);
@@ -239,18 +242,18 @@ bool wze::collider::resolve_xy(collider& other, float force) {
     return true;
 }
 
-void wze::collider::update_entities() {
+void wze::collider::align_entities() {
     std::ranges::for_each(_worlds.at(_world), [](collider* instance) -> void {
-        if (instance->x() != instance->_body.x()) {
+        if (instance->entity::x() != instance->_body.x()) {
             instance->entity::set_x(instance->_body.x());
         }
-        if (instance->y() != instance->_body.y()) {
+        if (instance->entity::y() != instance->_body.y()) {
             instance->entity::set_y(instance->_body.y());
         }
-        if (instance->angle() != instance->_body.angle()) {
+        if (instance->entity::angle() != instance->_body.angle()) {
             instance->entity::set_angle(instance->_body.angle());
         }
-        if (instance->scale() != instance->_body.scale()) {
+        if (instance->entity::scale() != instance->_body.scale()) {
             instance->entity::set_scale(instance->_body.scale());
         }
     });
@@ -266,6 +269,14 @@ void wze::collider::set_body(polygon const& body) {
     entity::set_y(_body.y());
     entity::set_angle(_body.angle());
     entity::set_scale(_body.scale());
+    entity::set_x_offset(_body.x_offset());
+    entity::set_y_offset(_body.y_offset());
+    entity::set_angle_offset(_body.angle_offset());
+    entity::set_attach_x(_body.attach_x());
+    entity::set_attach_y(_body.attach_y());
+    entity::set_attach_angle(_body.attach_angle());
+    entity::set_x_angle_lock(_body.x_angle_lock());
+    entity::set_y_angle_lock(_body.y_angle_lock());
 }
 
 float wze::collider::force() const {
@@ -299,7 +310,7 @@ void wze::collider::set_world(uint8_t world) {
 }
 
 float wze::collider::x() const {
-    return entity::x();
+    return _body.x();
 }
 
 void wze::collider::set_x(float x) {
@@ -311,11 +322,11 @@ void wze::collider::set_x(float x) {
     }
 
     push_x(_force);
-    update_entities();
+    align_entities();
 }
 
 float wze::collider::y() const {
-    return entity::y();
+    return _body.y();
 }
 
 void wze::collider::set_y(float y) {
@@ -327,11 +338,11 @@ void wze::collider::set_y(float y) {
     }
 
     push_y(_force);
-    update_entities();
+    align_entities();
 }
 
 float wze::collider::angle() const {
-    return entity::angle();
+    return _body.angle();
 }
 
 void wze::collider::set_angle(float angle) {
@@ -343,11 +354,11 @@ void wze::collider::set_angle(float angle) {
     }
 
     push_xy(_force);
-    update_entities();
+    align_entities();
 }
 
 float wze::collider::scale() const {
-    return entity::scale();
+    return _body.scale();
 }
 
 void wze::collider::set_scale(float scale) {
@@ -359,19 +370,89 @@ void wze::collider::set_scale(float scale) {
     }
 
     push_xy(_force);
-    update_entities();
+    align_entities();
+}
+
+float wze::collider::x_offset() const {
+    return _body.x_offset();
+}
+
+void wze::collider::set_x_offset(float x_offset) {
+    _body.set_x_offset(x_offset);
+    entity::set_x_offset(_body.x_offset());
+}
+
+float wze::collider::y_offset() const {
+    return _body.y_offset();
+}
+
+void wze::collider::set_y_offset(float y_offset) {
+    _body.set_y_offset(y_offset);
+    entity::set_y_offset(_body.y_offset());
+}
+
+float wze::collider::angle_offset() const {
+    return _body.angle_offset();
+}
+
+void wze::collider::set_angle_offset(float angle_offset) {
+    _body.set_angle_offset(angle_offset);
+    entity::set_angle_offset(_body.angle_offset());
+}
+
+bool wze::collider::attach_x() const {
+    return _body.attach_x();
+}
+
+void wze::collider::set_attach_x(bool attach_x) {
+    _body.set_attach_x(attach_x);
+    entity::set_attach_x(_body.attach_x());
+}
+
+bool wze::collider::attach_y() const {
+    return _body.attach_y();
+}
+
+void wze::collider::set_attach_y(bool attach_y) {
+    _body.set_attach_y(attach_y);
+    entity::set_attach_y(_body.attach_y());
+}
+
+bool wze::collider::attach_angle() const {
+    return _body.attach_angle();
+}
+
+void wze::collider::set_attach_angle(bool attach_angle) {
+    _body.set_attach_angle(attach_angle);
+    entity::set_attach_angle(attach_angle);
+}
+
+bool wze::collider::x_angle_lock() const {
+    return _body.x_angle_lock();
+}
+
+void wze::collider::set_x_angle_lock(bool x_angle_lock) {
+    _body.set_x_angle_lock(x_angle_lock);
+    entity::set_x_angle_lock(_body.x_angle_lock());
+}
+
+bool wze::collider::y_angle_lock() const {
+    return _body.y_angle_lock();
+}
+
+void wze::collider::set_y_angle_lock(bool y_angle_lock) {
+    _body.set_y_angle_lock(y_angle_lock);
+    entity::set_y_angle_lock(_body.y_angle_lock());
 }
 
 wze::collider::collider(polygon const& body, float force, float mass,
                         uint8_t world,
-                        std::vector<std::weak_ptr<component>> const& components,
-                        float x_offset, float y_offset, float angle_offset,
-                        bool attach_x, bool attach_y, bool attach_angle,
-                        bool x_angle_lock, bool y_angle_lock)
+                        std::vector<std::weak_ptr<component>> const& components)
     : entity(components, body.x(), body.y(), body.angle(), body.scale(),
-             x_offset, y_offset, angle_offset, attach_x, attach_y, attach_angle,
-             x_angle_lock, y_angle_lock),
-      _body(body) {
+             body.x_offset(), body.y_offset(), body.angle_offset(),
+             body.attach_x(), body.attach_y(), body.attach_angle(),
+             body.x_angle_lock(), body.y_angle_lock()) {
+    _body = body;
     _force = force;
     _mass = mass;
     _world = world;

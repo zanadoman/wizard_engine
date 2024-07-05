@@ -45,7 +45,7 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Initiates collision on x axis.
+     * @brief Initiates a collision on x axis.
      * @param force Force of the collision.
      */
     void push_x(float force);
@@ -53,7 +53,7 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Initiates collision on y axis.
+     * @brief Initiates a collision on y axis.
      * @param force Force of the collision.
      */
     void push_y(float force);
@@ -61,7 +61,7 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Initiates collision on both x and y axis.
+     * @brief Initiates a collision on both x and y axis.
      * @param force Force of the collision.
      */
     void push_xy(float force);
@@ -69,7 +69,7 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Returns the possible contacts of the collision.
+     * @brief Returns the possible contacts of a collision.
      * @return Possible contacts of the collision.
      */
     std::vector<collider*> contacts() const;
@@ -77,7 +77,7 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Returns the mass of the possible contacts of the collision.
+     * @brief Returns the mass of the possible contacts of a collision.
      * @param contacts Possible contacts of the collision.
      * @return Mass of the possible contacts of the collision.
      */
@@ -139,9 +139,9 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Updates the entities in the world of the collider.
+     * @brief Aligns the entities of the colliders to their bodies.
      */
-    void update_entities();
+    void align_entities();
 
   public:
     /**
@@ -277,29 +277,145 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
+     * @brief Returns the x offset of the collider.
+     * @return X offset of the collider.
+     */
+    float x_offset() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Sets the x offset of the collider.
+     * @param x_offset X offset of the collider.
+     */
+    void set_x_offset(float x_offset) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Returns the y offset of the collider.
+     * @return Y offset of the collider.
+     */
+    float y_offset() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Sets the y offset of the collider.
+     * @param y_offset Y offset of the collider.
+     */
+    void set_y_offset(float y_offset) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Returns the angle offset of the collider.
+     * @return Angle offset of the collider.
+     */
+    float angle_offset() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Sets the angle offset of the collider.
+     * @param angle_offset Angle offset of the collider.
+     */
+    void set_angle_offset(float angle_offset) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Returns whether the x position is attached to entities.
+     * @return Whether the x position is attached to entities.
+     */
+    bool attach_x() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Sets whether the x position is attached to entities.
+     * @param attach_x Whether the x position is attached to entities.
+     */
+    void set_attach_x(bool attach_x) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Returns whether the y position is attached to entities.
+     * @return Whether the y position is attached to entities.
+     */
+    bool attach_y() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Sets whether the y position is attached to entities.
+     * @param attach_y Whether the y position is attached to entities.
+     */
+    void set_attach_y(bool attach_y) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Returns whether the angle is attached to entities.
+     * @return Whether the angle is attached to entities.
+     */
+    bool attach_angle() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Sets whether the angle is attached to entities.
+     * @param attach_angle Whether the angle is attached to entities.
+     */
+    void set_attach_angle(bool attach_angle) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Returns whether the x position is affected by the angle.
+     * @return Whether the x position is affected by angle.
+     */
+    bool x_angle_lock() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Sets whether the x position is affected by the angle.
+     * @param x_angle_lock Whether the x position is affected by the angle.
+     */
+    void set_x_angle_lock(bool x_angle_lock) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Returns whether the y position is affected by the angle.
+     * @return Whether the y position is affected by the angle.
+     */
+    bool y_angle_lock() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Sets whether the y position is affected by the angle.
+     * @param y_angle_lock Whether the y position is affected by the angle.
+     */
+    void set_y_angle_lock(bool y_angle_lock) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
      * @brief Constructs a collider instance and pushes into a world.
      * @param body Body of the collider.
      * @param force Force of the collider.
      * @param mass Mass of the collider.
      * @param world World of the collider.
      * @param components Components of the collider.
-     * @param x_offset X offset of the collider.
-     * @param y_offset Y offset of the collider.
-     * @param angle_offset Angle offset of the collider.
-     * @param attach_x Whether the x position is attached to entities.
-     * @param attach_y Whether the y position is attached to entities.
-     * @param attach_angle Whether the angle is attached to entities.
-     * @param x_angle_lock Whether the x position is affected by the angle.
-     * @param y_angle_lock Whether the y position is affected by the angle.
      * @note World std::numeric_limits<uint8_t>::max() is always empty.
      */
     collider(polygon const& body = {}, float force = 0, float mass = 0,
              uint8_t world = std::numeric_limits<uint8_t>::max(),
-             std::vector<std::weak_ptr<component>> const& components = {},
-             float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-             bool attach_x = true, bool attach_y = true,
-             bool attach_angle = true, bool x_angle_lock = true,
-             bool y_angle_lock = true);
+             std::vector<std::weak_ptr<component>> const& components = {});
 
     /**
      * @file collider.hpp

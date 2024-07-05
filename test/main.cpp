@@ -25,7 +25,7 @@ class wizard final : wze::collider {
         entity::recompose();
     }
 
-    void refresh() {
+    void update() {
         if (wze::input::key(_forward)) {
             set_x(x() + wze::math::move_x(0.3 * wze::timer::delta_time(),
                                           angle() - wze::math::to_radians(90)));
@@ -48,20 +48,31 @@ class wizard final : wze::collider {
 };
 
 wze_main(1920, 1080) {
-    wizard wizard1 = {-500,       0,          0,          10,        1000,
+    wizard wizard1 = {-500,       0,          0,          2001,      1000,
                       wze::KEY_W, wze::KEY_S, wze::KEY_A, wze::KEY_D};
+
     wizard wizard2 = {500,
                       0,
                       0,
-                      1001,
-                      10,
+                      2001,
+                      1000,
                       wze::KEY_UP,
                       wze::KEY_DOWN,
                       wze::KEY_LEFT,
                       wze::KEY_RIGHT};
 
+    wizard wizard3 = {0,
+                      0,
+                      0,
+                      10,
+                      1000,
+                      wze::KEY_UNKNOWN,
+                      wze::KEY_UNKNOWN,
+                      wze::KEY_UNKNOWN,
+                      wze::KEY_UNKNOWN};
+
     wze_while(true) {
-        wizard1.refresh();
-        wizard2.refresh();
+        wizard1.update();
+        wizard2.update();
     }
 }
