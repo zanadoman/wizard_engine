@@ -23,7 +23,7 @@ class wizard final : wze::collider {
         _right = right;
         components().push_back(_sprite);
         wze::renderer::queue().push_back(_sprite);
-        entity::update();
+        entity::update_components();
     }
 
     void refresh() {
@@ -49,10 +49,10 @@ class wizard final : wze::collider {
 };
 
 wze_main(1920, 1080) {
-    wizard wizard1 = {-500,       0,          0,          10,        100,
+    wizard wizard1 = {-500,       0,          0,          10,        1000,
                       wze::KEY_W, wze::KEY_S, wze::KEY_A, wze::KEY_D};
     wizard wizard2 = {
-        500,           0, 0, 101, 10, wze::KEY_UP, wze::KEY_DOWN, wze::KEY_LEFT,
+        500,           0, 0, 1001, 10, wze::KEY_UP, wze::KEY_DOWN, wze::KEY_LEFT,
         wze::KEY_RIGHT};
 
     wze_while(true) {

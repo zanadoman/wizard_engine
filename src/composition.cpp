@@ -75,7 +75,7 @@ wze::entity::entity(std::vector<std::weak_ptr<component>> const& components,
     _attach_angle = attach_angle;
     _x_angle_lock = x_angle_lock;
     _y_angle_lock = y_angle_lock;
-    update();
+    update_components();
 }
 
 std::vector<std::weak_ptr<wze::component>>& wze::entity::components() {
@@ -242,7 +242,7 @@ wze::entity::create(std::vector<std::weak_ptr<component>> const& components,
         attach_x, attach_y, attach_angle, x_angle_lock, y_angle_lock));
 }
 
-void wze::entity::update() {
+void wze::entity::update_components() {
     std::vector<std::weak_ptr<component>>::iterator iterator;
     std::shared_ptr<component> instance;
 

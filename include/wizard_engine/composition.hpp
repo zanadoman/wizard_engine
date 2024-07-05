@@ -429,7 +429,7 @@ class entity : public component {
      * @brief Explicitly updates the components of the entity and erases expired
      * ones.
      */
-    virtual void update();
+    virtual void update_components();
 
     /**
      * @file composition.hpp

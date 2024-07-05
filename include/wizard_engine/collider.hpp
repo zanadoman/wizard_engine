@@ -88,7 +88,7 @@ class collider : public entity {
      * @file collider.hpp
      * @author Zana Domán
      * @brief Statically resolves a collision with another collider on x axis.
-     * @param other Other polygon.
+     * @param other Other collider.
      */
     void resolve_x(collider const& other);
 
@@ -96,7 +96,7 @@ class collider : public entity {
      * @file collider.hpp
      * @author Zana Domán
      * @brief Dynamically resolves a collision with another collider on x axis.
-     * @param other Other polygon.
+     * @param other Other collider.
      * @return Whether the collision is resolved or not.
      */
     bool resolve_x(collider& other, float force);
@@ -105,7 +105,7 @@ class collider : public entity {
      * @file collider.hpp
      * @author Zana Domán
      * @brief Statically resolves a collision with another collider on y axis.
-     * @param other Other polygon.
+     * @param other Other collider.
      */
     void resolve_y(collider const& other);
 
@@ -113,7 +113,7 @@ class collider : public entity {
      * @file collider.hpp
      * @author Zana Domán
      * @brief Dynamically resolves a collision with another collider on y axis.
-     * @param other Other polygon.
+     * @param other Other collider.
      * @return Whether the collision is resolved or not.
      */
     bool resolve_y(collider& other, float force);
@@ -123,7 +123,7 @@ class collider : public entity {
      * @author Zana Domán
      * @brief Statically resolves a collision with another collider on both x
      * and y axis.
-     * @param other Other polygon.
+     * @param other Other collider.
      */
     void resolve_xy(collider const& other);
 
@@ -132,7 +132,7 @@ class collider : public entity {
      * @author Zana Domán
      * @brief Dynamically resolves a collision with another collider on both x
      * and y axis.
-     * @param other Other polygon.
+     * @param other Other collider.
      * @return Whether the collision is resolved or not.
      */
     bool resolve_xy(collider& other, float force);
@@ -239,10 +239,26 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
+     * @brief Returns the x position of the collider.
+     * @return X position of the collider.
+     */
+    float x() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
      * @brief Sets the x position of the collider.
      * @param x X position of the collider.
      */
     void set_x(float x) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Returns the y position of the collider.
+     * @return Y position of the collider.
+     */
+    float y() const final;
 
     /**
      * @file collider.hpp
@@ -255,10 +271,26 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
+     * @brief Returns the angle of the collider.
+     * @return Angle of the collider.
+     */
+    float angle() const final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
      * @brief Sets the angle of the collider.
      * @param angle Angle of the collider.
      */
     void set_angle(float angle) final;
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Returns the scale of the collider.
+     * @return Scale of the collider.
+     */
+    float scale() const final;
 
     /**
      * @file collider.hpp
