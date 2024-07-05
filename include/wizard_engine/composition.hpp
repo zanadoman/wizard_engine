@@ -139,7 +139,6 @@ class entity : public component {
     float _x;
     float _y;
     float _angle;
-    float _scale;
     std::array<float, 4> _transformation_matrix;
     float _x_offset;
     float _y_offset;
@@ -227,22 +226,6 @@ class entity : public component {
      * @param angle Angle of the entity.
      */
     void set_angle(float angle) override;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Returns the scale of the entity.
-     * @return Scale of the entity.
-     */
-    virtual float scale() const;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Sets the scale of the entity.
-     * @param scale Scale of the entity.
-     */
-    virtual void set_scale(float scale);
 
     /**
      * @file composition.hpp
@@ -380,7 +363,6 @@ class entity : public component {
      * @param x X position of the entity.
      * @param y Y position of the entity.
      * @param angle Angle of the entity.
-     * @param scale Scale of the entity.
      * @param x_offset X offset of the entity.
      * @param y_offset Y offset of the entity.
      * @param angle_offset Angle offset of the entity.
@@ -391,9 +373,9 @@ class entity : public component {
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
     entity(std::vector<std::weak_ptr<component>> const& components = {},
-           float x = 0, float y = 0, float angle = 0, float scale = 1,
-           float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-           bool attach_x = true, bool attach_y = true, bool attach_angle = true,
+           float x = 0, float y = 0, float angle = 0, float x_offset = 0,
+           float y_offset = 0, float angle_offset = 0, bool attach_x = true,
+           bool attach_y = true, bool attach_angle = true,
            bool x_angle_lock = true, bool y_angle_lock = true);
 
     /**

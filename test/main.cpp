@@ -48,14 +48,14 @@ class wizard final : wze::collider {
 };
 
 wze_main(1920, 1080) {
-    wizard wizard1 = {-500,       0,          0,          2001,      1000,
+    wizard wizard1 = {-500,       0,          0,          10,        10,
                       wze::KEY_W, wze::KEY_S, wze::KEY_A, wze::KEY_D};
 
     wizard wizard2 = {500,
                       0,
-                      0,
-                      2001,
-                      1000,
+                      wze::math::to_radians(270),
+                      21,
+                      10,
                       wze::KEY_UP,
                       wze::KEY_DOWN,
                       wze::KEY_LEFT,
@@ -65,7 +65,7 @@ wze_main(1920, 1080) {
                       0,
                       0,
                       10,
-                      1000,
+                      10,
                       wze::KEY_UNKNOWN,
                       wze::KEY_UNKNOWN,
                       wze::KEY_UNKNOWN,

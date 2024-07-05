@@ -109,7 +109,7 @@ void wze::entity::set_angle(float angle) {
     std::shared_ptr<component> instance;
 
     _angle = angle;
-    _transformation_matrix = math::transformation_matrix(_angle, _scale);
+    _transformation_matrix = math::transformation_matrix(_angle, 1);
 
     for (iterator = _components.begin(); iterator != _components.end();
          ++iterator) {
@@ -117,28 +117,6 @@ void wze::entity::set_angle(float angle) {
             update_x(*instance);
             update_y(*instance);
             update_angle(*instance);
-        } else {
-            _components.erase(iterator--);
-        }
-    }
-}
-
-float wze::entity::scale() const {
-    return _scale;
-}
-
-void wze::entity::set_scale(float scale) {
-    std::vector<std::weak_ptr<component>>::iterator iterator;
-    std::shared_ptr<component> instance;
-
-    _scale = scale;
-    _transformation_matrix = math::transformation_matrix(_angle, _scale);
-
-    for (iterator = _components.begin(); iterator != _components.end();
-         ++iterator) {
-        if ((instance = iterator->lock())) {
-            update_x(*instance);
-            update_y(*instance);
         } else {
             _components.erase(iterator--);
         }
@@ -210,7 +188,7 @@ void wze::entity::set_y_angle_lock(bool y_angle_lock) {
 }
 
 wze::entity::entity(std::vector<std::weak_ptr<component>> const& components,
-                    float x, float y, float angle, float scale, float x_offset,
+                    float x, float y, float angle, float x_offset,
                     float y_offset, float angle_offset, bool attach_x,
                     bool attach_y, bool attach_angle, bool x_angle_lock,
                     bool y_angle_lock) {
@@ -218,8 +196,7 @@ wze::entity::entity(std::vector<std::weak_ptr<component>> const& components,
     _x = x;
     _y = y;
     _angle = angle;
-    _scale = scale;
-    _transformation_matrix = math::transformation_matrix(_angle, _scale);
+    _transformation_matrix = math::transformation_matrix(_angle, 1);
     _x_offset = x_offset;
     _y_offset = y_offset;
     _angle_offset = angle_offset;

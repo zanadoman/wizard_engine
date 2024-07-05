@@ -22,6 +22,7 @@
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/collider.hpp>
+#include <wizard_engine/math.hpp>
 
 std::array<std::vector<wze::collider*>, std::numeric_limits<uint8_t>::max()>
     wze::collider::_worlds = {};
@@ -130,15 +131,15 @@ void wze::collider::resolve_x(collider const& other) {
 
 bool wze::collider::resolve_x(collider& other, float force) {
     float collision;
-    float movement;
     float other_movement;
+    float movement;
 
     if (!(collision = _body.collision(other._body))) {
         return false;
     }
 
-    movement = collision * other._mass / (force + other._mass);
-    other_movement = collision - movement + std::numbers::e_v<float>;
+    other_movement = collision * force / (force + other._mass);
+    movement = collision - other_movement + epsilon;
 
     if (_body.x() < other._body.x()) {
         _body.set_x(_body.x() - movement);
@@ -164,15 +165,15 @@ void wze::collider::resolve_y(collider const& other) {
 
 bool wze::collider::resolve_y(collider& other, float force) {
     float collision;
-    float movement;
     float other_movement;
+    float movement;
 
     if (!(collision = _body.collision(other._body))) {
         return false;
     }
 
-    movement = collision * other._mass / (force + other._mass);
-    other_movement = collision - movement + std::numbers::e_v<float>;
+    other_movement = collision * force / (force + other._mass);
+    movement = collision - other_movement + epsilon;
 
     if (_body.y() < other._body.y()) {
         _body.set_y(_body.y() - movement);
@@ -231,8 +232,8 @@ bool wze::collider::resolve_xy(collider& other, float force) {
     difference_x /= normalization;
     difference_y /= normalization;
 
-    movement = collision * other._mass / (force + other._mass);
-    other_movement = collision - movement + std::numbers::e_v<float>;
+    other_movement = collision * force / (force + other._mass);
+    movement = collision - other_movement + epsilon;
 
     _body.set_x(_body.x() - difference_x * movement);
     _body.set_y(_body.y() - difference_y * movement);
@@ -253,9 +254,6 @@ void wze::collider::align_entities() {
         if (instance->entity::angle() != instance->_body.angle()) {
             instance->entity::set_angle(instance->_body.angle());
         }
-        if (instance->entity::scale() != instance->_body.scale()) {
-            instance->entity::set_scale(instance->_body.scale());
-        }
     });
 }
 
@@ -268,7 +266,6 @@ void wze::collider::set_body(polygon const& body) {
     entity::set_x(_body.x());
     entity::set_y(_body.y());
     entity::set_angle(_body.angle());
-    entity::set_scale(_body.scale());
     entity::set_x_offset(_body.x_offset());
     entity::set_y_offset(_body.y_offset());
     entity::set_angle_offset(_body.angle_offset());
@@ -365,7 +362,6 @@ void wze::collider::set_scale(float scale) {
     _body.set_angle(scale);
 
     if (_world == std::numeric_limits<uint8_t>::max()) {
-        entity::set_scale(_body.scale());
         return;
     }
 
@@ -448,10 +444,10 @@ void wze::collider::set_y_angle_lock(bool y_angle_lock) {
 wze::collider::collider(polygon const& body, float force, float mass,
                         uint8_t world,
                         std::vector<std::weak_ptr<component>> const& components)
-    : entity(components, body.x(), body.y(), body.angle(), body.scale(),
-             body.x_offset(), body.y_offset(), body.angle_offset(),
-             body.attach_x(), body.attach_y(), body.attach_angle(),
-             body.x_angle_lock(), body.y_angle_lock()) {
+    : entity(components, body.x(), body.y(), body.angle(), body.x_offset(),
+             body.y_offset(), body.angle_offset(), body.attach_x(),
+             body.attach_y(), body.attach_angle(), body.x_angle_lock(),
+             body.y_angle_lock()) {
     _body = body;
     _force = force;
     _mass = mass;

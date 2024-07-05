@@ -264,7 +264,7 @@ class collider : public entity {
      * @brief Returns the scale of the collider.
      * @return Scale of the collider.
      */
-    float scale() const final;
+    float scale() const;
 
     /**
      * @file collider.hpp
@@ -272,7 +272,7 @@ class collider : public entity {
      * @brief Sets the scale of the collider.
      * @param scale Scale of the collider.
      */
-    void set_scale(float scale) final;
+    void set_scale(float scale);
 
     /**
      * @file collider.hpp
