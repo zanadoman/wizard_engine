@@ -208,8 +208,11 @@ bool wze::polygon::inside(float x, float y) const {
     float determinant;
     float temporary;
 
-    determinant = 0;
+    if (_points_radius < math::length(x - _x, y - _y)) {
+        return false;
+    }
 
+    determinant = 0;
     for (size_t i1 = 0, i2 = 1; i1 < _points.size(); ++i1, ++i2) {
         if (i2 == _points.size()) {
             i2 = 0;
