@@ -197,6 +197,7 @@ class collider : public entity {
      * @author Zana Domán
      * @brief Returns the world of the collider.
      * @return World of the collider.
+     * @note World std::numeric_limits<uint8_t>::max() is always empty.
      */
     uint8_t world() const;
 
@@ -205,6 +206,7 @@ class collider : public entity {
      * @author Zana Domán
      * @brief Sets the world of the collider.
      * @param world World of the collider.
+     * @note World std::numeric_limits<uint8_t>::max() is always empty.
      */
     void set_world(uint8_t world);
 
@@ -275,7 +277,7 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Constructs a collider instance.
+     * @brief Constructs a collider instance and pushes into a world.
      * @param body Body of the collider.
      * @param force Force of the collider.
      * @param mass Mass of the collider.
@@ -289,6 +291,7 @@ class collider : public entity {
      * @param attach_angle Whether the angle is attached to entities.
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
+     * @note World std::numeric_limits<uint8_t>::max() is always empty.
      */
     collider(polygon const& body = {}, float force = 0, float mass = 0,
              uint8_t world = std::numeric_limits<uint8_t>::max(),
@@ -301,7 +304,7 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Erases the collider from the world of the collider.
+     * @brief Destroy the collider intance and erases from it's world.
      */
     ~collider();
 };
