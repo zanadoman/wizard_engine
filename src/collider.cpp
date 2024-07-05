@@ -359,7 +359,7 @@ float wze::collider::scale() const {
 }
 
 void wze::collider::set_scale(float scale) {
-    _body.set_angle(scale);
+    _body.set_scale(scale);
 
     if (_world == std::numeric_limits<uint8_t>::max()) {
         return;
