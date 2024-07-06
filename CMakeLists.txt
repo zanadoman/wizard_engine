@@ -23,8 +23,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include/)
 
 # Sources
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*)
-add_library(${PROJECT_NAME} STATIC ${SOURCES})
-set_target_properties(${PROJECT_NAME} PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 # Libraries
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
