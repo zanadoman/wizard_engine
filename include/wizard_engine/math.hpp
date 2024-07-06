@@ -27,13 +27,6 @@
 namespace wze {
 /**
  * @file math.hpp
- * @author Jelenovits Milán
- * @brief Single precision epsilon.
- */
-constexpr float epsilon = 0.01;
-
-/**
- * @file math.hpp
  * @author Zana Domán, Gunics Roland
  * @brief Subsystem to handle vector math and unit conversions.
  */
@@ -47,6 +40,13 @@ class math final {
     math() = default;
 
   public:
+    /**
+     * @file math.hpp
+     * @author Zana Domán
+     * @brief Single precision epsilon.
+     */
+    static constexpr float epsilon = 0.01;
+
     /**
      * @file math.hpp
      * @author Zana Domán

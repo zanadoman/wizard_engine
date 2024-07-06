@@ -1,4 +1,4 @@
--std=gnu++23
+-std=c++23
 -I./include/
 -Ofast
 -Werror

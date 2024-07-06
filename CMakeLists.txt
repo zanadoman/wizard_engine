@@ -5,21 +5,22 @@ cmake_minimum_required(VERSION 3.29.6)
 project(wizard_engine)
  
 # Host
-string(FIND "Linux Windows" ${CMAKE_SYSTEM_NAME} HOST)
-if (${HOST} EQUAL -1)
+if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux|Windows")
     message(FATAL_ERROR "Unsupported host, CMake will exit.")
 endif()
- 
-# Standard 
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
- 
+
+# Compiler
+if (NOT ${CMAKE_CXX_COMPILER_ID} MATCHES "GNU")
+    message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
+endif()
+
 # Headers
 include_directories(${CMAKE_SOURCE_DIR}/include/)
 
 # Sources
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*)
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
+set_target_properties(${PROJECT_NAME} PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
 
 # Libraries
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
@@ -47,12 +48,10 @@ file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
 string(REPLACE \n \  FLAGS ${FLAGS})
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    string(CONCAT FLAGS ${FLAGS} " -Wl,-rpath=./")
+    set(CMAKE_CXX_FLAGS "${FLAGS} -Wl,-rpath=./")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    string(CONCAT FLAGS ${FLAGS} " -mwindows")
+    set(CMAKE_CXX_FLAGS "${FLAGS} -mwindows")
 endif()
- 
-set(CMAKE_CXX_FLAGS ${FLAGS})
 
 # Test
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/test/*)

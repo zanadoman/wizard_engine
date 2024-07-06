@@ -65,7 +65,7 @@ wze_main(1920, 1080) {
                       0,
                       0,
                       10,
-                      10,
+                      10000,
                       wze::KEY_UNKNOWN,
                       wze::KEY_UNKNOWN,
                       wze::KEY_UNKNOWN,
