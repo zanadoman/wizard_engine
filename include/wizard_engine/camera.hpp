@@ -23,7 +23,7 @@
 #define WIZARD_ENGINE_CAMERA_HPP
 
 #include <wizard_engine/export.hpp>
-#include <wizard_engine/render.hpp>
+#include <wizard_engine/renderable.hpp>
 
 namespace wze {
 /**

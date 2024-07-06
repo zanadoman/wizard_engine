@@ -25,7 +25,7 @@
 #include <wizard_engine/audio.hpp>
 #include <wizard_engine/engine.hpp>
 #include <wizard_engine/input.hpp>
-#include <wizard_engine/render.hpp>
+#include <wizard_engine/renderer.hpp>
 #include <wizard_engine/sprite.hpp>
 #include <wizard_engine/timer.hpp>
 #include <wizard_engine/window.hpp>

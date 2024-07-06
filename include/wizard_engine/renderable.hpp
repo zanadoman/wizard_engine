@@ -19,15 +19,15 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef WIZARD_ENGINE_RENDER_HPP
-#define WIZARD_ENGINE_RENDER_HPP
+#ifndef WIZARD_ENGINE_RENDERABLE_HPP
+#define WIZARD_ENGINE_RENDERABLE_HPP
 
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/export.hpp>
 
 namespace wze {
 /**
- * @file render.hpp
+ * @file renderable.hpp
  * @author Zana Domán
  * @brief Flip states.
  */
@@ -38,7 +38,7 @@ enum flip {
 };
 
 /**
- * @file render.hpp
+ * @file renderable.hpp
  * @author Zana Domán
  * @brief Interface to make an object renderable.
  */
@@ -51,7 +51,7 @@ class renderable {
   public:
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns renderable instances.
      * @return Renderable instances.
@@ -60,7 +60,7 @@ class renderable {
 #endif
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the screen area of the object.
      * @return Screen area of the object.
@@ -69,7 +69,7 @@ class renderable {
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Sets the screen area of the object.
      * @param screen_area Screen area of the object.
@@ -78,7 +78,7 @@ class renderable {
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the screen angle of the object.
      * @return Screen angle of the object.
@@ -87,7 +87,7 @@ class renderable {
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Sets the screen angle of the object.
      * @param screen_angle Screen angle of the object.
@@ -96,7 +96,7 @@ class renderable {
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the x position of the object.
      * @return X position of the object.
@@ -104,7 +104,7 @@ class renderable {
     virtual float x() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the y position of the object.
      * @return Y position of the object.
@@ -112,7 +112,7 @@ class renderable {
     virtual float y() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the z position of the object.
      * @return Z position of the object.
@@ -121,7 +121,7 @@ class renderable {
     virtual float z() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the angle of the object.
      * @return Angle of the object.
@@ -129,7 +129,7 @@ class renderable {
     virtual float angle() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the width of the object.
      * @return Width of the object.
@@ -137,7 +137,7 @@ class renderable {
     virtual float width() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the height of the object.
      * @return Height of the object.
@@ -145,7 +145,7 @@ class renderable {
     virtual float height() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns whether the object is spatial or not.
      * @return Whether the object is spatial or not.
@@ -153,7 +153,7 @@ class renderable {
     virtual bool spatial() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the texture of the object.
      * @return Texture of the object.
@@ -161,7 +161,7 @@ class renderable {
     virtual std::shared_ptr<wze::texture> const& texture() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the red color modifier of the texture.
      * @return Red color modifier of the texture.
@@ -169,7 +169,7 @@ class renderable {
     virtual uint8_t color_r() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the green color modifier of the texture.
      * @return Green color modifier of the texture.
@@ -177,7 +177,7 @@ class renderable {
     virtual uint8_t color_g() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the blue color modifier of the texture.
      * @return Blue color modifier of the texture.
@@ -185,7 +185,7 @@ class renderable {
     virtual uint8_t color_b() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the alpha color modifier of the texture.
      * @return Alpha color modifier of the texture.
@@ -193,7 +193,7 @@ class renderable {
     virtual uint8_t color_a() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns whether the object is flipped on one of its axes.
      * @return Whether the object is flipped on one of its axes.
@@ -201,7 +201,7 @@ class renderable {
     virtual wze::flip flip() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the visibility of the object.
      * @brief Visibility of the object.
@@ -209,7 +209,7 @@ class renderable {
     virtual bool visible() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Returns the priority of the object in the render queue.
      * @brief Priority of the object in the render queue.
@@ -217,166 +217,19 @@ class renderable {
     virtual uint8_t priority() const = 0;
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Constructs a renderable instance and pushes into instances.
      */
     renderable();
 
     /**
-     * @file render.hpp
+     * @file renderable.hpp
      * @author Zana Domán
      * @brief Destroys the renderable isntance and erases from instances.
      */
     virtual ~renderable();
 };
-
-/**
- * @file render.hpp
- * @author Zana Domán, Gunics Roland
- * @brief Subsystem to handle graphics.
- */
-class renderer final {
-  private:
-    static SDL_Renderer* _base;
-    static float _origo_x;
-    static float _origo_y;
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Private default constructor to prevent instantiation.
-     */
-    renderer() = default;
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Opens a new frame to render on.
-     * @warning If the frame cannot be opened, throws std::runtime_error.
-     */
-    static void open_frame();
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán, Gunics Roland
-     * @brief Returns the visibility of a renderable instance.
-     * @param instance Renderable instance.
-     * @return Visibility of the renderable instance.
-     */
-    static bool invisible(renderable const& instance);
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán, Gunics Roland
-     * @brief Transforms a renderable instance.
-     * @param instance Renderable instance.
-     */
-    static void transform(renderable& instance);
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Returns whether a renderable instance is inside the bounds of
-     * the screen or not.
-     * @param instance Renderable instance.
-     * @return Whether the renderable instance is inside the bounds of the
-     * screen or not.
-     */
-    static bool offscreen(renderable const& instance);
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Renders a renderable instance onto the new frame.
-     * @param instance Renderable instance.
-     * @warning If the renderable instance cannot be rendered, throws
-     * std::runtime_error.
-     */
-    static void render(renderable const& instance);
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Presents the new frame.
-     */
-    static void close_frame();
-
-  public:
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Returns the pointer of the renderer.
-     * @return Pointer of the renderer.
-     */
-    static SDL_Renderer* base();
-#endif /* __WIZARD_ENGINE_INTERNAL */
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Returns the origo x of the screen.
-     * @return Origo x of the screen.
-     */
-    static float origo_x();
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Sets the origo x of the screen.
-     * @param origo_x Origo x of the screen.
-     */
-    static void set_origo_x(float origo_x);
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Returns the origo y of the screen.
-     * @return Origo y of the screen.
-     */
-    static float origo_y();
-
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Sets the origo y of the screen.
-     * @param origo_y Origo y of the screen.
-     */
-    static void set_origo_y(float origo_y);
-
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Initializes the renderer.
-     * @warning If the renderer cannot be initialized, throws
-     * std::runtime_error.
-     */
-    static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL */
-
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file render.hpp
-     * @author Zana Domán
-     * @brief Renders the renderable instances and erases expired ones.
-     */
-    static void update();
-#endif /* __WIZARD_ENGINE_INTERNAL */
-
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file render.hpp
-     * @author Zana Domán, Gunics Roland
-     * @brief Detransforms a plane coordinate.
-     * @param x X component of the plane coordinate.
-     * @param y Y component of the plane coordinate.
-     * @return Detransformed plane coordinate.
-     */
-    static std::pair<float, float> detransform(float x, float y);
-#endif /* __WIZARD_ENGINE_INTERNAL */
-};
 } /* namespace wze */
 
-#endif /* WIZARD_ENGINE_RENDER_HPP */
+#endif /* WIZARD_ENGINE_RENDERABLE_HPP */

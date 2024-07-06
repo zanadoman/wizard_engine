@@ -23,40 +23,8 @@
 
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/math.hpp>
-#include <wizard_engine/render.hpp>
+#include <wizard_engine/renderer.hpp>
 #include <wizard_engine/window.hpp>
-
-std::vector<wze::renderable*> wze::renderable::_instances = {};
-
-std::vector<wze::renderable*> const& wze::renderable::instances() {
-    return _instances;
-}
-
-SDL_FRect const& wze::renderable::screen_area() const {
-    return _screen_area;
-}
-
-void wze::renderable::set_screen_area(SDL_FRect const& screen_area) {
-    _screen_area = screen_area;
-}
-
-float wze::renderable::screen_angle() const {
-    return _screen_angle;
-}
-
-void wze::renderable::set_screen_angle(float screen_angle) {
-    _screen_angle = screen_angle;
-}
-
-wze::renderable::renderable() {
-    _screen_area = {0, 0, 0, 0};
-    _screen_angle = 0;
-    _instances.push_back(this);
-}
-
-wze::renderable::~renderable() {
-    _instances.erase(std::ranges::find(_instances, this));
-}
 
 SDL_Renderer* wze::renderer::_base = nullptr;
 float wze::renderer::_origo_x = 0;

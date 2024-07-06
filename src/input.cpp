@@ -24,7 +24,7 @@
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/engine.hpp>
 #include <wizard_engine/input.hpp>
-#include <wizard_engine/render.hpp>
+#include <wizard_engine/renderer.hpp>
 #include <wizard_engine/window.hpp>
 
 std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};

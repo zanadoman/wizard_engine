@@ -22,7 +22,7 @@
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/assets.hpp>
-#include <wizard_engine/render.hpp>
+#include <wizard_engine/renderer.hpp>
 
 std::shared_ptr<wze::image> wze::assets::load_image(std::string const& path) {
     std::shared_ptr<image> image;
