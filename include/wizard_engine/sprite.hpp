@@ -22,7 +22,7 @@
 #ifndef WIZARD_ENGINE_SPRITE_HPP
 #define WIZARD_ENGINE_SPRITE_HPP
 
-#include <wizard_engine/animation.hpp>
+#include <wizard_engine/animatable.hpp>
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/composition.hpp>
 #include <wizard_engine/export.hpp>

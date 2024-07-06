@@ -30,6 +30,7 @@
 
 #undef __WIZARD_ENGINE_INTERNAL
 
+#include <wizard_engine/animatable.hpp> /* IWYU pragma: export */
 #include <wizard_engine/animation.hpp>  /* IWYU pragma: export */
 #include <wizard_engine/assets.hpp>     /* IWYU pragma: export */
 #include <wizard_engine/audio.hpp>      /* IWYU pragma: export */

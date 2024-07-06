@@ -22,41 +22,11 @@
 #ifndef WIZARD_ENGINE_ANIMATION_HPP
 #define WIZARD_ENGINE_ANIMATION_HPP
 
+#include <wizard_engine/animatable.hpp>
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/export.hpp>
 
 namespace wze {
-/**
- * @file animator.hpp
- * @author Zana Domán
- * @brief Interface to make an object animatable.
- */
-class animatable {
-  public:
-    /**
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Sets the texture of the object.
-     * @param texture Texture of the object.
-     */
-    virtual void set_texture(std::shared_ptr<texture> const& texture) = 0;
-
-    /**
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Returns whether the object should be animated or not.
-     * @return Whether the object should be animated or not.
-     */
-    virtual bool active() const = 0;
-
-    /**
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Default virtual destructor.
-     */
-    virtual ~animatable() = default;
-};
-
 /**
  * @file animator.hpp
  * @author Zana Domán
