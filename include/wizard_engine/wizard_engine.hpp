@@ -49,14 +49,13 @@
     /* @file wizard_engine.hpp           */                                    \
     /* @author Zana Domán                */                                   \
     /* @brief Main of the Wizard Engine. */                                    \
-    void __wze_main(int32_t argc, char* argv[]);                               \
+    int32_t __wze_main(int32_t argc, char* argv[]);                            \
     int32_t main(int32_t argc, char* argv[]) {                                 \
         wze::engine::initialize(width, height);                                \
-        __wze_main(argc, argv);                                                \
-        return 0;                                                              \
+        return __wze_main(argc, argv);                                         \
     }                                                                          \
-    void __wze_main([[maybe_unused]] int32_t argc,                             \
-                    [[maybe_unused]] char* argv[])
+    int32_t __wze_main([[maybe_unused]] int32_t argc,                          \
+                       [[maybe_unused]] char* argv[])
 
 #define wze_while(condition)                                                   \
     /* @file wizard_engine.hpp                */                               \

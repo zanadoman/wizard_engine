@@ -34,10 +34,12 @@ namespace wze {
  */
 class speaker final : public component {
   private:
+    static std::vector<speaker*> _instances;
     int32_t _channel;
     std::shared_ptr<wze::sound> _sound;
     float _volume;
     float _range;
+    bool _auto_panning;
     float _x;
     float _y;
     float _angle;
@@ -51,6 +53,16 @@ class speaker final : public component {
     bool _y_angle_lock;
 
   public:
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns speaker instances.
+     * @return Speaker instances.
+     */
+    static std::vector<speaker*> const& instances();
+#endif
+
     /**
      * @file audio.hpp
      * @author Zana Domán
@@ -100,6 +112,22 @@ class speaker final : public component {
      * @param range Range of the speaker.
      */
     void set_range(float range);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns whether the panning should be aligned automatically.
+     * @return Whether the panning should be aligned automatically.
+     */
+    bool auto_panning() const;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Sets whether the panning should be aligned automatically.
+     * @param auto_panning Whether the panning should be aligned automatically.
+     */
+    void set_auto_panning(bool auto_panning);
 
     /**
      * @file audio.hpp
@@ -284,6 +312,7 @@ class speaker final : public component {
      * @param sound Sound of the speaker.
      * @param volume Volume of the speaker.
      * @param range Range of the speaker.
+     * @param auto_panning Whether the panning should be aligned automatically.
      * @param x X position of the speaker.
      * @param y Y position of the speaker.
      * @param angle Angle of the speaker.
@@ -298,11 +327,11 @@ class speaker final : public component {
      * @note Volume is bounded to [0, 1].
      */
     speaker(std::shared_ptr<wze::sound> const& sound = {}, float volume = 1,
-            float range = 1024, float x = 0, float y = 0, float angle = 0,
-            float x_offset = 0, float y_offset = 0, float angle_offset = 0,
-            bool attach_x = true, bool attach_y = true,
-            bool attach_angle = true, bool x_angle_lock = true,
-            bool y_angle_lock = true);
+            float range = 1024, bool auto_panning = false, float x = 0,
+            float y = 0, float angle = 0, float x_offset = 0,
+            float y_offset = 0, float angle_offset = 0, bool attach_x = true,
+            bool attach_y = true, bool attach_angle = true,
+            bool x_angle_lock = true, bool y_angle_lock = true);
 
     /**
      * @file audio.hpp
@@ -314,28 +343,12 @@ class speaker final : public component {
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Updates the panning of the sound relative to the camera.
-     * @warning If the panning cannot be updated, throws std::runtime_error.
-     */
-    void update();
-
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
      * @brief Plays the sound of the speaker.
      * @param fade_in Fade in in milliseconds.
      * @param loops Number of loops.
      * @warning If the sound cannot be played, throws std::runtime_error.
      */
     void play(uint16_t fade_in = 0, uint16_t loops = 0);
-
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
-     * @brief Stops the sound of the speaker.
-     * @param fade_out Fade out in milliseconds.
-     */
-    void stop(uint16_t fade_out = 0);
 
     /**
      * @file audio.hpp
@@ -355,6 +368,14 @@ class speaker final : public component {
     /**
      * @file audio.hpp
      * @author Zana Domán
+     * @brief Returns whether the speaker is paused or not.
+     * @return Whether the speaker is paused or not.
+     */
+    bool paused() const;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
      * @brief Resumes the sound of the speaker.
      */
     void resume();
@@ -362,10 +383,18 @@ class speaker final : public component {
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Returns whether the speaker is paused or not.
-     * @return Whether the speaker is paused or not.
+     * @brief Stops the sound of the speaker.
+     * @param fade_out Fade out in milliseconds.
      */
-    bool paused() const;
+    void stop(uint16_t fade_out = 0);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Aligns the panning of the speaker relative to the camera.
+     * @warning If the panning cannot aligned, throws std::runtime_error.
+     */
+    void align_panning();
 };
 
 /**
@@ -377,7 +406,6 @@ class audio final {
   private:
     static std::vector<int32_t> _channels;
     static float _volume;
-    static std::vector<std::weak_ptr<speaker>> _auto_panning;
 
     /**
      * @file audio.hpp
@@ -427,30 +455,14 @@ class audio final {
      */
     static void set_volume(float volume);
 
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
-     * @brief Returns the speakers with auto panning.
-     * @return Speakers with auto panning.
-     */
-    static std::vector<std::weak_ptr<speaker>>& auto_panning();
-
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Updates the speakers with auto panning and erases expired ones.
+     * @brief Aligns the pannings of the speakers with auto panning enabled.
      */
     static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL */
-
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
-     * @brief Stops the audio globally.
-     * @warning If the audio cannot be stopped, throws std::runtime_error.
-     */
-    static void stop();
 
     /**
      * @file audio.hpp
@@ -465,6 +477,14 @@ class audio final {
      * @brief Resumes the audio globally.
      */
     static void resume();
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Stops the audio globally.
+     * @warning If the audio cannot be stopped, throws std::runtime_error.
+     */
+    static void stop();
 };
 } /* namespace wze */
 

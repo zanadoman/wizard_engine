@@ -25,6 +25,12 @@
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/math.hpp>
 
+std::vector<wze::speaker*> wze::speaker::_instances = {};
+
+std::vector<wze::speaker*> const& wze::speaker::instances() {
+    return _instances;
+}
+
 std::shared_ptr<wze::sound> const& wze::speaker::sound() const {
     return _sound;
 }
@@ -48,6 +54,14 @@ float wze::speaker::range() const {
 
 void wze::speaker::set_range(float range) {
     _range = range;
+}
+
+bool wze::speaker::auto_panning() const {
+    return _auto_panning;
+}
+
+void wze::speaker::set_auto_panning(bool auto_panning) {
+    _auto_panning = auto_panning;
 }
 
 float wze::speaker::x() const {
@@ -139,15 +153,16 @@ void wze::speaker::set_y_angle_lock(bool y_angle_lock) {
 }
 
 wze::speaker::speaker(std::shared_ptr<wze::sound> const& sound, float volume,
-                      float range, float x, float y, float angle,
-                      float x_offset, float y_offset, float angle_offset,
-                      bool attach_x, bool attach_y, bool attach_angle,
-                      bool x_angle_lock, bool y_angle_lock) {
+                      float range, bool auto_panning, float x, float y,
+                      float angle, float x_offset, float y_offset,
+                      float angle_offset, bool attach_x, bool attach_y,
+                      bool attach_angle, bool x_angle_lock, bool y_angle_lock) {
     _channel = audio::request_channel();
     _sound = sound;
     _volume = std::clamp(volume, 0.f, 1.f);
     Mix_Volume(_channel, round(MIX_MAX_VOLUME * _volume));
     _range = range;
+    _auto_panning = auto_panning;
     _x = x;
     _y = y;
     _angle = angle;
@@ -159,14 +174,42 @@ wze::speaker::speaker(std::shared_ptr<wze::sound> const& sound, float volume,
     _attach_angle = attach_angle;
     _x_angle_lock = x_angle_lock;
     _y_angle_lock = y_angle_lock;
-    update();
+    align_panning();
+    _instances.push_back(this);
 }
 
 wze::speaker::~speaker() {
     audio::drop_channel(_channel);
+    _instances.erase(std::ranges::find(_instances, this));
 }
 
-void wze::speaker::update() {
+void wze::speaker::play(uint16_t fade_in, uint16_t loops) {
+    if (Mix_FadeInChannel(_channel, _sound.get(), loops, fade_in) == -1) {
+        throw std::runtime_error(Mix_GetError());
+    }
+}
+
+bool wze::speaker::playing() const {
+    return Mix_Playing(_channel);
+}
+
+void wze::speaker::pause() {
+    Mix_Pause(_channel);
+}
+
+bool wze::speaker::paused() const {
+    return Mix_Paused(_channel);
+}
+
+void wze::speaker::resume() {
+    Mix_Resume(_channel);
+}
+
+void wze::speaker::stop(uint16_t fade_out) {
+    Mix_FadeOutChannel(_channel, fade_out);
+}
+
+void wze::speaker::align_panning() {
     float distance;
     float left;
     float right;
@@ -193,35 +236,8 @@ void wze::speaker::update() {
     }
 }
 
-void wze::speaker::play(uint16_t fade_in, uint16_t loops) {
-    if (Mix_FadeInChannel(_channel, _sound.get(), loops, fade_in) == -1) {
-        throw std::runtime_error(Mix_GetError());
-    }
-}
-
-void wze::speaker::stop(uint16_t fade_out) {
-    Mix_FadeOutChannel(_channel, fade_out);
-}
-
-bool wze::speaker::playing() const {
-    return Mix_Playing(_channel);
-}
-
-void wze::speaker::pause() {
-    Mix_Pause(_channel);
-}
-
-void wze::speaker::resume() {
-    Mix_Resume(_channel);
-}
-
-bool wze::speaker::paused() const {
-    return Mix_Paused(_channel);
-}
-
 std::vector<int32_t> wze::audio::_channels = {};
 float wze::audio::_volume = 1;
-std::vector<std::weak_ptr<wze::speaker>> wze::audio::_auto_panning = {};
 
 int32_t wze::audio::request_channel() {
     int32_t channel;
@@ -230,7 +246,8 @@ int32_t wze::audio::request_channel() {
          ++channel) {
         if (std::ranges::find(_channels, channel) == _channels.end()) {
             _channels.push_back(channel);
-            Mix_AllocateChannels(std::ranges::max(_channels) + 1);
+            Mix_AllocateChannels(
+                std::max(MIX_CHANNELS, std::ranges::max(_channels) + 1));
             return channel;
         }
     }
@@ -246,6 +263,8 @@ void wze::audio::drop_channel(int32_t channel) {
         throw std::runtime_error(Mix_GetError());
     }
     _channels.erase(std::ranges::find(_channels, channel));
+    Mix_AllocateChannels(std::max(
+        MIX_CHANNELS, _channels.size() ? std::ranges::max(_channels) + 1 : 0));
 }
 
 float wze::audio::volume() {
@@ -257,28 +276,9 @@ void wze::audio::set_volume(float volume) {
     Mix_MasterVolume(round(MIX_MAX_VOLUME * _volume));
 }
 
-std::vector<std::weak_ptr<wze::speaker>>& wze::audio::auto_panning() {
-    return _auto_panning;
-}
-
 void wze::audio::update() {
-    std::vector<std::weak_ptr<speaker>>::iterator iterator;
-    std::shared_ptr<speaker> instance;
-
-    for (iterator = _auto_panning.begin(); iterator != _auto_panning.end();
-         ++iterator) {
-        if ((instance = iterator->lock())) {
-            instance->update();
-        } else {
-            _auto_panning.erase(iterator--);
-        }
-    }
-}
-
-void wze::audio::stop() {
-    if (Mix_HaltChannel(-1)) {
-        throw std::runtime_error(Mix_GetError());
-    }
+    std::ranges::for_each(speaker::instances(),
+                          [](speaker* instance) { instance->align_panning(); });
 }
 
 void wze::audio::pause() {
@@ -287,4 +287,10 @@ void wze::audio::pause() {
 
 void wze::audio::resume() {
     Mix_Resume(-1);
+}
+
+void wze::audio::stop() {
+    if (Mix_HaltChannel(-1)) {
+        throw std::runtime_error(Mix_GetError());
+    }
 }

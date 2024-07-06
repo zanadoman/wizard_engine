@@ -75,4 +75,6 @@ wze_main(1920, 1080) {
         wizard1.update();
         wizard2.update();
     }
+
+    return 0;
 }
