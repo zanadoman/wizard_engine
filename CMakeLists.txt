@@ -1,9 +1,9 @@
 # Version
 cmake_minimum_required(VERSION 3.29.6)
- 
+
 # Project
 project(wizard_engine)
- 
+
 # Host
 if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux|Windows")
     message(FATAL_ERROR "Unsupported host, CMake will exit.")
@@ -37,7 +37,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_mixer.dll)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_ttf.dll)
 endif()
- 
+
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
