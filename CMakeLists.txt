@@ -14,6 +14,10 @@ if (NOT ${CMAKE_CXX_COMPILER_ID} MATCHES "GNU")
     message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
 endif()
 
+if (${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 13.1)
+    message(FATAL_ERROR "Outdated compiler, CMake will exit.")
+endif()
+
 # Headers
 include_directories(${CMAKE_SOURCE_DIR}/include/)
 
@@ -52,8 +56,6 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     set(CMAKE_CXX_FLAGS "${FLAGS} -mwindows")
 endif()
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -save-temps -fverbose-asm")
 
 # Test
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/test/*)
