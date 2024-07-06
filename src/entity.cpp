@@ -21,7 +21,7 @@
 
 #define __WIZARD_ENGINE_INTERNAL
 
-#include <wizard_engine/composition.hpp>
+#include <wizard_engine/entity.hpp>
 #include <wizard_engine/math.hpp>
 
 void wze::entity::update_x(component& instance) {

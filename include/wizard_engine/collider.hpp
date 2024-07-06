@@ -22,7 +22,7 @@
 #ifndef WIZARD_ENGINE_COLLIDER_HPP
 #define WIZARD_ENGINE_COLLIDER_HPP
 
-#include <wizard_engine/composition.hpp>
+#include <wizard_engine/entity.hpp>
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/polygon.hpp>
 

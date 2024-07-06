@@ -19,117 +19,15 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef WIZARD_ENGINE_COMPOSITION_HPP
-#define WIZARD_ENGINE_COMPOSITION_HPP
+#ifndef WIZARD_ENGINE_ENTITY_HPP
+#define WIZARD_ENGINE_ENTITY_HPP
 
 #include <wizard_engine/export.hpp>
+#include <wizard_engine/component.hpp>
 
 namespace wze {
 /**
- * @file composition.hpp
- * @author Zana Domán
- * @brief Interface to make an object composable.
- */
-class component {
-  public:
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Sets the x position of the object.
-     * @param x X position of the object.
-     */
-    virtual void set_x(float x) = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Sets the y position of the object.
-     * @param y Y position of the object.
-     */
-    virtual void set_y(float y) = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Sets the angle of the object.
-     * @param angle Angle of the object.
-     */
-    virtual void set_angle(float angle) = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Returns the x offset of the object.
-     * @return X offset of the object.
-     */
-    virtual float x_offset() const = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Returns the y offset of the object.
-     * @return Y offset of the object.
-     */
-    virtual float y_offset() const = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Returns the angle offset of the object.
-     * @return Angle offset of the object.
-     */
-    virtual float angle_offset() const = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Returns whether the x position is attached to entities.
-     * @return Whether the x position is attached to entities.
-     */
-    virtual bool attach_x() const = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Returns whether the y position is attached to entities.
-     * @return Whether the y position is attached to entities.
-     */
-    virtual bool attach_y() const = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Returns whether the angle is attached to entities.
-     * @return Whether the angle is attached to entities.
-     */
-    virtual bool attach_angle() const = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Returns whether the x position is affected by the angle.
-     * @return Whether the x position is affected by the angle.
-     */
-    virtual bool x_angle_lock() const = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Returns whether the y position is affected by the angle.
-     * @return Whether the y position is affected by the angle.
-     */
-    virtual bool y_angle_lock() const = 0;
-
-    /**
-     * @file composition.hpp
-     * @author Zana Domán
-     * @brief Default virtual destructor.
-     */
-    virtual ~component() = default;
-};
-
-/**
- * @file composition.hpp
+ * @file entity.hpp
  * @author Zana Domán
  * @brief Composes components together.
  */
@@ -150,21 +48,21 @@ class entity : public component {
     bool _y_angle_lock;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Updates the x position of a component instance.
      */
     void update_x(component& instance);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Updates the y position of a component instance.
      */
     void update_y(component& instance);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Updates the angle of a component instance.
      */
@@ -172,7 +70,7 @@ class entity : public component {
 
   public:
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns the components of the entity.
      * @return Components of the entity.
@@ -180,7 +78,7 @@ class entity : public component {
     virtual std::vector<std::weak_ptr<component>>& components();
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns the x position of the entity.
      * @return X position of the entity.
@@ -188,7 +86,7 @@ class entity : public component {
     virtual float x() const;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets the x position of the entity.
      * @param x X position of the entity.
@@ -196,7 +94,7 @@ class entity : public component {
     void set_x(float x) override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns the y position of the entity.
      * @return Y position of the entity.
@@ -204,7 +102,7 @@ class entity : public component {
     virtual float y() const;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets the y position of the entity.
      * @param y Y position of the entity.
@@ -212,7 +110,7 @@ class entity : public component {
     void set_y(float y) override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns the angle of the entity.
      * @return Angle of the entity.
@@ -220,7 +118,7 @@ class entity : public component {
     virtual float angle() const;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets the angle of the entity.
      * @param angle Angle of the entity.
@@ -228,7 +126,7 @@ class entity : public component {
     void set_angle(float angle) override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns the x offset of the entity.
      * @return X offset of the entity.
@@ -236,7 +134,7 @@ class entity : public component {
     float x_offset() const override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets the x offset of the entity.
      * @param x_offset X offset of the entity.
@@ -244,7 +142,7 @@ class entity : public component {
     virtual void set_x_offset(float x_offset);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns the y offset of the entity.
      * @return Y offset of the entity.
@@ -252,7 +150,7 @@ class entity : public component {
     float y_offset() const override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets the y offset of the entity.
      * @param y_offset Y offset of the entity.
@@ -260,7 +158,7 @@ class entity : public component {
     virtual void set_y_offset(float y_offset);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns the angle offset of the entity.
      * @return Angle offset of the entity.
@@ -268,7 +166,7 @@ class entity : public component {
     float angle_offset() const override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets the angle offset of the entity.
      * @param angle_offset Angle offset of the entity.
@@ -276,7 +174,7 @@ class entity : public component {
     virtual void set_angle_offset(float angle_offset);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
@@ -284,7 +182,7 @@ class entity : public component {
     bool attach_x() const override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets whether the x position is attached to entities.
      * @param attach_x Whether the x position is attached to entities.
@@ -292,7 +190,7 @@ class entity : public component {
     virtual void set_attach_x(bool attach_x);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
@@ -300,7 +198,7 @@ class entity : public component {
     bool attach_y() const override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets whether the y position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
@@ -308,7 +206,7 @@ class entity : public component {
     virtual void set_attach_y(bool attach_y);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
@@ -316,7 +214,7 @@ class entity : public component {
     bool attach_angle() const override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets whether the angle is attached to entities.
      * @param attach_angle Whether the angle is attached to entities.
@@ -324,7 +222,7 @@ class entity : public component {
     virtual void set_attach_angle(bool attach_angle);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
@@ -332,7 +230,7 @@ class entity : public component {
     bool x_angle_lock() const override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets whether the x position is affected by the angle.
      * @param x_angle_lock Whether the x position is affected by the angle.
@@ -340,7 +238,7 @@ class entity : public component {
     virtual void set_x_angle_lock(bool x_angle_lock);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
@@ -348,7 +246,7 @@ class entity : public component {
     bool y_angle_lock() const override;
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Sets whether the y position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
@@ -356,7 +254,7 @@ class entity : public component {
     virtual void set_y_angle_lock(bool y_angle_lock);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Constructs an entity instance.
      * @param components Components of the entity.
@@ -379,7 +277,7 @@ class entity : public component {
            bool x_angle_lock = true, bool y_angle_lock = true);
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Explicitly updates the components of the entity and erases expired
      * ones.
@@ -387,7 +285,7 @@ class entity : public component {
     virtual void recompose();
 
     /**
-     * @file composition.hpp
+     * @file entity.hpp
      * @author Zana Domán
      * @brief Default virtual destructor.
      */
@@ -395,4 +293,4 @@ class entity : public component {
 };
 } /* namespace wze */
 
-#endif /* WIZARD_ENGINE_COMPOSITION_HPP */
+#endif /* WIZARD_ENGINE_ENTITY_HPP */

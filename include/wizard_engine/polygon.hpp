@@ -22,7 +22,7 @@
 #ifndef WIZARD_ENGINE_SHAPE_HPP
 #define WIZARD_ENGINE_SHAPE_HPP
 
-#include <wizard_engine/composition.hpp>
+#include <wizard_engine/component.hpp>
 #include <wizard_engine/export.hpp>
 
 namespace wze {

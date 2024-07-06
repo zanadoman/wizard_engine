@@ -23,7 +23,7 @@
 #define WIZARD_ENGINE_SPEAKER_HPP
 
 #include <wizard_engine/assets.hpp>
-#include <wizard_engine/composition.hpp>
+#include <wizard_engine/component.hpp>
 #include <wizard_engine/export.hpp>
 
 namespace wze {
