@@ -23,20 +23,10 @@
 #define WIZARD_ENGINE_RENDERABLE_HPP
 
 #include <wizard_engine/assets.hpp>
+#include <wizard_engine/enums.hpp>
 #include <wizard_engine/export.hpp>
 
 namespace wze {
-/**
- * @file renderable.hpp
- * @author Zana Domán
- * @brief Flip states.
- */
-enum flip {
-    FLIP_NONE = SDL_FLIP_NONE,
-    FLIP_HORIZONTAL = SDL_FLIP_HORIZONTAL,
-    FLIP_VERTICAL = SDL_FLIP_VERTICAL
-};
-
 /**
  * @file renderable.hpp
  * @author Zana Domán

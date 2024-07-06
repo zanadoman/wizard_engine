@@ -25,6 +25,7 @@
 #include <wizard_engine/animatable.hpp>
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/component.hpp>
+#include <wizard_engine/enums.hpp>
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/renderable.hpp>
 
