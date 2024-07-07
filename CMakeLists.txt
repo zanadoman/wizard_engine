@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.30)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 # Project
-project(wizard_engine)
+project(wizard_engine CXX)
 
 # Host
 if (NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
