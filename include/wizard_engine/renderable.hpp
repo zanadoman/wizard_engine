@@ -47,7 +47,7 @@ class renderable {
      * @return Renderable instances.
      */
     static std::vector<renderable*> const& instances();
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file renderable.hpp
@@ -216,7 +216,7 @@ class renderable {
     /**
      * @file renderable.hpp
      * @author Zana Domán
-     * @brief Destroys the renderable isntance and erases from instances.
+     * @brief Destroys the renderable instance and erases from instances.
      */
     virtual ~renderable();
 };

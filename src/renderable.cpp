@@ -54,4 +54,3 @@ wze::renderable::renderable() {
 wze::renderable::~renderable() {
     _instances.erase(std::ranges::find(_instances, this));
 }
-
