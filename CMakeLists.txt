@@ -1,5 +1,6 @@
-# Version
+# CMake
 cmake_minimum_required(VERSION 3.30)
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 # Project
 project(wizard_engine)
