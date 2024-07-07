@@ -2,8 +2,12 @@
 cmake_minimum_required(VERSION 3.30)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
+if (NOT ${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}/build)
+    message(FATAL_ERROR "Unsupported directory, CMake will exit.")
+endif()
+
 # Project
-project(wizard_engine CXX)
+project(wizard_engine LANGUAGES CXX)
 
 # Host
 if (NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
