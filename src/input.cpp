@@ -114,7 +114,9 @@ bool wze::input::cursor_visible() {
 
 void wze::input::set_cursor_visible(bool cursor_visible) {
     _cursor_visible = cursor_visible;
-    SDL_SetRelativeMouseMode(_cursor_visible ? SDL_FALSE : SDL_TRUE);
+    if (SDL_SetRelativeMouseMode(_cursor_visible ? SDL_FALSE : SDL_TRUE)) {
+        throw std::runtime_error(SDL_GetError());
+    }
 }
 
 std::shared_ptr<wze::cursor> const& wze::input::cursor_appearance() {
@@ -130,7 +132,9 @@ void wze::input::set_cursor_appearance(
 };
 
 void wze::input::initialize() {
-    set_cursor_appearance({});
+    _cursor_appearance = {
+        SDL_GetCursor(),
+        []([[maybe_unused]] cursor const* cursor_appearance) -> void {}};
 }
 
 void wze::input::update() {

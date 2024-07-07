@@ -132,6 +132,7 @@ class input final {
      * @brief Sets the visibility of the cursor.
      * @param cursor_visible Visibility of the cursor.
      * @note Hiding the cursor also captures it into the game window.
+     * @warning If cursor visibility cannot be set, throws std::runtime_error.
      */
     static void set_cursor_visible(bool cursor_visible);
 
