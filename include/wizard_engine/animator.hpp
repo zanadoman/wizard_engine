@@ -19,8 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef WIZARD_ENGINE_ANIMATION_HPP
-#define WIZARD_ENGINE_ANIMATION_HPP
+#ifndef WIZARD_ENGINE_ANIMATOR_HPP
+#define WIZARD_ENGINE_ANIMATOR_HPP
 
 #include <wizard_engine/animatable.hpp>
 #include <wizard_engine/assets.hpp>
@@ -119,4 +119,4 @@ class animator final {
 };
 } /* namespace wze */
 
-#endif /* WIZARD_ENGINE_ANIMATION_HPP */
+#endif /* WIZARD_ENGINE_ANIMATOR_HPP */

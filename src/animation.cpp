@@ -21,7 +21,7 @@
 
 #define __WIZARD_ENGINE_INTERNAL
 
-#include <wizard_engine/animation.hpp>
+#include <wizard_engine/animator.hpp>
 #include <wizard_engine/timer.hpp>
 
 std::vector<std::shared_ptr<wze::texture>> const&

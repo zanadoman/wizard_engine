@@ -31,7 +31,7 @@
 #undef __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/animatable.hpp> /* IWYU pragma: export */
-#include <wizard_engine/animation.hpp>  /* IWYU pragma: export */
+#include <wizard_engine/animator.hpp>   /* IWYU pragma: export */
 #include <wizard_engine/assets.hpp>     /* IWYU pragma: export */
 #include <wizard_engine/audio.hpp>      /* IWYU pragma: export */
 #include <wizard_engine/camera.hpp>     /* IWYU pragma: export */
@@ -52,10 +52,14 @@
 #include <wizard_engine/window.hpp>     /* IWYU pragma: export */
 
 #define wze_main(width, height)                                                \
-    /* @file wizard_engine.hpp           */                                    \
-    /* @author Zana Domán                */                                   \
-    /* @brief Main of the Wizard Engine. */                                    \
-    int32_t __wze_main(int32_t argc, char* argv[]);                            \
+    /* @file wizard_engine.hpp                      */                         \
+    /* @author Zana Domán                           */                        \
+    /* @brief Main function of the Wizard Engine.   */                         \
+    /* @param width Width of the game window.       */                         \
+    /* @param height Height of the game window.     */                         \
+    /* @return Exit code.                           */                         \
+    /* @note Command line arguments are accessible. */                         \
+    static int32_t __wze_main(int32_t argc, char* argv[]);                     \
     int32_t main(int32_t argc, char* argv[]) {                                 \
         wze::engine::initialize(width, height);                                \
         return __wze_main(argc, argv);                                         \
@@ -64,9 +68,10 @@
                        [[maybe_unused]] char* argv[])
 
 #define wze_while(condition)                                                   \
-    /* @file wizard_engine.hpp                */                               \
-    /* @author Zana Domán                     */                              \
-    /* @brief Game loop of the Wizard Engine. */                               \
+    /* @file wizard_engine.hpp                                   */            \
+    /* @author Zana Domán                                        */           \
+    /* @brief Game loop of the Wizard Engine.                    */            \
+    /* @param True if the game should continue, false otherwise. */            \
     while (wze::engine::update() && condition)
 
 #endif /* WIZARD_ENGINE_WIZARD_ENGINE_HPP */
