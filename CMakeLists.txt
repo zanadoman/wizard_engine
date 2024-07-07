@@ -6,12 +6,18 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 project(wizard_engine)
 
 # Host
-if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Linux|Windows")
+if (NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
     message(FATAL_ERROR "Unsupported host, CMake will exit.")
 endif()
 
 # Compiler
-if (NOT ${CMAKE_CXX_COMPILER_ID} MATCHES "GNU")
+if (${CMAKE_SYSTEM_NAME} STREQUAL Linux)
+    set(CMAKE_CXX_COMPILER g++)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
+    set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
+endif()
+
+if (NOT ${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
     message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
 endif()
 
@@ -27,21 +33,21 @@ file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 # Libraries
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+if (${CMAKE_SYSTEM_NAME} STREQUAL Linux)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2-2.0.so.0)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_image-2.0.so.0)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_mixer-2.0.so.0)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_ttf-2.0.so.0)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2.dll)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_image.dll)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_mixer.dll)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_ttf.dll)
 endif()
 
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+if (${CMAKE_SYSTEM_NAME} STREQUAL Linux)
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/bin/*)
 endif()
 
@@ -51,9 +57,9 @@ file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
 file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
 string(REPLACE \n \  FLAGS ${FLAGS})
 
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+if (${CMAKE_SYSTEM_NAME} STREQUAL Linux)
     set(CMAKE_CXX_FLAGS "${FLAGS} -Wl,-rpath=./")
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     set(CMAKE_CXX_FLAGS "${FLAGS} -mwindows")
 endif()
 
