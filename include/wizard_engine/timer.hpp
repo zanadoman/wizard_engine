@@ -88,8 +88,16 @@ class timer final {
     /**
      * @file timer.hpp
      * @author Zana Domán
-     * @brief Delays the current frame to match the target frame time if needed,
-     * then sets the current delta time for the next frame.
+     * @brief Initializes the timer subsystem.
+     */
+    static void initialize();
+#endif /* __WIZARD_ENGINE_INTERNAL */
+
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file timer.hpp
+     * @author Zana Domán
+     * @brief Updates the timer subsystem.
      */
     static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL */

@@ -40,8 +40,6 @@ class input final {
     static float _cursor_relative_x;
     static float _cursor_relative_y;
     static float _mouse_sensitivity;
-    static bool _cursor_visible;
-    static std::shared_ptr<cursor> _cursor_appearance;
 
     /**
      * @file input.hpp
@@ -142,7 +140,7 @@ class input final {
      * @brief Returns the appearance of the cursor.
      * @return Appearance of the cursor.
      */
-    static std::shared_ptr<cursor> const& cursor_appearance();
+    static cursor const* cursor_appearance();
 
     /**
      * @file input.hpp
@@ -150,14 +148,13 @@ class input final {
      * @brief Sets the appearance of the cursor.
      * @param cursor_appearance Appearance of the cursor.
      */
-    static void
-    set_cursor_appearance(std::shared_ptr<cursor> const& cursor_appearance);
+    static void set_cursor_appearance(cursor* cursor_appearance);
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Sets the appearance of the cursor to the default.
+     * @brief Initializes the input subsystem.
      */
     static void initialize();
 #endif /* __WIZARD_ENGINE_INTERNAL */
@@ -166,7 +163,7 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Polls for the current state of the keyboard and mouse.
+     * @brief Updates the input subsystem.
      */
     static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL */

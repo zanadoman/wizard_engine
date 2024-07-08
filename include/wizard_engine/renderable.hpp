@@ -224,14 +224,6 @@ class renderable {
     /**
      * @file renderable.hpp
      * @author Zana Domán
-     * @brief Move constructor.
-     * @param other Other renderable instance.
-     */
-    renderable(renderable const&& other);
-
-    /**
-     * @file renderable.hpp
-     * @author Zana Domán
      * @brief Destroys the renderable instance and erases from instances.
      */
     virtual ~renderable();

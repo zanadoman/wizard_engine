@@ -36,8 +36,6 @@ class window final {
     static SDL_Window* _base;
     static uint16_t _width;
     static uint16_t _height;
-    static std::string _title;
-    static std::shared_ptr<image> _icon;
 
     /**
      * @file window.hpp
@@ -79,7 +77,7 @@ class window final {
      * @brief Returns the title of the game window.
      * @return Title of the game window.
      */
-    static std::string const& title();
+    static std::string title();
 
     /**
      * @file window.hpp
@@ -89,13 +87,18 @@ class window final {
      */
     static void set_title(std::string const& title);
 
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file window.hpp
      * @author Zana Domán
-     * @brief Returns the icon of the game window.
-     * @return Icon of the game window.
+     * @brief Initializes the window subsystem.
+     * @param width Width of the game window.
+     * @param height Height of the game window.
+     * @warning If the window subystem cannot be initialized, throws
+     * std::runtime_error.
      */
-    static std::shared_ptr<image> const& icon();
+    static void initialize(uint16_t width, uint16_t height);
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file window.hpp
@@ -103,19 +106,7 @@ class window final {
      * @brief Sets the icon of the game window.
      * @param icon Icon of the game window.
      */
-    static void set_icon(std::shared_ptr<image> const& icon);
-
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file window.hpp
-     * @author Zana Domán
-     * @brief Opens the game window.
-     * @param width Width of the game window.
-     * @param height Height of the game window.
-     * @warning If the game window cannot be opened, throws std::runtime_error.
-     */
-    static void initialize(uint16_t width, uint16_t height);
-#endif /* __WIZARD_ENGINE_INTERNAL */
+    static void icon(std::shared_ptr<image> const& icon);
 
     /**
      * @file window.hpp

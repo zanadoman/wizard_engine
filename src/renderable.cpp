@@ -19,7 +19,6 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <unistd.h>
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/renderable.hpp>
@@ -52,12 +51,9 @@ wze::renderable::renderable() {
     _instances.push_back(this);
 }
 
-wze::renderable::renderable(renderable const& other) : renderable() {
+wze::renderable::renderable(renderable const& other) {
     *this = other;
-}
-
-wze::renderable::renderable(renderable const&& other) : renderable() {
-    *this = other;
+    _instances.push_back(this);
 }
 
 wze::renderable::~renderable() {

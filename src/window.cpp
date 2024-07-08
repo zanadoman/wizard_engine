@@ -23,11 +23,9 @@
 
 #include <wizard_engine/window.hpp>
 
-SDL_Window* wze::window::_base = nullptr;
-uint16_t wze::window::_width = 0;
-uint16_t wze::window::_height = 0;
-std::string wze::window::_title = {};
-std::shared_ptr<wze::image> wze::window::_icon = {};
+SDL_Window* wze::window::_base;
+uint16_t wze::window::_width;
+uint16_t wze::window::_height;
 
 SDL_Window* wze::window::base() {
     return _base;
@@ -41,22 +39,12 @@ uint16_t wze::window::height() {
     return _height;
 }
 
-std::string const& wze::window::title() {
-    return _title;
+std::string wze::window::title() {
+    return SDL_GetWindowTitle(_base);
 }
 
 void wze::window::set_title(std::string const& title) {
-    _title = title.empty() ? "Wizard Engine" : title;
-    SDL_SetWindowTitle(_base, _title.c_str());
-}
-
-std::shared_ptr<wze::image> const& wze::window::icon() {
-    return _icon;
-}
-
-void wze::window::set_icon(std::shared_ptr<image> const& icon) {
-    _icon = icon ? icon : assets::load_image("./assets/wizard_engine/icon.png");
-    SDL_SetWindowIcon(_base, _icon.get());
+    SDL_SetWindowTitle(_base, title.c_str());
 }
 
 void wze::window::initialize(uint16_t width, uint16_t height) {
@@ -67,8 +55,12 @@ void wze::window::initialize(uint16_t width, uint16_t height) {
     }
     _width = width;
     _height = height;
-    set_title({});
-    set_icon({});
+    set_title("Wizard Engine");
+    icon(assets::load_image("./assets/wizard_engine/icon.png"));
+}
+
+void wze::window::icon(std::shared_ptr<image> const& icon) {
+    SDL_SetWindowIcon(_base, icon.get());
 }
 
 bool wze::window::visible() {

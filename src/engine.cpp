@@ -90,6 +90,7 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     }
     window::initialize(width, height);
     renderer::initialize();
+    timer::initialize();
     input::initialize();
     play_intro();
 }

@@ -27,14 +27,12 @@
 #include <wizard_engine/renderer.hpp>
 #include <wizard_engine/window.hpp>
 
-std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
-float wze::input::_cursor_absolute_x = 0;
-float wze::input::_cursor_absolute_y = 0;
-float wze::input::_cursor_relative_x = 0;
-float wze::input::_cursor_relative_y = 0;
-float wze::input::_mouse_sensitivity = 1;
-bool wze::input::_cursor_visible = true;
-std::shared_ptr<wze::cursor> wze::input::_cursor_appearance = {};
+std::array<bool, wze::KEY_COUNT> wze::input::_keys;
+float wze::input::_cursor_absolute_x;
+float wze::input::_cursor_absolute_y;
+float wze::input::_cursor_relative_x;
+float wze::input::_cursor_relative_y;
+float wze::input::_mouse_sensitivity;
 
 void wze::input::update_keys() {
     uint8_t const* keyboard_keys;
@@ -80,8 +78,8 @@ void wze::input::update_cursor() {
     }
 
     SDL_GetRelativeMouseState(&x, &y);
-    _cursor_relative_x = x * _mouse_sensitivity;
-    _cursor_relative_y = y * _mouse_sensitivity;
+    _cursor_relative_x = x * mouse_sensitivity();
+    _cursor_relative_y = y * mouse_sensitivity();
 }
 
 float wze::input::cursor_absolute_x() {
@@ -109,32 +107,30 @@ void wze::input::set_mouse_sensitivity(float mouse_sensitivity) {
 }
 
 bool wze::input::cursor_visible() {
-    return _cursor_visible;
+    return SDL_GetRelativeMouseMode();
 }
 
 void wze::input::set_cursor_visible(bool cursor_visible) {
-    _cursor_visible = cursor_visible;
-    if (SDL_SetRelativeMouseMode(_cursor_visible ? SDL_FALSE : SDL_TRUE)) {
+    if (SDL_SetRelativeMouseMode((SDL_bool)cursor_visible)) {
         throw std::runtime_error(SDL_GetError());
     }
 }
 
-std::shared_ptr<wze::cursor> const& wze::input::cursor_appearance() {
-    return _cursor_appearance;
+wze::cursor const* wze::input::cursor_appearance() {
+    return SDL_GetCursor();
 }
 
-void wze::input::set_cursor_appearance(
-    std::shared_ptr<cursor> const& cursor_appearance) {
-    _cursor_appearance = cursor_appearance
-                             ? cursor_appearance
-                             : assets::create_cursor(SYSTEM_CURSOR_ARROW);
-    SDL_SetCursor(_cursor_appearance.get());
+void wze::input::set_cursor_appearance(cursor* cursor_appearance) {
+    SDL_SetCursor(cursor_appearance);
 };
 
 void wze::input::initialize() {
-    _cursor_appearance = {
-        SDL_GetCursor(),
-        []([[maybe_unused]] cursor const* cursor_appearance) -> void {}};
+    _keys = {};
+    _cursor_absolute_x = 0;
+    _cursor_absolute_y = 0;
+    _cursor_relative_x = 0;
+    _cursor_relative_y = 0;
+    set_mouse_sensitivity(0);
 }
 
 void wze::input::update() {
@@ -151,5 +147,5 @@ std::pair<float, float> wze::input::cursor_spatial(float z) {
         [z](float x, float y) -> std::pair<float, float> {
             return camera::unproject(x, y, z);
         },
-        renderer::detransform(_cursor_absolute_x, _cursor_absolute_y));
+        renderer::detransform(cursor_absolute_x(), cursor_absolute_y()));
 }
