@@ -51,20 +51,10 @@ wze::renderable::renderable() {
     _instances.push_back(this);
 }
 
-wze::renderable::renderable(renderable const& other) : renderable() {
-    *this = other;
-}
-
-wze::renderable::renderable(renderable const&& other) : renderable() {
-    *this = other;
-}
-
 wze::renderable::~renderable() {
-    _instances.erase(std::ranges::find(_instances, this));
-}
+    std::vector<renderable*>::iterator iterator;
 
-wze::renderable& wze::renderable::operator=(renderable const& other) {
-    _screen_area = other._screen_area;
-    _screen_angle = other._screen_angle;
-    return *this;
+    if ((iterator = std::ranges::find(_instances, this)) != _instances.end()) {
+        _instances.erase(iterator);
+    }
 }
