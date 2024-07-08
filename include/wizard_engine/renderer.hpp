@@ -155,7 +155,7 @@ class renderer final {
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Renders the renderable instances and erases expired ones.
+     * @brief Renders the renderable instances.
      */
     static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL */

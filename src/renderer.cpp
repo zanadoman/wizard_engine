@@ -109,8 +109,8 @@ void wze::renderer::initialize() {
     if (SDL_RenderSetLogicalSize(_base, window::width(), window::height())) {
         throw std::runtime_error(SDL_GetError());
     }
-    _origo_x = window::width() / 2.f;
-    _origo_y = window::height() / 2.f;
+    _origo_x = window::width() / 2.0;
+    _origo_y = window::height() / 2.0;
 }
 
 void wze::renderer::update() {
