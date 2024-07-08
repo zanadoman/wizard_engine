@@ -134,7 +134,7 @@ void wze::renderer::update() {
                               }
                           });
 
-    std::ranges::sort(
+    std::ranges::stable_sort(
         space,
         [](renderable const* instance1, renderable const* instance2) -> bool {
             return instance1->z() != instance2->z()
@@ -142,7 +142,7 @@ void wze::renderer::update() {
                        : instance1->priority() < instance2->priority();
         });
 
-    std::ranges::sort(
+    std::ranges::stable_sort(
         plane,
         [](renderable const* instance1, renderable const* instance2) -> bool {
             return instance1->priority() < instance2->priority();

@@ -6,16 +6,16 @@
 
 wze_main(1920, 1080) {
     std::shared_ptr<wze::texture> texture;
-    std::vector<std::unique_ptr<wze::sprite>> sprites;
+    std::vector<wze::sprite> sprites;
 
     texture = wze::assets::create_texture(
         wze::assets::load_image("./assets/wizard_engine/icon.png"));
 
     srand(time(nullptr));
     for (size_t i = 0; i != 1000; ++i) {
-        sprites.push_back(std::unique_ptr<wze::sprite>(new wze::sprite(
-            RANDOM(-1000, 1000), RANDOM(-1000, 1000), RANDOM(-1000, 1000),
-            wze::math::to_radians(RANDOM(0, 360)), 100, 100, true, texture)));
+        sprites.push_back(
+            {RANDOM(-1000, 1000), RANDOM(-1000, 1000), RANDOM(-1000, 1000),
+             wze::math::to_radians(RANDOM(0, 360)), 100, 100, true, texture});
     }
 
     wze_while(true) {
