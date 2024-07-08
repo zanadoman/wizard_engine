@@ -70,7 +70,7 @@ endif()
 # Tests
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/tests/*)
 
-foreach(SOURCE ${SOURCES})
+foreach (SOURCE ${SOURCES})
     get_filename_component(NAME ${SOURCE} NAME_WE)
     add_executable(${NAME} ${SOURCE})
     target_link_libraries(${NAME} ${PROJECT_NAME})
@@ -78,3 +78,14 @@ endforeach()
 
 # Assets
 file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
+
+# Test
+if (DEFINED TEST AND NOT ${TEST} STREQUAL "")
+    add_custom_command(
+        TARGET ${TEST} POST_BUILD
+        COMMAND ${CMAKE_BINARY_DIR}/${TEST}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    )
+else()
+    message(AUTHOR_WARNING "TEST not defined, skipping test.")
+endif()

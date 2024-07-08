@@ -1,3 +1,3 @@
 @echo off
 
-mkdir .\build\ & cd .\build\ && cmake -G "MinGW Makefiles" ..\ && cmake --build .\ & cd ..\
+cmake -G "MinGW Makefiles" -S .\ -B .\build\ -DTEST=%1 && cmake --build .\build\

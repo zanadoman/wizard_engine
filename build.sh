@@ -1,3 +1,3 @@
 #!/bin/sh
 
-mkdir ./build/ ; cd ./build/ && cmake -G "Unix Makefiles" ../ && cmake --build ./
+cmake -G "Unix Makefiles" -S ./ -B ./build/ -DTEST=$1 && cmake --build ./build/
