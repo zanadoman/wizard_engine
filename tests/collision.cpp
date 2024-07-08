@@ -27,15 +27,15 @@ class wizard final : wze::collider {
 
     void update() {
         if (wze::input::key(_forward)) {
-            set_x(x() + wze::math::move_x(0.3 * wze::timer::delta_time(),
+            set_x(x() + wze::math::move_x(0.3f * wze::timer::delta_time(),
                                           angle() - wze::math::to_radians(90)));
-            set_y(y() + wze::math::move_y(0.3 * wze::timer::delta_time(),
+            set_y(y() + wze::math::move_y(0.3f * wze::timer::delta_time(),
                                           angle() - wze::math::to_radians(90)));
         }
         if (wze::input::key(_backward)) {
-            set_x(x() - wze::math::move_x(0.3 * wze::timer::delta_time(),
+            set_x(x() - wze::math::move_x(0.3f * wze::timer::delta_time(),
                                           angle() - wze::math::to_radians(90)));
-            set_y(y() - wze::math::move_y(0.3 * wze::timer::delta_time(),
+            set_y(y() - wze::math::move_y(0.3f * wze::timer::delta_time(),
                                           angle() - wze::math::to_radians(90)));
         }
         if (wze::input::key(_left)) {
