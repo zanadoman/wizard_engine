@@ -67,10 +67,14 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     set(CMAKE_CXX_FLAGS "${FLAGS} -mwindows")
 endif()
 
-# Test
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/test/*)
-add_executable(test ${SOURCES})
-target_link_libraries(test ${PROJECT_NAME})
+# Tests
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/tests/*)
+
+foreach(SOURCE ${SOURCES})
+    get_filename_component(NAME ${SOURCE} NAME_WE)
+    add_executable(${NAME} ${SOURCE})
+    target_link_libraries(${NAME} ${PROJECT_NAME})
+endforeach()
 
 # Assets
 file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
