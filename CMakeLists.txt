@@ -85,6 +85,7 @@ if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
         TARGET ${TEST} POST_BUILD
         COMMAND ${CMAKE_BINARY_DIR}/${TEST}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        COMMENT "Running test ${TEST}"
     )
 else()
     message(AUTHOR_WARNING "TEST not defined, skipping test.")
