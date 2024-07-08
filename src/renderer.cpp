@@ -118,7 +118,7 @@ void wze::renderer::update() {
     std::vector<renderable const*> plane;
 
     std::ranges::for_each(renderable::instances(),
-                          [&space, &plane](renderable* instance) {
+                          [&space, &plane](renderable* instance) -> void {
                               if (invisible(*instance)) {
                                   return;
                               }

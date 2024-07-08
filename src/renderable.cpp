@@ -51,10 +51,14 @@ wze::renderable::renderable() {
     _instances.push_back(this);
 }
 
-wze::renderable::~renderable() {
-    std::vector<renderable*>::iterator iterator;
+wze::renderable::renderable(renderable const& other) : renderable() {
+    *this = other;
+}
 
-    if ((iterator = std::ranges::find(_instances, this)) != _instances.end()) {
-        _instances.erase(iterator);
-    }
+wze::renderable::renderable(renderable const&& other) : renderable() {
+    *this = other;
+}
+
+wze::renderable::~renderable() {
+    _instances.erase(std::ranges::find(_instances, this));
 }

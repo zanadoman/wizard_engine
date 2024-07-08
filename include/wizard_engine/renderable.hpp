@@ -216,9 +216,34 @@ class renderable {
     /**
      * @file renderable.hpp
      * @author Zana Domán
+     * @brief Copy constructor.
+     * @param other Other renderable instance.
+     */
+    renderable(renderable const& other);
+
+    /**
+     * @file renderable.hpp
+     * @author Zana Domán
+     * @brief Move constructor.
+     * @param other Other renderable instance.
+     */
+    renderable(renderable const&& other);
+
+    /**
+     * @file renderable.hpp
+     * @author Zana Domán
      * @brief Destroys the renderable instance and erases from instances.
      */
     virtual ~renderable();
+
+    /**
+     * @file renderable.hpp
+     * @author Zana Domán
+     * @brief Copy assignment operator.
+     * @param other Other renderable instance.
+     * @return Self reference.
+     */
+    renderable& operator=(renderable const& other) = default;
 };
 } /* namespace wze */
 
