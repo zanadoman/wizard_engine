@@ -19,6 +19,7 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+#include <unistd.h>
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/renderable.hpp>
@@ -46,8 +47,8 @@ void wze::renderable::set_screen_angle(float screen_angle) {
 }
 
 wze::renderable::renderable() {
-    _screen_area = {0, 0, 0, 0};
-    _screen_angle = 0;
+    set_screen_area({0, 0, 0, 0});
+    set_screen_angle(0);
     _instances.push_back(this);
 }
 
@@ -61,4 +62,10 @@ wze::renderable::renderable(renderable const&& other) : renderable() {
 
 wze::renderable::~renderable() {
     _instances.erase(std::ranges::find(_instances, this));
+}
+
+wze::renderable& wze::renderable::operator=(renderable const& other) {
+    set_screen_area(other._screen_area);
+    set_screen_angle(other._screen_angle);
+    return *this;
 }

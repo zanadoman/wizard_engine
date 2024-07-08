@@ -243,7 +243,7 @@ class renderable {
      * @param other Other renderable instance.
      * @return Self reference.
      */
-    renderable& operator=(renderable const& other) = default;
+    renderable& operator=(renderable const& other);
 };
 } /* namespace wze */
 
