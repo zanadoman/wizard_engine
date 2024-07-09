@@ -95,19 +95,6 @@ class window final {
      */
     static void set_icon(std::shared_ptr<image> const& icon);
 
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file window.hpp
-     * @author Zana Domán
-     * @brief Initializes the window subsystem.
-     * @param width Width of the game window.
-     * @param height Height of the game window.
-     * @warning If the window subystem cannot be initialized, throws
-     * std::runtime_error.
-     */
-    static void initialize(uint16_t width, uint16_t height);
-#endif /* __WIZARD_ENGINE_INTERNAL */
-
     /**
      * @file window.hpp
      * @author Zana Domán
@@ -123,6 +110,19 @@ class window final {
      * @return True if the game window is focused, false otherwise.
      */
     static bool focused();
+
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file window.hpp
+     * @author Zana Domán
+     * @brief Initializes the window subsystem.
+     * @param width Width of the game window.
+     * @param height Height of the game window.
+     * @warning If the window subystem cannot be initialized, throws
+     * std::runtime_error.
+     */
+    static void initialize(uint16_t width, uint16_t height);
+#endif /* __WIZARD_ENGINE_INTERNAL */
 };
 } /* namespace wze */
 

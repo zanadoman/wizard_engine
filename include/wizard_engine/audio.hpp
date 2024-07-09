@@ -43,28 +43,6 @@ class audio final {
     audio() = default;
 
   public:
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
-     * @brief Allocates a channel.
-     * @return Allocated channel.
-     * @warning If the channel cannot be allocated, throws std::runtime_error.
-     */
-    static int32_t request_channel();
-#endif /* __WIZARD_ENGINE_INTERNAL */
-
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
-     * @brief Drops a channel.
-     * @param channel Dropped channel.
-     * @warning If the channel cannot be dropped, throws std::runtime_error.
-     */
-    static void drop_channel(int32_t channel);
-#endif /* __WIZARD_ENGINE_INTERNAL */
-
     /**
      * @file audio.hpp
      * @author Zana Domán
@@ -99,6 +77,28 @@ class audio final {
      * @brief Updates the audio subsystem.
      */
     static void update();
+#endif /* __WIZARD_ENGINE_INTERNAL */
+
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Allocates a channel.
+     * @return Allocated channel.
+     * @warning If the channel cannot be allocated, throws std::runtime_error.
+     */
+    static int32_t request_channel();
+#endif /* __WIZARD_ENGINE_INTERNAL */
+
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Drops a channel.
+     * @param channel Dropped channel.
+     * @warning If the channel cannot be dropped, throws std::runtime_error.
+     */
+    static void drop_channel(int32_t channel);
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**

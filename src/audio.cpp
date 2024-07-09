@@ -27,6 +27,24 @@
 std::vector<int32_t> wze::audio::_channels;
 int32_t wze::audio::_maximum_channel;
 
+float wze::audio::volume() {
+    return (float)Mix_MasterVolume(-1) / MIX_MAX_VOLUME;
+}
+
+void wze::audio::set_volume(float volume) {
+    Mix_MasterVolume(round(MIX_MAX_VOLUME * volume));
+}
+
+void wze::audio::initialize() {
+    _channels = {};
+    _maximum_channel = -1;
+}
+
+void wze::audio::update() {
+    std::ranges::for_each(speaker::instances(),
+                          [](speaker* instance) { instance->align_panning(); });
+}
+
 int32_t wze::audio::request_channel() {
     int32_t channel;
 
@@ -55,24 +73,6 @@ void wze::audio::drop_channel(int32_t channel) {
         _maximum_channel = _channels.size() ? std::ranges::max(_channels) : -1;
         Mix_AllocateChannels(_maximum_channel + 1);
     }
-}
-
-float wze::audio::volume() {
-    return (float)Mix_MasterVolume(-1) / MIX_MAX_VOLUME;
-}
-
-void wze::audio::set_volume(float volume) {
-    Mix_MasterVolume(round(MIX_MAX_VOLUME * volume));
-}
-
-void wze::audio::initialize() {
-    _channels = {};
-    _maximum_channel = -1;
-}
-
-void wze::audio::update() {
-    std::ranges::for_each(speaker::instances(),
-                          [](speaker* instance) { instance->align_panning(); });
 }
 
 void wze::audio::pause() {

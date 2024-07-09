@@ -84,6 +84,14 @@ class timer final {
      */
     static void set_delta_time(float delta_time);
 
+    /**
+     * @file timer.hpp
+     * @author Zana Domán
+     * @brief Returns the current game time in milliseconds.
+     * @return Current game time in milliseconds.
+     */
+    static uint64_t current_time();
+
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file timer.hpp
@@ -101,14 +109,6 @@ class timer final {
      */
     static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL */
-
-    /**
-     * @file timer.hpp
-     * @author Zana Domán
-     * @brief Returns the current game time in milliseconds.
-     * @return Current game time in milliseconds.
-     */
-    static uint64_t current_time();
 };
 } /* namespace wze */
 

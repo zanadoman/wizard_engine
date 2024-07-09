@@ -43,6 +43,10 @@ void wze::timer::set_delta_time(float delta_time) {
     _delta_time = delta_time;
 }
 
+uint64_t wze::timer::current_time() {
+    return SDL_GetTicks64();
+}
+
 void wze::timer::initialize() {
     set_frame_time(0);
     set_delta_time(0);
@@ -63,8 +67,4 @@ void wze::timer::update() {
 
     set_delta_time(now - _last_time);
     _last_time = now;
-}
-
-uint64_t wze::timer::current_time() {
-    return SDL_GetTicks64();
 }
