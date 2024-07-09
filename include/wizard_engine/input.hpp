@@ -140,7 +140,7 @@ class input final {
      * @brief Returns the appearance of the cursor.
      * @return Appearance of the cursor.
      */
-    static cursor const* cursor_appearance();
+    static std::shared_ptr<cursor> cursor_appearance();
 
     /**
      * @file input.hpp
@@ -148,7 +148,8 @@ class input final {
      * @brief Sets the appearance of the cursor.
      * @param cursor_appearance Appearance of the cursor.
      */
-    static void set_cursor_appearance(cursor* cursor_appearance);
+    static void
+    set_cursor_appearance(std::shared_ptr<cursor> const& cursor_appearance);
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
