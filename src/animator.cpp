@@ -79,7 +79,7 @@ bool wze::animator::animate() {
 
     for (iterator = _targets.begin(); iterator != _targets.end(); ++iterator) {
         if ((instance = iterator->lock())) {
-            if (instance->active()) {
+            if (instance->animated()) {
                 instance->set_texture(_frames.at(_current_frame));
             }
         } else {

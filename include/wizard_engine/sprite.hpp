@@ -52,7 +52,7 @@ class sprite final : public renderable, public animatable, public component {
     enum flip _flip;
     bool _visible;
     uint8_t _priority;
-    bool _active;
+    bool _animated;
     float _x_offset;
     float _y_offset;
     float _angle_offset;
@@ -311,15 +311,15 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns whether the sprite should be animated or not.
      * @return Whether the sprite should be animated or not.
      */
-    bool active() const final;
+    bool animated() const final;
 
     /**
      * @file sprite.hpp
      * @author Zana Domán
      * @brief Sets whether the sprite should be animated or not.
-     * @param active Whether the sprite should be animated or not.
+     * @param animated Whether the sprite should be animated or not.
      */
-    void set_active(bool active);
+    void set_animated(bool animated);
 
     /**
      * @file sprite.hpp
@@ -468,7 +468,7 @@ class sprite final : public renderable, public animatable, public component {
      * @param flip Whether the sprite is flipped on one of its axes.
      * @param visible Visibility of the sprite.
      * @param priority Priority of the sprite in the renderer queue.
-     * @param active Whether the sprite should be animated or not.
+     * @param animated Whether the sprite should be animated or not.
      * @param x_offset X offset of the sprite.
      * @param y_offset Y offset of the sprite.
      * @param angle_offset Angle offset of the sprite.
@@ -487,7 +487,7 @@ class sprite final : public renderable, public animatable, public component {
            uint8_t color_a = std::numeric_limits<uint8_t>::max(),
            enum flip flip = FLIP_NONE, bool visible = true,
            uint8_t priority = std::numeric_limits<uint8_t>::max() / 2,
-           bool active = true, float x_offset = 0, float y_offset = 0,
+           bool animated = true, float x_offset = 0, float y_offset = 0,
            float angle_offset = 0, bool attach_x = true, bool attach_y = true,
            bool attach_angle = true, bool x_angle_lock = true,
            bool y_angle_lock = true);

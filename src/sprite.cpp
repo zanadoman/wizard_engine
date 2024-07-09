@@ -143,12 +143,12 @@ void wze::sprite::set_priority(uint8_t priority) {
     _priority = priority;
 }
 
-bool wze::sprite::active() const {
-    return _active;
+bool wze::sprite::animated() const {
+    return _animated;
 }
 
-void wze::sprite::set_active(bool active) {
-    _active = active;
+void wze::sprite::set_animated(bool animated) {
+    _animated = animated;
 }
 
 float wze::sprite::x_offset() const {
@@ -220,7 +220,7 @@ wze::sprite::sprite(float x, float y, float z, float angle, float width,
                     std::shared_ptr<wze::texture> const& texture,
                     uint8_t color_r, uint8_t color_g, uint8_t color_b,
                     uint8_t color_a, enum flip flip, bool visible,
-                    uint8_t priority, bool active, float x_offset,
+                    uint8_t priority, bool animated, float x_offset,
                     float y_offset, float angle_offset, bool attach_x,
                     bool attach_y, bool attach_angle, bool x_angle_lock,
                     bool y_angle_lock) {
@@ -239,7 +239,7 @@ wze::sprite::sprite(float x, float y, float z, float angle, float width,
     _flip = flip;
     _visible = visible;
     _priority = priority;
-    _active = active;
+    _animated = animated;
     _x_offset = x_offset;
     _y_offset = y_offset;
     _angle_offset = angle_offset;
