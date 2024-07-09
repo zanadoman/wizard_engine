@@ -54,7 +54,7 @@ int32_t wze::audio::request_channel() {
             _channels.push_back(channel);
             if (_maximum_channel < channel) {
                 _maximum_channel = channel;
-                Mix_AllocateChannels(_maximum_channel + 1);
+                Mix_AllocateChannels(MIX_CHANNELS + _maximum_channel + 1);
             }
             return channel;
         }
@@ -70,7 +70,7 @@ void wze::audio::drop_channel(int32_t channel) {
     _channels.erase(std::ranges::find(_channels, channel));
     if (channel == _maximum_channel) {
         _maximum_channel = _channels.size() ? std::ranges::max(_channels) : -1;
-        Mix_AllocateChannels(_maximum_channel + 1);
+        Mix_AllocateChannels(MIX_CHANNELS + _maximum_channel + 1);
     }
 }
 
