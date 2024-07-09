@@ -33,7 +33,7 @@ namespace wze {
 class audio final {
   private:
     static std::vector<int32_t> _channels;
-    static float _volume;
+    static int32_t _maximum_channel;
 
     /**
      * @file audio.hpp
@@ -87,7 +87,16 @@ class audio final {
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Aligns the pannings of the speakers with auto panning enabled.
+     * @brief Initializes the audio subsystem.
+     */
+    static void initialize();
+#endif /* __WIZARD_ENGINE_INTERNAL */
+
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Updates the audio subsystem.
      */
     static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL */
@@ -110,7 +119,8 @@ class audio final {
      * @file audio.hpp
      * @author Zana Domán
      * @brief Stops the audio globally.
-     * @warning If the audio cannot be stopped, throws std::runtime_error.
+     * @warning If the audio cannot be stopped globally, throws
+     * std::runtime_error.
      */
     static void stop();
 };

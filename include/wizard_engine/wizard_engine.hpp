@@ -28,7 +28,9 @@
  * @brief Interface header of the Wizard Engine.
  */
 
-#undef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL
+#error Illegal external access to internal assembly
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
 #include <wizard_engine/animatable.hpp> /* IWYU pragma: export */
 #include <wizard_engine/animator.hpp>   /* IWYU pragma: export */
