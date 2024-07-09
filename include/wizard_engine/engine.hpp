@@ -74,10 +74,10 @@ class engine final {
     /**
      * @file engine.hpp
      * @author Zana Domán
-     * @brief Updates the subsystems of the engine and polls for events, then
-     * returns true if the game should continue, false otherwise.
+     * @brief Updates the subsystems of the engine, then returns true if the
+     * game should continue, false otherwise.
      * @return True if the game should continue, false otherwise.
-     * @note This method is automatically called when wze_loop is used.
+     * @note This method is automatically called when wze_while is used.
      * @warning This method must be called in the condition of the game loop.
      */
     static bool update();

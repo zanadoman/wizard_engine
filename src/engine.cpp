@@ -31,7 +31,7 @@
 #include <wizard_engine/timer.hpp>
 #include <wizard_engine/window.hpp>
 
-std::vector<SDL_Event> wze::engine::_events = {};
+std::vector<SDL_Event> wze::engine::_events;
 
 void wze::engine::play_intro() {
     sprite logo;
@@ -71,6 +71,7 @@ std::vector<SDL_Event> const& wze::engine::events() {
 }
 
 void wze::engine::initialize(uint16_t width, uint16_t height) {
+    _events = {};
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -79,22 +80,20 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
         throw std::runtime_error(IMG_GetError());
     }
     if (!Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG |
-                  MIX_INIT_MID | MIX_INIT_OPUS | MIX_INIT_WAVPACK)) {
-        throw std::runtime_error(Mix_GetError());
-    }
-    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
+                  MIX_INIT_MID | MIX_INIT_OPUS | MIX_INIT_WAVPACK) ||
+        Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
                       MIX_DEFAULT_CHANNELS, 2048)) {
         throw std::runtime_error(Mix_GetError());
     }
     if (TTF_Init()) {
         throw std::runtime_error(TTF_GetError());
     }
-    timer::initialize();
     window::initialize(width, height);
     camera::initialize();
     renderer::initialize();
-    input::initialize();
     audio::initialize();
+    input::initialize();
+    timer::initialize();
     play_intro();
 }
 
