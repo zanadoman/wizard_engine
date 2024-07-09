@@ -22,8 +22,8 @@
 #ifndef WIZARD_ENGINE_ANIMATABLE_HPP
 #define WIZARD_ENGINE_ANIMATABLE_HPP
 
-#include <wizard_engine/export.hpp>
 #include <wizard_engine/assets.hpp>
+#include <wizard_engine/export.hpp>
 
 namespace wze {
 /**
@@ -47,7 +47,7 @@ class animatable {
      * @brief Returns whether the object should be animated or not.
      * @return Whether the object should be animated or not.
      */
-    virtual bool active() const = 0;
+    virtual bool animated() const = 0;
 
     /**
      * @file animatable.hpp
