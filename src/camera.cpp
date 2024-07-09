@@ -24,13 +24,12 @@
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/math.hpp>
 
-float wze::camera::_x = 0;
-float wze::camera::_y = 0;
-float wze::camera::_z = 0;
-float wze::camera::_angle = 0;
-std::array<float, 4> wze::camera::_transformation_matrix =
-    math::transformation_matrix(0, 1);
-float wze::camera::_focus = 512;
+float wze::camera::_x;
+float wze::camera::_y;
+float wze::camera::_z;
+float wze::camera::_angle;
+std::array<float, 4> wze::camera::_transformation_matrix;
+float wze::camera::_focus;
 
 float wze::camera::x() {
     return _x;
@@ -62,7 +61,7 @@ float wze::camera::angle() {
 
 void wze::camera::set_angle(float angle) {
     _angle = angle;
-    _transformation_matrix = math::transformation_matrix(-_angle, 1);
+    _transformation_matrix = math::transformation_matrix(-camera::angle(), 1);
 }
 
 float wze::camera::focus() {
@@ -71,6 +70,14 @@ float wze::camera::focus() {
 
 void wze::camera::set_focus(float focus) {
     _focus = focus;
+}
+
+void wze::camera::initialize() {
+    set_x(0);
+    set_y(0);
+    set_z(0);
+    set_angle(0);
+    set_focus(512);
 }
 
 void wze::camera::project(renderable& instance) {
@@ -85,16 +92,16 @@ void wze::camera::project(renderable& instance) {
         return;
     }
 
-    instance.set_screen_angle(instance.angle() - _angle);
+    instance.set_screen_angle(instance.angle() - angle());
 
-    if (instance.z() == _z || !_focus) {
+    if (instance.z() == z() || !focus()) {
         instance.set_screen_area({0, 0, 0, 0});
         return;
     }
 
-    scale = _focus / (instance.z() - _z);
-    x = (instance.x() - _x) * scale;
-    y = (instance.y() - _y) * scale;
+    scale = focus() / (instance.z() - z());
+    x = (instance.x() - camera::x()) * scale;
+    y = (instance.y() - camera::y()) * scale;
     instance.set_screen_area({math::transform_x(x, y, _transformation_matrix),
                               math::transform_y(x, y, _transformation_matrix),
                               instance.width() * scale,
@@ -105,17 +112,17 @@ std::pair<float, float> wze::camera::unproject(float x, float y, float z) {
     float determinant;
     float scale;
 
-    if (z == _z || !_focus) {
+    if (z == camera::z() || !focus()) {
         return {0, 0};
     }
 
     determinant = _transformation_matrix.at(0) * _transformation_matrix.at(3) -
                   _transformation_matrix.at(1) * _transformation_matrix.at(2);
-    scale = (z - _z) / _focus;
-    return {_x + (x * _transformation_matrix.at(3) -
-                  y * _transformation_matrix.at(1)) /
-                     determinant * scale,
-            _y + (y * _transformation_matrix.at(0) -
-                  x * _transformation_matrix.at(2)) /
-                     determinant * scale};
+    scale = (z - camera::z()) / focus();
+    return {camera::x() + (x * _transformation_matrix.at(3) -
+                           y * _transformation_matrix.at(1)) /
+                              determinant * scale,
+            camera::y() + (y * _transformation_matrix.at(0) -
+                           x * _transformation_matrix.at(2)) /
+                              determinant * scale};
 }

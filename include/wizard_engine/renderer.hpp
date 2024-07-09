@@ -144,8 +144,8 @@ class renderer final {
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Initializes the renderer.
-     * @warning If the renderer cannot be initialized, throws
+     * @brief Initializes the renderer subsystem.
+     * @warning If the renderer subsystem cannot be initialized, throws
      * std::runtime_error.
      */
     static void initialize();
@@ -155,7 +155,7 @@ class renderer final {
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Renders the renderable instances.
+     * @brief Updates the renderer subsystem.
      */
     static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL */

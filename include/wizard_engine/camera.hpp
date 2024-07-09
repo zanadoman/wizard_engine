@@ -131,6 +131,15 @@ class camera final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file camera.hpp
+     * @author Zana Domán
+     * @brief Initializes the camera subsystem.
+     */
+    static void initialize();
+#endif /* __WIZARD_ENGINE_INTERNAL */
+
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file camera.hpp
      * @author Zana Domán, Gunics Roland
      * @brief Transforms and projects a renderable instance.
      * @param instance Renderable instance.

@@ -23,6 +23,7 @@
 
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/audio.hpp>
+#include <wizard_engine/camera.hpp>
 #include <wizard_engine/engine.hpp>
 #include <wizard_engine/input.hpp>
 #include <wizard_engine/renderer.hpp>
@@ -88,10 +89,12 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     if (TTF_Init()) {
         throw std::runtime_error(TTF_GetError());
     }
-    window::initialize(width, height);
-    renderer::initialize();
     timer::initialize();
+    window::initialize(width, height);
+    camera::initialize();
+    renderer::initialize();
     input::initialize();
+    audio::initialize();
     play_intro();
 }
 
