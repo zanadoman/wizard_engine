@@ -87,6 +87,14 @@ class window final {
      */
     static void set_title(std::string const& title);
 
+    /**
+     * @file window.hpp
+     * @author Zana Domán
+     * @brief Sets the icon of the game window.
+     * @param icon Icon of the game window.
+     */
+    static void set_icon(std::shared_ptr<image> const& icon);
+
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file window.hpp
@@ -99,14 +107,6 @@ class window final {
      */
     static void initialize(uint16_t width, uint16_t height);
 #endif /* __WIZARD_ENGINE_INTERNAL */
-
-    /**
-     * @file window.hpp
-     * @author Zana Domán
-     * @brief Sets the icon of the game window.
-     * @param icon Icon of the game window.
-     */
-    static void icon(std::shared_ptr<image> const& icon);
 
     /**
      * @file window.hpp

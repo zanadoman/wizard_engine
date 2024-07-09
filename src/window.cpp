@@ -40,33 +40,33 @@ uint16_t wze::window::height() {
 }
 
 std::string wze::window::title() {
-    return SDL_GetWindowTitle(_base);
+    return SDL_GetWindowTitle(base());
 }
 
 void wze::window::set_title(std::string const& title) {
-    SDL_SetWindowTitle(_base, title.c_str());
+    SDL_SetWindowTitle(base(), title.c_str());
+}
+
+void wze::window::set_icon(std::shared_ptr<image> const& icon) {
+    SDL_SetWindowIcon(base(), icon.get());
 }
 
 void wze::window::initialize(uint16_t width, uint16_t height) {
-    if (!(_base = SDL_CreateWindow(
-              nullptr, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width,
-              height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP))) {
+    if (!(_base = SDL_CreateWindow("Wizard Engine", SDL_WINDOWPOS_UNDEFINED,
+                                   SDL_WINDOWPOS_UNDEFINED, width, height,
+                                   SDL_WINDOW_RESIZABLE |
+                                       SDL_WINDOW_FULLSCREEN_DESKTOP))) {
         throw std::runtime_error(SDL_GetError());
     }
     _width = width;
     _height = height;
-    set_title("Wizard Engine");
-    icon(assets::load_image("./assets/wizard_engine/icon.png"));
-}
-
-void wze::window::icon(std::shared_ptr<image> const& icon) {
-    SDL_SetWindowIcon(_base, icon.get());
+    set_icon(assets::load_image("./assets/wizard_engine/icon.png"));
 }
 
 bool wze::window::visible() {
-    return SDL_GetWindowFlags(_base) & SDL_WINDOW_SHOWN;
+    return SDL_GetWindowFlags(base()) & SDL_WINDOW_SHOWN;
 }
 
 bool wze::window::focused() {
-    return SDL_GetWindowFlags(_base) & SDL_WINDOW_INPUT_FOCUS;
+    return SDL_GetWindowFlags(base()) & SDL_WINDOW_INPUT_FOCUS;
 }
