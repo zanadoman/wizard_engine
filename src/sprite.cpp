@@ -224,28 +224,28 @@ wze::sprite::sprite(float x, float y, float z, float angle, float width,
                     float y_offset, float angle_offset, bool attach_x,
                     bool attach_y, bool attach_angle, bool x_angle_lock,
                     bool y_angle_lock) {
-    _x = x;
-    _y = y;
-    _z = z;
-    _angle = angle;
-    _width = width;
-    _height = height;
-    _spatial = spatial;
-    _texture = texture;
-    _color_r = color_r;
-    _color_g = color_g;
-    _color_b = color_b;
-    _color_a = color_a;
-    _flip = flip;
-    _visible = visible;
-    _priority = priority;
-    _animated = animated;
-    _x_offset = x_offset;
-    _y_offset = y_offset;
-    _angle_offset = angle_offset;
-    _attach_x = attach_x;
-    _attach_y = attach_y;
-    _attach_angle = attach_angle;
-    _x_angle_lock = x_angle_lock;
-    _y_angle_lock = y_angle_lock;
+    set_x(x);
+    set_y(y);
+    set_z(z);
+    set_angle(angle);
+    set_width(width);
+    set_height(height);
+    set_spatial(spatial);
+    set_texture(texture);
+    set_color_r(color_r);
+    set_color_g(color_g);
+    set_color_b(color_b);
+    set_color_a(color_a);
+    set_flip(flip);
+    set_visible(visible);
+    set_priority(priority);
+    set_animated(animated);
+    set_x_offset(x_offset);
+    set_y_offset(y_offset);
+    set_angle_offset(angle_offset);
+    set_attach_x(attach_x);
+    set_attach_y(attach_y);
+    set_attach_angle(attach_angle);
+    set_x_angle_lock(x_angle_lock);
+    set_y_angle_lock(y_angle_lock);
 }
