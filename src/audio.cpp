@@ -67,6 +67,7 @@ void wze::audio::drop_channel(int32_t channel) {
     if (!Mix_UnregisterAllEffects(channel) || Mix_HaltChannel(channel)) {
         throw std::runtime_error(Mix_GetError());
     }
+
     _channels.erase(std::ranges::find(_channels, channel));
     if (channel == _maximum_channel) {
         _maximum_channel = _channels.size() ? std::ranges::max(_channels) : -1;
