@@ -191,8 +191,8 @@ wze::speaker::speaker(speaker const& other) {
 }
 
 wze::speaker::~speaker() {
-    audio::drop_channel(_channel);
     _instances.erase(std::ranges::find(instances(), this));
+    audio::drop_channel(_channel);
 }
 
 wze::speaker& wze::speaker::operator=(speaker const& other) {
