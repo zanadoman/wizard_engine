@@ -73,6 +73,8 @@ void wze::input::update_cursor() {
                 std::clamp(event.motion.x, 0, window::width() - 1);
             _cursor_absolute_y =
                 std::clamp(event.motion.y, 0, window::height() - 1);
+            std::tie(_cursor_absolute_x, _cursor_absolute_y) =
+                renderer::detransform(cursor_absolute_x(), cursor_absolute_y());
             break;
         }
     }

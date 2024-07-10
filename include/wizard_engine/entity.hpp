@@ -22,8 +22,8 @@
 #ifndef WIZARD_ENGINE_ENTITY_HPP
 #define WIZARD_ENGINE_ENTITY_HPP
 
-#include <wizard_engine/export.hpp>
 #include <wizard_engine/component.hpp>
+#include <wizard_engine/export.hpp>
 
 namespace wze {
 /**
