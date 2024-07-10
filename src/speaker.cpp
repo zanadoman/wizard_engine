@@ -26,7 +26,7 @@
 #include <wizard_engine/math.hpp>
 #include <wizard_engine/speaker.hpp>
 
-std::vector<wze::speaker*> wze::speaker::_instances = {};
+std::vector<wze::speaker*> wze::speaker::_instances;
 
 std::vector<wze::speaker*> const& wze::speaker::instances() {
     return _instances;
@@ -152,6 +152,14 @@ void wze::speaker::set_y_angle_lock(bool y_angle_lock) {
     _y_angle_lock = y_angle_lock;
 }
 
+bool wze::speaker::playing() const {
+    return Mix_Playing(_channel);
+}
+
+bool wze::speaker::paused() const {
+    return Mix_Paused(_channel);
+}
+
 wze::speaker::speaker(std::shared_ptr<wze::sound> const& sound, float volume,
                       float range, bool auto_panning, float x, float y,
                       float angle, float x_offset, float y_offset,
@@ -212,16 +220,8 @@ void wze::speaker::play(uint16_t fade_in, uint16_t loops) {
     }
 }
 
-bool wze::speaker::playing() const {
-    return Mix_Playing(_channel);
-}
-
 void wze::speaker::pause() {
     Mix_Pause(_channel);
-}
-
-bool wze::speaker::paused() const {
-    return Mix_Paused(_channel);
 }
 
 void wze::speaker::resume() {

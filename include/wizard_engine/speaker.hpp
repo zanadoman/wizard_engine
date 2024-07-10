@@ -30,7 +30,7 @@ namespace wze {
 /**
  * @file speaker.hpp
  * @author Zana Domán
- * @brief Plays a sound on a unique channel.
+ * @brief Audio component.
  */
 class speaker final : public component {
   private:
@@ -60,7 +60,7 @@ class speaker final : public component {
      * @return Speaker instances.
      */
     static std::vector<speaker*> const& instances();
-#endif
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file speaker.hpp
@@ -307,6 +307,22 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
+     * @brief Returns whether the speaker is playing or not.
+     * @return Whether the speaker is playing or not.
+     */
+    bool playing() const;
+
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
+     * @brief Returns whether the speaker is paused or not.
+     * @return Whether the speaker is paused or not.
+     */
+    bool paused() const;
+
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
      * @brief Constructs a speaker instance and pushes into instances.
      * @param sound Sound of the speaker.
      * @param volume Volume of the speaker.
@@ -323,7 +339,6 @@ class speaker final : public component {
      * @param attach_angle Whether the angle is attached to entities.
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
-     * @note Volume is bounded to [0, 1].
      */
     speaker(std::shared_ptr<wze::sound> const& sound = {}, float volume = 1,
             float range = 1024, bool auto_panning = false, float x = 0,
@@ -369,25 +384,9 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Returns whether the speaker is playing or not.
-     * @return Whether the speaker is playing or not.
-     */
-    bool playing() const;
-
-    /**
-     * @file speaker.hpp
-     * @author Zana Domán
      * @brief Pauses the sound of the speaker.
      */
     void pause();
-
-    /**
-     * @file speaker.hpp
-     * @author Zana Domán
-     * @brief Returns whether the speaker is paused or not.
-     * @return Whether the speaker is paused or not.
-     */
-    bool paused() const;
 
     /**
      * @file speaker.hpp
