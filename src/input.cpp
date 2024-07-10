@@ -146,9 +146,5 @@ bool wze::input::key(enum key key) {
 }
 
 std::pair<float, float> wze::input::cursor_spatial(float z) {
-    return apply(
-        [z](float x, float y) -> std::pair<float, float> {
-            return camera::unproject(x, y, z);
-        },
-        renderer::detransform(cursor_absolute_x(), cursor_absolute_y()));
+    return camera::unproject(cursor_absolute_x(), cursor_absolute_y(), z);
 }

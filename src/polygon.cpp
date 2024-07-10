@@ -48,7 +48,7 @@ float wze::polygon::circumradius() const {
     std::ranges::for_each(_shape,
                           [&circumradius, &temporary](
                               std::pair<float, float> const& vertex) -> void {
-                              temporary = std::apply(math::length, vertex);
+                              temporary = apply(math::length, vertex);
                               if (circumradius < temporary) {
                                   circumradius = temporary;
                               }

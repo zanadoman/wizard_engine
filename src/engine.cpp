@@ -94,13 +94,13 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     if (TTF_Init()) {
         throw std::runtime_error(TTF_GetError());
     }
+    math::initialize();
+    timer::initialize();
     window::initialize(width, height);
+    input::initialize();
     camera::initialize();
     renderer::initialize();
     audio::initialize();
-    input::initialize();
-    timer::initialize();
-    math::initialize();
     play_intro();
 }
 
