@@ -23,6 +23,14 @@
 
 #include <wizard_engine/math.hpp>
 
+void wze::math::initialize() {
+    srand(time(nullptr));
+}
+
+int32_t wze::math::random(int32_t minimum, int32_t maximum) {
+    return rand() % (maximum - minimum) + minimum;
+}
+
 float wze::math::length(float x, float y) {
     return sqrtf(powf(x, 2) + powf(y, 2));
 }

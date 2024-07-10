@@ -47,6 +47,25 @@ class math final {
      */
     static constexpr float epsilon = 0.01;
 
+#ifdef __WIZARD_ENGINE_INTERNAL
+    /**
+     * @file math.hpp
+     * @author Zana Domán
+     * @brief Initializes the math subsystem.
+     */
+    static void initialize();
+#endif /* __WIZARD_ENGINE_INTERNAL */
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán
+     * @brief Returns a pseudo random integer from an interval.
+     * @param minimum Minimum inclusive value of the interval.
+     * @param maximum Maximum exclusive value of the interval.
+     * @return Pseudo random integer from the interval.
+     */
+    int32_t random(int32_t minimum, int32_t maximum);
+
     /**
      * @file math.hpp
      * @author Zana Domán

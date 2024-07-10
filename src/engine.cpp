@@ -26,6 +26,7 @@
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/engine.hpp>
 #include <wizard_engine/input.hpp>
+#include <wizard_engine/math.hpp>
 #include <wizard_engine/renderer.hpp>
 #include <wizard_engine/sprite.hpp>
 #include <wizard_engine/timer.hpp>

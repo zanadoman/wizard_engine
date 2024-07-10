@@ -31,6 +31,8 @@
 #include <cmath>   /* IWYU pragma: export */
 #include <cstddef> /* IWYU pragma: export */
 #include <cstdint> /* IWYU pragma: export */
+#include <cstdlib> /* IWYU pragma: export */
+#include <ctime>   /* IWYU pragma: export */
 
 #include <algorithm> /* IWYU pragma: export */
 #include <array>     /* IWYU pragma: export */
