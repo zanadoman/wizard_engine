@@ -39,7 +39,9 @@ void wze::engine::play_intro() {
     float opacity;
 
     logo = assets::load_image("./assets/wizard_engine/logo.png");
-    printf("%lu\n", assets::hash_image(logo));
+    if (assets::hash_image(logo) != 4621002103177400980) {
+        throw std::runtime_error("Invalid ./assets/wizard_engine/logo.png");
+    }
 
     intro = {0,
              0,
@@ -48,8 +50,7 @@ void wze::engine::play_intro() {
              window::height() / 2.f,
              window::height() / 2.f,
              false,
-             assets::create_texture(
-                 assets::load_image("./assets/wizard_engine/logo.png"))};
+             assets::create_texture(logo)};
 
     opacity = 0;
     while (opacity <= std::numeric_limits<uint8_t>::max()) {
