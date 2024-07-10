@@ -307,7 +307,7 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Constructs a speaker instance.
+     * @brief Constructs a speaker instance and pushes into instances.
      * @param sound Sound of the speaker.
      * @param volume Volume of the speaker.
      * @param range Range of the speaker.
@@ -336,16 +336,24 @@ class speaker final : public component {
      * @file speaker.hpp
      * @author Zana Domán
      * @brief Copy constructor.
+     * @param other Other speaker instance.
      */
     speaker(speaker const& other);
 
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Drops the channel of the speaker.
+     * @brief Destroys the speaker instance and erases from instances.
      */
     ~speaker();
 
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
+     * @brief Copy assignment operator.
+     * @param other Other speaker instance.
+     * @return Self reference.
+     */
     speaker& operator=(speaker const& other);
 
     /**

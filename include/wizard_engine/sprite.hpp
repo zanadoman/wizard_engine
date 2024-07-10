@@ -33,7 +33,7 @@ namespace wze {
 /**
  * @file sprite.hpp
  * @author Zana Domán
- * @brief Visual component.
+ * @brief Renderable animatable component.
  */
 class sprite final : public renderable, public animatable, public component {
   private:
@@ -292,16 +292,16 @@ class sprite final : public renderable, public animatable, public component {
     /**
      * @file sprite.hpp
      * @author Zana Domán
-     * @brief Returns the priority of the sprite in the renderer queue.
-     * @return Priority of the sprite in the renderer queue.
+     * @brief Returns the priority of the sprite in the render queue.
+     * @return Priority of the sprite in the render queue.
      */
     uint8_t priority() const final;
 
     /**
      * @file sprite.hpp
      * @author Zana Domán
-     * @brief Sets the priority of the sprite in the renderer queue.
-     * @param priority Priority of the sprite in the renderer queue.
+     * @brief Sets the priority of the sprite in the render queue.
+     * @param priority Priority of the sprite in the render queue.
      */
     void set_priority(uint8_t priority);
 
@@ -467,7 +467,7 @@ class sprite final : public renderable, public animatable, public component {
      * @param color_a Alpha color modifier of the texture.
      * @param flip Whether the sprite is flipped on one of its axes.
      * @param visible Visibility of the sprite.
-     * @param priority Priority of the sprite in the renderer queue.
+     * @param priority Priority of the sprite in the render queue.
      * @param animated Whether the sprite should be animated or not.
      * @param x_offset X offset of the sprite.
      * @param y_offset Y offset of the sprite.
