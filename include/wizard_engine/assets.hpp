@@ -78,6 +78,15 @@ class assets final {
      */
     assets() = default;
 
+    /**
+     * @file assets.hpp
+     * @author Zana Domán
+     * @brief Combines a value into a seed.
+     * @param seed Target seed.
+     * @param value Combined value.
+     */
+    static void combine_hash(size_t& seed, size_t value);
+
   public:
     /**
      * @file assets.hpp
@@ -105,6 +114,15 @@ class assets final {
     /**
      * @file assets.hpp
      * @author Zana Domán
+     * @brief Returns the hash of an image.
+     * @param image Hashed image.
+     * @return Hash of the image.
+     */
+    static size_t hash_image(std::shared_ptr<image> const& image);
+
+    /**
+     * @file assets.hpp
+     * @author Zana Domán
      * @brief Creates a texture from an image.
      * @param image Image of the texture.
      * @return Created texture.
@@ -123,6 +141,15 @@ class assets final {
      * @warning If the sound cannot be loaded, throws std::runtime_error.
      */
     static std::shared_ptr<sound> load_sound(std::string const& path);
+
+    /**
+     * @file assets.hpp
+     * @author Zana Domán
+     * @brief Returns the hash of a sound.
+     * @param sound Hashed sound.
+     * @return Hash of the sound.
+     */
+    size_t hash_sound(std::shared_ptr<sound> const& sound);
 
     /**
      * @file assets.hpp

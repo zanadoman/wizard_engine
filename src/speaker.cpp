@@ -41,12 +41,11 @@ void wze::speaker::set_sound(std::shared_ptr<wze::sound> const& sound) {
 }
 
 float wze::speaker::volume() const {
-    return _volume;
+    return (float)Mix_Volume(_channel, -1) / MIX_MAX_VOLUME;
 }
 
 void wze::speaker::set_volume(float volume) {
-    _volume = std::clamp(volume, 0.f, 1.f);
-    Mix_Volume(_channel, round(MIX_MAX_VOLUME * _volume));
+    Mix_Volume(_channel, round(MIX_MAX_VOLUME * volume));
 }
 
 float wze::speaker::range() const {
@@ -159,33 +158,56 @@ wze::speaker::speaker(std::shared_ptr<wze::sound> const& sound, float volume,
                       float angle_offset, bool attach_x, bool attach_y,
                       bool attach_angle, bool x_angle_lock, bool y_angle_lock) {
     _channel = audio::request_channel();
-    _sound = sound;
-    _volume = std::clamp(volume, 0.f, 1.f);
-    Mix_Volume(_channel, round(MIX_MAX_VOLUME * _volume));
-    _range = range;
-    _auto_panning = auto_panning;
-    _x = x;
-    _y = y;
-    _angle = angle;
-    _x_offset = x_offset;
-    _y_offset = y_offset;
-    _angle_offset = angle_offset;
-    _attach_x = attach_x;
-    _attach_y = attach_y;
-    _attach_angle = attach_angle;
-    _x_angle_lock = x_angle_lock;
-    _y_angle_lock = y_angle_lock;
-    align_panning();
+    set_sound(sound);
+    set_volume(volume);
+    set_range(range);
+    set_auto_panning(auto_panning);
+    set_x(x);
+    set_y(y);
+    set_angle(angle);
+    set_x_offset(x_offset);
+    set_y_offset(y_offset);
+    set_angle_offset(angle_offset);
+    set_attach_x(attach_x);
+    set_attach_y(attach_y);
+    set_attach_angle(attach_angle);
+    set_x_angle_lock(x_angle_lock);
+    set_y_angle_lock(y_angle_lock);
+    _instances.push_back(this);
+}
+
+wze::speaker::speaker(speaker const& other) {
+    _channel = audio::request_channel();
+    *this = other;
     _instances.push_back(this);
 }
 
 wze::speaker::~speaker() {
     audio::drop_channel(_channel);
-    _instances.erase(std::ranges::find(_instances, this));
+    _instances.erase(std::ranges::find(instances(), this));
+}
+
+wze::speaker& wze::speaker::operator=(speaker const& other) {
+    set_sound(other.sound());
+    set_volume(other.volume());
+    set_range(other.range());
+    set_auto_panning(other.auto_panning());
+    set_x(other.x());
+    set_y(other.y());
+    set_angle(other.angle());
+    set_x_offset(other.x_offset());
+    set_y_offset(other.y_offset());
+    set_angle_offset(other.angle_offset());
+    set_attach_x(other.attach_x());
+    set_attach_y(other.attach_y());
+    set_attach_angle(other.attach_angle());
+    set_x_angle_lock(other.x_angle_lock());
+    set_y_angle_lock(other.y_angle_lock());
+    return *this;
 }
 
 void wze::speaker::play(uint16_t fade_in, uint16_t loops) {
-    if (Mix_FadeInChannel(_channel, _sound.get(), loops, fade_in) == -1) {
+    if (Mix_FadeInChannel(_channel, sound().get(), loops, fade_in) == -1) {
         throw std::runtime_error(Mix_GetError());
     }
 }
@@ -215,15 +237,15 @@ void wze::speaker::align_panning() {
     float left;
     float right;
 
-    distance = math::length(_x - camera::x(), _y - camera::y());
-    if (_range <= distance) {
+    distance = math::length(x() - camera::x(), y() - camera::y());
+    if (range() <= distance) {
         left = 0;
         right = 0;
-    } else if (_x < camera::x()) {
-        left = 1 - distance / _range;
+    } else if (x() < camera::x()) {
+        left = 1 - distance / range();
         right = powf(left, 2);
-    } else if (camera::x() < _x) {
-        right = 1 - distance / _range;
+    } else if (camera::x() < x()) {
+        right = 1 - distance / range();
         left = powf(right, 2);
     } else {
         left = 1;

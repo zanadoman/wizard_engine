@@ -24,6 +24,10 @@
 #include <wizard_engine/assets.hpp>
 #include <wizard_engine/renderer.hpp>
 
+void wze::assets::combine_hash(size_t& seed, size_t value) {
+    seed ^= value + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+}
+
 std::shared_ptr<wze::image> wze::assets::load_image(std::string const& path) {
     std::shared_ptr<image> image;
 
@@ -52,6 +56,25 @@ wze::assets::create_image(std::string const& text,
     return image;
 }
 
+size_t wze::assets::hash_image(std::shared_ptr<image> const& image) {
+    size_t seed;
+    std::hash<uint8_t> hash;
+
+    if (!image) {
+        return hash(0);
+    }
+
+    seed = 0;
+    std::for_each((uint8_t*)image->pixels,
+                  (uint8_t*)image->pixels +
+                      image->w * image->h * image->format->BytesPerPixel,
+                  [&seed, &hash](uint8_t pixel) -> void {
+                      combine_hash(seed, hash(pixel));
+                  });
+
+    return seed;
+}
+
 std::shared_ptr<wze::texture>
 wze::assets::create_texture(std::shared_ptr<image> const& image) {
     std::shared_ptr<texture> texture;
@@ -73,6 +96,23 @@ std::shared_ptr<wze::sound> wze::assets::load_sound(std::string const& path) {
     }
 
     return sound;
+}
+
+size_t wze::assets::hash_sound(std::shared_ptr<sound> const& sound) {
+    size_t seed;
+    std::hash<uint8_t> hash;
+
+    if (!sound) {
+        return hash(0);
+    }
+
+    seed = 0;
+    std::for_each(sound->abuf, sound->abuf + sound->alen,
+                  [&seed, &hash](uint8_t sample) -> void {
+                      combine_hash(seed, hash(sample));
+                  });
+
+    return seed;
 }
 
 std::shared_ptr<wze::font> wze::assets::load_font(std::string const& path,

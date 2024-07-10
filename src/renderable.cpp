@@ -57,7 +57,7 @@ wze::renderable::renderable(renderable const& other) {
 }
 
 wze::renderable::~renderable() {
-    _instances.erase(std::ranges::find(_instances, this));
+    _instances.erase(std::ranges::find(instances(), this));
 }
 
 wze::renderable& wze::renderable::operator=(renderable const& other) {

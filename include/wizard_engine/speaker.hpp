@@ -37,7 +37,6 @@ class speaker final : public component {
     static std::vector<speaker*> _instances;
     int32_t _channel;
     std::shared_ptr<wze::sound> _sound;
-    float _volume;
     float _range;
     bool _auto_panning;
     float _x;
@@ -336,9 +335,18 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
+     * @brief Copy constructor.
+     */
+    speaker(speaker const& other);
+
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
      * @brief Drops the channel of the speaker.
      */
     ~speaker();
+
+    speaker& operator=(speaker const& other);
 
     /**
      * @file speaker.hpp

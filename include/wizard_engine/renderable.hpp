@@ -43,7 +43,7 @@ class renderable {
     /**
      * @file renderable.hpp
      * @author Zana Domán
-     * @brief Returns renderable instances.
+     * @brief Returns the renderable instances.
      * @return Renderable instances.
      */
     static std::vector<renderable*> const& instances();
