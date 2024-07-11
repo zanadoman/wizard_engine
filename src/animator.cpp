@@ -45,6 +45,11 @@ void wze::animator::set_current_frame(size_t current_frame) {
     _current_frame = current_frame;
 }
 
+std::vector<std::weak_ptr<wze::animatable>> const&
+wze::animator::targets() const {
+    return _targets;
+}
+
 std::vector<std::weak_ptr<wze::animatable>>& wze::animator::targets() {
     return _targets;
 }

@@ -196,21 +196,24 @@ wze::speaker::~speaker() {
 }
 
 wze::speaker& wze::speaker::operator=(speaker const& other) {
-    set_sound(other.sound());
-    set_volume(other.volume());
-    set_range(other.range());
-    set_auto_panning(other.auto_panning());
-    set_x(other.x());
-    set_y(other.y());
-    set_angle(other.angle());
-    set_x_offset(other.x_offset());
-    set_y_offset(other.y_offset());
-    set_angle_offset(other.angle_offset());
-    set_attach_x(other.attach_x());
-    set_attach_y(other.attach_y());
-    set_attach_angle(other.attach_angle());
-    set_x_angle_lock(other.x_angle_lock());
-    set_y_angle_lock(other.y_angle_lock());
+    if (this != &other) {
+        set_sound(other.sound());
+        set_volume(other.volume());
+        set_range(other.range());
+        set_auto_panning(other.auto_panning());
+        set_x(other.x());
+        set_y(other.y());
+        set_angle(other.angle());
+        set_x_offset(other.x_offset());
+        set_y_offset(other.y_offset());
+        set_angle_offset(other.angle_offset());
+        set_attach_x(other.attach_x());
+        set_attach_y(other.attach_y());
+        set_attach_angle(other.attach_angle());
+        set_x_angle_lock(other.x_angle_lock());
+        set_y_angle_lock(other.y_angle_lock());
+    }
+
     return *this;
 }
 

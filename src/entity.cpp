@@ -56,6 +56,11 @@ void wze::entity::update_angle(component& instance) const {
     }
 }
 
+std::vector<std::weak_ptr<wze::component>> const&
+wze::entity::components() const {
+    return _components;
+}
+
 std::vector<std::weak_ptr<wze::component>>& wze::entity::components() {
     return _components;
 }

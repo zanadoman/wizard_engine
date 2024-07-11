@@ -87,6 +87,14 @@ class animator final {
      * @brief Returns the targets of the animation.
      * @return Targets of the animation.
      */
+    std::vector<std::weak_ptr<animatable>> const& targets() const;
+
+    /**
+     * @file animator.hpp
+     * @author Zana Domán
+     * @brief Returns the targets of the animation.
+     * @return Targets of the animation.
+     */
     std::vector<std::weak_ptr<animatable>>& targets();
 
     /**

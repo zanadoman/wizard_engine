@@ -420,9 +420,26 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
+     * @brief Copy constructor.
+     * @param other Other collider instance.
+     */
+    collider(collider const& other);
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
      * @brief Destroy the collider intance and erases from it's world.
      */
     ~collider();
+
+    /**
+     * @file collider.hpp
+     * @author Zana Domán
+     * @brief Copy assignment operator.
+     * @param other Other collider instance.
+     * @return Self reference.
+     */
+    collider& operator=(collider const& other);
 };
 } /* namespace wze */
 

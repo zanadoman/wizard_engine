@@ -75,6 +75,14 @@ class entity : public component {
      * @brief Returns the components of the entity.
      * @return Components of the entity.
      */
+    virtual std::vector<std::weak_ptr<component>> const& components() const;
+
+    /**
+     * @file entity.hpp
+     * @author Zana Domán
+     * @brief Returns the components of the entity.
+     * @return Components of the entity.
+     */
     virtual std::vector<std::weak_ptr<component>>& components();
 
     /**
