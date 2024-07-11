@@ -23,7 +23,7 @@
 
 #include <wizard_engine/renderable.hpp>
 
-std::vector<wze::renderable*> wze::renderable::_instances;
+std::vector<wze::renderable*> wze::renderable::_instances = {};
 
 std::vector<wze::renderable*> const& wze::renderable::instances() {
     return _instances;

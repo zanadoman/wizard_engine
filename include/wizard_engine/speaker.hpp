@@ -56,7 +56,7 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Returns speaker instances.
+     * @brief Returns the speaker instances.
      * @return Speaker instances.
      */
     static std::vector<speaker*> const& instances();

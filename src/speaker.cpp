@@ -26,7 +26,7 @@
 #include <wizard_engine/math.hpp>
 #include <wizard_engine/speaker.hpp>
 
-std::vector<wze::speaker*> wze::speaker::_instances;
+std::vector<wze::speaker*> wze::speaker::_instances = {};
 
 std::vector<wze::speaker*> const& wze::speaker::instances() {
     return _instances;
