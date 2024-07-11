@@ -22,6 +22,7 @@
 #ifndef WIZARD_ENGINE_RENDERER_HPP
 #define WIZARD_ENGINE_RENDERER_HPP
 
+#include <wizard_engine/assets.hpp>
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/renderable.hpp>
 
@@ -36,6 +37,10 @@ class renderer final {
     static SDL_Renderer* _base;
     static float _origo_x;
     static float _origo_y;
+    static uint8_t _clear_color_r;
+    static uint8_t _clear_color_g;
+    static uint8_t _clear_color_b;
+    static std::shared_ptr<texture> _clear_texture;
 
     /**
      * @file renderer.hpp
@@ -139,6 +144,71 @@ class renderer final {
      * @param origo_y Origo y of the screen.
      */
     static void set_origo_y(float origo_y);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the red clear color component of the renderer.
+     * @return Red clear color component of the renderer.
+     */
+    static uint8_t clear_color_r();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the red clear color component of the renderer.
+     * @param clear_color_r Red clear color component of the renderer.
+     */
+    static void set_clear_color_r(uint8_t clear_color_r);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the green clear color component of the renderer.
+     * @return Green clear color component of the renderer.
+     */
+    static uint8_t clear_color_g();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the green clear color component of the renderer.
+     * @param clear_color_g Green clear color component of the renderer.
+     */
+    static void set_clear_color_g(uint8_t clear_color_g);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the blue clear color component of the renderer.
+     * @return Blue clear color component of the renderer.
+     */
+    static uint8_t clear_color_b();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the blue clear color component of the renderer.
+     * @param clear_color_b Blue clear color component of the renderer.
+     */
+    static void set_clear_color_b(uint8_t clear_color_b);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the clear texture of the renderer.
+     * @return Clear texture of the renderer.
+     */
+    static std::shared_ptr<texture> const& clear_texture();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the clear texture of the renderer.
+     * @param clear_texture Clear texture of the renderer.
+     */
+    static void
+    set_clear_texture(std::shared_ptr<texture> const& clear_texture);
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**

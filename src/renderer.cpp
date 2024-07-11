@@ -29,11 +29,18 @@
 SDL_Renderer* wze::renderer::_base;
 float wze::renderer::_origo_x;
 float wze::renderer::_origo_y;
+uint8_t wze::renderer::_clear_color_r;
+uint8_t wze::renderer::_clear_color_g;
+uint8_t wze::renderer::_clear_color_b;
+std::shared_ptr<wze::texture> wze::renderer::_clear_texture;
 
 void wze::renderer::open_frame() {
-    if (SDL_SetRenderDrawColor(base(), 0, 0, 0,
+    if (SDL_SetRenderDrawColor(base(), clear_color_r(), clear_color_g(),
+                               clear_color_b(),
                                std::numeric_limits<uint8_t>::max()) ||
-        SDL_RenderClear(base())) {
+        SDL_RenderClear(base()) ||
+        (clear_texture() &&
+         SDL_RenderCopy(base(), clear_texture().get(), nullptr, nullptr))) {
         throw std::runtime_error(SDL_GetError());
     }
 }
@@ -95,6 +102,39 @@ void wze::renderer::set_origo_y(float origo_y) {
     _origo_y = origo_y;
 }
 
+uint8_t wze::renderer::clear_color_r() {
+    return _clear_color_r;
+}
+
+void wze::renderer::set_clear_color_r(uint8_t clear_color_r) {
+    _clear_color_r = clear_color_r;
+}
+
+uint8_t wze::renderer::clear_color_g() {
+    return _clear_color_g;
+}
+
+void wze::renderer::set_clear_color_g(uint8_t clear_color_g) {
+    _clear_color_g = clear_color_g;
+}
+
+uint8_t wze::renderer::clear_color_b() {
+    return _clear_color_b;
+}
+
+void wze::renderer::set_clear_color_b(uint8_t clear_color_b) {
+    _clear_color_b = clear_color_b;
+}
+
+std::shared_ptr<wze::texture> const& wze::renderer::clear_texture() {
+    return _clear_texture;
+}
+
+void wze::renderer::set_clear_texture(
+    std::shared_ptr<texture> const& clear_texture) {
+    _clear_texture = clear_texture;
+}
+
 void wze::renderer::initialize() {
     if (!(_base = SDL_CreateRenderer(window::base(), -1,
                                      SDL_RENDERER_ACCELERATED)) ||
@@ -103,6 +143,10 @@ void wze::renderer::initialize() {
     }
     set_origo_x(window::width() / 2.0);
     set_origo_y(window::height() / 2.0);
+    set_clear_color_r(0);
+    set_clear_color_g(0);
+    set_clear_color_b(0);
+    set_clear_texture({});
 }
 
 void wze::renderer::update() {
