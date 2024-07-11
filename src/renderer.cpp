@@ -248,12 +248,14 @@ void wze::renderer::initialize() {
                                              window::width(), window::height()),
                            SDL_DestroyTexture}) ||
         SDL_SetTextureBlendMode(_space_target.get(), SDL_BLENDMODE_BLEND)) {
+        throw std::runtime_error(SDL_GetError());
     }
     if (!(_plane_target = {SDL_CreateTexture(base(), SDL_PIXELFORMAT_RGBA8888,
                                              SDL_TEXTUREACCESS_TARGET,
                                              window::width(), window::height()),
                            SDL_DestroyTexture}) ||
         SDL_SetTextureBlendMode(_plane_target.get(), SDL_BLENDMODE_BLEND)) {
+        throw std::runtime_error(SDL_GetError());
     }
     set_origo_x(window::width() / 2.0);
     set_origo_y(window::height() / 2.0);
