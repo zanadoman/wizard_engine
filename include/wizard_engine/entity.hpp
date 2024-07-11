@@ -29,7 +29,7 @@ namespace wze {
 /**
  * @file entity.hpp
  * @author Zana Domán
- * @brief Composes components together.
+ * @brief Composes composable objects.
  */
 class entity : public component {
   private:

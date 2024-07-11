@@ -29,7 +29,7 @@ namespace wze {
 /**
  * @file polygon.hpp
  * @author Zana Domán
- * @brief Geometric component.
+ * @brief Convex polygon component.
  */
 class polygon final : public component {
   private:
