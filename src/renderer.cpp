@@ -40,7 +40,9 @@ void wze::renderer::open_frame() {
                                std::numeric_limits<uint8_t>::max()) ||
         SDL_RenderClear(base()) ||
         (clear_texture() &&
-         SDL_RenderCopy(base(), clear_texture().get(), nullptr, nullptr))) {
+         (SDL_SetTextureColorMod(clear_texture().get(), clear_color_r(),
+                                 clear_color_g(), clear_color_b()) ||
+          SDL_RenderCopy(base(), clear_texture().get(), nullptr, nullptr)))) {
         throw std::runtime_error(SDL_GetError());
     }
 }
