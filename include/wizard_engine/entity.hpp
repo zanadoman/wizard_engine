@@ -52,21 +52,21 @@ class entity : public component {
      * @author Zana Domán
      * @brief Updates the x position of a component instance.
      */
-    void update_x(component& instance);
+    void update_x(component& instance) const;
 
     /**
      * @file entity.hpp
      * @author Zana Domán
      * @brief Updates the y position of a component instance.
      */
-    void update_y(component& instance);
+    void update_y(component& instance) const;
 
     /**
      * @file entity.hpp
      * @author Zana Domán
      * @brief Updates the angle of a component instance.
      */
-    void update_angle(component& instance);
+    void update_angle(component& instance) const;
 
   public:
     /**
@@ -279,8 +279,8 @@ class entity : public component {
     /**
      * @file entity.hpp
      * @author Zana Domán
-     * @brief Explicitly updates the components of the entity and erases expired
-     * ones.
+     * @brief Explicitly composes the components of the entity and erases
+     * expired ones.
      */
     virtual void recompose();
 

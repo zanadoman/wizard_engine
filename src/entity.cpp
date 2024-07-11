@@ -24,7 +24,7 @@
 #include <wizard_engine/entity.hpp>
 #include <wizard_engine/math.hpp>
 
-void wze::entity::update_x(component& instance) {
+void wze::entity::update_x(component& instance) const {
     if (!instance.attach_x()) {
         return;
     }
@@ -37,7 +37,7 @@ void wze::entity::update_x(component& instance) {
     }
 }
 
-void wze::entity::update_y(component& instance) {
+void wze::entity::update_y(component& instance) const {
     if (!instance.attach_y()) {
         return;
     }
@@ -50,7 +50,7 @@ void wze::entity::update_y(component& instance) {
     }
 }
 
-void wze::entity::update_angle(component& instance) {
+void wze::entity::update_angle(component& instance) const {
     if (instance.attach_angle()) {
         instance.set_angle(angle() + instance.angle_offset());
     }
