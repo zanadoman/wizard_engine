@@ -35,6 +35,14 @@ uint8_t wze::renderer::_clear_color_r;
 uint8_t wze::renderer::_clear_color_g;
 uint8_t wze::renderer::_clear_color_b;
 std::shared_ptr<wze::texture> wze::renderer::_clear_texture;
+uint8_t wze::renderer::_space_color_r;
+uint8_t wze::renderer::_space_color_g;
+uint8_t wze::renderer::_space_color_b;
+uint8_t wze::renderer::_space_color_a;
+uint8_t wze::renderer::_plane_color_r;
+uint8_t wze::renderer::_plane_color_g;
+uint8_t wze::renderer::_plane_color_b;
+uint8_t wze::renderer::_plane_color_a;
 
 void wze::renderer::open_frame() {
     if (SDL_SetRenderTarget(base(), nullptr) ||
@@ -99,7 +107,13 @@ void wze::renderer::render(renderable const& instance) {
 
 void wze::renderer::close_frame() {
     if (SDL_SetRenderTarget(base(), nullptr) ||
+        SDL_SetTextureColorMod(_space_target.get(), space_color_r(),
+                               space_color_g(), space_color_b()) ||
+        SDL_SetTextureAlphaMod(_space_target.get(), space_color_a()) ||
         SDL_RenderCopy(base(), _space_target.get(), nullptr, nullptr) ||
+        SDL_SetTextureColorMod(_plane_target.get(), plane_color_r(),
+                               plane_color_g(), plane_color_b()) ||
+        SDL_SetTextureAlphaMod(_plane_target.get(), plane_color_a()) ||
         SDL_RenderCopy(base(), _plane_target.get(), nullptr, nullptr)) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -159,6 +173,70 @@ void wze::renderer::set_clear_texture(
     _clear_texture = clear_texture;
 }
 
+uint8_t wze::renderer::space_color_r() {
+    return _space_color_r;
+}
+
+void wze::renderer::set_space_color_r(uint8_t space_color_r) {
+    _space_color_r = space_color_r;
+}
+
+uint8_t wze::renderer::space_color_g() {
+    return _space_color_g;
+}
+
+void wze::renderer::set_space_color_g(uint8_t space_color_g) {
+    _space_color_g = space_color_g;
+}
+
+uint8_t wze::renderer::space_color_b() {
+    return _space_color_b;
+}
+
+void wze::renderer::set_space_color_b(uint8_t space_color_b) {
+    _space_color_b = space_color_b;
+}
+
+uint8_t wze::renderer::space_color_a() {
+    return _space_color_a;
+}
+
+void wze::renderer::set_space_color_a(uint8_t space_color_a) {
+    _space_color_a = space_color_a;
+}
+
+uint8_t wze::renderer::plane_color_r() {
+    return _plane_color_r;
+}
+
+void wze::renderer::set_plane_color_r(uint8_t plane_color_r) {
+    _plane_color_r = plane_color_r;
+}
+
+uint8_t wze::renderer::plane_color_g() {
+    return _plane_color_g;
+}
+
+void wze::renderer::set_plane_color_g(uint8_t plane_color_g) {
+    _plane_color_g = plane_color_g;
+}
+
+uint8_t wze::renderer::plane_color_b() {
+    return _plane_color_b;
+}
+
+void wze::renderer::set_plane_color_b(uint8_t plane_color_b) {
+    _plane_color_b = plane_color_b;
+}
+
+uint8_t wze::renderer::plane_color_a() {
+    return _plane_color_a;
+}
+
+void wze::renderer::set_plane_color_a(uint8_t plane_color_a) {
+    _plane_color_a = plane_color_a;
+}
+
 void wze::renderer::initialize() {
     if (!(_base = SDL_CreateRenderer(window::base(), -1,
                                      SDL_RENDERER_ACCELERATED)) ||
@@ -183,6 +261,14 @@ void wze::renderer::initialize() {
     set_clear_color_g(0);
     set_clear_color_b(0);
     set_clear_texture({});
+    set_space_color_r(std::numeric_limits<uint8_t>::max());
+    set_space_color_g(std::numeric_limits<uint8_t>::max());
+    set_space_color_b(std::numeric_limits<uint8_t>::max());
+    set_space_color_a(std::numeric_limits<uint8_t>::max());
+    set_plane_color_r(std::numeric_limits<uint8_t>::max());
+    set_plane_color_g(std::numeric_limits<uint8_t>::max());
+    set_plane_color_b(std::numeric_limits<uint8_t>::max());
+    set_plane_color_a(std::numeric_limits<uint8_t>::max());
 }
 
 void wze::renderer::update() {

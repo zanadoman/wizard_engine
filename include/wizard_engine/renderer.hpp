@@ -43,6 +43,14 @@ class renderer final {
     static uint8_t _clear_color_g;
     static uint8_t _clear_color_b;
     static std::shared_ptr<texture> _clear_texture;
+    static uint8_t _space_color_r;
+    static uint8_t _space_color_g;
+    static uint8_t _space_color_b;
+    static uint8_t _space_color_a;
+    static uint8_t _plane_color_r;
+    static uint8_t _plane_color_g;
+    static uint8_t _plane_color_b;
+    static uint8_t _plane_color_a;
 
     /**
      * @file renderer.hpp
@@ -228,6 +236,134 @@ class renderer final {
      */
     static void
     set_clear_texture(std::shared_ptr<texture> const& clear_texture);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the red color modifier of the space.
+     * @return Red color modifier of the space.
+     */
+    static uint8_t space_color_r();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the red color modifier of the space.
+     * @param space_color_r Red color modifier of the space.
+     */
+    static void set_space_color_r(uint8_t space_color_r);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the green color modifier of the space.
+     * @return Green color modifier of the space.
+     */
+    static uint8_t space_color_g();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the green color modifier of the space.
+     * @param space_color_g Green color modifier of the space.
+     */
+    static void set_space_color_g(uint8_t space_color_g);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the blue color modifier of the space.
+     * @return Blue color modifier of the space.
+     */
+    static uint8_t space_color_b();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the blue color modifier of the space.
+     * @param space_color_b Blue color modifier of the space.
+     */
+    static void set_space_color_b(uint8_t space_color_b);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the alpha color modifier of the space.
+     * @return Alpha color modifier of the space.
+     */
+    static uint8_t space_color_a();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the alpha color modifier of the space.
+     * @param space_color_a Alpha color modifier of the space.
+     */
+    static void set_space_color_a(uint8_t space_color_a);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the red color modifier of the plane.
+     * @return Red color modifier of the plane.
+     */
+    static uint8_t plane_color_r();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the red color modifier of the plane.
+     * @param plane_color_r Red color modifier of the plane.
+     */
+    static void set_plane_color_r(uint8_t plane_color_r);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the green color modifier of the plane.
+     * @return Green color modifier of the plane.
+     */
+    static uint8_t plane_color_g();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the green color modifier of the plane.
+     * @param plane_color_g Green color modifier of the plane.
+     */
+    static void set_plane_color_g(uint8_t plane_color_g);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the blue color modifier of the plane.
+     * @return Blue color modifier of the plane.
+     */
+    static uint8_t plane_color_b();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the blue color modifier of the plane.
+     * @param plane_color_b Blue color modifier of the plane.
+     */
+    static void set_plane_color_b(uint8_t plane_color_b);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the alpha color modifier of the plane.
+     * @return Alpha color modifier of the plane.
+     */
+    static uint8_t plane_color_a();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the alpha color modifier of the plane.
+     * @param plane_color_a Alpha color modifier of the plane.
+     */
+    static void set_plane_color_a(uint8_t plane_color_a);
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
