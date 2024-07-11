@@ -41,8 +41,11 @@ void wze::audio::initialize() {
 }
 
 void wze::audio::update() {
-    std::ranges::for_each(speaker::instances(),
-                          [](speaker* instance) { instance->align_panning(); });
+    std::ranges::for_each(speaker::instances(), [](speaker* instance) {
+        if (instance->auto_panning()) {
+            instance->align_panning();
+        }
+    });
 }
 
 int32_t wze::audio::request_channel() {

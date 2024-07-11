@@ -64,7 +64,7 @@ class math final {
      * @param maximum Maximum exclusive value of the interval.
      * @return Pseudo random integer from the interval.
      */
-    int32_t random(int32_t minimum, int32_t maximum);
+    static int32_t random(int32_t minimum, int32_t maximum);
 
     /**
      * @file math.hpp

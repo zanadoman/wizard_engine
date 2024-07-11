@@ -149,7 +149,7 @@ class assets final {
      * @param sound Hashed sound.
      * @return Hash of the sound.
      */
-    size_t hash_sound(std::shared_ptr<sound> const& sound);
+    static size_t hash_sound(std::shared_ptr<sound> const& sound);
 
     /**
      * @file assets.hpp
