@@ -35,6 +35,8 @@ namespace wze {
 class renderer final {
   private:
     static SDL_Renderer* _base;
+    static std::shared_ptr<texture> _space_target;
+    static std::shared_ptr<texture> _plane_target;
     static float _origo_x;
     static float _origo_y;
     static uint8_t _clear_color_r;
@@ -53,9 +55,25 @@ class renderer final {
      * @file renderer.hpp
      * @author Zana Domán
      * @brief Opens a new frame to render on.
-     * @warning If the frame cannot be opened, throws std::runtime_error.
+     * @warning If the new frame cannot be opened, throws std::runtime_error.
      */
     static void open_frame();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Opens the space to render on.
+     * @warning If the space cannot be opened, throws std::runtime_error.
+     */
+    static void open_space();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Opens the plane to render on.
+     * @warning If the plane cannot be opened, throws std::runtime_error.
+     */
+    static void open_plane();
 
     /**
      * @file renderer.hpp
@@ -99,6 +117,7 @@ class renderer final {
      * @file renderer.hpp
      * @author Zana Domán
      * @brief Presents the new frame.
+     * @warning If the new frame cannot be presented, throws std::runtime_error.
      */
     static void close_frame();
 

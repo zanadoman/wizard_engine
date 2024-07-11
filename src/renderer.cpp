@@ -27,6 +27,8 @@
 #include <wizard_engine/window.hpp>
 
 SDL_Renderer* wze::renderer::_base;
+std::shared_ptr<wze::texture> wze::renderer::_space_target;
+std::shared_ptr<wze::texture> wze::renderer::_plane_target;
 float wze::renderer::_origo_x;
 float wze::renderer::_origo_y;
 uint8_t wze::renderer::_clear_color_r;
@@ -35,7 +37,8 @@ uint8_t wze::renderer::_clear_color_b;
 std::shared_ptr<wze::texture> wze::renderer::_clear_texture;
 
 void wze::renderer::open_frame() {
-    if (SDL_SetRenderDrawColor(base(), clear_color_r(), clear_color_g(),
+    if (SDL_SetRenderTarget(base(), nullptr) ||
+        SDL_SetRenderDrawColor(base(), clear_color_r(), clear_color_g(),
                                clear_color_b(),
                                std::numeric_limits<uint8_t>::max()) ||
         SDL_RenderClear(base()) ||
@@ -43,6 +46,20 @@ void wze::renderer::open_frame() {
          (SDL_SetTextureColorMod(clear_texture().get(), clear_color_r(),
                                  clear_color_g(), clear_color_b()) ||
           SDL_RenderCopy(base(), clear_texture().get(), nullptr, nullptr)))) {
+        throw std::runtime_error(SDL_GetError());
+    }
+}
+
+void wze::renderer::open_space() {
+    if (SDL_SetRenderTarget(base(), _space_target.get()) ||
+        SDL_SetRenderDrawColor(base(), 0, 0, 0, 0) || SDL_RenderClear(base())) {
+        throw std::runtime_error(SDL_GetError());
+    }
+}
+
+void wze::renderer::open_plane() {
+    if (SDL_SetRenderTarget(base(), _plane_target.get()) ||
+        SDL_SetRenderDrawColor(base(), 0, 0, 0, 0) || SDL_RenderClear(base())) {
         throw std::runtime_error(SDL_GetError());
     }
 }
@@ -81,6 +98,11 @@ void wze::renderer::render(renderable const& instance) {
 }
 
 void wze::renderer::close_frame() {
+    if (SDL_SetRenderTarget(base(), nullptr) ||
+        SDL_RenderCopy(base(), _space_target.get(), nullptr, nullptr) ||
+        SDL_RenderCopy(base(), _plane_target.get(), nullptr, nullptr)) {
+        throw std::runtime_error(SDL_GetError());
+    }
     SDL_RenderPresent(base());
 }
 
@@ -143,6 +165,18 @@ void wze::renderer::initialize() {
         SDL_RenderSetLogicalSize(base(), window::width(), window::height())) {
         throw std::runtime_error(SDL_GetError());
     }
+    if (!(_space_target = {SDL_CreateTexture(base(), SDL_PIXELFORMAT_RGBA8888,
+                                             SDL_TEXTUREACCESS_TARGET,
+                                             window::width(), window::height()),
+                           SDL_DestroyTexture}) ||
+        SDL_SetTextureBlendMode(_space_target.get(), SDL_BLENDMODE_BLEND)) {
+    }
+    if (!(_plane_target = {SDL_CreateTexture(base(), SDL_PIXELFORMAT_RGBA8888,
+                                             SDL_TEXTUREACCESS_TARGET,
+                                             window::width(), window::height()),
+                           SDL_DestroyTexture}) ||
+        SDL_SetTextureBlendMode(_plane_target.get(), SDL_BLENDMODE_BLEND)) {
+    }
     set_origo_x(window::width() / 2.0);
     set_origo_y(window::height() / 2.0);
     set_clear_color_r(0);
@@ -186,8 +220,10 @@ void wze::renderer::update() {
         });
 
     open_frame();
+    open_space();
     std::ranges::for_each(
         space, [](renderable const* instance) -> void { render(*instance); });
+    open_plane();
     std::ranges::for_each(
         plane, [](renderable const* instance) -> void { render(*instance); });
     close_frame();
