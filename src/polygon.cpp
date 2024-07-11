@@ -25,7 +25,9 @@
 #include <wizard_engine/polygon.hpp>
 
 void wze::polygon::update_x() {
-    for (size_t i = 0; i < shape().size(); ++i) {
+    size_t i;
+
+    for (i = 0; i != shape().size(); ++i) {
         _points.at(i).first =
             x() + math::transform_x(shape().at(i).first, shape().at(i).second,
                                     _transformation_matrix);
@@ -33,7 +35,9 @@ void wze::polygon::update_x() {
 }
 
 void wze::polygon::update_y() {
-    for (size_t i = 0; i < shape().size(); ++i) {
+    size_t i;
+
+    for (i = 0; i != shape().size(); ++i) {
         _points.at(i).second =
             y() + math::transform_y(shape().at(i).first, shape().at(i).second,
                                     _transformation_matrix);
@@ -108,8 +112,8 @@ float wze::polygon::scale() const {
 }
 
 void wze::polygon::set_scale(float scale) {
-    _points_radius = shape_radius() * scale;
     _scale = scale;
+    _points_radius = shape_radius() * this->scale();
     _transformation_matrix =
         math::transformation_matrix(angle(), this->scale());
     update_x();
@@ -187,8 +191,7 @@ wze::polygon::polygon(std::vector<std::pair<float, float>> const& shape,
                       bool x_angle_lock, bool y_angle_lock) {
     _shape = shape;
     _shape_radius = circumradius();
-    _points = this->shape();
-    _points_radius = shape_radius() * scale;
+    _points.resize(this->shape().size());
     set_x(x);
     set_y(y);
     set_angle(angle);
@@ -206,13 +209,15 @@ wze::polygon::polygon(std::vector<std::pair<float, float>> const& shape,
 bool wze::polygon::inside(float x, float y) const {
     float determinant;
     float temporary;
+    size_t i1;
+    size_t i2;
 
     if (points_radius() < math::length(x - this->x(), y - this->y())) {
         return false;
     }
 
     determinant = 0;
-    for (size_t i1 = 0, i2 = 1; i1 < points().size(); ++i1, ++i2) {
+    for (i1 = 0, i2 = 1; i1 != points().size(); ++i1, ++i2) {
         if (i2 == points().size()) {
             i2 = 0;
         }
@@ -243,6 +248,10 @@ bool wze::polygon::overlap(polygon const& other) const {
     float maximum1;
     float minimum2;
     float maximum2;
+    size_t i;
+    size_t j1;
+    size_t j2;
+    size_t k;
 
     if (points_radius() + other.points_radius() <
         math::length(other.x() - x(), other.y() - y())) {
@@ -252,9 +261,8 @@ bool wze::polygon::overlap(polygon const& other) const {
     polygon1 = this;
     polygon2 = &other;
 
-    for (size_t i = 0; i < 2; ++i) {
-        for (size_t j1 = 0, j2 = 1; j1 < polygon1->points().size();
-             ++j1, ++j2) {
+    for (i = 0; i != 2; ++i) {
+        for (j1 = 0, j2 = 1; j1 != polygon1->points().size(); ++j1, ++j2) {
             if (j2 == polygon1->points().size()) {
                 j2 = 0;
             }
@@ -266,7 +274,7 @@ bool wze::polygon::overlap(polygon const& other) const {
 
             minimum1 = std::numeric_limits<float>::infinity();
             maximum1 = -std::numeric_limits<float>::infinity();
-            for (size_t k = 0; k < polygon1->points().size(); ++k) {
+            for (k = 0; k != polygon1->points().size(); ++k) {
                 projection = polygon1->points().at(k).first * normal_x +
                              polygon1->points().at(k).second * normal_y;
                 minimum1 = std::min(minimum1, projection);
@@ -275,7 +283,7 @@ bool wze::polygon::overlap(polygon const& other) const {
 
             minimum2 = std::numeric_limits<float>::infinity();
             maximum2 = -std::numeric_limits<float>::infinity();
-            for (size_t k = 0; k < polygon2->points().size(); ++k) {
+            for (k = 0; k != polygon2->points().size(); ++k) {
                 projection = polygon2->points().at(k).first * normal_x +
                              polygon2->points().at(k).second * normal_y;
                 minimum2 = std::min(minimum2, projection);
@@ -306,6 +314,10 @@ float wze::polygon::collision(polygon const& other) const {
     float minimum2;
     float maximum2;
     float collision;
+    size_t i;
+    size_t j1;
+    size_t j2;
+    size_t k;
 
     if (points_radius() + other.points_radius() <
         math::length(other.x() - x(), other.y() - y())) {
@@ -316,9 +328,8 @@ float wze::polygon::collision(polygon const& other) const {
     polygon2 = &other;
     collision = std::numeric_limits<float>::infinity();
 
-    for (size_t i = 0; i < 2; ++i) {
-        for (size_t j1 = 0, j2 = 1; j1 < polygon1->points().size();
-             ++j1, ++j2) {
+    for (i = 0; i != 2; ++i) {
+        for (j1 = 0, j2 = 1; j1 != polygon1->points().size(); ++j1, ++j2) {
             if (j2 == polygon1->points().size()) {
                 j2 = 0;
             }
@@ -333,7 +344,7 @@ float wze::polygon::collision(polygon const& other) const {
 
             minimum1 = std::numeric_limits<float>::infinity();
             maximum1 = -std::numeric_limits<float>::infinity();
-            for (size_t k = 0; k < polygon1->points().size(); ++k) {
+            for (k = 0; k != polygon1->points().size(); ++k) {
                 projection = polygon1->points().at(k).first * normal_x +
                              polygon1->points().at(k).second * normal_y;
                 minimum1 = std::min(minimum1, projection);
@@ -342,7 +353,7 @@ float wze::polygon::collision(polygon const& other) const {
 
             minimum2 = std::numeric_limits<float>::infinity();
             maximum2 = -std::numeric_limits<float>::infinity();
-            for (size_t k = 0; k < polygon2->points().size(); ++k) {
+            for (k = 0; k != polygon2->points().size(); ++k) {
                 projection = polygon2->points().at(k).first * normal_x +
                              polygon2->points().at(k).second * normal_y;
                 minimum2 = std::min(minimum2, projection);

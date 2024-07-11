@@ -51,7 +51,7 @@ wze_main(1920, 1080) {
     wze::speaker s(wze::assets::load_sound("./assets/test/music.wav"));
     s.play();
 
-    wizard wizard1 = {-500,       0,          0,          10,        10,
+    wizard wizard1 = {-500,       0,          0,          21,        10,
                       wze::KEY_W, wze::KEY_S, wze::KEY_A, wze::KEY_D};
 
     wizard wizard2 = {500,

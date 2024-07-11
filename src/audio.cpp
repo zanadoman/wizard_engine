@@ -41,7 +41,7 @@ void wze::audio::initialize() {
 }
 
 void wze::audio::update() {
-    std::ranges::for_each(speaker::instances(), [](speaker* instance) {
+    std::ranges::for_each(speaker::instances(), [](speaker* instance) -> void {
         if (instance->auto_panning()) {
             instance->align_panning();
         }

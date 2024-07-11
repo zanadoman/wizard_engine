@@ -69,7 +69,6 @@ void wze::entity::set_x(float x) {
     std::shared_ptr<component> instance;
 
     _x = x;
-
     for (iterator = components().begin(); iterator != components().end();
          ++iterator) {
         if ((instance = iterator->lock())) {
@@ -89,7 +88,6 @@ void wze::entity::set_y(float y) {
     std::shared_ptr<component> instance;
 
     _y = y;
-
     for (iterator = components().begin(); iterator != components().end();
          ++iterator) {
         if ((instance = iterator->lock())) {
@@ -110,7 +108,6 @@ void wze::entity::set_angle(float angle) {
 
     _angle = angle;
     _transformation_matrix = math::transformation_matrix(this->angle(), 1);
-
     for (iterator = components().begin(); iterator != components().end();
          ++iterator) {
         if ((instance = iterator->lock())) {

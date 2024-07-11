@@ -19,8 +19,8 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef WIZARD_ENGINE_SHAPE_HPP
-#define WIZARD_ENGINE_SHAPE_HPP
+#ifndef WIZARD_ENGINE_POLYGON_HPP
+#define WIZARD_ENGINE_POLYGON_HPP
 
 #include <wizard_engine/component.hpp>
 #include <wizard_engine/export.hpp>
@@ -340,21 +340,22 @@ class polygon final : public component {
     /**
      * @file polygon.hpp
      * @author Zana Domán
-     * @brief Returns whether the polygon overlaps with another polygon.
-     * @param other Other polygon.
-     * @return Whether the polygon overlaps with another polygon.
+     * @brief Returns whether the polygon overlaps with another polygon
+     * instance.
+     * @param other Other polygon instance.
+     * @return Whether the polygon overlaps with another polygon instance.
      */
     bool overlap(polygon const& other) const;
 
     /**
      * @file polygon.hpp
      * @author Zana Domán
-     * @brief Returns the depth of the collision with another polygon.
-     * @param other Other polygon.
-     * @return Depth of the collison with another polygon.
+     * @brief Returns the depth of the collision with another polygon instance.
+     * @param other Other polygon instance.
+     * @return Depth of the collison with another polygon instance.
      */
     float collision(polygon const& other) const;
 };
 } /* namespace wze */
 
-#endif /* WIZARD_ENGINE_SHAPE_HPP */
+#endif /* WIZARD_ENGINE_POLYGON_HPP */
