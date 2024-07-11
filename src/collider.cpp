@@ -19,7 +19,6 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <limits>
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/collider.hpp>
@@ -29,8 +28,9 @@ std::array<std::vector<wze::collider*>, std::numeric_limits<uint8_t>::max()>
     wze::collider::_worlds = {};
 
 void wze::collider::push_x(float force) {
-    std::vector<collider*> const& contacts = collider::contacts();
+    std::vector<collider*> contacts;
 
+    contacts = collider::contacts();
     if (!contacts.size()) {
         return;
     }
@@ -51,8 +51,9 @@ void wze::collider::push_x(float force) {
 }
 
 void wze::collider::push_y(float force) {
-    std::vector<collider*> const& contacts = collider::contacts();
+    std::vector<collider*> contacts;
 
+    contacts = collider::contacts();
     if (!contacts.size()) {
         return;
     }
@@ -73,8 +74,9 @@ void wze::collider::push_y(float force) {
 }
 
 void wze::collider::push_xy(float force) {
-    std::vector<collider*> const& contacts = collider::contacts();
+    std::vector<collider*> contacts;
 
+    contacts = collider::contacts();
     if (!contacts.size()) {
         return;
     }
