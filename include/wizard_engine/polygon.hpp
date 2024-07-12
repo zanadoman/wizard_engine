@@ -174,6 +174,14 @@ class polygon final : public component {
     /**
      * @file polygon.hpp
      * @author Zana Domán
+     * @brief Returns the transformation matrix of the polygon.
+     * @return Transformation matrix of the polygon.
+     */
+    std::array<float, 4> const& transformation_matrix() const;
+
+    /**
+     * @file polygon.hpp
+     * @author Zana Domán
      * @brief Returns the x offset of the polygon.
      * @return X offset of the polygon.
      */

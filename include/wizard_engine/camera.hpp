@@ -115,6 +115,14 @@ class camera final {
     /**
      * @file camera.hpp
      * @author Zana Domán
+     * @brief Returns the transformation matrix of the camera.
+     * @return Transformation matrix of the camera.
+     */
+    static std::array<float, 4> const& transformation_matrix();
+
+    /**
+     * @file camera.hpp
+     * @author Zana Domán
      * @brief Returns the focus of the camera.
      * @return Focus of the camera.
      */

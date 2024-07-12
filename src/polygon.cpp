@@ -30,7 +30,7 @@ void wze::polygon::update_x() {
     for (i = 0; i != shape().size(); ++i) {
         _points.at(i).first =
             x() + math::transform_x(shape().at(i).first, shape().at(i).second,
-                                    _transformation_matrix);
+                                    transformation_matrix());
     }
 }
 
@@ -40,7 +40,7 @@ void wze::polygon::update_y() {
     for (i = 0; i != shape().size(); ++i) {
         _points.at(i).second =
             y() + math::transform_y(shape().at(i).first, shape().at(i).second,
-                                    _transformation_matrix);
+                                    transformation_matrix());
     }
 }
 
@@ -118,6 +118,10 @@ void wze::polygon::set_scale(float scale) {
         math::transformation_matrix(angle(), this->scale());
     update_x();
     update_y();
+}
+
+std::array<float, 4> const& wze::polygon::transformation_matrix() const {
+    return _transformation_matrix;
 }
 
 float wze::polygon::x_offset() const {

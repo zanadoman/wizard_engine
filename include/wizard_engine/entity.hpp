@@ -134,6 +134,14 @@ class entity : public component {
     void set_angle(float angle) override;
 
     /**
+     * @file entitiy.hpp
+     * @author Zana Domán
+     * @brief Returns the transformation matrix of the entity.
+     * @return Transformation matrix of the entity.
+     */
+    virtual std::array<float, 4> const& transformation_matrix() const;
+
+    /**
      * @file entity.hpp
      * @author Zana Domán
      * @brief Returns the x offset of the entity.

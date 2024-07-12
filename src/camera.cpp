@@ -64,6 +64,10 @@ void wze::camera::set_angle(float angle) {
     _transformation_matrix = math::transformation_matrix(-camera::angle(), 1);
 }
 
+std::array<float, 4> const& wze::camera::transformation_matrix() {
+    return _transformation_matrix;
+}
+
 float wze::camera::focus() {
     return _focus;
 }
@@ -102,8 +106,8 @@ void wze::camera::project(renderable& instance) {
     scale = focus() / (instance.z() - z());
     x = (instance.x() - camera::x()) * scale;
     y = (instance.y() - camera::y()) * scale;
-    instance.set_screen_area({math::transform_x(x, y, _transformation_matrix),
-                              math::transform_y(x, y, _transformation_matrix),
+    instance.set_screen_area({math::transform_x(x, y, transformation_matrix()),
+                              math::transform_y(x, y, transformation_matrix()),
                               instance.width() * scale,
                               instance.height() * scale});
 }
@@ -116,13 +120,14 @@ std::pair<float, float> wze::camera::unproject(float x, float y, float z) {
         return {0, 0};
     }
 
-    determinant = _transformation_matrix.at(0) * _transformation_matrix.at(3) -
-                  _transformation_matrix.at(1) * _transformation_matrix.at(2);
+    determinant =
+        transformation_matrix().at(0) * transformation_matrix().at(3) -
+        transformation_matrix().at(1) * transformation_matrix().at(2);
     scale = (z - camera::z()) / focus();
-    return {camera::x() + (x * _transformation_matrix.at(3) -
-                           y * _transformation_matrix.at(1)) /
+    return {camera::x() + (x * transformation_matrix().at(3) -
+                           y * transformation_matrix().at(1)) /
                               determinant * scale,
-            camera::y() + (y * _transformation_matrix.at(0) -
-                           x * _transformation_matrix.at(2)) /
+            camera::y() + (y * transformation_matrix().at(0) -
+                           x * transformation_matrix().at(2)) /
                               determinant * scale};
 }

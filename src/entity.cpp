@@ -31,7 +31,7 @@ void wze::entity::update_x(component& instance) const {
     if (instance.x_angle_lock()) {
         instance.set_x(x() + math::transform_x(instance.x_offset(),
                                                instance.y_offset(),
-                                               _transformation_matrix));
+                                               transformation_matrix()));
     } else {
         instance.set_x(x() + instance.x_offset());
     }
@@ -44,7 +44,7 @@ void wze::entity::update_y(component& instance) const {
     if (instance.y_angle_lock()) {
         instance.set_y(y() + math::transform_y(instance.x_offset(),
                                                instance.y_offset(),
-                                               _transformation_matrix));
+                                               transformation_matrix()));
     } else {
         instance.set_y(y() + instance.y_offset());
     }
@@ -123,6 +123,10 @@ void wze::entity::set_angle(float angle) {
             components().erase(iterator--);
         }
     }
+}
+
+std::array<float, 4> const& wze::entity::transformation_matrix() const {
+    return _transformation_matrix;
 }
 
 float wze::entity::x_offset() const {
