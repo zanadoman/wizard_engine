@@ -259,12 +259,6 @@ void wze::renderer::set_plane_color_a(uint8_t plane_color_a) {
 }
 
 void wze::renderer::initialize() {
-    float diagonal;
-    float half_diagonal;
-
-    diagonal = math::length(window::width(), window::height());
-    half_diagonal = diagonal / 2;
-
     set_origo_x(window::width() / 2.0);
     set_origo_y(window::height() / 2.0);
     if (!(_base = SDL_CreateRenderer(window::base(), -1,
@@ -288,8 +282,10 @@ void wze::renderer::initialize() {
     set_space_color_b(std::numeric_limits<uint8_t>::max());
     set_space_color_a(std::numeric_limits<uint8_t>::max());
     set_space_texture({});
-    _space_area = {diagonal, diagonal, origo_x() - half_diagonal,
-                   origo_y() - half_diagonal};
+    _space_area.w = _space_area.h =
+        math::length(window::width(), window::height());
+    _space_area.x = origo_x() - _space_area.w / 2;
+    _space_area.y = origo_y() - _space_area.h / 2;
     if (!(_plane = {SDL_CreateTexture(base(), SDL_PIXELFORMAT_RGBA8888,
                                       SDL_TEXTUREACCESS_TARGET, window::width(),
                                       window::height()),
