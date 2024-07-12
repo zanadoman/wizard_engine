@@ -105,11 +105,14 @@ class assets final {
      * @brief Creates an image from a text.
      * @param text Text of the image.
      * @param font Font of the text.
+     * @param wrap_length Wrap length of the text.
      * @return Created image.
+     * @note 0 wrap length only wraps on newline characters.
      * @warning If the image cannot be created, throws std::runtime_error.
      */
     static std::shared_ptr<image>
-    create_image(std::string const& text, std::shared_ptr<font> const& font);
+    create_image(std::string const& text, std::shared_ptr<font> const& font,
+                 uint32_t wrap_length = 0);
 
     /**
      * @file assets.hpp

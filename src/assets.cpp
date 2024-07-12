@@ -40,16 +40,18 @@ std::shared_ptr<wze::image> wze::assets::load_image(std::string const& path) {
 
 std::shared_ptr<wze::image>
 wze::assets::create_image(std::string const& text,
-                          std::shared_ptr<font> const& font) {
+                          std::shared_ptr<font> const& font,
+                          uint32_t wrap_length) {
     std::shared_ptr<image> image;
 
-    if (!(image = {
-              TTF_RenderUTF8_Blended(font.get(), text.c_str(),
-                                     {std::numeric_limits<uint8_t>::max(),
-                                      std::numeric_limits<uint8_t>::max(),
-                                      std::numeric_limits<uint8_t>::max(),
-                                      std::numeric_limits<uint8_t>::max()}),
-              SDL_FreeSurface})) {
+    if (!(image = {TTF_RenderUTF8_Blended_Wrapped(
+                       font.get(), text.c_str(),
+                       {std::numeric_limits<uint8_t>::max(),
+                        std::numeric_limits<uint8_t>::max(),
+                        std::numeric_limits<uint8_t>::max(),
+                        std::numeric_limits<uint8_t>::max()},
+                       wrap_length),
+                   SDL_FreeSurface})) {
         throw std::runtime_error(TTF_GetError());
     }
 
