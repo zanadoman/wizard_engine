@@ -227,7 +227,7 @@ class renderer final {
      * @author Zana Domán
      * @brief Returns the texture of the background.
      * @return texture of the background.
-     * @note The size of the texture should match the game window.
+     * @note The size of the texture should match the size of the game window.
      */
     static std::shared_ptr<texture> const& background_texture();
 
@@ -236,7 +236,7 @@ class renderer final {
      * @author Zana Domán
      * @brief Sets the texture of the background.
      * @param background_texture texture of the background.
-     * @note The size of the texture should match the game window.
+     * @note The size of the texture should match the size of the game window.
      */
     static void
     set_background_texture(std::shared_ptr<texture> const& background_texture);
