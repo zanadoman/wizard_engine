@@ -34,19 +34,21 @@ namespace wze {
  */
 class renderer final {
   private:
-    static SDL_Renderer* _base;
-    static std::shared_ptr<texture> _space_target;
-    static std::shared_ptr<texture> _plane_target;
     static float _origo_x;
     static float _origo_y;
-    static uint8_t _clear_color_r;
-    static uint8_t _clear_color_g;
-    static uint8_t _clear_color_b;
-    static std::shared_ptr<texture> _clear_texture;
+    static SDL_Renderer* _base;
+    static uint8_t _background_color_r;
+    static uint8_t _background_color_g;
+    static uint8_t _background_color_b;
+    static std::shared_ptr<texture> _background_texture;
+    static std::shared_ptr<texture> _space;
     static uint8_t _space_color_r;
     static uint8_t _space_color_g;
     static uint8_t _space_color_b;
     static uint8_t _space_color_a;
+    static std::shared_ptr<texture> _space_texture;
+    static SDL_FRect _space_area;
+    static std::shared_ptr<texture> _plane;
     static uint8_t _plane_color_r;
     static uint8_t _plane_color_g;
     static uint8_t _plane_color_b;
@@ -130,16 +132,6 @@ class renderer final {
     static void close_frame();
 
   public:
-#ifdef __WIZARD_ENGINE_INTERNAL
-    /**
-     * @file renderer.hpp
-     * @author Zana Domán
-     * @brief Returns the pointer of the renderer.
-     * @return Pointer of the renderer.
-     */
-    static SDL_Renderer* base();
-#endif /* __WIZARD_ENGINE_INTERNAL */
-
     /**
      * @file renderer.hpp
      * @author Zana Domán
@@ -172,70 +164,82 @@ class renderer final {
      */
     static void set_origo_y(float origo_y);
 
+#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Returns the red clear color component of the renderer.
-     * @return Red clear color component of the renderer.
+     * @brief Returns the pointer of the renderer.
+     * @return Pointer of the renderer.
      */
-    static uint8_t clear_color_r();
+    static SDL_Renderer* base();
+#endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Sets the red clear color component of the renderer.
-     * @param clear_color_r Red clear color component of the renderer.
+     * @brief Returns the red color modifier of the background.
+     * @return Red color modifier of the background.
      */
-    static void set_clear_color_r(uint8_t clear_color_r);
+    static uint8_t background_color_r();
 
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Returns the green clear color component of the renderer.
-     * @return Green clear color component of the renderer.
+     * @brief Sets the red color modifier of the background.
+     * @param background_color_r Red color modifier of the background.
      */
-    static uint8_t clear_color_g();
+    static void set_background_color_r(uint8_t background_color_r);
 
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Sets the green clear color component of the renderer.
-     * @param clear_color_g Green clear color component of the renderer.
+     * @brief Returns the green color modifier of the background.
+     * @return Green color modifier of the background.
      */
-    static void set_clear_color_g(uint8_t clear_color_g);
+    static uint8_t background_color_g();
 
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Returns the blue clear color component of the renderer.
-     * @return Blue clear color component of the renderer.
+     * @brief Sets the green color modifier of the background.
+     * @param background_color_g Green color modifier of the background.
      */
-    static uint8_t clear_color_b();
+    static void set_background_color_g(uint8_t background_color_g);
 
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Sets the blue clear color component of the renderer.
-     * @param clear_color_b Blue clear color component of the renderer.
+     * @brief Returns the blue color modifier of the background.
+     * @return Blue color modifier of the background.
      */
-    static void set_clear_color_b(uint8_t clear_color_b);
+    static uint8_t background_color_b();
 
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Returns the clear texture of the renderer.
-     * @return Clear texture of the renderer.
+     * @brief Sets the blue color modifier of the background.
+     * @param background_color_b Blue color modifier of the background.
      */
-    static std::shared_ptr<texture> const& clear_texture();
+    static void set_background_color_b(uint8_t background_color_b);
 
     /**
      * @file renderer.hpp
      * @author Zana Domán
-     * @brief Sets the clear texture of the renderer.
-     * @param clear_texture Clear texture of the renderer.
+     * @brief Returns the texture of the background.
+     * @return texture of the background.
+     * @note The size of the texture should match the game window.
+     */
+    static std::shared_ptr<texture> const& background_texture();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the texture of the background.
+     * @param background_texture texture of the background.
+     * @note The size of the texture should match the game window.
      */
     static void
-    set_clear_texture(std::shared_ptr<texture> const& clear_texture);
+    set_background_texture(std::shared_ptr<texture> const& background_texture);
 
     /**
      * @file renderer.hpp
@@ -300,6 +304,27 @@ class renderer final {
      * @param space_color_a Alpha color modifier of the space.
      */
     static void set_space_color_a(uint8_t space_color_a);
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Returns the background texture of the space.
+     * @return Background texture of the space.
+     * @note The texture should be a square whose side length is equal to the
+     * diagonal of the game window.
+     */
+    static std::shared_ptr<texture> const& space_texture();
+
+    /**
+     * @file renderer.hpp
+     * @author Zana Domán
+     * @brief Sets the background texture of the space.
+     * @param space_texture Background texture of the space.
+     * @note The texture should be a square whose side length is equal to the
+     * diagonal of the game window.
+     */
+    static void
+    set_space_texture(std::shared_ptr<texture> const& space_texture);
 
     /**
      * @file renderer.hpp
