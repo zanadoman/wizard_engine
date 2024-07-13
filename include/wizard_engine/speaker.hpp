@@ -83,18 +83,16 @@ class speaker final : public component {
      * @author Zana Domán
      * @brief Returns the volume of the speaker.
      * @return Volume of the speaker.
-     * @note Volume is bounded to [0, 1].
      */
-    float volume() const;
+    int8_t volume() const;
 
     /**
      * @file speaker.hpp
      * @author Zana Domán
      * @brief Sets the volume of the speaker.
      * @param volume Volume of the speaker.
-     * @note Volume is bounded to [0, 1].
      */
-    void set_volume(float volume);
+    void set_volume(int8_t volume);
 
     /**
      * @file speaker.hpp

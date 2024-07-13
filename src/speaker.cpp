@@ -40,12 +40,12 @@ void wze::speaker::set_sound(std::shared_ptr<wze::sound> const& sound) {
     _sound = sound;
 }
 
-float wze::speaker::volume() const {
-    return (float)Mix_Volume(_channel, -1) / MIX_MAX_VOLUME;
+int8_t wze::speaker::volume() const {
+    return Mix_Volume(_channel, -1);
 }
 
-void wze::speaker::set_volume(float volume) {
-    Mix_Volume(_channel, round(MIX_MAX_VOLUME * volume));
+void wze::speaker::set_volume(int8_t volume) {
+    Mix_Volume(_channel, volume);
 }
 
 float wze::speaker::range() const {

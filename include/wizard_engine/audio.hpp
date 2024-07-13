@@ -48,18 +48,16 @@ class audio final {
      * @author Zana Domán
      * @brief Returns the global volume of the audio.
      * @return Global volume of the audio.
-     * @note Global volume is bounded to [0, 1].
      */
-    static float volume();
+    static int8_t volume();
 
     /**
      * @file audio.hpp
      * @author Zana Domán
      * @brief Sets the global volume of the audio.
      * @param volume Global Volume of the audio.
-     * @note Global volume is bounded to [0, 1].
      */
-    static void set_volume(float volume);
+    static void set_volume(int8_t volume);
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
