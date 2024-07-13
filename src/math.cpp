@@ -23,16 +23,15 @@
 
 #include <wizard_engine/math.hpp>
 
+std::random_device wze::math::_random_device;
+std::mt19937_64 wze::math::_mt19937_64;
+
 void wze::math::initialize() {
-    srand(time(nullptr));
+    _mt19937_64.seed(_random_device());
 }
 
-int32_t wze::math::random() {
-    return rand();
-}
-
-int32_t wze::math::random(int32_t minimum, int32_t maximum) {
-    return rand() % (maximum - minimum) + minimum;
+float wze::math::random(float minimum, float maximum) {
+    return std::uniform_real_distribution<float>(minimum, maximum)(_mt19937_64);
 }
 
 float wze::math::length(float x, float y) {

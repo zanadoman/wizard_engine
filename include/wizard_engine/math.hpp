@@ -32,6 +32,9 @@ namespace wze {
  */
 class math final {
   private:
+    static std::random_device _random_device;
+    static std::mt19937_64 _mt19937_64;
+
     /**
      * @file math.hpp
      * @author Zana Domán
@@ -59,20 +62,13 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Returns a pseudo random integer.
-     * @return Pseudo random integer.
-     */
-    static int32_t random();
-
-    /**
-     * @file math.hpp
-     * @author Zana Domán
-     * @brief Returns a pseudo random integer from an interval.
+     * @brief Returns a random float from an interval.
      * @param minimum Minimum inclusive value of the interval.
      * @param maximum Maximum exclusive value of the interval.
-     * @return Pseudo random integer from the interval.
+     * @return Random float from the interval.
      */
-    static int32_t random(int32_t minimum, int32_t maximum);
+    static float random(float minimum = -std::numeric_limits<float>::max(),
+                        float maximum = std::numeric_limits<float>::max());
 
     /**
      * @file math.hpp
