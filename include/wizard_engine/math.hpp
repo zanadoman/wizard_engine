@@ -59,14 +59,20 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán
+     * @brief Returns a pseudo random integer.
+     * @return Pseudo random integer.
+     */
+    static int32_t random();
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán
      * @brief Returns a pseudo random integer from an interval.
      * @param minimum Minimum inclusive value of the interval.
      * @param maximum Maximum exclusive value of the interval.
      * @return Pseudo random integer from the interval.
      */
-    static int32_t
-    random(int32_t minimum = std::numeric_limits<int32_t>::min(),
-           int32_t maximum = std::numeric_limits<int32_t>::max());
+    static int32_t random(int32_t minimum, int32_t maximum);
 
     /**
      * @file math.hpp
