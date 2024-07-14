@@ -62,6 +62,18 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán
+     * @brief Returns a random integer from an interval.
+     * @param minimum Minimum inclusive value of the interval.
+     * @param maximum Maximum exclusive value of the interval.
+     * @return Random integer from the interval.
+     */
+    static int64_t
+    random(int64_t minimum = std::numeric_limits<int64_t>::min(),
+           int64_t maximum = std::numeric_limits<int64_t>::max());
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán
      * @brief Returns a random float from an interval.
      * @param minimum Minimum inclusive value of the interval.
      * @param maximum Maximum exclusive value of the interval.
