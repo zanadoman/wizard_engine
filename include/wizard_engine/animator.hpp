@@ -115,8 +115,10 @@ class animator final {
      * @brief Animates the targets and erases expired ones, then returns whether
      * the animation is looped or not.
      * @return Whether the animation is looped or not.
+     * @note You need to call this function in every frame to progress the
+     * animation.
      */
-    bool animate();
+    bool play();
 
     /**
      * @file animator.hpp

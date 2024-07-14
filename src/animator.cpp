@@ -64,7 +64,7 @@ wze::animator::animator(std::vector<std::shared_ptr<texture>> const& frames,
     this->targets() = targets;
 }
 
-bool wze::animator::animate() {
+bool wze::animator::play() {
     uint64_t elapsed_time;
     bool looped;
     std::vector<std::weak_ptr<animatable>>::iterator iterator;
