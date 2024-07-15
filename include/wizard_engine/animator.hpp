@@ -105,9 +105,9 @@ class animator final {
      * @param frame_time Frame time of the animation in milliseconds.
      * @param targets Targets of the animation.
      */
-    animator(std::vector<std::shared_ptr<texture>> const& frames,
-             uint16_t frame_time,
-             std::vector<std::weak_ptr<animatable>> const& targets);
+    animator(std::vector<std::shared_ptr<texture>> const& frames = {},
+             uint16_t frame_time = 100,
+             std::vector<std::weak_ptr<animatable>> const& targets = {});
 
     /**
      * @file animator.hpp
