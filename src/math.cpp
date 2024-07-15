@@ -46,6 +46,13 @@ float wze::math::move_y(float length, float angle) {
     return length * sinf(angle);
 }
 
+std::pair<float, float> wze::math::normalize(float x, float y) {
+    float length;
+
+    length = math::length(x, y);
+    return {x / length, y / length};
+}
+
 std::array<float, 4> wze::math::transformation_matrix(float angle,
                                                       float scale) {
     float cosine_scale;

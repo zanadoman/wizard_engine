@@ -28,7 +28,7 @@ namespace wze {
 /**
  * @file math.hpp
  * @author Zana Domán, Gunics Roland
- * @brief Subsystem to handle vector math and unit conversions.
+ * @brief Subsystem to handle 2D geometry and unit conversions.
  */
 class math final {
   private:
@@ -128,6 +128,16 @@ class math final {
      * @return Moved y component of the vector.
      */
     static float move_y(float length, float angle);
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán, Gunics Roland
+     * @brief Normalizes a vector.
+     * @param x X component of the vector.
+     * @param y Y component of the vector.
+     * @return Normalized vector.
+     */
+    static std::pair<float, float> normalize(float x, float y);
 
     /**
      * @file math.hpp
