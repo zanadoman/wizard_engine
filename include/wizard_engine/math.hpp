@@ -62,25 +62,32 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Returns a random integer from an interval.
+     * @brief Returns a random integer value from an interval.
      * @param minimum Minimum inclusive value of the interval.
-     * @param maximum Maximum exclusive value of the interval.
-     * @return Random integer from the interval.
+     * @param maximum Maximum inclusive value of the interval.
+     * @return Random integer value from the interval.
      */
-    static int64_t
-    random(int64_t minimum = std::numeric_limits<int64_t>::min(),
-           int64_t maximum = std::numeric_limits<int64_t>::max());
+    template <typename T>
+    static std::enable_if<std::is_integral<T>::value, T>::type
+    random(T minimum = std::numeric_limits<T>::min(),
+           T maximum = std::numeric_limits<T>::max()) {
+        return std::uniform_int_distribution<T>(minimum, maximum)(_mt19937_64);
+    }
 
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Returns a random float from an interval.
+     * @brief Returns a random real value from an interval.
      * @param minimum Minimum inclusive value of the interval.
-     * @param maximum Maximum exclusive value of the interval.
-     * @return Random float from the interval.
+     * @param maximum Maximum inclusive value of the interval.
+     * @return Random real value from the interval.
      */
-    static float random(float minimum = -std::numeric_limits<float>::max(),
-                        float maximum = std::numeric_limits<float>::max());
+    template <typename T>
+    static std::enable_if<std::is_floating_point<T>::value, T>::type
+    random(T minimum = -std::numeric_limits<T>::max(),
+           T maximum = std::numeric_limits<T>::max()) {
+        return std::uniform_real_distribution<T>(minimum, maximum)(_mt19937_64);
+    }
 
     /**
      * @file math.hpp

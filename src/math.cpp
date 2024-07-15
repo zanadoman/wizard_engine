@@ -30,15 +30,6 @@ void wze::math::initialize() {
     _mt19937_64.seed(_random_device());
 }
 
-int64_t wze::math::random(int64_t minimum, int64_t maximum) {
-    return std::uniform_int_distribution<int64_t>(minimum,
-                                                  maximum)(_mt19937_64);
-}
-
-float wze::math::random(float minimum, float maximum) {
-    return std::uniform_real_distribution<float>(minimum, maximum)(_mt19937_64);
-}
-
 float wze::math::length(float x, float y) {
     return sqrtf(powf(x, 2) + powf(y, 2));
 }
