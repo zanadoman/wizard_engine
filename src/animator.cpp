@@ -100,3 +100,7 @@ void wze::animator::reset() {
     set_current_frame(0);
     _remaining_time = 0;
 }
+
+void wze::animator::reverse() {
+    std::ranges::reverse(_frames);
+}

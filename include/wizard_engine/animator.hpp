@@ -126,6 +126,13 @@ class animator final {
      * @brief Resets the animation.
      */
     void reset();
+
+    /**
+     * @file animator.hpp
+     * @author Zana Domán
+     * @brief Reverses the frame pool of the animation.
+     */
+    void reverse();
 };
 } /* namespace wze */
 
