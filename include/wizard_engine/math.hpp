@@ -83,10 +83,23 @@ class math final {
      * @return Random real value from the interval.
      */
     template <typename T>
-    static std::enable_if<std::is_floating_point<T>::value, T>::type
+    static std::enable_if<std::is_same<T, float>::value, T>::type
     random(T minimum = -std::numeric_limits<T>::max(),
            T maximum = std::numeric_limits<T>::max()) {
         return std::uniform_real_distribution<T>(minimum, maximum)(_mt19937_64);
+    }
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán
+     * @brief Returns a random boolean value.
+     * @param probability Probability of a true value.
+     * @return Random boolean value.
+     */
+    template <typename T>
+    static std::enable_if<std::is_same<T, bool>::value, T>::type
+    random(float probability = 0.5) {
+        return std::bernoulli_distribution((double)probability)(_mt19937_64);
     }
 
     /**
