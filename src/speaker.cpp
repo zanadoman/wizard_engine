@@ -270,7 +270,7 @@ void wze::speaker::align_panning() {
         angle += 360;
     }
 
-    if (range() <= distance || (spatial() && z_ratio <= 0)) {
+    if (range() <= distance || z_ratio <= 0) {
         left = 0;
         right = 0;
     } else if (90 < angle && angle < 270) {
