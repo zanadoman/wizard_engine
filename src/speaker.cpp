@@ -253,6 +253,7 @@ void wze::speaker::stop(uint16_t fade_out) {
 void wze::speaker::align_panning() {
     float x_distance;
     float y_distance;
+    float z_ratio;
     float distance;
     int32_t angle;
     float left;
@@ -260,9 +261,8 @@ void wze::speaker::align_panning() {
 
     x_distance = x() - camera::x();
     y_distance = y() - camera::y();
-    distance = spatial() ? sqrtf(powf(x_distance, 2) + powf(y_distance, 2) +
-                                 powf(z() - camera::z(), 2))
-                         : math::length(x_distance, y_distance);
+    z_ratio = spatial() ? 1 - abs(z() - camera::z()) / range() : 1;
+    distance = math::length(x_distance, y_distance);
     angle = (int32_t)roundf(math::to_degrees(
                 math::angle(x_distance, y_distance) - camera::angle())) %
             360;
@@ -270,18 +270,26 @@ void wze::speaker::align_panning() {
         angle += 360;
     }
 
-    if (range() <= distance) {
+    if (range() <= distance || (spatial() && z_ratio <= 0)) {
         left = 0;
         right = 0;
     } else if (90 < angle && angle < 270) {
         left = 1 - distance / range();
         right = powf(left, 2);
+        if (spatial()) {
+            left *= z_ratio;
+            right *= z_ratio;
+        }
     } else if (270 < angle || angle < 90) {
         right = 1 - distance / range();
         left = powf(right, 2);
+        if (spatial()) {
+            right *= z_ratio;
+            left *= z_ratio;
+        }
     } else {
-        left = 1;
-        right = 1;
+        left = z_ratio;
+        right = z_ratio;
     }
 
     if (!Mix_SetPanning(_channel,
