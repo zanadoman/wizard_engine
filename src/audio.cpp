@@ -69,10 +69,6 @@ int32_t wze::audio::request_channel() {
 }
 
 void wze::audio::drop_channel(int32_t channel) {
-    if (channel < 0) {
-        return;
-    }
-
     if (!Mix_UnregisterAllEffects(channel) || Mix_HaltChannel(channel)) {
         throw std::runtime_error(Mix_GetError());
     }

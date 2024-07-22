@@ -61,7 +61,7 @@ wze::renderable::~renderable() {
 }
 
 wze::renderable& wze::renderable::operator=(renderable const& other) {
-    if (this != &other) {
+    if (&other != this) {
         set_screen_area(other.screen_area());
         set_screen_angle(other.screen_angle());
     }

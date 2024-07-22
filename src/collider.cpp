@@ -473,7 +473,7 @@ wze::collider::~collider() {
 }
 
 wze::collider& wze::collider::operator=(collider const& other) {
-    if (this != &other) {
+    if (&other != this) {
         entity::operator=(other);
         set_body(other.body());
         set_force(other.force());
