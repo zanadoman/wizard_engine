@@ -80,12 +80,22 @@ void wze::speaker::set_y(float y) {
     _y = y;
 }
 
-float wze::speaker::angle() const {
-    return _angle;
+float wze::speaker::z() const {
+    return _z;
 }
 
-void wze::speaker::set_angle(float angle) {
-    _angle = angle;
+void wze::speaker::set_z(float z) {
+    _z = z;
+}
+
+void wze::speaker::set_angle([[maybe_unused]] float angle) {}
+
+bool wze::speaker::spatial() const {
+    return _spatial;
+}
+
+void wze::speaker::set_spatial(bool spatial) {
+    _spatial = spatial;
 }
 
 float wze::speaker::x_offset() const {
@@ -105,11 +115,7 @@ void wze::speaker::set_y_offset(float y_offset) {
 }
 
 float wze::speaker::angle_offset() const {
-    return _angle_offset;
-}
-
-void wze::speaker::set_angle_offset(float angle_offset) {
-    _angle_offset = angle_offset;
+    return 0;
 }
 
 bool wze::speaker::attach_x() const {
@@ -129,11 +135,7 @@ void wze::speaker::set_attach_y(bool attach_y) {
 }
 
 bool wze::speaker::attach_angle() const {
-    return _attach_angle;
-}
-
-void wze::speaker::set_attach_angle(bool attach_angle) {
-    _attach_angle = attach_angle;
+    return false;
 }
 
 bool wze::speaker::x_angle_lock() const {
@@ -160,11 +162,11 @@ bool wze::speaker::paused() const {
     return Mix_Paused(_channel);
 }
 
-wze::speaker::speaker(std::shared_ptr<wze::sound> const& sound, float volume,
-                      float range, bool auto_panning, float x, float y,
-                      float angle, float x_offset, float y_offset,
-                      float angle_offset, bool attach_x, bool attach_y,
-                      bool attach_angle, bool x_angle_lock, bool y_angle_lock) {
+wze::speaker::speaker(std::shared_ptr<wze::sound> const& sound, int8_t volume,
+                      float range, bool auto_panning, float x, float y, float z,
+                      bool spatial, float x_offset, float y_offset,
+                      bool attach_x, bool attach_y, bool x_angle_lock,
+                      bool y_angle_lock) {
     _channel = audio::request_channel();
     set_sound(sound);
     set_volume(volume);
@@ -172,13 +174,12 @@ wze::speaker::speaker(std::shared_ptr<wze::sound> const& sound, float volume,
     set_auto_panning(auto_panning);
     set_x(x);
     set_y(y);
-    set_angle(angle);
+    set_z(z);
+    set_spatial(spatial);
     set_x_offset(x_offset);
     set_y_offset(y_offset);
-    set_angle_offset(angle_offset);
     set_attach_x(attach_x);
     set_attach_y(attach_y);
-    set_attach_angle(attach_angle);
     set_x_angle_lock(x_angle_lock);
     set_y_angle_lock(y_angle_lock);
     _instances.push_back(this);
@@ -203,13 +204,12 @@ wze::speaker& wze::speaker::operator=(speaker const& other) {
         set_auto_panning(other.auto_panning());
         set_x(other.x());
         set_y(other.y());
-        set_angle(other.angle());
+        set_z(other.z());
+        set_spatial(other.spatial());
         set_x_offset(other.x_offset());
         set_y_offset(other.y_offset());
-        set_angle_offset(other.angle_offset());
         set_attach_x(other.attach_x());
         set_attach_y(other.attach_y());
-        set_attach_angle(other.attach_angle());
         set_x_angle_lock(other.x_angle_lock());
         set_y_angle_lock(other.y_angle_lock());
     }
@@ -236,18 +236,32 @@ void wze::speaker::stop(uint16_t fade_out) {
 }
 
 void wze::speaker::align_panning() {
+    float x_distance;
+    float y_distance;
     float distance;
+    int32_t angle;
     float left;
     float right;
 
-    distance = math::length(x() - camera::x(), y() - camera::y());
+    x_distance = x() - camera::x();
+    y_distance = y() - camera::y();
+    distance = spatial() ? sqrtf(powf(x_distance, 2) + powf(y_distance, 2) +
+                                 powf(z() - camera::z(), 2))
+                         : math::length(x_distance, y_distance);
+    angle = (int32_t)roundf(math::to_degrees(
+                math::angle(x_distance, y_distance) - camera::angle())) %
+            360;
+    if (angle < 0) {
+        angle += 360;
+    }
+
     if (range() <= distance) {
         left = 0;
         right = 0;
-    } else if (x() < camera::x()) {
+    } else if (90 < angle && angle < 270) {
         left = 1 - distance / range();
         right = powf(left, 2);
-    } else if (camera::x() < x()) {
+    } else if (270 < angle || angle < 90) {
         right = 1 - distance / range();
         left = powf(right, 2);
     } else {

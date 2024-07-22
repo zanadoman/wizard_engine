@@ -32,7 +32,6 @@ namespace wze {
  */
 class math final {
   private:
-    static std::random_device _random_device;
     static std::mt19937_64 _mt19937_64;
 
     /**

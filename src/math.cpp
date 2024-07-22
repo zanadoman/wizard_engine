@@ -23,11 +23,10 @@
 
 #include <wizard_engine/math.hpp>
 
-std::random_device wze::math::_random_device;
 std::mt19937_64 wze::math::_mt19937_64;
 
 void wze::math::initialize() {
-    _mt19937_64.seed(_random_device());
+    _mt19937_64 = std::mt19937_64(std::random_device()());
 }
 
 float wze::math::length(float x, float y) {

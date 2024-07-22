@@ -7,6 +7,7 @@
 wze_main(1920, 1080) {
     std::shared_ptr<wze::texture> texture;
     std::vector<wze::sprite> sprites;
+    wze::speaker speaker;
 
     texture = wze::assets::create_texture(
         wze::assets::load_image("./assets/wizard_engine/icon.png"));
@@ -17,6 +18,11 @@ wze_main(1920, 1080) {
             {RANDOM(-1000, 1000), RANDOM(-1000, 1000), RANDOM(-1000, 1000),
              wze::math::to_radians(RANDOM(0, 360)), 100, 100, true, texture});
     }
+
+    speaker =
+        wze::speaker(wze::assets::load_sound("./assets/test/light_blast_5.wav"),
+                     127, 2000, true, 1500, 0);
+    speaker.play(0, 10000);
 
     wze_while(true) {
         if (wze::input::key(wze::KEY_W)) {
@@ -42,6 +48,14 @@ wze_main(1920, 1080) {
         if (wze::input::key(wze::KEY_LSHIFT)) {
             wze::camera::set_y(wze::camera::y() +
                                0.1f * wze::timer::delta_time());
+        }
+        if (wze::input::key(wze::KEY_MOUSE_LEFT)) {
+            wze::camera::set_angle(wze::camera::angle() -
+                                   0.001f * wze::timer::delta_time());
+        }
+        if (wze::input::key(wze::KEY_MOUSE_RIGHT)) {
+            wze::camera::set_angle(wze::camera::angle() +
+                                   0.001f * wze::timer::delta_time());
         }
     }
 

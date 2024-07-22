@@ -41,13 +41,12 @@ class speaker final : public component {
     bool _auto_panning;
     float _x;
     float _y;
-    float _angle;
+    float _z;
+    bool _spatial;
     float _x_offset;
     float _y_offset;
-    float _angle_offset;
     bool _attach_x;
     bool _attach_y;
-    bool _attach_angle;
     bool _x_angle_lock;
     bool _y_angle_lock;
 
@@ -161,18 +160,41 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Returns the angle of the speaker.
-     * @return Angle of the speaker.
+     * @brief Returns the z position of the speaker.
+     * @return Z position of the speaker.
      */
-    float angle() const;
+    float z() const;
 
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Sets the angle of the speaker.
-     * @param angle Angle of the speaker.
+     * @brief Sets the z position of the speaker.
+     * @param z Z position of the speaker.
+     */
+    void set_z(float z);
+
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
+     * @brief Unimplemented inherited method.
      */
     void set_angle(float angle) final;
+
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
+     * @brief Returns whether the speaker is spatial or not.
+     * @return Whether the speaker is spatial or not.
+     */
+    bool spatial() const;
+
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
+     * @brief Sets whether the speaker is spatial or not.
+     * @param spatial Whether the speaker is spatial or not.
+     */
+    void set_spatial(bool spatial);
 
     /**
      * @file speaker.hpp
@@ -209,18 +231,9 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Returns the angle offset of the speaker.
-     * @return Angle offset of the speaker.
+     * @brief Unimplemented inherited method.
      */
     float angle_offset() const final;
-
-    /**
-     * @file speaker.hpp
-     * @author Zana Domán
-     * @brief Sets the angle offset of the speaker.
-     * @param angle_offset Angle offset of the speaker.
-     */
-    void set_angle_offset(float angle_offset);
 
     /**
      * @file speaker.hpp
@@ -257,18 +270,9 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Returns whether the angle is attached to entities.
-     * @return Whether the angle is attached to entities.
+     * @brief Unimplemented inherited method.
      */
     bool attach_angle() const final;
-
-    /**
-     * @file speaker.hpp
-     * @author Zana Domán
-     * @brief Sets whether the angle is attached to entities.
-     * @param attach_angle Whether the angle is attached to entities.
-     */
-    void set_attach_angle(bool attach_angle);
 
     /**
      * @file speaker.hpp
@@ -328,21 +332,19 @@ class speaker final : public component {
      * @param auto_panning Whether the panning should be aligned automatically.
      * @param x X position of the speaker.
      * @param y Y position of the speaker.
-     * @param angle Angle of the speaker.
+     * @param z Z position of the speaker.
+     * @param spatial Whether the speaker is spatial or not.
      * @param x_offset X offset of the speaker.
      * @param y_offset Y offset of the speaker.
-     * @param angle_offset Angle offset of the speaker.
      * @param attach_x Whether the x position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
-     * @param attach_angle Whether the angle is attached to entities.
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
-    speaker(std::shared_ptr<wze::sound> const& sound = {}, float volume = 1,
+    speaker(std::shared_ptr<wze::sound> const& sound = {}, int8_t volume = 1,
             float range = 1024, bool auto_panning = false, float x = 0,
-            float y = 0, float angle = 0, float x_offset = 0,
-            float y_offset = 0, float angle_offset = 0, bool attach_x = true,
-            bool attach_y = true, bool attach_angle = true,
+            float y = 0, float z = 0, bool spatial = false, float x_offset = 0,
+            float y_offset = 0, bool attach_x = true, bool attach_y = true,
             bool x_angle_lock = true, bool y_angle_lock = true);
 
     /**
