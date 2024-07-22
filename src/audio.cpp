@@ -52,7 +52,8 @@ void wze::audio::update() {
 int32_t wze::audio::request_channel() {
     int32_t channel;
 
-    for (channel = 0; channel != std::numeric_limits<int32_t>::max();
+    for (channel = 0;
+         channel != std::numeric_limits<int32_t>::max() - MIX_CHANNELS;
          ++channel) {
         if (std::ranges::find(_channels, channel) == _channels.end()) {
             _channels.push_back(channel);
@@ -60,7 +61,7 @@ int32_t wze::audio::request_channel() {
                 _maximum_channel = channel;
                 Mix_AllocateChannels(MIX_CHANNELS + _maximum_channel + 1);
             }
-            return channel;
+            return MIX_CHANNELS + channel;
         }
     }
 
@@ -68,11 +69,15 @@ int32_t wze::audio::request_channel() {
 }
 
 void wze::audio::drop_channel(int32_t channel) {
+    if (channel < 0) {
+        return;
+    }
+
     if (!Mix_UnregisterAllEffects(channel) || Mix_HaltChannel(channel)) {
         throw std::runtime_error(Mix_GetError());
     }
 
-    _channels.erase(std::ranges::find(_channels, channel));
+    _channels.erase(std::ranges::find(_channels, channel -= MIX_CHANNELS));
     if (channel == _maximum_channel) {
         _maximum_channel = _channels.size() ? std::ranges::max(_channels) : -1;
         Mix_AllocateChannels(MIX_CHANNELS + _maximum_channel + 1);

@@ -191,6 +191,11 @@ wze::speaker::speaker(speaker const& other) {
     _instances.push_back(this);
 }
 
+wze::speaker::speaker(speaker&& other) {
+    *this = std::move(other);
+    _instances.push_back(this);
+}
+
 wze::speaker::~speaker() {
     _instances.erase(std::ranges::find(instances(), this));
     audio::drop_channel(_channel);
@@ -198,6 +203,29 @@ wze::speaker::~speaker() {
 
 wze::speaker& wze::speaker::operator=(speaker const& other) {
     if (this != &other) {
+        set_sound(other.sound());
+        set_volume(other.volume());
+        set_range(other.range());
+        set_auto_panning(other.auto_panning());
+        set_x(other.x());
+        set_y(other.y());
+        set_z(other.z());
+        set_spatial(other.spatial());
+        set_x_offset(other.x_offset());
+        set_y_offset(other.y_offset());
+        set_attach_x(other.attach_x());
+        set_attach_y(other.attach_y());
+        set_x_angle_lock(other.x_angle_lock());
+        set_y_angle_lock(other.y_angle_lock());
+    }
+
+    return *this;
+}
+
+wze::speaker& wze::speaker::operator=(speaker&& other) {
+    if (this != &other) {
+        _channel = other._channel;
+        other._channel = -1;
         set_sound(other.sound());
         set_volume(other.volume());
         set_range(other.range());
