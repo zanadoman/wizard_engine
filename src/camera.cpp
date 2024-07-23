@@ -112,6 +112,20 @@ void wze::camera::project(renderable& instance) {
                               instance.height() * scale});
 }
 
+std::pair<float, float> wze::camera::project(float x, float y, float z) {
+    float scale;
+
+    if (z == camera::z() || !focus()) {
+        return {0, 0};
+    }
+
+    scale = focus() / (z - camera::z());
+    x = (x - camera::x()) * scale;
+    y = (y - camera::y()) * scale;
+    return {math::transform_x(x, y, transformation_matrix()),
+            math::transform_y(x, y, transformation_matrix())};
+}
+
 std::pair<float, float> wze::camera::unproject(float x, float y, float z) {
     float determinant;
     float scale;

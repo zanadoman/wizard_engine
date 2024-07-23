@@ -155,18 +155,27 @@ class camera final {
     static void project(renderable& instance);
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
-#ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file camera.hpp
      * @author Zana Domán, Gunics Roland
-     * @brief Detransforms and unprojects a spatial coordinate.
+     * @brief Transforms and projects a spatial coordinate.
      * @param x X component of the spatial coordinate.
      * @param y Y component of the spatial coordinate.
      * @param z Z component of the spatial coordinate.
      * @return Plane coordinate.
      */
+    static std::pair<float, float> project(float x, float y, float z);
+
+    /**
+     * @file camera.hpp
+     * @author Zana Domán, Gunics Roland
+     * @brief Detransforms and unprojects a plane coordinate.
+     * @param x X component of the plane coordinate.
+     * @param y Y component of the plane coordinate.
+     * @param z Z component of the spatial coordinate.
+     * @return Spatial coordinate.
+     */
     static std::pair<float, float> unproject(float x, float y, float z);
-#endif /* __WIZARD_ENGINE_INTERNAL */
 };
 } /* namespace wze */
 
