@@ -34,6 +34,16 @@ float wze::input::_cursor_relative_x;
 float wze::input::_cursor_relative_y;
 float wze::input::_mouse_sensitivity;
 
+void wze::input::update_key() {
+    _key = SDLK_UNKNOWN;
+    for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
+        if (event.type == SDL_KEYDOWN) {
+            _key = event.key.keysym.sym;
+            break;
+        }
+    }
+}
+
 void wze::input::update_keys() {
     uint8_t const* keyboard_keys;
     uint32_t mouse_keys;
@@ -84,6 +94,10 @@ void wze::input::update_cursor() {
     _cursor_relative_y = y * mouse_sensitivity();
 }
 
+uint32_t wze::input::key() {
+    return _key;
+}
+
 float wze::input::cursor_absolute_x() {
     return _cursor_absolute_x;
 }
@@ -128,6 +142,7 @@ void wze::input::set_cursor_appearance(
 };
 
 void wze::input::initialize() {
+    _key = SDLK_UNKNOWN;
     _keys = {};
     _cursor_absolute_x = 0;
     _cursor_absolute_y = 0;
@@ -137,6 +152,7 @@ void wze::input::initialize() {
 }
 
 void wze::input::update() {
+    update_key();
     update_keys();
     update_cursor();
 }

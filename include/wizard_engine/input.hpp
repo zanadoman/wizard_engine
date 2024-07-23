@@ -34,6 +34,7 @@ namespace wze {
  */
 class input final {
   private:
+    static SDL_Keycode _key;
     static std::array<bool, KEY_COUNT> _keys;
     static float _cursor_absolute_x;
     static float _cursor_absolute_y;
@@ -51,6 +52,13 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
+     * @brief Polls for the last keyboard event.
+     */
+    static void update_key();
+
+    /**
+     * @file input.hpp
+     * @author Zana Domán
      * @brief Polls for keyboard and mousekey states.
      */
     static void update_keys();
@@ -63,6 +71,14 @@ class input final {
     static void update_cursor();
 
   public:
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns the key of the last keyboard event in UTF-32 encoding.
+     * @return Key of the last keyboard event in UTF-32 encoding.
+     */
+    static uint32_t key();
+
     /**
      * @file input.hpp
      * @author Zana Domán
