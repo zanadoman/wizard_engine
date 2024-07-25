@@ -39,6 +39,7 @@ class animator final {
     size_t _current_frame;
     uint16_t _remaining_time;
     std::vector<std::weak_ptr<animatable>> _targets;
+    bool _reversed;
 
   public:
     /**
@@ -96,6 +97,14 @@ class animator final {
      * @return Targets of the animation.
      */
     std::vector<std::weak_ptr<animatable>>& targets();
+
+    /**
+     * @file animator.hpp
+     * @author Zana Domán
+     * @brief Returns the direction of the frames of the animation.
+     * @return Direction of the frames of the animation.
+     */
+    bool reversed() const;
 
     /**
      * @file animator.hpp

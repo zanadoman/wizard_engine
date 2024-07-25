@@ -54,6 +54,10 @@ std::vector<std::weak_ptr<wze::animatable>>& wze::animator::targets() {
     return _targets;
 }
 
+bool wze::animator::reversed() const {
+    return _reversed;
+}
+
 wze::animator::animator(std::vector<std::shared_ptr<texture>> const& frames,
                         uint16_t frame_time,
                         std::vector<std::weak_ptr<animatable>> const& targets) {
@@ -62,6 +66,7 @@ wze::animator::animator(std::vector<std::shared_ptr<texture>> const& frames,
     set_current_frame(0);
     _remaining_time = 0;
     this->targets() = targets;
+    _reversed = false;
 }
 
 bool wze::animator::play() {
@@ -103,4 +108,5 @@ void wze::animator::reset() {
 
 void wze::animator::reverse() {
     std::ranges::reverse(_frames);
+    _reversed = !reversed();
 }
