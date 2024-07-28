@@ -1,5 +1,5 @@
 # CMake
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.30.1)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 if(NOT ${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}/build)
