@@ -38,15 +38,23 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 # Libraries
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_image-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_mixer-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_ttf-2.0.so.0)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/lib/libSDL2-2.0.so.0)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/lib/libSDL2_image-2.0.so.0)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/lib/libSDL2_mixer-2.0.so.0)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/lib/libSDL2_ttf-2.0.so.0)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2.dll)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_image.dll)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_mixer.dll)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_ttf.dll)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/bin/SDL2.dll)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/bin/SDL2_image.dll)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/bin/SDL2_mixer.dll)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/bin/SDL2_ttf.dll)
 endif()
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
@@ -81,12 +89,10 @@ file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
 
 # Test
 if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
-    add_custom_command(
-        TARGET ${TEST} POST_BUILD
-        COMMAND ${CMAKE_BINARY_DIR}/${TEST}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMENT "Running test ${TEST}"
-    )
+    add_custom_command(TARGET ${TEST} POST_BUILD
+                       COMMAND ${CMAKE_BINARY_DIR}/${TEST}
+                       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+                       COMMENT "Running test ${TEST}")
 else()
     message(AUTHOR_WARNING "TEST not defined, skipping test.")
 endif()
