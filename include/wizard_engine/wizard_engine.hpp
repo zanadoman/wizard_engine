@@ -63,7 +63,7 @@
     /* @note Command line arguments are accessible. */                         \
     static int32_t __wze_main(int32_t argc, char* argv[]);                     \
     int32_t main(int32_t argc, char* argv[]) {                                 \
-        wze::engine::initialize(width, height);                                \
+        wze::engine::initialize((width), (height));                            \
         return __wze_main(argc, argv);                                         \
     }                                                                          \
     int32_t __wze_main([[maybe_unused]] int32_t argc,                          \
@@ -74,6 +74,6 @@
     /* @author Zana Domán                                        */           \
     /* @brief Game loop of the Wizard Engine.                    */            \
     /* @param True if the game should continue, false otherwise. */            \
-    while (wze::engine::update() && condition)
+    while (wze::engine::update() && (condition))
 
 #endif /* WIZARD_ENGINE_WIZARD_ENGINE_HPP */
