@@ -130,9 +130,9 @@ std::shared_ptr<wze::font> wze::assets::load_font(std::string const& path,
     return font;
 }
 
-std::shared_ptr<wze::cursor>
+std::unique_ptr<wze::cursor, std::function<void(wze::cursor*)>>
 wze::assets::create_cursor(system_cursor system_cursor) {
-    std::shared_ptr<cursor> cursor;
+    std::unique_ptr<cursor, std::function<void(cursor*)>> cursor;
 
     if (!(cursor = {SDL_CreateSystemCursor((SDL_SystemCursor)system_cursor),
                     SDL_FreeCursor})) {
@@ -142,10 +142,10 @@ wze::assets::create_cursor(system_cursor system_cursor) {
     return cursor;
 }
 
-std::shared_ptr<wze::cursor>
+std::unique_ptr<wze::cursor, std::function<void(wze::cursor*)>>
 wze::assets::create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x,
                            uint16_t hot_y) {
-    std::shared_ptr<cursor> cursor;
+    std::unique_ptr<cursor, std::function<void(cursor*)>> cursor;
 
     if (!(cursor = {SDL_CreateColorCursor(image.get(), hot_x, hot_y),
                     SDL_FreeCursor})) {

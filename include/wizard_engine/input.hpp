@@ -153,19 +153,13 @@ class input final {
     /**
      * @file input.hpp
      * @author Zana Domán
-     * @brief Returns the appearance of the cursor.
-     * @return Appearance of the cursor.
-     */
-    static std::shared_ptr<cursor> cursor_appearance();
-
-    /**
-     * @file input.hpp
-     * @author Zana Domán
      * @brief Sets the appearance of the cursor.
      * @param cursor_appearance Appearance of the cursor.
+     * @note The engine must take ownership over the cursor appearance.
      */
-    static void
-    set_cursor_appearance(std::shared_ptr<cursor> const& cursor_appearance);
+    static void set_cursor_appearance(
+        std::unique_ptr<cursor, std::function<void(cursor*)>>&&
+            cursor_appearance);
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**

@@ -34,6 +34,7 @@
 
 #include <algorithm>   /* IWYU pragma: export */
 #include <array>       /* IWYU pragma: export */
+#include <functional>  /* IWYU pragma: export */
 #include <limits>      /* IWYU pragma: export */
 #include <memory>      /* IWYU pragma: export */
 #include <numbers>     /* IWYU pragma: export */

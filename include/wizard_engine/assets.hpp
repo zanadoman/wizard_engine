@@ -177,7 +177,8 @@ class assets final {
      * @return Created cursor.
      * @warning If the cursor cannot be created, throws std::runtime_error.
      */
-    static std::shared_ptr<cursor> create_cursor(system_cursor system_cursor);
+    static std::unique_ptr<cursor, std::function<void(cursor*)>>
+    create_cursor(system_cursor system_cursor);
 
     /**
      * @file assets.hpp
@@ -189,7 +190,7 @@ class assets final {
      * @return Created cursor.
      * @warning If the cursor cannot be created, throws std::runtime_error.
      */
-    static std::shared_ptr<cursor>
+    static std::unique_ptr<cursor, std::function<void(cursor*)>>
     create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x = 0,
                   uint16_t hot_y = 0);
 };

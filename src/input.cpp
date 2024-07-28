@@ -133,13 +133,9 @@ void wze::input::set_cursor_visible(bool cursor_visible) {
     }
 }
 
-std::shared_ptr<wze::cursor> wze::input::cursor_appearance() {
-    return {SDL_GetCursor(), [](void const*) -> void {}};
-}
-
 void wze::input::set_cursor_appearance(
-    std::shared_ptr<cursor> const& cursor_appearance) {
-    SDL_SetCursor(cursor_appearance.get());
+    std::unique_ptr<cursor, std::function<void(cursor*)>>&& cursor_appearance) {
+    SDL_SetCursor(cursor_appearance.release());
 };
 
 void wze::input::initialize() {
