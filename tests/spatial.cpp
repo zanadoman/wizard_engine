@@ -1,5 +1,3 @@
-// NOLINTBEGIN
-
 #include <cstdlib>
 #include <ctime>
 #include <wizard_engine/wizard_engine.hpp>
@@ -63,5 +61,3 @@ wze_main(1920, 1080) {
 
     return 0;
 }
-
-// NOLINTEND

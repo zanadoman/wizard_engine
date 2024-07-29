@@ -1,5 +1,3 @@
-// NOLINTBEGIN
-
 #include <wizard_engine/wizard_engine.hpp>
 
 class wizard final : wze::collider {
@@ -84,5 +82,3 @@ wze_main(1920, 1080) {
 
     return 0;
 }
-
-// NOLINTEND

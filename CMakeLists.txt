@@ -16,7 +16,7 @@ endif()
 
 # Compiler
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    find_program(COMPILER gcc)
+    find_program(COMPILER g++)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     find_program(COMPILER x86_64-w64-mingw32-g++)
 endif()
