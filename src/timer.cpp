@@ -65,6 +65,6 @@ void wze::timer::update() {
         now = end;
     }
 
-    set_delta_time(now - _last_time);
+    set_delta_time((float)(now - _last_time));
     _last_time = now;
 }
