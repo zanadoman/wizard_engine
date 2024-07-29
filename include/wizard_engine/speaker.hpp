@@ -341,12 +341,14 @@ class speaker final : public component {
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
-    speaker(std::shared_ptr<wze::sound> const& sound = {},
-            int8_t volume = std::numeric_limits<int8_t>::max(),
-            float range = 1024, bool auto_panning = false, float x = 0,
-            float y = 0, float z = 0, bool spatial = false, float x_offset = 0,
-            float y_offset = 0, bool attach_x = true, bool attach_y = true,
-            bool x_angle_lock = true, bool y_angle_lock = true);
+    explicit speaker(std::shared_ptr<wze::sound> const& sound = {},
+                     int8_t volume = std::numeric_limits<int8_t>::max(),
+                     float range = std::numeric_limits<uint16_t>::max(),
+                     bool auto_panning = false, float x = 0, float y = 0,
+                     float z = 0, bool spatial = false, float x_offset = 0,
+                     float y_offset = 0, bool attach_x = true,
+                     bool attach_y = true, bool x_angle_lock = true,
+                     bool y_angle_lock = true);
 
     /**
      * @file speaker.hpp
@@ -369,7 +371,7 @@ class speaker final : public component {
      * @author Zana Domán
      * @brief Destroys the speaker instance and erases from instances.
      */
-    ~speaker();
+    ~speaker() final;
 
     /**
      * @file speaker.hpp
