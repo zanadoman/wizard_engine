@@ -76,7 +76,8 @@ void wze::entity::set_x(float x) {
     _x = x;
     for (iterator = components().begin(); iterator != components().end();
          ++iterator) {
-        if ((instance = iterator->lock())) {
+        instance = iterator->lock();
+        if (instance) {
             update_x(*instance);
         } else {
             components().erase(iterator--);
@@ -95,7 +96,8 @@ void wze::entity::set_y(float y) {
     _y = y;
     for (iterator = components().begin(); iterator != components().end();
          ++iterator) {
-        if ((instance = iterator->lock())) {
+        instance = iterator->lock();
+        if (instance) {
             update_y(*instance);
         } else {
             components().erase(iterator--);
@@ -115,7 +117,8 @@ void wze::entity::set_angle(float angle) {
     _transformation_matrix = math::transformation_matrix(this->angle(), 1);
     for (iterator = components().begin(); iterator != components().end();
          ++iterator) {
-        if ((instance = iterator->lock())) {
+        instance = iterator->lock();
+        if (instance) {
             update_x(*instance);
             update_y(*instance);
             update_angle(*instance);
@@ -218,7 +221,8 @@ void wze::entity::recompose() {
 
     for (iterator = components().begin(); iterator != components().end();
          ++iterator) {
-        if ((instance = iterator->lock())) {
+        instance = iterator->lock();
+        if (instance) {
             update_x(*instance);
             update_y(*instance);
             update_angle(*instance);
