@@ -1,3 +1,5 @@
+// NOLINTBEGIN
+
 #include <cstdlib>
 #include <ctime>
 #include <wizard_engine/wizard_engine.hpp>
@@ -14,9 +16,9 @@ wze_main(1920, 1080) {
 
     srand(time(nullptr));
     for (size_t i = 0; i != 1000; ++i) {
-        sprites.push_back(
-            {RANDOM(-1000, 1000), RANDOM(-1000, 1000), RANDOM(-1000, 1000),
-             wze::math::to_radians(RANDOM(0, 360)), 100, 100, true, texture});
+        sprites.push_back(wze::sprite(
+            RANDOM(-1000, 1000), RANDOM(-1000, 1000), RANDOM(-1000, 1000),
+            wze::math::to_radians(RANDOM(0, 360)), 100, 100, true, texture));
     }
 
     speaker =
@@ -61,3 +63,5 @@ wze_main(1920, 1080) {
 
     return 0;
 }
+
+// NOLINTEND

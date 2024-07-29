@@ -472,7 +472,7 @@ wze::collider::collider(polygon const& body, float force, float mass,
 }
 
 wze::collider::collider(collider const& other)
-    : _world(std::numeric_limits<uint8_t>::max()) {
+    : entity(other), _world(std::numeric_limits<uint8_t>::max()) {
     *this = other;
 }
 

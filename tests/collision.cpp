@@ -1,3 +1,5 @@
+// NOLINTBEGIN
+
 #include <wizard_engine/wizard_engine.hpp>
 
 class wizard final : wze::collider {
@@ -11,7 +13,8 @@ class wizard final : wze::collider {
   public:
     wizard(float x, float y, float z, float force, float mass, wze::key forward,
            wze::key backward, wze::key left, wze::key right)
-        : collider({{{-50, -50}, {-50, 50}, {50, 50}, {50, -50}}, x, y, z},
+        : collider(wze::polygon({{-50, -50}, {-50, 50}, {50, 50}, {50, -50}}, x,
+                                y, z),
                    force, mass, 0) {
         _sprite = std::shared_ptr<wze::sprite>(
             new wze::sprite(0, 0, 0, 0, 100, 100, false,
@@ -81,3 +84,5 @@ wze_main(1920, 1080) {
 
     return 0;
 }
+
+// NOLINTEND
