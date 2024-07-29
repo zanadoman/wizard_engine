@@ -97,7 +97,7 @@ class math final {
      */
     template <typename T>
     static std::enable_if<std::is_same<T, bool>::value, T>::type
-    random(float probability = 0.5) {
+    random(float probability = 1. / 2) {
         return std::bernoulli_distribution((double)probability)(_mt19937_64);
     }
 
@@ -193,6 +193,7 @@ class math final {
      * @return Angle in radians.
      */
     static constexpr float to_radians(float degrees) {
+        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers)
         return degrees * std::numbers::pi_v<float> / 180;
     }
 
@@ -204,6 +205,7 @@ class math final {
      * @return Angle in degrees.
      */
     static constexpr float to_degrees(float radians) {
+        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers)
         return radians * 180 / std::numbers::pi_v<float>;
     }
 };
