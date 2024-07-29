@@ -51,14 +51,17 @@ void wze::input::update_keys() {
 
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
     keyboard_keys = SDL_GetKeyboardState(nullptr);
+    /* NOLINTNEXTLINE (cppcoreguidelines-pro-bounds-pointer-arithmetic) */
     std::copy(keyboard_keys, keyboard_keys + KEY_COUNT, _keys.data());
 
     mouse_keys = SDL_GetMouseState(nullptr, nullptr);
+    /* NOLINTBEGIN (hicpp-signed-bitwise) */
     _keys.at(KEY_MOUSE_LEFT) = mouse_keys & SDL_BUTTON_LMASK;
     _keys.at(KEY_MOUSE_MIDDLE) = mouse_keys & SDL_BUTTON_MMASK;
     _keys.at(KEY_MOUSE_RIGHT) = mouse_keys & SDL_BUTTON_RMASK;
     _keys.at(KEY_MOUSE_X1) = mouse_keys & SDL_BUTTON_X1MASK;
     _keys.at(KEY_MOUSE_X2) = mouse_keys & SDL_BUTTON_X2MASK;
+    /* NOLINTEND */
 
     _keys.at(KEY_MOUSE_WHEEL_UP) = false;
     _keys.at(KEY_MOUSE_WHEEL_DOWN) = false;
@@ -81,9 +84,9 @@ void wze::input::update_cursor() {
     for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
         if (event.type == SDL_MOUSEMOTION) {
             _cursor_absolute_x =
-                std::clamp(event.motion.x, 0, window::width() - 1);
+                (float)std::clamp(event.motion.x, 0, window::width() - 1);
             _cursor_absolute_y =
-                std::clamp(event.motion.y, 0, window::height() - 1);
+                (float)std::clamp(event.motion.y, 0, window::height() - 1);
             std::tie(_cursor_absolute_x, _cursor_absolute_y) =
                 renderer::detransform(cursor_absolute_x(), cursor_absolute_y());
             break;
@@ -91,8 +94,8 @@ void wze::input::update_cursor() {
     }
 
     SDL_GetRelativeMouseState(&x, &y);
-    _cursor_relative_x = x * mouse_sensitivity();
-    _cursor_relative_y = y * mouse_sensitivity();
+    _cursor_relative_x = (float)x * mouse_sensitivity();
+    _cursor_relative_y = (float)y * mouse_sensitivity();
 }
 
 uint32_t wze::input::key() {
