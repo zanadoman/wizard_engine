@@ -16,16 +16,16 @@ endif()
 
 # Compiler
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    find_program(COMPILER g++)
+    find_program(CXX_COMPILER g++)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    find_program(COMPILER x86_64-w64-mingw32-g++)
+    find_program(CXX_COMPILER x86_64-w64-mingw32-g++)
 endif()
 
-if(NOT COMPILER)
+if(NOT CXX_COMPILER)
     message(FATAL_ERROR "Missing compiler, Cmake will exit.")
 endif()
 
-set(CMAKE_CXX_COMPILER ${COMPILER})
+set(CMAKE_CXX_COMPILER ${CXX_COMPILER})
 
 if(NOT ${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
     message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
