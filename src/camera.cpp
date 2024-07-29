@@ -81,7 +81,7 @@ void wze::camera::initialize() {
     set_y(0);
     set_z(0);
     set_angle(0);
-    set_focus(512);
+    set_focus(std::numeric_limits<uint8_t>::max());
 }
 
 void wze::camera::project(renderable& instance) {
@@ -98,7 +98,7 @@ void wze::camera::project(renderable& instance) {
 
     instance.set_screen_angle(instance.angle() - angle());
 
-    if (instance.z() == z() || !focus()) {
+    if (instance.z() == z() || !(bool)focus()) {
         instance.set_screen_area({0, 0, 0, 0});
         return;
     }
@@ -115,7 +115,7 @@ void wze::camera::project(renderable& instance) {
 std::pair<float, float> wze::camera::project(float x, float y, float z) {
     float scale;
 
-    if (z == camera::z() || !focus()) {
+    if (z == camera::z() || !(bool)focus()) {
         return {0, 0};
     }
 
@@ -130,7 +130,7 @@ std::pair<float, float> wze::camera::unproject(float x, float y, float z) {
     float determinant;
     float scale;
 
-    if (z == camera::z() || !focus()) {
+    if (z == camera::z() || !(bool)focus()) {
         return {0, 0};
     }
 
