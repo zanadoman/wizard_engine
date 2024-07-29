@@ -5,7 +5,7 @@ Checks: >
   clang-analyzer-*,
   cppcoreguidelines-*,
   hicpp-*,
-  misc-*
+  misc-*,
   modernize-*,
   performance-*,
   portability-*,
