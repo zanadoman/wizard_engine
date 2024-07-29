@@ -87,8 +87,8 @@ void wze::renderer::open_plane() {
 bool wze::renderer::invisible(renderable const& instance) {
     return !instance.visible() ||
            (instance.spatial() && instance.z() <= camera::z()) ||
-           !instance.color_a() || !instance.texture() || !instance.width() ||
-           !instance.height();
+           !instance.color_a() || !instance.texture() ||
+           !(bool)instance.width() || !(bool)instance.height();
 }
 
 void wze::renderer::transform(renderable& instance) {
@@ -100,9 +100,9 @@ void wze::renderer::transform(renderable& instance) {
 
 bool wze::renderer::offscreen(renderable const& instance) {
     return instance.screen_area().x + instance.screen_area().w < 0 ||
-           window::width() <= instance.screen_area().x ||
+           (float)window::width() <= instance.screen_area().x ||
            instance.screen_area().y + instance.screen_area().h < 0 ||
-           window::height() <= instance.screen_area().y;
+           (float)window::height() <= instance.screen_area().y;
 }
 
 void wze::renderer::render(renderable const& instance) {
@@ -259,10 +259,10 @@ void wze::renderer::set_plane_color_a(uint8_t plane_color_a) {
 }
 
 void wze::renderer::initialize() {
-    set_origo_x(window::width() / 2.0);
-    set_origo_y(window::height() / 2.0);
-    if (!(_base = SDL_CreateRenderer(window::base(), -1,
-                                     SDL_RENDERER_ACCELERATED)) ||
+    set_origo_x((float)window::width() / 2);
+    set_origo_y((float)window::height() / 2);
+    _base = SDL_CreateRenderer(window::base(), -1, SDL_RENDERER_ACCELERATED);
+    if (!base() ||
         SDL_RenderSetLogicalSize(base(), window::width(), window::height())) {
         throw std::runtime_error(SDL_GetError());
     }
@@ -270,11 +270,11 @@ void wze::renderer::initialize() {
     set_background_color_g(0);
     set_background_color_b(0);
     set_background_texture({});
-    if (!(_space = {SDL_CreateTexture(base(), SDL_PIXELFORMAT_RGBA8888,
-                                      SDL_TEXTUREACCESS_TARGET, window::width(),
-                                      window::height()),
-                    SDL_DestroyTexture}) ||
-        SDL_SetTextureBlendMode(_space.get(), SDL_BLENDMODE_BLEND)) {
+    _space = {SDL_CreateTexture(base(), SDL_PIXELFORMAT_RGBA8888,
+                                SDL_TEXTUREACCESS_TARGET, window::width(),
+                                window::height()),
+              SDL_DestroyTexture};
+    if (!_space || SDL_SetTextureBlendMode(_space.get(), SDL_BLENDMODE_BLEND)) {
         throw std::runtime_error(SDL_GetError());
     }
     set_space_color_r(std::numeric_limits<uint8_t>::max());
@@ -286,11 +286,11 @@ void wze::renderer::initialize() {
         math::length(window::width(), window::height());
     _space_area.x = origo_x() - _space_area.w / 2;
     _space_area.y = origo_y() - _space_area.h / 2;
-    if (!(_plane = {SDL_CreateTexture(base(), SDL_PIXELFORMAT_RGBA8888,
-                                      SDL_TEXTUREACCESS_TARGET, window::width(),
-                                      window::height()),
-                    SDL_DestroyTexture}) ||
-        SDL_SetTextureBlendMode(_plane.get(), SDL_BLENDMODE_BLEND)) {
+    _plane = {SDL_CreateTexture(base(), SDL_PIXELFORMAT_RGBA8888,
+                                SDL_TEXTUREACCESS_TARGET, window::width(),
+                                window::height()),
+              SDL_DestroyTexture};
+    if (!_plane || SDL_SetTextureBlendMode(_plane.get(), SDL_BLENDMODE_BLEND)) {
         throw std::runtime_error(SDL_GetError());
     }
     set_plane_color_r(std::numeric_limits<uint8_t>::max());
