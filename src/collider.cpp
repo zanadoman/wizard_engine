@@ -35,7 +35,8 @@ void wze::collider::push_x(float force) {
         return;
     }
 
-    if (0 < (force -= contacts_mass(contacts))) {
+    force -= contacts_mass(contacts);
+    if (0 < force) {
         std::ranges::for_each(
             contacts, [this, force](collider* contact) -> void {
                 if (resolve_x(*contact, contact->mass() + force)) {
@@ -58,7 +59,8 @@ void wze::collider::push_y(float force) {
         return;
     }
 
-    if (0 < (force -= contacts_mass(contacts))) {
+    force -= contacts_mass(contacts);
+    if (0 < force) {
         std::ranges::for_each(
             contacts, [this, force](collider* contact) -> void {
                 if (resolve_y(*contact, contact->mass() + force)) {
@@ -81,7 +83,8 @@ void wze::collider::push_xy(float force) {
         return;
     }
 
-    if (0 < (force -= contacts_mass(contacts))) {
+    force -= contacts_mass(contacts);
+    if (0 < force) {
         std::ranges::for_each(
             contacts, [this, force](collider* contact) -> void {
                 if (resolve_xy(*contact, contact->mass() + force)) {
@@ -124,7 +127,8 @@ float wze::collider::contacts_mass(
 void wze::collider::resolve_x(collider const& other) {
     float collision;
 
-    if (!(collision = body().collision(other.body()))) {
+    collision = body().collision(other.body());
+    if (!(bool)collision) {
         return;
     }
 
@@ -138,7 +142,8 @@ bool wze::collider::resolve_x(collider& other, float force) {
     float other_movement;
     float movement;
 
-    if (!(collision = body().collision(other.body()))) {
+    collision = body().collision(other.body());
+    if (!(bool)collision) {
         return false;
     }
 
@@ -160,7 +165,8 @@ bool wze::collider::resolve_x(collider& other, float force) {
 void wze::collider::resolve_y(collider const& other) {
     float collision;
 
-    if (!(collision = body().collision(other.body()))) {
+    collision = body().collision(other.body());
+    if (!(bool)collision) {
         return;
     }
 
@@ -174,7 +180,8 @@ bool wze::collider::resolve_y(collider& other, float force) {
     float other_movement;
     float movement;
 
-    if (!(collision = body().collision(other.body()))) {
+    collision = body().collision(other.body());
+    if (!(bool)collision) {
         return false;
     }
 
@@ -201,11 +208,12 @@ void wze::collider::resolve_xy(collider const& other) {
 
     difference_x = other.body().x() - body().x();
     difference_y = other.body().y() - body().y();
-    if (!difference_x && !difference_y) {
+    if (!(bool)difference_x && !(bool)difference_y) {
         return;
     }
 
-    if (!(collision = body().collision(other.body()))) {
+    collision = body().collision(other.body());
+    if (!(bool)collision) {
         return;
     }
 
@@ -228,11 +236,12 @@ bool wze::collider::resolve_xy(collider& other, float force) {
 
     difference_x = other.body().x() - body().x();
     difference_y = other.body().y() - body().y();
-    if (!difference_x && !difference_y) {
+    if (!(bool)difference_x && !(bool)difference_y) {
         return false;
     }
 
-    if (!(collision = body().collision(other.body()))) {
+    collision = body().collision(other.body());
+    if (!(bool)collision) {
         return false;
     }
 
@@ -462,7 +471,7 @@ wze::collider::collider(polygon const& body, float force, float mass,
 }
 
 wze::collider::collider(collider const& other)
-    : entity(other.components()), _world(std::numeric_limits<uint8_t>::max()) {
+    : _world(std::numeric_limits<uint8_t>::max()) {
     *this = other;
 }
 
