@@ -51,7 +51,7 @@ void wze::input::update_keys() {
 
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
     keyboard_keys = SDL_GetKeyboardState(nullptr);
-    // NOLINTNEXTLINE (cppcoreguidelines-pro-bounds-pointer-arithmetic)
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
     std::copy(keyboard_keys, keyboard_keys + KEY_COUNT, _keys.data());
 
     mouse_keys = SDL_GetMouseState(nullptr, nullptr);

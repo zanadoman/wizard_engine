@@ -23,6 +23,7 @@
 
 #include <wizard_engine/math.hpp>
 
+// NOLINTNEXTLINE(cert-err59-cpp,cert-msc51-cpp,cert-msc32-c,cert-err58-cpp)
 std::mt19937_64 wze::math::_mt19937_64;
 
 void wze::math::initialize() {
@@ -34,7 +35,9 @@ float wze::math::length(float x, float y) {
 }
 
 float wze::math::angle(float x, float y) {
-    return x || y ? acosf(x / length(x, y)) * (y < 0 ? -1 : 1) : 0;
+    return (bool)x || (bool)y
+               ? acosf(x / length(x, y)) * (float)(y < 0 ? -1 : 1)
+               : 0;
 }
 
 float wze::math::move_x(float length, float angle) {
