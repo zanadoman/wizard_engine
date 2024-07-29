@@ -35,12 +35,15 @@
 std::vector<SDL_Event> wze::engine::_events;
 
 void wze::engine::play_intro() {
+    constexpr size_t logo_hash = 4621002103177400980;
+    constexpr float speed = 0.1;
+
     std::shared_ptr<image> logo;
     sprite intro;
     float opacity;
 
     logo = assets::load_image("./assets/wizard_engine/logo.png");
-    if (assets::hash_image(logo) != 4621002103177400980) {
+    if (assets::hash_image(logo) != logo_hash) {
         throw std::runtime_error("Invalid ./assets/wizard_engine/logo.png");
     }
 
@@ -48,27 +51,27 @@ void wze::engine::play_intro() {
              0,
              0,
              0,
-             window::height() / 2.f,
-             window::height() / 2.f,
+             (float)window::height() / 2,
+             (float)window::height() / 2,
              false,
              assets::create_texture(logo)};
 
     opacity = 0;
     while (opacity <= std::numeric_limits<uint8_t>::max()) {
-        intro.set_color_a(opacity);
+        intro.set_color_a((uint8_t)opacity);
         if (!update()) {
             return;
         }
-        opacity += 0.1f * timer::delta_time();
+        opacity += speed * timer::delta_time();
     }
 
     opacity = std::numeric_limits<uint8_t>::max();
     while (0 <= opacity) {
-        intro.set_color_a(opacity);
+        intro.set_color_a((uint8_t)opacity);
         if (!update()) {
             return;
         }
-        opacity -= 0.1f * timer::delta_time();
+        opacity -= speed * timer::delta_time();
     }
 }
 
@@ -77,6 +80,8 @@ std::vector<SDL_Event> const& wze::engine::events() {
 }
 
 void wze::engine::initialize(uint16_t width, uint16_t height) {
+    constexpr size_t MIX_DEFAULT_CHUNKSIZE = 4096;
+
     _events = {};
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
@@ -88,7 +93,7 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     if (!Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 | MIX_INIT_OGG |
                   MIX_INIT_MID | MIX_INIT_OPUS | MIX_INIT_WAVPACK) ||
         Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
-                      MIX_DEFAULT_CHANNELS, 2048)) {
+                      MIX_DEFAULT_CHANNELS, MIX_DEFAULT_CHUNKSIZE)) {
         throw std::runtime_error(Mix_GetError());
     }
     if (TTF_Init()) {

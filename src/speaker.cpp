@@ -251,9 +251,9 @@ void wze::speaker::stop(uint16_t fade_out) {
 }
 
 void wze::speaker::align_panning() {
-    static constexpr uint16_t turn = 360;
-    static constexpr uint16_t top = 270;
-    static constexpr uint16_t bottom = 90;
+    constexpr uint16_t turn = 360;
+    constexpr uint16_t top = 270;
+    constexpr uint16_t bottom = 90;
 
     float x_distance;
     float y_distance;
