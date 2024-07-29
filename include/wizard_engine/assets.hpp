@@ -166,6 +166,7 @@ class assets final {
      * @warning If the font cannot be loaded, throws std::runtime_error.
      */
     static std::shared_ptr<font>
+    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers)
     load_font(std::string const& path, uint8_t size = 48,
               font_style style = FONT_STYLE_NORMAL);
 

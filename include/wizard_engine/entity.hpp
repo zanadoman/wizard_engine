@@ -286,11 +286,12 @@ class entity : public component {
      * @param x_angle_lock Whether the x position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
-    entity(std::vector<std::weak_ptr<component>> const& components = {},
-           float x = 0, float y = 0, float angle = 0, float x_offset = 0,
-           float y_offset = 0, float angle_offset = 0, bool attach_x = true,
-           bool attach_y = true, bool attach_angle = true,
-           bool x_angle_lock = true, bool y_angle_lock = true);
+    explicit entity(
+        std::vector<std::weak_ptr<component>> const& components = {},
+        float x = 0, float y = 0, float angle = 0, float x_offset = 0,
+        float y_offset = 0, float angle_offset = 0, bool attach_x = true,
+        bool attach_y = true, bool attach_angle = true,
+        bool x_angle_lock = true, bool y_angle_lock = true);
 
     /**
      * @file entity.hpp
@@ -305,7 +306,7 @@ class entity : public component {
      * @author Zana Domán
      * @brief Default virtual destructor.
      */
-    virtual ~entity() = default;
+    ~entity() override = default;
 };
 } /* namespace wze */
 
