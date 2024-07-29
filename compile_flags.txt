@@ -1,11 +1,11 @@
 -I./include/
 -std=c++20
 -Ofast
--Werror
 -Wall
 -Wextra
 -Wpedantic
 -Wdouble-promotion
 -Wno-nan-infinity-disabled
+-Werror
 -save-temps
 -fverbose-asm
