@@ -60,17 +60,19 @@ bool wze::window::focused() {
 }
 
 void wze::window::initialize(uint16_t width, uint16_t height) {
+    constexpr size_t icon_hash = 8598449588574714901;
+
     std::shared_ptr<image> icon;
 
     icon = assets::load_image("./assets/wizard_engine/icon.png");
-    if (assets::hash_image(icon) != 8598449588574714901) {
+    if (assets::hash_image(icon) != icon_hash) {
         throw std::runtime_error("Invalid ./assets/wizard_engine/icon.png");
     }
 
-    if (!(_base = SDL_CreateWindow("Wizard Engine", SDL_WINDOWPOS_UNDEFINED,
-                                   SDL_WINDOWPOS_UNDEFINED, width, height,
-                                   SDL_WINDOW_RESIZABLE |
-                                       SDL_WINDOW_FULLSCREEN_DESKTOP))) {
+    _base = SDL_CreateWindow(
+        "Wizard Engine", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+        width, height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
+    if (!base()) {
         throw std::runtime_error(SDL_GetError());
     }
     _width = width;

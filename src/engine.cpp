@@ -80,7 +80,7 @@ std::vector<SDL_Event> const& wze::engine::events() {
 }
 
 void wze::engine::initialize(uint16_t width, uint16_t height) {
-    constexpr size_t MIX_DEFAULT_CHUNKSIZE = 4096;
+    constexpr uint16_t MIX_DEFAULT_CHUNKSIZE = 4096;
 
     _events = {};
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
