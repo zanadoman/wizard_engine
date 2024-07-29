@@ -79,17 +79,19 @@ bool wze::animator::play() {
         return false;
     }
 
-    elapsed_time = timer::delta_time() + _remaining_time;
+    elapsed_time = (uint32_t)timer::delta_time() + _remaining_time;
     set_current_frame(current_frame() + elapsed_time / frame_time());
     _remaining_time = elapsed_time % frame_time();
 
-    if ((looped = frames().size() <= current_frame())) {
+    looped = frames().size() <= current_frame();
+    if (looped) {
         set_current_frame(current_frame() % frames().size());
     }
 
     for (iterator = targets().begin(); iterator != targets().end();
          ++iterator) {
-        if ((instance = iterator->lock())) {
+        instance = iterator->lock();
+        if (instance) {
             if (instance->animated()) {
                 instance->set_texture(frames().at(current_frame()));
             }
