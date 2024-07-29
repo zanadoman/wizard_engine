@@ -417,9 +417,10 @@ class collider : public entity {
      * @param components Components of the collider.
      * @note World std::numeric_limits<uint8_t>::max() is always empty.
      */
-    collider(polygon const& body = {}, float force = 0, float mass = 0,
-             uint8_t world = std::numeric_limits<uint8_t>::max(),
-             std::vector<std::weak_ptr<component>> const& components = {});
+    explicit collider(
+        polygon const& body = {}, float force = 0, float mass = 0,
+        uint8_t world = std::numeric_limits<uint8_t>::max(),
+        std::vector<std::weak_ptr<component>> const& components = {});
 
     /**
      * @file collider.hpp
@@ -434,7 +435,7 @@ class collider : public entity {
      * @author Zana Domán
      * @brief Destroy the collider intance and erases from it's world.
      */
-    ~collider();
+    ~collider() override;
 
     /**
      * @file collider.hpp
