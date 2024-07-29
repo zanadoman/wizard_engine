@@ -51,17 +51,15 @@ void wze::input::update_keys() {
 
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
     keyboard_keys = SDL_GetKeyboardState(nullptr);
-    /* NOLINTNEXTLINE (cppcoreguidelines-pro-bounds-pointer-arithmetic) */
+    // NOLINTNEXTLINE (cppcoreguidelines-pro-bounds-pointer-arithmetic)
     std::copy(keyboard_keys, keyboard_keys + KEY_COUNT, _keys.data());
 
     mouse_keys = SDL_GetMouseState(nullptr, nullptr);
-    /* NOLINTBEGIN (hicpp-signed-bitwise) */
     _keys.at(KEY_MOUSE_LEFT) = mouse_keys & SDL_BUTTON_LMASK;
     _keys.at(KEY_MOUSE_MIDDLE) = mouse_keys & SDL_BUTTON_MMASK;
     _keys.at(KEY_MOUSE_RIGHT) = mouse_keys & SDL_BUTTON_RMASK;
     _keys.at(KEY_MOUSE_X1) = mouse_keys & SDL_BUTTON_X1MASK;
     _keys.at(KEY_MOUSE_X2) = mouse_keys & SDL_BUTTON_X2MASK;
-    /* NOLINTEND */
 
     _keys.at(KEY_MOUSE_WHEEL_UP) = false;
     _keys.at(KEY_MOUSE_WHEEL_DOWN) = false;
