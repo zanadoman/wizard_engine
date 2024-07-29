@@ -41,7 +41,7 @@ void wze::speaker::set_sound(std::shared_ptr<wze::sound> const& sound) {
 }
 
 int8_t wze::speaker::volume() const {
-    return Mix_Volume(_channel, -1);
+    return (int8_t)Mix_Volume(_channel, -1);
 }
 
 void wze::speaker::set_volume(int8_t volume) {
@@ -251,6 +251,10 @@ void wze::speaker::stop(uint16_t fade_out) {
 }
 
 void wze::speaker::align_panning() {
+    static constexpr uint16_t turn = 360;
+    static constexpr uint16_t top = 270;
+    static constexpr uint16_t bottom = 90;
+
     float x_distance;
     float y_distance;
     float z_ratio;
@@ -265,22 +269,22 @@ void wze::speaker::align_panning() {
     distance = math::length(x_distance, y_distance);
     angle = (int32_t)roundf(math::to_degrees(
                 math::angle(x_distance, y_distance) - camera::angle())) %
-            360;
+            turn;
     if (angle < 0) {
-        angle += 360;
+        angle += turn;
     }
 
     if (range() <= distance || z_ratio <= 0) {
         left = 0;
         right = 0;
-    } else if (90 < angle && angle < 270) {
+    } else if (bottom < angle && angle < top) {
         left = 1 - distance / range();
         right = powf(left, 2);
         if (spatial()) {
             left *= z_ratio;
             right *= z_ratio;
         }
-    } else if (270 < angle || angle < 90) {
+    } else if (top < angle || angle < bottom) {
         right = 1 - distance / range();
         left = powf(right, 2);
         if (spatial()) {
@@ -292,9 +296,10 @@ void wze::speaker::align_panning() {
         right = z_ratio;
     }
 
-    if (!Mix_SetPanning(_channel,
-                        round(std::numeric_limits<uint8_t>::max() * left),
-                        round(std::numeric_limits<uint8_t>::max() * right))) {
+    if (!Mix_SetPanning(
+            _channel,
+            (uint8_t)round(std::numeric_limits<uint8_t>::max() * left),
+            (uint8_t)round(std::numeric_limits<uint8_t>::max() * right))) {
         throw std::runtime_error(Mix_GetError());
     }
 }
