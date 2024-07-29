@@ -364,7 +364,7 @@ class speaker final : public component {
      * @brief Move constructor.
      * @param other Other speaker instance.
      */
-    speaker(speaker&& other);
+    speaker(speaker&& other) noexcept(false);
 
     /**
      * @file speaker.hpp
@@ -389,7 +389,7 @@ class speaker final : public component {
      * @param other Other speaker instance.
      * @return Self reference.
      */
-    speaker& operator=(speaker&& other);
+    speaker& operator=(speaker&& other) noexcept(false);
 
     /**
      * @file speaker.hpp

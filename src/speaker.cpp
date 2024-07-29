@@ -192,7 +192,7 @@ wze::speaker::speaker(speaker const& other) {
     _instances.push_back(this);
 }
 
-wze::speaker::speaker(speaker&& other) {
+wze::speaker::speaker(speaker&& other) noexcept(false) {
     _channel = audio::request_channel();
     *this = std::move(other);
     _instances.push_back(this);
@@ -224,7 +224,7 @@ wze::speaker& wze::speaker::operator=(speaker const& other) {
     return *this;
 }
 
-wze::speaker& wze::speaker::operator=(speaker&& other) {
+wze::speaker& wze::speaker::operator=(speaker&& other) noexcept(false) {
     if (&other != this) {
         *this = other;
         std::swap(_channel, other._channel);
