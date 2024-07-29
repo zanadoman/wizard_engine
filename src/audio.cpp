@@ -28,7 +28,7 @@ std::vector<int32_t> wze::audio::_channels;
 int32_t wze::audio::_maximum_channel;
 
 int8_t wze::audio::volume() {
-    return Mix_MasterVolume(-1);
+    return (int8_t)Mix_MasterVolume(-1);
 }
 
 void wze::audio::set_volume(int8_t volume) {
