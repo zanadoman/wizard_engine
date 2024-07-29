@@ -48,14 +48,9 @@ void wze::engine::play_intro() {
         throw std::runtime_error("Invalid ./assets/wizard_engine/logo.png");
     }
 
-    intro = {0,
-             0,
-             0,
-             0,
-             (float)window::height() / 2,
-             (float)window::height() / 2,
-             false,
-             assets::create_texture(logo)};
+    intro = sprite(0, 0, 0, 0, (float)window::height() / 2,
+                   (float)window::height() / 2, false,
+                   assets::create_texture(logo));
 
     opacity = 0;
     while (opacity <= std::numeric_limits<uint8_t>::max()) {

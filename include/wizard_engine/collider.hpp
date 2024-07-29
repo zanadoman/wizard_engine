@@ -418,7 +418,7 @@ class collider : public entity {
      * @note World std::numeric_limits<uint8_t>::max() is always empty.
      */
     explicit collider(
-        polygon const& body = {}, float force = 0, float mass = 0,
+        polygon const& body = polygon(), float force = 0, float mass = 0,
         uint8_t world = std::numeric_limits<uint8_t>::max(),
         std::vector<std::weak_ptr<component>> const& components = {});
 

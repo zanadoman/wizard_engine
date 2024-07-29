@@ -53,6 +53,7 @@
 #include <wizard_engine/timer.hpp>      /* IWYU pragma: export */
 #include <wizard_engine/window.hpp>     /* IWYU pragma: export */
 
+// NOLINTNEXTLINE(cppcoreguidelines-macro-usage)
 #define wze_main(width, height)                                                \
     /* @file wizard_engine.hpp                      */                         \
     /* @author Zana Domán                           */                        \
@@ -69,6 +70,7 @@
     int32_t __wze_main([[maybe_unused]] int32_t argc,                          \
                        [[maybe_unused]] char* argv[])
 
+// NOLINTNEXTLINE(cppcoreguidelines-macro-usage)
 #define wze_while(condition)                                                   \
     /* @file wizard_engine.hpp                                   */            \
     /* @author Zana Domán                                        */           \

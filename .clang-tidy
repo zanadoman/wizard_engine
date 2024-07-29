@@ -1,4 +1,4 @@
-HeaderFilterRegex: '^./include/wizard_engine/.*\.hpp$'
+HeaderFilterRegex: '^./include/wizard_engine/.*$'
 Checks: >
   bugprone-*,
   cert-*,
@@ -22,6 +22,7 @@ Checks: >
   -hicpp-noexcept-move,
   -hicpp-signed-bitwise,
   -modernize-use-trailing-return-type,
-  -performance-noexcept-move-constructor
+  -performance-noexcept-move-constructor,
+  -performance-enum-size
 WarningsAsErrors: '*'
 FormatStyle: file
