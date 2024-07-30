@@ -83,12 +83,9 @@ class math final {
      * @param maximum Maximum inclusive value of the interval.
      * @return Random real value from the interval.
      */
-    template <typename T>
-        requires std::same_as<T, float>
-    [[nodiscard]] static T random(T minimum = -std::numeric_limits<T>::max(),
-                                  T maximum = std::numeric_limits<T>::max()) {
-        return std::uniform_real_distribution<T>(minimum, maximum)(_mt19937_64);
-    }
+    [[nodiscard]] static float
+    random(float minimum = -std::numeric_limits<float>::max(),
+           float maximum = std::numeric_limits<float>::max());
 
     /**
      * @file math.hpp

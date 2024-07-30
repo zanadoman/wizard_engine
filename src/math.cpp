@@ -27,6 +27,10 @@
 // NOLINTNEXTLINE(cert-err59-cpp,cert-msc51-cpp,cert-msc32-c,cert-err58-cpp)
 std::mt19937_64 wze::math::_mt19937_64;
 
+float wze::math::random(float minimum, float maximum) {
+    return std::uniform_real_distribution<float>(minimum, maximum)(_mt19937_64);
+}
+
 void wze::math::initialize() {
     _mt19937_64 = std::mt19937_64(std::random_device()());
 }
