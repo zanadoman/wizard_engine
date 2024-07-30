@@ -96,7 +96,7 @@ class math final {
      */
     template <typename T>
         requires std::same_as<T, bool>
-    [[nodiscard]] static T random(float probability = 1. / 2) {
+    [[nodiscard]] static T random(float probability = (float)true / 2) {
         return std::bernoulli_distribution((double)probability)(_mt19937_64);
     }
 
