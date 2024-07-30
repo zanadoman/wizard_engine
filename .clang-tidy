@@ -9,7 +9,7 @@ Checks: >
   modernize-*,
   performance-*,
   portability-*,
-  readibility-*,
+  readability-*,
   -bugprone-easily-swappable-parameters,
   -clang-analyzer-optin.cplusplus.VirtualCall,
   -cppcoreguidelines-init-variables,
@@ -20,6 +20,7 @@ Checks: >
   -hicpp-special-member-functions,
   -hicpp-signed-bitwise,
   -modernize-use-trailing-return-type,
-  -performance-enum-size
+  -performance-enum-size,
+  -readability-identifier-length
 WarningsAsErrors: '*'
 FormatStyle: file
