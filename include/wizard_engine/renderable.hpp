@@ -46,7 +46,7 @@ class renderable {
      * @brief Returns the renderable instances.
      * @return Renderable instances.
      */
-    static std::vector<renderable*> const& instances();
+    [[nodiscard]] static std::vector<renderable*> const& instances();
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
@@ -55,7 +55,7 @@ class renderable {
      * @brief Returns the screen area of the object.
      * @return Screen area of the object.
      */
-    SDL_FRect const& screen_area() const;
+    [[nodiscard]] SDL_FRect const& screen_area() const;
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
@@ -73,7 +73,7 @@ class renderable {
      * @brief Returns the screen angle of the object.
      * @return Screen angle of the object.
      */
-    float screen_angle() const;
+    [[nodiscard]] float screen_angle() const;
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
@@ -91,7 +91,7 @@ class renderable {
      * @brief Returns the x position of the object.
      * @return X position of the object.
      */
-    virtual float x() const = 0;
+    [[nodiscard]] virtual float x() const = 0;
 
     /**
      * @file renderable.hpp
@@ -99,7 +99,7 @@ class renderable {
      * @brief Returns the y position of the object.
      * @return Y position of the object.
      */
-    virtual float y() const = 0;
+    [[nodiscard]] virtual float y() const = 0;
 
     /**
      * @file renderable.hpp
@@ -108,7 +108,7 @@ class renderable {
      * @return Z position of the object.
      * @note Ignored if the object is not spatial.
      */
-    virtual float z() const = 0;
+    [[nodiscard]] virtual float z() const = 0;
 
     /**
      * @file renderable.hpp
@@ -116,7 +116,7 @@ class renderable {
      * @brief Returns the angle of the object.
      * @return Angle of the object.
      */
-    virtual float angle() const = 0;
+    [[nodiscard]] virtual float angle() const = 0;
 
     /**
      * @file renderable.hpp
@@ -124,7 +124,7 @@ class renderable {
      * @brief Returns the width of the object.
      * @return Width of the object.
      */
-    virtual float width() const = 0;
+    [[nodiscard]] virtual float width() const = 0;
 
     /**
      * @file renderable.hpp
@@ -132,7 +132,7 @@ class renderable {
      * @brief Returns the height of the object.
      * @return Height of the object.
      */
-    virtual float height() const = 0;
+    [[nodiscard]] virtual float height() const = 0;
 
     /**
      * @file renderable.hpp
@@ -140,7 +140,7 @@ class renderable {
      * @brief Returns whether the object is spatial or not.
      * @return Whether the object is spatial or not.
      */
-    virtual bool spatial() const = 0;
+    [[nodiscard]] virtual bool spatial() const = 0;
 
     /**
      * @file renderable.hpp
@@ -148,7 +148,8 @@ class renderable {
      * @brief Returns the texture of the object.
      * @return Texture of the object.
      */
-    virtual std::shared_ptr<wze::texture> const& texture() const = 0;
+    [[nodiscard]] virtual std::shared_ptr<wze::texture> const&
+    texture() const = 0;
 
     /**
      * @file renderable.hpp
@@ -156,7 +157,7 @@ class renderable {
      * @brief Returns the red color modifier of the texture.
      * @return Red color modifier of the texture.
      */
-    virtual uint8_t color_r() const = 0;
+    [[nodiscard]] virtual uint8_t color_r() const = 0;
 
     /**
      * @file renderable.hpp
@@ -164,7 +165,7 @@ class renderable {
      * @brief Returns the green color modifier of the texture.
      * @return Green color modifier of the texture.
      */
-    virtual uint8_t color_g() const = 0;
+    [[nodiscard]] virtual uint8_t color_g() const = 0;
 
     /**
      * @file renderable.hpp
@@ -172,7 +173,7 @@ class renderable {
      * @brief Returns the blue color modifier of the texture.
      * @return Blue color modifier of the texture.
      */
-    virtual uint8_t color_b() const = 0;
+    [[nodiscard]] virtual uint8_t color_b() const = 0;
 
     /**
      * @file renderable.hpp
@@ -180,7 +181,7 @@ class renderable {
      * @brief Returns the alpha color modifier of the texture.
      * @return Alpha color modifier of the texture.
      */
-    virtual uint8_t color_a() const = 0;
+    [[nodiscard]] virtual uint8_t color_a() const = 0;
 
     /**
      * @file renderable.hpp
@@ -188,7 +189,7 @@ class renderable {
      * @brief Returns whether the object is flipped on one of its axes.
      * @return Whether the object is flipped on one of its axes.
      */
-    virtual wze::flip flip() const = 0;
+    [[nodiscard]] virtual wze::flip flip() const = 0;
 
     /**
      * @file renderable.hpp
@@ -196,7 +197,7 @@ class renderable {
      * @brief Returns the visibility of the object.
      * @brief Visibility of the object.
      */
-    virtual bool visible() const = 0;
+    [[nodiscard]] virtual bool visible() const = 0;
 
     /**
      * @file renderable.hpp
@@ -204,7 +205,7 @@ class renderable {
      * @brief Returns the priority of the object in the render queue.
      * @brief Priority of the object in the render queue.
      */
-    virtual uint8_t priority() const = 0;
+    [[nodiscard]] virtual uint8_t priority() const = 0;
 
     /**
      * @file renderable.hpp

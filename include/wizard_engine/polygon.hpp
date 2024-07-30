@@ -71,7 +71,7 @@ class polygon final : public component {
      * @brief Returns the circumradius of the shape of the polygon.
      * @return Circumradius of the shape of the polygon.
      */
-    float circumradius() const;
+    [[nodiscard]] float circumradius() const;
 
   public:
     /**
@@ -81,7 +81,7 @@ class polygon final : public component {
      * @return Shape of the polygon.
      * @warning Shape should be convex with at least 3 vertices.
      */
-    std::vector<std::pair<float, float>> const& shape() const;
+    [[nodiscard]] std::vector<std::pair<float, float>> const& shape() const;
 
     /**
      * @file polygon.hpp
@@ -89,7 +89,7 @@ class polygon final : public component {
      * @brief Returns the radius of the shape of the polygon.
      * @return Radius of the shape of the polygon.
      */
-    float shape_radius() const;
+    [[nodiscard]] float shape_radius() const;
 
     /**
      * @file polygon.hpp
@@ -97,7 +97,7 @@ class polygon final : public component {
      * @brief Returns the points of the polygon.
      * @return Points of the polygon.
      */
-    std::vector<std::pair<float, float>> const& points() const;
+    [[nodiscard]] std::vector<std::pair<float, float>> const& points() const;
 
     /**
      * @file polygon.hpp
@@ -105,7 +105,7 @@ class polygon final : public component {
      * @brief Returns the radius of the points of the polygon.
      * @return Radius of the points of the polygon.
      */
-    float points_radius() const;
+    [[nodiscard]] float points_radius() const;
 
     /**
      * @file polygon.hpp
@@ -113,7 +113,7 @@ class polygon final : public component {
      * @brief Returns the x position of the polygon.
      * @return X position of the polygon.
      */
-    float x() const;
+    [[nodiscard]] float x() const;
 
     /**
      * @file polygon.hpp
@@ -129,7 +129,7 @@ class polygon final : public component {
      * @brief Returns the y position of the polygon.
      * @return Y position of the polygon.
      */
-    float y() const;
+    [[nodiscard]] float y() const;
 
     /**
      * @file polygon.hpp
@@ -145,7 +145,7 @@ class polygon final : public component {
      * @brief Returns the angle of the polygon.
      * @return Angle of the polygon.
      */
-    float angle() const;
+    [[nodiscard]] float angle() const;
 
     /**
      * @file polygon.hpp
@@ -161,7 +161,7 @@ class polygon final : public component {
      * @brief Returns the scale of the polygon.
      * @return Scale of the polygon.
      */
-    float scale() const;
+    [[nodiscard]] float scale() const;
 
     /**
      * @file polygon.hpp
@@ -177,7 +177,7 @@ class polygon final : public component {
      * @brief Returns the transformation matrix of the polygon.
      * @return Transformation matrix of the polygon.
      */
-    std::array<float, 4> const& transformation_matrix() const;
+    [[nodiscard]] std::array<float, 4> const& transformation_matrix() const;
 
     /**
      * @file polygon.hpp
@@ -185,7 +185,7 @@ class polygon final : public component {
      * @brief Returns the x offset of the polygon.
      * @return X offset of the polygon.
      */
-    float x_offset() const final;
+    [[nodiscard]] float x_offset() const final;
 
     /**
      * @file polygon.hpp
@@ -201,7 +201,7 @@ class polygon final : public component {
      * @brief Returns the y offset of the polygon.
      * @return Y offset of the polygon.
      */
-    float y_offset() const final;
+    [[nodiscard]] float y_offset() const final;
 
     /**
      * @file polygon.hpp
@@ -217,7 +217,7 @@ class polygon final : public component {
      * @brief Returns the angle offset of the polygon.
      * @return Angle offset of the polygon.
      */
-    float angle_offset() const final;
+    [[nodiscard]] float angle_offset() const final;
 
     /**
      * @file polygon.hpp
@@ -233,7 +233,7 @@ class polygon final : public component {
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
-    bool attach_x() const final;
+    [[nodiscard]] bool attach_x() const final;
 
     /**
      * @file polygon.hpp
@@ -249,7 +249,7 @@ class polygon final : public component {
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
-    bool attach_y() const final;
+    [[nodiscard]] bool attach_y() const final;
 
     /**
      * @file polygon.hpp
@@ -265,7 +265,7 @@ class polygon final : public component {
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
-    bool attach_angle() const final;
+    [[nodiscard]] bool attach_angle() const final;
 
     /**
      * @file polygon.hpp
@@ -281,7 +281,7 @@ class polygon final : public component {
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
-    bool x_angle_lock() const final;
+    [[nodiscard]] bool x_angle_lock() const final;
 
     /**
      * @file polygon.hpp
@@ -297,7 +297,7 @@ class polygon final : public component {
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
-    bool y_angle_lock() const final;
+    [[nodiscard]] bool y_angle_lock() const final;
 
     /**
      * @file polygon.hpp
@@ -342,7 +342,7 @@ class polygon final : public component {
      * @param y Y position of the point.
      * @return Whether the point is inside the polygon.
      */
-    bool inside(float x, float y) const;
+    [[nodiscard]] bool inside(float x, float y) const;
 
     /**
      * @file polygon.hpp
@@ -352,7 +352,7 @@ class polygon final : public component {
      * @param other Other polygon instance.
      * @return Whether the polygon overlaps with another polygon instance.
      */
-    bool overlap(polygon const& other) const;
+    [[nodiscard]] bool overlap(polygon const& other) const;
 
     /**
      * @file polygon.hpp
@@ -361,7 +361,7 @@ class polygon final : public component {
      * @param other Other polygon instance.
      * @return Depth of the collison with another polygon instance.
      */
-    float collision(polygon const& other) const;
+    [[nodiscard]] float collision(polygon const& other) const;
 };
 } /* namespace wze */
 

@@ -67,7 +67,7 @@ class math final {
      * @return Random integer value from the interval.
      */
     template <typename T>
-    static std::enable_if<std::is_integral<T>::value, T>::type
+    [[nodiscard]] static std::enable_if<std::is_integral<T>::value, T>::type
     random(T minimum = std::numeric_limits<T>::min(),
            T maximum = std::numeric_limits<T>::max()) {
         return std::uniform_int_distribution<T>(minimum, maximum)(_mt19937_64);
@@ -82,7 +82,7 @@ class math final {
      * @return Random real value from the interval.
      */
     template <typename T>
-    static std::enable_if<std::is_same<T, float>::value, T>::type
+    [[nodiscard]] static std::enable_if<std::is_same<T, float>::value, T>::type
     random(T minimum = -std::numeric_limits<T>::max(),
            T maximum = std::numeric_limits<T>::max()) {
         return std::uniform_real_distribution<T>(minimum, maximum)(_mt19937_64);
@@ -96,7 +96,7 @@ class math final {
      * @return Random boolean value.
      */
     template <typename T>
-    static std::enable_if<std::is_same<T, bool>::value, T>::type
+    [[nodiscard]] static std::enable_if<std::is_same<T, bool>::value, T>::type
     random(float probability = 1. / 2) {
         return std::bernoulli_distribution((double)probability)(_mt19937_64);
     }
@@ -109,7 +109,7 @@ class math final {
      * @param y Y component of the vector.
      * @return Length of the vector.
      */
-    static float length(float x, float y);
+    [[nodiscard]] static float length(float x, float y);
 
     /**
      * @file math.hpp
@@ -119,7 +119,7 @@ class math final {
      * @param y Y component of the vector.
      * @return Angle of the vector.
      */
-    static float angle(float x, float y);
+    [[nodiscard]] static float angle(float x, float y);
 
     /**
      * @file math.hpp
@@ -129,7 +129,7 @@ class math final {
      * @param angle Angle of the movement.
      * @return Moved x component of the vector.
      */
-    static float move_x(float length, float angle);
+    [[nodiscard]] static float move_x(float length, float angle);
 
     /**
      * @file math.hpp
@@ -139,7 +139,7 @@ class math final {
      * @param angle Angle of the movement
      * @return Moved y component of the vector.
      */
-    static float move_y(float length, float angle);
+    [[nodiscard]] static float move_y(float length, float angle);
 
     /**
      * @file math.hpp
@@ -149,7 +149,7 @@ class math final {
      * @param y Y component of the vector.
      * @return Normalized vector.
      */
-    static std::pair<float, float> normalize(float x, float y);
+    [[nodiscard]] static std::pair<float, float> normalize(float x, float y);
 
     /**
      * @file math.hpp
@@ -159,7 +159,8 @@ class math final {
      * @param scale Scale of the transformation matrix.
      * @return Created transformation matrix.
      */
-    static std::array<float, 4> transformation_matrix(float angle, float scale);
+    [[nodiscard]] static std::array<float, 4>
+    transformation_matrix(float angle, float scale);
 
     /**
      * @file math.hpp
@@ -170,8 +171,9 @@ class math final {
      * @param transformation_matrix Transformation matrix.
      * @return Transformed x component of the vector.
      */
-    static float transform_x(float x, float y,
-                             std::array<float, 4> const& transformation_matrix);
+    [[nodiscard]] static float
+    transform_x(float x, float y,
+                std::array<float, 4> const& transformation_matrix);
 
     /**
      * @file math.hpp
@@ -182,8 +184,9 @@ class math final {
      * @param transformation_matrix Transformation matrix.
      * @return Transformed y component of the vector.
      */
-    static float transform_y(float x, float y,
-                             std::array<float, 4> const& transformation_matrix);
+    [[nodiscard]] static float
+    transform_y(float x, float y,
+                std::array<float, 4> const& transformation_matrix);
 
     /**
      * @file math.hpp
@@ -192,8 +195,8 @@ class math final {
      * @param degrees Angle in degrees.
      * @return Angle in radians.
      */
-    static constexpr float to_radians(float degrees) {
-        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers)
+    [[nodiscard]] static constexpr float to_radians(float degrees) {
+        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
         return degrees * std::numbers::pi_v<float> / 180;
     }
 
@@ -204,8 +207,8 @@ class math final {
      * @param radians Angle in radians.
      * @return Angle in degrees.
      */
-    static constexpr float to_degrees(float radians) {
-        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers)
+    [[nodiscard]] static constexpr float to_degrees(float radians) {
+        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
         return radians * 180 / std::numbers::pi_v<float>;
     }
 };

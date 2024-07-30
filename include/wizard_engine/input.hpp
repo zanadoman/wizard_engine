@@ -77,7 +77,7 @@ class input final {
      * @brief Returns the key of the last keyboard event in UTF-32 encoding.
      * @return Key of the last keyboard event in UTF-32 encoding.
      */
-    static uint32_t key();
+    [[nodiscard]] static uint32_t key();
 
     /**
      * @file input.hpp
@@ -85,7 +85,7 @@ class input final {
      * @brief Returns the current absolute x position of the cursor.
      * @return Current absolute x position of the cursor.
      */
-    static float cursor_absolute_x();
+    [[nodiscard]] static float cursor_absolute_x();
 
     /**
      * @file input.hpp
@@ -93,7 +93,7 @@ class input final {
      * @brief Returns the current absolute y position of the cursor.
      * @return Current absolute y position of the cursor.
      */
-    static float cursor_absolute_y();
+    [[nodiscard]] static float cursor_absolute_y();
 
     /**
      * @file input.hpp
@@ -101,7 +101,7 @@ class input final {
      * @brief Returns the current relative x position of the cursor.
      * @return Current relative x position of the cursor.
      */
-    static float cursor_relative_x();
+    [[nodiscard]] static float cursor_relative_x();
 
     /**
      * @file input.hpp
@@ -109,7 +109,7 @@ class input final {
      * @brief Returns the current relative y position of the cursor.
      * @return Current relative y position of the cursor.
      */
-    static float cursor_relative_y();
+    [[nodiscard]] static float cursor_relative_y();
 
     /**
      * @file input.hpp
@@ -119,7 +119,7 @@ class input final {
      * @note Setting this value to 0 locks the cursor's relative position,
      * setting this value less than 0 inverts the cursor's relative position.
      */
-    static float mouse_sensitivity();
+    [[nodiscard]] static float mouse_sensitivity();
 
     /**
      * @file input.hpp
@@ -138,7 +138,7 @@ class input final {
      * @return Visibility of the cursor.
      * @note Hiding the cursor also captures it into the game window.
      */
-    static bool cursor_visible();
+    [[nodiscard]] static bool cursor_visible();
 
     /**
      * @file input.hpp
@@ -187,7 +187,7 @@ class input final {
      * @param key The keyboard or mousekey.
      * @return True if the keyboard or mousekey is pressed, false otherwise.
      */
-    static bool key(enum key key);
+    [[nodiscard]] static bool key(enum key key);
 
     /**
      * @file input.hpp
@@ -196,7 +196,7 @@ class input final {
      * @param z Spatial z component of the cursor.
      * @return Spatial x, y components of the cursor.
      */
-    static std::pair<float, float> cursor_spatial(float z);
+    [[nodiscard]] static std::pair<float, float> cursor_spatial(float z);
 };
 } /* namespace wze */
 
