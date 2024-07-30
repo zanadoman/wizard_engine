@@ -75,7 +75,8 @@ class entity : public component {
      * @brief Returns the components of the entity.
      * @return Components of the entity.
      */
-    virtual std::vector<std::weak_ptr<component>> const& components() const;
+    [[nodiscard]] virtual std::vector<std::weak_ptr<component>> const&
+    components() const;
 
     /**
      * @file entity.hpp
@@ -83,7 +84,7 @@ class entity : public component {
      * @brief Returns the components of the entity.
      * @return Components of the entity.
      */
-    virtual std::vector<std::weak_ptr<component>>& components();
+    [[nodiscard]] virtual std::vector<std::weak_ptr<component>>& components();
 
     /**
      * @file entity.hpp
@@ -91,7 +92,7 @@ class entity : public component {
      * @brief Returns the x position of the entity.
      * @return X position of the entity.
      */
-    virtual float x() const;
+    [[nodiscard]] virtual float x() const;
 
     /**
      * @file entity.hpp
@@ -107,7 +108,7 @@ class entity : public component {
      * @brief Returns the y position of the entity.
      * @return Y position of the entity.
      */
-    virtual float y() const;
+    [[nodiscard]] virtual float y() const;
 
     /**
      * @file entity.hpp
@@ -123,7 +124,7 @@ class entity : public component {
      * @brief Returns the angle of the entity.
      * @return Angle of the entity.
      */
-    virtual float angle() const;
+    [[nodiscard]] virtual float angle() const;
 
     /**
      * @file entity.hpp
@@ -139,7 +140,8 @@ class entity : public component {
      * @brief Returns the transformation matrix of the entity.
      * @return Transformation matrix of the entity.
      */
-    virtual std::array<float, 4> const& transformation_matrix() const;
+    [[nodiscard]] virtual std::array<float, 4> const&
+    transformation_matrix() const;
 
     /**
      * @file entity.hpp
@@ -147,7 +149,7 @@ class entity : public component {
      * @brief Returns the x offset of the entity.
      * @return X offset of the entity.
      */
-    float x_offset() const override;
+    [[nodiscard]] float x_offset() const override;
 
     /**
      * @file entity.hpp
@@ -163,7 +165,7 @@ class entity : public component {
      * @brief Returns the y offset of the entity.
      * @return Y offset of the entity.
      */
-    float y_offset() const override;
+    [[nodiscard]] float y_offset() const override;
 
     /**
      * @file entity.hpp
@@ -179,7 +181,7 @@ class entity : public component {
      * @brief Returns the angle offset of the entity.
      * @return Angle offset of the entity.
      */
-    float angle_offset() const override;
+    [[nodiscard]] float angle_offset() const override;
 
     /**
      * @file entity.hpp
@@ -195,7 +197,7 @@ class entity : public component {
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
-    bool attach_x() const override;
+    [[nodiscard]] bool attach_x() const override;
 
     /**
      * @file entity.hpp
@@ -211,7 +213,7 @@ class entity : public component {
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
-    bool attach_y() const override;
+    [[nodiscard]] bool attach_y() const override;
 
     /**
      * @file entity.hpp
@@ -227,7 +229,7 @@ class entity : public component {
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
-    bool attach_angle() const override;
+    [[nodiscard]] bool attach_angle() const override;
 
     /**
      * @file entity.hpp
@@ -243,7 +245,7 @@ class entity : public component {
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
-    bool x_angle_lock() const override;
+    [[nodiscard]] bool x_angle_lock() const override;
 
     /**
      * @file entity.hpp
@@ -259,7 +261,7 @@ class entity : public component {
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
-    bool y_angle_lock() const override;
+    [[nodiscard]] bool y_angle_lock() const override;
 
     /**
      * @file entity.hpp

@@ -62,7 +62,7 @@ class component {
      * @brief Returns the x offset of the object.
      * @return X offset of the object.
      */
-    virtual float x_offset() const = 0;
+    [[nodiscard]] virtual float x_offset() const = 0;
 
     /**
      * @file component.hpp
@@ -70,7 +70,7 @@ class component {
      * @brief Returns the y offset of the object.
      * @return Y offset of the object.
      */
-    virtual float y_offset() const = 0;
+    [[nodiscard]] virtual float y_offset() const = 0;
 
     /**
      * @file component.hpp
@@ -78,7 +78,7 @@ class component {
      * @brief Returns the angle offset of the object.
      * @return Angle offset of the object.
      */
-    virtual float angle_offset() const = 0;
+    [[nodiscard]] virtual float angle_offset() const = 0;
 
     /**
      * @file component.hpp
@@ -86,7 +86,7 @@ class component {
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
-    virtual bool attach_x() const = 0;
+    [[nodiscard]] virtual bool attach_x() const = 0;
 
     /**
      * @file component.hpp
@@ -94,7 +94,7 @@ class component {
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
-    virtual bool attach_y() const = 0;
+    [[nodiscard]] virtual bool attach_y() const = 0;
 
     /**
      * @file component.hpp
@@ -102,7 +102,7 @@ class component {
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
-    virtual bool attach_angle() const = 0;
+    [[nodiscard]] virtual bool attach_angle() const = 0;
 
     /**
      * @file component.hpp
@@ -110,7 +110,7 @@ class component {
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
-    virtual bool x_angle_lock() const = 0;
+    [[nodiscard]] virtual bool x_angle_lock() const = 0;
 
     /**
      * @file component.hpp
@@ -118,7 +118,7 @@ class component {
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
-    virtual bool y_angle_lock() const = 0;
+    [[nodiscard]] virtual bool y_angle_lock() const = 0;
 
     /**
      * @file component.hpp

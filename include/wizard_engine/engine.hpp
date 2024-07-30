@@ -56,7 +56,7 @@ class engine final {
      * @brief Returns the events of the engine.
      * @return Events of the engine.
      */
-    static std::vector<SDL_Event> const& events();
+    [[nodiscard]] static std::vector<SDL_Event> const& events();
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
@@ -80,7 +80,7 @@ class engine final {
      * @note This method is automatically called when wze_while is used.
      * @warning This method must be called in the condition of the game loop.
      */
-    static bool update();
+    [[nodiscard]] static bool update();
 };
 } /* namespace wze */
 

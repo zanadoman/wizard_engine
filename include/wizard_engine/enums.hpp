@@ -103,6 +103,7 @@ enum key {
     KEY_X = SDL_SCANCODE_X,
     KEY_Y = SDL_SCANCODE_Y,
     KEY_Z = SDL_SCANCODE_Z,
+    // NOLINTNEXTLINE(misc-confusable-identifiers)
     KEY_1 = SDL_SCANCODE_1,
     KEY_2 = SDL_SCANCODE_2,
     KEY_3 = SDL_SCANCODE_3,
@@ -112,6 +113,7 @@ enum key {
     KEY_7 = SDL_SCANCODE_7,
     KEY_8 = SDL_SCANCODE_8,
     KEY_9 = SDL_SCANCODE_9,
+    // NOLINTNEXTLINE(misc-confusable-identifiers)
     KEY_0 = SDL_SCANCODE_0,
     KEY_RETURN = SDL_SCANCODE_RETURN,
     KEY_ESCAPE = SDL_SCANCODE_ESCAPE,

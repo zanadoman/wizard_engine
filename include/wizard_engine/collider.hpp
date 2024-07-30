@@ -72,7 +72,7 @@ class collider : public entity {
      * @brief Returns the possible contacts of a collision.
      * @return Possible contacts of the collision.
      */
-    std::vector<collider*> contacts() const;
+    [[nodiscard]] std::vector<collider*> contacts() const;
 
     /**
      * @file collider.hpp
@@ -81,7 +81,8 @@ class collider : public entity {
      * @param contacts Possible contacts of the collision.
      * @return Mass of the possible contacts of the collision.
      */
-    static float contacts_mass(std::vector<collider*> const& contacts);
+    [[nodiscard]] static float
+    contacts_mass(std::vector<collider*> const& contacts);
 
     /**
      * @file collider.hpp
@@ -100,7 +101,7 @@ class collider : public entity {
      * @param other Other collider instance.
      * @return Whether the collision is resolved or not.
      */
-    bool resolve_x(collider& other, float force);
+    [[nodiscard]] bool resolve_x(collider& other, float force);
 
     /**
      * @file collider.hpp
@@ -119,7 +120,7 @@ class collider : public entity {
      * @param other Other collider instance.
      * @return Whether the collision is resolved or not.
      */
-    bool resolve_y(collider& other, float force);
+    [[nodiscard]] bool resolve_y(collider& other, float force);
 
     /**
      * @file collider.hpp
@@ -138,7 +139,7 @@ class collider : public entity {
      * @param other Other collider instance.
      * @return Whether the collision is resolved or not.
      */
-    bool resolve_xy(collider& other, float force);
+    [[nodiscard]] bool resolve_xy(collider& other, float force);
 
     /**
      * @file collider.hpp
@@ -154,7 +155,7 @@ class collider : public entity {
      * @brief Returns the body of the collider.
      * @return Body of the collider.
      */
-    polygon const& body() const;
+    [[nodiscard]] polygon const& body() const;
 
     /**
      * @file collider.hpp
@@ -170,7 +171,7 @@ class collider : public entity {
      * @brief Returns the force of the collider.
      * @return Force of the collider.
      */
-    float force() const;
+    [[nodiscard]] float force() const;
 
     /**
      * @file collider.hpp
@@ -186,7 +187,7 @@ class collider : public entity {
      * @brief Returns the mass of the collider.
      * @return Mass of the collider.
      */
-    float mass() const;
+    [[nodiscard]] float mass() const;
 
     /**
      * @file collider.hpp
@@ -203,7 +204,7 @@ class collider : public entity {
      * @return World of the collider.
      * @note World std::numeric_limits<uint8_t>::max() is always empty.
      */
-    uint8_t world() const;
+    [[nodiscard]] uint8_t world() const;
 
     /**
      * @file collider.hpp
@@ -220,7 +221,7 @@ class collider : public entity {
      * @brief Returns the x position of the collider.
      * @return X position of the collider.
      */
-    float x() const final;
+    [[nodiscard]] float x() const final;
 
     /**
      * @file collider.hpp
@@ -236,7 +237,7 @@ class collider : public entity {
      * @brief Returns the y position of the collider.
      * @return Y position of the collider.
      */
-    float y() const final;
+    [[nodiscard]] float y() const final;
 
     /**
      * @file collider.hpp
@@ -252,7 +253,7 @@ class collider : public entity {
      * @brief Returns the angle of the collider.
      * @return Angle of the collider.
      */
-    float angle() const final;
+    [[nodiscard]] float angle() const final;
 
     /**
      * @file collider.hpp
@@ -268,7 +269,7 @@ class collider : public entity {
      * @brief Returns the scale of the collider.
      * @return Scale of the collider.
      */
-    float scale() const;
+    [[nodiscard]] float scale() const;
 
     /**
      * @file collider.hpp
@@ -284,7 +285,7 @@ class collider : public entity {
      * @brief Returns the x offset of the collider.
      * @return X offset of the collider.
      */
-    float x_offset() const final;
+    [[nodiscard]] float x_offset() const final;
 
     /**
      * @file collider.hpp
@@ -300,7 +301,7 @@ class collider : public entity {
      * @brief Returns the y offset of the collider.
      * @return Y offset of the collider.
      */
-    float y_offset() const final;
+    [[nodiscard]] float y_offset() const final;
 
     /**
      * @file collider.hpp
@@ -316,7 +317,7 @@ class collider : public entity {
      * @brief Returns the angle offset of the collider.
      * @return Angle offset of the collider.
      */
-    float angle_offset() const final;
+    [[nodiscard]] float angle_offset() const final;
 
     /**
      * @file collider.hpp
@@ -332,7 +333,7 @@ class collider : public entity {
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
-    bool attach_x() const final;
+    [[nodiscard]] bool attach_x() const final;
 
     /**
      * @file collider.hpp
@@ -348,7 +349,7 @@ class collider : public entity {
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
-    bool attach_y() const final;
+    [[nodiscard]] bool attach_y() const final;
 
     /**
      * @file collider.hpp
@@ -364,7 +365,7 @@ class collider : public entity {
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
-    bool attach_angle() const final;
+    [[nodiscard]] bool attach_angle() const final;
 
     /**
      * @file collider.hpp
@@ -380,7 +381,7 @@ class collider : public entity {
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by angle.
      */
-    bool x_angle_lock() const final;
+    [[nodiscard]] bool x_angle_lock() const final;
 
     /**
      * @file collider.hpp
@@ -396,7 +397,7 @@ class collider : public entity {
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
-    bool y_angle_lock() const final;
+    [[nodiscard]] bool y_angle_lock() const final;
 
     /**
      * @file collider.hpp
