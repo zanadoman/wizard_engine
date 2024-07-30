@@ -235,9 +235,9 @@ bool wze::polygon::inside(float x, float y) const {
         if ((0 < determinant && temporary < 0) ||
             (determinant < 0 && 0 < temporary)) {
             return false;
-        } else {
-            determinant = temporary;
         }
+
+        determinant = temporary;
     }
 
     return true;

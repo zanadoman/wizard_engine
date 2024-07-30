@@ -56,11 +56,11 @@ void wze::input::update_keys() {
     std::copy(keyboard_keys, keyboard_keys + KEY_COUNT, _keys.data());
 
     mouse_keys = SDL_GetMouseState(nullptr, nullptr);
-    _keys.at(KEY_MOUSE_LEFT) = mouse_keys & SDL_BUTTON_LMASK;
-    _keys.at(KEY_MOUSE_MIDDLE) = mouse_keys & SDL_BUTTON_MMASK;
-    _keys.at(KEY_MOUSE_RIGHT) = mouse_keys & SDL_BUTTON_RMASK;
-    _keys.at(KEY_MOUSE_X1) = mouse_keys & SDL_BUTTON_X1MASK;
-    _keys.at(KEY_MOUSE_X2) = mouse_keys & SDL_BUTTON_X2MASK;
+    _keys.at(KEY_MOUSE_LEFT) = (bool)(mouse_keys & SDL_BUTTON_LMASK);
+    _keys.at(KEY_MOUSE_MIDDLE) = (bool)(mouse_keys & SDL_BUTTON_MMASK);
+    _keys.at(KEY_MOUSE_RIGHT) = (bool)(mouse_keys & SDL_BUTTON_RMASK);
+    _keys.at(KEY_MOUSE_X1) = (bool)(mouse_keys & SDL_BUTTON_X1MASK);
+    _keys.at(KEY_MOUSE_X2) = (bool)(mouse_keys & SDL_BUTTON_X2MASK);
 
     _keys.at(KEY_MOUSE_WHEEL_UP) = false;
     _keys.at(KEY_MOUSE_WHEEL_DOWN) = false;
@@ -126,11 +126,11 @@ void wze::input::set_mouse_sensitivity(float mouse_sensitivity) {
 }
 
 bool wze::input::cursor_visible() {
-    return SDL_GetRelativeMouseMode();
+    return (bool)SDL_GetRelativeMouseMode();
 }
 
 void wze::input::set_cursor_visible(bool cursor_visible) {
-    if (SDL_SetRelativeMouseMode((SDL_bool)!cursor_visible)) {
+    if ((bool)SDL_SetRelativeMouseMode((SDL_bool)!cursor_visible)) {
         throw std::runtime_error(SDL_GetError());
     }
 }
