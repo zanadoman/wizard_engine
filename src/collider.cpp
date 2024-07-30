@@ -32,7 +32,7 @@ void wze::collider::push_x(float force) {
     std::vector<collider*> contacts;
 
     contacts = collider::contacts();
-    if (!contacts.size()) {
+    if (!(bool)contacts.size()) {
         return;
     }
 
@@ -56,7 +56,7 @@ void wze::collider::push_y(float force) {
     std::vector<collider*> contacts;
 
     contacts = collider::contacts();
-    if (!contacts.size()) {
+    if (!(bool)contacts.size()) {
         return;
     }
 
@@ -80,7 +80,7 @@ void wze::collider::push_xy(float force) {
     std::vector<collider*> contacts;
 
     contacts = collider::contacts();
-    if (!contacts.size()) {
+    if (!(bool)contacts.size()) {
         return;
     }
 
@@ -113,8 +113,7 @@ std::vector<wze::collider*> wze::collider::contacts() const {
     return contacts;
 }
 
-float wze::collider::contacts_mass(
-    std::vector<collider*> const& contacts) const {
+float wze::collider::contacts_mass(std::vector<collider*> const& contacts) {
     float mass;
 
     mass = 0;
@@ -262,7 +261,7 @@ bool wze::collider::resolve_xy(collider& other, float force) {
     return true;
 }
 
-void wze::collider::align_entities() {
+void wze::collider::align_entities() const {
     std::ranges::for_each(_worlds.at(world()), [](collider* instance) -> void {
         if (instance->entity::x() != instance->body().x()) {
             instance->entity::set_x(instance->body().x());

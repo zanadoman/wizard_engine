@@ -76,7 +76,7 @@ bool wze::animator::play() {
     std::vector<std::weak_ptr<animatable>>::iterator iterator;
     std::shared_ptr<animatable> instance;
 
-    if (!frames().size() || !frame_time()) {
+    if (!(bool)frames().size() || !(bool)frame_time()) {
         return false;
     }
 

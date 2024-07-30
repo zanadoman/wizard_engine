@@ -43,8 +43,7 @@ void wze::audio::initialize() {
 
 void wze::audio::update() {
     std::ranges::for_each(speaker::instances(), [](speaker* instance) -> void {
-        if (instance->playing() && instance->volume() &&
-            instance->auto_panning()) {
+        if (instance->auto_panning()) {
             instance->align_panning();
         }
     });
@@ -70,13 +69,15 @@ int32_t wze::audio::request_channel() {
 }
 
 void wze::audio::drop_channel(int32_t channel) {
-    if (!Mix_UnregisterAllEffects(channel) || Mix_HaltChannel(channel)) {
+    if (!(bool)Mix_UnregisterAllEffects(channel) ||
+        (bool)Mix_HaltChannel(channel)) {
         throw std::runtime_error(Mix_GetError());
     }
 
     _channels.erase(std::ranges::find(_channels, channel -= MIX_CHANNELS));
     if (channel == _maximum_channel) {
-        _maximum_channel = _channels.size() ? std::ranges::max(_channels) : -1;
+        _maximum_channel =
+            (bool)_channels.size() ? std::ranges::max(_channels) : -1;
         Mix_AllocateChannels(MIX_CHANNELS + _maximum_channel + 1);
     }
 }
@@ -90,7 +91,7 @@ void wze::audio::resume() {
 }
 
 void wze::audio::stop() {
-    if (Mix_HaltChannel(-1)) {
+    if ((bool)Mix_HaltChannel(-1)) {
         throw std::runtime_error(Mix_GetError());
     }
 }

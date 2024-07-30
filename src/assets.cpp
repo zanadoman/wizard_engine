@@ -26,7 +26,7 @@
 #include <wizard_engine/renderer.hpp>
 
 void wze::assets::combine_hash(size_t& seed, size_t value) {
-    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers)
+    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
     seed ^= value + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 }
 
