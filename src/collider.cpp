@@ -138,7 +138,7 @@ void wze::collider::resolve_x(collider const& other) {
         return;
     }
 
-    collision += math::epsilon;
+    collision += math::epsilon();
     _body.set_x(body().x() +
                 (body().x() < other.body().x() ? -collision : collision));
 }
@@ -153,7 +153,7 @@ bool wze::collider::resolve_x(collider& other, float force) {
         return false;
     }
 
-    collision += math::epsilon;
+    collision += math::epsilon();
     other_movement = collision * force / (force + other.mass());
     movement = collision - other_movement;
 
@@ -176,7 +176,7 @@ void wze::collider::resolve_y(collider const& other) {
         return;
     }
 
-    collision += math::epsilon;
+    collision += math::epsilon();
     _body.set_y(body().y() +
                 (body().y() < other.body().y() ? -collision : collision));
 }
@@ -191,7 +191,7 @@ bool wze::collider::resolve_y(collider& other, float force) {
         return false;
     }
 
-    collision += math::epsilon;
+    collision += math::epsilon();
     other_movement = collision * force / (force + other.mass());
     movement = collision - other_movement;
 
@@ -227,7 +227,7 @@ void wze::collider::resolve_xy(collider const& other) {
     difference_x /= normalization;
     difference_y /= normalization;
 
-    collision += math::epsilon;
+    collision += math::epsilon();
     _body.set_x(body().x() - difference_x * collision);
     _body.set_y(body().y() - difference_y * collision);
 }
@@ -255,7 +255,7 @@ bool wze::collider::resolve_xy(collider& other, float force) {
     difference_x /= normalization;
     difference_y /= normalization;
 
-    collision += math::epsilon;
+    collision += math::epsilon();
     other_movement = collision * force / (force + other.mass());
     movement = collision - other_movement;
 

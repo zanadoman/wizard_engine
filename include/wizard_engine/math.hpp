@@ -47,7 +47,10 @@ class math final {
      * @author Zana Domán
      * @brief Single precision epsilon.
      */
-    static constexpr float epsilon = 0.01;
+    [[nodiscard]] static constexpr float epsilon() {
+        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
+        return 0.01;
+    }
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
