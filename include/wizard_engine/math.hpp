@@ -66,10 +66,9 @@ class math final {
      * @param maximum Maximum inclusive value of the interval.
      * @return Random integer value from the interval.
      */
-    template <typename T>
-    [[nodiscard]] static std::enable_if<std::is_integral<T>::value, T>::type
-    random(T minimum = std::numeric_limits<T>::min(),
-           T maximum = std::numeric_limits<T>::max()) {
+    template <std::integral T>
+    [[nodiscard]] static T random(T minimum = std::numeric_limits<T>::min(),
+                                  T maximum = std::numeric_limits<T>::max()) {
         return std::uniform_int_distribution<T>(minimum, maximum)(_mt19937_64);
     }
 
@@ -82,9 +81,9 @@ class math final {
      * @return Random real value from the interval.
      */
     template <typename T>
-    [[nodiscard]] static std::enable_if<std::is_same<T, float>::value, T>::type
-    random(T minimum = -std::numeric_limits<T>::max(),
-           T maximum = std::numeric_limits<T>::max()) {
+        requires std::same_as<T, float>
+    [[nodiscard]] static T random(T minimum = -std::numeric_limits<T>::max(),
+                                  T maximum = std::numeric_limits<T>::max()) {
         return std::uniform_real_distribution<T>(minimum, maximum)(_mt19937_64);
     }
 
@@ -96,8 +95,8 @@ class math final {
      * @return Random boolean value.
      */
     template <typename T>
-    [[nodiscard]] static std::enable_if<std::is_same<T, bool>::value, T>::type
-    random(float probability = 1. / 2) {
+        requires std::same_as<T, bool>
+    [[nodiscard]] static T random(float probability = 1. / 2) {
         return std::bernoulli_distribution((double)probability)(_mt19937_64);
     }
 

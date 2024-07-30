@@ -19,6 +19,7 @@ Checks: >
   -hicpp-member-init,
   -hicpp-special-member-functions,
   -hicpp-signed-bitwise,
+  -misc-include-cleaner,
   -modernize-use-trailing-return-type,
   -performance-enum-size,
   -readability-identifier-length

@@ -28,17 +28,19 @@
 std::array<std::vector<wze::collider*>, std::numeric_limits<uint8_t>::max()>
     wze::collider::_worlds = {};
 
+// NOLINTNEXTLINE(misc-no-recursion)
 void wze::collider::push_x(float force) {
     std::vector<collider*> contacts;
 
     contacts = collider::contacts();
-    if (!(bool)contacts.size()) {
+    if (contacts.empty()) {
         return;
     }
 
     force -= contacts_mass(contacts);
     if (0 < force) {
         std::ranges::for_each(
+            // NOLINTNEXTLINE(misc-no-recursion)
             contacts, [this, force](collider* contact) -> void {
                 if (resolve_x(*contact, contact->mass() + force)) {
                     contact->push_x(force);
@@ -52,17 +54,19 @@ void wze::collider::push_x(float force) {
     }
 }
 
+// NOLINTNEXTLINE(misc-no-recursion)
 void wze::collider::push_y(float force) {
     std::vector<collider*> contacts;
 
     contacts = collider::contacts();
-    if (!(bool)contacts.size()) {
+    if (contacts.empty()) {
         return;
     }
 
     force -= contacts_mass(contacts);
     if (0 < force) {
         std::ranges::for_each(
+            // NOLINTNEXTLINE(misc-no-recursion)
             contacts, [this, force](collider* contact) -> void {
                 if (resolve_y(*contact, contact->mass() + force)) {
                     contact->push_y(force);
@@ -76,17 +80,19 @@ void wze::collider::push_y(float force) {
     }
 }
 
+// NOLINTNEXTLINE(misc-no-recursion)
 void wze::collider::push_xy(float force) {
     std::vector<collider*> contacts;
 
     contacts = collider::contacts();
-    if (!(bool)contacts.size()) {
+    if (contacts.empty()) {
         return;
     }
 
     force -= contacts_mass(contacts);
     if (0 < force) {
         std::ranges::for_each(
+            // NOLINTNEXTLINE(misc-no-recursion)
             contacts, [this, force](collider* contact) -> void {
                 if (resolve_xy(*contact, contact->mass() + force)) {
                     contact->push_xy(force);
