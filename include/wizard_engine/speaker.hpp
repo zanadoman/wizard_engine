@@ -58,7 +58,7 @@ class speaker final : public component {
      * @brief Returns the speaker instances.
      * @return Speaker instances.
      */
-    static std::vector<speaker*> const& instances();
+    [[nodiscard]] static std::vector<speaker*> const& instances();
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
@@ -67,7 +67,7 @@ class speaker final : public component {
      * @brief Returns the sound of the speaker.
      * @return Sound of the speaker.
      */
-    std::shared_ptr<wze::sound> const& sound() const;
+    [[nodiscard]] std::shared_ptr<wze::sound> const& sound() const;
 
     /**
      * @file speaker.hpp
@@ -83,7 +83,7 @@ class speaker final : public component {
      * @brief Returns the volume of the speaker.
      * @return Volume of the speaker.
      */
-    int8_t volume() const;
+    [[nodiscard]] int8_t volume() const;
 
     /**
      * @file speaker.hpp
@@ -99,7 +99,7 @@ class speaker final : public component {
      * @brief Returns the range of the speaker.
      * @return Range of the speaker.
      */
-    float range() const;
+    [[nodiscard]] float range() const;
 
     /**
      * @file speaker.hpp
@@ -115,7 +115,7 @@ class speaker final : public component {
      * @brief Returns whether the panning should be aligned automatically.
      * @return Whether the panning should be aligned automatically.
      */
-    bool auto_panning() const;
+    [[nodiscard]] bool auto_panning() const;
 
     /**
      * @file speaker.hpp
@@ -131,7 +131,7 @@ class speaker final : public component {
      * @brief Returns the x position of the speaker.
      * @return X position of the speaker.
      */
-    float x() const;
+    [[nodiscard]] float x() const;
 
     /**
      * @file speaker.hpp
@@ -147,7 +147,7 @@ class speaker final : public component {
      * @brief Returns the y position of the speaker.
      * @return Y position of the speaker.
      */
-    float y() const;
+    [[nodiscard]] float y() const;
 
     /**
      * @file speaker.hpp
@@ -163,7 +163,7 @@ class speaker final : public component {
      * @brief Returns the z position of the speaker.
      * @return Z position of the speaker.
      */
-    float z() const;
+    [[nodiscard]] float z() const;
 
     /**
      * @file speaker.hpp
@@ -186,7 +186,7 @@ class speaker final : public component {
      * @brief Returns whether the speaker is spatial or not.
      * @return Whether the speaker is spatial or not.
      */
-    bool spatial() const;
+    [[nodiscard]] bool spatial() const;
 
     /**
      * @file speaker.hpp
@@ -202,7 +202,7 @@ class speaker final : public component {
      * @brief Returns the x offset of the speaker.
      * @return X offset of the speaker.
      */
-    float x_offset() const final;
+    [[nodiscard]] float x_offset() const final;
 
     /**
      * @file speaker.hpp
@@ -218,7 +218,7 @@ class speaker final : public component {
      * @brief Returns the y offset of the speaker.
      * @return Y offset of the speaker.
      */
-    float y_offset() const final;
+    [[nodiscard]] float y_offset() const final;
 
     /**
      * @file speaker.hpp
@@ -233,7 +233,7 @@ class speaker final : public component {
      * @author Zana Domán
      * @brief Unimplemented inherited method.
      */
-    float angle_offset() const final;
+    [[nodiscard]] float angle_offset() const final;
 
     /**
      * @file speaker.hpp
@@ -241,7 +241,7 @@ class speaker final : public component {
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
-    bool attach_x() const final;
+    [[nodiscard]] bool attach_x() const final;
 
     /**
      * @file speaker.hpp
@@ -257,7 +257,7 @@ class speaker final : public component {
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
-    bool attach_y() const final;
+    [[nodiscard]] bool attach_y() const final;
 
     /**
      * @file speaker.hpp
@@ -272,7 +272,7 @@ class speaker final : public component {
      * @author Zana Domán
      * @brief Unimplemented inherited method.
      */
-    bool attach_angle() const final;
+    [[nodiscard]] bool attach_angle() const final;
 
     /**
      * @file speaker.hpp
@@ -280,7 +280,7 @@ class speaker final : public component {
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
-    bool x_angle_lock() const final;
+    [[nodiscard]] bool x_angle_lock() const final;
 
     /**
      * @file speaker.hpp
@@ -296,7 +296,7 @@ class speaker final : public component {
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
-    bool y_angle_lock() const final;
+    [[nodiscard]] bool y_angle_lock() const final;
 
     /**
      * @file speaker.hpp
@@ -312,7 +312,7 @@ class speaker final : public component {
      * @brief Returns whether the speaker is playing or not.
      * @return Whether the speaker is playing or not.
      */
-    bool playing() const;
+    [[nodiscard]] bool playing() const;
 
     /**
      * @file speaker.hpp
@@ -320,7 +320,7 @@ class speaker final : public component {
      * @brief Returns whether the speaker is paused or not.
      * @return Whether the speaker is paused or not.
      */
-    bool paused() const;
+    [[nodiscard]] bool paused() const;
 
     /**
      * @file speaker.hpp

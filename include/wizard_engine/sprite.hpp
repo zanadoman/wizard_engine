@@ -69,7 +69,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the x position of the sprite.
      * @return X position of the sprite.
      */
-    float x() const final;
+    [[nodiscard]] float x() const final;
 
     /**
      * @file sprite.hpp
@@ -85,7 +85,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the y position of the sprite.
      * @return Y position of the sprite.
      */
-    float y() const final;
+    [[nodiscard]] float y() const final;
 
     /**
      * @file sprite.hpp
@@ -102,7 +102,7 @@ class sprite final : public renderable, public animatable, public component {
      * @return Z position of the sprite.
      * @note Ignored if the sprite is not spatial.
      */
-    float z() const final;
+    [[nodiscard]] float z() const final;
 
     /**
      * @file sprite.hpp
@@ -119,7 +119,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the angle of the sprite.
      * @return Angle of the sprite.
      */
-    float angle() const final;
+    [[nodiscard]] float angle() const final;
 
     /**
      * @file sprite.hpp
@@ -135,7 +135,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the width of the sprite.
      * @return Width of the sprite.
      */
-    float width() const final;
+    [[nodiscard]] float width() const final;
 
     /**
      * @file sprite.hpp
@@ -151,7 +151,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the height of the sprite.
      * @return Height of the sprite.
      */
-    float height() const final;
+    [[nodiscard]] float height() const final;
 
     /**
      * @file sprite.hpp
@@ -167,7 +167,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns whether the sprite is spatial or not.
      * @return Whether the sprite is spatial or not.
      */
-    bool spatial() const final;
+    [[nodiscard]] bool spatial() const final;
 
     /**
      * @file sprite.hpp
@@ -183,7 +183,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the texture of the sprite.
      * @return Texture of the sprite.
      */
-    std::shared_ptr<wze::texture> const& texture() const final;
+    [[nodiscard]] std::shared_ptr<wze::texture> const& texture() const final;
 
     /**
      * @file sprite.hpp
@@ -199,7 +199,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the red color modifier of the texture.
      * @return Red color modifier of the texture.
      */
-    uint8_t color_r() const final;
+    [[nodiscard]] uint8_t color_r() const final;
 
     /**
      * @file sprite.hpp
@@ -215,7 +215,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the green color modifier of the texture.
      * @return Green color modifier of the texture.
      */
-    uint8_t color_g() const final;
+    [[nodiscard]] uint8_t color_g() const final;
 
     /**
      * @file sprite.hpp
@@ -231,7 +231,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the blue color modifier of the texture.
      * @return Blue color modifier of the texture.
      */
-    uint8_t color_b() const final;
+    [[nodiscard]] uint8_t color_b() const final;
 
     /**
      * @file sprite.hpp
@@ -247,7 +247,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the alpha color modifier of the texture.
      * @return Alpha color modifier of the texture.
      */
-    uint8_t color_a() const final;
+    [[nodiscard]] uint8_t color_a() const final;
 
     /**
      * @file sprite.hpp
@@ -263,7 +263,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns whether the sprite is flipped on one of its axes.
      * @return Whether the sprite is flipped on one of its axes.
      */
-    enum flip flip() const final;
+    [[nodiscard]] enum flip flip() const final;
 
     /**
      * @file sprite.hpp
@@ -279,7 +279,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the visibility of the sprite.
      * @return Visibility of the sprite.
      */
-    bool visible() const final;
+    [[nodiscard]] bool visible() const final;
 
     /**
      * @file sprite.hpp
@@ -295,7 +295,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the priority of the sprite in the render queue.
      * @return Priority of the sprite in the render queue.
      */
-    uint8_t priority() const final;
+    [[nodiscard]] uint8_t priority() const final;
 
     /**
      * @file sprite.hpp
@@ -311,7 +311,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns whether the sprite should be animated or not.
      * @return Whether the sprite should be animated or not.
      */
-    bool animated() const final;
+    [[nodiscard]] bool animated() const final;
 
     /**
      * @file sprite.hpp
@@ -327,7 +327,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the x offset of the sprite.
      * @return X offset of the sprite.
      */
-    float x_offset() const final;
+    [[nodiscard]] float x_offset() const final;
 
     /**
      * @file sprite.hpp
@@ -343,7 +343,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the y offset of the sprite.
      * @return Y offset of the sprite.
      */
-    float y_offset() const final;
+    [[nodiscard]] float y_offset() const final;
 
     /**
      * @file sprite.hpp
@@ -359,7 +359,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns the angle offset of the sprite.
      * @return Angle offset of the sprite.
      */
-    float angle_offset() const final;
+    [[nodiscard]] float angle_offset() const final;
 
     /**
      * @file sprite.hpp
@@ -375,7 +375,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
-    bool attach_x() const final;
+    [[nodiscard]] bool attach_x() const final;
 
     /**
      * @file sprite.hpp
@@ -391,7 +391,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
-    bool attach_y() const final;
+    [[nodiscard]] bool attach_y() const final;
 
     /**
      * @file sprite.hpp
@@ -407,7 +407,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
-    bool attach_angle() const final;
+    [[nodiscard]] bool attach_angle() const final;
 
     /**
      * @file sprite.hpp
@@ -423,7 +423,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
-    bool x_angle_lock() const final;
+    [[nodiscard]] bool x_angle_lock() const final;
 
     /**
      * @file sprite.hpp
@@ -439,7 +439,7 @@ class sprite final : public renderable, public animatable, public component {
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
-    bool y_angle_lock() const final;
+    [[nodiscard]] bool y_angle_lock() const final;
 
     /**
      * @file sprite.hpp

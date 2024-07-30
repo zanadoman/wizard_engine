@@ -52,7 +52,7 @@ class window final {
      * @brief Returns the pointer of the game window.
      * @return Pointer of the game window.
      */
-    static SDL_Window* base();
+    [[nodiscard]] static SDL_Window* base();
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
     /**
@@ -61,7 +61,7 @@ class window final {
      * @brief Returns the width of the game window.
      * @return Width of the game window.
      */
-    static uint16_t width();
+    [[nodiscard]] static uint16_t width();
 
     /**
      * @file window.hpp
@@ -69,7 +69,7 @@ class window final {
      * @brief Returns the height of the game window.
      * @return Height of the game window.
      */
-    static uint16_t height();
+    [[nodiscard]] static uint16_t height();
 
     /**
      * @file window.hpp
@@ -77,7 +77,7 @@ class window final {
      * @brief Returns the title of the game window.
      * @return Title of the game window.
      */
-    static std::string title();
+    [[nodiscard]] static std::string title();
 
     /**
      * @file window.hpp
@@ -101,7 +101,7 @@ class window final {
      * @brief Returns true if the game window is visible, false otherwise.
      * @return True if the game window is visible, false otherwise.
      */
-    static bool visible();
+    [[nodiscard]] static bool visible();
 
     /**
      * @file window.hpp
@@ -109,7 +109,7 @@ class window final {
      * @brief Returns true if the game window is focused, false otherwise.
      * @return True if the game window is focused, false otherwise.
      */
-    static bool focused();
+    [[nodiscard]] static bool focused();
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**

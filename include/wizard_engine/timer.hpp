@@ -52,7 +52,7 @@ class timer final {
      * @note You can change the frame rate of the game by manipulating this
      * value.
      */
-    static uint8_t frame_time();
+    [[nodiscard]] static uint8_t frame_time();
 
     /**
      * @file timer.hpp
@@ -72,7 +72,7 @@ class timer final {
      * @note You can change the pace of the game or even reverse it by
      * manipulating this value.
      */
-    static float delta_time();
+    [[nodiscard]] static float delta_time();
 
     /**
      * @file timer.hpp
@@ -90,7 +90,7 @@ class timer final {
      * @brief Returns the current game time in milliseconds.
      * @return Current game time in milliseconds.
      */
-    static uint64_t current_time();
+    [[nodiscard]] static uint64_t current_time();
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
