@@ -53,11 +53,11 @@ void wze::window::set_icon(std::shared_ptr<image> const& icon) {
 }
 
 bool wze::window::visible() {
-    return SDL_GetWindowFlags(base()) & SDL_WINDOW_SHOWN;
+    return (bool)(SDL_GetWindowFlags(base()) & SDL_WINDOW_SHOWN);
 }
 
 bool wze::window::focused() {
-    return SDL_GetWindowFlags(base()) & SDL_WINDOW_INPUT_FOCUS;
+    return (bool)(SDL_GetWindowFlags(base()) & SDL_WINDOW_INPUT_FOCUS);
 }
 
 void wze::window::initialize(uint16_t width, uint16_t height) {
@@ -73,7 +73,7 @@ void wze::window::initialize(uint16_t width, uint16_t height) {
     _base = SDL_CreateWindow(
         "Wizard Engine", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
         width, height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
-    if (!base()) {
+    if (!(bool)base()) {
         throw std::runtime_error(SDL_GetError());
     }
     _width = width;
