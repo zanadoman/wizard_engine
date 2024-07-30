@@ -81,7 +81,7 @@ class collider : public entity {
      * @param contacts Possible contacts of the collision.
      * @return Mass of the possible contacts of the collision.
      */
-    float contacts_mass(std::vector<collider*> const& contacts) const;
+    static float contacts_mass(std::vector<collider*> const& contacts);
 
     /**
      * @file collider.hpp
@@ -145,7 +145,7 @@ class collider : public entity {
      * @author Zana Domán
      * @brief Aligns the entities of the colliders to their bodies.
      */
-    void align_entities();
+    void align_entities() const;
 
   public:
     /**

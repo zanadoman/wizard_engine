@@ -54,7 +54,7 @@ class camera final {
      * @brief Returns the x position of the camera.
      * @return X position of the camera.
      */
-    static float x();
+    [[nodiscard]] static float x();
 
     /**
      * @file camera.hpp
@@ -70,7 +70,7 @@ class camera final {
      * @brief Returns the y position of the camera.
      * @return Y position of the camera.
      */
-    static float y();
+    [[nodiscard]] static float y();
 
     /**
      * @file camera.hpp
@@ -86,7 +86,7 @@ class camera final {
      * @brief Returns the z position of the camera.
      * @return Z position of the camera.
      */
-    static float z();
+    [[nodiscard]] static float z();
 
     /**
      * @file camera.hpp
@@ -102,7 +102,7 @@ class camera final {
      * @brief Returns the angle of the camera.
      * @return Angle of the camera.
      */
-    static float angle();
+    [[nodiscard]] static float angle();
 
     /**
      * @file camera.hpp
@@ -118,7 +118,7 @@ class camera final {
      * @brief Returns the transformation matrix of the camera.
      * @return Transformation matrix of the camera.
      */
-    static std::array<float, 4> const& transformation_matrix();
+    [[nodiscard]] static std::array<float, 4> const& transformation_matrix();
 
     /**
      * @file camera.hpp
@@ -126,7 +126,7 @@ class camera final {
      * @brief Returns the focus of the camera.
      * @return Focus of the camera.
      */
-    static float focus();
+    [[nodiscard]] static float focus();
 
     /**
      * @file camera.hpp
@@ -164,7 +164,8 @@ class camera final {
      * @param z Z component of the spatial coordinate.
      * @return Plane coordinate.
      */
-    static std::pair<float, float> project(float x, float y, float z);
+    [[nodiscard]] static std::pair<float, float> project(float x, float y,
+                                                         float z);
 
     /**
      * @file camera.hpp
@@ -175,7 +176,8 @@ class camera final {
      * @param z Z component of the spatial coordinate.
      * @return Spatial coordinate.
      */
-    static std::pair<float, float> unproject(float x, float y, float z);
+    [[nodiscard]] static std::pair<float, float> unproject(float x, float y,
+                                                           float z);
 };
 } /* namespace wze */
 

@@ -48,7 +48,7 @@ class animator final {
      * @brief Returns the frame pool of the animation.
      * @return Frame pool of the animation.
      */
-    std::vector<std::shared_ptr<texture>> const& frames() const;
+    [[nodiscard]] std::vector<std::shared_ptr<texture>> const& frames() const;
 
     /**
      * @file animator.hpp
@@ -56,7 +56,7 @@ class animator final {
      * @brief Returns the frame time of the animation in milliseconds.
      * @return Frame time of the animation in milliseconds.
      */
-    uint16_t frame_time() const;
+    [[nodiscard]] uint16_t frame_time() const;
 
     /**
      * @file animator.hpp
@@ -72,7 +72,7 @@ class animator final {
      * @brief Returns the current frame of the animation.
      * @return Current frame of the animation.
      */
-    size_t current_frame() const;
+    [[nodiscard]] size_t current_frame() const;
 
     /**
      * @file animator.hpp
@@ -88,7 +88,7 @@ class animator final {
      * @brief Returns the targets of the animation.
      * @return Targets of the animation.
      */
-    std::vector<std::weak_ptr<animatable>> const& targets() const;
+    [[nodiscard]] std::vector<std::weak_ptr<animatable>> const& targets() const;
 
     /**
      * @file animator.hpp
@@ -96,7 +96,7 @@ class animator final {
      * @brief Returns the targets of the animation.
      * @return Targets of the animation.
      */
-    std::vector<std::weak_ptr<animatable>>& targets();
+    [[nodiscard]] std::vector<std::weak_ptr<animatable>>& targets();
 
     /**
      * @file animator.hpp
@@ -104,7 +104,7 @@ class animator final {
      * @brief Returns the direction of the frames of the animation.
      * @return Direction of the frames of the animation.
      */
-    bool reversed() const;
+    [[nodiscard]] bool reversed() const;
 
     /**
      * @file animator.hpp

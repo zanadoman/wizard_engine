@@ -47,7 +47,7 @@ class animatable {
      * @brief Returns whether the object should be animated or not.
      * @return Whether the object should be animated or not.
      */
-    virtual bool animated() const = 0;
+    [[nodiscard]] virtual bool animated() const = 0;
 
     /**
      * @file animatable.hpp

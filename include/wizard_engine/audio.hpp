@@ -49,7 +49,7 @@ class audio final {
      * @brief Returns the global volume of the audio.
      * @return Global volume of the audio.
      */
-    static int8_t volume();
+    [[nodiscard]] static int8_t volume();
 
     /**
      * @file audio.hpp
@@ -85,7 +85,7 @@ class audio final {
      * @return Allocated channel.
      * @warning If the channel cannot be allocated, throws std::runtime_error.
      */
-    static int32_t request_channel();
+    [[nodiscard]] static int32_t request_channel();
 #endif /* __WIZARD_ENGINE_INTERNAL */
 
 #ifdef __WIZARD_ENGINE_INTERNAL

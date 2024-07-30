@@ -97,7 +97,8 @@ class assets final {
      * @note Supported image formats: jpg, png, tif, webp, jxl, avif.
      * @warning If the image cannot be loaded, throws std::runtime_error.
      */
-    static std::shared_ptr<image> load_image(std::string const& path);
+    [[nodiscard]] static std::shared_ptr<image>
+    load_image(std::string const& path);
 
     /**
      * @file assets.hpp
@@ -110,7 +111,7 @@ class assets final {
      * @note 0 wrap length only wraps on newline characters.
      * @warning If the image cannot be created, throws std::runtime_error.
      */
-    static std::shared_ptr<image>
+    [[nodiscard]] static std::shared_ptr<image>
     create_image(std::string const& text, std::shared_ptr<font> const& font,
                  uint32_t wrap_length = 0);
 
@@ -121,7 +122,7 @@ class assets final {
      * @param image Hashed image.
      * @return Hash of the image.
      */
-    static size_t hash_image(std::shared_ptr<image> const& image);
+    [[nodiscard]] static size_t hash_image(std::shared_ptr<image> const& image);
 
     /**
      * @file assets.hpp
@@ -131,7 +132,7 @@ class assets final {
      * @return Created texture.
      * @warning If the texture cannot be created, throws std::runtime_error.
      */
-    static std::shared_ptr<texture>
+    [[nodiscard]] static std::shared_ptr<texture>
     create_texture(std::shared_ptr<image> const& image);
 
     /**
@@ -143,7 +144,8 @@ class assets final {
      * @note Supported sound formats: flac, mod, mp3, ogg, mid, opus, wavpack.
      * @warning If the sound cannot be loaded, throws std::runtime_error.
      */
-    static std::shared_ptr<sound> load_sound(std::string const& path);
+    [[nodiscard]] static std::shared_ptr<sound>
+    load_sound(std::string const& path);
 
     /**
      * @file assets.hpp
@@ -152,7 +154,7 @@ class assets final {
      * @param sound Hashed sound.
      * @return Hash of the sound.
      */
-    static size_t hash_sound(std::shared_ptr<sound> const& sound);
+    [[nodiscard]] static size_t hash_sound(std::shared_ptr<sound> const& sound);
 
     /**
      * @file assets.hpp
@@ -165,8 +167,8 @@ class assets final {
      * @note Supported font format: ttf.
      * @warning If the font cannot be loaded, throws std::runtime_error.
      */
-    static std::shared_ptr<font>
-    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers)
+    [[nodiscard]] static std::shared_ptr<font>
+    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
     load_font(std::string const& path, uint8_t size = 48,
               font_style style = FONT_STYLE_NORMAL);
 
@@ -178,7 +180,7 @@ class assets final {
      * @return Created cursor.
      * @warning If the cursor cannot be created, throws std::runtime_error.
      */
-    static std::unique_ptr<cursor, std::function<void(cursor*)>>
+    [[nodiscard]] static std::unique_ptr<cursor, std::function<void(cursor*)>>
     create_cursor(system_cursor system_cursor);
 
     /**
@@ -191,7 +193,7 @@ class assets final {
      * @return Created cursor.
      * @warning If the cursor cannot be created, throws std::runtime_error.
      */
-    static std::unique_ptr<cursor, std::function<void(cursor*)>>
+    [[nodiscard]] static std::unique_ptr<cursor, std::function<void(cursor*)>>
     create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x = 0,
                   uint16_t hot_y = 0);
 };
