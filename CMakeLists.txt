@@ -10,15 +10,37 @@ endif()
 project(wizard_engine LANGUAGES CXX)
 
 # Host
-if(NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
+if(NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Android)
     message(FATAL_ERROR "Unsupported host, CMake will exit.")
+endif()
+
+# Architecture
+if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
+    if(NOT ${CMAKE_SYSTEM_PROCESSOR} MATCHES x86_64|aarch64)
+        message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
+    endif()
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
+    if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL x86_64)
+        message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
+    endif()
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL armv7-a)
+        message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
+    endif()
 endif()
 
 # Compiler
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    find_program(CXX_COMPILER g++)
+    if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL x86_64)
+        find_program(CXX_COMPILER g++)
+    elseif(${CMAKE_SYSTEM_PROCESSOR} STREQUAL aarch64)
+        find_program(CXX_COMPILER aarch64-linux-gnu-g++)
+    endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     find_program(CXX_COMPILER x86_64-w64-mingw32-g++)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    find_program(CXX_COMPILER
+                 ${ANDROID_NDK}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++)
 endif()
 
 if(NOT CXX_COMPILER)
@@ -27,12 +49,20 @@ endif()
 
 set(CMAKE_CXX_COMPILER ${CXX_COMPILER})
 
-if(NOT ${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
-    message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
-endif()
-
-if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 13.1)
-    message(FATAL_ERROR "Outdated compiler, CMake will exit.")
+if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
+    if(NOT ${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
+        message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
+    endif()
+    if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 13.1)
+        message(FATAL_ERROR "Outdated compiler, CMake will exit.")
+    endif()
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    if(NOT ${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
+        message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
+    endif()
+    if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 17.0.2)
+        message(FATAL_ERROR "Outdated compiler, CMake will exit.")
+    endif()
 endif()
 
 # Headers
