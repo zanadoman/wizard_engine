@@ -45,7 +45,10 @@
 #include <utility>     /* IWYU pragma: export */
 #include <vector>      /* IWYU pragma: export */
 
+#ifdef __WIN32
 #define SDL_MAIN_HANDLED
+#endif
+
 #ifdef __ANDROID__
 #define SDL_DISABLE_IMMINTRIN_H
 #endif
