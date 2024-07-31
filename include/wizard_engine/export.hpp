@@ -49,7 +49,7 @@
 #define SDL_MAIN_HANDLED
 #endif
 
-#ifdef __ANDROID__
+#ifdef __aarch64__
 #define SDL_DISABLE_IMMINTRIN_H
 #endif
 

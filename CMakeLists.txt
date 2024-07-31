@@ -74,40 +74,47 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 # Libraries
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/libSDL2-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/libSDL2_image-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/libSDL2_mixer-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/libSDL2_ttf-2.0.so.0)
+    if (${CMAKE_SYSTEM_PROCESSOR} STREQUAL x86_64)
+        target_link_libraries(${PROJECT_NAME}
+                              ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/libSDL2-2.0.so.0)
+        target_link_libraries(${PROJECT_NAME}
+                              ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/libSDL2_image-2.0.so.0)
+        target_link_libraries(${PROJECT_NAME}
+                              ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/libSDL2_mixer-2.0.so.0)
+        target_link_libraries(${PROJECT_NAME}
+                              ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/libSDL2_ttf-2.0.so.0)
+        file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/*)
+    elseif(${CMAKE_SYSTEM_PROCESSOR} STREQUAL aarch64)
+        target_link_libraries(${PROJECT_NAME}
+                              ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/libSDL2-2.0.so.0)
+        target_link_libraries(${PROJECT_NAME}
+                              ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/libSDL2_image-2.0.so.0)
+        target_link_libraries(${PROJECT_NAME}
+                              ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/libSDL2_mixer-2.0.so.0)
+        target_link_libraries(${PROJECT_NAME}
+                              ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/libSDL2_ttf-2.0.so.0)
+        file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/*)
+    endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/bin/SDL2.dll)
+                          ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2.dll)
     target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/bin/SDL2_image.dll)
+                          ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2_image.dll)
     target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/bin/SDL2_mixer.dll)
+                          ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2_mixer.dll)
     target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/bin/SDL2_ttf.dll)
+                          ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2_ttf.dll)
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/*)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/arm64-v8a/libSDL2.so)
+                          ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2.so)
     target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/arm64-v8a/libSDL2_image.so)
+                          ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2_image.so)
     target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/arm64-v8a/libSDL2_mixer.so)
+                          ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2_mixer.so)
     target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/arm64-v8a/libSDL2_ttf.so)
-endif()
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/bin/*)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/arm64-v8a/*)
+                          ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2_ttf.so)
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/aarch64-android/*)
 endif()
 
 file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
