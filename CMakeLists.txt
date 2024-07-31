@@ -24,7 +24,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
         message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
     endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
-    if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL armv7-a)
+    if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL aarch64)
         message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
     endif()
 endif()
@@ -40,7 +40,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     find_program(CXX_COMPILER x86_64-w64-mingw32-g++)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     find_program(CXX_COMPILER
-                 ${ANDROID_NDK}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++)
+                 ${CMAKE_ANDROID_NDK}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++)
 endif()
 
 if(NOT CXX_COMPILER)
@@ -91,12 +91,23 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
                           ${CMAKE_SOURCE_DIR}/bin/SDL2_mixer.dll)
     target_link_libraries(${PROJECT_NAME}
                           ${CMAKE_SOURCE_DIR}/bin/SDL2_ttf.dll)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/arm64-v8a/libSDL2.so)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/arm64-v8a/libSDL2_image.so)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/arm64-v8a/libSDL2_mixer.so)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_SOURCE_DIR}/arm64-v8a/libSDL2_ttf.so)
 endif()
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/bin/*)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/arm64-v8a/*)
 endif()
 
 file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
@@ -105,7 +116,7 @@ file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
 file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
 string(REPLACE \n \  FLAGS ${FLAGS})
 
-if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
+if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Android)
     set(CMAKE_CXX_FLAGS "${FLAGS} -Wl,-rpath=./")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     set(CMAKE_CXX_FLAGS "${FLAGS} -mwindows")

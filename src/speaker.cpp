@@ -200,7 +200,7 @@ wze::speaker::speaker(speaker&& other) noexcept(false) {
 }
 
 wze::speaker::~speaker() {
-    _instances.erase(std::ranges::find(instances(), this));
+    _instances.erase(std::find(instances().begin(), instances().end(), this));
     audio::drop_channel(_channel);
 }
 

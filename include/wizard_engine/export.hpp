@@ -32,22 +32,23 @@
 #include <cstddef> /* IWYU pragma: export */
 #include <cstdint> /* IWYU pragma: export */
 
-#include <algorithm>  /* IWYU pragma: export */
-#include <array>      /* IWYU pragma: export */
-#include <concepts>   /* IWYU pragma: export */
-#include <functional> /* IWYU pragma: export */
-#include <limits>     /* IWYU pragma: export */
-#include <memory>     /* IWYU pragma: export */
-#include <numbers>    /* IWYU pragma: export */
-#include <random>     /* IWYU pragma: export */
-#include <ranges>     /* IWYU pragma: export */
-#include <stdexcept>  /* IWYU pragma: export */
-#include <string>     /* IWYU pragma: export */
-#include <tuple>      /* IWYU pragma: export */
-#include <utility>    /* IWYU pragma: export */
-#include <vector>     /* IWYU pragma: export */
+#include <algorithm>   /* IWYU pragma: export */
+#include <array>       /* IWYU pragma: export */
+#include <functional>  /* IWYU pragma: export */
+#include <limits>      /* IWYU pragma: export */
+#include <memory>      /* IWYU pragma: export */
+#include <random>      /* IWYU pragma: export */
+#include <stdexcept>   /* IWYU pragma: export */
+#include <string>      /* IWYU pragma: export */
+#include <tuple>       /* IWYU pragma: export */
+#include <type_traits> /* IWYU pragma: export */
+#include <utility>     /* IWYU pragma: export */
+#include <vector>      /* IWYU pragma: export */
 
 #define SDL_MAIN_HANDLED
+#ifdef __ANDROID__
+#define SDL_DISABLE_IMMINTRIN_H
+#endif
 
 #include <SDL2/SDL.h>       /* IWYU pragma: export */
 #include <SDL2/SDL_image.h> /* IWYU pragma: export */

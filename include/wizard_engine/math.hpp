@@ -52,6 +52,16 @@ class math final {
         return 0.01;
     }
 
+    /**
+     * @file math.hpp
+     * @author Zana Domán
+     * @brief Single precision PI.
+     */
+    [[nodiscard]] static constexpr float pi() {
+        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
+        return 3.1415927;
+    }
+
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file math.hpp
@@ -69,9 +79,10 @@ class math final {
      * @param maximum Maximum inclusive value of the interval.
      * @return Random integer value from the interval.
      */
-    template <std::integral T>
-    [[nodiscard]] static T random(T minimum = std::numeric_limits<T>::min(),
-                                  T maximum = std::numeric_limits<T>::max()) {
+    template <typename T>
+    [[nodiscard]] static typename std::enable_if_t<std::is_integral_v<T>, T>
+    random(T minimum = std::numeric_limits<T>::min(),
+           T maximum = std::numeric_limits<T>::max()) {
         return std::uniform_int_distribution<T>(minimum, maximum)(_mt19937_64);
     }
 
@@ -95,8 +106,8 @@ class math final {
      * @return Random boolean value.
      */
     template <typename T>
-        requires std::same_as<T, bool>
-    [[nodiscard]] static T random(float probability = (float)true / 2) {
+    [[nodiscard]] static typename std::enable_if_t<std::is_same_v<T, bool>, T>
+    random(float probability = (float)true / 2) {
         return std::bernoulli_distribution((double)probability)(_mt19937_64);
     }
 
@@ -196,7 +207,7 @@ class math final {
      */
     [[nodiscard]] static constexpr float to_radians(float degrees) {
         // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
-        return degrees * std::numbers::pi_v<float> / 180;
+        return degrees * pi() / 180;
     }
 
     /**
@@ -208,7 +219,7 @@ class math final {
      */
     [[nodiscard]] static constexpr float to_degrees(float radians) {
         // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
-        return radians * 180 / std::numbers::pi_v<float>;
+        return radians * 180 / pi();
     }
 };
 } /* namespace wze */

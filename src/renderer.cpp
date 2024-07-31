@@ -311,43 +311,46 @@ void wze::renderer::update() {
     std::vector<renderable const*> space;
     std::vector<renderable const*> plane;
 
-    std::ranges::for_each(renderable::instances(),
-                          [&space, &plane](renderable* instance) -> void {
-                              if (invisible(*instance)) {
-                                  return;
-                              }
-                              camera::project(*instance);
-                              transform(*instance);
-                              if (offscreen(*instance)) {
-                                  return;
-                              }
-                              if (instance->spatial()) {
-                                  space.push_back(instance);
-                              } else {
-                                  plane.push_back(instance);
-                              }
-                          });
+    std::for_each(renderable::instances().begin(),
+                  renderable::instances().end(),
+                  [&space, &plane](renderable* instance) -> void {
+                      if (invisible(*instance)) {
+                          return;
+                      }
+                      camera::project(*instance);
+                      transform(*instance);
+                      if (offscreen(*instance)) {
+                          return;
+                      }
+                      if (instance->spatial()) {
+                          space.push_back(instance);
+                      } else {
+                          plane.push_back(instance);
+                      }
+                  });
 
-    std::ranges::stable_sort(
-        space,
+    std::stable_sort(
+        space.begin(), space.end(),
         [](renderable const* instance1, renderable const* instance2) -> bool {
             return instance1->z() != instance2->z()
                        ? instance2->z() < instance1->z()
                        : instance1->priority() < instance2->priority();
         });
-    std::ranges::stable_sort(
-        plane,
+    std::stable_sort(
+        plane.begin(), plane.end(),
         [](renderable const* instance1, renderable const* instance2) -> bool {
             return instance1->priority() < instance2->priority();
         });
 
     open_frame();
     open_space();
-    std::ranges::for_each(
-        space, [](renderable const* instance) -> void { render(*instance); });
+    std::for_each(
+        space.begin(), space.end(),
+        [](renderable const* instance) -> void { render(*instance); });
     open_plane();
-    std::ranges::for_each(
-        plane, [](renderable const* instance) -> void { render(*instance); });
+    std::for_each(
+        plane.begin(), plane.end(),
+        [](renderable const* instance) -> void { render(*instance); });
     close_frame();
 }
 

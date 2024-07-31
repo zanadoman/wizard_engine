@@ -110,6 +110,6 @@ void wze::animator::reset() {
 }
 
 void wze::animator::reverse() {
-    std::ranges::reverse(_frames);
+    std::reverse(_frames.begin(), _frames.end());
     _reversed = !reversed();
 }

@@ -37,10 +37,13 @@ float wze::input::_cursor_relative_y;
 float wze::input::_mouse_sensitivity;
 
 void wze::input::update_key() {
+    std::vector<SDL_Event>::const_reverse_iterator iterator;
+
     _key = SDLK_UNKNOWN;
-    for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
-        if (event.type == SDL_KEYDOWN) {
-            _key = event.key.keysym.sym;
+    for (iterator = engine::events().rbegin();
+         iterator != engine::events().rend(); ++iterator) {
+        if (iterator->type == SDL_KEYDOWN) {
+            _key = iterator->key.keysym.sym;
             break;
         }
     }
@@ -49,6 +52,7 @@ void wze::input::update_key() {
 void wze::input::update_keys() {
     uint8_t const* keyboard_keys;
     uint32_t mouse_keys;
+    std::vector<SDL_Event>::const_reverse_iterator iterator;
 
     static_assert((size_t)KEY_COUNT <= (size_t)SDL_NUM_SCANCODES);
     keyboard_keys = SDL_GetKeyboardState(nullptr);
@@ -64,11 +68,12 @@ void wze::input::update_keys() {
 
     _keys.at(KEY_MOUSE_WHEEL_UP) = false;
     _keys.at(KEY_MOUSE_WHEEL_DOWN) = false;
-    for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
-        if (event.type == SDL_MOUSEWHEEL) {
-            if (0 < event.wheel.y) {
+    for (iterator = engine::events().rbegin();
+         iterator != engine::events().rend(); ++iterator) {
+        if (iterator->type == SDL_MOUSEWHEEL) {
+            if (0 < iterator->wheel.y) {
                 _keys.at(KEY_MOUSE_WHEEL_UP) = true;
-            } else if (event.wheel.y < 0) {
+            } else if (iterator->wheel.y < 0) {
                 _keys.at(KEY_MOUSE_WHEEL_DOWN) = true;
             }
             break;
@@ -77,15 +82,17 @@ void wze::input::update_keys() {
 }
 
 void wze::input::update_cursor() {
+    std::vector<SDL_Event>::const_reverse_iterator iterator;
     int32_t x;
     int32_t y;
 
-    for (SDL_Event const& event : std::ranges::reverse_view(engine::events())) {
-        if (event.type == SDL_MOUSEMOTION) {
+    for (iterator = engine::events().rbegin();
+         iterator != engine::events().rend(); ++iterator) {
+        if (iterator->type == SDL_MOUSEMOTION) {
             _cursor_absolute_x =
-                (float)std::clamp(event.motion.x, 0, window::width() - 1);
+                (float)std::clamp(iterator->motion.x, 0, window::width() - 1);
             _cursor_absolute_y =
-                (float)std::clamp(event.motion.y, 0, window::height() - 1);
+                (float)std::clamp(iterator->motion.y, 0, window::height() - 1);
             std::tie(_cursor_absolute_x, _cursor_absolute_y) =
                 renderer::detransform(cursor_absolute_x(), cursor_absolute_y());
             break;

@@ -39,17 +39,17 @@ void wze::collider::push_x(float force) {
 
     force -= contacts_mass(contacts);
     if (0 < force) {
-        std::ranges::for_each(
-            // NOLINTNEXTLINE(misc-no-recursion)
-            contacts, [this, force](collider* contact) -> void {
-                if (resolve_x(*contact, contact->mass() + force)) {
-                    contact->push_x(force);
-                    resolve_x(*contact);
-                }
-            });
+        std::for_each(contacts.begin(), contacts.end(),
+                      // NOLINTNEXTLINE(misc-no-recursion)
+                      [this, force](collider* contact) -> void {
+                          if (resolve_x(*contact, contact->mass() + force)) {
+                              contact->push_x(force);
+                              resolve_x(*contact);
+                          }
+                      });
     } else {
-        std::ranges::for_each(
-            contacts,
+        std::for_each(
+            contacts.begin(), contacts.end(),
             [this](collider const* contact) -> void { resolve_x(*contact); });
     }
 }
@@ -65,17 +65,17 @@ void wze::collider::push_y(float force) {
 
     force -= contacts_mass(contacts);
     if (0 < force) {
-        std::ranges::for_each(
-            // NOLINTNEXTLINE(misc-no-recursion)
-            contacts, [this, force](collider* contact) -> void {
-                if (resolve_y(*contact, contact->mass() + force)) {
-                    contact->push_y(force);
-                    resolve_y(*contact);
-                }
-            });
+        std::for_each(contacts.begin(), contacts.end(),
+                      // NOLINTNEXTLINE(misc-no-recursion)
+                      [this, force](collider* contact) -> void {
+                          if (resolve_y(*contact, contact->mass() + force)) {
+                              contact->push_y(force);
+                              resolve_y(*contact);
+                          }
+                      });
     } else {
-        std::ranges::for_each(
-            contacts,
+        std::for_each(
+            contacts.begin(), contacts.end(),
             [this](collider const* contact) -> void { resolve_y(*contact); });
     }
 }
@@ -91,17 +91,17 @@ void wze::collider::push_xy(float force) {
 
     force -= contacts_mass(contacts);
     if (0 < force) {
-        std::ranges::for_each(
-            // NOLINTNEXTLINE(misc-no-recursion)
-            contacts, [this, force](collider* contact) -> void {
-                if (resolve_xy(*contact, contact->mass() + force)) {
-                    contact->push_xy(force);
-                    resolve_xy(*contact);
-                }
-            });
+        std::for_each(contacts.begin(), contacts.end(),
+                      // NOLINTNEXTLINE(misc-no-recursion)
+                      [this, force](collider* contact) -> void {
+                          if (resolve_xy(*contact, contact->mass() + force)) {
+                              contact->push_xy(force);
+                              resolve_xy(*contact);
+                          }
+                      });
     } else {
-        std::ranges::for_each(
-            contacts,
+        std::for_each(
+            contacts.begin(), contacts.end(),
             [this](collider const* contact) -> void { resolve_xy(*contact); });
     }
 }
@@ -109,12 +109,12 @@ void wze::collider::push_xy(float force) {
 std::vector<wze::collider*> wze::collider::contacts() const {
     std::vector<collider*> contacts;
 
-    std::ranges::for_each(
-        _worlds.at(world()), [this, &contacts](collider* contact) -> void {
-            if (contact != this && body().overlap(contact->body())) {
-                contacts.push_back(contact);
-            }
-        });
+    std::for_each(_worlds.at(world()).begin(), _worlds.at(world()).end(),
+                  [this, &contacts](collider* contact) -> void {
+                      if (contact != this && body().overlap(contact->body())) {
+                          contacts.push_back(contact);
+                      }
+                  });
 
     return contacts;
 }
@@ -123,9 +123,9 @@ float wze::collider::contacts_mass(std::vector<collider*> const& contacts) {
     float mass;
 
     mass = 0;
-    std::ranges::for_each(contacts, [&mass](collider const* contact) -> void {
-        mass += contact->mass();
-    });
+    std::for_each(
+        contacts.begin(), contacts.end(),
+        [&mass](collider const* contact) -> void { mass += contact->mass(); });
 
     return mass;
 }
@@ -268,17 +268,19 @@ bool wze::collider::resolve_xy(collider& other, float force) {
 }
 
 void wze::collider::align_entities() const {
-    std::ranges::for_each(_worlds.at(world()), [](collider* instance) -> void {
-        if (instance->entity::x() != instance->body().x()) {
-            instance->entity::set_x(instance->body().x());
-        }
-        if (instance->entity::y() != instance->body().y()) {
-            instance->entity::set_y(instance->body().y());
-        }
-        if (instance->entity::angle() != instance->body().angle()) {
-            instance->entity::set_angle(instance->body().angle());
-        }
-    });
+    std::for_each(_worlds.at(world()).begin(), _worlds.at(world()).end(),
+                  [](collider* instance) -> void {
+                      if (instance->entity::x() != instance->body().x()) {
+                          instance->entity::set_x(instance->body().x());
+                      }
+                      if (instance->entity::y() != instance->body().y()) {
+                          instance->entity::set_y(instance->body().y());
+                      }
+                      if (instance->entity::angle() !=
+                          instance->body().angle()) {
+                          instance->entity::set_angle(instance->body().angle());
+                      }
+                  });
 }
 
 wze::polygon const& wze::collider::body() const {
@@ -323,7 +325,8 @@ uint8_t wze::collider::world() const {
 void wze::collider::set_world(uint8_t world) {
     if (this->world() != std::numeric_limits<uint8_t>::max()) {
         _worlds.at(this->world())
-            .erase(std::ranges::find(_worlds.at(this->world()), this));
+            .erase(std::find(_worlds.at(this->world()).begin(),
+                             _worlds.at(this->world()).end(), this));
     }
     _world = world;
     if (this->world() != std::numeric_limits<uint8_t>::max()) {
@@ -483,7 +486,8 @@ wze::collider::collider(collider const& other)
 
 wze::collider::~collider() {
     if (world() != std::numeric_limits<uint8_t>::max()) {
-        _worlds.at(world()).erase(std::ranges::find(_worlds.at(world()), this));
+        _worlds.at(world()).erase(std::find(_worlds.at(world()).begin(),
+                                            _worlds.at(world()).end(), this));
     }
 }
 
