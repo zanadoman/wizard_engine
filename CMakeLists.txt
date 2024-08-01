@@ -31,11 +31,7 @@ endif()
 
 # Compiler
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL x86_64)
-        find_program(CXX_COMPILER g++)
-    elseif(${CMAKE_SYSTEM_PROCESSOR} STREQUAL aarch64)
-        find_program(CXX_COMPILER aarch64-linux-gnu-g++)
-    endif()
+    find_program(CXX_COMPILER ${CMAKE_SYSTEM_PROCESSOR}-linux-gnu-g++)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     find_program(CXX_COMPILER x86_64-w64-mingw32-g++)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
@@ -74,49 +70,26 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 # Libraries
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    if (${CMAKE_SYSTEM_PROCESSOR} STREQUAL x86_64)
-        target_link_libraries(${PROJECT_NAME}
-                              ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/libSDL2-2.0.so.0)
-        target_link_libraries(${PROJECT_NAME}
-                              ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/libSDL2_image-2.0.so.0)
-        target_link_libraries(${PROJECT_NAME}
-                              ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/libSDL2_mixer-2.0.so.0)
-        target_link_libraries(${PROJECT_NAME}
-                              ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/libSDL2_ttf-2.0.so.0)
-        file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-linux/*)
-    elseif(${CMAKE_SYSTEM_PROCESSOR} STREQUAL aarch64)
-        target_link_libraries(${PROJECT_NAME}
-                              ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/libSDL2-2.0.so.0)
-        target_link_libraries(${PROJECT_NAME}
-                              ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/libSDL2_image-2.0.so.0)
-        target_link_libraries(${PROJECT_NAME}
-                              ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/libSDL2_mixer-2.0.so.0)
-        target_link_libraries(${PROJECT_NAME}
-                              ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/libSDL2_ttf-2.0.so.0)
-        file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/aarch64-linux/*)
-    endif()
+    set(CMAKE_LIBRARY_PATH ${CMAKE_SOURCE_DIR}/lib/${CMAKE_SYSTEM_PROCESSOR}-linux/)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2-2.0.so.0)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_image-2.0.so.0)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_mixer-2.0.so.0)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_ttf-2.0.so.0)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2.dll)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2_image.dll)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2_mixer.dll)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2_ttf.dll)
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/*)
+    set(CMAKE_LIBRARY_PATH ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/SDL2.dll)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/SDL2_image.dll)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/SDL2_mixer.dll)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/SDL2_ttf.dll)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2.so)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2_image.so)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2_mixer.so)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2_ttf.so)
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/aarch64-android/*)
+    set(CMAKE_LIBRARY_PATH ${CMAKE_SOURCE_DIR}/lib/aarch64-android/)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2.so)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_image.so)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_mixer.so)
+    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_ttf.so)
 endif()
 
+file(GLOB LIBRARIES ${CMAKE_LIBRARY_PATH}/*)
 file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
 
 # Flags
