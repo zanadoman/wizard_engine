@@ -90,7 +90,7 @@ void wze::speaker::set_z(float z) {
     _z = z;
 }
 
-void wze::speaker::set_angle([[maybe_unused]] float angle) {}
+void wze::speaker::set_angle(float _) {}
 
 bool wze::speaker::spatial() const {
     return _spatial;

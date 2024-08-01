@@ -145,7 +145,7 @@ void wze::input::set_cursor_visible(bool cursor_visible) {
 void wze::input::set_cursor_appearance(
     std::unique_ptr<cursor, std::function<void(cursor*)>> cursor_appearance) {
     SDL_SetCursor(cursor_appearance.release());
-};
+}
 
 void wze::input::initialize() {
     _key = SDLK_UNKNOWN;

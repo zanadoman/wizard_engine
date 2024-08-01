@@ -1,5 +1,5 @@
 # CMake
-cmake_minimum_required(VERSION 3.30.1)
+cmake_minimum_required(VERSION 3.18.4)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 if(NOT ${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}/build)
@@ -49,7 +49,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
     if(NOT ${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
         message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
     endif()
-    if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 13.1)
+    if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 10.2.1)
         message(FATAL_ERROR "Outdated compiler, CMake will exit.")
     endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)

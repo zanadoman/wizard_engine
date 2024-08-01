@@ -178,7 +178,7 @@ class speaker final : public component {
      * @author Zana Domán
      * @brief Unimplemented inherited method.
      */
-    void set_angle(float angle) final;
+    void set_angle(float _) final;
 
     /**
      * @file speaker.hpp
