@@ -62,14 +62,14 @@ class math final {
         return 3.1415927;
     }
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file math.hpp
      * @author Zana Domán
      * @brief Initializes the math subsystem.
      */
     static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file math.hpp

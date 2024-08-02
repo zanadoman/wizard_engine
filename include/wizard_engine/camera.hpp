@@ -136,16 +136,16 @@ class camera final {
      */
     static void set_focus(float focus);
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file camera.hpp
      * @author Zana Domán
      * @brief Initializes the camera subsystem.
      */
     static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file camera.hpp
      * @author Zana Domán, Gunics Roland
@@ -153,7 +153,7 @@ class camera final {
      * @param instance Renderable instance.
      */
     static void project(renderable& instance);
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file camera.hpp

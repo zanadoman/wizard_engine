@@ -51,7 +51,7 @@ class speaker final : public component {
     bool _y_angle_lock;
 
   public:
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file speaker.hpp
      * @author Zana Domán
@@ -59,7 +59,7 @@ class speaker final : public component {
      * @return Speaker instances.
      */
     [[nodiscard]] static std::vector<speaker*> const& instances();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file speaker.hpp

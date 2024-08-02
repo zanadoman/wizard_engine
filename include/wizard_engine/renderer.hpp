@@ -164,7 +164,7 @@ class renderer final {
      */
     static void set_origo_y(float origo_y);
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file renderer.hpp
      * @author Zana Domán
@@ -172,7 +172,7 @@ class renderer final {
      * @return Pointer of the renderer.
      */
     [[nodiscard]] static SDL_Renderer* base();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file renderer.hpp
@@ -390,7 +390,7 @@ class renderer final {
      */
     static void set_plane_color_a(uint8_t plane_color_a);
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file renderer.hpp
      * @author Zana Domán
@@ -399,18 +399,18 @@ class renderer final {
      * std::runtime_error.
      */
     static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file renderer.hpp
      * @author Zana Domán
      * @brief Updates the renderer subsystem.
      */
     static void update();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file renderer.hpp
      * @author Zana Domán, Gunics Roland
@@ -420,7 +420,7 @@ class renderer final {
      * @return Detransformed plane coordinate.
      */
     [[nodiscard]] static std::pair<float, float> detransform(float x, float y);
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 };
 } /* namespace wze */
 

@@ -20,7 +20,7 @@
 */
 
 // NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
-#define __WIZARD_ENGINE_INTERNAL
+#define __WIZARD_ENGINE_INTERNAL__
 
 #include <wizard_engine/audio.hpp>
 #include <wizard_engine/camera.hpp>

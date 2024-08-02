@@ -161,23 +161,23 @@ class input final {
     set_cursor_appearance(std::unique_ptr<cursor, std::function<void(cursor*)>>
                               cursor_appearance);
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file input.hpp
      * @author Zana Domán
      * @brief Initializes the input subsystem.
      */
     static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file input.hpp
      * @author Zana Domán
      * @brief Updates the input subsystem.
      */
     static void update();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file input.hpp

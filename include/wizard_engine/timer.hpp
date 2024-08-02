@@ -53,7 +53,7 @@ class timer final {
      * @brief Unimplemented method.
      */
     [[nodiscard]] static uint8_t frame_time();
-#else /* __EMSCRIPTEN__ */
+#else  /* __EMSCRIPTEN__ */
     /**
      * @file timer.hpp
      * @author Zana Domán
@@ -112,23 +112,23 @@ class timer final {
      */
     [[nodiscard]] static uint64_t current_time();
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file timer.hpp
      * @author Zana Domán
      * @brief Initializes the timer subsystem.
      */
     static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file timer.hpp
      * @author Zana Domán
      * @brief Updates the timer subsystem.
      */
     static void update();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 };
 } /* namespace wze */
 

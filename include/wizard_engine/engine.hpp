@@ -49,7 +49,7 @@ class engine final {
     static void play_intro();
 
   public:
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file engine.hpp
      * @author Zana Domán
@@ -57,7 +57,7 @@ class engine final {
      * @return Events of the engine.
      */
     [[nodiscard]] static std::vector<SDL_Event> const& events();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file engine.hpp

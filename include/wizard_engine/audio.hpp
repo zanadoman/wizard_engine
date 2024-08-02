@@ -59,25 +59,25 @@ class audio final {
      */
     static void set_volume(int8_t volume);
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file audio.hpp
      * @author Zana Domán
      * @brief Initializes the audio subsystem.
      */
     static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file audio.hpp
      * @author Zana Domán
      * @brief Updates the audio subsystem.
      */
     static void update();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file audio.hpp
      * @author Zana Domán
@@ -86,9 +86,9 @@ class audio final {
      * @warning If the channel cannot be allocated, throws std::runtime_error.
      */
     [[nodiscard]] static int32_t request_channel();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file audio.hpp
      * @author Zana Domán
@@ -97,7 +97,7 @@ class audio final {
      * @warning If the channel cannot be dropped, throws std::runtime_error.
      */
     static void drop_channel(int32_t channel);
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file audio.hpp

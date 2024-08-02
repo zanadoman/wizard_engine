@@ -45,7 +45,7 @@ class window final {
     window() = default;
 
   public:
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file window.hpp
      * @author Zana Domán
@@ -53,7 +53,7 @@ class window final {
      * @return Pointer of the game window.
      */
     [[nodiscard]] static SDL_Window* base();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file window.hpp
@@ -111,7 +111,7 @@ class window final {
      */
     [[nodiscard]] static bool focused();
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file window.hpp
      * @author Zana Domán
@@ -122,7 +122,7 @@ class window final {
      * std::runtime_error.
      */
     static void initialize(uint16_t width, uint16_t height);
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 };
 } /* namespace wze */
 

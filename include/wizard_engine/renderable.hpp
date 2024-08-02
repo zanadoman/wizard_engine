@@ -39,7 +39,7 @@ class renderable {
     float _screen_angle;
 
   public:
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file renderable.hpp
      * @author Zana Domán
@@ -47,7 +47,7 @@ class renderable {
      * @return Renderable instances.
      */
     [[nodiscard]] static std::vector<renderable*> const& instances();
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file renderable.hpp
@@ -57,7 +57,7 @@ class renderable {
      */
     [[nodiscard]] SDL_FRect const& screen_area() const;
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file renderable.hpp
      * @author Zana Domán
@@ -65,7 +65,7 @@ class renderable {
      * @param screen_area Screen area of the object.
      */
     void set_screen_area(SDL_FRect const& screen_area);
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file renderable.hpp
@@ -75,7 +75,7 @@ class renderable {
      */
     [[nodiscard]] float screen_angle() const;
 
-#ifdef __WIZARD_ENGINE_INTERNAL
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file renderable.hpp
      * @author Zana Domán
@@ -83,7 +83,7 @@ class renderable {
      * @param screen_angle Screen angle of the object.
      */
     void set_screen_angle(float screen_angle);
-#endif /* __WIZARD_ENGINE_INTERNAL */
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file renderable.hpp

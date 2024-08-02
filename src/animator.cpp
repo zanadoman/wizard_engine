@@ -20,7 +20,7 @@
 */
 
 // NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
-#define __WIZARD_ENGINE_INTERNAL
+#define __WIZARD_ENGINE_INTERNAL__
 
 #include <wizard_engine/animator.hpp>
 #include <wizard_engine/timer.hpp>
