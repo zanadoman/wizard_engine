@@ -116,7 +116,18 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
                           ${CMAKE_LIBRARY_PATH}/libSDL2_mixer.so
                           ${CMAKE_LIBRARY_PATH}/libSDL2_ttf.so)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
-    target_link_libraries(${PROJECT_NAME} SDL2 SDL2_image SDL2_mixer SDL2_ttf freetype)
+    target_compile_options(${PROJECT_NAME} PRIVATE
+                           -sUSE_SDL=2
+                           -sUSE_SDL_IMAGE=2
+                           -sUSE_SDL_MIXER=2
+                           -sUSE_SDL_TTF=2
+                           -sUSE_FREETYPE=1)
+    target_link_libraries(${PROJECT_NAME}
+                          SDL2
+                          SDL2_image
+                          SDL2_mixer
+                          SDL2_ttf
+                          freetype)
 endif()
 
 if(DEFINED CMAKE_LIBRARY_PATH AND NOT ${CMAKE_LIBRARY_PATH} STREQUAL \ )
@@ -135,12 +146,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(CMAKE_CXX_FLAGS
-        "${CMAKE_CXX_FLAGS}
-        -s USE_SDL=2
-        -s USE_SDL_IMAGE=2
-        -s USE_SDL_MIXER=2
-        -s USE_SDL_TTF=2
-        --use-preload-plugins --preload-file assets")
+        "${CMAKE_CXX_FLAGS} --use-preload-plugins --preload-file assets")
 endif()
 
 # Tests
