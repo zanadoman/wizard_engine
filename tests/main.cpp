@@ -4,7 +4,7 @@
 
 std::shared_ptr<wze::sprite> szar;
 
-wze_main(200, 300) {
+wze_main(640, 480) {
     std::shared_ptr<wze::texture> tex = wze::assets::create_texture(
         wze::assets::load_image("./assets/wizard_engine/logo.png"));
     szar.reset(new wze::sprite(0, 0, 0, 0, 100, 100, false, tex));

@@ -1,5 +1,6 @@
 CompileFlags:
   Remove: [
+    -sALLOW_MEMORY_GROWTH=1,
     --use-preload-plugins,
     --preload-file,
     -sUSE_SDL=2,

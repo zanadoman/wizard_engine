@@ -74,9 +74,13 @@ void wze::window::initialize(uint16_t width, uint16_t height) {
         throw exception("Invalid ./assets/wizard_engine/icon.png");
     }
 
-    _base = SDL_CreateWindow(
-        "Wizard Engine", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-        width, height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
+    _base = SDL_CreateWindow("Wizard Engine", SDL_WINDOWPOS_UNDEFINED,
+                             SDL_WINDOWPOS_UNDEFINED, width, height,
+                             SDL_WINDOW_RESIZABLE
+#ifndef __EMSCRIPTEN__
+                                 | SDL_WINDOW_FULLSCREEN_DESKTOP
+#endif /* __EMSCRIPTEN__ */
+    );
     if (!(bool)base()) {
         throw exception(SDL_GetError());
     }

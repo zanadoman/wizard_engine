@@ -63,7 +63,7 @@ class timer final {
      * value.
      */
     [[nodiscard]] static uint8_t frame_time();
-#endif
+#endif /* __EMSCRIPTEN__ */
 
 #ifdef __EMSCRIPTEN__
     /**
