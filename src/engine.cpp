@@ -36,7 +36,10 @@
 std::vector<SDL_Event> wze::engine::_events;
 
 void wze::engine::play_intro() {
-    constexpr size_t logo_hash = 4621002103177400980;
+    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
+    static_assert(sizeof(size_t) == 4 || sizeof(size_t) == 8);
+    constexpr size_t logo_hash =
+        sizeof(size_t) == 8 ? 4621002103177400980 : 315106224;
     constexpr float speed = 0.1;
 
     std::shared_ptr<image> logo;
@@ -79,13 +82,17 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     constexpr uint16_t MIX_DEFAULT_CHUNKSIZE = 4096;
 
     _events = {};
-    if ((bool)SDL_Init(SDL_INIT_EVERYTHING)) {
+    if ((bool)SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
+                       SDL_INIT_EVENTS | SDL_INIT_JOYSTICK |
+                       SDL_INIT_GAMECONTROLLER | SDL_INIT_SENSOR)) {
         throw std::runtime_error(SDL_GetError());
     }
+#ifndef __EMSCRIPTEN__
     if (!(bool)IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF |
                         IMG_INIT_WEBP | IMG_INIT_JXL | IMG_INIT_AVIF)) {
         throw std::runtime_error(IMG_GetError());
     }
+#endif
     if (!(bool)Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 |
                         MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS |
                         MIX_INIT_WAVPACK) ||

@@ -10,7 +10,7 @@ endif()
 project(wizard_engine LANGUAGES CXX)
 
 # Host
-if(NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Android)
+if(NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Android|Emscripten)
     message(FATAL_ERROR "Unsupported host, CMake will exit.")
 endif()
 
@@ -27,6 +27,10 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL aarch64)
         message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
     endif()
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL x86)
+        message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
+    endif()
 endif()
 
 # Compiler
@@ -37,6 +41,8 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     find_program(CXX_COMPILER
                  ${CMAKE_ANDROID_NDK}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    find_program(CXX_COMPILER em++)
 endif()
 
 if(NOT CXX_COMPILER)
@@ -59,6 +65,13 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 17.0.2)
         message(FATAL_ERROR "Outdated compiler, CMake will exit.")
     endif()
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    if(NOT ${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
+        message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
+    endif()
+    if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 19.0.0)
+        message(FATAL_ERROR "Outdated compiler, CMake will exit.")
+    endif()
 endif()
 
 # Headers
@@ -66,7 +79,11 @@ include_directories(${CMAKE_SOURCE_DIR}/include/)
 
 # Sources
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*)
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
+if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    add_library(${PROJECT_NAME} STATIC ${SOURCES})
+else()
+    add_library(${PROJECT_NAME} SHARED ${SOURCES})
+endif()
 
 # Libraries
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
@@ -94,24 +111,34 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_image.so)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_mixer.so)
     target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_ttf.so)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    target_link_libraries(${PROJECT_NAME} SDL2 SDL2_image SDL2_mixer SDL2_ttf freetype)
 endif()
 
-file(GLOB LIBRARIES ${CMAKE_LIBRARY_PATH}/*)
-file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
+if(DEFINED CMAKE_LIBRARY_PATH AND NOT ${CMAKE_LIBRARY_PATH} STREQUAL \ )
+    file(GLOB LIBRARIES ${CMAKE_LIBRARY_PATH}/*)
+    file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
+endif()
 
 # Flags
 file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
 string(REPLACE \n \  FLAGS ${FLAGS})
+set(CMAKE_CXX_FLAGS ${FLAGS})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Android)
-    set(CMAKE_CXX_FLAGS "${FLAGS} -Wl,-rpath=./")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-rpath=./")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    set(CMAKE_CXX_FLAGS "${FLAGS} -mwindows")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --use-preload-plugins --preload-file assets")
 endif()
 
 # Tests
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/tests/*)
+if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    set(CMAKE_EXECUTABLE_SUFFIX .html)
+endif()
 
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/tests/*)
 foreach(SOURCE ${SOURCES})
     get_filename_component(NAME ${SOURCE} NAME_WE)
     add_executable(${NAME} ${SOURCE})
@@ -122,11 +149,22 @@ endforeach()
 file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
 
 # Test
-if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
-    add_custom_command(TARGET ${TEST} POST_BUILD
-                       COMMAND ${CMAKE_BINARY_DIR}/${TEST}
-                       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                       COMMENT "Running test ${TEST}")
-else()
-    message(AUTHOR_WARNING "TEST not defined, skipping test.")
+if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
+    if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
+        add_custom_command(TARGET ${TEST} POST_BUILD
+                           COMMAND ${CMAKE_BINARY_DIR}/${TEST}${CMAKE_EXECUTABLE_SUFFIX}
+                           WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+                           COMMENT "Running test ${TEST}")
+    else()
+        message(AUTHOR_WARNING "TEST not defined, skipping test.")
+    endif()
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
+        add_custom_command(TARGET ${TEST} POST_BUILD
+                           COMMAND emrun ${TEST}${CMAKE_EXECUTABLE_SUFFIX}
+                           WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+                           COMMENT "Running test ${TEST}")
+    else()
+        message(AUTHOR_WARNING "TEST not defined, skipping test.")
+    endif()
 endif()

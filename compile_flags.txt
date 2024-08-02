@@ -10,5 +10,3 @@
 -Wno-unknown-warning-option
 -Wno-gnu-line-marker
 -Werror
--save-temps
--fverbose-asm
