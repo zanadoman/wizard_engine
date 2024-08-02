@@ -25,7 +25,7 @@
 #include <wizard_engine/export.hpp>
 
 namespace wze {
-class exception : std::exception {
+class exception : public std::exception {
   private:
     std::string _what;
 

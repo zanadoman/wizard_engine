@@ -39,6 +39,7 @@
 #include <array>       /* IWYU pragma: export */
 #include <exception>   /* IWYU pragma: export */
 #include <functional>  /* IWYU pragma: export */
+#include <iostream>    /* IWYU pragma: export */
 #include <limits>      /* IWYU pragma: export */
 #include <memory>      /* IWYU pragma: export */
 #include <random>      /* IWYU pragma: export */
@@ -48,9 +49,9 @@
 #include <utility>     /* IWYU pragma: export */
 #include <vector>      /* IWYU pragma: export */
 
-#if defined(__WIN32__) || defined(__ANDROID__)
+#if defined(__WIN64__) || defined(__ANDROID__)
 #define SDL_MAIN_HANDLED
-#endif /* defined(__WIN32__) || defined(__ANDROID__) */
+#endif /* defined(__WIN64__) || defined(__ANDROID__) */
 
 #ifdef __aarch64__
 #define SDL_DISABLE_IMMINTRIN_H

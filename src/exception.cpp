@@ -30,6 +30,8 @@ wze::exception::exception(std::string const& what) {
 #ifdef __EMSCRIPTEN__
     // NOLINTNEXTLINE(hicpp-vararg,cppcoreguidelines-pro-type-vararg,cppcoreguidelines-pro-bounds-array-to-pointer-decay,hicpp-no-array-decay,hicpp-avoid-c-arrays,cppcoreguidelines-avoid-c-arrays,modernize-avoid-c-arrays)
     EM_ASM({ console.log(UTF8ToString($0)); }, _what.c_str());
+#else  /* __EMSCRIPTEN__ */
+    std::cerr << _what.c_str() << std::endl;
 #endif /* __EMSCRIPTEN__ */
 }
 
