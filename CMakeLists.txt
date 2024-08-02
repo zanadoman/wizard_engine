@@ -88,29 +88,33 @@ endif()
 # Libraries
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
     set(CMAKE_LIBRARY_PATH ${CMAKE_SOURCE_DIR}/lib/${CMAKE_SYSTEM_PROCESSOR}-linux/)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_image-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_mixer-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_ttf-2.0.so.0)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_LIBRARY_PATH}/libSDL2-2.0.so.0
+                          ${CMAKE_LIBRARY_PATH}/libSDL2_image-2.0.so.0
+                          ${CMAKE_LIBRARY_PATH}/libSDL2_mixer-2.0.so.0
+                          ${CMAKE_LIBRARY_PATH}/libSDL2_ttf-2.0.so.0)
     if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL aarch64)
-        target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libfreetype.so.6)
-        target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libpng16.so.16)
-        target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libz.so.1)
-        target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libbrotlidec.so.1)
-        target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libbrotlicommon.so.1)
+        target_link_libraries(${PROJECT_NAME}
+                              ${CMAKE_LIBRARY_PATH}/libfreetype.so.6
+                              ${CMAKE_LIBRARY_PATH}/libpng16.so.16
+                              ${CMAKE_LIBRARY_PATH}/libz.so.1
+                              ${CMAKE_LIBRARY_PATH}/libbrotlidec.so.1
+                              ${CMAKE_LIBRARY_PATH}/libbrotlicommon.so.1)
     endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     set(CMAKE_LIBRARY_PATH ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/SDL2.dll)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/SDL2_image.dll)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/SDL2_mixer.dll)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/SDL2_ttf.dll)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_LIBRARY_PATH}/SDL2.dll
+                          ${CMAKE_LIBRARY_PATH}/SDL2_image.dll
+                          ${CMAKE_LIBRARY_PATH}/SDL2_mixer.dll
+                          ${CMAKE_LIBRARY_PATH}/SDL2_ttf.dll)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     set(CMAKE_LIBRARY_PATH ${CMAKE_SOURCE_DIR}/lib/aarch64-android/)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2.so)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_image.so)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_mixer.so)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_LIBRARY_PATH}/libSDL2_ttf.so)
+    target_link_libraries(${PROJECT_NAME}
+                          ${CMAKE_LIBRARY_PATH}/libSDL2.so
+                          ${CMAKE_LIBRARY_PATH}/libSDL2_image.so
+                          ${CMAKE_LIBRARY_PATH}/libSDL2_mixer.so
+                          ${CMAKE_LIBRARY_PATH}/libSDL2_ttf.so)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     target_link_libraries(${PROJECT_NAME} SDL2 SDL2_image SDL2_mixer SDL2_ttf freetype)
 endif()
