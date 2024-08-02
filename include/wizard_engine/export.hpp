@@ -59,7 +59,7 @@
 #include <SDL2/SDL_ttf.h>   /* IWYU pragma: export */
 
 #ifdef __EMSCRIPTEN__
-#include <emscripten/emscripten.h> /* IWYU pragma: export */
-#endif                             /* __EMSCRIPTEN__ */
+#include <emscripten.h> /* IWYU pragma: export */
+#endif                  /* __EMSCRIPTEN__ */
 
 #endif /* WIZARD_ENGINE_EXPORT_HPP */
