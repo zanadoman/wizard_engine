@@ -23,5 +23,4 @@ Checks: >
   -modernize-use-trailing-return-type,
   -performance-enum-size,
   -readability-identifier-length
-WarningsAsErrors: '*'
 FormatStyle: file

@@ -30,15 +30,19 @@ uint8_t wze::timer::_frame_time;
 float wze::timer::_delta_time;
 uint64_t wze::timer::_last_time;
 
-#ifndef __EMSCRIPTEN__
 uint8_t wze::timer::frame_time() {
+#ifdef __EMSCRIPTEN__
+    return 0;
+#else  /* __EMSCRIPTEN__ */
     return _frame_time;
+#endif /* __EMSCRIPTEN__ */
 }
 
-void wze::timer::set_frame_time(uint8_t frame_time) {
+void wze::timer::set_frame_time([[maybe_unused]] uint8_t frame_time) {
+#ifndef __EMSCRIPTEN__
     _frame_time = frame_time;
-}
 #endif /* __EMSCRIPTEN__ */
+}
 
 float wze::timer::delta_time() {
     return _delta_time;

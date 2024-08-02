@@ -46,7 +46,6 @@ class timer final {
     timer() = default;
 
   public:
-#ifndef __EMSCRIPTEN__
     /**
      * @file timer.hpp
      * @author Zana Domán
@@ -66,7 +65,6 @@ class timer final {
      * value.
      */
     static void set_frame_time(uint8_t frame_time);
-#endif /* __EMSCRIPTEN__ */
 
     /**
      * @file timer.hpp
