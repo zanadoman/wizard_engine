@@ -45,7 +45,7 @@ using texture = SDL_Texture;
  * @file assets.hpp
  * @author Zana Domán
  * @brief Audio file.
- * @note Supported sound formats: flac, mod, mp3, ogg, mid, opus, wavpack.
+ * @note Supported sound formats: flac, mod, mp3, ogg, mid, opus.
  */
 using sound = Mix_Chunk;
 

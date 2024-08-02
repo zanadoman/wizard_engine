@@ -1,4 +1,7 @@
+// NOLINTBEGIN
+
 #include <wizard_engine/wizard_engine.hpp>
+// #include <emscripten.h>
 
 // NOLINTNEXTLINE(hicpp-avoid-c-arrays,cppcoreguidelines-avoid-c-arrays,modernize-avoid-c-arrays,cert-dcl51-cpp,bugprone-reserved-identifier,cert-dcl37-c)
 wze_main(200, 300) {
@@ -12,3 +15,5 @@ wze_main(200, 300) {
 
     return 0;
 }
+
+// NOLINTEND

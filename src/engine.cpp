@@ -94,8 +94,7 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     }
 #endif /* __EMSCRIPTEN__ */
     if (!(bool)Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 |
-                        MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS |
-                        MIX_INIT_WAVPACK) ||
+                        MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS) ||
         (bool)Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
                             MIX_DEFAULT_CHANNELS, MIX_DEFAULT_CHUNKSIZE)) {
         throw std::runtime_error(Mix_GetError());
