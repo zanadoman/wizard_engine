@@ -1,0 +1,10 @@
+CompileFlags:
+  Remove: [
+    --use-preload-plugins,
+    --preload-file,
+    -sUSE_SDL=2,
+    -sUSE_SDL_IMAGE=2,
+    -sUSE_SDL_MIXER=2,
+    -sUSE_SDL_TTF=2,
+    -sUSE_FREETYPE=1
+  ]
