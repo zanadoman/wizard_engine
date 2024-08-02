@@ -1,1 +1,3 @@
 /include/SDL2/* linguist-vendored
+/include/emscripten.h linguist-vendored
+/include/emscripten/* linguist-vendored
