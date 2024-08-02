@@ -28,17 +28,20 @@
  * @brief Export header of the Wizard Engine.
  */
 
+// NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
+#define __WIZARD_ENGINE__
+
 #include <cmath>   /* IWYU pragma: export */
 #include <cstddef> /* IWYU pragma: export */
 #include <cstdint> /* IWYU pragma: export */
 
 #include <algorithm>   /* IWYU pragma: export */
 #include <array>       /* IWYU pragma: export */
+#include <exception>   /* IWYU pragma: export */
 #include <functional>  /* IWYU pragma: export */
 #include <limits>      /* IWYU pragma: export */
 #include <memory>      /* IWYU pragma: export */
 #include <random>      /* IWYU pragma: export */
-#include <stdexcept>   /* IWYU pragma: export */
 #include <string>      /* IWYU pragma: export */
 #include <tuple>       /* IWYU pragma: export */
 #include <type_traits> /* IWYU pragma: export */
