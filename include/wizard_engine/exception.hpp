@@ -31,7 +31,7 @@ class exception : std::exception {
 
   public:
     explicit exception(std::string const& what);
-    [[nodiscard]] char const* what() const noexcept final;
+    [[nodiscard]] char const* what() const noexcept override;
 };
 } /* namespace wze */
 

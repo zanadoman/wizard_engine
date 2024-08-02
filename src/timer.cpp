@@ -38,11 +38,13 @@ uint8_t wze::timer::frame_time() {
 #endif /* __EMSCRIPTEN__ */
 }
 
-void wze::timer::set_frame_time([[maybe_unused]] uint8_t frame_time) {
-#ifndef __EMSCRIPTEN__
+#ifdef __EMSCRIPTEN__
+void wze::timer::set_frame_time([[maybe_unused]] uint8_t _) {}
+#else  /* __EMSCRIPTEN__ */
+void wze::timer::set_frame_time(uint8_t frame_time) {
     _frame_time = frame_time;
-#endif /* __EMSCRIPTEN__ */
 }
+#endif /* __EMSCRIPTEN__ */
 
 float wze::timer::delta_time() {
     return _delta_time;

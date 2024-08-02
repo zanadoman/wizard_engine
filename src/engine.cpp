@@ -88,12 +88,12 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
                        SDL_INIT_GAMECONTROLLER | SDL_INIT_SENSOR)) {
         throw exception(SDL_GetError());
     }
-#ifndef __EMSCRIPTEN__
     if (!(bool)IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF |
                         IMG_INIT_WEBP | IMG_INIT_JXL | IMG_INIT_AVIF)) {
+#ifndef __EMSCRIPTEN__
         throw exception(IMG_GetError());
-    }
 #endif /* __EMSCRIPTEN__ */
+    }
     if (!(bool)Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 |
                         MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS) ||
         (bool)Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
