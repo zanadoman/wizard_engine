@@ -92,7 +92,7 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
                         IMG_INIT_WEBP | IMG_INIT_JXL | IMG_INIT_AVIF)) {
         throw std::runtime_error(IMG_GetError());
     }
-#endif
+#endif /* __EMSCRIPTEN__ */
     if (!(bool)Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 |
                         MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS |
                         MIX_INIT_WAVPACK) ||

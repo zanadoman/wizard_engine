@@ -47,11 +47,11 @@
 
 #if defined(__WIN32__) || defined(__ANDROID__)
 #define SDL_MAIN_HANDLED
-#endif
+#endif /* defined(__WIN32__) || defined(__ANDROID__) */
 
 #ifdef __aarch64__
 #define SDL_DISABLE_IMMINTRIN_H
-#endif
+#endif /* __aarch64__ */
 
 #include <SDL2/SDL.h>       /* IWYU pragma: export */
 #include <SDL2/SDL_image.h> /* IWYU pragma: export */
@@ -60,6 +60,6 @@
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten/emscripten.h> /* IWYU pragma: export */
-#endif
+#endif                             /* __EMSCRIPTEN__ */
 
 #endif /* WIZARD_ENGINE_EXPORT_HPP */
