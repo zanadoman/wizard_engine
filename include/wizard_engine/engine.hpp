@@ -81,6 +81,14 @@ class engine final {
      * @warning This method must be called in the condition of the game loop.
      */
     [[nodiscard]] static bool update();
+
+    /**
+     * @file engine.hpp
+     * @author Zana Domán
+     * @brief Logs a message to the console.
+     * @param message Message to log.
+     */
+    static void log(std::string const& message);
 };
 } /* namespace wze */
 

@@ -132,3 +132,12 @@ bool wze::engine::update() {
 
     return true;
 }
+
+void wze::engine::log(std::string const& message) {
+#ifdef __EMSCRIPTEN__
+    // NOLINTNEXTLINE(hicpp-vararg,cppcoreguidelines-pro-type-vararg)
+    emscripten_log(EM_LOG_INFO, message.c_str());
+#else  /* __EMSCRIPTEN__ */
+    std::out << message << std::endl;
+#endif /* __EMSCRIPTEN__ */
+}
