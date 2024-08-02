@@ -23,6 +23,7 @@
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/assets.hpp>
+#include <wizard_engine/exception.hpp>
 #include <wizard_engine/renderer.hpp>
 
 void wze::assets::combine_hash(size_t& seed, size_t value) {
@@ -35,7 +36,7 @@ std::shared_ptr<wze::image> wze::assets::load_image(std::string const& path) {
 
     image = {IMG_Load(path.c_str()), SDL_FreeSurface};
     if (!image) {
-        throw std::runtime_error(IMG_GetError());
+        throw exception(IMG_GetError());
     }
 
     return image;
@@ -56,7 +57,7 @@ wze::assets::create_image(std::string const& text,
                                        wrap_length),
         SDL_FreeSurface};
     if (!image) {
-        throw std::runtime_error(TTF_GetError());
+        throw exception(TTF_GetError());
     }
 
     return image;
@@ -90,7 +91,7 @@ wze::assets::create_texture(std::shared_ptr<image> const& image) {
     texture = {SDL_CreateTextureFromSurface(renderer::base(), image.get()),
                SDL_DestroyTexture};
     if (!texture) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
 
     return texture;
@@ -101,7 +102,7 @@ std::shared_ptr<wze::sound> wze::assets::load_sound(std::string const& path) {
 
     sound = {Mix_LoadWAV(path.c_str()), Mix_FreeChunk};
     if (!sound) {
-        throw std::runtime_error(Mix_GetError());
+        throw exception(Mix_GetError());
     }
 
     return sound;
@@ -132,7 +133,7 @@ std::shared_ptr<wze::font> wze::assets::load_font(std::string const& path,
 
     font = {TTF_OpenFont(path.c_str(), size), TTF_CloseFont};
     if (!font) {
-        throw std::runtime_error(TTF_GetError());
+        throw exception(TTF_GetError());
     }
     TTF_SetFontStyle(font.get(), style);
 
@@ -146,7 +147,7 @@ wze::assets::create_cursor(system_cursor system_cursor) {
     cursor = {SDL_CreateSystemCursor((SDL_SystemCursor)system_cursor),
               SDL_FreeCursor};
     if (!cursor) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
 
     return cursor;
@@ -159,7 +160,7 @@ wze::assets::create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x,
 
     cursor = {SDL_CreateColorCursor(image.get(), hot_x, hot_y), SDL_FreeCursor};
     if (!cursor) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
 
     return cursor;

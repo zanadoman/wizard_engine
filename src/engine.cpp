@@ -26,6 +26,7 @@
 #include <wizard_engine/audio.hpp>
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/engine.hpp>
+#include <wizard_engine/exception.hpp>
 #include <wizard_engine/input.hpp>
 #include <wizard_engine/math.hpp>
 #include <wizard_engine/renderer.hpp>
@@ -48,7 +49,7 @@ void wze::engine::play_intro() {
 
     logo = assets::load_image("./assets/wizard_engine/logo.png");
     if (assets::hash_image(logo) != logo_hash) {
-        throw std::runtime_error("Invalid ./assets/wizard_engine/logo.png");
+        throw exception("Invalid ./assets/wizard_engine/logo.png");
     }
 
     intro = sprite(0, 0, 0, 0, (float)window::height() / 2,
@@ -85,22 +86,22 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     if ((bool)SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
                        SDL_INIT_EVENTS | SDL_INIT_JOYSTICK |
                        SDL_INIT_GAMECONTROLLER | SDL_INIT_SENSOR)) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
 #ifndef __EMSCRIPTEN__
     if (!(bool)IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF |
                         IMG_INIT_WEBP | IMG_INIT_JXL | IMG_INIT_AVIF)) {
-        throw std::runtime_error(IMG_GetError());
+        throw exception(IMG_GetError());
     }
 #endif /* __EMSCRIPTEN__ */
     if (!(bool)Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 |
                         MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS) ||
         (bool)Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
                             MIX_DEFAULT_CHANNELS, MIX_DEFAULT_CHUNKSIZE)) {
-        throw std::runtime_error(Mix_GetError());
+        throw exception(Mix_GetError());
     }
     if ((bool)TTF_Init()) {
-        throw std::runtime_error(TTF_GetError());
+        throw exception(TTF_GetError());
     }
     math::initialize();
     timer::initialize();

@@ -23,6 +23,7 @@
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/camera.hpp>
+#include <wizard_engine/exception.hpp>
 #include <wizard_engine/math.hpp>
 #include <wizard_engine/renderer.hpp>
 #include <wizard_engine/window.hpp>
@@ -59,7 +60,7 @@ void wze::renderer::open_frame() {
               background_color_g(), background_color_b()) ||
           (bool)SDL_RenderCopy(base(), background_texture().get(), nullptr,
                                nullptr)))) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
 }
 
@@ -76,7 +77,7 @@ void wze::renderer::open_space() {
                                   &_space_area,
                                   (double)math::to_degrees(-camera::angle()),
                                   nullptr, SDL_FLIP_NONE)))) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
 }
 
@@ -84,7 +85,7 @@ void wze::renderer::open_plane() {
     if ((bool)SDL_SetRenderTarget(base(), _plane.get()) ||
         (bool)SDL_SetRenderDrawColor(base(), 0, 0, 0, 0) ||
         (bool)SDL_RenderClear(base())) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
 }
 
@@ -119,7 +120,7 @@ void wze::renderer::render(renderable const& instance) {
             base(), instance.texture().get(), nullptr, &instance.screen_area(),
             (double)math::to_degrees(instance.screen_angle()), nullptr,
             (SDL_RendererFlip)instance.flip())) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
 }
 
@@ -133,7 +134,7 @@ void wze::renderer::close_frame() {
                                      plane_color_g(), plane_color_b()) ||
         (bool)SDL_SetTextureAlphaMod(_plane.get(), plane_color_a()) ||
         (bool)SDL_RenderCopy(base(), _plane.get(), nullptr, nullptr)) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
     SDL_RenderPresent(base());
 }
@@ -270,7 +271,7 @@ void wze::renderer::initialize() {
     _base = SDL_CreateRenderer(window::base(), -1, SDL_RENDERER_ACCELERATED);
     if (!(bool)base() || (bool)SDL_RenderSetLogicalSize(base(), window::width(),
                                                         window::height())) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
     set_background_color_r(0);
     set_background_color_g(0);
@@ -282,7 +283,7 @@ void wze::renderer::initialize() {
               SDL_DestroyTexture};
     if (!_space ||
         (bool)SDL_SetTextureBlendMode(_space.get(), SDL_BLENDMODE_BLEND)) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
     set_space_color_r(std::numeric_limits<uint8_t>::max());
     set_space_color_g(std::numeric_limits<uint8_t>::max());
@@ -299,7 +300,7 @@ void wze::renderer::initialize() {
               SDL_DestroyTexture};
     if (!_plane ||
         (bool)SDL_SetTextureBlendMode(_plane.get(), SDL_BLENDMODE_BLEND)) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
     set_plane_color_r(std::numeric_limits<uint8_t>::max());
     set_plane_color_g(std::numeric_limits<uint8_t>::max());

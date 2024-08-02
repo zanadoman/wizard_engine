@@ -23,6 +23,7 @@
 #define __WIZARD_ENGINE_INTERNAL
 
 #include <wizard_engine/audio.hpp>
+#include <wizard_engine/exception.hpp>
 #include <wizard_engine/speaker.hpp>
 
 std::vector<int32_t> wze::audio::_channels;
@@ -67,13 +68,13 @@ int32_t wze::audio::request_channel() {
         }
     }
 
-    throw std::runtime_error("Channel allocation failed");
+    throw exception("Channel allocation failed");
 }
 
 void wze::audio::drop_channel(int32_t channel) {
     if (!(bool)Mix_UnregisterAllEffects(channel) ||
         (bool)Mix_HaltChannel(channel)) {
-        throw std::runtime_error(Mix_GetError());
+        throw exception(Mix_GetError());
     }
 
     _channels.erase(
@@ -97,6 +98,6 @@ void wze::audio::resume() {
 
 void wze::audio::stop() {
     if ((bool)Mix_HaltChannel(-1)) {
-        throw std::runtime_error(Mix_GetError());
+        throw exception(Mix_GetError());
     }
 }

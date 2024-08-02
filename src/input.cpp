@@ -24,6 +24,7 @@
 
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/engine.hpp>
+#include <wizard_engine/exception.hpp>
 #include <wizard_engine/input.hpp>
 #include <wizard_engine/renderer.hpp>
 #include <wizard_engine/window.hpp>
@@ -138,7 +139,7 @@ bool wze::input::cursor_visible() {
 
 void wze::input::set_cursor_visible(bool cursor_visible) {
     if ((bool)SDL_SetRelativeMouseMode((SDL_bool)!cursor_visible)) {
-        throw std::runtime_error(SDL_GetError());
+        throw exception(SDL_GetError());
     }
 }
 

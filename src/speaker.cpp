@@ -24,6 +24,7 @@
 
 #include <wizard_engine/audio.hpp>
 #include <wizard_engine/camera.hpp>
+#include <wizard_engine/exception.hpp>
 #include <wizard_engine/math.hpp>
 #include <wizard_engine/speaker.hpp>
 
@@ -237,7 +238,7 @@ wze::speaker& wze::speaker::operator=(speaker&& other) noexcept(false) {
 // NOLINTNEXTLINE(readability-make-member-function-const)
 void wze::speaker::play(uint16_t fade_in, uint16_t loops) {
     if (Mix_FadeInChannel(_channel, sound().get(), loops, fade_in) == -1) {
-        throw std::runtime_error(Mix_GetError());
+        throw exception(Mix_GetError());
     }
 }
 
@@ -307,6 +308,6 @@ void wze::speaker::align_panning() {
             _channel,
             (uint8_t)round(std::numeric_limits<uint8_t>::max() * left),
             (uint8_t)round(std::numeric_limits<uint8_t>::max() * right))) {
-        throw std::runtime_error(Mix_GetError());
+        throw exception(Mix_GetError());
     }
 }
