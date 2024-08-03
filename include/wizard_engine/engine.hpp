@@ -22,6 +22,7 @@
 #ifndef WIZARD_ENGINE_ENGINE_HPP
 #define WIZARD_ENGINE_ENGINE_HPP
 
+#include <wizard_engine/enums.hpp>
 #include <wizard_engine/export.hpp>
 
 namespace wze {
@@ -86,9 +87,19 @@ class engine final {
      * @file engine.hpp
      * @author Zana Domán
      * @brief Logs a message to the console.
+     * @param log_level Log level.
      * @param message Message to log.
      */
-    static void log(std::string const& message);
+    static void log(log_level log_level, char const* message);
+
+    /**
+     * @file engine.hpp
+     * @author Zana Domán
+     * @brief Logs a message to the console.
+     * @param log_level Log level.
+     * @param message Message to log.
+     */
+    static void log(log_level log_level, std::string const& message);
 };
 } /* namespace wze */
 

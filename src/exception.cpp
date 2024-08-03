@@ -22,16 +22,13 @@
 // NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
 #define __WIZARD_ENGINE_INTERNAL__
 
+#include <wizard_engine/engine.hpp>
+#include <wizard_engine/enums.hpp>
 #include <wizard_engine/exception.hpp>
 
 wze::exception::exception(std::string const& what) {
     _what = what;
-#ifdef __EMSCRIPTEN__
-    // NOLINTNEXTLINE(hicpp-vararg,cppcoreguidelines-pro-type-vararg)
-    emscripten_log(EM_LOG_ERROR, this->what());
-#else  /* __EMSCRIPTEN__ */
-    std::cerr << this->what() << '\n';
-#endif /* __EMSCRIPTEN__ */
+    engine::log(LOG_LEVEL_ERROR, this->what());
 }
 
 char const* wze::exception::what() const noexcept {

@@ -82,37 +82,36 @@ std::vector<SDL_Event> const& wze::engine::events() {
 void wze::engine::initialize(uint16_t width, uint16_t height) {
     constexpr uint16_t MIX_DEFAULT_CHUNKSIZE = 4096;
 
-#ifdef _WINDOWS_
     std::set_terminate([]() -> void {
+        std::function<void(char const*)> log;
         std::exception_ptr exception_ptr;
+
+        log = [](char const* message) -> void {
+            engine::log(LOG_LEVEL_CRITICAL, message);
+            if ((bool)SDL_ShowSimpleMessageBox(
+                    SDL_MESSAGEBOX_ERROR,
+                    (bool)window::base() ? SDL_GetWindowTitle(window::base())
+                                         : "Wizard Engine",
+                    message, nullptr)) {
+                engine::log(LOG_LEVEL_CRITICAL, SDL_GetError());
+            }
+        };
 
         exception_ptr = std::current_exception();
         if (exception_ptr) {
             try {
                 std::rethrow_exception(exception_ptr);
             } catch (std::exception const& exception) {
-                MessageBox(nullptr, exception.what(),
-                           (bool)window::base()
-                               ? SDL_GetWindowTitle(window::base())
-                               : "Wizard Engine",
-                           MB_OK | MB_ICONERROR);
+                log(exception.what());
             } catch (...) {
-                MessageBox(nullptr, "Unknown exception",
-                           (bool)window::base()
-                               ? SDL_GetWindowTitle(window::base())
-                               : "Wizard Engine",
-                           MB_OK | MB_ICONERROR);
+                log("Unknown exception");
             }
         } else {
-            MessageBox(nullptr, "Unknown error",
-                       (bool)window::base() ? SDL_GetWindowTitle(window::base())
-                                            : "Wizard Engine",
-                       MB_OK | MB_ICONERROR);
+            log("Unknown error");
         }
 
         abort();
     });
-#endif /* _WINDOWS_ */
 
     _events = {};
     if ((bool)SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
@@ -165,11 +164,12 @@ bool wze::engine::update() {
     return true;
 }
 
-void wze::engine::log(std::string const& message) {
-#ifdef __EMSCRIPTEN__
+void wze::engine::log(log_level level, char const* message) {
     // NOLINTNEXTLINE(hicpp-vararg,cppcoreguidelines-pro-type-vararg)
-    emscripten_log(EM_LOG_INFO, message.c_str());
-#else  /* __EMSCRIPTEN__ */
-    std::cout << message << '\n';
-#endif /* __EMSCRIPTEN__ */
+    SDL_LogMessage(SDL_LOG_CATEGORY_CUSTOM, (SDL_LogPriority)level, "%s",
+                   message);
+}
+
+void wze::engine::log(log_level level, std::string const& message) {
+    log(level, message.c_str());
 }

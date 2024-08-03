@@ -73,6 +73,20 @@ enum system_cursor {
 /**
  * @file enums.hpp
  * @author Zana Domán
+ * @brief Log levels.
+ */
+enum log_level {
+    LOG_LEVEL_VERBOSE = SDL_LOG_PRIORITY_VERBOSE,
+    LOG_LEVEL_DEBUG = SDL_LOG_PRIORITY_DEBUG,
+    LOG_LEVEL_INFO = SDL_LOG_PRIORITY_INFO,
+    LOG_LEVEL_WARN = SDL_LOG_PRIORITY_WARN,
+    LOG_LEVEL_ERROR = SDL_LOG_PRIORITY_ERROR,
+    LOG_LEVEL_CRITICAL = SDL_LOG_PRIORITY_CRITICAL
+};
+
+/**
+ * @file enums.hpp
+ * @author Zana Domán
  * @brief Keyboard and mousekeys.
  */
 enum key {
