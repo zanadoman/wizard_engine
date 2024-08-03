@@ -170,6 +170,6 @@ void wze::engine::log(std::string const& message) {
     // NOLINTNEXTLINE(hicpp-vararg,cppcoreguidelines-pro-type-vararg)
     emscripten_log(EM_LOG_INFO, message.c_str());
 #else  /* __EMSCRIPTEN__ */
-    std::cout << message << std::endl;
+    std::cout << message << '\n';
 #endif /* __EMSCRIPTEN__ */
 }

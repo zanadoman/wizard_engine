@@ -31,7 +31,7 @@ wze::exception::exception(std::string const& what) {
     // NOLINTNEXTLINE(hicpp-vararg,cppcoreguidelines-pro-type-vararg)
     emscripten_log(EM_LOG_ERROR, this->what());
 #else  /* __EMSCRIPTEN__ */
-    std::cerr << this->what() << std::endl;
+    std::cerr << this->what() << '\n';
 #endif /* __EMSCRIPTEN__ */
 }
 
