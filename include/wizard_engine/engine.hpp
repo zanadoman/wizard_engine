@@ -87,19 +87,20 @@ class engine final {
      * @file engine.hpp
      * @author Zana Domán
      * @brief Logs a message to the console.
-     * @param log_level Log level.
      * @param message Message to log.
+     * @param log_level Log level.
      */
-    static void log(log_level log_level, char const* message);
+    static void log(char const* message, log_level log_level = LOG_LEVEL_INFO);
 
     /**
      * @file engine.hpp
      * @author Zana Domán
      * @brief Logs a message to the console.
-     * @param log_level Log level.
      * @param message Message to log.
+     * @param log_level Log level.
      */
-    static void log(log_level log_level, std::string const& message);
+    static void log(std::string const& message,
+                    log_level log_level = LOG_LEVEL_INFO);
 };
 } /* namespace wze */
 

@@ -87,13 +87,13 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
         std::exception_ptr exception_ptr;
 
         log = [](char const* message) -> void {
-            engine::log(LOG_LEVEL_CRITICAL, message);
+            engine::log(message, LOG_LEVEL_CRITICAL);
             if ((bool)SDL_ShowSimpleMessageBox(
                     SDL_MESSAGEBOX_ERROR,
                     (bool)window::base() ? SDL_GetWindowTitle(window::base())
                                          : "Wizard Engine",
                     message, nullptr)) {
-                engine::log(LOG_LEVEL_CRITICAL, SDL_GetError());
+                engine::log(SDL_GetError(), LOG_LEVEL_CRITICAL);
             }
         };
 
@@ -163,12 +163,12 @@ bool wze::engine::update() {
     return true;
 }
 
-void wze::engine::log(log_level level, char const* message) {
+void wze::engine::log(char const* message, log_level log_level) {
     // NOLINTNEXTLINE(hicpp-vararg,cppcoreguidelines-pro-type-vararg)
-    SDL_LogMessage(SDL_LOG_CATEGORY_CUSTOM, (SDL_LogPriority)level, "%s",
-                   message);
+    SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, (SDL_LogPriority)log_level,
+                   "%s", message);
 }
 
-void wze::engine::log(log_level level, std::string const& message) {
-    log(level, message.c_str());
+void wze::engine::log(std::string const& message, log_level log_level) {
+    log(message.c_str(), log_level);
 }

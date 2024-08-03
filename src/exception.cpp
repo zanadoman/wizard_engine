@@ -28,7 +28,7 @@
 
 wze::exception::exception(std::string const& what) {
     _what = what;
-    engine::log(LOG_LEVEL_ERROR, this->what());
+    engine::log(this->what(), LOG_LEVEL_ERROR);
 }
 
 char const* wze::exception::what() const noexcept {
