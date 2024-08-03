@@ -30,7 +30,7 @@ namespace wze {
  * @file assets.hpp
  * @author Zana Domán
  * @brief Image file in host memory.
- * @note Supported image formats: jpg, png, tif, webp, jxl, avif.
+ * @note Supported image formats: jpg, png.
  */
 using image = SDL_Surface;
 
@@ -45,7 +45,7 @@ using texture = SDL_Texture;
  * @file assets.hpp
  * @author Zana Domán
  * @brief Audio file.
- * @note Supported sound formats: flac, mod, mp3, ogg, mid, opus.
+ * @note Supported sound formats: wav, ogg.
  */
 using sound = Mix_Chunk;
 
@@ -94,7 +94,7 @@ class assets final {
      * @brief Loads an image from a path.
      * @param path Path to the image.
      * @return Loaded image.
-     * @note Supported image formats: jpg, png, tif, webp, jxl, avif.
+     * @note Supported image formats: jpg, png.
      * @warning If the image cannot be loaded, throws std::runtime_error.
      */
     [[nodiscard]] static std::shared_ptr<image>
@@ -141,7 +141,7 @@ class assets final {
      * @brief Loads a sound from a path.
      * @param path Path to the sound.
      * @return Loaded sound.
-     * @note Supported sound formats: flac, mod, mp3, ogg, mid, opus.
+     * @note Supported sound formats: wav, ogg.
      * @warning If the sound cannot be loaded, throws std::runtime_error.
      */
     [[nodiscard]] static std::shared_ptr<sound>

@@ -119,14 +119,13 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
                        SDL_INIT_GAMECONTROLLER | SDL_INIT_SENSOR)) {
         throw exception(SDL_GetError());
     }
-    if (!(bool)IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF |
-                        IMG_INIT_WEBP | IMG_INIT_JXL | IMG_INIT_AVIF)) {
 #ifndef __EMSCRIPTEN__
+    if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) !=
+        (IMG_INIT_JPG | IMG_INIT_PNG)) {
         throw exception(IMG_GetError());
-#endif /* __EMSCRIPTEN__ */
     }
-    if (!(bool)Mix_Init(MIX_INIT_FLAC | MIX_INIT_MOD | MIX_INIT_MP3 |
-                        MIX_INIT_OGG | MIX_INIT_MID | MIX_INIT_OPUS) ||
+#endif /* __EMSCRIPTEN__ */
+    if ((Mix_Init(MIX_INIT_OGG) != MIX_INIT_OGG) ||
         (bool)Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,
                             MIX_DEFAULT_CHANNELS, MIX_DEFAULT_CHUNKSIZE)) {
         throw exception(Mix_GetError());
