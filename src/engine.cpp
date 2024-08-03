@@ -85,20 +85,24 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
 #ifdef _WINDOWS_
     std::set_terminate([]() -> void {
         std::exception_ptr exception_ptr;
+        std::string title;
 
         exception_ptr = std::current_exception();
         if (exception_ptr) {
             try {
                 std::rethrow_exception(exception_ptr);
             } catch (std::exception const& exception) {
-                MessageBox(nullptr, exception.what(), window::title().c_str(),
+                MessageBox(nullptr, exception.what(),
+                           title.empty() ? "Wizard Engine" : title.c_str(),
                            MB_OK | MB_ICONERROR);
             } catch (...) {
                 MessageBox(nullptr, "Unknown exception",
-                           window::title().c_str(), MB_OK | MB_ICONERROR);
+                           title.empty() ? "Wizard Engine" : title.c_str(),
+                           MB_OK | MB_ICONERROR);
             }
         } else {
-            MessageBox(nullptr, "Unknown error", window::title().c_str(),
+            MessageBox(nullptr, "Unknown error",
+                       title.empty() ? "Wizard Engine" : title.c_str(),
                        MB_OK | MB_ICONERROR);
         }
 
