@@ -28,6 +28,9 @@
  * @brief Interface header of the Wizard Engine.
  */
 
+// NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
+#define __WIZARD_ENGINE__
+
 #ifdef __WIZARD_ENGINE_INTERNAL__
 #error Illegal external access to internal assembly
 #endif /* __WIZARD_ENGINE_INTERNAL__ */
@@ -78,8 +81,5 @@
     /* @brief Game loop of the Wizard Engine.                    */            \
     /* @param True if the game should continue, false otherwise. */            \
     while (wze::engine::update() && (condition))
-
-// NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
-#define __WIZARD_ENGINE__
 
 #endif /* WIZARD_ENGINE_WIZARD_ENGINE_HPP */
