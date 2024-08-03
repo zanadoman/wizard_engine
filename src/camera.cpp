@@ -25,12 +25,12 @@
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/math.hpp>
 
-float wze::camera::_x;
-float wze::camera::_y;
-float wze::camera::_z;
-float wze::camera::_angle;
-std::array<float, 4> wze::camera::_transformation_matrix;
-float wze::camera::_focus;
+float wze::camera::_x = {};
+float wze::camera::_y = {};
+float wze::camera::_z = {};
+float wze::camera::_angle = {};
+std::array<float, 4> wze::camera::_transformation_matrix = {};
+float wze::camera::_focus = {};
 
 float wze::camera::x() {
     return _x;

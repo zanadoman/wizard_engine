@@ -28,25 +28,25 @@
 #include <wizard_engine/renderer.hpp>
 #include <wizard_engine/window.hpp>
 
-float wze::renderer::_origo_x;
-float wze::renderer::_origo_y;
-SDL_Renderer* wze::renderer::_base;
-uint8_t wze::renderer::_background_color_r;
-uint8_t wze::renderer::_background_color_g;
-uint8_t wze::renderer::_background_color_b;
-std::shared_ptr<wze::texture> wze::renderer::_background_texture;
-std::shared_ptr<wze::texture> wze::renderer::_space;
-uint8_t wze::renderer::_space_color_r;
-uint8_t wze::renderer::_space_color_g;
-uint8_t wze::renderer::_space_color_b;
-uint8_t wze::renderer::_space_color_a;
-std::shared_ptr<wze::texture> wze::renderer::_space_texture;
-SDL_FRect wze::renderer::_space_area;
-std::shared_ptr<wze::texture> wze::renderer::_plane;
-uint8_t wze::renderer::_plane_color_r;
-uint8_t wze::renderer::_plane_color_g;
-uint8_t wze::renderer::_plane_color_b;
-uint8_t wze::renderer::_plane_color_a;
+float wze::renderer::_origo_x = {};
+float wze::renderer::_origo_y = {};
+SDL_Renderer* wze::renderer::_base = {};
+uint8_t wze::renderer::_background_color_r = {};
+uint8_t wze::renderer::_background_color_g = {};
+uint8_t wze::renderer::_background_color_b = {};
+std::shared_ptr<wze::texture> wze::renderer::_background_texture = {};
+std::shared_ptr<wze::texture> wze::renderer::_space = {};
+uint8_t wze::renderer::_space_color_r = {};
+uint8_t wze::renderer::_space_color_g = {};
+uint8_t wze::renderer::_space_color_b = {};
+uint8_t wze::renderer::_space_color_a = {};
+std::shared_ptr<wze::texture> wze::renderer::_space_texture = {};
+SDL_FRect wze::renderer::_space_area = {};
+std::shared_ptr<wze::texture> wze::renderer::_plane = {};
+uint8_t wze::renderer::_plane_color_r = {};
+uint8_t wze::renderer::_plane_color_g = {};
+uint8_t wze::renderer::_plane_color_b = {};
+uint8_t wze::renderer::_plane_color_a = {};
 
 void wze::renderer::open_frame() {
     if ((bool)SDL_SetRenderTarget(base(), nullptr) ||

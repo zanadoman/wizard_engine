@@ -34,7 +34,7 @@
 #include <wizard_engine/timer.hpp>
 #include <wizard_engine/window.hpp>
 
-std::vector<SDL_Event> wze::engine::_events;
+std::vector<SDL_Event> wze::engine::_events = {};
 
 void wze::engine::play_intro() {
     // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
@@ -85,7 +85,6 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
 #ifdef _WINDOWS_
     std::set_terminate([]() -> void {
         std::exception_ptr exception_ptr;
-        std::string title;
 
         exception_ptr = std::current_exception();
         if (exception_ptr) {
@@ -93,16 +92,21 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
                 std::rethrow_exception(exception_ptr);
             } catch (std::exception const& exception) {
                 MessageBox(nullptr, exception.what(),
-                           title.empty() ? "Wizard Engine" : title.c_str(),
+                           (bool)window::base()
+                               ? SDL_GetWindowTitle(window::base())
+                               : "Wizard Engine",
                            MB_OK | MB_ICONERROR);
             } catch (...) {
                 MessageBox(nullptr, "Unknown exception",
-                           title.empty() ? "Wizard Engine" : title.c_str(),
+                           (bool)window::base()
+                               ? SDL_GetWindowTitle(window::base())
+                               : "Wizard Engine",
                            MB_OK | MB_ICONERROR);
             }
         } else {
             MessageBox(nullptr, "Unknown error",
-                       title.empty() ? "Wizard Engine" : title.c_str(),
+                       (bool)window::base() ? SDL_GetWindowTitle(window::base())
+                                            : "Wizard Engine",
                        MB_OK | MB_ICONERROR);
         }
 

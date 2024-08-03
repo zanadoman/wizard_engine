@@ -29,13 +29,13 @@
 #include <wizard_engine/renderer.hpp>
 #include <wizard_engine/window.hpp>
 
-SDL_Keycode wze::input::_key;
-std::array<bool, wze::KEY_COUNT> wze::input::_keys;
-float wze::input::_cursor_absolute_x;
-float wze::input::_cursor_absolute_y;
-float wze::input::_cursor_relative_x;
-float wze::input::_cursor_relative_y;
-float wze::input::_mouse_sensitivity;
+SDL_Keycode wze::input::_key = {};
+std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
+float wze::input::_cursor_absolute_x = {};
+float wze::input::_cursor_absolute_y = {};
+float wze::input::_cursor_relative_x = {};
+float wze::input::_cursor_relative_y = {};
+float wze::input::_mouse_sensitivity = {};
 
 void wze::input::update_key() {
     std::vector<SDL_Event>::const_reverse_iterator iterator;

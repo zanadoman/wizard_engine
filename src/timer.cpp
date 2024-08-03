@@ -25,10 +25,10 @@
 #include <wizard_engine/timer.hpp>
 
 #ifndef __EMSCRIPTEN__
-uint8_t wze::timer::_frame_time;
+uint8_t wze::timer::_frame_time = {};
 #endif /* __EMSCRIPTEN__ */
-float wze::timer::_delta_time;
-uint64_t wze::timer::_last_time;
+float wze::timer::_delta_time = {};
+uint64_t wze::timer::_last_time = {};
 
 uint8_t wze::timer::frame_time() {
 #ifdef __EMSCRIPTEN__

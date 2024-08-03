@@ -25,9 +25,9 @@
 #include <wizard_engine/exception.hpp>
 #include <wizard_engine/window.hpp>
 
-SDL_Window* wze::window::_base;
-uint16_t wze::window::_width;
-uint16_t wze::window::_height;
+SDL_Window* wze::window::_base = {};
+uint16_t wze::window::_width = {};
+uint16_t wze::window::_height = {};
 
 SDL_Window* wze::window::base() {
     return _base;
