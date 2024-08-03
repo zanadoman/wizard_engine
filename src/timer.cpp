@@ -24,27 +24,17 @@
 
 #include <wizard_engine/timer.hpp>
 
-#ifndef __EMSCRIPTEN__
 uint8_t wze::timer::_frame_time = {};
-#endif /* __EMSCRIPTEN__ */
 float wze::timer::_delta_time = {};
 uint64_t wze::timer::_last_time = {};
 
 uint8_t wze::timer::frame_time() {
-#ifdef __EMSCRIPTEN__
-    return 0;
-#else  /* __EMSCRIPTEN__ */
     return _frame_time;
-#endif /* __EMSCRIPTEN__ */
 }
 
-#ifdef __EMSCRIPTEN__
-void wze::timer::set_frame_time([[maybe_unused]] uint8_t _) {}
-#else  /* __EMSCRIPTEN__ */
 void wze::timer::set_frame_time(uint8_t frame_time) {
     _frame_time = frame_time;
 }
-#endif /* __EMSCRIPTEN__ */
 
 float wze::timer::delta_time() {
     return _delta_time;
@@ -59,31 +49,25 @@ uint64_t wze::timer::current_time() {
 }
 
 void wze::timer::initialize() {
-#ifndef __EMSCRIPTEN__
     set_frame_time(0);
-#endif /* __EMSCRIPTEN__ */
     set_delta_time(0);
     _last_time = 0;
 }
 
 void wze::timer::update() {
     uint64_t now;
-#ifndef __EMSCRIPTEN__
     uint64_t end;
-#endif /* __EMSCRIPTEN__ */
 
-#ifndef __EMSCRIPTEN__
     end = _last_time + frame_time();
-#endif /* __EMSCRIPTEN__ */
     now = current_time();
 
-#ifndef __EMSCRIPTEN__
-    if (now < end) {
-        SDL_Delay(end - now);
-        now = end;
-    }
+#ifdef __EMSCRIPTEN__
+    emscripten_sleep(now < end ? end - now : 0);
+#else  /* __EMSCRIPTEN__ */
+    SDL_Delay(now < end ? end - now : 0);
 #endif /* __EMSCRIPTEN__ */
 
+    now = current_time();
     set_delta_time((float)(now - _last_time));
     _last_time = now;
 }

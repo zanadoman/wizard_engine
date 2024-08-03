@@ -62,7 +62,7 @@
 #ifdef __WIN64__
 #include <cstdlib>   /* IWYU pragma: export */
 #include <windows.h> /* IWYU pragma: export */
-#endif
+#endif               /* __WIN64__ */
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h> /* IWYU pragma: export */

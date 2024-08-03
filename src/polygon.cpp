@@ -277,8 +277,8 @@ bool wze::polygon::overlap(polygon const& other) const {
             normal_y = polygon1->points().at(j1).first -
                        polygon1->points().at(j2).first;
 
-            minimum1 = std::numeric_limits<float>::infinity();
-            maximum1 = -std::numeric_limits<float>::infinity();
+            minimum1 = std::numeric_limits<float>::max();
+            maximum1 = -std::numeric_limits<float>::max();
             for (k = 0; k != polygon1->points().size(); ++k) {
                 projection = polygon1->points().at(k).first * normal_x +
                              polygon1->points().at(k).second * normal_y;
@@ -286,8 +286,8 @@ bool wze::polygon::overlap(polygon const& other) const {
                 maximum1 = std::max(maximum1, projection);
             }
 
-            minimum2 = std::numeric_limits<float>::infinity();
-            maximum2 = -std::numeric_limits<float>::infinity();
+            minimum2 = std::numeric_limits<float>::max();
+            maximum2 = -std::numeric_limits<float>::max();
             for (k = 0; k != polygon2->points().size(); ++k) {
                 projection = polygon2->points().at(k).first * normal_x +
                              polygon2->points().at(k).second * normal_y;
@@ -331,7 +331,7 @@ float wze::polygon::collision(polygon const& other) const {
 
     polygon1 = this;
     polygon2 = &other;
-    collision = std::numeric_limits<float>::infinity();
+    collision = std::numeric_limits<float>::max();
 
     for (i = 0; i != 2; ++i) {
         for (j1 = 0, j2 = 1; j1 != polygon1->points().size(); ++j1, ++j2) {
@@ -347,8 +347,8 @@ float wze::polygon::collision(polygon const& other) const {
             normal_x = (bool)normalization ? normal_x / normalization : 0;
             normal_y = (bool)normalization ? normal_y / normalization : 0;
 
-            minimum1 = std::numeric_limits<float>::infinity();
-            maximum1 = -std::numeric_limits<float>::infinity();
+            minimum1 = std::numeric_limits<float>::max();
+            maximum1 = -std::numeric_limits<float>::max();
             for (k = 0; k != polygon1->points().size(); ++k) {
                 projection = polygon1->points().at(k).first * normal_x +
                              polygon1->points().at(k).second * normal_y;
@@ -356,8 +356,8 @@ float wze::polygon::collision(polygon const& other) const {
                 maximum1 = std::max(maximum1, projection);
             }
 
-            minimum2 = std::numeric_limits<float>::infinity();
-            maximum2 = -std::numeric_limits<float>::infinity();
+            minimum2 = std::numeric_limits<float>::max();
+            maximum2 = -std::numeric_limits<float>::max();
             for (k = 0; k != polygon2->points().size(); ++k) {
                 projection = polygon2->points().at(k).first * normal_x +
                              polygon2->points().at(k).second * normal_y;
