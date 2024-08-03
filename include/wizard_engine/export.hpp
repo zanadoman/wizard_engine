@@ -28,9 +28,6 @@
  * @brief Export header of the Wizard Engine.
  */
 
-// NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
-#define __WIZARD_ENGINE__
-
 #include <cmath>   /* IWYU pragma: export */
 #include <cstddef> /* IWYU pragma: export */
 #include <cstdint> /* IWYU pragma: export */
@@ -61,6 +58,11 @@
 #include <SDL2/SDL_image.h> /* IWYU pragma: export */
 #include <SDL2/SDL_mixer.h> /* IWYU pragma: export */
 #include <SDL2/SDL_ttf.h>   /* IWYU pragma: export */
+
+#ifdef __WIN64__
+#include <cstdlib>   /* IWYU pragma: export */
+#include <windows.h> /* IWYU pragma: export */
+#endif
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h> /* IWYU pragma: export */

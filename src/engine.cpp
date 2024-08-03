@@ -82,6 +82,30 @@ std::vector<SDL_Event> const& wze::engine::events() {
 void wze::engine::initialize(uint16_t width, uint16_t height) {
     constexpr uint16_t MIX_DEFAULT_CHUNKSIZE = 4096;
 
+#ifdef _WINDOWS_
+    std::set_terminate([]() -> void {
+        std::exception_ptr exception_ptr;
+
+        exception_ptr = std::current_exception();
+        if (exception_ptr) {
+            try {
+                std::rethrow_exception(exception_ptr);
+            } catch (std::exception const& exception) {
+                MessageBox(nullptr, exception.what(), window::title().c_str(),
+                           MB_OK | MB_ICONERROR);
+            } catch (...) {
+                MessageBox(nullptr, "Unknown exception",
+                           window::title().c_str(), MB_OK | MB_ICONERROR);
+            }
+        } else {
+            MessageBox(nullptr, "Unknown error", window::title().c_str(),
+                       MB_OK | MB_ICONERROR);
+        }
+
+        abort();
+    });
+#endif /* _WINDOWS_ */
+
     _events = {};
     if ((bool)SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
                        SDL_INIT_EVENTS | SDL_INIT_JOYSTICK |

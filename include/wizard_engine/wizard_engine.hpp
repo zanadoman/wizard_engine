@@ -42,6 +42,7 @@
 #include <wizard_engine/engine.hpp>     /* IWYU pragma: export */
 #include <wizard_engine/entity.hpp>     /* IWYU pragma: export */
 #include <wizard_engine/enums.hpp>      /* IWYU pragma: export */
+#include <wizard_engine/exception.hpp>  /* IWYU pragma: export */
 #include <wizard_engine/export.hpp>     /* IWYU pragma: export */
 #include <wizard_engine/input.hpp>      /* IWYU pragma: export */
 #include <wizard_engine/math.hpp>       /* IWYU pragma: export */
@@ -77,5 +78,8 @@
     /* @brief Game loop of the Wizard Engine.                    */            \
     /* @param True if the game should continue, false otherwise. */            \
     while (wze::engine::update() && (condition))
+
+// NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
+#define __WIZARD_ENGINE__
 
 #endif /* WIZARD_ENGINE_WIZARD_ENGINE_HPP */
