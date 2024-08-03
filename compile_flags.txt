@@ -5,7 +5,6 @@
 -Wextra
 -Wpedantic
 -Wdouble-promotion
--Wno-nan-infinity-disabled
 -Wno-unused-command-line-argument
 -Wno-unknown-warning-option
 -Wno-gnu-line-marker

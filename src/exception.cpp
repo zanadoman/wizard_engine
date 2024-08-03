@@ -26,7 +26,6 @@
 
 wze::exception::exception(std::string const& what) {
     _what = what;
-
 #ifdef __EMSCRIPTEN__
     // NOLINTNEXTLINE(hicpp-vararg,cppcoreguidelines-pro-type-vararg)
     emscripten_log(EM_LOG_ERROR, this->what());

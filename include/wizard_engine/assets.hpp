@@ -141,7 +141,7 @@ class assets final {
      * @brief Loads a sound from a path.
      * @param path Path to the sound.
      * @return Loaded sound.
-     * @note Supported sound formats: flac, mod, mp3, ogg, mid, opus, wavpack.
+     * @note Supported sound formats: flac, mod, mp3, ogg, mid, opus.
      * @warning If the sound cannot be loaded, throws std::runtime_error.
      */
     [[nodiscard]] static std::shared_ptr<sound>
