@@ -159,6 +159,10 @@ foreach(SOURCE ${SOURCES})
     get_filename_component(NAME ${SOURCE} NAME_WE)
     add_executable(${NAME} ${SOURCE})
     target_link_libraries(${NAME} ${PROJECT_NAME})
+    if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+        set_target_properties(${NAME} PROPERTIES LINK_FLAGS
+                              "--shell-file ${CMAKE_SOURCE_DIR}/skeleton.html")
+    endif()
 endforeach()
 
 # Assets
