@@ -49,7 +49,7 @@ class math final {
      */
     [[nodiscard]] static constexpr float epsilon() {
         // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
-        return 0.01;
+        return .01;
     }
 
     /**

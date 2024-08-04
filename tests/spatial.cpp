@@ -1,13 +1,13 @@
 #include <wizard_engine/wizard_engine.hpp>
 
-wze_main(1920, 1080) {
-    constexpr size_t sprite_count = 1000;
-    constexpr float sprite_spread = 2000;
-    constexpr float sprite_size = 100;
-    constexpr float movement_speed = .5;
-    constexpr float rotation_speed = .002;
-    constexpr float circle = 360;
+constexpr size_t sprite_count = 1000;
+constexpr float sprite_spread = 2000;
+constexpr float sprite_size = 100;
+constexpr float movement_speed = .5;
+constexpr float rotation_speed = .002;
+constexpr float circle = 360;
 
+wze_main(1920, 1080) {
     std::shared_ptr<wze::texture> texture;
     std::vector<wze::sprite> sprites;
     wze::speaker speaker;
