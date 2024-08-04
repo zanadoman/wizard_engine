@@ -46,13 +46,13 @@
 #include <utility>     /* IWYU pragma: export */
 #include <vector>      /* IWYU pragma: export */
 
-#if defined(__WIN64__) || defined(__ANDROID__)
+#if defined(_WIN32) || defined(__ANDROID__)
 #define SDL_MAIN_HANDLED
-#endif /* defined(__WIN64__) || defined(__ANDROID__) */
+#endif /* defined(_WIN32) || defined(__ANDROID__) */
 
-#ifdef __aarch64__
+#if defined(__arm__) || defined(__aarch64__)
 #define SDL_DISABLE_IMMINTRIN_H
-#endif /* __aarch64__ */
+#endif /* defined(__arm__) || defined(__aarch64__) */
 
 #include <SDL2/SDL.h>       /* IWYU pragma: export */
 #include <SDL2/SDL_image.h> /* IWYU pragma: export */
@@ -60,7 +60,10 @@
 #include <SDL2/SDL_ttf.h>   /* IWYU pragma: export */
 
 #ifdef __EMSCRIPTEN__
-#include <emscripten.h> /* IWYU pragma: export */
-#endif                  /* __EMSCRIPTEN__ */
+#pragma clang diagnostic push /* "-Wunused-parameter" */
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#include <emscripten.h>      /* IWYU pragma: export */
+#pragma clang diagnostic pop /* "-Wunused-parameter" */
+#endif                       /* __EMSCRIPTEN__ */
 
 #endif /* WIZARD_ENGINE_EXPORT_HPP */

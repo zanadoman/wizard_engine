@@ -8,3 +8,4 @@
 -Wno-unused-command-line-argument
 -Wno-unknown-warning-option
 -Wno-gnu-line-marker
+-Wno-psabi
