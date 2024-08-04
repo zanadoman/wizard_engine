@@ -7,7 +7,7 @@ if(NOT ${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}/build)
 endif()
 
 # Project
-project(wizard_engine)
+project(wizard_engine LANGUAGES CXX)
 
 # System
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Android|Emscripten)
@@ -74,7 +74,7 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/include/)
 
 # Sources
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*)
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     add_library(${PROJECT_NAME} STATIC ${SOURCES})
 else()
@@ -83,63 +83,29 @@ endif()
 
 # Libraries
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    set(CMAKE_LIBRARY_PATH ${CMAKE_SOURCE_DIR}/lib/${CMAKE_SYSTEM_PROCESSOR}-linux/)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_LIBRARY_PATH}/libSDL2-2.0.so.0
-                          ${CMAKE_LIBRARY_PATH}/libSDL2_image-2.0.so.0
-                          ${CMAKE_LIBRARY_PATH}/libSDL2_mixer-2.0.so.0
-                          ${CMAKE_LIBRARY_PATH}/libSDL2_ttf-2.0.so.0)
-    if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL aarch64)
-        target_link_libraries(${PROJECT_NAME}
-                              ${CMAKE_LIBRARY_PATH}/libfreetype.so.6
-                              ${CMAKE_LIBRARY_PATH}/libpng16.so.16
-                              ${CMAKE_LIBRARY_PATH}/libz.so.1
-                              ${CMAKE_LIBRARY_PATH}/libbrotlidec.so.1
-                              ${CMAKE_LIBRARY_PATH}/libbrotlicommon.so.1)
-    endif()
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/${CMAKE_SYSTEM_PROCESSOR}-linux/lib*.so.*)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    set(CMAKE_LIBRARY_PATH ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_LIBRARY_PATH}/SDL2.dll
-                          ${CMAKE_LIBRARY_PATH}/SDL2_image.dll
-                          ${CMAKE_LIBRARY_PATH}/SDL2_mixer.dll
-                          ${CMAKE_LIBRARY_PATH}/SDL2_ttf.dll)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
-    set(CMAKE_LIBRARY_PATH ${CMAKE_SOURCE_DIR}/lib/aarch64-android/)
-    target_link_libraries(${PROJECT_NAME}
-                          ${CMAKE_LIBRARY_PATH}/libSDL2.so
-                          ${CMAKE_LIBRARY_PATH}/libSDL2_image.so
-                          ${CMAKE_LIBRARY_PATH}/libSDL2_mixer.so
-                          ${CMAKE_LIBRARY_PATH}/libSDL2_ttf.so)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
-    target_compile_options(${PROJECT_NAME} PRIVATE
-                           -sUSE_SDL=2
-                           -sUSE_SDL_IMAGE=2
-                           -sUSE_SDL_MIXER=2
-                           -sUSE_SDL_TTF=2
-                           -sUSE_FREETYPE=1)
-    target_link_libraries(${PROJECT_NAME}
-                          SDL2
-                          SDL2_image
-                          SDL2_mixer
-                          SDL2_ttf
-                          freetype)
-endif()
-
-if(DEFINED CMAKE_LIBRARY_PATH AND NOT ${CMAKE_LIBRARY_PATH} STREQUAL \ )
-    file(GLOB LIBRARIES ${CMAKE_LIBRARY_PATH}/*)
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/lib*.dll)
     file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2*.dll)
+    file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2*.so)
+    file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    set(LIBRARIES SDL2 SDL2_image SDL2_mixer SDL2_ttf freetype)
+    target_compile_options(${PROJECT_NAME} PRIVATE -sUSE_SDL=2 -sUSE_SDL_IMAGE=2
+                           -sUSE_SDL_MIXER=2 -sUSE_SDL_TTF=2 -sUSE_FREETYPE=1)
 endif()
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES})
 
 # Flags
 file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
 string(REPLACE \n \  FLAGS ${FLAGS})
 set(CMAKE_CXX_FLAGS ${FLAGS})
 
-if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Android)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-rpath=./")
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
+if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
+    target_link_options(${PROJECT_NAME} PRIVATE -mwindows)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(CMAKE_CXX_FLAGS
         "${CMAKE_CXX_FLAGS} -sASYNCIFY -sALLOW_MEMORY_GROWTH --use-preload-plugins --preload-file ./assets")
@@ -150,12 +116,14 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(CMAKE_EXECUTABLE_SUFFIX .html)
 endif()
 
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/tests/*)
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/tests/*.cpp)
 foreach(SOURCE ${SOURCES})
     get_filename_component(NAME ${SOURCE} NAME_WE)
     add_executable(${NAME} ${SOURCE})
     target_link_libraries(${NAME} ${PROJECT_NAME})
-    if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    if(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+        target_link_options(${NAME} PRIVATE -Wl,-rpath=./)
+    elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
         set_target_properties(${NAME} PROPERTIES LINK_FLAGS
                               "--shell-file ${CMAKE_SOURCE_DIR}/skeleton.html")
     endif()
@@ -165,19 +133,15 @@ endforeach()
 file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
 
 # Test
-if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
+if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Emscripten)
     if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
+        if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+            set(TEST_COMMAND emrun ${TEST}${CMAKE_EXECUTABLE_SUFFIX})
+        else()
+            set(TEST_COMMAND ${TEST}${CMAKE_EXECUTABLE_SUFFIX})
+        endif()
         add_custom_command(TARGET ${TEST} POST_BUILD
-                           COMMAND ${CMAKE_BINARY_DIR}/${TEST}${CMAKE_EXECUTABLE_SUFFIX}
-                           WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                           COMMENT "Running test ${TEST}")
-    else()
-        message(AUTHOR_WARNING "TEST not defined, skipping test.")
-    endif()
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
-    if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
-        add_custom_command(TARGET ${TEST} POST_BUILD
-                           COMMAND emrun ${TEST}${CMAKE_EXECUTABLE_SUFFIX}
+                           COMMAND ${TEST_COMMAND}
                            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                            COMMENT "Running test ${TEST}")
     else()
