@@ -113,7 +113,9 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
         abort();
     });
 
-    _events = {};
+#ifdef SDL_MAIN_HANDLED
+    SDL_SetMainReady();
+#endif /* SDL_MAIN_HANDLED */
     if ((bool)SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
                        SDL_INIT_EVENTS | SDL_INIT_JOYSTICK |
                        SDL_INIT_GAMECONTROLLER | SDL_INIT_SENSOR)) {
@@ -133,6 +135,8 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     if ((bool)TTF_Init()) {
         throw exception(TTF_GetError());
     }
+
+    _events = {};
     math::initialize();
     timer::initialize();
     window::initialize(width, height);
