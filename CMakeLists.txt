@@ -34,22 +34,6 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
 endif()
 
 # Compiler
-if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    find_program(CXX_COMPILER ${CMAKE_SYSTEM_PROCESSOR}-linux-gnu-g++)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    find_program(CXX_COMPILER x86_64-w64-mingw32-g++)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
-    find_program(CXX_COMPILER aarch64-linux-android21-clang++)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
-    find_program(CXX_COMPILER em++)
-endif()
-
-if(CXX_COMPILER)
-    set(CMAKE_CXX_COMPILER ${CXX_COMPILER})
-else()
-    message(FATAL_ERROR "Missing compiler, Cmake will exit.")
-endif()
-
 if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
     if(NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
         message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
@@ -94,9 +78,8 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(LIBRARIES SDL2 SDL2_image SDL2_mixer SDL2_ttf freetype)
-    target_compile_options(${PROJECT_NAME} PRIVATE -sUSE_SDL=2 -sUSE_SDL_IMAGE=2
-                           -sUSE_SDL_MIXER=2 -sUSE_SDL_TTF=2 -sUSE_FREETYPE=1)
 endif()
+
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES})
 
 # Flags
@@ -104,13 +87,15 @@ file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
 string(REPLACE \n \  FLAGS ${FLAGS})
 set(CMAKE_CXX_FLAGS ${FLAGS})
 
-if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
-    set(CMAKE_CXX_FLAGS
-        "${CMAKE_CXX_FLAGS} -sASYNCIFY -sALLOW_MEMORY_GROWTH --use-preload-plugins --preload-file ./assets")
-endif()
-
 # Tests
-if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
+    set(LINK_OPTIONS -mwindows)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    set(LINK_OPTIONS -Wl,-rpath=./)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
+    set(LINK_OPTIONS -sUSE_SDL=2 -sUSE_SDL_IMAGE=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_TTF=2
+        -sUSE_FREETYPE=1 -sASYNCIFY --use-preload-plugins --preload-file ./assets
+        --shell-file ${CMAKE_SOURCE_DIR}/skeleton.html)
     set(CMAKE_EXECUTABLE_SUFFIX .html)
 endif()
 
@@ -119,14 +104,7 @@ foreach(SOURCE ${SOURCES})
     get_filename_component(NAME ${SOURCE} NAME_WE)
     add_executable(${NAME} ${SOURCE})
     target_link_libraries(${NAME} ${PROJECT_NAME})
-    if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-        target_link_options(${NAME} PRIVATE -mwindows)
-    if(${CMAKE_SYSTEM_NAME} STREQUAL Android)
-        target_link_options(${NAME} PRIVATE -Wl,-rpath=./)
-    elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
-        set_target_properties(${NAME} PROPERTIES LINK_FLAGS
-                              "--shell-file ${CMAKE_SOURCE_DIR}/skeleton.html")
-    endif()
+    target_link_options(${NAME} PRIVATE ${LINK_OPTIONS})
 endforeach()
 
 # Assets
