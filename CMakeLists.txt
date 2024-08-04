@@ -40,16 +40,10 @@ if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
     elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 10.2.1)
         message(FATAL_ERROR "Outdated compiler, CMake will exit.")
     endif()
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+elseif(${CMAKE_SYSTEM_NAME} MATCHES Android|Emscripten)
     if(NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
         message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
     elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 17.0.2)
-        message(FATAL_ERROR "Outdated compiler, CMake will exit.")
-    endif()
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
-    if(NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
-        message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
-    elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 19.0.0)
         message(FATAL_ERROR "Outdated compiler, CMake will exit.")
     endif()
 endif()
@@ -84,8 +78,7 @@ target_link_libraries(${PROJECT_NAME} ${LIBRARIES})
 
 # Flags
 file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
-string(REPLACE \n \  FLAGS ${FLAGS})
-set(CMAKE_CXX_FLAGS ${FLAGS})
+string(REPLACE \n \  CMAKE_CXX_FLAGS ${FLAGS})
 
 # Tests
 if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
@@ -121,7 +114,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Emscripten)
         add_custom_command(TARGET ${TEST} POST_BUILD
                            COMMAND ${TEST_COMMAND}
                            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                           COMMENT "Running test ${TEST}")
+                           COMMENT "Running test ${TEST}.")
     else()
         message(AUTHOR_WARNING "TEST not defined, skipping test.")
     endif()
