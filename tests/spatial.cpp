@@ -25,11 +25,10 @@ wze_main(1920, 1080) {
             sprite_size, true, texture);
     }
 
-    speaker =
-        wze::speaker(wze::assets::load_sound("./assets/test/light_blast_5.wav"),
-                     std::numeric_limits<int8_t>::max() / 2,
-                     std::numeric_limits<uint16_t>::max(), true,
-                     std::numeric_limits<int16_t>::max(), 0, 0, true);
+    speaker = wze::speaker(wze::assets::load_sound("./assets/tests/sound.wav"),
+                           std::numeric_limits<int8_t>::max(),
+                           std::numeric_limits<uint16_t>::max(), true,
+                           std::numeric_limits<int16_t>::max(), 0, 0, true);
     speaker.play(0, std::numeric_limits<uint16_t>::max());
 
     wze_while(true) {
