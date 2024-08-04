@@ -66,13 +66,13 @@
     /* @param height Height of the game window.     */                         \
     /* @return Exit code.                           */                         \
     /* @note Command line arguments are accessible. */                         \
-    static int32_t __wze_main(int32_t argc, char* argv[]);                     \
+    static int32_t __wze_main__(int32_t argc, char** argv);                    \
     int32_t main(int32_t argc, char* argv[]) {                                 \
         wze::engine::initialize((width), (height));                            \
-        return __wze_main(argc, argv);                                         \
+        return __wze_main__(argc, argv);                                       \
     }                                                                          \
-    int32_t __wze_main([[maybe_unused]] int32_t argc,                          \
-                       [[maybe_unused]] char* argv[])
+    int32_t __wze_main__([[maybe_unused]] int32_t argc,                        \
+                         [[maybe_unused]] char** argv)
 
 // NOLINTNEXTLINE(cppcoreguidelines-macro-usage)
 #define wze_while(condition)                                                   \
