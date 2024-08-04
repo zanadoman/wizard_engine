@@ -66,7 +66,7 @@
     /* @param height Height of the game window.     */                         \
     /* @return Exit code.                           */                         \
     /* @note Command line arguments are accessible. */                         \
-    static int32_t __wze_main__(int32_t argc, char** argv);                    \
+    [[nodiscard]] int32_t __wze_main__(int32_t argc, char** argv);             \
     int32_t main(int32_t argc, char* argv[]) {                                 \
         wze::engine::initialize((width), (height));                            \
         return __wze_main__(argc, argv);                                       \

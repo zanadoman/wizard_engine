@@ -343,7 +343,7 @@ class speaker final : public component {
      */
     explicit speaker(std::shared_ptr<wze::sound> const& sound = {},
                      int8_t volume = std::numeric_limits<int8_t>::max(),
-                     float range = std::numeric_limits<uint16_t>::max(),
+                     float range = std::numeric_limits<int16_t>::max(),
                      bool auto_panning = false, float x = 0, float y = 0,
                      float z = 0, bool spatial = false, float x_offset = 0,
                      float y_offset = 0, bool attach_x = true,
