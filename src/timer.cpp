@@ -62,10 +62,11 @@ void wze::timer::update() {
     now = current_time();
 
 #ifdef __EMSCRIPTEN__
-    emscripten_sleep(now < end ? end - now : 0);
+    emscripten_sleep
 #else  /* __EMSCRIPTEN__ */
-    SDL_Delay(now < end ? end - now : 0);
+    SDL_Delay
 #endif /* __EMSCRIPTEN__ */
+        (now < end ? end - now : 0);
 
     now = current_time();
     set_delta_time((float)(now - _last_time));

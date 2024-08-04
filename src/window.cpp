@@ -65,7 +65,7 @@ void wze::window::initialize(uint16_t width, uint16_t height) {
     // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
     static_assert(sizeof(size_t) == 4 || sizeof(size_t) == 8);
     constexpr size_t icon_hash =
-        sizeof(size_t) == 8 ? 8598449588574714901 : 3265382974;
+        sizeof(size_t) == 4 ? 3265382974 : 8598449588574714901;
 
     std::shared_ptr<image> icon;
 

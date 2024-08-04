@@ -40,7 +40,7 @@ void wze::engine::play_intro() {
     // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
     static_assert(sizeof(size_t) == 4 || sizeof(size_t) == 8);
     constexpr size_t logo_hash =
-        sizeof(size_t) == 8 ? 4621002103177400980 : 315106224;
+        sizeof(size_t) == 4 ? 315106224 : 4621002103177400980;
     constexpr float speed = .1;
 
     std::shared_ptr<image> logo;
