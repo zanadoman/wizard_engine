@@ -24,6 +24,7 @@
 
 #include <wizard_engine/camera.hpp>
 #include <wizard_engine/math.hpp>
+#include <wizard_engine/window.hpp>
 
 float wze::camera::_x = {};
 float wze::camera::_y = {};
@@ -78,11 +79,14 @@ void wze::camera::set_focus(float focus) {
 }
 
 void wze::camera::initialize() {
+    constexpr float field_of_view = math::to_radians(90);
+
     set_x(0);
     set_y(0);
     set_z(0);
     set_angle(0);
-    set_focus(std::numeric_limits<uint8_t>::max());
+    set_focus(math::length(window::width(), window::height()) /
+              (2 * tanf(field_of_view / 2)));
 }
 
 void wze::camera::project(renderable& instance) {
