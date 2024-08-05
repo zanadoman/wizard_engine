@@ -51,7 +51,7 @@ uint64_t wze::timer::current_time() {
 void wze::timer::initialize() {
     set_frame_time(0);
     set_delta_time(0);
-    _last_time = 0;
+    _last_time = current_time();
 }
 
 void wze::timer::update() {

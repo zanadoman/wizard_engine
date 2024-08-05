@@ -138,12 +138,12 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
 
     _events = {};
     math::initialize();
-    timer::initialize();
     window::initialize(width, height);
-    input::initialize();
     camera::initialize();
     renderer::initialize();
     audio::initialize();
+    input::initialize();
+    timer::initialize();
     play_intro();
 }
 
