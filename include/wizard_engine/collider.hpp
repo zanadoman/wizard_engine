@@ -136,6 +136,7 @@ class collider : public entity {
      * @param set_position Sets the position of the body of a collider on one
      * axis.
      * @param other Other collider instance.
+     * @param force Force of the collision.
      * @return Whether the collision is resolved or not.
      */
     template <float (polygon::*position)() const,
@@ -181,6 +182,7 @@ class collider : public entity {
      * @brief Dynamically resolves a collision with another collider instance on
      * both axis.
      * @param other Other collider instance.
+     * @param force Force of the collision.
      * @return Whether the collision is resolved or not.
      */
     [[nodiscard]] bool dual_dynamic_resolver(collider& other, float force);

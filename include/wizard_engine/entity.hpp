@@ -68,6 +68,27 @@ class entity : public component {
      */
     void update_angle(component& instance) const;
 
+    /**
+     * @file entity.hpp
+     * @author Zana Domán
+     * @brief Updates the properties of the components.
+     * @param update Property updaters.
+     */
+    template <void (entity::*... update)(component&) const> void update() {
+        std::vector<std::weak_ptr<component>>::iterator iterator;
+        std::shared_ptr<component> instance;
+
+        for (iterator = components().begin(); iterator != components().end();
+             ++iterator) {
+            instance = iterator->lock();
+            if (instance) {
+                ((this->*update)(*instance), ...);
+            } else {
+                components().erase(iterator--);
+            }
+        }
+    }
+
   public:
     /**
      * @file entity.hpp

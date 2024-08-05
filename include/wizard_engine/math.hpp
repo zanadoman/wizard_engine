@@ -75,6 +75,7 @@ class math final {
      * @file math.hpp
      * @author Zana Domán
      * @brief Returns a random integer value from an interval.
+     * @param T Integral type.
      * @param minimum Minimum inclusive value of the interval.
      * @param maximum Maximum inclusive value of the interval.
      * @return Random integer value from the interval.
@@ -102,6 +103,7 @@ class math final {
      * @file math.hpp
      * @author Zana Domán
      * @brief Returns a random boolean value.
+     * @param T Boolean type.
      * @param probability Probability of a true value.
      * @return Random boolean value.
      */

@@ -71,19 +71,8 @@ float wze::entity::x() const {
 }
 
 void wze::entity::set_x(float x) {
-    std::vector<std::weak_ptr<component>>::iterator iterator;
-    std::shared_ptr<component> instance;
-
     _x = x;
-    for (iterator = components().begin(); iterator != components().end();
-         ++iterator) {
-        instance = iterator->lock();
-        if (instance) {
-            update_x(*instance);
-        } else {
-            components().erase(iterator--);
-        }
-    }
+    update<&entity::update_x>();
 }
 
 float wze::entity::y() const {
@@ -91,19 +80,8 @@ float wze::entity::y() const {
 }
 
 void wze::entity::set_y(float y) {
-    std::vector<std::weak_ptr<component>>::iterator iterator;
-    std::shared_ptr<component> instance;
-
     _y = y;
-    for (iterator = components().begin(); iterator != components().end();
-         ++iterator) {
-        instance = iterator->lock();
-        if (instance) {
-            update_y(*instance);
-        } else {
-            components().erase(iterator--);
-        }
-    }
+    update<&entity::update_y>();
 }
 
 float wze::entity::angle() const {
@@ -111,22 +89,9 @@ float wze::entity::angle() const {
 }
 
 void wze::entity::set_angle(float angle) {
-    std::vector<std::weak_ptr<component>>::iterator iterator;
-    std::shared_ptr<component> instance;
-
     _angle = angle;
     _transformation_matrix = math::transformation_matrix(this->angle(), 1);
-    for (iterator = components().begin(); iterator != components().end();
-         ++iterator) {
-        instance = iterator->lock();
-        if (instance) {
-            update_x(*instance);
-            update_y(*instance);
-            update_angle(*instance);
-        } else {
-            components().erase(iterator--);
-        }
-    }
+    update<&entity::update_x, &entity::update_y, &entity::update_angle>();
 }
 
 std::array<float, 4> const& wze::entity::transformation_matrix() const {
@@ -217,18 +182,5 @@ wze::entity::entity(std::vector<std::weak_ptr<component>> const& components,
 }
 
 void wze::entity::recompose() {
-    std::vector<std::weak_ptr<component>>::iterator iterator;
-    std::shared_ptr<component> instance;
-
-    for (iterator = components().begin(); iterator != components().end();
-         ++iterator) {
-        instance = iterator->lock();
-        if (instance) {
-            update_x(*instance);
-            update_y(*instance);
-            update_angle(*instance);
-        } else {
-            components().erase(iterator--);
-        }
-    }
+    update<&entity::update_x, &entity::update_y, &entity::update_angle>();
 }
