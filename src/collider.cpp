@@ -164,7 +164,6 @@ void wze::collider::resolve_xy(collider const& other) {
     float difference_x;
     float difference_y;
     float collision;
-    float normalization;
 
     difference_x = other.body().x() - body().x();
     difference_y = other.body().y() - body().y();
@@ -177,9 +176,8 @@ void wze::collider::resolve_xy(collider const& other) {
         return;
     }
 
-    normalization = sqrtf(powf(difference_x, 2) + powf(difference_y, 2));
-    difference_x /= normalization;
-    difference_y /= normalization;
+    std::tie(difference_x, difference_y) =
+        math::normalize(difference_x, difference_y);
 
     collision += math::epsilon();
     _body.set_x(body().x() - difference_x * collision);
@@ -190,7 +188,6 @@ bool wze::collider::resolve_xy(collider& other, float force) {
     float difference_x;
     float difference_y;
     float collision;
-    float normalization;
     float other_movement;
     float movement;
 
@@ -205,9 +202,8 @@ bool wze::collider::resolve_xy(collider& other, float force) {
         return false;
     }
 
-    normalization = sqrtf(powf(difference_x, 2) + powf(difference_y, 2));
-    difference_x /= normalization;
-    difference_y /= normalization;
+    std::tie(difference_x, difference_y) =
+        math::normalize(difference_x, difference_y);
 
     collision += math::epsilon();
     other_movement = collision * force / (force + other.mass());

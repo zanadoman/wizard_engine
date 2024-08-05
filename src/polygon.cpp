@@ -312,7 +312,6 @@ float wze::polygon::collision(polygon const& other) const {
     polygon const* polygon2;
     float normal_x;
     float normal_y;
-    float normalization;
     float projection;
     float minimum1;
     float maximum1;
@@ -343,9 +342,7 @@ float wze::polygon::collision(polygon const& other) const {
                          polygon1->points().at(j2).second);
             normal_y = polygon1->points().at(j1).first -
                        polygon1->points().at(j2).first;
-            normalization = sqrtf(powf(normal_x, 2) + powf(normal_y, 2));
-            normal_x = (bool)normalization ? normal_x / normalization : 0;
-            normal_y = (bool)normalization ? normal_y / normalization : 0;
+            std::tie(normal_x, normal_y) = math::normalize(normal_x, normal_y);
 
             minimum1 = std::numeric_limits<float>::max();
             maximum1 = -std::numeric_limits<float>::max();

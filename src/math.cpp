@@ -56,8 +56,12 @@ float wze::math::move_y(float length, float angle) {
 std::pair<float, float> wze::math::normalize(float x, float y) {
     float length;
 
-    length = math::length(x, y);
-    return {x / length, y / length};
+    if ((bool)x || (bool)y) {
+        length = math::length(x, y);
+        return {x / length, y / length};
+    }
+
+    return {0, 0};
 }
 
 std::array<float, 4> wze::math::transformation_matrix(float angle,
