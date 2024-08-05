@@ -46,25 +46,13 @@ class collider : public entity {
      * @file collider.hpp
      * @author Zana Domán
      * @brief Initiates a collision on x axis.
+     * @param static_resolver Method to solve a static collision.
+     * @param dynamic_resolver Method to solve a dynamic collision.
      * @param force Force of the collision.
      */
-    void push_x(float force);
-
-    /**
-     * @file collider.hpp
-     * @author Zana Domán
-     * @brief Initiates a collision on y axis.
-     * @param force Force of the collision.
-     */
-    void push_y(float force);
-
-    /**
-     * @file collider.hpp
-     * @author Zana Domán
-     * @brief Initiates a collision on both x and y axis.
-     * @param force Force of the collision.
-     */
-    void push_xy(float force);
+    void push(void (collider::*static_resolver)(collider const&),
+              bool (collider::*dynamic_resolver)(collider&, float),
+              float force);
 
     /**
      * @file collider.hpp

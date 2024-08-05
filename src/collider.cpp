@@ -29,7 +29,9 @@ std::array<std::vector<wze::collider*>, std::numeric_limits<uint8_t>::max()>
     wze::collider::_worlds = {};
 
 // NOLINTNEXTLINE(misc-no-recursion)
-void wze::collider::push_x(float force) {
+void wze::collider::push(void (collider::*static_resolver)(collider const&),
+                         bool (collider::*dynamic_resolver)(collider&, float),
+                         float force) {
     std::vector<collider*> contacts;
 
     contacts = collider::contacts();
@@ -41,68 +43,20 @@ void wze::collider::push_x(float force) {
     if (0 < force) {
         std::for_each(contacts.begin(), contacts.end(),
                       // NOLINTNEXTLINE(misc-no-recursion)
-                      [this, force](collider* contact) -> void {
-                          if (resolve_x(*contact, contact->mass() + force)) {
-                              contact->push_x(force);
-                              resolve_x(*contact);
+                      [this, static_resolver, dynamic_resolver,
+                       force](collider* contact) -> void {
+                          if ((this->*dynamic_resolver)(
+                                  *contact, contact->mass() + force)) {
+                              contact->push(static_resolver, dynamic_resolver,
+                                            force);
+                              (this->*static_resolver)(*contact);
                           }
                       });
     } else {
-        std::for_each(
-            contacts.begin(), contacts.end(),
-            [this](collider const* contact) -> void { resolve_x(*contact); });
-    }
-}
-
-// NOLINTNEXTLINE(misc-no-recursion)
-void wze::collider::push_y(float force) {
-    std::vector<collider*> contacts;
-
-    contacts = collider::contacts();
-    if (contacts.empty()) {
-        return;
-    }
-
-    force -= contacts_mass(contacts);
-    if (0 < force) {
         std::for_each(contacts.begin(), contacts.end(),
-                      // NOLINTNEXTLINE(misc-no-recursion)
-                      [this, force](collider* contact) -> void {
-                          if (resolve_y(*contact, contact->mass() + force)) {
-                              contact->push_y(force);
-                              resolve_y(*contact);
-                          }
+                      [this, static_resolver](collider const* contact) -> void {
+                          (this->*static_resolver)(*contact);
                       });
-    } else {
-        std::for_each(
-            contacts.begin(), contacts.end(),
-            [this](collider const* contact) -> void { resolve_y(*contact); });
-    }
-}
-
-// NOLINTNEXTLINE(misc-no-recursion)
-void wze::collider::push_xy(float force) {
-    std::vector<collider*> contacts;
-
-    contacts = collider::contacts();
-    if (contacts.empty()) {
-        return;
-    }
-
-    force -= contacts_mass(contacts);
-    if (0 < force) {
-        std::for_each(contacts.begin(), contacts.end(),
-                      // NOLINTNEXTLINE(misc-no-recursion)
-                      [this, force](collider* contact) -> void {
-                          if (resolve_xy(*contact, contact->mass() + force)) {
-                              contact->push_xy(force);
-                              resolve_xy(*contact);
-                          }
-                      });
-    } else {
-        std::for_each(
-            contacts.begin(), contacts.end(),
-            [this](collider const* contact) -> void { resolve_xy(*contact); });
     }
 }
 
@@ -346,7 +300,7 @@ void wze::collider::set_x(float x) {
         return;
     }
 
-    push_x(force());
+    push(&collider::resolve_x, &collider::resolve_x, force());
     align_entities();
 }
 
@@ -362,7 +316,7 @@ void wze::collider::set_y(float y) {
         return;
     }
 
-    push_y(force());
+    push(&collider::resolve_y, &collider::resolve_y, force());
     align_entities();
 }
 
@@ -378,7 +332,7 @@ void wze::collider::set_angle(float angle) {
         return;
     }
 
-    push_xy(force());
+    push(&collider::resolve_xy, &collider::resolve_xy, force());
     align_entities();
 }
 
@@ -393,7 +347,7 @@ void wze::collider::set_scale(float scale) {
         return;
     }
 
-    push_xy(force());
+    push(&collider::resolve_xy, &collider::resolve_xy, force());
     align_entities();
 }
 
