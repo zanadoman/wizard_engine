@@ -24,6 +24,7 @@
 
 #include <wizard_engine/entity.hpp>
 #include <wizard_engine/export.hpp>
+#include <wizard_engine/math.hpp>
 #include <wizard_engine/polygon.hpp>
 
 namespace wze {
@@ -45,14 +46,41 @@ class collider : public entity {
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Initiates a collision on x axis.
+     * @brief Initiates a collision.
      * @param static_resolver Method to solve a static collision.
      * @param dynamic_resolver Method to solve a dynamic collision.
      * @param force Force of the collision.
      */
-    void push(void (collider::*static_resolver)(collider const&),
-              bool (collider::*dynamic_resolver)(collider&, float),
-              float force);
+    template <void (collider::*static_resolver)(collider const&),
+              bool (collider::*dynamic_resolver)(collider&, float)>
+    // NOLINTNEXTLINE(misc-no-recursion)
+    void push(float force) {
+        std::vector<collider*> contacts;
+
+        contacts = collider::contacts();
+        if (contacts.empty()) {
+            return;
+        }
+
+        force -= contacts_mass(contacts);
+        if (0 < force) {
+            std::for_each(
+                contacts.begin(), contacts.end(),
+                // NOLINTNEXTLINE(misc-no-recursion)
+                [this, force](collider* contact) -> void {
+                    if ((this->*dynamic_resolver)(*contact,
+                                                  contact->mass() + force)) {
+                        contact->push<static_resolver, dynamic_resolver>(force);
+                        (this->*static_resolver)(*contact);
+                    }
+                });
+        } else {
+            std::for_each(contacts.begin(), contacts.end(),
+                          [this](collider const* contact) -> void {
+                              (this->*static_resolver)(*contact);
+                          });
+        }
+    }
 
     /**
      * @file collider.hpp
@@ -76,58 +104,98 @@ class collider : public entity {
      * @file collider.hpp
      * @author Zana Domán
      * @brief Statically resolves a collision with another collider instance on
-     * x axis.
+     * one axis.
+     * @param position Gets the position of the body of a collider on one axis.
+     * @param set_position Sets the position of the body of a collider on one
+     * axis.
      * @param other Other collider instance.
      */
-    void resolve_x(collider const& other);
+    template <float (polygon::*position)() const,
+              void (polygon::*set_position)(float)>
+    void solo_static_resolver(collider const& other) {
+        float collision;
+
+        collision = body().collision(other.body());
+        if (!(bool)collision) {
+            return;
+        }
+
+        collision += math::epsilon();
+        (_body.*set_position)((body().*position)() +
+                              ((body().*position)() < (other.body().*position)()
+                                   ? -collision
+                                   : collision));
+    }
 
     /**
      * @file collider.hpp
      * @author Zana Domán
      * @brief Dynamically resolves a collision with another collider instance on
-     * x axis.
+     * one axis.
+     * @param position Gets the position of the body of a collider on one axis.
+     * @param set_position Sets the position of the body of a collider on one
+     * axis.
      * @param other Other collider instance.
      * @return Whether the collision is resolved or not.
      */
-    [[nodiscard]] bool resolve_x(collider& other, float force);
+    template <float (polygon::*position)() const,
+              void (polygon::*set_position)(float)>
+    [[nodiscard]] bool solo_dynamic_resolver(collider& other, float force) {
+        float collision;
+        float other_movement;
+        float movement;
+
+        collision = body().collision(other.body());
+        if (!(bool)collision) {
+            return false;
+        }
+
+        std::tie(movement, other_movement) =
+            dynamic_movement(collision, force, other.mass());
+
+        if ((body().*position)() < (other.body().*position)()) {
+            (_body.*set_position)((body().*position)() - movement);
+            (other._body.*set_position)((other.body().*position)() +
+                                        other_movement);
+        } else {
+            (_body.*set_position)((body().*position)() + movement);
+            (other._body.*set_position)((other.body().*position)() -
+                                        other_movement);
+        }
+
+        return true;
+    }
 
     /**
      * @file collider.hpp
      * @author Zana Domán
      * @brief Statically resolves a collision with another collider instance on
-     * y axis.
+     * both axis.
      * @param other Other collider instance.
      */
-    void resolve_y(collider const& other);
+    void dual_static_resolver(collider const& other);
 
     /**
      * @file collider.hpp
      * @author Zana Domán
      * @brief Dynamically resolves a collision with another collider instance on
-     * y axis.
+     * both axis.
      * @param other Other collider instance.
      * @return Whether the collision is resolved or not.
      */
-    [[nodiscard]] bool resolve_y(collider& other, float force);
+    [[nodiscard]] bool dual_dynamic_resolver(collider& other, float force);
 
     /**
      * @file collider.hpp
      * @author Zana Domán
-     * @brief Statically resolves a collision with another collider instance on
-     * both x and y axis.
-     * @param other Other collider instance.
+     * @brief Returns the movements of a dynamic collision.
+     * @param collision Depth of the collision.
+     * @param force Force of the initiator.
+     * @param mass Mass of the contact.
+     * @return Movements of the dynamic collision.
      */
-    void resolve_xy(collider const& other);
-
-    /**
-     * @file collider.hpp
-     * @author Zana Domán
-     * @brief Dynamically resolves a collision with another collider instance on
-     * both x and y axis.
-     * @param other Other collider instance.
-     * @return Whether the collision is resolved or not.
-     */
-    [[nodiscard]] bool resolve_xy(collider& other, float force);
+    static std::pair<float, float> dynamic_movement(float collision,
+                                                    float force, float mass);
 
     /**
      * @file collider.hpp

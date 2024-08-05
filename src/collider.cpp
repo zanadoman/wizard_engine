@@ -23,42 +23,9 @@
 #define __WIZARD_ENGINE_INTERNAL__
 
 #include <wizard_engine/collider.hpp>
-#include <wizard_engine/math.hpp>
 
 std::array<std::vector<wze::collider*>, std::numeric_limits<uint8_t>::max()>
     wze::collider::_worlds = {};
-
-// NOLINTNEXTLINE(misc-no-recursion)
-void wze::collider::push(void (collider::*static_resolver)(collider const&),
-                         bool (collider::*dynamic_resolver)(collider&, float),
-                         float force) {
-    std::vector<collider*> contacts;
-
-    contacts = collider::contacts();
-    if (contacts.empty()) {
-        return;
-    }
-
-    force -= contacts_mass(contacts);
-    if (0 < force) {
-        std::for_each(contacts.begin(), contacts.end(),
-                      // NOLINTNEXTLINE(misc-no-recursion)
-                      [this, static_resolver, dynamic_resolver,
-                       force](collider* contact) -> void {
-                          if ((this->*dynamic_resolver)(
-                                  *contact, contact->mass() + force)) {
-                              contact->push(static_resolver, dynamic_resolver,
-                                            force);
-                              (this->*static_resolver)(*contact);
-                          }
-                      });
-    } else {
-        std::for_each(contacts.begin(), contacts.end(),
-                      [this, static_resolver](collider const* contact) -> void {
-                          (this->*static_resolver)(*contact);
-                      });
-    }
-}
 
 std::vector<wze::collider*> wze::collider::contacts() const {
     std::vector<collider*> contacts;
@@ -84,83 +51,7 @@ float wze::collider::contacts_mass(std::vector<collider*> const& contacts) {
     return mass;
 }
 
-void wze::collider::resolve_x(collider const& other) {
-    float collision;
-
-    collision = body().collision(other.body());
-    if (!(bool)collision) {
-        return;
-    }
-
-    collision += math::epsilon();
-    _body.set_x(body().x() +
-                (body().x() < other.body().x() ? -collision : collision));
-}
-
-bool wze::collider::resolve_x(collider& other, float force) {
-    float collision;
-    float other_movement;
-    float movement;
-
-    collision = body().collision(other.body());
-    if (!(bool)collision) {
-        return false;
-    }
-
-    collision += math::epsilon();
-    other_movement = collision * force / (force + other.mass());
-    movement = collision - other_movement;
-
-    if (body().x() < other.body().x()) {
-        _body.set_x(body().x() - movement);
-        other._body.set_x(other.body().x() + other_movement);
-    } else {
-        _body.set_x(body().x() + movement);
-        other._body.set_x(other.body().x() - other_movement);
-    }
-
-    return true;
-}
-
-void wze::collider::resolve_y(collider const& other) {
-    float collision;
-
-    collision = body().collision(other.body());
-    if (!(bool)collision) {
-        return;
-    }
-
-    collision += math::epsilon();
-    _body.set_y(body().y() +
-                (body().y() < other.body().y() ? -collision : collision));
-}
-
-bool wze::collider::resolve_y(collider& other, float force) {
-    float collision;
-    float other_movement;
-    float movement;
-
-    collision = body().collision(other.body());
-    if (!(bool)collision) {
-        return false;
-    }
-
-    collision += math::epsilon();
-    other_movement = collision * force / (force + other.mass());
-    movement = collision - other_movement;
-
-    if (body().y() < other.body().y()) {
-        _body.set_y(body().y() - movement);
-        other._body.set_y(other.body().y() + other_movement);
-    } else {
-        _body.set_y(body().y() + movement);
-        other._body.set_y(other.body().y() - other_movement);
-    }
-
-    return true;
-}
-
-void wze::collider::resolve_xy(collider const& other) {
+void wze::collider::dual_static_resolver(collider const& other) {
     float difference_x;
     float difference_y;
     float collision;
@@ -184,7 +75,7 @@ void wze::collider::resolve_xy(collider const& other) {
     _body.set_y(body().y() - difference_y * collision);
 }
 
-bool wze::collider::resolve_xy(collider& other, float force) {
+bool wze::collider::dual_dynamic_resolver(collider& other, float force) {
     float difference_x;
     float difference_y;
     float collision;
@@ -204,10 +95,8 @@ bool wze::collider::resolve_xy(collider& other, float force) {
 
     std::tie(difference_x, difference_y) =
         math::normalize(difference_x, difference_y);
-
-    collision += math::epsilon();
-    other_movement = collision * force / (force + other.mass());
-    movement = collision - other_movement;
+    std::tie(movement, other_movement) =
+        dynamic_movement(collision, force, other.mass());
 
     _body.set_x(body().x() - difference_x * movement);
     _body.set_y(body().y() - difference_y * movement);
@@ -215,6 +104,18 @@ bool wze::collider::resolve_xy(collider& other, float force) {
     other._body.set_y(other.body().y() + difference_y * other_movement);
 
     return true;
+}
+
+std::pair<float, float>
+wze::collider::dynamic_movement(float collision, float force, float mass) {
+    float other_movement;
+    float movement;
+
+    collision += math::epsilon();
+    other_movement = collision * force / (force + mass);
+    movement = collision - other_movement;
+
+    return {movement, other_movement};
 }
 
 void wze::collider::align_entities() const {
@@ -296,7 +197,9 @@ void wze::collider::set_x(float x) {
         return;
     }
 
-    push(&collider::resolve_x, &collider::resolve_x, force());
+    push<&collider::solo_static_resolver<&polygon::x, &polygon::set_x>,
+         &collider::solo_dynamic_resolver<&polygon::x, &polygon::set_x>>(
+        force());
     align_entities();
 }
 
@@ -312,7 +215,9 @@ void wze::collider::set_y(float y) {
         return;
     }
 
-    push(&collider::resolve_y, &collider::resolve_y, force());
+    push<&collider::solo_static_resolver<&polygon::y, &polygon::set_y>,
+         &collider::solo_dynamic_resolver<&polygon::y, &polygon::set_y>>(
+        force());
     align_entities();
 }
 
@@ -328,7 +233,8 @@ void wze::collider::set_angle(float angle) {
         return;
     }
 
-    push(&collider::resolve_xy, &collider::resolve_xy, force());
+    push<&collider::dual_static_resolver, &collider::dual_dynamic_resolver>(
+        force());
     align_entities();
 }
 
@@ -343,7 +249,8 @@ void wze::collider::set_scale(float scale) {
         return;
     }
 
-    push(&collider::resolve_xy, &collider::resolve_xy, force());
+    push<&collider::dual_static_resolver, &collider::dual_dynamic_resolver>(
+        force());
     align_entities();
 }
 
