@@ -115,7 +115,7 @@ class collider : public entity {
     void solo_static_resolver(collider const& other) {
         float collision;
 
-        collision = body().collision(other.body());
+        collision = body().overlap<float>(other.body());
         if (!(bool)collision) {
             return;
         }
@@ -146,7 +146,7 @@ class collider : public entity {
         float other_movement;
         float movement;
 
-        collision = body().collision(other.body());
+        collision = body().overlap<float>(other.body());
         if (!(bool)collision) {
             return false;
         }

@@ -24,6 +24,7 @@
 
 #include <wizard_engine/component.hpp>
 #include <wizard_engine/export.hpp>
+#include <wizard_engine/math.hpp>
 
 namespace wze {
 /**
@@ -72,6 +73,16 @@ class polygon final : public component {
      * @return Circumradius of the shape of the polygon.
      */
     [[nodiscard]] float circumradius() const;
+
+    /**
+     * @file polygon.hpp
+     * @author Zana Domán
+     * @brief Returns the projection of the polygon on a vector.
+     * @param vector Vector to project on.
+     * @return Projection of the polygon on the vector.
+     */
+    [[nodiscard]] std::pair<float, float>
+    project(std::pair<float, float> const& vector) const;
 
   public:
     /**
@@ -347,21 +358,70 @@ class polygon final : public component {
     /**
      * @file polygon.hpp
      * @author Zana Domán
-     * @brief Returns whether the polygon overlaps with another polygon
-     * instance.
+     * @brief Returns the state of the collision with another polygon.
+     * @param T Bool for simple overlap check, float for advanced depth check.
      * @param other Other polygon instance.
-     * @return Whether the polygon overlaps with another polygon instance.
+     * @return State of the collision with the other polygon.
      */
-    [[nodiscard]] bool overlap(polygon const& other) const;
+    template <typename T>
+    [[nodiscard]] std::enable_if_t<
+        std::is_same_v<T, bool> || std::is_same_v<T, float>, T>
+    overlap(polygon const& other) const {
+        polygon const* polygon1;
+        polygon const* polygon2;
+        T state;
+        size_t i;
+        std::vector<std::pair<float, float>>::const_iterator point1;
+        std::vector<std::pair<float, float>>::const_iterator point2;
+        std::pair<float, float> normal;
+        std::pair<float, float> projection1;
+        std::pair<float, float> projection2;
 
-    /**
-     * @file polygon.hpp
-     * @author Zana Domán
-     * @brief Returns the depth of the collision with another polygon instance.
-     * @param other Other polygon instance.
-     * @return Depth of the collison with another polygon instance.
-     */
-    [[nodiscard]] float collision(polygon const& other) const;
+        if (points_radius() + other.points_radius() <
+            math::length(other.x() - x(), other.y() - y())) {
+            return std::is_same_v<T, bool> ? false : 0;
+        }
+
+        polygon1 = this;
+        polygon2 = &other;
+        state =
+            std::is_same_v<T, bool> ? true : std::numeric_limits<float>::max();
+
+        for (i = 0; i != 2; ++i) {
+            for (point1 = polygon1->points().begin(),
+                point2 = polygon1->points().begin() + 1;
+                 point1 != polygon1->points().end(); ++point1, ++point2) {
+                if (point2 == polygon1->points().end()) {
+                    point2 = polygon1->points().begin();
+                }
+
+                normal = math::normal(point2->first - point1->first,
+                                      point2->second - point1->second);
+                if constexpr (std::is_same_v<T, float>) {
+                    normal = std::apply(math::normalize, normal);
+                }
+                projection1 = polygon1->project(normal);
+                projection2 = polygon2->project(normal);
+
+                if (projection2.second < projection1.first ||
+                    projection1.second < projection2.first) {
+                    return std::is_same_v<T, bool> ? false : 0;
+                }
+
+                if constexpr (std::is_same_v<T, float>) {
+                    state = std::min(
+                        std::min(projection1.second, projection2.second) -
+                            std::max(projection1.first, projection2.first),
+                        state);
+                }
+            }
+
+            polygon1 = &other;
+            polygon2 = this;
+        }
+
+        return state;
+    }
 };
 } /* namespace wze */
 

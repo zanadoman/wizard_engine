@@ -72,9 +72,9 @@ class entity : public component {
      * @file entity.hpp
      * @author Zana Domán
      * @brief Updates the properties of the components.
-     * @param update Property updaters.
+     * @param updater Property updaters.
      */
-    template <void (entity::*... update)(component&) const> void update() {
+    template <void (entity::*... updater)(component&) const> void update() {
         std::vector<std::weak_ptr<component>>::iterator iterator;
         std::shared_ptr<component> instance;
 
@@ -82,7 +82,7 @@ class entity : public component {
              ++iterator) {
             instance = iterator->lock();
             if (instance) {
-                ((this->*update)(*instance), ...);
+                ((this->*updater)(*instance), ...);
             } else {
                 components().erase(iterator--);
             }

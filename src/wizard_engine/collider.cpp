@@ -32,7 +32,8 @@ std::vector<wze::collider*> wze::collider::contacts() const {
 
     std::for_each(_worlds.at(world()).begin(), _worlds.at(world()).end(),
                   [this, &contacts](collider* contact) -> void {
-                      if (contact != this && body().overlap(contact->body())) {
+                      if (contact != this &&
+                          body().overlap<bool>(contact->body())) {
                           contacts.push_back(contact);
                       }
                   });
@@ -62,7 +63,7 @@ void wze::collider::dual_static_resolver(collider const& other) {
         return;
     }
 
-    collision = body().collision(other.body());
+    collision = body().overlap<float>(other.body());
     if (!(bool)collision) {
         return;
     }
@@ -88,7 +89,7 @@ bool wze::collider::dual_dynamic_resolver(collider& other, float force) {
         return false;
     }
 
-    collision = body().collision(other.body());
+    collision = body().overlap<float>(other.body());
     if (!(bool)collision) {
         return false;
     }

@@ -22,7 +22,6 @@
 // NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
 #define __WIZARD_ENGINE_INTERNAL__
 
-#include <wizard_engine/math.hpp>
 #include <wizard_engine/polygon.hpp>
 
 void wze::polygon::update_x() {
@@ -60,6 +59,25 @@ float wze::polygon::circumradius() const {
                   });
 
     return circumradius;
+}
+
+std::pair<float, float>
+wze::polygon::project(std::pair<float, float> const& vector) const {
+    std::pair<float, float> projection;
+
+    projection.first = std::numeric_limits<float>::max();
+    projection.second = -std::numeric_limits<float>::max();
+    std::for_each(
+        points().begin(), points().end(),
+        [&vector, &projection](std::pair<float, float> const& point) -> void {
+            float scalar;
+
+            scalar = point.first * vector.first + point.second * vector.second;
+            projection.first = std::min(projection.first, scalar);
+            projection.second = std::max(projection.second, scalar);
+        });
+
+    return projection;
 }
 
 std::vector<std::pair<float, float>> const& wze::polygon::shape() const {
@@ -212,25 +230,24 @@ wze::polygon::polygon(std::vector<std::pair<float, float>> const& shape,
 }
 
 bool wze::polygon::inside(float x, float y) const {
+    std::vector<std::pair<float, float>>::const_iterator point1;
+    std::vector<std::pair<float, float>>::const_iterator point2;
     float determinant;
     float temporary;
-    size_t i1;
-    size_t i2;
 
     if (points_radius() < math::length(x - this->x(), y - this->y())) {
         return false;
     }
 
     determinant = 0;
-    for (i1 = 0, i2 = 1; i1 != points().size(); ++i1, ++i2) {
-        if (i2 == points().size()) {
-            i2 = 0;
+    for (point1 = points().begin(), point2 = points().begin() + 1;
+         point1 != points().end(); ++point1, ++point2) {
+        if (point2 == points().end()) {
+            point2 = points().begin();
         }
 
-        temporary = (points().at(i2).first - points().at(i1).first) *
-                        (y - points().at(i1).second) -
-                    (x - points().at(i1).first) *
-                        (points().at(i2).second - points().at(i1).second);
+        temporary = (point2->first - point1->first) * (y - point1->second) -
+                    (x - point1->first) * (point2->second - point1->second);
 
         if ((0 < determinant && temporary < 0) ||
             (determinant < 0 && 0 < temporary)) {
@@ -241,139 +258,4 @@ bool wze::polygon::inside(float x, float y) const {
     }
 
     return true;
-}
-
-bool wze::polygon::overlap(polygon const& other) const {
-    polygon const* polygon1;
-    polygon const* polygon2;
-    float normal_x;
-    float normal_y;
-    float projection;
-    float minimum1;
-    float maximum1;
-    float minimum2;
-    float maximum2;
-    size_t i;
-    size_t j1;
-    size_t j2;
-    size_t k;
-
-    if (points_radius() + other.points_radius() <
-        math::length(other.x() - x(), other.y() - y())) {
-        return false;
-    }
-
-    polygon1 = this;
-    polygon2 = &other;
-
-    for (i = 0; i != 2; ++i) {
-        for (j1 = 0, j2 = 1; j1 != polygon1->points().size(); ++j1, ++j2) {
-            if (j2 == polygon1->points().size()) {
-                j2 = 0;
-            }
-
-            normal_x = -(polygon1->points().at(j1).second -
-                         polygon1->points().at(j2).second);
-            normal_y = polygon1->points().at(j1).first -
-                       polygon1->points().at(j2).first;
-
-            minimum1 = std::numeric_limits<float>::max();
-            maximum1 = -std::numeric_limits<float>::max();
-            for (k = 0; k != polygon1->points().size(); ++k) {
-                projection = polygon1->points().at(k).first * normal_x +
-                             polygon1->points().at(k).second * normal_y;
-                minimum1 = std::min(minimum1, projection);
-                maximum1 = std::max(maximum1, projection);
-            }
-
-            minimum2 = std::numeric_limits<float>::max();
-            maximum2 = -std::numeric_limits<float>::max();
-            for (k = 0; k != polygon2->points().size(); ++k) {
-                projection = polygon2->points().at(k).first * normal_x +
-                             polygon2->points().at(k).second * normal_y;
-                minimum2 = std::min(minimum2, projection);
-                maximum2 = std::max(maximum2, projection);
-            }
-
-            if (maximum2 < minimum1 || maximum1 < minimum2) {
-                return false;
-            }
-        }
-
-        polygon1 = &other;
-        polygon2 = this;
-    }
-
-    return true;
-}
-
-float wze::polygon::collision(polygon const& other) const {
-    polygon const* polygon1;
-    polygon const* polygon2;
-    float normal_x;
-    float normal_y;
-    float projection;
-    float minimum1;
-    float maximum1;
-    float minimum2;
-    float maximum2;
-    float collision;
-    size_t i;
-    size_t j1;
-    size_t j2;
-    size_t k;
-
-    if (points_radius() + other.points_radius() <
-        math::length(other.x() - x(), other.y() - y())) {
-        return 0;
-    }
-
-    polygon1 = this;
-    polygon2 = &other;
-    collision = std::numeric_limits<float>::max();
-
-    for (i = 0; i != 2; ++i) {
-        for (j1 = 0, j2 = 1; j1 != polygon1->points().size(); ++j1, ++j2) {
-            if (j2 == polygon1->points().size()) {
-                j2 = 0;
-            }
-
-            normal_x = -(polygon1->points().at(j1).second -
-                         polygon1->points().at(j2).second);
-            normal_y = polygon1->points().at(j1).first -
-                       polygon1->points().at(j2).first;
-            std::tie(normal_x, normal_y) = math::normalize(normal_x, normal_y);
-
-            minimum1 = std::numeric_limits<float>::max();
-            maximum1 = -std::numeric_limits<float>::max();
-            for (k = 0; k != polygon1->points().size(); ++k) {
-                projection = polygon1->points().at(k).first * normal_x +
-                             polygon1->points().at(k).second * normal_y;
-                minimum1 = std::min(minimum1, projection);
-                maximum1 = std::max(maximum1, projection);
-            }
-
-            minimum2 = std::numeric_limits<float>::max();
-            maximum2 = -std::numeric_limits<float>::max();
-            for (k = 0; k != polygon2->points().size(); ++k) {
-                projection = polygon2->points().at(k).first * normal_x +
-                             polygon2->points().at(k).second * normal_y;
-                minimum2 = std::min(minimum2, projection);
-                maximum2 = std::max(maximum2, projection);
-            }
-
-            if (maximum2 < minimum1 || maximum1 < minimum2) {
-                return 0;
-            }
-
-            collision = std::min(std::min(maximum1, maximum2) -
-                                     std::max(minimum1, minimum2),
-                                 collision);
-        }
-
-        polygon1 = &other;
-        polygon2 = this;
-    }
-
-    return collision;
 }
