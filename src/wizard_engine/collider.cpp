@@ -53,13 +53,12 @@ float wze::collider::contacts_mass(std::vector<collider*> const& contacts) {
 }
 
 void wze::collider::dual_static_resolver(collider const& other) {
-    float difference_x;
-    float difference_y;
+    std::pair<float, float> difference;
     float collision;
 
-    difference_x = other.body().x() - body().x();
-    difference_y = other.body().y() - body().y();
-    if (!(bool)difference_x && !(bool)difference_y) {
+    difference.first = other.body().x() - body().x();
+    difference.second = other.body().y() - body().y();
+    if (!(bool)difference.first && !(bool)difference.second) {
         return;
     }
 
@@ -68,24 +67,20 @@ void wze::collider::dual_static_resolver(collider const& other) {
         return;
     }
 
-    std::tie(difference_x, difference_y) =
-        math::normalize(difference_x, difference_y);
-
+    difference = math::normalize(difference.first, difference.second);
     collision += math::epsilon();
-    _body.set_x(body().x() - difference_x * collision);
-    _body.set_y(body().y() - difference_y * collision);
+    _body.set_x(body().x() - difference.first * collision);
+    _body.set_y(body().y() - difference.second * collision);
 }
 
 bool wze::collider::dual_dynamic_resolver(collider& other, float force) {
-    float difference_x;
-    float difference_y;
+    std::pair<float, float> difference;
     float collision;
-    float other_movement;
-    float movement;
+    std::pair<float, float> movement;
 
-    difference_x = other.body().x() - body().x();
-    difference_y = other.body().y() - body().y();
-    if (!(bool)difference_x && !(bool)difference_y) {
+    difference.first = other.body().x() - body().x();
+    difference.second = other.body().y() - body().y();
+    if (!(bool)difference.first && !(bool)difference.second) {
         return false;
     }
 
@@ -94,15 +89,12 @@ bool wze::collider::dual_dynamic_resolver(collider& other, float force) {
         return false;
     }
 
-    std::tie(difference_x, difference_y) =
-        math::normalize(difference_x, difference_y);
-    std::tie(movement, other_movement) =
-        dynamic_movement(collision, force, other.mass());
-
-    _body.set_x(body().x() - difference_x * movement);
-    _body.set_y(body().y() - difference_y * movement);
-    other._body.set_x(other.body().x() + difference_x * other_movement);
-    other._body.set_y(other.body().y() + difference_y * other_movement);
+    difference = math::normalize(difference.first, difference.second);
+    movement = dynamic_movement(collision, force, other.mass());
+    _body.set_x(body().x() - difference.first * movement.first);
+    _body.set_y(body().y() - difference.second * movement.first);
+    other._body.set_x(other.body().x() + difference.first * movement.second);
+    other._body.set_y(other.body().y() + difference.second * movement.second);
 
     return true;
 }

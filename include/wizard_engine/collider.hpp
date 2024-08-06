@@ -143,25 +143,22 @@ class collider : public entity {
               void (polygon::*set_position)(float)>
     [[nodiscard]] bool solo_dynamic_resolver(collider& other, float force) {
         float collision;
-        float other_movement;
-        float movement;
+        std::pair<float, float> movement;
 
         collision = body().overlap<float>(other.body());
         if (!(bool)collision) {
             return false;
         }
 
-        std::tie(movement, other_movement) =
-            dynamic_movement(collision, force, other.mass());
-
+        movement = dynamic_movement(collision, force, other.mass());
         if ((body().*position)() < (other.body().*position)()) {
-            (_body.*set_position)((body().*position)() - movement);
+            (_body.*set_position)((body().*position)() - movement.first);
             (other._body.*set_position)((other.body().*position)() +
-                                        other_movement);
+                                        movement.second);
         } else {
-            (_body.*set_position)((body().*position)() + movement);
+            (_body.*set_position)((body().*position)() + movement.first);
             (other._body.*set_position)((other.body().*position)() -
-                                        other_movement);
+                                        movement.second);
         }
 
         return true;
