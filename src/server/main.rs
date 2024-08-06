@@ -19,41 +19,65 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-use tokio::net::TcpListener;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let listener = TcpListener::bind("127.0.0.1:8080").await?;
+async fn main() {
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:8080")
+        .await
+        .unwrap();
+    let clients = std::sync::Arc::new(
+        tokio::sync::Mutex::new(std::collections::HashMap::<
+            std::net::SocketAddr,
+            tokio::net::TcpStream,
+        >::new()),
+    );
 
     loop {
-        let (mut socket, _) = listener.accept().await?;
+        let (socket, address) = listener.accept().await.unwrap();
+        let clients = clients.clone();
+        println!("Connected: {}", address);
 
         tokio::spawn(async move {
-            let mut buf = [0; 1024];
+            let mut buffer = [0; 1024];
+            let mut buffer_size: usize;
+            clients.lock().await.insert(address, socket);
 
-            // In a loop, read data from the socket and write the data back.
             loop {
-                let n = match socket.read(&mut buf).await {
-                    // socket closed
-                    Ok(n) if n == 0 => return,
-                    Ok(n) => n,
+                buffer_size = match clients
+                    .lock()
+                    .await
+                    .get_mut(&address)
+                    .unwrap()
+                    .read(&mut buffer)
+                    .await
+                {
+                    Ok(0) => break,
+                    Ok(v) => v,
                     Err(e) => {
-                        eprintln!("failed to read from socket; err = {:?}", e);
-                        return;
+                        eprintln!("{}: {}", address, e);
+                        break;
                     }
                 };
 
-                if let Ok(v) = std::str::from_utf8(&buf[0..n]) {
-                    print!("{}", v);
-                };
+                match std::str::from_utf8(&buffer[0..buffer_size]) {
+                    Ok(v) => print!("{}: {}", address, v),
+                    Err(e) => eprintln!("{}: {}", address, e),
+                }
 
-                // Write the data back
-                if let Err(e) = socket.write_all(&buf[0..n]).await {
-                    eprintln!("failed to write to socket; err = {:?}", e);
-                    return;
+                for client in clients.lock().await.iter_mut() {
+                    if *client.0 != address {
+                        if let Err(e) =
+                            client.1.write_all(&buffer[0..buffer_size]).await
+                        {
+                            eprintln!("{}: {}", address, e);
+                        }
+                    }
                 }
             }
+
+            clients.lock().await.remove(&address);
+            println!("Disconnected: {}", address);
         });
     }
 }
