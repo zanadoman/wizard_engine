@@ -30,16 +30,17 @@ use tokio::{
     try_join,
 };
 
+const DEFAULT_PORT: u16 = 8080;
 const BUFFER_SIZE: usize = 1024;
 
 #[main]
 async fn main() -> Result<(), Error> {
     let listener = TcpListener::bind(format!(
         "0.0.0.0:{}",
-        args().nth(1).unwrap_or(8080.to_string())
+        args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
     ))
     .await?;
-    let (transmitter, ..) = channel::<(SocketAddr, Vec<u8>)>(100);
+    let (transmitter, ..) = channel::<(SocketAddr, Vec<u8>)>(u8::MAX.into());
 
     println!("Listening on {:?}", listener.local_addr());
 
@@ -82,7 +83,7 @@ async fn main() -> Result<(), Error> {
                         }
                     }
 
-                    Ok::<(), Error>(())
+                    Ok(())
                 }
             ) {
                 eprintln!("{}", error)
