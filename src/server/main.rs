@@ -34,9 +34,7 @@ use tokio::{
 async fn main() {
     let listener = TcpListener::bind(format!(
         "0.0.0.0:{}",
-        Vec::<String>::from_iter(args())
-            .get(1)
-            .unwrap_or(&8080.to_string())
+        args().nth(1).unwrap_or(8080.to_string())
     ))
     .await
     .unwrap();
@@ -97,7 +95,7 @@ async fn main() {
                     }
                 }
             ) {
-                eprintln!("{}", error);
+                eprintln!("{}", error)
             }
         });
     }
