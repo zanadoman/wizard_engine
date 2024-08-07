@@ -19,26 +19,27 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+use std::collections::HashMap;
+use std::net::SocketAddr;
+use std::str::from_utf8;
+use std::sync::Arc;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
+use tokio::main;
+use tokio::net::{TcpListener, TcpStream};
+use tokio::spawn;
+use tokio::sync::Mutex;
 
-#[tokio::main]
+#[main]
 async fn main() {
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:8080")
-        .await
-        .unwrap();
-    let clients = std::sync::Arc::new(
-        tokio::sync::Mutex::new(std::collections::HashMap::<
-            std::net::SocketAddr,
-            tokio::net::TcpStream,
-        >::new()),
-    );
+    let listener = TcpListener::bind("127.0.0.1:8080").await.unwrap();
+    let clients = Arc::new(Mutex::new(HashMap::<SocketAddr, TcpStream>::new()));
 
     loop {
         let (socket, address) = listener.accept().await.unwrap();
         let clients = clients.clone();
         println!("Connected: {}", address);
 
-        tokio::spawn(async move {
+        spawn(async move {
             let mut buffer = [0; 1024];
             let mut buffer_size: usize;
             clients.lock().await.insert(address, socket);
@@ -60,7 +61,7 @@ async fn main() {
                     }
                 };
 
-                match std::str::from_utf8(&buffer[0..buffer_size]) {
+                match from_utf8(&buffer[0..buffer_size]) {
                     Ok(v) => print!("{}: {}", address, v),
                     Err(e) => eprintln!("{}: {}", address, e),
                 }
