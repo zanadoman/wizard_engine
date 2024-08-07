@@ -30,26 +30,21 @@ use tokio::{
     try_join,
 };
 
+const BUFFER_SIZE: usize = 1024;
+
 #[main]
-async fn main() {
+async fn main() -> Result<(), Error> {
     let listener = TcpListener::bind(format!(
         "0.0.0.0:{}",
         args().nth(1).unwrap_or(8080.to_string())
     ))
-    .await
-    .unwrap();
+    .await?;
     let (transmitter, ..) = channel::<(SocketAddr, Vec<u8>)>(100);
 
     println!("Listening on {:?}", listener.local_addr());
 
     loop {
-        let (socket, address) = match listener.accept().await {
-            Ok(listener) => listener,
-            Err(error) => {
-                eprintln!("{}", error);
-                continue;
-            }
-        };
+        let (socket, address) = listener.accept().await?;
         let (mut reader, mut writer) = split(socket);
         let transmitter = transmitter.clone();
 
@@ -57,7 +52,7 @@ async fn main() {
             println!("Client {} connected", address);
             if let Err(error) = try_join!(
                 async {
-                    let mut buffer = [0; 1024];
+                    let mut buffer = [0; BUFFER_SIZE];
 
                     loop {
                         let message = match reader.read(&mut buffer).await {
@@ -81,18 +76,13 @@ async fn main() {
                 async {
                     let mut receiver = transmitter.subscribe();
 
-                    loop {
-                        match receiver.recv().await {
-                            Ok((sender, content)) => {
-                                if sender != address {
-                                    writer.write_all(&content).await?
-                                }
-                            }
-                            Err(error) => {
-                                return Err::<(), Error>(anyhow!(error))
-                            }
+                    while let Ok((sender, content)) = receiver.recv().await {
+                        if sender != address {
+                            writer.write_all(&content).await?;
                         }
                     }
+
+                    Ok::<(), Error>(())
                 }
             ) {
                 eprintln!("{}", error)
