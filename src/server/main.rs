@@ -79,10 +79,10 @@ async fn main() {
 
                     loop {
                         match receiver.recv().await {
-                            Ok(message) => {
-                                if message.0 != address {
+                            Ok((sender, content)) => {
+                                if sender != address {
                                     if let Err(error) =
-                                        writer.write_all(&message.1).await
+                                        writer.write_all(&content).await
                                     {
                                         return Err::<(), Error>(anyhow!(
                                             error
