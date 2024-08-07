@@ -19,65 +19,89 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-use std::collections::HashMap;
+use std::fmt::{Display, Formatter, Result};
 use std::net::SocketAddr;
-use std::str::from_utf8;
-use std::sync::Arc;
-use tokio::io::{AsyncReadExt, AsyncWriteExt};
+use tokio::io::{split, AsyncReadExt, AsyncWriteExt};
 use tokio::main;
-use tokio::net::{TcpListener, TcpStream};
+use tokio::net::TcpListener;
 use tokio::spawn;
-use tokio::sync::Mutex;
+use tokio::sync::broadcast;
+
+#[derive(Clone)]
+struct Message {
+    sender: SocketAddr,
+    content: Vec<u8>,
+}
+impl Display for Message {
+    fn fmt(&self, formatter: &mut Formatter) -> Result {
+        write!(
+            formatter,
+            "{}: {}",
+            self.sender,
+            String::from_utf8_lossy(&self.content)
+        )
+    }
+}
 
 #[main]
 async fn main() {
     let listener = TcpListener::bind("127.0.0.1:8080").await.unwrap();
-    let clients = Arc::new(Mutex::new(HashMap::<SocketAddr, TcpStream>::new()));
+    let (transmitter, _) = broadcast::channel::<Message>(100);
 
     loop {
         let (socket, address) = listener.accept().await.unwrap();
-        let clients = clients.clone();
-        println!("Connected: {}", address);
+        let (mut reader, mut writer) = split(socket);
+        let transmitter = transmitter.clone();
 
         spawn(async move {
+            let mut receiver = transmitter.subscribe();
             let mut buffer = [0; 1024];
-            let mut buffer_size: usize;
-            clients.lock().await.insert(address, socket);
+            println!("Connected: {}", address);
 
-            loop {
-                buffer_size = match clients
-                    .lock()
-                    .await
-                    .get_mut(&address)
-                    .unwrap()
-                    .read(&mut buffer)
-                    .await
-                {
-                    Ok(0) => break,
-                    Ok(v) => v,
-                    Err(e) => {
-                        eprintln!("{}: {}", address, e);
+            let reader_task = spawn(async move {
+                loop {
+                    let message = match reader.read(&mut buffer).await {
+                        Ok(0) => break,
+                        Ok(size) => Message {
+                            sender: address,
+                            content: buffer[0..size].to_vec(),
+                        },
+                        Err(error) => {
+                            eprintln!("{}", error);
+                            break;
+                        }
+                    };
+                    if let Err(error) = transmitter.send(message.clone()) {
+                        eprintln!("{}", error);
                         break;
+                    } else {
+                        print!("{}", message);
                     }
-                };
-
-                match from_utf8(&buffer[0..buffer_size]) {
-                    Ok(v) => print!("{}: {}", address, v),
-                    Err(e) => eprintln!("{}: {}", address, e),
                 }
+            });
 
-                for client in clients.lock().await.iter_mut() {
-                    if *client.0 != address {
-                        if let Err(e) =
-                            client.1.write_all(&buffer[0..buffer_size]).await
-                        {
-                            eprintln!("{}: {}", address, e);
+            let writer_task = spawn(async move {
+                loop {
+                    match receiver.recv().await {
+                        Ok(message) => {
+                            if message.sender != address {
+                                if let Err(error) =
+                                    writer.write_all(&message.content).await
+                                {
+                                    eprintln!("{}", error);
+                                    break;
+                                }
+                            }
+                        }
+                        Err(error) => {
+                            eprintln!("{}", error);
+                            break;
                         }
                     }
                 }
-            }
+            });
 
-            clients.lock().await.remove(&address);
+            tokio::try_join!(reader_task, writer_task).unwrap();
             println!("Disconnected: {}", address);
         });
     }
