@@ -26,7 +26,7 @@ use tokio::{
     main,
     net::TcpListener,
     spawn,
-    sync::broadcast,
+    sync::broadcast::channel,
     try_join,
 };
 
@@ -40,7 +40,9 @@ async fn main() {
     ))
     .await
     .unwrap();
-    let (transmitter, ..) = broadcast::channel::<(SocketAddr, Vec<u8>)>(100);
+    let (transmitter, ..) = channel::<(SocketAddr, Vec<u8>)>(100);
+
+    println!("Listening on {}", listener.local_addr().unwrap());
 
     loop {
         let (socket, address) = listener.accept().await.unwrap();
@@ -48,7 +50,7 @@ async fn main() {
         let transmitter = transmitter.clone();
 
         spawn(async move {
-            println!("Connected: {}", address);
+            println!("Client {} connected", address);
             if let Err(error) = try_join!(
                 async {
                     let mut buffer = [0; 1024];
@@ -57,7 +59,7 @@ async fn main() {
                         let message = match reader.read(&mut buffer).await {
                             Ok(0) => {
                                 return Err::<(), Error>(anyhow!(
-                                    "Disconnected: {}",
+                                    "Client {} disconnected",
                                     address
                                 ))
                             }

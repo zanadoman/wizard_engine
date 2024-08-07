@@ -4,8 +4,14 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-tokio = { version = "1.39.2", features = ["full"] }
-anyhow = { version="1.0", default-features = true }
+tokio = { version = "1.39.2", features = [
+    "io-util",
+    "macros",
+    "net",
+    "rt-multi-thread",
+    "sync"
+] }
+anyhow = { version = "1.0.86", default-features = false }
 
 [[bin]]
 name = "server"
