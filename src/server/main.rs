@@ -42,10 +42,16 @@ async fn main() -> Result<(), Error> {
     .await?;
     let (transmitter, ..) = channel::<(SocketAddr, Vec<u8>)>(u8::MAX.into());
 
-    println!("Listening on {:?}", listener.local_addr());
+    println!("Listening on {:?}", listener.local_addr()?);
 
     loop {
-        let (socket, address) = listener.accept().await?;
+        let (socket, address) = match listener.accept().await {
+            Ok(connection) => connection,
+            Err(error) => {
+                eprintln!("{}", error);
+                continue;
+            }
+        };
         let (mut reader, mut writer) = split(socket);
         let transmitter = transmitter.clone();
 
