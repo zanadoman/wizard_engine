@@ -14,5 +14,9 @@ tokio = { version = "1.39.2", features = [
 ] }
 
 [[bin]]
-name = "server"
-path = "./src/server/main.rs"
+name = "tcp"
+path = "./src/server/tcp.rs"
+
+[[bin]]
+name = "udp"
+path = "./src/server/udp.rs"

@@ -40,7 +40,7 @@ async fn main() -> Result<(), Error> {
         args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
     ))
     .await?;
-    let (transmitter, ..) = channel::<(SocketAddr, Vec<u8>)>(u8::MAX.into());
+    let transmitter = channel::<(SocketAddr, Vec<u8>)>(u8::MAX.into()).0;
 
     println!("Listening on {:?}", listener.local_addr()?);
 
