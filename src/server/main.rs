@@ -40,10 +40,16 @@ async fn main() {
     .unwrap();
     let (transmitter, ..) = channel::<(SocketAddr, Vec<u8>)>(100);
 
-    println!("Listening on {}", listener.local_addr().unwrap());
+    println!("Listening on {:?}", listener.local_addr());
 
     loop {
-        let (socket, address) = listener.accept().await.unwrap();
+        let (socket, address) = match listener.accept().await {
+            Ok(listener) => listener,
+            Err(error) => {
+                eprintln!("{}", error);
+                continue;
+            }
+        };
         let (mut reader, mut writer) = split(socket);
         let transmitter = transmitter.clone();
 
@@ -69,9 +75,7 @@ async fn main() {
                             message.0,
                             String::from_utf8_lossy(&message.1)
                         );
-                        if let Err(error) = transmitter.send(message) {
-                            return Err(anyhow!(error));
-                        }
+                        transmitter.send(message)?;
                     }
                 },
                 async {
@@ -81,16 +85,12 @@ async fn main() {
                         match receiver.recv().await {
                             Ok((sender, content)) => {
                                 if sender != address {
-                                    if let Err(error) =
-                                        writer.write_all(&content).await
-                                    {
-                                        return Err::<(), Error>(anyhow!(
-                                            error
-                                        ));
-                                    }
+                                    writer.write_all(&content).await?
                                 }
                             }
-                            Err(error) => return Err(anyhow!(error)),
+                            Err(error) => {
+                                return Err::<(), Error>(anyhow!(error))
+                            }
                         }
                     }
                 }
