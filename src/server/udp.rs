@@ -32,64 +32,22 @@ use tokio::{
     net::UdpSocket,
     spawn,
     sync::{
-        broadcast::{channel, Sender},
+        broadcast::{channel, Receiver, Sender},
         Mutex,
     },
+    try_join,
 };
 
 const DEFAULT_PORT: u32 = 8080;
 const BUFFER_SIZE: usize = 1024;
+const TIMEOUT: Duration = Duration::from_secs(10);
 
-#[main]
-async fn main() -> Result<(), Error> {
-    let socket = Arc::new(
-        UdpSocket::bind(format!(
-            "0.0.0.0:{}",
-            args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
-        ))
-        .await?,
-    );
-    let clients = Arc::new(Mutex::new(HashMap::<SocketAddr, Instant>::new()));
-    let transmitter = Arc::new(Mutex::<Sender<(SocketAddr, Vec<u8>)>>::new(
-        channel(u8::MAX.into()).0,
-    ));
+async fn input(
+    socket: Arc<UdpSocket>,
+    clients: Arc<Mutex<HashMap<SocketAddr, Instant>>>,
+    transmitter: Arc<Mutex<Sender<(SocketAddr, Vec<u8>)>>>,
+) -> Result<(), Error> {
     let mut buffer = [0; BUFFER_SIZE];
-
-    println!("Listening on {:?}", socket.local_addr()?);
-
-    let clients_clone = clients.clone();
-    spawn(async move {
-        loop {
-            clients_clone.lock().await.retain(|_, timestamp| {
-                Instant::now().duration_since(*timestamp)
-                    < Duration::from_secs(10)
-            });
-        }
-    });
-
-    let transmitter_clone = transmitter.clone();
-    let clients_clone2 = clients.clone();
-    let socket_clone = socket.clone();
-    spawn(async move {
-        let mut receiver = transmitter_clone.lock().await.subscribe();
-
-        loop {
-            match receiver.recv().await {
-                Ok((sender, content)) => {
-                    for (client, _) in clients_clone2.lock().await.iter() {
-                        if *client != sender {
-                            if let Err(error) =
-                                socket_clone.send_to(&content, client).await
-                            {
-                                eprintln!("{}", error);
-                            }
-                        }
-                    }
-                }
-                Err(error) => eprintln!("{}", error),
-            }
-        }
-    });
 
     loop {
         let message = match socket.recv_from(&mut buffer).await {
@@ -118,4 +76,64 @@ async fn main() -> Result<(), Error> {
             eprintln!("{}", error);
         }
     }
+}
+
+async fn output(
+    socket: Arc<UdpSocket>,
+    clients: Arc<Mutex<HashMap<SocketAddr, Instant>>>,
+    mut receiver: Receiver<(SocketAddr, Vec<u8>)>,
+) {
+    loop {
+        match receiver.recv().await {
+            Ok((sender, content)) => {
+                for (address, _) in clients.lock().await.iter() {
+                    if *address != sender {
+                        if let Err(error) =
+                            socket.send_to(&content, address).await
+                        {
+                            eprintln!("{}", error);
+                        }
+                    }
+                }
+            }
+            Err(error) => eprintln!("{}", error),
+        }
+    }
+}
+
+async fn timeout(
+    clients: Arc<Mutex<HashMap<SocketAddr, Instant>>>,
+) -> Result<(), Error> {
+    loop {
+        clients.lock().await.retain(|_, timestamp| {
+            Instant::now().duration_since(*timestamp) < TIMEOUT
+        });
+    }
+}
+
+#[main]
+async fn main() -> Result<(), Error> {
+    let socket = Arc::new(
+        UdpSocket::bind(format!(
+            "0.0.0.0:{}",
+            args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
+        ))
+        .await?,
+    );
+    let clients = Arc::new(Mutex::new(HashMap::<SocketAddr, Instant>::new()));
+    let transmitter = Arc::new(Mutex::<Sender<(SocketAddr, Vec<u8>)>>::new(
+        channel(u8::MAX.into()).0,
+    ));
+
+    println!("Listening on {:?}", socket.local_addr()?);
+
+    spawn(timeout(clients.clone()));
+    spawn(output(
+        socket.clone(),
+        clients.clone(),
+        transmitter.lock().await.subscribe(),
+    ));
+    spawn(input(socket.clone(), clients.clone(), transmitter.clone()));
+
+    try_join!()
 }
