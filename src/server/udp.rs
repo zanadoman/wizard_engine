@@ -65,7 +65,7 @@ async fn input(
             });
         println!("{}: {}", sender, String::from_utf8_lossy(&content));
         if let Err(error) = transmitter.send((sender, content)) {
-            eprintln!("{}", error);
+            eprintln!("{}", error)
         }
     }
 }
@@ -86,7 +86,7 @@ async fn output(
         for (address, _) in clients.read().await.iter() {
             if sender != *address {
                 if let Err(error) = socket.send_to(&content, address).await {
-                    eprintln!("{}", error);
+                    eprintln!("{}", error)
                 }
             }
         }
@@ -104,7 +104,7 @@ async fn timeout(
                 println!("Client {} disconnected", address)
             }
             alive
-        });
+        })
     }
 }
 

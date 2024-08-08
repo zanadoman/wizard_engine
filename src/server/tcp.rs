@@ -62,7 +62,7 @@ async fn output(
             Err(error) => return Err(error.into()),
         };
         if sender != address {
-            writer.write_all(&content).await?;
+            writer.write_all(&content).await?
         }
     }
 }
