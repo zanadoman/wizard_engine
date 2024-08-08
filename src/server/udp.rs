@@ -44,29 +44,27 @@ async fn input(
     let mut buffer = [0; BUFFER_SIZE];
 
     loop {
-        let message = match socket.recv_from(&mut buffer).await {
-            Ok((size, address)) => {
-                clients
-                    .write()
-                    .await
-                    .entry(address)
-                    .and_modify(|timestamp| {
-                        println!("Client {} updated", address);
-                        *timestamp = Instant::now()
-                    })
-                    .or_insert_with(|| {
-                        println!("Client {} connected", address);
-                        Instant::now()
-                    });
-                (address, buffer[..size].to_vec())
-            }
+        let (sender, content) = match socket.recv_from(&mut buffer).await {
+            Ok((size, address)) => (address, buffer[..size].to_vec()),
             Err(error) => {
                 eprintln!("{}", error);
                 continue;
             }
         };
-        println!("{}: {}", message.0, String::from_utf8_lossy(&message.1));
-        if let Err(error) = transmitter.send(message) {
+        clients
+            .write()
+            .await
+            .entry(sender)
+            .and_modify(|timestamp| {
+                println!("Client {} updated", sender);
+                *timestamp = Instant::now()
+            })
+            .or_insert_with(|| {
+                println!("Client {} connected", sender);
+                Instant::now()
+            });
+        println!("{}: {}", sender, String::from_utf8_lossy(&content));
+        if let Err(error) = transmitter.send((sender, content)) {
             eprintln!("{}", error);
         }
     }
@@ -78,19 +76,19 @@ async fn output(
     mut receiver: Receiver<(SocketAddr, Vec<u8>)>,
 ) -> Result<(), Error> {
     loop {
-        match receiver.recv().await {
-            Ok((sender, content)) => {
-                for (address, _) in clients.read().await.iter() {
-                    if sender != *address {
-                        if let Err(error) =
-                            socket.send_to(&content, address).await
-                        {
-                            eprintln!("{}", error);
-                        }
-                    }
+        let (sender, content) = match receiver.recv().await {
+            Ok(message) => message,
+            Err(error) => {
+                eprintln!("{}", error);
+                continue;
+            }
+        };
+        for (address, _) in clients.read().await.iter() {
+            if sender != *address {
+                if let Err(error) = socket.send_to(&content, address).await {
+                    eprintln!("{}", error);
                 }
             }
-            Err(error) => eprintln!("{}", error),
         }
     }
 }

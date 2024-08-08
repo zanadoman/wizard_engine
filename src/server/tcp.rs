@@ -22,16 +22,50 @@
 use anyhow::{anyhow, Error};
 use std::{env::args, net::SocketAddr};
 use tokio::{
-    io::{split, AsyncReadExt, AsyncWriteExt},
+    io::{split, AsyncReadExt, AsyncWriteExt, ReadHalf, WriteHalf},
     main,
-    net::TcpListener,
+    net::{TcpListener, TcpStream},
     spawn,
-    sync::broadcast::channel,
+    sync::broadcast::{channel, Receiver, Sender},
     try_join,
 };
 
 const DEFAULT_PORT: u16 = 8080;
 const BUFFER_SIZE: usize = 1024;
+
+async fn input(
+    address: SocketAddr,
+    mut reader: ReadHalf<TcpStream>,
+    transmitter: Sender<(SocketAddr, Vec<u8>)>,
+) -> Result<(), Error> {
+    let mut buffer = [0; BUFFER_SIZE];
+
+    loop {
+        let (sender, content) = match reader.read(&mut buffer).await {
+            Ok(0) => return Err(anyhow!("Client {} disconnected", address)),
+            Ok(size) => (address, buffer[..size].to_vec()),
+            Err(error) => return Err(error.into()),
+        };
+        println!("{}: {}", sender, String::from_utf8_lossy(&content));
+        transmitter.send((sender, content))?;
+    }
+}
+
+async fn output(
+    address: SocketAddr,
+    mut writer: WriteHalf<TcpStream>,
+    mut receiver: Receiver<(SocketAddr, Vec<u8>)>,
+) -> Result<(), Error> {
+    loop {
+        let (sender, content) = match receiver.recv().await {
+            Ok(message) => message,
+            Err(error) => return Err(error.into()),
+        };
+        if sender != address {
+            writer.write_all(&content).await?;
+        }
+    }
+}
 
 #[main]
 async fn main() -> Result<(), Error> {
@@ -52,45 +86,14 @@ async fn main() -> Result<(), Error> {
                 continue;
             }
         };
-        let (mut reader, mut writer) = split(socket);
+        let (reader, writer) = split(socket);
         let transmitter = transmitter.clone();
 
         spawn(async move {
             println!("Client {} connected", address);
             if let Err(error) = try_join!(
-                async {
-                    let mut buffer = [0; BUFFER_SIZE];
-
-                    loop {
-                        let message = match reader.read(&mut buffer).await {
-                            Ok(0) => {
-                                return Err::<(), Error>(anyhow!(
-                                    "Client {} disconnected",
-                                    address
-                                ))
-                            }
-                            Ok(size) => (address, buffer[..size].to_vec()),
-                            Err(error) => return Err(anyhow!(error)),
-                        };
-                        println!(
-                            "{}: {}",
-                            message.0,
-                            String::from_utf8_lossy(&message.1)
-                        );
-                        transmitter.send(message)?;
-                    }
-                },
-                async {
-                    let mut receiver = transmitter.subscribe();
-
-                    while let Ok((sender, content)) = receiver.recv().await {
-                        if sender != address {
-                            writer.write_all(&content).await?;
-                        }
-                    }
-
-                    Ok(())
-                }
+                input(address, reader, transmitter.clone()),
+                output(address, writer, transmitter.subscribe())
             ) {
                 eprintln!("{}", error)
             }
