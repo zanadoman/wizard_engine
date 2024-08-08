@@ -31,7 +31,7 @@ use tokio::{
 };
 
 const DEFAULT_PORT: u16 = 8080;
-const BUFFER_SIZE: usize = 1024;
+const BUFFER_SIZE: usize = 4096;
 
 async fn input(
     address: SocketAddr,
@@ -74,7 +74,7 @@ async fn main() -> Result<(), Error> {
         args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
     ))
     .await?;
-    let transmitter = channel::<(SocketAddr, Vec<u8>)>(u8::MAX.into()).0;
+    let transmitter = channel(u8::MAX.into()).0;
 
     println!("Listening on {:?}", listener.local_addr()?);
 

@@ -117,8 +117,8 @@ async fn main() -> Result<(), Error> {
         ))
         .await?,
     );
-    let clients = Arc::new(RwLock::new(HashMap::<SocketAddr, Instant>::new()));
-    let transmitter = channel::<(SocketAddr, Vec<u8>)>(u8::MAX.into()).0;
+    let clients = Arc::new(RwLock::new(HashMap::new()));
+    let transmitter = channel(u8::MAX.into()).0;
 
     println!("Listening on {:?}", socket.local_addr()?);
 
