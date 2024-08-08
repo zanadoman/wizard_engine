@@ -45,7 +45,7 @@ const TIMEOUT: Duration = Duration::from_secs(10);
 async fn input(
     socket: Arc<UdpSocket>,
     clients: Arc<Mutex<HashMap<SocketAddr, Instant>>>,
-    transmitter: Arc<Mutex<Sender<(SocketAddr, Vec<u8>)>>>,
+    transmitter: Sender<(SocketAddr, Vec<u8>)>,
 ) -> Result<(), Error> {
     let mut buffer = [0; BUFFER_SIZE];
 
@@ -72,7 +72,7 @@ async fn input(
             }
         };
         println!("{}: {}", message.0, String::from_utf8_lossy(&message.1));
-        if let Err(error) = transmitter.lock().await.send(message) {
+        if let Err(error) = transmitter.send(message) {
             eprintln!("{}", error);
         }
     }
@@ -127,19 +127,13 @@ async fn main() -> Result<(), Error> {
         .await?,
     );
     let clients = Arc::new(Mutex::new(HashMap::<SocketAddr, Instant>::new()));
-    let transmitter = Arc::new(Mutex::<Sender<(SocketAddr, Vec<u8>)>>::new(
-        channel(u8::MAX.into()).0,
-    ));
+    let transmitter = channel::<(SocketAddr, Vec<u8>)>(u8::MAX.into()).0;
 
     println!("Listening on {:?}", socket.local_addr()?);
 
     try_join!(
         input(socket.clone(), clients.clone(), transmitter.clone()),
-        output(
-            socket.clone(),
-            clients.clone(),
-            transmitter.lock().await.subscribe(),
-        ),
+        output(socket.clone(), clients.clone(), transmitter.subscribe(),),
         timeout(clients.clone())
     )?;
     Ok(())
