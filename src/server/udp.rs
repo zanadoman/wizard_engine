@@ -30,11 +30,11 @@ use std::{
 use tokio::{
     main,
     net::UdpSocket,
-    spawn,
     sync::{
         broadcast::{channel, Receiver, Sender},
         Mutex,
     },
+    time::sleep,
     try_join,
 };
 
@@ -82,7 +82,7 @@ async fn output(
     socket: Arc<UdpSocket>,
     clients: Arc<Mutex<HashMap<SocketAddr, Instant>>>,
     mut receiver: Receiver<(SocketAddr, Vec<u8>)>,
-) {
+) -> Result<(), Error> {
     loop {
         match receiver.recv().await {
             Ok((sender, content)) => {
@@ -105,8 +105,14 @@ async fn timeout(
     clients: Arc<Mutex<HashMap<SocketAddr, Instant>>>,
 ) -> Result<(), Error> {
     loop {
-        clients.lock().await.retain(|_, timestamp| {
-            Instant::now().duration_since(*timestamp) < TIMEOUT
+        sleep(Duration::from_secs(1)).await;
+        clients.lock().await.retain(|address, timestamp| {
+            if Instant::now().duration_since(*timestamp) < TIMEOUT {
+                true
+            } else {
+                println!("Client {} disconnected", address);
+                false
+            }
         });
     }
 }
@@ -127,13 +133,14 @@ async fn main() -> Result<(), Error> {
 
     println!("Listening on {:?}", socket.local_addr()?);
 
-    spawn(timeout(clients.clone()));
-    spawn(output(
-        socket.clone(),
-        clients.clone(),
-        transmitter.lock().await.subscribe(),
-    ));
-    spawn(input(socket.clone(), clients.clone(), transmitter.clone()));
-
-    try_join!()
+    try_join!(
+        input(socket.clone(), clients.clone(), transmitter.clone()),
+        output(
+            socket.clone(),
+            clients.clone(),
+            transmitter.lock().await.subscribe(),
+        ),
+        timeout(clients.clone())
+    )?;
+    Ok(())
 }
