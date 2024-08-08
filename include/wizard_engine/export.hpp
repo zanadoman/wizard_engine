@@ -57,6 +57,7 @@
 #include <SDL2/SDL.h>       /* IWYU pragma: export */
 #include <SDL2/SDL_image.h> /* IWYU pragma: export */
 #include <SDL2/SDL_mixer.h> /* IWYU pragma: export */
+#include <SDL2/SDL_net.h>   /* IWYU pragma: export */
 #include <SDL2/SDL_ttf.h>   /* IWYU pragma: export */
 
 #ifdef __EMSCRIPTEN__

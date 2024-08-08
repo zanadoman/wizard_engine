@@ -135,6 +135,9 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     if ((bool)TTF_Init()) {
         throw exception(TTF_GetError());
     }
+    if ((bool)SDLNet_Init()) {
+        throw exception(SDLNet_GetError());
+    }
 
     _events = {};
     math::initialize();

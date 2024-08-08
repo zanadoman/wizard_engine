@@ -71,7 +71,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/aarch64-android/libSDL2*.so)
     file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
-    set(LIBRARIES SDL2 SDL2_image SDL2_mixer SDL2_ttf freetype)
+    set(LIBRARIES SDL2 SDL2_image SDL2_mixer SDL2_ttf SDL2_net freetype)
 endif()
 
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES})
@@ -87,8 +87,8 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     set(LINK_OPTIONS -Wl,-rpath=./)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(LINK_OPTIONS -sUSE_SDL=2 -sUSE_SDL_IMAGE=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_TTF=2
-        -sUSE_FREETYPE=1 -sASYNCIFY --use-preload-plugins --preload-file ./assets
-        --shell-file ${CMAKE_SOURCE_DIR}/skeleton.html)
+        -sUSE_SDL_NET=2 -sUSE_FREETYPE=1 -sASYNCIFY --use-preload-plugins --preload-file
+        ./assets --shell-file ${CMAKE_SOURCE_DIR}/skeleton.html)
     set(CMAKE_EXECUTABLE_SUFFIX .html)
 endif()
 
