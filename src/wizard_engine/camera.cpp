@@ -93,6 +93,7 @@ void wze::camera::project(renderable& instance) {
     float scale;
     float x;
     float y;
+    float z;
 
     if (!instance.spatial()) {
         instance.set_screen_area(
@@ -103,14 +104,26 @@ void wze::camera::project(renderable& instance) {
 
     instance.set_screen_angle(instance.angle() - angle());
 
-    if (instance.z() == z() || !(bool)focus()) {
+    if (instance.z() == camera::z() || !(bool)focus()) {
         instance.set_screen_area({0, 0, 0, 0});
         return;
     }
 
-    scale = focus() / (instance.z() - z());
-    x = (instance.x() - camera::x()) * scale;
-    y = (instance.y() - camera::y()) * scale;
+    x = instance.x() - camera::x();
+    y = instance.y() - camera::y();
+    z = instance.z() - camera::z();
+
+    if (z == focus()) {
+        instance.set_screen_area(
+            {math::transform_x(x, y, transformation_matrix()),
+             math::transform_y(x, y, transformation_matrix()), instance.width(),
+             instance.height()});
+        return;
+    }
+
+    scale = focus() / z;
+    x *= scale;
+    y *= scale;
     instance.set_screen_area({math::transform_x(x, y, transformation_matrix()),
                               math::transform_y(x, y, transformation_matrix()),
                               instance.width() * scale,
