@@ -20,21 +20,15 @@
 */
 
 use anyhow::Error;
-use std::{
-    collections::HashMap,
-    env::args,
-    net::SocketAddr,
-    sync::Arc,
-    time::{Duration, Instant},
-};
+use std::{collections::HashMap, env::args, net::SocketAddr, sync::Arc};
 use tokio::{
     main,
     net::UdpSocket,
     sync::{
         broadcast::{channel, Receiver, Sender},
-        Mutex,
+        RwLock,
     },
-    time::sleep,
+    time::{sleep, Duration, Instant},
     try_join,
 };
 
@@ -44,7 +38,7 @@ const TIMEOUT: Duration = Duration::from_secs(10);
 
 async fn input(
     socket: Arc<UdpSocket>,
-    clients: Arc<Mutex<HashMap<SocketAddr, Instant>>>,
+    clients: Arc<RwLock<HashMap<SocketAddr, Instant>>>,
     transmitter: Sender<(SocketAddr, Vec<u8>)>,
 ) -> Result<(), Error> {
     let mut buffer = [0; BUFFER_SIZE];
@@ -53,7 +47,7 @@ async fn input(
         let message = match socket.recv_from(&mut buffer).await {
             Ok((size, address)) => {
                 clients
-                    .lock()
+                    .write()
                     .await
                     .entry(address)
                     .and_modify(|timestamp| {
@@ -80,14 +74,14 @@ async fn input(
 
 async fn output(
     socket: Arc<UdpSocket>,
-    clients: Arc<Mutex<HashMap<SocketAddr, Instant>>>,
+    clients: Arc<RwLock<HashMap<SocketAddr, Instant>>>,
     mut receiver: Receiver<(SocketAddr, Vec<u8>)>,
 ) -> Result<(), Error> {
     loop {
         match receiver.recv().await {
             Ok((sender, content)) => {
-                for (address, _) in clients.lock().await.iter() {
-                    if *address != sender {
+                for (address, _) in clients.read().await.iter() {
+                    if sender != *address {
                         if let Err(error) =
                             socket.send_to(&content, address).await
                         {
@@ -102,17 +96,16 @@ async fn output(
 }
 
 async fn timeout(
-    clients: Arc<Mutex<HashMap<SocketAddr, Instant>>>,
+    clients: Arc<RwLock<HashMap<SocketAddr, Instant>>>,
 ) -> Result<(), Error> {
     loop {
         sleep(Duration::from_secs(1)).await;
-        clients.lock().await.retain(|address, timestamp| {
-            if Instant::now().duration_since(*timestamp) < TIMEOUT {
-                true
-            } else {
-                println!("Client {} disconnected", address);
-                false
+        clients.write().await.retain(|address, timestamp| {
+            let alive = Instant::now().duration_since(*timestamp) < TIMEOUT;
+            if !alive {
+                println!("Client {} disconnected", address)
             }
+            alive
         });
     }
 }
@@ -126,14 +119,14 @@ async fn main() -> Result<(), Error> {
         ))
         .await?,
     );
-    let clients = Arc::new(Mutex::new(HashMap::<SocketAddr, Instant>::new()));
+    let clients = Arc::new(RwLock::new(HashMap::<SocketAddr, Instant>::new()));
     let transmitter = channel::<(SocketAddr, Vec<u8>)>(u8::MAX.into()).0;
 
     println!("Listening on {:?}", socket.local_addr()?);
 
     try_join!(
         input(socket.clone(), clients.clone(), transmitter.clone()),
-        output(socket.clone(), clients.clone(), transmitter.subscribe(),),
+        output(socket.clone(), clients.clone(), transmitter.subscribe()),
         timeout(clients.clone())
     )?;
     Ok(())
