@@ -30,6 +30,16 @@
 
 std::vector<wze::speaker*> wze::speaker::_instances = {};
 
+void wze::speaker::set_angle([[maybe_unused]] float _) {}
+
+float wze::speaker::angle_offset() const {
+    return 0;
+}
+
+bool wze::speaker::attach_angle() const {
+    return false;
+}
+
 std::vector<wze::speaker*> const& wze::speaker::instances() {
     return _instances;
 }
@@ -91,8 +101,6 @@ void wze::speaker::set_z(float z) {
     _z = z;
 }
 
-void wze::speaker::set_angle([[maybe_unused]] float _) {}
-
 bool wze::speaker::spatial() const {
     return _spatial;
 }
@@ -117,10 +125,6 @@ void wze::speaker::set_y_offset(float y_offset) {
     _y_offset = y_offset;
 }
 
-float wze::speaker::angle_offset() const {
-    return 0;
-}
-
 bool wze::speaker::attach_x() const {
     return _attach_x;
 }
@@ -135,10 +139,6 @@ bool wze::speaker::attach_y() const {
 
 void wze::speaker::set_attach_y(bool attach_y) {
     _attach_y = attach_y;
-}
-
-bool wze::speaker::attach_angle() const {
-    return false;
 }
 
 bool wze::speaker::x_angle_lock() const {

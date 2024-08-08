@@ -50,6 +50,27 @@ class speaker final : public component {
     bool _x_angle_lock;
     bool _y_angle_lock;
 
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
+     * @brief Unimplemented inherited method.
+     */
+    void set_angle(float _) final;
+
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
+     * @brief Unimplemented inherited method.
+     */
+    [[nodiscard]] float angle_offset() const final;
+
+    /**
+     * @file speaker.hpp
+     * @author Zana Domán
+     * @brief Unimplemented inherited method.
+     */
+    [[nodiscard]] bool attach_angle() const final;
+
   public:
 #ifdef __WIZARD_ENGINE_INTERNAL__
     /**
@@ -176,13 +197,6 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Unimplemented inherited method.
-     */
-    void set_angle(float _) final;
-
-    /**
-     * @file speaker.hpp
-     * @author Zana Domán
      * @brief Returns whether the speaker is spatial or not.
      * @return Whether the speaker is spatial or not.
      */
@@ -231,13 +245,6 @@ class speaker final : public component {
     /**
      * @file speaker.hpp
      * @author Zana Domán
-     * @brief Unimplemented inherited method.
-     */
-    [[nodiscard]] float angle_offset() const final;
-
-    /**
-     * @file speaker.hpp
-     * @author Zana Domán
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
@@ -266,13 +273,6 @@ class speaker final : public component {
      * @param attach_y Whether the y position is attached to entities.
      */
     void set_attach_y(bool attach_y);
-
-    /**
-     * @file speaker.hpp
-     * @author Zana Domán
-     * @brief Unimplemented inherited method.
-     */
-    [[nodiscard]] bool attach_angle() const final;
 
     /**
      * @file speaker.hpp
