@@ -90,7 +90,6 @@ void wze::camera::initialize() {
 }
 
 void wze::camera::project(renderable& instance) {
-    float scale;
     float x;
     float y;
     float z;
@@ -104,7 +103,7 @@ void wze::camera::project(renderable& instance) {
 
     instance.set_screen_angle(instance.angle() - angle());
 
-    if (instance.z() == camera::z() || !(bool)focus()) {
+    if (instance.z() == camera::z()) {
         instance.set_screen_area({0, 0, 0, 0});
         return;
     }
@@ -121,25 +120,29 @@ void wze::camera::project(renderable& instance) {
         return;
     }
 
-    scale = focus() / z;
-    x *= scale;
-    y *= scale;
+    z = focus() / z;
+    x *= z;
+    y *= z;
     instance.set_screen_area({math::transform_x(x, y, transformation_matrix()),
                               math::transform_y(x, y, transformation_matrix()),
-                              instance.width() * scale,
-                              instance.height() * scale});
+                              instance.width() * z, instance.height() * z});
 }
 
 std::pair<float, float> wze::camera::project(float x, float y, float z) {
-    float scale;
-
-    if (z == camera::z() || !(bool)focus()) {
+    if (z == camera::z()) {
         return {0, 0};
     }
 
-    scale = focus() / (z - camera::z());
-    x = (x - camera::x()) * scale;
-    y = (y - camera::y()) * scale;
+    x -= camera::x();
+    y -= camera::y();
+    z -= camera::z();
+
+    if (z != focus()) {
+        z = focus() / z;
+        x *= z;
+        y *= z;
+    }
+
     return {math::transform_x(x, y, transformation_matrix()),
             math::transform_y(x, y, transformation_matrix())};
 }
