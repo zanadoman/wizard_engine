@@ -149,20 +149,30 @@ std::pair<float, float> wze::camera::project(float x, float y, float z) {
 
 std::pair<float, float> wze::camera::unproject(float x, float y, float z) {
     float determinant;
-    float scale;
 
-    if (z == camera::z() || !(bool)focus()) {
+    if (!(bool)focus()) {
         return {0, 0};
     }
 
+    z -= camera::z();
     determinant =
         transformation_matrix().at(0) * transformation_matrix().at(3) -
         transformation_matrix().at(1) * transformation_matrix().at(2);
-    scale = (z - camera::z()) / focus();
+
+    if (z == focus()) {
+        return {camera::x() + (x * transformation_matrix().at(3) -
+                               y * transformation_matrix().at(1)) /
+                                  determinant,
+                camera::y() + (y * transformation_matrix().at(0) -
+                               x * transformation_matrix().at(2)) /
+                                  determinant};
+    }
+
+    z /= focus();
     return {camera::x() + (x * transformation_matrix().at(3) -
                            y * transformation_matrix().at(1)) /
-                              determinant * scale,
+                              determinant * z,
             camera::y() + (y * transformation_matrix().at(0) -
                            x * transformation_matrix().at(2)) /
-                              determinant * scale};
+                              determinant * z};
 }
