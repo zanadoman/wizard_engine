@@ -31,12 +31,15 @@ namespace wze {
  * @file tcp_socket.hpp
  * @author Zana Domán
  * @brief Establishes a TCP connection to a server.
- * @param T Type of the buffer.
- * @param N Size of the buffer.
+ * @param outgoing Type of the outgoing data.
+ * @param incoming Type of the incoming data.
  */
+template <typename outgoing, typename incoming,
+          typename = typename std::enable_if_t<
+              sizeof(outgoing) <= std::numeric_limits<int32_t>::max() &&
+              sizeof(incoming) <= std::numeric_limits<int32_t>::max()>>
 class tcp_socket final {
   private:
-    wze::ipv4 _ipv4;
     std::shared_ptr<_TCPsocket> _socket;
     std::shared_ptr<_SDLNet_SocketSet> _socket_set;
 
@@ -44,35 +47,56 @@ class tcp_socket final {
     /**
      * @file tcp_socket.hpp
      * @author Zana Domán
-     * @brief Returns the IPv4 address of the socket.
-     * @return IPv4 address of the socket.
+     * @brief Returns the IPv4 address of the server.
+     * @return IPv4 address of the server.
      */
-    [[nodiscard]] wze::ipv4 const& ipv4() const;
+    [[nodiscard]] wze::ipv4 const& ipv4() {
+        return *SDLNet_TCP_GetPeerAddress(_socket.get());
+    }
 
     /**
      * @file tpc_socket.hpp
      * @author Zana Domán
      * @brief Constructs a TCP socket instance.
-     * @param ipv4 IPv4 address of the socket.
-     * @warning If the TCP socket cannot be constructed, throws
-     * std::runtime_error.
+     * @param ipv4 IPv4 address of the server.
+     * @warning If the TCP socket cannot be constructed, throws wze::exception.
      */
-    explicit tcp_socket(wze::ipv4 const& ipv4);
+    explicit tcp_socket(wze::ipv4& ipv4) {
+        if (ipv4.host == INADDR_ANY || ipv4.host == INADDR_NONE) {
+            throw exception("Invalid IPv4 address");
+        }
+        _socket = {SDLNet_TCP_Open(&ipv4), SDLNet_TCP_Close};
+        if (!_socket) {
+            throw exception(SDLNet_GetError());
+        }
+        _socket_set = {SDLNet_AllocSocketSet(1), SDLNet_FreeSocketSet};
+        if (!_socket_set) {
+            throw exception(SDLNet_GetError());
+        }
+        if (SDLNet_TCP_AddSocket(_socket_set.get(), _socket.get()) != 1) {
+            throw exception(SDLNet_GetError());
+        }
+    }
+
+    /**
+     * @file tpc_socket.hpp
+     * @author Zana Domán
+     * @brief Constructs a TCP socket instance.
+     * @param ipv4 IPv4 address of the server.
+     * @warning If the TCP socket cannot be constructed, throws wze::exception.
+     */
+    explicit tcp_socket(wze::ipv4&& ipv4) : tcp_socket(ipv4) {}
 
     /**
      * @file tcp_socket.hpp
      * @author Zana Domán
-     * @brief Sends data through the TCP socket.
-     * @param T Type of the data.
-     * @param data Data.
-     * @note This method may block.
-     * @warning If the data cannot be sent, throws std::runtime_error.
+     * @brief Sends data to the server.
+     * @param buffer Data buffer.
+     * @warning If data cannot be sent, throws wze::exception.
      */
-    template <typename T> void send(T const& data) {
-        static_assert(sizeof(T) <= std::numeric_limits<uint16_t>::max(),
-                      "Data is too large");
-
-        if (SDLNet_TCP_Send(_socket.get(), &data, sizeof(T)) != sizeof(T)) {
+    void send(outgoing const& buffer) {
+        if (SDLNet_TCP_Send(_socket.get(), &buffer, sizeof(outgoing)) !=
+            sizeof(outgoing)) {
             throw exception(SDLNet_GetError());
         }
     }
@@ -80,54 +104,29 @@ class tcp_socket final {
     /**
      * @file tcp_socket.hpp
      * @author Zana Domán
-     * @brief Sends data through the TCP socket.
-     * @param T Type of the data.
-     * @param N Count of the data.
-     * @param data Data.
-     * @note This method may block.
-     * @warning If the data cannot be sent, throws std::runtime_error.
+     * @brief Receives data from the server, then returns true on successful
+     * exchange, false otherwise.
+     * @param buffer Data buffer.
+     * @return True on successful exchange, false otherwise.
+     * @warning If data cannot be received, throws wze::exception.
      */
-    template <typename T, size_t N> void send(std::array<T, N> const& data) {
-        constexpr uint16_t size = sizeof(T) * N;
-        static_assert(size <= std::numeric_limits<uint16_t>::max(),
-                      "Data is too large");
+    bool receive(incoming& buffer) {
+        int32_t size;
 
-        if (SDLNet_TCP_Send(_socket.get(), data.data(), size) != size) {
+        if (!(bool)SDLNet_CheckSockets(_socket_set.get(), 0)) {
+            return false;
+        }
+        if (!(bool)SDLNet_SocketReady(_socket.get())) {
+            return false;
+        }
+
+        size = SDLNet_TCP_Recv(_socket.get(), &buffer, sizeof(incoming));
+        if (size <= 0) {
             throw exception(SDLNet_GetError());
         }
+
+        return size == sizeof(incoming);
     }
-
-    /**
-     * @file tcp_socket.hpp
-     * @author Zana Domán
-     * @brief Sends data through the TCP socket.
-     * @param T Type of the data.
-     * @param data Data.
-     * @note This method may block.
-     * @warning If the data cannot be sent, throws std::runtime_error.
-     */
-    template <typename T> void send(std::vector<T> const& data) {
-        uint16_t size;
-
-        size = sizeof(T) * data.size();
-        if (std::numeric_limits<uint16_t>::max() < size) {
-            throw exception("Data is too large");
-        }
-
-        if (SDLNet_TCP_Send(_socket.get(), data.data(), size) != size) {
-            throw exception(SDLNet_GetError());
-        }
-    }
-
-    /**
-     * @file tcp_socket.hpp
-     * @author Zana Domán
-     * @brief Sends data through the TCP socket.
-     * @param data Data.
-     * @note This method may block.
-     * @warning If the data cannot be sent, throws std::runtime_error.
-     */
-    void send(std::string const& data);
 };
 } /* namespace wze */
 
