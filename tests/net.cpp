@@ -32,7 +32,7 @@ struct buffer {
 };
 
 wze_main(1920, 1080) {
-    wze::tcp_socket<buffer, buffer> socket(
+    wze::udp_socket<buffer, buffer> socket(
         wze::net::resolve(server_address, server_port));
     std::string message;
     buffer buffer;
