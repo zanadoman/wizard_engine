@@ -24,77 +24,37 @@
 
 constexpr char const* server_address = "127.0.0.1";
 constexpr uint16_t server_port = 8080;
-constexpr size_t content_size = 1024;
+constexpr size_t buffer_size = 1024;
 
-struct payload {
-    // NOLINTNEXTLINE(hicpp-avoid-c-arrays,cppcoreguidelines-avoid-c-arrays,modernize-avoid-c-arrays,misc-non-private-member-variables-in-classes)
-    uint8_t buffer[content_size];
-    virtual ~payload() = default;
-};
-
-class message : public payload {
-  private:
-    size_t _current;
-
-  public:
-    explicit message(std::string const& content = {}) {
-        if (content.empty() || content_size < content.length()) {
-            clear();
-        } else {
-            std::copy(
-                // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-                content.data(), content.c_str() + content.length(),
-                // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay,hicpp-no-array-decay)
-                this->buffer);
-        }
-    }
-
-    bool push(char character) {
-        bool full;
-
-        full = _current == content_size;
-        if (!full) {
-            // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-constant-array-index)
-            buffer[_current++] = character;
-        }
-
-        return full;
-    }
-
-    void clear() {
-        for (_current = 0; _current != content_size; ++_current) {
-            // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-constant-array-index)
-            buffer[_current] = 0;
-        }
-        _current = 0;
-    }
+struct buffer {
+    // NOLINTNEXTLINE(hicpp-avoid-c-arrays,cppcoreguidelines-avoid-c-arrays,modernize-avoid-c-arrays)
+    uint8_t content[buffer_size];
 };
 
 wze_main(1920, 1080) {
-    wze::tcp_socket<payload, payload> socket(
+    wze::tcp_socket<buffer, buffer> socket(
         wze::net::resolve(server_address, server_port));
-    std::vector<std::unique_ptr<payload>> outgoing;
-    payload incoming;
-    message* message;
+    std::string message;
+    buffer buffer;
 
     wze_while(true) {
-        if (wze::input::key() == '\r') {
-            for (std::unique_ptr<payload> const& payload : outgoing) {
-                socket.send(*payload);
+        if (wze::input::key() == '\r' || buffer_size <= message.size()) {
+            for (uint8_t& byte : buffer.content) {
+                byte = 0;
             }
-            outgoing.clear();
-            outgoing.emplace_back(std::make_unique<class message>());
+            std::copy(
+                message.c_str(),
+                // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+                message.c_str() + std::min(message.length(), buffer_size),
+                // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay,hicpp-no-array-decay)
+                buffer.content);
+            socket.send(buffer);
         } else if (wze::input::key() != '\0') {
-            message = dynamic_cast<class message*>(outgoing.back().get());
-            if (!message->push((char)wze::input::key())) {
-                outgoing.emplace_back(std::make_unique<class message>());
-                message = dynamic_cast<class message*>(outgoing.back().get());
-                message->push((char)wze::input::key());
-            }
+            message.push_back((char)wze::input::key());
         }
 
-        if (socket.receive(incoming)) {
-            for (uint8_t byte : incoming.buffer) {
+        if (socket.receive(buffer)) {
+            for (uint8_t byte : buffer.content) {
                 std::cout << byte;
             }
             std::cout << '\n';
