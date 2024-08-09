@@ -55,6 +55,7 @@
 #include <wizard_engine/renderer.hpp>   /* IWYU pragma: export */
 #include <wizard_engine/speaker.hpp>    /* IWYU pragma: export */
 #include <wizard_engine/sprite.hpp>     /* IWYU pragma: export */
+#include <wizard_engine/tcp_socket.hpp> /* IWYU pragma: export */
 #include <wizard_engine/timer.hpp>      /* IWYU pragma: export */
 #include <wizard_engine/window.hpp>     /* IWYU pragma: export */
 
