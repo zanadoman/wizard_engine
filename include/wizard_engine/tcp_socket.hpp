@@ -61,7 +61,7 @@ class tcp_socket final {
      * @param ipv4 IPv4 address of the server.
      * @warning If the TCP socket cannot be constructed, throws wze::exception.
      */
-    explicit tcp_socket(wze::ipv4& ipv4) {
+    explicit tcp_socket(wze::ipv4 ipv4) {
         if (ipv4.host == INADDR_ANY || ipv4.host == INADDR_NONE) {
             throw exception("Invalid IPv4 address");
         }
@@ -79,19 +79,11 @@ class tcp_socket final {
     }
 
     /**
-     * @file tpc_socket.hpp
-     * @author Zana Domán
-     * @brief Constructs a TCP socket instance.
-     * @param ipv4 IPv4 address of the server.
-     * @warning If the TCP socket cannot be constructed, throws wze::exception.
-     */
-    explicit tcp_socket(wze::ipv4&& ipv4) : tcp_socket(ipv4) {}
-
-    /**
      * @file tcp_socket.hpp
      * @author Zana Domán
      * @brief Sends data to the server.
      * @param buffer Data buffer.
+     * @note This method may block.
      * @warning If data cannot be sent, throws wze::exception.
      */
     void send(outgoing const& buffer) {
@@ -105,12 +97,12 @@ class tcp_socket final {
      * @file tcp_socket.hpp
      * @author Zana Domán
      * @brief Receives data from the server, then returns true on successful
-     * exchange, false otherwise.
+     * data exchange, false otherwise.
      * @param buffer Data buffer.
-     * @return True on successful exchange, false otherwise.
+     * @return True on successful data exchange, false otherwise.
      * @warning If data cannot be received, throws wze::exception.
      */
-    bool receive(incoming& buffer) {
+    [[nodiscard]] bool receive(incoming& buffer) {
         int32_t size;
 
         if (!(bool)SDLNet_CheckSockets(_socket_set.get(), 0)) {

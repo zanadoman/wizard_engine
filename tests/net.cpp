@@ -37,6 +37,8 @@ wze_main(1920, 1080) {
     std::string message;
     buffer buffer;
 
+    std::cout << "Connected to " << wze::net::resolve(socket.ipv4()) << '\n';
+
     wze_while(true) {
         if (wze::input::key() == '\r' || buffer_size <= message.size()) {
             for (uint8_t& byte : buffer.content) {
@@ -48,6 +50,7 @@ wze_main(1920, 1080) {
                 message.c_str() + std::min(message.length(), buffer_size),
                 // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay,hicpp-no-array-decay)
                 buffer.content);
+            message.clear();
             socket.send(buffer);
         } else if (wze::input::key() != '\0') {
             message.push_back((char)wze::input::key());
