@@ -43,5 +43,5 @@ std::string wze::net::resolve(ipv4 const& address) {
         throw exception(SDLNet_GetError());
     }
 
-    return {hostname};
+    return hostname;
 }
