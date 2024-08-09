@@ -83,7 +83,7 @@ class audio final {
      * @author Zana Domán
      * @brief Allocates a channel.
      * @return Allocated channel.
-     * @warning If the channel cannot be allocated, throws std::runtime_error.
+     * @warning If the channel cannot be allocated, throws wze::exception.
      */
     [[nodiscard]] static int32_t request_channel();
 #endif /* __WIZARD_ENGINE_INTERNAL__ */
@@ -94,7 +94,7 @@ class audio final {
      * @author Zana Domán
      * @brief Drops a channel.
      * @param channel Dropped channel.
-     * @warning If the channel cannot be dropped, throws std::runtime_error.
+     * @warning If the channel cannot be dropped, throws wze::exception.
      */
     static void drop_channel(int32_t channel);
 #endif /* __WIZARD_ENGINE_INTERNAL__ */
@@ -117,8 +117,7 @@ class audio final {
      * @file audio.hpp
      * @author Zana Domán
      * @brief Stops the audio globally.
-     * @warning If the audio cannot be stopped globally, throws
-     * std::runtime_error.
+     * @warning If the audio cannot be stopped globally, throws wze::exception.
      */
     static void stop();
 };

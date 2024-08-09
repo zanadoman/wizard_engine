@@ -119,7 +119,7 @@ class window final {
      * @param width Width of the game window.
      * @param height Height of the game window.
      * @warning If the window subystem cannot be initialized, throws
-     * std::runtime_error.
+     * wze::exception.
      */
     static void initialize(uint16_t width, uint16_t height);
 #endif /* __WIZARD_ENGINE_INTERNAL__ */

@@ -68,7 +68,7 @@ class engine final {
      * @param height Height of the game window.
      * @note This method is automatically called when wze_main is used.
      * @warning This method must be called only once at the beginning of main.
-     * @warning If the engine cannot be initialized, throws std::runtime_error.
+     * @warning If the engine cannot be initialized, throws wze::exception.
      */
     static void initialize(uint16_t width, uint16_t height);
 

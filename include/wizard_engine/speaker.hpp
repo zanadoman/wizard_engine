@@ -397,7 +397,7 @@ class speaker final : public component {
      * @brief Plays the sound of the speaker.
      * @param fade_in Fade in in milliseconds.
      * @param loops Number of loops.
-     * @warning If the sound cannot be played, throws std::runtime_error.
+     * @warning If the sound cannot be played, throws wze::exception.
      */
     void play(uint16_t fade_in = 0, uint16_t loops = 0);
 
@@ -427,7 +427,7 @@ class speaker final : public component {
      * @file speaker.hpp
      * @author Zana Domán
      * @brief Aligns the panning of the speaker relative to the camera.
-     * @warning If the panning cannot aligned, throws std::runtime_error.
+     * @warning If the panning cannot aligned, throws wze::exception.
      */
     void align_panning();
 };

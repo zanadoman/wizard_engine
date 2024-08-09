@@ -95,7 +95,7 @@ class assets final {
      * @param path Path to the image.
      * @return Loaded image.
      * @note Supported image formats: jpg, png.
-     * @warning If the image cannot be loaded, throws std::runtime_error.
+     * @warning If the image cannot be loaded, throws wze::exception.
      */
     [[nodiscard]] static std::shared_ptr<image>
     load_image(std::string const& path);
@@ -109,7 +109,7 @@ class assets final {
      * @param wrap_length Wrap length of the text.
      * @return Created image.
      * @note 0 wrap length only wraps on newline characters.
-     * @warning If the image cannot be created, throws std::runtime_error.
+     * @warning If the image cannot be created, throws wze::exception.
      */
     [[nodiscard]] static std::shared_ptr<image>
     create_image(std::string const& text, std::shared_ptr<font> const& font,
@@ -130,7 +130,7 @@ class assets final {
      * @brief Creates a texture from an image.
      * @param image Image of the texture.
      * @return Created texture.
-     * @warning If the texture cannot be created, throws std::runtime_error.
+     * @warning If the texture cannot be created, throws wze::exception.
      */
     [[nodiscard]] static std::shared_ptr<texture>
     create_texture(std::shared_ptr<image> const& image);
@@ -142,7 +142,7 @@ class assets final {
      * @param path Path to the sound.
      * @return Loaded sound.
      * @note Supported sound formats: wav, ogg.
-     * @warning If the sound cannot be loaded, throws std::runtime_error.
+     * @warning If the sound cannot be loaded, throws wze::exception.
      */
     [[nodiscard]] static std::shared_ptr<sound>
     load_sound(std::string const& path);
@@ -165,7 +165,7 @@ class assets final {
      * @param style Style of the font.
      * @return Loaded font.
      * @note Supported font format: ttf.
-     * @warning If the font cannot be loaded, throws std::runtime_error.
+     * @warning If the font cannot be loaded, throws wze::exception.
      */
     [[nodiscard]] static std::shared_ptr<font>
     // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
@@ -178,7 +178,7 @@ class assets final {
      * @brief Creates a cursor from a system cursor.
      * @param system_cursor Type of the cursor.
      * @return Created cursor.
-     * @warning If the cursor cannot be created, throws std::runtime_error.
+     * @warning If the cursor cannot be created, throws wze::exception.
      */
     [[nodiscard]] static std::unique_ptr<cursor, std::function<void(cursor*)>>
     create_cursor(system_cursor system_cursor);
@@ -191,7 +191,7 @@ class assets final {
      * @param hot_x Hot spot x of the cursor.
      * @param hot_y Hot spot y of the cursor.
      * @return Created cursor.
-     * @warning If the cursor cannot be created, throws std::runtime_error.
+     * @warning If the cursor cannot be created, throws wze::exception.
      */
     [[nodiscard]] static std::unique_ptr<cursor, std::function<void(cursor*)>>
     create_cursor(std::shared_ptr<image> const& image, uint16_t hot_x = 0,

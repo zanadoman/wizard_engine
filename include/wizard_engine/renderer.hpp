@@ -65,7 +65,7 @@ class renderer final {
      * @file renderer.hpp
      * @author Zana Domán
      * @brief Opens a new frame to render on.
-     * @warning If the new frame cannot be opened, throws std::runtime_error.
+     * @warning If the new frame cannot be opened, throws wze::exception.
      */
     static void open_frame();
 
@@ -73,7 +73,7 @@ class renderer final {
      * @file renderer.hpp
      * @author Zana Domán
      * @brief Opens the space to render on.
-     * @warning If the space cannot be opened, throws std::runtime_error.
+     * @warning If the space cannot be opened, throws wze::exception.
      */
     static void open_space();
 
@@ -81,7 +81,7 @@ class renderer final {
      * @file renderer.hpp
      * @author Zana Domán
      * @brief Opens the plane to render on.
-     * @warning If the plane cannot be opened, throws std::runtime_error.
+     * @warning If the plane cannot be opened, throws wze::exception.
      */
     static void open_plane();
 
@@ -119,7 +119,7 @@ class renderer final {
      * @brief Renders a renderable instance onto the new frame.
      * @param instance Renderable instance.
      * @warning If the renderable instance cannot be rendered, throws
-     * std::runtime_error.
+     * wze::exception.
      */
     static void render(renderable const& instance);
 
@@ -127,7 +127,7 @@ class renderer final {
      * @file renderer.hpp
      * @author Zana Domán
      * @brief Presents the new frame.
-     * @warning If the new frame cannot be presented, throws std::runtime_error.
+     * @warning If the new frame cannot be presented, throws wze::exception.
      */
     static void close_frame();
 
@@ -396,7 +396,7 @@ class renderer final {
      * @author Zana Domán
      * @brief Initializes the renderer subsystem.
      * @warning If the renderer subsystem cannot be initialized, throws
-     * std::runtime_error.
+     * wze::exception.
      */
     static void initialize();
 #endif /* __WIZARD_ENGINE_INTERNAL__ */

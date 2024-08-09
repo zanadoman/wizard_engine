@@ -73,7 +73,7 @@ class udp_socket final {
             throw exception(SDLNet_GetError());
         }
         _outgoing = {-1, nullptr, sizeof(outgoing), sizeof(outgoing), 0, _ipv4};
-        _incoming = {-1, nullptr, sizeof(outgoing), sizeof(outgoing), 0, _ipv4};
+        _incoming = {-1, nullptr, sizeof(incoming), sizeof(incoming), 0, _ipv4};
     }
 
     /**

@@ -54,7 +54,7 @@ class net {
      * @param hostname Hostname of the server.
      * @param port Port of the server.
      * @return Resolved IPv4 address.
-     * @warning If the hostname cannot be resolved, throws std::runtime_error.
+     * @warning If the hostname cannot be resolved, throws wze::exception.
      */
     [[nodiscard]] static ipv4 resolve(std::string const& hostname,
                                       uint16_t port = 0);
@@ -65,8 +65,7 @@ class net {
      * @brief Resolves an IPv4 address to a hostname.
      * @param address IPv4 address of the server.
      * @return Resolved hostname.
-     * @warning If the IPv4 address cannot be resolved, throws
-     * std::runtime_error.
+     * @warning If the IPv4 address cannot be resolved, throws wze::exception.
      */
     [[nodiscard]] static std::string resolve(ipv4 const& address);
 };
