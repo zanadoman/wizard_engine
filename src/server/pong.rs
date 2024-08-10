@@ -23,10 +23,12 @@ use anyhow::Error;
 use lazy_static::lazy_static;
 use std::{env::args, net::SocketAddr, sync::Arc};
 use tokio::{
+    io::{split, ReadHalf, WriteHalf},
     main,
     net::{TcpListener, TcpStream},
     spawn,
     sync::Mutex,
+    try_join,
 };
 
 const DEFAULT_PORT: u16 = 8080;
@@ -36,25 +38,16 @@ lazy_static! {
         Arc::new(Mutex::new(Vec::<Lobby>::new()));
 }
 
+#[repr(C)]
+struct Position {
+    x: f32,
+    y: f32,
+}
+
 struct Player {
     address: SocketAddr,
-    socket: TcpStream,
-    position: (f32, f32),
-}
-
-impl Player {
-    fn new(address: SocketAddr, socket: TcpStream) -> Self {
-        Self {
-            address,
-            socket,
-            position: (0., 0.),
-        }
-    }
-}
-
-struct Lobby {
-    player1: Option<Player>,
-    player2: Option<Player>,
+    reader: ReadHalf<TcpStream>,
+    writer: WriteHalf<TcpStream>,
 }
 
 async fn new_player(player: Player) {
@@ -74,7 +67,32 @@ async fn new_player(player: Player) {
     }
 }
 
-async fn new_lobby(lobby: Lobby) {}
+async fn read_player(reader: ReadHalf<TcpStream>) -> Result<(), Error> {
+    Ok(())
+}
+
+async fn write_player(writer: WriteHalf<TcpStream>) -> Result<(), Error> {
+    Ok(())
+}
+
+struct Lobby {
+    player1: Option<Player>,
+    player2: Option<Player>,
+}
+
+async fn new_lobby(lobby: Lobby) {
+    let player1 = lobby.player1.unwrap();
+    let player2 = lobby.player2.unwrap();
+
+    if let Err(error) = try_join!(
+        read_player(player1.reader),
+        read_player(player2.reader),
+        write_player(player1.writer),
+        write_player(player2.writer)
+    ) {
+        eprintln!("{}", error)
+    }
+}
 
 #[main]
 async fn main() -> Result<(), Error> {
@@ -89,7 +107,13 @@ async fn main() -> Result<(), Error> {
     loop {
         match listener.accept().await {
             Ok((socket, address)) => {
-                new_player(Player::new(address, socket)).await
+                let (reader, writer) = split(socket);
+                new_player(Player {
+                    address,
+                    reader,
+                    writer,
+                })
+                .await
             }
             Err(error) => {
                 eprintln!("{}", error);
