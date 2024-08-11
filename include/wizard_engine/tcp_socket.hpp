@@ -50,7 +50,7 @@ class tcp_socket final {
      * @brief Returns the IPv4 address of the server.
      * @return IPv4 address of the server.
      */
-    [[nodiscard]] wze::ipv4 const& ipv4() {
+    [[nodiscard]] wze::ipv4 ipv4() {
         return *SDLNet_TCP_GetPeerAddress(_socket.get());
     }
 

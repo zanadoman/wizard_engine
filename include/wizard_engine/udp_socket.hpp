@@ -72,8 +72,10 @@ class udp_socket final {
         if (!_socket) {
             throw exception(SDLNet_GetError());
         }
-        _outgoing = {-1, nullptr, sizeof(outgoing), sizeof(outgoing), 0, _ipv4};
-        _incoming = {-1, nullptr, sizeof(incoming), sizeof(incoming), 0, _ipv4};
+        _outgoing = {-1, nullptr,     sizeof(outgoing), sizeof(outgoing),
+                     0,  this->ipv4()};
+        _incoming = {-1, nullptr,     sizeof(incoming), sizeof(incoming),
+                     0,  this->ipv4()};
     }
 
     /**
@@ -81,7 +83,6 @@ class udp_socket final {
      * @author Zana Domán
      * @brief Sends data to the server.
      * @param buffer Data buffer.
-     * @note This method may block.
      * @warning If data cannot be sent, throws wze::exception.
      */
     void send(outgoing& buffer) {
