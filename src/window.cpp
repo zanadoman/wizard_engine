@@ -62,29 +62,17 @@ bool wze::window::focused() {
 }
 
 void wze::window::initialize(uint16_t width, uint16_t height) {
-    // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
-    static_assert(sizeof(size_t) == 4 || sizeof(size_t) == 8);
-    constexpr size_t icon_hash =
-        sizeof(size_t) == 4 ? 3265382974 : 8598449588574714901;
-
-    std::shared_ptr<image> icon;
-
-    icon = assets::load_image("./assets/wizard_engine/icon.png");
-    if (assets::hash_image(icon) != icon_hash) {
-        throw exception("Invalid ./assets/wizard_engine/icon.png");
-    }
-
     _base = SDL_CreateWindow("Wizard Engine", SDL_WINDOWPOS_UNDEFINED,
                              SDL_WINDOWPOS_UNDEFINED, width, height,
                              SDL_WINDOW_RESIZABLE
-#if !defined(__ANDROID__) && !defined(__EMSCRIPTEN__)
+#ifndef __EMSCRIPTEN__
                                  | SDL_WINDOW_FULLSCREEN_DESKTOP
-#endif /* !defined(__ANDROID__) && !defined(__EMSCRIPTEN__) */
+#endif /* __EMSCRIPTEN__ */
     );
     if (!(bool)base()) {
         throw exception(SDL_GetError());
     }
     _width = width;
     _height = height;
-    set_icon(icon);
+    set_icon(assets::load_image("./assets/wizard_engine/icon.png"));
 }
