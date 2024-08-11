@@ -1,4 +1,4 @@
-package com.example.wizard_engine;
+package com.example.app;
 
 import org.libsdl.app.SDLActivity;
 
