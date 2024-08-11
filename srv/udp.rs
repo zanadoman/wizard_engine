@@ -20,6 +20,7 @@
 */
 
 use anyhow::Error;
+use lazy_static::lazy_static;
 use std::{collections::HashMap, env::args, net::SocketAddr, sync::Arc};
 use tokio::{
     main,
@@ -36,9 +37,13 @@ const DEFAULT_PORT: u32 = 8080;
 const BUFFER_SIZE: usize = 1024;
 const TIMEOUT: Duration = Duration::from_secs(10);
 
+lazy_static! {
+    static ref clients: RwLock<HashMap<SocketAddr, Instant>> =
+        RwLock::new(HashMap::new());
+}
+
 async fn input(
     socket: Arc<UdpSocket>,
-    clients: Arc<RwLock<HashMap<SocketAddr, Instant>>>,
     transmitter: Sender<(SocketAddr, Vec<u8>)>,
 ) -> Result<(), Error> {
     let mut buffer = [0; BUFFER_SIZE];
@@ -72,7 +77,6 @@ async fn input(
 
 async fn output(
     socket: Arc<UdpSocket>,
-    clients: Arc<RwLock<HashMap<SocketAddr, Instant>>>,
     mut receiver: Receiver<(SocketAddr, Vec<u8>)>,
 ) -> Result<(), Error> {
     loop {
@@ -93,9 +97,7 @@ async fn output(
     }
 }
 
-async fn timeout(
-    clients: Arc<RwLock<HashMap<SocketAddr, Instant>>>,
-) -> Result<(), Error> {
+async fn timeout() -> Result<(), Error> {
     loop {
         sleep(Duration::from_secs(1)).await;
         clients.write().await.retain(|address, timestamp| {
@@ -117,15 +119,14 @@ async fn main() -> Result<(), Error> {
         ))
         .await?,
     );
-    let clients = Arc::new(RwLock::new(HashMap::new()));
     let transmitter = channel(u8::MAX.into()).0;
 
     println!("Listening on {:?}", socket.local_addr()?);
 
     try_join!(
-        input(socket.clone(), clients.clone(), transmitter.clone()),
-        output(socket.clone(), clients.clone(), transmitter.subscribe()),
-        timeout(clients.clone())
+        input(socket.clone(), transmitter.clone()),
+        output(socket.clone(), transmitter.subscribe()),
+        timeout()
     )?;
     Ok(())
 }
