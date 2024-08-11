@@ -19,14 +19,16 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-use anyhow::Error;
+use anyhow::{anyhow, Error};
+use bytemuck::{bytes_of, from_bytes, Pod, Zeroable};
 use lazy_static::lazy_static;
-use std::{env::args, net::SocketAddr, sync::Arc};
+use std::{env::args, mem::size_of, net::SocketAddr, sync::Arc};
 use tokio::{
-    io::{split, ReadHalf, WriteHalf},
+    io::{split, AsyncReadExt, AsyncWriteExt, ReadHalf, WriteHalf},
     main,
     net::{TcpListener, TcpStream},
     spawn,
+    sync::broadcast::{channel, Receiver, Sender},
     sync::Mutex,
     try_join,
 };
@@ -39,9 +41,18 @@ lazy_static! {
 }
 
 #[repr(C)]
+#[derive(Debug, Copy, Clone, Pod, Zeroable)]
 struct Position {
     x: f32,
     y: f32,
+}
+
+#[repr(C)]
+#[derive(Debug, Copy, Clone, Pod, Zeroable)]
+struct GameState {
+    player1: Position,
+    player2: Position,
+    ball: Position,
 }
 
 struct Player {
@@ -67,12 +78,30 @@ async fn new_player(player: Player) {
     }
 }
 
-async fn read_player(reader: ReadHalf<TcpStream>) -> Result<(), Error> {
-    Ok(())
+/* Completed */
+async fn receive_state(
+    state: Arc<Mutex<Position>>,
+    mut socket: ReadHalf<TcpStream>,
+) -> Result<(), Error> {
+    let mut buffer = [0; size_of::<Position>()];
+
+    loop {
+        match socket.read(&mut buffer).await {
+            Ok(0) => return Err(anyhow!("{:?}", socket)),
+            Ok(..) => *state.lock().await = *from_bytes(&buffer),
+            Err(error) => return Err(error.into()),
+        }
+    }
 }
 
-async fn write_player(writer: WriteHalf<TcpStream>) -> Result<(), Error> {
-    Ok(())
+/* Completed */
+async fn send_state(
+    mut receiver: Receiver<GameState>,
+    mut socket: WriteHalf<TcpStream>,
+) -> Result<(), Error> {
+    loop {
+        socket.write_all(bytes_of(&receiver.recv().await?)).await?
+    }
 }
 
 struct Lobby {
@@ -82,15 +111,41 @@ struct Lobby {
 
 async fn new_lobby(lobby: Lobby) {
     let player1 = lobby.player1.unwrap();
+    let player1_state = Arc::new(Mutex::new(Position { x: 0., y: 0. }));
     let player2 = lobby.player2.unwrap();
+    let player2_state = Arc::new(Mutex::new(Position { x: 0., y: 0. }));
+    let transmitter = channel(u8::MAX.into()).0;
 
     if let Err(error) = try_join!(
-        read_player(player1.reader),
-        read_player(player2.reader),
-        write_player(player1.writer),
-        write_player(player2.writer)
+        receive_state(player1_state.clone(), player1.reader),
+        receive_state(player2_state.clone(), player2.reader),
+        send_state(transmitter.subscribe(), player1.writer),
+        send_state(transmitter.subscribe(), player2.writer),
+        update_lobby(
+            player1_state.clone(),
+            player2_state.clone(),
+            transmitter.clone()
+        )
     ) {
         eprintln!("{}", error)
+    }
+}
+
+async fn update_lobby(
+    player1_state: Arc<Mutex<Position>>,
+    player2_state: Arc<Mutex<Position>>,
+    transmitter: Sender<GameState>,
+) -> Result<(), Error> {
+    let mut state = GameState {
+        player1: Position { x: 0., y: 0. },
+        player2: Position { x: 0., y: 0. },
+        ball: Position { x: 0., y: 0. },
+    };
+
+    loop {
+        state.player1 = player1_state.lock().await.clone();
+        state.player2 = player2_state.lock().await.clone();
+        transmitter.send(state)?;
     }
 }
 
