@@ -57,7 +57,7 @@ wze_main(1920, 1080) {
         }
 
         if (socket.receive(buffer)) {
-            for (uint8_t byte : buffer.content) {
+            for (uint8_t const byte : buffer.content) {
                 std::cout << byte;
             }
             std::cout << '\n';

@@ -70,7 +70,7 @@
     /* @return Exit code.                           */                         \
     /* @note Command line arguments are accessible. */                         \
     [[nodiscard]] int32_t __wze_main__(int32_t argc, char** argv);             \
-    int32_t main(int32_t argc, char* argv[]) {                                 \
+    int32_t main(int32_t argc, char* argv[]) noexcept(false) {                 \
         wze::engine::initialize((width), (height));                            \
         return __wze_main__(argc, argv);                                       \
     }                                                                          \
