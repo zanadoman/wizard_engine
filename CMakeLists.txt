@@ -83,8 +83,6 @@ string(REPLACE \n \  CMAKE_CXX_FLAGS ${FLAGS})
 # Tests
 if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     set(LINK_OPTIONS -mwindows)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
-    set(LINK_OPTIONS -Wl,-rpath=./)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(LINK_OPTIONS -sUSE_SDL=2 -sUSE_SDL_IMAGE=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_TTF=2
         -sUSE_SDL_NET=2 -sUSE_FREETYPE=1 -sASYNCIFY --use-preload-plugins --preload-file
