@@ -52,7 +52,7 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/include/)
 
 # Sources
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/wizard_engine/*.cpp)
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     add_library(${PROJECT_NAME} STATIC ${SOURCES})
 else()

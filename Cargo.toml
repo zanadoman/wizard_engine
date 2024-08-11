@@ -1,5 +1,5 @@
 [package]
-name = "server"
+name = "srv"
 version = "0.1.0"
 edition = "2021"
 
@@ -16,8 +16,8 @@ tokio = { version = "1.39.2", features = [
 
 [[bin]]
 name = "tcp"
-path = "./src/server/tcp.rs"
+path = "./srv/tcp.rs"
 
 [[bin]]
 name = "udp"
-path = "./src/server/udp.rs"
+path = "./srv/udp.rs"
