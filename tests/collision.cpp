@@ -48,11 +48,11 @@ class wizard final : private wze::collider {
 
         sprite_ = std::make_shared<wze::sprite>(
             0, 0, 0, 0, sprite_size, sprite_size, false, texture,
-            wze::math::random<uint8_t>(std::numeric_limits<uint8_t>::max() / 2,
+            wze::math::random<uint8_t>(std::numeric_limits<uint8_t>::max() / 4,
                                        std::numeric_limits<uint8_t>::max()),
-            wze::math::random<uint8_t>(std::numeric_limits<uint8_t>::max() / 2,
+            wze::math::random<uint8_t>(std::numeric_limits<uint8_t>::max() / 4,
                                        std::numeric_limits<uint8_t>::max()),
-            wze::math::random<uint8_t>(std::numeric_limits<uint8_t>::max() / 2,
+            wze::math::random<uint8_t>(std::numeric_limits<uint8_t>::max() / 4,
                                        std::numeric_limits<uint8_t>::max()));
         forward_ = forward;
         backward_ = backward;
