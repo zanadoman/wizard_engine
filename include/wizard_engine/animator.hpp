@@ -33,54 +33,37 @@ namespace wze {
  * @brief Animates animatable objects.
  */
 class animator final {
-  private:
-    std::vector<std::shared_ptr<texture>> _frames;
-    uint16_t _frame_time;
-    size_t _current_frame;
-    uint16_t _remaining_time;
-    std::vector<std::weak_ptr<animatable>> _targets;
-    bool _reversed;
-
   public:
+    /**
+     * @file animator.hpp
+     * @author Zana Domán
+     * @brief Constructs an animator instance.
+     * @param frames Frame pool of the animation.
+     * @param targets Targets of the animation.
+     */
+    explicit animator(
+        std::vector<std::pair<std::shared_ptr<texture>, uint16_t>> const&
+            frames = {},
+        std::vector<std::weak_ptr<animatable>> const& targets = {});
+
     /**
      * @file animator.hpp
      * @author Zana Domán
      * @brief Returns the frame pool of the animation.
      * @return Frame pool of the animation.
      */
-    [[nodiscard]] std::vector<std::shared_ptr<texture>> const& frames() const;
+    [[nodiscard]] std::vector<
+        std::pair<std::shared_ptr<texture>, uint16_t>> const&
+    frames() const;
 
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Returns the frame time of the animation in milliseconds.
-     * @return Frame time of the animation in milliseconds.
+     * @brief Returns the frame pool of the animation.
+     * @return Frame pool of the animation.
      */
-    [[nodiscard]] uint16_t frame_time() const;
-
-    /**
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Sets the frame time of the animation in milliseconds.
-     * @param frame_time Frame time of the animation in milliseconds.
-     */
-    void set_frame_time(uint16_t frame_time);
-
-    /**
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Returns the current frame of the animation.
-     * @return Current frame of the animation.
-     */
-    [[nodiscard]] size_t current_frame() const;
-
-    /**
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Sets the current frame of the animation.
-     * @param current_frame Current frame of the animation.
-     */
-    void set_current_frame(size_t current_frame);
+    [[nodiscard]] std::vector<std::pair<std::shared_ptr<texture>, uint16_t>>&
+    frames();
 
     /**
      * @file animator.hpp
@@ -101,23 +84,20 @@ class animator final {
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Returns the direction of the frames of the animation.
-     * @return Direction of the frames of the animation.
+     * @brief Returns the current frame of the animation.
+     * @return Current frame of the animation.
+     * @note Can be invalid.
      */
-    [[nodiscard]] bool reversed() const;
+    [[nodiscard]] size_t current_frame() const;
 
     /**
      * @file animator.hpp
      * @author Zana Domán
-     * @brief Constructs an animator instance.
-     * @param frames Frame pool of the animation.
-     * @param frame_time Frame time of the animation in milliseconds.
-     * @param targets Targets of the animation.
+     * @brief Sets the current frame of the animation.
+     * @param current_frame Current frame of the animation.
+     * @note Can be invalid.
      */
-    explicit animator(
-        std::vector<std::shared_ptr<texture>> const& frames = {},
-        uint16_t frame_time = std::numeric_limits<int8_t>::max(),
-        std::vector<std::weak_ptr<animatable>> const& targets = {});
+    void set_current_frame(size_t current_frame);
 
     /**
      * @file animator.hpp
@@ -137,12 +117,11 @@ class animator final {
      */
     void reset();
 
-    /**
-     * @file animator.hpp
-     * @author Zana Domán
-     * @brief Reverses the frame pool of the animation.
-     */
-    void reverse();
+  private:
+    std::vector<std::pair<std::shared_ptr<texture>, uint16_t>> frames_;
+    std::vector<std::weak_ptr<animatable>> targets_;
+    size_t current_frame_;
+    uint16_t remaining_time_;
 };
 } /* namespace wze */
 

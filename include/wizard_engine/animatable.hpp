@@ -36,18 +36,18 @@ class animatable {
     /**
      * @file animatable.hpp
      * @author Zana Domán
-     * @brief Sets the texture of the object.
-     * @param texture Texture of the object.
-     */
-    virtual void set_texture(std::shared_ptr<texture> const& texture) = 0;
-
-    /**
-     * @file animatable.hpp
-     * @author Zana Domán
      * @brief Returns whether the object should be animated or not.
      * @return Whether the object should be animated or not.
      */
     [[nodiscard]] virtual bool animated() const = 0;
+
+    /**
+     * @file animatable.hpp
+     * @author Zana Domán
+     * @brief Sets the texture of the object.
+     * @param texture Texture of the object.
+     */
+    virtual void set_texture(std::shared_ptr<texture> const& texture) = 0;
 
     /**
      * @file animatable.hpp

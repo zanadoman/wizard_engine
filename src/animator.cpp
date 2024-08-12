@@ -25,49 +25,40 @@
 #include <wizard_engine/animator.hpp>
 #include <wizard_engine/timer.hpp>
 
-std::vector<std::shared_ptr<wze::texture>> const&
+wze::animator::animator(
+    std::vector<std::pair<std::shared_ptr<texture>, uint16_t>> const& frames,
+    std::vector<std::weak_ptr<animatable>> const& targets) {
+    this->frames() = frames;
+    this->targets() = targets;
+    set_current_frame(0);
+    remaining_time_ = 0;
+}
+
+std::vector<std::pair<std::shared_ptr<wze::texture>, uint16_t>> const&
 wze::animator::frames() const {
-    return _frames;
+    return frames_;
 }
 
-uint16_t wze::animator::frame_time() const {
-    return _frame_time;
-}
-
-void wze::animator::set_frame_time(uint16_t frame_time) {
-    _frame_time = frame_time;
-}
-
-size_t wze::animator::current_frame() const {
-    return _current_frame;
-}
-
-void wze::animator::set_current_frame(size_t current_frame) {
-    _current_frame = current_frame;
+std::vector<std::pair<std::shared_ptr<wze::texture>, uint16_t>>&
+wze::animator::frames() {
+    return frames_;
 }
 
 std::vector<std::weak_ptr<wze::animatable>> const&
 wze::animator::targets() const {
-    return _targets;
+    return targets_;
 }
 
 std::vector<std::weak_ptr<wze::animatable>>& wze::animator::targets() {
-    return _targets;
+    return targets_;
 }
 
-bool wze::animator::reversed() const {
-    return _reversed;
+size_t wze::animator::current_frame() const {
+    return current_frame_;
 }
 
-wze::animator::animator(std::vector<std::shared_ptr<texture>> const& frames,
-                        uint16_t frame_time,
-                        std::vector<std::weak_ptr<animatable>> const& targets) {
-    _frames = frames;
-    set_frame_time(frame_time);
-    set_current_frame(0);
-    _remaining_time = 0;
-    this->targets() = targets;
-    _reversed = false;
+void wze::animator::set_current_frame(size_t current_frame) {
+    current_frame_ = current_frame;
 }
 
 bool wze::animator::play() {
@@ -76,13 +67,19 @@ bool wze::animator::play() {
     std::vector<std::weak_ptr<animatable>>::iterator iterator;
     std::shared_ptr<animatable> instance;
 
-    if (frames().empty() || !(bool)frame_time()) {
+    if (frames().empty()) {
         return false;
     }
 
-    elapsed_time = (uint32_t)timer::delta_time() + _remaining_time;
-    set_current_frame(current_frame() + elapsed_time / frame_time());
-    _remaining_time = elapsed_time % frame_time();
+    if ((bool)frames().at(current_frame()).second) {
+        elapsed_time = (uint32_t)timer::delta_time() + remaining_time_;
+        set_current_frame(current_frame() +
+                          elapsed_time / frames().at(current_frame()).second);
+        remaining_time_ = elapsed_time % frames().at(current_frame()).second;
+    } else {
+        set_current_frame(current_frame() + 1);
+        remaining_time_ = 0;
+    }
 
     looped = frames().size() <= current_frame();
     if (looped) {
@@ -94,7 +91,7 @@ bool wze::animator::play() {
         instance = iterator->lock();
         if (instance) {
             if (instance->animated()) {
-                instance->set_texture(frames().at(current_frame()));
+                instance->set_texture(frames().at(current_frame()).first);
             }
         } else {
             targets().erase(iterator--);
@@ -106,10 +103,5 @@ bool wze::animator::play() {
 
 void wze::animator::reset() {
     set_current_frame(0);
-    _remaining_time = 0;
-}
-
-void wze::animator::reverse() {
-    std::reverse(_frames.begin(), _frames.end());
-    _reversed = !reversed();
+    remaining_time_ = 0;
 }
