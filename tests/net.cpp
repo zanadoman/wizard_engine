@@ -22,9 +22,9 @@
 #include <iostream>
 #include <wizard_engine/wizard_engine.hpp>
 
+constexpr size_t buffer_size = 1024;
 constexpr char const* server_address = "127.0.0.1";
 constexpr uint16_t server_port = 8080;
-constexpr size_t buffer_size = 1024;
 
 struct buffer {
     // NOLINTNEXTLINE(hicpp-avoid-c-arrays,cppcoreguidelines-avoid-c-arrays,modernize-avoid-c-arrays)

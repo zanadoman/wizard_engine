@@ -31,7 +31,7 @@ use tokio::{
 };
 
 const DEFAULT_PORT: u16 = 8080;
-const BUFFER_SIZE: usize = 4096;
+const BUFFER_SIZE: usize = 1024;
 
 async fn input(
     address: SocketAddr,

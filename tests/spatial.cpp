@@ -23,16 +23,16 @@
 
 constexpr size_t sprite_count = 1000;
 constexpr float sprite_spread = 2000;
+constexpr float circle = 360;
 constexpr float sprite_size = 100;
 constexpr float movement_speed = .5;
 constexpr float rotation_speed = .002;
-constexpr float circle = 360;
 
 wze_main(1920, 1080) {
     std::shared_ptr<wze::texture> texture;
+    size_t i;
     std::vector<wze::sprite> sprites;
     wze::speaker speaker;
-    size_t i;
 
     texture = wze::assets::create_texture(
         wze::assets::load_image("./assets/wizard_engine/icon.png"));
