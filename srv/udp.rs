@@ -20,8 +20,12 @@
 */
 
 use anyhow::Error;
-use lazy_static::lazy_static;
-use std::{collections::HashMap, env::args, net::SocketAddr, sync::Arc};
+use std::{
+    collections::HashMap,
+    env::args,
+    net::SocketAddr,
+    sync::{Arc, OnceLock},
+};
 use tokio::{
     main,
     net::UdpSocket,
@@ -38,9 +42,10 @@ const DEFAULT_PORT: u32 = 8080;
 const BUFFER_SIZE: usize = 1024;
 const TIMEOUT: Duration = Duration::from_secs(10);
 
-lazy_static! {
-    static ref clients: RwLock<HashMap<SocketAddr, Instant>> =
-        RwLock::new(HashMap::new());
+fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
+    static CLIENTS: OnceLock<RwLock<HashMap<SocketAddr, Instant>>> =
+        OnceLock::new();
+    CLIENTS.get_or_init(|| RwLock::new(HashMap::new()))
 }
 
 #[repr(C)]
@@ -72,7 +77,7 @@ async fn input(
                 continue;
             }
         };
-        clients
+        clients()
             .write()
             .await
             .entry(sender)
@@ -103,7 +108,7 @@ async fn output(
                 continue;
             }
         };
-        for (address, _) in clients.read().await.iter() {
+        for (address, _) in clients().read().await.iter() {
             if sender != *address {
                 if let Err(error) =
                     socket.send_to(&payload.as_bytes(), address).await
@@ -118,7 +123,7 @@ async fn output(
 async fn timeout() -> Result<(), Error> {
     loop {
         sleep(Duration::from_secs(1)).await;
-        clients.write().await.retain(|address, timestamp| {
+        clients().write().await.retain(|address, timestamp| {
             let alive = Instant::now().duration_since(*timestamp) < TIMEOUT;
             if !alive {
                 println!("Client {} disconnected", address)
