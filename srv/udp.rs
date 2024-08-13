@@ -38,7 +38,7 @@ use tokio::{
 };
 use zerocopy::{AsBytes, FromBytes, FromZeroes};
 
-const DEFAULT_PORT: u32 = 8080;
+const DEFAULT_PORT: u16 = 8080;
 const BUFFER_SIZE: usize = 1024;
 const TIMEOUT: Duration = Duration::from_secs(10);
 
