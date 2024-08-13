@@ -26,22 +26,22 @@ constexpr size_t buffer_size = 1024;
 constexpr char const* server_address = "127.0.0.1";
 constexpr uint16_t server_port = 8080;
 
-struct buffer {
+struct payload {
     // NOLINTNEXTLINE(hicpp-avoid-c-arrays,cppcoreguidelines-avoid-c-arrays,modernize-avoid-c-arrays)
     uint8_t content[buffer_size];
 };
 
 wze_main(1920, 1080) {
-    wze::udp_socket<buffer, buffer> socket(
+    wze::udp_socket<payload, payload> socket(
         wze::net::resolve(server_address, server_port));
     std::string message;
-    buffer buffer;
+    payload payload;
 
     std::cout << "Connected to " << wze::net::resolve(socket.ipv4()) << '\n';
 
     wze_while(true) {
         if (wze::input::key() == '\r' || buffer_size <= message.size()) {
-            for (uint8_t& byte : buffer.content) {
+            for (uint8_t& byte : payload.content) {
                 byte = 0;
             }
             std::copy(
@@ -49,15 +49,15 @@ wze_main(1920, 1080) {
                 // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
                 message.c_str() + std::min(message.length(), buffer_size),
                 // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay,hicpp-no-array-decay)
-                buffer.content);
+                payload.content);
             message.clear();
-            socket.send(buffer);
+            socket.send(payload);
         } else if (wze::input::key() != '\0') {
             message.push_back((char)wze::input::key());
         }
 
-        if (socket.receive(buffer)) {
-            for (uint8_t const byte : buffer.content) {
+        if (socket.receive(payload)) {
+            for (uint8_t const byte : payload.content) {
                 std::cout << byte;
             }
             std::cout << '\n';
