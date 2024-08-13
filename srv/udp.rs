@@ -32,6 +32,7 @@ use tokio::{
     time::{sleep, Duration, Instant},
     try_join,
 };
+use zerocopy::{AsBytes, FromBytes, FromZeroes};
 
 const DEFAULT_PORT: u32 = 8080;
 const BUFFER_SIZE: usize = 1024;
@@ -42,15 +43,30 @@ lazy_static! {
         RwLock::new(HashMap::new());
 }
 
+#[repr(C)]
+#[derive(Clone, AsBytes, FromBytes, FromZeroes)]
+struct Payload {
+    content: [u8; BUFFER_SIZE],
+}
+
 async fn input(
     socket: Arc<UdpSocket>,
-    transmitter: Sender<(SocketAddr, Vec<u8>)>,
+    transmitter: Sender<(SocketAddr, Payload)>,
 ) -> Result<(), Error> {
     let mut buffer = [0; BUFFER_SIZE];
 
     loop {
-        let (sender, content) = match socket.recv_from(&mut buffer).await {
-            Ok((size, address)) => (address, buffer[..size].to_vec()),
+        let (sender, payload) = match socket.recv_from(&mut buffer).await {
+            Ok((size, address)) => (
+                address,
+                match Payload::read_from(&buffer[..size]) {
+                    Some(payload) => payload,
+                    None => {
+                        eprintln!("Invalid data from {}", address);
+                        continue;
+                    }
+                },
+            ),
             Err(error) => {
                 eprintln!("{}", error);
                 continue;
@@ -68,8 +84,8 @@ async fn input(
                 println!("Client {} connected", sender);
                 Instant::now()
             });
-        println!("{}: {}", sender, String::from_utf8_lossy(&content));
-        if let Err(error) = transmitter.send((sender, content)) {
+        println!("{}: {}", sender, String::from_utf8_lossy(&payload.content));
+        if let Err(error) = transmitter.send((sender, payload)) {
             eprintln!("{}", error)
         }
     }
@@ -77,10 +93,10 @@ async fn input(
 
 async fn output(
     socket: Arc<UdpSocket>,
-    mut receiver: Receiver<(SocketAddr, Vec<u8>)>,
+    mut receiver: Receiver<(SocketAddr, Payload)>,
 ) -> Result<(), Error> {
     loop {
-        let (sender, content) = match receiver.recv().await {
+        let (sender, payload) = match receiver.recv().await {
             Ok(message) => message,
             Err(error) => {
                 eprintln!("{}", error);
@@ -89,7 +105,9 @@ async fn output(
         };
         for (address, _) in clients.read().await.iter() {
             if sender != *address {
-                if let Err(error) = socket.send_to(&content, address).await {
+                if let Err(error) =
+                    socket.send_to(&payload.as_bytes(), address).await
+                {
                     eprintln!("{}", error)
                 }
             }

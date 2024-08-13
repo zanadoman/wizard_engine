@@ -29,40 +29,61 @@ use tokio::{
     sync::broadcast::{channel, Receiver, Sender},
     try_join,
 };
+use zerocopy::{AsBytes, FromBytes, FromZeroes};
 
 const DEFAULT_PORT: u16 = 8080;
 const BUFFER_SIZE: usize = 1024;
 
+#[repr(C)]
+#[derive(Debug, Clone, AsBytes, FromBytes, FromZeroes)]
+struct Payload {
+    content: [u8; BUFFER_SIZE],
+}
+
 async fn input(
     address: SocketAddr,
     mut reader: ReadHalf<TcpStream>,
-    transmitter: Sender<(SocketAddr, Vec<u8>)>,
+    transmitter: Sender<(SocketAddr, Payload)>,
 ) -> Result<(), Error> {
     let mut buffer = [0; BUFFER_SIZE];
 
     loop {
-        let (sender, content) = match reader.read(&mut buffer).await {
+        let (sender, payload) = match reader.read(&mut buffer).await {
             Ok(0) => return Err(anyhow!("Client {} disconnected", address)),
-            Ok(size) => (address, buffer[..size].to_vec()),
+            Ok(size) => (
+                address,
+                match Payload::read_from(&buffer[..size]) {
+                    Some(payload) => payload,
+                    None => {
+                        eprintln!("Invalid data from {}", address);
+                        continue;
+                    }
+                },
+            ),
             Err(error) => return Err(error.into()),
         };
-        println!("{}: {}", sender, String::from_utf8_lossy(&content));
-        transmitter.send((sender, content))?;
+        println!("{}: {}", sender, String::from_utf8_lossy(&payload.content));
+        if let Err(error) = transmitter.send((sender, payload)) {
+            eprintln!("{}", error)
+        }
     }
 }
 
 async fn output(
     address: SocketAddr,
     mut writer: WriteHalf<TcpStream>,
-    mut receiver: Receiver<(SocketAddr, Vec<u8>)>,
+    mut receiver: Receiver<(SocketAddr, Payload)>,
 ) -> Result<(), Error> {
     loop {
-        let (sender, content) = match receiver.recv().await {
+        let (sender, payload) = match receiver.recv().await {
             Ok(message) => message,
-            Err(error) => return Err(error.into()),
+            Err(error) => {
+                eprintln!("{}", error);
+                continue;
+            }
         };
         if sender != address {
-            writer.write_all(&content).await?
+            writer.write_all(&payload.as_bytes()).await?
         }
     }
 }
