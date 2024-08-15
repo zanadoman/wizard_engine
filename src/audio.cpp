@@ -24,10 +24,12 @@
 
 #include <wizard_engine/audio.hpp>
 #include <wizard_engine/exception.hpp>
-#include <wizard_engine/speaker.hpp>
 
-std::vector<int32_t> wze::audio::_channels = {};
-int32_t wze::audio::_maximum_channel = {};
+void wze::audio::initialize() {
+    speakers() = {};
+    channels_ = {};
+    maximum_channel_ = -1;
+}
 
 int8_t wze::audio::volume() {
     return (int8_t)Mix_MasterVolume(-1);
@@ -37,14 +39,21 @@ void wze::audio::set_volume(int8_t volume) {
     Mix_MasterVolume(volume);
 }
 
-void wze::audio::initialize() {
-    _channels = {};
-    _maximum_channel = -1;
+std::vector<std::shared_ptr<wze::speaker>>& wze::audio::speakers() {
+    return speakers_;
 }
 
 void wze::audio::update() {
+    std::vector<std::shared_ptr<wze::speaker>>::iterator speaker;
+
+    for (speaker = speakers().begin(); speaker != speakers().end(); ++speaker) {
+        if (!*speaker || !(*speaker)->playing()) {
+            speakers().erase(speaker--);
+        }
+    }
+
     std::for_each(speaker::instances().begin(), speaker::instances().end(),
-                  [](speaker* instance) -> void {
+                  [](class speaker* instance) -> void {
                       if (instance->auto_panning()) {
                           instance->align_panning();
                       }
@@ -57,12 +66,12 @@ int32_t wze::audio::request_channel() {
     for (channel = 0;
          channel != std::numeric_limits<int32_t>::max() - MIX_CHANNELS;
          ++channel) {
-        if (std::find(_channels.begin(), _channels.end(), channel) ==
-            _channels.end()) {
-            _channels.push_back(channel);
-            if (_maximum_channel < channel) {
-                _maximum_channel = channel;
-                Mix_AllocateChannels(MIX_CHANNELS + _maximum_channel + 1);
+        if (std::find(channels_.begin(), channels_.end(), channel) ==
+            channels_.end()) {
+            channels_.push_back(channel);
+            if (maximum_channel_ < channel) {
+                maximum_channel_ = channel;
+                Mix_AllocateChannels(MIX_CHANNELS + maximum_channel_ + 1);
             }
             return MIX_CHANNELS + channel;
         }
@@ -77,14 +86,14 @@ void wze::audio::drop_channel(int32_t channel) {
         throw exception(Mix_GetError());
     }
 
-    _channels.erase(
-        std::find(_channels.begin(), _channels.end(), channel -= MIX_CHANNELS));
-    if (channel == _maximum_channel) {
-        _maximum_channel =
-            _channels.empty()
+    channels_.erase(
+        std::find(channels_.begin(), channels_.end(), channel -= MIX_CHANNELS));
+    if (channel == maximum_channel_) {
+        maximum_channel_ =
+            channels_.empty()
                 ? -1
-                : *std::max_element(_channels.begin(), _channels.end());
-        Mix_AllocateChannels(MIX_CHANNELS + _maximum_channel + 1);
+                : *std::max_element(channels_.begin(), channels_.end());
+        Mix_AllocateChannels(MIX_CHANNELS + maximum_channel_ + 1);
     }
 }
 
@@ -101,3 +110,7 @@ void wze::audio::stop() {
         throw exception(Mix_GetError());
     }
 }
+
+std::vector<std::shared_ptr<wze::speaker>> wze::audio::speakers_ = {};
+std::vector<int32_t> wze::audio::channels_ = {};
+int32_t wze::audio::maximum_channel_ = {};

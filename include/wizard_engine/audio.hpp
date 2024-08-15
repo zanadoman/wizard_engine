@@ -23,6 +23,7 @@
 #define WIZARD_ENGINE_AUDIO_HPP
 
 #include <wizard_engine/export.hpp>
+#include <wizard_engine/speaker.hpp>
 
 namespace wze {
 /**
@@ -31,18 +32,16 @@ namespace wze {
  * @brief Subsystem to handle global audio.
  */
 class audio final {
-  private:
-    static std::vector<int32_t> _channels;
-    static int32_t _maximum_channel;
-
+  public:
+#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Private default constructor to prevent instantiation.
+     * @brief Initializes the audio subsystem.
      */
-    audio() = default;
+    static void initialize();
+#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
-  public:
     /**
      * @file audio.hpp
      * @author Zana Domán
@@ -59,14 +58,13 @@ class audio final {
      */
     static void set_volume(int8_t volume);
 
-#ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file audio.hpp
      * @author Zana Domán
-     * @brief Initializes the audio subsystem.
+     * @brief Returns the remaining unexpired speakers.
+     * @return Remaining unexpired speakers.
      */
-    static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL__ */
+    [[nodiscard]] static std::vector<std::shared_ptr<speaker>>& speakers();
 
 #ifdef __WIZARD_ENGINE_INTERNAL__
     /**
@@ -120,6 +118,18 @@ class audio final {
      * @warning If the audio cannot be stopped globally, throws wze::exception.
      */
     static void stop();
+
+  private:
+    static std::vector<std::shared_ptr<speaker>> speakers_;
+    static std::vector<int32_t> channels_;
+    static int32_t maximum_channel_;
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Private default constructor to prevent instantiation.
+     */
+    audio() = default;
 };
 } /* namespace wze */
 
