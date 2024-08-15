@@ -23,6 +23,7 @@
 #define WIZARD_ENGINE_AUDIO_HPP
 
 #include <wizard_engine/export.hpp>
+#include <wizard_engine/speaker.hpp>
 
 namespace wze {
 /**
@@ -32,6 +33,7 @@ namespace wze {
  */
 class audio final {
   private:
+    static std::vector<std::shared_ptr<speaker>> _speakers;
     static std::vector<int32_t> _channels;
     static int32_t _maximum_channel;
 
@@ -58,6 +60,14 @@ class audio final {
      * @param volume Global Volume of the audio.
      */
     static void set_volume(int8_t volume);
+
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Returns the remaining unexpired speakers.
+     * @return Remaining unexpired speakers.
+     */
+    static std::vector<std::shared_ptr<speaker>>& speakers();
 
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**

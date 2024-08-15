@@ -24,6 +24,7 @@
 #include <wizard_engine/audio.hpp>
 #include <wizard_engine/speaker.hpp>
 
+std::vector<std::shared_ptr<wze::speaker>> wze::audio::_speakers = {};
 std::vector<int32_t> wze::audio::_channels;
 int32_t wze::audio::_maximum_channel;
 
@@ -35,12 +36,26 @@ void wze::audio::set_volume(int8_t volume) {
     Mix_MasterVolume(volume);
 }
 
+std::vector<std::shared_ptr<wze::speaker>>& wze::audio::speakers() {
+    return _speakers;
+}
+
 void wze::audio::initialize() {
+    speakers() = {};
     _channels = {};
     _maximum_channel = -1;
 }
 
 void wze::audio::update() {
+    std::vector<std::shared_ptr<wze::speaker>>::iterator iterator;
+
+    for (iterator = speakers().begin(); iterator != speakers().end();
+         ++iterator) {
+        if (!*iterator || !(*iterator)->playing()) {
+            speakers().erase(iterator--);
+        }
+    }
+
     std::ranges::for_each(speaker::instances(), [](speaker* instance) -> void {
         if (instance->playing() && instance->volume() &&
             instance->auto_panning()) {
