@@ -1,4 +1,3 @@
-/include/SDL2/*.h linguist-vendored
-/android/app/src/main/java/org/libsdl/app/*.java linguist-vendored
 /include/emscripten.h linguist-vendored
 /include/emscripten/*.h linguist-vendored
+/include/SDL2/*.h linguist-vendored

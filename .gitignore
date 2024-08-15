@@ -1,5 +1,5 @@
+.cache/
+/.vscode/
 /build/
 /Cargo.lock
 /target/
-.cache/
-/.vscode/
