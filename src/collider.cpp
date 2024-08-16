@@ -31,7 +31,7 @@ std::vector<wze::collider*> wze::collider::contacts() const {
     std::vector<collider*> contacts;
 
     std::for_each(_worlds.at(world()).begin(), _worlds.at(world()).end(),
-                  [this, &contacts](collider* contact) -> void {
+                  [&](collider* contact) -> void {
                       if (contact != this &&
                           body().overlap<bool>(contact->body())) {
                           contacts.push_back(contact);
@@ -45,9 +45,10 @@ float wze::collider::contacts_mass(std::vector<collider*> const& contacts) {
     float mass;
 
     mass = 0;
-    std::for_each(
-        contacts.begin(), contacts.end(),
-        [&mass](collider const* contact) -> void { mass += contact->mass(); });
+    std::for_each(contacts.begin(), contacts.end(),
+                  [&](collider const* contact) -> void {
+                      mass += contact->mass();
+                  });
 
     return mass;
 }

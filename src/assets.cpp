@@ -77,7 +77,7 @@ size_t wze::assets::hash_image(std::shared_ptr<image> const& image) {
         // NOLINTNEXTLINE(bugprone-implicit-widening-of-multiplication-result,cppcoreguidelines-pro-bounds-pointer-arithmetic)
         static_cast<uint8_t*>(image->pixels) +
             image->w * image->h * image->format->BytesPerPixel,
-        [&seed, &hash](uint8_t pixel) -> void {
+        [&](uint8_t pixel) -> void {
             combine_hash(seed, hash(pixel));
         });
 
@@ -119,7 +119,7 @@ size_t wze::assets::hash_sound(std::shared_ptr<sound> const& sound) {
     seed = 0;
     // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
     std::for_each(sound->abuf, sound->abuf + sound->alen,
-                  [&seed, &hash](uint8_t sample) -> void {
+                  [&](uint8_t sample) -> void {
                       combine_hash(seed, hash(sample));
                   });
 

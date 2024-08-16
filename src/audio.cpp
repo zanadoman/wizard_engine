@@ -44,16 +44,15 @@ std::vector<std::shared_ptr<wze::speaker>>& wze::audio::speakers() {
 }
 
 void wze::audio::update() {
-    std::vector<std::shared_ptr<wze::speaker>>::iterator speaker;
-
-    for (speaker = speakers().begin(); speaker != speakers().end(); ++speaker) {
-        if (!*speaker || !(*speaker)->playing()) {
-            speakers().erase(speaker--);
-        }
-    }
+    speakers().erase(
+        std::remove_if(speakers().begin(), speakers().end(),
+                       [](std::shared_ptr<speaker> const& speaker) -> bool {
+                           return !speaker || !speaker->playing();
+                       }),
+        speakers().end());
 
     std::for_each(speaker::instances().begin(), speaker::instances().end(),
-                  [](class speaker* instance) -> void {
+                  [](speaker* instance) -> void {
                       if (instance->auto_panning()) {
                           instance->align_panning();
                       }

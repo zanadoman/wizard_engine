@@ -50,8 +50,7 @@ float wze::polygon::circumradius() const {
 
     circumradius = 0;
     std::for_each(shape().begin(), shape().end(),
-                  [&circumradius,
-                   &temporary](std::pair<float, float> const& vertex) -> void {
+                  [&](std::pair<float, float> const& vertex) -> void {
                       temporary = apply(math::length, vertex);
                       if (circumradius < temporary) {
                           circumradius = temporary;
@@ -67,15 +66,15 @@ wze::polygon::project(std::pair<float, float> const& vector) const {
 
     projection.first = std::numeric_limits<float>::max();
     projection.second = -std::numeric_limits<float>::max();
-    std::for_each(
-        points().begin(), points().end(),
-        [&vector, &projection](std::pair<float, float> const& point) -> void {
-            float scalar;
+    std::for_each(points().begin(), points().end(),
+                  [&](std::pair<float, float> const& point) -> void {
+                      float scalar;
 
-            scalar = point.first * vector.first + point.second * vector.second;
-            projection.first = std::min(projection.first, scalar);
-            projection.second = std::max(projection.second, scalar);
-        });
+                      scalar = point.first * vector.first +
+                               point.second * vector.second;
+                      projection.first = std::min(projection.first, scalar);
+                      projection.second = std::max(projection.second, scalar);
+                  });
 
     return projection;
 }

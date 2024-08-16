@@ -67,7 +67,7 @@ class collider : public entity {
             std::for_each(
                 contacts.begin(), contacts.end(),
                 // NOLINTNEXTLINE(misc-no-recursion)
-                [this, force](collider* contact) -> void {
+                [=](collider* contact) -> void {
                     if ((this->*dynamic_resolver)(*contact,
                                                   contact->mass() + force)) {
                         contact->push<static_resolver, dynamic_resolver>(force);
@@ -76,7 +76,7 @@ class collider : public entity {
                 });
         } else {
             std::for_each(contacts.begin(), contacts.end(),
-                          [this](collider const* contact) -> void {
+                          [=](collider const* contact) -> void {
                               (this->*static_resolver)(*contact);
                           });
         }

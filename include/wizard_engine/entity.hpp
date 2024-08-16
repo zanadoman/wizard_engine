@@ -75,18 +75,21 @@ class entity : public component {
      * @param updater Property updaters.
      */
     template <void (entity::*... updater)(component&) const> void update() {
-        std::vector<std::weak_ptr<component>>::iterator iterator;
-        std::shared_ptr<component> instance;
+        components().erase(
+            std::remove_if(
+                components().begin(), components().end(),
+                [&](std::weak_ptr<component> const& component) -> bool {
+                    std::shared_ptr<class component> locked;
 
-        for (iterator = components().begin(); iterator != components().end();
-             ++iterator) {
-            instance = iterator->lock();
-            if (instance) {
-                ((this->*updater)(*instance), ...);
-            } else {
-                components().erase(iterator--);
-            }
-        }
+                    locked = component.lock();
+                    if (locked) {
+                        ((this->*updater)(*locked), ...);
+                        return false;
+                    }
+
+                    return true;
+                }),
+            components().end());
     }
 
   public:

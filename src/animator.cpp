@@ -64,8 +64,6 @@ void wze::animator::set_current_frame(size_t current_frame) {
 bool wze::animator::play() {
     uint64_t elapsed_time;
     bool looped;
-    std::vector<std::weak_ptr<animatable>>::iterator iterator;
-    std::shared_ptr<animatable> instance;
 
     if (frames().empty()) {
         return false;
@@ -86,17 +84,23 @@ bool wze::animator::play() {
         set_current_frame(current_frame() % frames().size());
     }
 
-    for (iterator = targets().begin(); iterator != targets().end();
-         ++iterator) {
-        instance = iterator->lock();
-        if (instance) {
-            if (instance->animated()) {
-                instance->set_texture(frames().at(current_frame()).first);
-            }
-        } else {
-            targets().erase(iterator--);
-        }
-    }
+    targets().erase(
+        std::remove_if(targets().begin(), targets().end(),
+                       [&](std::weak_ptr<animatable> const& target) -> bool {
+                           std::shared_ptr<animatable> locked;
+
+                           locked = target.lock();
+                           if (locked) {
+                               if (locked->animated()) {
+                                   locked->set_texture(
+                                       frames().at(current_frame()).first);
+                               }
+                               return false;
+                           }
+
+                           return true;
+                       }),
+        targets().end());
 
     return looped;
 }

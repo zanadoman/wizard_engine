@@ -314,7 +314,7 @@ void wze::renderer::update() {
 
     std::for_each(renderable::instances().begin(),
                   renderable::instances().end(),
-                  [&space, &plane](renderable* instance) -> void {
+                  [&](renderable* instance) -> void {
                       if (invisible(*instance)) {
                           return;
                       }
@@ -345,13 +345,15 @@ void wze::renderer::update() {
 
     open_frame();
     open_space();
-    std::for_each(
-        space.begin(), space.end(),
-        [](renderable const* instance) -> void { render(*instance); });
+    std::for_each(space.begin(), space.end(),
+                  [](renderable const* instance) -> void {
+                      render(*instance);
+                  });
     open_plane();
-    std::for_each(
-        plane.begin(), plane.end(),
-        [](renderable const* instance) -> void { render(*instance); });
+    std::for_each(plane.begin(), plane.end(),
+                  [](renderable const* instance) -> void {
+                      render(*instance);
+                  });
     close_frame();
 }
 
