@@ -24,9 +24,9 @@
 #include <wizard_engine/audio.hpp>
 #include <wizard_engine/speaker.hpp>
 
-std::vector<std::shared_ptr<wze::speaker>> wze::audio::_speakers = {};
-std::vector<int32_t> wze::audio::_channels;
 int32_t wze::audio::_maximum_channel;
+std::vector<int32_t> wze::audio::_channels;
+std::vector<std::shared_ptr<wze::speaker>> wze::audio::_speakers = {};
 
 int8_t wze::audio::volume() {
     return Mix_MasterVolume(-1);
@@ -41,9 +41,9 @@ std::vector<std::shared_ptr<wze::speaker>>& wze::audio::speakers() {
 }
 
 void wze::audio::initialize() {
-    speakers() = {};
-    _channels = {};
     _maximum_channel = -1;
+    _channels = {};
+    speakers() = {};
 }
 
 void wze::audio::update() {

@@ -33,9 +33,9 @@ namespace wze {
  */
 class audio final {
   private:
-    static std::vector<std::shared_ptr<speaker>> _speakers;
-    static std::vector<int32_t> _channels;
     static int32_t _maximum_channel;
+    static std::vector<int32_t> _channels;
+    static std::vector<std::shared_ptr<speaker>> _speakers;
 
     /**
      * @file audio.hpp
