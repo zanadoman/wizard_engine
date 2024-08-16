@@ -33,6 +33,13 @@ namespace wze {
  */
 class audio final {
   public:
+    /**
+     * @file audio.hpp
+     * @author Zana Domán
+     * @brief Deleted default constructor to prevent instantiation.
+     */
+    audio() = delete;
+
 #ifdef __WIZARD_ENGINE_INTERNAL__
     /**
      * @file audio.hpp
@@ -120,16 +127,9 @@ class audio final {
     static void stop();
 
   private:
-    static std::vector<std::shared_ptr<speaker>> speakers_;
-    static std::vector<int32_t> channels_;
     static int32_t maximum_channel_;
-
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
-     * @brief Private default constructor to prevent instantiation.
-     */
-    audio() = default;
+    static std::vector<int32_t> channels_;
+    static std::vector<std::shared_ptr<speaker>> speakers_;
 };
 } /* namespace wze */
 
