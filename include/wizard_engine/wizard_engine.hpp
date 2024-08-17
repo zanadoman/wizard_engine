@@ -61,17 +61,18 @@
 #include <wizard_engine/window.hpp>     /* IWYU pragma: export */
 
 // NOLINTNEXTLINE(cppcoreguidelines-macro-usage)
-#define wze_main(width, height)                                                \
+#define wze_main(title, width, height)                                         \
     /* @file wizard_engine.hpp                      */                         \
     /* @author Zana Domán                           */                        \
     /* @brief Main function of the Wizard Engine.   */                         \
+    /* @param title Title of the game window.       */                         \
     /* @param width Width of the game window.       */                         \
     /* @param height Height of the game window.     */                         \
     /* @return Exit code.                           */                         \
     /* @note Command line arguments are accessible. */                         \
     [[nodiscard]] int32_t __wze_main__(int32_t argc, char** argv);             \
     int32_t main(int32_t argc, char* argv[]) noexcept(false) {                 \
-        wze::engine::initialize((width), (height));                            \
+        wze::engine::initialize((title), (width), (height));                   \
         return __wze_main__(argc, argv);                                       \
     }                                                                          \
     int32_t __wze_main__([[maybe_unused]] int32_t argc,                        \

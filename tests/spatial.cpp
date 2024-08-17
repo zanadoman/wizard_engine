@@ -28,7 +28,7 @@ constexpr float sprite_size = 100;
 constexpr float movement_speed = .5;
 constexpr float rotation_speed = .002;
 
-wze_main(1920, 1080) {
+wze_main("Wizard Engine - Spatial", 1920, 1080) {
     std::shared_ptr<wze::texture> texture;
     size_t i;
     std::vector<wze::sprite> sprites;

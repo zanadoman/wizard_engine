@@ -61,9 +61,11 @@ bool wze::window::focused() {
     return (bool)(SDL_GetWindowFlags(base()) & SDL_WINDOW_INPUT_FOCUS);
 }
 
-void wze::window::initialize(uint16_t width, uint16_t height) {
-    _base = SDL_CreateWindow("Wizard Engine", SDL_WINDOWPOS_UNDEFINED,
-                             SDL_WINDOWPOS_UNDEFINED, width, height,
+void wze::window::initialize(std::string const& title, uint16_t width,
+                             uint16_t height) {
+    _base = SDL_CreateWindow(title.empty() ? "Wizard Engine" : title.c_str(),
+                             SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                             width, height,
                              SDL_WINDOW_RESIZABLE
 #ifndef __EMSCRIPTEN__
                                  | SDL_WINDOW_FULLSCREEN_DESKTOP

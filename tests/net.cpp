@@ -31,7 +31,7 @@ struct payload {
     uint8_t content[buffer_size];
 };
 
-wze_main(1920, 1080) {
+wze_main("Wizard Engine - Net", 1920, 1080) {
     wze::udp_socket<payload, payload> socket(
         wze::net::resolve(server_address, server_port));
     std::string message;

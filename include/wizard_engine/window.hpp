@@ -116,12 +116,14 @@ class window final {
      * @file window.hpp
      * @author Zana Domán
      * @brief Initializes the window subsystem.
+     * @param title Title of the game window.
      * @param width Width of the game window.
      * @param height Height of the game window.
      * @warning If the window subystem cannot be initialized, throws
      * wze::exception.
      */
-    static void initialize(uint16_t width, uint16_t height);
+    static void initialize(std::string const& title, uint16_t width,
+                           uint16_t height);
 #endif /* __WIZARD_ENGINE_INTERNAL__ */
 };
 } /* namespace wze */

@@ -79,7 +79,8 @@ std::vector<SDL_Event> const& wze::engine::events() {
     return _events;
 }
 
-void wze::engine::initialize(uint16_t width, uint16_t height) {
+void wze::engine::initialize(std::string const& title, uint16_t width,
+                             uint16_t height) {
     constexpr uint16_t MIX_DEFAULT_CHUNKSIZE = 4096;
 
     std::set_terminate([]() -> void {
@@ -141,7 +142,7 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
 
     _events = {};
     math::initialize();
-    window::initialize(width, height);
+    window::initialize(title, width, height);
     camera::initialize();
     renderer::initialize();
     input::initialize();

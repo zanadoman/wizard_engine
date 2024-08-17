@@ -93,7 +93,7 @@ class wizard final : private wze::collider {
     wze::key left_;
 };
 
-wze_main(1920, 1080) {
+wze_main("Wizard Engine - Collision", 1920, 1080) {
     wizard wizard_left(left, 0, 0, strong, light, wze::KEY_W, wze::KEY_S,
                        wze::KEY_D, wze::KEY_A);
     wizard const wizard_middle(middle, 0, 0, weak, light, wze::KEY_UNKNOWN,

@@ -64,13 +64,15 @@ class engine final {
      * @file engine.hpp
      * @author Zana Domán
      * @brief Initializes the subsystems of the engine.
+     * @param title Title of the game window.
      * @param width Width of the game window.
      * @param height Height of the game window.
      * @note This method is automatically called when wze_main is used.
      * @warning This method must be called only once at the beginning of main.
      * @warning If the engine cannot be initialized, throws wze::exception.
      */
-    static void initialize(uint16_t width, uint16_t height);
+    static void initialize(std::string const& title, uint16_t width,
+                           uint16_t height);
 
     /**
      * @file engine.hpp
