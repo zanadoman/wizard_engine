@@ -76,7 +76,8 @@ std::vector<SDL_Event> const& wze::engine::events() {
     return _events;
 }
 
-void wze::engine::initialize(uint16_t width, uint16_t height) {
+void wze::engine::initialize(std::string const& title, uint16_t width,
+                             uint16_t height) {
     _events = {};
     if (SDL_Init(SDL_INIT_EVERYTHING)) {
         throw std::runtime_error(SDL_GetError());
@@ -96,7 +97,7 @@ void wze::engine::initialize(uint16_t width, uint16_t height) {
     }
     math::initialize();
     timer::initialize();
-    window::initialize(width, height);
+    window::initialize(title, width, height);
     input::initialize();
     camera::initialize();
     renderer::initialize();

@@ -53,7 +53,7 @@
 #include <wizard_engine/timer.hpp>      /* IWYU pragma: export */
 #include <wizard_engine/window.hpp>     /* IWYU pragma: export */
 
-#define wze_main(width, height)                                                \
+#define wze_main(title, width, height)                                         \
     /* @file wizard_engine.hpp                      */                         \
     /* @author Zana Domán                           */                        \
     /* @brief Main function of the Wizard Engine.   */                         \
@@ -63,7 +63,7 @@
     /* @note Command line arguments are accessible. */                         \
     static int32_t __wze_main(int32_t argc, char* argv[]);                     \
     int32_t main(int32_t argc, char* argv[]) {                                 \
-        wze::engine::initialize(width, height);                                \
+        wze::engine::initialize(title, width, height);                         \
         return __wze_main(argc, argv);                                         \
     }                                                                          \
     int32_t __wze_main([[maybe_unused]] int32_t argc,                          \
