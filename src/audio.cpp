@@ -25,12 +25,6 @@
 #include <wizard_engine/audio.hpp>
 #include <wizard_engine/exception.hpp>
 
-void wze::audio::initialize() {
-    maximum_channel_ = -1;
-    channels_ = {};
-    speakers() = {};
-}
-
 int8_t wze::audio::volume() {
     return (int8_t)Mix_MasterVolume(-1);
 }
@@ -110,6 +104,6 @@ void wze::audio::stop() {
     }
 }
 
-int32_t wze::audio::maximum_channel_ = {};
+int32_t wze::audio::maximum_channel_ = -1;
 std::vector<int32_t> wze::audio::channels_ = {};
 std::vector<std::shared_ptr<wze::speaker>> wze::audio::speakers_ = {};

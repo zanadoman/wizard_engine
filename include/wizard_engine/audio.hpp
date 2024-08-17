@@ -40,15 +40,6 @@ class audio final {
      */
     audio() = delete;
 
-#ifdef __WIZARD_ENGINE_INTERNAL__
-    /**
-     * @file audio.hpp
-     * @author Zana Domán
-     * @brief Initializes the audio subsystem.
-     */
-    static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL__ */
-
     /**
      * @file audio.hpp
      * @author Zana Domán
