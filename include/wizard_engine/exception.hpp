@@ -25,13 +25,31 @@
 #include <wizard_engine/export.hpp>
 
 namespace wze {
+/**
+ * @file exception.hpp
+ * @author Zana Domán
+ * @brief Self logging exception.
+ */
 class exception : public std::exception {
-  private:
-    std::string _what;
-
   public:
+    /**
+     * @file exception.hpp
+     * @author Zana Domán
+     * @brief Constructs an exception instance.
+     * @param what Explanatory string.
+     */
     explicit exception(std::string const& what);
+
+    /**
+     * @file exception.hpp
+     * @author Zana Domán
+     * @brief Returns the explanatory string.
+     * @return Explanatory string.
+     */
     [[nodiscard]] char const* what() const noexcept override;
+
+  private:
+    std::string what_;
 };
 } /* namespace wze */
 
