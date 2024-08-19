@@ -40,7 +40,8 @@ void wze::engine::play_intro() {
     // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
     static_assert(sizeof(size_t) == 4 || sizeof(size_t) == 8);
     constexpr size_t logo_hash =
-        sizeof(size_t) == 4 ? 315106224 : 4621002103177400980;
+        sizeof(size_t) == 4 ? 291788640 : 14466144734576808089U;
+    constexpr float scale = .75;
     constexpr float speed = .1;
 
     std::shared_ptr<image> logo;
@@ -52,8 +53,8 @@ void wze::engine::play_intro() {
         throw exception("Invalid ./assets/wizard_engine/logo.png");
     }
 
-    intro = sprite(0, 0, 0, 0, (float)window::height() / 2,
-                   (float)window::height() / 2, false,
+    intro = sprite(0, 0, 0, 0, (float)window::height() * scale,
+                   (float)window::height() * scale, false,
                    assets::create_texture(logo));
 
     opacity = 0;
