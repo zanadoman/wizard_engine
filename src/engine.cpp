@@ -40,7 +40,7 @@ void wze::engine::play_intro() {
     float opacity;
 
     logo = assets::load_image("./assets/wizard_engine/logo.png");
-    if (assets::hash_image(logo) != 4621002103177400980) {
+    if (assets::hash_image(logo) != 14466144734576808089U) {
         throw std::runtime_error("Invalid ./assets/wizard_engine/logo.png");
     }
 
@@ -48,8 +48,8 @@ void wze::engine::play_intro() {
              0,
              0,
              0,
-             window::height() / 2.f,
-             window::height() / 2.f,
+             window::height() * 0.75f,
+             window::height() * 0.75f,
              false,
              assets::create_texture(logo)};
 
