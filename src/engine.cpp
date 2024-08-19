@@ -45,6 +45,7 @@ void wze::engine::play_intro() {
     constexpr float speed = .1;
 
     std::shared_ptr<image> logo;
+    float size;
     sprite intro;
     float opacity;
 
@@ -53,9 +54,8 @@ void wze::engine::play_intro() {
         throw exception("Invalid ./assets/wizard_engine/logo.png");
     }
 
-    intro = sprite(0, 0, 0, 0, (float)window::height() * scale,
-                   (float)window::height() * scale, false,
-                   assets::create_texture(logo));
+    size = (float)std::min(window::width(), window::height()) * scale;
+    intro = sprite(0, 0, 0, 0, size, size, false, assets::create_texture(logo));
 
     opacity = 0;
     while (opacity <= std::numeric_limits<uint8_t>::max()) {
