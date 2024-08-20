@@ -52,20 +52,23 @@ wze_main("Wizard Engine - Spatial", 1920, 1080) {
                            std::numeric_limits<int16_t>::max(), 0, 0, true);
     speaker.play(0, std::numeric_limits<uint16_t>::max());
 
+    wze::input::keymaps()["forward"] = {wze::KEY_W, wze::KEY_UP};
+    wze::input::keymaps()["backward"] = {wze::KEY_S, wze::KEY_DOWN};
+    wze::input::keymaps()["right"] = {wze::KEY_D, wze::KEY_RIGHT};
+    wze::input::keymaps()["left"] = {wze::KEY_A, wze::KEY_LEFT};
+
     wze_while(true) {
-        if (wze::input::key(wze::KEY_W) && !wze::input::key(wze::KEY_S)) {
+        if (wze::input::key("forward") && !wze::input::key("backward")) {
             wze::camera::set_z(wze::camera::z() +
                                movement_speed * wze::timer::delta_time());
-        } else if (wze::input::key(wze::KEY_S) &&
-                   !wze::input::key(wze::KEY_W)) {
+        } else if (wze::input::key("backward") && !wze::input::key("forward")) {
             wze::camera::set_z(wze::camera::z() -
                                movement_speed * wze::timer::delta_time());
         }
-        if (wze::input::key(wze::KEY_D) && !wze::input::key(wze::KEY_A)) {
+        if (wze::input::key("right") && !wze::input::key("left")) {
             wze::camera::set_x(wze::camera::x() +
                                movement_speed * wze::timer::delta_time());
-        } else if (wze::input::key(wze::KEY_A) &&
-                   !wze::input::key(wze::KEY_D)) {
+        } else if (wze::input::key("left") && !wze::input::key("right")) {
             wze::camera::set_x(wze::camera::x() -
                                movement_speed * wze::timer::delta_time());
         }

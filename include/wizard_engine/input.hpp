@@ -36,6 +36,7 @@ class input final {
   private:
     static SDL_Keycode _key;
     static std::array<bool, KEY_COUNT> _keys;
+    static std::unordered_map<std::string, std::vector<enum key>> _keymaps;
     static float _cursor_absolute_x;
     static float _cursor_absolute_y;
     static float _cursor_relative_x;
@@ -78,6 +79,15 @@ class input final {
      * @return Key of the last keyboard event in UTF-32 encoding.
      */
     [[nodiscard]] static uint32_t key();
+
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns the keymap registry.
+     * @return Keymap registry.
+     */
+    [[nodiscard]] static std::unordered_map<std::string, std::vector<enum key>>&
+    keymaps();
 
     /**
      * @file input.hpp
@@ -188,6 +198,15 @@ class input final {
      * @return True if the keyboard or mousekey is pressed, false otherwise.
      */
     [[nodiscard]] static bool key(enum key key);
+
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns true if a keymap is triggered, false otherwise.
+     * @param name Name of the keymap.
+     * @return True if the keymap is triggered, false otherwise.
+     */
+    [[nodiscard]] static bool key(std::string const& name);
 
     /**
      * @file input.hpp

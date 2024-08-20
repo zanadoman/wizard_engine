@@ -31,6 +31,8 @@
 
 SDL_Keycode wze::input::_key = {};
 std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
+std::unordered_map<std::string, std::vector<wze::key>> wze::input::_keymaps =
+    {};
 float wze::input::_cursor_absolute_x = {};
 float wze::input::_cursor_absolute_y = {};
 float wze::input::_cursor_relative_x = {};
@@ -109,6 +111,10 @@ uint32_t wze::input::key() {
     return _key;
 }
 
+std::unordered_map<std::string, std::vector<wze::key>>& wze::input::keymaps() {
+    return _keymaps;
+}
+
 float wze::input::cursor_absolute_x() {
     return _cursor_absolute_x;
 }
@@ -151,6 +157,7 @@ void wze::input::set_cursor_appearance(
 void wze::input::initialize() {
     _key = SDLK_UNKNOWN;
     _keys = {};
+    keymaps() = {};
     _cursor_absolute_x = 0;
     _cursor_absolute_y = 0;
     _cursor_relative_x = 0;
@@ -166,6 +173,13 @@ void wze::input::update() {
 
 bool wze::input::key(enum key key) {
     return _keys.at(key);
+}
+
+bool wze::input::key(std::string const& name) {
+    std::vector<enum key>& keys = keymaps().at(name);
+    return std::any_of(keys.begin(), keys.end(), [](enum key key) -> bool {
+        return input::key(key);
+    });
 }
 
 std::pair<float, float> wze::input::cursor_spatial(float z) {

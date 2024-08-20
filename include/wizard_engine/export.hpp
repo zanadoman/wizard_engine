@@ -33,18 +33,19 @@
 #include <cstdint> /* IWYU pragma: export */
 #include <cstdlib> /* IWYU pragma: export */
 
-#include <algorithm>   /* IWYU pragma: export */
-#include <array>       /* IWYU pragma: export */
-#include <exception>   /* IWYU pragma: export */
-#include <functional>  /* IWYU pragma: export */
-#include <limits>      /* IWYU pragma: export */
-#include <memory>      /* IWYU pragma: export */
-#include <random>      /* IWYU pragma: export */
-#include <string>      /* IWYU pragma: export */
-#include <tuple>       /* IWYU pragma: export */
-#include <type_traits> /* IWYU pragma: export */
-#include <utility>     /* IWYU pragma: export */
-#include <vector>      /* IWYU pragma: export */
+#include <algorithm>     /* IWYU pragma: export */
+#include <array>         /* IWYU pragma: export */
+#include <exception>     /* IWYU pragma: export */
+#include <functional>    /* IWYU pragma: export */
+#include <limits>        /* IWYU pragma: export */
+#include <memory>        /* IWYU pragma: export */
+#include <random>        /* IWYU pragma: export */
+#include <string>        /* IWYU pragma: export */
+#include <tuple>         /* IWYU pragma: export */
+#include <type_traits>   /* IWYU pragma: export */
+#include <unordered_map> /* IWYU pragma: export */
+#include <utility>       /* IWYU pragma: export */
+#include <vector>        /* IWYU pragma: export */
 
 #ifdef _WIN32
 #define SDL_MAIN_HANDLED
