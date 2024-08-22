@@ -34,18 +34,10 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
 endif()
 
 # Compiler
-if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    if(NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
-        message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
-    elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 10.2.1)
-        message(FATAL_ERROR "Outdated compiler, CMake will exit.")
-    endif()
-elseif(${CMAKE_SYSTEM_NAME} MATCHES Linux|Android|Emscripten)
-    if(NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
-        message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
-    elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 17.0.2)
-        message(FATAL_ERROR "Outdated compiler, CMake will exit.")
-    endif()
+if(NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
+    message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
+elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 11.0.1)
+    message(FATAL_ERROR "Outdated compiler, CMake will exit.")
 endif()
 
 # Headers
