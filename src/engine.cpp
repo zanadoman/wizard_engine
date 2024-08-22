@@ -48,8 +48,8 @@ void wze::engine::play_intro() {
              0,
              0,
              0,
-             window::height() * 0.75f,
-             window::height() * 0.75f,
+             window::height() * 0.6f,
+             window::height() * 0.6f,
              false,
              assets::create_texture(logo)};
 
