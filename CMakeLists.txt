@@ -1,6 +1,7 @@
 # CMake
 cmake_minimum_required(VERSION 3.18.4)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+set(CMAKE_CXX_CLANG_TIDY clang-tidy)
 
 if(NOT ${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}/build)
     message(FATAL_ERROR "Unsupported directory, CMake will exit.")
