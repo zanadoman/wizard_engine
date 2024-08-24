@@ -118,9 +118,9 @@ class audio final {
     static void stop();
 
   private:
-    static int32_t maximum_channel_;
-    static std::vector<int32_t> channels_;
-    static std::vector<std::shared_ptr<speaker>> speakers_;
+    static int32_t _maximum_channel;
+    static std::vector<int32_t> _channels;
+    static std::vector<std::shared_ptr<speaker>> _speakers;
 };
 } /* namespace wze */
 

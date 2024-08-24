@@ -31,34 +31,34 @@ wze::animator::animator(
     this->frames() = frames;
     this->targets() = targets;
     set_current_frame(0);
-    remaining_time_ = 0;
+    _remaining_time = 0;
 }
 
 std::vector<std::pair<std::shared_ptr<wze::texture>, uint16_t>> const&
 wze::animator::frames() const {
-    return frames_;
+    return _frames;
 }
 
 std::vector<std::pair<std::shared_ptr<wze::texture>, uint16_t>>&
 wze::animator::frames() {
-    return frames_;
+    return _frames;
 }
 
 std::vector<std::weak_ptr<wze::animatable>> const&
 wze::animator::targets() const {
-    return targets_;
+    return _targets;
 }
 
 std::vector<std::weak_ptr<wze::animatable>>& wze::animator::targets() {
-    return targets_;
+    return _targets;
 }
 
 size_t wze::animator::current_frame() const {
-    return current_frame_;
+    return _current_frame;
 }
 
 void wze::animator::set_current_frame(size_t current_frame) {
-    current_frame_ = current_frame;
+    _current_frame = current_frame;
 }
 
 bool wze::animator::play() {
@@ -70,13 +70,13 @@ bool wze::animator::play() {
     }
 
     if ((bool)frames().at(current_frame()).second) {
-        elapsed_time = (uint32_t)timer::delta_time() + remaining_time_;
+        elapsed_time = (uint32_t)timer::delta_time() + _remaining_time;
         set_current_frame(current_frame() +
                           elapsed_time / frames().at(current_frame()).second);
-        remaining_time_ = elapsed_time % frames().at(current_frame()).second;
+        _remaining_time = elapsed_time % frames().at(current_frame()).second;
     } else {
         set_current_frame(current_frame() + 1);
-        remaining_time_ = 0;
+        _remaining_time = 0;
     }
 
     looped = frames().size() <= current_frame();
@@ -107,5 +107,5 @@ bool wze::animator::play() {
 
 void wze::animator::reset() {
     set_current_frame(0);
-    remaining_time_ = 0;
+    _remaining_time = 0;
 }

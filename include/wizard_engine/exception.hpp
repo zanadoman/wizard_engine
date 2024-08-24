@@ -49,7 +49,7 @@ class exception : public std::exception {
     [[nodiscard]] char const* what() const noexcept override;
 
   private:
-    std::string what_;
+    std::string _what;
 };
 } /* namespace wze */
 

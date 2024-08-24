@@ -118,10 +118,10 @@ class animator final {
     void reset();
 
   private:
-    std::vector<std::pair<std::shared_ptr<texture>, uint16_t>> frames_;
-    std::vector<std::weak_ptr<animatable>> targets_;
-    size_t current_frame_;
-    uint16_t remaining_time_;
+    std::vector<std::pair<std::shared_ptr<texture>, uint16_t>> _frames;
+    std::vector<std::weak_ptr<animatable>> _targets;
+    size_t _current_frame;
+    uint16_t _remaining_time;
 };
 } /* namespace wze */
 

@@ -34,7 +34,7 @@ void wze::audio::set_volume(int8_t volume) {
 }
 
 std::vector<std::shared_ptr<wze::speaker>>& wze::audio::speakers() {
-    return speakers_;
+    return _speakers;
 }
 
 void wze::audio::update() {
@@ -59,12 +59,12 @@ int32_t wze::audio::request_channel() {
     for (channel = 0;
          channel != std::numeric_limits<int32_t>::max() - MIX_CHANNELS;
          ++channel) {
-        if (std::find(channels_.begin(), channels_.end(), channel) ==
-            channels_.end()) {
-            channels_.push_back(channel);
-            if (maximum_channel_ < channel) {
-                maximum_channel_ = channel;
-                Mix_AllocateChannels(MIX_CHANNELS + maximum_channel_ + 1);
+        if (std::find(_channels.begin(), _channels.end(), channel) ==
+            _channels.end()) {
+            _channels.push_back(channel);
+            if (_maximum_channel < channel) {
+                _maximum_channel = channel;
+                Mix_AllocateChannels(MIX_CHANNELS + _maximum_channel + 1);
             }
             return MIX_CHANNELS + channel;
         }
@@ -79,14 +79,14 @@ void wze::audio::drop_channel(int32_t channel) {
         throw exception(Mix_GetError());
     }
 
-    channels_.erase(
-        std::find(channels_.begin(), channels_.end(), channel -= MIX_CHANNELS));
-    if (channel == maximum_channel_) {
-        maximum_channel_ =
-            channels_.empty()
+    _channels.erase(
+        std::find(_channels.begin(), _channels.end(), channel -= MIX_CHANNELS));
+    if (channel == _maximum_channel) {
+        _maximum_channel =
+            _channels.empty()
                 ? -1
-                : *std::max_element(channels_.begin(), channels_.end());
-        Mix_AllocateChannels(MIX_CHANNELS + maximum_channel_ + 1);
+                : *std::max_element(_channels.begin(), _channels.end());
+        Mix_AllocateChannels(MIX_CHANNELS + _maximum_channel + 1);
     }
 }
 
@@ -104,6 +104,6 @@ void wze::audio::stop() {
     }
 }
 
-int32_t wze::audio::maximum_channel_ = -1;
-std::vector<int32_t> wze::audio::channels_ = {};
-std::vector<std::shared_ptr<wze::speaker>> wze::audio::speakers_ = {};
+int32_t wze::audio::_maximum_channel = -1;
+std::vector<int32_t> wze::audio::_channels = {};
+std::vector<std::shared_ptr<wze::speaker>> wze::audio::_speakers = {};

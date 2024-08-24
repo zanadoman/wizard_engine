@@ -27,10 +27,10 @@
 #include <wizard_engine/exception.hpp>
 
 wze::exception::exception(std::string const& what) {
-    what_ = what;
+    _what = what;
     engine::log(this->what(), LOG_LEVEL_ERROR);
 }
 
 char const* wze::exception::what() const noexcept {
-    return what_.c_str();
+    return _what.c_str();
 }
