@@ -259,7 +259,7 @@ void wze::speaker::stop(uint16_t fade_out) {
 
 // NOLINTNEXTLINE(readability-make-member-function-const)
 void wze::speaker::align_panning() {
-    constexpr uint16_t turn = 360;
+    constexpr uint16_t circle = 360;
     constexpr uint16_t top = 270;
     constexpr uint16_t bottom = 90;
 
@@ -277,9 +277,9 @@ void wze::speaker::align_panning() {
     distance = math::length(x_distance, y_distance);
     angle = (int32_t)roundf(math::to_degrees(
                 math::angle(x_distance, y_distance) - camera::angle())) %
-            turn;
+            circle;
     if (angle < 0) {
-        angle += turn;
+        angle += circle;
     }
 
     if (range() <= distance || z_ratio <= 0) {

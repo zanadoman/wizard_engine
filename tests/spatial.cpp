@@ -42,8 +42,8 @@ wze_main("Wizard Engine - Spatial", 1920, 1080) {
             wze::math::random(-sprite_spread, sprite_spread),
             wze::math::random(-sprite_spread, sprite_spread),
             wze::math::random(-sprite_spread, sprite_spread),
-            wze::math::to_radians(wze::math::random(0, circle)), sprite_size,
-            sprite_size, true, texture);
+            wze::math::to_radians(wze::math::random<float>(0, circle)),
+            sprite_size, sprite_size, true, texture);
     }
 
     speaker = wze::speaker(wze::assets::load_sound("./assets/tests/sound.wav"),

@@ -31,45 +31,23 @@ namespace wze {
  * @brief Subsystem to handle 2D geometry and unit conversions.
  */
 class math final {
-  private:
-    static std::mt19937_64 _mt19937_64;
-
+  public:
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Private default constructor to prevent instantiation.
+     * @brief Deleted default constructor to prevent instantiation.
      */
-    math() = default;
+    math() = delete;
 
-  public:
     /**
      * @file math.hpp
      * @author Zana Domán
      * @brief Single precision epsilon.
      */
     [[nodiscard]] static constexpr float epsilon() {
-        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
-        return .01;
+        constexpr float epsilon = .01;
+        return epsilon;
     }
-
-    /**
-     * @file math.hpp
-     * @author Zana Domán
-     * @brief Single precision PI.
-     */
-    [[nodiscard]] static constexpr float pi() {
-        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
-        return 3.1415927;
-    }
-
-#ifdef __WIZARD_ENGINE_INTERNAL__
-    /**
-     * @file math.hpp
-     * @author Zana Domán
-     * @brief Initializes the math subsystem.
-     */
-    static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL__ */
 
     /**
      * @file math.hpp
@@ -91,13 +69,18 @@ class math final {
      * @file math.hpp
      * @author Zana Domán
      * @brief Returns a random real value from an interval.
+     * @param T Real type.
      * @param minimum Minimum inclusive value of the interval.
      * @param maximum Maximum inclusive value of the interval.
      * @return Random real value from the interval.
      */
-    [[nodiscard]] static float
-    random(float minimum = -std::numeric_limits<float>::max(),
-           float maximum = std::numeric_limits<float>::max());
+    template <typename T>
+    [[nodiscard]] static
+        typename std::enable_if_t<std::is_floating_point_v<T>, T>
+        random(T minimum = -std::numeric_limits<T>::max(),
+               T maximum = std::numeric_limits<T>::max()) {
+        return std::uniform_real_distribution<T>(minimum, maximum)(_mt19937_64);
+    }
 
     /**
      * @file math.hpp
@@ -221,8 +204,8 @@ class math final {
      * @return Angle in radians.
      */
     [[nodiscard]] static constexpr float to_radians(float degrees) {
-        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
-        return degrees * pi() / 180;
+        constexpr float half_circle = 180;
+        return degrees * (float)M_PI / half_circle;
     }
 
     /**
@@ -233,9 +216,12 @@ class math final {
      * @return Angle in degrees.
      */
     [[nodiscard]] static constexpr float to_degrees(float radians) {
-        // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
-        return radians * 180 / pi();
+        constexpr float half_circle = 180;
+        return radians * half_circle / (float)M_PI;
     }
+
+  private:
+    static std::mt19937_64 _mt19937_64;
 };
 } /* namespace wze */
 

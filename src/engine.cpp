@@ -142,7 +142,6 @@ void wze::engine::initialize(std::string const& title, uint16_t width,
     }
 
     _events = {};
-    math::initialize();
     window::initialize(title, width, height);
     camera::initialize();
     renderer::initialize();
