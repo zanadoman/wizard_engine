@@ -54,7 +54,7 @@ endif()
 
 # Libraries
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/${CMAKE_SYSTEM_PROCESSOR}-linux/lib*.so.*)
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/${CMAKE_SYSTEM_PROCESSOR}-linux/lib*.so*)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/lib*.dll)
     file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
