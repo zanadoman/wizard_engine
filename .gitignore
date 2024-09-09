@@ -1,6 +1,6 @@
-.cache/
-/.vscode/
 /build/
+.cache/
 /Cargo.lock
 /target/
 *.vim
+/.vscode/
