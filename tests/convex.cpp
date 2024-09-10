@@ -39,7 +39,7 @@ extract_image(std::shared_ptr<wze::image> const& image) {
         for (j = 0; j != image->h; ++j) {
             // NOLINTNEXTLINE(bugprone-implicit-widening-of-multiplication-result,cppcoreguidelines-pro-bounds-pointer-arithmetic)
             if ((bool)static_cast<uint8_t*>(
-                    image->pixels)[(i + j * image->h) * 4]) {
+                    image->pixels)[(i + j * image->h) * 4 + 3]) {
                 extracted.emplace_back(i - half_width, j - half_height);
             }
         }
@@ -89,27 +89,26 @@ create_convex_hull(std::vector<std::pair<float, float>> const& points) {
 }
 
 wze_main("Wizard Engine - Spatial", 1920, 1080) {
-    std::shared_ptr<wze::image> image;
     std::vector<std::pair<float, float>> extracted_image;
     std::vector<std::pair<float, float>> convex_hull;
     std::shared_ptr<wze::texture> texture;
     std::vector<wze::sprite> sprites;
 
-    image = wze::assets::load_image("./assets/wizard_engine/icon.png");
-    extracted_image = extract_image(image);
+    extracted_image = extract_image(
+        wze::assets::load_image("./assets/wizard_engine/logo.png"));
     convex_hull = create_convex_hull(extracted_image);
 
     texture = wze::assets::create_texture(
         wze::assets::load_image("./assets/tests/image.png"));
     std::for_each(extracted_image.begin(), extracted_image.end(),
                   [&](std::pair<float, float> const& pixel) {
-                      sprites.emplace_back(pixel.first * 4, pixel.second * 4, 0,
-                                           0, 4, 4, false, texture);
+                      sprites.emplace_back(pixel.first * 2, pixel.second * 2, 0,
+                                           0, 2, 2, false, texture);
                   });
     std::for_each(convex_hull.begin(), convex_hull.end(),
                   [&](std::pair<float, float> const& pixel) {
                       sprites.emplace_back(
-                          pixel.first * 4, pixel.second * 4, 0, 0, 4, 4, false,
+                          pixel.first * 2, pixel.second * 2, 0, 0, 4, 4, false,
                           texture, std::numeric_limits<uint8_t>::max(), 0, 0);
                   });
 
