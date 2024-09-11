@@ -52,6 +52,16 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán
+     * @brief Single precision PI.
+     */
+    [[nodiscard]] static constexpr float pi() {
+        constexpr float pi = 3.1415927;
+        return pi;
+    }
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán
      * @brief Returns a random integer value from an interval.
      * @param T Integral type.
      * @param minimum Minimum inclusive value of the interval.
@@ -205,7 +215,7 @@ class math final {
      */
     [[nodiscard]] static constexpr float to_radians(float degrees) {
         constexpr float half_circle = 180;
-        return degrees * (float)M_PI / half_circle;
+        return degrees * pi() / half_circle;
     }
 
     /**
@@ -217,7 +227,7 @@ class math final {
      */
     [[nodiscard]] static constexpr float to_degrees(float radians) {
         constexpr float half_circle = 180;
-        return radians * half_circle / (float)M_PI;
+        return radians * half_circle / pi();
     }
 
   private:
