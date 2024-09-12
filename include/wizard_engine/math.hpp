@@ -58,52 +58,28 @@ class math final {
         constexpr float pi = 3.1415927;
         return pi;
     }
-
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Returns a random integer value from an interval.
-     * @param T Integral type.
-     * @param minimum Minimum inclusive value of the interval.
-     * @param maximum Maximum inclusive value of the interval.
-     * @return Random integer value from the interval.
+     * @brief Converts degrees to radians.
+     * @param degrees Angle in degrees.
+     * @return Angle in radians.
      */
-    template <typename T>
-    [[nodiscard]] static typename std::enable_if_t<std::is_integral_v<T>, T>
-    random(T minimum = std::numeric_limits<T>::min(),
-           T maximum = std::numeric_limits<T>::max()) {
-        return std::uniform_int_distribution<T>(minimum, maximum)(_mt19937_64);
+    [[nodiscard]] static constexpr float to_radians(float degrees) {
+        constexpr float half_circle = 180;
+        return degrees * pi() / half_circle;
     }
 
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Returns a random real value from an interval.
-     * @param T Real type.
-     * @param minimum Minimum inclusive value of the interval.
-     * @param maximum Maximum inclusive value of the interval.
-     * @return Random real value from the interval.
+     * @brief Converts radians to degrees.
+     * @param radians Angle in radians.
+     * @return Angle in degrees.
      */
-    template <typename T>
-    [[nodiscard]] static
-        typename std::enable_if_t<std::is_floating_point_v<T>, T>
-        random(T minimum = -std::numeric_limits<T>::max(),
-               T maximum = std::numeric_limits<T>::max()) {
-        return std::uniform_real_distribution<T>(minimum, maximum)(_mt19937_64);
-    }
-
-    /**
-     * @file math.hpp
-     * @author Zana Domán
-     * @brief Returns a random boolean value.
-     * @param T Boolean type.
-     * @param probability Probability of a true value.
-     * @return Random boolean value.
-     */
-    template <typename T>
-    [[nodiscard]] static typename std::enable_if_t<std::is_same_v<T, bool>, T>
-    random(float probability = (float)true / 2) {
-        return std::bernoulli_distribution((double)probability)(_mt19937_64);
+    [[nodiscard]] static constexpr float to_degrees(float radians) {
+        constexpr float half_circle = 180;
+        return radians * half_circle / pi();
     }
 
     /**
@@ -209,25 +185,48 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Converts degrees to radians.
-     * @param degrees Angle in degrees.
-     * @return Angle in radians.
+     * @brief Returns a random integer value from an interval.
+     * @param T Integral type.
+     * @param minimum Minimum inclusive value of the interval.
+     * @param maximum Maximum inclusive value of the interval.
+     * @return Random integer value from the interval.
      */
-    [[nodiscard]] static constexpr float to_radians(float degrees) {
-        constexpr float half_circle = 180;
-        return degrees * pi() / half_circle;
+    template <typename T>
+    [[nodiscard]] static typename std::enable_if_t<std::is_integral_v<T>, T>
+    random(T minimum = std::numeric_limits<T>::min(),
+           T maximum = std::numeric_limits<T>::max()) {
+        return std::uniform_int_distribution<T>(minimum, maximum)(_mt19937_64);
     }
 
     /**
      * @file math.hpp
      * @author Zana Domán
-     * @brief Converts radians to degrees.
-     * @param radians Angle in radians.
-     * @return Angle in degrees.
+     * @brief Returns a random real value from an interval.
+     * @param T Real type.
+     * @param minimum Minimum inclusive value of the interval.
+     * @param maximum Maximum inclusive value of the interval.
+     * @return Random real value from the interval.
      */
-    [[nodiscard]] static constexpr float to_degrees(float radians) {
-        constexpr float half_circle = 180;
-        return radians * half_circle / pi();
+    template <typename T>
+    [[nodiscard]] static
+        typename std::enable_if_t<std::is_floating_point_v<T>, T>
+        random(T minimum = -std::numeric_limits<T>::max(),
+               T maximum = std::numeric_limits<T>::max()) {
+        return std::uniform_real_distribution<T>(minimum, maximum)(_mt19937_64);
+    }
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán
+     * @brief Returns a random boolean value.
+     * @param T Boolean type.
+     * @param probability Probability of a true value.
+     * @return Random boolean value.
+     */
+    template <typename T>
+    [[nodiscard]] static typename std::enable_if_t<std::is_same_v<T, bool>, T>
+    random(float probability = (float)true / 2) {
+        return std::bernoulli_distribution((double)probability)(_mt19937_64);
     }
 
   private:
