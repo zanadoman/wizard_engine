@@ -109,6 +109,19 @@ class math final {
     /**
      * @file math.hpp
      * @author Zana Domán
+     * @brief Returns the normal vector of a vector.
+     * @param x X component of the vector.
+     * @param y Y component of the vector.
+     * @return Normal vector of the vector.
+     */
+    [[nodiscard]] static constexpr std::pair<float, float> normal(float x,
+                                                                  float y) {
+        return {y, -x};
+    }
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán
      * @brief Returns the length of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -125,6 +138,16 @@ class math final {
      * @return Angle of the vector.
      */
     [[nodiscard]] static float angle(float x, float y);
+
+    /**
+     * @file math.hpp
+     * @author Zana Domán, Gunics Roland
+     * @brief Normalizes a vector.
+     * @param x X component of the vector.
+     * @param y Y component of the vector.
+     * @return Normalized vector.
+     */
+    [[nodiscard]] static std::pair<float, float> normalize(float x, float y);
 
     /**
      * @file math.hpp
@@ -145,29 +168,6 @@ class math final {
      * @return Moved y component of the vector.
      */
     [[nodiscard]] static float move_y(float length, float angle);
-
-    /**
-     * @file math.hpp
-     * @author Zana Domán
-     * @brief Returns the normal vector of a vector.
-     * @param x X component of the vector.
-     * @param y Y component of the vector.
-     * @return Normal vector of the vector.
-     */
-    [[nodiscard]] static constexpr std::pair<float, float> normal(float x,
-                                                                  float y) {
-        return {y, -x};
-    }
-
-    /**
-     * @file math.hpp
-     * @author Zana Domán, Gunics Roland
-     * @brief Normalizes a vector.
-     * @param x X component of the vector.
-     * @param y Y component of the vector.
-     * @return Normalized vector.
-     */
-    [[nodiscard]] static std::pair<float, float> normalize(float x, float y);
 
     /**
      * @file math.hpp

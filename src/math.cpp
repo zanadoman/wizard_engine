@@ -34,14 +34,6 @@ float wze::math::angle(float x, float y) {
                : 0;
 }
 
-float wze::math::move_x(float length, float angle) {
-    return length * cosf(angle);
-}
-
-float wze::math::move_y(float length, float angle) {
-    return length * sinf(angle);
-}
-
 std::pair<float, float> wze::math::normalize(float x, float y) {
     float length;
 
@@ -51,6 +43,14 @@ std::pair<float, float> wze::math::normalize(float x, float y) {
     }
 
     return {0, 0};
+}
+
+float wze::math::move_x(float length, float angle) {
+    return length * cosf(angle);
+}
+
+float wze::math::move_y(float length, float angle) {
+    return length * sinf(angle);
 }
 
 std::array<float, 4> wze::math::transformation_matrix(float angle,
