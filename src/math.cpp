@@ -29,9 +29,17 @@ float wze::math::length(float x, float y) {
 }
 
 float wze::math::angle(float x, float y) {
-    return (bool)x || (bool)y
-               ? acosf(x / length(x, y)) * (float)(y < 0 ? -1 : 1)
-               : 0;
+    float angle;
+
+    angle = 0;
+    if ((bool)x || (bool)y) {
+        angle = acosf(x / length(x, y));
+        if (y < 0) {
+            angle *= -1;
+        }
+    }
+
+    return angle;
 }
 
 std::pair<float, float> wze::math::normalize(float x, float y) {
