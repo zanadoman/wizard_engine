@@ -51,6 +51,11 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
 else()
     add_library(${PROJECT_NAME} SHARED ${SOURCES})
 endif()
+if(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                       COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}>
+                       ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/arm64-v8a/)
+endif()
 
 # Libraries
 if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
@@ -65,7 +70,6 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(LIBRARIES SDL2 SDL2_image SDL2_mixer SDL2_ttf SDL2_net freetype)
 endif()
-
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES})
 
 # Flags
