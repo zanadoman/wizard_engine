@@ -100,6 +100,7 @@ endforeach()
 
 # Assets
 if(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    file(REMOVE_RECURSE ${CMAKE_SOURCE_DIR}/android/app/src/main/assets/assets/)
     file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION
          ${CMAKE_SOURCE_DIR}/android/app/src/main/assets/)
 else()
