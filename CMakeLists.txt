@@ -116,4 +116,12 @@ if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Emscripten)
     else()
         message(AUTHOR_WARNING "TEST not defined, skipping test.")
     endif()
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
+        add_custom_command(TARGET ${TEST} POST_BUILD
+                           COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TEST}>
+                           ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/arm64-v8a/${CMAKE_SHARED_LIBRARY_PREFIX}main${CMAKE_SHARED_LIBRARY_SUFFIX})
+    else()
+        message(FATAL_ERROR "TEST not defined, CMake will exit.")
+    endif()
 endif()
