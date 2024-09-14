@@ -99,7 +99,12 @@ foreach(SOURCE ${SOURCES})
 endforeach()
 
 # Assets
-file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
+if(${CMAKE_SYSTEM_NAME} STREQUAL Android)
+    file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION
+         ${CMAKE_SOURCE_DIR}/android/app/src/main/assets/)
+else()
+    file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
+endif()
 
 # Test
 if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Emscripten)
