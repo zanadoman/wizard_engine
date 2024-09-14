@@ -40,7 +40,6 @@ template <typename outgoing, typename incoming,
               sizeof(incoming) <= std::numeric_limits<int32_t>::max()>>
 class udp_socket final {
   private:
-    // wze::ipv4 _ipv4;
     std::shared_ptr<_UDPsocket> _socket;
     UDPpacket _outgoing;
     UDPpacket _incoming;
