@@ -40,7 +40,7 @@ template <typename outgoing, typename incoming,
               sizeof(incoming) <= std::numeric_limits<int32_t>::max()>>
 class udp_socket final {
   private:
-    wze::ipv4 _ipv4;
+    // wze::ipv4 _ipv4;
     std::shared_ptr<_UDPsocket> _socket;
     UDPpacket _outgoing;
     UDPpacket _incoming;
@@ -52,8 +52,8 @@ class udp_socket final {
      * @brief Returns the IPv4 address of the server.
      * @return IPv4 address of the server.
      */
-    [[nodiscard]] wze::ipv4 const& ipv4() {
-        return _ipv4;
+    [[nodiscard]] wze::ipv4 ipv4() {
+        return *SDLNet_UDP_GetPeerAddress(_socket.get(), -1);
     }
 
     /**
@@ -67,7 +67,6 @@ class udp_socket final {
         if (ipv4.host == INADDR_ANY || ipv4.host == INADDR_NONE) {
             throw exception("Invalid IPv4 address");
         }
-        _ipv4 = ipv4;
         _socket = {SDLNet_UDP_Open(0), SDLNet_UDP_Close};
         if (!_socket) {
             throw exception(SDLNet_GetError());
