@@ -1,6 +1,7 @@
-/build/
+*.vim
 .cache/
+.vscode/
+/android/app/src/main/jniLibs/arm64-v8a/libwizard_engine.so
+/build/
 /Cargo.lock
 /target/
-*.vim
-.vscode/
