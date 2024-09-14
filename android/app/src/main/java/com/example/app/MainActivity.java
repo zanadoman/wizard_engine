@@ -9,8 +9,8 @@ public class MainActivity extends SDLActivity {
                 "SDL2",
                 "SDL2_image",
                 "SDL2_mixer",
-                "SDL2_ttf",
                 "SDL2_net",
+                "SDL2_ttf",
                 "wizard_engine",
                 "main"
         };
