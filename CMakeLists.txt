@@ -53,7 +53,8 @@ else()
 endif()
 if(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                       COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}>
+                       COMMAND ${CMAKE_COMMAND} -E copy
+                       ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}
                        ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/arm64-v8a/)
 endif()
 
