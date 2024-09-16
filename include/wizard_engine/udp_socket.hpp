@@ -70,10 +70,8 @@ class udp_socket final {
         if (!_socket) {
             throw exception(SDLNet_GetError());
         }
-        _outgoing = {-1, nullptr,     sizeof(outgoing), sizeof(outgoing),
-                     0,  this->ipv4()};
-        _incoming = {-1, nullptr,     sizeof(incoming), sizeof(incoming),
-                     0,  this->ipv4()};
+        _outgoing = {-1, nullptr, sizeof(outgoing), sizeof(outgoing), 0, ipv4};
+        _incoming = {-1, nullptr, sizeof(incoming), sizeof(incoming), 0, ipv4};
     }
 
     /**

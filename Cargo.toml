@@ -22,3 +22,7 @@ path = "./srv/tcp.rs"
 [[bin]]
 name = "udp"
 path = "./srv/udp.rs"
+
+[[bin]]
+name = "server"
+path = "./srv/server.rs"
