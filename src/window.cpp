@@ -76,5 +76,5 @@ void wze::window::initialize(std::string const& title, uint16_t width,
     }
     _width = width;
     _height = height;
-    set_icon(assets::load_image("./assets/wizard_engine/icon.png"));
+    set_icon(assets::load_image("assets/wizard_engine/icon.png"));
 }

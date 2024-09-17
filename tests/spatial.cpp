@@ -35,7 +35,7 @@ wze_main("Wizard Engine - Spatial", 1920, 1080) {
     wze::speaker speaker;
 
     texture = wze::assets::create_texture(
-        wze::assets::load_image("./assets/wizard_engine/icon.png"));
+        wze::assets::load_image("assets/wizard_engine/icon.png"));
 
     for (i = 0; i != sprite_count; ++i) {
         sprites.emplace_back(
@@ -46,7 +46,7 @@ wze_main("Wizard Engine - Spatial", 1920, 1080) {
             sprite_size, sprite_size, true, texture);
     }
 
-    speaker = wze::speaker(wze::assets::load_sound("./assets/tests/sound.wav"),
+    speaker = wze::speaker(wze::assets::load_sound("assets/tests/sound.wav"),
                            std::numeric_limits<int8_t>::max(),
                            std::numeric_limits<uint16_t>::max(), true,
                            std::numeric_limits<int16_t>::max(), 0, 0, true);

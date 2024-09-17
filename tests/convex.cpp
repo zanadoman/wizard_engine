@@ -95,11 +95,11 @@ wze_main("Wizard Engine - Spatial", 1920, 1080) {
     std::vector<wze::sprite> sprites;
 
     extracted_image = extract_image(
-        wze::assets::load_image("./assets/wizard_engine/logo.png"));
+        wze::assets::load_image("assets/wizard_engine/logo.png"));
     convex_hull = create_convex_hull(extracted_image);
 
     texture = wze::assets::create_texture(
-        wze::assets::load_image("./assets/tests/image.png"));
+        wze::assets::load_image("assets/tests/image.png"));
     std::for_each(extracted_image.begin(), extracted_image.end(),
                   [&](std::pair<float, float> const& pixel) {
                       sprites.emplace_back(pixel.first, pixel.second, 0, 0, 1,

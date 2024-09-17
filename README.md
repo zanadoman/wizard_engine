@@ -1,1 +1,1 @@
-![Wizard Engine](./assets/wizard_engine/logo.png)
+![Wizard Engine](/assets/wizard_engine/logo.png)
