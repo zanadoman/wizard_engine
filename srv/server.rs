@@ -23,8 +23,8 @@ use anyhow::Error;
 use std::{
     collections::HashMap,
     env::args,
-    hash::{DefaultHasher, Hash, Hasher},
-    net::SocketAddr,
+    mem::size_of,
+    net::{SocketAddr, SocketAddrV4},
     sync::{Arc, OnceLock},
 };
 use tokio::{
@@ -40,103 +40,154 @@ use tokio::{
 use zerocopy::{AsBytes, FromBytes, FromZeroes};
 
 const DEFAULT_PORT: u16 = 8080;
-const BUFFER_SIZE: usize = 1024;
 const TIMEOUT: Duration = Duration::from_secs(10);
 
-fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
-    static CLIENTS: OnceLock<RwLock<HashMap<SocketAddr, Instant>>> =
+fn players() -> &'static RwLock<HashMap<SocketAddrV4, Player>> {
+    static PLAYERS: OnceLock<RwLock<HashMap<SocketAddrV4, Player>>> =
         OnceLock::new();
-    CLIENTS.get_or_init(|| RwLock::new(HashMap::new()))
+    PLAYERS.get_or_init(|| RwLock::new(HashMap::default()))
 }
 
 #[repr(C)]
-#[derive(Clone, AsBytes, FromBytes, FromZeroes)]
+#[derive(PartialEq, Copy, Clone, AsBytes, FromBytes, FromZeroes)]
+struct ID(u64);
+
+impl Default for ID {
+    fn default() -> Self {
+        Self(u64::default())
+    }
+}
+
+impl From<&SocketAddrV4> for ID {
+    fn from(address: &SocketAddrV4) -> Self {
+        Self(
+            (address.ip().octets()[0] as u64) << 40
+                | (address.ip().octets()[1] as u64) << 32
+                | (address.ip().octets()[2] as u64) << 24
+                | (address.ip().octets()[3] as u64) << 16
+                | (address.port() as u64),
+        )
+    }
+}
+
+#[derive(Copy, Clone)]
+struct Player {
+    id: ID,
+    time: Instant,
+    x: f32,
+    y: f32,
+}
+
+impl Player {
+    fn update(&mut self, incoming: &Incoming) {
+        self.time = Instant::now();
+        self.x = incoming.x;
+        self.y = incoming.y;
+    }
+}
+
+impl From<(&SocketAddrV4, &Incoming)> for Player {
+    fn from((address, incoming): (&SocketAddrV4, &Incoming)) -> Self {
+        Self {
+            id: ID::from(address),
+            time: Instant::now(),
+            x: incoming.x,
+            y: incoming.y,
+        }
+    }
+}
+
+#[repr(C)]
+#[derive(Copy, Clone, AsBytes, FromBytes, FromZeroes)]
 struct Incoming {
     x: f32,
     y: f32,
 }
 
 #[repr(C)]
-#[derive(Clone, AsBytes, FromBytes, FromZeroes)]
+#[derive(Copy, Clone, AsBytes, FromBytes, FromZeroes)]
 struct Outgoing {
-    id: u64,
+    id: ID,
     x: f32,
     y: f32,
 }
 
-async fn input(
-    socket: Arc<UdpSocket>,
-    transmitter: Sender<(SocketAddr, (f32, f32))>,
-) -> Result<(), Error> {
-    let mut buffer = [0; BUFFER_SIZE];
+impl From<&Player> for Outgoing {
+    fn from(player: &Player) -> Self {
+        Self {
+            id: player.id,
+            x: player.x,
+            y: player.y,
+        }
+    }
+}
 
+async fn receiver(
+    socket: &Arc<UdpSocket>,
+    sender: &Sender<Player>,
+) -> Result<(), Error> {
+    let mut buffer = [0; size_of::<Incoming>()];
     loop {
-        let (sender, incoming) = match socket.recv_from(&mut buffer).await {
-            Ok((size, address)) => (
-                address,
-                match Incoming::read_from(&buffer[..size]) {
-                    Some(payload) => payload,
-                    None => {
-                        eprintln!("Invalid data from {}", address);
-                        continue;
-                    }
-                },
-            ),
+        let (size, address) = match socket.recv_from(&mut buffer).await {
+            Ok(message) => message,
             Err(error) => {
                 eprintln!("{}", error);
                 continue;
             }
         };
-        clients()
+        let address = match address {
+            SocketAddr::V4(address) => address,
+            SocketAddr::V6(address) => {
+                eprintln!("Invalid address from [{}]", address);
+                continue;
+            }
+        };
+        let incoming = match Incoming::read_from(&buffer[..size]) {
+            Some(incoming) => incoming,
+            None => {
+                eprintln!("Invalid data from [{}]", address);
+                continue;
+            }
+        };
+        let player = *players()
             .write()
             .await
-            .entry(sender)
-            .and_modify(|timestamp| {
-                println!("Client {} updated", sender);
-                *timestamp = Instant::now()
-            })
+            .entry(address)
+            .and_modify(|player| player.update(&incoming))
             .or_insert_with(|| {
-                println!("Client {} connected", sender);
-                Instant::now()
+                println!("Player [{}] connected", address);
+                Player::from((&address, &incoming))
             });
-        println!("{}: x: {}, y: {}", sender, incoming.x, incoming.y);
-        if let Err(error) = transmitter.send((sender, (incoming.x, incoming.y)))
-        {
+        if let Err(error) = sender.send(player) {
             eprintln!("{}", error)
         }
     }
 }
 
-async fn output(
-    socket: Arc<UdpSocket>,
-    mut receiver: Receiver<(SocketAddr, (f32, f32))>,
+async fn sender(
+    socket: &Arc<UdpSocket>,
+    mut receiver: Receiver<Player>,
 ) -> Result<(), Error> {
     loop {
-        let (sender, outgoing) = match receiver.recv().await {
-            Ok(outgoing) => {
-                let mut hasher = DefaultHasher::new();
-                outgoing.0.hash(&mut hasher);
-                (
-                    outgoing.0,
-                    Outgoing {
-                        id: hasher.finish(),
-                        x: outgoing.1 .0,
-                        y: outgoing.1 .1,
-                    },
-                )
-            }
+        let player = match receiver.recv().await {
+            Ok(player) => player,
             Err(error) => {
                 eprintln!("{}", error);
                 continue;
             }
         };
-        for (address, _) in clients().read().await.iter() {
-            if sender != *address {
-                if let Err(error) =
-                    socket.send_to(&outgoing.as_bytes(), address).await
-                {
-                    eprintln!("{}", error)
-                }
+        let mut outgoing = Outgoing::from(&player);
+        for (address, player) in players().read().await.iter() {
+            if outgoing.id == player.id {
+                outgoing.id = ID::default()
+            }
+            if let Err(error) =
+                socket.send_to(&outgoing.as_bytes(), address).await
+            {
+                eprintln!("{}", error)
+            }
+            if outgoing.id == ID::default() {
+                outgoing.id = player.id
             }
         }
     }
@@ -145,10 +196,10 @@ async fn output(
 async fn timeout() -> Result<(), Error> {
     loop {
         sleep(Duration::from_secs(1)).await;
-        clients().write().await.retain(|address, timestamp| {
-            let alive = Instant::now().duration_since(*timestamp) < TIMEOUT;
+        players().write().await.retain(|address, player| {
+            let alive = Instant::now().duration_since(player.time) < TIMEOUT;
             if !alive {
-                println!("Client {} disconnected", address)
+                println!("Player [{}] disconnected", address)
             }
             alive
         })
@@ -164,13 +215,13 @@ async fn main() -> Result<(), Error> {
         ))
         .await?,
     );
-    let transmitter = channel(u8::MAX.into()).0;
+    let channel = channel(u8::MAX.into()).0;
 
     println!("Listening on {:?}", socket.local_addr()?);
 
     try_join!(
-        input(socket.clone(), transmitter.clone()),
-        output(socket.clone(), transmitter.subscribe()),
+        receiver(&socket, &channel),
+        sender(&socket, channel.subscribe()),
         timeout()
     )?;
     Ok(())

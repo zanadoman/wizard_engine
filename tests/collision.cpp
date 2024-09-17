@@ -46,7 +46,7 @@ class wizard final : private wze::collider {
             wze::assets::create_texture(
                 wze::assets::load_image("assets/tests/image.png"));
 
-        sprite_ = std::make_shared<wze::sprite>(
+        _sprite = std::make_shared<wze::sprite>(
             0, 0, 0, 0, sprite_size, sprite_size, false, texture,
             wze::math::random<uint8_t>(std::numeric_limits<uint8_t>::max() / 4,
                                        std::numeric_limits<uint8_t>::max()),
@@ -54,23 +54,23 @@ class wizard final : private wze::collider {
                                        std::numeric_limits<uint8_t>::max()),
             wze::math::random<uint8_t>(std::numeric_limits<uint8_t>::max() / 4,
                                        std::numeric_limits<uint8_t>::max()));
-        forward_ = forward;
-        backward_ = backward;
-        right_ = right;
-        left_ = left;
-        components().push_back(sprite_);
+        _forward = forward;
+        _backward = backward;
+        _right = right;
+        _left = left;
+        components().push_back(_sprite);
         recompose();
     }
 
     void update() {
-        if (wze::input::key(forward_) && !wze::input::key(backward_)) {
+        if (wze::input::key(_forward) && !wze::input::key(_backward)) {
             set_x(x() + wze::math::transform_x(0, -movement_speed,
                                                transformation_matrix()) *
                             wze::timer::delta_time());
             set_y(y() + wze::math::transform_y(0, -movement_speed,
                                                transformation_matrix()) *
                             wze::timer::delta_time());
-        } else if (wze::input::key(backward_) && !wze::input::key(forward_)) {
+        } else if (wze::input::key(_backward) && !wze::input::key(_forward)) {
             set_x(x() + wze::math::transform_x(0, movement_speed,
                                                transformation_matrix()) *
                             wze::timer::delta_time());
@@ -78,19 +78,19 @@ class wizard final : private wze::collider {
                                                transformation_matrix()) *
                             wze::timer::delta_time());
         }
-        if (wze::input::key(right_) && !wze::input::key(left_)) {
+        if (wze::input::key(_right) && !wze::input::key(_left)) {
             set_angle(angle() + rotation_speed * wze::timer::delta_time());
-        } else if (wze::input::key(left_) && !wze::input::key(right_)) {
+        } else if (wze::input::key(_left) && !wze::input::key(_right)) {
             set_angle(angle() - rotation_speed * wze::timer::delta_time());
         }
     }
 
   private:
-    std::shared_ptr<wze::sprite> sprite_;
-    wze::key forward_;
-    wze::key backward_;
-    wze::key right_;
-    wze::key left_;
+    std::shared_ptr<wze::sprite> _sprite;
+    wze::key _forward;
+    wze::key _backward;
+    wze::key _right;
+    wze::key _left;
 };
 
 wze_main("Wizard Engine - Collision", 1920, 1080) {

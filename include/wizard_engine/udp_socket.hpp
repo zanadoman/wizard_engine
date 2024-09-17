@@ -82,7 +82,7 @@ class udp_socket final {
      * @param buffer Data buffer.
      * @warning If data cannot be sent, throws wze::exception.
      */
-    void send(outgoing& buffer) {
+    void send(outgoing const& buffer) {
         _outgoing.data = (uint8_t*)&buffer;
         if (!(bool)SDLNet_UDP_Send(_socket.get(), -1, &_outgoing)) {
             throw exception(SDLNet_GetError());
