@@ -25,7 +25,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
         message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
     endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
-    if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL aarch64)
+    if(NOT ${CMAKE_SYSTEM_PROCESSOR} MATCHES x86|x86_64|armv7|aarch64)
         message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
     endif()
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
@@ -55,7 +55,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                        COMMAND ${CMAKE_COMMAND} -E copy
                        ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}
-                       ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/arm64-v8a/)
+                       ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/${CMAKE_ANDROID_ARCH_ABI}/)
 endif()
 
 # Libraries
@@ -67,7 +67,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2*.dll)
     file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/arm64-v8a/libSDL2*.so)
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/${CMAKE_ANDROID_ARCH_ABI}/libSDL2*.so)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(LIBRARIES SDL2 SDL2_image SDL2_mixer SDL2_ttf SDL2_net freetype)
 endif()
@@ -128,7 +128,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
         add_custom_command(TARGET ${TEST} POST_BUILD
                            COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TEST}>
-                           ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/arm64-v8a/${CMAKE_SHARED_LIBRARY_PREFIX}main${CMAKE_SHARED_LIBRARY_SUFFIX})
+                           ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/${CMAKE_ANDROID_ARCH_ABI}/${CMAKE_SHARED_LIBRARY_PREFIX}main${CMAKE_SHARED_LIBRARY_SUFFIX})
     else()
         message(FATAL_ERROR "TEST not defined, CMake will exit.")
     endif()
