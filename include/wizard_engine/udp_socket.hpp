@@ -51,8 +51,8 @@ class udp_socket final {
      * @brief Returns the IPv4 address of the server.
      * @return IPv4 address of the server.
      */
-    [[nodiscard]] wze::ipv4 ipv4() {
-        return *SDLNet_UDP_GetPeerAddress(_socket.get(), -1);
+    [[nodiscard]] wze::ipv4 const& ipv4() {
+        return _outgoing.address;
     }
 
     /**
@@ -71,7 +71,8 @@ class udp_socket final {
             throw exception(SDLNet_GetError());
         }
         _outgoing = {-1, nullptr, sizeof(outgoing), sizeof(outgoing), 0, ipv4};
-        _incoming = {-1, nullptr, sizeof(incoming), sizeof(incoming), 0, ipv4};
+        _incoming = {-1, nullptr,         sizeof(incoming), sizeof(incoming),
+                     0,  {INADDR_NONE, 0}};
     }
 
     /**
