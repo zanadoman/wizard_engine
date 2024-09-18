@@ -20,10 +20,10 @@
 */
 
 use anyhow::Error;
+use srv::{Incoming, Outgoing, Player};
 use std::{
     collections::HashMap,
     env::args,
-    hash::{DefaultHasher, Hash, Hasher},
     mem::size_of,
     net::{SocketAddr, SocketAddrV4},
     sync::{Arc, OnceLock},
@@ -38,7 +38,7 @@ use tokio::{
     time::{sleep, Duration, Instant},
     try_join,
 };
-use zerocopy::{AsBytes, FromBytes, FromZeroes};
+use zerocopy::{AsBytes, FromBytes};
 
 const DEFAULT_PORT: u16 = 8080;
 const TIMEOUT: Duration = Duration::from_secs(10);
@@ -47,60 +47,6 @@ fn players() -> &'static RwLock<HashMap<SocketAddrV4, Player>> {
     static PLAYERS: OnceLock<RwLock<HashMap<SocketAddrV4, Player>>> =
         OnceLock::new();
     PLAYERS.get_or_init(|| RwLock::new(HashMap::default()))
-}
-
-#[derive(Copy, Clone)]
-struct Player {
-    id: u64,
-    time: Instant,
-    x: f32,
-    y: f32,
-}
-
-impl Player {
-    fn update(&mut self, incoming: &Incoming) {
-        self.time = Instant::now();
-        self.x = incoming.x;
-        self.y = incoming.y;
-    }
-}
-
-impl From<(&SocketAddrV4, &Incoming)> for Player {
-    fn from((address, incoming): (&SocketAddrV4, &Incoming)) -> Self {
-        let mut hasher = DefaultHasher::new();
-        address.hash(&mut hasher);
-        Self {
-            id: hasher.finish(),
-            time: Instant::now(),
-            x: incoming.x,
-            y: incoming.y,
-        }
-    }
-}
-
-#[repr(C)]
-#[derive(AsBytes, FromBytes, FromZeroes)]
-struct Incoming {
-    x: f32,
-    y: f32,
-}
-
-#[repr(C)]
-#[derive(AsBytes, FromBytes, FromZeroes)]
-struct Outgoing {
-    id: u64,
-    x: f32,
-    y: f32,
-}
-
-impl From<&Player> for Outgoing {
-    fn from(player: &Player) -> Self {
-        Self {
-            id: player.id,
-            x: player.x,
-            y: player.y,
-        }
-    }
 }
 
 async fn receiver(
@@ -159,13 +105,13 @@ async fn sender(
         };
         let mut outgoing = Outgoing::from(&player);
         for (address, player) in players().read().await.iter() {
-            outgoing.id = outgoing.id.wrapping_sub(player.id);
+            outgoing.set_id(&outgoing.id().wrapping_sub(player.id()));
             if let Err(error) =
                 socket.send_to(&outgoing.as_bytes(), address).await
             {
                 eprintln!("{}", error)
             }
-            outgoing.id = outgoing.id.wrapping_add(player.id);
+            outgoing.set_id(&outgoing.id().wrapping_add(player.id()));
         }
     }
 }
@@ -174,7 +120,7 @@ async fn timeout() -> Result<(), Error> {
     loop {
         sleep(Duration::from_secs(1)).await;
         players().write().await.retain(|address, player| {
-            let alive = Instant::now().duration_since(player.time) < TIMEOUT;
+            let alive = Instant::now().duration_since(player.time()) < TIMEOUT;
             if !alive {
                 println!("Player [{}] disconnected", address)
             }
