@@ -49,7 +49,7 @@
 
 #if defined(__unix__) && !defined(__ANDROID__)
 #define SDL_DISABLE_ANALYZE_MACROS
-#endif /* __linux__ */
+#endif /* defined(__unix__) && !defined(__ANDROID__) */
 
 #ifdef _WIN32
 #define SDL_MAIN_HANDLED
