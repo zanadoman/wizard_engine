@@ -47,13 +47,13 @@
 #include <utility>       /* IWYU pragma: export */
 #include <vector>        /* IWYU pragma: export */
 
+#if defined(__unix__) && !defined(__ANDROID__)
+#define SDL_DISABLE_ANALYZE_MACROS
+#endif /* __linux__ */
+
 #ifdef _WIN32
 #define SDL_MAIN_HANDLED
 #endif /* _WIN32 */
-
-#if defined(__arm__) || defined(__aarch64__)
-#define SDL_DISABLE_IMMINTRIN_H
-#endif /* defined(__arm__) || defined(__aarch64__) */
 
 #include <SDL2/SDL.h>       /* IWYU pragma: export */
 #include <SDL2/SDL_image.h> /* IWYU pragma: export */
