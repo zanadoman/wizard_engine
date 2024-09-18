@@ -23,6 +23,7 @@ use anyhow::Error;
 use std::{
     collections::HashMap,
     env::args,
+    hash::{DefaultHasher, Hash, Hasher},
     mem::size_of,
     net::{SocketAddr, SocketAddrV4},
     sync::{Arc, OnceLock},
@@ -48,31 +49,9 @@ fn players() -> &'static RwLock<HashMap<SocketAddrV4, Player>> {
     PLAYERS.get_or_init(|| RwLock::new(HashMap::default()))
 }
 
-#[repr(C)]
-#[derive(PartialEq, Copy, Clone, AsBytes, FromBytes, FromZeroes)]
-struct ID(u64);
-
-impl Default for ID {
-    fn default() -> Self {
-        Self(u64::default())
-    }
-}
-
-impl From<&SocketAddrV4> for ID {
-    fn from(address: &SocketAddrV4) -> Self {
-        Self(
-            (address.ip().octets()[0] as u64) << 40
-                | (address.ip().octets()[1] as u64) << 32
-                | (address.ip().octets()[2] as u64) << 24
-                | (address.ip().octets()[3] as u64) << 16
-                | (address.port() as u64),
-        )
-    }
-}
-
 #[derive(Copy, Clone)]
 struct Player {
-    id: ID,
+    id: u64,
     time: Instant,
     x: f32,
     y: f32,
@@ -88,8 +67,10 @@ impl Player {
 
 impl From<(&SocketAddrV4, &Incoming)> for Player {
     fn from((address, incoming): (&SocketAddrV4, &Incoming)) -> Self {
+        let mut hasher = DefaultHasher::new();
+        address.hash(&mut hasher);
         Self {
-            id: ID::from(address),
+            id: hasher.finish(),
             time: Instant::now(),
             x: incoming.x,
             y: incoming.y,
@@ -107,7 +88,7 @@ struct Incoming {
 #[repr(C)]
 #[derive(Copy, Clone, AsBytes, FromBytes, FromZeroes)]
 struct Outgoing {
-    id: ID,
+    id: u64,
     x: f32,
     y: f32,
 }
@@ -178,17 +159,13 @@ async fn sender(
         };
         let mut outgoing = Outgoing::from(&player);
         for (address, player) in players().read().await.iter() {
-            if outgoing.id == player.id {
-                outgoing.id = ID::default()
-            }
+            outgoing.id = outgoing.id.wrapping_sub(player.id);
             if let Err(error) =
                 socket.send_to(&outgoing.as_bytes(), address).await
             {
                 eprintln!("{}", error)
             }
-            if outgoing.id == ID::default() {
-                outgoing.id = player.id
-            }
+            outgoing.id = outgoing.id.wrapping_add(player.id);
         }
     }
 }

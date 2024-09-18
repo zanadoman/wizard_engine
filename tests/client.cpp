@@ -25,7 +25,7 @@ constexpr char const* server_address = "127.0.0.1";
 constexpr uint16_t server_port = 8080;
 constexpr float sprite_size = 100;
 constexpr float movement_speed = .5;
-constexpr uint64_t timeout = 1000;
+constexpr uint64_t timeout = 10000;
 
 struct incoming {
     uint64_t id;
