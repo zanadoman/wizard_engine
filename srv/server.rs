@@ -79,14 +79,14 @@ impl From<(&SocketAddrV4, &Incoming)> for Player {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone, AsBytes, FromBytes, FromZeroes)]
+#[derive(AsBytes, FromBytes, FromZeroes)]
 struct Incoming {
     x: f32,
     y: f32,
 }
 
 #[repr(C)]
-#[derive(Copy, Clone, AsBytes, FromBytes, FromZeroes)]
+#[derive(AsBytes, FromBytes, FromZeroes)]
 struct Outgoing {
     id: u64,
     x: f32,
