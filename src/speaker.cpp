@@ -306,8 +306,8 @@ void wze::speaker::align_panning() {
 
     if (!(bool)Mix_SetPanning(
             _channel,
-            (uint8_t)round(std::numeric_limits<uint8_t>::max() * left),
-            (uint8_t)round(std::numeric_limits<uint8_t>::max() * right))) {
+            (uint8_t)roundf(std::numeric_limits<uint8_t>::max() * left),
+            (uint8_t)roundf(std::numeric_limits<uint8_t>::max() * right))) {
         throw exception(Mix_GetError());
     }
 }
