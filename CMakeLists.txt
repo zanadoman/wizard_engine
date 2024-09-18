@@ -16,7 +16,7 @@ if(NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Android|Emscripten)
 endif()
 
 # Architecture
-elseif(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
+if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
     if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL x86_64)
         message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
     endif()
