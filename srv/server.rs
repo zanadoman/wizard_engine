@@ -19,8 +19,9 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+pub mod utils;
+
 use anyhow::Error;
-use srv::{Incoming, Outgoing, Player};
 use std::{
     collections::HashMap,
     env::args,
@@ -38,6 +39,7 @@ use tokio::{
     time::{sleep, Duration, Instant},
     try_join,
 };
+use utils::{Incoming, Outgoing, Player};
 use zerocopy::{AsBytes, FromBytes};
 
 const DEFAULT_PORT: u16 = 8080;
