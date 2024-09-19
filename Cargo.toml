@@ -15,10 +15,6 @@ tokio = { version = "*", features = [
 ] }
 zerocopy = { version = "*", features = ["derive"] }
 
-[lib]
-name = "srv"
-path = "srv/lib.rs"
-
 [[bin]]
 name = "tcp"
 path = "./srv/tcp.rs"
