@@ -115,6 +115,11 @@ void wze::engine::initialize(std::string const& title, uint16_t width,
         abort();
     });
 
+#ifdef __ANDROID__
+    if (!(bool)SDL_SetHint(SDL_HINT_ORIENTATIONS, "LandscapeLeft")) {
+        throw exception(SDL_GetError());
+    }
+#endif /* __ANDROID__ */
 #ifdef SDL_MAIN_HANDLED
     SDL_SetMainReady();
 #endif /* SDL_MAIN_HANDLED */
