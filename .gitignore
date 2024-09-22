@@ -1,5 +1,6 @@
 *.vim
 .cache/
+.idea/
 .vscode/
 /build/
 /Cargo.lock
