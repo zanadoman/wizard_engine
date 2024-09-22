@@ -1,7 +1,6 @@
 *.vim
 .cache/
 .vscode/
-/android/app/src/main/assets/assets/
 /android/app/src/main/jniLibs/arm64-v8a/libmain.so
 /android/app/src/main/jniLibs/arm64-v8a/libwizard_engine.so
 /android/app/src/main/jniLibs/armeabi-v7a/libmain.so
