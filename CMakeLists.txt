@@ -128,4 +128,8 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     else()
         message(FATAL_ERROR "TEST not defined, CMake will exit.")
     endif()
+    add_custom_command(TARGET ${TEST} POST_BUILD
+                       COMMAND ${CMAKE_SOURCE_DIR}/android/gradlew assembleDebug
+                       WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/android/
+                       COMMENT "Building apk ${TEST}.")
 endif()
