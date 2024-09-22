@@ -1,14 +1,6 @@
 *.vim
 .cache/
 .vscode/
-/android/app/src/main/jniLibs/arm64-v8a/libmain.so
-/android/app/src/main/jniLibs/arm64-v8a/libwizard_engine.so
-/android/app/src/main/jniLibs/armeabi-v7a/libmain.so
-/android/app/src/main/jniLibs/armeabi-v7a/libwizard_engine.so
-/android/app/src/main/jniLibs/x86/libmain.so
-/android/app/src/main/jniLibs/x86/libwizard_engine.so
-/android/app/src/main/jniLibs/x86_64/libmain.so
-/android/app/src/main/jniLibs/x86_64/libwizard_engine.so
 /build/
 /Cargo.lock
 /target/
