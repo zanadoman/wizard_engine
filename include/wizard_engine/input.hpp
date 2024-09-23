@@ -93,6 +93,10 @@ class input final {
     static void update_gesture();
 
   public:
+    static bool text_input();
+
+    static void set_text_input(bool text_input);
+
     /**
      * @file input.hpp
      * @author Zana Domán

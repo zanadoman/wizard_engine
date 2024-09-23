@@ -156,6 +156,18 @@ void wze::input::update_gesture() {
     }
 }
 
+bool wze::input::text_input() {
+    return (bool)SDL_IsTextInputActive();
+}
+
+void wze::input::set_text_input(bool text_input) {
+    if (text_input) {
+        SDL_StartTextInput();
+    } else {
+        SDL_StopTextInput();
+    }
+}
+
 uint32_t wze::input::key() {
     return _key;
 }
