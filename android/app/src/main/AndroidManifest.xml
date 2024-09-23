@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Wizard Engine"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App"
+        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
