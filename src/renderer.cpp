@@ -35,14 +35,16 @@ uint8_t wze::renderer::_background_color_r = {};
 uint8_t wze::renderer::_background_color_g = {};
 uint8_t wze::renderer::_background_color_b = {};
 std::shared_ptr<wze::texture> wze::renderer::_background_texture = {};
-std::shared_ptr<wze::texture> wze::renderer::_space = {};
+std::unique_ptr<wze::texture, void (*)(wze::texture*)> wze::renderer::_space = {
+    {}, {}};
 uint8_t wze::renderer::_space_color_r = {};
 uint8_t wze::renderer::_space_color_g = {};
 uint8_t wze::renderer::_space_color_b = {};
 uint8_t wze::renderer::_space_color_a = {};
 std::shared_ptr<wze::texture> wze::renderer::_space_texture = {};
 SDL_FRect wze::renderer::_space_area = {};
-std::shared_ptr<wze::texture> wze::renderer::_plane = {};
+std::unique_ptr<wze::texture, void (*)(wze::texture*)> wze::renderer::_plane = {
+    {}, {}};
 uint8_t wze::renderer::_plane_color_r = {};
 uint8_t wze::renderer::_plane_color_g = {};
 uint8_t wze::renderer::_plane_color_b = {};
