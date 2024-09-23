@@ -41,14 +41,14 @@ class renderer final {
     static uint8_t _background_color_g;
     static uint8_t _background_color_b;
     static std::shared_ptr<texture> _background_texture;
-    static std::unique_ptr<texture, void (*)(texture*)> _space;
+    static std::unique_ptr<texture, std::function<void(texture*)>> _space;
     static uint8_t _space_color_r;
     static uint8_t _space_color_g;
     static uint8_t _space_color_b;
     static uint8_t _space_color_a;
     static std::shared_ptr<texture> _space_texture;
     static SDL_FRect _space_area;
-    static std::unique_ptr<texture, void (*)(texture*)> _plane;
+    static std::unique_ptr<texture, std::function<void(texture*)>> _plane;
     static uint8_t _plane_color_r;
     static uint8_t _plane_color_g;
     static uint8_t _plane_color_b;
