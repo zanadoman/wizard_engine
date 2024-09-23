@@ -131,5 +131,5 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     add_custom_command(TARGET ${TEST} POST_BUILD
                        COMMAND ${CMAKE_SOURCE_DIR}/android/gradlew assembleDebug
                        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/android/
-                       COMMENT "Building apk ${TEST}.")
+                       COMMENT "Packaging test ${TEST}.")
 endif()
