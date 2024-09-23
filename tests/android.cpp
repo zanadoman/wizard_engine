@@ -23,6 +23,7 @@
 
 constexpr uint8_t frame_time = 16;
 constexpr float sprite_size = 100;
+constexpr float movement_speed = .5;
 
 wze_main("Wizard Engine - Android", 2400, 1080) {
     std::shared_ptr<wze::texture> const texture =
@@ -35,17 +36,39 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
     sprite = wze::sprite(0, 0, 0, 0, size, size, false, texture,
                          std::numeric_limits<uint8_t>::max(), 0, 0);
     wze::timer::set_frame_time(frame_time);
+    wze::input::set_text_input(true);
 
     wze_while(true) {
-        if (wze::input::fingers().size() == 1) {
-            sprite.set_x(std::clamp(
-                sprite.x() + wze::input::fingers().begin()->second.relative_x,
-                (float)wze::window::width() / -2,
-                (float)wze::window::width() / 2));
-            sprite.set_y(std::clamp(
-                sprite.y() + wze::input::fingers().begin()->second.relative_y,
-                (float)wze::window::height() / -2,
-                (float)wze::window::height() / 2));
+        switch (wze::input::key()) {
+        case 'w':
+            sprite.set_y(sprite.y() -
+                         movement_speed * wze::timer::delta_time());
+            break;
+        case 's':
+            sprite.set_y(sprite.y() +
+                         movement_speed * wze::timer::delta_time());
+            break;
+        case 'd':
+            sprite.set_x(sprite.x() +
+                         movement_speed * wze::timer::delta_time());
+            break;
+        case 'a':
+            sprite.set_x(sprite.x() -
+                         movement_speed * wze::timer::delta_time());
+            break;
+        default:
+            if (wze::input::fingers().size() == 1) {
+                sprite.set_x(std::clamp(
+                    sprite.x() +
+                        wze::input::fingers().begin()->second.relative_x,
+                    (float)wze::window::width() / -2,
+                    (float)wze::window::width() / 2));
+                sprite.set_y(std::clamp(
+                    sprite.y() +
+                        wze::input::fingers().begin()->second.relative_y,
+                    (float)wze::window::height() / -2,
+                    (float)wze::window::height() / 2));
+            }
         }
         sprites.clear();
         std::for_each(
