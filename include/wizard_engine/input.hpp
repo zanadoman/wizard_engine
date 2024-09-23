@@ -27,6 +27,21 @@
 #include <wizard_engine/export.hpp>
 
 namespace wze {
+struct finger {
+    float absolute_x;
+    float absolute_y;
+    float relative_x;
+    float relative_y;
+    uint64_t time;
+};
+
+struct gesture {
+    float x;
+    float y;
+    float length;
+    float angle;
+};
+
 /**
  * @file input.hpp
  * @author Zana Domán
@@ -42,6 +57,8 @@ class input final {
     static float _cursor_relative_x;
     static float _cursor_relative_y;
     static float _mouse_sensitivity;
+    static std::unordered_map<size_t, finger> _fingers;
+    static std::unique_ptr<gesture> _gesture;
 
     /**
      * @file input.hpp
@@ -70,6 +87,10 @@ class input final {
      * @brief Polls for cursor absolute and relative positions.
      */
     static void update_cursor();
+
+    static void update_fingers();
+
+    static void update_gesture();
 
   public:
     /**
@@ -170,6 +191,10 @@ class input final {
     static void
     set_cursor_appearance(std::unique_ptr<cursor, std::function<void(cursor*)>>
                               cursor_appearance);
+
+    static std::unordered_map<size_t, finger> const& fingers();
+
+    static std::unique_ptr<gesture> const& gesture();
 
 #ifdef __WIZARD_ENGINE_INTERNAL__
     /**

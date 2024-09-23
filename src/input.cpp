@@ -38,6 +38,8 @@ float wze::input::_cursor_absolute_y = {};
 float wze::input::_cursor_relative_x = {};
 float wze::input::_cursor_relative_y = {};
 float wze::input::_mouse_sensitivity = {};
+std::unordered_map<size_t, wze::finger> wze::input::_fingers = {};
+std::unique_ptr<wze::gesture> wze::input::_gesture = {};
 
 void wze::input::update_key() {
     std::vector<SDL_Event>::const_reverse_iterator iterator;
@@ -107,6 +109,53 @@ void wze::input::update_cursor() {
     _cursor_relative_y = (float)y * mouse_sensitivity();
 }
 
+void wze::input::update_fingers() {
+    std::vector<SDL_Event>::const_iterator iterator;
+
+    for (iterator = engine::events().begin();
+         iterator != engine::events().end(); ++iterator) {
+        // NOLINTNEXTLINE(bugprone-switch-missing-default-case)
+        switch (iterator->type) {
+        case SDL_FINGERUP:
+            _fingers.erase(iterator->tfinger.fingerId);
+            break;
+        case SDL_FINGERDOWN:
+        case SDL_FINGERMOTION:
+            finger& finger = _fingers[iterator->tfinger.fingerId];
+            std::tie(finger.absolute_x, finger.absolute_y) =
+                renderer::detransform(
+                    iterator->tfinger.x * (float)window::width(),
+                    iterator->tfinger.y * (float)window::height());
+            finger.relative_x = iterator->tfinger.dx * (float)window::width();
+            finger.relative_y = iterator->tfinger.dy * (float)window::height();
+        }
+    }
+}
+
+void wze::input::update_gesture() {
+    std::vector<SDL_Event>::const_iterator iterator;
+
+    _gesture.reset();
+    for (iterator = engine::events().begin();
+         iterator != engine::events().end(); ++iterator) {
+        if (iterator->type == SDL_MULTIGESTURE) {
+            if (!_gesture) {
+                _gesture = std::make_unique<wze::gesture>();
+            }
+            std::apply(
+                [&](float x, float y) -> void {
+                    _gesture->x = x;
+                    _gesture->y = y;
+                    _gesture->length += iterator->mgesture.dDist;
+                    _gesture->angle += iterator->mgesture.dTheta;
+                },
+                renderer::detransform(
+                    iterator->mgesture.x * (float)window::width(),
+                    iterator->mgesture.y * (float)window::height()));
+        }
+    }
+}
+
 uint32_t wze::input::key() {
     return _key;
 }
@@ -154,6 +203,14 @@ void wze::input::set_cursor_appearance(
     SDL_SetCursor(cursor_appearance.release());
 }
 
+std::unordered_map<size_t, wze::finger> const& wze::input::fingers() {
+    return _fingers;
+}
+
+std::unique_ptr<wze::gesture> const& wze::input::gesture() {
+    return _gesture;
+}
+
 void wze::input::initialize() {
     _key = SDLK_UNKNOWN;
     _keys = {};
@@ -169,6 +226,8 @@ void wze::input::update() {
     update_key();
     update_keys();
     update_cursor();
+    update_fingers();
+    update_gesture();
 }
 
 bool wze::input::key(enum key key) {
