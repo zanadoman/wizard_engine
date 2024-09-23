@@ -74,6 +74,19 @@ class assets final {
     /**
      * @file assets.hpp
      * @author Zana Domán
+     * @brief System specific assets directory.
+     */
+    static constexpr char const* _assets =
+#ifdef __ANDROID__
+        ""
+#else  /* __ANDROID__ */
+        "./assets/"
+#endif /* __ANDROID__ */
+        ;
+
+    /**
+     * @file assets.hpp
+     * @author Zana Domán
      * @brief Private default constructor to prevent instantiation.
      */
     assets() = default;

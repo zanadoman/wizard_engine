@@ -34,7 +34,8 @@ void wze::assets::combine_hash(size_t& seed, size_t value) {
 std::shared_ptr<wze::image> wze::assets::load_image(std::string const& path) {
     std::shared_ptr<image> image;
 
-    image = {IMG_Load(path.c_str()), SDL_FreeSurface};
+    image = {IMG_Load((_assets / std::filesystem::path(path)).c_str()),
+             SDL_FreeSurface};
     if (!image) {
         throw exception(IMG_GetError());
     }
@@ -100,7 +101,8 @@ wze::assets::create_texture(std::shared_ptr<image> const& image) {
 std::shared_ptr<wze::sound> wze::assets::load_sound(std::string const& path) {
     std::shared_ptr<sound> sound;
 
-    sound = {Mix_LoadWAV(path.c_str()), Mix_FreeChunk};
+    sound = {Mix_LoadWAV((_assets / std::filesystem::path(path)).c_str()),
+             Mix_FreeChunk};
     if (!sound) {
         throw exception(Mix_GetError());
     }
@@ -131,7 +133,8 @@ std::shared_ptr<wze::font> wze::assets::load_font(std::string const& path,
                                                   font_style style) {
     std::shared_ptr<font> font;
 
-    font = {TTF_OpenFont(path.c_str(), size), TTF_CloseFont};
+    font = {TTF_OpenFont((_assets / std::filesystem::path(path)).c_str(), size),
+            TTF_CloseFont};
     if (!font) {
         throw exception(TTF_GetError());
     }
