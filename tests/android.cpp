@@ -73,16 +73,16 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
                         wze::input::fingers().begin()->second.relative_y,
                     -half_height, half_height));
             } else {
-                if (dead_zone < abs(wze::input::accelerometer_y())) {
+                if (dead_zone < abs(wze::input::accelerometer_x())) {
                     player.set_x(
-                        std::clamp(player.x() + wze::input::accelerometer_y() /
+                        std::clamp(player.x() + wze::input::accelerometer_x() /
                                                     movement_speed *
                                                     wze::timer::delta_time(),
                                    -half_width, half_width));
                 }
-                if (dead_zone < abs(wze::input::accelerometer_x())) {
+                if (dead_zone < abs(wze::input::accelerometer_y())) {
                     player.set_y(
-                        std::clamp(player.y() + wze::input::accelerometer_x() /
+                        std::clamp(player.y() + wze::input::accelerometer_y() /
                                                     movement_speed *
                                                     wze::timer::delta_time(),
                                    -half_height, half_height));

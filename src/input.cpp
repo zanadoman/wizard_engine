@@ -167,15 +167,18 @@ void wze::input::update_gesture() {
 }
 
 void wze::input::update_accelerometer() {
-    constexpr float tenth_pi = math::pi() / 10;
+    constexpr float pi_tenth = math::pi() / 10;
 
+    if (!_accelerometer) {
+        return;
+    }
     if ((bool)SDL_SensorGetData(_accelerometer.get(), _accelerometer_xyz.data(),
                                 _accelerometer_xyz.size())) {
         throw exception(SDL_GetError());
     }
     std::for_each(_accelerometer_xyz.begin(), _accelerometer_xyz.end(),
                   [](float& axis) -> void {
-                      axis *= tenth_pi;
+                      axis *= pi_tenth;
                   });
 }
 
@@ -247,11 +250,11 @@ std::optional<wze::gesture> const& wze::input::gesture() {
 }
 
 float wze::input::accelerometer_x() {
-    return _accelerometer_xyz.at(0);
+    return _accelerometer_xyz.at(1);
 }
 
 float wze::input::accelerometer_y() {
-    return _accelerometer_xyz.at(1);
+    return _accelerometer_xyz.at(0);
 }
 
 float wze::input::accelerometer_z() {
@@ -279,9 +282,7 @@ void wze::input::update() {
     update_cursor();
     update_fingers();
     update_gesture();
-    if (_accelerometer) {
-        update_accelerometer();
-    }
+    update_accelerometer();
 }
 
 bool wze::input::key(enum key key) {
