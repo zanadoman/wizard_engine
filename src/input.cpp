@@ -120,8 +120,11 @@ void wze::input::update_fingers() {
             _fingers.erase(iterator->tfinger.fingerId);
             break;
         case SDL_FINGERDOWN:
+            _fingers.emplace(
+                iterator->tfinger.fingerId,
+                wze::finger{0, 0, 0, 0, iterator->tfinger.timestamp});
         case SDL_FINGERMOTION:
-            finger& finger = _fingers[iterator->tfinger.fingerId];
+            finger& finger = _fingers.at(iterator->tfinger.fingerId);
             std::tie(finger.absolute_x, finger.absolute_y) =
                 renderer::detransform(
                     iterator->tfinger.x * (float)window::width(),

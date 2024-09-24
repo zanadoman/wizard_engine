@@ -34,7 +34,7 @@ class timer final {
   private:
     static uint8_t _frame_time;
     static float _delta_time;
-    static uint64_t _last_time;
+    static uint32_t _last_time;
 
     /**
      * @file timer.hpp
@@ -90,7 +90,7 @@ class timer final {
      * @brief Returns the current game time in milliseconds.
      * @return Current game time in milliseconds.
      */
-    [[nodiscard]] static uint64_t current_time();
+    [[nodiscard]] static uint32_t current_time();
 
 #ifdef __WIZARD_ENGINE_INTERNAL__
     /**

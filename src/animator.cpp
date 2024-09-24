@@ -62,7 +62,7 @@ void wze::animator::set_current_frame(size_t current_frame) {
 }
 
 bool wze::animator::play() {
-    uint64_t elapsed_time;
+    uint32_t elapsed_time;
     bool looped;
 
     if (frames().empty()) {

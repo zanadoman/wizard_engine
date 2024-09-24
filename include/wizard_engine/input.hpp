@@ -32,7 +32,7 @@ struct finger {
     float absolute_y;
     float relative_x;
     float relative_y;
-    uint64_t time;
+    uint32_t time;
 };
 
 struct gesture {
