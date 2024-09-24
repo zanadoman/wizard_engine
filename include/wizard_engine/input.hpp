@@ -59,7 +59,7 @@ class input final {
     static float _cursor_relative_y;
     static float _mouse_sensitivity;
     static std::unordered_map<size_t, finger> _fingers;
-    static std::unique_ptr<gesture> _gesture;
+    static std::optional<gesture> _gesture;
 
     /**
      * @file input.hpp
@@ -199,7 +199,7 @@ class input final {
 
     static std::unordered_map<size_t, finger> const& fingers();
 
-    static gesture const* gesture();
+    static std::optional<gesture> const& gesture();
 
 #ifdef __WIZARD_ENGINE_INTERNAL__
     /**

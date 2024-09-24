@@ -27,6 +27,7 @@
 #include <wizard_engine/exception.hpp>
 #include <wizard_engine/input.hpp>
 #include <wizard_engine/renderer.hpp>
+#include <wizard_engine/timer.hpp>
 #include <wizard_engine/window.hpp>
 
 SDL_Keycode wze::input::_key = {};
@@ -39,7 +40,7 @@ float wze::input::_cursor_relative_x = {};
 float wze::input::_cursor_relative_y = {};
 float wze::input::_mouse_sensitivity = {};
 std::unordered_map<size_t, wze::finger> wze::input::_fingers = {};
-std::unique_ptr<wze::gesture> wze::input::_gesture = {};
+std::optional<wze::gesture> wze::input::_gesture = {};
 
 void wze::input::update_key() {
     std::vector<SDL_Event>::const_reverse_iterator iterator;
@@ -112,6 +113,12 @@ void wze::input::update_cursor() {
 void wze::input::update_fingers() {
     std::vector<SDL_Event>::const_iterator iterator;
 
+    std::for_each(_fingers.begin(), _fingers.end(),
+                  [](std::pair<size_t const, finger>& finger) -> void {
+                      finger.second.relative_x = 0;
+                      finger.second.relative_y = 0;
+                  });
+
     for (iterator = engine::events().begin();
          iterator != engine::events().end(); ++iterator) {
         // NOLINTNEXTLINE(bugprone-switch-missing-default-case)
@@ -129,23 +136,21 @@ void wze::input::update_fingers() {
                 renderer::detransform(
                     iterator->tfinger.x * (float)window::width(),
                     iterator->tfinger.y * (float)window::height());
-            finger.relative_x = iterator->tfinger.dx * (float)window::width();
-            finger.relative_y = iterator->tfinger.dy * (float)window::height();
+            finger.relative_x += iterator->tfinger.dx * (float)window::width();
+            finger.relative_y += iterator->tfinger.dy * (float)window::height();
         }
     }
 }
 
 void wze::input::update_gesture() {
-    bool active;
     std::vector<SDL_Event>::const_iterator iterator;
 
-    active = false;
+    _gesture = std::nullopt;
     for (iterator = engine::events().begin();
          iterator != engine::events().end(); ++iterator) {
         if (iterator->type == SDL_MULTIGESTURE) {
             if (!_gesture) {
-                _gesture = std::make_unique<wze::gesture>(
-                    wze::gesture{0, 0, 0, 0, iterator->mgesture.timestamp});
+                _gesture = {0, 0, 0, 0, iterator->mgesture.timestamp};
             }
             std::apply(
                 [&](float x, float y) -> void {
@@ -157,11 +162,7 @@ void wze::input::update_gesture() {
                 renderer::detransform(
                     iterator->mgesture.x * (float)window::width(),
                     iterator->mgesture.y * (float)window::height()));
-            active = true;
         }
-    }
-    if (_gesture && !active) {
-        _gesture.reset();
     }
 }
 
@@ -228,8 +229,8 @@ std::unordered_map<size_t, wze::finger> const& wze::input::fingers() {
     return _fingers;
 }
 
-wze::gesture const* wze::input::gesture() {
-    return _gesture.get();
+std::optional<wze::gesture> const& wze::input::gesture() {
+    return _gesture;
 }
 
 void wze::input::initialize() {

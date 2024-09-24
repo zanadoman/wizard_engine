@@ -40,6 +40,7 @@
 #include <functional>    /* IWYU pragma: export */
 #include <limits>        /* IWYU pragma: export */
 #include <memory>        /* IWYU pragma: export */
+#include <optional>      /* IWYU pragma: export */
 #include <random>        /* IWYU pragma: export */
 #include <string>        /* IWYU pragma: export */
 #include <tuple>         /* IWYU pragma: export */
