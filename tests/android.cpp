@@ -29,8 +29,8 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
     float size;
     std::shared_ptr<wze::texture> texture;
     wze::sprite player;
-    uint16_t half_width;
-    uint16_t half_height;
+    float half_width;
+    float half_height;
     std::optional<wze::sprite> gesture;
     std::vector<wze::sprite> fingers;
 
@@ -39,8 +39,8 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
         wze::assets::create_texture(wze::assets::load_image("tests/image.png"));
     player = wze::sprite(0, 0, 0, 0, size, size, false, texture,
                          std::numeric_limits<uint8_t>::max(), 0, 0);
-    half_width = wze::window::width() / 2;
-    half_height = wze::window::height() / 2;
+    half_width = (float)wze::window::width() / 2;
+    half_height = (float)wze::window::height() / 2;
     wze::input::set_text_input(true);
 
     wze_while(true) {
@@ -66,11 +66,26 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
                 player.set_x(std::clamp(
                     player.x() +
                         wze::input::fingers().begin()->second.relative_x,
-                    (float)-half_width, (float)half_width));
+                    -half_width, half_width));
                 player.set_y(std::clamp(
                     player.y() +
                         wze::input::fingers().begin()->second.relative_y,
-                    (float)-half_height, (float)half_height));
+                    -half_height, half_height));
+            } else {
+                if (2 < abs(wze::input::accelerometer_y())) {
+                    player.set_x(
+                        std::clamp(player.x() + wze::input::accelerometer_y() /
+                                                    movement_speed *
+                                                    wze::timer::delta_time(),
+                                   -half_width, half_width));
+                }
+                if (2 < abs(wze::input::accelerometer_x())) {
+                    player.set_y(
+                        std::clamp(player.y() + wze::input::accelerometer_x() /
+                                                    movement_speed *
+                                                    wze::timer::delta_time(),
+                                   -half_height, half_height));
+                }
             }
         }
         if (wze::input::gesture()) {
@@ -101,9 +116,6 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
                                      finger.second.absolute_y, 0, 0,
                                      player_size, player_size, false, texture);
             });
-        wze::engine::log(std::to_string(wze::input::accelerometer_x()) + ' ' +
-                         std::to_string(wze::input::accelerometer_y()) + ' ' +
-                         std::to_string(wze::input::accelerometer_z()));
     }
 
     return 0;
