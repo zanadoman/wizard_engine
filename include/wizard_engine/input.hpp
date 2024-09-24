@@ -32,7 +32,7 @@ struct finger {
     float absolute_y;
     float relative_x;
     float relative_y;
-    uint32_t time;
+    uint32_t timestamp;
 };
 
 struct gesture {
@@ -40,6 +40,7 @@ struct gesture {
     float y;
     float length;
     float angle;
+    uint32_t timestamp;
 };
 
 /**
@@ -198,7 +199,7 @@ class input final {
 
     static std::unordered_map<size_t, finger> const& fingers();
 
-    static std::unique_ptr<gesture> const& gesture();
+    static gesture const* gesture();
 
 #ifdef __WIZARD_ENGINE_INTERNAL__
     /**

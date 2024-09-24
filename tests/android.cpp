@@ -29,63 +29,68 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
     std::shared_ptr<wze::texture> const texture =
         wze::assets::create_texture(wze::assets::load_image("tests/image.png"));
     float size;
-    wze::sprite sprite;
-    std::vector<wze::sprite> sprites;
+    wze::sprite player;
+    wze::sprite gesture;
+    std::vector<wze::sprite> fingers;
 
     size = sprite_size;
-    sprite = wze::sprite(0, 0, 0, 0, size, size, false, texture,
+    player = wze::sprite(0, 0, 0, 0, size, size, false, texture,
                          std::numeric_limits<uint8_t>::max(), 0, 0);
+    gesture = wze::sprite(0, 0, 0, 0, sprite_size / 4, sprite_size / 4, false,
+                          texture);
     wze::timer::set_frame_time(frame_time);
     wze::input::set_text_input(true);
 
     wze_while(true) {
         switch (wze::input::key()) {
         case 'w':
-            sprite.set_y(sprite.y() -
+            player.set_y(player.y() -
                          movement_speed * wze::timer::delta_time());
             break;
         case 's':
-            sprite.set_y(sprite.y() +
+            player.set_y(player.y() +
                          movement_speed * wze::timer::delta_time());
             break;
         case 'd':
-            sprite.set_x(sprite.x() +
+            player.set_x(player.x() +
                          movement_speed * wze::timer::delta_time());
             break;
         case 'a':
-            sprite.set_x(sprite.x() -
+            player.set_x(player.x() -
                          movement_speed * wze::timer::delta_time());
             break;
         default:
             if (wze::input::fingers().size() == 1) {
-                sprite.set_x(std::clamp(
-                    sprite.x() +
+                player.set_x(std::clamp(
+                    player.x() +
                         wze::input::fingers().begin()->second.relative_x,
                     (float)wze::window::width() / -2,
                     (float)wze::window::width() / 2));
-                sprite.set_y(std::clamp(
-                    sprite.y() +
+                player.set_y(std::clamp(
+                    player.y() +
                         wze::input::fingers().begin()->second.relative_y,
                     (float)wze::window::height() / -2,
                     (float)wze::window::height() / 2));
             }
         }
-        sprites.clear();
+        if ((bool)wze::input::gesture() &&
+            wze::math::length(wze::input::gesture()->x - player.x(),
+                              wze::input::gesture()->y - player.y()) < size) {
+            size += size * wze::input::gesture()->length;
+            player.set_width(size);
+            player.set_height(size);
+            player.set_angle(player.angle() + wze::input::gesture()->angle);
+            gesture.set_x(wze::input::gesture()->x);
+            gesture.set_y(wze::input::gesture()->y);
+        }
+        fingers.clear();
         std::for_each(
             wze::input::fingers().begin(), wze::input::fingers().end(),
             [&](std::pair<size_t, wze::finger> const& finger) -> void {
-                sprites.emplace_back(finger.second.absolute_x,
+                fingers.emplace_back(finger.second.absolute_x,
                                      finger.second.absolute_y, 0, 0,
                                      sprite_size, sprite_size, false, texture);
             });
-        if (wze::input::gesture() &&
-            wze::math::length(wze::input::gesture()->x - sprite.x(),
-                              wze::input::gesture()->y - sprite.y()) < size) {
-            size += size * wze::input::gesture()->length;
-            sprite.set_width(size);
-            sprite.set_height(size);
-            sprite.set_angle(sprite.angle() + wze::input::gesture()->angle);
-        }
     }
 
     return 0;

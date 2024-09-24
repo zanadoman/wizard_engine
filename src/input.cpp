@@ -136,14 +136,16 @@ void wze::input::update_fingers() {
 }
 
 void wze::input::update_gesture() {
+    bool active;
     std::vector<SDL_Event>::const_iterator iterator;
 
-    _gesture.reset();
+    active = false;
     for (iterator = engine::events().begin();
          iterator != engine::events().end(); ++iterator) {
         if (iterator->type == SDL_MULTIGESTURE) {
             if (!_gesture) {
-                _gesture = std::make_unique<wze::gesture>();
+                _gesture = std::make_unique<wze::gesture>(
+                    wze::gesture{0, 0, 0, 0, iterator->mgesture.timestamp});
             }
             std::apply(
                 [&](float x, float y) -> void {
@@ -155,7 +157,11 @@ void wze::input::update_gesture() {
                 renderer::detransform(
                     iterator->mgesture.x * (float)window::width(),
                     iterator->mgesture.y * (float)window::height()));
+            active = true;
         }
+    }
+    if (_gesture && !active) {
+        _gesture.reset();
     }
 }
 
@@ -222,8 +228,8 @@ std::unordered_map<size_t, wze::finger> const& wze::input::fingers() {
     return _fingers;
 }
 
-std::unique_ptr<wze::gesture> const& wze::input::gesture() {
-    return _gesture;
+wze::gesture const* wze::input::gesture() {
+    return _gesture.get();
 }
 
 void wze::input::initialize() {
