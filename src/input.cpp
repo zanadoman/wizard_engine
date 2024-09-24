@@ -127,11 +127,8 @@ void wze::input::update_fingers() {
             _fingers.erase(iterator->tfinger.fingerId);
             break;
         case SDL_FINGERDOWN:
-            _fingers.emplace(
-                iterator->tfinger.fingerId,
-                wze::finger{0, 0, 0, 0, iterator->tfinger.timestamp});
         case SDL_FINGERMOTION:
-            finger& finger = _fingers.at(iterator->tfinger.fingerId);
+            finger& finger = _fingers[iterator->tfinger.fingerId];
             std::tie(finger.absolute_x, finger.absolute_y) =
                 renderer::detransform(
                     iterator->tfinger.x * (float)window::width(),
@@ -150,7 +147,7 @@ void wze::input::update_gesture() {
          iterator != engine::events().end(); ++iterator) {
         if (iterator->type == SDL_MULTIGESTURE) {
             if (!_gesture) {
-                _gesture = {0, 0, 0, 0, iterator->mgesture.timestamp};
+                _gesture = wze::gesture();
             }
             std::apply(
                 [&](float x, float y) -> void {

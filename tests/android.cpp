@@ -21,22 +21,26 @@
 
 #include <wizard_engine/wizard_engine.hpp>
 
-constexpr uint8_t frame_time = 16;
-constexpr float sprite_size = 100;
-constexpr float movement_speed = .5;
+constexpr float player_size = 100;
+constexpr float movement_speed = 10;
+constexpr float gesture_size = player_size / 4;
 
 wze_main("Wizard Engine - Android", 2400, 1080) {
-    std::shared_ptr<wze::texture> const texture =
-        wze::assets::create_texture(wze::assets::load_image("tests/image.png"));
     float size;
+    std::shared_ptr<wze::texture> texture;
     wze::sprite player;
+    uint16_t half_width;
+    uint16_t half_height;
     std::optional<wze::sprite> gesture;
     std::vector<wze::sprite> fingers;
 
-    size = sprite_size;
+    size = player_size;
+    texture =
+        wze::assets::create_texture(wze::assets::load_image("tests/image.png"));
     player = wze::sprite(0, 0, 0, 0, size, size, false, texture,
                          std::numeric_limits<uint8_t>::max(), 0, 0);
-    wze::timer::set_frame_time(frame_time);
+    half_width = wze::window::width() / 2;
+    half_height = wze::window::height() / 2;
     wze::input::set_text_input(true);
 
     wze_while(true) {
@@ -62,27 +66,32 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
                 player.set_x(std::clamp(
                     player.x() +
                         wze::input::fingers().begin()->second.relative_x,
-                    (float)wze::window::width() / -2,
-                    (float)wze::window::width() / 2));
+                    (float)-half_width, (float)half_width));
                 player.set_y(std::clamp(
                     player.y() +
                         wze::input::fingers().begin()->second.relative_y,
-                    (float)wze::window::height() / -2,
-                    (float)wze::window::height() / 2));
+                    (float)-half_height, (float)half_height));
             }
         }
-        gesture = std::nullopt;
-        std::optional<wze::gesture> const& gestur = wze::input::gesture();
-        if (gestur) {
-            gesture = wze::sprite(gestur->x, gestur->y, 0, 0, sprite_size / 4,
-                                  sprite_size / 4, false, texture);
-            if (wze::math::length(gestur->x - player.x(),
-                                  gestur->y - player.y()) < size) {
-                size += size * gestur->length;
+        if (wze::input::gesture()) {
+            gesture =
+                // NOLINTNEXTLINE(bugprone-unchecked-optional-access)
+                wze::sprite(wze::input::gesture()->x, wze::input::gesture()->y,
+                            0, 0, gesture_size, gesture_size, false, texture);
+            if (wze::math::length(
+                    // NOLINTNEXTLINE(bugprone-unchecked-optional-access)
+                    wze::input::gesture()->x - player.x(),
+                    // NOLINTNEXTLINE(bugprone-unchecked-optional-access)
+                    wze::input::gesture()->y - player.y()) < size) {
+                // NOLINTNEXTLINE(bugprone-unchecked-optional-access)
+                size += size * wze::input::gesture()->length;
                 player.set_width(size);
                 player.set_height(size);
-                player.set_angle(player.angle() + gestur->angle);
+                // NOLINTNEXTLINE(bugprone-unchecked-optional-access)
+                player.set_angle(player.angle() + wze::input::gesture()->angle);
             }
+        } else {
+            gesture = std::nullopt;
         }
         fingers.clear();
         std::for_each(
@@ -90,7 +99,7 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
             [&](std::pair<size_t, wze::finger> const& finger) -> void {
                 fingers.emplace_back(finger.second.absolute_x,
                                      finger.second.absolute_y, 0, 0,
-                                     sprite_size, sprite_size, false, texture);
+                                     player_size, player_size, false, texture);
             });
     }
 
