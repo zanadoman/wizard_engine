@@ -26,6 +26,7 @@
 #include <wizard_engine/engine.hpp>
 #include <wizard_engine/exception.hpp>
 #include <wizard_engine/input.hpp>
+#include <wizard_engine/math.hpp>
 #include <wizard_engine/renderer.hpp>
 #include <wizard_engine/timer.hpp>
 #include <wizard_engine/window.hpp>
@@ -165,6 +166,19 @@ void wze::input::update_gesture() {
     }
 }
 
+void wze::input::update_accelerometer() {
+    constexpr float tenth_pi = math::pi() / 10;
+
+    if ((bool)SDL_SensorGetData(_accelerometer.get(), _accelerometer_xyz.data(),
+                                _accelerometer_xyz.size())) {
+        throw exception(SDL_GetError());
+    }
+    std::for_each(_accelerometer_xyz.begin(), _accelerometer_xyz.end(),
+                  [](float& axis) -> void {
+                      axis *= tenth_pi;
+                  });
+}
+
 bool wze::input::text_input() {
     return (bool)SDL_IsTextInputActive();
 }
@@ -252,6 +266,9 @@ void wze::input::initialize() {
     for (sensor = 0; sensor != sensor_count; ++sensor) {
         if (SDL_SensorGetDeviceType(sensor) == SDL_SENSOR_ACCEL) {
             _accelerometer = {SDL_SensorOpen(sensor), SDL_SensorClose};
+            if (!_accelerometer) {
+                throw exception(SDL_GetError());
+            }
         }
     }
 }
@@ -263,7 +280,7 @@ void wze::input::update() {
     update_fingers();
     update_gesture();
     if (_accelerometer) {
-        SDL_SensorGetData(_accelerometer.get(), _accelerometer_xyz.data(), 3);
+        update_accelerometer();
     }
 }
 

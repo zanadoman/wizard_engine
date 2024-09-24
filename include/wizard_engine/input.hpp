@@ -94,6 +94,8 @@ class input final {
 
     static void update_gesture();
 
+    static void update_accelerometer();
+
   public:
     static bool text_input();
 
