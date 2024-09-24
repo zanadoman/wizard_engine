@@ -101,9 +101,9 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
                                      finger.second.absolute_y, 0, 0,
                                      player_size, player_size, false, texture);
             });
-        wze::engine::log(std::to_string(wze::input::gyroscope_x()) + ' ' +
-                         std::to_string(wze::input::gyroscope_y()) + ' ' +
-                         std::to_string(wze::input::gyroscope_z()));
+        wze::engine::log(std::to_string(wze::input::accelerometer_x()) + ' ' +
+                         std::to_string(wze::input::accelerometer_y()) + ' ' +
+                         std::to_string(wze::input::accelerometer_z()));
     }
 
     return 0;
