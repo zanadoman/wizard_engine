@@ -58,6 +58,9 @@ class input final {
     static float _mouse_sensitivity;
     static std::unordered_map<size_t, finger> _fingers;
     static std::optional<gesture> _gesture;
+    static std::unique_ptr<SDL_Sensor, std::function<void(SDL_Sensor*)>>
+        _accelerometer;
+    static std::array<float, 3> _accelerometer_xyz;
 
     /**
      * @file input.hpp
@@ -195,9 +198,15 @@ class input final {
     set_cursor_appearance(std::unique_ptr<cursor, std::function<void(cursor*)>>
                               cursor_appearance);
 
-    static std::unordered_map<size_t, finger> const& fingers();
+    [[nodiscard]] static std::unordered_map<size_t, finger> const& fingers();
 
-    static std::optional<gesture> const& gesture();
+    [[nodiscard]] static std::optional<gesture> const& gesture();
+
+    [[nodiscard]] static float accelerometer_x();
+
+    [[nodiscard]] static float accelerometer_y();
+
+    [[nodiscard]] static float accelerometer_z();
 
 #ifdef __WIZARD_ENGINE_INTERNAL__
     /**

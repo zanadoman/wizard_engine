@@ -30,17 +30,19 @@
 #include <wizard_engine/timer.hpp>
 #include <wizard_engine/window.hpp>
 
-SDL_Keycode wze::input::_key = {};
+SDL_Keycode wze::input::_key = SDLK_UNKNOWN;
 std::array<bool, wze::KEY_COUNT> wze::input::_keys = {};
-std::unordered_map<std::string, std::vector<wze::key>> wze::input::_keymaps =
-    {};
-float wze::input::_cursor_absolute_x = {};
-float wze::input::_cursor_absolute_y = {};
-float wze::input::_cursor_relative_x = {};
-float wze::input::_cursor_relative_y = {};
-float wze::input::_mouse_sensitivity = {};
-std::unordered_map<size_t, wze::finger> wze::input::_fingers = {};
-std::optional<wze::gesture> wze::input::_gesture = {};
+std::unordered_map<std::string, std::vector<wze::key>> wze::input::_keymaps;
+float wze::input::_cursor_absolute_x = 0;
+float wze::input::_cursor_absolute_y = 0;
+float wze::input::_cursor_relative_x = 0;
+float wze::input::_cursor_relative_y = 0;
+float wze::input::_mouse_sensitivity = 1;
+std::unordered_map<size_t, wze::finger> wze::input::_fingers;
+std::optional<wze::gesture> wze::input::_gesture;
+std::unique_ptr<SDL_Sensor, std::function<void(SDL_Sensor*)>>
+    wze::input::_accelerometer;
+std::array<float, 3> wze::input::_accelerometer_xyz = {};
 
 void wze::input::update_key() {
     std::vector<SDL_Event>::const_reverse_iterator iterator;
@@ -230,15 +232,28 @@ std::optional<wze::gesture> const& wze::input::gesture() {
     return _gesture;
 }
 
+float wze::input::accelerometer_x() {
+    return _accelerometer_xyz.at(0);
+}
+
+float wze::input::accelerometer_y() {
+    return _accelerometer_xyz.at(1);
+}
+
+float wze::input::accelerometer_z() {
+    return _accelerometer_xyz.at(2);
+}
+
 void wze::input::initialize() {
-    _key = SDLK_UNKNOWN;
-    _keys = {};
-    keymaps() = {};
-    _cursor_absolute_x = 0;
-    _cursor_absolute_y = 0;
-    _cursor_relative_x = 0;
-    _cursor_relative_y = 0;
-    set_mouse_sensitivity(1);
+    int32_t sensor_count;
+    int32_t sensor;
+
+    sensor_count = SDL_NumSensors();
+    for (sensor = 0; sensor != sensor_count; ++sensor) {
+        if (SDL_SensorGetDeviceType(sensor) == SDL_SENSOR_ACCEL) {
+            _accelerometer = {SDL_SensorOpen(sensor), SDL_SensorClose};
+        }
+    }
 }
 
 void wze::input::update() {
@@ -247,6 +262,9 @@ void wze::input::update() {
     update_cursor();
     update_fingers();
     update_gesture();
+    if (_accelerometer) {
+        SDL_SensorGetData(_accelerometer.get(), _accelerometer_xyz.data(), 3);
+    }
 }
 
 bool wze::input::key(enum key key) {
