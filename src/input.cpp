@@ -167,8 +167,6 @@ void wze::input::update_gesture() {
 }
 
 void wze::input::update_accelerometer() {
-    constexpr float pi_tenth = math::pi() / 10;
-
     if (!_accelerometer) {
         return;
     }
@@ -178,7 +176,7 @@ void wze::input::update_accelerometer() {
     }
     std::for_each(_accelerometer_xyz.begin(), _accelerometer_xyz.end(),
                   [](float& axis) -> void {
-                      axis *= pi_tenth;
+                      axis *= math::pi() / SDL_STANDARD_GRAVITY;
                   });
 }
 
