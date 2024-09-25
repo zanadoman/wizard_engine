@@ -27,6 +27,11 @@
 #include <wizard_engine/export.hpp>
 
 namespace wze {
+/**
+ * @file input.hpp
+ * @author Zana Domán
+ * @brief Touchscreen finger data.
+ */
 struct finger {
     float absolute_x;
     float absolute_y;
@@ -34,6 +39,11 @@ struct finger {
     float relative_y;
 };
 
+/**
+ * @file input.hpp
+ * @author Zana Domán
+ * @brief Touchscreen gesture data.
+ */
 struct gesture {
     float x;
     float y;
@@ -44,7 +54,7 @@ struct gesture {
 /**
  * @file input.hpp
  * @author Zana Domán
- * @brief Subsystem to handle keyboard and mouse input.
+ * @brief Subsystem to handle keyboard, mouse, touchscreen and sensor input.
  */
 class input final {
   private:
@@ -90,15 +100,46 @@ class input final {
      */
     static void update_cursor();
 
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Polls for fingers absolute and relative positions on the
+     * touchscreen.
+     */
     static void update_fingers();
 
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Polls for the latest gesture event on the touchscreen if any.
+     */
     static void update_gesture();
 
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Polls for accelerometer data if available.
+     * @warning If accelerometer data cannot be polled, throws wze::exception.
+     */
     static void update_accelerometer();
 
   public:
-    static bool text_input();
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Return whether the event based keyboard input is enabled.
+     * @return Whether the event based keyboard input is enabled.
+     * @note Controls on-screen keyboard on mobile systems.
+     */
+    [[nodiscard]] static bool text_input();
 
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Enables or disables event based keyboard input.
+     * @param text_input Whether the event based keyboard input is enabled.
+     * @note Controls on-screen keyboard on mobile systems.
+     */
     static void set_text_input(bool text_input);
 
     /**
@@ -200,14 +241,45 @@ class input final {
     set_cursor_appearance(std::unique_ptr<cursor, std::function<void(cursor*)>>
                               cursor_appearance);
 
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns fingers absolute and relative positions on the
+     * touchscreen.
+     * @return Fingers absolute and relative positions on the touchscreen.
+     */
     [[nodiscard]] static std::unordered_map<size_t, finger> const& fingers();
 
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns the latest gesture event on the touchscreen if any.
+     * @return Latest gesture event on the touchscreen if any.
+     */
     [[nodiscard]] static std::optional<gesture> const& gesture();
 
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns the rotation on the x axis of the accelerometer.
+     * @return Rotation on the x axis of the acccelerometer.
+     */
     [[nodiscard]] static float accelerometer_x();
 
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns the rotation on the y axis of the accelerometer.
+     * @return Rotation on the y axis of the acccelerometer.
+     */
     [[nodiscard]] static float accelerometer_y();
 
+    /**
+     * @file input.hpp
+     * @author Zana Domán
+     * @brief Returns the rotation on the z axis of the accelerometer.
+     * @return Rotation on the z axis of the acccelerometer.
+     */
     [[nodiscard]] static float accelerometer_z();
 
 #ifdef __WIZARD_ENGINE_INTERNAL__
@@ -215,6 +287,8 @@ class input final {
      * @file input.hpp
      * @author Zana Domán
      * @brief Initializes the input subsystem.
+     * @warning If the input subsystem cannot be initialized, throws
+     * wze::exception.
      */
     static void initialize();
 #endif /* __WIZARD_ENGINE_INTERNAL__ */
