@@ -49,9 +49,9 @@ void wze::engine::play_intro() {
     sprite intro;
     float opacity;
 
-    logo = assets::load_image("wizard_engine/logo.png");
+    logo = assets::load_image("./wizard_engine/logo.png");
     if (assets::hash_image(logo) != logo_hash) {
-        throw exception("Invalid wizard_engine/logo.png");
+        throw exception("Invalid ./wizard_engine/logo.png");
     }
 
     size = (float)std::min(window::width(), window::height()) * scale;

@@ -46,7 +46,7 @@ class player : private wze::entity {
         : entity({}, incoming.x, incoming.y) {
         static std::shared_ptr<wze::texture> const texture =
             wze::assets::create_texture(
-                wze::assets::load_image("tests/image.png"));
+                wze::assets::load_image("./tests/image.png"));
 
         _id = incoming.id;
         _time = wze::timer::current_time();

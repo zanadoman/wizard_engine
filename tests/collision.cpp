@@ -44,7 +44,7 @@ class wizard final : private wze::collider {
                    force, mass, 0) {
         static std::shared_ptr<wze::texture> const texture =
             wze::assets::create_texture(
-                wze::assets::load_image("tests/image.png"));
+                wze::assets::load_image("./tests/image.png"));
 
         _sprite = std::make_shared<wze::sprite>(
             0, 0, 0, 0, sprite_size, sprite_size, false, texture,

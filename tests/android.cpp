@@ -36,8 +36,8 @@ wze_main("Wizard Engine - Android", 2400, 1080) {
     std::vector<wze::sprite> fingers;
 
     size = player_size;
-    texture =
-        wze::assets::create_texture(wze::assets::load_image("tests/image.png"));
+    texture = wze::assets::create_texture(
+        wze::assets::load_image("./tests/image.png"));
     player = wze::sprite(0, 0, 0, 0, size, size, false, texture,
                          std::numeric_limits<uint8_t>::max(), 0, 0);
     half_width = (float)wze::window::width() / 2;
