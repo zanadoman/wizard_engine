@@ -39,6 +39,17 @@ enum flip {
 /**
  * @file enums.hpp
  * @author Zana Domán
+ * @brief Font alignments.
+ */
+enum font_alignment {
+    FONT_ALIGNMENT_LEFT = TTF_WRAPPED_ALIGN_LEFT,
+    FONT_ALIGNMENT_CENTER = TTF_WRAPPED_ALIGN_CENTER,
+    FONT_ALIGNMENT_RIGHT = TTF_WRAPPED_ALIGN_RIGHT
+};
+
+/**
+ * @file enums.hpp
+ * @author Zana Domán
  * @brief Font styles.
  */
 enum font_style {

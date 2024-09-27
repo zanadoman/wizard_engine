@@ -50,14 +50,13 @@ wze::assets::create_image(std::string const& text,
                           uint32_t wrap_length) {
     std::shared_ptr<image> image;
 
-    image = {
-        TTF_RenderUTF8_Blended_Wrapped(font.get(), text.c_str(),
-                                       {std::numeric_limits<uint8_t>::max(),
-                                        std::numeric_limits<uint8_t>::max(),
-                                        std::numeric_limits<uint8_t>::max(),
-                                        std::numeric_limits<uint8_t>::max()},
-                                       wrap_length),
-        SDL_FreeSurface};
+    image = {TTF_RenderUTF8_LCD_Wrapped(font.get(), text.c_str(),
+                                        {std::numeric_limits<uint8_t>::max(),
+                                         std::numeric_limits<uint8_t>::max(),
+                                         std::numeric_limits<uint8_t>::max(),
+                                         std::numeric_limits<uint8_t>::max()},
+                                        {0, 0, 0, 0}, wrap_length),
+             SDL_FreeSurface};
     if (!image) {
         throw exception(TTF_GetError());
     }
@@ -132,7 +131,8 @@ size_t wze::assets::hash_sound(std::shared_ptr<sound> const& sound) {
 
 std::shared_ptr<wze::font> wze::assets::load_font(std::string const& path,
                                                   uint8_t size,
-                                                  font_style style) {
+                                                  font_style style,
+                                                  font_alignment alignment) {
     std::shared_ptr<font> font;
 
     font = {
@@ -143,6 +143,8 @@ std::shared_ptr<wze::font> wze::assets::load_font(std::string const& path,
         throw exception(TTF_GetError());
     }
     TTF_SetFontStyle(font.get(), style);
+    TTF_SetFontWrappedAlign(font.get(), alignment);
+    TTF_SetFontHinting(font.get(), TTF_HINTING_LIGHT_SUBPIXEL);
 
     return font;
 }

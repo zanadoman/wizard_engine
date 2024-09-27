@@ -109,9 +109,9 @@ endif()
 if(${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows|Emscripten)
     if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
         if(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
-            set(TEST_COMMAND emrun ${TEST}${CMAKE_EXECUTABLE_SUFFIX})
+            set(TEST_COMMAND emrun ${CMAKE_BINARY_DIR}/${TEST}${CMAKE_EXECUTABLE_SUFFIX})
         else()
-            set(TEST_COMMAND ${TEST}${CMAKE_EXECUTABLE_SUFFIX})
+            set(TEST_COMMAND ${CMAKE_BINARY_DIR}/${TEST}${CMAKE_EXECUTABLE_SUFFIX})
         endif()
         add_custom_command(TARGET ${TEST} POST_BUILD
                            COMMAND ${TEST_COMMAND}

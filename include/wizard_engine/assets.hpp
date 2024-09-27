@@ -176,6 +176,7 @@ class assets final {
      * @param path Path to the font.
      * @param size Size of the font.
      * @param style Style of the font.
+     * @param alignment Alignment of the font.
      * @return Loaded font.
      * @note Supported font format: ttf.
      * @warning If the font cannot be loaded, throws wze::exception.
@@ -183,7 +184,8 @@ class assets final {
     [[nodiscard]] static std::shared_ptr<font>
     // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
     load_font(std::string const& path, uint8_t size = 48,
-              font_style style = FONT_STYLE_NORMAL);
+              font_style style = FONT_STYLE_NORMAL,
+              font_alignment alignment = FONT_ALIGNMENT_LEFT);
 
     /**
      * @file assets.hpp
