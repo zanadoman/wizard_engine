@@ -22,7 +22,7 @@
 #include <wizard_engine/wizard_engine.hpp>
 
 constexpr uint8_t font_size = 32;
-constexpr uint16_t line_width = 1000;
+constexpr uint16_t line_width = 800;
 
 wze_main("Wizard Engine - Text", 1920, 1080) {
     std::string text;
