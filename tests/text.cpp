@@ -21,7 +21,8 @@
 
 #include <wizard_engine/wizard_engine.hpp>
 
-constexpr uint8_t font_size = 48;
+constexpr uint8_t font_size = 32;
+constexpr uint16_t line_width = 1000;
 
 wze_main("Wizard Engine - Text", 1920, 1080) {
     std::string text;
@@ -30,7 +31,7 @@ wze_main("Wizard Engine - Text", 1920, 1080) {
     std::shared_ptr<wze::image> image;
     wze::sprite sprite;
 
-    font = wze::assets::load_font("./tests/FreeSerif.ttf", font_size,
+    font = wze::assets::load_font("./tests/font.ttf", font_size,
                                   wze::FONT_STYLE_NORMAL,
                                   wze::FONT_ALIGNMENT_CENTER);
 
@@ -47,8 +48,7 @@ wze_main("Wizard Engine - Text", 1920, 1080) {
         }
         if (update) {
             try {
-                image = wze::assets::create_image(text, font,
-                                                  wze::window::width() / 2);
+                image = wze::assets::create_image(text, font, line_width);
             } catch (...) {
                 sprite.set_texture(nullptr);
                 continue;
