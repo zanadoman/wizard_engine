@@ -8,10 +8,11 @@ can code in C++ and doesn't want to tinker with GUI. Therefore, this engine
 serves as a high-level wrapper around SDL2 while keeping the abstraction low and
 the performance high. The stable version is still in progress (about 70%).
 
-Documentation:
-- You can find examples in the "tests" directory.
-- Read the documentation in the header files.
-- Read the source code.
+Officially supported platforms:
+- Windows (x86_64)
+- Linux (x86_64)
+- Android (x86_64, AArch64)
+- Web (x86)
 
 Dependencies:
 - Clang
@@ -21,11 +22,10 @@ Dependencies:
 - Gradle (for Android development only)
 - Rustup (for server development only)
 
-Officially supported platforms:
-- Windows (x86_64)
-- Linux (x86_64)
-- Android (x86_64, AArch64)
-- Web (x86)
+Documentation:
+- You can find examples in the "tests" directory.
+- See the documentation in the header files.
+- Read the source code. :)
 
 Example:
 #include <wizard_engine/wizard_engine.hpp>
