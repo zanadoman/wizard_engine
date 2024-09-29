@@ -16,13 +16,9 @@ tokio = { version = "*", features = [
 zerocopy = { version = "*", features = ["derive"] }
 
 [[bin]]
-name = "tcp"
-path = "./srv/tcp.rs"
-
-[[bin]]
 name = "udp"
 path = "./srv/udp.rs"
 
 [[bin]]
-name = "server"
-path = "./srv/server.rs"
+name = "tcp"
+path = "./srv/tcp.rs"
