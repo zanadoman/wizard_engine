@@ -1,4 +1,4 @@
-HeaderFilterRegex: '^./include/wizard_engine/.*$'
+HeaderFilterRegex: '^./include/wizard_engine/.*\.hpp$'
 Checks: >
   bugprone-*,
   cert-*,
@@ -12,15 +12,10 @@ Checks: >
   readability-*,
   -bugprone-easily-swappable-parameters,
   -clang-analyzer-optin.cplusplus.VirtualCall,
-  -cppcoreguidelines-init-variables,
-  -cppcoreguidelines-prefer-member-initializer,
-  -cppcoreguidelines-pro-type-member-init,
   -cppcoreguidelines-special-member-functions,
-  -hicpp-member-init,
   -hicpp-signed-bitwise,
   -hicpp-special-member-functions,
   -misc-include-cleaner,
   -modernize-use-trailing-return-type,
-  -performance-enum-size,
   -readability-identifier-length
 WarningsAsErrors: '*'
