@@ -49,7 +49,7 @@ async fn input(
         let message = match <[u8; BUFFER_SIZE]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
-                eprintln!("Invalid data from {}", &address);
+                eprintln!("Invalid message from {}", &address);
                 continue;
             }
         };
