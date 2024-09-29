@@ -1,0 +1,49 @@
+Wizard Engine
+
+This is a simple 2D cross platform game engine built around Simple DirectMedia
+Layer 2. https://www.libsdl.org/
+
+The goal of this library is to make game development accessible to anyone who
+can code in C++ and doesn't want to tinker with UI. Therefore this engine
+serves as a high-level wrapper around SDL2 while keeps the abstraction low
+and the performance high. The stable version is still in progress. (about 70%)
+
+Documentation:
+- You can find examples in the tests directoy.
+- Read the documentations in the header files.
+- Read the source code. :)
+
+Dependencies:
+- Clang
+- emscipten (Web development only)
+- Android NDK (Android development only)
+- CMake
+- Gradle (Android development only)
+- rustup (server development only)
+
+Officially supported platforms:
+- Windows (x86_64)
+- Linux (x86_64)
+- Android (x86_64, aarch64)
+- Web (x86)
+
+Example:
+#include <wizard_engine/wizard_engine.hpp>
+wze_main("Wizard Engine", 1920, 1080) {
+    wze_while(true) {}
+    return 0;
+}
+
+Build:
+mkdir build
+cd build
+cmake .. -G "MinGW Makefiles" --toolchain ../x86_64-windows.toolchain.cmake
+cmake --build .
+
+Contributing:
+Feel free to create an issue/PR if you want to see anything else implemented.
+
+License:
+This library is under the zlib license, see the file "LICENSE" for details.
+
+Enjoy! - Zana Domán
