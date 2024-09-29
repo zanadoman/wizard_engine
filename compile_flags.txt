@@ -5,5 +5,4 @@
 -Wextra
 -Wpedantic
 -Wdouble-promotion
--Wno-psabi
 -Werror
