@@ -38,7 +38,7 @@ class exception : public std::exception {
      * @brief Constructs an exception instance.
      * @param what Explanatory string.
      */
-    explicit exception(std::string const& what);
+    explicit exception(std::string what);
 
     /**
      * @file exception.hpp

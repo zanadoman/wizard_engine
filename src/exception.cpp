@@ -26,8 +26,7 @@
 #include <wizard_engine/enums.hpp>
 #include <wizard_engine/exception.hpp>
 
-wze::exception::exception(std::string const& what) {
-    _what = what;
+wze::exception::exception(std::string what) : _what{std::move(what)} {
     engine::log(this->what(), LOG_LEVEL_ERROR);
 }
 
