@@ -75,15 +75,15 @@ void wze::input::update_keys() {
     _keys.at(KEY_MOUSE_X1) = (bool)(mouse_keys & SDL_BUTTON_X1MASK);
     _keys.at(KEY_MOUSE_X2) = (bool)(mouse_keys & SDL_BUTTON_X2MASK);
 
-    _keys.at(KEY_MOUSE_WHEEL_UP) = false;
     _keys.at(KEY_MOUSE_WHEEL_DOWN) = false;
+    _keys.at(KEY_MOUSE_WHEEL_UP) = false;
     for (iterator = engine::events().rbegin();
          iterator != engine::events().rend(); ++iterator) {
         if (iterator->type == SDL_MOUSEWHEEL) {
-            if (0 < iterator->wheel.y) {
-                _keys.at(KEY_MOUSE_WHEEL_UP) = true;
-            } else if (iterator->wheel.y < 0) {
+            if (iterator->wheel.y < 0) {
                 _keys.at(KEY_MOUSE_WHEEL_DOWN) = true;
+            } else if (0 < iterator->wheel.y) {
+                _keys.at(KEY_MOUSE_WHEEL_UP) = true;
             }
             break;
         }

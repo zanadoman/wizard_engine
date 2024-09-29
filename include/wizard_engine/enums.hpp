@@ -321,8 +321,8 @@ enum key : uint16_t {
     KEY_MOUSE_RIGHT,
     KEY_MOUSE_X1,
     KEY_MOUSE_X2,
-    KEY_MOUSE_WHEEL_UP,
     KEY_MOUSE_WHEEL_DOWN,
+    KEY_MOUSE_WHEEL_UP,
     KEY_COUNT
 };
 
