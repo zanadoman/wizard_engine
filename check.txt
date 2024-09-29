@@ -10,14 +10,14 @@ polygon
 net
 math
 input
-exception OK
-enums
+exception
+enums - OK
 entity
 engine
 component
 collider
 camera
-audio OK
+audio
 assets
-animator OK
-animatable OK
+animator
+animatable
