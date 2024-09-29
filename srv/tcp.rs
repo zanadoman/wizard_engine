@@ -42,37 +42,37 @@ async fn input(
     let mut buffer = [0; BUFFER_SIZE];
     loop {
         let size = match socket.read(&mut buffer).await {
-            Ok(0) => return Err(anyhow!("Client {} disconnected", address)),
+            Ok(0) => return Err(anyhow!("Client {} disconnected", &address)),
             Ok(size) => size,
             Err(error) => return Err(error.into()),
         };
         let message = match <[u8; BUFFER_SIZE]>::read_from(&buffer[..size]) {
-            Some(payload) => payload,
+            Some(message) => message,
             None => {
-                eprintln!("Invalid data from {}", address);
+                eprintln!("Invalid data from {}", &address);
                 continue;
             }
         };
-        println!("{}: {}", address, String::from_utf8_lossy(&message));
+        println!("{}: {}", &address, &String::from_utf8_lossy(&message));
         if let Err(error) = sender.send(message) {
-            eprintln!("{}", error)
+            eprintln!("{}", &error)
         }
     }
 }
 
 async fn output(
-    writer: &mut WriteHalf<TcpStream>,
+    socket: &mut WriteHalf<TcpStream>,
     receiver: &mut Receiver<[u8; BUFFER_SIZE]>,
 ) -> Result<(), Error> {
     loop {
         let message = match receiver.recv().await {
             Ok(message) => message,
             Err(error) => {
-                eprintln!("{}", error);
+                eprintln!("{}", &error);
                 continue;
             }
         };
-        writer.write_all(&message).await?
+        socket.write_all(&message).await?
     }
 }
 
@@ -80,16 +80,16 @@ async fn output(
 async fn main() -> Result<(), Error> {
     let listener = TcpListener::bind(format!(
         "0.0.0.0:{}",
-        args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
+        &args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
     ))
     .await?;
     let channel = channel(u8::MAX.into()).0;
-    println!("Listening on {:?}", listener.local_addr()?);
+    println!("Listening on {:?}", &listener.local_addr()?);
     loop {
         let (socket, address) = match listener.accept().await {
             Ok(connection) => connection,
             Err(error) => {
-                eprintln!("{}", error);
+                eprintln!("{}", &error);
                 continue;
             }
         };
@@ -97,12 +97,12 @@ async fn main() -> Result<(), Error> {
         let sender = channel.clone();
         let mut receiver = channel.subscribe();
         spawn(async move {
-            println!("Client {} connected", address);
+            println!("Client {} connected", &address);
             if let Err(error) = try_join!(
                 input(&address, &mut reader, &sender),
                 output(&mut writer, &mut receiver)
             ) {
-                eprintln!("{}", error)
+                eprintln!("{}", &error)
             }
         });
     }
