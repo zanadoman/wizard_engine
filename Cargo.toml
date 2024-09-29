@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-anyhow = { version = "*", default-features = true }
+anyhow = { version = "*" }
 tokio = { version = "*", features = [
     "io-util",
     "macros",
@@ -13,7 +13,7 @@ tokio = { version = "*", features = [
     "sync",
     "time",
 ] }
-zerocopy = { version = "*", features = ["derive"] }
+zerocopy = { version = "*" }
 
 [[bin]]
 name = "udp"
