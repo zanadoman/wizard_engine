@@ -36,7 +36,7 @@ use tokio::{
     time::{sleep, Duration, Instant},
     try_join,
 };
-use zerocopy::{AsBytes, FromBytes, FromZeroes};
+use zerocopy::FromBytes;
 
 const DEFAULT_PORT: u16 = 8080;
 const BUFFER_SIZE: usize = 1024;
@@ -45,63 +45,54 @@ const TIMEOUT: Duration = Duration::from_secs(10);
 fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
     static CLIENTS: OnceLock<RwLock<HashMap<SocketAddr, Instant>>> =
         OnceLock::new();
-    CLIENTS.get_or_init(|| RwLock::new(HashMap::new()))
-}
-
-#[repr(C)]
-#[derive(Clone, AsBytes, FromBytes, FromZeroes)]
-struct Payload {
-    content: [u8; BUFFER_SIZE],
+    CLIENTS.get_or_init(|| RwLock::new(HashMap::default()))
 }
 
 async fn input(
-    socket: Arc<UdpSocket>,
-    transmitter: Sender<(SocketAddr, Payload)>,
+    socket: &Arc<UdpSocket>,
+    sender: &Sender<[u8; BUFFER_SIZE]>,
 ) -> Result<(), Error> {
     let mut buffer = [0; BUFFER_SIZE];
-
     loop {
-        let (sender, payload) = match socket.recv_from(&mut buffer).await {
-            Ok((size, address)) => (
-                address,
-                match Payload::read_from(&buffer[..size]) {
-                    Some(payload) => payload,
-                    None => {
-                        eprintln!("Invalid data from {}", address);
-                        continue;
-                    }
-                },
-            ),
+        let (size, address) = match socket.recv_from(&mut buffer).await {
+            Ok(packet) => packet,
             Err(error) => {
                 eprintln!("{}", error);
+                continue;
+            }
+        };
+        let message = match <[u8; BUFFER_SIZE]>::read_from(&buffer[..size]) {
+            Some(message) => message,
+            None => {
+                eprintln!("Invalid data from {}", address);
                 continue;
             }
         };
         clients()
             .write()
             .await
-            .entry(sender)
+            .entry(address)
             .and_modify(|timestamp| {
-                println!("Client {} updated", sender);
+                println!("Client {} updated", address);
                 *timestamp = Instant::now()
             })
             .or_insert_with(|| {
-                println!("Client {} connected", sender);
+                println!("Client {} connected", address);
                 Instant::now()
             });
-        println!("{}: {}", sender, String::from_utf8_lossy(&payload.content));
-        if let Err(error) = transmitter.send((sender, payload)) {
+        println!("{}: {}", address, String::from_utf8_lossy(&message));
+        if let Err(error) = sender.send(message) {
             eprintln!("{}", error)
         }
     }
 }
 
 async fn output(
-    socket: Arc<UdpSocket>,
-    mut receiver: Receiver<(SocketAddr, Payload)>,
+    socket: &Arc<UdpSocket>,
+    receiver: &mut Receiver<[u8; BUFFER_SIZE]>,
 ) -> Result<(), Error> {
     loop {
-        let (sender, payload) = match receiver.recv().await {
+        let message = match receiver.recv().await {
             Ok(message) => message,
             Err(error) => {
                 eprintln!("{}", error);
@@ -109,12 +100,8 @@ async fn output(
             }
         };
         for (address, _) in clients().read().await.iter() {
-            if sender != *address {
-                if let Err(error) =
-                    socket.send_to(&payload.as_bytes(), address).await
-                {
-                    eprintln!("{}", error)
-                }
+            if let Err(error) = socket.send_to(&message, address).await {
+                eprintln!("{}", error)
             }
         }
     }
@@ -142,13 +129,12 @@ async fn main() -> Result<(), Error> {
         ))
         .await?,
     );
-    let transmitter = channel(u8::MAX.into()).0;
-
+    let channel = channel(u8::MAX.into()).0;
+    let mut receiver = channel.subscribe();
     println!("Listening on {:?}", socket.local_addr()?);
-
     try_join!(
-        input(socket.clone(), transmitter.clone()),
-        output(socket.clone(), transmitter.subscribe()),
+        input(&socket, &channel),
+        output(&socket, &mut receiver),
         timeout()
     )?;
     Ok(())

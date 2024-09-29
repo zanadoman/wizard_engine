@@ -29,62 +29,50 @@ use tokio::{
     sync::broadcast::{channel, Receiver, Sender},
     try_join,
 };
-use zerocopy::{AsBytes, FromBytes, FromZeroes};
+use zerocopy::FromBytes;
 
 const DEFAULT_PORT: u16 = 8080;
 const BUFFER_SIZE: usize = 1024;
 
-#[repr(C)]
-#[derive(Debug, Clone, AsBytes, FromBytes, FromZeroes)]
-struct Payload {
-    content: [u8; BUFFER_SIZE],
-}
-
 async fn input(
-    address: SocketAddr,
-    mut reader: ReadHalf<TcpStream>,
-    transmitter: Sender<(SocketAddr, Payload)>,
+    address: &SocketAddr,
+    socket: &mut ReadHalf<TcpStream>,
+    sender: &Sender<[u8; BUFFER_SIZE]>,
 ) -> Result<(), Error> {
     let mut buffer = [0; BUFFER_SIZE];
-
     loop {
-        let (sender, payload) = match reader.read(&mut buffer).await {
+        let size = match socket.read(&mut buffer).await {
             Ok(0) => return Err(anyhow!("Client {} disconnected", address)),
-            Ok(size) => (
-                address,
-                match Payload::read_from(&buffer[..size]) {
-                    Some(payload) => payload,
-                    None => {
-                        eprintln!("Invalid data from {}", address);
-                        continue;
-                    }
-                },
-            ),
+            Ok(size) => size,
             Err(error) => return Err(error.into()),
         };
-        println!("{}: {}", sender, String::from_utf8_lossy(&payload.content));
-        if let Err(error) = transmitter.send((sender, payload)) {
+        let message = match <[u8; BUFFER_SIZE]>::read_from(&buffer[..size]) {
+            Some(payload) => payload,
+            None => {
+                eprintln!("Invalid data from {}", address);
+                continue;
+            }
+        };
+        println!("{}: {}", address, String::from_utf8_lossy(&message));
+        if let Err(error) = sender.send(message) {
             eprintln!("{}", error)
         }
     }
 }
 
 async fn output(
-    address: SocketAddr,
-    mut writer: WriteHalf<TcpStream>,
-    mut receiver: Receiver<(SocketAddr, Payload)>,
+    writer: &mut WriteHalf<TcpStream>,
+    receiver: &mut Receiver<[u8; BUFFER_SIZE]>,
 ) -> Result<(), Error> {
     loop {
-        let (sender, payload) = match receiver.recv().await {
+        let message = match receiver.recv().await {
             Ok(message) => message,
             Err(error) => {
                 eprintln!("{}", error);
                 continue;
             }
         };
-        if sender != address {
-            writer.write_all(&payload.as_bytes()).await?
-        }
+        writer.write_all(&message).await?
     }
 }
 
@@ -95,10 +83,8 @@ async fn main() -> Result<(), Error> {
         args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
     ))
     .await?;
-    let transmitter = channel(u8::MAX.into()).0;
-
+    let channel = channel(u8::MAX.into()).0;
     println!("Listening on {:?}", listener.local_addr()?);
-
     loop {
         let (socket, address) = match listener.accept().await {
             Ok(connection) => connection,
@@ -107,14 +93,14 @@ async fn main() -> Result<(), Error> {
                 continue;
             }
         };
-        let (reader, writer) = split(socket);
-        let transmitter = transmitter.clone();
-
+        let (mut reader, mut writer) = split(socket);
+        let sender = channel.clone();
+        let mut receiver = channel.subscribe();
         spawn(async move {
             println!("Client {} connected", address);
             if let Err(error) = try_join!(
-                input(address, reader, transmitter.clone()),
-                output(address, writer, transmitter.subscribe())
+                input(&address, &mut reader, &sender),
+                output(&mut writer, &mut receiver)
             ) {
                 eprintln!("{}", error)
             }
