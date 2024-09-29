@@ -1,30 +1,30 @@
 Wizard Engine
 
-This is a simple 2D cross platform game engine built around Simple DirectMedia
-Layer 2. https://www.libsdl.org/
+This is a simple 2D cross-platform game engine built around Simple DirectMedia
+Layer 2 (SDL2). https://www.libsdl.org/
 
 The goal of this library is to make game development accessible to anyone who
-can code in C++ and doesn't want to tinker with UI. Therefore this engine
-serves as a high-level wrapper around SDL2 while keeps the abstraction low
-and the performance high. The stable version is still in progress. (about 70%)
+can code in C++ and doesn't want to tinker with GUI. Therefore, this engine
+serves as a high-level wrapper around SDL2 while keeping the abstraction low and
+the performance high. The stable version is still in progress (about 70%).
 
 Documentation:
-- You can find examples in the tests directoy.
-- Read the documentations in the header files.
-- Read the source code. :)
+- You can find examples in the "tests" directory.
+- Read the documentation in the header files.
+- Read the source code.
 
 Dependencies:
 - Clang
-- emscipten (Web development only)
-- Android NDK (Android development only)
+- Android NDK (for Android development only)
+- Emscripten (for Web development only)
 - CMake
-- Gradle (Android development only)
-- rustup (server development only)
+- Gradle (for Android development only)
+- Rustup (for server development only)
 
 Officially supported platforms:
 - Windows (x86_64)
 - Linux (x86_64)
-- Android (x86_64, aarch64)
+- Android (x86_64, AArch64)
 - Web (x86)
 
 Example:
@@ -41,9 +41,10 @@ cmake .. -G "MinGW Makefiles" --toolchain ../x86_64-windows.toolchain.cmake
 cmake --build .
 
 Contributing:
-Feel free to create an issue/PR if you want to see anything else implemented.
+Feel free to create an issue or PR if you want to see anything else implemented.
 
 License:
-This library is under the zlib license, see the file "LICENSE" for details.
+This library is licensed under the zlib license, see the file "LICENSE" for
+details.
 
 Enjoy! - Zana Domán
