@@ -24,10 +24,6 @@
 
 #include <wizard_engine/timer.hpp>
 
-uint8_t wze::timer::_frame_time = {};
-float wze::timer::_delta_time = {};
-uint32_t wze::timer::_last_time = {};
-
 uint8_t wze::timer::frame_time() {
     return _frame_time;
 }
@@ -48,27 +44,20 @@ uint32_t wze::timer::current_time() {
     return SDL_GetTicks();
 }
 
-void wze::timer::initialize() {
-    set_frame_time(0);
-    set_delta_time(0);
-    _last_time = current_time();
-}
-
 void wze::timer::update() {
-    uint32_t now;
-    uint32_t end;
-
-    end = _last_time + frame_time();
-    now = current_time();
-
+    uint32_t end{_last_time + frame_time()};
+    uint32_t now{current_time()};
 #ifdef __EMSCRIPTEN__
     emscripten_sleep
 #else  /* __EMSCRIPTEN__ */
     SDL_Delay
 #endif /* __EMSCRIPTEN__ */
         (now < end ? end - now : 0);
-
     now = current_time();
     set_delta_time((float)(now - _last_time));
     _last_time = now;
 }
+
+uint8_t wze::timer::_frame_time{};
+float wze::timer::_delta_time{};
+uint32_t wze::timer::_last_time{};

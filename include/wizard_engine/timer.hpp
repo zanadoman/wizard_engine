@@ -31,19 +31,14 @@ namespace wze {
  * @brief Subsystem to handle frame rate and delta time.
  */
 class timer final {
-  private:
-    static uint8_t _frame_time;
-    static float _delta_time;
-    static uint32_t _last_time;
-
+  public:
     /**
      * @file timer.hpp
      * @author Zana Domán
-     * @brief Private default constructor to prevent instantiation.
+     * @brief Deleted default constructor to prevent instantiation.
      */
-    timer() = default;
+    explicit timer() = delete;
 
-  public:
     /**
      * @file timer.hpp
      * @author Zana Domán
@@ -96,19 +91,15 @@ class timer final {
     /**
      * @file timer.hpp
      * @author Zana Domán
-     * @brief Initializes the timer subsystem.
-     */
-    static void initialize();
-#endif /* __WIZARD_ENGINE_INTERNAL__ */
-
-#ifdef __WIZARD_ENGINE_INTERNAL__
-    /**
-     * @file timer.hpp
-     * @author Zana Domán
      * @brief Updates the timer subsystem.
      */
     static void update();
 #endif /* __WIZARD_ENGINE_INTERNAL__ */
+
+  private:
+    static uint8_t _frame_time;
+    static float _delta_time;
+    static uint32_t _last_time;
 };
 } /* namespace wze */
 
