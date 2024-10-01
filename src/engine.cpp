@@ -151,7 +151,6 @@ void wze::engine::initialize(std::string const& title, uint16_t width,
     camera::initialize();
     renderer::initialize();
     input::initialize();
-    timer::initialize();
     play_intro();
 }
 
