@@ -47,8 +47,10 @@ uint32_t wze::timer::current_time() {
 void wze::timer::update() {
     uint32_t end{_last_time + frame_time()};
     uint32_t now{current_time()};
-    SDL_Delay(now < end ? end - now : 0);
-    now = current_time();
+    if (now < end) {
+        SDL_Delay(end - now);
+        now = end;
+    }
     set_delta_time((float)(now - _last_time));
     _last_time = now;
 }
