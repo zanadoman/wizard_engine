@@ -1,6 +1,6 @@
 window     -
 udp_socket -
-timer      -
+timer      - OK
 tcp_socket -
 sprite     -
 speaker    -

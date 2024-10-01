@@ -47,12 +47,7 @@ uint32_t wze::timer::current_time() {
 void wze::timer::update() {
     uint32_t end{_last_time + frame_time()};
     uint32_t now{current_time()};
-#ifdef __EMSCRIPTEN__
-    emscripten_sleep
-#else  /* __EMSCRIPTEN__ */
-    SDL_Delay
-#endif /* __EMSCRIPTEN__ */
-        (now < end ? end - now : 0);
+    SDL_Delay(now < end ? end - now : 0);
     now = current_time();
     set_delta_time((float)(now - _last_time));
     _last_time = now;

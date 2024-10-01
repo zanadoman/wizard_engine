@@ -63,11 +63,4 @@
 #include <SDL2/SDL_net.h>   /* IWYU pragma: export */
 #include <SDL2/SDL_ttf.h>   /* IWYU pragma: export */
 
-#ifdef __EMSCRIPTEN__
-#pragma clang diagnostic push /* "-Wunused-parameter" */
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#include <emscripten.h>      /* IWYU pragma: export */
-#pragma clang diagnostic pop /* "-Wunused-parameter" */
-#endif                       /* __EMSCRIPTEN__ */
-
 #endif /* WIZARD_ENGINE_EXPORT_HPP */
