@@ -49,10 +49,6 @@
 #include <utility>       /* IWYU pragma: export */
 #include <vector>        /* IWYU pragma: export */
 
-#if defined(__unix__) && !defined(__ANDROID__)
-#define SDL_DISABLE_ANALYZE_MACROS
-#endif /* defined(__unix__) && !defined(__ANDROID__) */
-
 #ifdef _WIN32
 #define SDL_MAIN_HANDLED
 #endif /* _WIN32 */
