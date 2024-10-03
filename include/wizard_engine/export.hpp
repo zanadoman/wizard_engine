@@ -49,10 +49,6 @@
 #include <utility>       /* IWYU pragma: export */
 #include <vector>        /* IWYU pragma: export */
 
-#ifdef _WIN32
-#define SDL_MAIN_HANDLED
-#endif /* _WIN32 */
-
 #include <SDL2/SDL.h>       /* IWYU pragma: export */
 #include <SDL2/SDL_image.h> /* IWYU pragma: export */
 #include <SDL2/SDL_mixer.h> /* IWYU pragma: export */

@@ -120,9 +120,6 @@ void wze::engine::initialize(std::string const& title, uint16_t width,
         throw exception(SDL_GetError());
     }
 #endif /* __ANDROID__ */
-#ifdef SDL_MAIN_HANDLED
-    SDL_SetMainReady();
-#endif /* SDL_MAIN_HANDLED */
     if ((bool)SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
                        SDL_INIT_EVENTS | SDL_INIT_JOYSTICK |
                        SDL_INIT_GAMECONTROLLER | SDL_INIT_SENSOR)) {

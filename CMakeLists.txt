@@ -60,7 +60,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/lib*.dll)
     file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/SDL2*.dll)
+    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/x86_64-windows/*SDL2*.*)
     file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Android)
     file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/android/app/src/main/jniLibs/${CMAKE_ANDROID_ARCH_ABI}/libSDL2*.so)
@@ -75,7 +75,7 @@ string(REPLACE \n \  CMAKE_CXX_FLAGS ${FLAGS})
 
 # Tests
 if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    set(LINK_OPTIONS -mwindows)
+    set(LINK_OPTIONS -lmingw32 -mwindows)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL Emscripten)
     set(LINK_OPTIONS -sUSE_SDL=2 -sUSE_SDL_IMAGE=2 -sUSE_SDL_MIXER=2 -sUSE_SDL_TTF=2
         -sUSE_SDL_NET=2 -sUSE_FREETYPE=1 -sASYNCIFY --use-preload-plugins --preload-file
