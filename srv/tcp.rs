@@ -20,7 +20,8 @@
 */
 
 use anyhow::{anyhow, Error};
-use std::{env::args, net::SocketAddr};
+use clap::Parser;
+use std::{net::SocketAddr, sync::OnceLock};
 use tokio::{
     io::{split, AsyncReadExt, AsyncWriteExt, ReadHalf, WriteHalf},
     main,
@@ -31,22 +32,36 @@ use tokio::{
 };
 use zerocopy::FromBytes;
 
-const DEFAULT_PORT: u16 = 8080;
-const BUFFER_SIZE: usize = 1024;
+const PORT: u16 = 8080;
+const BUFFER: usize = 1024;
+
+#[derive(Parser)]
+#[command(version, about = "Simple TCP broadcast server for Wizard Engine")]
+struct Args {
+    #[arg(short, long, default_value_t = PORT)]
+    port: u16,
+}
+
+impl Args {
+    fn once() -> &'static Args {
+        static ARGS: OnceLock<Args> = OnceLock::new();
+        ARGS.get_or_init(|| Args::parse())
+    }
+}
 
 async fn input(
     address: &SocketAddr,
     socket: &mut ReadHalf<TcpStream>,
-    sender: &Sender<[u8; BUFFER_SIZE]>,
+    sender: &Sender<[u8; BUFFER]>,
 ) -> Result<(), Error> {
-    let mut buffer = [0; BUFFER_SIZE];
+    let mut buffer = [0; BUFFER];
     loop {
         let size = match socket.read(&mut buffer).await {
             Ok(0) => return Err(anyhow!("Client {} disconnected", address)),
             Ok(size) => size,
             Err(error) => return Err(error.into()),
         };
-        let message = match <[u8; BUFFER_SIZE]>::read_from(&buffer[..size]) {
+        let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
                 eprintln!("Invalid message from {}", address);
@@ -62,7 +77,7 @@ async fn input(
 
 async fn output(
     socket: &mut WriteHalf<TcpStream>,
-    receiver: &mut Receiver<[u8; BUFFER_SIZE]>,
+    receiver: &mut Receiver<[u8; BUFFER]>,
 ) -> Result<(), Error> {
     loop {
         let message = match receiver.recv().await {
@@ -78,11 +93,8 @@ async fn output(
 
 #[main]
 async fn main() -> Result<(), Error> {
-    let listener = TcpListener::bind(format!(
-        "0.0.0.0:{}",
-        args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
-    ))
-    .await?;
+    let listener =
+        TcpListener::bind(format!("0.0.0.0:{}", Args::once().port)).await?;
     let channel = channel(u8::MAX.into()).0;
     println!("Listening on {:?}", listener.local_addr()?);
     loop {

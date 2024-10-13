@@ -20,7 +20,8 @@
 */
 
 use anyhow::Error;
-use std::{collections::HashMap, env::args, net::SocketAddr, sync::OnceLock};
+use clap::{value_parser, Parser};
+use std::{collections::HashMap, net::SocketAddr, sync::OnceLock};
 use tokio::{
     main,
     net::UdpSocket,
@@ -33,9 +34,30 @@ use tokio::{
 };
 use zerocopy::FromBytes;
 
-const DEFAULT_PORT: u16 = 8080;
-const BUFFER_SIZE: usize = 1024;
-const TIMEOUT: Duration = Duration::from_secs(10);
+const PORT: u16 = 8080;
+const BUFFER: usize = 1024;
+const TIMEOUT: u64 = 10;
+
+#[derive(Parser)]
+#[command(version, about = "Simple UDP broadcast server for Wizard Engine")]
+struct Args {
+    #[arg(short, long, default_value_t = PORT)]
+    port: u16,
+    #[arg(
+        short,
+        long,
+        default_value_t = TIMEOUT,
+        value_parser = value_parser!(u64).range(1..),
+    )]
+    timeout: u64,
+}
+
+impl Args {
+    fn once() -> &'static Args {
+        static ARGS: OnceLock<Args> = OnceLock::new();
+        ARGS.get_or_init(|| Args::parse())
+    }
+}
 
 fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
     static CLIENTS: OnceLock<RwLock<HashMap<SocketAddr, Instant>>> =
@@ -45,9 +67,9 @@ fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
 
 async fn input(
     socket: &UdpSocket,
-    sender: &Sender<[u8; BUFFER_SIZE]>,
+    sender: &Sender<[u8; BUFFER]>,
 ) -> Result<(), Error> {
-    let mut buffer = [0; BUFFER_SIZE];
+    let mut buffer = [0; BUFFER];
     loop {
         let (size, address) = match socket.recv_from(&mut buffer).await {
             Ok(connection) => connection,
@@ -56,7 +78,7 @@ async fn input(
                 continue;
             }
         };
-        let message = match <[u8; BUFFER_SIZE]>::read_from(&buffer[..size]) {
+        let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
                 eprintln!("Invalid message from {}", address);
@@ -84,7 +106,7 @@ async fn input(
 
 async fn output(
     socket: &UdpSocket,
-    receiver: &mut Receiver<[u8; BUFFER_SIZE]>,
+    receiver: &mut Receiver<[u8; BUFFER]>,
 ) -> Result<(), Error> {
     loop {
         let message = match receiver.recv().await {
@@ -106,7 +128,8 @@ async fn timeout() -> Result<(), Error> {
     loop {
         sleep(Duration::from_secs(1)).await;
         clients().write().await.retain(|address, timestamp| {
-            let alive = Instant::now().duration_since(*timestamp) < TIMEOUT;
+            let alive = Instant::now().duration_since(*timestamp)
+                < Duration::from_secs(Args::once().timeout);
             if !alive {
                 println!("Client {} disconnected", address)
             }
@@ -117,11 +140,8 @@ async fn timeout() -> Result<(), Error> {
 
 #[main]
 async fn main() -> Result<(), Error> {
-    let socket = UdpSocket::bind(format!(
-        "0.0.0.0:{}",
-        args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
-    ))
-    .await?;
+    let socket =
+        UdpSocket::bind(format!("0.0.0.0:{}", Args::once().port)).await?;
     let channel = channel(u8::MAX.into()).0;
     let mut receiver = channel.subscribe();
     println!("Listening on {:?}", socket.local_addr()?);

@@ -1,10 +1,11 @@
 [package]
 name = "srv"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 
 [dependencies]
 anyhow = { version = "*" }
+clap = { version = "*", features = ["derive"] }
 tokio = { version = "*", features = [
     "io-util",
     "macros",
