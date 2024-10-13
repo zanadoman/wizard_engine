@@ -58,7 +58,7 @@ impl Args {
     #[instrument]
     fn once() -> &'static Args {
         static ARGS: OnceLock<Args> = OnceLock::new();
-        ARGS.get_or_init(|| Args::parse())
+        ARGS.get_or_init(Args::parse)
     }
 }
 
