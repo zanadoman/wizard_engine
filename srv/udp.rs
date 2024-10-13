@@ -32,6 +32,8 @@ use tokio::{
     time::{sleep, Duration, Instant},
     try_join,
 };
+use tracing::{info, instrument, warn};
+use tracing_subscriber::{fmt, fmt::format::FmtSpan};
 use zerocopy::FromBytes;
 
 const PORT: u16 = 8080;
@@ -53,18 +55,21 @@ struct Args {
 }
 
 impl Args {
+    #[instrument]
     fn once() -> &'static Args {
         static ARGS: OnceLock<Args> = OnceLock::new();
         ARGS.get_or_init(|| Args::parse())
     }
 }
 
+#[instrument]
 fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
     static CLIENTS: OnceLock<RwLock<HashMap<SocketAddr, Instant>>> =
         OnceLock::new();
     CLIENTS.get_or_init(|| RwLock::new(HashMap::default()))
 }
 
+#[instrument(skip(sender))]
 async fn input(
     socket: &UdpSocket,
     sender: &Sender<[u8; BUFFER]>,
@@ -74,14 +79,14 @@ async fn input(
         let (size, address) = match socket.recv_from(&mut buffer).await {
             Ok(connection) => connection,
             Err(error) => {
-                eprintln!("{}", error);
+                warn!("{}", error);
                 continue;
             }
         };
         let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
-                eprintln!("Invalid message from {}", address);
+                warn!("Invalid message from {}", address);
                 continue;
             }
         };
@@ -90,20 +95,21 @@ async fn input(
             .await
             .entry(address)
             .and_modify(|timestamp| {
-                println!("Client {} updated", address);
+                info!("Client {} updated", address);
                 *timestamp = Instant::now()
             })
             .or_insert_with(|| {
-                println!("Client {} connected", address);
+                info!("Client {} connected", address);
                 Instant::now()
             });
-        println!("{}: {}", address, String::from_utf8_lossy(&message));
+        info!("{}: {}", address, String::from_utf8_lossy(&message));
         if let Err(error) = sender.send(message) {
-            eprintln!("{}", error)
+            warn!("{}", error)
         }
     }
 }
 
+#[instrument(skip(receiver))]
 async fn output(
     socket: &UdpSocket,
     receiver: &mut Receiver<[u8; BUFFER]>,
@@ -112,18 +118,19 @@ async fn output(
         let message = match receiver.recv().await {
             Ok(message) => message,
             Err(error) => {
-                eprintln!("{}", error);
+                warn!("{}", error);
                 continue;
             }
         };
         for address in clients().read().await.keys() {
             if let Err(error) = socket.send_to(&message, address).await {
-                eprintln!("{}", error)
+                warn!("{}", error)
             }
         }
     }
 }
 
+#[instrument]
 async fn timeout() -> Result<(), Error> {
     loop {
         sleep(Duration::from_secs(1)).await;
@@ -131,7 +138,7 @@ async fn timeout() -> Result<(), Error> {
             let alive = Instant::now().duration_since(*timestamp)
                 < Duration::from_secs(Args::once().timeout);
             if !alive {
-                println!("Client {} disconnected", address)
+                info!("Client {} disconnected", address)
             }
             alive
         })
@@ -140,11 +147,12 @@ async fn timeout() -> Result<(), Error> {
 
 #[main]
 async fn main() -> Result<(), Error> {
+    fmt().with_span_events(FmtSpan::FULL).init();
     let socket =
         UdpSocket::bind(format!("0.0.0.0:{}", Args::once().port)).await?;
     let channel = channel(u8::MAX.into()).0;
     let mut receiver = channel.subscribe();
-    println!("Listening on {:?}", socket.local_addr()?);
+    info!("Listening on {:?}", socket.local_addr()?);
     try_join!(
         input(&socket, &channel),
         output(&socket, &mut receiver),

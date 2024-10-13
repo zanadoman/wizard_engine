@@ -30,6 +30,8 @@ use tokio::{
     sync::broadcast::{channel, Receiver, Sender},
     try_join,
 };
+use tracing::{error, info, instrument, warn};
+use tracing_subscriber::{fmt, fmt::format::FmtSpan};
 use zerocopy::FromBytes;
 
 const PORT: u16 = 8080;
@@ -43,12 +45,14 @@ struct Args {
 }
 
 impl Args {
+    #[instrument]
     fn once() -> &'static Args {
         static ARGS: OnceLock<Args> = OnceLock::new();
         ARGS.get_or_init(|| Args::parse())
     }
 }
 
+#[instrument(skip(socket, sender))]
 async fn input(
     address: &SocketAddr,
     socket: &mut ReadHalf<TcpStream>,
@@ -64,17 +68,18 @@ async fn input(
         let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
-                eprintln!("Invalid message from {}", address);
+                warn!("Invalid message from {}", address);
                 continue;
             }
         };
-        println!("{}: {}", address, String::from_utf8_lossy(&message));
+        info!("{}: {}", address, String::from_utf8_lossy(&message));
         if let Err(error) = sender.send(message) {
-            eprintln!("{}", error)
+            warn!("{}", error)
         }
     }
 }
 
+#[instrument(skip(socket, receiver))]
 async fn output(
     socket: &mut WriteHalf<TcpStream>,
     receiver: &mut Receiver<[u8; BUFFER]>,
@@ -83,7 +88,7 @@ async fn output(
         let message = match receiver.recv().await {
             Ok(message) => message,
             Err(error) => {
-                eprintln!("{}", error);
+                warn!("{}", error);
                 continue;
             }
         };
@@ -93,15 +98,16 @@ async fn output(
 
 #[main]
 async fn main() -> Result<(), Error> {
+    fmt().with_span_events(FmtSpan::FULL).init();
     let listener =
         TcpListener::bind(format!("0.0.0.0:{}", Args::once().port)).await?;
     let channel = channel(u8::MAX.into()).0;
-    println!("Listening on {:?}", listener.local_addr()?);
+    info!("Listening on {:?}", listener.local_addr()?);
     loop {
         let (socket, address) = match listener.accept().await {
             Ok(connection) => connection,
             Err(error) => {
-                eprintln!("{}", error);
+                warn!("{}", error);
                 continue;
             }
         };
@@ -109,12 +115,12 @@ async fn main() -> Result<(), Error> {
         let sender = channel.clone();
         let mut receiver = channel.subscribe();
         spawn(async move {
-            println!("Client {} connected", address);
+            info!("Client {} connected", address);
             if let Err(error) = try_join!(
                 input(&address, &mut reader, &sender),
                 output(&mut writer, &mut receiver)
             ) {
-                eprintln!("{}", error)
+                error!("{}", error)
             }
         });
     }
