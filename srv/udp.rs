@@ -149,7 +149,7 @@ async fn timeout() -> Result<(), Error> {
 async fn main() -> Result<(), Error> {
     fmt().with_span_events(FmtSpan::FULL).init();
     let socket =
-        UdpSocket::bind(format!("0.0.0.0:{}", Args::once().port)).await?;
+        UdpSocket::bind(format!("127.0.0.1:{}", Args::once().port)).await?;
     let channel = channel(u8::MAX.into()).0;
     let mut receiver = channel.subscribe();
     info!("{:?} listening", socket.local_addr()?);
