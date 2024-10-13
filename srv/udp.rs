@@ -20,12 +20,7 @@
 */
 
 use anyhow::Error;
-use std::{
-    collections::HashMap,
-    env::args,
-    net::SocketAddr,
-    sync::{Arc, OnceLock},
-};
+use std::{collections::HashMap, env::args, net::SocketAddr, sync::OnceLock};
 use tokio::{
     main,
     net::UdpSocket,
@@ -49,7 +44,7 @@ fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
 }
 
 async fn input(
-    socket: &Arc<UdpSocket>,
+    socket: &UdpSocket,
     sender: &Sender<[u8; BUFFER_SIZE]>,
 ) -> Result<(), Error> {
     let mut buffer = [0; BUFFER_SIZE];
@@ -57,14 +52,14 @@ async fn input(
         let (size, address) = match socket.recv_from(&mut buffer).await {
             Ok(connection) => connection,
             Err(error) => {
-                eprintln!("{}", &error);
+                eprintln!("{}", error);
                 continue;
             }
         };
         let message = match <[u8; BUFFER_SIZE]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
-                eprintln!("Invalid message from {}", &address);
+                eprintln!("Invalid message from {}", address);
                 continue;
             }
         };
@@ -73,35 +68,35 @@ async fn input(
             .await
             .entry(address)
             .and_modify(|timestamp| {
-                println!("Client {} updated", &address);
+                println!("Client {} updated", address);
                 *timestamp = Instant::now()
             })
             .or_insert_with(|| {
-                println!("Client {} connected", &address);
+                println!("Client {} connected", address);
                 Instant::now()
             });
-        println!("{}: {}", &address, &String::from_utf8_lossy(&message));
+        println!("{}: {}", address, String::from_utf8_lossy(&message));
         if let Err(error) = sender.send(message) {
-            eprintln!("{}", &error)
+            eprintln!("{}", error)
         }
     }
 }
 
 async fn output(
-    socket: &Arc<UdpSocket>,
+    socket: &UdpSocket,
     receiver: &mut Receiver<[u8; BUFFER_SIZE]>,
 ) -> Result<(), Error> {
     loop {
         let message = match receiver.recv().await {
             Ok(message) => message,
             Err(error) => {
-                eprintln!("{}", &error);
+                eprintln!("{}", error);
                 continue;
             }
         };
         for address in clients().read().await.keys() {
-            if let Err(error) = socket.send_to(&message, &address).await {
-                eprintln!("{}", &error)
+            if let Err(error) = socket.send_to(&message, address).await {
+                eprintln!("{}", error)
             }
         }
     }
@@ -113,7 +108,7 @@ async fn timeout() -> Result<(), Error> {
         clients().write().await.retain(|address, timestamp| {
             let alive = Instant::now().duration_since(*timestamp) < TIMEOUT;
             if !alive {
-                println!("Client {} disconnected", &address)
+                println!("Client {} disconnected", address)
             }
             alive
         })
@@ -122,16 +117,14 @@ async fn timeout() -> Result<(), Error> {
 
 #[main]
 async fn main() -> Result<(), Error> {
-    let socket = Arc::new(
-        UdpSocket::bind(format!(
-            "0.0.0.0:{}",
-            &args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
-        ))
-        .await?,
-    );
+    let socket = UdpSocket::bind(format!(
+        "0.0.0.0:{}",
+        args().nth(1).unwrap_or(DEFAULT_PORT.to_string())
+    ))
+    .await?;
     let channel = channel(u8::MAX.into()).0;
     let mut receiver = channel.subscribe();
-    println!("Listening on {:?}", &socket.local_addr()?);
+    println!("Listening on {:?}", socket.local_addr()?);
     try_join!(
         input(&socket, &channel),
         output(&socket, &mut receiver),
