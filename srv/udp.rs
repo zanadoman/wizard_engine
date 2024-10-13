@@ -159,10 +159,7 @@ async fn main() -> Result<(), ServerError> {
                 output(&socket, &mut receiver),
                 timeout()
             )
-        } => match result {
-            Ok(..) => Ok(()),
-            Err(error) => Err(error)
-        },
+        } => result.map(|_| ()),
         result = ctrl_c() => Ok(result?)
     }
 }
