@@ -21,7 +21,7 @@
 
 use anyhow::{anyhow, Error};
 use clap::Parser;
-use std::{net::SocketAddr, sync::OnceLock};
+use std::net::SocketAddr;
 use tokio::{
     io::{split, AsyncReadExt, AsyncWriteExt, ReadHalf, WriteHalf},
     main,
@@ -42,14 +42,6 @@ const BUFFER: usize = 1024;
 struct Args {
     #[arg(short, long, default_value_t = PORT)]
     port: u16,
-}
-
-impl Args {
-    #[instrument]
-    fn once() -> &'static Args {
-        static ARGS: OnceLock<Args> = OnceLock::new();
-        ARGS.get_or_init(Args::parse)
-    }
 }
 
 #[instrument(skip(socket, sender))]
@@ -100,7 +92,7 @@ async fn output(
 async fn main() -> Result<(), Error> {
     fmt().with_span_events(FmtSpan::FULL).init();
     let listener =
-        TcpListener::bind(format!("0.0.0.0:{}", Args::once().port)).await?;
+        TcpListener::bind(format!("0.0.0.0:{}", Args::parse().port)).await?;
     let channel = channel(u8::MAX.into()).0;
     info!("Listening on {:?}", listener.local_addr()?);
     loop {
