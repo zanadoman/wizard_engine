@@ -53,14 +53,14 @@ async fn input(
     let mut buffer = [0; BUFFER];
     loop {
         let size = match socket.read(&mut buffer).await {
-            Ok(0) => return Err(anyhow!("Client {} disconnected", address)),
+            Ok(0) => return Err(anyhow!("client {} disconnected", address)),
             Ok(size) => size,
             Err(error) => return Err(error.into()),
         };
         let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
-                warn!("Invalid message from {}", address);
+                warn!("invalid message from {}", address);
                 continue;
             }
         };
@@ -94,7 +94,7 @@ async fn main() -> Result<(), Error> {
     let listener =
         TcpListener::bind(format!("0.0.0.0:{}", Args::parse().port)).await?;
     let channel = channel(u8::MAX.into()).0;
-    info!("Listening on {:?}", listener.local_addr()?);
+    info!("listening on {:?}", listener.local_addr()?);
     loop {
         let (socket, address) = match listener.accept().await {
             Ok(connection) => connection,
@@ -107,7 +107,7 @@ async fn main() -> Result<(), Error> {
         let sender = channel.clone();
         let mut receiver = channel.subscribe();
         spawn(async move {
-            info!("Client {} connected", address);
+            info!("client {} connected", address);
             if let Err(error) = try_join!(
                 input(&address, &mut reader, &sender),
                 output(&mut writer, &mut receiver)

@@ -86,7 +86,7 @@ async fn input(
         let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
-                warn!("Invalid message from {}", address);
+                warn!("invalid message from {}", address);
                 continue;
             }
         };
@@ -95,11 +95,11 @@ async fn input(
             .await
             .entry(address)
             .and_modify(|timestamp| {
-                info!("Client {} updated", address);
+                info!("client {} updated", address);
                 *timestamp = Instant::now()
             })
             .or_insert_with(|| {
-                info!("Client {} connected", address);
+                info!("client {} connected", address);
                 Instant::now()
             });
         info!("{}: {}", address, String::from_utf8_lossy(&message));
@@ -138,7 +138,7 @@ async fn timeout() -> Result<(), Error> {
             let alive = Instant::now().duration_since(*timestamp)
                 < Duration::from_secs(Args::once().timeout);
             if !alive {
-                info!("Client {} disconnected", address)
+                info!("client {} disconnected", address)
             }
             alive
         })
@@ -152,7 +152,7 @@ async fn main() -> Result<(), Error> {
         UdpSocket::bind(format!("0.0.0.0:{}", Args::once().port)).await?;
     let channel = channel(u8::MAX.into()).0;
     let mut receiver = channel.subscribe();
-    info!("Listening on {:?}", socket.local_addr()?);
+    info!("listening on {:?}", socket.local_addr()?);
     try_join!(
         input(&socket, &channel),
         output(&socket, &mut receiver),
