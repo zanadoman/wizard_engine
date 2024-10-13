@@ -68,11 +68,11 @@ async fn input(
         let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
-                warn!("{} corrupted", address);
+                warn!("corrupted");
                 continue;
             }
         };
-        info!("{}: {}", address, String::from_utf8_lossy(&message));
+        info!("{}", String::from_utf8_lossy(&message));
         if let Err(error) = sender.send(message) {
             warn!("{}", error)
         }

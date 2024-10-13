@@ -69,7 +69,7 @@ fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
     CLIENTS.get_or_init(|| RwLock::new(HashMap::default()))
 }
 
-#[instrument(skip(sender))]
+#[instrument(skip(socket, sender))]
 async fn input(
     socket: &UdpSocket,
     sender: &Sender<[u8; BUFFER]>,
@@ -109,7 +109,7 @@ async fn input(
     }
 }
 
-#[instrument(skip(receiver))]
+#[instrument(skip(socket, receiver))]
 async fn output(
     socket: &UdpSocket,
     receiver: &mut Receiver<[u8; BUFFER]>,
