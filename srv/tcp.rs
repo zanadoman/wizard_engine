@@ -19,25 +19,43 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-use anyhow::{anyhow, Error};
 use clap::Parser;
-use std::{net::SocketAddr, sync::OnceLock};
+use std::net::SocketAddr;
+use thiserror::Error;
 use tokio::{
-    io::{split, AsyncReadExt, AsyncWriteExt, ReadHalf, WriteHalf},
+    io::{split, AsyncReadExt, AsyncWriteExt, Error, ReadHalf, WriteHalf},
     main,
     net::{TcpListener, TcpStream},
     select,
     signal::ctrl_c,
     spawn,
-    sync::broadcast::{channel, Receiver, Sender},
+    sync::broadcast::{
+        channel,
+        error::{RecvError, SendError},
+        Receiver, Sender,
+    },
     try_join,
 };
-use tracing::{error, info, instrument, warn};
+use tracing::{error, info, instrument};
 use tracing_subscriber::{fmt, fmt::format::FmtSpan};
 use zerocopy::FromBytes;
 
 const PORT: u16 = 8080;
 const BUFFER: usize = 1024;
+
+#[derive(Error, Debug)]
+enum ServerError {
+    #[error("{0} corrupted")]
+    Corrupted(SocketAddr),
+    #[error("{0} disconnected")]
+    Disconnected(SocketAddr),
+    #[error("{0}")]
+    Error(#[from] Error),
+    #[error("{0}")]
+    RecvError(#[from] RecvError),
+    #[error("{0}")]
+    SendError(#[from] Box<SendError<[u8; BUFFER]>>),
+}
 
 #[derive(Parser)]
 #[command(version, about = "Simple TCP broadcast server for Wizard Engine")]
@@ -46,33 +64,25 @@ struct Args {
     port: u16,
 }
 
-impl Args {
-    #[instrument]
-    fn once() -> &'static Args {
-        static ARGS: OnceLock<Args> = OnceLock::new();
-        ARGS.get_or_init(Args::parse)
-    }
-}
-
 #[instrument(skip(socket, sender))]
 async fn input(
     address: &SocketAddr,
     socket: &mut ReadHalf<TcpStream>,
     sender: &Sender<[u8; BUFFER]>,
-) -> Result<(), Error> {
+) -> Result<(), ServerError> {
     let mut buffer = [0; BUFFER];
     loop {
         let size = match socket.read(&mut buffer).await {
-            Ok(0) => return Err(anyhow!("{} disconnected", address)),
+            Ok(0) => return Err(ServerError::Disconnected(*address)),
             Ok(size) => size,
             Err(error) => return Err(error.into()),
         };
         let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
-            None => return Err(anyhow!("{} corrupted", address)),
+            None => return Err(ServerError::Corrupted(*address)),
         };
         info!("{}", String::from_utf8_lossy(&message));
-        sender.send(message)?;
+        sender.send(message).map_err(Box::new)?;
     }
 }
 
@@ -80,7 +90,7 @@ async fn input(
 async fn output(
     socket: &mut WriteHalf<TcpStream>,
     receiver: &mut Receiver<[u8; BUFFER]>,
-) -> Result<(), Error> {
+) -> Result<(), ServerError> {
     loop {
         socket.write_all(&receiver.recv().await?).await?
     }
@@ -90,7 +100,7 @@ async fn output(
 async fn serve(
     listener: &TcpListener,
     sender: &Sender<[u8; BUFFER]>,
-) -> Result<(), Error> {
+) -> Result<(), ServerError> {
     loop {
         let (socket, address) = listener.accept().await?;
         let (mut reader, mut writer) = split(socket);
@@ -109,24 +119,14 @@ async fn serve(
 }
 
 #[main]
-async fn main() -> Result<(), Error> {
+async fn main() -> Result<(), ServerError> {
     fmt().with_span_events(FmtSpan::FULL).init();
     let listener =
-        TcpListener::bind(format!("127.0.0.1:{}", Args::once().port)).await?;
+        TcpListener::bind(format!("127.0.0.1:{}", Args::parse().port)).await?;
     let channel = channel(u8::MAX.into()).0;
     info!("{:?} listening", listener.local_addr()?);
     select! {
-        result = serve(&listener, &channel) => {
-            if let Err(error) = result {
-                error!("{}", error)
-            }
-        }
-        result = ctrl_c() => {
-            match result {
-                Ok(..) => info!("shutdown"),
-                Err(error) => error!("{}", error)
-            }
-        }
+        result = serve(&listener, &channel) => result,
+        result = ctrl_c() => Ok(result?)
     }
-    Ok(())
 }

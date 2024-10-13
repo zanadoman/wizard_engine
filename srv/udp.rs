@@ -19,16 +19,17 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-use anyhow::Error;
 use clap::{value_parser, Parser};
 use std::{collections::HashMap, net::SocketAddr, sync::OnceLock};
+use thiserror::Error;
 use tokio::{
+    io::Error,
     main,
     net::UdpSocket,
     select,
     signal::ctrl_c,
     sync::{
-        broadcast::{channel, Receiver, Sender},
+        broadcast::{channel, error::RecvError, Receiver, Sender},
         RwLock,
     },
     time::{sleep, Duration, Instant},
@@ -41,6 +42,14 @@ use zerocopy::FromBytes;
 const PORT: u16 = 8080;
 const BUFFER: usize = 1024;
 const TIMEOUT: u64 = 10;
+
+#[derive(Error, Debug)]
+enum ServerError {
+    #[error("{0}")]
+    Error(#[from] Error),
+    #[error("{0}")]
+    RecvError(#[from] RecvError),
+}
 
 #[derive(Parser)]
 #[command(version, about = "Simple UDP broadcast server for Wizard Engine")]
@@ -75,16 +84,10 @@ fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
 async fn input(
     socket: &UdpSocket,
     sender: &Sender<[u8; BUFFER]>,
-) -> Result<(), Error> {
+) -> Result<(), ServerError> {
     let mut buffer = [0; BUFFER];
     loop {
-        let (size, address) = match socket.recv_from(&mut buffer).await {
-            Ok(connection) => connection,
-            Err(error) => {
-                warn!("{}", error);
-                continue;
-            }
-        };
+        let (size, address) = socket.recv_from(&mut buffer).await?;
         let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
@@ -115,15 +118,9 @@ async fn input(
 async fn output(
     socket: &UdpSocket,
     receiver: &mut Receiver<[u8; BUFFER]>,
-) -> Result<(), Error> {
+) -> Result<(), ServerError> {
     loop {
-        let message = match receiver.recv().await {
-            Ok(message) => message,
-            Err(error) => {
-                warn!("{}", error);
-                continue;
-            }
-        };
+        let message = receiver.recv().await?;
         for address in clients().read().await.keys() {
             if let Err(error) = socket.send_to(&message, address).await {
                 warn!("{}", error)
@@ -133,7 +130,7 @@ async fn output(
 }
 
 #[instrument]
-async fn timeout() -> Result<(), Error> {
+async fn timeout() -> Result<(), ServerError> {
     loop {
         sleep(Duration::from_secs(1)).await;
         clients().write().await.retain(|address, timestamp| {
@@ -148,7 +145,7 @@ async fn timeout() -> Result<(), Error> {
 }
 
 #[main]
-async fn main() -> Result<(), Error> {
+async fn main() -> Result<(), ServerError> {
     fmt().with_span_events(FmtSpan::FULL).init();
     let socket =
         UdpSocket::bind(format!("127.0.0.1:{}", Args::once().port)).await?;
@@ -162,17 +159,10 @@ async fn main() -> Result<(), Error> {
                 output(&socket, &mut receiver),
                 timeout()
             )
-        } => {
-            if let Err(error) = result {
-                error!("{}", error)
-            }
-        }
-        result = ctrl_c() => {
-            match result {
-                Ok(..) => info!("shutdown"),
-                Err(error) => error!("{}", error)
-            }
-        }
+        } => match result {
+            Ok(..) => Ok(()),
+            Err(error) => Err(error)
+        },
+        result = ctrl_c() => Ok(result?)
     }
-    Ok(())
 }
