@@ -25,6 +25,8 @@ use std::{collections::HashMap, net::SocketAddr, sync::OnceLock};
 use tokio::{
     main,
     net::UdpSocket,
+    select,
+    signal::ctrl_c,
     sync::{
         broadcast::{channel, Receiver, Sender},
         RwLock,
@@ -32,7 +34,7 @@ use tokio::{
     time::{sleep, Duration, Instant},
     try_join,
 };
-use tracing::{info, instrument, warn};
+use tracing::{error, info, instrument, warn};
 use tracing_subscriber::{fmt, fmt::format::FmtSpan};
 use zerocopy::FromBytes;
 
@@ -153,10 +155,24 @@ async fn main() -> Result<(), Error> {
     let channel = channel(u8::MAX.into()).0;
     let mut receiver = channel.subscribe();
     info!("{:?} listening", socket.local_addr()?);
-    try_join!(
-        input(&socket, &channel),
-        output(&socket, &mut receiver),
-        timeout()
-    )?;
+    select! {
+        result = async {
+            try_join!(
+                input(&socket, &channel),
+                output(&socket, &mut receiver),
+                timeout()
+            )
+        } => {
+            if let Err(error) = result {
+                error!("{}", error)
+            }
+        }
+        result = ctrl_c() => {
+            match result {
+                Ok(..) => info!("shutdown"),
+                Err(error) => error!("{}", error)
+            }
+        }
+    }
     Ok(())
 }

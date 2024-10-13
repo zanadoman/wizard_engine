@@ -26,6 +26,8 @@ use tokio::{
     io::{split, AsyncReadExt, AsyncWriteExt, ReadHalf, WriteHalf},
     main,
     net::{TcpListener, TcpStream},
+    select,
+    signal::ctrl_c,
     spawn,
     sync::broadcast::{channel, Receiver, Sender},
     try_join,
@@ -67,15 +69,10 @@ async fn input(
         };
         let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
             Some(message) => message,
-            None => {
-                warn!("corrupted");
-                continue;
-            }
+            None => return Err(anyhow!("{} corrupted", address)),
         };
         info!("{}", String::from_utf8_lossy(&message));
-        if let Err(error) = sender.send(message) {
-            warn!("{}", error)
-        }
+        sender.send(message)?;
     }
 }
 
@@ -85,35 +82,20 @@ async fn output(
     receiver: &mut Receiver<[u8; BUFFER]>,
 ) -> Result<(), Error> {
     loop {
-        let message = match receiver.recv().await {
-            Ok(message) => message,
-            Err(error) => {
-                warn!("{}", error);
-                continue;
-            }
-        };
-        socket.write_all(&message).await?
+        socket.write_all(&receiver.recv().await?).await?
     }
 }
 
-#[main]
-async fn main() -> Result<(), Error> {
-    fmt().with_span_events(FmtSpan::FULL).init();
-    let listener =
-        TcpListener::bind(format!("127.0.0.1:{}", Args::once().port)).await?;
-    let channel = channel(u8::MAX.into()).0;
-    info!("{:?} listening", listener.local_addr()?);
+#[instrument(skip(listener, sender))]
+async fn serve(
+    listener: &TcpListener,
+    sender: &Sender<[u8; BUFFER]>,
+) -> Result<(), Error> {
     loop {
-        let (socket, address) = match listener.accept().await {
-            Ok(connection) => connection,
-            Err(error) => {
-                warn!("{}", error);
-                continue;
-            }
-        };
+        let (socket, address) = listener.accept().await?;
         let (mut reader, mut writer) = split(socket);
-        let sender = channel.clone();
-        let mut receiver = channel.subscribe();
+        let sender = sender.clone();
+        let mut receiver = sender.subscribe();
         spawn(async move {
             info!("{} connected", address);
             if let Err(error) = try_join!(
@@ -124,4 +106,27 @@ async fn main() -> Result<(), Error> {
             }
         });
     }
+}
+
+#[main]
+async fn main() -> Result<(), Error> {
+    fmt().with_span_events(FmtSpan::FULL).init();
+    let listener =
+        TcpListener::bind(format!("127.0.0.1:{}", Args::once().port)).await?;
+    let channel = channel(u8::MAX.into()).0;
+    info!("{:?} listening", listener.local_addr()?);
+    select! {
+        result = serve(&listener, &channel) => {
+            if let Err(error) = result {
+                error!("{}", error)
+            }
+        }
+        result = ctrl_c() => {
+            match result {
+                Ok(..) => info!("shutdown"),
+                Err(error) => error!("{}", error)
+            }
+        }
+    }
+    Ok(())
 }
