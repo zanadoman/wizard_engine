@@ -40,8 +40,8 @@ use tracing::{error, info, instrument};
 use tracing_subscriber::{fmt, fmt::format::FmtSpan};
 use zerocopy::FromBytes;
 
-const PORT: u16 = 8080;
-const BUFFER: usize = 1024;
+const DEFAULT_PORT: u16 = 8080;
+const BUFFER_SIZE: usize = 1024;
 
 #[derive(Error, Debug)]
 enum ServerError {
@@ -54,30 +54,30 @@ enum ServerError {
     #[error("{0}")]
     RecvError(#[from] RecvError),
     #[error("{0}")]
-    SendError(#[from] Box<SendError<[u8; BUFFER]>>),
+    SendError(#[from] Box<SendError<[u8; BUFFER_SIZE]>>),
 }
 
 #[derive(Parser)]
 #[command(version, about = "Simple TCP broadcast server for Wizard Engine")]
 struct Args {
-    #[arg(short, long, default_value_t = PORT)]
+    #[arg(short, long, default_value_t = DEFAULT_PORT)]
     port: u16,
 }
 
 #[instrument(skip(socket, sender))]
-async fn input(
+async fn input_task(
     address: &SocketAddr,
     socket: &mut ReadHalf<TcpStream>,
-    sender: &Sender<[u8; BUFFER]>,
+    sender: &Sender<[u8; BUFFER_SIZE]>,
 ) -> Result<(), ServerError> {
-    let mut buffer = [0; BUFFER];
+    let mut buffer = [0; BUFFER_SIZE];
     loop {
         let size = match socket.read(&mut buffer).await {
             Ok(0) => return Err(ServerError::Disconnected(*address)),
             Ok(size) => size,
             Err(error) => return Err(error.into()),
         };
-        let message = <[u8; BUFFER]>::read_from(&buffer[..size])
+        let message = <[u8; BUFFER_SIZE]>::read_from(&buffer[..size])
             .ok_or_else(|| ServerError::Corrupted(*address))?;
         info!("{}", String::from_utf8_lossy(&message));
         sender.send(message).map_err(Box::new)?;
@@ -85,9 +85,9 @@ async fn input(
 }
 
 #[instrument(skip(socket, receiver))]
-async fn output(
+async fn output_task(
     socket: &mut WriteHalf<TcpStream>,
-    receiver: &mut Receiver<[u8; BUFFER]>,
+    receiver: &mut Receiver<[u8; BUFFER_SIZE]>,
 ) -> Result<(), ServerError> {
     loop {
         socket.write_all(&receiver.recv().await?).await?
@@ -97,7 +97,7 @@ async fn output(
 #[instrument(skip(listener, sender))]
 async fn serve(
     listener: &TcpListener,
-    sender: &Sender<[u8; BUFFER]>,
+    sender: &Sender<[u8; BUFFER_SIZE]>,
 ) -> Result<(), ServerError> {
     loop {
         let (socket, address) = listener.accept().await?;
@@ -107,8 +107,8 @@ async fn serve(
         spawn(async move {
             info!("{} connected", address);
             if let Err(error) = try_join!(
-                input(&address, &mut reader, &sender),
-                output(&mut writer, &mut receiver)
+                input_task(&address, &mut reader, &sender),
+                output_task(&mut writer, &mut receiver)
             ) {
                 error!("{}", error)
             }

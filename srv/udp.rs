@@ -39,9 +39,9 @@ use tracing::{error, info, instrument, warn};
 use tracing_subscriber::{fmt, fmt::format::FmtSpan};
 use zerocopy::FromBytes;
 
-const PORT: u16 = 8080;
-const BUFFER: usize = 1024;
-const TIMEOUT: u64 = 10;
+const DEFAULT_PORT: u16 = 8080;
+const DEFAULT_TIMEOUT: u64 = 10;
+const BUFFER_SIZE: usize = 1024;
 
 #[derive(Error, Debug)]
 enum ServerError {
@@ -54,12 +54,12 @@ enum ServerError {
 #[derive(Parser)]
 #[command(version, about = "Simple UDP broadcast server for Wizard Engine")]
 struct Args {
-    #[arg(short, long, default_value_t = PORT)]
+    #[arg(short, long, default_value_t = DEFAULT_PORT)]
     port: u16,
     #[arg(
         short,
         long,
-        default_value_t = TIMEOUT,
+        default_value_t = DEFAULT_TIMEOUT,
         value_parser = value_parser!(u64).range(1..),
     )]
     timeout: u64,
@@ -81,14 +81,14 @@ fn clients() -> &'static RwLock<HashMap<SocketAddr, Instant>> {
 }
 
 #[instrument(skip(socket, sender))]
-async fn input(
+async fn input_task(
     socket: &UdpSocket,
-    sender: &Sender<[u8; BUFFER]>,
+    sender: &Sender<[u8; BUFFER_SIZE]>,
 ) -> Result<(), ServerError> {
-    let mut buffer = [0; BUFFER];
+    let mut buffer = [0; BUFFER_SIZE];
     loop {
         let (size, address) = socket.recv_from(&mut buffer).await?;
-        let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
+        let message = match <[u8; BUFFER_SIZE]>::read_from(&buffer[..size]) {
             Some(message) => message,
             None => {
                 warn!("{} corrupted", address);
@@ -115,9 +115,9 @@ async fn input(
 }
 
 #[instrument(skip(socket, receiver))]
-async fn output(
+async fn output_task(
     socket: &UdpSocket,
-    receiver: &mut Receiver<[u8; BUFFER]>,
+    receiver: &mut Receiver<[u8; BUFFER_SIZE]>,
 ) -> Result<(), ServerError> {
     loop {
         let message = receiver.recv().await?;
@@ -130,7 +130,7 @@ async fn output(
 }
 
 #[instrument]
-async fn timeout() -> Result<(), ServerError> {
+async fn timeout_task() -> Result<(), ServerError> {
     loop {
         sleep(Duration::from_secs(1)).await;
         clients().write().await.retain(|address, timestamp| {
@@ -155,9 +155,9 @@ async fn main() -> Result<(), ServerError> {
     select! {
         result = async {
             try_join!(
-                input(&socket, &channel),
-                output(&socket, &mut receiver),
-                timeout()
+                input_task(&socket, &channel),
+                output_task(&socket, &mut receiver),
+                timeout_task()
             )
         } => result.map(|_| ()),
         result = ctrl_c() => Ok(result?)
