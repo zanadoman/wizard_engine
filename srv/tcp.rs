@@ -77,10 +77,8 @@ async fn input(
             Ok(size) => size,
             Err(error) => return Err(error.into()),
         };
-        let message = match <[u8; BUFFER]>::read_from(&buffer[..size]) {
-            Some(message) => message,
-            None => return Err(ServerError::Corrupted(*address)),
-        };
+        let message = <[u8; BUFFER]>::read_from(&buffer[..size])
+            .ok_or_else(|| ServerError::Corrupted(*address))?;
         info!("{}", String::from_utf8_lossy(&message));
         sender.send(message).map_err(Box::new)?;
     }
