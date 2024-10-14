@@ -39,7 +39,7 @@ use tokio::{
     time::{sleep, Duration, Instant},
     try_join,
 };
-use tracing::{error, info, instrument, warn};
+use tracing::{info, instrument, warn};
 use tracing_subscriber::{fmt, fmt::format::FmtSpan};
 use zerocopy::FromBytes;
 
@@ -126,9 +126,7 @@ async fn output_task(
     loop {
         let message = receiver.recv().await?;
         for address in clients().read().await.keys() {
-            if let Err(error) = socket.send_to(&message, address).await {
-                warn!("{}", error)
-            }
+            socket.send_to(&message, address).await?;
         }
     }
 }
