@@ -26,22 +26,17 @@
 #include <wizard_engine/net.hpp>
 
 wze::ipv4 wze::net::resolve(std::string const& hostname, uint16_t port) {
-    ipv4 address;
-
+    ipv4 address{};
     if ((bool)SDLNet_ResolveHost(&address, hostname.c_str(), port)) {
-        throw exception(SDLNet_GetError());
+        throw exception{SDLNet_GetError()};
     }
-
-    return address;
+    return {address};
 }
 
 std::string wze::net::resolve(ipv4 const& address) {
-    char const* hostname;
-
-    hostname = SDLNet_ResolveIP(&address);
+    char const* hostname{SDLNet_ResolveIP(&address)};
     if (!(bool)hostname) {
-        throw exception(SDLNet_GetError());
+        throw exception{SDLNet_GetError()};
     }
-
-    return hostname;
+    return {hostname};
 }

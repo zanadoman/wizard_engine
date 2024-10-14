@@ -35,18 +35,17 @@ using ipv4 = IPaddress;
 /**
  * @file net.hpp
  * @author Zana Domán
- * @brief Subsystem to handle networking.
+ * @brief Subsystem to handle network connections.
  */
-class net {
-  private:
+class net final {
+  public:
     /**
      * @file net.hpp
      * @author Zana Domán
-     * @brief Private default constructor to prevent instantiation.
+     * @brief Deleted default constructor to prevent instantiation.
      */
-    net() = default;
+    explicit net() = delete;
 
-  public:
     /**
      * @file net.hpp
      * @author Zana Domán
