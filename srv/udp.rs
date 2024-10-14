@@ -29,7 +29,11 @@ use tokio::{
     select,
     signal::ctrl_c,
     sync::{
-        broadcast::{channel, error::RecvError, Receiver, Sender},
+        broadcast::{
+            channel,
+            error::{RecvError, SendError},
+            Receiver, Sender,
+        },
         RwLock,
     },
     time::{sleep, Duration, Instant},
@@ -49,6 +53,8 @@ enum ServerError {
     Error(#[from] Error),
     #[error("{0}")]
     RecvError(#[from] RecvError),
+    #[error("{0}")]
+    SendError(#[from] Box<SendError<[u8; BUFFER_SIZE]>>),
 }
 
 #[derive(Parser)]
@@ -108,9 +114,7 @@ async fn input_task(
                 Instant::now()
             });
         info!("{}: {}", address, String::from_utf8_lossy(&message));
-        if let Err(error) = sender.send(message) {
-            warn!("{}", error)
-        }
+        sender.send(message).map_err(Box::new)?;
     }
 }
 
