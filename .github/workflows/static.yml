@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Download Doxygen
-        run: url -L -O https://github.com/doxygen/doxygen/releases/download/Release_1_12_0/doxygen-1.12.0.linux.bin.tar.gz
+        run: curl -L -O https://github.com/doxygen/doxygen/releases/download/Release_1_12_0/doxygen-1.12.0.linux.bin.tar.gz
       - name: Extract Doxygen
         run: tar -xzf ./doxygen-1.12.0.linux.bin.tar.gz
       - name: Generate Pages
