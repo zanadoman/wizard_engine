@@ -55,7 +55,6 @@ To use Wizard Engine, make sure you have the following dependencies installed:
 Follow these steps to build the engine:
 
 ```
-bash
 mkdir build
 cd build
 cmake .. -G "MinGW Makefiles" --toolchain ../x86_64-windows.toolchain.cmake
