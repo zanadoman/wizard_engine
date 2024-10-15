@@ -22,6 +22,7 @@
 /**
  * @file exception.cpp
  * @brief Self logging exception.
+ * @sa exception.hpp
  */
 
 // NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)

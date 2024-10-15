@@ -22,6 +22,7 @@
 /**
  * @file exception.hpp
  * @brief Self logging exception.
+ * @sa exception.cpp
  */
 
 #ifndef WIZARD_ENGINE_EXCEPTION_HPP
