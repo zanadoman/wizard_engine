@@ -31,8 +31,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Update
+        run: sudo apt update && sudo apt upgrade -y
       - name: Install Doxygen
-        run: sudo apt update && sudo apt install -y doxygen
+        run: sudo apt install -y doxygen
       - name: Generate Pages
         run: doxygen ./Doxyfile
       - name: Setup Pages
