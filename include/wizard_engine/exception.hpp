@@ -19,6 +19,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file exception.hpp
+ * @brief Self logging exception.
+ */
+
 #ifndef WIZARD_ENGINE_EXCEPTION_HPP
 #define WIZARD_ENGINE_EXCEPTION_HPP
 
@@ -26,24 +31,21 @@
 
 namespace wze {
 /**
- * @file exception.hpp
- * @author Zana Domán
+ * @class exception
  * @brief Self logging exception.
  */
 class exception : public std::exception {
   public:
     /**
-     * @file exception.hpp
-     * @author Zana Domán
      * @brief Constructs an exception instance.
+     * @details Logs the explanatory string of the exception instance with
+     * LOG_LEVEL_ERROR.
      * @param what Explanatory string.
      */
     explicit exception(std::string what);
 
     /**
-     * @file exception.hpp
-     * @author Zana Domán
-     * @brief Returns the explanatory string.
+     * @brief Gets the explanatory string.
      * @return Explanatory string.
      */
     [[nodiscard]] char const* what() const noexcept override;

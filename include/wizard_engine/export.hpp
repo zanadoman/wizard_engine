@@ -55,4 +55,9 @@
 #include <SDL2/SDL_net.h>   /* IWYU pragma: export */
 #include <SDL2/SDL_ttf.h>   /* IWYU pragma: export */
 
+/**
+ * @namespace wze
+ * @brief Wizard Engine
+ */
+
 #endif /* WIZARD_ENGINE_EXPORT_HPP */

@@ -19,6 +19,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file exception.cpp
+ * @brief Self logging exception.
+ */
+
 // NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
 #define __WIZARD_ENGINE_INTERNAL__
 
