@@ -25,10 +25,9 @@
 #include <wizard_engine/export.hpp>
 
 /**
- * @file math.hpp
  * @brief This file contains math related things.
  * @authors Zana Domán, Gunics Roland
- * @license zlib
+ * @copyright zlib
  */
 
 /**
