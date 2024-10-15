@@ -34,14 +34,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Update Packages
-        run: sudo apt update
-      - name: Upgrade Packages
-        run: sudo apt upgrade -y
-      - name: Install Doxygen
-        run: sudo apt install doxygen -y
+      - name: Download Doxygen
+        run: url -L -O https://github.com/doxygen/doxygen/releases/download/Release_1_12_0/doxygen-1.12.0.linux.bin.tar.gz
+      - name: Extract Doxygen
+        run: tar -xzf ./doxygen-1.12.0.linux.bin.tar.gz
       - name: Generate Pages
-        run: doxygen ./Doxyfile
+        run: ./doxygen-1.12.0/bin/doxygen ./Doxyfile
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
