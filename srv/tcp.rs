@@ -86,6 +86,7 @@ async fn input_task(
 
 #[instrument(skip(socket, receiver))]
 async fn output_task(
+    address: &SocketAddr,
     socket: &mut WriteHalf<TcpStream>,
     receiver: &mut Receiver<[u8; BUFFER_SIZE]>,
 ) -> Result<(), ServerError> {
@@ -95,7 +96,7 @@ async fn output_task(
 }
 
 #[instrument(skip(listener, sender))]
-async fn serve(
+async fn listener_task(
     listener: &TcpListener,
     sender: &Sender<[u8; BUFFER_SIZE]>,
 ) -> Result<(), ServerError> {
@@ -108,7 +109,7 @@ async fn serve(
             info!("{} connected", address);
             if let Err(error) = try_join!(
                 input_task(&address, &mut reader, &sender),
-                output_task(&mut writer, &mut receiver)
+                output_task(&address, &mut writer, &mut receiver)
             ) {
                 error!("{}", error)
             }
@@ -118,13 +119,16 @@ async fn serve(
 
 #[main]
 async fn main() -> Result<(), ServerError> {
-    fmt().with_span_events(FmtSpan::FULL).init();
+    fmt()
+        .with_span_events(FmtSpan::FULL)
+        .with_target(false)
+        .init();
     let listener =
         TcpListener::bind(format!("127.0.0.1:{}", Args::parse().port)).await?;
     let channel = channel(u8::MAX.into()).0;
     info!("{:?} listening", listener.local_addr()?);
     select! {
-        result = serve(&listener, &channel) => result,
+        result = listener_task(&listener, &channel) => result,
         result = ctrl_c() => Ok(result?)
     }
 }

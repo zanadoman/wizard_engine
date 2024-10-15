@@ -148,7 +148,10 @@ async fn timeout_task() -> Result<(), ServerError> {
 
 #[main]
 async fn main() -> Result<(), ServerError> {
-    fmt().with_span_events(FmtSpan::FULL).init();
+    fmt()
+        .with_span_events(FmtSpan::FULL)
+        .with_target(false)
+        .init();
     let socket =
         UdpSocket::bind(format!("127.0.0.1:{}", Args::once().port)).await?;
     let channel = channel(u8::MAX.into()).0;
