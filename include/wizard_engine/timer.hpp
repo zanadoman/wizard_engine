@@ -24,64 +24,62 @@
 
 #include <wizard_engine/export.hpp>
 
-namespace wze {
 /**
  * @file timer.hpp
+ * @brief Timer subsystem.
  * @author Zana Domán
+ * @copyright zlib
+ */
+
+namespace wze {
+/**
+ * @class timer
  * @brief Subsystem to handle frame rate and delta time.
  */
 class timer final {
   public:
     /**
-     * @file timer.hpp
-     * @author Zana Domán
      * @brief Deleted default constructor to prevent instantiation.
      */
     explicit timer() = delete;
 
     /**
-     * @file timer.hpp
-     * @author Zana Domán
-     * @brief Returns the target frame time in milliseconds.
-     * @return Target frame time in milliseconds.
-     * @note You can change the frame rate of the game by manipulating this
+     * @brief Gets the target frame time in milliseconds.
+     * @detailt You can change the frame rate of the game by manipulating this
      * value.
+     * @return Target frame time in milliseconds.
+     * @see set_fram_time(uint8_t frame_time)
      */
     [[nodiscard]] static uint8_t frame_time();
 
     /**
-     * @file timer.hpp
-     * @author Zana Domán
      * @brief Sets the target frame time in milliseconds.
-     * @param frame_time Target frame time in milliseconds.
-     * @note You can change the frame rate of the game by manipulating this
+     * @details You can change the frame rate of the game by manipulating this
      * value.
+     * @param frame_time Target frame time in milliseconds.
+     * @see frame_time()
      */
     static void set_frame_time(uint8_t frame_time);
 
     /**
-     * @file timer.hpp
-     * @author Zana Domán
-     * @brief Returns the current delta time in milliseconds.
-     * @return Current delta time in milliseconds.
-     * @note You can change the pace of the game or even reverse it by
+     * @brief Gets the current delta time in milliseconds.
+     * @details You can change the pace of the game or even reverse it by
      * manipulating this value.
+     * @return Current delta time in milliseconds.
+     * @see set_delta_time(float delta_time)
      */
     [[nodiscard]] static float delta_time();
 
     /**
-     * @file timer.hpp
-     * @author Zana Domán
      * @brief Sets the current delta time in milliseconds.
-     * @param delta_time Current delta time in milliseconds.
-     * @note You can change the pace of the game or even reverse it by
+     * @details You can change the pace of the game or even reverse it by
      * manipulating this value.
+     * @param delta_time Current delta time in milliseconds.
+     * @see delta_time()
      */
     static void set_delta_time(float delta_time);
 
     /**
-     * @file timer.hpp
-     * @author Zana Domán
      * @brief Returns the current game time in milliseconds.
      * @return Current game time in milliseconds.
      */
@@ -89,8 +87,6 @@ class timer final {
 
 #ifdef __WIZARD_ENGINE_INTERNAL__
     /**
-     * @file timer.hpp
-     * @author Zana Domán
      * @brief Updates the timer subsystem.
      */
     static void update();
