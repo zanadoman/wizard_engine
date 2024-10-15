@@ -19,17 +19,16 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file timer.cpp
+ * @brief Timer subsystem.
+ * @sa timer.hpp
+ */
+
 // NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
 #define __WIZARD_ENGINE_INTERNAL__
 
 #include <wizard_engine/timer.hpp>
-
-/**
- * @file timer.cpp
- * @brief Timer subsystem.
- * @author Zana Domán
- * @copyright zlib
- */
 
 uint8_t wze::timer::frame_time() {
     return _frame_time;

@@ -19,15 +19,19 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file wizard_engine.hpp
+ * @brief Interface header of the Wizard Engine.
+ * @sa export.hpp
+ */
+
 #ifndef WIZARD_ENGINE_WIZARD_ENGINE_HPP
 #define WIZARD_ENGINE_WIZARD_ENGINE_HPP
 
 /**
- * @file wizard_engine.hpp
- * @author Zana Domán
- * @brief Interface header of the Wizard Engine.
+ * @def __WIZARD_ENGINE__
+ * @brief Wizard Engine macro.
  */
-
 // NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
 #define __WIZARD_ENGINE__
 
@@ -60,16 +64,18 @@
 #include <wizard_engine/udp_socket.hpp> /* IWYU pragma: export */
 #include <wizard_engine/window.hpp>     /* IWYU pragma: export */
 
+/**
+ * @def wze_main
+ * @brief Main function of the Wizard Engine.
+ * @details Command line arguments are accessible.
+ * @param title Title of the game window.
+ * @param width Width of the game window.
+ * @param height Height of the game window.
+ * @return Exit code.
+ * @warning Do not initialize the engine manually.
+ */
 // NOLINTNEXTLINE(cppcoreguidelines-macro-usage)
 #define wze_main(title, width, height)                                         \
-    /* @file wizard_engine.hpp                      */                         \
-    /* @author Zana Domán                           */                        \
-    /* @brief Main function of the Wizard Engine.   */                         \
-    /* @param title Title of the game window.       */                         \
-    /* @param width Width of the game window.       */                         \
-    /* @param height Height of the game window.     */                         \
-    /* @return Exit code.                           */                         \
-    /* @note Command line arguments are accessible. */                         \
     [[nodiscard]] int32_t __wze_main__(int32_t argc, char** argv);             \
     int32_t main(int32_t argc, char* argv[]) noexcept(false) {                 \
         wze::engine::initialize((title), (width), (height));                   \
@@ -78,12 +84,13 @@
     int32_t __wze_main__([[maybe_unused]] int32_t argc,                        \
                          [[maybe_unused]] char** argv)
 
+/**
+ * @def wze_while
+ * @brief Game loop of the Wizard Engine.
+ * @param True if the game should continue, false otherwise.
+ * @warning Do not update the engine manually.
+ */
 // NOLINTNEXTLINE(cppcoreguidelines-macro-usage)
-#define wze_while(condition)                                                   \
-    /* @file wizard_engine.hpp                                   */            \
-    /* @author Zana Domán                                        */           \
-    /* @brief Game loop of the Wizard Engine.                    */            \
-    /* @param True if the game should continue, false otherwise. */            \
-    while (wze::engine::update() && (condition))
+#define wze_while(condition) while (wze::engine::update() && (condition))
 
 #endif /* WIZARD_ENGINE_WIZARD_ENGINE_HPP */

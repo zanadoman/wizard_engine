@@ -19,14 +19,14 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef WIZARD_ENGINE_EXPORT_HPP
-#define WIZARD_ENGINE_EXPORT_HPP
-
 /**
  * @file export.hpp
- * @author Zana Domán
  * @brief Export header of the Wizard Engine.
+ * @sa wizard_engine.hpp
  */
+
+#ifndef WIZARD_ENGINE_EXPORT_HPP
+#define WIZARD_ENGINE_EXPORT_HPP
 
 #include <cmath>   /* IWYU pragma: export */
 #include <cstddef> /* IWYU pragma: export */

@@ -19,6 +19,11 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file enums.hpp
+ * @brief Enumerations.
+ */
+
 #ifndef WIZARD_ENGINE_ENUMS_HPP
 #define WIZARD_ENGINE_ENUMS_HPP
 
@@ -26,8 +31,7 @@
 
 namespace wze {
 /**
- * @file enums.hpp
- * @author Zana Domán
+ * @enum flip
  * @brief Flips.
  */
 enum flip : uint8_t {
@@ -37,10 +41,10 @@ enum flip : uint8_t {
 };
 
 /**
- * @file enums.hpp
- * @author Zana Domán
+ * @enum font_alignment
  * @brief Font alignments.
  */
+// NOLINTNEXTLINE(readability-enum-initial-value,cert-int09-c)
 enum font_alignment : uint8_t {
     FONT_ALIGNMENT_LEFT = TTF_WRAPPED_ALIGN_LEFT,
     FONT_ALIGNMENT_CENTER = TTF_WRAPPED_ALIGN_CENTER,
@@ -49,8 +53,7 @@ enum font_alignment : uint8_t {
 };
 
 /**
- * @file enums.hpp
- * @author Zana Domán
+ * @enum font_style
  * @brief Font styles.
  */
 enum font_style : uint8_t {
@@ -62,10 +65,10 @@ enum font_style : uint8_t {
 };
 
 /**
- * @file enums.hpp
- * @author Zana Domán
+ * @enum key
  * @brief Keys.
  */
+// NOLINTNEXTLINE(readability-enum-initial-value,cert-int09-c)
 enum key : uint16_t {
     KEY_UNKNOWN = SDL_SCANCODE_UNKNOWN,
     KEY_A = SDL_SCANCODE_A,
@@ -327,10 +330,10 @@ enum key : uint16_t {
 };
 
 /**
- * @file enums.hpp
- * @author Zana Domán
+ * @enum log_level
  * @brief Log levels.
  */
+// NOLINTNEXTLINE(readability-enum-initial-value,cert-int09-c)
 enum log_level : uint8_t {
     LOG_LEVEL_VERBOSE = SDL_LOG_PRIORITY_VERBOSE,
     LOG_LEVEL_DEBUG = SDL_LOG_PRIORITY_DEBUG,
@@ -342,10 +345,10 @@ enum log_level : uint8_t {
 };
 
 /**
- * @file enums.hpp
- * @author Zana Domán
+ * @enum system_cursor
  * @brief System cursors.
  */
+// NOLINTNEXTLINE(readability-enum-initial-value,cert-int09-c)
 enum system_cursor : uint8_t {
     SYSTEM_CURSOR_ARROW = SDL_SYSTEM_CURSOR_ARROW,
     SYSTEM_CURSOR_IBEAM = SDL_SYSTEM_CURSOR_IBEAM,
