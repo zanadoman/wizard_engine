@@ -1,7 +1,8 @@
 *.vim
-.cache/
-.idea/
-.vscode/
-/build/
+.cache
+.idea
+.vscode
+/build
 /Cargo.lock
-/target/
+/docs
+/target

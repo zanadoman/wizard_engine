@@ -26,22 +26,17 @@
 
 namespace wze {
 /**
- * @file math.hpp
- * @author Zana Domán, Gunics Roland
+ * @class math
  * @brief Subsystem to handle 2D geometry and unit conversions.
  */
 class math final {
   public:
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Deleted default constructor to prevent instantiation.
      */
     math() = delete;
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Single precision epsilon.
      */
     [[nodiscard]] static constexpr float epsilon() {
@@ -50,8 +45,6 @@ class math final {
     }
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Single precision PI.
      */
     [[nodiscard]] static constexpr float pi() {
@@ -59,8 +52,6 @@ class math final {
         return pi;
     }
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Converts degrees to radians.
      * @param degrees Angle in degrees.
      * @return Angle in radians.
@@ -71,8 +62,6 @@ class math final {
     }
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Converts radians to degrees.
      * @param radians Angle in radians.
      * @return Angle in degrees.
@@ -83,8 +72,6 @@ class math final {
     }
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Returns the normal vector of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -96,8 +83,6 @@ class math final {
     }
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Returns the length of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -106,8 +91,6 @@ class math final {
     [[nodiscard]] static float length(float x, float y);
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Returns the angle of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -116,8 +99,6 @@ class math final {
     [[nodiscard]] static float angle(float x, float y);
 
     /**
-     * @file math.hpp
-     * @author Zana Domán, Gunics Roland
      * @brief Normalizes a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -126,8 +107,6 @@ class math final {
     [[nodiscard]] static std::pair<float, float> normalize(float x, float y);
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Moves the x component of a vector.
      * @param length Length of the movement.
      * @param angle Angle of the movement.
@@ -136,8 +115,6 @@ class math final {
     [[nodiscard]] static float move_x(float length, float angle);
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Moves the y component of a vector.
      * @param length Length of the movement.
      * @param angle Angle of the movement
@@ -146,8 +123,6 @@ class math final {
     [[nodiscard]] static float move_y(float length, float angle);
 
     /**
-     * @file math.hpp
-     * @author Zana Domán, Gunics Roland
      * @brief Creates a transformation matrix.
      * @param angle Angle of the transformation matrix.
      * @param scale Scale of the transformation matrix.
@@ -157,8 +132,6 @@ class math final {
     transformation_matrix(float angle, float scale);
 
     /**
-     * @file math.hpp
-     * @author Zana Domán, Gunics Roland
      * @brief Transforms the x component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -170,8 +143,6 @@ class math final {
                 std::array<float, 4> const& transformation_matrix);
 
     /**
-     * @file math.hpp
-     * @author Zana Domán, Gunics Roland
      * @brief Transforms the y component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -183,10 +154,8 @@ class math final {
                 std::array<float, 4> const& transformation_matrix);
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Returns a random integer value from an interval.
-     * @param T Integral type.
+     * @tparam T Integral type.
      * @param minimum Minimum inclusive value of the interval.
      * @param maximum Maximum inclusive value of the interval.
      * @return Random integer value from the interval.
@@ -199,10 +168,8 @@ class math final {
     }
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Returns a random real value from an interval.
-     * @param T Real type.
+     * @tparam T Real type.
      * @param minimum Minimum inclusive value of the interval.
      * @param maximum Maximum inclusive value of the interval.
      * @return Random real value from the interval.
@@ -216,10 +183,8 @@ class math final {
     }
 
     /**
-     * @file math.hpp
-     * @author Zana Domán
      * @brief Returns a random boolean value.
-     * @param T Boolean type.
+     * @tparam T Boolean type.
      * @param probability Probability of a true value.
      * @return Random boolean value.
      */
