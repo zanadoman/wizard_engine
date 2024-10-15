@@ -48,7 +48,7 @@ class timer final {
      * @detailt You can change the frame rate of the game by manipulating this
      * value.
      * @return Target frame time in milliseconds.
-     * @see set_fram_time(uint8_t frame_time)
+     * @see set_frame_time(uint8_t frame_time)
      */
     [[nodiscard]] static uint8_t frame_time();
 

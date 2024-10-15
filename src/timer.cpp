@@ -24,6 +24,13 @@
 
 #include <wizard_engine/timer.hpp>
 
+/**
+ * @file timer.cpp
+ * @brief Timer subsystem.
+ * @author Zana Domán
+ * @copyright zlib
+ */
+
 uint8_t wze::timer::frame_time() {
     return _frame_time;
 }
