@@ -8,7 +8,7 @@ socket     - OK?
 renderer   -
 renderable -
 polygon    -
-net        - OK?
+net        - OK!
 math       -
 input      -
 exception  - OK!

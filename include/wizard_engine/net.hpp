@@ -52,20 +52,20 @@ class net final {
     explicit net() = delete;
 
     /**
-     * @brief Resolves a hostname to an IPv4 address.
+     * @brief Resolves a hostname to an ipv4 address.
      * @param hostname Hostname of the server.
      * @param port Port of the server.
-     * @return Resolved IPv4 address.
+     * @return Resolved ipv4 address.
      * @exception wze::exception Hostname cannot be resolved.
      */
     [[nodiscard]] static ipv4 resolve(std::string const& hostname,
                                       uint16_t port = 0);
 
     /**
-     * @brief Resolves an IPv4 address to a hostname.
-     * @param address IPv4 address of the server.
+     * @brief Resolves an ipv4 address to a hostname.
+     * @param address ipv4 address of the server.
      * @return Resolved hostname.
-     * @exception wze::exception IPv4 address cannot be resolved.
+     * @exception wze::exception ipv4 address cannot be resolved.
      */
     [[nodiscard]] static std::string resolve(ipv4 const& address);
 };
