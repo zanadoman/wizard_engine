@@ -21,7 +21,7 @@
 
 /**
  * @file timer.hpp
- * @brief Timer subsystem.
+ * @brief Timer modul.
  * @sa timer.cpp
  */
 
@@ -32,20 +32,17 @@
 
 namespace wze {
 /**
- * @class timer
- * @brief Subsystem to handle frame rate and delta time.
+ * @brief Timer modul.
  */
 class timer final {
   public:
     /**
-     * @brief Deleted default constructor to prevent instantiation.
+     * @brief Deleted explicit constructor.
      */
     explicit timer() = delete;
 
     /**
      * @brief Gets the target frame time in milliseconds.
-     * @details You can change the frame rate of the game by manipulating this
-     * value.
      * @return Target frame time in milliseconds.
      * @sa set_frame_time(uint8_t frame_time)
      */
@@ -53,8 +50,6 @@ class timer final {
 
     /**
      * @brief Sets the target frame time in milliseconds.
-     * @details You can change the frame rate of the game by manipulating this
-     * value.
      * @param frame_time Target frame time in milliseconds.
      * @sa frame_time()
      */
@@ -62,8 +57,6 @@ class timer final {
 
     /**
      * @brief Gets the current delta time in milliseconds.
-     * @details You can change the pace of the game or even reverse it by
-     * manipulating this value.
      * @return Current delta time in milliseconds.
      * @sa set_delta_time(float delta_time)
      */
@@ -71,15 +64,13 @@ class timer final {
 
     /**
      * @brief Sets the current delta time in milliseconds.
-     * @details You can change the pace of the game or even reverse it by
-     * manipulating this value.
      * @param delta_time Current delta time in milliseconds.
      * @sa delta_time()
      */
     static void set_delta_time(float delta_time);
 
     /**
-     * @brief Returns the current game time in milliseconds.
+     * @brief Gets the current game time in milliseconds.
      * @return Current game time in milliseconds.
      */
     [[nodiscard]] static uint32_t current_time();

@@ -21,7 +21,7 @@
 
 /**
  * @file timer.cpp
- * @brief Timer subsystem.
+ * @brief Timer modul.
  * @sa timer.hpp
  */
 

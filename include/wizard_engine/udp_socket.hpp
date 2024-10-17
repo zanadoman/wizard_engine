@@ -69,8 +69,8 @@ class udp_socket final : public socket<incoming, outgoing> {
     }
 
     /**
-     * @brief Gets the IPv4 address of the server.
-     * @return IPv4 address of the server.
+     * @brief Gets the wze::ipv4 address of the server.
+     * @return wze::ipv4 address of the server.
      */
     [[nodiscard]] wze::ipv4 const& ipv4() const final {
         return _outgoing.address;

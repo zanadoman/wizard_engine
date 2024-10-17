@@ -72,8 +72,8 @@ class tcp_socket final : public socket<incoming, outgoing> {
     }
 
     /**
-     * @brief Gets the IPv4 address of the server.
-     * @return IPv4 address of the server.
+     * @brief Gets the wze::ipv4 address of the server.
+     * @return wze::ipv4 address of the server.
      */
     [[nodiscard]] wze::ipv4 ipv4() const final {
         return *SDLNet_TCP_GetPeerAddress(_socket.get());

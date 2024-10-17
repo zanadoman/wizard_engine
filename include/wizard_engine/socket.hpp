@@ -54,8 +54,8 @@ template <typename incoming, typename outgoing> class socket {
     virtual ~socket() = default;
 
     /**
-     * @brief Gets the IPv4 address of the server.
-     * @return IPv4 address of the server.
+     * @brief Gets the wze::ipv4 address of the server.
+     * @return wze::ipv4 address of the server.
      */
     [[nodiscard]] virtual ipv4 const& ipv4() const = 0;
 
