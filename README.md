@@ -82,15 +82,18 @@ wze_main("Wizard Engine", 1920, 1080) {
 
 ## 🤝 Contributing
 
-Contributions are welcomed! Feel free to create an issue or submit a PR if you'd
-like to suggest new features or improvements.
+Contributions are welcomed! Feel free to create an
+[issue](https://github.com/zanadoman/wizard_engine/issues) or submit a
+[PR](https://github.com/zanadoman/wizard_engine/pulls) if you'd like to suggest
+new features or improvements.
 
 ---
 
 ## 📜 License
 
-This library is licensed under the **zlib license.** For more details, see the
-file [`LICENSE`](https://github.com/zanadoman/wizard_engine/blob/main/LICENSE).
+This library is licensed under the [**zlib
+license**](https://zlib.net/zlib_license.html). For more details, see the file
+[`LICENSE`](https://github.com/zanadoman/wizard_engine/blob/main/LICENSE).
 
 ---
 
