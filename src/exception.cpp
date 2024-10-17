@@ -21,7 +21,7 @@
 
 /**
  * @file exception.cpp
- * @brief Self logging exception.
+ * @brief General exception.
  * @sa exception.hpp
  */
 

@@ -11,8 +11,8 @@ polygon    -
 net        - OK?
 math       -
 input      -
-exception  - OK?
-enums      - OK?
+exception  - OK!
+enums      - OK!
 entity     -
 engine     -
 component  -

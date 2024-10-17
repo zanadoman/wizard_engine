@@ -21,7 +21,7 @@
 
 /**
  * @file exception.hpp
- * @brief Generic exception.
+ * @brief General exception.
  * @sa exception.cpp
  */
 
@@ -32,16 +32,15 @@
 
 namespace wze {
 /**
- * @class exception
- * @brief Generic exception.
+ * @brief General exception.
  */
 class exception : public std::exception {
   public:
     /**
      * @brief Explicit constructor.
-     * @details Logs the explanatory string of the exception instance with
-     * LOG_LEVEL_ERROR.
+     * @details Logs the explanatory string with LOG_LEVEL_ERROR.
      * @param what Explanatory string.
+     * @sa log_level
      */
     explicit exception(std::string what);
 
