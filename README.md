@@ -21,9 +21,10 @@ performance. The stable version is still in progress (about 70%).
 
 ## 📚 Documentation
 
-- **Homepage**: See the documentation on the
-  [website](https://zanadoman.github.io/wizard_engine/).
-- **Examples**: Check out the examples in the `tests` directory.
+- **Wiki**: See the documentation on the
+  [homepage](https://zanadoman.github.io/wizard_engine/).
+- **Examples**: Check out the examples in the [`tests`]
+  (https://github.com/zanadoman/wizard_engine/tree/main/tests) directory.
 
 ---
 
@@ -86,7 +87,7 @@ like to suggest new features or improvements.
 ## 📜 License
 
 This library is licensed under the **zlib license.** For more details, see the
-file `LICENSE`.
+file [`LICENSE`](https://github.com/zanadoman/wizard_engine/blob/main/LICENSE).
 
 ---
 
