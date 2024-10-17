@@ -94,13 +94,14 @@ async fn input_task(
     let mut buffer = [0; BUFFER_SIZE];
     loop {
         let (size, address) = socket.recv_from(&mut buffer).await?;
-        let message = match <[u8; BUFFER_SIZE]>::read_from(&buffer[..size]) {
-            Some(message) => message,
-            None => {
-                warn!("{} corrupted", address);
-                continue;
-            }
-        };
+        let message =
+            match <[u8; BUFFER_SIZE]>::read_from_bytes(&buffer[..size]) {
+                Ok(message) => message,
+                Err(error) => {
+                    warn!("{} {}", address, error);
+                    continue;
+                }
+            };
         clients()
             .write()
             .await
