@@ -31,8 +31,8 @@
 
 namespace wze {
 /**
- * @enum flip
  * @brief Flips.
+ * @details Bitwise operations are supported.
  */
 enum flip : uint8_t {
     FLIP_NONE = SDL_FLIP_NONE,
@@ -41,8 +41,8 @@ enum flip : uint8_t {
 };
 
 /**
- * @enum font_alignment
  * @brief Font alignments.
+ * @details Bitwise operations are not supported.
  */
 // NOLINTNEXTLINE(readability-enum-initial-value,cert-int09-c)
 enum font_alignment : uint8_t {
@@ -53,8 +53,8 @@ enum font_alignment : uint8_t {
 };
 
 /**
- * @enum font_style
  * @brief Font styles.
+ * @details Bitwise operations are supported.
  */
 enum font_style : uint8_t {
     FONT_STYLE_NORMAL = TTF_STYLE_NORMAL,
@@ -65,8 +65,8 @@ enum font_style : uint8_t {
 };
 
 /**
- * @enum key
  * @brief Keys.
+ * @details Bitwise operations are not supported.
  */
 // NOLINTNEXTLINE(readability-enum-initial-value,cert-int09-c)
 enum key : uint16_t {
@@ -330,8 +330,8 @@ enum key : uint16_t {
 };
 
 /**
- * @enum log_level
  * @brief Log levels.
+ * @details Bitwise operations are not supported.
  */
 // NOLINTNEXTLINE(readability-enum-initial-value,cert-int09-c)
 enum log_level : uint8_t {
@@ -345,8 +345,8 @@ enum log_level : uint8_t {
 };
 
 /**
- * @enum system_cursor
  * @brief System cursors.
+ * @details Bitwise operations are not supported.
  */
 // NOLINTNEXTLINE(readability-enum-initial-value,cert-int09-c)
 enum system_cursor : uint8_t {
