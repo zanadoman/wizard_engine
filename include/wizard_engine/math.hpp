@@ -176,6 +176,7 @@ class math final {
     template <typename T>
     [[nodiscard]] static T random(T minimum = std::numeric_limits<T>::lowest(),
                                   T maximum = std::numeric_limits<T>::max()) {
+        static_assert(!std::is_same_v<T, bool>);
         if constexpr (std::is_integral_v<T>) {
             return std::uniform_int_distribution<T>{minimum,
                                                     maximum}(_mt19937_64);

@@ -1,5 +1,5 @@
 # CMake
-cmake_minimum_required(VERSION 3.18.4)
+cmake_minimum_required(VERSION 3.30.5)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(CMAKE_CXX_CLANG_TIDY clang-tidy;-p;${CMAKE_BINARY_DIR})
 
@@ -33,7 +33,7 @@ endif()
 # Compiler
 if(NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
     message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
-elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 11.0.1)
+elseif(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 18.0.1)
     message(FATAL_ERROR "Outdated compiler, CMake will exit.")
 endif()
 
