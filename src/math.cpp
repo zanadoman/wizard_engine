@@ -19,6 +19,12 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file math.cpp
+ * @brief Math modul.
+ * @sa math.hpp
+ */
+
 // NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
 #define __WIZARD_ENGINE_INTERNAL__
 
@@ -29,27 +35,14 @@ float wze::math::length(float x, float y) {
 }
 
 float wze::math::angle(float x, float y) {
-    float angle;
-
-    angle = 0;
-    if ((bool)x || (bool)y) {
-        angle = acosf(x / length(x, y));
-        if (y < 0) {
-            angle *= -1;
-        }
-    }
-
-    return angle;
+    return atan2f(y, x);
 }
 
 std::pair<float, float> wze::math::normalize(float x, float y) {
-    float length;
-
     if ((bool)x || (bool)y) {
-        length = math::length(x, y);
+        float length{math::length(x, y)};
         return {x / length, y / length};
     }
-
     return {0, 0};
 }
 
@@ -63,25 +56,10 @@ float wze::math::move_y(float length, float angle) {
 
 std::array<float, 4> wze::math::transformation_matrix(float angle,
                                                       float scale) {
-    float cosine_scale;
-    float sine_scale;
-
-    cosine_scale = cosf(angle) * scale;
-    sine_scale = sinf(angle) * scale;
-
+    float cosine_scale{cosf(angle) * scale};
+    float sine_scale{sinf(angle) * scale};
     return {cosine_scale, -sine_scale, sine_scale, cosine_scale};
 }
 
-float wze::math::transform_x(
-    float x, float y, std::array<float, 4> const& transformation_matrix) {
-    return x * transformation_matrix.at(0) + y * transformation_matrix.at(1);
-}
-
-float wze::math::transform_y(
-    float x, float y, std::array<float, 4> const& transformation_matrix) {
-    return x * transformation_matrix.at(2) + y * transformation_matrix.at(3);
-}
-
 // NOLINTNEXTLINE(cert-err58-cpp)
-std::mt19937_64 wze::math::_mt19937_64 =
-    std::mt19937_64(std::random_device()());
+std::mt19937_64 wze::math::_mt19937_64{std::random_device{}()};
