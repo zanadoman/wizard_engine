@@ -57,12 +57,12 @@ To use Wizard Engine, make sure you have the following dependencies installed:
 Follow these steps to build the engine:
 
 ```
-git clone https://github.com/zanadoman/wizard_engine
+git clone https://github.com/zanadoman/wizard_engine.git
 cd wizard_engine
 mkdir build
 cd build
 cmake .. -G "MinGW Makefiles" --toolchain ../x86_64-windows.toolchain.cmake
-cmake --build .
+cmake --build ./
 ```
 
 ---
