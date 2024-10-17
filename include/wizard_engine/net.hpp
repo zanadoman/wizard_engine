@@ -34,12 +34,11 @@
 
 namespace wze {
 /**
- * @typedef IPv4 address.
+ * @brief IPv4 address.
  */
 using ipv4 = IPaddress;
 
 /**
- * @class net
  * @brief Network modul.
  * @sa socket
  * @sa udp_socket
@@ -66,7 +65,7 @@ class net final {
      * @brief Resolves an IPv4 address to a hostname.
      * @param address IPv4 address of the server.
      * @return Resolved hostname.
-     * @exception wze::exception IPv4 cannot be resolved.
+     * @exception wze::exception IPv4 address cannot be resolved.
      */
     [[nodiscard]] static std::string resolve(ipv4 const& address);
 };

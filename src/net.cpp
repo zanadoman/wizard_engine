@@ -21,7 +21,7 @@
 
 /**
  * @file net.cpp
- * @brief Net modul.
+ * @brief Network modul.
  * @sa net.hpp
  */
 
