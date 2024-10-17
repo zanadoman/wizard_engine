@@ -1,17 +1,18 @@
 window     -
-udp_socket -
-timer      - OK
-tcp_socket -
+udp_socket - OK?
+timer      - OK?
+tcp_socket - OK?
 sprite     -
 speaker    -
+socket     - OK?
 renderer   -
 renderable -
 polygon    -
-net        - OK
+net        - OK?
 math       -
 input      -
-exception  - OK
-enums      - OK
+exception  - OK?
+enums      - OK?
 entity     -
 engine     -
 component  -

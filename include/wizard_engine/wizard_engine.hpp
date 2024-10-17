@@ -57,6 +57,7 @@
 #include <wizard_engine/polygon.hpp>    /* IWYU pragma: export */
 #include <wizard_engine/renderable.hpp> /* IWYU pragma: export */
 #include <wizard_engine/renderer.hpp>   /* IWYU pragma: export */
+#include <wizard_engine/socket.hpp>     /* IWYU pragma: export */
 #include <wizard_engine/speaker.hpp>    /* IWYU pragma: export */
 #include <wizard_engine/sprite.hpp>     /* IWYU pragma: export */
 #include <wizard_engine/tcp_socket.hpp> /* IWYU pragma: export */
