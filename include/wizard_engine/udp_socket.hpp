@@ -37,7 +37,6 @@
 
 namespace wze {
 /**
- * @class udp_socket
  * @brief UDP socket.
  * @tparam incoming Type of the incoming data.
  * @tparam outgoing Type of the outgoing data.

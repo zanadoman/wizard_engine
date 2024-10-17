@@ -32,7 +32,6 @@
 
 namespace wze {
 /**
- * @class math
  * @brief Math modul.
  */
 class math final {

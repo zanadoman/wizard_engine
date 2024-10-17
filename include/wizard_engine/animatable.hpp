@@ -19,6 +19,12 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file animatable.hpp
+ * @brief Animatable interface.
+ * @sa animator.hpp
+ */
+
 #ifndef WIZARD_ENGINE_ANIMATABLE_HPP
 #define WIZARD_ENGINE_ANIMATABLE_HPP
 
@@ -27,34 +33,27 @@
 
 namespace wze {
 /**
- * @file animatable.hpp
- * @author Zana Domán
- * @brief Interface to make an object animatable.
+ * @brief Animatable interface.
+ * @sa animator
  */
 class animatable {
   public:
     /**
-     * @file animatable.hpp
-     * @author Zana Domán
-     * @brief Returns whether the object should be animated or not.
-     * @return Whether the object should be animated or not.
+     * @brief Default virtual destructor.
+     */
+    virtual ~animatable() = default;
+
+    /**
+     * @brief Gets whether the object should be animated.
+     * @return Whether the object should be animated.
      */
     [[nodiscard]] virtual bool animated() const = 0;
 
     /**
-     * @file animatable.hpp
-     * @author Zana Domán
-     * @brief Sets the texture of the object.
-     * @param texture Texture of the object.
+     * @brief Sets the wze::texture of the object.
+     * @param texture wze::texture of the object.
      */
     virtual void set_texture(std::shared_ptr<texture> const& texture) = 0;
-
-    /**
-     * @file animatable.hpp
-     * @author Zana Domán
-     * @brief Default virtual destructor.
-     */
-    virtual ~animatable() = default;
 };
 } /* namespace wze */
 

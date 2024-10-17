@@ -35,7 +35,6 @@
 
 namespace wze {
 /**
- * @interface socket
  * @brief Generic socket.
  * @tparam incoming Type of the incoming data.
  * @tparam outgoing Type of the outgoing data.

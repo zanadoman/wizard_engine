@@ -37,7 +37,6 @@
 
 namespace wze {
 /**
- * @class tcp_socket
  * @brief TCP socket.
  * @tparam incoming Type of the incoming data.
  * @tparam outgoing Type of the outgoing data.
