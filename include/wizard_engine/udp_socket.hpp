@@ -19,96 +19,102 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file udp_socket.hpp
+ * @brief UDP socket.
+ * @sa net.hpp
+ * @sa socket.hpp
+ * @sa tcp_socket.hpp
+ */
+
 #ifndef WIZARD_ENGINE_UDP_SOCKET_HPP
 #define WIZARD_ENGINE_UDP_SOCKET_HPP
 
 #include <wizard_engine/exception.hpp>
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/net.hpp>
+#include <wizard_engine/socket.hpp>
 
 namespace wze {
 /**
- * @file udp_socket.hpp
- * @author Zana Domán
- * @brief Establishes a UDP connection to a server.
- * @param outgoing Type of the outgoing data.
- * @param incoming Type of the incoming data.
+ * @class udp_socket
+ * @brief UDP socket.
+ * @tparam incoming Type of the incoming data.
+ * @tparam outgoing Type of the outgoing data.
+ * @sa net
+ * @sa udp_socket
+ * @sa tcp_socket
  */
-template <typename outgoing, typename incoming,
-          typename = typename std::enable_if_t<
-              sizeof(outgoing) <= std::numeric_limits<int32_t>::max() &&
-              sizeof(incoming) <= std::numeric_limits<int32_t>::max()>>
-class udp_socket final {
-  private:
-    std::shared_ptr<_UDPsocket> _socket;
-    UDPpacket _outgoing;
-    UDPpacket _incoming;
-
+template <typename incoming, typename outgoing>
+class udp_socket final : public socket<incoming, outgoing> {
   public:
     /**
-     * @file udp_socket.hpp
-     * @author Zana Domán
-     * @brief Returns the IPv4 address of the server.
-     * @return IPv4 address of the server.
-     */
-    [[nodiscard]] wze::ipv4 const& ipv4() {
-        return _outgoing.address;
-    }
-
-    /**
-     * @file udp_socket.hpp
-     * @author Zana Domán
-     * @brief Constructs a UDP socket instance.
+     * @brief Explicit constructor.
      * @param ipv4 IPv4 address of the server.
-     * @warning If the UDP socket cannot be constructed, throws wze::exception.
+     * @exception wze::exception udp_socket cannot be opened.
+     * @sa net::resolve(std::string const& hostname, uint16_t port = 0)
      */
-    explicit udp_socket(wze::ipv4 const& ipv4) {
-        if (ipv4.host == INADDR_ANY || ipv4.host == INADDR_NONE) {
+    explicit udp_socket(wze::ipv4 const& ipv4)
+        : _incoming{-1, nullptr,         sizeof(incoming), sizeof(incoming),
+                    0,  {INADDR_NONE, 0}},
+          _outgoing{-1, nullptr, sizeof(outgoing), sizeof(outgoing), 0, ipv4} {
+        if (this->ipv4().host == INADDR_ANY ||
+            this->ipv4().host == INADDR_NONE) {
             throw exception("Invalid IPv4 address");
         }
         _socket = {SDLNet_UDP_Open(0), SDLNet_UDP_Close};
         if (!_socket) {
             throw exception(SDLNet_GetError());
         }
-        _outgoing = {-1, nullptr, sizeof(outgoing), sizeof(outgoing), 0, ipv4};
-        _incoming = {-1, nullptr,         sizeof(incoming), sizeof(incoming),
-                     0,  {INADDR_NONE, 0}};
     }
 
     /**
-     * @file udp_socket.hpp
-     * @author Zana Domán
+     * @brief Gets the IPv4 address of the server.
+     * @return IPv4 address of the server.
+     */
+    [[nodiscard]] wze::ipv4 const& ipv4() const final {
+        return _outgoing.address;
+    }
+
+    /**
+     * @brief Receives data from the server.
+     * @param buffer Data buffer.
+     * @return Integrity of the received data.
+     * @retval true Received appropriate data.
+     * @retval false Received invalid data.
+     * @exception wze::exception Data cannot be received properly.
+     * @sa send(outgoing const& buffer)
+     */
+    [[nodiscard]] bool receive(incoming& buffer) final {
+        _incoming.data = (uint8_t*)&buffer;
+        switch (SDLNet_UDP_Recv(_socket.get(), &_incoming)) {
+        case 0:
+            return false;
+        case 1:
+            return _incoming.address == ipv4() &&
+                   _incoming.len == sizeof(incoming);
+        default:
+            throw exception(SDLNet_GetError());
+        }
+    }
+
+    /**
      * @brief Sends data to the server.
      * @param buffer Data buffer.
-     * @warning If data cannot be sent, throws wze::exception.
+     * @exception wze::exception Data cannot be sent properly.
+     * @sa receive(incoming& buffer)
      */
-    void send(outgoing const& buffer) {
+    void send(outgoing const& buffer) final {
         _outgoing.data = (uint8_t*)&buffer;
         if (!(bool)SDLNet_UDP_Send(_socket.get(), -1, &_outgoing)) {
             throw exception(SDLNet_GetError());
         }
     }
 
-    /**
-     * @file udp_socket.hpp
-     * @author Zana Domán
-     * @brief Receives data from the server, then returns true on successful
-     * data exchange, false otherwise.
-     * @param buffer Data buffer.
-     * @return True on successful data exchange, false otherwise.
-     * @warning If data cannot be received, throws wze::exception.
-     */
-    [[nodiscard]] bool receive(incoming& buffer) {
-        _incoming.data = (uint8_t*)&buffer;
-        switch (SDLNet_UDP_Recv(_socket.get(), &_incoming)) {
-        case 0:
-            return false;
-        case 1:
-            return _incoming.len == sizeof(incoming);
-        default:
-            throw exception(SDLNet_GetError());
-        }
-    }
+  private:
+    UDPpacket _incoming;
+    UDPpacket _outgoing;
+    std::shared_ptr<_UDPsocket> _socket;
 };
 } /* namespace wze */
 

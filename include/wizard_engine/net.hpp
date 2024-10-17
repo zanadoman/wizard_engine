@@ -19,6 +19,14 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file net.hpp
+ * @brief Network modul.
+ * @sa socket.hpp
+ * @sa udp_socket.hpp
+ * @sa tcp_socket.hpp
+ */
+
 #ifndef WIZARD_ENGINE_NET_HPP
 #define WIZARD_ENGINE_NET_HPP
 
@@ -26,45 +34,39 @@
 
 namespace wze {
 /**
- * @file net.hpp
- * @author Zana Domán
- * @brief IPv4 address.
+ * @typedef IPv4 address.
  */
 using ipv4 = IPaddress;
 
 /**
- * @file net.hpp
- * @author Zana Domán
- * @brief Subsystem to handle network connections.
+ * @class net
+ * @brief Network modul.
+ * @sa socket
+ * @sa udp_socket
+ * @sa tcp_socket
  */
 class net final {
   public:
     /**
-     * @file net.hpp
-     * @author Zana Domán
-     * @brief Deleted default constructor to prevent instantiation.
+     * @brief Deleted explicit constructor.
      */
     explicit net() = delete;
 
     /**
-     * @file net.hpp
-     * @author Zana Domán
      * @brief Resolves a hostname to an IPv4 address.
      * @param hostname Hostname of the server.
      * @param port Port of the server.
      * @return Resolved IPv4 address.
-     * @warning If the hostname cannot be resolved, throws wze::exception.
+     * @exception wze::exception Hostname cannot be resolved.
      */
     [[nodiscard]] static ipv4 resolve(std::string const& hostname,
                                       uint16_t port = 0);
 
     /**
-     * @file net.hpp
-     * @author Zana Domán
      * @brief Resolves an IPv4 address to a hostname.
      * @param address IPv4 address of the server.
      * @return Resolved hostname.
-     * @warning If the IPv4 address cannot be resolved, throws wze::exception.
+     * @exception wze::exception IPv4 cannot be resolved.
      */
     [[nodiscard]] static std::string resolve(ipv4 const& address);
 };

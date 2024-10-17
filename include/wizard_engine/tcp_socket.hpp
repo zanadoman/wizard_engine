@@ -19,58 +19,51 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+/**
+ * @file tcp_socket.hpp
+ * @brief TCP socket.
+ * @sa net.hpp
+ * @sa socket.hpp
+ * @sa udp_socket.hpp
+ */
+
 #ifndef WIZARD_ENGINE_TCP_SOCKET_HPP
 #define WIZARD_ENGINE_TCP_SOCKET_HPP
 
 #include <wizard_engine/exception.hpp>
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/net.hpp>
+#include <wizard_engine/socket.hpp>
 
 namespace wze {
 /**
- * @file tcp_socket.hpp
- * @author Zana Domán
- * @brief Establishes a TCP connection to a server.
- * @param outgoing Type of the outgoing data.
- * @param incoming Type of the incoming data.
+ * @class tcp_socket
+ * @brief TCP socket.
+ * @tparam incoming Type of the incoming data.
+ * @tparam outgoing Type of the outgoing data.
+ * @sa net
+ * @sa udp_socket
+ * @sa tcp_socket
  */
-template <typename outgoing, typename incoming,
-          typename = typename std::enable_if_t<
-              sizeof(outgoing) <= std::numeric_limits<int32_t>::max() &&
-              sizeof(incoming) <= std::numeric_limits<int32_t>::max()>>
-class tcp_socket final {
-  private:
-    std::shared_ptr<_TCPsocket> _socket;
-    std::shared_ptr<_SDLNet_SocketSet> _socket_set;
-
+template <typename incoming, typename outgoing>
+class tcp_socket final : public socket<incoming, outgoing> {
   public:
     /**
-     * @file tcp_socket.hpp
-     * @author Zana Domán
-     * @brief Returns the IPv4 address of the server.
-     * @return IPv4 address of the server.
-     */
-    [[nodiscard]] wze::ipv4 ipv4() {
-        return *SDLNet_TCP_GetPeerAddress(_socket.get());
-    }
-
-    /**
-     * @file tpc_socket.hpp
-     * @author Zana Domán
-     * @brief Constructs a TCP socket instance.
+     * @brief Explicit constructor.
      * @param ipv4 IPv4 address of the server.
-     * @warning If the TCP socket cannot be constructed, throws wze::exception.
+     * @exception wze::exception tcp_socket cannot be opened.
+     * @sa net::resolve(std::string const& hostname, uint16_t port = 0)
      */
     explicit tcp_socket(wze::ipv4 ipv4) {
         if (ipv4.host == INADDR_ANY || ipv4.host == INADDR_NONE) {
             throw exception("Invalid IPv4 address");
         }
-        _socket = {SDLNet_TCP_Open(&ipv4), SDLNet_TCP_Close};
-        if (!_socket) {
-            throw exception(SDLNet_GetError());
-        }
         _socket_set = {SDLNet_AllocSocketSet(1), SDLNet_FreeSocketSet};
         if (!_socket_set) {
+            throw exception(SDLNet_GetError());
+        }
+        _socket = {SDLNet_TCP_Open(&ipv4), SDLNet_TCP_Close};
+        if (!_socket) {
             throw exception(SDLNet_GetError());
         }
         if (SDLNet_TCP_AddSocket(_socket_set.get(), _socket.get()) != 1) {
@@ -79,14 +72,23 @@ class tcp_socket final {
     }
 
     /**
-     * @file tcp_socket.hpp
-     * @author Zana Domán
-     * @brief Sends data to the server.
-     * @param buffer Data buffer.
-     * @note This method may block.
-     * @warning If data cannot be sent, throws wze::exception.
+     * @brief Gets the IPv4 address of the server.
+     * @return IPv4 address of the server.
      */
-    void send(outgoing const& buffer) {
+    [[nodiscard]] wze::ipv4 ipv4() const final {
+        return *SDLNet_TCP_GetPeerAddress(_socket.get());
+    }
+
+    /**
+     * @brief Receives data from the server.
+     * @param buffer Data buffer.
+     * @return Integrity of the received data.
+     * @retval true Received appropriate data.
+     * @retval false Received invalid data.
+     * @exception wze::exception Data cannot be received properly.
+     * @sa send(outgoing const& buffer)
+     */
+    void send(outgoing const& buffer) final {
         if (SDLNet_TCP_Send(_socket.get(), &buffer, sizeof(outgoing)) !=
             sizeof(outgoing)) {
             throw exception(SDLNet_GetError());
@@ -94,31 +96,26 @@ class tcp_socket final {
     }
 
     /**
-     * @file tcp_socket.hpp
-     * @author Zana Domán
-     * @brief Receives data from the server, then returns true on successful
-     * data exchange, false otherwise.
+     * @brief Sends data to the server.
      * @param buffer Data buffer.
-     * @return True on successful data exchange, false otherwise.
-     * @warning If data cannot be received, throws wze::exception.
+     * @exception wze::exception Data cannot be sent properly.
+     * @sa receive(incoming& buffer)
      */
-    [[nodiscard]] bool receive(incoming& buffer) {
-        int32_t size;
-
-        if (!(bool)SDLNet_CheckSockets(_socket_set.get(), 0)) {
+    [[nodiscard]] bool receive(incoming& buffer) final {
+        if (!(bool)SDLNet_CheckSockets(_socket_set.get(), 0) ||
+            !(bool)SDLNet_SocketReady(_socket.get())) {
             return false;
         }
-        if (!(bool)SDLNet_SocketReady(_socket.get())) {
-            return false;
-        }
-
-        size = SDLNet_TCP_Recv(_socket.get(), &buffer, sizeof(incoming));
+        int32_t size{SDLNet_TCP_Recv(_socket.get(), &buffer, sizeof(incoming))};
         if (size <= 0) {
             throw exception(SDLNet_GetError());
         }
-
         return size == sizeof(incoming);
     }
+
+  private:
+    std::shared_ptr<_SDLNet_SocketSet> _socket_set;
+    std::shared_ptr<_TCPsocket> _socket;
 };
 } /* namespace wze */
 

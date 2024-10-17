@@ -21,7 +21,7 @@
 
 /**
  * @file socket.hpp
- * @brief Socket interface.
+ * @brief Generic socket.
  * @sa net.hpp
  * @sa udp_socket.hpp
  * @sa tcp_socket.hpp
@@ -36,16 +36,23 @@
 namespace wze {
 /**
  * @interface socket
- * @brief Establishes a connection to a server.
- * @tparam outgoing Type of the outgoing data.
+ * @brief Generic socket.
  * @tparam incoming Type of the incoming data.
+ * @tparam outgoing Type of the outgoing data.
+ * @sa net
+ * @sa udp_socket
+ * @sa tcp_socket
  */
-template <typename incoming, typename outgoing,
-          typename = typename std::enable_if_t<
-              sizeof(incoming) <= std::numeric_limits<int32_t>::max() &&
-              sizeof(outgoing) <= std::numeric_limits<int32_t>::max()>>
-class socket {
+template <typename incoming, typename outgoing> class socket {
+    static_assert(sizeof(incoming) <= std::numeric_limits<int32_t>::max() &&
+                  sizeof(outgoing) <= std::numeric_limits<int32_t>::max());
+
   public:
+    /**
+     * Default virtual destructor.
+     */
+    virtual ~socket() = default;
+
     /**
      * @brief Gets the IPv4 address of the server.
      * @return IPv4 address of the server.
@@ -53,12 +60,12 @@ class socket {
     [[nodiscard]] virtual ipv4 const& ipv4() const = 0;
 
     /**
-     * @brief Receives data to the server.
+     * @brief Receives data from the server.
      * @param buffer Data buffer.
      * @return Integrity of the received data.
      * @retval true Received appropriate data.
-     * @retval false Received insufficient data.
-     * @exception exception Data cannot be received properly.
+     * @retval false Received invalid data.
+     * @exception wze::exception Data cannot be received properly.
      * @sa send(outgoing const& buffer)
      */
     virtual void receive(incoming& buffer) = 0;
@@ -66,7 +73,7 @@ class socket {
     /**
      * @brief Sends data to the server.
      * @param buffer Data buffer.
-     * @exception exception Data cannot be sent properly.
+     * @exception wze::exception Data cannot be sent properly.
      * @sa receive(incoming& buffer)
      */
     virtual bool send(outgoing const& buffer) = 0;
