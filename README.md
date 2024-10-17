@@ -1,4 +1,4 @@
-# 🧙 Wizard Engine
+# 🧙 [Wizard Engine](https://github.com/zanadoman/wizard_engine)
 
 **A simple 2D cross-platform game engine built around [Simple DirectMedia Layer
 2 (SDL2)](https://www.libsdl.org/).**
@@ -23,8 +23,9 @@ performance. The stable version is still in progress (about 70%).
 
 - **Wiki**: See the documentation on the
   [homepage](https://zanadoman.github.io/wizard_engine/).
-- **Examples**: Check out the examples in the [`tests`]
-  (https://github.com/zanadoman/wizard_engine/tree/main/tests) directory.
+- **Examples**: Check out the examples in the
+  [`tests`](https://github.com/zanadoman/wizard_engine/tree/main/tests)
+  directory.
 
 ---
 
