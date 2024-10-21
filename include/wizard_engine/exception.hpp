@@ -21,20 +21,22 @@
 
 /**
  * @file exception.hpp
- * @brief General exception.
- * @sa exception.cpp
+ * @brief Generic exception.
  */
 
 #ifndef WIZARD_ENGINE_EXCEPTION_HPP
 #define WIZARD_ENGINE_EXCEPTION_HPP
 
+#include <wizard_engine/engine.hpp>
+#include <wizard_engine/enums.hpp>
 #include <wizard_engine/export.hpp>
 
 namespace wze {
 /**
- * @brief General exception.
+ * @brief Generic exception.
+ * @tparam error Error specialization.
  */
-class exception : public std::exception {
+template <typename error> class exception final : public std::exception {
   public:
     /**
      * @brief Explicit constructor.
@@ -42,13 +44,17 @@ class exception : public std::exception {
      * @param what Explanatory string.
      * @sa log_level
      */
-    explicit exception(std::string what);
+    explicit exception(std::string what) : _what{std::move(what)} {
+        engine::log({this->what()}, {LOG_LEVEL_ERROR});
+    }
 
     /**
      * @brief Gets the explanatory string.
      * @return Explanatory string.
      */
-    [[nodiscard]] char const* what() const noexcept override;
+    [[nodiscard]] char const* what() const noexcept final {
+        return _what.c_str();
+    }
 
   private:
     std::string _what;
