@@ -12,18 +12,18 @@ performance. The stable version is still in progress (about 70%).
 
 ## ✨ Features & Goals
 
-- **Easy-to-use**: Perfect for C++ developers looking for a lightweight game
+- **Easy-to-use:** Perfect for C++ developers looking for a lightweight game
   engine without complex GUIs.
-- **High Performance**: Optimized to deliver smooth 2.5D graphics.
-- **Cross-Platform Support**: Write once, deploy anywhere.
+- **High Performance:** Optimized to deliver smooth 2.5D graphics.
+- **Cross-Platform Support:** Write once, deploy anywhere.
 
 ---
 
 ## 📚 Documentation
 
-- **Wiki**: See the documentation on the
+- **Wiki:** See the documentation on the
   [website](https://zanadoman.github.io/wizard_engine/).
-- **Examples**: Check out the examples in the
+- **Examples:** Check out the examples in the
   [`tests`](https://github.com/zanadoman/wizard_engine/tree/main/tests/)
   directory.
 
@@ -31,10 +31,10 @@ performance. The stable version is still in progress (about 70%).
 
 ## 🖥️ Officially Supported Platforms
 
-- **Windows**: `x86_64`
-- **Linux**: `x86_64`
-- **Android**: `x86_64`, `AArch64`
-- **Web**: `x86`
+- **Windows:** `x86_64`
+- **Linux:** `x86_64`
+- **Android:** `x86_64`, `AArch64`
+- **Web:** `x86`
 
 ---
 
