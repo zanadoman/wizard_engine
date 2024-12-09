@@ -1,0 +1,14 @@
+[package]
+name = "srv"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "udp"
+path = "./srv/udp.rs"
+
+[[bin]]
+name = "tcp"
+path = "./srv/tcp.rs"
