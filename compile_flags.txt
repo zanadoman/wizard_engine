@@ -1,0 +1,6 @@
+-std=c++23
+-O3
+-ffast-math
+-Weverything
+-Wno-c++98-compat
+-Werror
