@@ -6,9 +6,9 @@ edition = "2021"
 [dependencies]
 
 [[bin]]
-name = "udp"
-path = "./srv/udp.rs"
-
-[[bin]]
 name = "tcp"
 path = "./srv/tcp.rs"
+
+[[bin]]
+name = "udp"
+path = "./srv/udp.rs"
