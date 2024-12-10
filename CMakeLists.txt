@@ -1,9 +1,9 @@
 # CMake
 cmake_minimum_required(VERSION 3.25.1)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_CXX_CLANG_TIDY clang-tidy)
+set(CMAKE_CXX_CLANG_TIDY clang-tidy;-p;${CMAKE_BINARY_DIR})
 if(NOT ${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}/build)
-  message(FATAL_ERROR "Unsupported directory, CMake will exit.")
+  message(FATAL_ERROR "Incorrect build directory, CMake will exit.")
 endif()
 
 # Project
@@ -15,7 +15,7 @@ if(NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
 endif()
 
 # Architecture
-if(NOT ${CMAKE_SYSTEM_PROCESSOR} STREQUAL x86_64)
+if(NOT ${CMAKE_SYSTEM_PROCESSOR} MATCHES x86_64|AMD64)
   message(FATAL_ERROR "Unsupported architecture, CMake will exit.")
 endif()
 
@@ -31,7 +31,7 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/include/)
 
 # Sources
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 # Flags
@@ -39,12 +39,22 @@ file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt CMAKE_CXX_FLAGS)
 string(REPLACE \n \  CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} SDL3 SDL3_image SDL3_mixer SDL3_net SDL3_ttf)
+find_library(SDL3 SDL3)
+find_library(SDL3_image SDL3_image)
+find_library(SDL3_mixer SDL3_mixer)
+find_library(SDL3_net SDL3_net)
+find_library(SDL3_ttf SDL3_ttf)
+target_link_libraries(${PROJECT_NAME}
+                      ${SDL3}
+                      ${SDL3_image}
+                      ${SDL3_mixer}
+                      ${SDL3_net}
+                      ${SDL3_ttf})
 
 # Examples
-file(GLOB EXAMPLES ${CMAKE_SOURCE_DIR}/examples/*.cpp)
+file(GLOB_RECURSE EXAMPLES ${CMAKE_SOURCE_DIR}/examples/*.cpp)
 foreach(SOURCE ${EXAMPLES})
-  get_filename_component(NAME ${SOURCE} NAME_WE)
+  get_filename_component(NAME ${SOURCE} NAME_WLE)
   add_executable(${NAME} ${SOURCE})
   target_link_libraries(${NAME} ${PROJECT_NAME})
   if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
