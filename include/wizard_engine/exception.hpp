@@ -22,6 +22,7 @@
 /**
  * @file exception.hpp
  * @brief Generic exception.
+ * @sa errors.hpp
  */
 
 #ifndef WIZARD_ENGINE_EXCEPTION_HPP
@@ -35,6 +36,7 @@ namespace wze {
 /**
  * @brief Generic exception.
  * @tparam error Error specialization.
+ * @sa errors.hpp
  */
 template <typename error> class exception final : public std::exception {
   public:
@@ -47,6 +49,26 @@ template <typename error> class exception final : public std::exception {
     explicit exception(std::string what) : _what{std::move(what)} {
         engine::log({this->what()}, {LOG_LEVEL_ERROR});
     }
+
+    /**
+     * @brief Deleted copy constructor.
+     */
+    exception(exception<error> const&) = delete;
+
+    /**
+     * @brief Deleted move constructor.
+     */
+    exception(exception<error>&&) = delete;
+
+    /**
+     * @brief Deleted copy assignment operator.
+     */
+    exception& operator=(exception<error> const&) = delete;
+
+    /**
+     * @brief Deleted move assignment operator.
+     */
+    exception& operator=(exception<error>&&) = delete;
 
     /**
      * @brief Gets the explanatory string.

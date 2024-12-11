@@ -20,30 +20,58 @@
 */
 
 /**
- * @file net.cpp
- * @brief Network modul.
- * @sa net.hpp
+ * @file errors.hpp
+ * @brief Error types.
+ * @sa exception.hpp
  */
 
-// NOLINTNEXTLINE(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp)
-#define __WIZARD_ENGINE_INTERNAL__
+#ifndef WIZARD_ENGINE_ERRORS
+#define WIZARD_ENGINE_ERRORS
 
-#include <wizard_engine/errors.hpp>
-#include <wizard_engine/exception.hpp>
-#include <wizard_engine/net.hpp>
+namespace wze {
+/**
+ * @brief Audio error.
+ * @sa speaker_error
+ */
+struct audio_error;
 
-wze::ipv4 wze::net::resolve(std::string const& hostname, uint16_t port) {
-    ipv4 address{};
-    if ((bool)SDLNet_ResolveHost(&address, hostname.c_str(), port)) {
-        throw exception<net_error>{{SDLNet_GetError()}};
-    }
-    return {address};
-}
+/**
+ * @brief Engine error.
+ */
+struct engine_error;
 
-std::string wze::net::resolve(ipv4 const& address) {
-    char const* hostname{SDLNet_ResolveIP(&address)};
-    if (!(bool)hostname) {
-        throw exception<net_error>{{SDLNet_GetError()}};
-    }
-    return {hostname};
-}
+/**
+ * @brief Input error.
+ */
+struct input_error;
+
+/**
+ * @brief Net error.
+ * @sa socket_error
+ */
+struct net_error;
+
+/**
+ * @brief Renderer error.
+ */
+struct renderer_error;
+
+/**
+ * @brief Socket error.
+ * @sa net_error
+ */
+struct socket_error;
+
+/**
+ * @brief Speaker error.
+ * @sa audio_error
+ */
+struct speaker_error;
+
+/**
+ * @brief Window error.
+ */
+struct window_error;
+} /* namespace wze */
+
+#endif /* WIZARD_ENGINE_ERRORS */

@@ -1,24 +1,29 @@
-window     -
-udp_socket - OK?
-timer      - OK?
-tcp_socket - OK?
-sprite     -
-speaker    -
-socket     - OK?
-renderer   -
-renderable -
-polygon    -
-net        - OK!
-math       -
-input      -
-exception  - OK!
-enums      - OK!
-entity     -
-engine     -
-component  -
-collider   -
-camera     -
-audio      -
-assets     -
-animator   -
-animatable - OK?
+- utils
+    exception  - OK!
+    errors     -
+    enums      - OK!
+- moduls
+    window     -
+    timer      - OK?
+    renderer   -
+    net        - OK!
+    math       -
+    input      -
+    engine     -
+    camera     -
+    audio      -
+    assets     -
+- interfaces
+    socket     - OK?
+    renderable -
+    component  -
+    animatable - OK?
+- objects
+    udp_socket - OK?
+    tcp_socket - OK?
+    sprite     -
+    speaker    -
+    polygon    -
+    entity     -
+    collider   -
+    animator   -

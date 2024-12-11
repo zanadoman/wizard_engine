@@ -1,7 +1,8 @@
-AllowShortBlocksOnASingleLine: Empty
-AllowShortFunctionsOnASingleLine: Empty
-AllowShortLambdasOnASingleLine: Empty
-ColumnLimit: 80
-IndentWidth: 4
-PointerAlignment: Left
-QualifierAlignment: Right
+# AllowShortBlocksOnASingleLine: Empty
+# AllowShortFunctionsOnASingleLine: Empty
+# AllowShortLambdasOnASingleLine: Empty
+# ColumnLimit: 80
+# IndentWidth: 4
+# PointerAlignment: Left
+# QualifierAlignment: Right
+BasedOnStyle: Chromium

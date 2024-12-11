@@ -30,10 +30,10 @@
 #ifndef WIZARD_ENGINE_UDP_SOCKET_HPP
 #define WIZARD_ENGINE_UDP_SOCKET_HPP
 
+#include <wizard_engine/errors.hpp>
 #include <wizard_engine/exception.hpp>
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/net.hpp>
-#include <wizard_engine/socket.hpp>
 
 namespace wze {
 /**
@@ -44,26 +44,24 @@ namespace wze {
  * @sa udp_socket
  * @sa tcp_socket
  */
-template <typename incoming, typename outgoing>
-class udp_socket final : public socket<incoming, outgoing> {
+class udp_socket final {
   public:
     /**
      * @brief Explicit constructor.
      * @param ipv4 IPv4 address of the server.
-     * @exception wze::exception udp_socket cannot be opened.
+     * @exception wze::exception <socket_error> udp_socket cannot be opened.
      * @sa net::resolve(std::string const& hostname, uint16_t port = 0)
      */
     explicit udp_socket(wze::ipv4 const& ipv4)
-        : _incoming{-1, nullptr,         sizeof(incoming), sizeof(incoming),
-                    0,  {INADDR_NONE, 0}},
-          _outgoing{-1, nullptr, sizeof(outgoing), sizeof(outgoing), 0, ipv4} {
+        : _incoming{-1, nullptr, 0, 0, 0, {INADDR_NONE, 0}},
+          _outgoing{-1, nullptr, 0, 0, 0, {ipv4}} {
         if (this->ipv4().host == INADDR_ANY ||
             this->ipv4().host == INADDR_NONE) {
-            throw exception("Invalid IPv4 address");
+            throw exception<socket_error>{{"Invalid IPv4 address"}};
         }
         _socket = {SDLNet_UDP_Open(0), SDLNet_UDP_Close};
         if (!_socket) {
-            throw exception(SDLNet_GetError());
+            throw exception<socket_error>{{SDLNet_GetError()}};
         }
     }
 
@@ -71,7 +69,7 @@ class udp_socket final : public socket<incoming, outgoing> {
      * @brief Gets the wze::ipv4 address of the server.
      * @return wze::ipv4 address of the server.
      */
-    [[nodiscard]] wze::ipv4 const& ipv4() const final {
+    [[nodiscard]] wze::ipv4 const& ipv4() const {
         return _outgoing.address;
     }
 
@@ -81,19 +79,25 @@ class udp_socket final : public socket<incoming, outgoing> {
      * @return Integrity of the received data.
      * @retval true Received appropriate data.
      * @retval false Received invalid data.
-     * @exception wze::exception Data cannot be received properly.
+     * @exception wze::exception <socket_error> Data cannot be received
+     * properly.
      * @sa send(outgoing const& buffer)
      */
-    [[nodiscard]] bool receive(incoming& buffer) final {
-        _incoming.data = (uint8_t*)&buffer;
+    template <typename packet> [[nodiscard]] int32_t receive(packet& buffer) {
+        static_assert(sizeof(buffer) <= std::numeric_limits<int32_t>::max());
+        _incoming.data = static_cast<uint8_t*>(&buffer);
+        _incoming.len = 0;
+        _incoming.maxlen = sizeof(buffer);
         switch (SDLNet_UDP_Recv(_socket.get(), &_incoming)) {
-        case 0:
-            return false;
         case 1:
-            return _incoming.address == ipv4() &&
-                   _incoming.len == sizeof(incoming);
+            if (_incoming.address.host == ipv4().host &&
+                _incoming.address.port == ipv4().port) {
+                return _incoming.len;
+            }
+        case 0:
+            return 0;
         default:
-            throw exception(SDLNet_GetError());
+            throw exception<socket_error>{{SDLNet_GetError()}};
         }
     }
 
@@ -103,10 +107,14 @@ class udp_socket final : public socket<incoming, outgoing> {
      * @exception wze::exception Data cannot be sent properly.
      * @sa receive(incoming& buffer)
      */
-    void send(outgoing const& buffer) final {
-        _outgoing.data = (uint8_t*)&buffer;
-        if (!(bool)SDLNet_UDP_Send(_socket.get(), -1, &_outgoing)) {
-            throw exception(SDLNet_GetError());
+    template <typename packet> void send(packet const& buffer) {
+        static_assert(sizeof(buffer) <= std::numeric_limits<int32_t>::max());
+        _outgoing.data = static_cast<uint8_t*>(&buffer);
+        _outgoing.len = sizeof(buffer);
+        _outgoing.maxlen = sizeof(buffer);
+        if (!static_cast<bool>(
+                SDLNet_UDP_Send(_socket.get(), -1, &_outgoing))) {
+            throw exception<socket_error>{{SDLNet_GetError()}};
         }
     }
 

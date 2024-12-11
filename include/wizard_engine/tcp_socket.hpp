@@ -30,10 +30,10 @@
 #ifndef WIZARD_ENGINE_TCP_SOCKET_HPP
 #define WIZARD_ENGINE_TCP_SOCKET_HPP
 
+#include <wizard_engine/errors.hpp>
 #include <wizard_engine/exception.hpp>
 #include <wizard_engine/export.hpp>
 #include <wizard_engine/net.hpp>
-#include <wizard_engine/socket.hpp>
 
 namespace wze {
 /**
@@ -44,8 +44,7 @@ namespace wze {
  * @sa udp_socket
  * @sa tcp_socket
  */
-template <typename incoming, typename outgoing>
-class tcp_socket final : public socket<incoming, outgoing> {
+class tcp_socket final {
   public:
     /**
      * @brief Explicit constructor.
@@ -55,18 +54,18 @@ class tcp_socket final : public socket<incoming, outgoing> {
      */
     explicit tcp_socket(wze::ipv4 ipv4) {
         if (ipv4.host == INADDR_ANY || ipv4.host == INADDR_NONE) {
-            throw exception("Invalid IPv4 address");
+            throw exception<socket_error>{{"Invalid IPv4 address"}};
         }
         _socket_set = {SDLNet_AllocSocketSet(1), SDLNet_FreeSocketSet};
         if (!_socket_set) {
-            throw exception(SDLNet_GetError());
+            throw exception<socket_error>{{SDLNet_GetError()}};
         }
         _socket = {SDLNet_TCP_Open(&ipv4), SDLNet_TCP_Close};
         if (!_socket) {
-            throw exception(SDLNet_GetError());
+            throw exception<socket_error>{{SDLNet_GetError()}};
         }
         if (SDLNet_TCP_AddSocket(_socket_set.get(), _socket.get()) != 1) {
-            throw exception(SDLNet_GetError());
+            throw exception<socket_error>{{SDLNet_GetError()}};
         }
     }
 
@@ -74,7 +73,7 @@ class tcp_socket final : public socket<incoming, outgoing> {
      * @brief Gets the wze::ipv4 address of the server.
      * @return wze::ipv4 address of the server.
      */
-    [[nodiscard]] wze::ipv4 ipv4() const final {
+    [[nodiscard]] wze::ipv4 ipv4() const {
         return *SDLNet_TCP_GetPeerAddress(_socket.get());
     }
 
@@ -87,10 +86,11 @@ class tcp_socket final : public socket<incoming, outgoing> {
      * @exception wze::exception Data cannot be received properly.
      * @sa send(outgoing const& buffer)
      */
-    void send(outgoing const& buffer) final {
-        if (SDLNet_TCP_Send(_socket.get(), &buffer, sizeof(outgoing)) !=
-            sizeof(outgoing)) {
-            throw exception(SDLNet_GetError());
+    template <typename packet> void send(packet const& buffer) {
+        static_assert(sizeof(buffer) <= std::numeric_limits<int32_t>::max());
+        if (SDLNet_TCP_Send(_socket.get(), &buffer, sizeof(buffer)) !=
+            sizeof(buffer)) {
+            throw exception<socket_error>{{SDLNet_GetError()}};
         }
     }
 
@@ -100,16 +100,18 @@ class tcp_socket final : public socket<incoming, outgoing> {
      * @exception wze::exception Data cannot be sent properly.
      * @sa receive(incoming& buffer)
      */
-    [[nodiscard]] bool receive(incoming& buffer) final {
-        if (!(bool)SDLNet_CheckSockets(_socket_set.get(), 0) ||
-            !(bool)SDLNet_SocketReady(_socket.get())) {
-            return false;
+    template <typename packet> [[nodiscard]] int32_t receive(packet& buffer) {
+        static_assert(sizeof(buffer) <= std::numeric_limits<int32_t>::max());
+        if (!static_cast<bool>(SDLNet_CheckSockets(_socket_set.get(), 0)) ||
+            // NOLINTNEXTLINE(cppcoreguidelines-pro-type-cstyle-cast)
+            !static_cast<bool>(SDLNet_SocketReady(_socket.get()))) {
+            return 0;
         }
-        int32_t size{SDLNet_TCP_Recv(_socket.get(), &buffer, sizeof(incoming))};
+        int32_t size{SDLNet_TCP_Recv(_socket.get(), &buffer, sizeof(buffer))};
         if (size <= 0) {
-            throw exception(SDLNet_GetError());
+            throw exception<socket_error>{{SDLNet_GetError()}};
         }
-        return size == sizeof(incoming);
+        return size;
     }
 
   private:
