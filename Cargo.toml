@@ -4,6 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+anyhow = "*"
+clap = { version = "*", features = ["derive"] }
+tokio = { version = "*", features = ["io-util", "macros", "net", "rt-multi-thread", "signal", "sync", "time"] }
+tracing = "*"
+tracing-subscriber = "*"
 
 [[bin]]
 name = "tcp"
