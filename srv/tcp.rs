@@ -26,6 +26,9 @@ use tracing_subscriber::{
 #[derive(Parser)]
 #[command(version, about = "Simple TCP broadcast server for testing purposes")]
 struct Args {
+  /// IPv4 address of the server
+  #[arg(short, long, default_value_t = Ipv4Addr::new(127, 0, 0, 1))]
+  address: Ipv4Addr,
   /// Port to listen on
   #[arg(short, long, default_value_t = 3000)]
   port: u16,
@@ -103,7 +106,7 @@ async fn main() -> Result<()> {
     .with(layer().with_span_events(FmtSpan::NEW | FmtSpan::CLOSE))
     .init();
   let listener = TcpListener::bind(SocketAddr::new(
-    IpAddr::V4(Ipv4Addr::new(127, 0, 0, 1)),
+    IpAddr::V4(Args::once().address),
     Args::once().port,
   ))
   .await?;
