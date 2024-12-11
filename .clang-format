@@ -1,1 +1,3 @@
 BasedOnStyle: Chromium
+QualifierAlignment: Custom
+QualifierOrder: [friend, inline, static, constexpr, const, volatile, type, restrict]
