@@ -76,6 +76,17 @@ class engine final {
     /**
      * @file engine.hpp
      * @author Zana Domán
+     * @brief Returns the data folder of the application.
+     * @param organization Organization of the application.
+     * @param application Name of the application.
+     * @return Data folder of the application.
+     */
+    static std::string appdata(std::string const& organization,
+                               std::string const& application);
+
+    /**
+     * @file engine.hpp
+     * @author Zana Domán
      * @brief Updates the subsystems of the engine, then returns true if the
      * game should continue, false otherwise.
      * @return True if the game should continue, false otherwise.

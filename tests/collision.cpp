@@ -47,7 +47,7 @@ class wizard final : wze::collider {
     }
 };
 
-wze_main(1920, 1080) {
+wze_main("Wizard Engine - Collision", 1920, 1080) {
     wze::speaker s(wze::assets::load_sound("./assets/test/music.wav"));
     s.play();
 

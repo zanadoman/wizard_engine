@@ -105,6 +105,21 @@ void wze::engine::initialize(std::string const& title, uint16_t width,
     play_intro();
 }
 
+std::string wze::engine::appdata(std::string const& organization,
+                                 std::string const& application) {
+    char* appdata;
+    std::string result;
+
+    appdata = SDL_GetPrefPath(organization.c_str(), application.c_str());
+    if (!appdata) {
+        throw std::runtime_error(SDL_GetError());
+    }
+    result = appdata;
+    SDL_free(appdata);
+
+    return result;
+}
+
 bool wze::engine::update() {
     SDL_Event event;
 

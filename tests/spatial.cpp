@@ -4,7 +4,7 @@
 
 #define RANDOM(min, max) (float)(rand() % (max - min) + min)
 
-wze_main(1920, 1080) {
+wze_main("Wizard Engine - Spatial", 1920, 1080) {
     std::shared_ptr<wze::texture> texture;
     std::vector<wze::sprite> sprites;
     wze::speaker speaker;
