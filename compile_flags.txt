@@ -1,9 +1,10 @@
--std=c++23
--O3
 -ffast-math
+-fno-c++-static-destructors
 -fverbose-asm
+-O3
 -save-temps
+-std=c++23
+-Werror
 -Weverything
 -Wno-c++98-compat
 -Wno-gnu-line-marker
--Werror
