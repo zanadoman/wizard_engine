@@ -39,17 +39,7 @@ file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt CMAKE_CXX_FLAGS)
 string(REPLACE \n \  CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 
 # Libraries
-find_library(SDL3 SDL3)
-find_library(SDL3_image SDL3_image)
-find_library(SDL3_mixer SDL3_mixer)
-find_library(SDL3_net SDL3_net)
-find_library(SDL3_ttf SDL3_ttf)
-target_link_libraries(${PROJECT_NAME}
-                      ${SDL3}
-                      ${SDL3_image}
-                      ${SDL3_mixer}
-                      ${SDL3_net}
-                      ${SDL3_ttf})
+target_link_libraries(${PROJECT_NAME} SDL3 SDL3_image SDL3_mixer SDL3_net SDL3_ttf)
 
 # Examples
 file(GLOB_RECURSE EXAMPLES ${CMAKE_SOURCE_DIR}/examples/*.cpp)
@@ -58,7 +48,7 @@ foreach(SOURCE ${EXAMPLES})
   add_executable(${NAME} ${SOURCE})
   target_link_libraries(${NAME} ${PROJECT_NAME})
   if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    target_link_options(${NAME} PRIVATE -lmingw32 -mwindows)
+    target_link_options(${NAME} PRIVATE -lmingw32)
   endif()
 endforeach()
 
