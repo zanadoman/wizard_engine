@@ -1,11 +1,12 @@
 -ffast-math
+-flto
 -fno-c++-static-destructors
--fverbose-asm
+-fuse-ld=lld
 -O3
--save-temps
+-Qunused-arguments
 -std=c++23
+-stdlib=libstdc++
 -Werror
 -Weverything
 -Wno-c++98-compat
--Wno-gnu-line-marker
 -Wno-pre-c++17-compat

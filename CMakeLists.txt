@@ -44,9 +44,6 @@ foreach(SOURCE ${EXAMPLES})
   get_filename_component(NAME ${SOURCE} NAME_WLE)
   add_executable(${NAME} ${SOURCE})
   target_link_libraries(${NAME} ${PROJECT_NAME})
-  if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    target_link_options(${NAME} PRIVATE -lmingw32)
-  endif()
 endforeach()
 
 # Assets
