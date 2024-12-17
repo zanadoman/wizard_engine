@@ -8,3 +8,4 @@
 -Weverything
 -Wno-c++98-compat
 -Wno-gnu-line-marker
+-Wno-pre-c++17-compat

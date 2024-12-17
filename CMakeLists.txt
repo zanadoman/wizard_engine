@@ -27,9 +27,6 @@ if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 18.0.1)
   message(FATAL_ERROR "Outdated compiler, CMake will exit.")
 endif()
 
-# Headers
-include_directories(${CMAKE_SOURCE_DIR}/include/)
-
 # Sources
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
