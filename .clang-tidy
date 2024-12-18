@@ -7,6 +7,8 @@ CheckOptions:
     value: lower_case
   - key: readability-identifier-naming.ClassMemberCase
     value: lower_case
+  - key: readability-identifier-naming.ClassMemberPrefix
+    value: '_'
   - key: readability-identifier-naming.ClassMethodCase
     value: lower_case
   - key: readability-identifier-naming.ConceptCase
@@ -52,7 +54,7 @@ CheckOptions:
   - key: readability-identifier-naming.LocalVariableCase
     value: lower_case
   - key: readability-identifier-naming.MacroDefinitionCase
-    value: lower_case
+    value: UPPER_CASE
   - key: readability-identifier-naming.MemberCase
     value: lower_case
   - key: readability-identifier-naming.MethodCase
@@ -67,14 +69,10 @@ CheckOptions:
     value: lower_case
   - key: readability-identifier-naming.PrivateMemberCase
     value: lower_case
-  - key: readability-identifier-naming.PrivateMemberPrefix
-    value: _
   - key: readability-identifier-naming.PrivateMethodCase
     value: lower_case
   - key: readability-identifier-naming.ProtectedMemberCase
     value: lower_case
-  - key: readability-identifier-naming.ProtectedMemberPrefix
-    value: _
   - key: readability-identifier-naming.ProtectedMethodCase
     value: lower_case
   - key: readability-identifier-naming.PublicMemberCase
@@ -102,7 +100,7 @@ CheckOptions:
   - key: readability-identifier-naming.UnionCase
     value: lower_case
   - key: readability-identifier-naming.ValueTemplateParameterCase
-    value: lower_case
+    value: UPPER_CASE
   - key: readability-identifier-naming.VariableCase
     value: lower_case
   - key: readability-identifier-naming.VirtualMethodCase
@@ -119,7 +117,9 @@ Checks: >
   portability-*,
   readability-*,
   -bugprone-easily-swappable-parameters,
-  -readability-identifier-length
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-identifier-length,
+  -readability-magic-numbers
 FormatStyle: 'file'
 HeaderFilterRegex: '^./include/wizard_engine/.*\.hpp$'
 WarningsAsErrors: '*'
