@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -24,7 +24,7 @@
 
 /**
  * @file export.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Export header of the Wizard Engine.
  */
 

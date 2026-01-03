@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -27,7 +27,7 @@
 namespace wze {
 /**
  * @file timer.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Subsystem to handle frame rate and delta time.
  */
 class timer final {
@@ -38,7 +38,7 @@ class timer final {
 
     /**
      * @file timer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Private default constructor to prevent instantiation.
      */
     timer() = default;
@@ -46,7 +46,7 @@ class timer final {
   public:
     /**
      * @file timer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the target frame time in milliseconds.
      * @return Target frame time in milliseconds.
      * @note You can change the frame rate of the game by manipulating this
@@ -56,7 +56,7 @@ class timer final {
 
     /**
      * @file timer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the target frame time in milliseconds.
      * @param frame_time Target frame time in milliseconds.
      * @note You can change the frame rate of the game by manipulating this
@@ -66,7 +66,7 @@ class timer final {
 
     /**
      * @file timer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the current delta time in milliseconds.
      * @return Current delta time in milliseconds.
      * @note You can change the pace of the game or even reverse it by
@@ -76,7 +76,7 @@ class timer final {
 
     /**
      * @file timer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the current delta time in milliseconds.
      * @param delta_time Current delta time in milliseconds.
      * @note You can change the pace of the game or even reverse it by
@@ -86,7 +86,7 @@ class timer final {
 
     /**
      * @file timer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the current game time in milliseconds.
      * @return Current game time in milliseconds.
      */
@@ -95,7 +95,7 @@ class timer final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file timer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initializes the timer subsystem.
      */
     static void initialize();
@@ -104,7 +104,7 @@ class timer final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file timer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the timer subsystem.
      */
     static void update();

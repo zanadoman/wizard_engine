@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -27,7 +27,7 @@
 namespace wze {
 /**
  * @file enums.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Flip states.
  */
 enum flip {
@@ -38,7 +38,7 @@ enum flip {
 
 /**
  * @file enums.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Font styles.
  */
 enum font_style {
@@ -51,7 +51,7 @@ enum font_style {
 
 /**
  * @file enums.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief System cursors.
  */
 enum system_cursor {
@@ -72,7 +72,7 @@ enum system_cursor {
 
 /**
  * @file enums.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Keyboard and mousekeys.
  */
 enum key {

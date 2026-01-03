@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -28,7 +28,7 @@
 namespace wze {
 /**
  * @file camera.hpp
- * @author Zana Domán, Gunics Roland
+ * @author Domán Zana, Gunics Roland
  * @brief Subsystem to handle transformations and spatial projections.
  */
 class camera final {
@@ -42,7 +42,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Private default constructor to prevent instantiation.
      */
     camera() = default;
@@ -50,7 +50,7 @@ class camera final {
   public:
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x position of the camera.
      * @return X position of the camera.
      */
@@ -58,7 +58,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x position of the camera.
      * @param x X position of the camera.
      */
@@ -66,7 +66,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y position of the camera.
      * @return Y position of the camera.
      */
@@ -74,7 +74,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y position of the camera.
      * @param y Y position of the camera.
      */
@@ -82,7 +82,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the z position of the camera.
      * @return Z position of the camera.
      */
@@ -90,7 +90,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the z position of the camera.
      * @param z Z position of the camera.
      */
@@ -98,7 +98,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle of the camera.
      * @return Angle of the camera.
      */
@@ -106,7 +106,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle of the camera.
      * @param angle Angle of the camera.
      */
@@ -114,7 +114,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the transformation matrix of the camera.
      * @return Transformation matrix of the camera.
      */
@@ -122,7 +122,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the focus of the camera.
      * @return Focus of the camera.
      */
@@ -130,7 +130,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the focus of the camera.
      * @param focus Focus of the camera.
      */
@@ -139,7 +139,7 @@ class camera final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file camera.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initializes the camera subsystem.
      */
     static void initialize();
@@ -148,7 +148,7 @@ class camera final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file camera.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Transforms and projects a renderable instance.
      * @param instance Renderable instance.
      */
@@ -157,7 +157,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Transforms and projects a spatial coordinate.
      * @param x X component of the spatial coordinate.
      * @param y Y component of the spatial coordinate.
@@ -168,7 +168,7 @@ class camera final {
 
     /**
      * @file camera.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Detransforms and unprojects a plane coordinate.
      * @param x X component of the plane coordinate.
      * @param y Y component of the plane coordinate.

@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -29,7 +29,7 @@
 namespace wze {
 /**
  * @file animator.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Animates animatable objects.
  */
 class animator final {
@@ -44,7 +44,7 @@ class animator final {
   public:
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the frame pool of the animation.
      * @return Frame pool of the animation.
      */
@@ -52,7 +52,7 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the frame time of the animation in milliseconds.
      * @return Frame time of the animation in milliseconds.
      */
@@ -60,7 +60,7 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the frame time of the animation in milliseconds.
      * @param frame_time Frame time of the animation in milliseconds.
      */
@@ -68,7 +68,7 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the current frame of the animation.
      * @return Current frame of the animation.
      */
@@ -76,7 +76,7 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the current frame of the animation.
      * @param current_frame Current frame of the animation.
      */
@@ -84,7 +84,7 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the targets of the animation.
      * @return Targets of the animation.
      */
@@ -92,7 +92,7 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the targets of the animation.
      * @return Targets of the animation.
      */
@@ -100,7 +100,7 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the direction of the frames of the animation.
      * @return Direction of the frames of the animation.
      */
@@ -108,7 +108,7 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Constructs an animator instance.
      * @param frames Frame pool of the animation.
      * @param frame_time Frame time of the animation in milliseconds.
@@ -120,7 +120,7 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Animates the targets and erases expired ones, then returns whether
      * the animation is looped or not.
      * @return Whether the animation is looped or not.
@@ -131,14 +131,14 @@ class animator final {
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Resets the animation.
      */
     void reset();
 
     /**
      * @file animator.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Reverses the frame pool of the animation.
      */
     void reverse();

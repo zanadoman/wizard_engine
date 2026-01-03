@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -28,7 +28,7 @@
 namespace wze {
 /**
  * @file entity.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Composes composable objects.
  */
 class entity : public component {
@@ -49,21 +49,21 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the x position of a component instance.
      */
     void update_x(component& instance) const;
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the y position of a component instance.
      */
     void update_y(component& instance) const;
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the angle of a component instance.
      */
     void update_angle(component& instance) const;
@@ -71,7 +71,7 @@ class entity : public component {
   public:
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the components of the entity.
      * @return Components of the entity.
      */
@@ -79,7 +79,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the components of the entity.
      * @return Components of the entity.
      */
@@ -87,7 +87,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x position of the entity.
      * @return X position of the entity.
      */
@@ -95,7 +95,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x position of the entity.
      * @param x X position of the entity.
      */
@@ -103,7 +103,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y position of the entity.
      * @return Y position of the entity.
      */
@@ -111,7 +111,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y position of the entity.
      * @param y Y position of the entity.
      */
@@ -119,7 +119,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle of the entity.
      * @return Angle of the entity.
      */
@@ -127,7 +127,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle of the entity.
      * @param angle Angle of the entity.
      */
@@ -135,7 +135,7 @@ class entity : public component {
 
     /**
      * @file entitiy.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the transformation matrix of the entity.
      * @return Transformation matrix of the entity.
      */
@@ -143,7 +143,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x offset of the entity.
      * @return X offset of the entity.
      */
@@ -151,7 +151,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x offset of the entity.
      * @param x_offset X offset of the entity.
      */
@@ -159,7 +159,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y offset of the entity.
      * @return Y offset of the entity.
      */
@@ -167,7 +167,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y offset of the entity.
      * @param y_offset Y offset of the entity.
      */
@@ -175,7 +175,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle offset of the entity.
      * @return Angle offset of the entity.
      */
@@ -183,7 +183,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle offset of the entity.
      * @param angle_offset Angle offset of the entity.
      */
@@ -191,7 +191,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
@@ -199,7 +199,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is attached to entities.
      * @param attach_x Whether the x position is attached to entities.
      */
@@ -207,7 +207,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
@@ -215,7 +215,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
      */
@@ -223,7 +223,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
@@ -231,7 +231,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the angle is attached to entities.
      * @param attach_angle Whether the angle is attached to entities.
      */
@@ -239,7 +239,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
@@ -247,7 +247,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is affected by the angle.
      * @param x_angle_lock Whether the x position is affected by the angle.
      */
@@ -255,7 +255,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
@@ -263,7 +263,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
@@ -271,7 +271,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Constructs an entity instance.
      * @param components Components of the entity.
      * @param x X position of the entity.
@@ -294,7 +294,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Explicitly composes the components of the entity and erases
      * expired ones.
      */
@@ -302,7 +302,7 @@ class entity : public component {
 
     /**
      * @file entity.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Default virtual destructor.
      */
     virtual ~entity() = default;

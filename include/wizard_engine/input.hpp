@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -29,7 +29,7 @@
 namespace wze {
 /**
  * @file input.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Subsystem to handle keyboard and mouse input.
  */
 class input final {
@@ -44,28 +44,28 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Private default constructor to prevent instantiation.
      */
     input() = default;
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Polls for the last keyboard event.
      */
     static void update_key();
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Polls for keyboard and mousekey states.
      */
     static void update_keys();
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Polls for cursor absolute and relative positions.
      */
     static void update_cursor();
@@ -73,7 +73,7 @@ class input final {
   public:
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the key of the last keyboard event in UTF-32 encoding.
      * @return Key of the last keyboard event in UTF-32 encoding.
      */
@@ -81,7 +81,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the current absolute x position of the cursor.
      * @return Current absolute x position of the cursor.
      */
@@ -89,7 +89,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the current absolute y position of the cursor.
      * @return Current absolute y position of the cursor.
      */
@@ -97,7 +97,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the current relative x position of the cursor.
      * @return Current relative x position of the cursor.
      */
@@ -105,7 +105,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the current relative y position of the cursor.
      * @return Current relative y position of the cursor.
      */
@@ -113,7 +113,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the sensitivity of the mouse.
      * @return Sensitivity of the mouse.
      * @note Setting this value to 0 locks the cursor's relative position,
@@ -123,7 +123,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the sensitivity of the mouse.
      * @param mouse_sensitivity Sensitivity of the mouse.
      * @note Setting this value to 0 locks the cursor's relative position,
@@ -133,7 +133,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the visibility of the cursor.
      * @return Visibility of the cursor.
      * @note Hiding the cursor also captures it into the game window.
@@ -142,7 +142,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the visibility of the cursor.
      * @param cursor_visible Visibility of the cursor.
      * @note Hiding the cursor also captures it into the game window.
@@ -152,7 +152,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the appearance of the cursor.
      * @param cursor_appearance Appearance of the cursor.
      * @note The engine must take ownership over the cursor appearance.
@@ -164,7 +164,7 @@ class input final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initializes the input subsystem.
      */
     static void initialize();
@@ -173,7 +173,7 @@ class input final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the input subsystem.
      */
     static void update();
@@ -181,7 +181,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns true if a keyboard or mousekey is pressed, false
      * otherwise.
      * @param key The keyboard or mousekey.
@@ -191,7 +191,7 @@ class input final {
 
     /**
      * @file input.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the spatial x, y components of the cursor.
      * @param z Spatial z component of the cursor.
      * @return Spatial x, y components of the cursor.

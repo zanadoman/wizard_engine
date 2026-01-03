@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -28,7 +28,7 @@
 namespace wze {
 /**
  * @file audio.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Subsystem to handle global audio.
  */
 class audio final {
@@ -39,7 +39,7 @@ class audio final {
 
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Private default constructor to prevent instantiation.
      */
     audio() = default;
@@ -47,7 +47,7 @@ class audio final {
   public:
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the global volume of the audio.
      * @return Global volume of the audio.
      */
@@ -55,7 +55,7 @@ class audio final {
 
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the global volume of the audio.
      * @param volume Global Volume of the audio.
      */
@@ -63,7 +63,7 @@ class audio final {
 
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the remaining unexpired speakers.
      * @return Remaining unexpired speakers.
      */
@@ -72,7 +72,7 @@ class audio final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initializes the audio subsystem.
      */
     static void initialize();
@@ -81,7 +81,7 @@ class audio final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the audio subsystem.
      */
     static void update();
@@ -90,7 +90,7 @@ class audio final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Allocates a channel.
      * @return Allocated channel.
      * @warning If the channel cannot be allocated, throws std::runtime_error.
@@ -101,7 +101,7 @@ class audio final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Drops a channel.
      * @param channel Dropped channel.
      * @warning If the channel cannot be dropped, throws std::runtime_error.
@@ -111,21 +111,21 @@ class audio final {
 
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Pauses the audio globally.
      */
     static void pause();
 
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Resumes the audio globally.
      */
     static void resume();
 
     /**
      * @file audio.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Stops the audio globally.
      * @warning If the audio cannot be stopped globally, throws
      * std::runtime_error.

@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -28,14 +28,14 @@
 namespace wze {
 /**
  * @file animatable.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Interface to make an object animatable.
  */
 class animatable {
   public:
     /**
      * @file animatable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the texture of the object.
      * @param texture Texture of the object.
      */
@@ -43,7 +43,7 @@ class animatable {
 
     /**
      * @file animatable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the object should be animated or not.
      * @return Whether the object should be animated or not.
      */
@@ -51,7 +51,7 @@ class animatable {
 
     /**
      * @file animatable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Default virtual destructor.
      */
     virtual ~animatable() = default;

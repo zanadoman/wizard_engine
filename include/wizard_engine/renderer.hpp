@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -29,7 +29,7 @@
 namespace wze {
 /**
  * @file renderer.hpp
- * @author Zana Domán, Gunics Roland
+ * @author Domán Zana, Gunics Roland
  * @brief Subsystem to handle graphics.
  */
 class renderer final {
@@ -56,14 +56,14 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Private default constructor to prevent instantiation.
      */
     renderer() = default;
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Opens a new frame to render on.
      * @warning If the new frame cannot be opened, throws std::runtime_error.
      */
@@ -71,7 +71,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Opens the space to render on.
      * @warning If the space cannot be opened, throws std::runtime_error.
      */
@@ -79,7 +79,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Opens the plane to render on.
      * @warning If the plane cannot be opened, throws std::runtime_error.
      */
@@ -87,7 +87,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Returns the visibility of a renderable instance.
      * @param instance Renderable instance.
      * @return Visibility of the renderable instance.
@@ -96,7 +96,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Transforms a renderable instance.
      * @param instance Renderable instance.
      */
@@ -104,7 +104,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether a renderable instance is inside the bounds of
      * the screen or not.
      * @param instance Renderable instance.
@@ -115,7 +115,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Renders a renderable instance onto the new frame.
      * @param instance Renderable instance.
      * @warning If the renderable instance cannot be rendered, throws
@@ -125,7 +125,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Presents the new frame.
      * @warning If the new frame cannot be presented, throws std::runtime_error.
      */
@@ -134,7 +134,7 @@ class renderer final {
   public:
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the origo x of the screen.
      * @return Origo x of the screen.
      */
@@ -142,7 +142,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the origo x of the screen.
      * @param origo_x Origo x of the screen.
      */
@@ -150,7 +150,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the origo y of the screen.
      * @return Origo y of the screen.
      */
@@ -158,7 +158,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the origo y of the screen.
      * @param origo_y Origo y of the screen.
      */
@@ -167,7 +167,7 @@ class renderer final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the pointer of the renderer.
      * @return Pointer of the renderer.
      */
@@ -176,7 +176,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the red color modifier of the background.
      * @return Red color modifier of the background.
      */
@@ -184,7 +184,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the red color modifier of the background.
      * @param background_color_r Red color modifier of the background.
      */
@@ -192,7 +192,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the green color modifier of the background.
      * @return Green color modifier of the background.
      */
@@ -200,7 +200,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the green color modifier of the background.
      * @param background_color_g Green color modifier of the background.
      */
@@ -208,7 +208,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the blue color modifier of the background.
      * @return Blue color modifier of the background.
      */
@@ -216,7 +216,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the blue color modifier of the background.
      * @param background_color_b Blue color modifier of the background.
      */
@@ -224,7 +224,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the texture of the background.
      * @return texture of the background.
      * @note The size of the texture should match the size of the game window.
@@ -233,7 +233,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the texture of the background.
      * @param background_texture texture of the background.
      * @note The size of the texture should match the size of the game window.
@@ -243,7 +243,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the red color modifier of the space.
      * @return Red color modifier of the space.
      */
@@ -251,7 +251,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the red color modifier of the space.
      * @param space_color_r Red color modifier of the space.
      */
@@ -259,7 +259,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the green color modifier of the space.
      * @return Green color modifier of the space.
      */
@@ -267,7 +267,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the green color modifier of the space.
      * @param space_color_g Green color modifier of the space.
      */
@@ -275,7 +275,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the blue color modifier of the space.
      * @return Blue color modifier of the space.
      */
@@ -283,7 +283,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the blue color modifier of the space.
      * @param space_color_b Blue color modifier of the space.
      */
@@ -291,7 +291,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the alpha color modifier of the space.
      * @return Alpha color modifier of the space.
      */
@@ -299,7 +299,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the alpha color modifier of the space.
      * @param space_color_a Alpha color modifier of the space.
      */
@@ -307,7 +307,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the background texture of the space.
      * @return Background texture of the space.
      * @note The texture should be a square whose side length is equal to the
@@ -317,7 +317,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the background texture of the space.
      * @param space_texture Background texture of the space.
      * @note The texture should be a square whose side length is equal to the
@@ -328,7 +328,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the red color modifier of the plane.
      * @return Red color modifier of the plane.
      */
@@ -336,7 +336,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the red color modifier of the plane.
      * @param plane_color_r Red color modifier of the plane.
      */
@@ -344,7 +344,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the green color modifier of the plane.
      * @return Green color modifier of the plane.
      */
@@ -352,7 +352,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the green color modifier of the plane.
      * @param plane_color_g Green color modifier of the plane.
      */
@@ -360,7 +360,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the blue color modifier of the plane.
      * @return Blue color modifier of the plane.
      */
@@ -368,7 +368,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the blue color modifier of the plane.
      * @param plane_color_b Blue color modifier of the plane.
      */
@@ -376,7 +376,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the alpha color modifier of the plane.
      * @return Alpha color modifier of the plane.
      */
@@ -384,7 +384,7 @@ class renderer final {
 
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the alpha color modifier of the plane.
      * @param plane_color_a Alpha color modifier of the plane.
      */
@@ -393,7 +393,7 @@ class renderer final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initializes the renderer subsystem.
      * @warning If the renderer subsystem cannot be initialized, throws
      * std::runtime_error.
@@ -404,7 +404,7 @@ class renderer final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file renderer.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the renderer subsystem.
      */
     static void update();
@@ -413,7 +413,7 @@ class renderer final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file renderer.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Detransforms a plane coordinate.
      * @param x X component of the plane coordinate.
      * @param y Y component of the plane coordinate.

@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -32,7 +32,7 @@
 namespace wze {
 /**
  * @file sprite.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Renderable animatable component.
  */
 class sprite final : public renderable, public animatable, public component {
@@ -65,7 +65,7 @@ class sprite final : public renderable, public animatable, public component {
   public:
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x position of the sprite.
      * @return X position of the sprite.
      */
@@ -73,7 +73,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x position of the sprite.
      * @param x X position of the sprite.
      */
@@ -81,7 +81,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y position of the sprite.
      * @return Y position of the sprite.
      */
@@ -89,7 +89,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y position of the sprite.
      * @param y Y position of the sprite.
      */
@@ -97,7 +97,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the z position of the sprite.
      * @return Z position of the sprite.
      * @note Ignored if the sprite is not spatial.
@@ -106,7 +106,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the z position of the sprite.
      * @param z Z position of the sprite.
      * @note Ignored if the sprite is not spatial.
@@ -115,7 +115,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle of the sprite.
      * @return Angle of the sprite.
      */
@@ -123,7 +123,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle of the sprite.
      * @param angle Angle of the sprite.
      */
@@ -131,7 +131,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the width of the sprite.
      * @return Width of the sprite.
      */
@@ -139,7 +139,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the width of the sprite.
      * @param width Width of the sprite.
      */
@@ -147,7 +147,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the height of the sprite.
      * @return Height of the sprite.
      */
@@ -155,7 +155,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the height of the sprite.
      * @param height Height of the sprite.
      */
@@ -163,7 +163,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the sprite is spatial or not.
      * @return Whether the sprite is spatial or not.
      */
@@ -171,7 +171,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the sprite is spatial or not.
      * @param spatial Whether the sprite is spatial or not.
      */
@@ -179,7 +179,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the texture of the sprite.
      * @return Texture of the sprite.
      */
@@ -187,7 +187,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the texture of the sprite.
      * @param texture Texture of the sprite.
      */
@@ -195,7 +195,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the red color modifier of the texture.
      * @return Red color modifier of the texture.
      */
@@ -203,7 +203,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the red color modifier of the texture.
      * @param color_r Red color modifier of the texture.
      */
@@ -211,7 +211,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the green color modifier of the texture.
      * @return Green color modifier of the texture.
      */
@@ -219,7 +219,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the green color modifier of the texture.
      * @param color_g Green color modifier of the texture.
      */
@@ -227,7 +227,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the blue color modifier of the texture.
      * @return Blue color modifier of the texture.
      */
@@ -235,7 +235,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the blue color modifier of the texture.
      * @param color_b Blue color modifier of the texture.
      */
@@ -243,7 +243,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the alpha color modifier of the texture.
      * @return Alpha color modifier of the texture.
      */
@@ -251,7 +251,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the alpha color modifier of the texture.
      * @param color_a Alpha color modifier of the texture.
      */
@@ -259,7 +259,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the sprite is flipped on one of its axes.
      * @return Whether the sprite is flipped on one of its axes.
      */
@@ -267,7 +267,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the sprite is flipped on one of its axes.
      * @param flip Whether the sprite is flipped on one of its axes.
      */
@@ -275,7 +275,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the visibility of the sprite.
      * @return Visibility of the sprite.
      */
@@ -283,7 +283,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the visibility of the sprite.
      * @param visible Visibility of the sprite.
      */
@@ -291,7 +291,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the priority of the sprite in the render queue.
      * @return Priority of the sprite in the render queue.
      */
@@ -299,7 +299,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the priority of the sprite in the render queue.
      * @param priority Priority of the sprite in the render queue.
      */
@@ -307,7 +307,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the sprite should be animated or not.
      * @return Whether the sprite should be animated or not.
      */
@@ -315,7 +315,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the sprite should be animated or not.
      * @param animated Whether the sprite should be animated or not.
      */
@@ -323,7 +323,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x offset of the sprite.
      * @return X offset of the sprite.
      */
@@ -331,7 +331,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x offset of the sprite.
      * @param x_offset X offset of the sprite.
      */
@@ -339,7 +339,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y offset of the sprite.
      * @return Y offset of the sprite.
      */
@@ -347,7 +347,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y offset of the sprite.
      * @param y_offset Y offset of the sprite.
      */
@@ -355,7 +355,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle offset of the sprite.
      * @return Angle offset of the sprite.
      */
@@ -363,7 +363,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle offset of the sprite.
      * @param angle_offset Angle offset of the sprite.
      */
@@ -371,7 +371,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
@@ -379,7 +379,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is attached to entities.
      * @param attach_x Whether the x position is attached to entities.
      */
@@ -387,7 +387,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
@@ -395,7 +395,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
      */
@@ -403,7 +403,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
@@ -411,7 +411,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the angle is attached to entities.
      * @param attach_angle Whether the angle is attached to entities.
      */
@@ -419,7 +419,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
@@ -427,7 +427,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is affected by the angle.
      * @param x_angle_lock Whether the x position is affected by the angle.
      */
@@ -435,7 +435,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
@@ -443,7 +443,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
@@ -451,7 +451,7 @@ class sprite final : public renderable, public animatable, public component {
 
     /**
      * @file sprite.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Constructs a sprite instance.
      * @param x X position of the sprite.
      * @param y Y position of the sprite.

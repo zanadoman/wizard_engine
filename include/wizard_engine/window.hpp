@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -28,7 +28,7 @@
 namespace wze {
 /**
  * @file window.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Subsystem to handle game window.
  */
 class window final {
@@ -39,7 +39,7 @@ class window final {
 
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Private default constructor to prevent instantiation.
      */
     window() = default;
@@ -48,7 +48,7 @@ class window final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the pointer of the game window.
      * @return Pointer of the game window.
      */
@@ -57,7 +57,7 @@ class window final {
 
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the width of the game window.
      * @return Width of the game window.
      */
@@ -65,7 +65,7 @@ class window final {
 
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the height of the game window.
      * @return Height of the game window.
      */
@@ -73,7 +73,7 @@ class window final {
 
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the title of the game window.
      * @return Title of the game window.
      */
@@ -81,7 +81,7 @@ class window final {
 
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the title of the game window.
      * @param title Title of the game window.
      */
@@ -89,7 +89,7 @@ class window final {
 
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the icon of the game window.
      * @param icon Icon of the game window.
      */
@@ -97,7 +97,7 @@ class window final {
 
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns true if the game window is visible, false otherwise.
      * @return True if the game window is visible, false otherwise.
      */
@@ -105,7 +105,7 @@ class window final {
 
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns true if the game window is focused, false otherwise.
      * @return True if the game window is focused, false otherwise.
      */
@@ -114,7 +114,7 @@ class window final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file window.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initializes the window subsystem.
      * @param title Title of the game window.
      * @param width Width of the game window.

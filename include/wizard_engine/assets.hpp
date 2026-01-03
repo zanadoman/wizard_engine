@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -28,7 +28,7 @@
 namespace wze {
 /**
  * @file assets.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Image file in host memory.
  * @note Supported image formats: jpg, png, tif, webp, jxl, avif.
  */
@@ -36,14 +36,14 @@ using image = SDL_Surface;
 
 /**
  * @file assets.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Image file in device memory.
  */
 using texture = SDL_Texture;
 
 /**
  * @file assets.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Audio file.
  * @note Supported sound formats: flac, mod, mp3, ogg, mid, opus, wavpack.
  */
@@ -51,7 +51,7 @@ using sound = Mix_Chunk;
 
 /**
  * @file assets.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Font file.
  * @note Supported font format: ttf.
  */
@@ -59,28 +59,28 @@ using font = TTF_Font;
 
 /**
  * @file assets.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Cursor image.
  */
 using cursor = SDL_Cursor;
 
 /**
  * @file assets.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Subsystem to handle external resources.
  */
 class assets final {
   private:
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Private default constructor to prevent instantiation.
      */
     assets() = default;
 
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Combines a value into a seed.
      * @param seed Target seed.
      * @param value Combined value.
@@ -90,7 +90,7 @@ class assets final {
   public:
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Loads an image from a path.
      * @param path Path to the image.
      * @return Loaded image.
@@ -101,7 +101,7 @@ class assets final {
 
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Creates an image from a text.
      * @param text Text of the image.
      * @param font Font of the text.
@@ -116,7 +116,7 @@ class assets final {
 
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the hash of an image.
      * @param image Hashed image.
      * @return Hash of the image.
@@ -125,7 +125,7 @@ class assets final {
 
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Creates a texture from an image.
      * @param image Image of the texture.
      * @return Created texture.
@@ -136,7 +136,7 @@ class assets final {
 
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Loads a sound from a path.
      * @param path Path to the sound.
      * @return Loaded sound.
@@ -147,7 +147,7 @@ class assets final {
 
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the hash of a sound.
      * @param sound Hashed sound.
      * @return Hash of the sound.
@@ -156,7 +156,7 @@ class assets final {
 
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Loads a font from a path.
      * @param path Path to the font.
      * @param size Size of the font.
@@ -171,7 +171,7 @@ class assets final {
 
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Creates a cursor from a system cursor.
      * @param system_cursor Type of the cursor.
      * @return Created cursor.
@@ -182,7 +182,7 @@ class assets final {
 
     /**
      * @file assets.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Creates a cursor from an image.
      * @param image Image of the cursor.
      * @param hot_x Hot spot x of the cursor.

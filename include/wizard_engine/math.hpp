@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -27,7 +27,7 @@
 namespace wze {
 /**
  * @file math.hpp
- * @author Zana Domán, Gunics Roland
+ * @author Domán Zana, Gunics Roland
  * @brief Subsystem to handle 2D geometry and unit conversions.
  */
 class math final {
@@ -36,7 +36,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Private default constructor to prevent instantiation.
      */
     math() = default;
@@ -44,7 +44,7 @@ class math final {
   public:
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Single precision epsilon.
      */
     static constexpr float epsilon = 0.01;
@@ -52,7 +52,7 @@ class math final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initializes the math subsystem.
      */
     static void initialize();
@@ -60,7 +60,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns a random integer value from an interval.
      * @param minimum Minimum inclusive value of the interval.
      * @param maximum Maximum inclusive value of the interval.
@@ -75,7 +75,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns a random real value from an interval.
      * @param minimum Minimum inclusive value of the interval.
      * @param maximum Maximum inclusive value of the interval.
@@ -90,7 +90,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns a random boolean value.
      * @param probability Probability of a true value.
      * @return Random boolean value.
@@ -103,7 +103,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the length of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -113,7 +113,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -123,7 +123,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Moves the x component of a vector.
      * @param length Length of the movement.
      * @param angle Angle of the movement.
@@ -133,7 +133,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Moves the y component of a vector.
      * @param length Length of the movement.
      * @param angle Angle of the movement
@@ -143,7 +143,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Normalizes a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -153,7 +153,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Creates a transformation matrix.
      * @param angle Angle of the transformation matrix.
      * @param scale Scale of the transformation matrix.
@@ -163,7 +163,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Transforms the x component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -175,7 +175,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán, Gunics Roland
+     * @author Domán Zana, Gunics Roland
      * @brief Transforms the y component of a vector.
      * @param x X component of the vector.
      * @param y Y component of the vector.
@@ -187,7 +187,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Converts degrees to radians.
      * @param degrees Angle in degrees.
      * @return Angle in radians.
@@ -198,7 +198,7 @@ class math final {
 
     /**
      * @file math.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Converts radians to degrees.
      * @param radians Angle in radians.
      * @return Angle in degrees.

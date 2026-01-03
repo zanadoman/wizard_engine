@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -29,7 +29,7 @@
 namespace wze {
 /**
  * @file speaker.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Audio component.
  */
 class speaker final : public component {
@@ -54,7 +54,7 @@ class speaker final : public component {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the speaker instances.
      * @return Speaker instances.
      */
@@ -63,7 +63,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the sound of the speaker.
      * @return Sound of the speaker.
      */
@@ -71,7 +71,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the sound of the speaker.
      * @param sound Sound of the speaker.
      */
@@ -79,7 +79,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the volume of the speaker.
      * @return Volume of the speaker.
      */
@@ -87,7 +87,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the volume of the speaker.
      * @param volume Volume of the speaker.
      */
@@ -95,7 +95,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the range of the speaker.
      * @return Range of the speaker.
      */
@@ -103,7 +103,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the range of the speaker.
      * @param range Range of the speaker.
      */
@@ -111,7 +111,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the panning should be aligned automatically.
      * @return Whether the panning should be aligned automatically.
      */
@@ -119,7 +119,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the panning should be aligned automatically.
      * @param auto_panning Whether the panning should be aligned automatically.
      */
@@ -127,7 +127,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x position of the speaker.
      * @return X position of the speaker.
      */
@@ -135,7 +135,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x position of the speaker.
      * @param x X position of the speaker.
      */
@@ -143,7 +143,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y position of the speaker.
      * @return Y position of the speaker.
      */
@@ -151,7 +151,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y position of the speaker.
      * @param y Y position of the speaker.
      */
@@ -159,7 +159,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the z position of the speaker.
      * @return Z position of the speaker.
      */
@@ -167,7 +167,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the z position of the speaker.
      * @param z Z position of the speaker.
      */
@@ -175,14 +175,14 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Unimplemented inherited method.
      */
     void set_angle(float angle) final;
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the speaker is spatial or not.
      * @return Whether the speaker is spatial or not.
      */
@@ -190,7 +190,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the speaker is spatial or not.
      * @param spatial Whether the speaker is spatial or not.
      */
@@ -198,7 +198,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x offset of the speaker.
      * @return X offset of the speaker.
      */
@@ -206,7 +206,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x offset of the speaker.
      * @param x_offset X offset of the speaker.
      */
@@ -214,7 +214,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y offset of the speaker.
      * @return Y offset of the speaker.
      */
@@ -222,7 +222,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y offset of the speaker.
      * @param y_offset Y offset of the speaker.
      */
@@ -230,14 +230,14 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Unimplemented inherited method.
      */
     float angle_offset() const final;
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
@@ -245,7 +245,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is attached to entities.
      * @param attach_x Whether the x position is attached to entities.
      */
@@ -253,7 +253,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
@@ -261,7 +261,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
      */
@@ -269,14 +269,14 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Unimplemented inherited method.
      */
     bool attach_angle() const final;
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
@@ -284,7 +284,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is affected by the angle.
      * @param x_angle_lock Whether the x position is affected by the angle.
      */
@@ -292,7 +292,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
@@ -300,7 +300,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
@@ -308,7 +308,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the speaker is playing or not.
      * @return Whether the speaker is playing or not.
      */
@@ -316,7 +316,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the speaker is paused or not.
      * @return Whether the speaker is paused or not.
      */
@@ -324,7 +324,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Constructs a speaker instance and pushes into instances.
      * @param sound Sound of the speaker.
      * @param volume Volume of the speaker.
@@ -350,7 +350,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Copy constructor.
      * @param other Other speaker instance.
      */
@@ -358,7 +358,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Move constructor.
      * @param other Other speaker instance.
      */
@@ -366,14 +366,14 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Destroys the speaker instance and erases from instances.
      */
     ~speaker();
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Copy assignment operator.
      * @param other Other speaker instance.
      * @return Self reference.
@@ -382,7 +382,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Move assignment operator.
      * @param other Other speaker instance.
      * @return Self reference.
@@ -391,7 +391,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Plays the sound of the speaker.
      * @param fade_in Fade in in milliseconds.
      * @param loops Number of loops.
@@ -401,21 +401,21 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Pauses the sound of the speaker.
      */
     void pause();
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Resumes the sound of the speaker.
      */
     void resume();
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Stops the sound of the speaker.
      * @param fade_out Fade out in milliseconds.
      */
@@ -423,7 +423,7 @@ class speaker final : public component {
 
     /**
      * @file speaker.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Aligns the panning of the speaker relative to the camera.
      * @warning If the panning cannot aligned, throws std::runtime_error.
      */

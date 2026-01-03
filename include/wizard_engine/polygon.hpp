@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -28,7 +28,7 @@
 namespace wze {
 /**
  * @file polygon.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Convex polygon component.
  */
 class polygon final : public component {
@@ -53,21 +53,21 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the x positions of the points of the polygon.
      */
     void update_x();
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the y positions of the points of the polygon.
      */
     void update_y();
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the circumradius of the shape of the polygon.
      * @return Circumradius of the shape of the polygon.
      */
@@ -76,7 +76,7 @@ class polygon final : public component {
   public:
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the shape of the polygon.
      * @return Shape of the polygon.
      * @warning Shape should be convex with at least 3 vertices.
@@ -85,7 +85,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the radius of the shape of the polygon.
      * @return Radius of the shape of the polygon.
      */
@@ -93,7 +93,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the points of the polygon.
      * @return Points of the polygon.
      */
@@ -101,7 +101,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the radius of the points of the polygon.
      * @return Radius of the points of the polygon.
      */
@@ -109,7 +109,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x position of the polygon.
      * @return X position of the polygon.
      */
@@ -117,7 +117,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x position of the polygon.
      * @param x X position of the polygon.
      */
@@ -125,7 +125,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y position of the polygon.
      * @return Y position of the polygon.
      */
@@ -133,7 +133,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y position of the polygon.
      * @param y Y position of the polygon.
      */
@@ -141,7 +141,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle of the polygon.
      * @return Angle of the polygon.
      */
@@ -149,7 +149,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle of the polygon.
      * @param angle Angle of the polygon.
      */
@@ -157,7 +157,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the scale of the polygon.
      * @return Scale of the polygon.
      */
@@ -165,7 +165,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the scale of the polygon.
      * @param scale Scale of the polygon.
      */
@@ -173,7 +173,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the transformation matrix of the polygon.
      * @return Transformation matrix of the polygon.
      */
@@ -181,7 +181,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x offset of the polygon.
      * @return X offset of the polygon.
      */
@@ -189,7 +189,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x offset of the polygon.
      * @param x_offset X offset of the polygon.
      */
@@ -197,7 +197,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y offset of the polygon.
      * @return Y offset of the polygon.
      */
@@ -205,7 +205,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y offset of the polygon.
      * @param y_offset Y offset of the polygon.
      */
@@ -213,7 +213,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle offset of the polygon.
      * @return Angle offset of the polygon.
      */
@@ -221,7 +221,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle offset of the polygon.
      * @param angle_offset Angle offset of the polygon.
      */
@@ -229,7 +229,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
@@ -237,7 +237,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is attached to entities.
      * @param attach_x Whether the x position is attached to entities.
      */
@@ -245,7 +245,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
@@ -253,7 +253,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
      */
@@ -261,7 +261,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
@@ -269,7 +269,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the angle is attached to entities.
      * @param attach_angle Whether the angle is attached to entities.
      */
@@ -277,7 +277,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
@@ -285,7 +285,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is affected by the angle.
      * @param x_angle_lock Whether the x position is affected by the angle.
      */
@@ -293,7 +293,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
@@ -301,7 +301,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
@@ -309,7 +309,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Constructs a polygon instance.
      * @param shape Shape of the polygon.
      * @param x X position of the polygon.
@@ -337,7 +337,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether a point is inside the polygon.
      * @param x X position of the point.
      * @param y Y position of the point.
@@ -347,7 +347,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the polygon overlaps with another polygon
      * instance.
      * @param other Other polygon instance.
@@ -357,7 +357,7 @@ class polygon final : public component {
 
     /**
      * @file polygon.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the depth of the collision with another polygon instance.
      * @param other Other polygon instance.
      * @return Depth of the collison with another polygon instance.

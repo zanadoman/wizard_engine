@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -29,7 +29,7 @@
 namespace wze {
 /**
  * @file renderable.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Interface to make an object renderable.
  */
 class renderable {
@@ -42,7 +42,7 @@ class renderable {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the renderable instances.
      * @return Renderable instances.
      */
@@ -51,7 +51,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the screen area of the object.
      * @return Screen area of the object.
      */
@@ -60,7 +60,7 @@ class renderable {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the screen area of the object.
      * @param screen_area Screen area of the object.
      */
@@ -69,7 +69,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the screen angle of the object.
      * @return Screen angle of the object.
      */
@@ -78,7 +78,7 @@ class renderable {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the screen angle of the object.
      * @param screen_angle Screen angle of the object.
      */
@@ -87,7 +87,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x position of the object.
      * @return X position of the object.
      */
@@ -95,7 +95,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y position of the object.
      * @return Y position of the object.
      */
@@ -103,7 +103,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the z position of the object.
      * @return Z position of the object.
      * @note Ignored if the object is not spatial.
@@ -112,7 +112,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle of the object.
      * @return Angle of the object.
      */
@@ -120,7 +120,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the width of the object.
      * @return Width of the object.
      */
@@ -128,7 +128,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the height of the object.
      * @return Height of the object.
      */
@@ -136,7 +136,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the object is spatial or not.
      * @return Whether the object is spatial or not.
      */
@@ -144,7 +144,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the texture of the object.
      * @return Texture of the object.
      */
@@ -152,7 +152,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the red color modifier of the texture.
      * @return Red color modifier of the texture.
      */
@@ -160,7 +160,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the green color modifier of the texture.
      * @return Green color modifier of the texture.
      */
@@ -168,7 +168,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the blue color modifier of the texture.
      * @return Blue color modifier of the texture.
      */
@@ -176,7 +176,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the alpha color modifier of the texture.
      * @return Alpha color modifier of the texture.
      */
@@ -184,7 +184,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the object is flipped on one of its axes.
      * @return Whether the object is flipped on one of its axes.
      */
@@ -192,7 +192,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the visibility of the object.
      * @brief Visibility of the object.
      */
@@ -200,7 +200,7 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the priority of the object in the render queue.
      * @brief Priority of the object in the render queue.
      */
@@ -208,14 +208,14 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Constructs a renderable instance and pushes into instances.
      */
     renderable();
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Copy constructor.
      * @param other Other renderable instance.
      */
@@ -223,14 +223,14 @@ class renderable {
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Destroys the renderable instance and erases from instances.
      */
     virtual ~renderable();
 
     /**
      * @file renderable.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Copy assignment operator.
      * @param other Other renderable instance.
      * @return Self reference.

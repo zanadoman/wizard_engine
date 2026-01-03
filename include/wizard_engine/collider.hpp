@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -29,7 +29,7 @@
 namespace wze {
 /*
  * @file collider.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Rigid entity.
  */
 class collider : public entity {
@@ -44,7 +44,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initiates a collision on x axis.
      * @param force Force of the collision.
      */
@@ -52,7 +52,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initiates a collision on y axis.
      * @param force Force of the collision.
      */
@@ -60,7 +60,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initiates a collision on both x and y axis.
      * @param force Force of the collision.
      */
@@ -68,7 +68,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the possible contacts of a collision.
      * @return Possible contacts of the collision.
      */
@@ -76,7 +76,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the mass of the possible contacts of a collision.
      * @param contacts Possible contacts of the collision.
      * @return Mass of the possible contacts of the collision.
@@ -85,7 +85,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Statically resolves a collision with another collider instance on
      * x axis.
      * @param other Other collider instance.
@@ -94,7 +94,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Dynamically resolves a collision with another collider instance on
      * x axis.
      * @param other Other collider instance.
@@ -104,7 +104,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Statically resolves a collision with another collider instance on
      * y axis.
      * @param other Other collider instance.
@@ -113,7 +113,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Dynamically resolves a collision with another collider instance on
      * y axis.
      * @param other Other collider instance.
@@ -123,7 +123,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Statically resolves a collision with another collider instance on
      * both x and y axis.
      * @param other Other collider instance.
@@ -132,7 +132,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Dynamically resolves a collision with another collider instance on
      * both x and y axis.
      * @param other Other collider instance.
@@ -142,7 +142,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Aligns the entities of the colliders to their bodies.
      */
     void align_entities();
@@ -150,7 +150,7 @@ class collider : public entity {
   public:
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the body of the collider.
      * @return Body of the collider.
      */
@@ -158,7 +158,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the body of the collider.
      * @param body Body of the collider.
      */
@@ -166,7 +166,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the force of the collider.
      * @return Force of the collider.
      */
@@ -174,7 +174,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the force of the collider.
      * @param force Force of the collider.
      */
@@ -182,7 +182,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the mass of the collider.
      * @return Mass of the collider.
      */
@@ -190,7 +190,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the mass of the collider.
      * @param mass Mass of the collider.
      */
@@ -198,7 +198,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the world of the collider.
      * @return World of the collider.
      * @note World std::numeric_limits<uint8_t>::max() is always empty.
@@ -207,7 +207,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the world of the collider.
      * @param world World of the collider.
      * @note World std::numeric_limits<uint8_t>::max() is always empty.
@@ -216,7 +216,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x position of the collider.
      * @return X position of the collider.
      */
@@ -224,7 +224,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x position of the collider.
      * @param x X position of the collider.
      */
@@ -232,7 +232,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y position of the collider.
      * @return Y position of the collider.
      */
@@ -240,7 +240,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y position of the collider.
      * @param y Y position of the collider.
      */
@@ -248,7 +248,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle of the collider.
      * @return Angle of the collider.
      */
@@ -256,7 +256,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle of the collider.
      * @param angle Angle of the collider.
      */
@@ -264,7 +264,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the scale of the collider.
      * @return Scale of the collider.
      */
@@ -272,7 +272,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the scale of the collider.
      * @param scale Scale of the collider.
      */
@@ -280,7 +280,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x offset of the collider.
      * @return X offset of the collider.
      */
@@ -288,7 +288,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x offset of the collider.
      * @param x_offset X offset of the collider.
      */
@@ -296,7 +296,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y offset of the collider.
      * @return Y offset of the collider.
      */
@@ -304,7 +304,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y offset of the collider.
      * @param y_offset Y offset of the collider.
      */
@@ -312,7 +312,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle offset of the collider.
      * @return Angle offset of the collider.
      */
@@ -320,7 +320,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle offset of the collider.
      * @param angle_offset Angle offset of the collider.
      */
@@ -328,7 +328,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
@@ -336,7 +336,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is attached to entities.
      * @param attach_x Whether the x position is attached to entities.
      */
@@ -344,7 +344,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
@@ -352,7 +352,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is attached to entities.
      * @param attach_y Whether the y position is attached to entities.
      */
@@ -360,7 +360,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
@@ -368,7 +368,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the angle is attached to entities.
      * @param attach_angle Whether the angle is attached to entities.
      */
@@ -376,7 +376,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by angle.
      */
@@ -384,7 +384,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the x position is affected by the angle.
      * @param x_angle_lock Whether the x position is affected by the angle.
      */
@@ -392,7 +392,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
@@ -400,7 +400,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets whether the y position is affected by the angle.
      * @param y_angle_lock Whether the y position is affected by the angle.
      */
@@ -408,7 +408,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Constructs a collider instance and pushes into a world.
      * @param body Body of the collider.
      * @param force Force of the collider.
@@ -423,7 +423,7 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Copy constructor.
      * @param other Other collider instance.
      */
@@ -431,14 +431,14 @@ class collider : public entity {
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Destroy the collider intance and erases from it's world.
      */
     ~collider();
 
     /**
      * @file collider.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Copy assignment operator.
      * @param other Other collider instance.
      * @return Self reference.

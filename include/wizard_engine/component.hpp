@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -27,14 +27,14 @@
 namespace wze {
 /**
  * @file component.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Interface to make an object composable.
  */
 class component {
   public:
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the x position of the object.
      * @param x X position of the object.
      */
@@ -42,7 +42,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the y position of the object.
      * @param y Y position of the object.
      */
@@ -50,7 +50,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Sets the angle of the object.
      * @param angle Angle of the object.
      */
@@ -58,7 +58,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the x offset of the object.
      * @return X offset of the object.
      */
@@ -66,7 +66,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the y offset of the object.
      * @return Y offset of the object.
      */
@@ -74,7 +74,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the angle offset of the object.
      * @return Angle offset of the object.
      */
@@ -82,7 +82,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is attached to entities.
      * @return Whether the x position is attached to entities.
      */
@@ -90,7 +90,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is attached to entities.
      * @return Whether the y position is attached to entities.
      */
@@ -98,7 +98,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the angle is attached to entities.
      * @return Whether the angle is attached to entities.
      */
@@ -106,7 +106,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the x position is affected by the angle.
      * @return Whether the x position is affected by the angle.
      */
@@ -114,7 +114,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns whether the y position is affected by the angle.
      * @return Whether the y position is affected by the angle.
      */
@@ -122,7 +122,7 @@ class component {
 
     /**
      * @file component.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Default virtual destructor.
      */
     virtual ~component() = default;

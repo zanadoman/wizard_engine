@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2026 Zana Domán
+  Copyright (C) 2023-2026 Domán Zana
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -27,7 +27,7 @@
 namespace wze {
 /**
  * @file engine.hpp
- * @author Zana Domán
+ * @author Domán Zana
  * @brief Master singleton of the Wizard Engine.
  */
 class engine final {
@@ -36,14 +36,14 @@ class engine final {
 
     /**
      * @file engine.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Private default constructor to prevent instantiation.
      */
     engine() = default;
 
     /**
      * @file engine.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Plays the intro of the engine.
      */
     static void play_intro();
@@ -52,7 +52,7 @@ class engine final {
 #ifdef __WIZARD_ENGINE_INTERNAL
     /**
      * @file engine.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the events of the engine.
      * @return Events of the engine.
      */
@@ -61,7 +61,7 @@ class engine final {
 
     /**
      * @file engine.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Initializes the subsystems of the engine.
      * @param title Title of the game window.
      * @param width Width of the game window.
@@ -75,7 +75,7 @@ class engine final {
 
     /**
      * @file engine.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Returns the data folder of the application.
      * @param organization Organization of the application.
      * @param application Name of the application.
@@ -86,7 +86,7 @@ class engine final {
 
     /**
      * @file engine.hpp
-     * @author Zana Domán
+     * @author Domán Zana
      * @brief Updates the subsystems of the engine, then returns true if the
      * game should continue, false otherwise.
      * @return True if the game should continue, false otherwise.
