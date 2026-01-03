@@ -1,92 +1,50 @@
-# CMake
-cmake_minimum_required(VERSION 3.30)
-set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+cmake_minimum_required(VERSION 3.25)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(NOT ${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}/build)
-    message(FATAL_ERROR "Unsupported directory, CMake will exit.")
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_EXTENSIONS OFF)
+file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt CMAKE_CXX_FLAGS)
+string(REPLACE \n \  CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+set(CMAKE_CXX_FLAGS_RELEASE -march=native)
+
+find_program(CLANG_TIDY clang-tidy)
+if(CLANG_TIDY)
+	set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY};-p;${CMAKE_BINARY_DIR})
 endif()
 
-# Project
-project(wizard_engine LANGUAGES CXX)
-
-# Host
-if(NOT ${CMAKE_SYSTEM_NAME} MATCHES Linux|Windows)
-    message(FATAL_ERROR "Unsupported host, CMake will exit.")
-endif()
-
-# Compiler
-if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    set(CMAKE_CXX_COMPILER g++)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    set(CMAKE_CXX_COMPILER x86_64-w64-mingw32-g++)
-endif()
-
-if(NOT ${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
-    message(FATAL_ERROR "Unsupported compiler, CMake will exit.")
-endif()
-
-if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 13.1)
-    message(FATAL_ERROR "Outdated compiler, CMake will exit.")
-endif()
-
-# Headers
-include_directories(${CMAKE_SOURCE_DIR}/include/)
-
-# Sources
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*)
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
-
-# Libraries
-if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_image-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_mixer-2.0.so.0)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/libSDL2_ttf-2.0.so.0)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2.dll)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_image.dll)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_mixer.dll)
-    target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/bin/SDL2_ttf.dll)
-endif()
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/lib/*)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    file(GLOB LIBRARIES ${CMAKE_SOURCE_DIR}/bin/*)
-endif()
-
-file(COPY ${LIBRARIES} DESTINATION ${CMAKE_BINARY_DIR})
-
-# Flags
-file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt FLAGS)
-string(REPLACE \n \  FLAGS ${FLAGS})
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
-    set(CMAKE_CXX_FLAGS "${FLAGS} -Wl,-rpath=./")
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
-    set(CMAKE_CXX_FLAGS "${FLAGS} -mwindows")
-endif()
-
-# Tests
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/tests/*)
-
-foreach(SOURCE ${SOURCES})
-    get_filename_component(NAME ${SOURCE} NAME_WE)
-    add_executable(${NAME} ${SOURCE})
-    target_link_libraries(${NAME} ${PROJECT_NAME})
-endforeach()
-
-# Assets
+file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/assets)
 file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
 
-# Test
-if(DEFINED TEST AND NOT ${TEST} STREQUAL \ )
-    add_custom_command(
-        TARGET ${TEST} POST_BUILD
-        COMMAND ${CMAKE_BINARY_DIR}/${TEST}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMENT "Running test ${TEST}"
-    )
-else()
-    message(AUTHOR_WARNING "TEST not defined, skipping test.")
+project(wizard_engine LANGUAGES CXX)
+include_directories(${CMAKE_SOURCE_DIR}/include)
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
+add_library(${PROJECT_NAME} ${SOURCES})
+
+if(${WIN32})
+	file(
+		COPY
+		${CMAKE_FIND_ROOT_PATH}/bin/libgcc_s_seh-1.dll
+		${CMAKE_FIND_ROOT_PATH}/bin/libssp-0.dll
+		${CMAKE_FIND_ROOT_PATH}/bin/libstdc++-6.dll
+		${CMAKE_FIND_ROOT_PATH}/bin/libwinpthread-1.dll
+		DESTINATION
+		${CMAKE_BINARY_DIR}
+	)
 endif()
+
+file(GLOB_RECURSE EXAMPLES ${CMAKE_SOURCE_DIR}/examples/*.cpp)
+foreach(SOURCE ${EXAMPLES})
+	get_filename_component(EXAMPLE ${SOURCE} NAME_WLE)
+    add_executable(${EXAMPLE} WIN32 EXCLUDE_FROM_ALL ${SOURCE})
+	target_link_libraries(${EXAMPLE} ${PROJECT_NAME})
+	add_custom_command(
+		TARGET ${EXAMPLE} POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy -t $<TARGET_FILE_DIR:${EXAMPLE}> $<TARGET_RUNTIME_DLLS:${EXAMPLE}>
+		COMMAND_EXPAND_LISTS
+	)
+endforeach()
+
+include(GNUInstallDirs)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(TARGETS ${PROJECT_NAME})
+install(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/licenses/${PROJECT_NAME})
