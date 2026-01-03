@@ -1,4 +1,4 @@
--I./include/
+-Iinclude
 -O3
 -std=c++20
 -Wall
