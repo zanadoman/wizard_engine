@@ -7,18 +7,13 @@ file(READ ${CMAKE_SOURCE_DIR}/compile_flags.txt CMAKE_CXX_FLAGS)
 string(REPLACE \n \  CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 set(CMAKE_CXX_FLAGS_RELEASE -march=native)
 
-find_program(CLANG_TIDY clang-tidy)
-if(CLANG_TIDY)
-	set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY};-p;${CMAKE_BINARY_DIR})
-endif()
-
 file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/assets)
 file(COPY ${CMAKE_SOURCE_DIR}/assets DESTINATION ${CMAKE_BINARY_DIR})
 
 project(wizard_engine LANGUAGES CXX)
 include_directories(${CMAKE_SOURCE_DIR}/include)
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
-add_library(${PROJECT_NAME} ${SOURCES})
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 if(${WIN32})
 	file(
@@ -32,11 +27,15 @@ if(${WIN32})
 	)
 endif()
 
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_mixer REQUIRED)
+find_package(SDL2_ttf REQUIRED)
 file(GLOB_RECURSE EXAMPLES ${CMAKE_SOURCE_DIR}/examples/*.cpp)
 foreach(SOURCE ${EXAMPLES})
 	get_filename_component(EXAMPLE ${SOURCE} NAME_WLE)
     add_executable(${EXAMPLE} WIN32 EXCLUDE_FROM_ALL ${SOURCE})
-	target_link_libraries(${EXAMPLE} ${PROJECT_NAME})
+    target_link_libraries(${EXAMPLE} SDL2::SDL2 SDL2_image::SDL2_image SDL2_mixer::SDL2_mixer SDL2_ttf::SDL2_ttf ${PROJECT_NAME})
 	add_custom_command(
 		TARGET ${EXAMPLE} POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy -t $<TARGET_FILE_DIR:${EXAMPLE}> $<TARGET_RUNTIME_DLLS:${EXAMPLE}>
