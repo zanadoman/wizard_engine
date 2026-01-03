@@ -13,6 +13,11 @@ project(wizard_engine LANGUAGES CXX)
 include_directories(${CMAKE_SOURCE_DIR}/include)
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_mixer REQUIRED)
+find_package(SDL2_ttf REQUIRED)
+target_link_libraries(${PROJECT_NAME} SDL2::SDL2 SDL2_image::SDL2_image SDL2_mixer::SDL2_mixer SDL2_ttf::SDL2_ttf)
 
 if(${WIN32})
 	file(
@@ -26,23 +31,17 @@ if(${WIN32})
 	)
 endif()
 
-find_package(SDL2)
-find_package(SDL2_image)
-find_package(SDL2_mixer)
-find_package(SDL2_ttf)
-if(TARGET SDL2::SDL2 AND TARGET SDL2_image::SDL2_image AND TARGET SDL2_mixer::SDL2_mixer AND TARGET SDL2_ttf::SDL2_ttf)
-    file(GLOB_RECURSE EXAMPLES ${CMAKE_SOURCE_DIR}/examples/*.cpp)
-    foreach(SOURCE ${EXAMPLES})
-        get_filename_component(EXAMPLE ${SOURCE} NAME_WLE)
-        add_executable(${EXAMPLE} WIN32 EXCLUDE_FROM_ALL ${SOURCE})
-        target_link_libraries(${EXAMPLE} SDL2::SDL2 SDL2_image::SDL2_image SDL2_mixer::SDL2_mixer SDL2_ttf::SDL2_ttf ${PROJECT_NAME})
-        add_custom_command(
-            TARGET ${EXAMPLE} POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy -t $<TARGET_FILE_DIR:${EXAMPLE}> $<TARGET_RUNTIME_DLLS:${EXAMPLE}>
-            COMMAND_EXPAND_LISTS
-        )
-    endforeach()
-endif()
+file(GLOB_RECURSE EXAMPLES ${CMAKE_SOURCE_DIR}/examples/*.cpp)
+foreach(SOURCE ${EXAMPLES})
+    get_filename_component(EXAMPLE ${SOURCE} NAME_WLE)
+    add_executable(${EXAMPLE} WIN32 EXCLUDE_FROM_ALL ${SOURCE})
+    target_link_libraries(${EXAMPLE} ${PROJECT_NAME})
+    add_custom_command(
+        TARGET ${EXAMPLE} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy -t $<TARGET_FILE_DIR:${EXAMPLE}> $<TARGET_RUNTIME_DLLS:${EXAMPLE}>
+        COMMAND_EXPAND_LISTS
+    )
+endforeach()
 
 include(GNUInstallDirs)
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
