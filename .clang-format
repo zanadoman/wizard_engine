@@ -1,5 +1,5 @@
-IndentWidth: 4
+AllowShortFunctionsOnASingleLine: Empty
 ColumnLimit: 80
+IndentWidth: 4
 PointerAlignment: Left
 QualifierAlignment: Right
-AllowShortFunctionsOnASingleLine: Empty

@@ -1,6 +1,6 @@
 /*
   Wizard Engine
-  Copyright (C) 2023-2024 Zana Domán
+  Copyright (C) 2023-2026 Zana Domán
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -55,7 +55,7 @@
 
 #define wze_main(title, width, height)                                         \
     /* @file wizard_engine.hpp                      */                         \
-    /* @author Zana Domán                           */                        \
+    /* @author Zana Domán                           */                         \
     /* @brief Main function of the Wizard Engine.   */                         \
     /* @param width Width of the game window.       */                         \
     /* @param height Height of the game window.     */                         \
@@ -71,7 +71,7 @@
 
 #define wze_while(condition)                                                   \
     /* @file wizard_engine.hpp                                   */            \
-    /* @author Zana Domán                                        */           \
+    /* @author Zana Domán                                        */            \
     /* @brief Game loop of the Wizard Engine.                    */            \
     /* @param True if the game should continue, false otherwise. */            \
     while (wze::engine::update() && condition)
